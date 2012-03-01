@@ -3,12 +3,6 @@
 # http://www.draconianoverlord.com/files/gitshrc
 
 #####
-# Bash stuff
-#####
-set -o vi
-alias lsl='ls -l'
-
-#####
 # Git stuff
 #####
 
@@ -66,8 +60,9 @@ alias  s='git status'
 # git log
 gitalias  L='git log'
 # gitalias l='git log --graph --pretty=oneline --abbrev-commit --decorate'
-gitalias  l="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-gitalias ll='git log --pretty=oneline --abbrev-commit --max-count=15'
+# gitalias  l="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+gitalias  l='git log --pretty=oneline --abbrev-commit --max-count=15'
+gitalias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 # misc
 gitalias pick='git cherry-pick'
