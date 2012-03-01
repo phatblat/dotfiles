@@ -1,0 +1,87 @@
+#!/bin/bash
+# Based on rtomayko's ~/.gitshrc file
+# http://www.draconianoverlord.com/files/gitshrc
+
+#####
+# Bash stuff
+#####
+set -o vi
+alias lsl='ls -l'
+
+#####
+# Git stuff
+#####
+
+# git commit
+gitalias commit='git commit --verbose'
+gitalias amend='git commit --verbose --amend'
+gitalias ci='git commit --verbose'
+gitalias ca='git commit --verbose --all'
+gitalias  n='git commit --verbose --amend'
+
+# git branch and remote
+gitalias  b='git branch -av'
+gitalias bd='git branch -d'		# mine
+gitalias rv='git remote -v'
+
+# git add
+gitalias  a='git add'
+gitalias au='git add --update'
+gitalias ap='git add --patch'
+alias aug='git aug' # add all updated/new/deleted
+alias aa='git aa' # add all updated/new/deleted
+alias ag='git ag' # add with grep
+alias agp='git agp' # add with grep -p
+alias cg='git cg' # checkout with grep
+alias dg='git dg' # diff with grep
+alias pg='git pg' # patch with grep
+alias rsg='git rsg' # reset with grep
+alias rmg='git rmg' # remove with grep
+
+# git checkout
+gitalias c='git checkout'
+
+# git fetch
+gitalias f='git fetch'
+
+# git merge
+gitalias m='git merge'		# mine
+
+# basic interactive rebase of last 10 commits
+gitalias r='git rebase --interactive HEAD~10'
+alias cont='git rebase --continue'
+
+# git diff
+gitalias d='git diff'
+gitalias p='git diff --cached'   # mnemonic: "patch"
+
+# git ls-files
+gitalias o='git ls-files -o --exclude-standard'    # "other"
+
+# git status
+alias  s='git status'
+
+# git log
+gitalias  L='git log'
+# gitalias l='git log --graph --pretty=oneline --abbrev-commit --decorate'
+gitalias  l="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+gitalias ll='git log --pretty=oneline --abbrev-commit --max-count=15'
+
+# misc
+gitalias pick='git cherry-pick'
+
+# experimental
+gitalias mirror='git reset --hard'
+gitalias stage='git add'
+gitalias unstage='git reset HEAD'
+gitalias pop='git reset --soft HEAD^'
+gitalias review='git log -p --max-count=1'
+
+# svn
+gitalias si='git si' # svn ignore
+gitalias sr='git svn rebase'
+gitalias sp='git svn dcommit'
+gitalias sf='git svn fetch'
+
+gitalias wtf='git-wtf'
+
