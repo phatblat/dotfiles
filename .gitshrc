@@ -54,6 +54,7 @@ alias cont='git rebase --continue'
 
 # git diff
 gitalias d='git diff'
+gitalias dc='git diff --cached'
 gitalias p='git diff --cached'   # mnemonic: "patch"
 
 # git ls-files
