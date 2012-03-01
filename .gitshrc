@@ -28,6 +28,7 @@ gitalias rv='git remote -v'
 gitalias  a='git add'
 gitalias au='git add --update'
 gitalias ap='git add --patch'
+gitalias af='git add --force'
 alias aug='git aug' # add all updated/new/deleted
 alias aa='git aa' # add all updated/new/deleted
 alias ag='git ag' # add with grep
