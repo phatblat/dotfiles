@@ -14,12 +14,17 @@ shopt -s histverify
 #
 # Command-line aliases
 #
+# ls
 alias ll="ls -l"
 alias la="ls -la"
 alias lA="ls -lA"
 alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
+
+# git-sh secondary aliases
+function bmv() { mv $@; }
+function brm() { rm $@; }
 
 alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile"
 alias viprofile="vi ~/.bash_profile && reloadprofile"
