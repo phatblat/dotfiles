@@ -313,7 +313,10 @@ PS1="\[$COLOR_LIGHT_GRAY\]\$(date +%H:%M) \[$COLOR_RED\]\w\[$COLOR_YELLOW\]\$(pa
 if [ -f ~/heroku/.herokurc ]; then
    source ~/heroku/.herokurc
 fi
+
 #-------------------------------------------------------------------------------
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
 
 # This loads RVM into a shell session.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
