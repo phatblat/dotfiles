@@ -316,4 +316,4 @@ fi
 #-------------------------------------------------------------------------------
 
 # This loads RVM into a shell session.
-[[ -s "/Volumes/Macintosh HD/Users/phatblat/.rvm/scripts/rvm" ]] && source "/Volumes/Macintosh HD/Users/phatblat/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
