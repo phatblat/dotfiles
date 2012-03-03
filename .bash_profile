@@ -3,30 +3,34 @@
 # VI-style prompt editing
 set -o vi
 
-export HISTCONTROL=erasedups
+export HISTCONTROL=ignoredups:erasedups
 export HISTSIZE=10000
 shopt -s histappend
+## reedit a substitution line if it failed
+shopt -s histreedit
+## edit a recalled history line before executing
+shopt -s histverify
 
 #
 # Command-line aliases
 #
 alias ll="ls -l"
-alias l="ls -l"
 alias la="ls -la"
 alias lA="ls -lA"
-alias ld="ls -ld */"
+alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
-alias htstatus="ps awx | grep httpd"
+alias lh="la -d .*"
+
 alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile"
 alias viprofile="vi ~/.bash_profile && reloadprofile"
 alias mateprofile="mate -rw ~/.bash_profile && reloadprofile"
 alias editprofile=mateprofile
+
 alias h="history"
 alias tm="/Applications/TextMate.app/Contents/MacOS/TextMate"
 alias ox='open *.xcodeproj/'
-alias tm='open *.tmproj/'
-alias tmp='echo tmp'
 
+alias htstatus="ps awx | grep httpd"
 
 ######################################
 #
@@ -236,6 +240,13 @@ export LC_CTYPE=en_US.UTF-8
 # If you get an error "svn: Can't recode string", then you may need to unset the LC_ALL environment variable:
 # export LC_ALL=
 
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r16
+
+#
+# Node path
+#
+export NODE_PATH=/usr/local/lib/node_modules
+
 #
 # System path
 #
@@ -256,6 +267,10 @@ export PATH=$SCALA_HOME/bin:$PATH
 export PATH=$MYSQL_HOME/bin:$PATH
 # export PATH=$SVN_HOME/bin:$PATH
 export PATH=$ACTIVEMQ_HOME/bin:$PATH
+
+export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
+
+export PATH=~/bin:$OSX_PATH:$PATH
 
 #echo $PATH
 #
@@ -289,6 +304,13 @@ export COLOR_YELLOW='\033[1;33m'
 export COLOR_GRAY='\033[1;30m'
 export COLOR_LIGHT_GRAY='\033[0;37m'
 
+###################################
+#
+# Prompt customization
+#
+###################################
+# Save and reload the history after each command finishes
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 function git_branch {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
