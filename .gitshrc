@@ -16,6 +16,7 @@ gitalias  n='git commit --verbose --amend'
 # git branch and remote
 gitalias  b='git branch -av'
 gitalias bd='git branch -d'		# mine
+gitalias bD='git branch -D'		# mine
 gitalias rv='git remote -v'
 
 # git add
