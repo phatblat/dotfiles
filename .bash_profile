@@ -158,7 +158,7 @@ alias r="vcs_revert"
 #
 # GCC stuff
 #
-export ARCHFLAGS="-arch x86_64"
+#export ARCHFLAGS="-arch x86_64"
 #export LIBRARY_PATH=/usr/include
 # export MACOSX_DEPLOYMENT_TARGET=10.6
 # export CFLAGS="-I/usr/local/include:/usr/include -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk"
