@@ -23,15 +23,6 @@ gitalias       a='git add'
 gitalias      au='git add --update'
 gitalias      ap='git add --patch'
 gitalias      af='git add --force'
-alias        aug='git aug'   # add all updated/new/deleted
-alias         aa='git aa'    # add all updated/new/deleted
-alias         ag='git ag'    # add with grep
-alias        agp='git agp'   # add with grep -p
-alias         cg='git cg'    # checkout with grep
-alias         dg='git dg'    # diff with grep
-alias         pg='git pg'    # patch with grep
-alias        rsg='git rsg'   # reset with grep
-alias        rmg='git rmg'   # remove with grep
 
 # git commit
 gitalias  commit='git commit --verbose'
