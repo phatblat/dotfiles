@@ -2,81 +2,81 @@
 # Based on rtomayko's ~/.gitshrc file
 # http://www.draconianoverlord.com/files/gitshrc
 
-# git commit
-gitalias commit='git commit --verbose'
-gitalias amend='git commit --verbose --amend'
-gitalias ci='git commit --verbose'
-gitalias ca='git commit --verbose --all'
-gitalias  n='git commit --verbose --amend'
+# git status
+alias      s='git status'
+gitalias wtf='git-wtf'
 
-# git branch and remote
-gitalias  b='git branch -av'
-gitalias bd='git branch -d'		# mine
-gitalias bD='git branch -D'		# mine
-gitalias rv='git remote -v'
+# git diff
+gitalias  d='git diff'
+gitalias dc='git diff --cached'
+gitalias  p='git diff --cached'   # mnemonic: "patch"
+
+# git log
+gitalias      L='git log'
+gitalias      l='git log --pretty=oneline --abbrev-commit --max-count=15'
+gitalias     lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+gitalias review='git log -p --max-count=1'
 
 # git add
 gitalias  a='git add'
 gitalias au='git add --update'
 gitalias ap='git add --patch'
 gitalias af='git add --force'
-alias aug='git aug' # add all updated/new/deleted
-alias aa='git aa' # add all updated/new/deleted
-alias ag='git ag' # add with grep
-alias agp='git agp' # add with grep -p
-alias cg='git cg' # checkout with grep
-alias dg='git dg' # diff with grep
-alias pg='git pg' # patch with grep
-alias rsg='git rsg' # reset with grep
-alias rmg='git rmg' # remove with grep
+alias   aug='git aug'   # add all updated/new/deleted
+alias    aa='git aa'    # add all updated/new/deleted
+alias    ag='git ag'    # add with grep
+alias   agp='git agp'   # add with grep -p
+alias    cg='git cg'    # checkout with grep
+alias    dg='git dg'    # diff with grep
+alias    pg='git pg'    # patch with grep
+alias   rsg='git rsg'   # reset with grep
+alias   rmg='git rmg'   # remove with grep
 
-# git checkout
-gitalias c='git checkout'
+# git commit
+gitalias commit='git commit --verbose'
+gitalias     ci='git commit --verbose'
+gitalias     ca='git commit --verbose --all'
+gitalias  amend='git commit --verbose --amend'
+gitalias      n='git commit --verbose --amend'
 
 # git fetch
 gitalias f='git fetch'
 
+# git push
+gitalias deploy='git push heroku master'
+gitalias     pf='git push --force'
+gitalias     pt='git push --tags'
+
+# git checkout
+gitalias c='git checkout'
+
+# git branch and remote
+gitalias  b='git branch -av'
+gitalias bd='git branch -d'		# soft delete
+gitalias bD='git branch -D'		# hard delete
+gitalias rv='git remote -v'
+
 # git merge
-gitalias m='git merge'		# mine
+gitalias m='git merge'
 
 # basic interactive rebase of last 10 commits
 gitalias r='git rebase --interactive HEAD~10'
 alias cont='git rebase --continue'
 
-# git diff
-gitalias d='git diff'
-gitalias dc='git diff --cached'
-gitalias p='git diff --cached'   # mnemonic: "patch"
-
 # git ls-files
 gitalias o='git ls-files -o --exclude-standard'    # "other"
-
-# git status
-alias  s='git status'
-
-# git log
-gitalias  L='git log'
-gitalias  l='git log --pretty=oneline --abbrev-commit --max-count=15'
-gitalias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
-
-# git push
-gitalias deploy='git push heroku master'
 
 # misc
 gitalias pick='git cherry-pick'
 
 # experimental
-gitalias mirror='git reset --hard'
-gitalias stage='git add'
+gitalias  mirror='git reset --hard'
+gitalias   stage='git add'
 gitalias unstage='git reset HEAD'
-gitalias pop='git reset --soft HEAD^'
-gitalias review='git log -p --max-count=1'
+gitalias     pop='git reset --soft HEAD^'
 
 # svn
 gitalias si='git si' # svn ignore
 gitalias sr='git svn rebase'
 gitalias sp='git svn dcommit'
 gitalias sf='git svn fetch'
-
-gitalias wtf='git-wtf'
-
