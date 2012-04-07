@@ -30,6 +30,7 @@ gitalias      ci='git commit --verbose'
 gitalias      ca='git commit --verbose --all'
 gitalias   amend='git commit --verbose --amend'
 gitalias       n='git commit --verbose --amend'
+gitalias     cam='git add --update && git commit -m'    # commit all with message
 
 # git fetch
 gitalias       f='git fetch'
