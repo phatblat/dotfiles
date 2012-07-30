@@ -223,6 +223,7 @@ export MYSQL_HOME=/usr/local/mysql
 #
 # export SVN_HOME=/opt/subversion
 export SVN_EDITOR='mate -w'
+alias svn='xcrun svn'
 
 #
 # NPM (node package manager) modules
