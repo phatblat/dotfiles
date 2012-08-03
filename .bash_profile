@@ -175,28 +175,6 @@ alias r="vcs_revert"
 # export ACLOCAL_FLAGS="-I /share/aclocal"
 
 #
-# Java
-#
-#export JAVA_HOME=/Library/Java/Home
-#export JRE_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
-#export CLASSPATH=.:/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Classes/classes.jar:/usr/local/tomcat/lib/servlet-api.jar
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-export JDK_HOME="/Library/Java/Home"
-export ANT_HOME=/usr/share/ant
-export ANT_OPTS="-Xms256M -Xmx512M"
-export MVN_HOME=/usr/local/maven #apache-maven-3.0.2 @ 2011-01-17
-#export TOMCAT_HOME=/Applications/NetBeans/apache-tomcat-6.0.16
-#export CATALINA_HOME=/usr/local/tomcat
-export JBOSS_HOME=/usr/local/jboss
-export JMETER_HOME=/usr/local/jmeter
-
-
-#
-# Scala
-#
-export SCALA_HOME=/usr/local/scala
-
-#
 # Git
 #
 export GIT_EDITOR='mate -w'
@@ -231,11 +209,6 @@ alias svn='xcrun svn'
 export NODE_PATH='/usr/local/lib/node_modules'
 
 #
-# ActiveMQ
-#
-export ACTIVEMQ_HOME=/usr/local/activemq
-
-#
 # ImageMagick
 #
 #export IMAGEMAGICK_HOME=/usr/local/imagemagick
@@ -260,23 +233,10 @@ export NODE_PATH=/usr/local/lib/node_modules
 #echo $PATH
 
 # Manually setting the original OS X path so that reloadprofile won't keep growing the PATH
-OSX_PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
+OSX_PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
 
+# Prepend user bin dir to PATH
 export PATH=~/bin:$OSX_PATH
-
-export PATH=$JAVA_HOME/bin:$PATH
-export PATH=$ANT_HOME/bin:$PATH
-export PATH=$MVN_HOME/bin:$PATH
-export PATH=$JBOSS_HOME/bin:$PATH
-export PATH=$JMETER_HOME/bin:$PATH
-export PATH=$SCALA_HOME/bin:$PATH
-export PATH=$MYSQL_HOME/bin:$PATH
-# export PATH=$SVN_HOME/bin:$PATH
-export PATH=$ACTIVEMQ_HOME/bin:$PATH
-
-export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
-
-export PATH=~/bin:$OSX_PATH:$PATH
 
 #echo $PATH
 #
