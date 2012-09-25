@@ -37,6 +37,8 @@ alias ox='open *.xcodeproj/'
 
 alias htstatus="ps awx | grep httpd"
 
+SIMDIR='"~/Library/Application Support/iPhone Simulator/6.0/Applications"'
+
 ######################################
 #
 # VCS specific functions & aliases
