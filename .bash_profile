@@ -37,7 +37,15 @@ alias ox='open *.xcodeproj/'
 
 alias htstatus="ps awx | grep httpd"
 
-SIMDIR='"~/Library/Application Support/iPhone Simulator/6.0/Applications"'
+#
+# iOS development
+#
+
+SIMDIR=~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications/
+function simdir {
+    cd "$SIMDIR"
+}
+export CODESIGN_ALLOCATE="/Applications/Xcode.app/Contents/Developer/usr/bin/codesign_allocate"
 
 ######################################
 #
