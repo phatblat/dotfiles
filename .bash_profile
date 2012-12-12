@@ -230,7 +230,8 @@ export LC_CTYPE=en_US.UTF-8
 # If you get an error "svn: Can't recode string", then you may need to unset the LC_ALL environment variable:
 # export LC_ALL=
 
-export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r16
+export ANDROID_SDK_ROOT=/Applications/adt-bundle-mac/sdk
+ANDROID_PATH=${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/tools
 
 #
 # Node path
@@ -247,7 +248,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 OSX_PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
 
 # Prepend user bin dir to PATH
-export PATH=~/bin:$OSX_PATH
+export PATH=~/bin:${ANDROID_PATH}:${OSX_PATH}
 
 #echo $PATH
 #
