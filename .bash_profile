@@ -1,4 +1,4 @@
-# Bash command-line customization
+ # Bash command-line customization
 
 # VI-style prompt editing
 set -o vi
@@ -26,7 +26,7 @@ alias lh="la -d .*"
 function bmv() { mv $@; }
 function brm() { rm $@; }
 
-alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile"
+alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile && git-sh"
 alias viprofile="vi ~/.bash_profile && reloadprofile"
 alias mateprofile="mate -rw ~/.bash_profile && reloadprofile"
 alias editprofile=mateprofile
