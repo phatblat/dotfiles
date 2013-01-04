@@ -33,7 +33,8 @@ alias editprofile=mateprofile
 
 alias h="history"
 alias tm="/Applications/TextMate.app/Contents/MacOS/TextMate"
-alias ox='open *.xcodeproj/'
+alias ox='open *.xcodeproj'
+alias ow='open *.xcworkspace'
 alias chrome='open -a "Google Chrome" --args --incognito'
 
 alias htstatus="ps awx | grep httpd"
