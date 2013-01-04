@@ -189,17 +189,7 @@ alias r="vcs_revert"
 # export CPPFLAGS=$CXXFLAGS
 # export ACLOCAL_FLAGS="-I /share/aclocal"
 
-#
-# Git
-#
-export GIT_EDITOR='mate -w'
-
-#
-# Google Go
-#
-export GOROOT=$HOME/Dev/Go
-export GOOS=darwin
-export GOARCH=amd64
+export EDITOR='mate -w'
 
 #
 # Python
@@ -207,21 +197,9 @@ export GOARCH=amd64
 export PYTHONPATH=/Library/Python/2.6/site-packages/
 
 #
-# MySQL
-#
-export MYSQL_HOME=/usr/local/mysql
-
-#
 # Subversion
 #
-# export SVN_HOME=/opt/subversion
-export SVN_EDITOR='mate -w'
 alias svn='xcrun svn'
-
-#
-# NPM (node package manager) modules
-#
-export NODE_PATH='/usr/local/lib/node_modules'
 
 #
 # ImageMagick
@@ -245,7 +223,6 @@ export NODE_PATH=/usr/local/lib/node_modules
 #
 # System path
 #
-
 #echo $PATH
 
 # Manually setting the original OS X path so that reloadprofile won't keep growing the PATH
