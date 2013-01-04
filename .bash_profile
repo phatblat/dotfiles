@@ -48,6 +48,9 @@ function simdir {
 }
 export CODESIGN_ALLOCATE="/Applications/Xcode.app/Contents/Developer/usr/bin/codesign_allocate"
 
+# Fortify
+FORTIFY_PATH=~/Documents/Projects/HP_Fortify_SCA_and_Apps_3.60_Mac_x64
+
 ######################################
 #
 # VCS specific functions & aliases
@@ -248,7 +251,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 OSX_PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
 
 # Prepend user bin dir to PATH
-export PATH=~/bin:${ANDROID_PATH}:${OSX_PATH}
+export PATH=~/bin:${ANDROID_PATH}:${FORTIFY_PATH}/bin:${OSX_PATH}
 
 #echo $PATH
 #
