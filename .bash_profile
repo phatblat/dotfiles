@@ -39,6 +39,9 @@ alias chrome='open -a "Google Chrome" --args --incognito'
 
 alias htstatus="ps awx | grep httpd"
 
+alias showsvn="find . -type d -name .svn"
+# alias prunesvn="rm -rf `find . -type d -name .svn`"
+
 #
 # iOS development
 #
