@@ -46,7 +46,7 @@ alias showsvn="find . -type d -name .svn"
 # iOS development
 #
 
-SIMDIR=~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications/
+SIMDIR=~/Library/Application\ Support/iPhone\ Simulator/6.1/Applications/
 function simdir {
     cd "$SIMDIR"
 }
