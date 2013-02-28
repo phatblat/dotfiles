@@ -36,7 +36,7 @@ alias tm="/Applications/TextMate.app/Contents/MacOS/TextMate"
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
 alias chrome='open -a "Google Chrome" --args --incognito'
-
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 alias htstatus="ps awx | grep httpd"
 
 alias showsvn="find . -type d -name .svn"
