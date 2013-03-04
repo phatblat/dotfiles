@@ -53,7 +53,7 @@ function simdir {
 export CODESIGN_ALLOCATE="/Applications/Xcode.app/Contents/Developer/usr/bin/codesign_allocate"
 
 # Fortify
-FORTIFY_PATH=~/Documents/Projects/HP_Fortify_SCA_and_Apps_3.60_Mac_x64
+FORTIFY_PATH=~/dev/fortify/HP_Fortify_SCA_and_Apps_3.60_Mac_x64
 
 ######################################
 #
