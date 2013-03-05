@@ -63,6 +63,47 @@ gitalias       o='git ls-files -o --exclude-standard'    # "other"
 # misc
 gitalias    pick='git cherry-pick'
 
+# bash compatibility
+function bash_mv() { /bin/mv "$@"; }
+function bash_rm() { /bin/rm "$@"; }
+# function is_tracked() { git ls-files $@ --error-unmatch 2> /dev/null }
+function git_mv {
+	# echo "git_mv args: $@"
+	for f in "$@"; do
+		# Skip over command arguments and don't test last arg (destination)
+		if [[ $(echo "$f" | head -c 1) != "-" && "$f" != "${@: -1}" ]] ; then
+			if [[ -z $(git ls-files "$f" --error-unmatch 2> /dev/null) ]] ; then
+				# Send untracked files to bash mv command
+				echo "Moving untracked file: $f"
+				bash_mv "$f" "${@: -1}"
+			else
+				# Send tracked files to git mv command
+				# echo "Moving tracked file: $f"
+				git mv "$f" "${@: -1}"
+			fi
+		fi
+	done
+}
+function git_rm {
+	# echo "git_rm args: $@"
+	for f in "$@"; do
+		# Skip over command arguments
+		if [[ $(echo "$f" | head -c 1) != "-" ]] ; then
+			if [[ -z $(git ls-files "$f" --error-unmatch 2> /dev/null) ]] ; then
+				# Send untracked files to bash mv command
+				echo "Deleting untracked file: $f"
+				bash_rm "$f"
+			else
+				# Send tracked files to git mv command
+				#echo "Deleting tracked file: $f"
+				git rm "$f"
+			fi
+		fi
+	done
+}
+gitalias      mv='git_mv'
+gitalias      rm='git_rm'
+
 # experimental
 gitalias  mirror='git reset --hard'
 gitalias   stage='git add'
