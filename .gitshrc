@@ -55,7 +55,7 @@ gitalias       m='git merge'
 # basic interactive rebase of last 10 commits
 gitalias       r='git rebase --interactive HEAD~10'
 alias       cont='git rebase --continue'
-alias      abort='git rebase --abort'
+alias      abort='git rebase --abort || git cherry-pick --abort'
 
 # git ls-files
 gitalias       o='git ls-files -o --exclude-standard'    # "other"
