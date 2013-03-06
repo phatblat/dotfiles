@@ -101,8 +101,8 @@ function git_rm {
 		fi
 	done
 }
-gitalias      mv='git_mv'
-gitalias      rm='git_rm'
+alias         mv='git_mv'
+alias         rm='git_rm'
 
 # experimental
 gitalias  mirror='git reset --hard'
