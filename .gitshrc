@@ -74,7 +74,7 @@ function git_mv {
 		if [[ $(echo "$f" | head -c 1) != "-" && "$f" != "${@: -1}" ]] ; then
 			if [[ -z $(git ls-files "$f" --error-unmatch 2> /dev/null) ]] ; then
 				# Send untracked files to bash mv command
-				echo "Moving untracked file: $f"
+				# echo "Moving untracked file: $f"
 				bash_mv "$f" "${@: -1}"
 			else
 				# Send tracked files to git mv command
@@ -91,7 +91,7 @@ function git_rm {
 		if [[ $(echo "$f" | head -c 1) != "-" ]] ; then
 			if [[ -z $(git ls-files "$f" --error-unmatch 2> /dev/null) ]] ; then
 				# Send untracked files to bash mv command
-				echo "Deleting untracked file: $f"
+				# echo "Deleting untracked file: $f"
 				bash_rm "$f"
 			else
 				# Send tracked files to git mv command
