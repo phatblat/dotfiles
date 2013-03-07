@@ -1,4 +1,4 @@
- # Bash command-line customization
+# Bash command-line customization
 
 # VI-style prompt editing
 set -o vi
@@ -21,10 +21,6 @@ alias lA="ls -lA"
 alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
-
-# git-sh secondary aliases
-function bmv() { mv $@; }
-function brm() { rm $@; }
 
 alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile && git-sh"
 alias viprofile="vi ~/.bash_profile && reloadprofile"
