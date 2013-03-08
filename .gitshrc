@@ -112,6 +112,8 @@ function git_rm {
 }
 alias         mv='git_mv'
 alias         rm='git_rm'
+# https://github.com/rtomayko/git-sh/issues/20
+alias       root='cd $(git rev-parse --git-dir)/..'
 
 # experimental
 gitalias  mirror='git reset --hard'
