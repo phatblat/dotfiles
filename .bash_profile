@@ -106,10 +106,10 @@ export NODE_PATH=/usr/local/lib/node_modules
 #echo $PATH
 
 # Manually setting the original OS X path so that reloadprofile won't keep growing the PATH
-OSX_PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
+OSX_PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
 
 # Prepend user bin dir to PATH
-export PATH=~/bin:${ANDROID_PATH}:${FORTIFY_PATH}/bin:${OSX_PATH}
+export PATH=~/bin:/usr/local/bin:${ANDROID_PATH}:${FORTIFY_PATH}/bin:${OSX_PATH}
 
 #echo $PATH
 #
