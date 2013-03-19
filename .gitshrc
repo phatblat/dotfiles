@@ -63,55 +63,6 @@ gitalias       o='git ls-files -o --exclude-standard'    # "other"
 # misc
 gitalias    pick='git cherry-pick'
 
-# bash compatibility
-function git_mv {
-	# echo "git_mv args: $@"
-	for f in "$@"; do
-		if [[ $(echo "$f" | head -c 1) = "-" ]] ; then
-			# Save command option arguments
-			args="$args $f"
-		else
-			# Process file arguments, but skip over last arg (move destination)
-			if [[ "$f" != "${@: -1}" ]] ; then
-				if [[ -z $(git ls-files "$f" --error-unmatch 2> /dev/null) ]] ; then
-					# Send untracked files to bash mv command
-					# echo "Moving untracked file: $f"
-					env mv $args "$f" "${@: -1}"
-				else
-					# Send tracked files to git mv command
-					# echo "Moving tracked file: $f"
-					git mv $args "$f" "${@: -1}"
-				fi
-			fi
-		fi
-	done
-	unset args
-}
-function git_rm {
-	# echo "git_rm args: $@"
-	for f in "$@"; do
-		if [[ $(echo "$f" | head -c 1) = "-" ]] ; then
-			# Save command option arguments
-			args="$args $f"
-			# echo "args: $args"
-		else
-			# echo "args: $args"
-			# Process file arguments
-			if [[ -z $(git ls-files "$f" --error-unmatch 2> /dev/null) ]] ; then
-				# Send untracked files to bash mv command
-				# echo "Deleting untracked file: $f"
-				env rm $args "$f"
-			else
-				# Send tracked files to git mv command
-				#echo "Deleting tracked file: $f"
-				git rm $args "$f"
-			fi
-		fi
-	done
-	unset args
-}
-alias         mv='git_mv'
-alias         rm='git_rm'
 # https://github.com/rtomayko/git-sh/issues/20
 alias       root='cd $(git rev-parse --git-dir)/..'
 
