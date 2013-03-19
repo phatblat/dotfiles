@@ -75,7 +75,6 @@ FORTIFY_PATH=~/dev/fortify/HP_Fortify_SCA_and_Apps_3.60_Mac_x64
 # export CPPFLAGS=$CXXFLAGS
 # export ACLOCAL_FLAGS="-I /share/aclocal"
 
-export EDITOR='mate -w'
 
 #
 # Python
@@ -170,6 +169,16 @@ PS1="\[$COLOR_LIGHT_GRAY\]\$(date +%H:%M) \[$COLOR_RED\]\w\[$COLOR_YELLOW\]\$(pa
 #PS1='\h:\W \u\$ '
 # PS1="[\w]\n\$ "
 # PS1=">>>\$ "
+
+
+#-------------------------------------------------------------------------------
+#
+# git + hub
+#
+#-------------------------------------------------------------------------------
+export EDITOR='mate -w'
+eval "$(hub alias -s)"
+
 
 #-------------------------------------------------------------------------------
 #
