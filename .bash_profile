@@ -34,6 +34,12 @@ alias chrome='open -a "Google Chrome" --args --incognito'
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 alias htstatus="ps awx | grep httpd"
 
+#-------------------------------------------------------------------------------
+#
+# Subversion
+#
+#-------------------------------------------------------------------------------
+alias svn='xcrun svn'
 alias showsvn="find . -type d -name .svn"
 # alias prunesvn="rm -rf `find . -type d -name .svn`"
 
@@ -77,9 +83,7 @@ export EDITOR='mate -w'
 export PYTHONPATH=/Library/Python/2.6/site-packages/
 
 #
-# Subversion
 #
-alias svn='xcrun svn'
 
 #
 # ImageMagick
