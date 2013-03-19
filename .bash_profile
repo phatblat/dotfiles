@@ -24,8 +24,7 @@ alias lh="la -d .*"
 
 alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile && git-sh"
 alias viprofile="vi ~/.bash_profile && reloadprofile"
-alias mateprofile="mate -rw ~/.bash_profile && reloadprofile"
-alias editprofile=mateprofile
+alias editprofile="mate -rw ~/.bash_profile && reloadprofile"
 
 alias h="history"
 alias tm="/Applications/TextMate.app/Contents/MacOS/TextMate"
