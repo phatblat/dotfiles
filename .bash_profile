@@ -1,5 +1,8 @@
+#-------------------------------------------------------------------------------
+#
 # Bash command-line customization
-
+#
+#-------------------------------------------------------------------------------
 # VI-style prompt editing
 set -o vi
 
@@ -11,9 +14,11 @@ shopt -s histreedit
 ## edit a recalled history line before executing
 shopt -s histverify
 
+#-------------------------------------------------------------------------------
 #
 # Command-line aliases
 #
+#-------------------------------------------------------------------------------
 # ls
 alias ll="ls -l"
 alias la="ls -la"
@@ -43,10 +48,12 @@ alias svn='xcrun svn'
 alias showsvn="find . -type d -name .svn"
 # alias prunesvn="rm -rf `find . -type d -name .svn`"
 
+
+#-------------------------------------------------------------------------------
 #
 # iOS development
 #
-
+#-------------------------------------------------------------------------------
 SIMDIR=~/Library/Application\ Support/iPhone\ Simulator/6.1/Applications/
 function simdir {
     cd "$SIMDIR"
@@ -56,9 +63,12 @@ export CODESIGN_ALLOCATE="/Applications/Xcode.app/Contents/Developer/usr/bin/cod
 # Fortify
 FORTIFY_PATH=~/dev/fortify/HP_Fortify_SCA_and_Apps_3.60_Mac_x64
 
+
+#-------------------------------------------------------------------------------
 #
 # GCC stuff
 #
+#-------------------------------------------------------------------------------
 #export ARCHFLAGS="-arch x86_64"
 #export LIBRARY_PATH=/usr/include
 # export MACOSX_DEPLOYMENT_TARGET=10.6
@@ -76,13 +86,15 @@ FORTIFY_PATH=~/dev/fortify/HP_Fortify_SCA_and_Apps_3.60_Mac_x64
 # export ACLOCAL_FLAGS="-I /share/aclocal"
 
 
+#-------------------------------------------------------------------------------
+#
+# PATH building
+#
+#-------------------------------------------------------------------------------
 #
 # Python
 #
 export PYTHONPATH=/Library/Python/2.6/site-packages/
-
-#
-#
 
 #
 # ImageMagick
@@ -115,12 +127,14 @@ OSX_PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
 export PATH=~/bin:/usr/local/bin:${ANDROID_PATH}:${FORTIFY_PATH}/bin:${OSX_PATH}
 
 #echo $PATH
-#
-# END: PATH
-#
 
+
+#-------------------------------------------------------------------------------
+#
 # Terminal colors
 # http://stackoverflow.com/questions/1355976/bash-on-snow-leopard-doesnt-obey-terminal-colours
+#
+#-------------------------------------------------------------------------------
 # Colors
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
@@ -146,11 +160,12 @@ export COLOR_YELLOW='\033[1;33m'
 export COLOR_GRAY='\033[1;30m'
 export COLOR_LIGHT_GRAY='\033[0;37m'
 
-###################################
+
+#-------------------------------------------------------------------------------
 #
 # Prompt customization
 #
-###################################
+#-------------------------------------------------------------------------------
 # Save and reload the history after each command finishes
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
@@ -184,17 +199,26 @@ eval "$(hub alias -s)"
 #
 # Heroku
 #
+#-------------------------------------------------------------------------------
 if [ -f ~/heroku/.herokurc ]; then
    source ~/heroku/.herokurc
 fi
 
-#-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+#
+# RVM
+#
+#-------------------------------------------------------------------------------
 # This loads RVM into a shell session.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+
 #-------------------------------------------------------------------------------
-# Load local customizations last
+#
+# Local customizations, loaded last
+#
+#-------------------------------------------------------------------------------
 if [ -f ~/.bash_profile.local ]; then
    source ~/.bash_profile.local
 fi
