@@ -36,7 +36,7 @@ gitalias     cam='git add --update && git commit -m'    # commit all with messag
 gitalias       f='git fetch'
 
 # git push
-gitalias deploy='git push heroku master'
+gitalias  deploy='git push heroku master'
 gitalias      pf='git push --force'
 gitalias      pt='git push --tags'
 
@@ -71,6 +71,16 @@ gitalias  mirror='git reset --hard'
 gitalias   stage='git add'
 gitalias unstage='git reset HEAD'
 gitalias     pop='git reset --soft HEAD^'
+
+# http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+# Manage 'assume unchanged' files
+gitalias   assume='git update-index --assume-unchanged'
+gitalias unassume='git update-index --no-assume-unchanged'
+gitalias  assumed='!git ls-files -v | grep ^h | cut -c 3-'
+# Takes a snapshot of your current working tree without removing the changes from your working tree
+gitalias snapshot='!git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
+gitalias     ours='!f() { git checkout --ours $@ && git add $@; }; f'
+gitalias   theirs='!f() { git checkout --theirs $@ && git add $@; }; f'
 
 # svn
 gitalias      si='git si' # svn ignore
