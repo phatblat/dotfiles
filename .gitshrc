@@ -76,7 +76,7 @@ gitalias     pop='git reset --soft HEAD^'
 # Manage 'assume unchanged' files
 gitalias   assume='git update-index --assume-unchanged'
 gitalias unassume='git update-index --no-assume-unchanged'
-gitalias  assumed='!git ls-files -v | grep ^h | cut -c 3-'
+gitalias  assumed='git ls-files -v | grep ^h | cut -c 3-'
 # Takes a snapshot of your current working tree without removing the changes from your working tree
 gitalias snapshot='!git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
 gitalias     ours='!f() { git checkout --ours $@ && git add $@; }; f'
