@@ -191,7 +191,7 @@ PS1="\[$COLOR_LIGHT_GRAY\]\$(date +%H:%M) \[$COLOR_RED\]\w\[$COLOR_YELLOW\]\$(pa
 # git + hub
 #
 #-------------------------------------------------------------------------------
-export EDITOR='mate -w'
+export EDITOR='subl -w'
 eval "$(hub alias -s)"
 
 
