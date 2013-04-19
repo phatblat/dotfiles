@@ -39,6 +39,15 @@ alias chrome='open -a "Google Chrome" --args --incognito'
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 alias htstatus="ps awx | grep httpd"
 
+# burl - https://github.com/visionmedia/burl
+alias GET='burl GET'
+alias HEAD='burl -I'
+alias POST='burl POST'
+alias PUT='burl PUT'
+alias PATCH='burl PATCH'
+alias DELETE='burl DELETE'
+alias OPTIONS='burl OPTIONS'
+
 #-------------------------------------------------------------------------------
 #
 # Subversion
