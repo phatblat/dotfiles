@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Entry point for sourcing modularized bash profile files
+#
+
+pushd > /dev/null 2>&1
+
+for dir in *
+do
+    echo $dir
+    if [ -d "$dir" ]; then
+        cd "$dir"
+        for file in *
+        do
+            if [ -f "$file" ]; then
+                bash "$file"
+            fi
+        done
+    fi
+done
+
+popd > /dev/null 2>&1
