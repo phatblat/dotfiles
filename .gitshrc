@@ -20,7 +20,7 @@ gitalias  review='git log -p --max-count=1'
 
 # git add
 gitalias       a='git add'
-gitalias      au='git add --update'
+gitalias      aa='git add --update .'
 gitalias      ap='git add --patch'
 gitalias      af='git add --force'
 
