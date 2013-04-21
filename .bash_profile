@@ -178,21 +178,25 @@ export COLOR_LIGHT_GRAY='\033[0;37m'
 # Save and reload the history after each command finishes
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-function git_branch {
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    echo -n ${ref#refs/heads/}
-}
+# Check for functions from git-sh
+if [[ $(type -t _git_headname > /dev/null) ]] ; then
+    # Use prompt from git-sh
+    PS1='`_git_headname``_git_upstream_state`!`_git_repo_state``_git_workdir``_git_dirty``_git_dirty_stash`> '
+else
+    # git-sh not loaded, use personal prompt customization
+    function git_branch {
+        ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+        echo -n ${ref#refs/heads/}
+    }
 
-function parse_git_branch {
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    echo " ("$(git_branch)")"
-}
+    function parse_git_branch {
+        ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+        echo " ("$(git_branch)")"
+    }
 
-PS1="\[$COLOR_LIGHT_GRAY\]\$(date +%H:%M) \[$COLOR_RED\]\w\[$COLOR_YELLOW\]\$(parse_git_branch)\[$COLOR_GREEN\] \[$COLOR_CYAN\]$ \[$COLOR_NC\]"
+    PS1="\[$COLOR_LIGHT_GRAY\]\$(date +%H:%M) \[$COLOR_RED\]\w\[$COLOR_YELLOW\]\$(parse_git_branch)\[$COLOR_GREEN\] \[$COLOR_CYAN\]$ \[$COLOR_NC\]"
+fi
 
-#PS1='\h:\W \u\$ '
-# PS1="[\w]\n\$ "
-# PS1=">>>\$ "
 
 
 #-------------------------------------------------------------------------------
