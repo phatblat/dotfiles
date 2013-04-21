@@ -1,0 +1,5 @@
+{
+	"cmd"		: ["chmod", "+x", "$file"],
+	"selector"  : "source.shell"
+    // "shell"     : true
+}
