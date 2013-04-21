@@ -11,6 +11,7 @@ alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
 
+alias reload=". ~/.bash_profile"
 alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile && git-sh"
 alias viprofile="vi ~/.bash_profile && reloadprofile"
 alias editprofile="mate -rw ~/.bash_profile && reloadprofile"
@@ -33,6 +34,21 @@ alias DELETE='burl DELETE'
 alias OPTIONS='burl OPTIONS'
 
 alias +x="exec chmod +x "
+
+# Sublime
+export SUBLIME_PACKAGES="~/Library/Application Support/Sublime Text 2/Packages"
+function spack() {
+	subl "${SUBLIME_PACKAGES}/User"
+}
+
+EDITOR="subl -w"
+function e() {
+	if [ "$1" == "" ] ; then
+	  exec ${EDITOR} .
+	else
+	  exec ${EDITOR} "$1"
+	fi
+}
 
 #-------------------------------------------------------------------------------
 #
