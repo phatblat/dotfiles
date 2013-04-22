@@ -36,7 +36,7 @@ alias OPTIONS='burl OPTIONS'
 alias +x="exec chmod +x "
 
 # Sublime
-export SUBLIME_PACKAGES="~/Library/Application Support/Sublime Text 2/Packages"
+export SUBLIME_PACKAGES=~/Library/Application\ Support/Sublime\ Text\ 2/Packages
 function spack() {
 	subl "${SUBLIME_PACKAGES}/User"
 }
