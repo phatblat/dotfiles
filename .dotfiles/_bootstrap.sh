@@ -12,7 +12,7 @@ pushd ~/.dotfiles > /dev/null 2>&1
 
 for dir in *
 do
-    echo $dir
+    # echo $dir
     # Skip the bin dir
     # [ $dir == "bin" ] && continue
     if [ -d "$dir" ] ; then
@@ -20,7 +20,7 @@ do
         for file in *.sh
         do
             if [ -f "$file" ]; then
-                echo "Sourcing $file"
+                # echo "Sourcing $file"
                 source "$file"
             fi
         done
