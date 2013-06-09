@@ -3,8 +3,8 @@
 # RBENV
 #
 #-------------------------------------------------------------------------------
-export RBENV_ROOT=/usr/local/var/rbenv
+export RBENV_ROOT=/opt/boxen/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export PATH=${PATH}:/usr/local/var/rbenv/versions/$(cat /usr/local/var/rbenv/version)/bin
+export PATH=${PATH}:${RBENV_ROOT}/versions/$(cat ${RBENV_ROOT}/version)/bin
 # echo $PATH
