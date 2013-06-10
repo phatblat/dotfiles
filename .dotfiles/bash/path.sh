@@ -35,7 +35,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 # Manually setting the original OS X path so that reloadprofile won't keep growing the PATH
 # OSX_PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
 
-BOXEN_PATH=bin:/opt/boxen/rbenv/shims:/opt/boxen/rbenv/bin:/opt/boxen/rbenv/plugins/ruby-build/bin:/opt/boxen/bin:/opt/boxen/homebrew/bin:/opt/boxen/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+BOXEN_PATH=/opt/boxen/rbenv/shims:/opt/boxen/rbenv/bin:/opt/boxen/rbenv/plugins/ruby-build/bin:/opt/boxen/bin:/opt/boxen/homebrew/bin:/opt/boxen/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
 # Prepend user bin dir to PATH
 export PATH=~/bin:/usr/local/bin:${ANDROID_PATH}:${FORTIFY_PATH}/bin:${BOXEN_PATH}
