@@ -28,6 +28,14 @@ ANDROID_PATH=${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/tools
 export NODE_PATH=/usr/local/lib/node_modules
 
 #
+# Sencha
+#
+
+export PATH=/Users/ben/bin/Sencha/Cmd/3.1.2.342:$PATH
+
+export SENCHA_CMD_3_0_0="/Users/ben/bin/Sencha/Cmd/3.1.2.342"
+
+#
 # System path
 #
 # echo $PATH
