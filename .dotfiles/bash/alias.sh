@@ -50,6 +50,15 @@ function e() {
 	fi
 }
 
+# Marked
+function mark() {
+    if [ "$1" ] ; then
+        open -a Marked.app "$1"
+    else
+        open -a Marked.app
+    fi
+}
+
 #-------------------------------------------------------------------------------
 #
 # Subversion
