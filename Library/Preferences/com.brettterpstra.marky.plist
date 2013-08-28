@@ -9,7 +9,7 @@
 	<key>NSNavPanelExpandedStateForSaveMode</key>
 	<true/>
 	<key>NSWindow Frame markdownpreview</key>
-	<string>-1191 625 730 1040 -1200 -225 1200 1898 </string>
+	<string>-1070 599 730 1040 -1200 -225 1200 1898 </string>
 	<key>NSWindow Frame welcomewindow</key>
 	<string>235 280 703 817 0 0 2560 1418 </string>
 	<key>WebContinuousSpellCheckingEnabled</key>
@@ -43,6 +43,8 @@
 	<false/>
 	<key>floatNewWindows</key>
 	<false/>
+	<key>githubNewlines</key>
+	<true/>
 	<key>includeMathJax</key>
 	<false/>
 	<key>inverseColors</key>
