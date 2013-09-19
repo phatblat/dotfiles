@@ -2,6 +2,8 @@
 	"extensions":
 	[
 		"Puppetfile",
+		"Podfile",
+		"podspec",
 		"Podfile"
 	],
 	"tab_size": 2
