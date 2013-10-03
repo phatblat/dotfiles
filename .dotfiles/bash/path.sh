@@ -48,6 +48,6 @@ if [ -d /opt/boxen ] ; then
 fi
 
 # Prepend user bin dir to PATH
-export PATH=~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:${ANDROID_PATH}:${FORTIFY_PATH}/bin:${BOXEN_PATH}
+export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${ANDROID_PATH}:${FORTIFY_PATH}/bin:${BOXEN_PATH}
 
 # echo $PATH
