@@ -4,7 +4,8 @@
 		"Puppetfile",
 		"Podfile",
 		"podspec",
-		"Podfile"
+		"Podfile",
+		"sublime-settings"
 	],
 	"tab_size": 2
 }
