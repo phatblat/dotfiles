@@ -78,6 +78,8 @@
 	<true/>
 	<key>sendDiagnostics</key>
 	<true/>
+	<key>skinColor</key>
+	<integer>1</integer>
 	<key>updateCheckerEnabled</key>
 	<true/>
 </dict>
