@@ -35,6 +35,9 @@ alias OPTIONS='burl OPTIONS'
 
 alias +x="exec chmod +x "
 
+# Boxen
+alias boxendir='pushd /opt/boxen/repo'
+
 # Sublime
 export SUBLIME_PACKAGES=~/Library/Application\ Support/Sublime\ Text\ 2/Packages
 function spack() {
