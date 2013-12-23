@@ -1,0 +1,67 @@
+[user]
+	name = Ben Chatelain
+	email = ben.d.chatelain@kp.org
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[branch]
+    autosetuprebase = always
+[color]
+    ui = true
+    sh = auto
+    branch = auto
+    diff = auto
+    status = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[color "sh"]
+    branch = yellow reverse
+    workdir = blue bold
+    dirty = red
+    dirty-stash = red
+    repo-state = red
+[core]
+	excludesfile = /opt/boxen/config/git/gitignore
+[diff]
+    tool = Kaleidoscope
+	algorithm = patience
+[difftool]
+    prompt = false
+[difftool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
+[mergetool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[merge]
+    tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+[mergetool]
+	keepBackup = true
+[push]
+    default = simple
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+[github]
+	user = phatblat
+[diff "l10n"]
+	textconv = iconv -f utf-16 -t utf-8
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
