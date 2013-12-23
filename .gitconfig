@@ -1,6 +1,9 @@
+
 [user]
 	name = Ben Chatelain
 	email = ben.d.chatelain@kp.org
+[github]
+    user = phatblat
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [branch]
@@ -52,11 +55,6 @@
 	keepBackup = true
 [push]
     default = simple
-
-[credential]
-helper = /opt/boxen/bin/boxen-git-credential
-[github]
-	user = phatblat
 [diff "l10n"]
 	textconv = iconv -f utf-16 -t utf-8
 [difftool "sourcetree"]
@@ -65,3 +63,11 @@ helper = /opt/boxen/bin/boxen-git-credential
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[credential]
+    helper = /opt/boxen/bin/boxen-git-credential
+[core]
+    excludesfile = /opt/boxen/config/git/gitignore
+[hub]
+    protocol = https
+[diff "plistbuddy"]
+    textconv = plistbuddy -c Print
