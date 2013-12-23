@@ -5,7 +5,8 @@
 		"Podfile",
 		"podspec",
 		"Podfile",
-		"sublime-settings"
+		"sublime-settings",
+		"pp"
 	],
 	"tab_size": 2
 }
