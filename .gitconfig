@@ -34,7 +34,7 @@
     dirty-stash = red
     repo-state = red
 [core]
-	excludesfile = /opt/boxen/config/git/gitignore
+    excludesfile = /opt/boxen/config/git/gitignore
 [diff]
     tool = Kaleidoscope
 	algorithm = patience
@@ -71,3 +71,30 @@
     protocol = https
 [diff "plistbuddy"]
     textconv = plistbuddy -c Print
+
+[mergetool "Kaleidoscope"]
+trustExitCode = true
+
+[difftool "Kaleidoscope"]
+cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
+
+[mergetool "Kaleidoscope"]
+cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
+
+[mergetool "Kaleidoscope"]
+trustExitCode = true
+
+[difftool "Kaleidoscope"]
+cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
+
+[mergetool "Kaleidoscope"]
+cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
+
+[mergetool "Kaleidoscope"]
+trustExitCode = true
+
+[difftool "Kaleidoscope"]
+cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
+
+[mergetool "Kaleidoscope"]
+cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
