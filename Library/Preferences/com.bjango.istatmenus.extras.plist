@@ -19,7 +19,7 @@
 	<string>100,5</string>
 	<key>DisksMenubar</key>
 	<array>
-		<string>B079AA20-FAB2-3512-AB67-33548DEF8496</string>
+		<string>F37EB3FD-275B-3658-8963-468CD449765B</string>
 	</array>
 	<key>FanSpeedSets</key>
 	<array>
@@ -70,16 +70,16 @@
 	<string>100,0,1</string>
 	<key>SensorsMenubar</key>
 	<array>
-		<string>TC0C</string>
+		<string>TCXC</string>
 	</array>
 	<key>_mac_id</key>
-	<string>6493d00750f590f3036e2b37e18547fe</string>
+	<string>a340a75a8c4bc847c69a67e7b7e5f3c5</string>
 	<key>migratedExtras4.0</key>
 	<true/>
 	<key>sendDiagnostics</key>
 	<true/>
 	<key>skinColor</key>
-	<integer>1</integer>
+	<integer>5</integer>
 	<key>updateCheckerEnabled</key>
 	<true/>
 </dict>
