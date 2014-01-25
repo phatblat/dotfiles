@@ -35,24 +35,6 @@
     repo-state = red
 [core]
     excludesfile = /opt/boxen/config/git/gitignore
-[diff]
-    tool = Kaleidoscope
-	algorithm = patience
-[difftool]
-    prompt = false
-[difftool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
-[mergetool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
-[difftool "Kaleidoscope"]
-    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[merge]
-    tool = Kaleidoscope
-[mergetool "Kaleidoscope"]
-    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-    trustExitCode = true
-[mergetool]
-	keepBackup = true
 [push]
     default = simple
 [diff "l10n"]
@@ -69,32 +51,23 @@
     excludesfile = /opt/boxen/config/git/gitignore
 [hub]
     protocol = https
+[diff]
+    tool = Kaleidoscope
+    algorithm = patience
 [diff "plistbuddy"]
     textconv = plistbuddy -c Print
-
-[mergetool "Kaleidoscope"]
-trustExitCode = true
-
+[difftool]
+    prompt = false
 [difftool "Kaleidoscope"]
-cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
-
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
+[merge]
+    tool = Kaleidoscope
+[mergetool]
+    keepBackup = true
 [mergetool "Kaleidoscope"]
-cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
-
-[mergetool "Kaleidoscope"]
-trustExitCode = true
-
-[difftool "Kaleidoscope"]
-cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
-
-[mergetool "Kaleidoscope"]
-cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
-
-[mergetool "Kaleidoscope"]
-trustExitCode = true
-
-[difftool "Kaleidoscope"]
-cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
-
-[mergetool "Kaleidoscope"]
-cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+[mergetool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
