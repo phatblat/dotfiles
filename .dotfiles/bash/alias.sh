@@ -44,7 +44,7 @@ function spack() {
 	subl "${SUBLIME_PACKAGES}/User"
 }
 
-EDITOR="subl -w"
+EDITOR="atom -w"
 function e() {
 	if [ "$1" == "" ] ; then
 	  exec ${EDITOR} .
