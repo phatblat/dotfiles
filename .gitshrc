@@ -15,7 +15,7 @@ gitalias       p='git diff --cached'   # mnemonic: "patch"
 # git log
 gitalias       L='git log'
 gitalias       l='git log --pretty=oneline --abbrev-commit --max-count=15'
-gitalias      lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+gitalias      lg="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 gitalias  review='git log -p --max-count=1'
 
 # git add
