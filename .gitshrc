@@ -44,11 +44,15 @@ gitalias      pt='git push --tags'
 # git checkout
 gitalias       c='git checkout'
 
-# git branch and remote
+# git branch
 gitalias       b='git branch -av'
 gitalias      bd='git branch -d'		# soft delete
 gitalias      bD='git branch -D'		# hard delete
+
+# git remote
 gitalias      rv='git remote -v'
+gitalias   prune='git remote prune'
+gitalias    prun='git remote prune --dry-run'
 
 # git merge
 gitalias       m='git merge'
