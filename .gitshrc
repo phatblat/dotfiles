@@ -7,6 +7,9 @@ alias           s='git status'
 alias          sb='git status -sb'
 gitalias      wtf='git-wtf'
 
+# Can HEAD be the default arg if none given?
+gitalias      sha='rev-parse HEAD'
+
 # git diff
 gitalias       d='git diff'
 gitalias      dc='git diff --cached'
