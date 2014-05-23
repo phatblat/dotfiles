@@ -48,13 +48,13 @@ ZSH_THEME="sorin"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp git osx pod ruby sublime sudo vi-mode)
+plugins=(cp gitfast git-extras git-remote-branch jsontools osx pod rbenv ruby sublime sudo vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/Users/ben/bin/Sencha/Cmd/3.1.2.342:/usr/local/var/rbenv/shims:/Users/phatblat/bin:/Applications/adt-bundle-mac/sdk/platform-tools:/Applications/adt-bundle-mac/sdk/tools:/usr/local/var/rbenv/versions/1.9.3-p392/bin"
+export PATH="/usr/local/bin:/opt/boxen/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/Users/ben/bin/Sencha/Cmd/3.1.2.342:/usr/local/var/rbenv/shims:/Users/phatblat/bin:/Applications/adt-bundle-mac/sdk/platform-tools:/Applications/adt-bundle-mac/sdk/tools:/usr/local/var/rbenv/versions/1.9.3-p392/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
