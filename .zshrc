@@ -74,5 +74,9 @@ export PATH="/usr/local/bin:/opt/boxen/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbi
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # rbenv
-export RBENV_ROOT=/opt/boxen/homebrew/var/rbenv
+if [[ "$HOST" == "oculus.local" ]] ; then
+	export RBENV_ROOT=/opt/boxen/homebrew/var/rbenv
+else
+	export RBENV_ROOT=/usr/local/var/rbenv
+fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
