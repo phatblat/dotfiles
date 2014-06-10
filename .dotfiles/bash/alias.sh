@@ -34,8 +34,6 @@ alias PATCH='burl PATCH'
 alias DELETE='burl DELETE'
 alias OPTIONS='burl OPTIONS'
 
-alias +x="exec chmod +x "
-
 # Boxen
 alias boxendir='pushd /opt/boxen/repo'
 

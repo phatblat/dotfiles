@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------------------------------------
 if [ -d /opt/boxen ] ; then
-    export RBENV_ROOT=/opt/boxen/rbenv
+    export RBENV_ROOT=/opt/boxen/homebrew/var/rbenv
 else
     export RBENV_ROOT=/usr/local/var/rbenv
 fi

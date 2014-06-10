@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+export LC_ALL="en_US.UTF-8"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -54,7 +56,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/opt/boxen/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/Users/ben/bin/Sencha/Cmd/3.1.2.342:/usr/local/var/rbenv/shims:/Users/phatblat/bin:/Applications/adt-bundle-mac/sdk/platform-tools:/Applications/adt-bundle-mac/sdk/tools:/usr/local/var/rbenv/versions/1.9.3-p392/bin"
+#export PATH="/Users/phatblat/bin:/usr/local/bin:/opt/boxen/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/var/rbenv/shims:/usr/local/var/rbenv/versions/1.9.3-p392/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -74,9 +76,35 @@ export PATH="/usr/local/bin:/opt/boxen/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbi
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # rbenv
-if [[ "$HOST" == "oculus.local" ]] ; then
-	export RBENV_ROOT=/opt/boxen/homebrew/var/rbenv
-else
-	export RBENV_ROOT=/usr/local/var/rbenv
-fi
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# if [[ "$HOST" == "oculus.local" ]] ; then
+# 	export RBENV_ROOT=/opt/boxen/homebrew/var/rbenv
+# else
+# 	export RBENV_ROOT=/usr/local/var/rbenv
+# fi
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+################################################################################
+#
+# dotfiles
+#
+pushd ~/.dotfiles > /dev/null 2>&1
+
+for dir in *
+do
+    # echo $dir
+    # Skip the bin dir
+    # [ $dir == "bin" ] && continue
+    if [ -d "$dir" ] ; then
+        pushd "$dir" > /dev/null
+        for file in *.sh
+        do
+            if [ -f "$file" ]; then
+                # echo "Sourcing $file"
+                source "$file"
+            fi
+        done
+        popd > /dev/null
+    fi
+done
+
+popd > /dev/null 2>&1

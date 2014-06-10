@@ -11,7 +11,7 @@ shopt -s histverify
 =======
 # If the shell is bash, grep will succeed with 0 (false)
 echo $SHELL | grep -qE "bash"
-if [[ ! $? ]] ; then
+if [ ! $? ]; then
 	# bash-only options
 
 	# VI-style prompt editing
