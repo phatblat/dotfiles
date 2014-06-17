@@ -35,6 +35,8 @@ alias prun='git remote prune --dry-run'
 alias prune='git remote prune'
 alias cl='git clone'
 alias f='git fetch'
+alias pl='git pull'
+alias p='git push'
 alias pt='git push --tags'
 
 # Checkout
