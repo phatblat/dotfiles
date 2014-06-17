@@ -5,12 +5,13 @@
 #
 #-------------------------------------------------------------------------------
 
-export EDITOR='subl -w'
+export EDIT='subl'
+export EDITOR="${EDIT} -w"
 
 export LC_ALL="en_US.UTF-8"
 
 
-
+### Below here from the oh-my-zsh .zshrc
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,12 +50,6 @@ export LC_ALL="en_US.UTF-8"
 
 # User configuration
 
-#export PATH="/Users/phatblat/bin:/usr/local/bin:/opt/boxen/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/var/rbenv/shims:/usr/local/var/rbenv/versions/1.9.3-p392/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -67,11 +62,3 @@ export LC_ALL="en_US.UTF-8"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# rbenv
-# if [[ "$HOST" == "oculus.local" ]] ; then
-# 	export RBENV_ROOT=/opt/boxen/homebrew/var/rbenv
-# else
-# 	export RBENV_ROOT=/usr/local/var/rbenv
-# fi
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 #
-# Entry point for sourcing modularized bash profile files
+# Entry point for sourcing modularized zsh profile files
 #
 # bin/: Anything in bin/ will get added to your $PATH and be made available everywhere.
 # topic/*.zsh: Any files ending in .zsh get loaded into your environment.
