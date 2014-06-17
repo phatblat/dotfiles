@@ -1,5 +1,6 @@
 #-------------------------------------------------------------------------------
 #
+# alias.zsh
 # Command-line aliases
 #
 #-------------------------------------------------------------------------------
@@ -12,10 +13,9 @@ alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
 
-alias reload=". ~/.bash_profile"
-alias reloadprofile="echo 'Reloading .bash_profile' && . ~/.bash_profile && git-sh"
-alias viprofile="vi ~/.bash_profile && reloadprofile"
-alias editprofile="mate -rw ~/.bash_profile && reloadprofile"
+alias reloadprofile="source ~/.zshrc"
+alias viprofile="vi ~/.zshrc && reloadprofile"
+alias editprofile="subl -rw ~/.reloadprofile && reloadprofile"
 
 alias h="history"
 alias tm="/Applications/TextMate.app/Contents/MacOS/TextMate"
