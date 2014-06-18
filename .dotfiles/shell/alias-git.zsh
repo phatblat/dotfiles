@@ -13,6 +13,7 @@ alias sha='git rev-parse HEAD'
 alias d='git diff'
 alias diff='git diff'
 alias dc='git diff --cached'
+alias log='git log'
 alias l='git log --pretty=oneline --abbrev-commit --max-count=15'
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias lga="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
@@ -30,6 +31,7 @@ alias af='git add --force'
 alias commit='git commit --verbose'
 alias amend='git commit --verbose --amend'
 alias n='git commit --verbose --amend'
+alias tag='git tag'
 
 # Remotes
 alias rv='git remote -v'
