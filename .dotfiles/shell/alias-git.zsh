@@ -26,6 +26,7 @@ alias config='git config'
 
 # Add
 alias a='git add'
+alias add='git add'
 alias aa='git add --update'
 alias ap='git add --patch'
 alias af='git add --force'
@@ -41,12 +42,15 @@ alias rv='git remote -v'
 alias prun='git remote prune --dry-run'
 alias prune='git remote prune'
 alias cl='git clone'
+alias clone='git clone'
 alias f='git fetch'
+alias fetch='git fetch'
 alias pl='git pull'
 alias pull='git pull'
 alias p='git push'
 alias push='git push'
 alias pt='git push --tags'
+alias pushtags='git push --tags'
 
 # Checkout
 alias c='git checkout'
@@ -60,7 +64,9 @@ alias bD='git branch -D'
 
 # Merge
 alias m='git merge'
+alias merge='git merge'
 alias r='git rebase --interactive HEAD~10'
+alias rebase='git rebase'
 alias cont='git rebase --continue'
 alias abort='git merge --abort 2> /dev/null || git rebase --abort 2> /dev/null || git cherry-pick --abort'
 alias ours='!f() { git checkout --ours $@ && git add $@; }; f'
