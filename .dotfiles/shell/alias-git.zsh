@@ -21,6 +21,9 @@ alias review='git log -p --max-count=1'
 alias tracked='git ls-tree -r --name-only HEAD'
 alias untracked='git ls-files --others'
 
+# Config
+alias config='git config'
+
 # Add
 alias a='git add'
 alias aa='git add --update'
