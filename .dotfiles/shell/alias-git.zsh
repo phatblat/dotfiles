@@ -17,6 +17,8 @@ alias l='git log --pretty=oneline --abbrev-commit --max-count=15'
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias lga="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias review='git log -p --max-count=1'
+alias tracked='git ls-tree -r --name-only HEAD'
+alias untracked='git ls-files --others'
 
 # Add
 alias a='git add'
@@ -36,11 +38,15 @@ alias prune='git remote prune'
 alias cl='git clone'
 alias f='git fetch'
 alias pl='git pull'
+alias pull='git pull'
 alias p='git push'
+alias push='git push'
 alias pt='git push --tags'
 
 # Checkout
 alias c='git checkout'
+alias checkout='git checkout'
+alias reset='git reset'
 
 # Branch
 alias b='git branch -av'
@@ -68,4 +74,5 @@ alias assume='git update-index --assume-unchanged'
 alias unassume='git update-index --no-assume-unchanged'
 
 # Stash
+alias stash='git stash'
 alias snapshot='!git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
