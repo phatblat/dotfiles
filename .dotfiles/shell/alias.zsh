@@ -18,7 +18,6 @@ alias viprofile="vi ~/.zshrc && reloadprofile"
 alias editprofile="subl -rw ~/.reloadprofile && reloadprofile"
 
 alias h="history"
-alias tm="/Applications/TextMate.app/Contents/MacOS/TextMate"
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
 alias chrome='open -a "Google Chrome" --args --incognito'
