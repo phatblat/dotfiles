@@ -6,7 +6,7 @@
 #-------------------------------------------------------------------------------
 
 export EDIT='subl'
-export EDITOR="${EDIT} -w"
+export EDITOR="vi"
 
 export LC_ALL="en_US.UTF-8"
 
