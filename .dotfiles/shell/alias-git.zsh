@@ -64,7 +64,9 @@ alias checkout='git checkout'
 alias reset='git reset'
 
 # Branch
-alias b='git branch -av'
+alias branch='git branch'
+alias b='git branch'
+alias bra='git branch -av'
 alias bd='git branch -d'
 alias bD='git branch -D'
 
