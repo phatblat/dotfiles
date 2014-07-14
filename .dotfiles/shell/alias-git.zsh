@@ -5,6 +5,9 @@
 #
 #-------------------------------------------------------------------------------
 
+# Init
+alias init='git init'
+
 # Informational
 alias s='git status -sb'
 alias sa='git status'
