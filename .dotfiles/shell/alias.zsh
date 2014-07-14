@@ -13,16 +13,22 @@ alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
 
+# Profile
 alias reloadprofile="source ~/.zshrc"
 alias viprofile="vi ~/.zshrc && reloadprofile"
 alias editprofile="subl -rw ~/.reloadprofile && reloadprofile"
 
 alias h="history"
-alias ox='open *.xcodeproj'
-alias ow='open *.xcworkspace'
 alias chrome='open -a "Google Chrome" --args --incognito'
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+# Xcode
+alias ox='open *.xcodeproj'
+alias ow='open *.xcworkspace'
+
+# Web
 alias htstatus="ps awx | grep httpd"
+alias gen="bundle exec rake generate"
 
 # burl - https://github.com/visionmedia/burl
 alias GET='burl GET'
