@@ -61,6 +61,9 @@ alias push='git push'
 alias pt='git push --tags'
 alias pushtags='git push --tags'
 
+# Submodules
+alias submodule='git submodule'
+
 # Checkout
 alias c='git checkout'
 alias checkout='git checkout'
