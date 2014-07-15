@@ -29,6 +29,7 @@ alias ow='open *.xcworkspace'
 # Web
 alias htstatus="ps awx | grep httpd"
 alias gen="bundle exec rake generate"
+alias deploy="bundle exec rake deploy"
 
 # burl - https://github.com/visionmedia/burl
 alias GET='burl GET'
