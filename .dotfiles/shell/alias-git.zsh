@@ -9,6 +9,8 @@
 alias init='git init'
 
 # Informational
+
+### Work Area
 alias s='git status -sb'
 alias sa='git status'
 alias status='git status'
@@ -21,13 +23,20 @@ alias dt='git difftool'
 alias dtc='git difftool --cached'
 alias mergetool='git mergetool'
 alias mt='git mergetool'
+alias tracked='git ls-tree -r --name-only HEAD'
+alias ls-tree='git ls-tree'
+alias untracked='git ls-files --others'
+alias ls-files='git ls-files'
+
+## Log
 alias log='git log'
 alias l='git log --pretty=oneline --abbrev-commit --max-count=15'
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias lga="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias review='git log -p --max-count=1'
-alias tracked='git ls-tree -r --name-only HEAD'
-alias untracked='git ls-files --others'
+alias shortsha='git rev-parse --short HEAD'
+alias ldg='git log -g'
+alias reflog='git reflog'
 
 # Config
 alias config='git config'
@@ -47,6 +56,7 @@ alias n='git commit --verbose --amend'
 alias tag='git tag'
 
 # Remotes
+alias remote='git remote'
 alias rv='git remote -v'
 alias prun='git remote prune --dry-run'
 alias prune='git remote prune'
@@ -81,16 +91,19 @@ alias m='git merge'
 alias merge='git merge'
 alias r='git rebase --interactive HEAD~10'
 alias rebase='git rebase'
-alias cont='git rebase --continue'
+alias cont='if [[ -f .git/MERGE_HEAD ]]; then git commit; fi 2> /dev/null || git rebase --continue 2> /dev/null || git cherry-pick --continue'
+alias continue='if [[ -f .git/MERGE_HEAD ]]; then git commit; fi 2> /dev/null || git rebase --continue 2> /dev/null || git cherry-pick --continue'
 alias skip='git rebase --skip'
-alias abort='git merge --abort 2> /dev/null || git rebase --abort 2> /dev/null || git cherry-pick --abort'
+alias abort='git merge --abort 2> /dev/null || git rebase --abort 2> /dev/null || git cherry-pick --abort 2> /dev/null || git am --abort'
 alias ours='!f() { git checkout --ours $@ && git add $@; }; f'
 alias theirs='!f() { git checkout --theirs $@ && git add $@; }; f'
 
 # Cherry-pick
 alias pick='git cherry-pick'
+alias cherry-pick='git cherry-pick'
 
 # Reset
+alias reset='git reset'
 alias pop='git reset --soft HEAD^'
 alias mirror='git reset --hard'
 
