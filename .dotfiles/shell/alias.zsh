@@ -26,6 +26,9 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
 
+# CocoaPods
+alias pi='pod install --no-repo-update'
+
 # Web
 alias htstatus="ps awx | grep httpd"
 alias gen="bundle exec rake generate"
