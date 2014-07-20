@@ -17,6 +17,7 @@ alias lh="la -d .*"
 alias reloadprofile="source ~/.zshrc"
 alias viprofile="vi ~/.zshrc && reloadprofile"
 alias editprofile="subl -rw ~/.reloadprofile && reloadprofile"
+alias explain="alias | grep"
 
 alias h="history"
 alias chrome='open -a "Google Chrome" --args --incognito'
