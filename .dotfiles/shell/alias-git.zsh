@@ -114,7 +114,7 @@ alias unassume='git update-index --no-assume-unchanged'
 
 # Stash
 alias stash='git stash'
-alias snapshot='!git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
+alias snapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
 
 # Experimental
 alias rewriteauthor="git filter-branch --env-filter 'if [ $GIT_AUTHOR_EMAIL = ben.d.chatelain@kp.org ]; then GIT_AUTHOR_EMAIL=benchatelain@gmail.com; fi; export GIT_AUTHOR_EMAIL'"
