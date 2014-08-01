@@ -45,6 +45,7 @@ alias user.email='git config user.email'
 # Add
 alias a='git add'
 alias add='git add'
+alias ai='git add --interactive'
 alias aa='git add --update'
 alias ap='git add --patch'
 alias af='git add --force'
