@@ -29,7 +29,7 @@ alias untracked='git ls-files --others'
 alias ls-files='git ls-files'
 
 ## Log
-alias log='git log'
+alias log='git log --pretty=full'
 alias l='git log --pretty=oneline --abbrev-commit --max-count=15'
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias lga="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
