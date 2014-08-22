@@ -47,12 +47,19 @@ alias OPTIONS='burl OPTIONS'
 # Boxen
 alias boxendir='pushd /opt/boxen/repo'
 
-# Sublime
-export SUBLIME_PACKAGES=~/Library/Application\ Support/Sublime\ Text\ 2/Packages
-function spack() {
-	subl "${SUBLIME_PACKAGES}/User"
-}
+#-------------------------------------------------------------------------------
+#
+# Editors
+#
+#-------------------------------------------------------------------------------
 
+# -t  Causes the file to be opened with the default text editor, as determined via LaunchServices
+alias edit='open -t'
+
+# Sublime
+alias subl_link='ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl'
+
+# Atom
 EDITOR="atom -w"
 function e() {
 	if [ "$1" == "" ] ; then
