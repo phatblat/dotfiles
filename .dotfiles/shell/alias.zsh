@@ -80,9 +80,10 @@ function mark() {
 
 #-------------------------------------------------------------------------------
 #
-# Subversion
+# Unix
 #
 #-------------------------------------------------------------------------------
-# alias svn='xcrun svn'
-alias showsvn="find . -type d -name .svn"
-# alias prunesvn="rm -rf `find . -type d -name .svn`"
+function fixperms() {
+	find "$1" -type f -print -exec chmod 644 {} \;
+	find "$1" -type d -print -exec chmod 755 {} \;
+}
