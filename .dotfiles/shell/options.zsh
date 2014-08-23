@@ -10,10 +10,6 @@ export EDITOR="vi"
 
 export LC_ALL="en_US.UTF-8"
 
-# Powerline
-powerline-daemon -q
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
 ### Below here from the oh-my-zsh .zshrc
 
 # Uncomment the following line to use case-sensitive completion.
