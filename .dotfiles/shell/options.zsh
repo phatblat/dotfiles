@@ -4,11 +4,11 @@
 # Command-line options
 #
 #-------------------------------------------------------------------------------
+export TERM="xterm-256color"
+export LC_ALL="en_US.UTF-8"
 
 export EDIT='subl'
 export EDITOR="vi"
-
-export LC_ALL="en_US.UTF-8"
 
 ### Below here from the oh-my-zsh .zshrc
 
