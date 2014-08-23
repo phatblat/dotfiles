@@ -1,11 +1,11 @@
 #-------------------------------------------------------------------------------
 #
-# options.zsh
-# Command-line options
+# powerline.zsh
+# Powerline configuration
 #
 #-------------------------------------------------------------------------------
 export POWERLINE_HOME=/usr/local/lib/python2.7/site-packages/powerline
-export POWERLINE_CONFIG_PATHS=( ~/.powerline )
+export POWERLINE_CONFIG_PATHS=$HOME/.powerline
 
 export DEFAULT_USER="phatblat"
 
