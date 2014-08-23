@@ -12,3 +12,5 @@ export DEFAULT_USER="phatblat"
 # Powerline
 powerline-daemon -q
 . ${POWERLINE_HOME}/bindings/zsh/powerline.zsh
+
+alias powerlinetest='echo "⮀ ± ⭠ ➦ ✔ ✘ ⚡"'
