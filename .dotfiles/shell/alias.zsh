@@ -84,6 +84,13 @@ function mark() {
 #
 #-------------------------------------------------------------------------------
 alias sshcopypub='pbcopy < ~/.ssh/id_rsa.pub'
+function sshnewkey() {
+	if (($+1)); then
+		ssh-keygen -t rsa -C "$1"
+	else
+		echo "Usage: sshnewkey user@host"
+	fi
+}
 
 #-------------------------------------------------------------------------------
 #
