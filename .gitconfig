@@ -72,3 +72,6 @@
     trustExitCode = true
 [mergetool "FileMerge"]
     cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
