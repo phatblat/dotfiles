@@ -49,6 +49,7 @@
     helper = /opt/boxen/bin/boxen-git-credential
 [core]
     excludesfile = /opt/boxen/config/git/gitignore
+	pager = less -F -X
 [hub]
     protocol = https
 [diff]
