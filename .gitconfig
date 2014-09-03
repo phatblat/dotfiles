@@ -1,7 +1,7 @@
 
 [user]
-	name = Ben Chatelain
-	email = ben.d.chatelain@kp.org
+    name = Ben Chatelain
+    email = ben.d.chatelain@kp.org
 [github]
     user = phatblat
 [alias]
@@ -38,18 +38,18 @@
 [push]
     default = simple
 [diff "l10n"]
-	textconv = iconv -f utf-16 -t utf-8
+    textconv = iconv -f utf-16 -t utf-8
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [credential]
     helper = /opt/boxen/bin/boxen-git-credential
 [core]
     excludesfile = /opt/boxen/config/git/gitignore
-	pager = less -F -X
+    pager = less -F -X
 [hub]
     protocol = https
 [diff]
@@ -74,5 +74,5 @@
 [mergetool "FileMerge"]
     cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
