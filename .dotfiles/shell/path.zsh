@@ -16,7 +16,7 @@ export LC_CTYPE=en_US.UTF-8
 
 if [ -d /opt/boxen ] ; then
     BOXEN_PATH=/opt/boxen/rbenv/shims:/opt/boxen/rbenv/bin:/opt/boxen/rbenv/plugins/ruby-build/bin:/opt/boxen/bin:/opt/boxen/homebrew/bin:/opt/boxen/homebrew/sbin
-    # TODO add ${BOXEN_PATH} to PATH conditionally
+    export PATH=${BOXEN_PATH}:${PATH}
 fi
 
 # Prepend user bin dir to PATH

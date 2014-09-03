@@ -31,8 +31,12 @@ alias ow='open *.xcworkspace'
 alias pi='pod install --no-repo-update'
 
 # Web
+alias xconf='vi /usr/local/etc/nginx/nginx.conf'
+alias xstart='sudo nginx'
+alias xreload='sudo nginx -s reload'
+alias xquit='sudo nginx -s stop'
 alias htstatus="ps awx | grep httpd"
-alias gen="bundle exec rake generate"
+alias gen="bundle exec rake generate && DIR="$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )" && terminal-notifier -group 'octopress' -title 'Octopress' -message \"Done generating $(basename $DIR)\" -activate 'com.apple.Safari'"
 alias deploy="bundle exec rake deploy"
 
 # burl - https://github.com/visionmedia/burl
