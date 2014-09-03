@@ -19,6 +19,11 @@ if [ -d /opt/boxen ] ; then
     export PATH=${BOXEN_PATH}:${PATH}
 fi
 
+if [ -d /Users/ben/Library/Python/2.7/bin ] ; then
+	PYTHON_PATH=/Users/ben/Library/Python/2.7/bin
+	export PATH=${PYTHON_PATH}:${PATH}
+fi
+
 # Prepend user bin dir to PATH
 # TODO: Get rbenv to load path in correct order
 export PATH=~/bin:/usr/local/bin:${PATH}:/usr/bin:/bin:/usr/sbin:/sbin
