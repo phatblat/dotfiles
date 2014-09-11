@@ -30,6 +30,9 @@ alias ow='open *.xcworkspace'
 # CocoaPods
 alias pi='pod install --no-repo-update'
 
+# Tower
+alias tower='gittower .'
+
 # Web
 alias xconf='vi /usr/local/etc/nginx/nginx.conf'
 alias xstart='sudo nginx'
