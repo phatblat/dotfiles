@@ -23,10 +23,6 @@ alias h="history"
 alias chrome='open -a "Google Chrome" --args --incognito'
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
-# Xcode
-alias ox='open *.xcodeproj'
-alias ow='open *.xcworkspace'
-
 # CocoaPods
 alias pi='pod install --no-repo-update'
 
