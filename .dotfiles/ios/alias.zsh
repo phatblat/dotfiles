@@ -19,6 +19,15 @@ function version() {
 	    "market" | "-m")
 			agvtool what-marketing-version -terse1
 	        ;;
+	    "set")
+	        agvtool new-marketing-version $2
+	        if (($+3)); then
+		        agvtool new-version -all $3
+			fi
+	        ;;
+	    "next" | "bump")
+	        agvtool next-version -all
+	        ;;
 	    *)
 			# No args, output pretty format
 			build_version=$(agvtool what-version -terse)
