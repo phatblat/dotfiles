@@ -11,18 +11,18 @@ alias ow='open *.xcworkspace'
 # agvtool
 function version() {
 	agvtool_path=$(which agvtool) # "/usr/bin/agvtool"
-	build_version=$(agvtool what-version -terse)
-	market_version=$(agvtool what-marketing-version -terse1)
 
 	case "$1" in
-	    build)
-			echo "$build_version"
+	    "build" | "-b")
+			agvtool what-version -terse
 	        ;;
-	    market)
-			echo "$market_version"
+	    "market" | "-m")
+			agvtool what-marketing-version -terse1
 	        ;;
 	    *)
 			# No args, output pretty format
+			build_version=$(agvtool what-version -terse)
+			market_version=$(agvtool what-marketing-version -terse1)
 			echo "$market_version ($build_version)"
 	        ;;
 	esac
