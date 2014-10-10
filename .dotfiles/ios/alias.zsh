@@ -14,9 +14,8 @@ function version() {
 	agvtool_path=$(which agvtool)
 	build_version=$(agvtool what-version -terse)
 	market_version=$(agvtool what-marketing-version -terse1)
-	echo "$build_version ($market_version)"
+	echo "$market_version ($build_version)"
 }
-# alias version="echo \"$(agvtool what-version -terse) ($(agvtool what-marketing-version -terse1))\""
 
 #-------------------------------------------------------------------------------
 #
