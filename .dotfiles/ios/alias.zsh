@@ -20,13 +20,15 @@ function version() {
             agvtool what-marketing-version -terse1
             ;;
         "set")
-            agvtool new-marketing-version $2
+            agvtool new-marketing-version $2 > /dev/null
             if (($+3)); then
-                agvtool new-version -all $3
+                agvtool new-version -all $3 > /dev/null
             fi
+            version_current
             ;;
         "next" | "bump")
-            agvtool next-version -all
+            agvtool next-version -all > /dev/null
+            version_current
             ;;
         *)
             version_current
