@@ -29,10 +29,13 @@ function version() {
             agvtool next-version -all
             ;;
         *)
-            # No args, output pretty format
-            build_version=$(agvtool what-version -terse)
-            market_version=$(agvtool what-marketing-version -terse1)
-            echo "$market_version ($build_version)"
+            version_current
             ;;
     esac
+}
+
+function version_current() {
+    build_version=$(agvtool what-version -terse)
+    market_version=$(agvtool what-marketing-version -terse1)
+    echo "$market_version ($build_version)"
 }
