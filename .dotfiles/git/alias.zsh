@@ -57,6 +57,7 @@ alias n='git commit --verbose --amend'
 alias tag='git tag'
 
 # Remotes
+alias ls-remote='git ls-remote'
 alias remote='git remote'
 alias rv='git remote -v'
 alias prun='git remote prune --dry-run'
