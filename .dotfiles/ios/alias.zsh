@@ -7,17 +7,26 @@
 # Xcode
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
+alias version_build='agvtool what-version -terse'
+alias version_market='agvtool what-marketing-version -terse1'
 
-# agvtool
+function version_current() {
+    local build_version market_version
+    build_version=$(version_build)
+    market_version=$(version_market)
+    echo "$market_version ($build_version)"
+}
+
 function version() {
+    local agvtool_path build_version first_number
     agvtool_path=$(which agvtool) # "/usr/bin/agvtool"
 
     case "$1" in
         "build" | "-b")
-            agvtool what-version -terse
+            version_build
             ;;
         "market" | "-m")
-            agvtool what-marketing-version -terse1
+            version_market
             ;;
         "set")
             agvtool new-marketing-version $2 > /dev/null
@@ -27,7 +36,16 @@ function version() {
             version_current
             ;;
         "next" | "bump")
+            build_version=$(version_build)
             agvtool next-version -all > /dev/null
+
+            # Workaround for agvtool dropping leading zeros, assumes only a single zero (e.g. 010001)
+            first_number=$(echo $build_version | cut -c1)
+            if [[ $first_number == "0" ]]; then
+                build_version=$(version_build)
+                agvtool new-version -all "0$build_version" > /dev/null
+            fi
+
             version_current
             ;;
         *)
@@ -36,8 +54,3 @@ function version() {
     esac
 }
 
-function version_current() {
-    build_version=$(agvtool what-version -terse)
-    market_version=$(agvtool what-marketing-version -terse1)
-    echo "$market_version ($build_version)"
-}
