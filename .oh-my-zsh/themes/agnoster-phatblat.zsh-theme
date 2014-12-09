@@ -70,7 +70,7 @@ prompt_context() {
 
 # Git: branch/detached head, dirty status
 prompt_git() {
-  local local_branch local_branch_symbol dirty tracking_branch mode inside_work_tree repo_path ahead displayed_ahead behind
+  local local_branch local_branch_symbol dirty tracking_branch mode inside_work_tree remote repo_path ahead displayed_ahead behind
 
   inside_work_tree=$(git rev-parse --is-inside-work-tree 2>/dev/null)
   if [[ "$inside_work_tree" != true ]]; then
@@ -151,7 +151,16 @@ prompt_git() {
     else
       prompt_segment cyan black
     fi
-    echo -n " $tracking_branch (-$behind)"
+
+    remote=$(git config branch.$local_branch.remote)
+    tracking_branch_shortname=${tracking_branch/$remote\/}
+    if [[ "$tracking_branch_shortname" == "$local_branch" ]]; then
+      tracking_branch=""
+    else
+      tracking_branch="$tracking_branch "
+    fi
+
+    echo -n "$tracking_branch(-$behind)"
   fi
 }
 
