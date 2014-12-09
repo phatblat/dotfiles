@@ -119,6 +119,7 @@ alias stash='git stash'
 alias snapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
 
 # Experimental
+alias rev-parse='git rev-parse'
 alias ref='git symbolic-ref'
 alias rewriteauthor="git filter-branch -f --env-filter 'if [ \$GIT_AUTHOR_EMAIL = ben.d.chatelain@kp.org ]; then GIT_AUTHOR_EMAIL=benchatelain@gmail.com; fi; export GIT_AUTHOR_EMAIL'"
 alias rewritecommitter="git filter-branch -f --env-filter 'if [ \$GIT_COMMITTER_EMAIL = ben.d.chatelain@kp.org ]; then GIT_COMMITTER_EMAIL=benchatelain@gmail.com; fi; export GIT_COMMITTER_EMAIL'"
