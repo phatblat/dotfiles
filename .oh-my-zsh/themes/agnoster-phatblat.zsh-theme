@@ -73,77 +73,80 @@ prompt_git() {
   local ref dirty mode repo_path
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
-  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    dirty=$(parse_git_dirty)
+  inside_work_tree=$(git rev-parse --is-inside-work-tree 2>/dev/null)
+  if [[ "$inside_work_tree" != true ]]; then
+    return
+  fi
 
-    if [[ $SHOW_STASH_SEGMENT -eq 1 ]]; then
-        stash_size=$(git stash list 2> /dev/null | wc -l | tr -d ' ')
-        if [[ stash_size -ne 0 ]]; then
-            prompt_segment white black
-            echo -n "+${stash_size}"
-        fi
-    fi
+  dirty=$(parse_git_dirty)
 
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || ""
-    if [[ -z $ref ]]; then
-      detached_head=true;
-      ref="$(git show-ref --head -s --abbrev |head -n1 2> /dev/null)";
-      ref_symbol="➦"
-    else
-      detached_head=false;
-      ref=${ref/refs\/heads\//}
-      ref_symbol=""
-    fi
-
-    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
-    if [[ -n ${remote} ]] ; then
-      ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
-      displayed_ahead=" (+${ahead})"
-      behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -d ' ')
-    else
-      ahead=""
-      displayed_ahead=""
-      behind=""
-    fi
-
-    if [[ -n $dirty ]]; then
-      prompt_segment yellow black
-    else
-      prompt_segment green black
-    fi
-
-    echo -n "${ref_symbol} ${ref}${displayed_ahead}"
-
-    if [[ -e "${repo_path}/BISECT_LOG" ]]; then
-      mode=" <B>"
-    elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
-      mode=" >M<"
-    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
-      mode=" >R>"
-    fi
-
-    setopt promptsubst
-    autoload -Uz vcs_info
-
-    zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:*' get-revision true
-    zstyle ':vcs_info:*' check-for-changes true
-    zstyle ':vcs_info:*' stagedstr '✚'
-    zstyle ':vcs_info:git:*' unstagedstr '●'
-    zstyle ':vcs_info:*' formats ' %u%c'
-    zstyle ':vcs_info:*' actionformats ' %u%c'
-    vcs_info
-    echo -n "${vcs_info_msg_0_}"
-
-    # Displaying upstream dedicated segment
-    if [[ -n $remote ]]; then
-      if [ $behind -ne 0 ]; then
-        prompt_segment magenta white
-      else
-        prompt_segment cyan black
+  if [[ $SHOW_STASH_SEGMENT -eq 1 ]]; then
+      stash_size=$(git stash list 2> /dev/null | wc -l | tr -d ' ')
+      if [[ stash_size -ne 0 ]]; then
+          prompt_segment white black
+          echo -n "+${stash_size}"
       fi
-      echo -n " $remote (-$behind)"
+  fi
+
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || ""
+  if [[ -z $ref ]]; then
+    detached_head=true;
+    ref="$(git show-ref --head -s --abbrev |head -n1 2> /dev/null)";
+    ref_symbol="➦"
+  else
+    detached_head=false;
+    ref=${ref/refs\/heads\//}
+    ref_symbol=""
+  fi
+
+  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+  if [[ -n ${remote} ]] ; then
+    ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+    displayed_ahead=" (+${ahead})"
+    behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -d ' ')
+  else
+    ahead=""
+    displayed_ahead=""
+    behind=""
+  fi
+
+  if [[ -n $dirty ]]; then
+    prompt_segment yellow black
+  else
+    prompt_segment green black
+  fi
+
+  echo -n "${ref_symbol} ${ref}${displayed_ahead}"
+
+  if [[ -e "${repo_path}/BISECT_LOG" ]]; then
+    mode=" <B>"
+  elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
+    mode=" >M<"
+  elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+    mode=" >R>"
+  fi
+
+  setopt promptsubst
+  autoload -Uz vcs_info
+
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:*' get-revision true
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' stagedstr '✚'
+  zstyle ':vcs_info:git:*' unstagedstr '●'
+  zstyle ':vcs_info:*' formats ' %u%c'
+  zstyle ':vcs_info:*' actionformats ' %u%c'
+  vcs_info
+  echo -n "${vcs_info_msg_0_}"
+
+  # Displaying upstream dedicated segment
+  if [[ -n $remote ]]; then
+    if [ $behind -ne 0 ]; then
+      prompt_segment magenta white
+    else
+      prompt_segment cyan black
     fi
+    echo -n " $remote (-$behind)"
   fi
 }
 
