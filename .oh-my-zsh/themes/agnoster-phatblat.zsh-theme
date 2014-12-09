@@ -101,11 +101,11 @@ prompt_git() {
     local_branch_symbol=""
   fi
 
-  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+  remote=${$(git rev-parse --verify $local_branch@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
   if [[ -n ${remote} ]] ; then
-    ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+    ahead=$(git rev-list $local_branch@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
     displayed_ahead=" (+${ahead})"
-    behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -d ' ')
+    behind=$(git rev-list HEAD..$local_branch@{upstream} 2>/dev/null | wc -l | tr -d ' ')
   else
     ahead=""
     displayed_ahead=""
