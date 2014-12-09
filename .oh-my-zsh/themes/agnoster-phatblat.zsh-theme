@@ -28,7 +28,6 @@
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
 SHOW_STASH_SEGMENT=1
-RPROMPT=""
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -240,3 +239,4 @@ build_prompt() {
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
+RPROMPT='$(date "+%Y-%m-%d %H:%M")'
