@@ -17,6 +17,6 @@ ZSH_THEME='agnoster-phatblat'
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp gitfast git-extras git-remote-branch jsontools osx pod rbenv ruby sublime sudo vi-mode)
+plugins=(cp gitfast jsontools osx pod rbenv ruby sublime sudo vi-mode)
 
 source $ZSH/oh-my-zsh.sh
