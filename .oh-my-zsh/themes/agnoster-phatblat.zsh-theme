@@ -28,6 +28,7 @@
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
 SHOW_STASH_SEGMENT=1
+RPROMPT=""
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
