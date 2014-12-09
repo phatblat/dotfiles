@@ -70,7 +70,7 @@ prompt_context() {
 
 # Git: branch/detached head, dirty status
 prompt_git() {
-  local local_branch local_branch_symbol dirty remote mode inside_work_tree repo_path
+  local local_branch local_branch_symbol dirty tracking_branch mode inside_work_tree repo_path ahead displayed_ahead behind
 
   inside_work_tree=$(git rev-parse --is-inside-work-tree 2>/dev/null)
   if [[ "$inside_work_tree" != true ]]; then
@@ -90,6 +90,7 @@ prompt_git() {
   fi
 
   # Local branch segment
+  # Could also use `git name-rev --name-only HEAD`
   local_branch=$(git symbolic-ref HEAD 2> /dev/null) || ""
   if [[ -z $local_branch ]]; then
     # detached_head=true;
@@ -101,8 +102,10 @@ prompt_git() {
     local_branch_symbol=""
   fi
 
-  remote=${$(git rev-parse --verify $local_branch@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
-  if [[ -n ${remote} ]] ; then
+  tracking_branch=$(git rev-parse --verify $local_branch@{upstream} --symbolic-full-name 2>/dev/null)
+  # Strip off /refs/remotes/ prefix
+  tracking_branch=${tracking_branch/refs\/remotes\/}
+  if [[ -n ${tracking_branch} ]] ; then
     ahead=$(git rev-list $local_branch@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
     displayed_ahead=" (+${ahead})"
     behind=$(git rev-list HEAD..$local_branch@{upstream} 2>/dev/null | wc -l | tr -d ' ')
@@ -142,13 +145,13 @@ prompt_git() {
   echo -n "${vcs_info_msg_0_}"
 
   # Upstream branch segment
-  if [[ -n $remote ]]; then
+  if [[ -n $tracking_branch ]]; then
     if [ $behind -ne 0 ]; then
       prompt_segment magenta white
     else
       prompt_segment cyan black
     fi
-    echo -n " $remote (-$behind)"
+    echo -n " $tracking_branch (-$behind)"
   fi
 }
 
