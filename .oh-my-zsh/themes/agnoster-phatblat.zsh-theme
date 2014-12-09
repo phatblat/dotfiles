@@ -70,16 +70,17 @@ prompt_context() {
 
 # Git: branch/detached head, dirty status
 prompt_git() {
-  local ref dirty mode repo_path
-  repo_path=$(git rev-parse --git-dir 2>/dev/null)
+  local local_branch local_branch_symbol dirty remote mode inside_work_tree repo_path
 
   inside_work_tree=$(git rev-parse --is-inside-work-tree 2>/dev/null)
   if [[ "$inside_work_tree" != true ]]; then
     return
   fi
 
+  repo_path=$(git rev-parse --git-dir 2>/dev/null)
   dirty=$(parse_git_dirty)
 
+  # Stash segment
   if [[ $SHOW_STASH_SEGMENT -eq 1 ]]; then
       stash_size=$(git stash list 2> /dev/null | wc -l | tr -d ' ')
       if [[ stash_size -ne 0 ]]; then
@@ -88,15 +89,16 @@ prompt_git() {
       fi
   fi
 
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || ""
-  if [[ -z $ref ]]; then
-    detached_head=true;
-    ref="$(git show-ref --head -s --abbrev |head -n1 2> /dev/null)";
-    ref_symbol="➦"
+  # Local branch segment
+  local_branch=$(git symbolic-ref HEAD 2> /dev/null) || ""
+  if [[ -z $local_branch ]]; then
+    # detached_head=true;
+    local_branch="$(git show-ref --head -s --abbrev |head -n1 2> /dev/null)";
+    local_branch_symbol="➦"
   else
-    detached_head=false;
-    ref=${ref/refs\/heads\//}
-    ref_symbol=""
+    # detached_head=false;
+    local_branch=${local_branch/refs\/heads\//}
+    local_branch_symbol=""
   fi
 
   remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
@@ -116,7 +118,7 @@ prompt_git() {
     prompt_segment green black
   fi
 
-  echo -n "${ref_symbol} ${ref}${displayed_ahead}"
+  echo -n "${local_branch_symbol} ${local_branch}${displayed_ahead}"
 
   if [[ -e "${repo_path}/BISECT_LOG" ]]; then
     mode=" <B>"
@@ -139,7 +141,7 @@ prompt_git() {
   vcs_info
   echo -n "${vcs_info_msg_0_}"
 
-  # Displaying upstream dedicated segment
+  # Upstream branch segment
   if [[ -n $remote ]]; then
     if [ $behind -ne 0 ]; then
       prompt_segment magenta white
