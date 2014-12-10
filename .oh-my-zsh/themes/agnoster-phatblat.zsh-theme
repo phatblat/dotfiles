@@ -82,7 +82,7 @@ prompt_git() {
 
   # Stash segment
   if [[ $SHOW_STASH_SEGMENT -eq 1 ]]; then
-      stash_size=$(git stash list 2> /dev/null | wc -l | tr -d ' ')
+      stash_size=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
       if [[ stash_size -ne 0 ]]; then
           prompt_segment white black
           echo -n "+${stash_size}"
@@ -91,10 +91,10 @@ prompt_git() {
 
   # Local branch segment
   # Could also use `git name-rev --name-only HEAD`
-  local_branch=$(git symbolic-ref HEAD 2> /dev/null) || ""
+  local_branch=$(git symbolic-ref HEAD 2>/dev/null)
   if [[ -z $local_branch ]]; then
     # detached_head=true;
-    local_branch="$(git show-ref --head -s --abbrev |head -n1 2> /dev/null)";
+    local_branch="$(git show-ref --head -s --abbrev | head -n1 2>/dev/null)";
     local_branch_symbol="➦"
   else
     # detached_head=false;
