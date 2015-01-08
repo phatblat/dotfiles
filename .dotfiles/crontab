@@ -1,2 +1,2 @@
-00 4 * * *      gem update --system && gem update `gem outdated`
-10 4 * * *      brew update && brew install `brew outdated --quiet`
+00 4 * * *      /usr/bin/env gem update --system && /usr/bin/env gem update `/usr/bin/env gem outdated`
+10 4 * * *      /usr/bin/env brew update && /usr/bin/env brew install `/usr/bin/env brew outdated --quiet`
