@@ -9,6 +9,7 @@ alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
 alias version_build='agvtool what-version -terse'
 alias version_market='agvtool what-marketing-version -terse1'
+alias fauxpas="open -a FauxPas ""`osascript -e 'tell application \"Xcode\" to return path of active project document'`"""
 
 function version_current() {
     local build_version market_version
