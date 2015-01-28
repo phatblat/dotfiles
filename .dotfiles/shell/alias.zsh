@@ -23,6 +23,9 @@ alias h="history"
 alias chrome='open -a "Google Chrome" --args --incognito'
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
+# Carthage
+alias carthage-clean='rm -rf ~/Library/Caches/org.carthage.CarthageKit'
+
 # CocoaPods
 alias pi='pod install --no-repo-update'
 
