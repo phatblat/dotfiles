@@ -59,6 +59,7 @@ alias OPTIONS='burl OPTIONS'
 # Boxen
 alias boxendir='pushd /opt/boxen/repo'
 
+
 #-------------------------------------------------------------------------------
 #
 # Editors
@@ -90,6 +91,7 @@ function mark() {
     fi
 }
 
+
 #-------------------------------------------------------------------------------
 #
 # SSH
@@ -114,9 +116,10 @@ function sshnewkey() {
 	if (($+1)); then
 		ssh-keygen -t rsa -C "$1"
 	else
-		echo "Usage: sshnewkey user@host"
+		ssh-keygen -t rsa -C "$USER@$HOST"
 	fi
 }
+
 
 #-------------------------------------------------------------------------------
 #
