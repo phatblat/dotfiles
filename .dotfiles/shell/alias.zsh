@@ -97,13 +97,7 @@ function mark() {
 #-------------------------------------------------------------------------------
 alias sshcopypub='pbcopy < ~/.ssh/id_rsa.pub'
 
-function sshkeyfingerprint() {
-	if (($+1)); then
-		ssh-keygen -lf "$1"
-	else
-		ssh-keygen -lf ~/.ssh/id_rsa.pub
-	fi
-}
+alias sshkeyfingerprint='file=~/.ssh/id_rsa.pub; if [ -n "$1" ]; then file="$1"; fi; echo -n "sshkeyfingerprint [$file] "; ssh-keygen -lf "$file";'
 
 function sshnewkey() {
 	if (($+1)); then
