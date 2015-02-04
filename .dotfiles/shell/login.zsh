@@ -1,6 +1,5 @@
 # Window title - for Timing.app <https://itunes.apple.com/us/app/timing/id431511738?mt=12>
-PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
-export PROMPT_COMMAND="${PROMPT_COMMAND} ${PROMPT_TITLE}; "
+echo -ne "\e]1;${USER}@${HOST%%.*}:${PWD/#$HOME/~}\a"
 
 # SSH - Print out the fingerprint and comment of the default public key for this user@host
 sshkeyfingerprint
