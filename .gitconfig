@@ -47,7 +47,7 @@
     excludesfile = /opt/boxen/config/git/gitignore
     pager = less -F -X
 [hub]
-    protocol = https
+    protocol = ssh
 [diff]
     tool = Kaleidoscope
     algorithm = patience
@@ -75,4 +75,4 @@
 [rerere]
     enabled = true
 [url "https://"]
-	insteadOf = git://
+    insteadOf = git://
