@@ -10,6 +10,8 @@ alias init='git init'
 
 # Informational
 
+alias help='git help'
+
 ### Work Area
 alias s='git status -sb'
 alias sa='git status'
@@ -81,6 +83,7 @@ alias submodule='git submodule'
 alias c='git checkout'
 alias checkout='git checkout'
 alias reset='git reset'
+alias bisect='git bisect'
 
 # Branch
 alias branch='git branch'
