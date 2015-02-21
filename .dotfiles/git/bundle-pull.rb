@@ -57,15 +57,13 @@ def bundle_pull()
   end
 
   # SSH
-  print 'Enter your password: '
-  password = gets.chomp
-
+  #
   # put commands to send to the remote Ruby here...
   # def CMDs = [
   #   '-v'
   # ]
 
-  Net::SSH.start(remote_hostname, username, :password => password) do |ssh|
+  Net::SSH.start(remote_hostname, username) do |ssh|
 
     # remote_ruby = ssh.exec!('/usr/bin/which ruby').chomp
     # puts 'Using remote Ruby: "%s"' % remote_ruby
