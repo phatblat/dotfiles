@@ -5,7 +5,7 @@
 #
 #-------------------------------------------------------------------------------
 
-puts 'loading bundle.rb'
+require 'pathname'
 
 # bundle-pull
 #
@@ -24,7 +24,6 @@ puts 'loading bundle.rb'
 #   - User dir is used as root (so can't get to system files, less typing)
 def bundle_pull()
     command = 'bundle-pull'
-    puts command
 
     # Ensure current dir is in a clean git repo
     if !`git rev-parse --is-inside-work-tree >/dev/null 2>&1`
@@ -32,7 +31,7 @@ def bundle_pull()
         return
     end
 
-    if `git status --porcelain`
+    if !`git status --porcelain`
         puts "The work tree is dirty, aborting."
         return
     end
@@ -44,13 +43,16 @@ def bundle_pull()
     hostname = `hostname`
     case
         when 'octoair.local'
-            puts 'This is octoair'
             remote_hostname = 'imac.local'
         when 'imac.local'
-            puts 'This is imac'
-            remote_hostname = 'imac.local'
+            remote_hostname = 'octoair.local'
     end
     puts "remote_hostname: #{remote_hostname}"
+
+    # puts Dir.pwd
+    if !Dir.pwd.start_with? "/Users/#{username}"
+        puts 'This command can only be ran in your home directory.'
+    end
 
 end
 
