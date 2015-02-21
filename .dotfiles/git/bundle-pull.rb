@@ -5,7 +5,7 @@
 #
 #-------------------------------------------------------------------------------
 
-puts "loading bundle.rb"
+puts 'loading bundle.rb'
 
 # bundle-pull
 #
@@ -20,14 +20,25 @@ puts "loading bundle.rb"
 # - end SSH
 # - git fetch OTHER_HOST $USER/REPO_PATH/BUNDLE_FILE bundle_branch
 #   - User dir is used as root (so can't get to system files, less typing)
-def bundlepull()
-    puts "bundle-pull"
+def bundle_pull()
+    puts 'bundle-pull'
     # local remote_hostname
 
     # determine remote_hostname
-    # if $HOST = "octoair.local"
-    #     remote_hostname = "imac.local"
+    username = ENV['USER']
+    puts "username: #{username}"
+
+    hostname = `hostname`
+    case
+        when 'octoair.local'
+            puts 'This is octoair'
+            remote_hostname = 'imac.local'
+        when 'imac.local'
+            puts 'This is imac'
+            remote_hostname = 'imac.local'
+    end
+    puts "remote_hostname: #{remote_hostname}"
 
 end
 
-bundlepull()
+bundle_pull()
