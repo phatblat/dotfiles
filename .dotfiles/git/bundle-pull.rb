@@ -51,9 +51,10 @@ def bundle_pull()
   end
   puts "remote_hostname: #{remote_hostname}"
 
-  # puts Dir.pwd
-  if !Dir.pwd.start_with? "/Users/#{username}"
-      puts 'This command can only be ran in your home directory.'
+  repo_path = Dir.pwd
+  # puts repo_path
+  if !repo_path.start_with? "/Users/#{username}"
+      puts 'This command can only be ran under your home directory.'
   end
 
   # SSH
@@ -82,7 +83,7 @@ def bundle_pull()
     # end
 
     stdout = ''
-    ssh.exec!("pwd") do |channel, stream, data|
+    ssh.exec!("cd #{repo_path} && pwd ") do |channel, stream, data|
       stdout << data if stream == :stdout
     end
 
