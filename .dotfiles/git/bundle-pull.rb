@@ -28,6 +28,7 @@ require 'net/ssh' # gem install net-ssh
 #   - User dir is used as root (so can't get to system files, less typing)
 def bundle_pull()
   command = 'bundle-pull'
+  bundle_name = 'snapshot.bundle'
 
   # Ensure current dir is in a clean git repo
   if !`git rev-parse --is-inside-work-tree >/dev/null 2>&1`
@@ -74,16 +75,24 @@ def bundle_pull()
     # Clean out previous bundle, if necessary
 
     # Snapshot
+    'head_sha=$(git rev-parse HEAD)',
+    'echo "HEAD: ${head_sha}"',
     'git stash list',
     # 'git stash list -p', # verbose diff of stash
     'git stash save "snapshot: $(date)"',
 
     # Returns only the SHA of the last stash (will need the next one back in history in order to restore staging area status)
-    "sha=$(git show --abbrev-commit --oneline refs/stash@{0} | head -1 | awk '{print $1}')",
-    'echo "snapshot sha: ${sha}"',
+    "snapshot_sha=$(git show --abbrev-commit --oneline refs/stash@{0} | head -1 | awk '{print $1}')",
+    'echo "snapshot: ${snapshot_sha}"',
 
     # Restore the dirty work tree
     'git stash apply "stash@{0}"',
+
+    # Create bundle
+    'git tag -d snapshot_end',
+    'git tag snapshot_end ${snapshot_sha}',
+    "git bundle create #{bundle_name} HEAD..snapshot_end",
+    "git bundle verify #{bundle_name}"
   ]
 
   Net::SSH.start(remote_hostname, username) do |ssh|
