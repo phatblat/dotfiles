@@ -40,7 +40,7 @@ def bundle_pull()
 
   # determine remote_hostname
   username = ENV['USER']
-  puts "username: #{username}"
+  # puts "username: #{username}"
 
   hostname = `hostname`
   case
@@ -49,7 +49,7 @@ def bundle_pull()
       when 'imac.local'
           remote_hostname = 'octoair.local'
   end
-  puts "remote_hostname: #{remote_hostname}"
+  # puts "remote_hostname: #{remote_hostname}"
 
   repo_path = Dir.pwd
   # puts repo_path
