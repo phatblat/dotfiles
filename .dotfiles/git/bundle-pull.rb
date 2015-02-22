@@ -111,6 +111,14 @@ def bundle_pull()
   # Extract bundle
   # puts `git cherry-pick --no-commit refs/tags/snapshot_end`
   puts `git fetch snapshot.bundle refs/tags/snapshot_end:snapshot`
+  puts `git tag before_bundle_pull`
+  puts `git checkout snapshot`
+  puts `git reset --mixed before_bundle_pull`
+
+  # Cleanup
+  puts `git tag -d before_bundle_pull`
+  puts `git tag -d snapshot_end`
+  puts `rm #{bundle_name}`
 
 end # bundle_pull()
 
