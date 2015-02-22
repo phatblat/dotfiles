@@ -5,8 +5,9 @@
 #
 #-------------------------------------------------------------------------------
 
+require 'net/scp'
+require 'net/ssh'
 require 'pathname'
-require 'net/ssh' # gem install net-ssh
 
 # bundle-pull
 #
@@ -99,6 +100,12 @@ def bundle_pull()
     puts output
 
   end
+
+  # download a file from a remote server
+  Net::SCP.download!(remote_hostname, username,
+    "#{repo_path}/#{bundle_name}", "#{repo_path}/#{bundle_name}",
+    # :ssh => { :password => "password" }
+    )
 
 end # bundle_pull()
 
