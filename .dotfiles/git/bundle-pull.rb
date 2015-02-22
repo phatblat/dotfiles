@@ -89,16 +89,16 @@ def bundle_pull()
     # Create bundle
     'git tag -d snapshot_end',
     'git tag snapshot_end ${snapshot_sha}',
+    # This requires the HEAD commit to be present in the local repo
+    # TODO: figure out common ancestor
     "git bundle create #{bundle_name} HEAD..snapshot_end",
     "git bundle verify #{bundle_name}"
   ]
 
   Net::SSH.start(remote_hostname, username) do |ssh|
-
     command_string = commands.join(" && ")
     output = ssh.exec!(command_string).chomp
     puts output
-
   end
 
   # download a file from a remote server
@@ -106,6 +106,11 @@ def bundle_pull()
     "#{repo_path}/#{bundle_name}", "#{repo_path}/#{bundle_name}",
     # :ssh => { :password => "password" }
     )
+  puts `git bundle list-heads snapshot.bundle`
+
+  # Extract bundle
+  # puts `git cherry-pick --no-commit refs/tags/snapshot_end`
+  puts `git fetch snapshot.bundle refs/tags/snapshot_end:snapshot`
 
 end # bundle_pull()
 
