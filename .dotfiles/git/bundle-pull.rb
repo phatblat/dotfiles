@@ -8,6 +8,9 @@
 require 'pathname'
 require 'net/ssh' # gem install net-ssh
 
+require 'monads/monad'
+# require 'monads/eventually'
+
 # bundle-pull
 #
 # Usage: bundle-pull
@@ -62,7 +65,7 @@ def bundle_pull()
 
   # put commands to send to the remote Ruby here...
   commands = [
-    '/usr/bin/which ruby -v',
+    # '/usr/bin/which ruby -v',
 
     # Move into repo dir
     'pwd',
@@ -83,17 +86,26 @@ def bundle_pull()
 
   Net::SSH.start(remote_hostname, username) do |ssh|
 
-    remote_ruby = ssh.exec!('/usr/bin/which ruby').chomp
-    puts "remote ruby: #{remote_ruby}"
+    command_string = commands.join(" && ")
+    output = ssh.exec!(command_string).chomp
+    puts output
 
-    ssh.open_channel do |ch|
-      commands.each do |cmd|
+    # ssh.open_channel do |ch|
 
-        puts "sending: #{cmd}"
-        channel_events(ch, cmd)
+    #   # eventually = Eventually.new do |success|
+    #   #   Thread.new do
+    #   #     sleep 5
+    #   #     success.call('hello world')
+    #   #   end
+    #   # end
 
-      end
-    end # ssh channel
+    #   commands.each do |cmd|
+
+    #     puts "sending: #{cmd}"
+    #     channel_events(ch, cmd)
+
+    #   end
+    # end # ssh channel
 
   end
 
@@ -105,12 +117,11 @@ def channel_events(channel, cmd)
   channel.exec cmd do |channel, success|
     puts "cmd: #{cmd}"
     puts "channel: #{channel}, success: #{success}"
-    abort "could not execute '#{cmd}'" unless success
 
     channel.on_data do |channel, stream, data|
       # print data
-      stdout << data if stream == :stdout
-      puts "got stdout: #{stdout}"
+      #stdout << data if stream == :stdout
+      puts "got stdout: #{data}"
 
       # if data =~ /sudo password: /
       #   ch.send_data("password\n")
@@ -124,6 +135,38 @@ def channel_events(channel, cmd)
     channel.on_close do |ch|
       puts "got stdout: #{stdout}"
       stdout = ''
+    end
+
+    abort "could not execute '#{cmd}'" unless success
+  end
+end
+
+module Monads
+  Eventually = Struct.new(:block) do
+    include Monad
+
+    def initialize(&block)
+      super(block)
+    end
+
+    def run(&success)
+      block.call(success)
+    end
+
+    def and_then(&block)
+      block = ensure_monadic_result(&block)
+
+      Eventually.new do |success|
+        run do |value|
+          block.call(value).run(&success)
+        end
+      end
+    end
+
+    def self.from_value(value)
+      Eventually.new do |success|
+        success.call(value)
+      end
     end
   end
 end
