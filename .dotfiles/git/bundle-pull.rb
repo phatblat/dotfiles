@@ -8,7 +8,7 @@
 require 'pathname'
 require 'net/ssh' # gem install net-ssh
 
-require 'monads/monad'
+# require 'monads/monad'
 # require 'monads/eventually'
 
 # bundle-pull
@@ -68,17 +68,19 @@ def bundle_pull()
     # '/usr/bin/which ruby -v',
 
     # Move into repo dir
-    'pwd',
     "cd #{repo_path}",
     'pwd',
 
+    # Clean out previous bundle, if necessary
+
     # Snapshot
     'git stash list',
-    'git stash list -p',
+    # 'git stash list -p', # verbose diff of stash
     'git stash save "snapshot: $(date)"',
 
     # Returns only the SHA of the last stash (will need the next one back in history in order to restore staging area status)
-    "git show --abbrev-commit --oneline refs/stash@{0} | head -1 | awk '{print $1}'",
+    "sha=$(git show --abbrev-commit --oneline refs/stash@{0} | head -1 | awk '{print $1}')",
+    'echo "snapshot sha: ${sha}"',
 
     # Restore the dirty work tree
     'git stash apply "stash@{0}"',
@@ -141,34 +143,34 @@ def channel_events(channel, cmd)
   end
 end
 
-module Monads
-  Eventually = Struct.new(:block) do
-    include Monad
+# module Monads
+#   Eventually = Struct.new(:block) do
+#     include Monad
 
-    def initialize(&block)
-      super(block)
-    end
+#     def initialize(&block)
+#       super(block)
+#     end
 
-    def run(&success)
-      block.call(success)
-    end
+#     def run(&success)
+#       block.call(success)
+#     end
 
-    def and_then(&block)
-      block = ensure_monadic_result(&block)
+#     def and_then(&block)
+#       block = ensure_monadic_result(&block)
 
-      Eventually.new do |success|
-        run do |value|
-          block.call(value).run(&success)
-        end
-      end
-    end
+#       Eventually.new do |success|
+#         run do |value|
+#           block.call(value).run(&success)
+#         end
+#       end
+#     end
 
-    def self.from_value(value)
-      Eventually.new do |success|
-        success.call(value)
-      end
-    end
-  end
-end
+#     def self.from_value(value)
+#       Eventually.new do |success|
+#         success.call(value)
+#       end
+#     end
+#   end
+# end
 
 bundle_pull()
