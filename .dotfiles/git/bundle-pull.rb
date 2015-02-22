@@ -58,41 +58,35 @@ def bundle_pull()
   end
 
   # SSH
-  #
+  puts "ssh://#{username}@#{remote_hostname}:#{repo_path}"
+
   # put commands to send to the remote Ruby here...
-  # def CMDs = [
-  #   '-v'
-  # ]
+  commands = [
+    '/usr/bin/which ruby -v',
+    "cd #{repo_path} && pwd",
+    'git stash save "snapshot: $(date)" && git stash apply "stash@{0}"',
+    "git show --abbrev-commit --oneline refs/stash@{0} | head -1 | awk '{print $1}'"
+  ]
 
   Net::SSH.start(remote_hostname, username) do |ssh|
 
-    # remote_ruby = ssh.exec!('/usr/bin/which ruby').chomp
-    # puts 'Using remote Ruby: "%s"' % remote_ruby
+    remote_ruby = ssh.exec!('/usr/bin/which ruby').chomp
+    puts 'Using remote Ruby: "%s"' % remote_ruby
 
-    # CMDs.each do |cmd|
+    commands.each do |cmd|
 
-    #   puts 'Sending: "%s"' % cmd
+      puts 'Sending: "%s"' % cmd
 
-    #   stdout = ''
-    #   ssh.exec!("#{ remote_ruby } #{ cmd }") do |channel, stream, data|
-    #     stdout << data if stream == :stdout
-    #   end
+      stdout = ''
+      ssh.exec!("#{ cmd }") do |channel, stream, data|
+        stdout << data if stream == :stdout
+      end
 
-    #   puts 'Got: %s' % stdout
-    #   puts
-    # end
-
-    stdout = ''
-    ssh.exec!("cd #{repo_path} && pwd ") do |channel, stream, data|
-      stdout << data if stream == :stdout
+      puts 'Got: %s' % stdout
+      puts
     end
 
-    puts stdout
-
   end
-
-  # git snapshot
-  # git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 
 end
 
