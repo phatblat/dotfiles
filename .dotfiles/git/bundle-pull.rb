@@ -63,31 +63,69 @@ def bundle_pull()
   # put commands to send to the remote Ruby here...
   commands = [
     '/usr/bin/which ruby -v',
-    "cd #{repo_path} && pwd",
-    'git stash save "snapshot: $(date)" && git stash apply "stash@{0}"',
-    "git show --abbrev-commit --oneline refs/stash@{0} | head -1 | awk '{print $1}'"
+
+    # Move into repo dir
+    'pwd',
+    "cd #{repo_path}",
+    'pwd',
+
+    # Snapshot
+    'git stash list',
+    'git stash list -p',
+    'git stash save "snapshot: $(date)"',
+
+    # Returns only the SHA of the last stash (will need the next one back in history in order to restore staging area status)
+    "git show --abbrev-commit --oneline refs/stash@{0} | head -1 | awk '{print $1}'",
+
+    # Restore the dirty work tree
+    'git stash apply "stash@{0}"',
   ]
 
   Net::SSH.start(remote_hostname, username) do |ssh|
 
     remote_ruby = ssh.exec!('/usr/bin/which ruby').chomp
-    puts 'Using remote Ruby: "%s"' % remote_ruby
+    puts "remote ruby: #{remote_ruby}"
 
-    commands.each do |cmd|
+    ssh.open_channel do |ch|
+      commands.each do |cmd|
 
-      puts 'Sending: "%s"' % cmd
+        puts "sending: #{cmd}"
+        channel_events(ch, cmd)
 
-      stdout = ''
-      ssh.exec!("#{ cmd }") do |channel, stream, data|
-        stdout << data if stream == :stdout
       end
-
-      puts 'Got: %s' % stdout
-      puts
-    end
+    end # ssh channel
 
   end
 
+end # bundle_pull()
+
+# Net::SSH::Connection::Channel, string
+def channel_events(channel, cmd)
+  stdout = ''
+  channel.exec cmd do |channel, success|
+    puts "cmd: #{cmd}"
+    puts "channel: #{channel}, success: #{success}"
+    abort "could not execute '#{cmd}'" unless success
+
+    channel.on_data do |channel, stream, data|
+      # print data
+      stdout << data if stream == :stdout
+      puts "got stdout: #{stdout}"
+
+      # if data =~ /sudo password: /
+      #   ch.send_data("password\n")
+      # end
+    end
+
+    channel.on_extended_data do |ch, type, data|
+      puts "got stderr: #{data}"
+    end
+
+    channel.on_close do |ch|
+      puts "got stdout: #{stdout}"
+      stdout = ''
+    end
+  end
 end
 
 bundle_pull()
