@@ -44,12 +44,11 @@ def bundle_pull()
   username = ENV['USER']
   # puts "username: #{username}"
 
-  hostname = `hostname`
-  case
-      when 'octoair.local'
-          remote_hostname = 'imac.local'
-      when 'imac.local'
-          remote_hostname = 'octoair.local'
+  hostname = `hostname`.chomp
+  remote_hostname = case hostname
+      when 'octoair.local'  then 'imac.local'
+      when 'imac.local' 	then 'octoair.local'
+      else puts "unknown hostname #{hostname}"
   end
   # puts "remote_hostname: #{remote_hostname}"
 
