@@ -86,7 +86,7 @@ def bundle_pull()
     'git stash apply "stash@{0}"',
 
     # Create bundle
-    'git tag -d snapshot_end',
+    'git tag -d snapshot_end || true',
     'git tag snapshot_end ${snapshot_sha}',
     # This requires the HEAD commit to be present in the local repo
     # TODO: figure out common ancestor
