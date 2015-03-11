@@ -116,6 +116,7 @@ def bundle_pull()
   puts `git reset --mixed before_bundle_pull`
 
   # Cleanup
+  puts `git branch --delete snapshot`
   puts `git tag -d before_bundle_pull`
   puts `git tag -d snapshot_end`
   puts `rm #{bundle_name}`
