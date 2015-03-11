@@ -92,6 +92,7 @@ def bundle_pull()
     # TODO: figure out common ancestor
     "git bundle create #{bundle_name} HEAD..snapshot_end",
     "git bundle verify #{bundle_name}"
+    'git tag -d snapshot_end || true',
   ]
 
   Net::SSH.start(remote_hostname, username) do |ssh|
