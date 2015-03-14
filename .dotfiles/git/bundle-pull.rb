@@ -91,7 +91,7 @@ def bundle_pull()
     # This requires the HEAD commit to be present in the local repo
     # TODO: figure out common ancestor
     "git bundle create #{bundle_name} HEAD..snapshot_end",
-    "git bundle verify #{bundle_name}"
+    "git bundle verify #{bundle_name}",
     'git tag -d snapshot_end || true',
   ]
 
