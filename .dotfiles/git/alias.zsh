@@ -78,6 +78,7 @@ alias pushtags='git push --tags'
 
 # Submodules
 alias submodule='git submodule'
+alias sur='git submodule update --recursive'
 
 # Checkout
 alias c='git checkout'
