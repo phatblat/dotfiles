@@ -16,7 +16,6 @@ alias help='git help'
 alias s='git status -sb'
 alias sa='git status'
 alias status='git status'
-alias sha='git rev-parse HEAD'
 alias d='git diff'
 alias diff='git diff'
 alias dc='git diff --cached'
@@ -37,6 +36,9 @@ alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 alias lga="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias show="git show"
 alias review='git log -p --max-count=1'
+alias rev-list='git rev-list'
+alias rev-parse='git rev-parse'
+alias sha='git rev-parse HEAD'
 alias shortsha='git rev-parse --short HEAD'
 alias ldg='git log -g'
 alias reflog='git reflog'
@@ -124,7 +126,6 @@ alias stash='git stash'
 alias snapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
 
 # Experimental
-alias rev-parse='git rev-parse'
 alias ref='git symbolic-ref'
 alias rewriteauthor="git filter-branch -f --env-filter 'if [ \$GIT_AUTHOR_EMAIL = ben.d.chatelain@kp.org ]; then GIT_AUTHOR_EMAIL=benchatelain@gmail.com; fi; export GIT_AUTHOR_EMAIL'"
 alias rewritecommitter="git filter-branch -f --env-filter 'if [ \$GIT_COMMITTER_EMAIL = ben.d.chatelain@kp.org ]; then GIT_COMMITTER_EMAIL=benchatelain@gmail.com; fi; export GIT_COMMITTER_EMAIL'"
