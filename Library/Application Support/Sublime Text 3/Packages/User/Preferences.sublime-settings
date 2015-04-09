@@ -1,9 +1,9 @@
 {
-	"log_commands": true,
 	"color_scheme": "Packages/Color Scheme - Default/All Hallow's Eve.tmTheme",
 	"font_size": 14,
 	"ignored_packages":
 	[
 		"Vintage"
-	]
+	],
+	"log_commands": true
 }
