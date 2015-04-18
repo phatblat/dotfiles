@@ -19,4 +19,4 @@ function fetch_dotfiles() {
 		git fetch -v
 	fi
 }
-fetch_dotfiles
+#fetch_dotfiles

@@ -1,0 +1,10 @@
+#
+# dotfiles_fetch
+#
+
+git_path=`which git`
+pushd $HOME
+
+$git_path fetch -v
+
+popd
