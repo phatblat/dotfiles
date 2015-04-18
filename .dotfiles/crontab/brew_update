@@ -1,0 +1,6 @@
+#
+# brew_update
+#
+
+brew_path=`which brew`
+$brew_path update && $brew_path upgrade `$brew_path outdated --quiet`
