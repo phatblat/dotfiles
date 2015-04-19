@@ -3,8 +3,8 @@
 #
 
 git_path=`which git`
-pushd $HOME
+pushd $HOME > /dev/null 2>&1
 
-$git_path fetch -v
+$git_path fetch --quiet
 
-popd
+popd > /dev/null 2>&1
