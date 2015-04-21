@@ -44,3 +44,7 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 #  - http://furbo.org/2014/09/03/xcode-vs-gatekeeper/
 alias ungate='xattr -d com.apple.quarantine '
+
+# Verbose codesign logging
+defaults write com.apple.dt.Xcode DVTCodesigningAllTheThingsLogLevel 3
+
