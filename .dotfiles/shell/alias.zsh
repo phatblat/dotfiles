@@ -26,7 +26,7 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 # Carthage
 alias carthage-clean='rm -rf ~/Library/Caches/org.carthage.CarthageKit'
 alias cco='carthage checkout --use-submodules --no-use-binaries'
-alias ccu='carthage update --use-submodules --no-use-binaries'
+alias ccu='carthage update --use-submodules --no-use-binaries --no-build'
 alias cbsim="carthage build --platform iphonesimulator"
 alias cbdev="carthage build --platform iphoneos"
 
