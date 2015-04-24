@@ -46,5 +46,5 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 alias ungate='xattr -d com.apple.quarantine '
 
 # Verbose codesign logging
-defaults write com.apple.dt.Xcode DVTCodesigningAllTheThingsLogLevel 3
+#defaults write com.apple.dt.Xcode DVTCodesigningAllTheThingsLogLevel 3
 
