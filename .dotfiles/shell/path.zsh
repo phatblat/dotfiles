@@ -14,11 +14,6 @@ export LC_CTYPE=en_US.UTF-8
 # Manually setting the original OS X path so that reloadprofile won't keep growing the PATH
 # OSX_PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/X11R6/bin
 
-if [ -d /opt/boxen ] ; then
-    BOXEN_PATH=/opt/boxen/rbenv/shims:/opt/boxen/rbenv/bin:/opt/boxen/rbenv/plugins/ruby-build/bin:/opt/boxen/bin:/opt/boxen/homebrew/bin:/opt/boxen/homebrew/sbin
-    export PATH=${BOXEN_PATH}:${PATH}
-fi
-
 if [ -d /Users/ben/Library/Python/2.7/bin ] ; then
 	PYTHON_PATH=/Users/ben/Library/Python/2.7/bin
 	export PATH=${PYTHON_PATH}:${PATH}

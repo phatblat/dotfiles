@@ -3,11 +3,7 @@
 # RBENV
 #
 #-------------------------------------------------------------------------------
-if [ -d /opt/boxen ] ; then
-    export RBENV_ROOT=/opt/boxen/homebrew/var/rbenv
-else
-    export RBENV_ROOT=/usr/local/var/rbenv
-fi
+export RBENV_ROOT=/usr/local/var/rbenv
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
