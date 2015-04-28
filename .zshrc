@@ -1,1 +1,1 @@
-.dotfiles/_bootstrap.zsh.sh
+.dotfiles/_bootstrap.zsh

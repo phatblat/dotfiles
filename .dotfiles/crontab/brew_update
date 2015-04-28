@@ -2,5 +2,7 @@
 # brew_update
 #
 
+. $HOME/.dotfiles/crontab/crontab.env
+
 brew_path=`which brew`
 $brew_path update && $brew_path upgrade `$brew_path outdated --quiet`

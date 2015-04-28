@@ -2,6 +2,8 @@
 # dotfiles_fetch
 #
 
+. $HOME/.dotfiles/crontab/crontab.env
+
 git_path=`which git`
 pushd $HOME > /dev/null 2>&1
 
