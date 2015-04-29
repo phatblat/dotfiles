@@ -58,6 +58,10 @@ def bundle_pull()
       puts 'This command can only be ran under your home directory.'
   end
 
+  # Current branch
+  current_branch = `git rev-parse --abbrev-ref HEAD`
+  puts "current branch: #{current_branch}"
+
   # SSH
   puts "ssh://#{username}@#{remote_hostname}:#{repo_path}"
 
@@ -72,6 +76,7 @@ def bundle_pull()
     # Clean out previous bundle, if necessary
 
     # Snapshot
+    'echo "current branch: $(git rev-parse --abbrev-ref HEAD)"',
     'head_sha=$(git rev-parse HEAD)',
     'echo "HEAD: ${head_sha}"',
     'git stash list',
@@ -116,6 +121,7 @@ def bundle_pull()
   puts `git reset --mixed before_bundle_pull`
 
   # Cleanup
+  puts `git checkout #{current_branch}`
   puts `git branch --delete snapshot`
   puts `git tag -d before_bundle_pull`
   puts `git tag -d snapshot_end`
