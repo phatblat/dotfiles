@@ -46,8 +46,8 @@ def bundle_pull()
 
   hostname = `hostname`.chomp
   remote_hostname = case hostname
-      when 'octoair.local'  then 'imac.local'
-      when 'imac.local' 	then 'octoair.local'
+      when 'greymatter.local'  then 'imac.local'
+      when 'imac.local' 	     then 'greymatter.local'
       else puts "unknown hostname #{hostname}"
   end
   # puts "remote_hostname: #{remote_hostname}"
