@@ -10,7 +10,8 @@ alias ow='open *.xcworkspace'
 alias version_enable='ruby ~/.dotfiles/ios/enable-versioning.rb'
 alias version_build='agvtool what-version -terse'
 alias version_market='agvtool what-marketing-version -terse1'
-alias demangle="xcrun swift-demangle"
+alias demangle='xcrun swift-demangle'
+alias plcat='plutil -convert xml1 -o /dev/stdout'
 
 function version_current() {
     local build_version market_version
