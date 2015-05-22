@@ -6,3 +6,6 @@ command alias reveal_stop expr (void)[(NSNotificationCenter*)[NSNotificationCent
 command regex rd 's/[[:space:]]*$/po [[[UIApplication sharedApplication] keyWindow] recursiveDescription]/' 's/.+$/po [%1 recursiveDescription]/'
 
 command script import "~/Library/Application Support/Realm/rlm_lldb.py" --allow-reload
+
+command alias uikit expr @import UIKit
+command alias foundation expr @import Foundation
