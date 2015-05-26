@@ -67,7 +67,7 @@ function release() {
 
     # Ensure current dir is in a clean git repo
     if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-        dirty=$(parse_git_dirty)
+        dirty=$(git status --porcelain)
         if [[ -n $dirty ]]; then
             echo "Can't release with a dirty work tree"
             return 1
