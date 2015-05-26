@@ -5,4 +5,4 @@
 . $HOME/.dotfiles/crontab/crontab.env
 
 gem_path=`which gem`
-$gem_path update --system && $gem_path update `$gem_path outdated`
+$gem_path update --system --quiet && $gem_path update --quiet
