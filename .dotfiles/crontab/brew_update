@@ -5,4 +5,4 @@
 . $HOME/.dotfiles/crontab/crontab.env
 
 brew_path=`which brew`
-$brew_path update && $brew_path outdated && $brew_path upgrade --all
+$brew_path update > /dev/null && $brew_path upgrade --all > /dev/null
