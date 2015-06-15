@@ -117,6 +117,9 @@ alias reset='git reset'
 alias pop='git reset --soft HEAD^'
 alias mirror='git reset --hard'
 
+# Revert
+alias revert='git revert'
+
 # Assumed files
 alias assumed='git ls-files -v | grep ^h | cut -c 3-'
 alias assume='git update-index --assume-unchanged'
