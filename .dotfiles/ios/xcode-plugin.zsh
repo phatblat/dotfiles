@@ -22,3 +22,6 @@ function xcode_plugin_update_uuid() {
 
 	done
 }
+
+alias xcode_plugin_update_uuid=xcode_plugin_update_uuid
+
