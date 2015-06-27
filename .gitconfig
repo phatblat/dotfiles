@@ -76,4 +76,3 @@
     enabled = true
 [url "https://"]
     insteadOf = git://
-[universe]
