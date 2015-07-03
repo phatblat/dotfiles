@@ -128,7 +128,7 @@ alias unassume='git update-index --no-assume-unchanged'
 
 # Stash
 alias stash='git stash'
-alias snapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
+alias snapshot_stash='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
 
 # Experimental
 alias ref='git symbolic-ref'
