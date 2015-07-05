@@ -74,5 +74,5 @@
     smudge = git-media-smudge %f
 [rerere]
     enabled = true
-[url "https://"]
-    insteadOf = git://
+#[url "https://"]
+#    insteadOf = git://
