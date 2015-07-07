@@ -88,6 +88,7 @@ alias sur='git submodule update --recursive'
 alias c='git checkout'
 alias checkout='git checkout'
 alias reset='git reset'
+alias rp='git reset --patch'
 alias bisect='git bisect'
 
 # Branch
