@@ -1,10 +1,10 @@
 {
 	"color_scheme": "Packages/User/SublimeLinter/All Hallow's Eve (SL).tmTheme",
+	"draw_white_space": "all",
 	"font_size": 14,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	"log_commands": true,
-	"draw_white_space": "all"
+	"log_commands": true
 }
