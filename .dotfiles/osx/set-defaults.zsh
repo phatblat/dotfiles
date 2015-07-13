@@ -45,6 +45,13 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 #  - http://furbo.org/2014/09/03/xcode-vs-gatekeeper/
 alias ungate='xattr -d com.apple.quarantine '
 
+#
+# Xcode
+#
+
 # Verbose codesign logging
 #defaults write com.apple.dt.Xcode DVTCodesigningAllTheThingsLogLevel 3
+
+# Show build times - http://stackoverflow.com/questions/1027923/how-to-enable-build-timing-in-xcode#answer-2801156
+defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
