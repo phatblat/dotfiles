@@ -27,8 +27,9 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 alias carthage-clean='rm -rf ~/Library/Caches/org.carthage.CarthageKit'
 alias cco='carthage checkout --use-submodules --no-use-binaries'
 alias ccu='carthage update --use-submodules --no-use-binaries --no-build'
-alias cbsim="carthage build --platform iphonesimulator"
-alias cbdev="carthage build --platform iphoneos"
+alias cbios="carthage build --platform iOS"
+alias cbmac="carthage build --platform Mac"
+alias cball="carthage build --platform all"
 
 # CocoaPods
 alias pi='pod install --no-repo-update'
