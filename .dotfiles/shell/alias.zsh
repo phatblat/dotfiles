@@ -65,9 +65,6 @@ alias PATCH='burl PATCH'
 alias DELETE='burl DELETE'
 alias OPTIONS='burl OPTIONS'
 
-# Boxen
-alias boxendir='pushd /opt/boxen/repo'
-
 
 #-------------------------------------------------------------------------------
 #
