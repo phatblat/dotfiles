@@ -1,9 +1,7 @@
 #!/bin/bash
 
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-echo "script_dir: $script_dir"
 root_dir=$(dirname $script_dir)
-echo "root_dir: $root_dir"
 
 echo "WARNING: This script will overwrite files in your home directory. It is only meant to be ran from a fresh user account."
 echo "Are you sure you wish to continue?"
