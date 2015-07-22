@@ -128,10 +128,15 @@ function sshnewkey() {
 
 function sshupload() {
 	# Upload default SSH key to GitHub
-	echo "Uploading to GitHub"
-	curl -u "phatblat" \
+	echo "Uploading SSH public key to GitHub"
+	echo -n "GitHub OTP code: "
+	read otpcode
+	curl -X POST \
+		--user "phatblat" \
+		--header "X-GitHub-OTP: ${otpcode}" \
 		--data "{\"title\":\"${USER}@${HOST}_$(date +%Y%m%d%H%M%S)\",\"key\":\"$(cat ~/.ssh/id_rsa.pub)\"}" \
-		https://api.github.com/user/key
+		--verbose \
+		https://api.github.com/user/keys
 }
 alias sshupload=sshupload
 
