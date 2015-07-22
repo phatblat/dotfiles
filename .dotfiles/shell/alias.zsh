@@ -115,8 +115,8 @@ function sshkeyfingerprint() {
 	else
 		file=~/.ssh/id_rsa.pub
 	fi
-	echo -n "sshkeyfingerprint [$file] "
-	ssh-keygen -lf "$file";
+	echo -n "sshkeyfingerprint [${file}] "
+	ssh-keygen -lf "${file}";
 }
 alias sshkeyfingerprint=sshkeyfingerprint
 
@@ -125,9 +125,18 @@ function sshnewkey() {
 	if (($+1)); then
 		ssh-keygen -t rsa -C "$1"
 	else
-		ssh-keygen -t rsa -C "$USER@$HOST"
+		ssh-keygen -t rsa -C "${USER}@${HOST}"
 	fi
 }
+
+function sshupload() {
+	# Upload default SSH key to GitHub
+	echo "Uploading to GitHub"
+	curl -u "phatblat" \
+		--data "{\"title\":\"${USER}@${HOST}_$(date +%Y%m%d%H%M%S)\",\"key\":\"$(cat ~/.ssh/id_rsa.pub)\"}" \
+		https://api.github.com/user/key
+}
+alias sshupload=sshupload
 
 
 #-------------------------------------------------------------------------------
