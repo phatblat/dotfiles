@@ -13,6 +13,10 @@ alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
 
+# Help
+bashman () { man bash | less -p "^       $1 "; }
+alias bashman=bashman
+
 # Profile
 alias reloadprofile="source ~/.zshrc"
 alias viprofile="vi ~/.zshrc && reloadprofile"
