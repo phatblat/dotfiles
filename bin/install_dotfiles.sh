@@ -28,8 +28,10 @@ brew install caskroom/cask/brew-cask
 # Git (PS1 is super slow with Apple's git)
 brew install git
 if [[ -z $(git config user.email) ]] ; then
-	read -a username -p "Git user.name: "
-	read -a useremail -p "Git user.email: "
+	echo -n "Git user.name: "
+	read username
+	echo -n "Git user.email: "
+	read useremail
 	# If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
 	mkdir -p .config/git
 	git config --file .config/git/config user.name "${username}"
