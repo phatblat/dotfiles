@@ -25,8 +25,7 @@ function version_current() {
 }
 
 function version() {
-    local agvtool_path build_version first_number
-    agvtool_path=$(which agvtool) # "/usr/bin/agvtool"
+    local build_version first_number
 
     case "$1" in
         "build" | "-b")
@@ -36,9 +35,9 @@ function version() {
             version_market
             ;;
         "set")
-            agvtool new-marketing-version $2 > /dev/null
+            agvtool new-marketing-version "$2" > /dev/null
             if (($+3)); then
-                agvtool new-version -all $3 > /dev/null
+                agvtool new-version -all "$3" > /dev/null
             fi
             version_current
             ;;
@@ -47,7 +46,7 @@ function version() {
             agvtool next-version -all > /dev/null
 
             # Workaround for agvtool dropping leading zeros, assumes only a single zero (e.g. 010001)
-            first_number=$(echo $build_version | cut -c1)
+            first_number=$(echo "$build_version" | cut -c1)
             if [[ $first_number == "0" ]]; then
                 build_version=$(version_build)
                 agvtool new-version -all "0$build_version" > /dev/null
@@ -62,11 +61,10 @@ function version() {
 }
 
 function release() {
-    local version dirty branch
-    #echo "release function"
+    local dirty
 
     # Ensure current dir is in a clean git repo
-    if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         dirty=$(git status --porcelain)
         if [[ -n $dirty ]]; then
             echo "Can't release with a dirty work tree"
