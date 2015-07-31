@@ -12,18 +12,32 @@ select yn in "Yes" "No"; do
     esac
 done
 
+# Bash options
+set -o vi
+
 # TODO: Make this script clone the dotfiles repo so that it can be executed straight from github
+
+# Dev Dirs
+mkdir -p ~/dev/ios
+mkdir -p ~/dev/libgit
 
 # Temp Dir
 mkdir -p ~/tmp
 
+xcode-select -p
+xcode-select --install
+xcodebuild -license
+
 # Install Homebrew
 echo "Installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install xctool
 
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
 #brew cask install sublime-text # v2.0.2 last checked 2015-07-21
+brew cask install iterm2
+brew cask install things
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
