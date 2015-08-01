@@ -19,7 +19,7 @@ set -o vi
 
 # Dev Dirs
 mkdir -p ~/dev/ios
-mkdir -p ~/dev/libgit
+mkdir -p ~/dev/libgit2
 
 # Temp Dir
 mkdir -p ~/tmp
