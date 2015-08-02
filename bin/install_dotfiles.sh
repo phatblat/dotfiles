@@ -20,6 +20,7 @@ set -o vi
 # Dev Dirs
 mkdir -p ~/dev/ios
 mkdir -p ~/dev/libgit2
+mkdir -p ~/Library/QuickLook
 
 # Temp Dir
 mkdir -p ~/tmp
