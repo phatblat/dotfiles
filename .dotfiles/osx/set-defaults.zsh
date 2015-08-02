@@ -45,6 +45,9 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 #  - http://furbo.org/2014/09/03/xcode-vs-gatekeeper/
 alias ungate='xattr -d com.apple.quarantine '
 
+# QuickLook text selection
+defaults write com.apple.finder QLEnableTextSelection -bool TRUE
+
 #
 # Xcode
 #
