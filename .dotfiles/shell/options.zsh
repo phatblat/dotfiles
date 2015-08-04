@@ -11,9 +11,6 @@ export LC_CTYPE="en_US.UTF-8"
 export EDIT='subl'
 export EDITOR="vi"
 
-# Bash options
-set -o vi
-
 ### Below here from the oh-my-zsh .zshrc
 
 # Uncomment the following line to use case-sensitive completion.
