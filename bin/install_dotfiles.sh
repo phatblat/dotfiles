@@ -39,6 +39,7 @@ brew install caskroom/cask/brew-cask
 #brew cask install sublime-text # v2.0.2 last checked 2015-07-21
 brew cask install iterm2
 brew cask install things
+brew tap neonichu/formulae && brew install chswift
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
