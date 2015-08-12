@@ -7,6 +7,7 @@
 # Xcode
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
+alias op='cd ~/dev/ios/Octopad'
 alias version_enable='ruby ~/.dotfiles/ios/enable-versioning.rb'
 alias version_build='agvtool what-version -terse'
 alias version_market='agvtool what-marketing-version -terse1'
