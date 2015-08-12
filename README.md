@@ -20,3 +20,6 @@ There are some fancy functions for easily inspecting, bumping version and releas
 
 Inspired by https://github.com/rtomayko/dotfiles
 
+## License
+
+This repo is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for rights and limitations.
