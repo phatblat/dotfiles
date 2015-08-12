@@ -62,6 +62,9 @@ rbenv install 2.2.2
 rbenv global 2.2.2
 rbenv rehash
 
+# Ruby Gems
+gem install cocoapods
+
 # Custom builds in ~/tmp
 pushd ~/tmp > /dev/null
 
@@ -104,4 +107,3 @@ echo '*' >> ~/.git/info/exclude
 
 pushd ~
 zsh
-
