@@ -53,6 +53,7 @@ brew cask install betterzipql
 brew cask install qlimagesize
 brew cask install webpquicklook
 brew cask install suspicious-package
+brew cask install cert-quicklook
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
