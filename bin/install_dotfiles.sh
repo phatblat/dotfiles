@@ -33,13 +33,26 @@ xcodebuild -license
 echo "Installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install xctool
+brew tap neonichu/formulae && brew install chswift
 
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
 #brew cask install sublime-text # v2.0.2 last checked 2015-07-21
 brew cask install iterm2
 brew cask install things
-brew tap neonichu/formulae && brew install chswift
+
+# QuickLook plugins
+brew cask install provisioning
+brew cask install qlcolorcode
+brew cask install qlstephen   # preview files without an extension as text
+brew cask install qlmarkdown
+brew cask install quicklook-json
+brew cask install qlprettypatch
+brew cask install quicklook-csv
+brew cask install betterzipql
+brew cask install qlimagesize
+brew cask install webpquicklook
+brew cask install suspicious-package
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
