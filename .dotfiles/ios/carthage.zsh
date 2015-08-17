@@ -16,7 +16,8 @@ alias cbmac="carthage build --platform Mac"
 alias cball="carthage build --platform all"
 
 # Verbose variants
+alias ccov='cco --verbose'
+alias ccuv='ccu --verbose'
 alias cbiosv="cbios --verbose"
 alias cbmacv="cbmac --verbose"
 alias cballv="cball --verbose"
-
