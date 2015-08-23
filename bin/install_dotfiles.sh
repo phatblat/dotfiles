@@ -42,18 +42,18 @@ brew cask install iterm2
 brew cask install things
 
 # QuickLook plugins
+brew cask install betterzipql
+brew cask install cert-quicklook
 brew cask install provisioning
 brew cask install qlcolorcode
-brew cask install qlstephen   # preview files without an extension as text
-brew cask install qlmarkdown
-brew cask install quicklook-json
-brew cask install qlprettypatch
-brew cask install quicklook-csv
-brew cask install betterzipql
 brew cask install qlimagesize
-brew cask install webpquicklook
+brew cask install qlmarkdown
+brew cask install qlprettypatch
+brew cask install qlstephen   # preview files without an extension as text
+brew cask install quicklook-csv
+brew cask install quicklook-json
 brew cask install suspicious-package
-brew cask install cert-quicklook
+brew cask install webpquicklook
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
