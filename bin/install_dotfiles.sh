@@ -32,6 +32,9 @@ xcodebuild -license
 # Install Homebrew
 echo "Installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Homebrew formulae
+brew install trash
 brew install xctool
 brew tap neonichu/formulae && brew install chswift
 
