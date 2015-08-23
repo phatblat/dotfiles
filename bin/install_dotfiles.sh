@@ -40,6 +40,7 @@ brew install caskroom/cask/brew-cask
 #brew cask install sublime-text # v2.0.2 last checked 2015-07-21
 brew cask install iterm2
 brew cask install things
+brew cask install tower
 
 # QuickLook plugins
 brew cask install betterzipql
