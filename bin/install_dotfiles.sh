@@ -33,6 +33,22 @@ xcodebuild -license
 echo "Installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# Git (PS1 is super slow with Apple's git)
+brew install git
+if [[ -z $(git config user.email) ]] ; then
+	echo -n "Git user.name: "
+	read username
+	echo -n "Git user.email: "
+	read useremail
+
+  # ~/.gitconfig is tracked and shared. Sensitive or machine-specific data is
+  # stored in the alternate global config file.
+	# > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
+	mkdir -p .config/git
+	git config --file .config/git/config user.name "${username}"
+	git config --file .config/git/config user.email "${useremail}"
+fi
+
 # Homebrew formulae
 brew install trash
 brew install xctool
@@ -63,19 +79,6 @@ brew cask install quicklook-csv
 brew cask install quicklook-json
 brew cask install suspicious-package
 brew cask install webpquicklook
-
-# Git (PS1 is super slow with Apple's git)
-brew install git
-if [[ -z $(git config user.email) ]] ; then
-	echo -n "Git user.name: "
-	read username
-	echo -n "Git user.email: "
-	read useremail
-	# If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
-	mkdir -p .config/git
-	git config --file .config/git/config user.name "${username}"
-	git config --file .config/git/config user.email "${useremail}"
-fi
 
 # Ruby
 echo "Setting up Ruby"
