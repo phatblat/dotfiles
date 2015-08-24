@@ -10,6 +10,8 @@
 #
 
 function xcode_plugin_update_uuid() {
+	local xcode plugin
+
 	for xcode in /Applications/Xcode*.app; do
 		uuid=$(defaults read "$xcode/Contents/Info" DVTPlugInCompatibilityUUID)
 
@@ -24,4 +26,3 @@ function xcode_plugin_update_uuid() {
 }
 
 alias xcode_plugin_update_uuid=xcode_plugin_update_uuid
-
