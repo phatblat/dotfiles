@@ -57,6 +57,10 @@ brew tap neonichu/formulae && brew install chswift
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
 brew cask install atom
+
+# Atom packages
+apm install dash
+
 brew cask install dayone-cli
 brew cask install divvy
 brew cask install github-desktop
