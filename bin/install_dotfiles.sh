@@ -135,7 +135,7 @@ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | 
 # Copying last in order to force the copy over OMZ and other dir trees
 # http://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con
 shopt -s dotglob
-cp -Rf $root_dir $HOME
+cp -Rf "${root_dir}/" "${HOME}"
 shopt -u dotglob
 echo '*' >> ~/.git/info/exclude
 
