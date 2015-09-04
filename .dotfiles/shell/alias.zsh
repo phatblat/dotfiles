@@ -132,6 +132,8 @@ function sshupload() {
 }
 alias sshupload=sshupload
 
+alias buildsrvpro="ssh admin@buildsrvpro.co.kp.org"
+
 
 #-------------------------------------------------------------------------------
 #
