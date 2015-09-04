@@ -47,6 +47,7 @@ alias reflog='git reflog'
 
 # Config
 alias config='git config'
+alias user.name='git config user.name'
 alias user.email='git config user.email'
 
 # Add
