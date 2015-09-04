@@ -62,7 +62,6 @@ brew cask install atom
 apm install dash
 
 brew cask install dayone-cli
-brew cask install divvy
 brew cask install github-desktop
 brew cask install ios-console
 brew cask install iterm2
