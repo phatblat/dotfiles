@@ -88,8 +88,8 @@ brew cask install webpquicklook
 echo "Setting up Ruby"
 brew install rbenv
 brew install ruby-build
-rbenv install 2.2.2
-rbenv global 2.2.2
+rbenv install 2.2.3
+rbenv global 2.2.3
 rbenv rehash
 
 # Ruby Gems
