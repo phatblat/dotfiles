@@ -63,6 +63,7 @@ apm install dash
 
 brew cask install dayone-cli
 brew cask install github-desktop
+brew cask install google-chrome
 brew cask install ios-console
 brew cask install iterm2
 brew cask install simpholders
