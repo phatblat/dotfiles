@@ -50,6 +50,7 @@ if [[ -z $(git config user.email) ]] ; then
 fi
 
 # Homebrew formulae
+brew install carthage
 brew install trash
 brew install xctool
 brew tap neonichu/formulae && brew install chswift
