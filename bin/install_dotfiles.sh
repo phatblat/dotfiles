@@ -67,6 +67,7 @@ brew cask install github-desktop
 brew cask install google-chrome
 brew cask install ios-console
 brew cask install iterm2
+brew cask install kaleidoscope
 brew cask install simpholders
 #brew cask install sublime-text # v2.0.2 last checked 2015-07-21
 brew cask install things
