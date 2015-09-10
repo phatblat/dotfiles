@@ -67,6 +67,7 @@ brew cask install github-desktop
 brew cask install google-chrome
 brew cask install hipchat
 brew cask install ios-console
+brew cask install istat-menus
 brew cask install iterm2
 brew cask install kaleidoscope
 brew cask install simpholders
