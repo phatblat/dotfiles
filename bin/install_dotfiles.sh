@@ -63,6 +63,7 @@ brew cask install atom
 apm install dash
 
 brew cask install dayone-cli
+brew cask install fabric
 brew cask install github-desktop
 brew cask install google-chrome
 brew cask install hipchat
