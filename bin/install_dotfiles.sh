@@ -64,6 +64,7 @@ apm install dash
 
 brew cask install dayone-cli
 brew cask install fabric
+brew cask install geekbench
 brew cask install github-desktop
 brew cask install google-chrome
 brew cask install hipchat
