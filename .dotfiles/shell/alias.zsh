@@ -26,6 +26,7 @@ alias explain="alias | grep"
 alias h="history"
 alias chrome='open -a "Google Chrome" --args --incognito'
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 
 # CocoaPods
 alias pi='pod install --no-repo-update'
