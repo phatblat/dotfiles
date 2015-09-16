@@ -110,8 +110,8 @@ alias cont='if [[ -f .git/MERGE_HEAD ]]; then git commit; fi 2> /dev/null || git
 alias continue='if [[ -f .git/MERGE_HEAD ]]; then git commit; fi 2> /dev/null || git rebase --continue 2> /dev/null || git cherry-pick --continue'
 alias skip='git rebase --skip'
 alias abort='git merge --abort 2> /dev/null || git rebase --abort 2> /dev/null || git cherry-pick --abort 2> /dev/null || git am --abort'
-alias ours='!f() { git checkout --ours $@ && git add $@; }; f'
-alias theirs='!f() { git checkout --theirs $@ && git add $@; }; f'
+alias ours='git checkout --ours $@ && git add $@'
+alias theirs='git checkout --theirs $@ && git add $@'
 
 # Cherry-pick
 alias pick='git cherry-pick'
