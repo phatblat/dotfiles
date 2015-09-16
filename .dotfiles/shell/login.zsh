@@ -7,3 +7,7 @@ if (( $? != 0 )); then
 	echo "No SSH key found"
 	sshnewkey "${USER}@${HOST}"
 fi
+
+# Liquid Prompt
+# Only load  in interactive shells, not from a script or from scp
+[[ $- = *i* ]] && source ~/dev/shell/liquidprompt/liquidprompt
