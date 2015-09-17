@@ -10,8 +10,15 @@ fi
 
 # Antigen
 source ~/dev/shell/antigen/antigen.zsh
+antigen use oh-my-zsh
 
 # Antigen Bundles
+antigen bundle common-aliases
 antigen bundle nojhan/liquidprompt
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle robbyrussell/oh-my-zsh plugins/ruby
+
+# Antigen Themes
+antigen theme gnzh
+
+antigen apply
