@@ -8,6 +8,10 @@ if (( $? != 0 )); then
 	sshnewkey "${USER}@${HOST}"
 fi
 
-# Liquid Prompt
-# Only load  in interactive shells, not from a script or from scp
-[[ $- = *i* ]] && source ~/dev/shell/liquidprompt/liquidprompt
+# Antigen
+source ~/dev/shell/antigen/antigen.zsh
+
+# Antigen Bundles
+antigen bundle nojhan/liquidprompt
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle robbyrussell/oh-my-zsh plugins/ruby
