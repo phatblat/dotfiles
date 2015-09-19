@@ -5,9 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-# install
-alias install='~/.dotfiles/install/install.sh'
-
 # ls
 alias lsa="ls -a"
 alias ll="ls -l"
