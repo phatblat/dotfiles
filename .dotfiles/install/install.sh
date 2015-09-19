@@ -1,4 +1,9 @@
-#!/bin/bash
+#-------------------------------------------------------------------------------
+#
+# install.sh
+# Install script for dotfiles repo.
+#
+#-------------------------------------------------------------------------------
 
 script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 root_dir=$(dirname $script_dir)
