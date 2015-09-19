@@ -9,7 +9,15 @@ if (( $? != 0 )); then
 fi
 
 # Antigen
-source ~/dev/shell/antigen/antigen.zsh
+local antigen_dir='~/dev/shell/antigen'
+
+# Install antigen
+if [ ! -d "$antigen_dir" ]; then
+	echo "*** Installing antigen"
+	git clone https://github.com/zsh-users/antigen.git "$antigen_dir"
+fi
+
+source "$antigen_dir/antigen.zsh"
 antigen use oh-my-zsh
 
 # Antigen Bundles
