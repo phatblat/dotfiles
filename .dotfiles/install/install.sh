@@ -56,16 +56,15 @@ fi
 
 # Homebrew formulae
 brew install carthage
+brew install nodejs
 brew install trash
 brew install xctool
+brew tap pivotal/tap && brew install cloudfoundary-cli
 brew tap neonichu/formulae && brew install chswift
 
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
 brew cask install atom
-
-# Atom packages
-apm install dash
 
 brew cask install dayone-cli
 brew cask install fabric
@@ -97,6 +96,12 @@ brew cask install quicklook-csv
 brew cask install quicklook-json
 brew cask install suspicious-package
 brew cask install webpquicklook
+
+# NPM packages
+npm install -g n
+
+# Atom packages
+apm install dash
 
 # Ruby
 echo "Setting up Ruby"
