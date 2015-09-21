@@ -115,7 +115,6 @@ rbenv rehash
 gem install cocoapods
 gem install fastlane
 gem install gym
-rbenv rehash
 
 # Custom builds in ~/tmp
 pushd ~/tmp > /dev/null
