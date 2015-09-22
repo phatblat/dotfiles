@@ -9,7 +9,7 @@
 alias init='git init'
 
 # Informational
-
+alias gitalias='alias | grep git | less'
 alias help='git help'
 
 ### Work Area
