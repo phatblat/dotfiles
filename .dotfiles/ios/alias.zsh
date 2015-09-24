@@ -17,19 +17,6 @@ alias entitlements='codesign -d --entitlements :-'
 alias print_profile='security cms -D -i'
 alias codesign_verify="codesign --verify -vvvv -R='anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.1] exists and (certificate leaf[field.1.2.840.113635.100.6.1.2] exists or certificate leaf[field.1.2.840.113635.100.6.1.4] exists)'"
 
-function xclist() {
-    local xcode filename
-
-    # echo /Applications/Xcode*.app
-    for xcode in /Applications/Xcode*.app; do
-        # echo $xcode
-        filename=$(basename $xcode)
-        echo ${filename%.*};
-    done
-}
-# export -f xclist
-# alias xclist="echo /Applications/Xcode*.app"
-
 function version_current() {
     local build_version market_version
     build_version=$(version_build)
