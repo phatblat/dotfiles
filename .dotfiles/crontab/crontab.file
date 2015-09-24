@@ -1,3 +1,4 @@
 00 4 * * *      $HOME/.dotfiles/crontab/gem_update
 10 4 * * *      $HOME/.dotfiles/crontab/brew_update
+20 4 * * *      $HOME/.dotfiles/xcode/xccheck.sh
 00 * * * *      $HOME/.dotfiles/crontab/dotfiles_fetch
