@@ -157,4 +157,5 @@ shopt -u dotglob
 echo '*' >> ~/.git/info/exclude
 
 pushd ~
+git remote set-url origin git@github.com:phatblat/dotfiles.git
 zsh
