@@ -58,6 +58,7 @@ fi
 brew install carthage
 brew install nodejs
 brew install trash
+brew install tree
 brew install xctool
 brew tap pivotal/tap && brew install cloudfoundary-cli
 brew tap neonichu/formulae && brew install chswift
