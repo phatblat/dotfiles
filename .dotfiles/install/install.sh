@@ -56,6 +56,7 @@ fi
 
 # Homebrew formulae
 brew install carthage
+brew install mergepbx
 brew install nodejs
 brew install trash
 brew install tree
