@@ -59,6 +59,9 @@
 [mergetool]
     keepBackup = false
     prompt = false
+[merge "mergepbx"]
+    name = Xxode project file merger
+    driver = mergepbx %O %A %B
 [mergetool "Kaleidoscope"]
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
     trustExitCode = true
