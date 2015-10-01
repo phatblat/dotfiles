@@ -103,6 +103,7 @@ brew cask install webpquicklook
 npm install -g n
 
 # Atom packages
+apm install api-blueprint-preview
 apm install dash
 
 # Ruby
