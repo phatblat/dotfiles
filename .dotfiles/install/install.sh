@@ -125,6 +125,7 @@ pushd ~/tmp > /dev/null
 # Powerline
 echo "Setting up Powerline"
 brew install python # Required for powerline
+pip install --upgrade pip
 pip install powerline-status
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
