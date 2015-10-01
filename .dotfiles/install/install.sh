@@ -112,7 +112,7 @@ apm install nuclide-installer
 echo "Setting up Ruby"
 brew install rbenv
 brew install ruby-build
-rbenv install 2.2.3
+rbenv install --skip-existing 2.2.3
 rbenv global 2.2.3
 rbenv rehash
 
