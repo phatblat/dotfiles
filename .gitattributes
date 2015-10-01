@@ -1,2 +1,3 @@
 *.plist diff=plistbuddy
 *.strings diff=l10n
+*.pbxproj merge=mergepbx

@@ -106,6 +106,7 @@ npm install -g aglio # Required by api-blueprint-preview
 # Atom packages
 apm install api-blueprint-preview
 apm install dash
+apm install nuclide-installer
 
 # Ruby
 echo "Setting up Ruby"
