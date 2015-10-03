@@ -127,10 +127,6 @@ pip install powerline-status
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
 
-# Screen Resolution
-brew install screenresolution
-screenresolution get
-
 # End Custom Builds
 popd > /dev/null
 
