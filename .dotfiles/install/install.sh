@@ -67,7 +67,7 @@ brew tap neonichu/formulae && brew install chswift
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
 brew cask install atom
-
+brew cask install charles
 brew cask install dayone-cli
 brew cask install fabric
 brew cask install geekbench
