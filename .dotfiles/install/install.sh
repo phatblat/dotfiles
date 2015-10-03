@@ -56,6 +56,7 @@ fi
 
 # Homebrew formulae
 brew install carthage
+brew install mergepbx
 brew install nodejs
 brew install trash
 brew install tree
@@ -103,12 +104,13 @@ npm install -g n
 
 # Atom packages
 apm install dash
+apm install nuclide-installer
 
 # Ruby
 echo "Setting up Ruby"
 brew install rbenv
 brew install ruby-build
-rbenv install 2.2.3
+rbenv install --skip-existing 2.2.3
 rbenv global 2.2.3
 rbenv rehash
 
@@ -123,6 +125,7 @@ pushd ~/tmp > /dev/null
 # Powerline
 echo "Setting up Powerline"
 brew install python # Required for powerline
+pip install --upgrade pip
 pip install powerline-status
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
