@@ -21,4 +21,4 @@ function xclist() {
 # export -f xclist
 # alias xclist="echo /Applications/Xcode*.app"
 
-alias dsym_uuid="mdls -name com_apple_xcode_dsym_uuids -raw *.dSYM | grep -e \" | sed 's/[ |\"]//g'"
+alias dsym_uuid="mdls -name com_apple_xcode_dsym_uuids -raw *.dSYM | grep -e \\\" | sed 's/[ |\\\"]//g'"
