@@ -67,7 +67,7 @@ brew tap neonichu/formulae && brew install chswift
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
 brew cask install atom
-
+brew cask install charles
 brew cask install dayone-cli
 brew cask install fabric
 brew cask install geekbench
@@ -129,10 +129,6 @@ pip install --upgrade pip
 pip install powerline-status
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
-
-# Screen Resolution
-brew install screenresolution
-screenresolution get
 
 # End Custom Builds
 popd > /dev/null
