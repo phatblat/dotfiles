@@ -101,6 +101,7 @@ brew cask install webpquicklook
 
 # NPM packages
 npm install -g n
+npm install -g ralio
 
 # Atom packages
 apm install dash
