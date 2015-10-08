@@ -31,6 +31,7 @@ alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 
 # CocoaPods
 alias pi='pod install --no-repo-update'
+alias pi='pod install --no-repo-update --verbose'
 
 # Tower
 alias tower='gittower .'
