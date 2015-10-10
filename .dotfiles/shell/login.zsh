@@ -19,6 +19,8 @@ fi
 
 source "$antigen_dir/antigen.zsh"
 antigen use oh-my-zsh
+# Override the oh-my-zsh 'd' alias
+unalias d && alias d='git diff'
 
 # Antigen Bundles
 antigen bundle common-aliases
