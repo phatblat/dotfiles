@@ -144,10 +144,6 @@ if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
 fi
 unset TEST_CURRENT_SHELL
 
-# Install Oh-My-Zsh
-echo "Installing Oh-My-Zsh"
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-
 # Dotfiles
 # Copying last in order to force the copy over OMZ and other dir trees
 # http://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con
