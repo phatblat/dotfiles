@@ -1,4 +1,23 @@
+#!/usr/local/bin/zsh
+#
+# crontab.file
+#
+
+# Nightly
 00 4 * * *      $HOME/.dotfiles/crontab/gem_update
 10 4 * * *      $HOME/.dotfiles/crontab/brew_update
-20 4 * * *      $HOME/.dotfiles/xcode/xccheck.sh
+20 4 * * *      $HOME/.dotfiles/crontab/antigen_update
+30 4 * * *      $HOME/.dotfiles/xcode/xccheck.sh
+
+# Hourly
 00 * * * *      $HOME/.dotfiles/crontab/dotfiles_fetch
+
+# --------------------------------------------------------
+# * * * * *     command to be executed
+# - - - - -
+# | | | | |
+# | | | | +---- day of week (0 - 6) (Sunday=0)
+# | | | +------ month (1 - 12)
+# | | +-------- day of month (1 - 31)
+# | +---------- hour (0 - 23)
+# +------------ min (0 - 59)

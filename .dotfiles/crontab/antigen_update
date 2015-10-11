@@ -1,0 +1,11 @@
+#
+# antigen_update
+#
+
+source $HOME/.dotfiles/crontab/crontab.env
+
+antigen_dir="$HOME/dev/shell/antigen"
+source "$antigen_dir/antigen.zsh"
+
+antigen selfupdate
+antigen update
