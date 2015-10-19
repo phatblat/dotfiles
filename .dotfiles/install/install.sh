@@ -58,6 +58,7 @@ fi
 brew install carthage
 brew install mergepbx
 brew install nodejs
+brew install speedtest_cli
 brew install trash
 brew install tree
 brew install xctool
