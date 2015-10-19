@@ -118,6 +118,7 @@ rbenv global 2.2.3
 rbenv rehash
 
 # Ruby Gems
+gem install bundler
 gem install cocoapods
 gem install fastlane
 gem install gym
