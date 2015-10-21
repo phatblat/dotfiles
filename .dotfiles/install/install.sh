@@ -32,6 +32,7 @@ mkdir -p ~/tmp
 
 xcode-select -p
 xcode-select --install
+open https://developer.apple.com/downloads/
 xcodebuild -license
 
 # Install Homebrew
