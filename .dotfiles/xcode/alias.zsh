@@ -122,7 +122,6 @@ function release() {
     fi
 }
 
-
 function xclist() {
     local xcode filename
 
