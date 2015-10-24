@@ -155,10 +155,11 @@ unset TEST_CURRENT_SHELL
 # Dotfiles
 # Copying last in order to force the copy over OMZ and other dir trees
 # http://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con
-shopt -s dotglob
-cp -Rf "${root_dir}/" "${HOME}"
-shopt -u dotglob
-echo '*' >> ~/.git/info/exclude
+## FIXME: This should only be done if $HOME is not a git rempo
+# shopt -s dotglob
+# cp -Rf "${root_dir}/" "${HOME}"
+# shopt -u dotglob
+# echo '*' >> ~/.git/info/exclude
 
 pushd ~
 git remote set-url origin git@github.com:phatblat/dotfiles.git
