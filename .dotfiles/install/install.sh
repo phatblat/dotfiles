@@ -35,7 +35,8 @@ xcode-select --install
 if [ $? -eq 0 ]; then
   open https://developer.apple.com/downloads/
 fi
-xcodebuild -license
+## TODO: Any way to check and only execute this command when necessary?
+# xcodebuild -license
 
 # Install Homebrew
 echo "Installing Homebrew"
