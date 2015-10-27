@@ -111,7 +111,6 @@ npm install -g ralio
 
 # Atom packages
 apm install dash
-apm install nuclide-installer
 
 # Ruby
 echo "Setting up Ruby"
