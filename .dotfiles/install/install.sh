@@ -137,6 +137,12 @@ pip install powerline-status
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
 
+# VIM
+if [ ! -d "~/.vim/autoload/plug.vim" ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 # End Custom Builds
 popd > /dev/null
 

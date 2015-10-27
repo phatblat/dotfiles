@@ -24,3 +24,16 @@ endif
 set laststatus=2 " Always display the statusline in all windows
 set guifont=Inconsolata\ for\ Powerline:h14
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" vim-plug
+" https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
+
+" Swift
+Plug 'keith/swift.vim'
+
+" Using git URL
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Add plugins to &runtimepath
+call plug#end()
