@@ -61,6 +61,7 @@ brew install carthage
 brew install mergepbx
 brew install nodejs
 brew install speedtest_cli
+brew install swiftgen
 brew install terminal-notifier
 brew install trash
 brew install tree
