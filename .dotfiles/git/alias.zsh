@@ -141,6 +141,9 @@ alias snapshot_stash='git stash save "snapshot: $(date)" && git stash apply "sta
 ## Ignore
 alias ignore="printf '%s\n%s\n%s\n%s\n' '.DS_Store' '*.xccheckout' '*.xcscmblueprint' 'xcuserdata' >> .gitignore && git add .gitignore && git commit -m 'Ignore stuff'"
 
+## Delete local branches merged into master
+alias bdm='git branch -d `git branch --merged | grep -v '^*' | grep -v 'master' | tr -d '\n'`'
+
 alias ref='git symbolic-ref'
 alias rewriteauthor="git filter-branch -f --env-filter 'if [ \$GIT_AUTHOR_EMAIL = ben.d.chatelain@kp.org ]; then GIT_AUTHOR_EMAIL=benchatelain@gmail.com; fi; export GIT_AUTHOR_EMAIL'"
 alias rewritecommitter="git filter-branch -f --env-filter 'if [ \$GIT_COMMITTER_EMAIL = ben.d.chatelain@kp.org ]; then GIT_COMMITTER_EMAIL=benchatelain@gmail.com; fi; export GIT_COMMITTER_EMAIL'"
