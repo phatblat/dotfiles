@@ -7,8 +7,8 @@
 alias carthage-clean='rm -rf ~/Library/Caches/org.carthage.CarthageKit'
 
 # Checkout / Update
-alias cco='carthage checkout --use-submodules --no-use-binaries'
-alias ccu='carthage update --use-submodules --no-use-binaries --no-build'
+alias cco='carthage checkout --no-use-binaries --use-submodules --use-ssh'
+alias ccu='carthage update --no-use-binaries --use-submodules --use-ssh --no-build'
 
 # Build
 alias cbios="carthage build --platform iOS"
