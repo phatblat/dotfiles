@@ -126,7 +126,7 @@ gem install bundler
 gem install cocoapods
 gem install fastlane
 gem install gym
-gem install nomad
+gem install nomad-cli
 
 # Custom builds in ~/tmp
 pushd ~/tmp > /dev/null
