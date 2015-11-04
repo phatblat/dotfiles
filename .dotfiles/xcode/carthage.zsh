@@ -6,6 +6,9 @@
 #-------------------------------------------------------------------------------
 alias carthage-clean='rm -rf ~/Library/Caches/org.carthage.CarthageKit'
 
+# Bootstrap
+alias cbootios='carthage bootstrap --no-use-binaries --platform iOS'
+
 # Checkout / Update
 alias cco='carthage checkout --no-use-binaries --use-submodules --use-ssh'
 alias ccu='carthage update --no-use-binaries --use-submodules --use-ssh --no-build'
