@@ -59,7 +59,6 @@ fi
 # Homebrew formulae
 brew install carthage
 brew install heroku-toolbelt
-brew install mergepbx
 brew install nodejs
 brew install speedtest_cli
 brew install swiftgen
