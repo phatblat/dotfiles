@@ -8,7 +8,7 @@
 # topic/completion.zsh: Any file named completion.zsh is loaded last and is expected to setup autocomplete.
 # topic/*.symlink: Any files ending in *.symlink get symlinked into your $HOME. This is so you can keep all of those versioned in your dotfiles but still keep those autoloaded files in your home directory. These get symlinked in when you run script/bootstrap.
 
-pushd ~/.dotfiles > /dev/null 2>&1
+pushd .dotfiles > /dev/null 2>&1
 
 for dir in *
 do
@@ -31,4 +31,4 @@ done
 popd > /dev/null 2>&1
 
 # Re-source oh-my-zsh.zsh to fix PROMPT
-source $HOME/.dotfiles/shell/oh-my-zsh.zsh
+source .dotfiles/shell/oh-my-zsh.zsh
