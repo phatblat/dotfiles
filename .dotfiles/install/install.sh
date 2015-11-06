@@ -63,7 +63,9 @@ brew install mergepbx
 brew install nodejs
 brew install speedtest_cli
 brew install swiftgen
+brew install swiftlint
 brew install terminal-notifier
+brew install thefuck
 brew install trash
 brew install tree
 brew install xctool
