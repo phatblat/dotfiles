@@ -126,6 +126,7 @@ rbenv rehash
 # Ruby Gems
 gem install bundler
 gem install cocoapods
+gem install cocoapods-deintegrate
 gem install fastlane
 gem install gym
 gem install nomad-cli
