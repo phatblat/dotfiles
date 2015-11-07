@@ -27,15 +27,22 @@ mkdir -p ~/Library/QuickLook
 # Temp Dir
 mkdir -p ~/tmp
 
+# Xcode
 xcode-select -p
 xcode-select --install
 if [ $? -eq 0 ]; then
   open https://developer.apple.com/downloads/
 fi
 
-# Install Homebrew
-echo "Installing Homebrew"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Homebrew
+which -s brew
+if [ $? -eq 0 ]; then
+  brew update && brew upgrade
+else
+  # Install Homebrew
+  echo "Installing Homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
