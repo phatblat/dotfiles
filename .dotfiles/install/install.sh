@@ -17,9 +17,6 @@ select yn in "Yes" "No"; do
     esac
 done
 
-# Bash options
-set -o vi
-
 # TODO: Make this script clone the dotfiles repo so that it can be executed straight from github
 
 # Dev Dirs
