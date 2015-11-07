@@ -29,6 +29,3 @@ do
 done
 
 popd > /dev/null 2>&1
-
-# Re-source oh-my-zsh.zsh to fix PROMPT
-source $HOME/.dotfiles/shell/oh-my-zsh.zsh
