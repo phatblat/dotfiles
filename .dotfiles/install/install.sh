@@ -122,8 +122,8 @@ apm install dash
 echo "Setting up Ruby"
 brew install rbenv
 brew install ruby-build
-rbenv install --skip-existing 2.2.3
-rbenv global 2.2.3
+rbenv install --skip-existing 2.2.2
+rbenv global 2.2.2
 rbenv rehash
 
 # Ruby Gems
