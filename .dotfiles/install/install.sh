@@ -72,7 +72,6 @@ brew install thefuck
 brew install trash
 brew install tree
 brew install xctool
-brew tap pivotal/tap && brew install cloudfoundary-cli
 brew tap neonichu/formulae && brew install chswift
 
 # Homebrew Cask
