@@ -7,7 +7,7 @@
 # This script is symlinked into $HOME as .zshrc.
 # user_home is derived from the .zshrc location so that this script
 # can be tested on CI
-user_home=$( cd "$( dirname "$0" )" && pwd )
+user_home=$( cd "$( dirname "$0" 2>/dev/null )" && pwd )
 
 pushd $user_home/.dotfiles > /dev/null 2>&1
 
