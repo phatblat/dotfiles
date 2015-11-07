@@ -38,6 +38,9 @@ unset TEST_CURRENT_SHELL
 # shopt -u dotglob
 # echo '*' >> ~/.git/info/exclude
 
+# Ensure .zshrc is symlinked
+# ln -s .dotfiles/_bootstrap.zsh .zshrc
+
 pushd ~
 git remote set-url origin git@github.com:phatblat/dotfiles.git
 zsh
