@@ -19,5 +19,4 @@ if [ -d ${HOME}/Library/Python/2.7/bin ] ; then
 fi
 
 # Prepend user bin dir to PATH
-# TODO: Get rbenv to load path in correct order
-export PATH=~/bin:${OSX_PATH}${PYTHON_PATH}
+export PATH=~/bin${PYTHON_PATH}:${PATH}

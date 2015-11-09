@@ -19,6 +19,7 @@ bashman () { man bash | less -p "^       $1 "; }
 alias bashman=bashman
 
 # Profile
+# TODO: Figure out how to prevent PATH from growing when reloadprofile is invoked
 alias reloadprofile="source ~/.zshrc"
 alias viprofile="vi ~/.zshrc && reloadprofile"
 alias editprofile="subl -rw ~/.reloadprofile && reloadprofile"
