@@ -1,14 +1,18 @@
 #-------------------------------------------------------------------------------
 #
 # options.zsh
-# Command-line options
+# Shell options
 #
 #-------------------------------------------------------------------------------
 export TERM="xterm-256color"
 export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
 
 export EDIT='subl'
 export EDITOR="vi"
+
+# Bash options
+set -o vi
 
 ### Below here from the oh-my-zsh .zshrc
 
