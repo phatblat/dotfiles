@@ -32,4 +32,6 @@ done
 
 popd > /dev/null 2>&1
 
+# Enable vi style command editing.
+# This setting doesn't work when applied in shell/options.zsh
 bindkey -v
