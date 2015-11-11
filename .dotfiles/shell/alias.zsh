@@ -22,7 +22,6 @@ alias bashman=bashman
 # TODO: Figure out how to prevent PATH from growing when reloadprofile is invoked
 alias reloadprofile="source ~/.zshrc"
 alias viprofile="vi ~/.zshrc && reloadprofile"
-alias editprofile="subl -rw ~/.reloadprofile && reloadprofile"
 alias explain="alias | grep"
 
 # Shell Helpers
