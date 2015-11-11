@@ -8,8 +8,8 @@ export TERM="xterm-256color"
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 
-export EDIT='atom'
-export EDITOR="vi"
+export VISUAL='/usr/local/bin/atom'
+export EDITOR='vi -e'
 
 ### Below here from the oh-my-zsh .zshrc
 
