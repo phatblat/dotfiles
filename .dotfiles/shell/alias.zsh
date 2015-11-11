@@ -19,10 +19,11 @@ bashman () { man bash | less -p "^       $1 "; }
 alias bashman=bashman
 
 # Profile
+alias explain="alias | grep"
+alias dotfiles="$VISUAL .dotfiles"
+alias viprofile="vi ~/.zshrc && reloadprofile"
 # TODO: Figure out how to prevent PATH from growing when reloadprofile is invoked
 alias reloadprofile="source ~/.zshrc"
-alias viprofile="vi ~/.zshrc && reloadprofile"
-alias explain="alias | grep"
 
 # Shell Helpers
 alias h="history"
