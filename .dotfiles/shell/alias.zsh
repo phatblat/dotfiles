@@ -5,6 +5,36 @@
 #
 #-------------------------------------------------------------------------------
 
+
+# Editors
+
+# edit
+export VISUAL='/usr/local/bin/atom'
+alias edit="${VISUAL}"
+
+# e quick edit alias - with no args, opens editor to the current dir
+function e() {
+	if [ -z "$1" ] ; then
+		edit .
+	else
+		edit "$*"
+	fi
+}
+
+# o quick open alias - with no args, opens finder to the current dir
+function o() {
+	if [ -z "$1" ] ; then
+		open .
+	else
+		# -t  Causes the given path to be opened with the default app, as determined via LaunchServices
+		open -t "$*"
+	fi
+}
+
+# Sublime symlink installation
+alias subl_link='ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl'
+
+
 # ls
 alias lsa="ls -a"
 alias ll="ls -l"
@@ -20,7 +50,7 @@ alias bashman=bashman
 
 # Profile
 alias explain="alias | grep"
-alias dotfiles="$VISUAL .dotfiles"
+alias dotfiles="edit ~/.dotfiles"
 alias viprofile="vi ~/.zshrc && reloadprofile"
 # TODO: Figure out how to prevent PATH from growing when reloadprofile is invoked
 alias reloadprofile="source ~/.zshrc"
@@ -60,38 +90,6 @@ alias PUT='burl PUT'
 alias PATCH='burl PATCH'
 alias DELETE='burl DELETE'
 alias OPTIONS='burl OPTIONS'
-
-
-#-------------------------------------------------------------------------------
-#
-# Editors
-#
-#-------------------------------------------------------------------------------
-
-# -t  Causes the file to be opened with the default text editor, as determined via LaunchServices
-alias edit='open -t'
-
-# Sublime
-alias subl_link='ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl'
-
-# Atom
-EDITOR="atom -w"
-function e() {
-	if [ "$1" == "" ] ; then
-	  exec ${EDITOR} .
-	else
-	  exec ${EDITOR} "$1"
-	fi
-}
-
-# Marked
-function mark() {
-    if [ "$1" ] ; then
-        open -a Marked.app "$1"
-    else
-        open -a Marked.app
-    fi
-}
 
 
 #-------------------------------------------------------------------------------
