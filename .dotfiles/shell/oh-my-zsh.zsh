@@ -19,4 +19,4 @@ ZSH_THEME='agnoster-phatblat'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(cp gitfast jsontools osx pod rbenv ruby sublime sudo vi-mode)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
