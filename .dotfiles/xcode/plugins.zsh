@@ -5,7 +5,10 @@
 #
 #-------------------------------------------------------------------------------
 
-# curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh
+# Alcatraz - http://alcatraz.io
+alias alcatraz_install='curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh'
+alias alcatraz_uninstall='trash ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin'
+alias alcatraz_clean='rm -rf ~/Library/Application\ Support/Alcatraz'
 
 # xcode_plugin_update_uuid
 #
