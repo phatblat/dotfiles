@@ -1,14 +1,17 @@
-#!/bin/bash
+#-------------------------------------------------------------------------------
 #
-# xcode-plugin.zsh
+# xcode/plugins.zsh
+# Command-line aliases for Xcode
 #
+#-------------------------------------------------------------------------------
+
+# curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh
 
 # xcode_plugin_update_uuid
 #
 # Blindly adds the DVTPlugInCompatibilityUUID for every version of Xcode found
 # in /Applications to all Xcode plugins.
 #
-
 function xcode_plugin_update_uuid() {
 	local xcode plugin
 
@@ -24,5 +27,3 @@ function xcode_plugin_update_uuid() {
 
 	done
 }
-
-alias xcode_plugin_update_uuid=xcode_plugin_update_uuid
