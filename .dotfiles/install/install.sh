@@ -48,6 +48,7 @@ fi
 
 # Homebrew formulae
 brew install carthage
+brew install duti
 brew install heroku-toolbelt
 brew install nodejs
 brew install speedtest_cli
