@@ -44,9 +44,8 @@ alias ungate='xattr -d com.apple.quarantine '
 # QuickLook text selection
 defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
-# Configure the default handler for public.plain-text
-defaults write com.apple.LaunchServices LSHandlers -array-add \
-  '{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=com.github.atom;}'
+# Invoke Duti to configure default apps
+/usr/local/bin/duti ~/.duti
 
 #
 # Xcode
