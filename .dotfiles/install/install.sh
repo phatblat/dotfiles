@@ -47,6 +47,7 @@ if [[ -z $(git config user.email) ]] ; then
 fi
 
 # Homebrew formulae
+brew install antigen
 brew install carthage
 brew install duti
 brew install heroku-toolbelt
