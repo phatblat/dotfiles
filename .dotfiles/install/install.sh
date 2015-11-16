@@ -50,6 +50,7 @@ fi
 brew install antigen
 brew install carthage
 brew install duti
+brew install git-lfs
 brew install heroku-toolbelt
 brew install nodejs
 brew install speedtest_cli
