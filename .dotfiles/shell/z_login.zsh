@@ -40,22 +40,5 @@ antigen theme gnzh
 
 antigen apply
 
-# New Powerline setup using milkbikis/powerline-shell
-SCRIPT_PATH="${ADOTDIR}/repos/https-COLON--SLASH--SLASH-github.com-SLASH-milkbikis-SLASH-powerline-shell.git/powerline-shell.py"
-
-function powerline_precmd() {
-	PS1="$(${SCRIPT_PATH} $? --shell zsh 2> /dev/null)"
-}
-
-function install_powerline_precmd() {
-	for s in "${precmd_functions[@]}"; do
-		if [ "$s" = "powerline_precmd" ]; then
-			return
-		fi
-	done
-	precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ]; then
-		install_powerline_precmd
-fi
+# Setup prompt, must be called after antigen is configured
+install_powerline_prompt
