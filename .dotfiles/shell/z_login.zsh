@@ -16,7 +16,7 @@ if (( $? != 0 )); then
 fi
 
 # Antigen
-local antigen_dir="~/dev/shell/antigen"
+local antigen_dir="${HOME}/dev/shell/antigen"
 
 # Install antigen
 if [ ! -d "${antigen_dir}" ]; then
