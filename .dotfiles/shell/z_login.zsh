@@ -19,12 +19,16 @@ fi
 local antigen_dir="~/dev/shell/antigen"
 
 # Install antigen
-if [ ! -d "$antigen_dir" ]; then
+if [ ! -d "${antigen_dir}" ]; then
 	echo "*** Installing antigen"
-	git clone https://github.com/zsh-users/antigen.git "$antigen_dir"
+	git clone https://github.com/zsh-users/antigen.git "${antigen_dir}"
+else
+	pushd "${antigen_dir}" >/dev/null 2>&1
+	git pull >/dev/null
+	popd >/dev/null
 fi
 
-source "$antigen_dir/antigen.zsh"
+source "${antigen_dir}/antigen.zsh"
 antigen use oh-my-zsh
 # Override the oh-my-zsh 'd' alias
 unalias d && alias d='git diff'
