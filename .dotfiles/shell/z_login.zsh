@@ -35,9 +35,9 @@ unalias d && alias d='git diff'
 
 # Antigen Bundles
 antigen bundle common-aliases
-# antigen bundle nojhan/liquidprompt
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle milkbikis/powerline-shell
 antigen bundle robbyrussell/oh-my-zsh plugins/ruby
+antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Antigen Themes
 antigen theme gnzh
