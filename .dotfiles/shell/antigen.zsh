@@ -14,7 +14,7 @@ unalias d && alias d='git diff'
 
 # Antigen Bundles
 antigen bundle common-aliases
-antigen bundle milkbikis/powerline-shell
+antigen bundle phatblat/powerline-shell --branch=custom
 antigen bundle robbyrussell/oh-my-zsh plugins/ruby
 antigen bundle zsh-users/zsh-syntax-highlighting
 
