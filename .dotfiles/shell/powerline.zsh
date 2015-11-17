@@ -11,7 +11,7 @@ function install_powerline_prompt() {
 	POWERLINE_HOME="${ADOTDIR}/repos/https-COLON--SLASH--SLASH-github.com-SLASH-phatblat-SLASH-powerline-shell.git-PIPE-custom"
 
 	function powerline_precmd() {
-		PS1="$(${POWERLINE_HOME}/powerline-shell.py $? --shell zsh 2> /dev/null)"
+		PS1="$(${POWERLINE_HOME}/powerline-shell.py $? --colorize-hostname --shell zsh 2> /dev/null)"
 	}
 
 	function install_powerline_precmd() {
