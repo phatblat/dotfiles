@@ -12,7 +12,7 @@ function install_powerline_prompt() {
 	# POWERLINE_HOME="${HOME}/dev/shell/powerline-shell"
 
 	function powerline_precmd() {
-		PS1="$(${POWERLINE_HOME}/powerline-shell.py $? --colorize-hostname --shell zsh 2> /dev/null)"
+		PS1="$(${POWERLINE_HOME}/powerline-shell.py $? --colorize-hostname --shell zsh --cwd-max-depth 5 2> /dev/null)"
 	}
 
 	function install_powerline_precmd() {
