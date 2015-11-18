@@ -1,4 +1,3 @@
-#!/bin/bash -e
 #-------------------------------------------------------------------------------
 #
 # xcode/alias.zsh
@@ -12,11 +11,6 @@ alias xccheck='~/.dotfiles/xcode/xccheck.sh'
 alias version_enable='ruby ~/.dotfiles/xcode/enable-versioning.rb'
 alias version_build='agvtool what-version -terse'
 alias version_market='agvtool what-marketing-version -terse1'
-alias plcat='plutil -convert xml1 -o /dev/stdout'
-alias list_codesign_identities='security find-identity -v -p codesigning'
-alias entitlements='codesign -d --entitlements :-'
-alias print_profile='security cms -D -i'
-alias codesign_verify="codesign --verify -vvvv -R='anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.1] exists and (certificate leaf[field.1.2.840.113635.100.6.1.2] exists or certificate leaf[field.1.2.840.113635.100.6.1.4] exists)'"
 alias register_device="~/.dotfiles/xcode/register_device.rb"
 
 # Common project folders
