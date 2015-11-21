@@ -1,9 +1,10 @@
 #-------------------------------------------------------------------------------
 #
-# crontab/crontab.env
-#
-# Commands to prime the crontab environment
+# cron/brew_update
 #
 #-------------------------------------------------------------------------------
 
-PATH=/usr/local/bin:/usr/local/var/rbenv/shims:${PATH}
+. $HOME/.dotfiles/cron/cron.env
+
+brew_path=`which brew`
+$brew_path update > /dev/null && $brew_path upgrade --all > /dev/null

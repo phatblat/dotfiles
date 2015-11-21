@@ -1,11 +1,11 @@
 #-------------------------------------------------------------------------------
 #
-# crontab/dotfiles_fetch
+# cron/dotfiles_fetch
 # Performs a `git fetch` on dotfiles repo
 #
 #-------------------------------------------------------------------------------
 
-. $HOME/.dotfiles/crontab/crontab.env
+. $HOME/.dotfiles/cron/cron.env
 
 git_path=`which git`
 pushd $HOME > /dev/null 2>&1

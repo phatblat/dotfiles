@@ -1,18 +1,18 @@
 #-------------------------------------------------------------------------------
 #
-# crontab/crontab.file
+# cron/cron.file
 #
 #-------------------------------------------------------------------------------
 
 # Nightly
-00 3 * * *      $HOME/.dotfiles/crontab/crontab.zsh   # Reload crontab file
-00 4 * * *      $HOME/.dotfiles/crontab/gem_update
-10 4 * * *      $HOME/.dotfiles/crontab/brew_update
-20 4 * * *      $HOME/.dotfiles/crontab/antigen_update
+00 3 * * *      $HOME/.dotfiles/cron/cron.zsh   # Reload cron file
+00 4 * * *      $HOME/.dotfiles/cron/gem_update
+10 4 * * *      $HOME/.dotfiles/cron/brew_update
+20 4 * * *      $HOME/.dotfiles/cron/antigen_update
 30 4 * * *      $HOME/.dotfiles/xcode/xccheck.sh
 
 # Hourly
-00 * * * *      $HOME/.dotfiles/crontab/dotfiles_fetch
+00 * * * *      $HOME/.dotfiles/cron/dotfiles_fetch
 
 # --------------------------------------------------------
 # * * * * *     command to be executed

@@ -1,11 +1,11 @@
 #!/usr/local/bin/zsh
 #-------------------------------------------------------------------------------
 #
-# crontab/antigen_update
+# cron/antigen_update
 #
 #-------------------------------------------------------------------------------
 
-source $HOME/.dotfiles/crontab/crontab.env
+source $HOME/.dotfiles/cron/cron.env
 
 antigen_dir="$HOME/dev/shell/antigen"
 source "$antigen_dir/antigen.zsh"
