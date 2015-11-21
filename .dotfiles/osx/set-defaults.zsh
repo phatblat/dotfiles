@@ -1,3 +1,6 @@
+#-------------------------------------------------------------------------------
+#
+# osx/set-defaults.zsh
 # https://raw.github.com/holman/dotfiles/master/osx/set-defaults.sh
 # -----
 # Sets reasonable OS X defaults.
@@ -8,6 +11,8 @@
 #   https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 #
 # Run ./set-defaults.sh and you'll be good to go.
+#
+#-------------------------------------------------------------------------------
 
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false

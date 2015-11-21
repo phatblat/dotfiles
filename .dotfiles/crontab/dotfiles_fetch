@@ -1,6 +1,9 @@
+#-------------------------------------------------------------------------------
 #
-# dotfiles_fetch
+# crontab/dotfiles_fetch
+# Performs a `git fetch` on dotfiles repo
 #
+#-------------------------------------------------------------------------------
 
 . $HOME/.dotfiles/crontab/crontab.env
 

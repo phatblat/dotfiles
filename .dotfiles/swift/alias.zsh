@@ -4,6 +4,7 @@
 # Command-line aliases for Swift
 #
 #-------------------------------------------------------------------------------
+
 alias demangle='xcrun swift-demangle'
 
 source /usr/local/opt/chswift/share/chswift/chswift.sh

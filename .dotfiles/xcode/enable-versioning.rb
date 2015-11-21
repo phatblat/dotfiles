@@ -1,4 +1,12 @@
 #!/usr/bin/ruby
+#-------------------------------------------------------------------------------
+#
+# xcode/enable-versioning.rb
+# Sets VERSIONING_SYSTEM to "apple-generic" and sets an initial
+# CURRENT_PROJECT_VERSION so that agvtool can be used to manage the versions
+# for the project located in the current directory.
+#
+#-------------------------------------------------------------------------------
 
 require 'rubygems'
 require 'zerg_xcode' # https://github.com/zerglings/zerg_xcode
@@ -32,4 +40,3 @@ else
     project.save!
     puts "Project version set to " + build_settings["CURRENT_PROJECT_VERSION"]
 end
-

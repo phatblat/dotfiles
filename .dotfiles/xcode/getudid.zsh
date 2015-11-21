@@ -1,5 +1,10 @@
-
+#-------------------------------------------------------------------------------
+#
+# xcode/getudid.zsh
+# Prints out the UDID of all connected devices.
 # http://www.neglectedpotential.com/2015/03/simple-script-for-getting-a-devices-udid/
+#
+#-------------------------------------------------------------------------------
 
 function getudid {
     udid=($(system_profiler SPUSBDataType | grep -A 11 -w "iPad\|iPhone\|iPad" | grep "Serial Number" | awk '{ print $3 }'))
@@ -13,4 +18,3 @@ function getudid {
         done
     fi
 }
-
