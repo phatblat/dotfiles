@@ -82,15 +82,6 @@ alias gen="bundle exec rake generate && \
 		-activate 'com.apple.Safari'"
 alias deploy="bundle exec rake deploy"
 
-# burl - https://github.com/visionmedia/burl
-alias GET='burl GET'
-alias HEAD='burl -I'
-alias POST='burl POST'
-alias PUT='burl PUT'
-alias PATCH='burl PATCH'
-alias DELETE='burl DELETE'
-alias OPTIONS='burl OPTIONS'
-
 
 #-------------------------------------------------------------------------------
 #
