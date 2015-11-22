@@ -101,13 +101,3 @@ function fixperms() {
 	find "$1" -type f -print -exec chmod 644 {} \;
 	find "$1" -type d -print -exec chmod 755 {} \;
 }
-
-
-#-------------------------------------------------------------------------------
-#
-# Subversion
-#
-#-------------------------------------------------------------------------------
-alias showsvn="find . -type d -name .svn"
-#alias prunesvn="rm -rf `showsvn`"
-alias prunesvn="find . -type d -name .svn -exec rm -rf {} \;"
