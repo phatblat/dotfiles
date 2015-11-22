@@ -48,6 +48,7 @@ fi
 
 # Homebrew formulae
 brew install antigen
+brew install burl
 brew install carthage
 brew install duti
 brew install git-lfs
