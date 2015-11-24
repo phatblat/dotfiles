@@ -61,3 +61,6 @@ defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
 # Show build times - http://stackoverflow.com/questions/1027923/how-to-enable-build-timing-in-xcode#answer-2801156
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
+
+# Tweetbot
+defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
