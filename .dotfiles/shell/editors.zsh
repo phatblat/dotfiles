@@ -34,6 +34,6 @@ alias subl_link='ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bi
 # Profile
 alias explain="alias | grep"
 alias dotfiles="edit ~/.dotfiles"
-alias viprofile="vi ~/.zshrc && reloadprofile"
+
 # TODO: Figure out how to prevent PATH from growing when reloadprofile is invoked
 alias reloadprofile="source ~/.zshrc"
