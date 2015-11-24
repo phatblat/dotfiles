@@ -7,4 +7,5 @@
 
 function cleanup {
   gem cleanup
+  brew doctor
 }
