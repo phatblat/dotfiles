@@ -50,6 +50,7 @@ fi
 brew install antigen
 brew install burl
 brew install carthage
+brew install --HEAD kylef/formulae/conche
 brew install duti
 brew install git-lfs
 brew install heroku-toolbelt
