@@ -99,7 +99,6 @@ brew cask install qlprettypatch
 brew cask install qlstephen   # preview files without an extension as text
 brew cask install quicklook-csv
 brew cask install quicklook-json
-brew cask install suspicious-package
 brew cask install webpquicklook
 
 # NPM packages
