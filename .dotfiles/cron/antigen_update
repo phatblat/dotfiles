@@ -7,7 +7,10 @@
 
 source $HOME/.dotfiles/cron/cron.env
 
-antigen_dir="$(brew --prefix)/Cellar/antigen/1/share"
+antigen_dir="$HOME/dev/shell/antigen"
+if [ ! -d "$antigen_dir" ]; then
+  # 
+
 source "$antigen_dir/antigen.zsh"
 
 antigen selfupdate
