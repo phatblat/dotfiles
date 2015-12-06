@@ -124,6 +124,10 @@ gem install fastlane
 gem install gym
 gem install nomad-cli
 
+# Carthage Zsh Completion
+# https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
+ln -s /Library/Frameworks/CarthageKit.framework/Versions/A/Scripts/carthage-zsh-completion /usr/local/share/zsh/site-functions/_carthage
+
 # Custom builds in ~/tmp
 pushd ~/tmp > /dev/null
 
