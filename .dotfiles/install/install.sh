@@ -54,6 +54,7 @@ brew install --HEAD kylef/formulae/conche
 brew install duti
 brew install git-lfs
 brew install heroku-toolbelt
+brew install hub
 brew install nodejs
 brew install speedtest_cli
 brew install swiftgen
