@@ -124,6 +124,7 @@ gem install cocoapods-deintegrate
 gem install fastlane
 gem install gym
 gem install nomad-cli
+gem install xcode-install
 
 # Carthage Zsh Completion
 # https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
