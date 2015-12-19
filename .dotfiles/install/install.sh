@@ -56,6 +56,7 @@ brew install git-lfs
 brew install heroku-toolbelt
 brew install hub
 brew install nodejs
+brew install sourcekitten
 brew install speedtest_cli
 brew install swiftgen
 brew install swiftlint
