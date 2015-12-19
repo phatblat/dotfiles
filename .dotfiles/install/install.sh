@@ -65,7 +65,6 @@ brew install thefuck
 brew install trash
 brew install tree
 brew install xctool
-brew tap neonichu/formulae && brew install chswift
 
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
