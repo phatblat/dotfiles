@@ -138,6 +138,7 @@ alias unassume='git update-index --no-assume-unchanged'
 # Stash
 alias stash='git stash'
 alias st='git stash'
+alias stsave='git stash save'
 alias stlist='git stash list'
 alias stshow='git stash show -p'
 alias stsnapshot='git stash save "snapshot: $(date)" && git stash apply "stash@{0}"'
