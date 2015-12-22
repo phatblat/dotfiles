@@ -56,7 +56,9 @@ brew install git-lfs
 brew install heroku-toolbelt
 brew install hub
 brew install nodejs
+brew install sourcekitten
 brew install speedtest_cli
+brew install kylef/formulae/swiftenv
 brew install swiftgen
 brew install swiftlint
 brew install terminal-notifier
@@ -64,7 +66,6 @@ brew install thefuck
 brew install trash
 brew install tree
 brew install xctool
-brew tap neonichu/formulae && brew install chswift
 
 # Homebrew Cask
 brew install caskroom/cask/brew-cask
@@ -123,6 +124,7 @@ gem install cocoapods-deintegrate
 gem install fastlane
 gem install gym
 gem install nomad-cli
+gem install octopress
 gem install xcode-install
 
 # Carthage Zsh Completion
