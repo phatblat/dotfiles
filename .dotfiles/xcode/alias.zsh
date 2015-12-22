@@ -13,11 +13,6 @@ alias version_build='agvtool what-version -terse'
 alias version_market='agvtool what-marketing-version -terse1'
 alias register_device="~/.dotfiles/xcode/register_device.rb"
 
-# Common project folders
-alias op='cd ~/dev/ios/Octopad'
-alias ebw='cd ~/dev/ios/EBW'
-alias itwire='cd ~/dev/bluemix/ITWire'
-
 function version_current() {
     local build_version market_version
     build_version=$(version_build)
