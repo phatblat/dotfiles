@@ -84,6 +84,7 @@ brew cask install kaleidoscope
 brew cask install macdown
 brew cask install quickradar
 brew cask install simpholders
+brew cask install soundcleod
 #brew cask install sublime-text # v2.0.2 last checked 2015-07-21
 brew cask install textexpander
 brew cask install things
