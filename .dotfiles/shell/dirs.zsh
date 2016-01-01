@@ -12,7 +12,8 @@
 #
 #-------------------------------------------------------------------------------
 
-ICLOUD_HOME="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
+ICLOUD_HOME="$HOME/Library/Mobile Documents"
+ICLOUD_DRIVE="${ICLOUD_HOME}/com~apple~CloudDocs"
 
 
 #-------------------------------------------------------------------------------
@@ -22,6 +23,7 @@ ICLOUD_HOME="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs/"
 #-------------------------------------------------------------------------------
 
 alias icloud="cd $ICLOUD_HOME"
+alias iclouddrive="cd $ICLOUD_DRIVE"
 
 # Common Xcode project folders
 alias op='cd ~/dev/ios/Octopad'
