@@ -11,4 +11,4 @@ alias ebw='cd ~/dev/ios/EBW'
 alias itwire='cd ~/dev/bluemix/ITWire'
 
 # Blog main dir
-alias rl='~/dev/www/reflog/www'
+alias rl='cd ~/dev/www/reflog/www'
