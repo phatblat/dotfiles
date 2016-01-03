@@ -43,6 +43,12 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
+#
+# Mail
+#
+# Disable OSX Mail app auto loading (malicious) remote content in e-mails
+defaults write com.apple.mail-shared DisableURLLoading -bool true
+
 #  - http://furbo.org/2014/09/03/xcode-vs-gatekeeper/
 alias ungate='xattr -d com.apple.quarantine '
 
