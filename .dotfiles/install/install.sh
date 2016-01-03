@@ -59,6 +59,7 @@ brew install nodejs
 brew install sourcekitten
 brew install speedtest_cli
 brew install kylef/formulae/swiftenv
+brew install jq
 brew install swiftgen
 brew install swiftlint
 brew install terminal-notifier
