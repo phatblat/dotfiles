@@ -25,7 +25,6 @@ alias htstatus="ps awx | grep httpd"
 # deploy              # deploy your site via S3, Rsync, or to GitHub pages.
 
 # Jekyll
-# env $(cat .env | xargs) bundle exec jekyll serve --draft
 alias serve='env $(cat .env | xargs) bundle exec jekyll serve'
 alias servedraft='serve --draft'
 alias served='serve --detach'
