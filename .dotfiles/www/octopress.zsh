@@ -33,4 +33,6 @@ alias deploy="bundle exec rake deploy"
 
 # Jekyll
 alias serve='bundle exec jekyll serve'
-alias served='bundle exec jekyll serve --detach'
+alias servedraft='serve --draft'
+alias served='serve --detach'
+alias servedraftd='servedraft --detach'
