@@ -128,6 +128,7 @@ gem install github-pages
 gem install gym
 gem install nomad-cli
 gem install octopress
+gem install octopress-debugger
 gem install xcode-install
 
 # Carthage Zsh Completion
@@ -143,6 +144,7 @@ echo "Setting up Powerline"
 brew install python # Required for powerline
 pip install --upgrade pip
 pip install powerline-status
+pip install Pygments
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
 
