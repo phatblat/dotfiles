@@ -11,13 +11,6 @@ alias xstart='sudo nginx'
 alias xreload='sudo nginx -s reload'
 alias xquit='sudo nginx -s stop'
 alias htstatus="ps awx | grep httpd"
-alias gen="bundle exec rake generate && \
-	terminal-notifier -group 'octopress' -title 'Octopress' \
-		-message \"Done generating \$(basename \$(pwd))\" \
-		-activate 'com.apple.Safari'"
-
-# Octopress 2
-alias deploy="bundle exec rake deploy"
 
 # octopress 3 commands:
 # init <PATH>         # Adds Octopress scaffolding to your site
