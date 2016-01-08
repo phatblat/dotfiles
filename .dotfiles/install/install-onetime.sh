@@ -14,7 +14,9 @@ select yn in "Yes" "No"; do
     esac
 done
 
-# TODO: Make this script clone the dotfiles repo so that it can be executed straight from github
+# Change ownership of /usr/local
+# Install Homebrew
+# Install Homebrew cask
 
 # ZSH
 brew install zsh
