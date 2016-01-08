@@ -60,16 +60,6 @@ function restart {
 }
 
 
-#-------------------------------------------------------------------------------
-#
-# Unix
-#
-#-------------------------------------------------------------------------------
-function fixperms() {
-	find "$1" -type f -print -exec chmod 644 {} \;
-	find "$1" -type d -print -exec chmod 755 {} \;
-}
-
 # Renames the first argument, either appending ".bak" or stripping that extension
 # if already present.
 # - $1 - The file or folder to rename
