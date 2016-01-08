@@ -5,9 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-root_dir=$(dirname $script_dir)
-
 echo "WARNING: This script will overwrite files in your home directory. It is only meant to be ran from a fresh user account."
 echo "Are you sure you wish to continue?"
 select yn in "Yes" "No"; do
@@ -29,18 +26,3 @@ if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
 	chsh -s "${zsh_path}"
 fi
 unset TEST_CURRENT_SHELL
-
-# Dotfiles
-# http://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con
-## FIXME: This should only be done if $HOME is not a git rempo
-# shopt -s dotglob
-# cp -Rf "${root_dir}/" "${HOME}"
-# shopt -u dotglob
-# echo '*' >> ~/.git/info/exclude
-
-# Ensure .zshrc is symlinked
-# ln -s .dotfiles/_bootstrap.zsh .zshrc
-
-pushd ~
-git remote set-url origin git@github.com:phatblat/dotfiles.git
-zsh
