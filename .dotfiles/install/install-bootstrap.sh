@@ -8,10 +8,6 @@
 #
 #-------------------------------------------------------------------------------
 
-# script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-# root_dir=$(dirname ${script_dir})
-
-
 # Check for existing dotfiles in user $HOME, bail if found
 if [[ -d ${HOME}/.dotfiles || -d ${HOME}/.git ]]; then
   echo "Dotfiles are already installed for ${USER}@$(hostname)"
@@ -26,23 +22,24 @@ pushd "${HOME}/tmp"
 git clone https://github.com/phatblat/dotfiles.git
 pushd dotfiles
 
+# Change remote URL to use SSH
+git remote set-url origin git@github.com:phatblat/dotfiles.git
+
+# Ignore all files by default - this makes git status output quieter.
+# Adding new files requires --force.
+echo '*' >> ~/.git/info/exclude
+
 # Copy Dotfiles repo into $HOME
 # http://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con
 shopt -s dotglob
 cp -Rf "./" "${HOME}"
 shopt -u dotglob
 
-# Ignore all files by default - this makes git status output quieter.
-# Adding new files requires --force.
-echo '*' >> ~/.git/info/exclude
-
-# Ensure .zshrc is symlinked
-# ln -s .dotfiles/_bootstrap.zsh .zshrc
-
-# pushd ~
-# Change remote URL to use SSH
-# git remote set-url origin git@github.com:phatblat/dotfiles.git
-# zsh
+echo "Dotfiles now installed at ${HOME}"
 
 popd
 popd
+
+
+# Switch to zsh and prime the shell environment
+zsh
