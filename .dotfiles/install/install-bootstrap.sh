@@ -10,9 +10,9 @@ root_dir=$(dirname ${script_dir})
 
 
 # Check for existing dotfiles, bail if found
-
 if [[ -d ${HOME}/.dotfiles ]]; then
   echo "Dotfiles are already installed for ${USER}@$(hostname)"
+  exit 1
 fi
 
 # Clone repo to $HOME/tmp
