@@ -14,5 +14,6 @@ select yn in "Yes" "No"; do
     esac
 done
 
-rm -rf "${HOME}/.dotfiles"
 rm -rf "${HOME}/.git"
+rm -rf "${HOME}/.dotfiles"
+rm -rf "${HOME}/tmp/dotfiles"
