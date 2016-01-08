@@ -17,3 +17,4 @@ done
 rm -rf "${HOME}/.git"
 rm -rf "${HOME}/.dotfiles"
 rm -rf "${HOME}/tmp/dotfiles"
+
