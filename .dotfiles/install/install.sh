@@ -5,6 +5,9 @@
 #
 #-------------------------------------------------------------------------------
 
+echo ">>> install"
+echo
+
 # Dev Dirs
 mkdir -p ~/dev/ios
 mkdir -p ~/dev/libgit2

@@ -8,6 +8,9 @@
 #
 #-------------------------------------------------------------------------------
 
+echo ">>> install-bootstrap"
+echo
+
 # Check for existing dotfiles in user $HOME, bail if found
 if [[ -d ${HOME}/.dotfiles || -d ${HOME}/.git ]]; then
   echo "Dotfiles are already installed for ${USER}@$(hostname)"
@@ -40,6 +43,5 @@ echo "Dotfiles now installed at ${HOME}"
 popd
 popd
 
-
-# Switch to zsh and prime the shell environment
-zsh
+# Hand off next phase of setup to install-onetime
+"${HOME}/.dotfiles/install/install-onetime.sh"
