@@ -8,11 +8,13 @@
 echo ">>> install-update"
 echo
 
+if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is not a member of the group" ]]; then
+  echo "Only admins may run this script"
+  exit 1
+fi
+
 # Xcode
 xcode-select -p
 
-# Homebrew (admins only)
-dsmemberutil checkmembership -U "${USER}" -G "admin"
-if [[ $? -eq 0 ]]; then
-  brew update && brew upgrade
-fi
+# Homebrew
+brew update && brew upgrade

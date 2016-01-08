@@ -26,7 +26,7 @@ mkdir -p ~/tmp
 # Git user config
 #-------------------------------------------------------------------------------
 
-if [[ -z $(git config user.email) ]] ; then
+if [[ -z $(git config user.email) ]]; then
   echo -n "Git user.name: "
   read username
   echo -n "Git user.email: "
@@ -46,8 +46,7 @@ fi
 #-------------------------------------------------------------------------------
 
 # Run the admin install script if this user is an admin
-dsmemberutil checkmembership -U "${USER}" -G "admin" > /dev/null
-if [[ $? -eq 0 ]]; then
+if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
 # Hand off next phase of setup to install-admin
   echo "Invoking admin install script"
   "${HOME}/.dotfiles/install/admin.sh"
