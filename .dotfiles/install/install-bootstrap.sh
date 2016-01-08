@@ -1,34 +1,48 @@
 #-------------------------------------------------------------------------------
 #
 # install/install-bootstrap.sh
-# Install bootstrap script for kicking off dotfiles install on a new box.
+# Bootstrap script for kicking off dotfiles install on a new box.
+#
+# Usage: Run the following command in a terminal:
+#   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/install/install-bootstrap.sh | sh
 #
 #-------------------------------------------------------------------------------
 
-script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-root_dir=$(dirname ${script_dir})
+# script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+# root_dir=$(dirname ${script_dir})
 
 
-# Check for existing dotfiles, bail if found
-if [[ -d ${HOME}/.dotfiles ]]; then
+# Check for existing dotfiles in user $HOME, bail if found
+if [[ -d ${HOME}/.dotfiles || -d ${HOME}/.git ]]; then
   echo "Dotfiles are already installed for ${USER}@$(hostname)"
   exit 1
 fi
 
 # Clone repo to $HOME/tmp
+if [[ ! -d ${HOME}/tmp ]]; then
+  mkdir "${HOME}/tmp"
+fi
+pushd "${HOME}/tmp"
+git clone https://github.com/phatblat/dotfiles.git
+pushd dotfiles
 
-
-# Dotfiles
+# Copy Dotfiles repo into $HOME
 # http://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con
-## FIXME: This should only be done if $HOME is not a git rempo
-# shopt -s dotglob
-# cp -Rf "${root_dir}/" "${HOME}"
-# shopt -u dotglob
-# echo '*' >> ~/.git/info/exclude
+shopt -s dotglob
+cp -Rf "./" "${HOME}"
+shopt -u dotglob
+
+# Ignore all files by default - this makes git status output quieter.
+# Adding new files requires --force.
+echo '*' >> ~/.git/info/exclude
 
 # Ensure .zshrc is symlinked
 # ln -s .dotfiles/_bootstrap.zsh .zshrc
 
 # pushd ~
+# Change remote URL to use SSH
 # git remote set-url origin git@github.com:phatblat/dotfiles.git
 # zsh
+
+popd
+popd
