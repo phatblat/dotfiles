@@ -1,7 +1,9 @@
 #-------------------------------------------------------------------------------
 #
 # install/bootstrap.sh
-# Bootstrap script for kicking off dotfiles install on a new box.
+# Bootstrap script for kicking off dotfiles install on a new box. Contains only
+# the logic necessary to pull down the dotfiles repo. Hands off to the onetime.sh
+# script for further one-time setup.
 #
 # Usage: Run the following command in a terminal:
 #   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/master/.dotfiles/install/bootstrap.sh | sh
@@ -44,4 +46,4 @@ popd
 popd
 
 # Hand off next phase of setup to install-onetime
-"${HOME}/.dotfiles/install/install-onetime.sh"
+"${HOME}/.dotfiles/install/onetime.sh"
