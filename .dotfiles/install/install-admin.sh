@@ -5,12 +5,16 @@
 #
 #-------------------------------------------------------------------------------
 
-echo ">>> install-onetime"
+echo ">>> install-admin"
 echo
 
 # Verify current user is an admin before proceeding
 
-dsmemberutil checkmembership -U ${USER} -G admin
+dsmemberutil checkmembership -U "${USER}" -G "admin" > /dev/null
+if [[ $? -ne 0 ]]; then
+  echo "Only admins may run this script"
+  exit 1
+fi
 
 # Change ownership of /usr/local
 ls -ld /usr/local
