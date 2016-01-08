@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------------
 #
-# install/install-bootstrap.sh
+# install/bootstrap.sh
 # Bootstrap script for kicking off dotfiles install on a new box.
 #
 # Usage: Run the following command in a terminal:
