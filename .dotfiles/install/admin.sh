@@ -30,9 +30,8 @@ brew tap caskroom/cask
 
 # Xcode
 xcode-select -p
-# TODO: Move to install-admin.sh
 xcode-select --install
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
   open https://developer.apple.com/downloads/
 fi
 

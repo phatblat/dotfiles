@@ -54,6 +54,11 @@ else
   echo "You are not an admin. If you get errors an admin may need to install required tools on this Mac"
 fi
 
+which -s brew
+if [[ $? -ne 0 ]]; then
+  echo "Homebrew is not installed."
+  exit 1
+fi
 
 #-------------------------------------------------------------------------------
 # Commands below here depend on tools installed by install-admin
@@ -85,7 +90,7 @@ ln -Fs /usr/local/Cellar/carthage/0.10/Frameworks/CarthageKit.framework/Versions
 
 # VIM
 if [[ ! -d "~/.vim/autoload/plug.vim" ]]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
