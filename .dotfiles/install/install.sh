@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 #
 # install/install.sh
-# Install script for common packages.
+# Install/update script for common packages.
 #
 #-------------------------------------------------------------------------------
 
@@ -18,35 +18,32 @@ mkdir -p ~/tmp
 
 # Xcode
 xcode-select -p
+# TODO: Move to install-admin.sh
 xcode-select --install
 if [ $? -eq 0 ]; then
   open https://developer.apple.com/downloads/
 fi
 
-# Homebrew
-which -s brew
-if [ $? -eq 0 ]; then
+# Homebrew (admins only)
+dsmemberutil checkmembership -U "${USER}" -G "admin"
+if [[ $? -eq 0 ]]; then
   brew update && brew upgrade
-else
-  # Install Homebrew
-  echo "Installing Homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
 if [[ -z $(git config user.email) ]] ; then
-	echo -n "Git user.name: "
-	read username
-	echo -n "Git user.email: "
-	read useremail
+  echo -n "Git user.name: "
+  read username
+  echo -n "Git user.email: "
+  read useremail
 
   # ~/.gitconfig is tracked and shared. Sensitive or machine-specific data is
   # stored in the alternate global config file.
-	# > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
-	mkdir -p .config/git
-	git config --file .config/git/config user.name "${username}"
-	git config --file .config/git/config user.email "${useremail}"
+  # > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
+  mkdir -p .config/git
+  git config --file .config/git/config user.name "${username}"
+  git config --file .config/git/config user.email "${useremail}"
 fi
 
 # Homebrew formulae
