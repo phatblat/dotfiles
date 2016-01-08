@@ -1,12 +1,16 @@
 #-------------------------------------------------------------------------------
 #
-# install/install-onetime.sh
+# install/install-admin.sh
 # Install script for dotfiles repo.
 #
 #-------------------------------------------------------------------------------
 
 echo ">>> install-onetime"
 echo
+
+# Verify current user is an admin before proceeding
+
+dsmemberutil checkmembership -U ${USER} -G admin
 
 # Change ownership of /usr/local
 ls -ld /usr/local
