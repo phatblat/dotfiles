@@ -4,7 +4,7 @@
 # Bootstrap script for kicking off dotfiles install on a new box.
 #
 # Usage: Run the following command in a terminal:
-#   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/master/.dotfiles/install/install-bootstrap.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/master/.dotfiles/install/bootstrap.sh | sh
 #
 #-------------------------------------------------------------------------------
 
