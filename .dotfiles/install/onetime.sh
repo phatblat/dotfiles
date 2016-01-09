@@ -99,7 +99,7 @@ fi
 # Zsh
 #-------------------------------------------------------------------------------
 
-zsh_path="/usr/local/bin/zsh"
+zsh_path="$(brew --prefix)/bin/zsh"
 
 # Get the last path component
 shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
