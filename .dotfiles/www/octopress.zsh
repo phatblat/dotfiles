@@ -9,7 +9,9 @@
 alias xconf='vi /usr/local/etc/nginx/nginx.conf'
 alias xstart='sudo nginx'
 alias xreload='sudo nginx -s reload'
-alias xquit='sudo nginx -s stop'
+alias xstop='sudo nginx -s stop'
+
+# Apache
 alias htstatus="ps awx | grep httpd"
 
 # octopress 3 commands:
