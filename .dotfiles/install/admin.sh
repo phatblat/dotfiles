@@ -60,6 +60,7 @@ brew install duti
 brew install git-lfs
 brew install heroku-toolbelt
 brew install hub
+brew install nginx
 brew install nodejs
 brew install sourcekitten
 brew install speedtest_cli
