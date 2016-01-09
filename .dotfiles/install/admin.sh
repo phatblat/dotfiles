@@ -36,11 +36,8 @@ if [[ $? -eq 0 ]]; then
   open https://developer.apple.com/downloads/
 fi
 
-# Homebrew (admins only)
-dsmemberutil checkmembership -U "${USER}" -G "admin"
-if [[ $? -eq 0 ]]; then
-  brew update && brew upgrade
-fi
+# Homebrew update
+brew update && brew upgrade
 
 # Git (PS1 is super slow with Apple's git)
 brew install git
@@ -140,3 +137,6 @@ powerline-fonts/install.sh
 
 # End Custom Builds
 popd > /dev/null
+
+# Chain the update script
+"${HOME}/.dotfiles/install/update.sh"
