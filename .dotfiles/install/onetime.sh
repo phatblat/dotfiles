@@ -101,7 +101,14 @@ zsh_path="$(brew --prefix)/bin/zsh"
 # Get the last path component
 shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
 if [[ ${shell_last_path_component} != "zsh" ]]; then
-  sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}
+  if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
+    sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}
+    dscl . -read ${HOME} UserShell
+  else
+    echo "Have an admin run the following command:"
+    echo "    sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}"
+    exit 0
+  fi
 fi
 unset shell_last_path_component
 
