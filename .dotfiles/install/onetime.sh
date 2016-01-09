@@ -83,12 +83,6 @@ gem install octopress
 gem install octopress-debugger
 gem install xcode-install
 
-# Carthage Zsh Completion
-# https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
-ln -Fs /usr/local/Cellar/carthage/0.10/Frameworks/CarthageKit.framework/Versions/A/Scripts/carthage-zsh-completion \
-  /usr/local/share/zsh/site-functions/_carthage
-
-
 # VIM
 if [[ ! -d "~/.vim/autoload/plug.vim" ]]; then
   curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs \

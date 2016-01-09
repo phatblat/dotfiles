@@ -52,6 +52,12 @@ brew install zsh
 brew install antigen
 brew install burl
 brew install carthage
+
+# Carthage Zsh Completion
+# https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
+ln -Fs /usr/local/Cellar/carthage/0.10/Frameworks/CarthageKit.framework/Versions/A/Scripts/carthage-zsh-completion \
+  /usr/local/share/zsh/site-functions/_carthage
+
 brew install --HEAD kylef/formulae/conche
 brew install duti
 brew install git-lfs
