@@ -44,10 +44,8 @@ fi
 # Git (PS1 is super slow with Apple's git)
 brew install git
 
-# ZSH
+# Very important
 brew install zsh
-zsh_path="/usr/local/bin/zsh"
-sudo echo "${zsh_path}" >> /etc/shells
 
 # Homebrew formulae
 brew install antigen
