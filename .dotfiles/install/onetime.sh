@@ -104,7 +104,7 @@ zsh_path="/usr/local/bin/zsh"
 # Get the last path component
 shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
 if [[ ${shell_last_path_component} != "zsh" ]]; then
-  chsh -s "${zsh_path}"
+  sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}
 fi
 unset shell_last_path_component
 
