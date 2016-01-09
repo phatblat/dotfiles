@@ -152,6 +152,8 @@ alias stdrop='git stash drop'
 alias ignore="printf '%s\n%s\n%s\n%s\n' '.DS_Store' '*.xccheckout' '*.xcscmblueprint' 'xcuserdata' >> .gitignore && git add .gitignore && git commit -m 'Ignore stuff'"
 
 alias ref='git symbolic-ref'
+alias root='git rev-parse --show-toplevel'
+
 alias rewriteauthor="git filter-branch -f --env-filter 'if [ \$GIT_AUTHOR_EMAIL = ben.d.chatelain@kp.org ]; then GIT_AUTHOR_EMAIL=benchatelain@gmail.com; fi; export GIT_AUTHOR_EMAIL'"
 alias rewritecommitter="git filter-branch -f --env-filter 'if [ \$GIT_COMMITTER_EMAIL = ben.d.chatelain@kp.org ]; then GIT_COMMITTER_EMAIL=benchatelain@gmail.com; fi; export GIT_COMMITTER_EMAIL'"
 
