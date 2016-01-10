@@ -37,8 +37,8 @@ if [[ -z $(git config user.email) ]]; then
   # stored in the alternate global config file.
   # > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
   mkdir -p .config/git
-  git config --file .config/git/config user.name "${username}"
-  git config --file .config/git/config user.email "${useremail}"
+  git config --file "${HOME}/.config/git/config" user.name "${username}"
+  git config --file "${HOME}/.config/git/config" user.email "${useremail}"
 fi
 
 
