@@ -124,6 +124,19 @@ apm install dash
 
 
 #-------------------------------------------------------------------------------
+# Ruby
+#-------------------------------------------------------------------------------
+echo "Setting up Ruby"
+# Prime the rbenv environment
+eval "$(rbenv init -)"
+rbenv install --skip-existing 2.2.2
+
+# Each user needs to set their own ruby version
+rbenv global 2.2.2
+rbenv rehash
+
+
+#-------------------------------------------------------------------------------
 # Custom builds
 #-------------------------------------------------------------------------------
 
