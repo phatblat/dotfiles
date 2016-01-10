@@ -59,6 +59,7 @@ brew install --HEAD kylef/formulae/conche
 brew install coreutils
 brew install duti
 brew install git-lfs
+brew install findutils
 brew install heroku-toolbelt
 brew install hub
 brew install nginx
@@ -68,6 +69,7 @@ brew install speedtest_cli
 brew install kylef/formulae/swiftenv
 brew install jq
 brew install rbenv
+brew install rename
 brew install ruby-build
 brew install swiftgen
 brew install swiftlint
