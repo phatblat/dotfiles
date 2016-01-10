@@ -5,6 +5,9 @@
 #
 #-------------------------------------------------------------------------------
 
+# Hub - use hub as entry point for git command
+alias git='hub'
+
 # Init
 alias init='git init'
 
