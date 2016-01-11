@@ -25,6 +25,8 @@ eval $(thefuck --alias)
 # OS X
 alias chrome='open -a "Google Chrome" --args --incognito'
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; echo "DNS cache flushed"'
+
 # Tower
 alias tower='gittower .'
 
