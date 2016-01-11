@@ -31,18 +31,6 @@ alias tower='gittower .'
 # Dropbox
 alias dropboxfinderreset='pluginkit -e use -i com.getdropbox.dropbox.garcon'
 
-# Web
-alias xconf='vi /usr/local/etc/nginx/nginx.conf'
-alias xstart='sudo nginx'
-alias xreload='sudo nginx -s reload'
-alias xquit='sudo nginx -s stop'
-alias htstatus="ps awx | grep httpd"
-alias gen="bundle exec rake generate && \
-	terminal-notifier -group 'octopress' -title 'Octopress' \
-		-message \"Done generating \$(basename \$(pwd))\" \
-		-activate 'com.apple.Safari'"
-alias deploy="bundle exec rake deploy"
-
 
 #-------------------------------------------------------------------------------
 #
