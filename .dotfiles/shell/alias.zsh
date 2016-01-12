@@ -40,13 +40,13 @@ alias dropboxfinderreset='pluginkit -e use -i com.getdropbox.dropbox.garcon'
 #
 #-------------------------------------------------------------------------------
 function restart {
-       if [[ "$(fdesetup isactive)" = "true" ]]; then
-               # FileVault authenticated restart
-               sudo fdesetup authrestart -verbose
-       else
-               # Normal restart
-               sudo shutdown -r now "Rebooting now"
-       fi
+  if [[ "$(fdesetup isactive)" = "true" ]]; then
+    # FileVault authenticated restart
+    sudo fdesetup authrestart -verbose
+  else
+    # Normal restart
+    sudo shutdown -r now "Rebooting now"
+  fi
 }
 
 
@@ -54,33 +54,33 @@ function restart {
 # if already present.
 # - $1 - The file or folder to rename
 function bak {
-	if [[ ! -a "$1" ]]; then
-		echo "'$1' does not exist"
-		return 1
-	fi
+  if [[ ! -a "$1" ]]; then
+    echo "'$1' does not exist"
+    return 1
+  fi
 
-	# > h
-	# >      Remove a trailing pathname component, leaving the head.  This
-	# >      works like `dirname'.
-	# >
-	# > r
-	# >      Remove a filename extension of the form `.XXX', leaving the root
-	# >      name.
-	# >
-	# > e
-	# >      Remove all but the extension.
-	# >
-	# > t
-	# >      Remove all leading pathname components, leaving the tail.  This
-	# >      works like `basename'.
-	# http://www.zsh.org/mla/users/2006/msg00239.html
-	if [[ "${1:e}" == "bak" ]]; then
-		# Remove the .bak extension
-		mv "$1" "${1:r}"
-		echo "Renamed to '${1:r}'"
-	else
-		# Append a .bak extension
-		mv "$1" "$1.bak"
-		echo "Renamed to '$1.bak'"
-	fi
+  # > h
+  # >      Remove a trailing pathname component, leaving the head.  This
+  # >      works like `dirname'.
+  # >
+  # > r
+  # >      Remove a filename extension of the form `.XXX', leaving the root
+  # >      name.
+  # >
+  # > e
+  # >      Remove all but the extension.
+  # >
+  # > t
+  # >      Remove all leading pathname components, leaving the tail.  This
+  # >      works like `basename'.
+  # http://www.zsh.org/mla/users/2006/msg00239.html
+  if [[ "${1:e}" == "bak" ]]; then
+    # Remove the .bak extension
+    mv "$1" "${1:r}"
+    echo "Renamed to '${1:r}'"
+  else
+    # Append a .bak extension
+    mv "$1" "$1.bak"
+    echo "Renamed to '$1.bak'"
+  fi
 }
