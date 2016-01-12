@@ -12,6 +12,7 @@ alias xstart='sudo nginx'
 alias xreload='sudo nginx -s reload'
 alias xstop='sudo nginx -s stop'
 alias xps='ps aux | grep nginx'
+alias xtraffic='goaccess -f /usr/local/var/log/nginx/access.log'
 
 # Apache
 alias htstatus="ps awx | grep httpd"
