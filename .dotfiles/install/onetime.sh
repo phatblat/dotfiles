@@ -68,7 +68,9 @@ fi
 # Ruby
 echo "Setting up Ruby"
 # Prime the rbenv environment
+export RBENV_ROOT=${HOME}/.rbenv
 eval "$(rbenv init -)"
+rbenv install --skip-existing 2.2.2
 rbenv global 2.2.2
 rbenv rehash
 

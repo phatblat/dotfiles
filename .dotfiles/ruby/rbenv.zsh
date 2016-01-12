@@ -4,9 +4,9 @@
 # ruby/rbenv.zsh
 #
 #-------------------------------------------------------------------------------
-export RBENV_ROOT=/usr/local/var/rbenv
+export RBENV_ROOT=${HOME}/.rbenv
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which -s rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 ruby_version_file="${RBENV_ROOT}/version"
 if [[ -f $ruby_version_file ]]; then
