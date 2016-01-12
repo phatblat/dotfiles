@@ -62,6 +62,7 @@ brew install git-lfs
 brew install findutils
 brew install heroku-toolbelt
 brew install hub
+brew install goaccess
 brew install jq
 brew install nginx
 brew install nodejs
