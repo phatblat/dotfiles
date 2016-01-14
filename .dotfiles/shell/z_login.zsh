@@ -11,8 +11,8 @@ echo -ne "\e]1;${USER}@${HOST%%.*}:${PWD/#$HOME/~}\a"
 # SSH - Print out the fingerprint and comment of the default public key for this user@host
 sshkeyfingerprint
 if (( $? != 0 )); then
-	echo "No SSH key found"
-	sshnewkey "${USER}@${HOST}"
+  echo "No SSH key found"
+  sshnewkey "${USER}@${HOST}"
 fi
 
 # Setup prompt, must be called after antigen is configured

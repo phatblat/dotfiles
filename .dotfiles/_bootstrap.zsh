@@ -18,16 +18,16 @@ pushd $user_home/.dotfiles > /dev/null 2>&1
 
 for dir in *
 do
-    if [ -d "$dir" ] ; then
-        pushd "$dir" > /dev/null
-        for file in *.zsh
-        do
-            if [ -f "$file" ]; then
-                source "$file"
-            fi
-        done
-        popd > /dev/null
-    fi
+  if [ -d "$dir" ] ; then
+    pushd "$dir" > /dev/null
+    for file in *.zsh
+    do
+      if [ -f "$file" ]; then
+        source "$file"
+      fi
+    done
+    popd > /dev/null
+  fi
 done
 
 popd > /dev/null 2>&1

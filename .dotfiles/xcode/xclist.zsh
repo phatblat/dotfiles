@@ -6,14 +6,14 @@
 #-------------------------------------------------------------------------------
 
 function xclist() {
-    local xcode filename
+  local xcode filename
 
-    # echo /Applications/Xcode*.app
-    for xcode in /Applications/Xcode*.app; do
-        # echo $xcode
-        filename=$(basename $xcode)
-        echo ${filename%.*};
-    done
+  # echo /Applications/Xcode*.app
+  for xcode in /Applications/Xcode*.app; do
+    # echo $xcode
+    filename=$(basename $xcode)
+    echo ${filename%.*};
+  done
 }
 # export -f xclist
 # alias xclist="echo /Applications/Xcode*.app"
