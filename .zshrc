@@ -1,12 +1,11 @@
 #!/usr/bin/env zsh
 #-------------------------------------------------------------------------------
 #
-# _bootstrap.zsh
+# .zshrc
 #
 # Entry point for sourcing modularized zsh profile files.
-# Symlinked into $HOME as .zshrc.
-#
-# topic/*.zsh: Any files ending in .zsh get loaded into the shell environment.
+# Any files ending in .zsh get loaded into the shell environment.
+#   .dotfiles/topic/*.zsh
 #
 #-------------------------------------------------------------------------------
 
@@ -18,16 +17,16 @@ pushd $user_home/.dotfiles > /dev/null 2>&1
 
 for dir in *
 do
-    if [ -d "$dir" ] ; then
-        pushd "$dir" > /dev/null
-        for file in *.zsh
-        do
-            if [ -f "$file" ]; then
-                source "$file"
-            fi
-        done
-        popd > /dev/null
-    fi
+  if [ -d "$dir" ] ; then
+    pushd "$dir" > /dev/null
+    for file in *.zsh
+    do
+      if [ -f "$file" ]; then
+        source "$file"
+      fi
+    done
+    popd > /dev/null
+  fi
 done
 
 popd > /dev/null 2>&1
@@ -35,3 +34,8 @@ popd > /dev/null 2>&1
 # Enable vi style command editing.
 # This setting doesn't work when applied in shell/options.zsh
 bindkey -v
+
+# Carthage Zsh Completion
+# https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
+autoload -U compinit
+compinit -u
