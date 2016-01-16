@@ -19,3 +19,7 @@ xcode-select -p
 
 # Homebrew
 brew update && brew upgrade
+
+# System Updates
+softwareupdate --list
+sudo softwareupdate --instal --all
