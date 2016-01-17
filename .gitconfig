@@ -33,12 +33,6 @@
     default = simple
 [diff "l10n"]
     textconv = iconv -f utf-16 -t utf-8
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
-[mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
 [core]
     pager = less -F -X
 [hub]
