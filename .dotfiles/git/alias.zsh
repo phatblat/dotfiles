@@ -157,6 +157,19 @@ alias ignore="printf '%s\n%s\n%s\n%s\n' '.DS_Store' '*.xccheckout' '*.xcscmbluep
 alias ref='git symbolic-ref'
 alias root='git rev-parse --show-toplevel'
 
+# publish
+# Publishes the current branch to the given remote
+function publish {
+  if [[ $# -ne 1 ]]; then
+    echo "Usage: publish <remote>"
+    exit 1
+  fi
+
+  branch=$(git rev-parse --abbrev-ref HEAD)
+
+  git push -u $1 $branch
+}
+
 # rewrite
 # Rewrites history for the current branch, replacing any occurrences of old@email
 # with new@email in either the GIT_AUTHOR_EMAIL or GIT_COMMITTER_EMAIL fields
