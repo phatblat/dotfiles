@@ -13,14 +13,14 @@ alias version_build='agvtool what-version -terse'
 alias version_market='agvtool what-marketing-version -terse1'
 alias register_device="~/.dotfiles/xcode/register_device.rb"
 
-function version_current() {
+function version_current {
   local build_version market_version
   build_version=$(version_build)
   market_version=$(version_market)
   echo "$market_version ($build_version)"
 }
 
-function version() {
+function version {
   local build_version first_number
 
   case "$1" in
@@ -56,7 +56,7 @@ function version() {
   esac
 }
 
-function release() {
+function release {
   local dirty
 
   # Ensure current dir is in a clean git repo

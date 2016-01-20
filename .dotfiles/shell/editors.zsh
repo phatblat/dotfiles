@@ -10,7 +10,7 @@ export VISUAL='/usr/local/bin/atom'
 alias edit="${VISUAL}"
 
 # e quick edit alias - with no args, opens editor to the current dir
-function e() {
+function e {
   if [ -z "$1" ] ; then
     edit .
   else
@@ -19,7 +19,7 @@ function e() {
 }
 
 # o quick open alias - with no args, opens finder to the current dir
-function o() {
+function o {
   if [ -z "$1" ] ; then
     open .
   else

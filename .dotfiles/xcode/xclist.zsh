@@ -5,7 +5,7 @@
 #
 #-------------------------------------------------------------------------------
 
-function xclist() {
+function xclist {
   local xcode filename
 
   # echo /Applications/Xcode*.app
