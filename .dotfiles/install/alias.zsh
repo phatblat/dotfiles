@@ -20,6 +20,9 @@ if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a memb
     # Print any warnings about the current homebrew setup, they will need to be
     # resolved manually.
     brew doctor
+
+    # Check homebrew cask
+    brew cask doctor
   }
 
 fi
