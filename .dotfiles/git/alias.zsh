@@ -162,7 +162,7 @@ alias root='git rev-parse --show-toplevel'
 function publish {
   if [[ $# -ne 1 ]]; then
     echo "Usage: publish <remote>"
-    exit 1
+    return 1
   fi
 
   branch=$(git rev-parse --abbrev-ref HEAD)
@@ -177,7 +177,7 @@ function publish {
 function rewrite {
   if [[ $# -ne 3 ]]; then
     echo "Usage: rewrite author|committer old@email new@email"
-    exit 1
+    return 1
   fi
 
   if [[ "$1" == "author" ]]; then
@@ -186,7 +186,7 @@ function rewrite {
     attribute="GIT_COMMITTER_EMAIL"
   else
     echo "Usage: rewrite author|committer old@email new@email"
-    exit 2
+    return 2
   fi
 
   old_email=$2
