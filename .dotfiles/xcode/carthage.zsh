@@ -11,7 +11,8 @@ alias cbootios='carthage bootstrap --no-use-binaries --platform iOS'
 
 # Checkout / Update
 alias cco='carthage checkout --no-use-binaries --use-submodules --use-ssh'
-alias ccu='carthage update --no-use-binaries --use-submodules --use-ssh --no-build'
+alias ccu='carthage update --no-use-binaries --no-build'
+alias ccus='ccu --use-submodules --use-ssh'
 
 # Build
 alias cbios="carthage build --platform iOS"
