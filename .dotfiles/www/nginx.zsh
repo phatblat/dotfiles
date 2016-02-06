@@ -14,6 +14,11 @@ alias xstop='sudo nginx -s stop'
 alias xps='ps aux | grep nginx'
 alias xtraffic='goaccess -f /usr/local/var/log/nginx/access.log'
 
+function firewall_allow_nginx {
+  nginx_path=`brew list nginx | head -n 1`
+  sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add ${nginx_path}
+  sudo /usr/libexec/ApplicationFirewall/socketfilterfw --unblockapp ${nginx_path}
+}
+
 # Apache
 alias htstatus="ps awx | grep httpd"
-
