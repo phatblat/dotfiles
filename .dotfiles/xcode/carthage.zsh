@@ -15,7 +15,7 @@ alias ccos='cco --use-ssh'
 alias ccoss='ccos --use-submodules'
 alias ccu='carthage update --no-use-binaries --no-build'
 alias ccus='ccu --use-ssh'
-alias ccuss='ccu --use-submodules'
+alias ccuss='ccus --use-submodules'
 
 # Build
 alias cbios="carthage build --platform iOS"
