@@ -152,7 +152,7 @@ alias stdrop='git stash drop'
 # Experimental
 
 ## Ignore
-alias ignore="printf '%s\n%s\n%s\n%s\n' '.DS_Store' '*.xccheckout' '*.xcscmblueprint' 'xcuserdata' >> .gitignore && git add .gitignore && git commit -m 'Ignore stuff'"
+alias ignore="printf '%s\n%s\n%s\n%s\n%s\n' '.DS_Store' '*.xccheckout' '*.xcscmblueprint' 'xcuserdata' 'Carthage/' >> .gitignore && git add .gitignore && git commit -m 'Ignore stuff'"
 
 alias ref='git symbolic-ref'
 alias root='git rev-parse --show-toplevel'
