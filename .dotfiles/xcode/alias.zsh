@@ -7,6 +7,7 @@
 
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
+alias xcsp='xcode-select -p'
 alias xccheck='~/.dotfiles/xcode/xccheck.sh'
 alias version_enable='ruby ~/.dotfiles/xcode/enable-versioning.rb'
 alias version_build='agvtool what-version -terse'
