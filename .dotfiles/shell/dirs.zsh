@@ -28,6 +28,7 @@ alias iclouddrive="cd $ICLOUD_DRIVE"
 # Common Xcode project folders
 alias op='cd ~/dev/ios/Octopad'
 alias ebw='cd ~/dev/ios/EBW'
+alias fk='cd ~/dev/ios/FitnessKit'
 alias itwire='cd ~/dev/bluemix/ITWire'
 
 # Blog main dir
