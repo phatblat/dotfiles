@@ -60,6 +60,7 @@ brew install coreutils
 brew install duti
 brew install git-lfs
 brew install findutils
+brew install frankenstein
 brew install heroku-toolbelt
 brew install hub
 brew install goaccess
