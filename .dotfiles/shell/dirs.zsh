@@ -30,6 +30,7 @@ alias op='cd ~/dev/ios/Octopad'
 alias ebw='cd ~/dev/ios/EBW'
 alias fk='cd ~/dev/ios/pods/FitnessKit'
 alias itwire='cd ~/dev/bluemix/ITWire'
+alias flagship='cd ~/dev/ios/flagship/KPFlagship'
 
 # Blog main dir
 alias rl='cd ~/dev/www/reflog/www'
