@@ -149,6 +149,9 @@ alias stapply='git stash apply'
 alias stpop='git stash pop'
 alias stdrop='git stash drop'
 
+# Patch
+alias format-patch='git format-patch'
+
 # Experimental
 
 ## Ignore
