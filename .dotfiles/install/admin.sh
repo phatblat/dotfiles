@@ -52,7 +52,7 @@ brew install carthage
 
 # Carthage Zsh Completion
 # https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
-ln -Fs /usr/local/Cellar/carthage/0.10/Frameworks/CarthageKit.framework/Versions/A/Scripts/carthage-zsh-completion \
+ln -Fs /usr/local/Cellar/carthage/0.15/Frameworks/CarthageKit.framework/Versions/A/Scripts/carthage-zsh-completion \
   /usr/local/share/zsh/site-functions/_carthage
 
 brew install --HEAD kylef/formulae/conche
