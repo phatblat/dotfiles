@@ -66,6 +66,7 @@ brew install hub
 brew install goaccess
 brew install jq
 brew install nginx
+brew install ninja
 brew install nodejs
 brew install rbenv
 brew install rename
