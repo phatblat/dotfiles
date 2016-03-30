@@ -79,6 +79,7 @@ brew install swiftlint
 brew install terminal-notifier
 brew install thefuck
 brew install trash
+brew install travis
 brew install tree
 brew install xctool
 
