@@ -84,6 +84,7 @@ gem install gym
 gem install nomad-cli
 gem install octopress
 gem install octopress-debugger
+gem install synx
 gem install xcode-install
 
 # VIM
