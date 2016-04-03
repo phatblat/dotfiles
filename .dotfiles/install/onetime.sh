@@ -78,6 +78,7 @@ rbenv rehash
 gem install bundler
 gem install cocoapods
 gem install cocoapods-deintegrate
+gem install danger
 gem install fastlane
 gem install github-pages
 gem install gym
