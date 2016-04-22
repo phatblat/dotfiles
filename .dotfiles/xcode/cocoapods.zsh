@@ -8,6 +8,7 @@
 # Bundler
 alias bi='bundle install'
 alias bu='bundle update'
+alias be='bundle exec'
 
 # CocoaPods
 alias pi='pod install --no-repo-update'
