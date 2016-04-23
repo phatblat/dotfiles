@@ -10,6 +10,9 @@ alias bi='bundle install'
 alias bu='bundle update'
 alias be='bundle exec'
 
+# Fastlane
+alias bef='bundle exec fastlane'
+
 # CocoaPods
 alias pi='pod install --no-repo-update'
 alias bpi='bundle exec pod install --no-repo-update'
