@@ -74,3 +74,5 @@
 	required = true
 [credential]
 	helper = osxkeychain
+[user]
+	signingkey = 97EF379D
