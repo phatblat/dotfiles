@@ -36,6 +36,6 @@ popd > /dev/null 2>&1
 bindkey -v
 
 # Carthage Zsh Completion
-# https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
+# https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshFishCompletion.md#zsh
 autoload -U compinit
 compinit -u
