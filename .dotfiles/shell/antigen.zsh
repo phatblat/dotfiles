@@ -21,4 +21,4 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # Antigen Themes
 antigen theme gnzh
 
-antigen apply
+#antigen apply
