@@ -6,8 +6,7 @@
 #
 #-------------------------------------------------------------------------------
 
-local antigen_dir="$(brew --prefix)/Cellar/antigen/1/share"
-source "${antigen_dir}/antigen.zsh"
+source "$(brew --prefix)/share/antigen.zsh"
 antigen use oh-my-zsh
 # Override the oh-my-zsh 'd' alias
 unalias d && alias d='git diff'
