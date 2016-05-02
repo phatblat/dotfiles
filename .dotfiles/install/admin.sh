@@ -111,6 +111,7 @@ brew cask install tower
 # QuickLook plugins
 brew cask install betterzipql
 brew cask install cert-quicklook
+brew cask install cocoapods
 brew cask install provisioning
 brew cask install qlcolorcode
 brew cask install qlimagesize
