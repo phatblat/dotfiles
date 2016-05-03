@@ -56,6 +56,7 @@ ln -Fs /usr/local/Cellar/carthage/0.15/Frameworks/CarthageKit.framework/Versions
   /usr/local/share/zsh/site-functions/_carthage
 
 brew install --HEAD kylef/formulae/conche
+brew install cloc
 brew install coreutils
 brew install duti
 brew install git-lfs
