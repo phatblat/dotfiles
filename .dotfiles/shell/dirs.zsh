@@ -38,5 +38,6 @@ alias fk='cd ~/dev/ios/pods/FitnessKit'
 alias itwire='cd ~/dev/bluemix/ITWire'
 alias flagship='cd ~/dev/ios/flagship/KPFlagship'
 
-# Blog main dir
+# reflog, markdown
 alias rl='cd ~/dev/www/reflog/www'
+alias asv='cd ~/dev/markdown/AppleSoftwareVersions'
