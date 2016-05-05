@@ -28,6 +28,9 @@ alias iclouddrive="cd $ICLOUD_DRIVE"
 # Common Xcode project folders
 alias op='cd ~/dev/ios/Octopad'
 alias og='cd ~/dev/libgit2/objective-git'
+alias quick='cd ~/dev/ios/pods/Quick'
+
+# KP Projects
 alias ebw='cd ~/dev/ios/EBW'
 alias fk='cd ~/dev/ios/pods/FitnessKit'
 alias itwire='cd ~/dev/bluemix/ITWire'
