@@ -13,4 +13,4 @@
 OSX_PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Prepend user bin dir to PATH
-export PATH=~/bin${PYTHON_PATH}:${PATH}
+export PATH=./bin:~/bin:${PATH}
