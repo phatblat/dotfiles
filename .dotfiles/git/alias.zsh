@@ -157,14 +157,14 @@ alias format-patch='git format-patch'
 ## Ignore
 function ignore {
   ignores=(
-    '.DS_Store',
-    '*.xccheckout',
-    '*.xcscmblueprint',
-    'xcuserdata',
-    'Carthage/',
-    'Pods/',
-    '.rubygems',
-    'bin'
+    '.DS_Store'
+    '*.xccheckout'
+    '*.xcscmblueprint'
+    'xcuserdata'
+    'Carthage/'
+    'Pods/'
+    '.rubygems/'
+    'bin/'
   )
   for pattern in $ignores; do
     echo "$pattern" >> .gitignore
