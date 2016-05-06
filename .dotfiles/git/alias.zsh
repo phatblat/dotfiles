@@ -155,7 +155,24 @@ alias format-patch='git format-patch'
 # Experimental
 
 ## Ignore
-alias ignore="printf '%s\n%s\n%s\n%s\n%s\n' '.DS_Store' '*.xccheckout' '*.xcscmblueprint' 'xcuserdata' 'Carthage/' >> .gitignore && git add .gitignore && git commit -m 'Ignore stuff'"
+function ignore {
+  ignores=(
+    '.DS_Store',
+    '*.xccheckout',
+    '*.xcscmblueprint',
+    'xcuserdata',
+    'Carthage/',
+    'Pods/',
+    '.rubygems',
+    'bin'
+  )
+  for pattern in $ignores; do
+    echo "$pattern" >> .gitignore
+  done
+
+  git add .gitignore
+  git commit -m 'Ignore stuff'
+}
 
 alias ref='git symbolic-ref'
 alias root='git rev-parse --show-toplevel'
