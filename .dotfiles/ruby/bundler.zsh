@@ -6,8 +6,9 @@
 #-------------------------------------------------------------------------------
 
 # Bundler
-alias bi='bundle install'
-alias bu='bundle update'
+config='--clean --path .rubygems --binstubs bin'
+alias bi="bundle install $config"
+alias bu="bundle update $config"
 alias be='bundle exec'
 
 # Fastlane
