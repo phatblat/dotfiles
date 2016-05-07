@@ -118,6 +118,11 @@ app_target.add_file_references([
   app_delegate
 ])
 
+# Build Settings - Info.plist
+app_target.build_configuration_list.build_configurations.each do |config|
+  config.build_settings['INFOPLIST_FILE'] = infoplist_file_name
+end
+
 project.save(project_name)
 
 puts "Creating workspace #{workspace_name}"
