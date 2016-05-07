@@ -42,7 +42,22 @@ project = Xcodeproj::Project.new(project_name)
 
 # Add source files
 app_group = project.main_group.new_group(product_name)
-app_delegate = app_group.new_file('AppDelegate.swift')
+app_delegate_file_name = 'AppDelegate.swift'
+app_delegate = app_group.new_file(app_delegate_file_name)
+File.open(app_delegate_file_name,'w') do |file|
+  file.puts(<<-EOT)
+import UIKit
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        return true
+    }
+}
+  EOT
+end
 
 app_target = project.new_target(:application, target_name, :ios, deployment_target)
 app_target.add_file_references([
