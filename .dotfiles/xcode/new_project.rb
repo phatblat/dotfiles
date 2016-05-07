@@ -115,8 +115,7 @@ end
 
 app_target = project.new_target(:application, target_name, :ios, deployment_target)
 app_target.add_file_references([
-  app_delegate,
-  infoplist_file
+  app_delegate
 ])
 
 project.save(project_name)
