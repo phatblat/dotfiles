@@ -2,7 +2,7 @@
 #-------------------------------------------------------------------------------
 #
 # xcode/new_project.rb
-# Creates a new Xcode project
+# Creates a new Xcode project in the current directory
 # http://rubydoc.info/gems/xcodeproj/Xcodeproj/Project
 #
 #-------------------------------------------------------------------------------
@@ -40,11 +40,14 @@ FileUtils.rm_rf(workspace_name)
 puts "Creating project #{project_name}"
 project = Xcodeproj::Project.new(project_name)
 
-app_target = project.new_target(:application, target_name, :ios, deployment_target)
+# Add source files
+app_group = project.main_group.new_group(product_name)
+app_delegate = app_group.new_file('AppDelegate.swift')
 
-header_ref = project.main_group.new_file('./Class.h')
-implm_ref = project.main_group.new_file('./Class.m')
-app_target.add_file_references([implm_ref])
+app_target = project.new_target(:application, target_name, :ios, deployment_target)
+app_target.add_file_references([
+  app_delegate
+])
 
 project.save(project_name)
 
