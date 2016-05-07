@@ -18,6 +18,7 @@ target_name = product_name
 project_name = "#{target_name}.xcodeproj"
 workspace_name = "#{target_name}.xcworkspace"
 deployment_target = '9.0'
+bundle_identifier = "at.phatbl.#{product_name}"
 
 # Testing: Clean previous project
 FileUtils.rm_rf(project_name)
@@ -121,6 +122,7 @@ app_target.add_file_references([
 # Build Settings - Info.plist
 app_target.build_configuration_list.build_configurations.each do |config|
   config.build_settings['INFOPLIST_FILE'] = infoplist_file_name
+  config.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = bundle_identifier
 end
 
 project.save(project_name)
