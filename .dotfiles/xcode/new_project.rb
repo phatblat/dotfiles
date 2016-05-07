@@ -67,5 +67,5 @@ app_target.add_file_references([
 project.save(project_name)
 
 puts "Creating workspace #{workspace_name}"
-workspace = Xcodeproj::Workspace.new_from_xcworkspace(workspace_name)
+workspace = Xcodeproj::Workspace.new(project_name)
 workspace.save_as(workspace_name)
