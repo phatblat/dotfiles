@@ -34,7 +34,7 @@
 [diff "l10n"]
     textconv = iconv -f utf-16 -t utf-8
 [core]
-    pager = less -F -X
+	pager = less -F -X -x4
 [hub]
     protocol = ssh
 [diff]
