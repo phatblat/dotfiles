@@ -21,4 +21,4 @@ XCODE_PLUGINS="${HOME}/Library/Application Support/Developer/Shared/Xcode/Plug-i
 #
 #-------------------------------------------------------------------------------
 
-alias xp="cd ${XCODE_PLUGINS}"
+alias xp="cd \"${XCODE_PLUGINS}\""
