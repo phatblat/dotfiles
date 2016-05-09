@@ -123,6 +123,10 @@ brew cask install quicklook-csv
 brew cask install quicklook-json
 brew cask install webpquicklook
 
+# Ruby - Install bundler at system level, all other gems in user dirs
+# El Capitan workaround to not being able to install Bundler to /usr/bin
+sudo gem install bundler --bindir /usr/local/bin
+
 # NPM packages
 npm install -g n
 npm install -g ralio

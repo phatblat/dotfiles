@@ -11,5 +11,8 @@ alias bi="bundle install $config"
 alias bu="bundle update $config"
 alias be='bundle exec'
 
+# El Capitan workaround to not being able to install Bundler to /usr/bin
+# sudo gem install bundler --bindir /usr/local/bin
+
 # Fastlane
 alias bef='bundle exec fastlane'
