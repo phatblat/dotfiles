@@ -21,6 +21,7 @@ alias bashman=bashman
 # Shell Helpers
 alias h="history"
 eval $(thefuck --alias)
+eval "$(direnv hook zsh)"
 
 # OS X
 alias chrome='open -a "Google Chrome" --args --incognito'
