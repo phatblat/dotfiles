@@ -68,6 +68,7 @@ brew install heroku-toolbelt
 brew install hub
 brew install goaccess
 brew install jq
+brew install thoughtbot/formulae/liftoff
 brew install nginx
 brew install ninja
 brew install nodejs
