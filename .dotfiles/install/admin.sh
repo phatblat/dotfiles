@@ -59,6 +59,7 @@ brew install boost
 brew install --HEAD kylef/formulae/conche
 brew install cloc
 brew install coreutils
+brew install direnv
 brew install duti
 brew install git-lfs
 brew install findutils
