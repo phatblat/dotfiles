@@ -2,10 +2,10 @@ source 'https://github.com/CocoaPods/Specs'
 
 platform :ios, '<%= deployment_target %>'
 
-# Add Application pods here
+target :<%= project_name %> do
+end
 
-target :unit_tests do
-  link_with '<%= test_target_name %>'
+target :<%= test_target_name %> do
   pod 'Quick'
   pod 'Nimble'
 end
