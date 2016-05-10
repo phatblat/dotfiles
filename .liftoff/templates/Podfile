@@ -1,6 +1,8 @@
 source 'https://github.com/CocoaPods/Specs'
 
 platform :ios, '<%= deployment_target %>'
+use_frameworks!
+inhibit_all_warnings!
 
 target :<%= project_name %> do
 end
