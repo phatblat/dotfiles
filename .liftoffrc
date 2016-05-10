@@ -34,7 +34,7 @@ templates:
   - setup.sh: bin/setup
   - README.md: README.md
 
-xcode_command: open -a 'Xcode' .
+xcode_command: open *.xcworkspace || open *.xcodeproj
 
 project_template: swift_app
 
