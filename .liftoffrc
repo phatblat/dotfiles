@@ -1,0 +1,65 @@
+#
+# .liftoffrc
+# Defaults for Liftoff
+# https://github.com/thoughtbot/liftoff/blob/master/defaults/liftoffrc
+#
+
+# project_name:
+company: Ben Chatelain
+author: Ben Chatelain
+# prefix:
+company_identifier: at.phatbl
+
+test_target_name: Tests
+configure_git: true
+warnings_as_errors: false
+enable_static_analyzer: true
+indentation_level: 4
+use_tabs: false
+dependency_managers: cocoapods
+enable_settings: true
+strict_prompts: false
+deployment_target: 9.0
+
+run_script_phases:
+  - file: todo.sh
+    name: Warn for TODO and FIXME comments
+  - file: bundle_version.sh
+    name: Set version number
+
+templates:
+  - travis.yml: .travis.yml
+  - Gemfile.rb: Gemfile
+  - test.sh: bin/test
+  - setup.sh: bin/setup
+  - README.md: README.md
+
+xcode_command: open -a 'Xcode' .
+
+project_template: swift_app
+
+app_target_templates:
+  swift_app:
+    - <%= project_name %>:
+      - AppDelegate.swift
+      - Extensions:
+      - Protocols:
+      - Models:
+      - ViewModels:
+      - Controllers:
+      - Views:
+      - Resources:
+        - Images.xcassets
+        - Storyboards:
+          - Main.storyboard
+          - LaunchScreen.storyboard
+      - Supporting Files:
+        - Info.plist
+
+test_target_templates:
+  swift_app:
+    - <%= test_target_name %>:
+      - Helpers:
+      - Tests:
+      - Supporting Files:
+        - Info.plist
