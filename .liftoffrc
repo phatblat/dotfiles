@@ -58,7 +58,7 @@ app_target_templates:
 
 test_target_templates:
   swift_app:
-    - <%= test_target_name %>:
+    - <%= project_name %>Tests:
       - Helpers:
       - Tests:
       - Supporting Files:
