@@ -1,4 +1,8 @@
 .DS_Store
+
+# Bundler is configured to install home dir gems into ~/.rubygems
+.rubygems
+
+# Directories containing sensitive info
 .raliorc
 private
-
