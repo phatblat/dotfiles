@@ -38,11 +38,11 @@ function sync {
 
 # Frequent directories
 
-imac=/Users/phatblat/
-external=/Volumes/ThunderBay/Users/phatblat/
+phatblat_imac=/Users/phatblat/
+phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 
 # Testing
 # sync lib/ tmp/ "go"
 
 # Example use
-# sync $imac $external
+# sync $phatblat_imac $phatblat_external

@@ -11,6 +11,7 @@
 
 # Hourly
 00 * * * *      $HOME/.dotfiles/cron/dotfiles_fetch
+10 * * * *      $HOME/.dotfiles/cron/rsync_phatblat.sh
 
 # --------------------------------------------------------
 # * * * * *     command to be executed
