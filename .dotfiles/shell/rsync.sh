@@ -1,3 +1,4 @@
+#!/bin/bash -ex
 #-------------------------------------------------------------------------------
 #
 # shell/rsync.zsh
@@ -9,30 +10,29 @@
 # Uses rsync to copy files between two locations.
 #
 # Arguments:
-# $1 - source
-# $2 - destionation
+# $1 - source_dir
+# $2 - destination_dir
 # $3 - dry run if empty, real if "go" (exactly)
 #
 function sync {
-  # echo "args: $* ($#)"
+  echo "args: $* ($#)"
   if (( $# < 2 )); then
-    echo "Usage: sync source/ destination/"
+    echo "Usage: sync source_dir/ destination_dir/"
     return 1
   fi
 
-  local source="$1"
-  local destination="$2"
+  local source_dir="$1"
+  local destination_dir="$2"
 
-
-  if [ "$3" == "go" ]; then
-    echo "rsyncing ${source} -> ${destination}"
-    mkdir -p "${destination}"
+  if [[ $3 == "go" ]]; then
+    echo "rsyncing ${source_dir} -> ${destination_dir}"
+    mkdir -p "${destination_dir}"
     # Run (-aP)
-    rsync --archive --partial --progress "${source}" "${destination}"
+    rsync --archive --partial --progress "${source_dir}" "${destination_dir}"
   else
-    echo "rsyncing ${source} -> ${destination} (dry run)"
+    echo "rsyncing ${source_dir} -> ${destination_dir} (dry run)"
     # Test (-anv)
-    rsync --archive --verbose --dry-run "${source}" "${destination}"
+    rsync --archive --verbose --dry-run "${source_dir}" "${destination_dir}"
   fi
 }
 
@@ -45,4 +45,5 @@ phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 # sync lib/ tmp/
 
 # Example use
-# sync $phatblat_imac $phatblat_external "go"
+# time sync $phatblat_imac $phatblat_external go
+# time sync $phatblat_external $phatblat_imac go
