@@ -42,7 +42,7 @@ phatblat_imac=/Users/phatblat/
 phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 
 # Testing
-# sync lib/ tmp/ "go"
+# sync lib/ tmp/
 
 # Example use
-# sync $phatblat_imac $phatblat_external
+# sync $phatblat_imac $phatblat_external "go"

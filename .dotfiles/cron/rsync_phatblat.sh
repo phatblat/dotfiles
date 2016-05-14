@@ -9,4 +9,4 @@
 . $HOME/.dotfiles/shell/rsync.sh      # Defines sync function
 
 # Sync user dir from iMac -> ThunderBay
-time sync $phatblat_imac $phatblat_external
+time sync $phatblat_imac $phatblat_external "go"
