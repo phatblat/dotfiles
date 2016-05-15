@@ -1,16 +1,16 @@
+# Finder
 .DS_Store
 
 # Bundler is configured to install home dir gems into ~/.rubygems
-.rubygems
+.rubygems/
 
-# Directories containing sensitive info
-.raliorc
-private
-.DS_Store
+# Xcode
 *.xccheckout
 *.xcscmblueprint
 xcuserdata
 Carthage/
 Pods/
-.rubygems/
-bin/
+
+# Directories containing sensitive info
+.raliorc
+private
