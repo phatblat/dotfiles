@@ -6,3 +6,11 @@
 # Directories containing sensitive info
 .raliorc
 private
+.DS_Store
+*.xccheckout
+*.xcscmblueprint
+xcuserdata
+Carthage/
+Pods/
+.rubygems/
+bin/
