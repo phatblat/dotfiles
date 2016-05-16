@@ -52,4 +52,69 @@ platform :ios do
     # frameit
   end
 
+  desc "Installs Xcode plugins"
+  lane :install_xcode_plugins do
+  [
+    # The Xcode plugins manager
+    'https://github.com/alcatraz/Alcatraz/archive/1.1.18.zip',
+
+    ## Plugins
+
+    # Backlight
+    #   https://github.com/limejelly/Backlight-for-XCode
+    # BuildTimeAnalyzer
+    #   https://github.com/RobertGummesson/BuildTimeAnalyzer-for-Xcode
+    # ColorSenseRainbow - Shows the color of a `UIColor` when the cursor is on it
+    'https://github.com/NorthernRealities/ColorSenseRainbow/archive/v1.1.0.zip',
+    # FixCode
+    'https://github.com/neonichu/FixCode/releases/download/0.5.0/FixCode.xcplugin.zip',
+    # GitDiff - Shows a color annotation on the gutter matching the git status
+    'https://github.com/johnno1962/GitDiff/archive/v2.2.zip',
+    # QuickJump
+    'https://github.com/wiruzx/QuickJump/archive/v1.1.6.zip',
+    # SCXcodeSwitchExpander
+    'https://github.com/stefanceriu/SCXcodeSwitchExpander/releases/download/v1.2.1/SCXcodeSwitchExpander.xcplugin.zip',
+    # ShowInGithub
+    #   https://github.com/larsxschneider/ShowInGitHub
+    # Swift Refactorator
+    'https://github.com/johnno1962/Refactorator/archive/2.1.0.zip',
+    # SYXcodeIconVersion
+    #   https://github.com/dvkch/SYXcodeIconVersion
+    # VVDocumenter-Xcode - Generate documentation stubs
+    'https://github.com/onevcat/VVDocumenter-Xcode/archive/0.6.zip',
+    # Xcode_beginning_of_line
+    #   https://github.com/insanehunter/XCode4_beginning_of_line
+    # XcodeColors
+    #   https://github.com/robbiehanson/XcodeColors
+
+    ## Themes
+
+    # Anubis
+    'https://github.com/gtranchedone/XcodeThemes/archive/master.zip',
+    # Colorswift
+    'https://github.com/ferologics/Colorswift/archive/master.zip',
+    # Fruits
+    'https://github.com/muukii/xcode-fruits/archive/master.zip',
+    # Irradiated
+    'https://github.com/fortinmike/irradiated-xcode-theme/archive/master.zip',
+    # Nakafurano
+    'https://github.com/tflhyl/nakafurano/archive/master.zip',
+    # Oceanic Next
+    'https://github.com/dmcrodrigues/Oceanic-Next-Xcode-Theme/archive/master.zip',
+    # RSBlackboard
+    'https://github.com/reejosamuel/RSBlackboard/archive/master.zip',
+    # Seti
+    'https://github.com/alenofx/seti-xcode-theme/archive/master.zip',
+    # Sidetracked
+    'https://github.com/drudge/Sidetracked/archive/master.zip',
+    # One Dark
+    'https://github.com/bojan/xcode-one-dark/archive/v2.zip',
+    # Solarized Dark
+    'https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode/archive/2.0.0.zip',
+  ]
+  .each do |plugin_url|
+    install_xcode_plugin(url: plugin_url)
+  end
+end
+
 end
