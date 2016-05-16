@@ -10,7 +10,7 @@
 20 4 * * *      $HOME/.dotfiles/xcode/xccheck.sh
 
 # Hourly
-00 * * * *      $HOME/.dotfiles/cron/dotfiles_fetch
+00 * * * *      $HOME/.dotfiles/cron/dotfiles_fetch.sh
 10 * * * *      $HOME/.dotfiles/cron/rsync_phatblat.sh
 
 # --------------------------------------------------------
