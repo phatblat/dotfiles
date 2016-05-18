@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 #-------------------------------------------------------------------------------
 #
 # shell/rsync.zsh
@@ -49,5 +49,5 @@ export phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 
 # Convenience function
 function pbsync {
-  psync $phatblat_external $phatblat_imac "go"
+  psync $phatblat_imac $phatblat_external "go"
 }
