@@ -9,6 +9,19 @@ alias firewall='/usr/libexec/ApplicationFirewall/socketfilterfw'
 alias firewall_toggle='firewall --setglobalstate off && \
   firewall --setglobalstate on'
 
+# Convenience admin function to auto-add all versions of nginx to the list of
+# apps allowed to receive incoming connections through the firewall.
+function allow_all_nginx {
+  local firewall='/usr/libexec/ApplicationFirewall/socketfilterfw'
+  local base_path="$(brew --prefix)/Cellar/nginx"
+  local versions=$(ls -1 $base_path)
+
+  for version in $versions; do
+    echo $version
+    sudo $firewall --add $base_path/$version/bin/nginx
+    sudo $firewall --unblockapp $base_path/$version/bin/nginx
+  done
+}
 
 #-------------------------------------------------------------------------------
 #
