@@ -1,1 +1,4 @@
+# http://guides.rubygems.org/command-reference/#gem-environment
+# example: https://gist.github.com/jch/1331576
+---
 gem: --no-document
