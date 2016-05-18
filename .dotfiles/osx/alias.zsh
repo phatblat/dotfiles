@@ -6,6 +6,8 @@
 #-------------------------------------------------------------------------------
 
 alias firewall='/usr/libexec/ApplicationFirewall/socketfilterfw'
+alias firewall_toggle='firewall --setglobalstate off && \
+  firewall --setglobalstate on'
 
 
 #-------------------------------------------------------------------------------
