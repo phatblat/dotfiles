@@ -5,6 +5,20 @@
 #
 #-------------------------------------------------------------------------------
 
+#
+# Determines whether the current $USER is in the admin group.
+#
+function user_is_admin {
+  return $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group"
+}
+
+if [[ user_is_admin ]]; then
+  echo "user is an admin"
+else
+  echo "user is not an admin"
+fi
+
+
 # Only define these aliases for admin users
 if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
 
