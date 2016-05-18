@@ -15,7 +15,6 @@
 # $3 - dry run if empty, real if "go" (exactly)
 #
 function sync {
-  echo "args: $* ($#)"
   if (( $# < 2 )); then
     echo "Usage: sync source_dir/ destination_dir/"
     return 1
@@ -25,7 +24,8 @@ function sync {
   local destination_dir="$2"
 
   if [[ $3 == "go" ]]; then
-    echo "rsyncing ${source_dir} -> ${destination_dir}"
+    # Output is suppressed when not connected to TTY
+    [ -t 0 ] && echo "rsyncing ${source_dir} -> ${destination_dir}"
     mkdir -p "${destination_dir}"
     # Run (-aP)
     rsync --archive --partial "${source_dir}" "${destination_dir}"
