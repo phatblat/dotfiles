@@ -10,9 +10,9 @@
 #
 function user_is_admin {
   if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
-    return 0 # true
+    return true
   else
-    return 1 # false
+    return false
   fi
 }
 
