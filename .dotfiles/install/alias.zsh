@@ -7,20 +7,22 @@
 
 #
 # Determines whether the current $USER is in the admin group.
-#
+# Examples:
+#   if user_is_admin; then
+#   if [ !user_is_admin ]; then
 function user_is_admin {
   [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]
 }
 
-if user_is_admin; then
-  echo "user is an admin"
-else
+if [ !user_is_admin ]; then
   echo "user is not an admin"
+else
+  echo "user is an admin"
 fi
 
 
 # Only define these aliases for admin users
-if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
+if user_is_admin; then
 
   # update
   # Invokes the admin package update script

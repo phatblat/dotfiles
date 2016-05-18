@@ -47,7 +47,7 @@ fi
 #-------------------------------------------------------------------------------
 
 # Run the admin install script if this user is an admin
-if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
+if user_is_admin; then
 # Hand off next phase of setup to install-admin
   echo "Invoking admin install script"
   "${HOME}/.dotfiles/install/admin.sh"
@@ -118,7 +118,7 @@ zsh_path="$(brew --prefix)/bin/zsh"
 # Get the last path component
 shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
 if [[ ${shell_last_path_component} != "zsh" ]]; then
-  if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
+  if user_is_admin; then
     sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}
     dscl . -read ${HOME} UserShell
   else
