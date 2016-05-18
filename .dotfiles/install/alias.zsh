@@ -14,12 +14,6 @@ function user_is_admin {
   [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]
 }
 
-if [ !user_is_admin ]; then
-  echo "user is not an admin"
-else
-  echo "user is an admin"
-fi
-
 
 # Only define these aliases for admin users
 if user_is_admin; then
