@@ -21,6 +21,7 @@ xcode-select -p
 brew update && brew upgrade
 
 # Ruby gems
+sudo gem update --system
 sudo gem update --bindir /usr/local/bin
 
 # System Updates
