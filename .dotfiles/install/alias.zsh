@@ -9,14 +9,10 @@
 # Determines whether the current $USER is in the admin group.
 #
 function user_is_admin {
-  if [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]; then
-    return true
-  else
-    return false
-  fi
+  [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]
 }
 
-if [[ user_is_admin ]]; then
+if user_is_admin; then
   echo "user is an admin"
 else
   echo "user is not an admin"
