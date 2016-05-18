@@ -5,6 +5,11 @@
 #
 #-------------------------------------------------------------------------------
 
+# This can only be run by an admin user
+if [ !user_is_admin ]; then
+  exit 0
+fi
+
 . $HOME/.dotfiles/cron/cron.env
 
 brew_path=`which brew`
