@@ -46,3 +46,8 @@ export phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 # Example use
 #   psync $phatblat_imac $phatblat_external go
 #   psync $phatblat_external $phatblat_imac go
+
+# Convenience function
+function pbsync {
+  psync $phatblat_external $phatblat_imac "go"
+}
