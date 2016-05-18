@@ -14,7 +14,7 @@
 # $2 - destination_dir
 # $3 - dry run if empty, real if "go" (exactly)
 #
-function sync {
+function psync {
   if (( $# < 2 )); then
     echo "Usage: sync source_dir/ destination_dir/"
     return 1
@@ -37,13 +37,12 @@ function sync {
 }
 
 # Frequent directories
-
-phatblat_imac=/Users/phatblat/
-phatblat_external=/Volumes/ThunderBay/Users/phatblat/
+export phatblat_imac=/Users/phatblat/
+export phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 
 # Testing
-# sync lib/ tmp/
+#   psync lib/ tmp/
 
 # Example use
-# time sync $phatblat_imac $phatblat_external go
-# time sync $phatblat_external $phatblat_imac go
+#   psync $phatblat_imac $phatblat_external go
+#   psync $phatblat_external $phatblat_imac go

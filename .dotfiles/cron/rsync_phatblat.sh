@@ -7,7 +7,7 @@
 #-------------------------------------------------------------------------------
 
 . $HOME/.dotfiles/cron/cron.env
-. $HOME/.dotfiles/shell/rsync.sh      # Defines sync function
+. $HOME/.dotfiles/shell/rsync.sh      # Defines psync function
 
 this_host=$(hostname)
 
@@ -17,4 +17,4 @@ if [[ $this_host != "imac.local" ]]; then
 fi
 
 # Sync user dir from ThunderBay -> iMac
-sync $phatblat_external $phatblat_imac "go"
+psync $phatblat_external $phatblat_imac "go"
