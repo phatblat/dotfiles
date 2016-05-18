@@ -7,7 +7,7 @@
 #-------------------------------------------------------------------------------
 
 . $HOME/.dotfiles/cron/cron.env
-. $HOME/.dotfiles/shell/rsync.sh      # Defines psync function
+. $HOME/.dotfiles/shell/rsync.zsh      # Defines psync function
 
 this_host=$(hostname)
 
