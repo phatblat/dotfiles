@@ -17,4 +17,4 @@ if [[ $this_host != "imac.local" ]]; then
 fi
 
 # Sync user dir from ThunderBay -> iMac
-time sync $phatblat_external $phatblat_imac "go"
+sync $phatblat_external $phatblat_imac "go"
