@@ -6,8 +6,13 @@
 #-------------------------------------------------------------------------------
 
 # Bundler
-config='--clean --path .rubygems --binstubs bin'
-alias bi="bundle install $config"
+function bconfig {
+  bundle config --local clean true
+  bundle config --local path .rubygems
+  bundle config --local bin bin
+  bundle config --local jobs 8
+}
+alias bi='bundle install'
 alias bu='bundle update'
 alias be='bundle exec'
 alias bv='bundle --version'
