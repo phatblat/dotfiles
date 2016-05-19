@@ -63,6 +63,7 @@
     smudge = git-media-smudge %f
 [rerere]
     enabled = true
+# Rewrite git:// URLs to use https:// scheme - this breaks an ObjectiveGit test
 #[url "https://"]
 #    insteadOf = git://
 [filter "lfs"]
