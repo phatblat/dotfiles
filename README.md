@@ -26,7 +26,7 @@ I've crafted a slew of short [aliases](https://github.com/phatblat/dotfiles/blob
 
 ## iOS
 
-There are some fancy functions for easily inspecting, bumping version and releasing an app with a versioned [xcode project](https://github.com/phatblat/dotfiles/blob/master/.dotfiles/ios/alias.zsh).
+There are some fancy functions for easily inspecting, bumping version and releasing an app with a versioned [xcode project](https://github.com/phatblat/dotfiles/blob/master/.dotfiles/xcode/alias.zsh).
 
 ## Credit
 
