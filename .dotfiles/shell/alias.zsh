@@ -10,6 +10,7 @@ alias lsa="ls -a"
 alias ll="ls -l"
 alias la="ls -la"
 alias lA="ls -lA"
+# List only directories in the PWD
 alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
