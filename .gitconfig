@@ -34,7 +34,7 @@
 [diff "l10n"]
     textconv = iconv -f utf-16 -t utf-8
 [core]
-	pager = less -F -X -x4
+    pager = less -F -X -x4
 [hub]
     protocol = ssh
 [diff]
@@ -66,10 +66,10 @@
 #[url "https://"]
 #    insteadOf = git://
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [user]
-	signingkey = 97EF379D
+    signingkey = 97EF379D
