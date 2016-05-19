@@ -14,8 +14,9 @@ function members {
   done | grep "is a member" | cut -d " " -f 1
 }
 
+# Cleaner form of:
+# http://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories
 function fixperms {
   find "$1" -type f -print -exec chmod 644 {} \;
   find "$1" -type d -print -exec chmod 755 {} \;
 }
-
