@@ -18,7 +18,7 @@ alias be='bundle exec'
 alias bv='bundle --version'
 
 # El Capitan workaround to not being able to install Bundler to /usr/bin
-# sudo gem install bundler --bindir /usr/local/bin
+alias binstall='sudo gem install bundler --bindir /usr/local/bin'
 
 # Fastlane
 alias bef='bundle exec fastlane'
