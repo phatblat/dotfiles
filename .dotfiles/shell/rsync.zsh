@@ -37,7 +37,7 @@ function psync {
 }
 
 # Frequent directories
-export phatblat_imac=/Users/phatblat/
+export phatblat_imac=/Users/phatblat.bak/
 export phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 
 # Testing
@@ -49,5 +49,5 @@ export phatblat_external=/Volumes/ThunderBay/Users/phatblat/
 
 # Convenience function
 function pbsync {
-  psync $phatblat_imac $phatblat_external "go"
+  psync $phatblat_external $phatblat_imac "go"
 }
