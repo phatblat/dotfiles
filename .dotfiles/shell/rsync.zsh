@@ -28,7 +28,7 @@ function psync {
     [ -t 0 ] && echo "rsyncing ${source_dir} -> ${destination_dir}"
     mkdir -p "${destination_dir}"
     # Run (-aP)
-    rsync --archive --one-file-system --safe-links --partial "${source_dir}" "${destination_dir}"
+    rsync --archive --one-file-system --safe-links --partial --delete-after "${source_dir}" "${destination_dir}"
   else
     echo "rsyncing ${source_dir} -> ${destination_dir} (dry run)"
     # Test (-anv)
