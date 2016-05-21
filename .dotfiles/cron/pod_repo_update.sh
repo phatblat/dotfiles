@@ -6,6 +6,6 @@
 #
 #-------------------------------------------------------------------------------
 
-# . $HOME/.dotfiles/cron/cron.env
+. $HOME/.dotfiles/cron/cron.env
 
 bundle exec pod repo update --silent
