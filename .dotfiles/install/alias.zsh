@@ -9,7 +9,7 @@
 # Determines whether the current $USER is in the admin group.
 # Examples:
 #   if user_is_admin; then
-#   if [ !user_is_admin ]; then
+#   if [ ! user_is_admin ]; then # Space after ! is very important
 function user_is_admin {
   [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]
 }
