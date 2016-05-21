@@ -154,6 +154,23 @@ alias format-patch='git format-patch'
 
 # Experimental
 
+## Delete tag on local and remote
+function delete-tag {
+  if [[ $# -ne 1 ]]; then
+    echo "Usage: delete-tag <tag>"
+    return 1
+  fi
+
+  # Get the remote for the current branch
+  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  local current_remote=$(config branch.${current_branch}.remote)
+
+  echo "Deleting local tag: $1"
+  git tag --delete $1
+  echo "Deleting tag from remote (${current_remote}): $1"
+  git push ${current_remote} --delete refs/tags/$1
+}
+
 ## Ignore
 function ignore {
   ignores=(
