@@ -105,6 +105,9 @@ alias b='git branch'
 alias bra='git branch -av'
 alias bd='git branch -d'
 alias bD='git branch -D'
+alias current-branch='git rev-parse --abbrev-ref HEAD'
+alias tracking='git rev-parse --abbrev-ref --symbolic-full-name @{u}'
+alias remote-for-current-branch='current_branch=$(git rev-parse --abbrev-ref HEAD) && config branch.${current_branch}.remote'
 
 ## Delete local branches merged into master
 # http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged#answer-6127884
