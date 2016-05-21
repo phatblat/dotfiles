@@ -12,7 +12,7 @@
 this_host=$(hostname)
 
 # Only run this on iMac
-if [[ $this_host != "imac.local" ]]; then
+if [[ $this_host != "imac.local" ]] || [[ $USER != "phatblat" ]]; then
   exit
 fi
 
