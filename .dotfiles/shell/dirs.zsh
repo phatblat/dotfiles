@@ -36,7 +36,7 @@ alias nimble='cd ~/dev/ios/pods/Nimble'
 alias ebw='cd ~/dev/ios/EBW'
 alias fk='cd ~/dev/ios/pods/FitnessKit'
 alias itwire='cd ~/dev/bluemix/ITWire'
-alias flagship='cd ~/dev/ios/flagship/KPFlagship'
+alias flagship='cd ~/dev/ios/flagship'
 
 # reflog, markdown
 alias rl='cd ~/dev/www/reflog/www'
