@@ -20,11 +20,14 @@ bashman () { man bash | less -p "^       $1 "; }
 alias bashman=bashman
 
 # Shell Helpers
-alias h="history"
+alias h='history'
+alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | pbcopy"
+
+# External Tools
 eval $(thefuck --alias)
 eval "$(direnv hook zsh)"
 
-
+# bak
 # Renames the first argument, either appending ".bak" or stripping that extension
 # if already present.
 # - $1 - The file or folder to rename
