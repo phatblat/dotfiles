@@ -21,7 +21,7 @@ alias bashman=bashman
 
 # Shell Helpers
 alias h='history'
-alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | pbcopy"
+alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | tr -d '\n' | pbcopy"
 
 # External Tools
 eval $(thefuck --alias)
