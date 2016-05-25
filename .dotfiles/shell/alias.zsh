@@ -22,7 +22,7 @@ alias bashman=bashman
 # Shell Helpers
 alias h='history'
 alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | xargs echo -n | pbcopy"
-alias pcopy="pwd | xargs echo -n  | pbcopy"
+alias pcopy="pwd | xargs echo -n | pbcopy"
 
 # External Tools
 eval $(thefuck --alias)
