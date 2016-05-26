@@ -235,4 +235,4 @@ function rewrite {
   git filter-branch -f --env-filter "${filter_command}"
 }
 
-alias bundle-pull="ruby $HOME/.dotfiles/git/bundle-pull.rb"
+alias bundle-pull="bundle exec ${HOME}/.dotfiles/git/bundle-pull.rb"
