@@ -155,6 +155,9 @@ alias stdrop='git stash drop'
 # Patch
 alias format-patch='git format-patch'
 
+# LFS
+alias lfs='git lfs'
+
 # Experimental
 
 ## Delete tag on local and remote
