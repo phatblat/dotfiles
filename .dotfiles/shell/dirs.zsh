@@ -37,6 +37,7 @@ alias ebw='cd ~/dev/ios/EBW'
 alias fk='cd ~/dev/ios/pods/FitnessKit'
 alias itwire='cd ~/dev/bluemix/ITWire'
 alias flagship='cd ~/dev/ios/flagship'
+alias realm='cd ~/dev/realm'
 
 # reflog, markdown
 alias rl='cd ~/dev/www/reflog/www'
