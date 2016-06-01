@@ -79,7 +79,6 @@ brew install sloccount
 brew install sourcekitten
 brew install speedtest_cli
 brew install kylef/formulae/swiftenv
-brew install sublime-text
 brew install swiftgen
 brew install swiftlint
 brew install terminal-notifier
@@ -106,7 +105,7 @@ brew cask install kaleidoscope
 brew cask install macdown
 brew cask install quickradar
 brew cask install simpholders
-#brew cask install sublime-text # v2.0.2 last checked 2015-07-21
+brew cask install sublime-text # v2.0.2 last checked 2015-07-21
 brew cask install textexpander
 brew cask install things
 brew cask install tower
