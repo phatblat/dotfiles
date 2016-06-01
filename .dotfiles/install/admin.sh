@@ -79,6 +79,7 @@ brew install sloccount
 brew install sourcekitten
 brew install speedtest_cli
 brew install kylef/formulae/swiftenv
+brew install sublime-text
 brew install swiftgen
 brew install swiftlint
 brew install terminal-notifier
