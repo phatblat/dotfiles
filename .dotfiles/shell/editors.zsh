@@ -6,7 +6,7 @@
 #-------------------------------------------------------------------------------
 
 # edit
-export VISUAL='/usr/local/bin/atom'
+export VISUAL=`which subl` # `which atom`
 alias edit="${VISUAL}"
 
 # e quick edit alias - with no args, opens editor to the current dir
