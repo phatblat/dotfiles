@@ -16,4 +16,4 @@ if (( $? != 0 )); then
 fi
 
 # Setup prompt, must be called after antigen is configured
-# install_powerline_prompt
+install_powerline_prompt
