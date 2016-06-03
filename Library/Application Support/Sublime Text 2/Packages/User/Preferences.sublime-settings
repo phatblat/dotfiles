@@ -1,7 +1,7 @@
 {
 	"color_scheme": "Packages/Color Scheme - Default/Amy.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
-	"font_size": 12.0,
+	"font_size": 16.0,
 	"ignored_packages":
 	[
 		"Vintage"
