@@ -9,13 +9,13 @@ protocol FontConvertible {
 
 extension FontConvertible where Self: RawRepresentable, Self.RawValue == String {
   func font(size: CGFloat) -> UIFont! {
-    return UIFont(family: self, size: size)
+    return UIFont(font: self, size: size)
   }
 }
 
 extension UIFont {
-  convenience init!<FontType: FontConvertible where FontType: RawRepresentable, FontType.RawValue == String>(family: FontType, size: CGFloat) {
-    self.init(family: font.rawValue, size: size)
+  convenience init!<FontType: FontConvertible where FontType: RawRepresentable, FontType.RawValue == String>(font: FontType, size: CGFloat) {
+    self.init(name: font.rawValue, size: size)
   }
 }
 
