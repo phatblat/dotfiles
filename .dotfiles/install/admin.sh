@@ -100,7 +100,8 @@ brew cask install google-chrome
 brew cask install hipchat
 brew cask install ios-console
 brew cask install istat-menus
-brew cask install iterm2
+# brew cask install iterm2 # Disabled until v3 is released
+brew cask install caskroom/versions/iterm2-beta
 brew cask install kaleidoscope
 brew cask install macdown
 brew cask install quickradar
