@@ -6,5 +6,6 @@
 	[
 		"Vintage"
 	],
-	"log_commands": true
+	"log_commands": true,
+    "highlight_line": true
 }
