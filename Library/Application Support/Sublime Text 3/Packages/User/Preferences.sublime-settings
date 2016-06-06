@@ -7,5 +7,7 @@
 		"Vintage"
 	],
 	"log_commands": true,
-    "highlight_line": true
+    "highlight_line": true,
+    // Valid values are "smooth", "phase", "blink" and "solid".
+    "caret_style": "blink"
 }
