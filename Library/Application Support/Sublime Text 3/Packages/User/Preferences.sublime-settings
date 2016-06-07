@@ -1,23 +1,17 @@
 {
-	"color_scheme": "Packages/User/Amy.tmTheme",
+	"caret_extra_bottom": 1,
+	"caret_extra_top": 1,
+	"caret_extra_width": 1,
+	"caret_style": "blink",
+	"color_scheme": "Packages/User/SublimeLinter/Amy (SL).tmTheme",
 	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": true,
 	"font_size": 14,
+	"highlight_line": true,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
 	"log_commands": true,
-
-	"highlight_line": true,
-	// Valid values are "smooth", "phase", "blink" and "solid".
-	"caret_style": "blink",
-	"caret_extra_top": 1,
-	"caret_extra_bottom": 1,
-	"caret_extra_width": 1,
-
-	// Set to true to removing trailing white space on save
-	"trim_trailing_white_space_on_save": true,
-
-	// Set to true to ensure the last line of the file ends in a newline character when saving
-	"ensure_newline_at_eof_on_save": true,
+	"trim_trailing_white_space_on_save": true
 }
