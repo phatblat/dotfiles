@@ -9,6 +9,9 @@ echo
 echo ">>> install-onetime"
 echo
 
+# Load aliases
+source ~/.dotfiles/install/alias.zsh
+
 
 #-------------------------------------------------------------------------------
 # Directories
