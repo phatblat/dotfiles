@@ -29,13 +29,6 @@ brew tap caskroom/cask
 
 #-------------------------------------------------------------------------------
 
-# Xcode
-xcode-select -p
-xcode-select --install
-if [[ $? -eq 0 ]]; then
-  open https://developer.apple.com/downloads/
-fi
-
 # Homebrew update
 brew update && brew upgrade
 

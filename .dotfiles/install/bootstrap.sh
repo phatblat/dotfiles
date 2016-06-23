@@ -20,6 +20,13 @@ if [[ -d ${HOME}/.dotfiles || -d ${HOME}/.git ]]; then
   exit 1
 fi
 
+# Xcode requred to use bundled git
+xcode-select -p
+xcode-select --install
+if [[ $? -eq 0 ]]; then
+  open https://developer.apple.com/downloads/
+fi
+
 # Clone repo to $HOME/tmp
 if [[ ! -d ${HOME}/tmp ]]; then
   mkdir "${HOME}/tmp"
