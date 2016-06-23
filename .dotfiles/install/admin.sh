@@ -64,9 +64,7 @@ brew install thoughtbot/formulae/liftoff
 brew install nginx
 brew install ninja
 brew install nodejs
-brew install rbenv
 brew install rename
-brew install ruby-build
 brew install sloccount
 brew install sourcekitten
 brew install speedtest_cli
