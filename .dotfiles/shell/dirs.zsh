@@ -32,6 +32,7 @@ alias op='cd ~/dev/ios/Octopad'
 alias og='cd ~/dev/libgit2/objective-git'
 alias quick='cd ~/dev/ios/pods/Quick'
 alias nimble='cd ~/dev/ios/pods/Nimble'
+alias clv='cd ~/dev/ios/CLVisitExplorer'
 alias sg='cd ~/dev/xcode/SwiftGen'
 
 # KP Projects
