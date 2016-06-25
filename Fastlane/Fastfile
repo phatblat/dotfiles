@@ -78,6 +78,8 @@ platform :ios do
     #   https://github.com/larsxschneider/ShowInGitHub
     # Swift Refactorator
     'https://github.com/johnno1962/Refactorator/archive/2.1.0.zip',
+    # SwiftLint
+    #   https://github.com/ypresto/SwiftLintXcode
     # SYXcodeIconVersion
     #   https://github.com/dvkch/SYXcodeIconVersion
     # VVDocumenter-Xcode - Generate documentation stubs
