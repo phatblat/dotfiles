@@ -97,7 +97,7 @@ brew cask install macdown
 brew cask install quickradar
 brew cask install simpholders
 # brew cask install sublime-text # v2.0.2 last checked 2015-07-21
-brew cask install caskroom/versions/sublime-text3
+brew cask install sublime-text-dev
 brew cask install textexpander
 brew cask install things
 brew cask install tower
