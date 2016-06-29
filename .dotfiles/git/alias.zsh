@@ -91,6 +91,7 @@ alias pushtags='git push --tags'
 alias submodule='git submodule'
 alias subs='git ls-files --stage | grep 160000' # shows special submodule entries in index
 alias sur='git submodule update --recursive'
+alias suri='git submodule update --recursive --init'
 
 # Checkout
 alias c='git checkout'
