@@ -71,7 +71,8 @@ alias ungate='xattr -d com.apple.quarantine '
 defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
 # Invoke Duti to configure default apps
-/usr/local/bin/duti ~/.duti
+# FIXME: duti doesn't build on 10.12
+# /usr/local/bin/duti ~/.duti
 
 #
 # Xcode
