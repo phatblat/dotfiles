@@ -123,7 +123,7 @@ GEM
       mini_magick (~> 4.5.1)
     fuzzy_match (2.0.4)
     gh_inspector (1.0.2)
-    google-api-client (0.9.9)
+    google-api-client (0.9.11)
       addressable (~> 2.3)
       googleauth (~> 0.5)
       httpclient (~> 2.7)
