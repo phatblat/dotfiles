@@ -39,3 +39,7 @@ bindkey -v
 # https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshFishCompletion.md#zsh
 autoload -U compinit
 compinit -u
+
+# Allow [ or ] whereever you want
+# https://robots.thoughtbot.com/how-to-use-arguments-in-a-rake-task
+unsetopt nomatch
