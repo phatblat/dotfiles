@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'cocoapods'
-gem 'fastlane'
+# gem 'fastlane'
 gem 'xcode-install'
 
 # For bundle-pull command
