@@ -121,8 +121,9 @@ brew cask install webpquicklook
 sudo gem install bundler --bindir /usr/local/bin
 
 # NPM packages
-npm install -g n
-npm install -g ralio
+npm install --global fast-cli
+npm install --global n
+npm install --global ralio
 
 # Atom packages
 apm install dash
