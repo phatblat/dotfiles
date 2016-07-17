@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 #
-# osx/alias.zsh
-# OS X specific command-line aliases
+# macos/alias.zsh
+# macOS specific command-line aliases
 #
 #-------------------------------------------------------------------------------
 
