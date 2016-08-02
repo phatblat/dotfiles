@@ -12,7 +12,9 @@ function bconfig {
   bundle config --local bin bin
   bundle config --local jobs 8
 }
+
 alias bi='bundle install'
+alias bo='bundle outdated'
 alias bu='bundle update'
 alias be='bundle exec'
 alias bv='bundle --version'
