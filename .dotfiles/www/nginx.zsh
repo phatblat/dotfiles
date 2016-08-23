@@ -13,7 +13,12 @@ alias xreload='sudo nginx -s reload'
 alias xstop='sudo nginx -s stop'
 alias xstatus='ps aux | grep nginx'
 alias xps='xstatus'
+
 alias xtraffic='goaccess -f /usr/local/var/log/nginx/access.log'
+alias xaccess='less /usr/local/var/log/nginx/access.log'
+alias xerror='less /usr/local/var/log/nginx/error.log'
+alias faccess='tail -f /usr/local/var/log/nginx/access.log'
+alias ferror='tail -f /usr/local/var/log/nginx/error.log'
 
 function firewall_allow_nginx {
   nginx_path=`brew list nginx | head -n 1`
