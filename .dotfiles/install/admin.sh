@@ -54,6 +54,7 @@ brew install coreutils
 brew install direnv
 brew install duti
 brew install git-lfs
+brew install gnupg
 brew install findutils
 brew install frankenstein
 brew install heroku-toolbelt
