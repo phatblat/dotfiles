@@ -14,7 +14,9 @@ alias xstop='sudo nginx -s stop'
 alias xstatus='ps aux | grep nginx'
 alias xps='xstatus'
 
-alias xtraffic='goaccess -f /usr/local/var/log/nginx/access.log'
+# Log review
+alias xtraffic='goaccess --time-format=%T --date-format=%d/%b/%Y --log-format='%h %^[%d:%t %^] \"%r\" %s %b \"%R\" \"%u\"' -f /usr/local/var/log/nginx/access.log'
+
 alias xaccess='less /usr/local/var/log/nginx/access.log'
 alias xerror='less /usr/local/var/log/nginx/error.log'
 alias faccess='tail -f /usr/local/var/log/nginx/access.log'
