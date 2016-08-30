@@ -6,7 +6,7 @@
 #
 #-------------------------------------------------------------------------------
 
-source "$(brew --prefix)/share/antigen.zsh"
+source "$(brew --prefix)/share/antigen/antigen.zsh"
 antigen use oh-my-zsh
 # Override the oh-my-zsh 'd' alias
 unalias d && alias d='git diff'
