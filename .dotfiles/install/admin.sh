@@ -72,6 +72,7 @@ brew install speedtest_cli
 brew install kylef/formulae/swiftenv
 brew install swiftgen
 brew install swiftlint
+brew install tailor
 brew install terminal-notifier
 brew install thefuck
 brew install trash
