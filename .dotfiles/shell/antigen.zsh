@@ -6,6 +6,14 @@
 #
 #-------------------------------------------------------------------------------
 
+# Set cache and log to user-writable path
+ANTIGEN_BASE_PATH=${HOME}/tmp/antigen
+mkdir -p ${ANTIGEN_BASE_PATH}
+export _ANTIGEN_CACHE_PATH=${ANTIGEN_BASE_PATH}/.cache
+mkdir -p ${_ANTIGEN_CACHE_PATH}
+export _ANTIGEN_LOG_PATH=${ANTIGEN_BASE_PATH}/antigen.log
+
+# Start up Antigen
 source "$(brew --prefix)/share/antigen/antigen.zsh"
 antigen use oh-my-zsh
 # Override the oh-my-zsh 'd' alias
