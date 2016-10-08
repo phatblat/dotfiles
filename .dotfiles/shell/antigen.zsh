@@ -13,6 +13,11 @@ export _ANTIGEN_CACHE_PATH=${ANTIGEN_BASE_PATH}/.cache
 mkdir -p ${_ANTIGEN_CACHE_PATH}
 export _ANTIGEN_LOG_PATH=${ANTIGEN_BASE_PATH}/antigen.log
 
+# Create highlighters dir to fix error:
+# zsh-syntax-highlighting: highlighters directory '/Users/phatblat/tmp/antigen/.cache/highlighters' not found.
+# zsh-syntax-highlighting: failed loading highlighters, exiting.o
+mkdir -p ${_ANTIGEN_CACHE_PATH}/highlighters
+
 # Start up Antigen
 source "$(brew --prefix)/share/antigen/antigen.zsh"
 antigen use oh-my-zsh
