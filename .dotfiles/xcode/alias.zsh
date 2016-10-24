@@ -17,6 +17,7 @@ alias version_market='agvtool what-marketing-version -terse1'
 alias register_device="~/.dotfiles/xcode/register_device.rb"
 alias devices='instruments -s devices'
 alias developer_mode='DevToolsSecurity -status && sudo DevToolsSecurity -enable'
+alias adev='open https://developer.apple.com/news/'
 
 function version_current {
   local build_version market_version
