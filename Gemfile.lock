@@ -271,6 +271,7 @@ GEM
       rouge (~> 1.8)
     xcpretty-travis-formatter (0.0.4)
       xcpretty (~> 0.2, >= 0.0.7)
+    zerg_xcode (0.5.0)
 
 PLATFORMS
   ruby
@@ -282,6 +283,7 @@ DEPENDENCIES
   net-scp
   net-ssh
   xcode-install
+  zerg_xcode
 
 BUNDLED WITH
    1.13.6
