@@ -119,6 +119,13 @@ brew cask install quicklook-csv
 brew cask install quicklook-json
 brew cask install webpquicklook
 
+# RubyGems update with workaround to no access to /usr/bin
+#   Updating rubygems-update
+#   ERROR:  While executing gem ... (Errno::EPERM)
+#       Operation not permitted - /usr/bin/update_rubygems
+# http://stackoverflow.com/questions/33015875/operation-not-permitted-usr-bin-update-rubygems/34098613#answer-39928447
+sudo gem update --bindir /usr/local/bin --system
+
 # Ruby - Install bundler at system level, all other gems in user dirs
 # El Capitan workaround to not being able to install Bundler to /usr/bin
 sudo gem install bundler --bindir /usr/local/bin
