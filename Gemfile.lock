@@ -184,7 +184,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_magick (4.5.1)
     minitest (5.9.1)
-    molinillo (0.5.1)
+    molinillo (0.5.2)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -277,11 +277,11 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport (~> 4)
-  cocoapods (~> 1.1.0.rc)
-  fastlane (~> 1)
+  cocoapods
+  fastlane
   net-scp
   net-ssh
   xcode-install
 
 BUNDLED WITH
-   1.13.5
+   1.13.6
