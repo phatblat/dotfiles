@@ -1,11 +1,14 @@
 {
 	"extensions":
 	[
+		"rb",
 		"podspec",
 		"Podfile",
 		"Fastfile",
 		"Appfile",
 		"Deliverfile",
 		"Snapfile"
-	]
+	],
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true
 }
