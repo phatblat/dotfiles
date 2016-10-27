@@ -208,6 +208,7 @@ GEM
     produce (1.2.1)
       fastlane_core (>= 0.52.1, < 1.0.0)
       spaceship (>= 0.34.2, < 1.0.0)
+    rake (11.3.0)
     representable (2.3.0)
       uber (~> 0.0.7)
     retriable (2.1.0)
@@ -282,6 +283,7 @@ DEPENDENCIES
   fastlane
   net-scp
   net-ssh
+  rake
   xcode-install
   zerg_xcode
 
