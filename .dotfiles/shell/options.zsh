@@ -11,6 +11,9 @@ export LC_CTYPE="en_US.UTF-8"
 export VISUAL='/usr/bin/vim'
 export EDITOR='vi -e'
 
+# Allow [ or ] whereever you want
+unsetopt nomatch
+
 ### Below here from the oh-my-zsh .zshrc
 
 # Uncomment the following line to use case-sensitive completion.
