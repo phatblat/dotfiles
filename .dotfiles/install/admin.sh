@@ -56,6 +56,7 @@ brew install direnv
 brew install duti
 brew install git-lfs
 brew install gnupg
+brew install gradle
 brew install findutils
 brew install frankenstein
 brew install heroku-toolbelt
