@@ -6,4 +6,4 @@
 #
 #-------------------------------------------------------------------------------
 
-export JAVA_OPTS="-Xms256m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=256m"
+export JAVA_OPTS="-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
