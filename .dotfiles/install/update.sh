@@ -18,7 +18,11 @@ fi
 xcode-select -p
 
 # Homebrew
-brew update && brew upgrade
+brew update
+brew upgrade
+brew doctor
+brew prune
+brew missing
 
 # RubyGems update with workaround to no access to /usr/bin
 #   Updating rubygems-update
