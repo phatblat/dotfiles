@@ -14,17 +14,36 @@ if [ ! user_is_admin ]; then
   exit 1
 fi
 
+#-------------------------------------------------------------------------------
+
 # Xcode
 xcode-select -p
 
+
+#-------------------------------------------------------------------------------
+#
 # Homebrew
+#
+
+# Remove any unused tools or apps
+"${HOME}/.dotfiles/install/uninstall-homebrew.sh"
+"${HOME}/.dotfiles/install/uninstall-brewcask.sh"
+
 brew update
 brew upgrade
 brew doctor
 brew prune
 brew missing
 
-# RubyGems update with workaround to no access to /usr/bin
+# Install any new tools or apps
+"${HOME}/.dotfiles/install/install-homebrew.sh"
+"${HOME}/.dotfiles/install/install-brewcask.sh"
+
+
+#-------------------------------------------------------------------------------
+# RubyGems
+
+# Workaround to no access to /usr/bin on Sierra
 #   Updating rubygems-update
 #   ERROR:  While executing gem ... (Errno::EPERM)
 #       Operation not permitted - /usr/bin/update_rubygems
@@ -36,12 +55,8 @@ sudo gem update --bindir /usr/local/bin
 bundle outdated
 bundle update
 
-# Install any new tools or apps
-"${HOME}/.dotfiles/install/install-homebrew.sh"
-"${HOME}/.dotfiles/install/uninstall-homebrew.sh"
-"${HOME}/.dotfiles/install/install-brewcask.sh"
-"${HOME}/.dotfiles/install/uninstall-brewcask.sh"
-
+#-------------------------------------------------------------------------------
 # System Updates
+
 softwareupdate --list
 softwareupdate --install --all
