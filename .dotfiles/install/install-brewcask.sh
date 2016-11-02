@@ -12,7 +12,7 @@ echo
 formulae=(
     atom
     charles
-    cocoapods
+    cocoapods-app
     dayone-cli
     fauxpas
     geekbench
