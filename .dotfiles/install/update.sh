@@ -20,10 +20,18 @@ xcode-select -p
 # Homebrew
 brew update && brew upgrade
 
-# Ruby gems
+# RubyGems update with workaround to no access to /usr/bin
+#   Updating rubygems-update
+#   ERROR:  While executing gem ... (Errno::EPERM)
+#       Operation not permitted - /usr/bin/update_rubygems
+# http://stackoverflow.com/questions/33015875/operation-not-permitted-usr-bin-update-rubygems/34098613#answer-39928447
 sudo gem update --bindir /usr/local/bin --system
 sudo gem update --bindir /usr/local/bin
 
 # System Updates
 softwareupdate --list
 softwareupdate --install --all
+
+# Install any new tools or apps
+"${HOME}/install-homebrew.sh"
+"${HOME}/install-brewcask.sh"

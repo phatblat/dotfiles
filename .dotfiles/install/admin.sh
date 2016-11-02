@@ -24,17 +24,8 @@ sudo chown -R ${USER}:staff /usr/local
 echo "Installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-"${HOME}/install-homebrew.sh"
-"${HOME}/install-brewcask.sh"
 
 #-------------------------------------------------------------------------------
-
-# RubyGems update with workaround to no access to /usr/bin
-#   Updating rubygems-update
-#   ERROR:  While executing gem ... (Errno::EPERM)
-#       Operation not permitted - /usr/bin/update_rubygems
-# http://stackoverflow.com/questions/33015875/operation-not-permitted-usr-bin-update-rubygems/34098613#answer-39928447
-sudo gem update --bindir /usr/local/bin --system
 
 # Ruby - Install bundler at system level, all other gems in user dirs
 # El Capitan workaround to not being able to install Bundler to /usr/bin
@@ -58,7 +49,6 @@ pushd ~/tmp > /dev/null
 
 # Powerline
 echo "Setting up Powerline"
-brew install python # Required for powerline
 pip install --upgrade pip
 pip install powerline-status
 pip install Pygments
