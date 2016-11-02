@@ -12,6 +12,7 @@ echo
 formulae=(
     atom
     charles
+    cocoapods
     dayone-cli
     geekbench
     github-desktop
@@ -32,7 +33,6 @@ formulae=(
 
     # QuickLook plugins
     betterzipql
-    cocoapods
     provisioning
     qlcolorcode
     qlimagesize
