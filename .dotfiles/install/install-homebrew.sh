@@ -42,6 +42,7 @@ formulae=(
     nginx
     ninja
     nodejs
+    packer
     python
     rename
     sloccount
