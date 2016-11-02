@@ -33,8 +33,8 @@ bundle outdated
 bundle update
 
 # Install any new tools or apps
-"${HOME}/install-homebrew.sh"
-"${HOME}/install-brewcask.sh"
+"${HOME}/.dotfiles/install/install-homebrew.sh"
+"${HOME}/.dotfiles/install/install-brewcask.sh"
 
 # System Updates
 softwareupdate --list
