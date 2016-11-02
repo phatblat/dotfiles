@@ -42,6 +42,7 @@ formulae=(
     nginx
     ninja
     nodejs
+    python
     rename
     sloccount
     sourcekitten
