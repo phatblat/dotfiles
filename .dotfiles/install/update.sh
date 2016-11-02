@@ -38,7 +38,9 @@ bundle update
 
 # Install any new tools or apps
 "${HOME}/.dotfiles/install/install-homebrew.sh"
+"${HOME}/.dotfiles/install/uninstall-homebrew.sh"
 "${HOME}/.dotfiles/install/install-brewcask.sh"
+"${HOME}/.dotfiles/install/uninstall-brewcask.sh"
 
 # System Updates
 softwareupdate --list
