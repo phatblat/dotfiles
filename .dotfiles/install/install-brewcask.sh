@@ -25,6 +25,7 @@ formulae=(
     iterm2
     kaleidoscope
     macdown
+    oclint
     omnigraffle
     omnipresence
     quickradar
