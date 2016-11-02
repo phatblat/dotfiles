@@ -14,6 +14,7 @@ formulae=(
     charles
     cocoapods
     dayone-cli
+    fauxpas
     geekbench
     github-desktop
     google-chrome
