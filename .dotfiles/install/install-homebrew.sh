@@ -45,6 +45,7 @@ formulae=(
     packer
     python
     rename
+    ruby
     sloccount
     sourcekitten
     speedtest_cli
