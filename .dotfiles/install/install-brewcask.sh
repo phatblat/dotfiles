@@ -24,6 +24,8 @@ formulae=(
     iterm2
     kaleidoscope
     macdown
+    omnigraffle
+    omnipresence
     quickradar
     simpholders
     sublime-text
