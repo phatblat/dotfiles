@@ -24,46 +24,10 @@ sudo chown -R ${USER}:staff /usr/local
 echo "Installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-./install-homebrew.sh
+"${HOME}/install-homebrew.sh"
+"${HOME}/install-brewcask.sh"
 
 #-------------------------------------------------------------------------------
-
-# Homebrew Cask
-brew cask install atom
-brew cask install charles
-brew cask install dayone-cli
-brew cask install fabric
-brew cask install geekbench
-brew cask install github-desktop
-brew cask install google-chrome
-brew cask install hipchat
-brew cask install ios-console
-brew cask install istat-menus
-# brew cask install iterm2 # Disabled until v3 is released
-brew cask install caskroom/versions/iterm2-beta
-brew cask install kaleidoscope
-brew cask install macdown
-brew cask install quickradar
-brew cask install simpholders
-# brew cask install sublime-text # v2.0.2 last checked 2015-07-21
-brew cask install sublime-text-dev
-brew cask install textexpander
-brew cask install things
-brew cask install tower
-
-# QuickLook plugins
-brew cask install betterzipql
-brew cask install cert-quicklook
-brew cask install cocoapods
-brew cask install provisioning
-brew cask install qlcolorcode
-brew cask install qlimagesize
-brew cask install qlmarkdown
-brew cask install qlprettypatch
-brew cask install qlstephen   # preview files without an extension as text
-brew cask install quicklook-csv
-brew cask install quicklook-json
-brew cask install webpquicklook
 
 # RubyGems update with workaround to no access to /usr/bin
 #   Updating rubygems-update

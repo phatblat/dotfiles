@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 #
 # install/install-homebrew.sh
-# Repeatable script which installs tools through Homebrew
+# Repeatable script which installs command-line tools through Homebrew (http://brew.sh)
 #
 #-------------------------------------------------------------------------------
 
