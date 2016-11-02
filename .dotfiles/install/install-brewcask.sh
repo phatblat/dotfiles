@@ -17,6 +17,7 @@ formulae=(
     github-desktop
     google-chrome
     hipchat
+    intellij-idea
     ios-console
     istat-menus
     iterm2
