@@ -30,6 +30,7 @@ formulae=(
     textexpander
     things
     tower
+    virtualbox
 
     # QuickLook plugins
     betterzipql
