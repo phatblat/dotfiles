@@ -28,6 +28,10 @@ brew update && brew upgrade
 sudo gem update --bindir /usr/local/bin --system
 sudo gem update --bindir /usr/local/bin
 
+# Bundler
+bundle outdated
+bundle update
+
 # Install any new tools or apps
 "${HOME}/install-homebrew.sh"
 "${HOME}/install-brewcask.sh"
