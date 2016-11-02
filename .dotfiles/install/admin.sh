@@ -31,6 +31,9 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # El Capitan workaround to not being able to install Bundler to /usr/bin
 sudo gem install bundler --bindir /usr/local/bin
 
+# Install gems configured at user level
+bundle install
+
 # NPM packages
 npm install --global fast-cli
 npm install --global n
