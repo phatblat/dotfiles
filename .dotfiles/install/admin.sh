@@ -24,67 +24,11 @@ sudo chown -R ${USER}:staff /usr/local
 echo "Installing Homebrew"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install Homebrew cask
-brew tap caskroom/cask
+./install-homebrew.sh
 
 #-------------------------------------------------------------------------------
 
-# Homebrew update
-brew update && brew upgrade
-
-# Git (PS1 is super slow with Apple's git)
-brew install git
-
-# Very important
-brew install zsh
-
-# Homebrew formulae
-brew install antigen
-brew install burl
-brew install carthage
-
-# Carthage Zsh Completion
-# https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshCompletion.md#zsh
-ln -Fs /usr/local/Cellar/carthage/0.15/Frameworks/CarthageKit.framework/Versions/A/Scripts/carthage-zsh-completion \
-  /usr/local/share/zsh/site-functions/_carthage
-
-brew install bash
-brew install --HEAD kylef/formulae/conche
-brew install cloc
-brew install coreutils
-brew install direnv
-brew install duti
-brew install findutils
-brew install frankenstein
-brew install git-lfs
-brew install gnupg
-brew install goaccess
-brew install gradle
-brew install groovy
-brew install heroku-toolbelt
-brew install hub
-brew install jq
-brew install thoughtbot/formulae/liftoff
-brew install nginx
-brew install ninja
-brew install nodejs
-brew install rename
-brew install sloccount
-brew install sourcekitten
-brew install speedtest_cli
-brew install kylef/formulae/swiftenv
-brew install swiftgen
-brew install swiftlint
-brew install tailor
-brew install terminal-notifier
-brew install thefuck
-brew install trash
-brew install travis
-brew install tree
-brew install xctool
-
 # Homebrew Cask
-brew install caskroom/cask/brew-cask
 brew cask install atom
 brew cask install charles
 brew cask install dayone-cli
