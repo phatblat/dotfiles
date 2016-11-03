@@ -15,4 +15,4 @@ formulae=(
   hub
 )
 
-brew uninstall ${formulae[*]}
+brew uninstall --force ${formulae[*]}
