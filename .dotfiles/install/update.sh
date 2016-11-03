@@ -26,8 +26,8 @@ xcode-select -p
 #
 
 # Remove any unused tools or apps
-"${HOME}/.dotfiles/install/uninstall-homebrew.sh"
-"${HOME}/.dotfiles/install/uninstall-brewcask.sh"
+"${HOME}/.dotfiles/install/uninstall-brew-formulae.sh"
+"${HOME}/.dotfiles/install/uninstall-cask-formulae.sh"
 
 brew update
 brew upgrade
@@ -36,8 +36,8 @@ brew prune
 brew missing
 
 # Install any new tools or apps
-"${HOME}/.dotfiles/install/install-homebrew.sh"
-"${HOME}/.dotfiles/install/install-brewcask.sh"
+"${HOME}/.dotfiles/install/install-brew-formulae.sh"
+"${HOME}/.dotfiles/install/install-cask-formulae.sh"
 
 
 #-------------------------------------------------------------------------------

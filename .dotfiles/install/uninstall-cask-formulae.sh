@@ -1,12 +1,12 @@
 #-------------------------------------------------------------------------------
 #
-# install/uninstall-brewcask.sh
+# install/uninstall-cask-formulae.sh
 # Repeatable script which removes macOS apps no longer desired.
 #
 #-------------------------------------------------------------------------------
 
 echo
-echo ">>> uninstall-brewcask"
+echo ">>> uninstall-cask-formulae"
 echo
 
 formulae=(

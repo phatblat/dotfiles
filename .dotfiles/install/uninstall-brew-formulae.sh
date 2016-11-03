@@ -1,12 +1,12 @@
 #-------------------------------------------------------------------------------
 #
-# install/uninstall-homebrew.sh
+# install/uninstall-brew-formulae.sh
 # Repeatable script which removes command-line tools no longer desired
 #
 #-------------------------------------------------------------------------------
 
 echo
-echo ">>> uninstall-homebrew"
+echo ">>> uninstall-brew-formulae"
 echo
 
 #-------------------------------------------------------------------------------

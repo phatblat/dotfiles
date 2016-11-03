@@ -1,12 +1,12 @@
 #-------------------------------------------------------------------------------
 #
-# install/install-brewcask.sh
+# install/install-cask-formulae.sh
 # Repeatable script which installs macOS apps through Homebrew Cask (http://caskroom.io)
 #
 #-------------------------------------------------------------------------------
 
 echo
-echo ">>> install-brewcask"
+echo ">>> install-cask-formulae"
 echo
 
 formulae=(

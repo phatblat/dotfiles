@@ -1,12 +1,12 @@
 #-------------------------------------------------------------------------------
 #
-# install/install-homebrew.sh
+# install/install-brew-formulae.sh
 # Repeatable script which installs command-line tools through Homebrew (http://brew.sh)
 #
 #-------------------------------------------------------------------------------
 
 echo
-echo ">>> install-homebrew"
+echo ">>> install-brew-formulae"
 echo
 
 #-------------------------------------------------------------------------------
