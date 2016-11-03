@@ -18,7 +18,7 @@ fi
 
 # Change ownership of /usr/local
 ls -ld /usr/local
-sudo chown -R ${USER}:staff /usr/local
+# sudo chown -R ${USER}:staff /usr/local
 
 # Install Homebrew
 echo "Installing Homebrew"
