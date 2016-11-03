@@ -43,6 +43,8 @@ brew missing
 #-------------------------------------------------------------------------------
 # RubyGems
 
+echo "Updating RubyGems"
+
 # Workaround to no access to /usr/bin on Sierra
 #   Updating rubygems-update
 #   ERROR:  While executing gem ... (Errno::EPERM)
@@ -57,6 +59,8 @@ bundle update
 
 #-------------------------------------------------------------------------------
 # System Updates
+
+echo "Updating macOS system software"
 
 softwareupdate --list
 softwareupdate --install --all
