@@ -13,5 +13,6 @@
 		"Vintage"
 	],
 	"log_commands": true,
+    "word_wrap": false,
 	"trim_trailing_white_space_on_save": true
 }
