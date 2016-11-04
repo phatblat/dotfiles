@@ -6,7 +6,8 @@
 #-------------------------------------------------------------------------------
 
 # edit
-export VISUAL=`which subl` # `which atom`
+export EDITOR='vi -e'
+export VISUAL='subl' #'/usr/bin/vim'
 alias edit="${VISUAL}"
 
 # e quick edit alias - with no args, opens editor to the current dir
@@ -27,9 +28,6 @@ function o {
     open -t "$*"
   fi
 }
-
-# Sublime symlink installation
-alias subl_link='ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl'
 
 
 #-------------------------------------------------------------------------------
