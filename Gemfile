@@ -4,8 +4,9 @@ gem 'activesupport', '~> 4'
 gem 'cocoapods'
 gem 'fastlane'
 gem 'rake'
-gem 'zerg_xcode'
+gem 'sqlite3'
 gem 'xcode-install'
+gem 'zerg_xcode'
 
 # For bundle-pull command
 gem 'net-scp'
