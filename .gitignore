@@ -11,6 +11,8 @@ xcuserdata
 Carthage/
 Pods/
 
-# Directories containing sensitive info
-.raliorc
-private
+# Directories and files containing sensitive info
+.envrc
+.raliorc/
+private/
+
