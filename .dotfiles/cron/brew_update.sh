@@ -6,7 +6,7 @@
 #-------------------------------------------------------------------------------
 
 # Prime the environment first
-. $HOME/.dotfiles/cron/cron.env
+. ${HOME}/.dotfiles/cron/cron.env
 
 # This can only be run by an admin user
 if [ ! user_is_admin ]; then
@@ -14,7 +14,7 @@ if [ ! user_is_admin ]; then
 fi
 
 brew_path=`which brew`
-$brew_path update > /dev/null && $brew_path upgrade --all > /dev/null
+${brew_path} update > /dev/null && ${brew_path} upgrade > /dev/null
 
 # firewall_allow_nginx
 nginx_path=`brew list nginx | head -n 1`
