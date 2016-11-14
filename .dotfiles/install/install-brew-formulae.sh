@@ -57,6 +57,7 @@ formulae=(
     thefuck
     trash
     tree
+    wget
     xctool
 )
 
