@@ -7,6 +7,7 @@
 
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'
+alias xcodes='ls -ld /Applications/Xcode*'
 alias xv='xcodebuild -version'
 alias xcsp='xcode-select --print-path'
 alias xcss='sudo xcode-select --switch'
