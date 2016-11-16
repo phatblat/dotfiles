@@ -27,6 +27,7 @@ formulae=(
     carthage
     cloc
     coreutils
+    curl
     direnv
     duti
     findutils
