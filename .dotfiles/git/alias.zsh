@@ -67,7 +67,6 @@ alias af='git add --force'
 alias cmt='git commit -m'
 alias commit='git commit --verbose'
 alias amend='git commit --verbose --amend'
-# alias n='git commit --verbose --amend'
 alias tag='git tag'
 
 # Remotes
