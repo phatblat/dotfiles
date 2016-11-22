@@ -32,7 +32,7 @@ alias mergetool='git mergetool'
 alias mt='git mergetool'
 alias tracked='git ls-tree -r --name-only HEAD'
 alias ls-tree='git ls-tree'
-alias untracked='git ls-files --others'
+alias untracked='git ls-files --others --exclude-standard'
 alias ls-files='git ls-files'
 
 ## Log
