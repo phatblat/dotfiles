@@ -6,7 +6,7 @@
 #-------------------------------------------------------------------------------
 
 # edit
-export EDITOR='vi -e'
+export EDITOR='vi'
 export VISUAL='subl' #'/usr/bin/vim'
 alias edit="${VISUAL}"
 
