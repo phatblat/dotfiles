@@ -40,6 +40,7 @@ formulae=(
     hub
     jq
     thoughtbot/formulae/liftoff
+    maven
     nginx
     ninja
     nodejs
