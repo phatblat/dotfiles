@@ -59,6 +59,7 @@ formulae=(
     thefuck
     trash
     tree
+    vapor/tap/toolbox
     wget
     xctool
 )
