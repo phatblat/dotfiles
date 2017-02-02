@@ -45,6 +45,7 @@ formulae=(
     ninja
     nodejs
     packer
+    postgres
     python
     rename
     ruby
