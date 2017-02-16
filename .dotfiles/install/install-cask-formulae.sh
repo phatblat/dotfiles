@@ -46,6 +46,7 @@ formulae=(
     qlstephen   # preview files without an extension as text
     quicklook-csv
     quicklook-json
+    textmate
     webpquicklook
 )
 
