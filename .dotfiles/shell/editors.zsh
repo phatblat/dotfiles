@@ -7,7 +7,7 @@
 
 # edit
 export EDITOR='vi'
-export VISUAL='subl' #'/usr/bin/vim'
+export VISUAL='mate' #subl
 alias edit="${VISUAL}"
 
 # e quick edit alias - with no args, opens editor to the current dir
