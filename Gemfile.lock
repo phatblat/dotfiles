@@ -140,7 +140,7 @@ GEM
     nap (1.1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (4.0.1)
+    net-ssh (4.1.0)
     netrc (0.7.8)
     os (0.9.6)
     plist (3.2.0)
