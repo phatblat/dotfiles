@@ -10,6 +10,7 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
+		"Swift for F*ing Sublime",
 		"Vintage"
 	],
 	"log_commands": true,
