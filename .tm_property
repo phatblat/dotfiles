@@ -1,0 +1,6 @@
+# .tm_property
+# https://gist.github.com/dvessel/1478685
+# https://github.com/textmate/textmate/wiki/Hidden-Settings
+
+[ Podfile ]
+fileType         = 'source.ruby'
