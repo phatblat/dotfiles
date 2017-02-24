@@ -97,6 +97,7 @@ alias bisect='git bisect'
 # Branch
 alias branch='git branch'
 alias b='git branch'
+alias bvv='git branch -vv'
 alias bra='git branch -av'
 alias bd='git branch -d'
 alias bD='git branch -D'
