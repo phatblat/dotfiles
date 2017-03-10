@@ -49,7 +49,7 @@ function finds {
 }
 
 # External Tools
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 eval "$(direnv hook zsh)"
 
 # bak
