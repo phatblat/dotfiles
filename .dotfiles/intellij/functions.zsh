@@ -15,7 +15,7 @@ function idea {
 
   # were we given a directory?
   if [ -d "$1" ]; then
-  # echo "checking for things in the working dir given"
+    # echo "checking for things in the working dir given"
     dir=`ls -1d "$1" | head -n1`
   fi
 

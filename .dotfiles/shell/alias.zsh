@@ -15,39 +15,11 @@ alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
 
-# Help
-bashman () { man bash | less -p "^       $1 "; }
-alias bashman=bashman
-
 # Shell Helpers
 alias h='history'
 alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | xargs echo -n | pbcopy"
 alias pcopy="pwd | xargs echo -n | pbcopy"
-alias title='echo -ne "\033]0;"ASV"\0007"'
 
-# Find
-# usage: finds "search string" /base/dir
-function finds {
-  if [[ -z $1 ]]; then
-    echo "Missing search term"
-    echo 'usage: finds "search string" /base/dir'
-    return 1
-  fi
-  glob="$1"
-
-  base_dir="."
-  if [[ -n "$2" ]]; then
-    base_dir="$2"
-  fi
-  if [[ ! -a "${base_dir}" ]]; then
-    echo "'${base_dir}' does not exist"
-    return 2
-  fi
-
-  echo "glob: ${glob}"
-  echo "base_dir: ${base_dir}"
-  find "${base_dir}" -name "${glob}" -print
-}
 
 # External Tools
 # eval $(thefuck --alias)
