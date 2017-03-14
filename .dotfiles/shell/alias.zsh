@@ -23,6 +23,7 @@ alias bashman=bashman
 alias h='history'
 alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | xargs echo -n | pbcopy"
 alias pcopy="pwd | xargs echo -n | pbcopy"
+alias title='echo -ne "\033]0;"ASV"\0007"'
 
 # Find
 # usage: finds "search string" /base/dir
