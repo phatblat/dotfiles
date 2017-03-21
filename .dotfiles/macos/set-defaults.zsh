@@ -6,7 +6,15 @@
 #   https://raw.github.com/holman/dotfiles/master/osx/set-defaults.sh
 #   https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 #
+# '-g' and '-globalDomain' may be used as synonyms for NSGlobalDomain.
+#
 #-------------------------------------------------------------------------------
+
+#
+# Keyboard
+#
+defaults write -g InitialKeyRepeat -int 1 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 
 #
 # Finder
