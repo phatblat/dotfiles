@@ -8,4 +8,5 @@
 
 . $HOME/.dotfiles/cron/cron.env
 
+bundle install --quiet
 bundle exec pod repo update master --silent
