@@ -89,31 +89,39 @@ OPENSSL_VERSION="1.0.2k"
 OPENSSL_PATH="/usr/local/Cellar/openssl/${OPENSSL_VERSION}/bin/openssl"
 
 function showcerts {
-  local hostname
+  local hostname="$1"
+  local port="$2"
 
-  if [[ -z "$1" ]]; then
-    echo "Usage: showcerts hostname.com"
+  if [[ -z "{$hostname}" ]]; then
+    echo "Usage: savecerts hostname.com [443]"
     return 1
   fi
 
-  hostname="$1"
+  if [[ -z "${port}" ]]; then
+    # Set default port value
+    port=443
+  fi
 
-  output=$("${OPENSSL_PATH}" s_client -connect "${hostname}":443 -showcerts </dev/null 2>/dev/null)
+  output=$("${OPENSSL_PATH}" s_client -connect "${hostname}":${port} -showcerts </dev/null 2>/dev/null)
   echo "${output}"
   return "${output}"
 }
 
 function savecerts {
-  local hostname
+  local hostname="$1"
+  local port="$2"
 
-  if [[ -z "$1" ]]; then
-    echo "Usage: savecerts hostname.com"
+  if [[ -z "{$hostname}" ]]; then
+    echo "Usage: savecerts hostname.com [443]"
     return 1
   fi
 
-  hostname="$1"
+  if [[ -z "${port}" ]]; then
+    # Set default port value
+    port=443
+  fi
 
   # output=$(showcerts("${hostname}"))
-  output=$("${OPENSSL_PATH}" s_client -connect "${hostname}":443 -showcerts </dev/null 2>/dev/null)
+  output=$("${OPENSSL_PATH}" s_client -connect "${hostname}":${port} -showcerts </dev/null 2>/dev/null)
   echo "${output}" | "${OPENSSL_PATH}" x509 -outform PEM >"${hostname}.pem"
 }
