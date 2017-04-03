@@ -84,3 +84,36 @@ function bak {
     echo "Renamed to '$1.bak'"
   fi
 }
+
+OPENSSL_VERSION="1.0.2k"
+OPENSSL_PATH="/usr/local/Cellar/openssl/${OPENSSL_VERSION}/bin/openssl"
+
+function showcerts {
+  local hostname
+
+  if [[ -z "$1" ]]; then
+    echo "Usage: showcerts hostname.com"
+    return 1
+  fi
+
+  hostname="$1"
+
+  output=$("${OPENSSL_PATH}" s_client -connect "${hostname}":443 -showcerts </dev/null 2>/dev/null)
+  echo "${output}"
+  return "${output}"
+}
+
+function savecerts {
+  local hostname
+
+  if [[ -z "$1" ]]; then
+    echo "Usage: savecerts hostname.com"
+    return 1
+  fi
+
+  hostname="$1"
+
+  # output=$(showcerts("${hostname}"))
+  output=$("${OPENSSL_PATH}" s_client -connect "${hostname}":443 -showcerts </dev/null 2>/dev/null)
+  echo "${output}" | "${OPENSSL_PATH}" x509 -outform PEM >"${hostname}.pem"
+}
