@@ -49,6 +49,7 @@ formulae=(
     python
     rename
     ruby
+    shellcheck
     sloccount
     sourcekitten
     speedtest_cli
