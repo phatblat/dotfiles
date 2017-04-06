@@ -10,6 +10,7 @@ echo ">>> uninstall-cask-formulae"
 echo
 
 formulae=(
+    cocoapods-app
 )
 
 brew cask uninstall ${formulae[*]}
