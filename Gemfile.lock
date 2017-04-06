@@ -48,7 +48,7 @@ GEM
     colored2 (3.1.2)
     commander-fastlane (4.4.4)
       highline (~> 1.7.2)
-    domain_name (0.5.20170223)
+    domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.0)
     escape (0.0.4)
