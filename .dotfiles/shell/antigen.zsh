@@ -6,9 +6,6 @@
 #
 #-------------------------------------------------------------------------------
 
-brew update
-brew upgrade antigen
-
 # Set cache and log to user-writable path
 # ANTIGEN_BASE_PATH=${HOME}/tmp/antigen
 # mkdir -p ${ANTIGEN_BASE_PATH}
