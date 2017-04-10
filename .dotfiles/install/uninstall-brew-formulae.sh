@@ -13,6 +13,7 @@ echo
 
 formulae=(
   hub
+  pivotal/tap/cloudfoundry-cli
 )
 
 brew uninstall --force ${formulae[*]}

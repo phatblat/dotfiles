@@ -26,6 +26,7 @@ formulae=(
     burl
     carthage
     cloc
+    cloudfoundry/tap/cf-cli
     coreutils
     curl
     direnv
