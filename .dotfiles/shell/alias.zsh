@@ -15,6 +15,9 @@ alias ld="ls -ld */" #ls -l | grep '^d'
 alias lhd="la -d .*/"
 alias lh="la -d .*"
 
+# File sizes
+alias bigfiles='du -a . | sort -n -r | head -n 10'
+
 # Shell Helpers
 alias h='history'
 alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | xargs echo -n | pbcopy"
