@@ -73,5 +73,3 @@
 	process = git-lfs filter-process
 [credential]
     helper = osxkeychain
-[user]
-    signingkey = 97EF379D
