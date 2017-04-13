@@ -17,6 +17,7 @@ formulae=(
     geekbench
     github-desktop
     google-chrome
+    gpgtools
     hipchat
     intellij-idea
     ios-console
