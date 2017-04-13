@@ -5,17 +5,12 @@
 #
 #-------------------------------------------------------------------------------
 
-alias gpgshow='gpg --list-keys'
+alias gpgshow='gpg --list-keys --keyid-format long'
+alias gpgkeyid='gpg --list-keys --keyid-format long | egrep -o "^pub.*/\w+" | cut -d "/" -f 2'
 
 function gpgcopypub {
-  output=$(gpg --list-keys | head -n 3 | tail -n 1)
-  # tokens=${output/\// }
-  # Split on spaces
-  key_info=${output[(ws: :)2]}
-  echo $key_info
-  # Split on slash
-  key=${key_info[(ws:/:)2]}
-  gpg_key_ascii=$(gpg --armor --export $key)
-  echo $gpg_key_ascii | pbcopy $gpg_key_ascii
-  echo "GPG key copied to pasteboard"
+  keyid=$(gpgkeyid)
+  gpg_key_ascii=$(gpg --armor --export ${keyid})
+  echo ${gpg_key_ascii} | pbcopy
+  echo "GPG key copied to pasteboard (keyid: ${keyid})"
 }
