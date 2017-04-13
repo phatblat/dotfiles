@@ -5,6 +5,10 @@
 #
 #-------------------------------------------------------------------------------
 
+# Fix for gpg2
+# https://www.gnupg.org/(it)/documentation/manuals/gnupg/Common-Problems.html
+export GPG_TTY=$(tty)
+
 alias gpgshow='gpg --list-keys --keyid-format long'
 alias gpgkeyid='gpg --list-keys --keyid-format long | egrep -o "^pub.*/\w+" | cut -d "/" -f 2'
 
