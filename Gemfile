@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activesupport', '~> 4'
-gem 'cocoapods', '1.2.0.rc.1'
+gem 'cocoapods', '~> 1.2'
 gem 'fastlane'
 gem 'rake'
 #gem 'sqlite3'
@@ -15,3 +15,4 @@ gem 'zerg_xcode'
 # For bundle-pull command
 gem 'net-scp'
 gem 'net-ssh'
+
