@@ -20,6 +20,7 @@ alias register_device="~/.dotfiles/xcode/register_device.rb"
 alias devices='instruments -s devices'
 alias developer_mode='DevToolsSecurity -status && sudo DevToolsSecurity -enable'
 alias adev='open https://developer.apple.com/news/'
+alias killsim='launchctl list com.apple.CoreSimulator.CoreSimulatorService && ps aux | grep CoreSimulator && launchctl remove com.apple.CoreSimulator.CoreSimulatorService && echo "CoreSimulatorService has been removed from launchctl."'
 
 function version_current {
   local build_version market_version
