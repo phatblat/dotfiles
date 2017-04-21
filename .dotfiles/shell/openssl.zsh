@@ -44,4 +44,5 @@ function savecerts {
   # output=$(showcerts("${hostname}"))
   output=$("${OPENSSL_PATH}" s_client -connect "${hostname}":${port} -showcerts </dev/null 2>/dev/null)
   echo "${output}" | "${OPENSSL_PATH}" x509 -outform PEM >"${hostname}.pem"
+  echo "${output}" | "${OPENSSL_PATH}" x509 -outform DER >"${hostname}.der"
 }
