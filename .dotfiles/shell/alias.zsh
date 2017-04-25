@@ -6,14 +6,14 @@
 #-------------------------------------------------------------------------------
 
 # ls
-alias lsa="ls -a"
-alias ll="ls -l"
-alias la="ls -la"
-alias lA="ls -lA"
-# List only directories in the PWD
-alias ld="ls -ld */" #ls -l | grep '^d'
-alias lhd="la -d .*/"
-alias lh="la -d .*"
+alias l='ls -lFh'         # size,show type,human readable
+alias ll='ls -l'          # long list
+alias la='ls -lAFh'       # long list,show almost all,show type,human readable
+alias lr='ls -tRFh'       # sorted by date,recursive,show type,human readable
+alias lt='ls -ltFh'       # long list,sorted by date,show type,human readable
+alias ldot="la -d .*"     # List hidden files
+alias ldir="ls -ld */"    # List dirs
+alias ldotdir="la -d .*/" # List hidden dirs
 
 # File sizes
 alias bigfiles='echo "File sizes in KB" && du -ka . | sort -n -r | head -n 10'
@@ -21,7 +21,7 @@ alias bigfiles='echo "File sizes in KB" && du -ka . | sort -n -r | head -n 10'
 #
 # Shell Helpers
 #
-alias h='history'
+alias h='history | tail -n 23'
 
 # Search history
 alias hgrep='history | grep'
