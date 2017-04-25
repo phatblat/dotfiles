@@ -18,9 +18,15 @@ alias lh="la -d .*"
 # File sizes
 alias bigfiles='echo "File sizes in KB" && du -ka . | sort -n -r | head -n 10'
 
+#
 # Shell Helpers
+#
 alias h='history'
-alias hcopy="fc -ln -1 | awk '{\$1=\$1}1' | xargs echo -n | pbcopy"
+
+# Copy last command
+alias hcopy="fc -ln -1 | pbcopy"
+
+# Copy current path
 alias pcopy="pwd | xargs echo -n | pbcopy"
 
 
