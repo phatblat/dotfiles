@@ -45,3 +45,6 @@ alias devices='instruments -s devices'
 alias register_device="~/.dotfiles/xcode/register_device.rb"
 alias developer_mode='DevToolsSecurity -status && sudo DevToolsSecurity -enable'
 alias killsim='launchctl list com.apple.CoreSimulator.CoreSimulatorService && ps aux | grep CoreSimulator && launchctl remove com.apple.CoreSimulator.CoreSimulatorService && echo "CoreSimulatorService has been removed from launchctl."'
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
