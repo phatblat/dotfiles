@@ -23,6 +23,9 @@ alias bigfiles='echo "File sizes in KB" && du -ka . | sort -n -r | head -n 10'
 #
 alias h='history'
 
+# Search history
+alias hgrep='history | grep'
+
 # Copy last command
 alias hcopy="fc -ln -1 | pbcopy"
 
