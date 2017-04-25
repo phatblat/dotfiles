@@ -47,9 +47,11 @@ setopt complete_in_word
 # NOMATCH (+3) <C> <Z>
 # If a pattern for filename generation has no matches, print an error, instead
 # of leaving it unchanged in the argument list. This also applies to file
-# expansion of an initial ‘~’ or ‘=’. (Allow [ or ] whereever you want)
-unsetopt nomatch
-# setopt nonomatch
+# expansion of an initial ‘~’ or ‘=’.
+#
+# Allow [ or ] whereever you want
+# https://robots.thoughtbot.com/how-to-use-arguments-in-a-rake-task
+unsetopt no_match
 
 #-------------------------------------------------------------------------------
 # History
