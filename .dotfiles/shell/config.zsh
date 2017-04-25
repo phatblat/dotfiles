@@ -7,7 +7,7 @@
 
 # Enable vi style command editing.
 # This setting doesn't work when applied in shell/options.zsh
-bindkey -v
+# bindkey -v
 
 # Carthage Zsh Completion
 # https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshFishCompletion.md#zsh
