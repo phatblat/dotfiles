@@ -20,7 +20,7 @@
 
 # Start up Antigen
 source "$(brew --prefix)/share/antigen/antigen.zsh"
-# antigen use oh-my-zsh
+antigen use oh-my-zsh
 # Override the oh-my-zsh 'd' alias
 unalias d && alias d='git diff'
 
@@ -32,8 +32,8 @@ antigen bundle phatblat/powerline-shell --branch=custom
 # Antigen Themes
 antigen theme gnzh
 
-#antigen apply
-
 # Add zsh-syntax-highlighting as last bundle fixes "zsh-syntax-highlighting: failed loading highlighters, exiting."
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/0a9b347483ae653e95ed7ccb147a0db3644b6384/INSTALL.md#antigen
 antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
