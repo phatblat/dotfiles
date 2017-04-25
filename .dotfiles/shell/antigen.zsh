@@ -30,7 +30,7 @@ antigen bundle phatblat/powerline-shell --branch=custom
 # antigen bundle robbyrussell/oh-my-zsh plugins/ruby
 
 # Antigen Themes
-antigen theme gnzh
+# antigen theme gnzh
 
 # Add zsh-syntax-highlighting as last bundle fixes "zsh-syntax-highlighting: failed loading highlighters, exiting."
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/0a9b347483ae653e95ed7ccb147a0db3644b6384/INSTALL.md#antigen
