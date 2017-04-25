@@ -20,14 +20,14 @@
 
 # Start up Antigen
 source "$(brew --prefix)/share/antigen/antigen.zsh"
-antigen use oh-my-zsh
+# antigen use oh-my-zsh
 # Override the oh-my-zsh 'd' alias
 unalias d && alias d='git diff'
 
 # Antigen Bundles
-antigen bundle common-aliases
+# antigen bundle common-aliases
 antigen bundle phatblat/powerline-shell --branch=custom
-antigen bundle robbyrussell/oh-my-zsh plugins/ruby
+# antigen bundle robbyrussell/oh-my-zsh plugins/ruby
 
 # Antigen Themes
 antigen theme gnzh
