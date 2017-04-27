@@ -11,6 +11,6 @@
 git_path=`which git`
 pushd $HOME > /dev/null 2>&1
 
-$git_path pull --quiet
+$git_path fetch --quiet
 
 popd > /dev/null 2>&1
