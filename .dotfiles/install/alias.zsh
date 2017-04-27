@@ -13,7 +13,6 @@
 function user_is_admin {
   [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]
 }
-export user_id_admin
 
 
 # Only define these aliases for admin users
