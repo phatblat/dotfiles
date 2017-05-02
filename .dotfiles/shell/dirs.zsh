@@ -26,23 +26,23 @@ alias icloud="cd $ICLOUD_HOME"
 alias iclouddrive="cd $ICLOUD_DRIVE"
 
 # Common Xcode project folders
-alias radars='cd ~/dev/radars'
-alias ol='cd ~/dev/ios/pods/Outlets'
-alias op='cd ~/dev/ios/Octopad'
-alias og='cd ~/dev/libgit2/objective-git'
-alias quick='cd ~/dev/ios/pods/Quick'
-alias nimble='cd ~/dev/ios/pods/Nimble'
-alias clv='cd ~/dev/ios/CLVisitExplorer'
-alias sg='cd ~/dev/xcode/SwiftGen'
+hash -d radars="${HOME}/dev/radars"
+hash -d ol="${HOME}/dev/ios/pods/Outlets"
+hash -d op="${HOME}/dev/ios/Octopad"
+hash -d og="${HOME}/dev/libgit2/objective-git"
+hash -d quick="${HOME}/dev/ios/pods/Quick"
+hash -d nimble="${HOME}/dev/ios/pods/Nimble"
+hash -d clv="${HOME}/dev/ios/CLVisitExplorer"
+hash -d sg="${HOME}/dev/xcode/SwiftGen"
 
 # KP Projects
-alias ebw='cd ~/dev/ios/EBW'
-alias fk='cd ~/dev/ios/pods/FitnessKit'
-alias itwire='cd ~/dev/bluemix/ITWire'
-alias flagship='cd ~/dev/ios/flagship'
-alias realm='cd ~/dev/realm'
-alias pods='cd ~/dev/ios/pods'
+hash -d ebw="${HOME}/dev/ios/EBW"
+hash -d fk="${HOME}/dev/ios/pods/FitnessKit"
+hash -d itwire="${HOME}/dev/bluemix/ITWire"
+hash -d flagship="${HOME}/dev/ios/flagship"
+hash -d realm="${HOME}/dev/realm"
+hash -d pods="${HOME}/dev/ios/pods"
 
 # reflog, markdown
-alias rl='cd ~/dev/www/reflog/www'
-alias asv='cd ~/dev/markdown/AppleSoftwareVersions'
+hash -d rl="${HOME}/dev/www/reflog/www"
+hash -d asv="${HOME}/dev/markdown/AppleSoftwareVersions"
