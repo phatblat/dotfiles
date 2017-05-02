@@ -31,6 +31,10 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # El Capitan workaround to not being able to install Bundler to /usr/bin
 sudo gem install bundler --bindir /usr/local/bin
 
+# http://stackoverflow.com/questions/41757144/your-bundle-is-locked-to-rake-12-0-0-but-that-version-could-not-be-found-in-a
+sudo gem install rubygems-bundler
+sudo gem regenerate_binstubs
+
 # Install gems configured at user level
 bundle install
 
