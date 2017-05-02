@@ -10,7 +10,8 @@ echo ">>> uninstall-cask-formulae"
 echo
 
 formulae=(
-    cocoapods-app
+  battery-guardian
+  cocoapods-app
 )
 
 brew cask uninstall ${formulae[*]}
