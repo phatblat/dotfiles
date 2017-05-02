@@ -17,3 +17,7 @@ fi
 
 # Setup prompt, must be called after antigen is configured
 install_powerline_prompt
+
+# External Tools
+eval "$(thefuck --alias)"
+eval "$(direnv hook zsh)"

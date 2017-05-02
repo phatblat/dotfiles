@@ -31,8 +31,3 @@ alias hcopy="fc -ln -1 | pbcopy"
 
 # Copy current path
 alias pcopy="pwd | xargs echo -n | pbcopy"
-
-
-# External Tools
-# eval $(thefuck --alias)
-eval "$(direnv hook zsh)"
