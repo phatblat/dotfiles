@@ -18,6 +18,8 @@ fi
 
 # Xcode
 xcode-select -p
+xcversion update
+xcversion list
 
 
 #-------------------------------------------------------------------------------

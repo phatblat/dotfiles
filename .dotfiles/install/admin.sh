@@ -34,6 +34,11 @@ sudo gem install bundler --bindir /usr/local/bin
 # Install gems configured at user level
 bundle install
 
+# Xcode
+xcversion update
+xcversion install
+xcversion install-cli-tools
+
 # NPM packages
 npm install --global fast-cli
 npm install --global n
