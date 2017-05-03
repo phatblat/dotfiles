@@ -17,8 +17,5 @@ if (( $? != 0 )); then
   sshnewkey "${USER}@${HOST}"
 fi
 
-# Setup prompt, must be called after antigen is configured
-install_powerline_prompt
-
 # External Tools
 eval "$(thefuck --alias)"

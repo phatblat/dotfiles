@@ -8,29 +8,19 @@
 lj info 'shell/powerline.zsh'
 
 # Powerline PS1 setup using milkbikis/powerline-shell
-# NOTE: This must be called after anigen is primed in z_login.zsh for $ADOTDIR
+# Wrapped in function so that invocation can be postponed if necessary.
 function install_powerline_prompt {
-  # Antigen v1
-  # POWERLINE_HOME="${ADOTDIR}/repos/https-COLON--SLASH--SLASH-github.com-SLASH-phatblat-SLASH-powerline-shell.git-PIPE-custom"
   # Antigen v2
+  if [[ ! -v ADOTDIR ]]; then
+    ADOTDIR="${HOME}/.antigen"
+    lj info "ADOTDIR was not set"
+  fi
   POWERLINE_HOME="${ADOTDIR}/bundles/phatblat/powerline-shell-custom"
 
-  function powerline_precmd {
-    PS1="$(${POWERLINE_HOME}/powerline-shell.py $? --colorize-hostname --shell zsh --cwd-max-depth 5 2> /dev/null)"
-  }
-
-  function install_powerline_precmd {
-    for s in "${precmd_functions[@]}"; do
-      if [ "$s" = "powerline_precmd" ]; then
-        return
-      fi
-    done
-    precmd_functions+=(powerline_precmd)
-  }
-
-  if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-  fi
+  PS1="$(${POWERLINE_HOME}/powerline-shell.py $? --colorize-hostname --shell zsh --cwd-max-depth 5 2> /dev/null)"
 }
+
+# Install the prompt
+install_powerline_prompt
 
 alias powerlinetest='echo "⮀ ± ⭠ ➦ ✔ ✘ ⚡"'
