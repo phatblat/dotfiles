@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'gradle/options.zsh'
+
 export GRADLE_OPTS=-Xmx1g
 export GRADLE_HEAP_SPACE=-Xmx1g
 

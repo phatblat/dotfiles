@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'xcode/dsym.zsh'
+
 alias dsym_uuid="mdls -name com_apple_xcode_dsym_uuids -raw *.dSYM | grep -e \\\" | sed 's/[ |\\\"]//g'"
 
 # https://docs.fabric.io/ios/crashlytics/advanced-setup.html#uploading-dsyms-manually

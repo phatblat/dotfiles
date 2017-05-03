@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'www/octopress.zsh'
+
 # octopress 3 commands:
 # init <PATH>         # Adds Octopress scaffolding to your site
 # new <PATH>          # Like `jekyll new` + `octopress init`

@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'xcode/alias.zsh'
+
 # Quick Open Commands
 alias ox='open *.xcodeproj'
 alias ow='open *.xcworkspace'

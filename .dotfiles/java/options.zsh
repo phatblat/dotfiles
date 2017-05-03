@@ -6,6 +6,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'java/options.zsh'
+
 java_home_finder="/usr/libexec/java_home"
 export JAVA_HOME=`${java_home_finder}`
 

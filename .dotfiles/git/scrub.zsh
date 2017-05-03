@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'git/scrub.zsh'
+
 function scrub {
   if [[ $# -ne 1 ]]; then
     echo "Usage: scrub <delete_path>"

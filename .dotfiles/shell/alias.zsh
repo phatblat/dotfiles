@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'shell/alias.zsh'
+
 # ls
 alias l='ls -lFh'         # size,show type,human readable
 alias ll='ls -l'          # long list

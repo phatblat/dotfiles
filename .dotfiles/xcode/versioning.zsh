@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'xcode/versioning.zsh'
+
 function version_current {
   local build_version market_version
   build_version=$(version_build)

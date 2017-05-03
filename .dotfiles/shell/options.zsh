@@ -1,9 +1,11 @@
 #-------------------------------------------------------------------------------
 #
-# options.zsh
+# shell/options.zsh
 # Shell options - http://zsh.sourceforge.net/Doc/Release/Options.html
 #
 #-------------------------------------------------------------------------------
+
+lj info 'shell/options.zsh'
 
 export TERM="xterm-256color"
 export LC_ALL="en_US.UTF-8"

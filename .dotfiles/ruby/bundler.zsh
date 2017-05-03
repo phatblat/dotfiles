@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'ruby/bundler.zsh'
+
 # Bundler
 function bconfig {
   bundle config --local clean true

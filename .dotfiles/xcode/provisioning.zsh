@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'xcode/provisioning.zsh'
+
 alias provdir='open "${HOME}/Library/MobileDevice/Provisioning Profiles"'
 alias plcat='plutil -convert xml1 -o /dev/stdout'
 alias list_codesign_identities='security find-identity -v -p codesigning'

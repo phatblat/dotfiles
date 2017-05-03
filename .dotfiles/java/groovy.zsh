@@ -5,4 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'java/groovy.zsh'
+
 export GROOVY_HOME=/usr/local/opt/groovy/libexec

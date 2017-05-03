@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'git/github.zsh'
+
 function license {
   # Write out LICENSE.md
   echo "The MIT License (MIT)

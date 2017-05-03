@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'xcode/plugins.zsh'
+
 # Alcatraz - http://alcatraz.io
 alias alcatraz_install='curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh'
 alias alcatraz_uninstall='trash ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin'

@@ -5,6 +5,7 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'shell/functions.zsh'
 
 # Shell Help
 function bashman {

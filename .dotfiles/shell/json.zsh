@@ -5,4 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'shell/json.zsh'
+
 alias prettyjson='python -m json.tool'

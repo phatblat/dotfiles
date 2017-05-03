@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'shell/powerline.zsh'
+
 # Powerline PS1 setup using milkbikis/powerline-shell
 # NOTE: This must be called after anigen is primed in z_login.zsh for $ADOTDIR
 function install_powerline_prompt {

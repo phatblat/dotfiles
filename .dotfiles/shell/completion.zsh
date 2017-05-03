@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'shell/completion.zsh'
+
 # Carthage Zsh Completion
 # https://github.com/Carthage/Carthage/blob/master/Documentation/BashZshFishCompletion.md#zsh
 autoload -Uz compinit

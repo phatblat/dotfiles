@@ -5,6 +5,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'shell/burl.zsh'
+
 alias GET='burl GET'
 alias HEAD='burl -I'
 alias POST='burl POST'

@@ -6,6 +6,8 @@
 #
 #-------------------------------------------------------------------------------
 
+lj info 'xcode/getudid.zsh'
+
 function getudid {
   udid=($(system_profiler SPUSBDataType | grep -A 11 -w "iPad\|iPhone\|iPad" | grep "Serial Number" | awk '{ print $3 }'))
   if [ -z $udid ]; then
