@@ -17,14 +17,15 @@ function bashman {
 #
 # NOTE: oh-my-zsh, loaded in antigen.zsh also defines a title function. This is loaded later because this file is alphabetically sorted after it.
 # title is a shell function from /Users/ben/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git/lib/termsupport.zsh
-function title {
-  if [[ -z $1 ]]; then
-    echo "Missing title"
-    echo 'usage: title Tab Name'
-    return 1
-  fi
-  echo -ne "\033]0;"$*"\0007"
-}
+# unset title
+# function title {
+#   if [[ -z $1 ]]; then
+#     echo "Missing title"
+#     echo 'usage: title Tab Name'
+#     return 1
+#   fi
+#   echo -n "\033]0;$@\007"
+# }
 
 # Find
 # usage: finds "search string" /base/dir
