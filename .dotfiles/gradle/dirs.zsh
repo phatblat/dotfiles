@@ -14,11 +14,3 @@
 
 export GRADLE_HOME="/usr/local/opt/gradle/libexec"
 
-
-#-------------------------------------------------------------------------------
-#
-# Directory Navigation (cd)
-#
-#-------------------------------------------------------------------------------
-
-alias pipeline="cd ${HOME}/dev/gradle/delivery-pipeline-plugin"
