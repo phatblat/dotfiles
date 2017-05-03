@@ -42,6 +42,7 @@ hash -d itwire="${HOME}/dev/bluemix/ITWire"
 hash -d flagship="${HOME}/dev/ios/flagship"
 hash -d realm="${HOME}/dev/realm"
 hash -d pods="${HOME}/dev/ios/pods"
+hash -d pipeline="${HOME}/dev/gradle/PipelineGradlePlugin"
 
 # reflog, markdown
 hash -d rl="${HOME}/dev/www/reflog/www"
