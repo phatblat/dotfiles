@@ -20,6 +20,7 @@ alias s='git status -sb'
 alias sa='git status'
 alias status='git status'
 alias diff='git diff'
+# d - conflicts with omz alias (redefined in shell/antigen.zsh)
 alias d='git diff'
 alias dw='git diff --word-diff'
 alias dc='git diff --cached'
