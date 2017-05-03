@@ -20,6 +20,7 @@ source ~/.dotfiles/install/alias.zsh
 # Dev Dirs
 mkdir -p ~/dev/ios
 mkdir -p ~/dev/libgit2
+mkdir -p ~/dev/shell
 mkdir -p ~/Library/QuickLook
 
 # Temp Dir
@@ -72,16 +73,26 @@ fi
 
 
 #-------------------------------------------------------------------------------
-# Custom Builds
+# Lumberjack - https://github.com/molovo/lumberjack
 #-------------------------------------------------------------------------------
 
-# Custom builds in ~/tmp
+pushd ~/dev/shell > /dev/null
+
+git clone https://github.com/molovo/lumberjack
+ln -s ${HOME}/dev/shell/lumberjack/lj /usr/local/bin/lj
+
+popd > /dev/null
+
+
+#-------------------------------------------------------------------------------
+# Powerline Fonts
+#-------------------------------------------------------------------------------
+
 pushd ~/tmp > /dev/null
 
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
 
-# End Custom Builds
 popd > /dev/null
 
 
