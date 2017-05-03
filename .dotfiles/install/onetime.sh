@@ -64,33 +64,6 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 
-#-------------------------------------------------------------------------------
-# Commands below here depend on tools installed by install-admin
-#-------------------------------------------------------------------------------
-
-# Ruby
-echo "Setting up Ruby"
-# Prime the rbenv environment
-export RBENV_ROOT=${HOME}/.rbenv
-eval "$(rbenv init -)"
-rbenv install --skip-existing 2.2.2
-rbenv global 2.2.2
-rbenv rehash
-
-# Ruby Gems
-gem install bundler
-gem install cocoapods
-gem install cocoapods-deintegrate
-gem install danger
-gem install fastlane
-gem install github-pages
-gem install gym
-gem install nomad-cli
-gem install octopress
-gem install octopress-debugger
-gem install synx
-gem install xcode-install
-
 # VIM
 if [[ ! -d "~/.vim/autoload/plug.vim" ]]; then
   curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs \
