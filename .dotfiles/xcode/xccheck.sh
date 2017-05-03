@@ -6,8 +6,17 @@
 #
 #-------------------------------------------------------------------------------
 
-for xcode_version in $(ls -d /Applications/Xcode*.app)
+app_dirs=(
+  "/Applications"
+  "${HOME}/Applications"
+  "/Volumes/Thunderbay/Applications"
+)
+
+for app_dir in $app_dirs
 do
-  echo "Checking integrity of ${xcode_version}"
-  /usr/sbin/spctl --assess --verbose "${xcode_version}"
+  for xcode_version in $(ls -d ${app_dir}/Xcode*.app)
+  do
+    echo "Checking integrity of ${xcode_version}"
+    /usr/sbin/spctl --assess --verbose "${xcode_version}"
+  done
 done
