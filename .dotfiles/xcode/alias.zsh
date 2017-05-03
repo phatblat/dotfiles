@@ -18,7 +18,7 @@ alias xcsp='xcode-select --print-path'
 alias xcss='sudo xcode-select --switch'
 alias xccheck='~/.dotfiles/xcode/xccheck.sh'
 
-function xclinkapp {
+function xcswitch {
   if [[ $# -ne 1 ]]; then
     echo "Usage: xclinkapp <Version>"
     echo "Version format: 8.3.2"
