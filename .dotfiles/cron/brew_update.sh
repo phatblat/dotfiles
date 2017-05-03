@@ -9,7 +9,7 @@
 . ${HOME}/.dotfiles/cron/cron.env
 
 # This can only be run by an admin user
-if [ ! user_is_admin ]; then
+if ! user_is_admin; then
   exit 0
 fi
 

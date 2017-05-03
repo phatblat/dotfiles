@@ -9,7 +9,7 @@
 # Determines whether the current $USER is in the admin group.
 # Examples:
 #   if user_is_admin; then
-#   if [ ! user_is_admin ]; then # Space after ! is very important
+#   if ! user_is_admin; then # Space after ! is very important
 function user_is_admin {
   [[ $(dsmemberutil checkmembership -U "${USER}" -G "admin") == "user is a member of the group" ]]
 }
@@ -17,7 +17,6 @@ function user_is_admin {
 
 # Only define these aliases for admin users
 if user_is_admin; then
-
   # update
   # Invokes the admin package update script
   alias update='~/.dotfiles/install/update.sh'
@@ -34,5 +33,4 @@ if user_is_admin; then
     # Check homebrew cask
     brew cask doctor
   }
-
 fi

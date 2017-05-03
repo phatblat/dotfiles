@@ -11,7 +11,7 @@ echo
 
 # Verify current user is an admin before proceeding
 
-if [ ! user_is_admin ]; then
+if ! user_is_admin; then
   echo "Only admins may run this script"
   exit 1
 fi
