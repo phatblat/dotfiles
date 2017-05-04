@@ -40,7 +40,7 @@ plugins=(cp gitfast jsontools osx pod rbenv ruby sublime sudo vi-mode)
 
 # Uncomment the following line to disable auto-setting terminal title.
 # Note that when this is disabledit will overwrite any custom title set.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="false"
 
 # Uncomment the following line to disable command auto-correction.
 # DISABLE_CORRECTION="true"
