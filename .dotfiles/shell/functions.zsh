@@ -12,20 +12,23 @@ function bashman {
   man bash | less -p "^       $1 ";
 }
 
-# title
-# Sets a descriptive title for the current Terminal tab
+# ctitle (custom title)
+# Sets a descriptive title for the current Terminal tab. Given no args,
+# the oh-my-zsh auto title behavior will be restored.
 #
-# NOTE: oh-my-zsh, loaded in antigen.zsh also defines a title function. This is loaded later because this file is alphabetically sorted after it.
-# title is a shell function from /Users/ben/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git/lib/termsupport.zsh
-# unset title
-# function title {
-#   if [[ -z $1 ]]; then
-#     echo "Missing title"
-#     echo 'usage: title Tab Name'
-#     return 1
-#   fi
-#   echo -n "\033]0;$@\007"
-# }
+# NOTE: oh-my-zsh (loaded in antigen.zsh) manipulates the title using a precmd
+# function called omz_termsupport_precmd. The DISABLE_AUTO_TITLE variable
+# controls this behavior.
+function ctitle {
+  if [[ -z $1 ]]; then
+    DISABLE_AUTO_TITLE="false"
+    return 0
+  fi
+  
+  # Disable OMZ auto-title so that it doesn't overwrite the custom title.
+  DISABLE_AUTO_TITLE="true"
+  echo -ne "\e]1;$@\a"
+}
 
 # Find
 # usage: finds "search string" /base/dir
