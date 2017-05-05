@@ -1,4 +1,4 @@
+# List hidden dirs
 function ldotdir
-    # List hidden dirs
     la -d .*/ $argv
 end
