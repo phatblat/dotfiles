@@ -1,0 +1,24 @@
+
+String rootDir = '.dotfiles'
+
+task listFiles {
+    description "Lists files which will be migrated from ZSH to Fish Shell."
+    group ".dotfiles"
+
+    FileTree tree = fileTree(dir: rootDir)
+    tree.include '**/*.zsh'
+    tree.exclude '**/Abstract*'
+
+/*    Projects loaded. Root project using build file '/usr/local/bin/build.gradle'.*/
+/*    logger.info tree*/
+}
+
+task convertAliasToFunction {
+    description "Converts a bash/zsh alias into a fish function."
+    group ".dotfiles"
+}
+
+task portFunction {
+    description "Ports a bash/zsh function to fish."
+    group ".dotfiles"
+}
