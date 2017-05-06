@@ -48,9 +48,6 @@ npm install --global fast-cli
 npm install --global n
 npm install --global ralio
 
-# Atom packages
-apm install dash
-
 
 #-------------------------------------------------------------------------------
 # Custom builds
