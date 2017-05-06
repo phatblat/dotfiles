@@ -59,7 +59,7 @@ npm install --global ralio
 # Custom builds in ~/tmp
 pushd ~/tmp > /dev/null
 
-# Powerline
+# Powerline for VIM
 echo "Setting up Powerline"
 pip install --upgrade pip
 pip install powerline-status
