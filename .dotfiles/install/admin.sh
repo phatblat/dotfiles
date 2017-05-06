@@ -70,5 +70,17 @@ pip install Pygments
 # End Custom Builds
 popd > /dev/null
 
+#-------------------------------------------------------------------------------
+# Updates, also Homebrew add/remove.
+#-------------------------------------------------------------------------------
+
 # Chain the update script
 "${HOME}/.dotfiles/install/update.sh"
+
+
+#-------------------------------------------------------------------------------
+# Custom Shells
+#-------------------------------------------------------------------------------
+
+# Register non-stock shells
+sudo for shell in bash zsh fish; do echo "/usr/local/bin/${shell}" >> /etc/shells; cat /etc/shells
