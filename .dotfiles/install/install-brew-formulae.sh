@@ -32,6 +32,7 @@ formulae=(
     direnv
     duti
     findutils
+    fish
     git-lfs
     gnupg
     goaccess
