@@ -22,9 +22,11 @@ echo "(iMac)"
 #-------------------------------------------------------------------------------
 # Menu Selection
 
-select yn in "Yes" "No"; do
+shopt -s extglob
+
+select yn in "Yes" "Yeah" "yes" "No"; do
   case $yn in
-    Yes ) echo "YES"
+    @(Y*|y*) ) echo "YES"
       break;;
     No ) echo "NO"
       break;;
