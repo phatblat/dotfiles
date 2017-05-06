@@ -20,9 +20,12 @@ fi
 ls -ld /usr/local
 # sudo chown -R ${USER}:staff /usr/local
 
-# Install Homebrew
-echo "Installing Homebrew"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+which -s brew
+if [[ $? -ne 0 ]]; then
+  # Install Homebrew
+  echo "Installing Homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 
 #-------------------------------------------------------------------------------
