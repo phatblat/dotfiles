@@ -105,6 +105,11 @@ popd > /dev/null
 
 # Changes the current $USER's shell using dscl. Outputs only the command to run for non-admins.
 function switch_shell {
+  if [[ -z ${1} ]]; then
+    echo "Usage: switch_shell bash|zsh|fish"
+    return 1
+  fi
+
   new_shell="$1"
   shell_path="$(brew --prefix)/bin/${new_shell}"
   command="sudo dscl . -change ${HOME} UserShell ${SHELL} ${shell_path}"
@@ -131,34 +136,37 @@ function switch_shell {
 
 shells=(bash zsh fish)
 
-echo "Your default shell is ${SHELL}, would you like to change it?"
-shopt -s extglob
-case "${SHELL}" in ${shells[*]}
-  *bash ) current_shell="bash"
-    break;;
-  *zsh ) current_shell="zsh"
-    break;;
-  *fish ) current_shell="fish"
-    break;;
-esac
-
+current_shell=$(basename ${SHELL})
 echo "current_shell: ${current_shell}"
+echo "Your default shell is ${current_shell}, would you like to change it?"
 
+shopt -s extglob
+
+for i in "${#shells[@]}"
+do
+  if [[ ${shells[i]} != ${current_shell} ]]; then
+    continue
+  fi
+
+  shells[i]="${shells[i]} \*"
+  current_shell="${current_shell} \*"
+done
 
 select new_shell in ${shells[*]}
 do
-  case ${new_shell} in
-    *bash ) echo "bash"
-      break;;
-    *zsh ) echo "zsh"
-      break;;
-    *fish ) echo "fish"
-      break;;
-  esac
+  # echo "new_shell: ${new_shell}"
+
+  if [[ "${new_shell}" != "${current_shell}" ]]; then
+    switch_shell "${new_shell}"
+  fi
+
+  # case ${new_shell} in
+  #   *bash ) echo "bash"
+  #     break;;
+  #   *zsh ) echo "zsh"
+  #     break;;
+  #   *fish ) echo "fish"
+  #     break;;
+  # esac
 done
 
-echo "new_shell: ${new_shell}"
-
-if [[ "${new_shell}" != "${current_shell}" ]]; then
-  switch_shell "${new_shell}"
-fi
