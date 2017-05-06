@@ -78,8 +78,9 @@ fi
 
 pushd ~/dev/shell > /dev/null
 
-git clone https://github.com/molovo/lumberjack
-ln -s ${HOME}/dev/shell/lumberjack/lj /usr/local/bin/lj
+echo "Installing Lumberjack - https://github.com/molovo/lumberjack"
+git clone https://github.com/molovo/lumberjack.git
+ln -s "${HOME}/dev/shell/lumberjack/lj" "/usr/local/bin/lj"
 
 popd > /dev/null
 
@@ -90,6 +91,7 @@ popd > /dev/null
 
 pushd ~/tmp > /dev/null
 
+echo "Installing PowerLine Fonts"
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
 
