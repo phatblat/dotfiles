@@ -4,5 +4,5 @@
 #
 
 export JAVA_OPTS="-Xmn256m -Xms1g -Xmx4g -XX:PermSize=512m -XX:MaxPermSize=1g -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC"
-$(brew --prefix)/bin/jenkins
+$(brew --prefix)/bin/jenkins --prefix=/jenkins
 
