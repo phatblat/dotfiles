@@ -1,5 +1,5 @@
-
-# null
+# 
 function xstop
-    sudo nginx -s stop
+    sudo nginx -s stop $argv
 end
+

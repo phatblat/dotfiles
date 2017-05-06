@@ -1,5 +1,5 @@
-
-# null
+# 
 function init
-    git init
+    git init $argv
 end
+

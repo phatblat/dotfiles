@@ -1,5 +1,5 @@
-
-# null
+# 
 function xccheck
-    ~/.dotfiles/xcode/xccheck.sh
+    ~/.dotfiles/xcode/xccheck.sh $argv
 end
+

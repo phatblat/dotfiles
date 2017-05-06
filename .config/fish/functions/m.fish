@@ -1,5 +1,5 @@
-
-# null
+# 
 function m
-    git merge
+    git merge $argv
 end
+

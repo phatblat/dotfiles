@@ -1,5 +1,5 @@
-
-# null
+# 
 function xstart
-    sudo nginx
+    sudo nginx $argv
 end
+

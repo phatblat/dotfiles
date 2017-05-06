@@ -1,5 +1,5 @@
-
-# null
+# 
 function bpx
-    bi && pi && ow
+    bi && pi && ow $argv
 end
+

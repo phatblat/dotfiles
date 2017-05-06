@@ -1,5 +1,5 @@
-
-# null
+# 
 function diff
-    git diff
+    git diff $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function bo
-    bundle outdated
+    bundle outdated $argv
 end
+

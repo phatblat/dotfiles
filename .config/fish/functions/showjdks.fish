@@ -1,5 +1,5 @@
-
-# null
+# 
 function showjdks
-    /usr/libexec/java_home -V
+    /usr/libexec/java_home -V $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function bra
-    git branch -av
+    git branch -av $argv
 end
+

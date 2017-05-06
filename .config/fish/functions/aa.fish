@@ -1,5 +1,5 @@
-
-# null
+# 
 function aa
-    git add --update
+    git add --update $argv
 end
+

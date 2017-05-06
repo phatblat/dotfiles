@@ -1,5 +1,5 @@
-
-# null
+# 
 function binstall
-    sudo gem install bundler --bindir /usr/local/bin
+    sudo gem install bundler --bindir /usr/local/bin $argv
 end
+

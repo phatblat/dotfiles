@@ -1,5 +1,5 @@
-
-# null
+# 
 function skip
-    git rebase --skip
+    git rebase --skip $argv
 end
+

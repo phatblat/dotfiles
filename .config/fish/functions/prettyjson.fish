@@ -1,5 +1,5 @@
-
-# null
+# 
 function prettyjson
-    python -m json.tool
+    python -m json.tool $argv
 end
+

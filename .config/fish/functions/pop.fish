@@ -1,5 +1,5 @@
-
-# null
+# 
 function pop
-    git reset --soft HEAD^
+    git reset --soft HEAD^ $argv
 end
+

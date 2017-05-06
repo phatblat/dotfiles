@@ -1,5 +1,5 @@
-
-# null
+# 
 function servedraft
-    serve --draft
+    serve --draft $argv
 end
+

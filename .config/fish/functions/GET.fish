@@ -1,5 +1,5 @@
-
-# null
+# 
 function GET
-    burl GET
+    burl GET $argv
 end
+

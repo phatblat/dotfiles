@@ -1,5 +1,5 @@
-
-# null
+# 
 function ow
-    open *.xcworkspace
+    open *.xcworkspace $argv
 end
+

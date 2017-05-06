@@ -1,5 +1,5 @@
-
-# null
+# 
 function serve
-    env $(cat .env | xargs) bundle exec jekyll serve
+    env $(cat .env | xargs) bundle exec jekyll serve $argv
 end
+

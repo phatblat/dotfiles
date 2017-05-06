@@ -1,5 +1,5 @@
-
-# null
+# 
 function servedraftd
-    servedraft --detach
+    servedraft --detach $argv
 end
+

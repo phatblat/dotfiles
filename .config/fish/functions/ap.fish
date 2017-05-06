@@ -1,5 +1,5 @@
-
-# null
+# 
 function ap
-    git add --patch
+    git add --patch $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function be
-    bundle exec
+    bundle exec $argv
 end
+

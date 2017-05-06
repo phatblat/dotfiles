@@ -1,5 +1,5 @@
-
-# null
+# 
 function tag
-    git tag
+    git tag $argv
 end
+

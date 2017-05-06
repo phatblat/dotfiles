@@ -1,5 +1,5 @@
-
-# null
+# 
 function prum
-    pod repo update master
+    pod repo update master $argv
 end
+

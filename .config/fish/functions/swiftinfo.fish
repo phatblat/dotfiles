@@ -1,5 +1,5 @@
-
-# null
+# 
 function swiftinfo
-    xcrun --find swift && swift --version
+    xcrun --find swift && swift --version $argv
 end
+

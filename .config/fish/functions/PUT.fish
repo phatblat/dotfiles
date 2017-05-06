@@ -1,5 +1,5 @@
-
-# null
+# 
 function PUT
-    burl PUT
+    burl PUT $argv
 end
+

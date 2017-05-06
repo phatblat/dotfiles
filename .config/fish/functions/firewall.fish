@@ -1,5 +1,5 @@
-
-# null
+# 
 function firewall
-    /usr/libexec/ApplicationFirewall/socketfilterfw
+    /usr/libexec/ApplicationFirewall/socketfilterfw $argv
 end
+

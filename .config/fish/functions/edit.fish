@@ -1,5 +1,5 @@
-
-# null
+# 
 function edit
-    ${VISUAL}
+    ${VISUAL} $argv
 end
+

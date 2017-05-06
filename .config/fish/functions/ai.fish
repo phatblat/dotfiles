@@ -1,5 +1,5 @@
-
-# null
+# 
 function ai
-    git add --interactive
+    git add --interactive $argv
 end
+

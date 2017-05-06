@@ -1,5 +1,5 @@
-
-# null
+# 
 function bisect
-    git bisect
+    git bisect $argv
 end
+

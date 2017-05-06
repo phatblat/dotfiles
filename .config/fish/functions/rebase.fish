@@ -1,5 +1,5 @@
-
-# null
+# 
 function rebase
-    git rebase
+    git rebase $argv
 end
+

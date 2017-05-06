@@ -1,5 +1,5 @@
-
-# null
+# 
 function revert
-    git revert
+    git revert $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function r
-    git rebase --interactive HEAD~10
+    git rebase --interactive HEAD~10 $argv
 end
+

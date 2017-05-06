@@ -1,5 +1,5 @@
-
-# null
+# 
 function whichjdk
-    /usr/libexec/java_home
+    /usr/libexec/java_home $argv
 end
+

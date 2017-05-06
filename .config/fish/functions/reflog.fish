@@ -1,5 +1,5 @@
-
-# null
+# 
 function reflog
-    git reflog
+    git reflog $argv
 end
+

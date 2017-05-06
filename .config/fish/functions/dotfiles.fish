@@ -1,5 +1,5 @@
-
-# null
+# 
 function dotfiles
-    edit ~/.dotfiles
+    edit ~/.dotfiles $argv
 end
+

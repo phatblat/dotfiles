@@ -1,5 +1,5 @@
-
-# null
+# 
 function amend
-    git commit --verbose --amend
+    git commit --verbose --amend $argv
 end
+

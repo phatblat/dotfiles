@@ -1,5 +1,5 @@
-
-# null
+# 
 function stapply
-    git stash apply
+    git stash apply $argv
 end
+

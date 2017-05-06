@@ -1,5 +1,5 @@
-
-# null
+# 
 function h
-    history | tail -n 23
+    history | tail -n 23 $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function pu
-    pod update --no-repo-update
+    pod update --no-repo-update $argv
 end
+

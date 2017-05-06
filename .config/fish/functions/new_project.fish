@@ -1,5 +1,5 @@
-
-# null
+# 
 function new_project
-    ~/.dotfiles/xcode/new_project.rb
+    ~/.dotfiles/xcode/new_project.rb $argv
 end
+

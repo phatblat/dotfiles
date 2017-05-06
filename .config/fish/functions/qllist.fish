@@ -1,5 +1,5 @@
-
-# null
+# 
 function qllist
-    qlmanage -m plugins
+    qlmanage -m plugins $argv
 end
+

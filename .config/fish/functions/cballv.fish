@@ -1,5 +1,5 @@
-
-# null
+# 
 function cballv
-    cball --verbose
+    cball --verbose $argv
 end
+

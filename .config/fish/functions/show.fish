@@ -1,5 +1,5 @@
-
-# null
+# 
 function show
-    git show
+    git show $argv
 end
+

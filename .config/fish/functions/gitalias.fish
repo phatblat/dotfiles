@@ -1,5 +1,5 @@
-
-# null
+# 
 function gitalias
-    alias | grep git | less
+    alias | grep git | less $argv
 end
+

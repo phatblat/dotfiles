@@ -1,5 +1,5 @@
-
-# null
+# 
 function bpru
-    bundle exec pod repo update
+    bundle exec pod repo update $argv
 end
+

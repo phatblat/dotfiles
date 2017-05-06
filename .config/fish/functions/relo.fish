@@ -1,5 +1,5 @@
-
-# null
+# 
 function relo
-    reloadprofile
+    reloadprofile $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function rp
-    git reset --patch
+    git reset --patch $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function piv
-    pod install --verbose
+    pod install --verbose $argv
 end
+

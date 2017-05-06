@@ -1,5 +1,5 @@
-
-# null
+# 
 function help
-    git help
+    git help $argv
 end
+

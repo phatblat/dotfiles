@@ -1,5 +1,5 @@
-
-# null
+# 
 function bu
-    bundle update
+    bundle update $argv
 end
+

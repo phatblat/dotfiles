@@ -1,5 +1,5 @@
-
-# null
+# 
 function showsvn
-    find . -type d -name .svn
+    find . -type d -name .svn $argv
 end
+

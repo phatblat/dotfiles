@@ -1,5 +1,5 @@
-
-# null
-function bd
-    git branch -d
+# 
+function bD
+    git branch -D $argv
 end
+

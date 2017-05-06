@@ -1,5 +1,5 @@
-
-# null
+# 
 function POST
-    burl POST
+    burl POST $argv
 end
+

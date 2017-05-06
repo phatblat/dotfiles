@@ -2,3 +2,4 @@
 function af
     git add --force $argv
 end
+

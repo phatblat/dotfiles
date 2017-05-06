@@ -1,5 +1,5 @@
-
-# null
+# 
 function rv
-    git remote -v
+    git remote -v $argv
 end
+

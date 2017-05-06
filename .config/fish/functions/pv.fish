@@ -1,5 +1,5 @@
-
-# null
+# 
 function pv
-    pod --version
+    pod --version $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function ox
-    open *.xcodeproj
+    open *.xcodeproj $argv
 end
+

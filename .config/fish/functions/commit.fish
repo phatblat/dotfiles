@@ -1,5 +1,5 @@
-
-# null
+# 
 function commit
-    git commit --verbose
+    git commit --verbose $argv
 end
+

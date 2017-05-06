@@ -1,5 +1,5 @@
-
-# null
+# 
 function piru
-    pod install --repo-update
+    pod install --repo-update $argv
 end
+

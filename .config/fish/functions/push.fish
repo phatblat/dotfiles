@@ -1,5 +1,5 @@
-
-# null
+# 
 function push
-    git push
+    git push $argv
 end
+

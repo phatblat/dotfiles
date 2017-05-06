@@ -1,5 +1,5 @@
-
-# null
+# 
 function powerlinetest
-    echo "⮀ ± ⭠ ➦ ✔ ✘ ⚡"
+    echo "⮀ ± ⭠ ➦ ✔ ✘ ⚡" $argv
 end
+

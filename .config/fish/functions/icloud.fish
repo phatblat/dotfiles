@@ -1,5 +1,5 @@
-
-# null
+# 
 function icloud
-    cd $ICLOUD_HOME
+    cd $ICLOUD_HOME $argv
 end
+

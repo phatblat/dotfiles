@@ -1,5 +1,5 @@
-
-# null
+# 
 function developer_mode
-    DevToolsSecurity -status && sudo DevToolsSecurity -enable
+    DevToolsSecurity -status && sudo DevToolsSecurity -enable $argv
 end
+

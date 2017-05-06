@@ -1,5 +1,5 @@
-
-# null
+# 
 function pushtags
-    git push --tags
+    git push --tags $argv
 end
+

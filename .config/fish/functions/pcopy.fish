@@ -1,5 +1,5 @@
-
-# null
+# 
 function pcopy
-    pwd | xargs echo -n | pbcopy
+    pwd | xargs echo -n | pbcopy $argv
 end
+

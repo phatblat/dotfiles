@@ -1,5 +1,5 @@
-
-# null
+# 
 function cco
-    carthage checkout --no-use-binaries
+    carthage checkout --no-use-binaries $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function dt
-    git difftool
+    git difftool $argv
 end
+

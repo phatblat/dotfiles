@@ -1,5 +1,5 @@
-
-# null
+# 
 function cbmacv
-    cbmac --verbose
+    cbmac --verbose $argv
 end
+

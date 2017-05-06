@@ -1,5 +1,5 @@
-
-# null
+# 
 function prun
-    git remote prune --dry-run
+    git remote prune --dry-run $argv
 end
+

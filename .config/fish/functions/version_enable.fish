@@ -1,5 +1,5 @@
-
-# null
+# 
 function version_enable
-    ruby ~/.dotfiles/xcode/enable-versioning.rb
+    ruby ~/.dotfiles/xcode/enable-versioning.rb $argv
 end
+

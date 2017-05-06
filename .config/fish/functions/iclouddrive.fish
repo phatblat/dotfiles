@@ -1,5 +1,5 @@
-
-# null
+# 
 function iclouddrive
-    cd $ICLOUD_DRIVE
+    cd $ICLOUD_DRIVE $argv
 end
+

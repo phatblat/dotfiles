@@ -1,5 +1,5 @@
-
-# null
+# 
 function chrome
-    open -a "Google Chrome" --args --incognito
+    open -a "Google Chrome" --args --incognito $argv
 end
+

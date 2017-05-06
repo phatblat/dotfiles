@@ -1,5 +1,5 @@
-
-# null
+# 
 function htstatus
-    ps awx | grep httpd
+    ps awx | grep httpd $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function pick
-    git cherry-pick
+    git cherry-pick $argv
 end
+

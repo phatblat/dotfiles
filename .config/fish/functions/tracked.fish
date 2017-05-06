@@ -1,5 +1,5 @@
-
-# null
+# 
 function tracked
-    git ls-tree -r --name-only HEAD
+    git ls-tree -r --name-only HEAD $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function pull
-    git pull
+    git pull $argv
 end
+

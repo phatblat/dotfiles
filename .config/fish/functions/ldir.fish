@@ -2,3 +2,4 @@
 function ldir
     ls -ld */ $argv
 end
+

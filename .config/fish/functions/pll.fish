@@ -1,5 +1,5 @@
-
-# null
+# 
 function pll
-    pod lib lint
+    pod lib lint $argv
 end
+

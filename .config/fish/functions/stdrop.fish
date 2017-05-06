@@ -1,5 +1,5 @@
-
-# null
+# 
 function stdrop
-    git stash drop
+    git stash drop $argv
 end
+

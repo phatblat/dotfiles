@@ -1,5 +1,5 @@
-
-# null
+# 
 function ldg
-    git log -g
+    git log -g $argv
 end
+

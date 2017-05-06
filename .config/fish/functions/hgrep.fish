@@ -1,5 +1,5 @@
-
-# null
+# 
 function hgrep
-    fc -El 0 | grep
+    fc -El 0 | grep $argv
 end
+

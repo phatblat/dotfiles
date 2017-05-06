@@ -1,5 +1,5 @@
-
-# null
+# 
 function ls-files
-    git ls-files
+    git ls-files $argv
 end
+

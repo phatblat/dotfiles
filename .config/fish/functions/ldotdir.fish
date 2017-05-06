@@ -2,3 +2,4 @@
 function ldotdir
     la -d .*/ $argv
 end
+

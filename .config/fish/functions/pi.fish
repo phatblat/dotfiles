@@ -1,5 +1,5 @@
-
-# null
+# 
 function pi
-    pod install
+    pod install $argv
 end
+

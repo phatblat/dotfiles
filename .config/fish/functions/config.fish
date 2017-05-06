@@ -1,5 +1,5 @@
-
-# null
+# 
 function config
-    git config
+    git config $argv
 end
+

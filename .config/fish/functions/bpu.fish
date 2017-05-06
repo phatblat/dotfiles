@@ -1,5 +1,5 @@
-
-# null
+# 
 function bpu
-    bundle exec pod update --no-repo-update
+    bundle exec pod update --no-repo-update $argv
 end
+

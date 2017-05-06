@@ -1,5 +1,5 @@
-
-# null
+# 
 function untracked
-    git ls-files --others --exclude-standard
+    git ls-files --others --exclude-standard $argv
 end
+

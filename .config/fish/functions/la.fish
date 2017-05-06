@@ -2,3 +2,4 @@
 function la
     ls -lAFh $argv
 end
+

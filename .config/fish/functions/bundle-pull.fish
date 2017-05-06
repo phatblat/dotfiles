@@ -1,5 +1,5 @@
-
-# null
+# 
 function bundle-pull
-    bundle exec ${HOME}/.dotfiles/git/bundle-pull.rb
+    bundle exec ${HOME}/.dotfiles/git/bundle-pull.rb $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function cbiosv
-    cbios --verbose
+    cbios --verbose $argv
 end
+

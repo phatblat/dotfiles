@@ -1,5 +1,5 @@
-
-# null
+# 
 function ccos
-    carthage checkout --no-use-binaries --use-ssh
+    carthage checkout --no-use-binaries --use-ssh $argv
 end
+

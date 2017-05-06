@@ -1,5 +1,5 @@
-
-# null
+# 
 function xcodes
-    ls -ld /Applications/Xcode*
+    ls -ld /Applications/Xcode* $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function bef
-    bundle exec fastlane
+    bundle exec fastlane $argv
 end
+

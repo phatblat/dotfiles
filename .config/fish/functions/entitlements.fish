@@ -1,5 +1,5 @@
-
-# null
+# 
 function entitlements
-    codesign -d --entitlements :-
+    codesign -d --entitlements :- $argv
 end
+

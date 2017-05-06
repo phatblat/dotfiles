@@ -1,5 +1,5 @@
-
-# null
+# 
 function xstatus
-    ps aux | grep nginx
+    ps aux | grep nginx $argv
 end
+

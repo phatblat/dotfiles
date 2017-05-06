@@ -1,5 +1,5 @@
-
-# null
+# 
 function suri
-    git submodule update --recursive --init
+    git submodule update --recursive --init $argv
 end
+

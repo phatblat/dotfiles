@@ -1,5 +1,5 @@
-
-# null
+# 
 function mt
-    git mergetool
+    git mergetool $argv
 end
+

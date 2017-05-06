@@ -1,5 +1,5 @@
-
-# null
+# 
 function version_build
-    agvtool what-version -terse
+    agvtool what-version -terse $argv
 end
+

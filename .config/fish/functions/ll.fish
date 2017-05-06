@@ -1,4 +1,5 @@
+# long list
 function ll
-    # long list
     ls -l $argv
 end
+

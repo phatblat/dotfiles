@@ -1,5 +1,5 @@
-
-# null
+# 
 function rev-parse
-    git rev-parse
+    git rev-parse $argv
 end
+

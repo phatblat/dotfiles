@@ -1,5 +1,5 @@
-
-# null
+# 
 function bv
-    bundle --version
+    bundle --version $argv
 end
+

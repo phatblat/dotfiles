@@ -1,5 +1,5 @@
-
-# null
+# 
 function ccuv
-    ccu --verbose
+    ccu --verbose $argv
 end
+

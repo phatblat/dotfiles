@@ -1,5 +1,5 @@
-
-# null
+# 
 function bprum
-    bundle exec pod repo update master
+    bundle exec pod repo update master $argv
 end
+

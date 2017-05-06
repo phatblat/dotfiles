@@ -1,5 +1,5 @@
-
-# null
+# 
 function provdir
-    open "${HOME}/Library/MobileDevice/Provisioning Profiles"
+    open "${HOME}/Library/MobileDevice/Provisioning Profiles" $argv
 end
+

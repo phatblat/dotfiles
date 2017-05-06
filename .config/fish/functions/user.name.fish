@@ -1,5 +1,5 @@
-
-# null
+# 
 function user.name
-    git config user.name
+    git config user.name $argv
 end
+

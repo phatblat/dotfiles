@@ -1,5 +1,5 @@
-
-# null
+# 
 function ccu
-    carthage update --no-use-binaries --no-build
+    carthage update --no-use-binaries --no-build $argv
 end
+

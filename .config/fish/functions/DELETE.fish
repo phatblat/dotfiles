@@ -1,5 +1,5 @@
-
-# null
+# 
 function DELETE
-    burl DELETE
+    burl DELETE $argv
 end
+

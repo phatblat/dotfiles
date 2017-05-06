@@ -1,5 +1,5 @@
-
-# null
+# 
 function submodule
-    git submodule
+    git submodule $argv
 end
+

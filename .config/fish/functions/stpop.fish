@@ -1,5 +1,5 @@
-
-# null
+# 
 function stpop
-    git stash pop
+    git stash pop $argv
 end
+

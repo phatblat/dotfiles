@@ -1,5 +1,5 @@
-
-# null
+# 
 function cball
-    carthage build --platform all
+    carthage build --platform all $argv
 end
+

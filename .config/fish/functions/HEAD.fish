@@ -1,5 +1,5 @@
-
-# null
+# 
 function HEAD
-    burl -I
+    burl -I $argv
 end
+

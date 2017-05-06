@@ -1,5 +1,5 @@
-
-# null
+# 
 function xcss
-    sudo xcode-select --switch
+    sudo xcode-select --switch $argv
 end
+

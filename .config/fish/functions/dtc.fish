@@ -1,5 +1,5 @@
-
-# null
+# 
 function dtc
-    git difftool --cached
+    git difftool --cached $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function bpiru
-    bundle exec pod install --repo-update
+    bundle exec pod install --repo-update $argv
 end
+

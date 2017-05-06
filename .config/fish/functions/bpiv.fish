@@ -1,5 +1,5 @@
-
-# null
+# 
 function bpiv
-    bundle exec pod install --verbose
+    bundle exec pod install --verbose $argv
 end
+

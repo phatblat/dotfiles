@@ -1,5 +1,5 @@
-
-# null
+# 
 function sa
-    git status
+    git status $argv
 end
+

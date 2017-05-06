@@ -1,5 +1,5 @@
-
-# null
+# 
 function ccov
-    cco --verbose
+    cco --verbose $argv
 end
+

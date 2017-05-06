@@ -1,5 +1,5 @@
-
-# null
+# 
 function reloadprofile
-    source ~/.zshrc
+    source ~/.zshrc $argv
 end
+

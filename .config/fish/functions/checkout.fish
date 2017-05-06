@@ -1,5 +1,5 @@
-
-# null
+# 
 function checkout
-    git checkout
+    git checkout $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function bi
-    bundle install
+    bundle install $argv
 end
+

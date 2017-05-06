@@ -1,5 +1,5 @@
-
-# null
+# 
 function fetch
-    git fetch
+    git fetch $argv
 end
+

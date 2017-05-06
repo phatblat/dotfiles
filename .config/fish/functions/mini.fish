@@ -1,5 +1,5 @@
-
-# null
+# 
 function mini
-    ssh phatblat@mini.log-g.co
+    ssh phatblat@mini.log-g.co $argv
 end
+

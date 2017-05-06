@@ -1,5 +1,5 @@
-
-# null
+# 
 function ref
-    git symbolic-ref
+    git symbolic-ref $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function slave1
-    ssh admin@10.227.149.211
+    ssh admin@10.227.149.211 $argv
 end
+

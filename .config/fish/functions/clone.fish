@@ -1,5 +1,5 @@
-
-# null
+# 
 function clone
-    git clone
+    git clone $argv
 end
+

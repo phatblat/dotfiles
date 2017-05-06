@@ -1,5 +1,5 @@
-
-# null
+# 
 function mirror
-    git reset --hard
+    git reset --hard $argv
 end
+

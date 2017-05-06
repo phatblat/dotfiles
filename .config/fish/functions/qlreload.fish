@@ -1,5 +1,5 @@
-
-# null
+# 
 function qlreload
-    qlmanage -r
+    qlmanage -r $argv
 end
+

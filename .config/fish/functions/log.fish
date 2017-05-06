@@ -1,5 +1,5 @@
-
-# null
+# 
 function log
-    git log --pretty=fuller
+    git log --pretty=fuller $argv
 end
+

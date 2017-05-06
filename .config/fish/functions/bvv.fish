@@ -1,5 +1,5 @@
-
-# null
+# 
 function bvv
-    git branch -vv
+    git branch -vv $argv
 end
+

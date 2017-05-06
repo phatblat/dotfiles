@@ -1,5 +1,5 @@
-
-# null
+# 
 function adev
-    open https://developer.apple.com/news/
+    open https://developer.apple.com/news/ $argv
 end
+

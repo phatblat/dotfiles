@@ -1,5 +1,5 @@
-
-# null
+# 
 function dw
-    git diff --word-diff
+    git diff --word-diff $argv
 end
+

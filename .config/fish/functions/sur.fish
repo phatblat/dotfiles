@@ -1,5 +1,5 @@
-
-# null
+# 
 function sur
-    git submodule update --recursive
+    git submodule update --recursive $argv
 end
+

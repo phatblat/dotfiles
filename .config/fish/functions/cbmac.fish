@@ -1,5 +1,5 @@
-
-# null
+# 
 function cbmac
-    carthage build --platform Mac
+    carthage build --platform Mac $argv
 end
+

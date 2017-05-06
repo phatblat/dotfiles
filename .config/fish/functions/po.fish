@@ -1,5 +1,5 @@
-
-# null
+# 
 function po
-    pod outdated --no-repo-update
+    pod outdated --no-repo-update $argv
 end
+

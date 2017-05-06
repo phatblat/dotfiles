@@ -1,5 +1,5 @@
-
-# null
+# 
 function lfs
-    git lfs
+    git lfs $argv
 end
+

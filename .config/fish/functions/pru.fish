@@ -1,5 +1,5 @@
-
-# null
+# 
 function pru
-    pod repo update
+    pod repo update $argv
 end
+

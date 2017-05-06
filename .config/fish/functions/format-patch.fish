@@ -1,5 +1,5 @@
-
-# null
+# 
 function format-patch
-    git format-patch
+    git format-patch $argv
 end
+

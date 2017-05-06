@@ -1,5 +1,5 @@
-
-# null
+# 
 function shortsha
-    git rev-parse --short HEAD
+    git rev-parse --short HEAD $argv
 end
+

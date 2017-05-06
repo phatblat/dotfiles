@@ -1,5 +1,5 @@
-
-# null
+# 
 function tower
-    gittower .
+    gittower . $argv
 end
+

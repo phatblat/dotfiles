@@ -1,5 +1,5 @@
-
-# null
+# 
 function xreload
-    sudo nginx -s reload
+    sudo nginx -s reload $argv
 end
+

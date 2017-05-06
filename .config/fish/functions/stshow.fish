@@ -1,5 +1,5 @@
-
-# null
+# 
 function stshow
-    git stash show -p
+    git stash show -p $argv
 end
+

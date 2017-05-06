@@ -1,5 +1,5 @@
-
-# null
+# 
 function bpi
-    bundle exec pod install
+    bundle exec pod install $argv
 end
+

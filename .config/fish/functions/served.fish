@@ -1,5 +1,5 @@
-
-# null
+# 
 function served
-    serve --detach
+    serve --detach $argv
 end
+

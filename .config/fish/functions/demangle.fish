@@ -1,5 +1,5 @@
-
-# null
+# 
 function demangle
-    xcrun swift-demangle
+    xcrun swift-demangle $argv
 end
+

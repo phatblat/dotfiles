@@ -1,5 +1,5 @@
-
-# null
+# 
 function assume
-    git update-index --assume-unchanged
+    git update-index --assume-unchanged $argv
 end
+

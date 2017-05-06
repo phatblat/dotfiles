@@ -1,5 +1,5 @@
-
-# null
+# 
 function xp
-    cd \"${XCODE_PLUGINS}\"
+    cd \"${XCODE_PLUGINS}\" $argv
 end
+

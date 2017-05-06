@@ -1,5 +1,5 @@
-
-# null
+# 
 function xps
-    xstatus
+    xstatus $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function stsave
-    git stash save
+    git stash save $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function reset
-    git reset
+    git reset $argv
 end
+

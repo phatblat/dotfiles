@@ -1,5 +1,5 @@
-
-# null
+# 
 function sshcopypub
-    pbcopy < ~/.ssh/id_rsa.pub
+    pbcopy < ~/.ssh/id_rsa.pub $argv
 end
+

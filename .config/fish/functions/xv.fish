@@ -1,5 +1,5 @@
-
-# null
+# 
 function xv
-    xcodebuild -version
+    xcodebuild -version $argv
 end
+

@@ -1,5 +1,5 @@
-
-# null
+# 
 function pul
-    LOCAL=1 pod update
+    LOCAL=1 pod update $argv
 end
+

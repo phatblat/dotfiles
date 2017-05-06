@@ -1,5 +1,5 @@
-
-# null
+# 
 function stlist
-    git stash list
+    git stash list $argv
 end
+
