@@ -1,7 +1,7 @@
 # Version 1.0 -- Generated content!
 fontName         = DejaVuSansMonoForPowerline
 fontSize         = 14
-showInvisibles   = true
+showInvisibles   = false
 softTabs         = true
 softWrap         = true
 tabSize          = 4
@@ -57,4 +57,5 @@ showInvisibles   = false
 softWrap         = true
 
 [ text.plain ]
+showInvisibles   = false
 tabSize          = 2
