@@ -47,20 +47,22 @@ task convertAliasToFunction {
 
                     String functionName = matcher.group(1)
                     String functionBody = matcher.group(2)
-                    String functionComment = matcher.group(4)
+                    String functionComment = matcher.group(4) ?: ""
 
                     File fishFunction = new File("fish/functions/${functionName}.fish")
-                    logger.lifecycle "${fishFunction}"
-                    // Don't overwrite existing files
-                    if (fishFunction == null || !fishFunction.exists()) {
-                        fishFunction.text = """
-# ${functionComment}
+
+                    // Existing files are overwritten
+                    fishFunction.text = """# ${functionComment}
 function ${functionName}
-    ${functionBody}
+    ${functionBody} \$argv
 end
+
 """
-                        logger.lifecycle "${fishFunction} function created"
+                    String action = "created"
+                    if (fishFunction.exists()) {
+                        action = "modified"
                     }
+                    logger.lifecycle "${fishFunction} function ${action}"
                 }
             }
         }
