@@ -27,7 +27,7 @@ task convertAliasToFunction {
     group ".dotfiles"
 
     dependsOn listFiles
-//    inputs.files zshFiles
+    inputs.files zshFiles
 
     doLast {
         def aliasPattern = ~/^alias ([^=]+)=['"]([^#]+)['"]( +# )?([^#]+)?/
@@ -39,15 +39,32 @@ task convertAliasToFunction {
                 def matcher = line =~ aliasPattern
                 if (matcher.matches()) {
                     matchCount += 1
-                    logger.lifecycle "*** ${line}"
-                    logger.lifecycle "1: ${matcher.group(1)}"
-                    logger.lifecycle "2: ${matcher.group(2)}"
-                    logger.lifecycle "3: ${matcher.group(3)}"
-                    logger.lifecycle "4: ${matcher.group(4)}"
+                    logger.debug "*** ${line}"
+                    logger.debug "1: ${matcher.group(1)}"
+                    logger.debug "2: ${matcher.group(2)}"
+                    logger.debug "3: ${matcher.group(3)}"
+                    logger.debug "4: ${matcher.group(4)}"
+
+                    String functionName = matcher.group(1)
+                    String functionBody = matcher.group(2)
+                    String functionComment = matcher.group(4)
+
+                    File fishFunction = new File("fish/functions/${functionName}.fish")
+                    logger.lifecycle "${fishFunction}"
+                    // Don't overwrite existing files
+                    if (fishFunction == null || !fishFunction.exists()) {
+                        fishFunction.text = """
+# ${functionComment}
+function ${functionName}
+    ${functionBody}
+end
+"""
+                        logger.lifecycle "${fishFunction} function created"
+                    }
                 }
             }
         }
-        logger.lifecycle "matches: ${matchCount}"
+        logger.debug "matches: ${matchCount}"
         assert matchCount == 265
     }
 }
