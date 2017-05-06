@@ -53,4 +53,4 @@ function explain {
 
 # TODO: Figure out how to prevent PATH from growing when reloadprofile is invoked
 alias reloadprofile="source ~/.zshrc"
-alias relo=reloadprofile
+alias relo='reloadprofile'

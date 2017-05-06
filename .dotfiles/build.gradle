@@ -18,7 +18,7 @@ task listFiles {
 //    inputs.files zshFiles
 
     zshFiles.each { File file ->
-        println file
+        logger.debug "${file}"
     }
 }
 
@@ -29,11 +29,21 @@ task convertAliasToFunction {
     dependsOn listFiles
 //    inputs.files zshFiles
 
-    zshFiles.each { File file ->
-        println file
-        file.eachLine { line ->
-            println line
+    doLast {
+        def aliasPattern = ~/^alias ([^=]+)=['"](.+).#? ?(.+)?/
+
+        Integer matchCount = 0
+        zshFiles.each { File file ->
+            logger.debug "${file}"
+            file.eachLine { String line ->
+                if ((line =~ aliasPattern).matches()) {
+                    logger.lifecycle "*** ${line}"
+                    matchCount += 1
+                }
+            }
         }
+        logger.lifecycle "matches: ${matchCount}"
+        assert matchCount == 267
     }
 }
 
