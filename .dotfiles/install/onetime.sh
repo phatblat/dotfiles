@@ -99,28 +99,66 @@ popd > /dev/null
 
 
 #-------------------------------------------------------------------------------
-# Zsh
+# Custom Shell Switch
+# TODO: Use chsh? (e.g. chsh -s /usr/local/bin/fish)
 #-------------------------------------------------------------------------------
 
-new_shell="zsh"
-shell_path="$(brew --prefix)/bin/${new_shell}"
-command="sudo dscl . -change ${HOME} UserShell ${SHELL} ${shell_path}"
+# Changes the current $USER's shell using dscl. Outputs only the command to run for non-admins.
+function switch_shell {
+  new_shell="$1"
+  shell_path="$(brew --prefix)/bin/${new_shell}"
+  command="sudo dscl . -change ${HOME} UserShell ${SHELL} ${shell_path}"
 
-# Get the last path component
-shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
-if [[ ${shell_last_path_component} != ${new_shell} ]]; then
-  if user_is_admin; then
-    ${command}
+  # Get the last path component
+  shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
+  if [[ ${shell_last_path_component} != ${new_shell} ]]; then
+    if user_is_admin; then
+      ${command}
 
-    echo -n "UserShell changed to "
-    dscl . -read ${HOME} UserShell
-  else
-    echo "Have an admin run the following command:"
-    echo "    ${command}"
-    exit 0
+      echo -n "UserShell changed to "
+      dscl . -read ${HOME} UserShell
+    else
+      echo "Have an admin run the following command:"
+      echo "    ${command}"
+      exit 0
+    fi
   fi
-fi
-unset shell_last_path_component
+  unset shell_last_path_component
 
-# Switch to new shell and prime the environment
-${new_shell}
+  # Switch to new shell and prime the environment
+  ${new_shell}
+}
+
+shells=(bash zsh fish)
+
+echo "Your default shell is ${SHELL}, would you like to change it?"
+shopt -s extglob
+case "${SHELL}" in ${shells[*]}
+  *bash ) current_shell="bash"
+    break;;
+  *zsh ) current_shell="zsh"
+    break;;
+  *fish ) current_shell="fish"
+    break;;
+esac
+
+echo "current_shell: ${current_shell}"
+
+
+select new_shell in ${shells[*]}
+do
+  case ${new_shell} in
+    *bash ) echo "bash"
+      break;;
+    *zsh ) echo "zsh"
+      break;;
+    *fish ) echo "fish"
+      break;;
+  esac
+done
+
+echo "new_shell: ${new_shell}"
+
+if [[ "${new_shell}" != "${current_shell}" ]]; then
+  switch_shell "${new_shell}"
+fi
