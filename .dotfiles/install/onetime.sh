@@ -9,8 +9,8 @@ echo
 echo ">>> install-onetime"
 echo
 
-# Load aliases
-source ~/.dotfiles/install/alias.zsh
+# Load user_is_admin alias
+source "${HOME}/.dotfiles/install/alias.zsh"
 
 
 #-------------------------------------------------------------------------------

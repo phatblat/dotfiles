@@ -6,7 +6,7 @@
 #-------------------------------------------------------------------------------
 
 # Prime the environment first
-. ${HOME}/.dotfiles/cron/cron.env
+source "${HOME}/.dotfiles/cron/cron.env"
 
 # This can only be run by an admin user
 if ! user_is_admin; then

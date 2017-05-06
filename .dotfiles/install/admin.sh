@@ -9,8 +9,10 @@ echo
 echo ">>> install-admin"
 echo
 
-# Verify current user is an admin before proceeding
+# Load user_is_admin alias
+source "${HOME}/.dotfiles/install/alias.zsh"
 
+# Verify current user is an admin before proceeding
 if ! user_is_admin; then
   echo "Only admins may run this script"
   exit 1
