@@ -30,20 +30,25 @@ task convertAliasToFunction {
 //    inputs.files zshFiles
 
     doLast {
-        def aliasPattern = ~/^alias ([^=]+)=['"](.+).#? ?(.+)?/
+        def aliasPattern = ~/^alias ([^=]+)=['"]([^#]+)['"]( +# )?([^#]+)?/
 
         Integer matchCount = 0
         zshFiles.each { File file ->
             logger.debug "${file}"
             file.eachLine { String line ->
-                if ((line =~ aliasPattern).matches()) {
-                    logger.lifecycle "*** ${line}"
+                def matcher = line =~ aliasPattern
+                if (matcher.matches()) {
                     matchCount += 1
+                    logger.lifecycle "*** ${line}"
+                    logger.lifecycle "1: ${matcher.group(1)}"
+                    logger.lifecycle "2: ${matcher.group(2)}"
+                    logger.lifecycle "3: ${matcher.group(3)}"
+                    logger.lifecycle "4: ${matcher.group(4)}"
                 }
             }
         }
         logger.lifecycle "matches: ${matchCount}"
-        assert matchCount == 267
+        assert matchCount == 265
     }
 }
 
