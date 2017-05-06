@@ -1,15 +1,21 @@
+//
+// build.gradle
+// .dotfiles
+//
 
-String rootDir = '.'
+// -----------------------------------------------------------------------------
+// ZSH -> Fish Shell Migration Tasks
+
+FileTree zshFiles = fileTree(projectDir) {
+    include '**/*.zsh'
+    //exclude '**/*.old'
+}
 
 task listFiles {
     description "Lists files which will be migrated from ZSH to Fish Shell."
     group ".dotfiles"
 
-    FileTree zshFiles = fileTree(rootDir) {
-        include '**/*.zsh'
-        //exclude '**/*.old'
-    }
-    inputs.file zshFiles
+//    inputs.files zshFiles
 
     zshFiles.each { File file ->
         println file
@@ -21,7 +27,14 @@ task convertAliasToFunction {
     group ".dotfiles"
 
     dependsOn listFiles
-    inputs.file listFiles
+//    inputs.files zshFiles
+
+    zshFiles.each { File file ->
+        println file
+        file.eachLine { line ->
+            println line
+        }
+    }
 }
 
 task portFunction {
@@ -29,7 +42,7 @@ task portFunction {
     group ".dotfiles"
 
     dependsOn listFiles
-    inputs.file listFiles
+    inputs.files zshFiles
 }
 
 // -----------------------------------------------------------------------------
