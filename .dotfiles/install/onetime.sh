@@ -102,21 +102,25 @@ popd > /dev/null
 # Zsh
 #-------------------------------------------------------------------------------
 
-zsh_path="$(brew --prefix)/bin/zsh"
+new_shell="zsh"
+shell_path="$(brew --prefix)/bin/${new_shell}"
+command="sudo dscl . -change ${HOME} UserShell ${SHELL} ${shell_path}"
 
 # Get the last path component
 shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
-if [[ ${shell_last_path_component} != "zsh" ]]; then
+if [[ ${shell_last_path_component} != ${new_shell} ]]; then
   if user_is_admin; then
-    sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}
+    ${command}
+
+    echo -n "UserShell changed to "
     dscl . -read ${HOME} UserShell
   else
     echo "Have an admin run the following command:"
-    echo "    sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}"
+    echo "    ${command}"
     exit 0
   fi
 fi
 unset shell_last_path_component
 
-# Switch to zsh and prime the shell environment
-zsh
+# Switch to new shell and prime the environment
+${new_shell}
