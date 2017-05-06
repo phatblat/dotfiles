@@ -50,5 +50,5 @@ formulae=(
     webpquicklook
 )
 
-TODO: Use reinstall?
+# TODO: Use reinstall?
 brew cask install ${formulae[*]}
