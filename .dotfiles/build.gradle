@@ -31,3 +31,11 @@ task portFunction {
     dependsOn listFiles
     inputs.file listFiles
 }
+
+// -----------------------------------------------------------------------------
+// Gradle Wrapper
+
+wrapper {
+    gradleVersion = '3.5'
+    distributionType = 'ALL'
+}
