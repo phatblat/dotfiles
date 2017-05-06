@@ -5,7 +5,10 @@
 #
 #-------------------------------------------------------------------------------
 
-mkdir -p /usr/local/var/log/lj
-lj --file /usr/local/var/log/lj/lumberjack.log --level debug
+LUMBERJACK_LOGS=/usr/local/var/log/lj
+mkdir -p $LUMBERJACK_LOGS
+chmod g+w $LUMBERJACK_LOGS
+
+lj --file $LUMBERJACK_LOGS/lumberjack.$USER.log --level debug
 
 lj info 'shell/logging.zsh'
