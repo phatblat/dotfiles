@@ -1,10 +1,7 @@
 # Installs and updates system and shell dependencies.
 function _install
-    echo _install
-
     # Fisherman - https://github.com/fisherman/fisherman#install
     set fisherDir ~/.config/fish/functions/fisher.fish
-    # if test -e $fisherDir
 
     # Follow redirects: -L, --location
     # Simple progress bar: -#, --progress-bar
@@ -13,13 +10,11 @@ function _install
     # -o, --output <file>
     #   Write output to <file> instead of stdout.
 
-    set url "http://git.io/fisher"
-    # set url "https://raw.githubusercontent.com/fisherman/fisherman/master/fisher.fish"
+    set url "https://raw.githubusercontent.com/fisherman/fisherman/master/fisher.fish" # "http://git.io/fisher"
     curl --location --progress-bar --create-dirs --output $fisherDir $url
 
-    # end
     echo "Fisherman installed -> $fisherDir"
-    echo "Fisherman 🐟"
 
+    echo "Fisherman 🐟"
     fisher mock
 end
