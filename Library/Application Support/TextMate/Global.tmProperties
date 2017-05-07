@@ -1,12 +1,12 @@
 # Version 1.0 -- Generated content!
 fontName         = DejaVuSansMonoForPowerline
 fontSize         = 14
-showInvisibles   = false
+showInvisibles   = true
 softTabs         = true
 softWrap         = true
 tabSize          = 4
 theme            = A2C6BAA7-90D0-4147-BBF5-96B0CD92D109
-wrapColumn       = 800
+wrapColumn       = 0
 
 [ *.fish ]
 fileType         = source.fish
@@ -26,6 +26,7 @@ tabSize          = 4
 showInvisibles   = true
 
 [ source.fish ]
+showInvisibles   = true
 tabSize          = 4
 
 [ source.groovy ]
