@@ -1,3 +1,3 @@
 function fishlog
-    eval "less /tmp/fishd.log.$USER"
+    eval less /tmp/fishd.log.$USER
 end
