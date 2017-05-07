@@ -1,20 +1,32 @@
 # Installs and updates system and shell dependencies.
 function _install
+    # Parent directories
+    set -l dirs ~/dev/fish
+
+    for dir in $dirs
+        if not test -e $dir
+            mkdir -p $dir
+        end
+    end
+
     # Fisherman - https://github.com/fisherman/fisherman#install
-    set fisherDir ~/.config/fish/functions/fisher.fish
+    set -l fisherDir ~/dev/fish/fisher
+    set -l functionFile ~/.config/fish/functions/fisher.fish
 
-    # Follow redirects: -L, --location
-    # Simple progress bar: -#, --progress-bar
-    # --create-dirs
-    #   When used in conjunction with the -o option, curl will create the necessary local directory hierarchy as needed. This option creates the dirs mentioned with the -o option, nothing else.
-    # -o, --output <file>
-    #   Write output to <file> instead of stdout.
+    if not test -e $fisherDir
+        set url "git@github.com:fisherman/fisherman.git"
+        git clone $url $fisherDir
 
-    set url "https://raw.githubusercontent.com/fisherman/fisherman/master/fisher.fish" # "http://git.io/fisher"
-    curl --location --progress-bar --create-dirs --output $fisherDir $url
+        ln -Ffs $fisherDir/fisher.fish $functionFile
+        echo "Fisherman installed -> $fisherDir"
+    else
+        echo "Updating Fisherman ♻️"
+        pushd $fisherDir
+        and git pull
+        and popd
+    end
 
-    echo "Fisherman installed -> $fisherDir"
-
-    echo "Fisherman 🐟"
+    echo "Fisherman 🐟  - https://github.com/fisherman/fisherman"
+    fisher --version
     fisher mock
 end
