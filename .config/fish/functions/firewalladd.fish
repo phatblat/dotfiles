@@ -7,18 +7,18 @@
 #   firewall --unblockapp /usr/local/Cellar/nginx/1.8.0/bin/nginx
 function firewalladd
     echo $argv | read -l app_binary
-    
+
     if test -z $app_binary
         echo "Usage: firewalladd <path>"
         return 1
     end
-    
+
     if test -e $app_binary
         sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add $app_binary
         sudo /usr/libexec/ApplicationFirewall/socketfilterfw --unblockapp $app_binary
         return 0
     end
-    
+
     echo "$app_binary doesn't exist"
     return 2
 end
