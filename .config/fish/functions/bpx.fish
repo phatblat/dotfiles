@@ -1,5 +1,4 @@
-# 
+# Installs gem bundle, pods and then opens workspace in Xcode
 function bpx
-    bi && pi && ow $argv
+    bi; and pi; and ow
 end
-

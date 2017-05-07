@@ -1,5 +1,5 @@
-# 
+# Enables developer mode.
 function developer_mode
-    DevToolsSecurity -status && sudo DevToolsSecurity -enable $argv
+    DevToolsSecurity -status
+    sudo DevToolsSecurity -enable $argv
 end
-

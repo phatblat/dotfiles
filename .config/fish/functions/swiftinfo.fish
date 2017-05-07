@@ -1,5 +1,4 @@
-# 
+# Print information about the current Swift toolchain.
 function swiftinfo
-    xcrun --find swift && swift --version $argv
+    xcrun --find swift; and swift --version $argv
 end
-
