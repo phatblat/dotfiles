@@ -1,5 +1,4 @@
-# 
+# Reload nginx configuration.
 function xreload
-    sudo nginx -s reload $argv
+    nginx -s reload $argv
 end
-

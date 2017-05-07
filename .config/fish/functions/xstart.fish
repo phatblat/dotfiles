@@ -1,5 +1,5 @@
-# 
+# Starts nginx.
 function xstart
-    sudo nginx $argv
+    nginx $argv
+    xstatus
 end
-
