@@ -1,5 +1,4 @@
-# 
+# Open the current directory in 
 function tower
-    gittower . $argv
+    gittower (root) $argv
 end
-
