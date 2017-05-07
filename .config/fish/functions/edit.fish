@@ -1,5 +1,4 @@
-# 
+# Edit using the configured VISUAL editor (TextMate).
 function edit
-    ${VISUAL} $argv
+    eval $VISUAL $argv
 end
-
