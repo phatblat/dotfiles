@@ -109,8 +109,7 @@ task portVariables {
                     File variableFile = new File("fish/variables.fish")
 
                     // Existing files are overwritten
-                    //variableFile.append
-                    logger.lifecycle "\nset --export ${variableName} ${variableBody}"
+                    variableFile.append "\nset --export ${variableName} ${variableBody}"
                     logger.lifecycle "Added ${variableName} to ${variableFile}"
                 }
             }
