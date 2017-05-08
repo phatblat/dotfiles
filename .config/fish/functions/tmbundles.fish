@@ -1,9 +1,17 @@
 # Manage TextMate bundles.
 function tmbundles
-    set -l bundle_dir ~/Library/Application\ Support/TextMate/Bundles
     set -l bundles fish gradle
+    set -l bundle_dev ~/dev/textmate
+    set -l bundle_dir ~/Library/Application\ Support/TextMate/Bundles
 
-    pushd
+    if not test -e $bundle_dev
+        mkdir -p $bundle_dev
+    end
+    if not test -e $bundle_dir
+        mkdir -p $bundle_dir
+    end
+
+    pushd $bundle_dev
 
     for bundle in $bundles
         if not test -e $bundle.tmbundle
@@ -17,7 +25,7 @@ function tmbundles
         open $bundle.tmbundle
     end
 
-    echo $bundle_dir
-    ls -l
+    echo $bundle_dev
+    ls
     popd
 end
