@@ -28,6 +28,9 @@ function _install
 
     echo "Fisherman 🐟  - https://github.com/fisherman/fisherman"
     fisher --version
-    fisher get
-    fisher mock
+
+    set -l fisherman_plugins get mock z
+    for plugin in $fisherman_plugins
+        fisher $plugin
+    end
 end

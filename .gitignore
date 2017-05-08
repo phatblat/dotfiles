@@ -138,6 +138,7 @@ tmp/
 # .uncrustify/
 .vim/
 .viminfo
+.z
 .zcompcache/
 .zcompdump*
 .zsh-update
