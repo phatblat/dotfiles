@@ -1,4 +1,4 @@
 # Copy SSH public key to general pasteboard.
-function sshcopypub
+function sshcopypub --description "Copy SSH public key to general pasteboard."
     pbcopy < ~/.ssh/id_rsa.pub
 end
