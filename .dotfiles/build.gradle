@@ -83,7 +83,8 @@ task portFunctions {
         // 21 results: (?m)function ([a-z_-]+) {\n([^}]*)\n}
         // 24 results: (?ms)^function ([a-z]+) \{\n(.*)\n\}
         // 28 results: (?ms)^function ([a-z_-]+) \{\n(.*)\n\}
-        def pattern = ~/(?ms)^function ([a-z_-]+) \{\n(.*)\n\}/
+        // 48 results: (?ms)^function ([a-z_-]+) \{\n(.*?)\n\}
+        def pattern = ~/(?ms)^function ([a-z_-]+) \{\n(.*?)\n\}/
         logger.lifecycle "pattern: ${pattern}"
 
         Integer totalMatchCount = 0
@@ -93,7 +94,7 @@ task portFunctions {
             //def matcher = 
             (file.text =~ pattern).each { match, functionName, functionBody ->
                 totalMatchCount += 1
-                logger.lifecycle "*** match"
+/*                logger.lifecycle "*** match: ${match}"*/
                 logger.lifecycle "1: ${functionName}"
                 //logger.lifecycle "2: ${functionBody}"
 
