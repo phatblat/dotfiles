@@ -78,25 +78,16 @@ task portFunctions {
     inputs.files zshFiles
 
     doLast {
-        // TextMate regex testing
-        // 48 results: ^function ([a-z_-]+)
-        // 21 results: (?m)function ([a-z_-]+) {\n([^}]*)\n}
-        // 24 results: (?ms)^function ([a-z]+) \{\n(.*)\n\}
-        // 28 results: (?ms)^function ([a-z_-]+) \{\n(.*)\n\}
-        // 48 results: (?ms)^function ([a-z_-]+) \{\n(.*?)\n\}
         def pattern = ~/(?ms)^function ([a-z_-]+) \{\n(.*?)\n\}/
         logger.lifecycle "pattern: ${pattern}"
 
         Integer totalMatchCount = 0
         zshFiles.each { File file ->
             logger.lifecycle "${file}"
-            //logger.lifecycle "${file.text}"
-            //def matcher = 
             (file.text =~ pattern).each { match, functionName, functionBody ->
                 totalMatchCount += 1
-/*                logger.lifecycle "*** match: ${match}"*/
-                logger.lifecycle "1: ${functionName}"
-                //logger.lifecycle "2: ${functionBody}"
+                logger.debug "1: ${functionName}"
+                logger.debug "2: ${functionBody}"
 
                 File fishFunction = new File("fish/functions/${functionName}.fish")
 
@@ -110,13 +101,14 @@ end
                 if (fishFunction.exists()) {
                     action = "modified"
                 }
-                //fishFunction.text = functionSource
-                //logger.lifecycle functionSource
+
+                fishFunction.text = functionSource
+                logger.debug functionSource
 
                 logger.lifecycle "${functionName} function ${action}"
             }
         }
-        logger.lifecycle "total matches: ${totalMatchCount}"
+        logger.info "total matches: ${totalMatchCount}"
         assert totalMatchCount == 48
     }
 }
