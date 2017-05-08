@@ -30,13 +30,13 @@ task convertAliasToFunction {
     inputs.files zshFiles
 
     doLast {
-        def aliasPattern = ~/^alias ([^=]+)=['"]([^#]+)['"]( +# )?([^#]+)?/
+        def pattern = ~/^alias ([^=]+)=['"]([^#]+)['"]( +# )?([^#]+)?/
 
         Integer matchCount = 0
         zshFiles.each { File file ->
             logger.debug "${file}"
             file.eachLine { String line ->
-                def matcher = line =~ aliasPattern
+                def matcher = line =~ pattern
                 if (matcher.matches()) {
                     matchCount += 1
                     logger.debug "*** ${line}"
@@ -89,7 +89,34 @@ task portVariables {
     inputs.files zshFiles
 
     doLast {
+        def pattern = ~/^.*export ([a-zA-Z_]+)=['"]?([^'"]+)['"]?.*/
 
+        Integer matchCount = 0
+        zshFiles.each { File file ->
+            logger.lifecycle "${file}"
+            file.eachLine { String line ->
+                def matcher = line =~ pattern
+                if (matcher.matches()) {
+                    matchCount += 1
+                    logger.lifecycle "*** ${line}"
+                    logger.lifecycle "1: ${matcher.group(1)}"
+                    logger.lifecycle "2: ${matcher.group(2)}"
+
+                    String variableName = matcher.group(1)
+                    String variableBody = matcher.group(2)
+/*                    String functionComment = matcher.group(4) ?: ""*/
+
+                    File variableFile = new File("fish/variables.fish")
+
+                    // Existing files are overwritten
+                    //variableFile.append
+                    logger.lifecycle "\nset --export ${variableName} ${variableBody}"
+                    logger.lifecycle "Added ${variableName} to ${variableFile}"
+                }
+            }
+        }
+        logger.lifecycle "matches: ${matchCount}"
+        assert matchCount == 32
     }
 }
 
