@@ -2,4 +2,3 @@
 function ldot
     la -d .* $argv
 end
-
