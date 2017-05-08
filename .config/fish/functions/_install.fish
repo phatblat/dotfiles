@@ -28,5 +28,6 @@ function _install
 
     echo "Fisherman 🐟  - https://github.com/fisherman/fisherman"
     fisher --version
+    fisher get
     fisher mock
 end
