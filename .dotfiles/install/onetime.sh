@@ -134,39 +134,42 @@ function switch_shell {
   ${new_shell}
 }
 
-shells=(bash zsh fish)
+function choose_shell {
+  local shells=(bash zsh fish)
 
-current_shell=$(basename ${SHELL})
-echo "current_shell: ${current_shell}"
-echo "Your default shell is ${current_shell}, would you like to change it?"
+  current_shell=$(basename ${SHELL})
+  echo "current_shell: ${current_shell}"
+  echo "Your default shell is ${current_shell}, would you like to change it?"
 
-shopt -s extglob
+  shopt -s extglob
 
-for i in "${#shells[@]}"
-do
-  if [[ ${shells[i]} != ${current_shell} ]]; then
-    continue
-  fi
+  for i in "${#shells[@]}"
+  do
+    if [[ ${shells[i]} != ${current_shell} ]]; then
+      continue
+    fi
 
-  shells[i]="${shells[i]} \*"
-  current_shell="${current_shell} \*"
-done
+    shells[i]="${shells[i]} \*"
+    current_shell="${current_shell} \*"
+  done
 
-select new_shell in ${shells[*]}
-do
-  # echo "new_shell: ${new_shell}"
+  select new_shell in ${shells[*]}
+  do
+    # echo "new_shell: ${new_shell}"
 
-  if [[ "${new_shell}" != "${current_shell}" ]]; then
-    switch_shell "${new_shell}"
-  fi
+    if [[ "${new_shell}" != "${current_shell}" ]]; then
+      switch_shell "${new_shell}"
+    fi
 
-  # case ${new_shell} in
-  #   *bash ) echo "bash"
-  #     break;;
-  #   *zsh ) echo "zsh"
-  #     break;;
-  #   *fish ) echo "fish"
-  #     break;;
-  # esac
-done
+    # case ${new_shell} in
+    #   *bash ) echo "bash"
+    #     break;;
+    #   *zsh ) echo "zsh"
+    #     break;;
+    #   *fish ) echo "fish"
+    #     break;;
+    # esac
+  done
+}
 
+choose_shell
