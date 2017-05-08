@@ -1,0 +1,27 @@
+# OS X Finder
+.DS_Store
+
+# Xcode
+xcuserdata
+*.xccheckout
+*.xcscmblueprint
+
+# Build products
+build/
+
+# Automatic backup files
+*~.nib/
+*.swp
+*~
+*.dat
+*.dep
+
+# Bundler
+.rubygems/
+bin/
+
+# Cocoapods
+Pods/
+
+# Carthage
+Carthage/
