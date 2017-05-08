@@ -1,9 +1,15 @@
+#-------------------------------------------------------------------------------
 # Finder
 .DS_Store
 
+#-------------------------------------------------------------------------------
 # Bundler is configured to install home dir gems into ~/.rubygems
 .rubygems/
 
+*.swp
+gradlew.bat
+
+#-------------------------------------------------------------------------------
 # Xcode
 *.xccheckout
 *.xcscmblueprint
@@ -11,8 +17,115 @@ xcuserdata
 Carthage/
 Pods/
 
+#-------------------------------------------------------------------------------
 # Directories and files containing sensitive info
 .envrc
 .raliorc/
 private/
 
+#-------------------------------------------------------------------------------
+# Standard user directories
+
+Applications
+Desktop
+Documents
+Downloads
+Dropbox
+# Fastlane
+Library
+Movies
+Music
+OmniPresence
+Pictures
+Public
+dev
+mbox
+tmp
+bin/
+
+#-------------------------------------------------------------------------------
+# Hidden files and folders
+
+.CFUserTextEncoding
+.Trash/
+.android/
+.antigen/
+.anyconnect
+.atom/
+.bash_history
+# .bundle/
+.bundle/cache/
+.cache/
+.cf/
+.cisco/
+.cocoapods/
+.conche/
+# .config/
+.config/direnv/
+# Include fish config files
+!.config/fish/
+.config/fish/completions/
+.config/fish/fishd.a8667f043f9d
+!.config/fish/fishfile
+!.config/fish/functions/*.fish
+.config/fish/h
+.config/fisherman/
+.config/git/config
+.config/git/gitk
+.config/git/ignore
+.config/thefuck/rules/chmod.pyc
+.config/thefuck/settings.pyc
+.cups/
+.did_show_opt_info
+# Include .dotfiles
+!.dotfiles/
+.dropbox/
+.fastlane/
+.fastlane_crash_reporting
+.gem/
+.git/
+.gnupg/
+.gradle/
+.idea/
+.iterm2/
+.iterm2_shell_integration.zsh
+.itmstransporter/
+.lesshst
+# .liftoff/
+.local/
+.lumberjack/
+# .m2/
+.m2/repository/
+.netrc
+.node-gyp/
+.node_repl_history
+.npm/
+.oh-my-zsh/*
+.oh-my-zsh/themes/*
+# tracking
+!.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
+!.oh-my-zsh/themes/agnoster-phatblat.zsh-theme
+.oracle_jre_usage/
+.phantomjs/
+# .powerline/
+.putty/
+.rbenv/
+.rnd
+.rubygems/
+.spaceship/
+.ssh/
+.subversion/
+.synx/
+# .uncrustify/
+.vim/
+.viminfo
+.zcompcache/
+.zcompdump*
+.zsh-update
+.zsh_history
+
+#-------------------------------------------------------------------------------
+# TODO: Find pattern to exclude everything else.
+
+# Everything is excluded by default
+# *
