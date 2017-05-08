@@ -50,18 +50,17 @@ task convertAliasToFunction {
                     String functionComment = matcher.group(4) ?: ""
 
                     File fishFunction = new File("fish/functions/${functionName}.fish")
+                    String action = "created"
+                    if (fishFunction.exists()) {
+                        action = "modified"
+                    }
 
                     // Existing files are overwritten
                     fishFunction.text = """# ${functionComment}
 function ${functionName}
     ${functionBody} \$argv
 end
-
 """
-                    String action = "created"
-                    if (fishFunction.exists()) {
-                        action = "modified"
-                    }
                     logger.lifecycle "${fishFunction} function ${action}"
                 }
             }
@@ -78,7 +77,47 @@ task portFunctions {
     dependsOn listFiles
     inputs.files zshFiles
 
-    doLast {}
+    doLast {
+        // TextMate regex testing
+        // 48 results: ^function ([a-z_-]+)
+        // 21 results: (?m)function ([a-z_-]+) {\n([^}]*)\n}
+        // 24 results: (?ms)^function ([a-z]+) \{\n(.*)\n\}
+        // 28 results: (?ms)^function ([a-z_-]+) \{\n(.*)\n\}
+        def pattern = ~/(?ms)^function ([a-z_-]+) \{\n(.*)\n\}/
+        logger.lifecycle "pattern: ${pattern}"
+
+        Integer totalMatchCount = 0
+        zshFiles.each { File file ->
+            logger.lifecycle "${file}"
+            //logger.lifecycle "${file.text}"
+            //def matcher = 
+            (file.text =~ pattern).each { match, functionName, functionBody ->
+                totalMatchCount += 1
+                logger.lifecycle "*** match"
+                logger.lifecycle "1: ${functionName}"
+                //logger.lifecycle "2: ${functionBody}"
+
+                File fishFunction = new File("fish/functions/${functionName}.fish")
+
+                String functionSource = """# 
+function ${functionName}
+    ${functionBody} \$argv
+end
+"""
+                // Existing files are overwritten
+                String action = "created"
+                if (fishFunction.exists()) {
+                    action = "modified"
+                }
+                //fishFunction.text = functionSource
+                //logger.lifecycle functionSource
+
+                logger.lifecycle "${functionName} function ${action}"
+            }
+        }
+        logger.lifecycle "total matches: ${totalMatchCount}"
+        assert totalMatchCount == 48
+    }
 }
 
 task portVariables {
@@ -108,9 +147,8 @@ task portVariables {
 
                     File variableFile = new File("fish/variables.fish")
 
-                    // Existing files are overwritten
                     variableFile.append "\nset --export ${variableName} ${variableBody}"
-                    logger.lifecycle "Added ${variableName} to ${variableFile}"
+                    logger.lifecycle "${variableName} added to ${variableFile}"
                 }
             }
         }
