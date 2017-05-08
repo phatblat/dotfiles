@@ -1,4 +1,6 @@
+# Modified to emulate pushd.
 function cd --description 'Change directory'
+    # echo "cd function"
     set -l MAX_DIR_HIST 25
 
     if test (count $argv) -gt 1
