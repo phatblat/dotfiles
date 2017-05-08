@@ -26,7 +26,7 @@ function _install
         and popd
     end
 
-    echo "Fisherman 🐟  - https://github.com/fisherman/fisherman"
+    echo "Fisherman 🐟  - https://fisherman.github.io"
     fisher --version
 
     set -l fisherman_plugins get mock z
