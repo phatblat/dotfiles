@@ -1,4 +1,5 @@
 # Send an HTTP request using the DELETE method using burl.
-function DELETE
+function htdelete
     burl DELETE $argv
 end
+

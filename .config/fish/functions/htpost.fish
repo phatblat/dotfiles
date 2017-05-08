@@ -1,4 +1,5 @@
 # Send an HTTP request using the POST method using burl.
-function POST
+function htpost
     burl POST $argv
 end
+

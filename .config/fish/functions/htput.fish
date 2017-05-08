@@ -1,4 +1,4 @@
 # Send an HTTP request using the PUT method using burl.
-function PUT
+function htput
     burl PUT $argv
 end
