@@ -71,12 +71,26 @@ end
     }
 }
 
-task portFunction {
-    description "Ports a bash/zsh function to fish."
+task portFunctions {
+    description "Ports bash/zsh functions to fish."
     group ".dotfiles"
 
     dependsOn listFiles
     inputs.files zshFiles
+
+    doLast {}
+}
+
+task portVariables {
+    description "Ports bash/zsh variables to fish."
+    group ".dotfiles"
+
+    dependsOn listFiles
+    inputs.files zshFiles
+
+    doLast {
+
+    }
 }
 
 // -----------------------------------------------------------------------------
