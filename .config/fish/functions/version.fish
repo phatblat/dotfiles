@@ -1,36 +1,40 @@
-# 
-function version
-      local build_version first_number
+# Manage version numbers for an Xcode project.
+function version --argument-names action market_version build_version
+    if test -z $action
+        set action '*'
+    end
 
-  case "$1" in
-    "build" | "-b")
-      version_build
-      ;;
-    "market" | "-m")
-      version_market
-      ;;
-    "set")
-      agvtool new-marketing-version "$2" > /dev/null
-      if (($+3)); then
-        agvtool new-version -all "$3" > /dev/null
-      fi
-      version_current
-      ;;
-    "next" | "bump")
-      build_version=$(version_build)
-      agvtool next-version -all > /dev/null
+    switch $action
+    case "build"
+        version_build
+    case "market"
+        version_market
+    case "set"
+        if test -z $market_version
+            echo "Usage: version set 1.1 123456"
+            return 1
+        end
 
-      # Workaround for agvtool dropping leading zeros, assumes only a single zero (e.g. 010001)
-      first_number=$(echo "$build_version" | cut -c1)
-      if [[ $first_number == "0" ]]; then
-        build_version=$(version_build)
-        agvtool new-version -all "0$build_version" > /dev/null
-      fi
+        agvtool new-marketing-version $market_version > /dev/null
 
-      version_current
-      ;;
-    *)
-      version_current
-      ;;
-  esac $argv
+        if test -n $build_version
+            agvtool new-version -all $build_version > /dev/null
+        end
+
+        version_current
+    case "bump"
+        set build_version (version_build)
+        agvtool next-version -all > /dev/null
+
+        # Workaround for agvtool dropping leading zeros, assumes only a single zero (e.g. 010001)
+        set -l first_number (echo "$build_version" | cut -c1)
+        if test $first_number == "0"
+            set build_version (version_build)
+            agvtool new-version -all "0"$build_version > /dev/null
+        end
+
+        version_current
+    case '*'
+        version_current
+  end
 end
