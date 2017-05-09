@@ -1,7 +1,6 @@
-# 
+# Writes out LICENSE.md file, adds link to readme and commits changes.
 function license
-      # Write out LICENSE.md
-  echo "The MIT License (MIT)
+    echo "The MIT License (MIT)
 
 Copyright (c) 2017 Ben Chatelain
 
@@ -24,14 +23,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 " > LICENSE.md
 
-  # Append license info to README.md
-  echo "
+    # Append license info to README.md
+    echo "
 ## License
 
 This repo is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for rights and limitations.
 " >> README.md
 
-  # Commit the changes
-  git add LICENSE.md README.md
-  git commit -m 'Add license to README.md' $argv
+    # Commit the changes
+    git add LICENSE.md README.md
+    git commit -m 'Add license to README.md'
 end
