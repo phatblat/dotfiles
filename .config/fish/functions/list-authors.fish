@@ -1,30 +1,31 @@
-# 
-function list-authors
-      local all_authors=()
-  local format
+# Collect a list of all commit authors from the current repo.
+function list-authors --argument-names format
+    if test -z $format
+        set format name_email
+    end
 
-  if [[ $# -eq 0 ]]; then
-    # Email formatting
-    format='%an <%ae>'
-  elif [[ "$1" == "name" ]]; then
-    # Ruby hash
-    format='%an'
-  elif [[ "$1" == "email" ]]; then
-    # Ruby hash
-    format='%ae'
-  elif [[ "$1" == "ruby" ]]; then
-    # Ruby hash
-    format='"%an" => "%ae",'
-  else
-    # Custom format
-    format="$1"
-  fi
+    switch $format
+    case "name_email"
+        # Name & email formatting
+        set format '%an <%ae>'
+    case "name"
+        set format '%an'
+    case "email"
+        set format '%ae'
+    case "ruby"
+        # Ruby hash
+        format='"%an" => "%ae",'
+    case '*'
+        # Custom format
+        set format $format
+    end
 
-  # Iterate over the hash of all commits
-  for commit in $(git rev-list --all)
-  do
-    all_authors+=("`git --no-pager show -s --format=${format} ${commit}`")
-  done
+    # Iterate over the hash of all commits
+    for commit in (git rev-list --all)
+        set all_authors $all_authors (git --no-pager show -s --format=$format $commit)
+    end
 
-  printf '%s\n' "${all_authors[@]}" | sort | uniq $argv
+    printf '%s\n' $all_authors \
+        | sort \
+        | uniq
 end
