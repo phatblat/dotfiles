@@ -26,5 +26,7 @@ set --export LC_CTYPE en_US.UTF-8
 set --export phatblat_imac /Users/phatblat.bak/
 set --export phatblat_external /Volumes/ThunderBay/Users/phatblat/
 set --export ARCHFLAGS "-arch x86_64"
-set --export ICLOUD_HOME "$HOME/Library/Mobile Documents"
-set --export ICLOUD_DRIVE "$ICLOUD_HOME/com~apple~CloudDocs"
+set --export ICLOUD_HOME "~/Library/Mobile Documents"
+set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
+set --export OPENSSL_VERSION (echo (brew info openssl)[1] | string split ' ')[3]
+set --export OPENSSL_PATH "/usr/local/Cellar/openssl/$OPENSSL_VERSION/bin/openssl"
