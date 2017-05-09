@@ -21,7 +21,7 @@
 # - user        user name (from UID)
 # - vsz         virtual size in Kbytes (alias vsize)
 # - wchan
-function psl
+function psl --wraps ps
     ps \
         # Columns
         -o user \
