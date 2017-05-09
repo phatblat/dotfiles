@@ -63,6 +63,7 @@ formulae=(
     thefuck
     trash
     tree
+    uncrustify
     vapor/tap/toolbox
     wget
     xctool
