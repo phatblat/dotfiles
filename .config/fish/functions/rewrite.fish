@@ -1,23 +1,22 @@
-# 
-function rewrite
-      if [[ $# -ne 3 ]]; then
-    echo "Usage: rewrite author|committer old@email new@email"
-    return 1
-  fi
+# Rewrite commits changing either the author or the committer email.
+function rewrite --argument-names field old_email new_email
+    if test (count $argv) -ne 3
+        echo "Usage: rewrite author|committer old@email new@email"
+        return 1
+    end
 
-  if [[ "$1" == "author" ]]; then
-    attribute="GIT_AUTHOR_EMAIL"
-  elif [[ "$1" == "committer" ]]; then
-    attribute="GIT_COMMITTER_EMAIL"
-  else
-    echo "Usage: rewrite author|committer old@email new@email"
-    return 2
-  fi
+    switch $field
+    case "author"
+        set attribute "GIT_AUTHOR_EMAIL"
+    case "committer"
+        set attribute "GIT_COMMITTER_EMAIL"
+    case '*'
+        echo "Usage: rewrite author|committer old@email new@email"
+        return 2
+    end
 
-  old_email=$2
-  new_email=$3
+    # Filter command is eval'd using sh
+    set -l filter_command "if [[ \$$attribute == $old_email ]]; then $attribute=$new_email; fi; export $attribute"
 
-  filter_command="if [[ \$${attribute} == ${old_email} ]]; then ${attribute}=${new_email}; fi; export ${attribute}"
-
-  git filter-branch -f --env-filter "${filter_command}" $argv
+    git filter-branch -f --env-filter $filter_command
 end
