@@ -12,6 +12,7 @@ echo
 formulae=(
     atom
     charles
+    cloudapp
     dayone-cli
     fauxpas
     geekbench
