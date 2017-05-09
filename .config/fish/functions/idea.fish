@@ -1,49 +1,46 @@
-# 
-function idea
-      local dir
+# Launch IntelliJ IDEA.
+function idea --argument-names path
+    # check for where the latest version of IDEA is installed
+    set -l IDEA (ls -1d /Applications/IntelliJ\ * | tail -n1)
 
-  # check for where the latest version of IDEA is installed
-  IDEA=`ls -1d /Applications/IntelliJ\ * | tail -n1`
+    # were we given a directory?
+    if test -d $path
+        # echo "checking for things in the working dir given"
+        set dir (ls -1d $path | head -n1)
+    end
 
-  # were we given a directory?
-  if [ -d "$1" ]; then
-    # echo "checking for things in the working dir given"
-    dir=`ls -1d "$1" | head -n1`
-  fi
+    # were we given a file?
+    if test -f $path
+        # echo "opening '$path'"
+        open -a $IDEA $path
+    else
+        if test -n $dir
+            # let's check for stuff in our working directory.
+            pushd $dir > /dev/null
+        end
 
-  # were we given a file?
-  if [ -f "$1" ]; then
-  # echo "opening '$1'"
-    open -a "$IDEA" "$1"
-  else
-      if [ -n "${dir}" ]; then
-        # let's check for stuff in our working directory.
-        pushd "${dir}" > /dev/null
-      fi
+        # does our working dir have an .idea directory?
+        if test -d .idea
+            # echo "opening via the .idea dir"
+            open -a $IDEA .
 
-      # does our working dir have an .idea directory?
-      if [ -d ".idea" ]; then
-        # echo "opening via the .idea dir"
-        open -a "$IDEA" .
+        # is there an IDEA project file?
+        else if test -f *.ipr
+            # echo "opening via the project file"
+            open -a $IDEA (ls -1d *.ipr | head -n1)
 
-      # is there an IDEA project file?
-      elif [ -f *.ipr ]; then
-        # echo "opening via the project file"
-        open -a "$IDEA" `ls -1d *.ipr | head -n1`
+        # Is there a pom.xml?
+        else if test -f pom.xml
+            # echo "importing from pom"
+            open -a "$IDEA" "pom.xml"
 
-      # Is there a pom.xml?
-      elif [ -f pom.xml ]; then
-        # echo "importing from pom"
-        open -a "$IDEA" "pom.xml"
+        # can't do anything smart; just open IDEA
+        else
+            open $IDEA
+        end
 
-      # can't do anything smart; just open IDEA
-      else
-        # echo 'cbf'
-        open "$IDEA"
-      fi
-
-      if [ -n "${dir}" ]; then
+      if test -n $dir
         popd > /dev/null
-      fi
-  fi $argv
+        end
+    end
 end
