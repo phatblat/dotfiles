@@ -1,5 +1,4 @@
 # List hidden dirs
-function ldotdir
-    la -d .*/ $argv
+function ldotdir --wraps ls
+    ls -ad .*/ $argv
 end
-

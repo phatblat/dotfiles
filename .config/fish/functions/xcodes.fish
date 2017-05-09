@@ -7,7 +7,7 @@ function xcodes
 
     for app_dir in $app_dirs
         for app in $app_dir/Xcode*
-            ls -ld $app
+            ls -od $app
         end
     end
 end

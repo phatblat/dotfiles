@@ -1,4 +1,4 @@
 # List hidden files
-function ldot
+function ldot --wraps ls
     la -d .* $argv
 end

@@ -1,5 +1,4 @@
 # List files showing size,show type,human readable
-function l
-    ls -lFh $argv
+function l --wraps ls
+    ls -oFh $argv
 end
-
