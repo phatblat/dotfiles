@@ -5,6 +5,10 @@
 
 fish_vi_key_bindings
 
+# Variables
+source ~/.config/fish/variables.fish
+
+# Termial colors
 set fish_color_autosuggestion 555\x1eyellow
 set fish_color_command 005fd7\x1epurple
 set fish_color_comment red
