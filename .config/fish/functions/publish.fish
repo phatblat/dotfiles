@@ -1,11 +1,10 @@
-# 
-function publish
-      if [[ $# -ne 1 ]]; then
-    echo "Usage: publish <remote>"
-    return 1
-  fi
+# Publishes the current branch to the named remote.
+function publish --argument-names remote
+    if test -z $remote
+        echo "Usage: publish <remote>"
+        return 1
+    end
 
-  branch=$(git rev-parse --abbrev-ref HEAD)
-
-  git push -u $1 $branch $argv
+    set -l branch (git rev-parse --abbrev-ref HEAD)
+    git push -u $remote $branch
 end
