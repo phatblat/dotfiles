@@ -138,6 +138,7 @@ tmp/
 # .uncrustify/
 .vim/
 .viminfo
+.wget-hsts
 .z
 .zcompcache/
 .zcompdump*
