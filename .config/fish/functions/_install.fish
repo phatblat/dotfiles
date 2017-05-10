@@ -32,7 +32,7 @@ function _install
 
     fisher --version
 
-    set -l fisherman_plugins done get mock z
+    set -l fisherman_plugins done laughedelic/fish_logo get mock z
     for plugin in $fisherman_plugins
         fisher $plugin
     end
