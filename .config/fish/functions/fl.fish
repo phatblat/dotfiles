@@ -3,9 +3,10 @@ function fl --argument-names filter
     set -l all_funcs (functions)
 
     if test -z $filter
-        echo $all_funcs\n
+        # String join removes trailing \n and strips leading space
+        string join \n $all_funcs
     else
-        echo filter $filter
+        echo Functions matching filter:
         echo $all_funcs\n | grep $filter
     end
 end
