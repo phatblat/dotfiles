@@ -1,4 +1,4 @@
-# Push the fastlane directory onto the dir stack.
+# List functions.
 function fl
-    cd ~/dev/ruby/fastlane/fastlane
+    echo (functions)\n
 end
