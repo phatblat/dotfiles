@@ -9,6 +9,7 @@ GROOVY_HOME=/usr/local/opt/groovy/libexec
 HOME=/Users/phatblat
 ICLOUD_DRIVE=~/Library/Mobile Documents/com~apple~CloudDocs
 ICLOUD_HOME=~/Library/Mobile Documents
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home
 JAVA_OPTS=-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m
 LANG=en_US.UTF-8
 LANGUAGE=en_US.UTF-8
