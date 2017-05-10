@@ -3,7 +3,10 @@
 # Dotfiles
 #
 
-fish_logo
+# Fish logo
+if status is-interactive
+    fish_logo
+end
 
 # Variables
 source ~/.config/fish/variables.fish
@@ -38,9 +41,12 @@ set fish_pager_color_description 555\x1eyellow
 set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
-# iTerm2
-test -e ~/.iterm2_shell_integration.fish; and source ~/.iterm2_shell_integration.fish
+if status is-interactive
+    # iTerm2
+    test -e ~/.iterm2_shell_integration.fish
+        and source ~/.iterm2_shell_integration.fish
 
-# The Fuck
-eval (thefuck --alias | tr '
+    # The Fuck
+    eval (thefuck --alias | tr '
 ' ';')
+end
