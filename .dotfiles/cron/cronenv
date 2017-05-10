@@ -1,0 +1,8 @@
+SHELL=/bin/sh
+USER=phatblat
+PATH=/usr/bin:/bin
+PWD=/Users/phatblat
+SHLVL=1
+HOME=/Users/phatblat
+LOGNAME=phatblat
+_=/usr/bin/env
