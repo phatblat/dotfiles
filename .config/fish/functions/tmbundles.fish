@@ -1,6 +1,7 @@
 # Manage TextMate bundles.
 function tmbundles
     set -l bundles editorconfig fish gradle
+
     set -l bundle_dev ~/dev/textmate
     set -l bundle_dir ~/Library/Application\ Support/TextMate/Bundles
 
@@ -17,7 +18,23 @@ function tmbundles
         if not test -e $bundle.tmbundle
             switch $bundle
                 case editorconfig
-                    git clone git@github.com:Mr0grog/editorconfig-textmate.git $bundle.tmbundle
+                    if not test -e editorconfig-textmate
+                        git clone git@github.com:Mr0grog/editorconfig-textmate.git
+                    end
+
+                    set -l version 0.3.1
+                    # curl -L -O -#
+                    curl --location --remote-name --progress-bar \
+                        https://github.com/Mr0grog/editorconfig-textmate/releases/download/v$version/editorconfig-textmate-$version.tmplugin.zip
+
+                    set newest_file (ls -1t | head -n 1)
+                    unzip -o $newest_file
+                        and rm -f $newest_file
+
+                    open editorconfig-textmate.tmplugin
+
+                    # Create a dummy bundle file so install isn't repeated.
+                    touch $bundle.tmbundle
                 case fish
                     git clone git@github.com:l15n/fish-tmbundle.git $bundle.tmbundle
                 case gradle
