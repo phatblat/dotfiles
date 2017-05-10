@@ -1,4 +1,4 @@
 # Reload Cron file.
 function cron_reload
-    crontab $HOME/.dotfiles/cron/cron.file $argv
+    crontab ~/.dotfiles/cron/cron.file
 end
