@@ -14,8 +14,10 @@
 01  * * * *     $HOME/.dotfiles/cron/dotfiles_fetch.sh
 #10 * * * *     $HOME/.dotfiles/cron/rsync_phatblat.sh
 
+SHELL=/usr/local/bin/fish
+
 # Once
-25 19 * * *     env > ~/.dotfiles/cron/cronenv
+32 19 * * *     env > ~/.dotfiles/cron/cronenv
 
 # --------------------------------------------------------
 # * * * * *     command to be executed
