@@ -1,0 +1,1 @@
+/Users/phatblat/.config/fisherman/done/conf.d/done.fish

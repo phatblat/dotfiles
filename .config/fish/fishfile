@@ -1,4 +1,6 @@
+fisherman/done
 fisherman/get
 fisherman/getopts
+fisherman/humanize_duration
 fisherman/mock
 fisherman/z
