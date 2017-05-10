@@ -1,8 +1,10 @@
 # Short alias for installing gems using Bundler.
 function brew_update
-    # This can only be run by an admin user
-    if not user_is_admin
-        exit 1
+    # Verify the user owns the Homebrew dir.
+    set brew_home (brew --prefix)
+    if not test (stat -f%u $brew_home) -eq (id -u $USER)
+        echo "You must be the owner of $brew_home to run this command."
+        return 1
     end
 
     brew update
