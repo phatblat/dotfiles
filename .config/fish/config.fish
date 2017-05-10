@@ -4,7 +4,6 @@
 #
 
 logo
-fish_vi_key_bindings
 
 # Variables
 source ~/.config/fish/variables.fish
