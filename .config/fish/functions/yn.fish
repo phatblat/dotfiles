@@ -11,5 +11,7 @@ function yn --argument-names prompt
         case n no N NO
             echo NO
             return 1
+        case '*'
+            yn $prompt
     end
 end
