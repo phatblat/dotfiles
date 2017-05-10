@@ -18,8 +18,12 @@ function tmbundles
         if not test -e $bundle.tmbundle
             switch $bundle
                 case editorconfig
-                    if not test -e editorconfig-textmate
-                        git clone git@github.com:Mr0grog/editorconfig-textmate.git
+                    if not test -e editorconfig
+                        git clone git@github.com:Mr0grog/editorconfig-textmate.git editorconfig
+                    else
+                        pushd editorconfig
+                        git pull
+                        popd
                     end
 
                     set -l version 0.3.1
