@@ -13,6 +13,9 @@ function _install
     set -l fisherDir ~/dev/fish/fisher
     set -l functionFile ~/.config/fish/functions/fisher.fish
 
+    repeatchar -
+    echo "Fisherman 🐟  - https://fisherman.github.io"
+
     if not test -e $fisherDir
         set url "git@github.com:fisherman/fisherman.git"
         git clone $url $fisherDir
@@ -21,16 +24,20 @@ function _install
         echo "Fisherman installed -> $fisherDir"
     else
         echo "Updating Fisherman ♻️"
+        # TODO: Replace with (fisher update)?
         pushd $fisherDir
         and git pull
         and popd
     end
 
-    echo "Fisherman 🐟  - https://fisherman.github.io"
     fisher --version
 
     set -l fisherman_plugins done get mock z
     for plugin in $fisherman_plugins
         fisher $plugin
     end
+
+    echo "Installed plugins: "
+    fisher ls
+    repeatchar -
 end
