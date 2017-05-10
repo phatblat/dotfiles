@@ -1,4 +1,4 @@
 # Runs Xcode new_project.rb ruby script
-function new_project
+function xcinit
     ~/.dotfiles/xcode/new_project.rb $argv
 end
