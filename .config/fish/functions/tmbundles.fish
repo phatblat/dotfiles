@@ -1,6 +1,6 @@
 # Manage TextMate bundles.
 function tmbundles
-    set -l bundles editorconfig fish gradle
+    set -l bundles editorconfig fish gradle tomorrow-theme
 
     set -l bundle_dev ~/dev/textmate
     set -l bundle_dir ~/Library/Application\ Support/TextMate/Bundles
@@ -35,10 +35,22 @@ function tmbundles
 
                     # Create a dummy bundle file so install isn't repeated.
                     touch $bundle.tmbundle
+
                 case fish
                     git clone git@github.com:l15n/fish-tmbundle.git $bundle.tmbundle
+
                 case gradle
                     git clone git@github.com:alkemist/gradle.tmbundle.git $bundle.tmbundle
+
+                case tomorrow-theme
+                    if not test -e tomorrow-theme
+                        git clone git@github.com:chriskempson/tomorrow-theme.git
+                    else
+                        pushd tomorrow-theme
+                        git pull
+                        popd
+                    end
+                    set bundle "tomorrow-theme/textmate2/Tomorrow Theme"
             end
         end
         open $bundle.tmbundle
