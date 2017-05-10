@@ -5,7 +5,7 @@ showInvisibles   = true
 softTabs         = true
 softWrap         = true
 tabSize          = 4
-theme            = 37F22BDC-B2F4-11D9-850C-000A95A89C98
+theme            = F96223EB-1A60-4617-92F3-D24D4F13DB09
 wrapColumn       = 0
 
 [ *.fish ]
