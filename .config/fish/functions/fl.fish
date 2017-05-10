@@ -1,9 +1,11 @@
 # List functions.
 function fl --argument-names filter
-    if test -n $filter
-        echo (functions)\n | grep $filter
-        return 0
-    end
+    set -l all_funcs (functions)
 
-    echo (functions)\n
+    if test -z $filter
+        echo $all_funcs\n
+    else
+        echo filter $filter
+        echo $all_funcs\n | grep $filter
+    end
 end
