@@ -17,14 +17,8 @@ function tmbundles
     for bundle in $bundles
         if not test -e $bundle.tmbundle
             switch $bundle
-                case editorconfig
-                    if not test -e editorconfig
-                        git clone git@github.com:Mr0grog/editorconfig-textmate.git editorconfig
-                    else
-                        pushd editorconfig
-                        git pull
-                        popd
-                    end
+                case editorconfig 
+                    clone_or_pull editorconfig it@github.com:Mr0grog/editorconfig-textmate.git
 
                     set -l version 0.3.1
                     # curl -L -O -#
@@ -41,19 +35,13 @@ function tmbundles
                     touch $bundle.tmbundle
 
                 case fish
-                    git clone git@github.com:l15n/fish-tmbundle.git $bundle.tmbundle
+                    clone_or_pull $bundle.tmbundle git@github.com:l15n/fish-tmbundle.git
 
                 case gradle
-                    git clone git@github.com:alkemist/gradle.tmbundle.git $bundle.tmbundle
+                    clone_or_pull $bundle.tmbundle git@github.com:alkemist/gradle.tmbundle.git
 
                 case tomorrow-theme
-                    if not test -e tomorrow-theme
-                        git clone git@github.com:chriskempson/tomorrow-theme.git
-                    else
-                        pushd tomorrow-theme
-                        git pull
-                        popd
-                    end
+                    clone_or_pull $bundle git@github.com:chriskempson/tomorrow-theme.git
                     set bundle "tomorrow-theme/textmate2/Tomorrow Theme"
             end
         end
