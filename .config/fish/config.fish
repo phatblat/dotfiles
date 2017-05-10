@@ -43,4 +43,5 @@ set fish_pager_color_progress cyan
 test -e ~/.iterm2_shell_integration.fish; and source ~/.iterm2_shell_integration.fish
 
 # The Fuck
-eval (thefuck --alias)
+eval (thefuck --alias | tr '
+' ';')
