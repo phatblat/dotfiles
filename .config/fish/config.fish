@@ -3,7 +3,7 @@
 # Dotfiles
 #
 
-logo
+fish_logo
 
 # Variables
 source ~/.config/fish/variables.fish
