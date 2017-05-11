@@ -1,4 +1,4 @@
 # Edit dotfiles.
 function dotfiles
-    edit ~/.dotfiles $argv
+    edit ~/.dotfiles/ ~/.config/fish/ $argv
 end
