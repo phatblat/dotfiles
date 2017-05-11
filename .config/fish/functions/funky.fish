@@ -24,5 +24,6 @@ function funky --argument-names query
         end
     end
 
-    echo $funcs\n
+    echo "Custom, autoloaded functions containing '$query' in their definition:"
+    echo $funcs\n | column -x
 end
