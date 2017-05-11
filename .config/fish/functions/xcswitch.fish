@@ -17,10 +17,10 @@ function xcswitch --argument-names version
     # Switch the version of Xcode on the system.
     xcss $xcode_path
 
-    # Creat a symlink so tools, like SwiftLint, that assume Xcode was 
+    # Creat a symlink so tools, like SwiftLint, that assume Xcode was
     # Installed via the MAS use the correct version.
-    ln -fs $xcode_path "/Applications/Xcode.app"
-    xcodes
+    ln -fsv $xcode_path /Applications/Xcode.app
+    xclist
 
     echo "Activated "(string sub --length (string length $xcode_path) (xcsp))
 end
