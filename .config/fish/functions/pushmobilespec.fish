@@ -20,12 +20,12 @@ function pushmobilespec --argument-names spec_file
 
     set -l spec_repo_name "KPMobileSpecs"
 
-    bundle exec pod repo push \
+    bundle exec "pod repo push \
         $spec_repo_name \
         $spec_file \
         --sources=git@github.kp.org:internal-pods/specs,git@github.kp.org:mirrored-pods/specs,git@github.kp.org:F978034/KPMobileSpecs \
         --use-libraries \
         --private \
         --allow-warnings \
-        $argv
+        $argv"
 end
