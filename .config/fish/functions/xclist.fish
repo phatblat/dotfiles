@@ -10,9 +10,11 @@ function xclist
     for xcode_path in $xcodes
         set -l link_target (readlink $xcode_path)
         if test -n "$link_target"
-            echo "$xcode_path -> $link_target"
+            # Symlinks are magenta
+            echo (set_color magenta)$xcode_path(set_color normal)" -> "$link_target
         else
-            echo $xcode_path
+            # Directories are blue
+            echo (set_color blue)$xcode_path(set_color normal)
         end
     end
 end
