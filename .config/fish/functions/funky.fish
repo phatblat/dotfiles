@@ -1,5 +1,9 @@
 # Searches for functions with the given string in their definition.
-function funky --argument-names query
+#
+# Options (ls style):
+# - `-C` `--column`     Force multi-column output; this is the default when output is to a terminal.
+# - `-l `--long`     List in long format.
+function funky --argument-names query option
     if test -z $query
         echo Usage: funky $query
         return 1
@@ -25,5 +29,20 @@ function funky --argument-names query
     end
 
     echo "Custom, autoloaded functions containing '$query' in their definition:"
+
+    if test -n "$option"
+        switch $option
+            case -C --column
+                echo $funcs\n | column -x
+                return
+            case -l --long
+                echo $funcs\n
+                return
+            case '*'
+                echo $funcs\n | column -x
+                return
+        end
+    end
+
     echo $funcs\n | column -x
 end
