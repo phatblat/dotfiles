@@ -1,9 +1,16 @@
+#-------------------------------------------------------------------------------
 # Finder
 .DS_Store
 
+#-------------------------------------------------------------------------------
 # Bundler is configured to install home dir gems into ~/.rubygems
 .rubygems/
 
+*.swp
+gradlew.bat
+*.padl
+
+#-------------------------------------------------------------------------------
 # Xcode
 *.xccheckout
 *.xcscmblueprint
@@ -11,8 +18,135 @@ xcuserdata
 Carthage/
 Pods/
 
+#-------------------------------------------------------------------------------
 # Directories and files containing sensitive info
 .envrc
 .raliorc/
 private/
 
+#-------------------------------------------------------------------------------
+# Standard user directories
+
+Applications/
+Backup/
+Box Sync/
+Desktop/
+Documents/
+Downloads/
+Dropbox/
+# Fastlane/
+Fastlane/report.xml
+IdeaProjects/
+Library/
+Minecraft/
+Movies/
+Music/
+OmniPresence/
+Pictures/
+Public/
+VirtualBox VMs/
+bin/
+dev/
+lib/
+mbox
+tmp/
+
+#-------------------------------------------------------------------------------
+# Hidden files and folders
+
+.*history
+
+# Specific files
+.CFUserTextEncoding
+.Trash/
+.android/
+.antigen/
+.anyconnect
+.atom/
+.bash_history
+# .bundle/
+.bundle/cache/
+.cache/
+.cf/
+.cisco/
+.cocoapods/
+.conche/
+# .config/
+.config/direnv/
+# Include fish config files
+!.config/fish/
+.config/fish/completions/
+# [fishd] imac: a820663a2c5d, greymatter: a8667f043f9d
+.config/fish/fishd.* 
+!.config/fish/fishfile
+!.config/fish/functions/*.fish
+.config/fish/h
+.config/fisherman/
+.config/git/config
+.config/git/gitk
+.config/git/ignore
+.config/gtk-2.0/
+.config/hub
+.config/thefuck/rules/chmod.pyc
+.config/thefuck/settings.pyc
+.cups/
+.dbvis/
+.did_show_opt_info
+# Include .dotfiles
+!.dotfiles/
+.dropbox/
+.fastlane/
+.fastlane_crash_reporting
+.gem/
+.git/
+.gnupg/
+.gradle/
+.idea/
+.iterm2/
+.iterm2_shell_integration.zsh
+.itmstransporter/
+.jenkins/
+.lesshst
+# .liftoff/
+.local/
+.lumberjack/
+# .m2/
+.m2/repository/
+.netrc
+.node-gyp/
+.node_repl_history
+.npm/
+.oh-my-zsh/*
+.oh-my-zsh/themes/*
+# tracking
+!.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
+!.oh-my-zsh/themes/agnoster-phatblat.zsh-theme
+.oracle_jre_usage/
+.phantomjs/
+# .powerline/
+.pry_history
+.putty/
+.rbenv/
+.rnd
+.rubygems/
+.slocdata/
+.spaceship/
+.sqlite_history
+.ssh/
+.subversion/
+.synx/
+# .uncrustify/
+.vim/
+.viminfo
+.wget-hsts
+.z
+.zcompcache/
+.zcompdump*
+.zsh-update
+.zsh_history
+
+#-------------------------------------------------------------------------------
+# TODO: Find pattern to exclude everything else.
+
+# Everything is excluded by default
+# *

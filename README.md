@@ -1,12 +1,18 @@
 # phatblat's dotfiles
 
-This is my mostly-boring configuration files. I regularly switch between four different Macs and use this repo to sync terminal and some GUI app configurations across them.
+Shell setup and customization along with various system and app configuration files.
 
-This repo lives at the root of my user `$HOME` dir. This confuses some git apps like Tower because I have lots of git repos in subdirectories. But, I prefer to see the dirty and upstream marker changes when I'm sitting in my home dir. I have `*` ignored in `~/.git/info/exclude` because only a few config files are tracked. This requires `--force` when adding new tracked files.
+I regularly switch between four different Macs and use this repo to sync terminal and some GUI app configurations across them. Many Stack Overflow answers (usually reworked a bit) have landed here over the years.
 
-I use a [customized version](https://github.com/phatblat/dotfiles/blob/master/.oh-my-zsh/themes/agnoster-phatblat.zsh-theme) of the [agnoster](https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/agnoster.zsh-theme) theme for oh-my-zsh.
+This repo lives at the root of my user `$HOME` dir. This confuses some git apps like Tower because I have lots of git repos in subdirectories. But, I prefer to see the dirty and upstream marker changes in the terminal prompt when I'm sitting in my home dir. Otherwise, I forget to commit, push or pull changes.
+
+I started tracking these dotfiles when I was still using Bash. The `.bash_profile` file sourced all `.dotfiles/**/*.sh` files on login, which were split up into topic folders to make them more manageable. I later converted this to [Z shell](http://zsh.sourceforge.net) but the setup was pretty much the same, but used the `.zsh` file extension since the syntax can differ from Bash.
+
+I've now converted over to [Fish shell](https://fishshell.com), so the `.zsh` files will not be updated. I find Fish syntax to be dramatically easier to remember. I love that it's not compatible with other shells which have let compatibility with ancient de facto standards get in the way of progress. Seriously, Fish is to other shells like Git is to SVN.
 
 ## Bootstrap
+
+> This bootstrap has not been updated since to switch to Fish. I plan to greatly simplify the process as installing/updating will be a set of normal functions.
 
 The [`bootstrap.sh`](https://github.com/phatblat/dotfiles/blob/53dd7d0f9b057af43ef88485b8e3d7db34f02f2f/.dotfiles/install/bootstrap.sh) script is a half-ass attempt at installing these dotfiles into the `$HOME` directory of a freshly minted OS X user. It kinda works and something usually breaks when it's run. But, it usually does most of the work and with a kick or two things are up and running.
 

@@ -1,0 +1,62 @@
+# Version 1.0 -- Generated content!
+fontName         = DejaVuSansMonoForPowerline
+fontSize         = 14
+showInvisibles   = true
+softTabs         = true
+softWrap         = true
+tabSize          = 4
+theme            = F96223EB-1A60-4617-92F3-D24D4F13DB09
+wrapColumn       = 0
+
+[ *.fish ]
+fileType         = source.fish
+
+[ *.gradle ]
+fileType         = source.groovy.gradle
+
+[ Podfile ]
+fileType         = source.ruby
+
+[ source ]
+showInvisibles   = true
+softTabs         = true
+tabSize          = 4
+
+[ source.css ]
+showInvisibles   = true
+
+[ source.fish ]
+showInvisibles   = true
+tabSize          = 4
+
+[ source.groovy ]
+showInvisibles   = false
+softTabs         = true
+tabSize          = 4
+
+[ source.groovy.gradle ]
+showInvisibles   = false
+softTabs         = true
+tabSize          = 4
+
+[ source.ruby ]
+showInvisibles   = false
+
+[ source.shell ]
+tabSize          = 2
+
+[ text ]
+showInvisibles   = false
+tabSize          = 2
+
+[ text.html ]
+showInvisibles   = false
+softWrap         = true
+
+[ text.html.markdown ]
+showInvisibles   = false
+softWrap         = true
+
+[ text.plain ]
+showInvisibles   = false
+tabSize          = 2

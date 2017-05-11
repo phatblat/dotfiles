@@ -12,12 +12,16 @@
 
 lj info 'macos/set-defaults.zsh'
 
+
+#-------------------------------------------------------------------------------
 #
 # Keyboard
 #
 defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 
+
+#-------------------------------------------------------------------------------
 #
 # Finder
 #
@@ -41,6 +45,7 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
+#-------------------------------------------------------------------------------
 #
 # Dock
 #
@@ -48,6 +53,8 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # Remove the Delay for Auto-Hide & Auto-Show of Dock
 defaults write com.apple.Dock autohide-delay -float 0
 
+
+#-------------------------------------------------------------------------------
 #
 # Safari
 #
@@ -62,6 +69,8 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
+
+#-------------------------------------------------------------------------------
 #
 # Mail
 #
@@ -78,6 +87,8 @@ defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 # FIXME: duti doesn't build on 10.12
 # /usr/local/bin/duti ~/.duti
 
+
+#-------------------------------------------------------------------------------
 #
 # Xcode
 #
@@ -90,3 +101,11 @@ defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
 # Tweetbot
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+
+
+#-------------------------------------------------------------------------------
+#
+# TextMate
+#
+
+defaults write com.macromates.TextMate.preview fileBrowserSingleClickToOpen -bool true
