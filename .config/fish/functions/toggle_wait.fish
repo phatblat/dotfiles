@@ -33,6 +33,6 @@ function toggle_wait --argument-names state
             return 1
     end
 
-    echo EDITOR: $EDITOR
-    echo VISUAL: $VISUAL
+    # echo EDITOR: $EDITOR
+    # echo VISUAL: $VISUAL
 end
