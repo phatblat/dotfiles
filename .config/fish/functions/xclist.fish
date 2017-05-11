@@ -7,7 +7,12 @@ function xclist
         set xcodes $xcodes $app_dir/Xcode*.app
     end
 
-    for xcode_version in $xcodes
-        string replace '.app' '' (basename $xcode_version)
+    for xcode_path in $xcodes
+        set -l link_target (readlink $xcode_path)
+        if test -n "$link_target"
+            echo "$xcode_path -> $link_target"
+        else
+            echo $xcode_path
+        end
     end
 end
