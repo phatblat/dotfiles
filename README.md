@@ -1,12 +1,12 @@
 # phatblat's dotfiles
 
-Shell setup, customization along with various system and app configuration files.
+Shell setup and customization along with various system and app configuration files.
 
 I regularly switch between four different Macs and use this repo to sync terminal and some GUI app configurations across them. Many Stack Overflow answers (usually reworked a bit) have landed here over the years.
 
-This repo lives at the root of my user `$HOME` dir. This confuses some git apps like Tower because I have lots of git repos in subdirectories. But, I prefer to see the dirty and upstream marker changes in the terminal prompt when I'm sitting in my home dir, otherwise, I forget to commit, push or pull changes.
+This repo lives at the root of my user `$HOME` dir. This confuses some git apps like Tower because I have lots of git repos in subdirectories. But, I prefer to see the dirty and upstream marker changes in the terminal prompt when I'm sitting in my home dir. Otherwise, I forget to commit, push or pull changes.
 
-I started tracking these dotfiles when I was still using Bash. The `.bash_profile` source all `.dotfiles/**/*.sh` files, which were split up into topic folders to make them more manageable. I later converted this to [Z shell](http://zsh.sourceforge.net) but the setup was pretty much the same (used `.zsh` file extension because the syntax can differ).
+I started tracking these dotfiles when I was still using Bash. The `.bash_profile` file sourced all `.dotfiles/**/*.sh` files on login, which were split up into topic folders to make them more manageable. I later converted this to [Z shell](http://zsh.sourceforge.net) but the setup was pretty much the same, but used the `.zsh` file extension since the syntax can differ from Bash.
 
 I've now converted over to [Fish shell](https://fishshell.com), so the `.zsh` files will not be updated. I find Fish syntax to be dramatically easier to remember. I love that it's not compatible with other shells which have let compatibility with ancient de facto standards get in the way of progress. Seriously, Fish is to other shells like Git is to SVN.
 
