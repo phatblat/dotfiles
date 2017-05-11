@@ -6,7 +6,5 @@ function fd --argument function_name
     end
 
     functions --erase $function_name
-    and echo "Function "$function_name" deleted."
-
-    set VISUAL $old_VISUAL
+        and echo "Function "$function_name" deleted."
 end
