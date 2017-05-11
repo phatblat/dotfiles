@@ -6,10 +6,9 @@ function fe --argument-names function_name
         return
     end
 
-    set old_VISUAL $VISUAL
-    set VISUAL $VISUAL" -w"
+    toggle_wait on
 
     funced $function_name
 
-    set VISUAL $old_VISUAL
+    toggle_wait off
 end
