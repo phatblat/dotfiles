@@ -1,0 +1,1 @@
+/Users/phatblat/.config/fisherman/getopts/getopts.fish

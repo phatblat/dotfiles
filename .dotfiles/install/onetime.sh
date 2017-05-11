@@ -9,8 +9,8 @@ echo
 echo ">>> install-onetime"
 echo
 
-# Load aliases
-source ~/.dotfiles/install/alias.zsh
+# Load user_is_admin alias
+source "${HOME}/.dotfiles/install/alias.zsh"
 
 
 #-------------------------------------------------------------------------------
@@ -78,8 +78,9 @@ fi
 
 pushd ~/dev/shell > /dev/null
 
-git clone https://github.com/molovo/lumberjack
-ln -s ${HOME}/dev/shell/lumberjack/lj /usr/local/bin/lj
+echo "Installing Lumberjack - https://github.com/molovo/lumberjack"
+git clone https://github.com/molovo/lumberjack.git
+ln -s "${HOME}/dev/shell/lumberjack/lj" "/usr/local/bin/lj"
 
 popd > /dev/null
 
@@ -90,6 +91,7 @@ popd > /dev/null
 
 pushd ~/tmp > /dev/null
 
+echo "Installing PowerLine Fonts"
 git clone https://github.com/powerline/fonts.git powerline-fonts
 powerline-fonts/install.sh
 
@@ -97,24 +99,77 @@ popd > /dev/null
 
 
 #-------------------------------------------------------------------------------
-# Zsh
+# Custom Shell Switch
+# TODO: Use chsh? (e.g. chsh -s /usr/local/bin/fish)
 #-------------------------------------------------------------------------------
 
-zsh_path="$(brew --prefix)/bin/zsh"
-
-# Get the last path component
-shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
-if [[ ${shell_last_path_component} != "zsh" ]]; then
-  if user_is_admin; then
-    sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}
-    dscl . -read ${HOME} UserShell
-  else
-    echo "Have an admin run the following command:"
-    echo "    sudo dscl . -change ${HOME} UserShell ${SHELL} ${zsh_path}"
-    exit 0
+# Changes the current $USER's shell using dscl. Outputs only the command to run for non-admins.
+function switch_shell {
+  if [[ -z ${1} ]]; then
+    echo "Usage: switch_shell bash|zsh|fish"
+    return 1
   fi
-fi
-unset shell_last_path_component
 
-# Switch to zsh and prime the shell environment
-zsh
+  new_shell="$1"
+  shell_path="$(brew --prefix)/bin/${new_shell}"
+  command="sudo dscl . -change ${HOME} UserShell ${SHELL} ${shell_path}"
+
+  # Get the last path component
+  shell_last_path_component=$(expr "${SHELL}" : '.*/\(.*\)')
+  if [[ ${shell_last_path_component} != ${new_shell} ]]; then
+    if user_is_admin; then
+      ${command}
+
+      echo -n "UserShell changed to "
+      dscl . -read ${HOME} UserShell
+    else
+      echo "Have an admin run the following command:"
+      echo "    ${command}"
+      exit 0
+    fi
+  fi
+  unset shell_last_path_component
+
+  # Switch to new shell and prime the environment
+  ${new_shell}
+}
+
+function choose_shell {
+  local shells=(bash zsh fish)
+
+  current_shell=$(basename ${SHELL})
+  echo "current_shell: ${current_shell}"
+  echo "Your default shell is ${current_shell}, would you like to change it?"
+
+  shopt -s extglob
+
+  for i in "${#shells[@]}"
+  do
+    if [[ ${shells[i]} != ${current_shell} ]]; then
+      continue
+    fi
+
+    shells[i]="${shells[i]} \*"
+    current_shell="${current_shell} \*"
+  done
+
+  select new_shell in ${shells[*]}
+  do
+    # echo "new_shell: ${new_shell}"
+
+    if [[ "${new_shell}" != "${current_shell}" ]]; then
+      switch_shell "${new_shell}"
+    fi
+
+    # case ${new_shell} in
+    #   *bash ) echo "bash"
+    #     break;;
+    #   *zsh ) echo "zsh"
+    #     break;;
+    #   *fish ) echo "fish"
+    #     break;;
+    # esac
+  done
+}
+
+choose_shell

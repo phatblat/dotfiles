@@ -12,6 +12,7 @@ echo
 formulae=(
     atom
     charles
+    cloudapp
     dayone-cli
     fauxpas
     geekbench
@@ -50,5 +51,5 @@ formulae=(
     webpquicklook
 )
 
-TODO: Use reinstall?
+# TODO: Use reinstall?
 brew cask install ${formulae[*]}

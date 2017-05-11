@@ -32,6 +32,7 @@ formulae=(
     direnv
     duti
     findutils
+    fish
     git-lfs
     gnupg
     goaccess
@@ -62,6 +63,7 @@ formulae=(
     thefuck
     trash
     tree
+    uncrustify
     vapor/tap/toolbox
     wget
     xctool

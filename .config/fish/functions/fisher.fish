@@ -1,0 +1,1 @@
+/Users/phatblat/dev/fish/fisher/fisher.fish

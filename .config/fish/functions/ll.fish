@@ -1,3 +1,4 @@
-function ll
-    ls -l $argv
+# long list
+function ll --wraps ls
+    ls -o $argv
 end

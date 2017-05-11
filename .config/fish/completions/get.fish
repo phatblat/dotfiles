@@ -1,0 +1,1 @@
+/Users/phatblat/.config/fisherman/get/completions/get.fish

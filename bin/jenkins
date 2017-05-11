@@ -1,2 +1,8 @@
+#
+# Jenkins Launch script
+# Sents some java options and invokes the jenkins CLI
+#
+
 export JAVA_OPTS="-Xmn256m -Xms1g -Xmx4g -XX:PermSize=512m -XX:MaxPermSize=1g -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC"
-jenkins-lts
+$(brew --prefix)/bin/jenkins --prefix=/jenkins
+

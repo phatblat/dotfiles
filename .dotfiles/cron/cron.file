@@ -4,15 +4,20 @@
 #
 #-------------------------------------------------------------------------------
 
+# Run commands in Fish shell environment as most are functions.
+SHELL=/usr/local/bin/fish
+
 # Nightly
-10 4 * * *      $HOME/.dotfiles/cron/brew_update.sh
-20 4 * * *      $HOME/.dotfiles/xcode/xccheck.sh
-30 4 * * *      $HOME/.dotfiles/cron/pod_repo_update.sh
+10  4 * * *     brew_update
+20  4 * * *     xccheck
+30  4 * * *     bi --quiet and bprum --silent
 
 # Hourly
-00 * * * *      $HOME/.dotfiles/cron/cron.zsh           # Reload cron file
-01 * * * *      $HOME/.dotfiles/cron/dotfiles_fetch.sh
-#10 * * * *      $HOME/.dotfiles/cron/rsync_phatblat.sh
+00  * * * *     cron_reload
+01  * * * *     fetch --quiet
+
+# Once
+32 19 * * *     env > ~/.dotfiles/cron/cronenv
 
 # --------------------------------------------------------
 # * * * * *     command to be executed

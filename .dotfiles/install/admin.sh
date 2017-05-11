@@ -9,8 +9,10 @@ echo
 echo ">>> install-admin"
 echo
 
-# Verify current user is an admin before proceeding
+# Load user_is_admin alias
+source "${HOME}/.dotfiles/install/alias.zsh"
 
+# Verify current user is an admin before proceeding
 if ! user_is_admin; then
   echo "Only admins may run this script"
   exit 1
@@ -20,9 +22,12 @@ fi
 ls -ld /usr/local
 # sudo chown -R ${USER}:staff /usr/local
 
-# Install Homebrew
-echo "Installing Homebrew"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+which -s brew
+if [[ $? -ne 0 ]]; then
+  # Install Homebrew
+  echo "Installing Homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 
 #-------------------------------------------------------------------------------
@@ -32,7 +37,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 sudo gem install bundler --bindir /usr/local/bin
 
 # http://stackoverflow.com/questions/41757144/your-bundle-is-locked-to-rake-12-0-0-but-that-version-could-not-be-found-in-a
-sudo gem install rubygems-bundler
+sudo gem install rubygems-bundler --bindir /usr/local/bin
 sudo gem regenerate_binstubs
 
 # Install gems configured at user level
@@ -48,9 +53,6 @@ npm install --global fast-cli
 npm install --global n
 npm install --global ralio
 
-# Atom packages
-apm install dash
-
 
 #-------------------------------------------------------------------------------
 # Custom builds
@@ -59,7 +61,7 @@ apm install dash
 # Custom builds in ~/tmp
 pushd ~/tmp > /dev/null
 
-# Powerline
+# Powerline for VIM
 echo "Setting up Powerline"
 pip install --upgrade pip
 pip install powerline-status
@@ -68,5 +70,17 @@ pip install Pygments
 # End Custom Builds
 popd > /dev/null
 
+#-------------------------------------------------------------------------------
+# Updates, also Homebrew add/remove.
+#-------------------------------------------------------------------------------
+
 # Chain the update script
 "${HOME}/.dotfiles/install/update.sh"
+
+
+#-------------------------------------------------------------------------------
+# Custom Shells
+#-------------------------------------------------------------------------------
+
+# Register non-stock shells
+sudo for shell in bash zsh fish; do echo "/usr/local/bin/${shell}" >> /etc/shells; cat /etc/shells

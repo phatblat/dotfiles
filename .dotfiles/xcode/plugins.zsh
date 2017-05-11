@@ -17,7 +17,7 @@ alias alcatraz_clean='rm -rf ~/Library/Application\ Support/Alcatraz'
 # Blindly adds the DVTPlugInCompatibilityUUID for every version of Xcode found
 # in /Applications to all Xcode plugins.
 #
-function xcode_plugin_update_uuid() {
+function xcode_plugin_update_uuid {
   local xcode plugin
 
   for xcode in /Applications/Xcode*.app; do
