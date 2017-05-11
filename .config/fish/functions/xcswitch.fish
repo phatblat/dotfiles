@@ -6,7 +6,7 @@ function xcswitch --argument-names version
         return 1
     end
 
-    set -l xcode_path "/Applications/Xcode-$version.app"
+    set -l xcode_path /Applications/Xcode-$version.app
     if not test -e $xcode_path
         echo $xcode_path does not exist.
         return 2
@@ -19,8 +19,10 @@ function xcswitch --argument-names version
 
     # Creat a symlink so tools, like SwiftLint, that assume Xcode was
     # Installed via the MAS use the correct version.
-    ln -fsv $xcode_path /Applications/Xcode.app
-    xclist
+    pushd /Applications
+    ln -fhs (basename $xcode_path) Xcode.app
+    popd
 
+    xclist
     echo "Activated "(string sub --length (string length $xcode_path) (xcsp))
 end
