@@ -18,6 +18,7 @@ SHELL=/usr/local/bin/fish
 
 # Once
 32 19 * * *     env > ~/.dotfiles/cron/cronenv
+02 11 * * *     current_status > ~/.dotfiles/cron/cronstatus
 
 # --------------------------------------------------------
 # * * * * *     command to be executed
