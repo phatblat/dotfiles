@@ -13,9 +13,12 @@ function ♻️_fisherman
     set -l fisherDir ~/dev/fish/fisher
     set -l functionFile ~/.config/fish/functions/fisher.fish
 
-    echo "Fisherman 🐟  - https://fisherman.github.io"
+    # Create parent directories
+    createdirs ~/dev/fish
 
     if not test -e $fisherDir
+        # Extracted from install script
+        # https://github.com/fisherman/fisherman#install (git.io/fisher)
         set url "git@github.com:fisherman/fisherman.git"
         git clone $url $fisherDir
 

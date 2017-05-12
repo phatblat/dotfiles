@@ -5,12 +5,8 @@ function ♻️_tmbundles
     set -l bundle_dev ~/dev/textmate
     set -l bundle_dir ~/Library/Application\ Support/TextMate/Bundles
 
-    if not test -e $bundle_dev
-        mkdir -p $bundle_dev
-    end
-    if not test -e $bundle_dir
-        mkdir -p $bundle_dir
-    end
+    # Create parent directories
+    createdirs $bundle_dev $bundle_dir
 
     pushd $bundle_dev
 
