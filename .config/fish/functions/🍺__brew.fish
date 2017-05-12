@@ -11,8 +11,6 @@ function 🍺__brew
         speedtest_cli kylef/formulae/swiftenv swiftgen swiftlint tailorterminal-notifier \
         thefuck trash tree uncrustify vapor/tap/toolbox wget xctool zsh \
 
-    # echo $formulaes | column -x
-
     # Ensure Homebrew is installed.
     if not which -s brew
         echo "Installing Homebrew"
@@ -36,7 +34,7 @@ function 🍺__brew
     # Collect a list of formula which need to be installed
     set -l installed (brew list --full-name)
     set -l not_installed
-    for formula in formulae
+    for formula in $formulae
         if not contains $formula installed
             set not_installed $not_installed $formula
         end
