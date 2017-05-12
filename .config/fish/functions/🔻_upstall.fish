@@ -6,7 +6,7 @@ function 🔻_upstall
     set -l last_ran_file ~/.config/upstall/last_run.(machine_id)
     set -l last_ran (cat $last_ran_file)
     echo "🔻  Upstall (Last ran: "$last_ran")"
-    date >$last_ran_file
+    date_iso8601 >$last_ran_file
 
     repeatchar -
 
