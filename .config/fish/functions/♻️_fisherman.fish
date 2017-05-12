@@ -1,15 +1,9 @@
 # Updates Fisherman and the plugins it manages. Installs if missing.
 function ♻️_fisherman
-    # Parent directories
-    set -l dirs ~/dev/fish
+    echo "Fisherman 🐟  - https://fisherman.github.io"
 
-    for dir in $dirs
-        if not test -e $dir
-            mkdir -p $dir
-        end
-    end
+    set -l plugins done laughedelic/fish_logo get mock z
 
-    # Fisherman - https://github.com/fisherman/fisherman#install
     set -l fisherDir ~/dev/fish/fisher
     set -l functionFile ~/.config/fish/functions/fisher.fish
 
@@ -34,8 +28,7 @@ function ♻️_fisherman
 
     fisher --version
 
-    set -l fisherman_plugins done laughedelic/fish_logo get mock z
-    for plugin in $fisherman_plugins
+    for plugin in $plugins
         fisher $plugin
     end
 
