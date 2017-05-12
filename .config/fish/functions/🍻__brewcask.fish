@@ -63,27 +63,27 @@ function 🍻__brewcask
         return 1
     end
 
-    # # Update
-    # brew update
-    # and set -l outdated_casks (brew cask outdated)
-    # and brew cask outdated
-    # # and brew upgrade
-    #
-    # # Collect a list of casks which need to be installed
-    # set -l installed (brew cask list)
-    # set -l not_installed
-    # for cask in $casks
-    #     if not contains $cask $installed
-    #         set not_installed $not_installed $cask
-    #     end
-    # end
-    #
-    # if test -n "$not_installed"
-    #     brew cask install $not_installed
-    # end
-    #
-    # # Update already installed casks
-    # if test -n "$outdated_casks"
-    #     brew cask install $outdated_casks
-    # end
+    # Update
+    brew update
+    and set -l outdated_casks (brew cask outdated)
+    and brew cask outdated
+    # and brew upgrade
+
+    # Collect a list of casks which need to be installed
+    set -l installed (brew cask list)
+    set -l not_installed
+    for cask in $casks
+        if not contains $cask $installed
+            set not_installed $not_installed $cask
+        end
+    end
+
+    if test -n "$not_installed"
+        brew cask install $not_installed
+    end
+
+    # Update already installed casks
+    if test -n "$outdated_casks"
+        brew cask reinstall --force $outdated_casks
+    end
 end
