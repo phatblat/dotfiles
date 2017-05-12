@@ -3,7 +3,7 @@
 # Bundler is used to install most gems locally for the projects that need them.
 # Only a few gems are installed at the system level.
 function 💎__rubygems
-    echo "💎  Ruby Gems"
+    echo "💎  Updating Ruby Gems"
     echo
 
     # Only admins can manage gems installed at the system level.
