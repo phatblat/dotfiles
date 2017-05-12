@@ -14,6 +14,14 @@ function ⬆️__upstall
 
     repeatchar -
 
+    if contains -- "--no-xcode" $argv; or contains -- "--noxc" $argv
+        echo "📱  Xcode (skipped)"
+    else
+        📱__xcode
+    end
+
+    repeatchar -
+
     if contains -- "--no-brew" $argv; or contains -- "--nobr" $argv
         echo "🍺  Homebrew (skipped)"
     else
