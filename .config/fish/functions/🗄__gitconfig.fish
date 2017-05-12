@@ -3,12 +3,20 @@
 # ~/.gitconfig is tracked and shared. Sensitive or machine-specific data is
 # stored in the alternate global config file.
 # > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
-function _gitconfig --argument-names email name
-    set -l global_config ~/.config/git/config
+function 🗄__gitconfig --argument-names email name
+    echo "🗄  Git configuration"
+    echo
 
     createdirs ~/.config/git
+    set -l global_config ~/.config/git/config
 
-    echo "Git configuration"
+    # Only print config when values are set.
+    if test -n (git config user.name); and test -n (git config user.email)
+        cat $global_config
+        return
+    end
+
+    # Prompt to add required values
 
     if test -z $name
         get --prompt "Git user.name: " | read name

@@ -1,6 +1,6 @@
 # Updates Fisherman and the plugins it manages. Installs if missing.
-function ♻️_fisherman
-    echo "Fisherman 🐟  - https://fisherman.github.io"
+function 🐟__fisherman
+    echo "🐟 Fisherman - https://fisherman.github.io"
 
     set -l plugins done laughedelic/fish_logo get mock z
 
@@ -19,7 +19,7 @@ function ♻️_fisherman
         ln -Ffs $fisherDir/fisher.fish $functionFile
         echo "Fisherman installed -> $fisherDir"
     else
-        echo "Updating Fisherman ♻️"
+        echo "Updating Fisherman"
         # TODO: Replace with (fisher update)?
         pushd $fisherDir
         and git pull
