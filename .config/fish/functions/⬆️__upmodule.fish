@@ -6,7 +6,7 @@ function ⬆️__upmodule --argument-names module_function display_name skip_fla
     else if test (count $argv) -eq 1
         if not functions --query $module_function
             echo "Unknown function: "$module_function
-            return 2
+            return 3
         end
 
         repeatchar -
@@ -14,7 +14,7 @@ function ⬆️__upmodule --argument-names module_function display_name skip_fla
     else if test (count $argv) -ge 4
         if not functions --query $module_function
             echo "Unknown function: "$module_function
-            return 2
+            return 4
         end
 
         if test (count $argv) -ge 5

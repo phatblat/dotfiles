@@ -8,10 +8,10 @@ function ⬆️__upstall
     echo "⬆️  Upstall (Last ran: "$last_ran")"
     date_iso8601 >$last_ran_file
 
-    ⬆️__upmodule 🗄__gitconfig   "$argv"
-    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems"     "--no-ruby"         "--norb" "$argv"
-    ⬆️__upmodule 📱__xcode       "📱  Xcode"         "--no-xcode"        "--noxc" "$argv"
-    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"      "--no-brew"         "--nobr" "$argv"
-    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman"     "--no-fisherman"    "--nofm" "$argv"
-    ⬆️__upmodule 📝__textmate    "📝  TextMate"      "--no-textmate"     "--notm" "$argv"
+    ⬆️__upmodule 🗄__gitconfig
+    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems"     "--no-ruby"         "--norb" $argv
+    ⬆️__upmodule 📱__xcode       "📱  Xcode"         "--no-xcode"        "--noxc" $argv
+    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"      "--no-brew"         "--nobr" $argv
+    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman"     "--no-fisherman"    "--nofm" $argv
+    ⬆️__upmodule 📝__textmate    "📝  TextMate"      "--no-textmate"     "--notm" $argv
 end
