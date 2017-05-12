@@ -8,7 +8,7 @@
 # Editor
 set --export EDITOR_CLI "vim" # vi vim
 set --export EDITOR_GUI "mate" # subl atom mvim
-set --export CLI_WAIT_FLAG "--remote-wait"
+set --export CLI_WAIT_FLAG "-f"
 set --export GUI_WAIT_FLAG "-w"
 
 # EDITOR or VISUAL, only one defined
