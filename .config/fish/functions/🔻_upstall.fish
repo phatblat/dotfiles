@@ -18,9 +18,17 @@ function 🔻_upstall
         cat ~/.config/git/config
     end
 
-    repeatchar -
-    ♻️_fisherman
-    repeatchar -
-    ♻️_tmbundles
+    if not contains -- "--no-fisherman" $argv; and not contains -- "--nofm" $argv
+        repeatchar -
+        echo ♻️_fisherman
+        # ♻️_fisherman
+    end
+
+    if not contains -- "--no-textmate" $argv; and not contains -- "--notm" $argv
+        repeatchar -
+        echo ♻️_tmbundles
+        # ♻️_tmbundles
+    end
+
     repeatchar -
 end
