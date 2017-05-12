@@ -35,9 +35,10 @@ function 📝__textmate
 
                     set newest_file (ls -1t | head -n 1)
                     unzip -o $newest_file
-                        and rm -f $newest_file
+                    and rm -f $newest_file
 
-                    open editorconfig-textmate.tmplugin
+                    status is-login
+                    and open editorconfig-textmate.tmplugin
 
                     # Create a dummy bundle file so install isn't repeated.
                     touch $bundle.tmbundle
@@ -64,7 +65,8 @@ function 📝__textmate
         end
 
         if test (filesize $bundle.tmbundle) -gt 0
-            open $bundle.tmbundle
+            status is-login
+            and open $bundle.tmbundle
         end
     end
 
