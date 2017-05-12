@@ -14,6 +14,14 @@ function ⬆️__upstall
 
     repeatchar -
 
+    if contains -- "--no-brew" $argv; or contains -- "--nobr" $argv
+        echo "🍺  Homebrew (skipped)"
+    else
+        🍺__brew
+    end
+
+    repeatchar -
+
     if contains -- "--no-fisherman" $argv; or contains -- "--nofm" $argv
         echo "🐟  Fisherman (skipped)"
     else
