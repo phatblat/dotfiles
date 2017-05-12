@@ -1,6 +1,6 @@
 # Manage TextMate bundles.
-function ♻️_tmbundles
-    echo "TextMate 📝  - https://github.com/textmate/textmate"
+function 📝__textmate
+    echo "📝  TextMate - https://github.com/textmate/textmate"
 
     set -l bundles blackpearl editorconfig fish gradle tomorrow-theme ublime
 
