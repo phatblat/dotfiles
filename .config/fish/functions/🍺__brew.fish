@@ -8,7 +8,7 @@ function 🍺__brew
         coreutils curl direnv duti findutils fish git git-lfs gnupg goaccess gradle \
         groovy heroku-toolbelt hub jq thoughtbot/formulae/liftoff maven nginx ninja \
         nodejs packer postgres python rename ruby shellcheck sloccount sourcekitten \
-        speedtest_cli kylef/formulae/swiftenv swiftgen swiftlint tailorterminal-notifier \
+        speedtest_cli kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier \
         thefuck trash tree uncrustify vapor/tap/toolbox wget xctool zsh \
 
     # Ensure Homebrew is installed.
@@ -35,7 +35,7 @@ function 🍺__brew
     set -l installed (brew list --full-name)
     set -l not_installed
     for formula in $formulae
-        if not contains $formula installed
+        if not contains $formula $installed
             set not_installed $not_installed $formula
         end
     end
