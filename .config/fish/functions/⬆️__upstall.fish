@@ -30,6 +30,14 @@ function ⬆️__upstall
 
     repeatchar -
 
+    if contains -- "--no-ruby" $argv; or contains -- "--norb" $argv
+        echo "💎  Ruby Gems (skipped)"
+    else
+        💎__rubygems
+    end
+
+    repeatchar -
+
     if contains -- "--no-textmate" $argv; or contains -- "--notm" $argv
         echo "📝  TextMate (skipped)"
     else
