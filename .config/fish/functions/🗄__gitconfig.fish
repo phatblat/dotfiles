@@ -10,8 +10,8 @@ function 🗄__gitconfig --argument-names email name
     createdirs ~/.config/git
     set -l global_config ~/.config/git/config
 
-    # Only print config when values are set.
-    if test -n (git config --global user.name); and test -n (git config --global user.email)
+    # Just print the current config when values are set.
+    if git config --global user.name >/dev/null; and git config --global user.email >/dev/null
         cat $global_config
         return
     end
