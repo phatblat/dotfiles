@@ -8,6 +8,8 @@ function _gitconfig --argument-names email name
 
     createdirs ~/.config/git
 
+    echo "Git configuration"
+
     if test -z $name
         get --prompt "Git user.name: " | read name
     end
