@@ -4,7 +4,7 @@ function 🍺__brew
     echo
 
     set -l formulae \
-        antigen bash caskroom/cask/brew-cask burl carthage cloc cloudfoundry/tap/cf-cli \
+        antigen bash burl carthage cloc cloudfoundry/tap/cf-cli \
         coreutils curl direnv duti findutils fish git git-lfs gnupg goaccess gradle \
         groovy heroku hub jq thoughtbot/formulae/liftoff maven nginx ninja node packer \
         postgresql python rename ruby shellcheck sloccount sourcekitten speedtest_cli \
