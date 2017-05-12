@@ -1,5 +1,5 @@
 # Manage TextMate bundles.
-function tmbundles
+function ♻️_tmbundles
     set -l bundles blackpearl editorconfig fish gradle tomorrow-theme ublime
 
     set -l bundle_dev ~/dev/textmate
