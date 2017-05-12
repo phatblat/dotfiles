@@ -77,7 +77,7 @@ tmp/
 !.config/fish/
 .config/fish/completions/
 # [fishd] imac: a820663a2c5d, greymatter: a8667f043f9d
-.config/fish/fishd.* 
+.config/fish/fishd.*
 !.config/fish/fishfile
 !.config/fish/functions/*.fish
 .config/fish/h
@@ -89,6 +89,7 @@ tmp/
 .config/hub
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
+.config/upstall/last_run.*
 .cups/
 .dbvis/
 .did_show_opt_info
