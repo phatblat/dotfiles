@@ -5,26 +5,27 @@ function 🐟__fisherman
 
     set -l plugins done laughedelic/fish_logo get mock z
 
-    set -l fisherDir ~/dev/fish/fisher
-    set -l functionFile ~/.config/fish/functions/fisher.fish
+    set -l fisher_dir ~/dev/fish/fisher
+    set -l function_source ../../../dev/fish/fisher/fisher.fish
+    set -l function_symlink ~/.config/fish/functions/fisher.fish
 
     # Create parent directories
     createdirs ~/dev/fish
 
-    if not test -e $fisherDir
+    if not test -e $fisher_dir
         # Extracted from install script
         # https://github.com/fisherman/fisherman#install (git.io/fisher)
         set url "git@github.com:fisherman/fisherman.git"
-        git clone $url $fisherDir
+        git clone $url $fisher_dir
 
-        ln -Ffs $fisherDir/fisher.fish $functionFile
-        echo "Fisherman installed -> $fisherDir"
+        ln -Ffs $function_source $function_symlink
+        echo "Fisherman installed -> $fisher_dir"
     else
         echo "Updating Fisherman"
         # TODO: Replace with (fisher update)?
-        pushd $fisherDir
+        pushd $fisher_dir
         and git pull
-        and popd
+        popd
     end
 
     fisher --version
