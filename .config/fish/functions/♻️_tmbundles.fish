@@ -59,7 +59,10 @@ function ♻️_tmbundles
                     >$bundle.tmbundle/Info.plist
             end
         end
-        open $bundle.tmbundle
+
+        if test (filesize $bundle.tmbundle) -gt 0
+            open $bundle.tmbundle
+        end
     end
 
     echo $bundle_dev
