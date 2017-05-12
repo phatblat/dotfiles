@@ -8,49 +8,10 @@ function ⬆️__upstall
     echo "⬆️  Upstall (Last ran: "$last_ran")"
     date_iso8601 >$last_ran_file
 
-    repeatchar -
-
-    🗄__gitconfig
-
-    repeatchar -
-
-    if contains -- "--no-xcode" $argv; or contains -- "--noxc" $argv
-        echo "📱  Xcode (skipped)"
-    else
-        📱__xcode
-    end
-
-    repeatchar -
-
-    if contains -- "--no-brew" $argv; or contains -- "--nobr" $argv
-        echo "🍺  Homebrew (skipped)"
-    else
-        🍺__brew
-    end
-
-    repeatchar -
-
-    if contains -- "--no-fisherman" $argv; or contains -- "--nofm" $argv
-        echo "🐟  Fisherman (skipped)"
-    else
-        🐟__fisherman
-    end
-
-    repeatchar -
-
-    if contains -- "--no-ruby" $argv; or contains -- "--norb" $argv
-        echo "💎  Ruby Gems (skipped)"
-    else
-        💎__rubygems
-    end
-
-    repeatchar -
-
-    if contains -- "--no-textmate" $argv; or contains -- "--notm" $argv
-        echo "📝  TextMate (skipped)"
-    else
-        📝__textmate
-    end
-
-    repeatchar -
+    ⬆️__upmodule 🗄__gitconfig
+    ⬆️__upmodule 📱__xcode       "📱  Xcode"         "--no-xcode"        "--noxc"
+    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"      "--no-brew"         "--nobr"
+    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman"     "--no-fisherman"    "--nofm"
+    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems"     "--no-ruby"         "--norb"
+    ⬆️__upmodule 📝__textmate    "📝  TextMate"      "--no-textmate"     "--notm"
 end
