@@ -16,9 +16,11 @@ set --export GUI_WAIT_FLAG "-w"
 if not status is-login; or is_ssh
     set --export EDITOR $EDITOR_CLI
     set --export WAIT_FLAG $CLI_WAIT_FLAG
+    set --erase VISUAL
 else
     set --export VISUAL $EDITOR_GUI
     set --export WAIT_FLAG $GUI_WAIT_FLAG
+    set --erase EDITOR
 end
 
 set --export ANDROID_HOME /usr/local/opt/android-sdk
