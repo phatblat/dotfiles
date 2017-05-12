@@ -28,6 +28,7 @@ function 🍺__brew
 
     # Update
     brew update
+    and set -l outdated_formulae (brew outdated)
     and brew outdated
     and brew upgrade
 
@@ -44,6 +45,9 @@ function 🍺__brew
         brew install $not_installed
     end
 
-    echo
-    firewall_allow_nginx
+    # Update firewall rules if a new version of nginx was installed
+    if contains "nginx" $outdated_formulae
+        echo
+        firewall_allow_nginx
+    end
 end
