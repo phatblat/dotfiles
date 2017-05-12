@@ -1,6 +1,7 @@
 # Updates Fisherman and the plugins it manages. Installs if missing.
 function 🐟__fisherman
-    echo "🐟 Fisherman - https://fisherman.github.io"
+    echo "🐟  Fisherman - https://fisherman.github.io"
+    echo
 
     set -l plugins done laughedelic/fish_logo get mock z
 

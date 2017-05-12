@@ -17,8 +17,7 @@ function ⬆️__upstall
     if contains -- "--no-fisherman" $argv; or contains -- "--nofm" $argv
         echo "🐟  Fisherman (skipped)"
     else
-        echo 🐟__fisherman
-        # 🐟__fisherman
+        🐟__fisherman
     end
 
     repeatchar -
@@ -26,8 +25,7 @@ function ⬆️__upstall
     if contains -- "--no-textmate" $argv; or contains -- "--notm" $argv
         echo "📝  TextMate (skipped)"
     else
-        echo 📝__textmate
-        # 📝__textmate
+        📝__textmate
     end
 
     repeatchar -
