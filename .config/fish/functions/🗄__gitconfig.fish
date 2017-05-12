@@ -11,7 +11,10 @@ function 🗄__gitconfig --argument-names email name
     set -l global_config ~/.config/git/config
 
     # Just print the current config when values are set.
-    if git config --global user.name >/dev/null; and git config --global user.email >/dev/null
+    if begin
+            git config --file $global_config user.name >/dev/null
+            and git config --file $global_config user.email >/dev/null
+        end
         cat $global_config
         return
     end
