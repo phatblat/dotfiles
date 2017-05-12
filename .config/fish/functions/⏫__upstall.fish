@@ -12,6 +12,7 @@ function ⏫__upstall
     ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems"     "--no-ruby"         "--norb" $argv
     ⬆️__upmodule 📱__xcode       "📱  Xcode"         "--no-xcode"        "--noxc" $argv
     ⬆️__upmodule 🍺__brew        "🍺  Homebrew"      "--no-brew"         "--nobr" $argv
+    ⬆️__upmodule 🍻__brewcask    "🍺  Homebrew Cask" "--no-cask"         "--nobc" $argv
     ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman"     "--no-fisherman"    "--nofm" $argv
     ⬆️__upmodule 📝__textmate    "📝  TextMate"      "--no-textmate"     "--notm" $argv
 end
