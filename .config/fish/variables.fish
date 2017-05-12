@@ -12,7 +12,8 @@ set --export CLI_WAIT_FLAG "--remote-wait"
 set --export GUI_WAIT_FLAG "-w"
 
 # EDITOR or VISUAL, only one defined
-if test -n "$SSH_CLIENT" -o -n "$SSH_TTY"
+# Use EDITOR for non-login shells (su someoneelse) and SSH connections
+if not status is-login; or is_ssh
     set --export EDITOR $EDITOR_CLI
     set --export WAIT_FLAG $CLI_WAIT_FLAG
 else
