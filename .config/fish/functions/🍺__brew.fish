@@ -14,6 +14,8 @@ function 🍺__brew
         kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier thefuck \
         trash tree uncrustify vapor/tap/toolbox wget xctool zsh
 
+    set -l uninstall hub pivotal/tap/cloudfoundry-cli
+
     # Ensure Homebrew is installed.
     if not which -s brew
         echo "Installing Homebrew"
@@ -29,21 +31,33 @@ function 🍺__brew
         return 1
     end
 
-    # Update
+    # Update Homebrew
     brew update
-    and set -l outdated_formulae (brew outdated)
-    and brew outdated
-    and brew upgrade
-
-    # Collect a list of formula which need to be installed
     set -l installed (brew list --full-name)
+
+    # Uninstall unwanted formulae
+    set -l to_uninstall
+    for formula in $uninstall
+        if contains $formula $installed
+            set to_uninstall $to_uninstall $formula
+        end
+    end
+    if test -n "$to_uninstall"
+        brew uninstall $to_uninstall
+    end
+
+    # Update installed formulae
+    set -l outdated_formulae (brew outdated)
+    brew outdated
+    brew upgrade
+
+    # Install new formula
     set -l not_installed
     for formula in $formulae
         if not contains $formula $installed
             set not_installed $not_installed $formula
         end
     end
-
     if test -n "$not_installed"
         brew install $not_installed
     end
