@@ -72,6 +72,8 @@ tmp/
 .cocoapods/
 .conche/
 # .config/
+# NPM update notifier
+.config/configstore
 .config/direnv/
 # Include fish config files
 !.config/fish/
