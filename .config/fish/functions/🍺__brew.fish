@@ -54,6 +54,9 @@ function 🍺__brew
         firewall_allow_nginx
     end
 
+    # Cleanup
+    brew cleanup
+
     # Doctor
     brew doctor
 end
