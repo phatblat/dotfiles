@@ -1,5 +1,5 @@
 # Updates Homebrew Casks and installed apps (casks).
-function 🍻__brewcask
+function 🍻__cask
     echo "🍻  Homebrew Cask - https://caskroom.github.io"
     echo
 
