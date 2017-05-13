@@ -2,6 +2,9 @@
 #
 # Bundler is used to install most gems locally for the projects that need them.
 # Only a few gems are installed at the system level.
+#
+# Sequencing
+# - Before: xcode
 function 💎__rubygems
     echo "💎  Updating Ruby Gems"
     echo
