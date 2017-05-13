@@ -1,5 +1,8 @@
 # Installs and updates npm modules.
 # https://docs.npmjs.com/cli
+#
+# Sequencing
+# - After: brew (installed with node)
 function 🕸__npm
     echo "🕸  NPM"
     echo

@@ -1,4 +1,7 @@
 # Updates Homebrew and installed formulae.
+#
+# Sequencing
+# - Requires ruby, but works with system ruby.
 function 🍺__brew
     echo "🍺  Homebrew - https://brew.sh"
     echo

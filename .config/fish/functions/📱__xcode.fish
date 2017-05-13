@@ -1,4 +1,7 @@
 # Installs and updates Xcode.
+#
+# Sequencing
+# - After: rubygems (uses xcode-install)
 function 📱__xcode
     echo "📱  Xcode"
     echo

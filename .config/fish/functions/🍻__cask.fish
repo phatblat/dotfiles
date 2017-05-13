@@ -1,4 +1,8 @@
 # Updates Homebrew Casks and installed apps (casks).
+#
+# Sequencing
+# - Requires ruby, but works with system ruby.
+# - Seems logical to run after brew, but not actually required.
 function 🍻__cask
     echo "🍻  Homebrew Cask - https://caskroom.github.io"
     echo

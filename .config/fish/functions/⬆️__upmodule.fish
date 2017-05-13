@@ -1,4 +1,5 @@
 # Optionally invokes an upstall module, provided the "skip" flag(s) are not given.
+# Requires either 1 arg (no skip options), or 4+ args (skip flags & title)
 function ⬆️__upmodule --argument-names module_function display_name skip_flag_long skip_flag_short
     if test -z "$argv"
         echo "Usage: ⬆️__upmodule module_function [display_name skip_flag_long skip_flag_short original_args]"
