@@ -79,7 +79,7 @@ function 🍻__cask
     end
 
     if test -n "$not_installed"
-        brew cask install $not_installed
+        brew cask install --force $not_installed
     end
 
     # Update already installed casks
