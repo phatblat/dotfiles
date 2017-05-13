@@ -19,7 +19,7 @@ function 🍺__brew
 
     # Verify the user owns the Homebrew dir.
     set brew_home (brew --prefix)
-    if not test (stat -f%u $brew_home) -eq (id -u $USER)
+    if test $USER != (fileowner $brew_home)
         if status is-login
             echo "You must be the owner of $brew_home to run this command."
         end
