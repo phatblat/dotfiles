@@ -50,4 +50,7 @@ function 🍺__brew
         echo
         firewall_allow_nginx
     end
+
+    # Doctor
+    brew doctor
 end
