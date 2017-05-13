@@ -86,4 +86,7 @@ function 🍻__cask
     if test -n "$outdated_casks"
         brew cask reinstall --force $outdated_casks
     end
+
+    # Cleanup
+    brew cask cleanup
 end
