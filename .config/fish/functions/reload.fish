@@ -5,7 +5,7 @@ function reload --argument-names function_name
         return
     else if functions --query $function_name
         source ~/.config/fish/functions/$function_name.fish
-        if not $status
+        if not test $status -ne 0
             return $status
         end
         func $function_name
