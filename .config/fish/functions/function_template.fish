@@ -1,17 +1,21 @@
 # Prints function_template.
-function function_template --argument-names function_name
+function function_template --argument-names function_name argname
     if test -z $function_name
-        echo "Usage: function_template function_name"
+        echo "Usage: function_template function_name [argname]"
         return 1
     end
 
+    if test -z $argname
+        set argname argname
+    end
+
     echo "# $function_name
-        function $function_name --argument-names arg1
-            if test -z \"\$arg1\"
-                echo \"Usage: $function_name arg1\"
+        function $function_name --argument-names $argname
+            if test -z \"\$$argname\"
+                echo \"Usage: $function_name $argname\"
                 return 1
             end
-            switch \$arg1
+            switch \$$argname
                 case on ON On
                 case off OFF Off
                 case '*'
