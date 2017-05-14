@@ -5,5 +5,5 @@ function pkgfind --argument-names filter
         return 1
     end
 
-    pkgutil --packages | grep $filter
+    pkgutil --packages | grep -i $filter
 end
