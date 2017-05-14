@@ -46,10 +46,9 @@ function 🍻__cask
         quicklook-csv \
         quicklook-json \
         textmate \
-        webpquicklook \
+        webpquicklook
 
-    # echo $casks | tr ' ' \n
-    # return
+    set -l uninstall battery-guardian cocoapods-app
 
     # Ensure Homebrew is installed.
     if not which -s brew
@@ -69,11 +68,29 @@ function 🍻__cask
 
     # Update
     brew update
-    and set -l outdated_casks (brew cask outdated)
-    and brew cask outdated
-    # and brew upgrade
 
-    # Collect a list of casks which need to be installed
+    # Uninstall unwanted formulae
+    set -l to_uninstall
+    for cask in $uninstall
+        if contains $cask $installed
+            set to_uninstall $to_uninstall $cask
+        end
+    end
+    if test -n "$to_uninstall"
+        brew cask uninstall $to_uninstall
+    end
+
+    # Update installed casks
+    set -l outdated_output (brew cask outdated ^/dev/null)
+    # Example: charles (4.1.1) != 4.1.2
+    echo $outdated_output\n
+    # Cut everything but the first column
+    set -l outdated_casks (echo $outdated_output\n | cut -f 1 -d ' ' -)
+    if test -n "$outdated_casks"
+        brew cask reinstall --force $outdated_casks
+    end
+
+    # Install new casks
     set -l installed (brew cask list)
     set -l not_installed
     for cask in $casks
@@ -81,14 +98,8 @@ function 🍻__cask
             set not_installed $not_installed $cask
         end
     end
-
     if test -n "$not_installed"
         brew cask install --force $not_installed
-    end
-
-    # Update already installed casks
-    if test -n "$outdated_casks"
-        brew cask reinstall --force $outdated_casks
     end
 
     # Cleanup

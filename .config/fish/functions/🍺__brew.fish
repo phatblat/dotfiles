@@ -48,7 +48,7 @@ function 🍺__brew
 
     # Update installed formulae
     set -l outdated_formulae (brew outdated)
-    brew outdated
+    echo $outdated_formulae | tr ' ' \n
     brew upgrade
 
     # Install new formula
