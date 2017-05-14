@@ -9,7 +9,7 @@ function ⏫__upstall
     date_iso8601 >$last_ran_file
 
     if contains -- --nothing $argv
-        set argv $argv --no-ruby --no-xcode --no-brew --no-cask --no-fisherman --no-pip --no-npm --no-textmate --no-macos
+        set argv $argv --no-ruby --no-xcode --no-brew --no-cask --no-fisherman --no-pip --no-npm --no-textmate --no-java --no-macos
     end
 
     ⬆️__upmodule 🗄__gitconfig
@@ -21,5 +21,6 @@ function ⏫__upstall
     ⬆️__upmodule 🐍__pip         "🐍  PIP"       --no-pip        --nopy $argv
     ⬆️__upmodule 🕸__npm         "🕸  NPM"       --no-npm        --nojs $argv
     ⬆️__upmodule 📝__textmate    "📝  TextMate"  --no-textmate   --notm $argv
+    ⬆️__upmodule ☕️__java        "☕️  Java"      --no-java       --nojv $argv
     ⬆️__upmodule 🖥__macos       "🖥  macOS"     --no-macos      --noos $argv
 end
