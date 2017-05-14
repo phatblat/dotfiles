@@ -1,11 +1,13 @@
 # Reloads fish configuration or a single autoloaded function.
 function reload --argument-names function_name
+    set -l file ~/.config/fish/functions/$function_name.fish
+
     if test -z $function_name
         source ~/.config/fish/config.fish
         return
-    else if functions --query $function_name
-        source ~/.config/fish/functions/$function_name.fish
-        if not test $status -ne 0
+    else if test -e $file
+        source $file
+        if test $status -ne 0
             return $status
         end
         func $function_name
