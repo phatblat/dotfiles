@@ -25,11 +25,22 @@ function ☕️__java
     curl_download --cookie oraclelicense=accept-securebackup-cookie $download_url
 
     # Mount the .dmg
-    hdiutil attach $dmg_file
+    # -nobrowse          render any volumes invisible in applications such as the macOS Finder.
+    set -l output (hdiutil attach $dmg_file)
+
+    # Mount pout is the first column of the last line of output from hdiutil
+    # Example:
+    # expected   CRC32 $09D78DD5
+    # /dev/disk2              GUID_partition_scheme
+    # /dev/disk2s1            Apple_HFS                          /Volumes/JDK 8 Update 131
+    set -l mount_point (echo $output[-1] | cut -f 1 -d ' ' -)
     ls -o /Volumes/JDK*/JDK*.pkg
 
     # Run the install package
     sudo installer -target / -pkg /Volumes/JDK*/JDK*.pkg
+
+    # Unmount the install volume
+    hdiutil detach $mount_point
 
     # Switch active JDK
     showjdks
