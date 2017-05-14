@@ -1,4 +1,9 @@
 # Update JAVA_HOME to point to the given JDK version.
-function setjdk
-    set -x JAVA_HOME (/usr/libexec/java_home --version $argv)
+function setjdk --argument-names version
+    if test -z $version
+        echo "Usage: setjdk 1.8"
+        return 1
+    end
+
+    set --export JAVA_HOME (/usr/libexec/java_home --version $version)
 end
