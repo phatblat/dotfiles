@@ -24,7 +24,8 @@ end"\
 >$file
 
     editw $file
-    fish_indent $file
+    fish_indent --write $file
+    reload $function_name
 
     echo $function_name function created.
 end
