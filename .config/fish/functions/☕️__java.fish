@@ -26,6 +26,18 @@ function ☕️__java
 
     # Mount the .dmg
     hdiutil attach $dmg_file
+    ls -o /Volumes/JDK*/JDK*.pkg
+
+    # Run the install package
+    sudo installer -target / -pkg /Volumes/JDK*/JDK*.pkg
+
+    # Switch active JDK
+    showjdks
+    setjdk 1.8
+
+    # Show version info
+    whichjdk
+    java -version
 
     popd
 end
