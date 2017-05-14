@@ -16,6 +16,14 @@ function ☕️__java
     echo "☕️  Java"
     echo
 
+    set -l version 1.8.0_131
+
+    # Check to see if update is necessary
+    if test $version = (jv)
+        showjdks
+        return
+    end
+
     set -l download_url http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-macosx-x64.dmg
     set -l dmg_file (basename $download_url)
 
