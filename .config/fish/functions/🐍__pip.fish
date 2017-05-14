@@ -7,7 +7,7 @@
 # Sequencing
 # - After: brew (installed with python)
 function 🐍__pip
-    echo "🐍__  PIP"
+    echo "🐍  PIP"
     echo
 
     set -l global_packages powerline-status Pygments
