@@ -44,7 +44,7 @@ function ☕️__java
     # expected   CRC32 $09D78DD5
     # /dev/disk2              GUID_partition_scheme
     # /dev/disk2s1            Apple_HFS                          /Volumes/JDK 8 Update 131
-    set -l mount_point (echo $output[-1] | cut -f 1 -d ' ' -)
+    set -l mount_point (col1 $output[-1])
     ls -o /Volumes/JDK*/JDK*.pkg
 
     # Run the install package
