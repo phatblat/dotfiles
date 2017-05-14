@@ -8,7 +8,7 @@
 SHELL=/usr/local/bin/fish
 
 # Nightly
-10  4 * * *     🍺__brew
+10  4 * * *     🍺__brew >/dev/null
 20  4 * * *     xccheck
 30  4 * * *     bi --quiet and bprum --silent
 
