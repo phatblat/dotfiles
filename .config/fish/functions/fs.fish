@@ -28,5 +28,5 @@ function fs --argument function_name
     # Fix the funky indentation (tab on first line of body, extra space on all)
     fish_indent --write $dest_file
 
-    cat $dest_file
+    cat $dest_file | fish_indent --ansi
 end
