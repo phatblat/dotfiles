@@ -1,4 +1,4 @@
-# Functions alias.
+# Prints colorized, indented source of a loaded function.
 function func \
         --argument-name name
     if test -z "$name"
