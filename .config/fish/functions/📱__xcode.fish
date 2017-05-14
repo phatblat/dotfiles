@@ -1,4 +1,5 @@
 # Installs and updates Xcode.
+# https://developer.apple.com/downloads/
 #
 # Sequencing
 # - After: rubygems (uses xcode-install)
@@ -10,11 +11,16 @@ function 📱__xcode
         set --export --universal XCODE_INSTALL_USER (user.email)
     end
 
+    # Currently selected version
+    xcode-select --print-path
+
     # Update the list of available versions to install
     xcversion update
 
     # Install the CLI tools, if necessary
     if not test -e /Library/Developer/CommandLineTools/usr/lib/libxcrun.dylib
+        # Manual way
+        # xcode-select --install
         xcversion install-cli-tools
     end
 
