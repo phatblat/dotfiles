@@ -1,4 +1,9 @@
-# 
+# Performs release steps on an Xcode project.
+#
+# 1. Increments the project/build version.
+# 2. Commits the change.
+# 3. Tags the commit with the new version in the format: release/123001
+# 4. Pushes the changes to the remote repo.
 function release
     # Ensure current dir is in a clean git repo
     if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
