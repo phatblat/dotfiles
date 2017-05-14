@@ -5,6 +5,10 @@ function fd --argument function_name
         return 1
     end
 
+    set -l file ~/.config/fish/functions/$function_name.fish
+
     functions --erase $function_name
-        and echo "Function "$function_name" deleted."
+    # Delete file if it exists
+    and not test -e $file; or rm -f $file
+    and echo "Function "$function_name" deleted."
 end
