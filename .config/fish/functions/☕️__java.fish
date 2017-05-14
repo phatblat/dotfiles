@@ -10,6 +10,9 @@
 # Cookie set by JavaScript after clicking the "Agree" radio button
 # - oraclelicense	accept-securebackup-cookie	.oracle.com	/	5/14/2017, 11:56:38 AM	39 B
 #
+# Notes:
+# - `version` and `download_url` both need to be manually updated
+#
 # Sequencing
 # - After: brew (has newer curl)
 function ☕️__java
