@@ -10,7 +10,15 @@ function fe --argument-names function_name
 
     toggle_wait on
 
-    funced $function_name
+    if test -e $file
+        # Edit an autoloaded function
+        edit $file
+        and reload $function_name
+    else
+        # Edit a builtin function, save to autoload
+        funced $function_name
+        and funcsave $function_name
+    end
 
     toggle_wait off
 end
