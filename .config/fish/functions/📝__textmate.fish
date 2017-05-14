@@ -1,16 +1,18 @@
 # Manage TextMate bundles.
-function tmbundles
+#
+# Sequencing
+# - After: cask (textmate)
+function 📝__textmate
+    echo "📝  TextMate - https://github.com/textmate/textmate"
+    echo
+
     set -l bundles blackpearl editorconfig fish gradle tomorrow-theme ublime
 
     set -l bundle_dev ~/dev/textmate
     set -l bundle_dir ~/Library/Application\ Support/TextMate/Bundles
 
-    if not test -e $bundle_dev
-        mkdir -p $bundle_dev
-    end
-    if not test -e $bundle_dir
-        mkdir -p $bundle_dir
-    end
+    # Create parent directories
+    createdirs $bundle_dev $bundle_dir
 
     pushd $bundle_dev
 
@@ -36,9 +38,10 @@ function tmbundles
 
                     set newest_file (ls -1t | head -n 1)
                     unzip -o $newest_file
-                        and rm -f $newest_file
+                    and rm -f $newest_file
 
-                    open editorconfig-textmate.tmplugin
+                    status is-login
+                    and open editorconfig-textmate.tmplugin
 
                     # Create a dummy bundle file so install isn't repeated.
                     touch $bundle.tmbundle
@@ -63,7 +66,11 @@ function tmbundles
                     >$bundle.tmbundle/Info.plist
             end
         end
-        open $bundle.tmbundle
+
+        if test (filesize $bundle.tmbundle) -gt 0
+            status is-login
+            and open $bundle.tmbundle
+        end
     end
 
     echo $bundle_dev

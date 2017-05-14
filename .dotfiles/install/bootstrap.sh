@@ -15,8 +15,8 @@ echo ">>> install-bootstrap"
 echo
 
 # Check for existing dotfiles in user $HOME, bail if found
-if [[ -d ${HOME}/.dotfiles || -d ${HOME}/.git ]]; then
-  echo "Dotfiles are already installed for ${USER}@$(hostname)"
+if [[ -d ~/.dotfiles || -d ~/.git ]]; then
+  echo "Dotfiles are already installed for $USER@$(hostname)"
   exit 1
 fi
 
@@ -27,31 +27,27 @@ if [[ $? -eq 0 ]]; then
   open https://developer.apple.com/downloads/
 fi
 
-# Clone repo to $HOME/tmp
-if [[ ! -d ${HOME}/tmp ]]; then
-  mkdir "${HOME}/tmp"
+# Clone the .dotfiles repo into $HOME
+if [[ $PWD != $HOME ]]; then
+    push $HOME
 fi
-pushd "${HOME}/tmp"
-git clone https://github.com/phatblat/dotfiles.git
-pushd dotfiles
+
+if git rev-parse --git-dir >/dev/null 2>&1; then
+    echo "$HOME is already a git repo. Unable to bootstrap .dotfiles."
+    exit 1
+end
+
+git init
+git remote add origin https://github.com/phatblat/dotfiles.git
+git branch --set-upstream-to=origin/master master
+git pull
+echo "Git status before checkout:"
+git status
+git checkout master --force
+echo "Git status after checkout:"
+git status
 
 # Change remote URL to use SSH
 git remote set-url origin git@github.com:phatblat/dotfiles.git
 
-# Ignore all files by default - this makes git status output quieter.
-# Adding new files requires --force.
-echo '*' >> .git/info/exclude
-
-# Copy Dotfiles repo into $HOME
-# http://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con
-shopt -s dotglob
-cp -Rf "./" "${HOME}"
-shopt -u dotglob
-
-echo "Dotfiles now installed at ${HOME}"
-
-popd
-popd
-
-# Hand off next phase of setup to install-onetime (in $HOME)
-"${HOME}/.dotfiles/install/onetime.sh"
+echo "Dotfiles now installed at $HOME"

@@ -1,1 +1,1 @@
-/Users/phatblat/dev/fish/fisher/fisher.fish
+../../../dev/fish/fisher/fisher.fish

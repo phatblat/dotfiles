@@ -8,16 +8,19 @@
 # Editor
 set --export EDITOR_CLI "vim" # vi vim
 set --export EDITOR_GUI "mate" # subl atom mvim
-set --export CLI_WAIT_FLAG "--remote-wait"
+set --export CLI_WAIT_FLAG "-f"
 set --export GUI_WAIT_FLAG "-w"
 
 # EDITOR or VISUAL, only one defined
-if test -n "$SSH_CLIENT" -o -n "$SSH_TTY"
+# Use EDITOR for non-login shells (su someoneelse) and SSH connections
+if not status is-login; or is_ssh
     set --export EDITOR $EDITOR_CLI
     set --export WAIT_FLAG $CLI_WAIT_FLAG
+    set --erase VISUAL
 else
     set --export VISUAL $EDITOR_GUI
     set --export WAIT_FLAG $GUI_WAIT_FLAG
+    set --erase EDITOR
 end
 
 set --export ANDROID_HOME /usr/local/opt/android-sdk

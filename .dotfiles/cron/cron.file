@@ -8,7 +8,7 @@
 SHELL=/usr/local/bin/fish
 
 # Nightly
-10  4 * * *     brew_update
+10  4 * * *     🍺__brew
 20  4 * * *     xccheck
 30  4 * * *     bi --quiet and bprum --silent
 
@@ -18,7 +18,7 @@ SHELL=/usr/local/bin/fish
 
 # Once
 32 19 * * *     env > ~/.dotfiles/cron/cronenv
-02 11 * * *     current_status > ~/.dotfiles/cron/cronstatus
+02 11 * * *     status_current > ~/.dotfiles/cron/cronstatus
 
 # --------------------------------------------------------
 # * * * * *     command to be executed
