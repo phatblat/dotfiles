@@ -10,18 +10,18 @@ function fn --argument function_name
 
     # Function template
     echo "# $function_name
- function $function_name --argument-names arg1
-     if test -z \$arg1
-         echo \"Usage: $function_name arg1\"
-         return 1
-     end
-     switch \$arg1
-         case on ON On
-         case off OFF Off
-         case '*'
-     end
- end"\
- >$file
+function $function_name --argument-names arg1
+    if test -z \$arg1
+        echo \"Usage: $function_name arg1\"
+        return 1
+    end
+    switch \$arg1
+        case on ON On
+        case off OFF Off
+        case '*'
+    end
+end"\
+>$file
 
     editw $file
     fish_indent $file
