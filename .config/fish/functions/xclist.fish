@@ -1,5 +1,8 @@
 # Prints a clean list of paths for all installed versions of Xcode
-function xclist
+#
+# Options:
+# -1 (The numeric digit 'one'.) Force output to be one entry per line. This is the default when output is not to a terminal.
+function xclist --argument-names option
     set -l app_dirs /Applications ~/Applications
     set -l xcodes
 
@@ -7,6 +10,13 @@ function xclist
         set xcodes $xcodes $app_dir/Xcode*.app
     end
 
+    # One entry per line, no colors
+    if not status is-interactive; or test $option = -1
+        echo $xcodes | tr ' ' \n
+        return
+    end
+
+    # Colorized output showing symlink target
     for xcode_path in $xcodes
         set -l link_target (readlink $xcode_path)
         if test -n "$link_target"
