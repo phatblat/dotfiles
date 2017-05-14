@@ -1,12 +1,12 @@
 # Create a new function.
 function fn --argument function_name
-    if functions --query $function_name
-        yn $function_name" already exists. Edit?"
+    set -l file ~/.config/fish/functions/$function_name.fish
+
+    if functions --query $function_name; and not test -e $file
+        yn "Function "$function_name" already exists. Edit?"
         and fe $function_name
         return
     end
-
-    set -l file ~/.config/fish/functions/$function_name.fish
 
     # Function template
     echo "# $function_name
