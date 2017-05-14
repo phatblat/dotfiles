@@ -16,5 +16,6 @@ function function_template --argument-names function_name
                 case off OFF Off
                 case '*'
             end
-        end" | fish_indent
+        end" \
+        | fish_indent --ansi
 end
