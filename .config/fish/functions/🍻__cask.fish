@@ -57,11 +57,10 @@ function 🍻__cask
     end
 
     # Verify the user owns the Homebrew dir.
-    # TODO: Should this be /usr/local/Caskroom?
-    set brew_home (brew --prefix)
-    if not test (stat -f%u $brew_home) -eq (id -u $USER)
+    # TODO: Should this be (brew_home)/Caskroom?
+    if not test $USER != (fileowner (brew_home))
         if status is-login
-            echo "You must be the owner of $brew_home to run this command."
+            echo "You must be the owner of "(brew_home)" to run this command."
         end
         return 1
     end

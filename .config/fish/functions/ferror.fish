@@ -1,4 +1,4 @@
 # Tail the nginx error log.
 function ferror
-    tail -f /usr/local/var/log/nginx/error.log $argv
+    tail -f (brew_home)/var/log/nginx/error.log $argv
 end

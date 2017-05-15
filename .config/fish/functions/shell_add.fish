@@ -6,7 +6,7 @@ function shell_add --argument-names new_shell
     end
 
     set -l system_shells_file /etc/shells
-    set -l brew_binaries /usr/local/bin
+    set -l brew_binaries (brew_home)/bin
     set -l new_shell_path $brew_binaries/$new_shell
 
     # Only care about Homebrew added shells.

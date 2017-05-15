@@ -24,10 +24,9 @@ function 🍺__brew
     end
 
     # Verify the user owns the Homebrew dir.
-    set brew_home (brew --prefix)
-    if test $USER != (fileowner $brew_home)
+    if test $USER != (fileowner (brew_home))
         if status is-login
-            echo "You must be the owner of $brew_home to run this command."
+            echo "You must be the owner of "(brew_home)" to run this command."
         end
         return 1
     end
@@ -65,7 +64,7 @@ function 🍺__brew
 
     # Check whether custom shells are registered
     set -l system_shells_file /etc/shells
-    set -l brew_binaries (brew --prefix)/bin
+    set -l brew_binaries (brew_home)/bin
     set -l system_shells (grep "^$brew_binaries" $system_shells_file)
     for shell in $custom_shells
         set -l shell_path $brew_binaries/$shell
