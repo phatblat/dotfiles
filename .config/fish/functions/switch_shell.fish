@@ -1,12 +1,10 @@
 # Changes the current $USER's shell using dscl. Outputs only the command to run for non-admins.
-function switch_shell
-    if not count $argv >/dev/null
+function switch_shell --argument-names new_shell
+    if test -z $new_shell ^/dev/null
         echo "Usage: switch_shell bash|zsh|fish"
         return 1
     end
 
-    echo $argv | read -l new_shell
-    
     set -l shell_path (brew --prefix)"/bin/$new_shell"
     set -l cmd "sudo dscl . -change $HOME UserShell $SHELL $shell_path"
 
