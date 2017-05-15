@@ -9,7 +9,7 @@ function 🍺__brew
     set -l formulae \
         antigen bash burl carthage cloc cloudfoundry/tap/cf-cli \
         coreutils curl direnv duti findutils fish git git-lfs gnupg goaccess gradle \
-        groovy heroku hub jq thoughtbot/formulae/liftoff maven nginx ninja node packer \
+        groovy heroku jq thoughtbot/formulae/liftoff maven nginx ninja node packer \
         postgresql python rename ruby shellcheck sloccount sourcekitten speedtest_cli \
         kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier thefuck \
         trash tree uncrustify vapor/tap/toolbox wget xctool zsh
