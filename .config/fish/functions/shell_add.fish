@@ -1,4 +1,4 @@
-# shell_add
+# Register a new shell in /etc/shells
 function shell_add --argument-names new_shell
     if test -z $new_shell
         echo "Usage: shell_add new_shell"
@@ -14,7 +14,7 @@ function shell_add --argument-names new_shell
 
     if not contains $new_shell $system_shells
         echo "Adding $new_shell_path to $system_shells_file"
-        sudo echo $new_shell_path >> $system_shells_file
+        sudo sh -c 'echo '$new_shell_path' >> '$system_shells_file
     else
         echo "$new_shell_path is already registered"
     end
