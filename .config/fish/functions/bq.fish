@@ -3,9 +3,9 @@ function bq
     if test -z "$argv"
         echo "Usage: bq [formula_name] [-- jq_filter]"
         echo "Filter examples: "
-        echo "  formula"
-        echo "  formula -- .[0].name          (formula name)"
-        echo "  formula -- .[0].linked_keg    (active version)"
+        echo "  formula                                                                           (raw json, filter with grep to find keys)"
+        echo "  formula -- .[0].name                                                              (formula name)"
+        echo "  formula -- .[0].linked_keg                                                        (active version)"
         echo "  --installed -- 'map(select(.keg_only == true and .linked_keg != null) | .name)'   (names of linked keg-only formulae)"
         return 1
     end
