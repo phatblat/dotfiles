@@ -23,5 +23,11 @@ function fe --argument-names function_name
         and funcsave $function_name
     end
 
+    if test $status -eq 0
+        echo $function_name" function reloaded."
+    else
+        echo "Error reloading $function_name. Please check your syntax in $file"
+    end
+
     toggle_wait off
 end

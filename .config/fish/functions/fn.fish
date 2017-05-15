@@ -31,5 +31,9 @@ end"\
     fish_indent --write $file
     reload $function_name
 
-    echo $function_name function created.
+    if test $status -eq 0
+        echo $function_name" function created."
+    else
+        echo "Error loading $function_name. Please check your syntax in $file"
+    end
 end
