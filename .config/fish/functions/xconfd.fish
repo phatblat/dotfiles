@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function xconfd
-    cd /usr/local/etc/nginx
+    cd (brew_home)/etc/nginx
 end

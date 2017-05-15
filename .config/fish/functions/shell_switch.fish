@@ -5,7 +5,7 @@ function shell_switch --argument-names new_shell
         return 1
     end
 
-    set -l shell_path (brew --prefix)"/bin/$new_shell"
+    set -l shell_path (brew_home)"/bin/$new_shell"
     set -l cmd "sudo dscl . -change $HOME UserShell $SHELL $shell_path"
 
     # Get the last path component
