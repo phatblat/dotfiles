@@ -6,13 +6,14 @@ function 🍺__brew
     echo "🍺  Homebrew - https://brew.sh"
     echo
 
+    set -l custom_shells bash fish zsh
     set -l formulae \
-        antigen bash burl carthage cloc cloudfoundry/tap/cf-cli \
-        coreutils curl direnv duti findutils fish git git-lfs gnupg goaccess gradle \
+        antigen burl carthage cloc cloudfoundry/tap/cf-cli \
+        coreutils curl direnv duti findutils git git-lfs gnupg goaccess gradle \
         groovy heroku jq thoughtbot/formulae/liftoff maven nginx ninja node packer \
         postgresql python rename ruby shellcheck sloccount sourcekitten speedtest_cli \
         kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier thefuck \
-        trash tree uncrustify vim vapor/tap/toolbox wget xctool zsh
+        trash tree uncrustify vim vapor/tap/toolbox wget xctool $custom_shells
 
     set -l uninstall hub pivotal/tap/cloudfoundry-cli
 
@@ -60,6 +61,22 @@ function 🍺__brew
     end
     if test -n "$not_installed"
         brew install $not_installed
+    end
+
+    # Check whether custom shells are registered
+    set -l system_shells_file /etc/shells
+    set -l brew_binaries (brew --prefix)/bin
+    set -l system_shells (grep "^$brew_binaries" $system_shells_file)
+    for shell in $custom_shells
+        set -l shell_path $brew_binaries/$shell
+        if not contains $shell $system_shells
+            if user_is_admin
+                echo "Adding $shell_path to $system_shells_file"
+                sudo sh -c 'echo '$shell_path' >> '$system_shells_file
+            else
+                echo "An admin needs to register $shell_path in $system_shells_file before it can be used."
+            end
+        end
     end
 
     # Update firewall rules if a new version of nginx was installed
