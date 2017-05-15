@@ -10,8 +10,7 @@ function pl_edit
 
     editw $configuration
     eval ./$compile_script
-
-    git add $runtime_script
+    and echo "Don't forget to commit changes to $powerline_home/$runtime_script"
 
     popd
 end
