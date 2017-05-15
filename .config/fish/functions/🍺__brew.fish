@@ -7,6 +7,7 @@ function 🍺__brew
     echo
 
     set -l custom_shells bash fish zsh
+
     set -l formulae \
         antigen burl carthage cloc cloudfoundry/tap/cf-cli \
         coreutils curl direnv duti findutils git git-lfs gnupg goaccess gradle \
@@ -14,6 +15,8 @@ function 🍺__brew
         postgresql python rename ruby shellcheck sloccount sourcekitten speedtest_cli \
         kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier thefuck \
         trash tree uncrustify vim vapor/tap/toolbox wget xctool $custom_shells
+
+    set -l no_clean_formulae ruby
 
     set -l uninstall hub pivotal/tap/cloudfoundry-cli
 
@@ -95,7 +98,11 @@ function 🍺__brew
     end
 
     # Cleanup
-    brew cleanup
+    for formula in $no_clean_formulae
+        set --erase formulae[(contains --index $formula $formulae)]
+    end
+    # Cleanup the remaining formulae
+    brew cleanup --prune=30 $formula
 
     # Doctor
     brew doctor
