@@ -78,7 +78,7 @@ function 🍺__brew
     set -l system_shells (grep "^$brew_binaries" $system_shells_file)
     for shell in $custom_shells
         set -l shell_path $brew_binaries/$shell
-        if not contains $shell $system_shells
+        if not contains $shell_path $system_shells
             if user_is_admin
                 echo "Adding $shell_path to $system_shells_file"
                 sudo sh -c 'echo '$shell_path' >> '$system_shells_file
