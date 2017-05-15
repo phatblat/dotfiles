@@ -1,11 +1,14 @@
+" Syntax highlighting
 syntax on
 
 " Text formatting
 set tabstop=4
 set expandtab
 
-" Powerline - http://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740
-set rtp+=$HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+" Powerline
+" https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_916896
+" pip show powerline-status
+set runtimepath+=/usr/local/lib/python2.7/site-packages/bindings/vim
 
 " These lines setup the environment to show graphics and colors correctly.
 set nocompatible
@@ -28,6 +31,8 @@ endif
 set laststatus=2 " Always display the statusline in all windows
 set guifont=Inconsolata\ for\ Powerline:h14
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+" END: Powerline
+
 
 " vim-plug
 " https://github.com/junegunn/vim-plug
@@ -41,3 +46,4 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Add plugins to &runtimepath
 call plug#end()
+
