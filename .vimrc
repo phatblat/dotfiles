@@ -1,5 +1,9 @@
 syntax on
 
+" Text formatting
+set tabstop=4
+set expandtab
+
 " Powerline - http://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740
 set rtp+=$HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
 
