@@ -11,7 +11,7 @@ function function_template --argument-names function_name argname
 
     echo "# $function_name
         function $function_name --argument-names $argname
-            if test -z \"\$$argname\"
+            if test -z \"\$$argname\" ^/dev/null
                 echo \"Usage: $function_name $argname\"
                 return 1
             end
