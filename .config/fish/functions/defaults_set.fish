@@ -77,9 +77,8 @@ function defaults_set
     # QuickLook text selection
     defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
-    # Invoke Duti to configure default apps
-    # FIXME: duti doesn't build on 10.12
-    # /usr/local/bin/duti ~/.duti
+    # Invoke Duti to configure default apps (installed by brew)
+    duti ~/.duti
 
     #
     # Xcode
