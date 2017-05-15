@@ -62,6 +62,16 @@ function 🍺__brew
         brew install $not_installed
     end
 
+    # Ruby
+    set -l desired_ruby 2.4.1_1
+    if not test $desired_ruby = (brew_active_version ruby)
+        if contains $desired_ruby (brew_versions ruby)
+            brew switch ruby $desired_ruby
+        else
+            echo "Ruby $desired_ruby is not installed."
+        end
+    end
+
     # Check whether custom shells are registered
     set -l system_shells_file /etc/shells
     set -l brew_binaries (brew_home)/bin
