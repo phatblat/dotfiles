@@ -64,6 +64,7 @@ tmp/
 .anyconnect
 .atom/
 .bash_history
+.bash_sessions/
 # .bundle/
 .bundle/cache/
 .cache/
