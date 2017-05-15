@@ -2,7 +2,6 @@
 function fe --argument-names function_name
     set -l file ~/.config/fish/functions/$function_name.fish
 
-    if not functions --query $function_name; and not test -e $file
     if begin not test -e $file
             and not functions --query $function_name
         end
