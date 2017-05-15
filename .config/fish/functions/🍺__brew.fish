@@ -12,7 +12,7 @@ function 🍺__brew
         groovy heroku jq thoughtbot/formulae/liftoff maven nginx ninja node packer \
         postgresql python rename ruby shellcheck sloccount sourcekitten speedtest_cli \
         kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier thefuck \
-        trash tree uncrustify vapor/tap/toolbox wget xctool zsh
+        trash tree uncrustify vim vapor/tap/toolbox wget xctool zsh
 
     set -l uninstall hub pivotal/tap/cloudfoundry-cli
 
