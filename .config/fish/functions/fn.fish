@@ -2,7 +2,11 @@
 function fn --argument function_name
     set -l file ~/.config/fish/functions/$function_name.fish
 
-    if functions --query $function_name; and not test -e $file
+    # File in autoload may not be loaded (syntax error) and
+    # builtin functions won't have files in autoload dir.
+    if begin test -e $file
+            or functions --query $function_name
+        end
         yn "Function "$function_name" already exists. Edit?"
         and fe $function_name
         return
