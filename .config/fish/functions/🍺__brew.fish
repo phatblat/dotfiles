@@ -89,4 +89,7 @@ function 🍺__brew
 
     # Doctor
     brew doctor
+
+    # Info
+    brew info
 end
