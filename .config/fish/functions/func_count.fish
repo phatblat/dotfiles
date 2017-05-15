@@ -1,4 +1,9 @@
 # Prints a count of all functions
 function func_count
-    functions | wc -w
+    set -l all (string trim (functions | wc -w))
+    set -l custom (string trim (find ~/.config/fish/functions -type f -depth 1 -name '*.fish' | wc -l))
+    set -l plugins (string trim (find ~/.config/fish/functions -type l -depth 1 -name '*.fish' | wc -l))
+    set -l autoloaded (string trim (ls -1 ~/.config/fish/functions/*.fish | wc -l))
+
+    echo "Functions: $all ($custom custom, $plugins plugins, $autoloaded autoloaded)"
 end
