@@ -1,7 +1,7 @@
 # Changes the current $USER's shell using dscl. Outputs only the command to run for non-admins.
-function switch_shell --argument-names new_shell
+function shell_switch --argument-names new_shell
     if test -z $new_shell ^/dev/null
-        echo "Usage: switch_shell bash|zsh|fish"
+        echo "Usage: shell_switch bash|zsh|fish"
         return 1
     end
 
@@ -22,11 +22,11 @@ function switch_shell --argument-names new_shell
         else
             echo "Have an admin run the following command:"
             echo "    $cmd"
-            exit 0
+            return
         end
     else
         echo "No changes."
-        exit 0
+        return
     end
 
 end

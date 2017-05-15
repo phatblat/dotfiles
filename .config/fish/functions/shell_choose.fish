@@ -1,5 +1,5 @@
 # Interactive prompting for choosing a new default shell.
-function choose_shell
+function shell_choose
     set -l shells bash zsh fish
     set -l current_shell (basename $SHELL)
 
@@ -9,7 +9,7 @@ function choose_shell
 
     if test $new_shell != $current_shell
         echo "Changing default shell to: "$new_shell
-        switch_shell $new_shell
+        shell_switch $new_shell
     else
         echo "No changes."
     end
