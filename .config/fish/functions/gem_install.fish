@@ -9,10 +9,10 @@ function gem_install --argument-names gem_name
     end
 
     if test -n "$argv" -a (count $argv) -gt 1
-        set argv $argv [2..-1]
+        set argv $argv[2..-1]
     else
         set --erase argv
     end
 
-    sudo gem install bundler --bindir (brew_home)/bin $argv
+    sudo gem install $gem_name --bindir (brew_home)/bin $argv
 end
