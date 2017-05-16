@@ -1,10 +1,11 @@
 # Version 1.0 -- Generated content!
 fontName         = DejaVuSansMonoForPowerline
 fontSize         = 14
+showIndentGuides = true
 showInvisibles   = true
 showWrapColumn   = true
 softTabs         = true
-softWrap         = true
+softWrap         = false
 tabSize          = 4
 theme            = 9E32B2C8-052E-46EE-B709-04B1C7559DA1
 wrapColumn       = 80
@@ -21,6 +22,7 @@ fileType         = source.ruby
 [ source ]
 showInvisibles   = true
 softTabs         = true
+softWrap         = false
 tabSize          = 4
 
 [ source.css ]
@@ -28,6 +30,7 @@ showInvisibles   = true
 
 [ source.fish ]
 showInvisibles   = true
+softWrap         = false
 tabSize          = 4
 
 [ source.groovy ]
