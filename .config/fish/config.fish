@@ -6,6 +6,8 @@
 # Fish logo
 if status is-interactive
     fish_logo
+    # Fisherman might fail to load the fish_logo function on a system before upstall. Fisherman consistently fails to install through upstall on non-login shells.
+    or logo
 end
 
 # Variables
