@@ -102,5 +102,5 @@ function 🍻__cask
     end
 
     # Cleanup
-    brew cask cleanup
+    brew cask cleanup --outdated
 end
