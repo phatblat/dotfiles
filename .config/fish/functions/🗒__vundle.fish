@@ -19,4 +19,8 @@ function 🗒__vundle
     end
 
     vim +PluginInstall +qall
+
+    pushd $vim_bundle_dir/YouCompleteMe
+    and ./install.py --clang-completer
+    and popd
 end
