@@ -5,5 +5,5 @@ function line --argument-names line_number
         set line_number 1
     end
 
-    cat 1>| tail -n +$line_number | head -1
+    cat | tail -n +$line_number | head -n 1
 end
