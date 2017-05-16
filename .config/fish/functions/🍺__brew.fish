@@ -71,6 +71,7 @@ function 🍺__brew
     if not test $desired_ruby = (brew_active_version ruby)
         if contains -- $desired_ruby $ruby_versions
             brew switch ruby $desired_ruby
+            brew link --overwrite ruby
         else
             echo "Ruby $desired_ruby is not installed."
         end
