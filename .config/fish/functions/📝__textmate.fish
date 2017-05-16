@@ -29,7 +29,7 @@ function 📝__textmate
                     >$bundle.tmbundle/Info.plist
 
                 case editorconfig
-                    clone_or_pull editorconfig it@github.com:Mr0grog/editorconfig-textmate.git
+                    clone_or_pull editorconfig git@github.com:Mr0grog/editorconfig-textmate.git
 
                     set -l version 0.3.1
                     # curl -L -O -#
