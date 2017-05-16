@@ -7,6 +7,7 @@ function 🍺__brew
     echo
 
     set -l custom_shells bash fish zsh
+
     set -l formulae \
         antigen burl carthage cloc cloudfoundry/tap/cf-cli \
         coreutils curl direnv duti findutils git git-lfs gnupg goaccess gradle \
@@ -14,6 +15,8 @@ function 🍺__brew
         postgresql python rename ruby shellcheck sloccount sourcekitten speedtest_cli \
         kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier thefuck \
         trash tree uncrustify vim vapor/tap/toolbox wget xctool $custom_shells
+
+    set -l no_clean_formulae ruby
 
     set -l uninstall hub pivotal/tap/cloudfoundry-cli
 
@@ -62,13 +65,31 @@ function 🍺__brew
         brew install $not_installed
     end
 
+    # Ruby
+    set -l desired_ruby 2.4.1_1
+    set -l ruby_versions (brew_versions ruby)
+    if not test $desired_ruby = (brew_active_version ruby)
+        if contains -- $desired_ruby $ruby_versions
+            brew switch ruby $desired_ruby
+            brew link --overwrite ruby
+
+            # May need to purge old gems
+            # http://stackoverflow.com/questions/9434002/how-to-solve-ruby-installation-is-missing-psych-error#answer-43843417
+            # sudo chown -R $USER /usr/local/lib/ruby/gems/
+            # and rm -rf /usr/local/lib/ruby/gems/
+            # and brew reinstall ruby
+        else
+            echo "Ruby $desired_ruby is not installed."
+        end
+    end
+
     # Check whether custom shells are registered
     set -l system_shells_file /etc/shells
     set -l brew_binaries (brew_home)/bin
     set -l system_shells (grep "^$brew_binaries" $system_shells_file)
     for shell in $custom_shells
         set -l shell_path $brew_binaries/$shell
-        if not contains $shell $system_shells
+        if not contains $shell_path $system_shells
             if user_is_admin
                 echo "Adding $shell_path to $system_shells_file"
                 sudo sh -c 'echo '$shell_path' >> '$system_shells_file
@@ -85,8 +106,16 @@ function 🍺__brew
     end
 
     # Cleanup
-    brew cleanup
+    for formula in $no_clean_formulae
+        set --erase formulae[(contains --index $formula $formulae)]
+    end
+    # Cleanup the remaining formulae
+    echo Cleaning $formulae
+    brew cleanup --prune=30 $formulae
 
     # Doctor
     brew doctor
+
+    # Info
+    brew info
 end
