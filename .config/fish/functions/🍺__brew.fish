@@ -110,7 +110,6 @@ function 🍺__brew
         set --erase formulae[(contains --index $formula $formulae)]
     end
     # Cleanup the remaining formulae
-    echo Cleaning $formulae
     brew cleanup --prune=30 $formulae
 
     # Doctor
