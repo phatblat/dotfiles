@@ -1,6 +1,9 @@
 # Installs and updates Vundle, plugin manager for Vim.
 # https://github.com/VundleVim/Vundle.vim#about
 #
+# Compatible with Pathogen plugin bundles
+# http://lepture.com/en/2012/vundle-vs-pathogen
+#
 # Sequencing
 # - After: brew (installed with node)
 function 🗒__vundle
