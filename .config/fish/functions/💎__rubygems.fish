@@ -16,15 +16,15 @@ function 💎__rubygems
         #   ERROR:  While executing gem ... (Errno::EPERM)
         #       Operation not permitted - /usr/bin/update_rubygems
         # http://stackoverflow.com/questions/33015875/operation-not-permitted-usr-bin-update-rubygems/34098613#answer-39928447
-        sudo gem update --bindir (brew_home)/bin --system
-        sudo gem update --bindir (brew_home)/bin
+        gem_update --system
+        gem_update
 
         # Bundler
-        sudo gem install bundler --bindir (brew_home)/bin
+        gem_install bundler
 
         # Fix for "Your bundle is locked to rake (12.0.0), but that version could not be found in any of the sources listed in your Gemfile."
         # http://stackoverflow.com/questions/41757144/your-bundle-is-locked-to-rake-12-0-0-but-that-version-could-not-be-found-in-a
-        sudo gem install rubygems-bundler --bindir (brew_home)/bin
+        gem_install rubygems-bundler
         sudo gem regenerate_binstubs
     end
 
