@@ -7,5 +7,5 @@ function brew_versions --argument-names formula
 
     # brew list --versions ruby output:
     # ruby 2.3.3 2.4.1_1
-    echo (string split ' ' (brew list --versions $formula))[2..-1]
+    list (list -s (brew list --versions $formula))[2..-1]
 end
