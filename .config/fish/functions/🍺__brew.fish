@@ -67,8 +67,9 @@ function 🍺__brew
 
     # Ruby
     set -l desired_ruby 2.4.1_1
+    set -l ruby_versions (string split ' ' (brew_versions ruby))
     if not test $desired_ruby = (brew_active_version ruby)
-        if contains $desired_ruby (brew_versions ruby)
+        if contains -- $desired_ruby $ruby_versions
             brew switch ruby $desired_ruby
         else
             echo "Ruby $desired_ruby is not installed."
