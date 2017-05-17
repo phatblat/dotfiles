@@ -19,6 +19,17 @@ function ▶️__powerline
     echo
 
     set -l vim_dev          ~/dev/vim
+    set -l powerline_config ~/.config/powerline
+    createdirs $vim_dev
+
+    # Powerline plugin (powerline-status)
+    set -l python_packages /usr/local/lib/python2.7/site-packages
+    set -l config_path $python_packages/powerline/config_files
+
+    if not test -d $powerline_config
+        echo "Copying $config_path -> $powerline_config"
+        cp -R $config_path $powerline_config
+    end
 
     # Powerline Shell
     set -l ps_dir           $vim_dev/powerline-shell
