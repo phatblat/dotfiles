@@ -10,10 +10,10 @@ function ⏫__upstall
 
     if test -z "$argv"
         # No args means run all
-        set argv ruby xcode brew cask fisherman pip npm vundle textmate java macos
+        set argv ruby xcode brew cask fisherman pip npm vundle textmate macos
     else if contains -- --nothing $argv
         # Smoke test
-        set argv --norb --noxc --nobr --noca --nofm --nopy --nojs --novi --notm --nojv --noos
+        set argv --norb --noxc --nobr --noca --nofm --nopy --nojs --novi --notm --noos
     end
 
 
@@ -27,6 +27,5 @@ function ⏫__upstall
     ⬆️__upmodule 🕸__npm         "🕸  NPM"       npm        --nojs $argv
     ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    vundle     --novi $argv
     ⬆️__upmodule 📝__textmate    "📝  TextMate"  textmate   --notm $argv
-    ⬆️__upmodule ☕️__java        "☕️  Java"      java       --nojv $argv
     ⬆️__upmodule 🖥__macos       "🖥  macOS"     macos      --noos $argv
 end
