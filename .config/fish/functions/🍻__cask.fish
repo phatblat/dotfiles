@@ -19,6 +19,7 @@ function 🍻__cask
         back-in-time \
         charles \
         cloudapp \
+        dbvisualizer \
         dayone-cli \
         fauxpas \
         geekbench \
