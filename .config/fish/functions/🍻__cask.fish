@@ -39,7 +39,7 @@ function 🍻__cask
         simpholders \
         sublime-text \
         textexpander \
-        things \
+        # things \
         tower \
         virtualbox \
         # QuickLook plugins
@@ -56,7 +56,7 @@ function 🍻__cask
         textmate \
         webpquicklook
 
-    set -l uninstall battery-guardian cocoapods cocoapods-app
+    set -l uninstall battery-guardian cocoapods cocoapods-app things
 
     # Ensure Homebrew is installed.
     if not which -s brew
