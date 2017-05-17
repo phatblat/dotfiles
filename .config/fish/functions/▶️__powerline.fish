@@ -24,7 +24,7 @@ function ▶️__powerline
     set -l ps_dir           $vim_dev/powerline-shell
     set -l powerline_shell  git@github.com:banga/powerline-shell.git
     set -l fork             git@github.com:phatblat/powerline-shell.git # custom
-    clone_or_pull $ps_dir $fork
+    clone_or_pull $ps_dir $fork custom
 
     # Generate the powerline-shell.py based on config.py
     pushd $ps_dir
