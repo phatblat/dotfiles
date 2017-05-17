@@ -31,6 +31,7 @@ function 🍻__cask
         ios-console \
         istat-menus \
         iterm2 \
+        java \
         kaleidoscope \
         macdown \
         oclint \
