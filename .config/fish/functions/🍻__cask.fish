@@ -39,6 +39,7 @@ function 🍻__cask
         omnipresence \
         quickradar \
         simpholders \
+        softraid \
         sublime-text \
         textexpander \
         # things \
