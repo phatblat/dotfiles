@@ -69,6 +69,10 @@ nnoremap <leader><leader> <c-^>
 " Clear search results by hitting Enter
 nnoremap <CR> :noh<CR><CR>
 
+" Open new split panes to right and bottom (more natural than Vim's default)
+set splitbelow
+set splitright
+
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
