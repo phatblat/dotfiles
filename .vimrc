@@ -5,11 +5,110 @@ syntax on
 set tabstop=4
 set expandtab
 
+"-------------------------------------------------------------------------------
+"
+" Example config
+" https://pchm.co/posts/from-textmate-to-vim
+"
+"-------------------------------------------------------------------------------
 
+set nocompatible                " choose no compatibility with legacy vi
+syntax enable
+set encoding=utf-8
+set showcmd                     " display incomplete commands
+filetype plugin indent on       " load file type plugins + indentation
+
+set autowrite     " Automatically :write before running commands
+
+set backspace=2   " Backspace deletes like most programs in insert mode
+set nobackup
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set laststatus=2  " Always display the status line
+set timeout timeoutlen=1000 ttimeoutlen=101 " fast insert with "O"
+
+set number
+set relativenumber
+
+" Auto-reload buffers when file changed on disk
+set autoread
+
+" Make it obvious where 90 characters is
+set textwidth=90
+set colorcolumn=+1
+
+"" Whitespace
+set nowrap                      " don't wrap lines
+set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
+set expandtab                   " use spaces, not tabs (optional)
+set backspace=indent,eol,start  " backspace through everything in insert mode
+
+"" Searching
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
+
+" Mouse
+set mouse=a
+
+let mapleader=","
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Switch between files by hitting ,, twice
+nnoremap <leader><leader> <c-^>
+
+" Clear search results by hitting Enter
+nnoremap <CR> :noh<CR><CR>
+
+" easier navigation between split windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" unmap ex mode: 'Type visual to go into Normal mode.'
+nnoremap Q <nop>
+
+" paste lines from unnamed register and fix indentation
+nmap <leader>p "*pV`]=
+nmap <leader>P "*PV`]=
+
+" copy to system clipboard with <leader>y
+map <leader>y "*y
+
+" copy current file path to system clipboard
+nmap <leader>cs :let @*=expand("%")<CR>
+" copy current (full) file path to system clipboard
+nmap <leader>cl :let @*=expand("%:p")<CR>
+
+" display trailing whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
+
+" remove traling whitespace on save
+" autocmd FileType rb,erb,html,css,js,coffee,sass,haml autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+autocmd BufWritePre * :%s/\s\+$//e " the command above doesn't seem to work
+
+" no beeps!
+set visualbell
+set t_vb=
+
+
+"-------------------------------------------------------------------------------
 "
 " vim-plug
 " https://github.com/junegunn/vim-plug
 "
+"-------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
 " Swift
@@ -23,10 +122,12 @@ call plug#end()
 " END: vim-plug
 
 
+"-------------------------------------------------------------------------------
 "
 " Vundle
 " https://github.com/VundleVim/Vundle.vim#about
 "
+"-------------------------------------------------------------------------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -56,10 +157,12 @@ set shell=/bin/bash     " for fish shell
 " END: Vundle
 
 
+"-------------------------------------------------------------------------------
 "
 " Powerline
 " https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_916896
 "
+"-------------------------------------------------------------------------------
 " pip show powerline-status
 set runtimepath+=/usr/local/lib/python2.7/site-packages/bindings/vim
 
