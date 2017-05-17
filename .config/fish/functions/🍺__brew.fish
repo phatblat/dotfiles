@@ -53,7 +53,6 @@ function 🍺__brew
         trash \
         tree \
         uncrustify \
-        vim \
         vapor/tap/toolbox \
         wget \
         xctool \
@@ -61,7 +60,7 @@ function 🍺__brew
 
     set -l no_clean_formulae ruby
 
-    set -l uninstall hub pivotal/tap/cloudfoundry-cli
+    set -l uninstall hub pivotal/tap/cloudfoundry-cli vim
 
     # Ensure Homebrew is installed.
     if not which -s brew
