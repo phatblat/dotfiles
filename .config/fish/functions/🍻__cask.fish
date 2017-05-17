@@ -45,6 +45,7 @@ function 🍻__cask
         tower \
         transmit \
         virtualbox \
+        vmware-fusion \
         # QuickLook plugins
         betterzipql \
         provisioning \
