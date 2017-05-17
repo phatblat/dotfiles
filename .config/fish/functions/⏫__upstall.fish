@@ -8,20 +8,25 @@ function ⏫__upstall
     echo "⏫  Upstall (Last ran: "$last_ran")"
     date_iso8601 >$last_ran_file
 
-    if contains -- --nothing $argv
-        set argv $argv --no-ruby --no-xcode --no-brew --no-cask --no-fisherman --no-pip --no-npm --no-vundle --no-textmate --no-java --no-macos
+    if test -z "$argv"
+        # No args means run all
+        set argv --ruby --xcode --brew --cask --fisherman --pip --npm --vundle --textmate --java --macos
+    else if contains -- --nothing $argv
+        # Smoke test
+        set argv --norb --noxc --nobr --noca --nofm --nopy --nojs --novi --notm --nojv --noos
     end
 
+
     ⬆️__upmodule 🗄__gitconfig
-    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems" --no-ruby       --norb $argv
-    ⬆️__upmodule 📱__xcode       "📱  Xcode"     --no-xcode      --noxc $argv
-    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"  --no-brew       --nobr $argv
-    ⬆️__upmodule 🍻__cask        "🍻  Cask"      --no-cask       --noca $argv
-    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" --no-fisherman  --nofm $argv
-    ⬆️__upmodule 🐍__pip         "🐍  PIP"       --no-pip        --nopy $argv
-    ⬆️__upmodule 🕸__npm         "🕸  NPM"       --no-npm        --nojs $argv
-    ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    --no-vundle     --novi $argv
-    ⬆️__upmodule 📝__textmate    "📝  TextMate"  --no-textmate   --notm $argv
-    ⬆️__upmodule ☕️__java        "☕️  Java"      --no-java       --nojv $argv
-    ⬆️__upmodule 🖥__macos       "🖥  macOS"     --no-macos      --noos $argv
+    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems" --ruby       --norb $argv
+    ⬆️__upmodule 📱__xcode       "📱  Xcode"     --xcode      --noxc $argv
+    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"  --brew       --nobr $argv
+    ⬆️__upmodule 🍻__cask        "🍻  Cask"      --cask       --noca $argv
+    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" --fisherman  --nofm $argv
+    ⬆️__upmodule 🐍__pip         "🐍  PIP"       --pip        --nopy $argv
+    ⬆️__upmodule 🕸__npm         "🕸  NPM"       --npm        --nojs $argv
+    ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    --vundle     --novi $argv
+    ⬆️__upmodule 📝__textmate    "📝  TextMate"  --textmate   --notm $argv
+    ⬆️__upmodule ☕️__java        "☕️  Java"      --java       --nojv $argv
+    ⬆️__upmodule 🖥__macos       "🖥  macOS"     --macos      --noos $argv
 end
