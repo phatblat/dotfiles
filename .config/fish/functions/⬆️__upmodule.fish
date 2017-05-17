@@ -1,8 +1,9 @@
 # Optionally invokes an upstall module, provided the "skip" flag(s) are not given.
-# Requires either 1 arg (no skip options), or 4+ args (skip flags & title)
-function ⬆️__upmodule --argument-names module_function display_name skip_flag_long skip_flag_short
+# Requires either 1 arg (no include/skip options), or 4+ args (include/skip
+# flags & title)
+function ⬆️__upmodule --argument-names module_function display_name include_flag skip_flag
     if test -z "$argv"
-        echo "Usage: ⬆️__upmodule module_function [display_name skip_flag_long skip_flag_short original_args]"
+        echo "Usage: ⬆️__upmodule module_function [display_name include_flag skip_flag original_args]"
         return 1
     else if test (count $argv) -eq 1
         if not functions --query $module_function
@@ -23,13 +24,13 @@ function ⬆️__upmodule --argument-names module_function display_name skip_fla
         end
 
         repeatchar -
-        if contains -- $skip_flag_long $original_args; or contains -- $skip_flag_short $original_args
+        if not contains -- $include_flag $original_args; or contains -- $skip_flag $original_args
             echo $display_name" (skipped)"
         else
             eval $module_function
         end
     else
-        echo "Usage: ⬆️__upmodule module_function [display_name skip_flag_long skip_flag_short original_args]"
+        echo "Usage: ⬆️__upmodule module_function [display_name include_flag skip_flag original_args]"
         return 2
     end
 end
