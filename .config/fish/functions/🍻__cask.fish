@@ -1,5 +1,12 @@
 # Updates Homebrew Casks and installed apps (casks).
 #
+# stderr often outputs several of the following messages, which seem to be
+# coming from outdated casks.
+#
+#   Warning: Calling "cask :v1 => 'token'" is deprecated!
+#   Use "cask 'token'" instead.
+#   /usr/local/Homebrew/Library/Homebrew/cask/lib/hbc/cask_loader.rb:9:in `load'
+#
 # Sequencing
 # - Requires ruby, but works with system ruby.
 # - Seems logical to run after brew, but not actually required.
@@ -67,6 +74,7 @@ function 🍻__cask
 
     # Update
     brew update
+    set -l installed (brew cask list -1 ^/dev/null)
 
     # Uninstall unwanted formulae
     set -l to_uninstall
@@ -90,7 +98,6 @@ function 🍻__cask
     end
 
     # Install new casks
-    set -l installed (brew cask list)
     set -l not_installed
     for cask in $casks
         if not contains $cask $installed
