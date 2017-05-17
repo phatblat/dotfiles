@@ -9,12 +9,52 @@ function 🍺__brew
     set -l custom_shells bash fish zsh
 
     set -l formulae \
-        antigen burl carthage cloc cloudfoundry/tap/cf-cli \
-        coreutils curl direnv duti findutils git git-lfs gnupg goaccess gradle \
-        groovy heroku jq thoughtbot/formulae/liftoff maven nginx ninja node packer \
-        postgresql python rename ruby shellcheck sloccount sourcekitten speedtest_cli \
-        kylef/formulae/swiftenv swiftgen swiftlint tailor terminal-notifier thefuck \
-        trash tree uncrustify vim vapor/tap/toolbox wget xctool $custom_shells
+        antigen \
+        burl \
+        carthage \
+        cloc \
+        cloudfoundry/tap/cf-cli \
+        coreutils \
+        curl \
+        direnv \
+        duti \
+        findutils \
+        git \
+        git-lfs \
+        gnupg \
+        goaccess \
+        gradle \
+        groovy \
+        heroku \
+        jq \
+        thoughtbot/formulae/liftoff \
+        maven \
+        nginx \
+        ninja \
+        node \
+        packer \
+        postgresql \
+        python \
+        rename \
+        ruby \
+        shellcheck \
+        sloccount \
+        sourcekitten \
+        speedtest_cli \
+        kylef/formulae/swiftenv \
+        swiftgen \
+        swiftlint \
+        tailor \
+        terminal-notifier \
+        thefuck \
+        trash \
+        tree \
+        uncrustify \
+        vim \
+        vapor/tap/toolbox \
+        wget \
+        xctool \
+        $custom_shells
 
     set -l no_clean_formulae ruby
 
