@@ -63,6 +63,12 @@ function 🍻__cask
 
     set -l uninstall battery-guardian cocoapods cocoapods-app things
 
+    # --------------------------------------------------------------------------
+    #
+    # Preflight Checks
+    #
+    # --------------------------------------------------------------------------
+
     # Ensure Homebrew is installed.
     if not which -s brew
         echo "Installing Homebrew"
@@ -82,6 +88,12 @@ function 🍻__cask
     brew update
     set -l installed (brew cask list -1 ^/dev/null)
 
+    # --------------------------------------------------------------------------
+    #
+    # Uninstall
+    #
+    # --------------------------------------------------------------------------
+
     # Uninstall unwanted formulae
     set -l to_uninstall
     for cask in $uninstall
@@ -92,6 +104,12 @@ function 🍻__cask
     if test -n "$to_uninstall"
         brew cask uninstall $to_uninstall
     end
+
+    # --------------------------------------------------------------------------
+    #
+    # Upstall
+    #
+    # --------------------------------------------------------------------------
 
     # Update installed casks
     set -l outdated_output (brew cask outdated ^/dev/null)
@@ -113,6 +131,12 @@ function 🍻__cask
     if test -n "$not_installed"
         brew cask install --force $not_installed
     end
+
+    # --------------------------------------------------------------------------
+    #
+    # Post Install
+    #
+    # --------------------------------------------------------------------------
 
     # Cleanup
     brew cask cleanup --outdated

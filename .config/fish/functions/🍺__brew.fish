@@ -62,6 +62,12 @@ function 🍺__brew
 
     set -l uninstall hub pivotal/tap/cloudfoundry-cli vim
 
+    # --------------------------------------------------------------------------
+    #
+    # Preflight Checks
+    #
+    # --------------------------------------------------------------------------
+
     # Ensure Homebrew is installed.
     if not which -s brew
         echo "Installing Homebrew"
