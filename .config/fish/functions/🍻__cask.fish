@@ -48,7 +48,7 @@ function 🍻__cask
         textmate \
         webpquicklook
 
-    set -l uninstall battery-guardian cocoapods-app
+    set -l uninstall battery-guardian cocoapods cocoapods-app
 
     # Ensure Homebrew is installed.
     if not which -s brew
