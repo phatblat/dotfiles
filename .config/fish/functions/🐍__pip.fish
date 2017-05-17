@@ -18,7 +18,7 @@ function 🐍__pip
     # TODO: Uninstall packages
     # TODO: Only install missing packages
     # Install packages
-    pip install $global_packages
+    pip install --upgrade $global_packages
 
     # List installed packages
     pip list
