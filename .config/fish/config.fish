@@ -43,6 +43,13 @@ set fish_pager_color_description 555\x1eyellow
 set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
+# Powerline
+# https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
+set -l python_packages /usr/local/lib/python2.7/site-packages
+set fish_function_path $fish_function_path $python_packages/powerline/bindings/fish
+powerline-setup
+
+# GUI and items requiring a user
 if status is-interactive
     # iTerm2
     test -e ~/.iterm2_shell_integration.fish
