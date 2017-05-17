@@ -58,7 +58,7 @@ function 🍻__cask
 
     # Verify the user owns the Homebrew dir.
     # TODO: Should this be (brew_home)/Caskroom?
-    if not test $USER != (fileowner (brew_home))
+    if test $USER != (fileowner (brew_home))
         if status is-login
             echo "You must be the owner of "(brew_home)" to run this command."
         end
