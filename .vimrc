@@ -121,6 +121,18 @@ nmap <leader>cs :let @*=expand("%")<CR>
 " copy current (full) file path to system clipboard
 nmap <leader>cl :let @*=expand("%:p")<CR>
 
+" YouCompleteMe
+" ^P	basic tab completion, pulling from a variety of sources
+" ^N	the same as ^P but backward
+" ^X ^L	whole line completion
+" ^X ^O	syntax-aware omnicompletion
+
+inoremap <Tab> <C-P>
+
+set complete=.,b,u,]
+set wildmode=longest,list:longest
+set completeopt=menu,preview
+
 " display trailing whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
