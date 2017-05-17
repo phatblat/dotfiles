@@ -80,6 +80,12 @@ function 🍺__brew
     brew update
     set -l installed (brew list --full-name)
 
+    # --------------------------------------------------------------------------
+    #
+    # Uninstall
+    #
+    # --------------------------------------------------------------------------
+
     # Uninstall unwanted formulae
     set -l to_uninstall
     for formula in $uninstall
@@ -90,6 +96,12 @@ function 🍺__brew
     if test -n "$to_uninstall"
         brew uninstall $to_uninstall
     end
+
+    # --------------------------------------------------------------------------
+    #
+    # Install
+    #
+    # --------------------------------------------------------------------------
 
     # Update installed formulae
     set -l outdated_formulae (brew outdated)
@@ -112,6 +124,12 @@ function 🍺__brew
             brew install (list -s $formula)
         end
     end
+
+    # --------------------------------------------------------------------------
+    #
+    # Post Install
+    #
+    # --------------------------------------------------------------------------
 
     # Ruby
     set -l desired_ruby 2.4.1_1
