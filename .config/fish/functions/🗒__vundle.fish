@@ -17,13 +17,7 @@ function 🗒__vundle
     createdirs $vim_autoload $vim_bundle_dir $vim_dev
 
     set -l vundle_dir       $vim_bundle_dir/Vundle.vim
-    if not test -d $vundle_dir
-        git clone git@github.com:VundleVim/Vundle.vim.git $vundle_dir
-    else
-        pushd $vundle_dir
-        git pull
-        popd
-    end
+    clone_or_pull $vundle_dir git@github.com:VundleVim/Vundle.vim.git
 
     pushd $vim_bundle_dir/YouCompleteMe
     and ./install.py --clang-completer
@@ -32,13 +26,7 @@ function 🗒__vundle
     # Vim-plug
     set -l plug_dir         $vim_dev/vim-plug
     set -l plug_autoload    $vim_autoload/plug.vim
-    if not test -d $plug_dir
-        git clone git@github.com:junegunn/vim-plug.git $plug_dir
-    else
-        push $plug_dir
-        git pull
-        popd
-    end
+    clone_or_pull $plug_dir git@github.com:junegunn/vim-plug.git
 
     # Symlink the plug.vim file into the autoload dir
     if not test -L $plug_autoload

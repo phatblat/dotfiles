@@ -5,7 +5,7 @@ function clone_or_pull --argument-names folder_name git_url
         return 1
     end
 
-    if not test -e $folder_name
+    if not test -d $folder_name
         git clone "$git_url" $folder_name
     else
         pushd $folder_name
