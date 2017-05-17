@@ -16,6 +16,7 @@ function 🍻__cask
 
     set -l casks \
         atom \
+        back-in-time \
         charles \
         cloudapp \
         dayone-cli \
