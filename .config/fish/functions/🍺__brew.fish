@@ -28,11 +28,13 @@ function 🍺__brew
         heroku \
         jq \
         thoughtbot/formulae/liftoff \
+        "macvim --with-override-system-vim" \
         maven \
         nginx \
         ninja \
         node \
         packer \
+        pacvim \
         postgresql \
         python \
         rename \
@@ -98,12 +100,18 @@ function 🍺__brew
     # Install new formula
     set -l not_installed
     for formula in $formulae
-        if not contains $formula $installed
+        # Split flags off of formula name for is-installed check
+        set -l formula_name (list -s $formula)
+        if not contains $formula_name[1] $installed
+            # Include formula flags when installing
             set not_installed $not_installed $formula
         end
     end
     if test -n "$not_installed"
-        brew install $not_installed
+        for formula in $not_installed
+            echo "Installing $formula"
+            brew install (list -s $formula)
+        end
     end
 
     # Ruby
