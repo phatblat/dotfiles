@@ -18,8 +18,8 @@ function list
         end
 
         # Force split args on spaces
-        set items (string split ' ' $argv[2..-1])
+        set items (string split ' ' -- $argv[2..-1])
     end
 
-    string join \n $items
+    string join \n -- $items
 end
