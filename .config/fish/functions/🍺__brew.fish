@@ -37,6 +37,7 @@ function 🍺__brew
         python \
         rename \
         ruby \
+        screenresolution \
         shellcheck \
         sloccount \
         sourcekitten \
