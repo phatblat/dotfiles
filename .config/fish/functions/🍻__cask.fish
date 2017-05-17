@@ -42,6 +42,7 @@ function 🍻__cask
         textexpander \
         # things \
         tower \
+        transmit \
         virtualbox \
         # QuickLook plugins
         betterzipql \
