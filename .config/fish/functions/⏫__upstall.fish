@@ -10,7 +10,7 @@ function ⏫__upstall
 
     if test -z "$argv"
         # No args means run all
-        set argv --ruby --xcode --brew --cask --fisherman --pip --npm --vundle --textmate --java --macos
+        set argv ruby xcode brew cask fisherman pip npm vundle textmate java macos
     else if contains -- --nothing $argv
         # Smoke test
         set argv --norb --noxc --nobr --noca --nofm --nopy --nojs --novi --notm --nojv --noos
@@ -18,15 +18,15 @@ function ⏫__upstall
 
 
     ⬆️__upmodule 🗄__gitconfig
-    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems" --ruby       --norb $argv
-    ⬆️__upmodule 📱__xcode       "📱  Xcode"     --xcode      --noxc $argv
-    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"  --brew       --nobr $argv
-    ⬆️__upmodule 🍻__cask        "🍻  Cask"      --cask       --noca $argv
-    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" --fisherman  --nofm $argv
-    ⬆️__upmodule 🐍__pip         "🐍  PIP"       --pip        --nopy $argv
-    ⬆️__upmodule 🕸__npm         "🕸  NPM"       --npm        --nojs $argv
-    ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    --vundle     --novi $argv
-    ⬆️__upmodule 📝__textmate    "📝  TextMate"  --textmate   --notm $argv
-    ⬆️__upmodule ☕️__java        "☕️  Java"      --java       --nojv $argv
-    ⬆️__upmodule 🖥__macos       "🖥  macOS"     --macos      --noos $argv
+    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems" ruby       --norb $argv
+    ⬆️__upmodule 📱__xcode       "📱  Xcode"     xcode      --noxc $argv
+    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"  brew       --nobr $argv
+    ⬆️__upmodule 🍻__cask        "🍻  Cask"      cask       --noca $argv
+    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" fisherman  --nofm $argv
+    ⬆️__upmodule 🐍__pip         "🐍  PIP"       pip        --nopy $argv
+    ⬆️__upmodule 🕸__npm         "🕸  NPM"       npm        --nojs $argv
+    ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    vundle     --novi $argv
+    ⬆️__upmodule 📝__textmate    "📝  TextMate"  textmate   --notm $argv
+    ⬆️__upmodule ☕️__java        "☕️  Java"      java       --nojv $argv
+    ⬆️__upmodule 🖥__macos       "🖥  macOS"     macos      --noos $argv
 end
