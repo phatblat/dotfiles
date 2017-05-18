@@ -10,7 +10,7 @@ function 🐍__pip
     echo "🐍  PIP"
     echo
 
-    set -l global_packages powerline-status Pygments
+    set -l global_packages powerline-gitstatus powerline-status Pygments
 
     # Update pip
     pip install --upgrade pip
