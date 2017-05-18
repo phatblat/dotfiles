@@ -1,0 +1,37 @@
+{
+	"name": "Black Pearl II for shell prompts",
+	"groups": {
+		"hostname":         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
+		"environment":      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
+		"mode":             { "fg": "darkestgreen", "bg": "brightgreen", "attrs": ["bold"] },
+		"attached_clients": { "fg": "white", "bg": "darkestgreen", "attrs": [] }
+	},
+	"mode_translations": {
+		"vicmd": {
+			"groups": {
+				"mode": {"fg": "darkestcyan", "bg": "white", "attrs": ["bold"]}
+			}
+		},
+		"i": {
+			"colors": {
+				"gray0": "darkestblue",
+				"gray1": "darkestblue",
+				"gray2": "darkestblue",
+				"gray3": "darkblue",
+				"gray4": "darkblue",
+				"gray5": "darkestcyan",
+				"gray6": "darkestcyan",
+				"gray7": "darkestcyan",
+				"gray8": "mediumcyan",
+				"gray9": "mediumcyan",
+				"gray10": "mediumcyan",
+				"green_yellow_red": "gray5"
+			},
+			"groups": {
+				"mode": { "fg": "darkestcyan", "bg": "white", "attr": ["bold"] },
+				"background:divider": { "fg": "darkcyan", "bg": "darkestblue" },
+				"branch:divider": { "fg": "darkcyan", "bg": "darkblue" }
+			}
+		},
+	}
+}
