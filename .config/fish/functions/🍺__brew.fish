@@ -27,6 +27,7 @@ function 🍺__brew
         groovy \
         heroku \
         jq \
+        jsonlint \
         thoughtbot/formulae/liftoff \
         "macvim --with-override-system-vim" \
         maven \
