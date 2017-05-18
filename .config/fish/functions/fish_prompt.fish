@@ -6,9 +6,8 @@
 # https://github.com/banga/powerline-shell
 #
 
-set ADOTDIR "$HOME/.antigen"
-set POWERLINE_HOME "$ADOTDIR/bundles/phatblat/powerline-shell-custom"
+set -l powerline_shell_dir  ~/dev/vim/powerline-shell
 
 function fish_prompt
-    eval "$POWERLINE_HOME/powerline-shell.py $status --shell bare ^/dev/null"
+    eval $powerline_shell_dir/powerline-shell.py $status --shell bare ^/dev/null
 end
