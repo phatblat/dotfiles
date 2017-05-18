@@ -51,6 +51,10 @@ set -l python_packages /usr/local/lib/python2.7/site-packages
 set fish_function_path $fish_function_path $python_packages/powerline/bindings/fish
 powerline-setup # fish function
 
+# Use custom autoloaded functions
+reload fish_mode_prompt
+reload fish_right_prompt
+
 # GUI and items requiring a user
 if status is-interactive
     # iTerm2
