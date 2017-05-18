@@ -17,7 +17,7 @@
 			"theme": "default"
 		},
 		"shell": {
-			"colorscheme": "default",
+			"colorscheme": "black-pearl2",
 			"theme": "phatblat",
 			"local_themes": {
 				"continuation": "continuation",
