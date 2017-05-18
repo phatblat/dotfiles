@@ -33,14 +33,6 @@
 			{
 				"function": "powerline_gitstatus.gitstatus",
 				"priority": 40
-			},
-			{
-				"function": "powerline.segments.common.time.date",
-				"name": "time",
-				"args": {
-					"format": "%a %Y-%m-%d %H:%M:%S",
-					"istime": true
-				}
 			}
 		]
 	}
