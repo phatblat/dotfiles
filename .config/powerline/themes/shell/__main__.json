@@ -12,7 +12,7 @@
 		},
 		"gitstatus": {
 			"args": {
-				"show_tag": true
+				"show_tag": false
 			}
 		}
 	}
