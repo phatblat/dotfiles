@@ -14,5 +14,5 @@ function gem_install --argument-names gem_name
         set --erase argv
     end
 
-    sudo gem install --force $gem_name --bindir (brew_home)/bin $argv
+    gem install --force $gem_name --bindir (brew_home)/bin $argv
 end
