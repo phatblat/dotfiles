@@ -150,8 +150,8 @@ function 🍺__brew
             set -l path (brew_home)/lib/ruby/gems/2.4.0/extensions
             if test $USER != (fileowner $path)
                 echo "Fixing permissions on $path"
-                sudo chown -R $USER /usr/local/lib/ruby
-                #and rm -rf /usr/local/lib/ruby/gems/
+                sudo chown -R $USER (brew_home)/lib/ruby
+                and rm -rf (brew_home)/lib/ruby/gems/
                 and brew reinstall ruby
                 # Postinstall shows permission errors
                 or brew postinstall ruby
