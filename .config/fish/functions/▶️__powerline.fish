@@ -4,8 +4,6 @@
 #
 # - https://github.com/powerline/powerline
 # - https://powerline.readthedocs.io/en/latest/
-# - https://github.com/banga/powerline-shell
-# - https://github.com/powerline/fonts
 # - https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
 
 # function fish_prompt
@@ -31,7 +29,15 @@ function ▶️__powerline
         cp -R $config_path $powerline_config
     end
 
+    # Powerline Fonts
+    # - https://github.com/powerline/fonts
+    echo "Installing Powerline Fonts"
+    set -l fonts_dir $vim_dev/powerline-fonts
+    clone_or_pull $fonts_dir git@github.com:powerline/fonts.git
+    eval $fonts_dir/install.sh
+
     # Powerline Shell
+    # - https://github.com/banga/powerline-shell
     set -l ps_dir           $vim_dev/powerline-shell
     set -l powerline_shell  git@github.com:banga/powerline-shell.git
     set -l fork             git@github.com:phatblat/powerline-shell.git # custom
@@ -41,10 +47,4 @@ function ▶️__powerline
     pushd $ps_dir
     ./install.py
     popd
-
-    # Powerline Fonts
-    echo "Installing Powerline Fonts"
-    set -l fonts_dir $vim_dev/powerline-fonts
-    clone_or_pull $fonts_dir git@github.com:powerline/fonts.git
-    eval $fonts_dir/install.sh
 end
