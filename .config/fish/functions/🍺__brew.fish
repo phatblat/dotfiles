@@ -59,7 +59,9 @@ function 🍺__brew
         xctool \
         $custom_shells
 
-    set -l no_clean_formulae ruby
+    # Cleaning macvim with options generates error
+    # Error: No available formula with the name "macvim --with-override-system-vim"
+    set -l no_clean_formulae macvim ruby
 
     set -l uninstall hub pivotal/tap/cloudfoundry-cli vim
 
