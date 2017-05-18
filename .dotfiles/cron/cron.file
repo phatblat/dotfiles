@@ -16,9 +16,9 @@ SHELL=/usr/local/bin/fish
 00  * * * *     cron_reload
 01  * * * *     fetch --quiet
 
-# Once
-32 19 * * *     env > ~/.dotfiles/cron/cronenv
-02 11 * * *     status_current > ~/.dotfiles/cron/cronstatus
+# Once, cron & upstall debugging
+#32 19 * * *     env > ~/.dotfiles/cron/cronenv
+#02 11 * * *     status_current > ~/.dotfiles/cron/cronstatus
 
 # --------------------------------------------------------
 # * * * * *     command to be executed
