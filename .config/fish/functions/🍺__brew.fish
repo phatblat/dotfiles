@@ -150,9 +150,15 @@ function 🍺__brew
 
             # May need to purge old gems
             # http://stackoverflow.com/questions/9434002/how-to-solve-ruby-installation-is-missing-psych-error#answer-43843417
-            # sudo chown -R $USER /usr/local/lib/ruby/gems/
-            # and rm -rf /usr/local/lib/ruby/gems/
-            # and brew reinstall ruby
+            set -l path (brew_home)/lib/ruby/gems/2.4.0/extensions
+            if test $USER != (fileowner $path)
+                echo "Fixing permissions on $path"
+                sudo chown -R $USER (brew_home)/lib/ruby
+                and rm -rf (brew_home)/lib/ruby/gems/
+                and brew reinstall ruby
+                # Postinstall shows permission errors
+                or brew postinstall ruby
+            end
         else
             echo "Ruby $desired_ruby is not installed."
         end

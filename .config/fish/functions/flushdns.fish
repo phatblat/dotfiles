@@ -1,6 +1,11 @@
 # Flush macOS DNS cache.
 function flushdns
+    if not user_is_admin
+        echo "You must be an admin to run this command."
+        return 1
+    end
+
     sudo dscacheutil -flushcache
-    sudo killall -HUP mDNSResponder
-    echo "DNS cache flushed"
+    and sudo killall -HUP mDNSResponder
+    and echo "DNS cache flushed"
 end
