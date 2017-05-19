@@ -14,4 +14,20 @@ function bundle-pull
         echo "The work tree is dirty, aborting."
         return 2
     end
+
+    set -l hostname (hostname)
+    set -l remote_hostname
+    switch $hostname
+        case greymatter.local
+            set remote_hostname imac.local
+        case imac.local
+            set remote_hostname greymatter.local
+        case '*'
+            echo "Unknown hostname: "$hostname
+            return 3
+    end
+
+    set -l repo_path $PWD
+    set -l current_branch (current-branch)
+    set -l ssh_url "ssh://$USER@$remote_hostname:$repo_path"
 end
