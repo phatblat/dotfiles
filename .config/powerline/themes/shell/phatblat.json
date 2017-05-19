@@ -10,7 +10,11 @@
 			},
 			{
 				"function": "powerline.segments.common.net.hostname",
-				"priority": 10
+				"priority": 10,
+                "args": {
+                    "only_if_ssh": true,
+                    "exclude_domain": true
+                }
 			},
 			{
 				"function": "powerline.segments.common.env.virtualenv",
@@ -18,12 +22,18 @@
 			},
 			{
 				"function": "powerline.segments.shell.cwd",
-				"priority": 10
+				"priority": 10,
+                "args": {
+                    "shorten_home": true,
+                    "dir_limit_depth": 3,
+                    "use_path_separator": true
+                }
 			},
-			{
-				"function": "powerline.segments.shell.jobnum",
-				"priority": 20
-			}
+            {
+                "type":"string",
+                "highlight_groups": ["information:regular"],
+                "contents": "↝"
+            }
 		],
 		"right": [
 			{
@@ -33,6 +43,14 @@
 			{
 				"function": "powerline_gitstatus.gitstatus",
 				"priority": 40
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M:%S",
+					"istime": true
+				}
 			}
 		]
 	}

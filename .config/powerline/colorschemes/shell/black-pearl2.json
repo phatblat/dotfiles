@@ -3,16 +3,16 @@
 	"groups": {
 		"hostname":         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
 		"environment":      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
-		"mode":             { "fg": "darkestgreen", "bg": "brightgreen", "attrs": ["bold"] },
+		"mode":             { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": ["bold"] },
 		"attached_clients": { "fg": "white", "bg": "darkestgreen", "attrs": [] }
 	},
 	"mode_translations": {
-		"vicmd": {
+		"default": {
 			"groups": {
 				"mode": {"fg": "darkestcyan", "bg": "white", "attrs": ["bold"]}
 			}
 		},
-		"i": {
+		"insert": {
 			"colors": {
 				"gray0": "darkestblue",
 				"gray1": "darkestblue",
@@ -28,10 +28,25 @@
 				"green_yellow_red": "gray5"
 			},
 			"groups": {
-				"mode": { "fg": "darkestcyan", "bg": "white", "attr": ["bold"] },
+				"mode": { "fg": "yellow", "bg": "mediumpurple", "attr": ["bold"] },
 				"background:divider": { "fg": "darkcyan", "bg": "darkestblue" },
 				"branch:divider": { "fg": "darkcyan", "bg": "darkblue" }
 			}
 		},
+		"v": {
+			"groups": {
+				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
+			}
+		},
+		"V": {
+			"groups": {
+				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
+			}
+		},
+		"^V": {
+			"groups": {
+				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
+			}
+		}
 	}
 }
