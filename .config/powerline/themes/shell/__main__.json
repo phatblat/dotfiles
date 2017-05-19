@@ -1,5 +1,14 @@
 {
 	"segment_data": {
+        "mode": {
+            "args": {
+                "override": {
+                    "default": "CMD",
+                    "insert": "INS",
+                    "visual": "VIS"
+                }
+            }
+        },
 		"hostname": {
 			"args": {
 				"only_if_ssh": true
