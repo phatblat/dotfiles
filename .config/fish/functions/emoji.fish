@@ -4,10 +4,26 @@
 # - https://gist.github.com/pocotan001/68f96bf86891db316f20
 # - https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
 function emoji --argument-names char_name
+
+    set -l names format performance docs idea progress feature feature_remove logging logging_reduce bug tests security dependencies dependencies_downgrade leaks linux macos windows remove ci lint
+    set -l emoji 🎨 🚀 ✏️ 💡 🚧 ➕ ➖ 🔈 🔇 🐛 ✅ 🔒 ⬆️ ⬇️ 🚱 🐧 🍎 🏁 🔥 💚 👕
+
     if test -z "$char_name"
-        echo "Usage: emoji char_name"
-        return 1
+        for i in (seq (count $names))
+            echo "  "$emoji[$i]"  "$names[$i]
+        end
+        return
     end
+
+    for i in (seq (count $names))
+        if test $char_name = $names[$i]
+            echo $emoji[$i]
+            return
+        end
+    end
+
+    echo "Unknown emoji: $char_name"
+    return 2
 
     switch $char_name
         case format
