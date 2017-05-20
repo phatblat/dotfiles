@@ -1,4 +1,4 @@
 # Edit the main nginx configuration file.
 function xconf
-    vi (brew_home)/etc/nginx/nginx.conf $argv
+    edit (brew_home)/etc/nginx/**.conf $argv
 end
