@@ -15,6 +15,52 @@ function emoji --argument-names char_name
         return
     end
 
+    # aliases
+    switch $char_name
+        case fmt
+            set char_name format
+        case perf
+            set char_name performance
+        case doc
+            set char_name docs
+        case idea
+            set char_name idea
+        case prog wip
+            set char_name progress
+        case feat
+            set char_name feature
+        case remove rem
+            set char_name feature_remove
+        case log logs
+            set char_name logging
+        case logdown logsdown
+            set char_name logging_reduce
+        case defect
+            set char_name bug
+        case test
+            set char_name tests
+        case sec
+            set char_name security
+        case deps up
+            set char_name dependencies
+        case depsdown down
+            set char_name dependencies_downgrade
+        case leak #plugging memory leaks
+            set char_name leaks
+        case linux
+            set char_name linux
+        case mac apple
+            set char_name macos
+        case win
+            set char_name windows
+        case rem delete del # removing code or files
+            set char_name remove
+        case build # fixing the CI build
+            set char_name ci
+        case linter # resolving linter warnings
+            set char_name lint
+    end
+
     for i in (seq (count $names))
         if test $char_name = $names[$i]
             echo -n $emoji[$i]"  " | pbcopy
@@ -25,51 +71,4 @@ function emoji --argument-names char_name
 
     echo "Unknown emoji: $char_name"
     return 2
-
-    switch $char_name
-        case format
-            echo 🎨
-        case performance
-            echo 🚀 # alt: 🐎
-        case docs
-            echo ✏️
-        case idea
-            echo 💡
-        case progress
-            echo 🚧
-        case feature
-            echo ➕
-        case feature_remove
-            echo ➖
-        case logging
-            echo 🔈
-        case logging_reduce
-            echo 🔇
-        case bug
-            echo 🐛
-        case tests
-            echo ✅
-        case security
-            echo 🔒
-        case dependencies
-            echo ⬆️
-        case dependencies_downgrade
-            echo ⬇️
-        case leaks #plugging memory leaks
-            echo 🚱
-        case linux
-            echo 🐧
-        case macos
-            echo 🍎
-        case windows
-            echo 🏁
-        case  emove # removing code or files
-            echo 🔥
-        case ci # fixing the CI build
-            echo 💚
-        case lint # resolving linter warnings
-            echo 👕
-        case '*'
-            echo "Unknown emoji"
-    end
 end
