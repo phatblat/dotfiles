@@ -31,10 +31,12 @@ function arp-fix
 
     set -l sysctl_file /etc/sysctl.conf
     if not test -e $sysctl_file
-        sudo echo $arp_fixed > $sysctl_file
+        sudo sh -c 'echo '$arp_fixed' >'$sysctl_file
+        echo "ARP fix added to "$sysctl_file
     else if not grep --quiet $arp_fixed $sysctl_file
-        sudo echo $arp_fixed > $sysctl_file
+        sudo sh -c 'echo '$arp_fixed' >'$sysctl_file
+        echo "ARP fix added to "$sysctl_file
     else
-        echo "$sysctl_file already contains the ARP fix."
+        echo $sysctl_file" already contains the ARP fix."
     end
 end
