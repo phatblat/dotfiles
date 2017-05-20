@@ -1,17 +1,6 @@
 # Creates a git bundle containing any changes in the working copy and index
 # that haven't been committed.
 function git_bundle_create
-    # --argument-names repo_path
-    #    if test -z $repo_path
-    #        echo "Usage: git_bundle_create repo_path"
-    #        return 1
-    #    end
-    #    switch $arg1
-    #        case on ON On
-    #        case off OFF Off
-    #        case '*'
-    #    end
-
     set -l bundle_name snapshot.bundle
     set -l repo_path $PWD
     set -l current_branch (current-branch)
