@@ -32,40 +32,8 @@ function bundle-pull
     set -l repo_path $PWD
     set -l current_branch (current-branch)
 
-    # Create a git bundle file containing the diff of the working copy
-    # to HEAD.
-    ssh $username@$remote_hostname \
-        # Move into repo dir
-        cd $repo_path \
-        ; and pwd \
-        # Clean out previous bundle, if necessary
-        #
-        # Snapshot
-        echo "current branch: "(current-branch) \
-        set -l head_sha (headsha) \
-        echo "HEAD: $head_sha" \
-        git stash list \
-        # git stash list -p \ # verbose diff of stash
-        git stash save "snapshot: "(date) \
-        #
-        # Returns only the SHA of the last stash (will need the next one back in history in order to restore staging area status)
-        set -l snapshot_sha (git show --pretty=oneline 'refs/stash@{0}' \
-            | line 1 \
-            | awk '{print $1}') \
-        echo "snapshot: $snapshot_sha" \
-        #
-        # Restore the dirty work tree
-        git stash apply 'stash@{0}' \
-        #
-        # Create bundle
-        git tag -d snapshot_end; or true \
-        git tag snapshot_end $snapshot_sha \
-        #
-        # This requires the HEAD commit to be present in the local repo
-        # TODO: figure out common ancestor
-        git bundle create $bundle_name HEAD..snapshot_end \
-        git bundle verify $bundle_name \
-        git tag -d snapshot_end; or true
+    # Create a git bundle file containing the diff of the working copy to HEAD.
+    ssh $username@$remote_hostname cd $repo_path; and git_bundle_create
 
     return
 
@@ -83,7 +51,7 @@ function bundle-pull
     git reset --mixed before_bundle_pull
 
     # Cleanup
-    git checkout #{current_branch}
+    git checkout $current_branch
     git branch --delete snapshot
     git tag -d before_bundle_pull
     git tag -d snapshot_end
