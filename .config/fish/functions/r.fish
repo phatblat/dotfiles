@@ -4,5 +4,9 @@ function r --argument-names count
         set count 10
     end
 
+    toggle_wait on
+
     git rebase --interactive HEAD~$count
+
+    toggle_wait off
 end
