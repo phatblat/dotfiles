@@ -10,10 +10,10 @@ function bundle-pull
         return 1
     end
 
-    if git_repo_dirty
-        echo "The work tree is dirty, aborting."
-        return 2
-    end
+    # if git_repo_dirty
+    #     echo "The work tree is dirty, aborting."
+    #     return 2
+    # end
 
     set -l bundle_name snapshot.bundle
     set -l hostname (hostname)
