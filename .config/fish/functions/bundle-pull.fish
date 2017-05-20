@@ -27,6 +27,8 @@ function bundle-pull
             echo "Unknown hostname: "$hostname
             return 3
     end
+
+    repeatchar -
     echo remote_hostname $remote_hostname
 
     set -l username $USER
@@ -36,10 +38,10 @@ function bundle-pull
     # Create a git bundle file containing the diff of the working copy to HEAD.
     ssh $username@$remote_hostname 'cd '$repo_path'; and git_bundle_create'
 
-    return
+    repeatchar -
 
     # Download the git bundle file using SCP
-    scp $username@$remote_hostname/$repo_path/$bundle_name \
+    scp $username@$remote_hostname:$repo_path/$bundle_name \
         $repo_path/$bundle_name
 
     git bundle list-heads snapshot.bundle
