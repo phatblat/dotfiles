@@ -49,13 +49,13 @@ function bundle-pull
         git stash save "snapshot: "(date) \
         #
         # Returns only the SHA of the last stash (will need the next one back in history in order to restore staging area status)
-        set -l snapshot_sha (git show --abbrev-commit --oneline refs/stash@{0} \
-            | head -1 \
+        set -l snapshot_sha (git show --pretty=oneline 'refs/stash@{0}' \
+            | line 1 \
             | awk '{print $1}') \
         echo "snapshot: $snapshot_sha" \
         #
         # Restore the dirty work tree
-        git stash apply "stash@{0}" \
+        git stash apply 'stash@{0}' \
         #
         # Create bundle
         git tag -d snapshot_end; or true \
