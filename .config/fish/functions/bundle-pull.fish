@@ -27,13 +27,14 @@ function bundle-pull
             echo "Unknown hostname: "$hostname
             return 3
     end
+    echo remote_hostname $remote_hostname
 
     set -l username $USER
     set -l repo_path $PWD
     set -l current_branch (current-branch)
 
     # Create a git bundle file containing the diff of the working copy to HEAD.
-    ssh $username@$remote_hostname cd $repo_path; and git_bundle_create
+    ssh $username@$remote_hostname 'cd '$repo_path'; and git_bundle_create'
 
     return
 
