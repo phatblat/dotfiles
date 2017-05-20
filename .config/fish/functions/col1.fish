@@ -6,5 +6,6 @@ function col1 --argument-names arg1
     end
 
     # cut is used since list values can contain spaces
+    # or: awk '{print $1}' (instead of cut)
     echo $arg1 | cut -f 1 -d ' ' -
 end
