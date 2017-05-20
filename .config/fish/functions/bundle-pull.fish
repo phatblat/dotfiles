@@ -28,12 +28,13 @@ function bundle-pull
             return 3
     end
 
+    set -l username $USER
     set -l repo_path $PWD
     set -l current_branch (current-branch)
 
     # Create a git bundle file containing the diff of the working copy
     # to HEAD.
-    ssh $USER@$remote_hostname \
+    ssh $username@$remote_hostname \
         # Move into repo dir
         cd $repo_path \
         pwd \
@@ -41,7 +42,7 @@ function bundle-pull
         #
         # Snapshot
         echo "current branch: "(current-branch) \
-        set -l head_sha (git rev-parse HEAD) \
+        set -l head_sha (headsha) \
         echo "HEAD: $head_sha" \
         git stash list \
         # git stash list -p \ # verbose diff of stash
@@ -51,7 +52,7 @@ function bundle-pull
         set -l snapshot_sha (git show --abbrev-commit --oneline refs/stash@{0} \
             | head -1 \
             | awk '{print $1}') \
-        echo "snapshot: ${snapshot_sha}" \
+        echo "snapshot: $snapshot_sha" \
         #
         # Restore the dirty work tree
         git stash apply "stash@{0}" \
@@ -67,23 +68,22 @@ function bundle-pull
         git tag -d snapshot_end; or true
 
     # Download the git bundle file using SCP
-    Net::SCP.download!(remote_hostname, username,
-      "#{repo_path}/#{bundle_name}", "#{repo_path}/#{bundle_name}",
-      # :ssh => { :password => "password" }
-      )
-    puts `git bundle list-heads snapshot.bundle`
+    scp $username@$remote_hostname/$repo_path/$bundle_name \
+        $repo_path/$bundle_name
+
+    git bundle list-heads snapshot.bundle
 
     # Extract bundle
-    # puts `git cherry-pick --no-commit refs/tags/snapshot_end`
-    puts `git fetch snapshot.bundle refs/tags/snapshot_end:snapshot`
-    puts `git tag before_bundle_pull`
-    puts `git checkout snapshot`
-    puts `git reset --mixed before_bundle_pull`
+    # git cherry-pick --no-commit refs/tags/snapshot_end \
+    git fetch snapshot.bundle refs/tags/snapshot_end:snapshot
+    git tag before_bundle_pull
+    git checkout snapshot
+    git reset --mixed before_bundle_pull
 
     # Cleanup
-    puts `git checkout #{current_branch}`
-    puts `git branch --delete snapshot`
-    puts `git tag -d before_bundle_pull`
-    puts `git tag -d snapshot_end`
-    puts `rm #{bundle_name}`
+    git checkout #{current_branch}
+    git branch --delete snapshot
+    git tag -d before_bundle_pull
+    git tag -d snapshot_end
+    rm $bundle_name
 end
