@@ -17,6 +17,7 @@ function emoji --argument-names char_name
 
     for i in (seq (count $names))
         if test $char_name = $names[$i]
+            echo -n $emoji[$i]"  " | pbcopy
             echo $emoji[$i]
             return
         end
