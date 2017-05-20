@@ -37,7 +37,7 @@ function bundle-pull
     ssh $username@$remote_hostname \
         # Move into repo dir
         cd $repo_path \
-        pwd \
+        ; and pwd \
         # Clean out previous bundle, if necessary
         #
         # Snapshot
@@ -66,6 +66,8 @@ function bundle-pull
         git bundle create $bundle_name HEAD..snapshot_end \
         git bundle verify $bundle_name \
         git tag -d snapshot_end; or true
+
+    return
 
     # Download the git bundle file using SCP
     scp $username@$remote_hostname/$repo_path/$bundle_name \
