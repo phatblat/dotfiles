@@ -10,7 +10,8 @@ function reload --argument-names function_name
         if test $status -ne 0
             return $status
         end
-        func $function_name
+        # TODO: Show diff of function (memory vs file system)
+        # func $function_name
     else
         echo "$function_name does not exist in function autoload dir."
         return 1
