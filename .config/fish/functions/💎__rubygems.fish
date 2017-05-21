@@ -30,9 +30,6 @@ function 💎__rubygems
 
     pushd ~
 
-    # Install gems configured at user level
-    bundle install
-
     # Update user gems
     bundle outdated
     bundle update
