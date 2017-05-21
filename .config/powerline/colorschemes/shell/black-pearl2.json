@@ -9,43 +9,17 @@
 	"mode_translations": {
 		"default": {
 			"groups": {
-				"mode": {"fg": "darkestcyan", "bg": "white", "attrs": ["bold"]}
+				"mode": {"fg": "yellow", "bg": "mediumpurple", "attrs": ["bold"]}
 			}
 		},
 		"insert": {
-			"colors": {
-				"gray0": "darkestblue",
-				"gray1": "darkestblue",
-				"gray2": "darkestblue",
-				"gray3": "darkblue",
-				"gray4": "darkblue",
-				"gray5": "darkestcyan",
-				"gray6": "darkestcyan",
-				"gray7": "darkestcyan",
-				"gray8": "mediumcyan",
-				"gray9": "mediumcyan",
-				"gray10": "mediumcyan",
-				"green_yellow_red": "gray5"
-			},
 			"groups": {
-				"mode": { "fg": "yellow", "bg": "mediumpurple", "attr": ["bold"] },
-				"background:divider": { "fg": "darkcyan", "bg": "darkestblue" },
-				"branch:divider": { "fg": "darkcyan", "bg": "darkblue" }
+				"mode": { "fg": "darkestcyan", "bg": "white", "attr": ["bold"] }
 			}
 		},
-		"v": {
+		"visual": {
 			"groups": {
-				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
-			}
-		},
-		"V": {
-			"groups": {
-				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
-			}
-		},
-		"^V": {
-			"groups": {
-				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
+				"mode": { "fg": "gray0", "bg": "brightestorange", "attr": ["bold"] }
 			}
 		}
 	}
