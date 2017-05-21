@@ -12,7 +12,7 @@
 			}
 		},
 		"vim": {
-			"colorscheme": "solarized",
+			"colorscheme": "default",
 			"theme": "default",
 			"local_themes": {
 				"__tabline__": "tabline",
