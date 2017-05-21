@@ -1,15 +1,17 @@
 {
 	"name": "Black Pearl II for shell prompts",
 	"groups": {
+		"mode":             { "fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": ["bold"] },
 		"hostname":         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
 		"environment":      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
-		"mode":             { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": ["bold"] },
 		"attached_clients": { "fg": "white", "bg": "darkestgreen", "attrs": [] }
 	},
 	"mode_translations": {
 		"default": {
 			"groups": {
-				"mode": {"fg": "yellow", "bg": "mediumpurple", "attrs": ["bold"]}
+				"mode": {"fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": ["bold"]},
+				"background:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant" },
+				"branch:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant" }
 			}
 		},
 		"insert": {

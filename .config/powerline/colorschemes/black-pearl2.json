@@ -2,9 +2,9 @@
 	"name": "Black Pearl II",
 	"groups": {
 		"background":                 { "fg": "white", "bg": "gray0", "attrs": [] },
-		"background:divider":         { "fg": "solarized:base00", "bg": "solarized:base02", "attrs": [] },
-		"information:additional":     { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] },
-		"information:regular":        { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": ["bold"] },
+		"background:divider":         { "fg": "solarized:base00", "bg": "blackpearl2:violet_eggplant", "attrs": [] },
+		"information:additional":     { "fg": "solarized:base1", "bg": "blackpearl2:violet_eggplant", "attrs": [] },
+		"information:regular":        { "fg": "solarized:base1", "bg": "blackpearl2:violet_eggplant", "attrs": ["bold"] },
 		"information:highlighted":    { "fg": "white", "bg": "gray4", "attrs": [] },
 		"information:priority":       { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
 		"warning:regular":            { "fg": "white", "bg": "brightred", "attrs": ["bold"] },
