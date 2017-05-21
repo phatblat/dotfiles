@@ -69,6 +69,6 @@ function emoji --argument-names char_name
         end
     end
 
-    echo "Unknown emoji: $char_name"
+    error "Unknown emoji: $char_name"
     return 2
 end
