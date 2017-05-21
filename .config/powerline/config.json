@@ -3,19 +3,6 @@
 		"term_truecolor": false
 	},
 	"ext": {
-		"ipython": {
-			"colorscheme": "default",
-			"theme": "in",
-			"local_themes": {
-				"rewrite": "rewrite",
-				"out": "out",
-				"in2": "in2"
-			}
-		},
-		"pdb": {
-			"colorscheme": "default",
-			"theme": "default"
-		},
 		"shell": {
 			"colorscheme": "black-pearl2",
 			"theme": "phatblat",
@@ -23,10 +10,6 @@
 				"continuation": "continuation",
 				"select": "select"
 			}
-		},
-		"tmux": {
-			"colorscheme": "default",
-			"theme": "default"
 		},
 		"vim": {
 			"colorscheme": "solarized",
@@ -43,11 +26,6 @@
 				"powerline.matchers.vim.plugin.gundo.gundo": "plugin_gundo",
 				"powerline.matchers.vim.plugin.gundo.gundo_preview": "plugin_gundo-preview"
 			}
-		},
-		"wm": {
-			"colorscheme": "default",
-			"theme": "default",
-			"update_interval": 2
 		}
 	}
 }
