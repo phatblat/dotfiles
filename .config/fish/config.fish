@@ -46,12 +46,18 @@ set fish_pager_color_progress cyan
 # GUI and items requiring a user
 if status is-interactive
     # Powerline
-    # http://powerline.readthedocs.io/en/latest/commands/daemon.html
-    powerline-daemon --quiet
-    # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
-    set -l python_packages /usr/local/lib/python2.7/site-packages
-    set fish_function_path $fish_function_path $python_packages/powerline/bindings/fish
-    powerline-setup # fish function
+    if which -s powerline-daemon
+        # Not sure why these are needed, but they appear in several fish examples
+        set --export POWERLINE_BASH_CONTINUATION    1
+        set --export POWERLINE_BASH_SELECT          1
+
+        # http://powerline.readthedocs.io/en/latest/commands/daemon.html
+        powerline-daemon --quiet
+        # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
+        set -l python_packages /usr/local/lib/python2.7/site-packages
+        set fish_function_path $fish_function_path $python_packages/powerline/bindings/fish
+        powerline-setup # fish function in powerline/bindings/fish
+    end
 
     # Use custom autoloaded functions
     reload fish_mode_prompt
