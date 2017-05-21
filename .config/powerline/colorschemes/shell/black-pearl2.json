@@ -1,6 +1,7 @@
 {
 	"name": "Black Pearl II for shell prompts",
 	"groups": {
+		"background":                 { "fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": [] },
 		"mode":             { "fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": ["bold"] },
 		"hostname":         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
 		"environment":      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
@@ -10,22 +11,22 @@
 		"default": {
 			"groups": {
 				"mode": {"fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": ["bold"]},
-				"background:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant" },
-				"branch:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant" }
+				"background:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant", "attrs": [] },
+				"branch:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant", "attrs": [] }
 			}
 		},
 		"insert": {
 			"groups": {
-				"mode": { "fg": "gray0", "bg": "brightestorange", "attr": ["bold"] },
-				"background:divider": { "fg": "gray0", "bg": "brightestorange" },
-				"branch:divider": { "fg": "gray0", "bg": "brightestorange" }
+				"mode": { "fg": "gray0", "bg": "brightestorange", "attrs": ["bold"] },
+				"background:divider": { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+				"branch:divider": { "fg": "gray0", "bg": "brightestorange", "attrs": [] }
 			}
 		},
 		"visual": {
 			"groups": {
-				"mode": { "fg": "white", "bg": "red", "attr": ["bold"] },
-				"background:divider": { "fg": "white", "bg": "red" },
-				"branch:divider": { "fg": "white", "bg": "red" }
+				"mode": { "fg": "white", "bg": "red", "attrs": ["bold"] },
+				"background:divider": { "fg": "white", "bg": "red", "attrs": [] },
+				"branch:divider": { "fg": "white", "bg": "red", "attrs": [] }
 			}
 		}
 	}
