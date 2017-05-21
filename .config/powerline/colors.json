@@ -77,7 +77,13 @@
 		"solarized:violet": [13, "6c71c4"],
 		"solarized:blue": [4, "268bd2"],
 		"solarized:cyan": [6, "2aa198"],
-		"solarized:green": [2, "859900"]
+		"solarized:green": [2, "859900"],
+
+        "blackpearl2:heliotrope": [1, "D385F9"],
+        "blackpearl2:pink_flamingo": [2, "FD5DFC"],
+        "blackpearl2:dull_magenta": [3, "C138B5"],
+        "blackpearl2:violet_eggplant": [4, "A817A8"]
+
 	},
 	"gradients": {
 		"dark_GREEN_Orange_red": [
