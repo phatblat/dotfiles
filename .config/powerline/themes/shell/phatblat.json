@@ -41,6 +41,13 @@
 				"priority": 10
 			},
 			{
+				"function": "powerline.segments.common.env.environment",
+				"priority": 10,
+				"args": {
+					"variable": "CMD_DURATION"
+				}
+			},
+			{
 				"function": "powerline_gitstatus.gitstatus",
                 "draw_hard_divider": true,
                 "draw_soft_divider": true,
