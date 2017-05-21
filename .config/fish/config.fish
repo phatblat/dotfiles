@@ -55,6 +55,9 @@ powerline-setup # fish function
 reload fish_mode_prompt
 reload fish_right_prompt
 
+# Event Hooks
+reload fish_postexec
+
 # GUI and items requiring a user
 if status is-interactive
     # iTerm2
