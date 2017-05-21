@@ -1,8 +1,8 @@
 {
 	"name": "Black Pearl II for shell prompts",
 	"groups": {
-		"background":                 { "fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": [] },
-		"mode":             { "fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": ["bold"] },
+		"background":                 { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": [] },
+		"mode":             { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": ["bold"] },
 		"hostname":         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
 		"environment":      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
 		"attached_clients": { "fg": "white", "bg": "darkestgreen", "attrs": [] }
@@ -10,9 +10,9 @@
 	"mode_translations": {
 		"default": {
 			"groups": {
-				"mode": {"fg": "white", "bg": "blackpearl2:violet_eggplant", "attrs": ["bold"]},
-				"background:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant", "attrs": [] },
-				"branch:divider": { "fg": "gray0", "bg": "blackpearl2:violet_eggplant", "attrs": [] }
+				"mode": {"fg": "white", "bg": "blackpearl2:dark_violet", "attrs": ["bold"]},
+				"background:divider": { "fg": "gray0", "bg": "blackpearl2:dark_violet", "attrs": [] },
+				"branch:divider": { "fg": "gray0", "bg": "blackpearl2:dark_violet", "attrs": [] }
 			}
 		},
 		"insert": {
