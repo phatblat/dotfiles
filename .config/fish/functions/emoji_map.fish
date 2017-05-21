@@ -44,10 +44,10 @@ function emoji_map
         # Found everything
         return
     else
-        echo "No value found for keys: $missing_keys"
+        error "No value found for keys: $missing_keys"
         return (count $missing_keys)
     end
 
-    echo "Unknown emoji: $char_name"
+    error "Unknown emoji: $char_name"
     return 99
 end
