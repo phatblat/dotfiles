@@ -142,6 +142,15 @@ function 🍺__brew
     #
     # --------------------------------------------------------------------------
 
+    # Git LFS
+    if contains git-lfs $outdated_formulae
+        # Update global git config
+        git lfs install
+
+        # Update system git config
+        git lfs install --system
+    end
+
     # Ruby
     set -l desired_ruby 2.4.1_1
     set -l ruby_versions (brew_versions ruby)
