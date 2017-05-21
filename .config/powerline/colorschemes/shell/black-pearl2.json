@@ -14,7 +14,7 @@
 		},
 		"insert": {
 			"groups": {
-				"mode": { "fg": "darkestcyan", "bg": "white", "attr": ["bold"] }
+				"mode": { "fg": "white", "bg": "red", "attr": ["bold"] }
 			}
 		},
 		"visual": {
