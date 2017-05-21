@@ -40,8 +40,9 @@ set --export LC_ALL en_US.UTF-8
 set --export LC_CTYPE en_US.UTF-8
 set --export OPENSSL_VERSION (echo (brew info openssl)[1] | string split ' ')[3]
 set --export OPENSSL_PATH (brew_home)/Cellar/openssl/$OPENSSL_VERSION/bin/openssl
-set --export PATH ./bin ~/bin $PATH
-set --export TERM xterm-256color
+
+# PATH
+set --export --global PATH ./bin ~/bin (brew_home curl)/bin $PATH
 
 # Obsolete rsync variables
 set --export phatblat_imac /Users/phatblat.bak/
