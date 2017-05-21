@@ -1,4 +1,4 @@
 # Prints the Homebrew home dir.
 function brew_home
-    brew --prefix
+    brew --prefix $argv
 end
