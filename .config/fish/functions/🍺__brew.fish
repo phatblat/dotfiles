@@ -59,6 +59,8 @@ function 🍺__brew
         xctool \
         $custom_shells
 
+    set -l formulae_no_flags (list -s $formulae)
+
     # Cleaning macvim with options generates error
     # Error: No available formula with the name "macvim --with-override-system-vim"
     set -l no_clean_formulae macvim ruby
@@ -188,10 +190,13 @@ function 🍺__brew
 
     # Cleanup
     for formula in $no_clean_formulae
-        set --erase formulae[(contains --index $formula $formulae)]
+        if contains $formula $formulae_no_flags
+            set -l index (contains --index $formula $formulae_no_flags)
+            set --erase formulae[$index]
+        end
     end
     # Cleanup the remaining formulae
-    brew cleanup --prune=30 $formulae
+    brew cleanup --prune=30 $formulae_no_flags
 
     # Doctor
     brew doctor
