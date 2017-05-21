@@ -30,6 +30,7 @@ function 🍺__brew
         jsonlint \
         thoughtbot/formulae/liftoff \
         "macvim --with-override-system-vim" \
+        mas \
         maven \
         nginx \
         ninja \
