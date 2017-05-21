@@ -14,12 +14,16 @@
 		},
 		"insert": {
 			"groups": {
-				"mode": { "fg": "white", "bg": "red", "attr": ["bold"] }
+				"mode": { "fg": "gray0", "bg": "brightestorange", "attr": ["bold"] },
+				"background:divider": { "fg": "gray0", "bg": "brightestorange" },
+				"branch:divider": { "fg": "gray0", "bg": "brightestorange" }
 			}
 		},
 		"visual": {
 			"groups": {
-				"mode": { "fg": "gray0", "bg": "brightestorange", "attr": ["bold"] }
+				"mode": { "fg": "white", "bg": "red", "attr": ["bold"] },
+				"background:divider": { "fg": "white", "bg": "red" },
+				"branch:divider": { "fg": "white", "bg": "red" }
 			}
 		}
 	}
