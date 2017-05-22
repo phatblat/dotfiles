@@ -7,6 +7,21 @@ function 🕸__npm
     echo "🕸  NPM"
     echo
 
+    # Ensure NPM is installed.
+    if not which -s npm
+        error "NPM is not installed."
+        return 1
+    end
+
+    # Verify the user owns the node_modules dir.
+    set -l global_modules /usr/local/lib/node_modules
+    if test $USER != (fileowner $global_modules)
+        if status is-login
+            echo "You must be the owner of "$global_modules" to run this command."
+        end
+        return 1
+    end
+
     set -l global_packages fast-cli n ralio
 
     set -l installed_packages (npm list -g --depth=0)
