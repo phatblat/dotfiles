@@ -1,16 +1,16 @@
 {
 	"name": "Black Pearl II",
 	"groups": {
-		"background":                 { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": [] },
-		"background:divider":         { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": [] },
-		"information:additional":     { "fg": "gray9", "bg": "blackpearl2:dark_violet", "attrs": [] },
 		"information:regular":        { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": ["bold"] },
+		"information:additional":     { "fg": "gray10", "bg": "blackpearl2:dark_violet", "attrs": [] },
 		"information:highlighted":    { "fg": "white", "bg": "gray4", "attrs": [] },
 		"information:priority":       { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
         "information:unimportant":    { "fg": "white", "bg": "black", "attrs": [] },
 		"warning:regular":            { "fg": "white", "bg": "brightred", "attrs": ["bold"] },
 		"critical:failure":           { "fg": "white", "bg": "darkestred", "attrs": [] },
 		"critical:success":           { "fg": "white", "bg": "darkestgreen", "attrs": [] },
+		"background":                 { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": [] },
+		"background:divider":         { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": [] },
 		"cwd":                        "information:additional",
 		"cwd:current_folder":         "information:regular",
 		"cwd:divider":                "background:divider",
@@ -89,7 +89,9 @@
 	"mode_translations": {
 		"default": {
             "colors": {
-                "blackpearl2:dark_violet": "blackpearl2:dark_magenta"
+                "blackpearl2:dark_violet":  "blackpearl2:dark_magenta",
+                "darkestred":               "blackpearl2:sandy_brown",
+                "darkestgreen":             "blackpearl2:dark_olive_green"
             },
 			"groups": {
 				"background:divider":       { "fg": "gray0", "bg": "blackpearl2:dark_magenta", "attrs": [] },
@@ -102,7 +104,8 @@
                 "white":                    "black",
                 "darkestgreen":             "brightgreen",
                 "gray10":                   "gray1",
-                "gray8":                    "gray1"
+                "gray9":                    "gray2",
+                "gray8":                    "gray3"
             },
 			"groups": {
 				"background:divider":       { "fg": "white", "bg": "brightestorange", "attrs": [] },
