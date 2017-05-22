@@ -10,7 +10,7 @@ function ⏫__upstall
 
     if test -z "$argv"
         # No args means run all
-        set argv ruby xcode brew cask fisherman pip npm vundle textmate macos
+        set argv ruby xcode brew cask fisherman pip npm powerline vundle textmate macos
     else if contains -- --nothing $argv
         # Smoke test
         set argv --norb --noxc --nobr --noca --nofm --nopy --nojs ---nopl -novi --notm --noos
