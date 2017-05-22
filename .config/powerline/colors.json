@@ -83,6 +83,9 @@
         "blackpearl2:pink_flamingo": [2, "FD5DFC"],
         "blackpearl2:dull_magenta": [3, "C138B5"],
         "blackpearl2:dark_violet": [92, "8700d7"],
+
+        "blackpearl2:deep_pink4": [125, "A817A8"],
+        "blackpearl2:purple": [129, "A817A8"],
         "blackpearl2:violet_eggplant": [92, "A817A8"]
 
 	},

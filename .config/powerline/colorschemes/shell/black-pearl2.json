@@ -1,28 +1,46 @@
 {
 	"name": "Black Pearl II for shell prompts",
 	"groups": {
-		"background":                 { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": [] },
-		"mode":             { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": ["bold"] },
-		"hostname":         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
-		"environment":      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
-		"attached_clients": { "fg": "white", "bg": "darkestgreen", "attrs": [] }
+		"background":                       { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": [] },
+		"mode":                             { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": ["bold"] },
+		"hostname":                         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
+		"environment":                      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
+		"attached_clients":                 { "fg": "white", "bg": "darkestgreen", "attrs": [] }
 	},
 	"mode_translations": {
 		"default": {
 			"groups": {
-				"mode": {"fg": "white", "bg": "blackpearl2:dark_violet", "attrs": ["bold"]},
-				"background:divider": { "fg": "gray0", "bg": "blackpearl2:dark_violet", "attrs": [] },
-				"branch:divider": { "fg": "gray0", "bg": "blackpearl2:dark_violet", "attrs": [] }
+				"mode":                     { "fg": "white", "bg": "blackpearl2:dark_violet", "attrs": ["bold"]},
+				"background:divider":       { "fg": "gray0", "bg": "blackpearl2:dark_violet", "attrs": [] },
+				"branch:divider":           { "fg": "gray0", "bg": "blackpearl2:dark_violet", "attrs": [] }
 			}
 		},
 		"insert": {
+            "colors": {
+                "blackpearl2:dark_violet":  "brightestorange",
+                "white":                    "black",
+                "darkestgreen":             "brightgreen",
+                "gray10":                   "gray1",
+                "gray8":                    "gray1"
+            },
 			"groups": {
-				"mode": { "fg": "gray0", "bg": "brightestorange", "attrs": ["bold"] },
-				"background:divider": { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
-				"branch:divider": { "fg": "gray0", "bg": "brightestorange", "attrs": [] }
+				"mode":                     { "fg": "gray0", "bg": "brightestorange", "attrs": ["bold"] },
+				"background:divider":       { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+				"branch:divider":           { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+        		"information:additional":   { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+        		"information:regular":      { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+                "user":                     { "fg": "white", "bg": "gray0", "attrs": [] },
+                "superuser":                { "fg": "white", "bg": "red", "attrs": [] },
+        		"cwd":                      { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+        		"cwd:current_folder":       { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+        		"cwd:divider":              { "fg": "gray0", "bg": "brightestorange", "attrs": [] },
+                "exit_fail":                { "fg": "gray0", "bg": "blackpearl2:deep_pink4", "attrs": [] }
 			}
 		},
 		"visual": {
+            "colors": {
+                "blackpearl2:dark_violet": "red"
+            },
 			"groups": {
 				"mode": { "fg": "white", "bg": "red", "attrs": ["bold"] },
 				"background:divider": { "fg": "white", "bg": "red", "attrs": [] },
