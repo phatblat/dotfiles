@@ -102,7 +102,7 @@ function 🍻__cask
         end
     end
     if test -n "$to_uninstall"
-        brew cask uninstall $to_uninstall
+        brew cask uninstall --force $to_uninstall
     end
 
     # --------------------------------------------------------------------------

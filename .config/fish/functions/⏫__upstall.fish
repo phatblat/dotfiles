@@ -13,7 +13,7 @@ function ⏫__upstall
         set argv ruby xcode brew cask fisherman pip npm vundle textmate macos
     else if contains -- --nothing $argv
         # Smoke test
-        set argv --norb --noxc --nobr --noca --nofm --nopy --nojs --novi --notm --noos
+        set argv --norb --noxc --nobr --noca --nofm --nopy --nojs ---nopl -novi --notm --noos
     end
 
 
@@ -25,6 +25,7 @@ function ⏫__upstall
     ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" fisherman  --nofm $argv
     ⬆️__upmodule 🐍__pip         "🐍  PIP"       pip        --nopy $argv
     ⬆️__upmodule 🕸__npm         "🕸  NPM"       npm        --nojs $argv
+    ⬆️__upmodule ▶️__powerline   "▶️  Powerline" powerline  --nopl $argv
     ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    vundle     --novi $argv
     ⬆️__upmodule 📝__textmate    "📝  TextMate"  textmate   --notm $argv
     ⬆️__upmodule 🖥__macos       "🖥  macOS"     macos      --noos $argv

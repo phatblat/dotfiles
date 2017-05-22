@@ -11,7 +11,7 @@ function xclist --argument-names option
     end
 
     # One entry per line, no colors
-    if not status is-interactive; or test $option = -1
+    if not status is-interactive; or test "$option" = -1
         echo $xcodes | tr ' ' \n
         return
     end

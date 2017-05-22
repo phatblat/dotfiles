@@ -43,10 +43,38 @@ set fish_pager_color_description 555\x1eyellow
 set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
+# GUI and items requiring a user
 if status is-interactive
+    # Powerline
+    if which -s powerline-daemon
+        # Not sure why these are needed, but they appear in several fish examples
+        set --export POWERLINE_BASH_CONTINUATION    1
+        set --export POWERLINE_BASH_SELECT          1
+
+        # http://powerline.readthedocs.io/en/latest/commands/daemon.html
+        powerline-daemon --quiet
+        # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
+        set -l python_packages /usr/local/lib/python2.7/site-packages
+        set fish_function_path $fish_function_path $python_packages/powerline/bindings/fish
+        powerline-setup # fish function in powerline/bindings/fish
+    end
+
+    # Use custom autoloaded functions
+    reload fish_mode_prompt
+    reload fish_right_prompt
+
+    # Event Hooks
+    reload fish_postexec
+
     # iTerm2
-    test -e ~/.iterm2_shell_integration.fish
-        and source ~/.iterm2_shell_integration.fish
+    set -l iterm2_file
+    if test -e ~/.iterm2_shell_integration.fish
+        source ~/.iterm2_shell_integration.fish
+
+        for func in iterm2_status iterm2_prompt_mark iterm2_prompt_end iterm2_preexec
+            function $func; end
+        end
+    end
 
     # The Fuck
     eval (thefuck --alias | tr '
