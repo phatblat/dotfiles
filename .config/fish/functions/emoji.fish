@@ -11,22 +11,21 @@ function emoji --argument-names char_name
     )
 
     set -l all_emoji (emoji_map | jq --raw-output '.[]')
+    set -l line
+    set -l table
 
     if test -z "$char_name"
         set -l prev_emoji ""
         for i in (seq (count $names))
             if test $prev_emoji != $all_emoji[$i]
-                if test -n "$prev_emoji"
-                    # Line feed before all but the first line of output
-                    echo
-                end
-                # Line feed when emoji changes
-                echo -n "  "$all_emoji[$i]"  "
+                set table $table $line
+                set line "  "$all_emoji[$i]"  "
             end
-            echo -n " "$names[$i]
+            set line $line" "$names[$i]
             set prev_emoji $all_emoji[$i]
         end
-        echo
+
+        list $table | column
         return
     end
 
