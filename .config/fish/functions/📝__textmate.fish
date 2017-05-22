@@ -28,9 +28,11 @@ function 📝__textmate
                         git@github.com:ajwitte/textmate-goodies.git \
                     >$bundle.tmbundle/Info.plist
 
+                # https://github.com/ram-nadella/DashMate.tmbundle#readme
                 case dashmate
                     clone_or_pull DashMate.tmbundle git@github.com:ram-nadella/DashMate.tmbundle.git
 
+                # https://github.com/Mr0grog/editorconfig-textmate
                 case editorconfig
                     clone_or_pull $bundle git@github.com:Mr0grog/editorconfig-textmate.git
 
@@ -49,16 +51,20 @@ function 📝__textmate
                     # Create a dummy bundle file so install isn't repeated.
                     touch $bundle.tmbundle
 
+                # https://github.com/l15n/fish-tmbundle
                 case fish
                     clone_or_pull $bundle.tmbundle git@github.com:l15n/fish-tmbundle.git
 
+                # https://github.com/alkemist/gradle.tmbundle
                 case gradle
                     clone_or_pull $bundle.tmbundle git@github.com:alkemist/gradle.tmbundle.git
 
+                # https://github.com/chriskempson/tomorrow-theme
                 case tomorrow-theme
                     clone_or_pull $bundle git@github.com:chriskempson/tomorrow-theme.git
                     set bundle "tomorrow-theme/textmate2/Tomorrow Theme"
 
+                # https://github.com/imagentleman/ublime
                 case ublime
                     clone_or_pull $bundle.tmbundle/Themes git@github.com:imagentleman/ublime.git
 
