@@ -10,7 +10,9 @@ function 🐍__pip
     echo "🐍  PIP"
     echo
 
-    set -l global_packages powerline-gitstatus powerline-status Pygments
+    set -l global_packages powerline-status Pygments \
+        # powerline-status fork
+        'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing'
 
     # Update pip
     pip install --upgrade pip
