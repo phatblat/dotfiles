@@ -14,6 +14,7 @@ function 🍺__brew
         carthage \
         cloc \
         cloudfoundry/tap/cf-cli \
+        cmake \
         coreutils \
         curl \
         direnv \
