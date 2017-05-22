@@ -105,7 +105,8 @@
                 "darkestgreen":             "brightgreen",
                 "gray10":                   "gray1",
                 "gray9":                    "gray2",
-                "gray8":                    "gray3"
+                "gray8":                    "gray3",
+                "green":                    "blackpearl2:indian_red"
             },
 			"groups": {
 				"background:divider":       { "fg": "white", "bg": "brightestorange", "attrs": [] },
