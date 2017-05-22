@@ -42,6 +42,8 @@
     "depsdown": "⬇️",
     "down": "⬇️",
     "dependencies_downgrade": "⬇️",
+    "switch": "↔️",
+    "swap": "↔️",
     "dependencies_swap": "↔️",
     "leak": "🚱",
     "plugging": "🚱",
