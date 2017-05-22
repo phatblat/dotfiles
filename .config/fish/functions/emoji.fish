@@ -35,7 +35,7 @@ function emoji --argument-names char_name
     if test -n "$emoji"
         # Print and copy
         echo $emoji
-        echo $emoji"  " | pbcopy
+        echo -n $emoji"  " | pbcopy
         return
     end
 
