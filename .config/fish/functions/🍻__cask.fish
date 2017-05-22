@@ -20,6 +20,7 @@ function 🍻__cask
         charles \
         cloudapp \
         dbvisualizer \
+        dash \
         dayone-cli \
         fauxpas \
         geekbench \
