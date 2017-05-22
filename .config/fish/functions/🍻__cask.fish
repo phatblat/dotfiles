@@ -14,7 +14,7 @@ function 🍻__cask
     echo "🍻  Homebrew Cask - https://caskroom.github.io"
     echo
 
-    set -l casks \
+    set -l apps \
         atom \
         back-in-time \
         charles \
@@ -45,12 +45,13 @@ function 🍻__cask
         softraid \
         sublime-text \
         textexpander \
-        # things \
+        textmate \
         tower \
         transmit \
         virtualbox \
-        vmware-fusion \
-        # QuickLook plugins
+        vmware-fusion
+
+    set -l quicklook_plugins \
         betterzipql \
         provisioning \
         qlcolorcode \
@@ -61,10 +62,47 @@ function 🍻__cask
         qlstephen \
         quicklook-csv \
         quicklook-json \
-        textmate \
         webpquicklook
 
-    set -l uninstall battery-guardian cocoapods cocoapods-app things
+    set -l fonts \
+        caskroom/fonts/font-3270-nerd-font \
+        caskroom/fonts/font-anonymouspro-nerd-font \
+        caskroom/fonts/font-aurulentsansmono-nerd-font \
+        caskroom/fonts/font-awesome-terminal-fonts \
+        caskroom/fonts/font-bitstreamverasansmono-nerd-font \
+        caskroom/fonts/font-codenewroman-nerd-font \
+        caskroom/fonts/font-dejavu-sans \
+        caskroom/fonts/font-dejavu-sans-mono-for-powerline \
+        caskroom/fonts/font-dejavusansmono-nerd-font \
+        caskroom/fonts/font-droidsansmono-nerd-font \
+        caskroom/fonts/font-fantasquesansmono-nerd-font \
+        caskroom/fonts/font-firacode-nerd-font \
+        caskroom/fonts/font-firamono-nerd-font \
+        caskroom/fonts/font-gohu-nerd-font \
+        caskroom/fonts/font-hack-nerd-font \
+        caskroom/fonts/font-hasklig-nerd-font \
+        caskroom/fonts/font-heavydata-nerd-font \
+        caskroom/fonts/font-hermit-nerd-font \
+        caskroom/fonts/font-inconsolata-nerd-font \
+        caskroom/fonts/font-iosevka-nerd-font \
+        caskroom/fonts/font-lekton-nerd-font \
+        caskroom/fonts/font-liberationmono-nerd-font \
+        caskroom/fonts/font-meslo-nerd-font \
+        caskroom/fonts/font-monofur-nerd-font \
+        caskroom/fonts/font-monoid-nerd-font \
+        caskroom/fonts/font-mononoki-nerd-font \
+        caskroom/fonts/font-mplus-nerd-font \
+        caskroom/fonts/font-profont-nerd-font \
+        caskroom/fonts/font-proggyclean-nerd-font \
+        caskroom/fonts/font-robotomono-nerd-font \
+        caskroom/fonts/font-sharetechmono-nerd-font \
+        caskroom/fonts/font-sourcecodepro-nerd-font \
+        caskroom/fonts/font-spacemono-nerd-font \
+        caskroom/fonts/font-terminus-nerd-font \
+        caskroom/fonts/font-ubuntumono-nerd-font
+
+    set -l casks $apps $quicklook_plugins $fonts
+    set -l uninstall battery-guardian cocoapods cocoapods-app textexpander things
 
     # --------------------------------------------------------------------------
     #
