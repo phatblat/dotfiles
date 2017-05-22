@@ -9,5 +9,5 @@ function find_sparkle_appcast --argument-names app_bundle
         return 2
     end
 
-    eval (brew --repository)/Library/Taps/caskroom/homebrew-cask/developer/bin/find_sparkle_appcast $app_bundle
+    eval (brew --repository)"/Library/Taps/caskroom/homebrew-cask/developer/bin/find_sparkle_appcast '$app_bundle'"
 end
