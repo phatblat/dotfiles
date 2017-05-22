@@ -18,12 +18,14 @@ function 🍻__cask
         atom \
         back-in-time \
         charles \
+        cleanmymac \
         cloudapp \
         dbvisualizer \
         dash \
         dayone-cli \
         fauxpas \
         geekbench \
+        gemini \
         github-desktop \
         google-chrome \
         gpgtools \
