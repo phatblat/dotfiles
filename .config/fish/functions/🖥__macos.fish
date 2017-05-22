@@ -10,6 +10,7 @@ function 🖥__macos
     mas outdated
     mas upgrade
 
+    echo
     echo "Updating system software"
 
     softwareupdate --list
