@@ -89,11 +89,11 @@
 	"mode_translations": {
 		"default": {
             "colors": {
-                "blackpearl2:dark_violet": "blackpearl2:hot_pink3"
+                "blackpearl2:dark_violet": "blackpearl2:dark_magenta"
             },
 			"groups": {
-				"background:divider":       { "fg": "gray0", "bg": "blackpearl2:hot_pink3", "attrs": [] },
-				"branch:divider":           { "fg": "gray0", "bg": "blackpearl2:hot_pink3", "attrs": [] }
+				"background:divider":       { "fg": "gray0", "bg": "blackpearl2:dark_magenta", "attrs": [] },
+				"branch:divider":           { "fg": "gray0", "bg": "blackpearl2:dark_magenta", "attrs": [] }
 			}
 		},
 		"insert": {
