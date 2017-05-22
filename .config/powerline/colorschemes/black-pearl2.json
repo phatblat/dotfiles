@@ -85,5 +85,42 @@
         "virtcol_current":              "information:regular",
         "virtcol_current_gradient":     { "fg": "light_green_gray", "bg": "gray0", "attrs": [] },
         "line_current_symbol":          "information:regular"
+	},
+	"mode_translations": {
+		"default": {
+            "colors": {
+                "blackpearl2:dark_violet": "blackpearl2:hot_pink3"
+            },
+			"groups": {
+				"background:divider":       { "fg": "gray0", "bg": "blackpearl2:hot_pink3", "attrs": [] },
+				"branch:divider":           { "fg": "gray0", "bg": "blackpearl2:hot_pink3", "attrs": [] }
+			}
+		},
+		"insert": {
+            "colors": {
+                "blackpearl2:dark_violet":  "brightestorange",
+                "white":                    "black",
+                "darkestgreen":             "brightgreen",
+                "gray10":                   "gray1",
+                "gray8":                    "gray1"
+            },
+			"groups": {
+				"background:divider":       { "fg": "white", "bg": "brightestorange", "attrs": [] },
+				"branch:divider":           { "fg": "white", "bg": "brightestorange", "attrs": [] },
+                "user":                     { "fg": "white", "bg": "gray0", "attrs": [] },
+                "superuser":                { "fg": "white", "bg": "red", "attrs": [] },
+                "exit_fail":                { "fg": "gray0", "bg": "blackpearl2:deep_pink4", "attrs": [] }
+			}
+		},
+		"visual": {
+            "colors": {
+                "blackpearl2:dark_violet": "red"
+            },
+			"groups": {
+				"mode": { "fg": "white", "bg": "red", "attrs": ["bold"] },
+				"background:divider": { "fg": "white", "bg": "red", "attrs": [] },
+				"branch:divider": { "fg": "white", "bg": "red", "attrs": [] }
+			}
+		}
 	}
 }
