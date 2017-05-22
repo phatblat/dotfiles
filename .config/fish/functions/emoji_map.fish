@@ -9,7 +9,7 @@
 # - Many args: Print the value found for each key.
 # - Many args, some missing: Return error status code equal to the number of missing values, number of printed values will be eqal to the number of found values.
 function emoji_map
-    set -l data_file emoji_map.json
+    set -l data_file ~/.config/fish/functions/emoji_map.json
     set -l names (jq --raw-output 'keys_unsorted' $data_file \
         | grep '^ .*' \
         | string replace --regex '  "(\\w+)",?' '$1' \
