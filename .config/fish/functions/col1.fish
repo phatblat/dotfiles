@@ -1,11 +1,12 @@
-# Prints the first column of input (first argument)
+# Prints the first column of input (first argument).
+# Multi-line content can be passed on stdin, assumed when given no arguments, or
+# a single dash.
 function col1 --argument-names arg1
-    if test -z $arg1
-        echo "Usage: col1 arg1 ..."
-        return 1
+    if test (count "$argv") -ge 0 -o "$argv" = -
+        # Input is from stdin
+        cat | awk '{print $1}'
     end
 
-    # cut is used since list values can contain spaces
-    # or: awk '{print $1}' (instead of cut)
-    echo $arg1 | cut -f 1 -d ' ' -
+    # Substring up to the first space
+    echo $arg1 | awk '{print $1}'
 end

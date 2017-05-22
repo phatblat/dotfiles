@@ -25,13 +25,10 @@ function 💎__rubygems
         # Fix for "Your bundle is locked to rake (12.0.0), but that version could not be found in any of the sources listed in your Gemfile."
         # http://stackoverflow.com/questions/41757144/your-bundle-is-locked-to-rake-12-0-0-but-that-version-could-not-be-found-in-a
         gem_install rubygems-bundler
-        sudo gem regenerate_binstubs
+        gem regenerate_binstubs
     end
 
     pushd ~
-
-    # Install gems configured at user level
-    bundle install
 
     # Update user gems
     bundle outdated

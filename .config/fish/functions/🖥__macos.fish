@@ -3,7 +3,14 @@ function 🖥__macos
     echo "🖥  macOS"
     echo
 
-    # echo "Updating  system software"
+    echo "Updating Mac App Store apps"
+
+    echo using mas (mas version)
+    mas account
+    mas outdated
+    mas upgrade
+
+    echo "Updating system software"
 
     softwareupdate --list
 
