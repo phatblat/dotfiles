@@ -15,8 +15,6 @@ function emoji_map
         | string replace --regex '  "(\\w+)",?' '$1' \
     )
 
-    set -l emoji (jq --raw-output '.[]' $data_file)
-
     if test -z "$argv"
         cat $data_file
         return
@@ -30,7 +28,6 @@ function emoji_map
 
         if contains -- $key $names
             # Found a valid key
-            echo $emoji[contains --index -- $key $name]
             jq --raw-output "."$key $data_file
         else
             set missing_keys $missing_keys $key
