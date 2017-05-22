@@ -19,6 +19,9 @@ function 🗒__vundle
     set -l vundle_dir       $vim_bundle_dir/Vundle.vim
     clone_or_pull $vundle_dir git@github.com:VundleVim/Vundle.vim.git
 
+    # Install Vundle plugins
+    vim +PluginInstall +qall
+
     pushd $vim_bundle_dir/YouCompleteMe
     and ./install.py --clang-completer
     and popd
@@ -33,6 +36,6 @@ function 🗒__vundle
         ln -sfv $plug_dir/plug.vim $plug_autoload
     end
 
-    # Install plugins
+    # Install vim-plug plugins
     vim +PluginInstall +qall
 end
