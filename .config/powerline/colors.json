@@ -88,7 +88,8 @@
         "blackpearl2:dark_magenta2": [91, "A817A8"],
         "blackpearl2:dark_violet": [92, "A817A8"],
         "blackpearl2:purple": [93, "A817A8"],
-
+        "blackpearl2:dark_olive_green": [107, "A817A8"],
+        "blackpearl2:dark_sea_green": [108, "A817A8"],
         "blackpearl2:deep_pink5": [125, "A817A8"],
         "blackpearl2:dark_violet2": [128, "A817A8"],
         "blackpearl2:purple2": [129, "A817A8"],
@@ -97,7 +98,13 @@
         "blackpearl2:hot_pink3": [132, "A817A8"],
         "blackpearl2:medium_orchid3": [133, "A817A8"],
         "blackpearl2:medium_orchid": [134, "A817A8"],
-        "blackpearl2:medium_purple2": [135, "A817A8"]
+        "blackpearl2:medium_purple2": [135, "A817A8"],
+
+        "blackpearl2:dark_olive_green3": [149, "A817A8"],
+        "blackpearl2:dark_sea_green3": [150, "A817A8"],
+        "blackpearl2:dark_sea_green2": [151, "A817A8"],
+        "blackpearl2:sandy_brown": [215, "A817A8"]
+
 	},
 	"gradients": {
 		"dark_GREEN_Orange_red": [
