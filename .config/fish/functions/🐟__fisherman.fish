@@ -34,8 +34,39 @@ function 🐟__fisherman
 
     fisher --version
 
+    # --------------------------------------------------------------------------
+    #
+    # Upstall
+    #
+    # --------------------------------------------------------------------------
+
+    # Update installed plugins
+    fisher update
+
+    # Install any missing plugins
+    set -l installed (fisher ls -l)
+    echo installed: $installed
+    set -l not_installed
     for plugin in $plugins
-        fisher $plugin
+        set -l plugin_name $plugin
+
+        # Split plugin name off of any in user/repo format
+        set -l tokens (string split / $plugin)
+        if test (count $tokens) -gt 1
+            set plugin_name $tokens[2]
+        end
+
+        # Save the full user/plugin name in not_installed
+        if not contains $plugin_name $installed
+            set not_installed $not_installed $plugin
+        end
+    end
+    echo not_installed: $not_installed
+    if test -n "$not_installed"
+        for plugin in $not_installed
+            echo "Installing $plugin"
+            fisher $plugin
+        end
     end
 
     echo "Installed plugins: "
