@@ -34,6 +34,7 @@ function 🍺__brew
         "macvim --with-override-system-vim" \
         mas \
         maven \
+        mtr \
         nginx \
         ninja \
         node \
