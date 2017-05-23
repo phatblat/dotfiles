@@ -41,6 +41,9 @@ set --export LC_CTYPE en_US.UTF-8
 set --export OPENSSL_VERSION (echo (brew info openssl)[1] | string split ' ')[3]
 set --export OPENSSL_PATH (brew_home)/Cellar/openssl/$OPENSSL_VERSION/bin/openssl
 
+# fish_user_paths
+set --global fish_user_paths /usr/local/sbin $fish_user_paths
+
 # PATH
 set --export --global PATH ./bin ~/bin (brew_home curl)/bin $PATH
 
