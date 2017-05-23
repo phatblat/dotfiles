@@ -63,7 +63,7 @@
         "gitstatus_ahead":              { "fg": "gray10",          "bg": "blackpearl2:dark_violet", "attrs": [] },
         "gitstatus_staged":             { "fg": "green",           "bg": "blackpearl2:dark_violet", "attrs": [] },
         "gitstatus_unmerged":           { "fg": "brightred",       "bg": "blackpearl2:dark_violet", "attrs": [] },
-        "gitstatus_changed":            { "fg": "mediumorange",    "bg": "blackpearl2:dark_violet", "attrs": [] },
+        "gitstatus_changed":            { "fg": "mediumgreen",     "bg": "blackpearl2:dark_violet", "attrs": [] },
         "gitstatus_untracked":          { "fg": "brightestorange", "bg": "blackpearl2:dark_violet", "attrs": [] },
         "gitstatus_stashed":            { "fg": "darkblue",        "bg": "blackpearl2:dark_violet", "attrs": [] },
         "gitstatus:divider":            "background:divider",
@@ -108,7 +108,8 @@
                 "gray8":                    "gray3",
                 "green":                    "blackpearl2:indian_red",
                 "brightyellow":             "blackpearl2:pink_flamingo",
-                "mediumorange":             "blackpearl2:dark_violet"
+                "mediumorange":             "blackpearl2:dark_violet",
+                "mediumgreen":              "blackpearl2:deep_pink4"
             },
 			"groups": {
 				"background:divider":       { "fg": "white", "bg": "brightestorange", "attrs": [] },
