@@ -35,7 +35,7 @@ function o {
 #-------------------------------------------------------------------------------
 # Profile
 #-------------------------------------------------------------------------------
-alias dotfiles="edit ~/.dotfiles"
+alias dotfiles="edit ~/.dotfiles ~/.config/fish/"
 
 # Prints out aliases containing the given substring
 function explain {
