@@ -28,6 +28,13 @@
                     "use_path_separator": true
                 }
 			},
+			{
+				"function": "powerline_gitstatus.gitstatus",
+                "draw_hard_divider": true,
+                "draw_soft_divider": true,
+                "draw_inner_divider": false,
+				"priority": 40
+			},
             {
                 "type":"string",
                 "highlight_groups": ["information:regular"],
@@ -49,13 +56,6 @@
 			{
 				"function": "powerline.segments.shell.jobnum",
 				"priority": 10
-			},
-			{
-				"function": "powerline_gitstatus.gitstatus",
-                "draw_hard_divider": true,
-                "draw_soft_divider": true,
-                "draw_inner_divider": false,
-				"priority": 40
 			},
 			{
 				"function": "powerline.segments.common.time.date",
