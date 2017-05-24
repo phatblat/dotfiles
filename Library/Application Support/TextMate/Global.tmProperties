@@ -52,7 +52,7 @@ tabSize          = 2
 [ text ]
 showInvisibles   = false
 softWrap         = false
-tabSize          = 2
+tabSize          = 4
 
 [ text.html ]
 showInvisibles   = false
@@ -64,4 +64,4 @@ softWrap         = false
 
 [ text.plain ]
 showInvisibles   = false
-tabSize          = 2
+tabSize          = 4
