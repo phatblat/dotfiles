@@ -22,7 +22,7 @@ function 🐟__fisherman
         set url "git@github.com:fisherman/fisherman.git"
         git clone $url $fisher_dir
 
-        ln -Ffs $function_source $function_symlink
+        ln -fsv $function_source $function_symlink
         echo "Fisherman installed -> $fisher_dir"
     else
         echo "Updating Fisherman"
