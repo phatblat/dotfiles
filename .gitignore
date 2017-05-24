@@ -149,6 +149,24 @@ tmp/
 .zsh-update
 .zsh_history
 
+
+#-------------------------------------------------------------------------------
+# Fisherman installed symlinks .config/fish/functions/*.fish
+__z.fish
+__z_add.fish
+__z_complete.fish
+__zo.fish
+done.fish
+fish_logo.fish
+get.fish
+getopts.fish
+humanize_duration.fish
+mock.fish
+z.awk
+z.fish
+zadd.awk
+
+
 #-------------------------------------------------------------------------------
 # TODO: Find pattern to exclude everything else.
 

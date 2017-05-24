@@ -1,1 +1,0 @@
-/Users/phatblat/.config/fisherman/z/functions/__zo.fish
