@@ -47,6 +47,15 @@ set --global fish_user_paths /usr/local/sbin $fish_user_paths
 # PATH
 set --export --global PATH ./bin ~/bin (brew_home curl)/bin $PATH
 
+# ls color formatting - LS_COLWIDTHS
+#
+# If this variable is set, it is considered to be a colon-delimited list of
+# minimum column widths.  Unreasonable and insufficient widths are ignored
+# (thus zero signifies a dynamically sized column).  Not all columns have
+# changeable widths.  The fields are, in order: inode, block count,
+# number of links, user name, group name, flags, file size, file name.
+set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
+
 # Obsolete rsync variables
 set --export phatblat_imac /Users/phatblat.bak/
 set --export phatblat_external /Volumes/ThunderBay/Users/phatblat/
