@@ -44,5 +44,5 @@ function funky --argument-names query option
         end
     end
 
-    echo $funcs\n | column -x
+    list $funcs | column -x
 end
