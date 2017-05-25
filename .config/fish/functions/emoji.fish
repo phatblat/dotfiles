@@ -19,7 +19,7 @@ function emoji --argument-names char_name
         for i in (seq (count $names))
             if test $prev_emoji != $all_emoji[$i]
                 set table $table $line
-                set line "  "$all_emoji[$i]"  "
+                set line "  "$all_emoji[$i]" "
             end
             set line $line" "$names[$i]
             set prev_emoji $all_emoji[$i]
@@ -35,7 +35,7 @@ function emoji --argument-names char_name
     if test -n "$emoji"
         # Print and copy
         echo $emoji
-        echo -n $emoji"  " | pbcopy
+        echo -n $emoji" " | pbcopy
         return
     end
 
