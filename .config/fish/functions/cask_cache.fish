@@ -9,7 +9,7 @@ function cask_cache --argument-names command
             trash -v ~/Library/Caches/Homebrew/Cask
         case show
             echo "Homebrew Cask cache is user-specific"
-            ll -d ~/Library/Caches/Homebrew/Cask
+            ll -1d ~/Library/Caches/Homebrew/Cask
             ll ~/Library/Caches/Homebrew/Cask
         case '*'
             # Show usage
