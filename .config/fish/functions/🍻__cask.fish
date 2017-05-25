@@ -46,6 +46,7 @@ function 🍻__cask
         sublime-text \
         textexpander \
         textmate \
+        thingsmacsandboxhelper \
         tower \
         transmit \
         virtualbox \
