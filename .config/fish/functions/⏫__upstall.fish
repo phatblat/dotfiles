@@ -19,7 +19,7 @@ function ⏫__upstall
 
     ⬆️__upmodule 🗄__gitconfig
     ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems" ruby       --norb $argv
-    ⬆️__upmodule 📱__xcode       "📱  Xcode"     xcode      --noxc $argv
+    ⬆️__upmodule 🔨__xcode       "🔨  Xcode"     xcode      --noxc $argv
     ⬆️__upmodule 🍺__brew        "🍺  Homebrew"  brew       --nobr $argv
     ⬆️__upmodule 🍻__cask        "🍻  Cask"      cask       --noca $argv
     ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" fisherman  --nofm $argv

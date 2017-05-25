@@ -3,8 +3,8 @@
 #
 # Sequencing
 # - After: rubygems (uses xcode-install)
-function 📱__xcode
-    echo "📱  Xcode"
+function 🔨__xcode
+    echo "🔨  Xcode"
     echo
 
     if test -z $XCODE_INSTALL_USER; and test -n (user.email)
