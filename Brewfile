@@ -1,4 +1,5 @@
 tap "caskroom/cask"
+tap "caskroom/fonts"
 tap "caskroom/versions"
 tap "cloudfoundry/tap"
 tap "homebrew/bundle"
@@ -9,8 +10,6 @@ tap "vapor/tap"
 cask "java"
 brew "android-sdk"
 brew "antigen"
-brew "autoconf"
-brew "automake"
 brew "readline"
 brew "bash"
 brew "boost"
@@ -19,18 +18,17 @@ brew "git"
 brew "carthage"
 brew "cloc"
 brew "cmake"
+brew "cocoapods"
 brew "coreutils"
 brew "curl"
 brew "direnv"
 brew "duti"
 brew "findutils"
 brew "fish"
+brew "gcovr"
 brew "gdbm"
-brew "gettext"
 brew "git-lfs"
-brew "libffi"
-brew "pcre"
-brew "glib"
+brew "gmp"
 brew "gnupg"
 brew "goaccess"
 brew "gradle"
@@ -38,28 +36,30 @@ brew "groovy"
 brew "heroku"
 brew "lua"
 brew "highlight"
+brew "jenkins"
 brew "oniguruma"
 brew "jq"
 brew "node"
 brew "jsonlint"
-brew "openssl"
-brew "libssh2"
-brew "libtool"
+brew "less"
 brew "libyaml"
+brew "openssl"
 brew "sqlite"
 brew "python"
 brew "macvim", args: ["with-override-system-vim"]
 brew "mas"
 brew "maven"
 brew "md5sha1sum"
+brew "mtr"
+brew "openssl@1.1"
+brew "pcre"
 brew "nginx"
 brew "ninja"
+brew "nmap"
 brew "packer"
 brew "pacvim"
 brew "pkg-config"
 brew "postgresql"
-brew "ruby-build"
-brew "rbenv"
 brew "rename"
 brew "ruby"
 brew "screenresolution"
@@ -79,24 +79,60 @@ brew "uncrustify"
 brew "wget"
 brew "xcproj"
 brew "xctool"
+brew "xz"
 brew "zsh"
 brew "cloudfoundry/tap/cf-cli"
-brew "kylef/formulae/conche", args: ["HEAD"]
 brew "kylef/formulae/swiftenv"
 brew "thoughtbot/formulae/liftoff"
 brew "vapor/tap/toolbox"
+cask "android-sdk"
 cask "atom"
 cask "back-in-time"
 cask "betterzipql"
-cask "cert-quicklook"
 cask "charles"
+cask "cleanmymac"
 cask "cloudapp"
-cask "cloudfoundry-cli"
+cask "dash"
 cask "dayone-cli"
 cask "dbvisualizer"
-cask "fabric"
 cask "fauxpas"
+cask "font-3270-nerd-font"
+cask "font-anonymouspro-nerd-font"
+cask "font-aurulentsansmono-nerd-font"
+cask "font-awesome-terminal-fonts"
+cask "font-bitstreamverasansmono-nerd-font"
+cask "font-codenewroman-nerd-font"
+cask "font-dejavu-sans"
+cask "font-dejavu-sans-mono-for-powerline"
+cask "font-dejavusansmono-nerd-font"
+cask "font-droidsansmono-nerd-font"
+cask "font-fantasquesansmono-nerd-font"
+cask "font-firacode-nerd-font"
+cask "font-firamono-nerd-font"
+cask "font-gohu-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-hasklig-nerd-font"
+cask "font-heavydata-nerd-font"
+cask "font-hermit-nerd-font"
+cask "font-inconsolata-nerd-font"
+cask "font-iosevka-nerd-font"
+cask "font-lekton-nerd-font"
+cask "font-liberationmono-nerd-font"
+cask "font-meslo-nerd-font"
+cask "font-monofur-nerd-font"
+cask "font-monoid-nerd-font"
+cask "font-mononoki-nerd-font"
+cask "font-mplus-nerd-font"
+cask "font-profont-nerd-font"
+cask "font-proggyclean-nerd-font"
+cask "font-robotomono-nerd-font"
+cask "font-sharetechmono-nerd-font"
+cask "font-sourcecodepro-nerd-font"
+cask "font-spacemono-nerd-font"
+cask "font-terminus-nerd-font"
+cask "font-ubuntumono-nerd-font"
 cask "geekbench"
+cask "gemini"
 cask "github-desktop"
 cask "google-chrome"
 cask "gpgtools"
@@ -105,9 +141,9 @@ cask "intellij-idea"
 cask "ios-console"
 cask "istat-menus"
 cask "iterm2"
+cask "iterm2-beta"
 cask "kaleidoscope"
 cask "macdown"
-cask "macvim"
 cask "oclint"
 cask "omnigraffle"
 cask "omnipresence"
@@ -123,8 +159,9 @@ cask "quickradar"
 cask "simpholders"
 cask "softraid"
 cask "sublime-text"
-cask "textexpander"
+cask "sublime-text-dev"
 cask "textmate"
+cask "things-helper"
 cask "tower"
 cask "transmit"
 cask "virtualbox"
@@ -134,12 +171,11 @@ mas "1Password", id: 443987910
 mas "Airmail 3", id: 918858936
 mas "Blackmagic Disk Speed Test", id: 425264550
 mas "CARROT Weather", id: 993487541
-mas "ChronoMateLite", id: 993799983
-mas "Command-C", id: 692787282
+mas "CodeBox", id: 412536790
 mas "Committed", id: 881634293
+mas "Copied", id: 1026349850
 mas "DaisyDisk", id: 411643860
 mas "Day One", id: 1055511498
-mas "Deckset", id: 847496013
 mas "Deliveries", id: 924726344
 mas "Disk Care", id: 913724705
 mas "Display Menu", id: 549083868
@@ -147,12 +183,9 @@ mas "Divvy", id: 413857545
 mas "Evernote", id: 406056744
 mas "Fantastical 2", id: 975937182
 mas "Focused", id: 899966452
-mas "GarageBand", id: 682658836
-mas "Gemini 2", id: 1090488118
 mas "GIFs", id: 961850017
-mas "GluePrint", id: 736042993
 mas "iMovie", id: 408981434
-mas "Install macOS Sierra", id: 1127487414
+mas "iNet Network Scanner", id: 403304796
 mas "iRamDisk", id: 492615400
 mas "iStat Mini", id: 927292435
 mas "JenkinsNotifier", id: 590383085
@@ -165,17 +198,16 @@ mas "Memory Cleaner", id: 748212890
 mas "Numbers", id: 409203825
 mas "Objective-Clean", id: 713910413
 mas "Pages", id: 409201541
-mas "Paw", id: 584653203
 mas "PCalc", id: 403504866
-mas "Pinbox", id: 784494586
 mas "Pocket", id: 568494494
 mas "Redacted", id: 984968384
 mas "Remote Desktop", id: 409907375
 mas "Screens", id: 446107677
+mas "Server", id: 883878097
 mas "Sip", id: 507257563
 mas "Skitch", id: 425955336
-mas "Slack", id: 803453959
-mas "Swiftly-Clean", id: 1040160984
+mas "SnippetsLab", id: 1006087419
+mas "Swift-Clean", id: 1040160984
 mas "Things3", id: 904280696
 mas "Tweetbot", id: 557168941
 mas "Ulysses", id: 623795237
