@@ -20,15 +20,29 @@
 # otherwise it is not possible to determine which color sequences to use.
 function lscolors --argument-names theme
     if test -z $theme
-        echo "Usage: lscolors light|dark"
-        return 1
+        set theme help
     end
 
     switch $theme
+        # blue foreground with default background for directories, magenta
+        # foreground with default background for symbolic links, etc.
+        case default
+            set --global --export CLICOLOR exfxcxdxbxegedabagacad
+
+        # http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/#more-27553
         case light
-            set CLICOLOR ExFxBxDxCxegedabagacad
+            set --global --export CLICOLOR ExFxBxDxCxegedabagacad
         case dark
-            set CLICOLOR GxFxCxDxBxegedabagaced
+            set --global --export CLICOLOR GxFxCxDxBxegedabagaced
+
+        # http://www.norbauer.com/rails-consulting/notes/ls-colors-and-terminal-app.html#column
+        case linux
+            set --global --export CLICOLOR ExGxBxDxCxEgEdxbxgxcxd
+
         case '*'
+            echo "Usage: lscolors light|dark|linux"
+            return 1
     end
+
+    ls
 end
