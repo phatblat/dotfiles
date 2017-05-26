@@ -11,5 +11,7 @@ function install_choices --argument-names package_file
         return 3
     end
 
-    installer -showChoicesXML -pkg $package_file
+    installer -showChoicesXML \
+        -package $package_file \
+        -target /
 end
