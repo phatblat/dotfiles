@@ -19,6 +19,12 @@ fileType         = source.groovy.gradle
 [ Podfile ]
 fileType         = source.ruby
 
+[ *.jenkins ]
+fileType         = source.groovy
+
+[ Jenkinsfile ]
+fileType         = source.groovy
+
 [ source ]
 showInvisibles   = true
 softTabs         = true
