@@ -66,17 +66,6 @@ if status is-interactive
     # Event Hooks
     reload fish_postexec
 
-    # iTerm2
-    set -l iterm2_file
-    if test -e ~/.iterm2_shell_integration.fish
-        source ~/.iterm2_shell_integration.fish
-
-        # Remove the triangle showing command success/fail from the left of the prompt
-        for func in iterm2_status iterm2_prompt_mark iterm2_prompt_end iterm2_preexec
-            function $func; end
-        end
-    end
-
     # The Fuck
     eval (thefuck --alias | tr '
 ' ';')
