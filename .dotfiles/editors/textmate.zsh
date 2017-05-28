@@ -9,7 +9,7 @@ lj info 'editors/textmate.zsh'
 
 function tminstall {
   local bundle_dev="${HOME}/dev/textmate"
-  local bundle_home="${HOME}/Library/Application\ Support/TextMate/Bundles"
+  local bundle_home="${HOME}/Library/Application Support/TextMate/Bundles"
 
   if [[ ! -d "${bundle_dev}" ]]; then
     mkdir -p "${bundle_dev}"
