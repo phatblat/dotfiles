@@ -67,6 +67,5 @@ if status is-interactive
     reload fish_postexec
 
     # The Fuck
-    eval (thefuck --alias | tr '
-' ';')
+    eval (thefuck --alias | tr \n ';')
 end
