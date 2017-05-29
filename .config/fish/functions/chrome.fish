@@ -1,4 +1,4 @@
-# Launch Google Chrome in incognito mode.
+# Launch Google Chrome.
 function chrome
-    open -a "Google Chrome" --args --incognito $argv
+    open -a "Google Chrome" --args --new-window $argv
 end
