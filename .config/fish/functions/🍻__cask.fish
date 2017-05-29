@@ -45,7 +45,6 @@ function 🍻__cask
         simpholders \
         softraid \
         sublime-text \
-        textexpander \
         textmate \
         thingsmacsandboxhelper \
         tower \
