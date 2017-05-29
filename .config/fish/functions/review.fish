@@ -29,7 +29,6 @@ committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
 '
 
     git \
-        --no-pager \
         log \
         --max-count=1 \
         --pretty=format:$format \
@@ -48,7 +47,7 @@ committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
         $commit
 end
 
-# review
+# review (original)
 # commit c23f3eac92de10dc3477d94b0b4ef88117969f62
 # Author: Ben Chatelain <ben@octop.ad>
 # Date:   Tue May 9 21:53:22 2017 -0600
