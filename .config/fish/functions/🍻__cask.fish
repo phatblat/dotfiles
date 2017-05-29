@@ -40,6 +40,7 @@ function 🍻__cask
         oclint \
         omnigraffle \
         omnipresence \
+        paw \
         quickradar \
         simpholders \
         softraid \
