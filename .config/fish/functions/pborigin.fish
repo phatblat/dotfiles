@@ -8,4 +8,5 @@ function pborigin --argument-names arg1
     end
 
     remote rename origin phatblat
+    rv
 end
