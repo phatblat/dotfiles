@@ -8,7 +8,12 @@ function fish_title
     if test -z $TAB_TITLE
         set -l job $_
 
-        if test 'fish' != $job
+        if test $job = 'man'
+            # Show args for these processes. First arg is job.
+            echo $argv
+            # No room left for dir
+            return
+        else if test $job != 'fish'
             echo $job ' '
         end
 
