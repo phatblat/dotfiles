@@ -22,6 +22,9 @@ fileType         = source.ruby
 [ *.jenkins ]
 fileType         = source.groovy
 
+[ *.podspec ]
+fileType         = source.ruby
+
 [ Jenkinsfile ]
 fileType         = source.groovy
 
