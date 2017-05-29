@@ -9,7 +9,7 @@ function cask_edit --argument-names token version
         set branch $token"-"$version
     end
 
-    pushd (brew --repository)/Library/Taps/caskroom/homebrew-cask
+    pushd (cask_dir)
     git checkout master
     git pull
     git checkout -b $branch
