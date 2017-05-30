@@ -7,6 +7,11 @@ function rv
     # upstream    git@github.com:mas-cli/mas.git (push)
     set -l input (git remote -v)
 
+    if test -z "$input"
+        echo "No remotes are currently defined."
+        return 1
+    end
+
     set -l output
     set -l last_remote
     for line in $input
