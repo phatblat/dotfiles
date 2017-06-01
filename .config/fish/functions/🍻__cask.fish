@@ -18,6 +18,7 @@ function 🍻__cask
         atom \
         back-in-time \
         charles \
+        cheatsheet \
         cleanmymac \
         cloudapp \
         dbvisualizer \
