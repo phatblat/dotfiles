@@ -14,6 +14,7 @@ function emoji --argument-names char_name
     set -l line
     set -l table
 
+    # Show all emoji when no args given
     if test -z "$char_name"
         set -l prev_emoji ""
         for i in (seq (count $names))
@@ -29,16 +30,38 @@ function emoji --argument-names char_name
         return
     end
 
-    # Fetch character
-    set -l emoji (emoji_map $char_name ^/dev/null)
+    # Iterate over args to find emoji for names
+    set -l emoji_found
+    set -l emoji_missing
+    while test -n "$argv"
+        set char_name $argv[1]
 
-    if test -n "$emoji"
-        # Print and copy
-        echo $emoji
-        echo -n $emoji" " | pbcopy
-        return
+        # Fetch character
+        set -l emoji (emoji_map $char_name ^/dev/null)
+
+        if test -n "$emoji"
+            set emoji_found $emoji_found $emoji
+        else
+            set emoji_missing $emoji_missing $char_name
+        end
+
+        if test (count $argv) -eq 1
+            # Only one arg left, clear out argv
+            set --erase argv
+        else
+            # Pop the processed char name off the arg list
+            set argv $argv[2..-1]
+        end
     end
 
-    error "Unknown emoji: $char_name"
-    return 2
+    # Print and copy
+    echo $emoji_found
+    echo -n "$emoji_found " | pbcopy
+
+    if test -n "$emoji_missing"
+        error "Unknown emoji: $emoji_missing"
+        return 2
+    end
+
+    return
 end
