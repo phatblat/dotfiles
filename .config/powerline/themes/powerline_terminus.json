@@ -38,7 +38,7 @@
         },
 
         "time": {
-            "before": ""
+            "before": "⌚️ "
         },
 
         "powerline.segments.common.net.network_load": {
