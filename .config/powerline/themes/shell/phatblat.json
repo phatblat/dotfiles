@@ -47,13 +47,6 @@
                 "priority": 10
             },
             {
-                "function": "powerline.segments.common.env.environment",
-                "priority": 10,
-                "args": {
-                    "variable": "CMD_DURATION"
-                }
-            },
-            {
                 "function": "powerline.segments.shell.jobnum",
                 "priority": 10
             },
