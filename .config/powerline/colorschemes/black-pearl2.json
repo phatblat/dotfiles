@@ -89,17 +89,6 @@
     "mode_translations": {
         "default": {
             "colors": {
-                "blackpearl2:dark_violet":  "blackpearl2:dark_magenta",
-                "darkestred":               "blackpearl2:sandy_brown",
-                "darkestgreen":             "blackpearl2:dark_olive_green"
-            },
-            "groups": {
-                "background:divider":       { "fg": "gray0", "bg": "blackpearl2:dark_magenta", "attrs": [] },
-                "branch:divider":           { "fg": "gray0", "bg": "blackpearl2:dark_magenta", "attrs": [] }
-            }
-        },
-        "insert": {
-            "colors": {
                 "blackpearl2:dark_violet":  "brightestorange",
                 "white":                    "black",
                 "darkestgreen":             "brightgreen",
@@ -117,6 +106,17 @@
                 "user":                     { "fg": "white", "bg": "gray0", "attrs": [] },
                 "superuser":                { "fg": "white", "bg": "red", "attrs": [] },
                 "exit_fail":                { "fg": "gray0", "bg": "blackpearl2:deep_pink4", "attrs": [] }
+            }
+        },
+        "insert": {
+            "colors": {
+                "blackpearl2:dark_violet":  "blackpearl2:dark_magenta",
+                "darkestred":               "blackpearl2:sandy_brown",
+                "darkestgreen":             "blackpearl2:dark_olive_green"
+            },
+            "groups": {
+                "background:divider":       { "fg": "gray0", "bg": "blackpearl2:dark_magenta", "attrs": [] },
+                "branch:divider":           { "fg": "gray0", "bg": "blackpearl2:dark_magenta", "attrs": [] }
             }
         },
         "visual": {
