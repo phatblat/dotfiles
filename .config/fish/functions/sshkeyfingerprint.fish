@@ -4,6 +4,6 @@ function sshkeyfingerprint --argument-names file
         set file ~/.ssh/id_rsa.pub
     end
 
-    echo -n "sshkeyfingerprint [$file] "
+    echo -n "[$file] "
     ssh-keygen -l -E md5 -f $file
 end
