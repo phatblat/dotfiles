@@ -1,5 +1,5 @@
 {
-	"segment_data": {
+    "segment_data": {
         "mode": {
             "args": {
                 "override": {
@@ -9,20 +9,20 @@
                 }
             }
         },
-		"hostname": {
-			"args": {
-				"only_if_ssh": true
-			}
-		},
-		"cwd": {
-			"args": {
-				"dir_limit_depth": 3
-			}
-		},
-		"gitstatus": {
-			"args": {
-				"show_tag": false
-			}
-		}
-	}
+        "hostname": {
+            "args": {
+                "only_if_ssh": true
+            }
+        },
+        "cwd": {
+            "args": {
+                "dir_limit_depth": 3
+            }
+        },
+        "gitstatus": {
+            "args": {
+                "show_tag": false
+            }
+        }
+    }
 }
