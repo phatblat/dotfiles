@@ -43,6 +43,7 @@ function 🍻__cask
         omnipresence \
         paw \
         quickradar \
+        screens \
         simpholders \
         softraid \
         sublime-text \
