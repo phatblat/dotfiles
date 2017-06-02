@@ -24,5 +24,5 @@ function rv
     end
 
     # echo output
-    list $output | column -x -c 80
+    list $output | column
 end
