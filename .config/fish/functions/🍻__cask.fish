@@ -44,6 +44,7 @@ function 🍻__cask
         paw \
         quickradar \
         screens \
+        screens-connect \
         simpholders \
         softraid \
         sublime-text \
