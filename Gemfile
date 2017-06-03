@@ -6,6 +6,7 @@ gem 'fastlane'
 gem 'rake'
 #gem 'sqlite3'
 gem 'xcode-install'
+gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
 gem 'zerg_xcode'
 
 # Works around issues running with Ruby 2.4
