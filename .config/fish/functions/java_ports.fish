@@ -1,0 +1,4 @@
+# java_ports
+function java_ports
+    lsof -nP | grep TCP | grep java
+end

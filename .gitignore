@@ -105,6 +105,7 @@ tmp/
 .git/
 .gnupg/
 .gradle/
+.groovy/
 .idea/
 .iterm2/
 .iterm2_shell_integration.zsh
