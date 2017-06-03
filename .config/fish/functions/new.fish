@@ -8,6 +8,6 @@ function new --argument-names commit
     set -l start_commit (rev-parse $commit'@{1}')
     set -l end_commit   (rev-parse $commit'@{0}')
 
-    git log $start_commit..$end_commit $argv
+    git log --boundary $start_commit..$end_commit $argv
 end
 
