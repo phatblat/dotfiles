@@ -35,4 +35,20 @@ function 🔨__xcode
     echo
     echo "Installed:"
     xclist
+
+    echo
+    echo "Themes"
+    set -l xcode_themes_dir ~/Library/Developer/Xcode/UserData/FontAndColorThemes
+    set -l xcode_dev_dir ~/dev/xcode
+    set -l repo_dir $xcode_dev_dir/xcode-themes
+    createdirs $xcode_themes_dir $xcode_dev_dir
+    clone_or_pull $repo_dir git@github.com:hdoria/xcode-themes.git
+    pushd $repo_dir
+    for theme in *.dvtcolortheme
+        if not test -e $xcode_themes_dir/$theme
+            # Only copy new themes
+            cp -v $theme $xcode_themes_dir
+        end
+    end
+    popd
 end
