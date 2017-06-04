@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function op
-    cd ~/dev/ios/Octopad
+    pushd ~/dev/ios/Octopad
 end

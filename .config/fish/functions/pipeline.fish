@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function pipeline
-    cd ~/dev/gradle/PipelineGradlePlugin
+    pushd ~/dev/gradle/PipelineGradlePlugin
 end

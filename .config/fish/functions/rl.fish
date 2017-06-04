@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function rl
-    cd ~/dev/www/reflog/www
+    pushd ~/dev/www/reflog/www
 end

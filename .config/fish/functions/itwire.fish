@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function itwire
-    cd ~/dev/bluemix/ITWire
+    pushd ~/dev/bluemix/ITWire
 end

@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function flagship
-    cd ~/dev/ios/flagship
+    pushd ~/dev/ios/flagship
 end

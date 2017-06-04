@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function realm
-    cd ~/dev/realm
+    pushd ~/dev/realm
 end
