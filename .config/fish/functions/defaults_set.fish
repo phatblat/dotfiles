@@ -18,15 +18,15 @@ function defaults_set
     #
     # Keyboard
     #
-    defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
-    defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+    # https://github.com/mathiasbynens/dotfiles/issues/687
+    # Disable press-and-hold for keys in favor of key repeat.
+    defaults write -g ApplePressAndHoldEnabled -bool false
+    defaults write -g InitialKeyRepeat -int 15  # normal minimum is 15 (225 ms)
+    defaults write -g KeyRepeat -int 1          # normal minimum is 2 (30 ms)
 
     #
     # Finder
     #
-
-    # Disable press-and-hold for keys in favor of key repeat.
-    defaults write -g ApplePressAndHoldEnabled -bool false
 
     # Use AirDrop over every interface. srsly this should be a default.
     defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
@@ -34,15 +34,15 @@ function defaults_set
     # Always open everything in Finder's list view. This is important.
     defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
+    # Set the Finder prefs for showing a few different volumes on the Desktop.
+    defaults write com.apple.Finder ShowExternalHardDrivesOnDesktop -bool true
+    defaults write com.apple.Finder ShowRemovableMediaOnDesktop -bool true
+
+    # QuickLook text selection
+    defaults write com.apple.Finder QLEnableTextSelection -bool true
+
     # Show the ~/Library folder.
     chflags nohidden ~/Library
-
-    # Set a really fast key repeat.
-    defaults write NSGlobalDomain KeyRepeat -int 0
-
-    # Set the Finder prefs for showing a few different volumes on the Desktop.
-    defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-    defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
     #
     # Dock
@@ -63,7 +63,7 @@ function defaults_set
     defaults write com.apple.Safari IncludeDevelopMenu -bool true
     defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
     defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
-    defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+    defaults write -g WebKitDeveloperExtras -bool true
 
     #
     # Mail
@@ -73,9 +73,6 @@ function defaults_set
 
     #  - http://furbo.org/2014/09/03/xcode-vs-gatekeeper/
     alias ungate='xattr -d com.apple.quarantine '
-
-    # QuickLook text selection
-    defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
     # Invoke Duti to configure default apps (installed by brew)
     duti ~/.duti
