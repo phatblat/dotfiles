@@ -27,6 +27,7 @@ function 🍺__brew
         gradle \
         groovy \
         heroku \
+        hub \
         jq \
         jsonlint \
         less \
