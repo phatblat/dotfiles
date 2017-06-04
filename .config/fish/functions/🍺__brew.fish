@@ -17,6 +17,7 @@ function 🍺__brew
         cmake \
         coreutils \
         curl \
+        diff-so-fancy \
         direnv \
         duti \
         findutils \
