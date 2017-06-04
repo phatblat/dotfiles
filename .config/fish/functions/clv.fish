@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function clv
-    cd ~/dev/ios/CLVisitExplorer
+    pushd ~/dev/ios/CLVisitExplorer
 end

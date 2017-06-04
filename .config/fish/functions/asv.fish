@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function asv
-    cd ~/dev/markdown/AppleSoftwareVersions
+    pushd ~/dev/markdown/AppleSoftwareVersions
 end

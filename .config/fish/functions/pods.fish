@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function pods
-    cd ~/dev/ios/pods
+    pushd ~/dev/ios/pods
 end

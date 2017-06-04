@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function ebw
-    cd ~/dev/ios/EBW
+    pushd ~/dev/ios/EBW
 end

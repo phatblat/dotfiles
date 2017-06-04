@@ -1,4 +1,4 @@
 # Quick dir navigation.
 function sg
-    cd ~/dev/xcode/SwiftGen
+    pushd ~/dev/xcode/SwiftGen
 end
