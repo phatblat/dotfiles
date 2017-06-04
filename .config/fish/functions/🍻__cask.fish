@@ -68,6 +68,8 @@ function 🍻__cask
         quicklook-json \
         webpquicklook
 
+    # TEMP: Cask doesn't check whether fonts are installed. To speed up
+    # the upstall process, these are excluded for now.
     set -l fonts \
         caskroom/fonts/font-3270-nerd-font \
         caskroom/fonts/font-anonymouspro-nerd-font \
@@ -105,7 +107,9 @@ function 🍻__cask
         caskroom/fonts/font-terminus-nerd-font \
         caskroom/fonts/font-ubuntumono-nerd-font
 
-    set -l casks $apps $quicklook_plugins $fonts
+    # TODO: Re-enable $fonts on rundmg
+    set -l casks $apps $quicklook_plugins
+
     set -l uninstall battery-guardian cocoapods cocoapods-app textexpander things
 
     # --------------------------------------------------------------------------
