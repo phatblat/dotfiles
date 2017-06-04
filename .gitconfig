@@ -34,7 +34,7 @@
 [diff "l10n"]
     textconv = iconv -f utf-16 -t utf-8
 [core]
-	pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+	pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --pattern '^(Date|added|deleted|modified): '
 [hub]
     protocol = ssh
 [diff]
