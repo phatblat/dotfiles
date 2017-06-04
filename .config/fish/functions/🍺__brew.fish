@@ -31,6 +31,7 @@ function 🍺__brew
         hub \
         jq \
         jsonlint \
+        jsonpp \
         less \
         thoughtbot/formulae/liftoff \
         "macvim --with-override-system-vim" \
