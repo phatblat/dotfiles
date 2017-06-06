@@ -24,6 +24,7 @@ function 🍻__cask
         dbvisualizer \
         dash \
         dayone-cli \
+        disk-inventory-x \
         fauxpas \
         geekbench \
         gemini \
