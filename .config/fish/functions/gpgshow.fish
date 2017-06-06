@@ -1,5 +1,7 @@
-# 
+#
 function gpgshow
-    gpg --list-keys --keyid-format long $argv
+    gpg --list-keys \
+        --keyid-format short \
+        $argv
 end
 
