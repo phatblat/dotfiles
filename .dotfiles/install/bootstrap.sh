@@ -6,7 +6,7 @@
 # script for further one-time setup.
 #
 # Usage: Run the following command in a terminal:
-#   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/master/.dotfiles/install/bootstrap.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/master/.dotfiles/install/bootstrap.sh | bash
 #
 #-------------------------------------------------------------------------------
 
@@ -29,13 +29,13 @@ fi
 
 # Clone the .dotfiles repo into $HOME
 if [[ $PWD != $HOME ]]; then
-    push $HOME
+    pushd $HOME
 fi
 
 if git rev-parse --git-dir >/dev/null 2>&1; then
     echo "$HOME is already a git repo. Unable to bootstrap .dotfiles."
     exit 1
-end
+fi
 
 git init
 git remote add origin https://github.com/phatblat/dotfiles.git
