@@ -72,7 +72,7 @@ function 🍺__brew
     # Error: No available formula with the name "macvim --with-override-system-vim"
     set -l no_clean_formulae macvim ruby
 
-    set -l uninstall hub pivotal/tap/cloudfoundry-cli vim
+    set -l uninstall pivotal/tap/cloudfoundry-cli vim
 
     # --------------------------------------------------------------------------
     #
@@ -87,12 +87,12 @@ function 🍺__brew
     end
 
     # Verify the user owns the Homebrew dir.
-    if test $USER != (fileowner (brew_home))
-        if status is-login
-            echo "You must be the owner of "(brew_home)" to run this command."
-        end
-        return 1
-    end
+    # if test $USER != (fileowner (brew_home))
+    #     if status is-login
+    #         echo "You must be the owner of "(brew_home)" to run this command."
+    #     end
+    #     return 1
+    # end
 
     # Update Homebrew
     brew update
