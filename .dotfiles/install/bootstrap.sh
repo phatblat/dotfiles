@@ -51,3 +51,14 @@ git status
 git remote set-url origin git@github.com:phatblat/dotfiles.git
 
 echo "Dotfiles now installed at $HOME"
+
+which -s brew
+if [[ $? -ne 0 ]]; then
+   # Install Homebrew
+   echo "Installing Homebrew"
+   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+echo
+echo "Installing Fish Shell"
+brew install fish
