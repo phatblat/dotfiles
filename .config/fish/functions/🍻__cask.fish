@@ -134,6 +134,11 @@ function 🍻__cask
     #     return 1
     # end
 
+    if test '10.13' = (sw_vers -productVersion)
+        echo "Skipping Cask on highOS"
+        return 1
+    end
+
     # Update
     brew update
     set -l installed (brew cask list -1 ^/dev/null)
