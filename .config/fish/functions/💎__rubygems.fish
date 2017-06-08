@@ -30,6 +30,12 @@ function 💎__rubygems
 
     pushd ~
 
+    # Ensure bundler is installed
+    if not which -s bundle
+        error "Bundler is not installed"
+        reutrn 1
+    end
+
     # Update user gems
     bundle outdated
     bundle update
