@@ -36,7 +36,7 @@ function 💎__rubygems
     # Ensure bundler is installed
     if not which -s bundle
         error "Bundler is not installed"
-        reutrn 1
+        return 1
     end
 
     # Update user gems
