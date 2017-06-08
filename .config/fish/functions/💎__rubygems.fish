@@ -9,6 +9,9 @@ function 💎__rubygems
     echo "💎  Updating Ruby Gems"
     echo
 
+    # TODO: Install ruby using homebrew
+    # TODO: Check ownership of gemdir, require admin user only if using system ruby
+    # FIXME: Fix write permission on /usr/local/Cellar/ruby/2.4.1_1/bin/
     # Only admins can manage gems installed at the system level.
     if user_is_admin
         # Workaround to no access to /usr/bin on Sierra
@@ -29,6 +32,12 @@ function 💎__rubygems
     end
 
     pushd ~
+
+    # Ensure bundler is installed
+    if not which -s bundle
+        error "Bundler is not installed"
+        return 1
+    end
 
     # Update user gems
     bundle outdated
