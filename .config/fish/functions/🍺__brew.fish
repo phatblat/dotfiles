@@ -61,6 +61,7 @@ function 🍺__brew
         trash \
         tree \
         uncrustify \
+        utimer \
         vapor/tap/toolbox \
         wget \
         xctool \
