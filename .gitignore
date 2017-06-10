@@ -46,7 +46,7 @@ Pictures/
 Public/
 VirtualBox VMs/
 bin/
-dev/
+dev
 lib/
 mbox
 tmp/
