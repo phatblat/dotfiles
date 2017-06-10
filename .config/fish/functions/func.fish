@@ -1,5 +1,6 @@
-# Prints colorized, indented source of a loaded function.
 function func \
+    --description='Prints colorized, indented source of a loaded function.' \
+    --wraps functions \
         --argument-name name
     if test -z "$name"
         echo "Usage: func name"

@@ -1,5 +1,8 @@
-# Reloads fish configuration or a single autoloaded function.
-function reload --argument-names function_name
+function reload \
+    --description='Reloads a single function or the entire fish shell.' \
+    --wraps functions \
+    --argument-names function_name
+
     set -l file ~/.config/fish/functions/$function_name.fish
 
     if test -z $function_name
