@@ -52,7 +52,7 @@ set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
 " Mouse
-set mouse=a
+"set mouse=a
 
 let mapleader=","
 
