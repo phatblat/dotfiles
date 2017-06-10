@@ -1,5 +1,4 @@
 function moj_host --description='Prints an emoji for the current host.'
-
     set -l host (hostname)
     if string match '*.*' $host >/dev/null
         set -l tokens (string split '.' $host)
@@ -8,7 +7,7 @@ function moj_host --description='Prints an emoji for the current host.'
     end
 
     switch $host
-        case greymatter hi-c-era.local
+        case greymatter hi-c-era
             echo 💻
         case imac rundmg
             echo 🖥
