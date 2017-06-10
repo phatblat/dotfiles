@@ -1,6 +1,6 @@
-# 
+# Print system info
 function sysinfo
-      uname -a
-  sw_vers -productVersion
-  system_profiler SPSoftwareDataType $argv
+    uname -a
+    sw_vers -productVersion
+    system_profiler SPSoftwareDataType
 end
