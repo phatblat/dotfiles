@@ -11,8 +11,8 @@ function fish_title
     end
 
     # Show a short u:h (user/host) prefix
-    set -l user (string sub --length 1 $USER)
-    set -l host (string sub --length 1 (hostname))
+    set -l user (moj_user)
+    set -l host (moj_host)
     echo $user:$host' '
 
     set -l job $_
