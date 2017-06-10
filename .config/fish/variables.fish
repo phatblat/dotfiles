@@ -43,6 +43,7 @@ set --export OPENSSL_PATH (brew_home)/Cellar/openssl/$OPENSSL_VERSION/bin/openss
 
 # fish_user_paths
 set --global fish_user_paths \
+    ~/Library/Python/2.7/bin \
     /usr/local/sbin \
     /usr/local/opt/sqlite/bin \
     $fish_user_paths
