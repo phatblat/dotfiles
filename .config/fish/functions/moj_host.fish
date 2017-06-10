@@ -1,10 +1,10 @@
-function moj_host \
-    --description='Prints an emoji for the current host.'
+function moj_host --description='Prints an emoji for the current host.'
 
     set -l host (hostname)
-    if string match '*.*'
-        set domain (string split '.' #host)[2]
-        echo domain $domain
+    if string match '*.*' $host >/dev/null
+        set -l tokens (string split '.' $host)
+        set host $tokens[1]
+        set domain $tokens[2]
     end
 
     switch $host
