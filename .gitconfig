@@ -1,9 +1,22 @@
+[credential]
+    helper = osxkeychain
 [github]
     user = phatblat
-[alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+# Rewrite git:// URLs to use https:// scheme - this breaks an ObjectiveGit test
+#[url "https://"]
+#    insteadOf = git://
+[hub]
+    protocol = ssh
 [branch]
     autosetuprebase = always
+[rerere]
+    enabled = true
+[core]
+    pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+    #--HILITE-SEARCH
+    #--pattern '^(Date|added|deleted|modified|renamed): |\\* '
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [color]
     ui = true
     sh = auto
@@ -29,54 +42,42 @@
     dirty = red
     dirty-stash = red
     repo-state = red
-[push]
-    default = simple
-[diff "l10n"]
-    textconv = iconv -f utf-16 -t utf-8
-[core]
-    pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
-    #--HILITE-SEARCH
-    #--pattern '^(Date|added|deleted|modified|renamed): |\\* '
-[hub]
-    protocol = ssh
-[diff]
-    tool = Kaleidoscope
-    algorithm = patience
-[diff "plistbuddy"]
-    textconv = plistbuddy -c Print
-[difftool]
-    prompt = false
-[difftool "Kaleidoscope"]
-    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
-[merge]
-    tool = Kaleidoscope
-[mergetool]
-    keepBackup = false
-    prompt = false
-[mergetool "Kaleidoscope"]
-    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-    trustExitCode = true
-[mergetool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
-[filter "media"]
-    clean = git-media-clean %f
-    smudge = git-media-smudge %f
-[rerere]
-    enabled = true
-# Rewrite git:// URLs to use https:// scheme - this breaks an ObjectiveGit test
-#[url "https://"]
-#    insteadOf = git://
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-[credential]
-    helper = osxkeychain
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[push]
+    default = simple
+[diff]
+    tool = Kaleidoscope
+    algorithm = patience
+[diff "l10n"]
+    textconv = iconv -f utf-16 -t utf-8
+[diff "plistbuddy"]
+    textconv = plistbuddy -c Print
+[difftool]
+    prompt = false
+[difftool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[merge]
+    tool = Kaleidoscope
+[mergetool]
+    keepBackup = false
+    prompt = false
+[mergetool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+# FIXME: Is this still relevant? Maybe gem now: https://github.com/alebedev/git-media
+[filter "media"]
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
