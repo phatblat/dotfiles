@@ -1,1 +1,8 @@
+# Xcode project file
 *.pbxproj merge=union
+
+# Plist
+*.plist filter=xmlplist
+
+# Quartz patches are plists, too!
+*.qtz   filter=xmlplist
