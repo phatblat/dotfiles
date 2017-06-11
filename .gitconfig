@@ -81,3 +81,6 @@
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
+[filter "xmlplist"]
+    clean = git-plist-filter
+    smudge = git-plist-filter
