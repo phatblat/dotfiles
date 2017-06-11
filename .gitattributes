@@ -1,2 +1,1 @@
-*.plist diff=plistbuddy
-*.strings diff=l10n
+
