@@ -13,7 +13,7 @@ function fish_title
     # Show a short u:h (user/host) prefix
     set -l user (moj_user)
     set -l host (moj_host)
-    echo $user:$host' '
+    echo $user$host' '
 
     set -l job $_
 
