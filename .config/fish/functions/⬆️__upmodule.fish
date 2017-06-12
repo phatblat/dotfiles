@@ -28,8 +28,6 @@ function ⬆️__upmodule --argument-names module_function display_name include_
             eval $module_function
         else if contains -- $skip_flag $original_args
             echo $display_name" (skipped)"
-        else
-            eval $module_function
         end
     else
         echo "Usage: ⬆️__upmodule module_function [display_name include_flag skip_flag original_args]"

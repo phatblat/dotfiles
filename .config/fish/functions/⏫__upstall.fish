@@ -16,7 +16,6 @@ function ⏫__upstall
         set argv --norb --noxc --nobr --noca --nofm --nopy --nojs ---nopl -novi --notm --noos
     end
 
-
     ⬆️__upmodule 🗄__gitconfig
     ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems" ruby       --norb $argv
     ⬆️__upmodule 🔨__xcode       "🔨  Xcode"     xcode      --noxc $argv
