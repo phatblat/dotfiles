@@ -17,6 +17,7 @@ function 🍻__cask
     set -l apps \
         atom \
         back-in-time \
+        bluemix-cli \
         charles \
         cheatsheet \
         cleanmymac \
