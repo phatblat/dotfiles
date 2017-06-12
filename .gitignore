@@ -65,6 +65,7 @@ tmp/
 .atom/
 .bash_history
 .bash_sessions/
+.bluemix/
 # .bundle/
 .bundle/cache/
 .cache/
