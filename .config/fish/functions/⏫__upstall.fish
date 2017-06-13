@@ -8,12 +8,15 @@ function ⏫__upstall
     echo "⏫  Upstall (Last ran: "$last_ran")"
     date_iso8601 >$last_ran_file
 
-    if test -z "$argv"
-        # No args means run all
-        set argv ruby xcode brew cask fisherman pip npm powerline vundle textmate macos
-    else if contains -- --nothing $argv
+    if contains -- --nothing $argv
         # Smoke test
         set argv --norb --noxc --nobr --noca --nofm --nopy --nojs ---nopl -novi --notm --noos
+    else if test -z "$argv"
+        # No args means run all
+        set argv ruby xcode brew cask fisherman pip npm powerline vundle textmate macos
+    else if test '--' = (string sub --length 2 -- $argv[1])
+        # Skip flag passed
+        set argv $argv ruby xcode brew cask fisherman pip npm powerline vundle textmate macos
     end
 
     ⬆️__upmodule 🗄__gitconfig

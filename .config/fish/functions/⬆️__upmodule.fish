@@ -24,9 +24,15 @@ function ⬆️__upmodule --argument-names module_function display_name include_
         end
 
         repeatchar -
-        if contains -- $include_flag $original_args
+
+        if contains -- $skip_flag $original_args
+            # Skip module if skip flag was given
+            echo $display_name" (skipped)"
+        else if contains -- $include_flag $original_args
+            # Run module if asked for
             eval $module_function
-        else if contains -- $skip_flag $original_args
+        else
+            # Otherwise, skip
             echo $display_name" (skipped)"
         end
     else
