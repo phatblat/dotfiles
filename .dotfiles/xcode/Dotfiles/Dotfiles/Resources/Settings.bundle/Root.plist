@@ -4,7 +4,6 @@
 <dict>
 	<key>PreferenceSpecifiers</key>
 	<array>
-
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
@@ -17,7 +16,6 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
-
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>
