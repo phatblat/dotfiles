@@ -59,7 +59,6 @@ tmp/
 # Specific files
 .CFUserTextEncoding
 .Trash/
-.android/
 .antigen/
 .anyconnect
 .atom/
