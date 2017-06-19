@@ -43,12 +43,12 @@ softWrap         = false
 tabSize          = 4
 
 [ source.groovy ]
-showInvisibles   = false
+showInvisibles   = true
 softTabs         = true
 tabSize          = 4
 
 [ source.groovy.gradle ]
-showInvisibles   = false
+showInvisibles   = true
 softTabs         = true
 tabSize          = 4
 
