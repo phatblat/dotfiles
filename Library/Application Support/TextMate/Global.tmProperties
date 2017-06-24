@@ -65,11 +65,13 @@ tabSize          = 4
 
 [ text.html ]
 showInvisibles   = false
-softWrap         = false
+softWrap         = true
+tabSize          = 2
 
 [ text.html.markdown ]
 showInvisibles   = false
-softWrap         = false
+softWrap         = true
+tabSize          = 2
 
 [ text.plain ]
 showInvisibles   = false
