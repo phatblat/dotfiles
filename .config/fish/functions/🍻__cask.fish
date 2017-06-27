@@ -168,12 +168,12 @@ function 🍻__cask
     # --------------------------------------------------------------------------
 
     # Update installed casks
-    set -l outdated_output (brew cask outdated ^/dev/null)
-    # Example: charles (4.1.1) != 4.1.2
+    set -l outdated_casks (brew cask outdated ^/dev/null)
     echo Outdated:
-    list $outdated_output
+    list $outdated_casks
+    # Example: charles (4.1.1) != 4.1.2
     # Cut everything but the first column
-    set -l outdated_casks (echo $outdated_output\n | cut -f 1 -d ' ' -)
+    # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
     if test -n "$outdated_casks"
         brew cask reinstall --force $outdated_casks
     end
