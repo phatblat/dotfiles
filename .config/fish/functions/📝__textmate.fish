@@ -6,7 +6,7 @@ function 📝__textmate
     echo "📝  TextMate - https://github.com/textmate/textmate"
     echo
 
-    set -l bundles blackpearl dashmate editorconfig fish gradle tomorrow-theme ublime
+    set -l bundles blackpearl dashmate editorconfig fish gradle kotlin tomorrow-theme ublime
 
     set -l bundle_dev ~/dev/textmate
     set -l bundle_dir ~/Library/Application\ Support/TextMate/Bundles
@@ -58,6 +58,10 @@ function 📝__textmate
                 # https://github.com/alkemist/gradle.tmbundle
                 case gradle
                     clone_or_pull $bundle.tmbundle git@github.com:alkemist/gradle.tmbundle.git
+
+                case kotlin
+                    clone_or_pull $bundle git@github.com:sargunster/kotlin-textmate-bundle.git
+                    set bundle "$bundle/Kotlin"
 
                 # https://github.com/chriskempson/tomorrow-theme
                 case tomorrow-theme
