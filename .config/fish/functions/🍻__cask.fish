@@ -171,7 +171,7 @@ function 🍻__cask
     set -l outdated_output (brew cask outdated ^/dev/null)
     # Example: charles (4.1.1) != 4.1.2
     echo Outdated:
-    echo $outdated_output\n
+    list $outdated_output
     # Cut everything but the first column
     set -l outdated_casks (echo $outdated_output\n | cut -f 1 -d ' ' -)
     if test -n "$outdated_casks"
