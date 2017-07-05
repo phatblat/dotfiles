@@ -9,5 +9,7 @@ function ignores
         Carthage/ \
         Pods/ \
         .rubygems/ \
-        bin/
+        bin/ \
+        build/ \
+        .gradle/
 end
