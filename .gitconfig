@@ -19,10 +19,10 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [color]
     ui = true
-    sh = auto
-    branch = auto
-    diff = auto
-    status = auto
+ #   sh = auto
+ #   branch = auto
+ #   diff = auto
+ #   status = auto
 [color "branch"]
     current = yellow reverse
     local = yellow
