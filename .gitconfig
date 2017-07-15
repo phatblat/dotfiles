@@ -71,10 +71,10 @@
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
     trustExitCode = true
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
 # FIXME: Is this still relevant? Maybe gem now: https://github.com/alebedev/git-media
 [filter "media"]
     clean = git-media-clean %f
@@ -82,3 +82,8 @@
 [filter "xmlplist"]
     clean = git-plist-filter.sh
     smudge = git-plist-filter.sh
+[diff-so-fancy]
+    markEmptyLines = false
+    changeHunkIndicators = true
+    stripLeadingSymbols = true
+    useUnicodeRuler = true
