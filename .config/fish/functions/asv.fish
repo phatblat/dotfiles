@@ -1,4 +1,3 @@
-# Quick dir navigation.
-function asv
-    pushd ~/dev/markdown/AppleSoftwareVersions
+function asv --description='Quick nav to ApplePlatformVersions dir.'
+    pushd ~/dev/markdown/ApplePlatformVersions
 end
