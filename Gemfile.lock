@@ -105,7 +105,7 @@ GEM
       mime-types (~> 3.0)
       representable (~> 3.0)
       retriable (>= 2.0, < 4.0)
-    googleauth (0.5.2)
+    googleauth (0.5.3)
       faraday (~> 0.12)
       jwt (~> 1.4)
       logging (~> 2.0)
@@ -201,4 +201,4 @@ DEPENDENCIES
   zerg_xcode
 
 BUNDLED WITH
-   1.15.2
+   1.15.3
