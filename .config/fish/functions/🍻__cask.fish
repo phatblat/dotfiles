@@ -54,6 +54,7 @@ function 🍻__cask
         softraid \
         sublime-text \
         textmate \
+        the-unarchiver \
         thingsmacsandboxhelper \
         tower \
         transmit \
