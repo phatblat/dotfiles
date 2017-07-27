@@ -42,6 +42,8 @@ function 🐟__fisherman
 
     # Update installed plugins
     fisher update
+    # Restore the symlink to fisher.fish
+    git checkout ~/.config/fish/functions/fisher.fish
 
     # Install any missing plugins
     set -l installed (fisher ls -l)

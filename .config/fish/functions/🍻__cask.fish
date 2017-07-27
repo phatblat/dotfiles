@@ -15,6 +15,9 @@ function 🍻__cask
     echo
 
     set -l apps \
+        android-ndk \
+        android-sdk \
+        android-studio \
         atom \
         back-in-time \
         bluemix-cli \
@@ -51,6 +54,7 @@ function 🍻__cask
         softraid \
         sublime-text \
         textmate \
+        the-unarchiver \
         thingsmacsandboxhelper \
         tower \
         transmit \

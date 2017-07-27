@@ -19,19 +19,17 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [color]
     ui = true
-    sh = auto
-    branch = auto
-    diff = auto
-    status = auto
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
 [color "diff"]
-    meta = yellow bold
+    meta = 227
     frag = magenta bold
     old = red bold
     new = green bold
+    commit = 227 bold
+    whitespace = red reverse
 [color "status"]
     added = yellow
     changed = green
@@ -43,10 +41,10 @@
     dirty-stash = red
     repo-state = red
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 [push]
     default = simple
 [diff]
@@ -73,10 +71,10 @@
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
     trustExitCode = true
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
 # FIXME: Is this still relevant? Maybe gem now: https://github.com/alebedev/git-media
 [filter "media"]
     clean = git-media-clean %f
@@ -84,3 +82,8 @@
 [filter "xmlplist"]
     clean = git-plist-filter.sh
     smudge = git-plist-filter.sh
+[diff-so-fancy]
+    markEmptyLines = false
+    changeHunkIndicators = true
+    stripLeadingSymbols = true
+    useUnicodeRuler = true
