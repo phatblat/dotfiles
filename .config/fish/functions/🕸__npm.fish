@@ -22,7 +22,11 @@ function 🕸__npm
         return 1
     end
 
-    set -l global_packages fast-cli n ralio
+    set -l global_packages \
+        eslint \
+        fast-cli \
+        n \
+        ralio
 
     set -l installed_packages (npm list -g --depth=0)
     # Example output:
@@ -43,7 +47,7 @@ function 🕸__npm
     npm update -g
 
     # TODO: Refactor to only install missing packages
-    #npm install --global $global_packages
+    npm install --global $global_packages
 
     npm doctor
 end
