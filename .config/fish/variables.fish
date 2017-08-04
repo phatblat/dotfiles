@@ -25,6 +25,7 @@ end
 
 set --export ANDROID_HOME (brew_home)/share/android-sdk
 set --export ANDROID_SDK_ROOT (brew_home)/share/android-sdk
+set --export ANDROID_NDK_HOME (brew_home)/share/android-ndk
 set --export ARCHFLAGS "-arch x86_64"
 set --export GPG_TTY (tty)
 set --export GRADLE_HOME (brew_home gradle)/libexec
