@@ -52,7 +52,7 @@ function 🍺__brew
         shellcheck \
         sloccount \
         sourcekitten \
-        speedtest_cli \
+        speedtest-cli \
         kylef/formulae/swiftenv \
         swiftgen \
         swiftlint \
