@@ -82,19 +82,19 @@ function 🍺__brew
     #
     # --------------------------------------------------------------------------
 
+    # Verify the user owns the Homebrew dir.
+    if test $USER != (fileowner (brew_home))
+        if status is-login
+            echo "You must be the owner of "(brew_home)" to run this command."
+        end
+        return 1
+    end
+
     # Ensure Homebrew is installed.
     if not which -s brew
         echo "Installing Homebrew"
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
-
-    # Verify the user owns the Homebrew dir.
-    # if test $USER != (fileowner (brew_home))
-    #     if status is-login
-    #         echo "You must be the owner of "(brew_home)" to run this command."
-    #     end
-    #     return 1
-    # end
 
     # Update Homebrew
     brew update
