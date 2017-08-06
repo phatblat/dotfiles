@@ -10,6 +10,7 @@ function 🍺__brew
 
     set -l formulae \
         antigen \
+        artifactory \
         burl \
         carthage \
         cloc \
