@@ -30,6 +30,7 @@ function 🍺__brew
         groovy \
         heroku \
         hub \
+        jfrog-cli-go \
         jq \
         jsonlint \
         jsonpp \
