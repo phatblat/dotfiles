@@ -1,5 +1,10 @@
 # Switch the active version of Xcode.
 function xcswitch --argument-names version
+    if not user_is_admin
+        echo "You must be an admin to run this command."
+        return 1
+    end
+
     if test -z $version
         echo "Usage: xcswitch <version>"
         echo "Version format: 8.3.2"
