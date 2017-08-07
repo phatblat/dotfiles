@@ -14,6 +14,8 @@ function xcv --description='Displays the version of the currently selected Xcode
             set beta_version "beta 3 "
         case 9M189t
             set beta_version "beta 4 "
+        case 9M202q
+            set beta_version "beta 5 "
     end
 
 
