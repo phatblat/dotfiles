@@ -36,11 +36,11 @@ function 🍻__cask
         google-chrome \
         gpgtools \
         hipchat \
-        intellij-idea \
         ios-console \
         istat-menus \
         iterm2 \
         java \
+        jetbrains-toolbox \
         kaleidoscope \
         macdown \
         oclint \
