@@ -51,6 +51,33 @@ lib/
 mbox
 tmp/
 
+
+#-------------------------------------------------------------------------------
+# Config files
+
+# !.config/
+# NPM update notifier
+.config/configstore
+.config/direnv/
+# Include fish config files
+!.config/fish/
+.config/fish/completions/
+# [fishd] imac: a820663a2c5d, greymatter: a8667f043f9d
+.config/fish/fishd.*
+!.config/fish/fishfile
+!.config/fish/functions/*.fish
+.config/fish/h
+.config/fisherman/
+.config/git/config
+.config/git/gitk
+.config/git/ignore
+.config/gtk-2.0/
+.config/hub
+.config/thefuck/rules/chmod.pyc
+.config/thefuck/settings.pyc
+.config/upstall/last_run.*
+
+
 #-------------------------------------------------------------------------------
 # Hidden files and folders
 
@@ -74,27 +101,6 @@ tmp/
 .cisco/
 .cocoapods/
 .conche/
-# .config/
-# NPM update notifier
-.config/configstore
-.config/direnv/
-# Include fish config files
-!.config/fish/
-.config/fish/completions/
-# [fishd] imac: a820663a2c5d, greymatter: a8667f043f9d
-.config/fish/fishd.*
-!.config/fish/fishfile
-!.config/fish/functions/*.fish
-.config/fish/h
-.config/fisherman/
-.config/git/config
-.config/git/gitk
-.config/git/ignore
-.config/gtk-2.0/
-.config/hub
-.config/thefuck/rules/chmod.pyc
-.config/thefuck/settings.pyc
-.config/upstall/last_run.*
 .cups/
 .dbvis/
 .did_show_opt_info
@@ -108,14 +114,18 @@ tmp/
 .gnupg/
 .gradle/
 .groovy/
+.heroku/
 .idea/
 .iterm2/
 .iterm2_shell_integration.zsh
 .itmstransporter/
 .jenkins/
+.jenkins-hpl-map
 .lesshst
 # .liftoff/
+.lldb/module_cache/
 .local/
+.locks/
 .lumberjack/
 # .m2/
 .m2/repository/
@@ -123,6 +133,7 @@ tmp/
 .node-gyp/
 .node_repl_history
 .npm/
+.npm-cache/
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
 # tracking
@@ -133,6 +144,8 @@ tmp/
 # .powerline/
 .pry_history
 .putty/
+.ralio_recent
+.raliorc
 .rbenv/
 .rnd
 .rubygems/
