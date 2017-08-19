@@ -27,8 +27,9 @@ function ⏫__upstall
     ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" fisherman  --nofm $argv
     ⬆️__upmodule 🐍__pip         "🐍  PIP"       pip        --nopy $argv
     ⬆️__upmodule 🕸__npm         "🕸  NPM"       npm        --nojs $argv
-    ⬆️__upmodule ▶️__powerline   "▶️  Powerline" powerline  --nopl $argv
+    ⬆️__upmodule ▶️__powerline   "▶️  Powerline"  powerline  --nopl $argv
     ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    vundle     --novi $argv
     ⬆️__upmodule 📝__textmate    "📝  TextMate"  textmate   --notm $argv
+    ⬆️__upmodule ⚛️__apm         "⚛️  APM"       apm        --noap $argv
     ⬆️__upmodule 🖥__macos       "🖥  macOS"     macos      --noos $argv
 end
