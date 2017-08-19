@@ -7,7 +7,7 @@
 
 # Editor
 set --export EDITOR_CLI "vim" # vi vim
-set --export EDITOR_GUI "mate" # subl atom mvim
+set --export EDITOR_GUI "atom" # atom mate mvim subl
 set --export CLI_WAIT_FLAG "-f"
 set --export GUI_WAIT_FLAG "-w"
 
