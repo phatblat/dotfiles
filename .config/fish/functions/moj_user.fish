@@ -7,7 +7,7 @@ function moj_user \
         case 'ben'
             echo 🚶
         case 'chatelain'
-            echo 👨🏻‍💻
+            echo 👨🏻‍🚀
         case 'phatblat'
             echo 🎧
         case '*'
