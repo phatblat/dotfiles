@@ -24,6 +24,7 @@ function 🕸__npm
 
     set -l global_packages \
         eslint \
+        express-generator \
         fast-cli \
         n \
         ralio
