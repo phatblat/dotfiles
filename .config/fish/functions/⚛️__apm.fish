@@ -8,7 +8,9 @@ function ⚛️__apm
     echo
 
     set -l packages \
+        build \
         build-gradle \
+        busy \
         dash \
         language-fish-shell \
         language-gradle \
