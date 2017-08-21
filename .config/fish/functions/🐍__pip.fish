@@ -26,8 +26,11 @@ function 🐍__pip
     #     return 2
     # end
 
-    set -l global_packages powerline-status Pygments \
-        # powerline-status fork
+    set -l global_packages \
+        doc2dash \
+        powerline-status \
+        Pygments \
+        # gitstatus segment fork for powerline-status
         'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing'
 
     # Update pip
