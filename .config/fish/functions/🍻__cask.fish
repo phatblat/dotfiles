@@ -11,7 +11,7 @@
 # - Requires ruby, but works with system ruby.
 # - Seems logical to run after brew, but not actually required.
 function 🍻__cask
-    echo "🍻  Homebrew Cask - https://caskroom.github.io"
+    echo "🍻  Homebrew Cask"
     echo
 
     set -l apps \
@@ -139,10 +139,10 @@ function 🍻__cask
     #     return 1
     # end
 
-    if test '10.13' = (sw_vers -productVersion)
-        echo "Skipping Cask on highOS"
-        return 1
-    end
+    # if test '10.13' = (sw_vers -productVersion)
+    #     echo "Skipping Cask on highOS"
+    #     return 1
+    # end
 
     # Update
     brew update
