@@ -8,12 +8,17 @@ function ⚛️__apm
     echo
 
     set -l packages \
+        build \
+        build-gradle \
+        busy \
         dash \
         language-fish-shell \
+        language-gradle \
         merge-conflicts \
         minimap \
         octocat-syntax \
         pigments \
+        ruby-bundler \
         script \
         spell-check-project \
         spell-check-test \
