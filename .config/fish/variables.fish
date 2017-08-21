@@ -41,6 +41,8 @@ set --export LANGUAGE en_US.UTF-8
 set --export LC_ALL en_US.UTF-8
 set --export LC_CTYPE en_US.UTF-8
 set --export OPENSSL_PATH (brew_home openssl)/bin/openssl
+set --export REALM_OBJECT_SERVER_VERSION 1.8.3
+set --export REALM_OBJECT_SERVER_PATH ~/dev/realm/_releases/realm-mobile-platform-$REALM_OBJECT_SERVER_VERSION
 
 # fish_user_paths
 set --global fish_user_paths \
