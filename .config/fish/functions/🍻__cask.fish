@@ -48,6 +48,7 @@ function 🍻__cask
         omnipresence \
         paw \
         quickradar \
+        realm-browser \
         screens \
         screens-connect \
         simpholders \
