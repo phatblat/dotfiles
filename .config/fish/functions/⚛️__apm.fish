@@ -10,10 +10,12 @@ function ⚛️__apm
     set -l packages \
         build \
         build-gradle \
+        build-npm-apm \
         busy \
         dash \
         language-fish-shell \
         language-gradle \
+        linter \
         merge-conflicts \
         minimap \
         octocat-syntax \
