@@ -13,6 +13,7 @@ function ⚛️__apm
         build-npm-apm \
         busy \
         dash \
+        groovy \
         language-fish-shell \
         language-gradle \
         linter \
