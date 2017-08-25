@@ -25,9 +25,10 @@ function ⚛️__apm
         script \
         spell-check-project \
         spell-check-test \
-        vim-mode
+        vim-mode-plus
 
-    set -l uninstall
+    set -l uninstall \
+        vim-mode
 
     set -l installed
     set -l installed_with_version (apm list --installed --bare)
