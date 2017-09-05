@@ -60,6 +60,8 @@ function 🍻__cask
         tower \
         transmit \
         virtualbox \
+        visual-studio \
+        visual-studio-code \
         vmware-fusion
 
     set -l quicklook_plugins \
