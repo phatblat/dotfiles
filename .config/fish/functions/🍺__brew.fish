@@ -21,6 +21,8 @@ function 🍺__brew
         curl \
         diff-so-fancy \
         direnv \
+        docker \
+        docker-compose \
         duti \
         findutils \
         git \
