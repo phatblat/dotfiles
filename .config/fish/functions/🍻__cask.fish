@@ -18,6 +18,7 @@ function 🍻__cask
         android-ndk \
         android-sdk \
         android-studio \
+        anka-flow \
         atom \
         back-in-time \
         bluemix-cli \
