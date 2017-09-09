@@ -51,6 +51,7 @@ function 🍺__brew
         pacvim \
         postgresql \
         python \
+        qemu \
         rename \
         ruby \
         screenresolution \
