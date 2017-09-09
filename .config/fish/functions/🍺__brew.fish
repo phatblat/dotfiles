@@ -57,6 +57,7 @@ function 🍺__brew
         screenresolution \
         shellcheck \
         sloccount \
+        socat \
         sourcekitten \
         speedtest-cli \
         kylef/formulae/swiftenv \
