@@ -8,7 +8,8 @@ function ⏫__upstall
     echo "⏫  Upstall (Last ran: "$last_ran")"
     date_iso8601 >$last_ran_file
 
-    set -l all_modules ruby xcode brew cask fisherman pip npm powerline vundle textmate apm macos
+    # TEMP: xcode removed until 9 goes GA
+    set -l all_modules ruby brew cask fisherman pip npm powerline vundle textmate apm macos
 
     if contains -- --nothing $argv
         # Smoke test
