@@ -104,6 +104,7 @@ tmp/
 .cups/
 .dbvis/
 .did_show_opt_info
+.docker/
 # Include .dotfiles
 !.dotfiles/
 .dropbox/
