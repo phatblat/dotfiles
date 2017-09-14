@@ -33,6 +33,7 @@ function 🍺__brew
         groovy \
         heroku \
         hub \
+        infer \
         jfrog-cli-go \
         jq \
         jsonlint \
