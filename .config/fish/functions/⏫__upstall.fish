@@ -9,8 +9,7 @@ function ⏫__upstall
     date_iso8601 >$last_ran_file
 
     # Disabled by default: textmate
-    # TEMP: xcode removed until 9 goes GA
-    set -l all_modules ruby brew cask fisherman pip npm powerline vundle apm macos
+    set -l all_modules ruby xcode brew cask fisherman pip npm powerline vundle apm macos
 
     if contains -- --nothing $argv
         # Smoke test
