@@ -18,8 +18,9 @@ function xcv --description='Displays the version of the currently selected Xcode
             set beta_version "beta 5 "
         case 9M214v
             set beta_version "beta 6 "
-        case 9A235
-            set beta_version "GM seed "
+        # 9.0 GA is the same build as the GM seed.
+        # case 9A235
+        #     set beta_version "GM seed "
     end
 
 
