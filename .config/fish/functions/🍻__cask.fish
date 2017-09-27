@@ -34,7 +34,6 @@ function 🍻__cask
         docker-toolbox \
         fauxpas \
         geekbench \
-        gemini \
         github-desktop \
         google-chrome \
         gpgtools \
