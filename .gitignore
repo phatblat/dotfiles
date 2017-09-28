@@ -113,6 +113,7 @@ tmp/
 .gem/
 .git/
 .gnupg/
+.gnupg_pre_2.1/
 .gradle/
 .groovy/
 .heroku/
