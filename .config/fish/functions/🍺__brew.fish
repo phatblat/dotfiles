@@ -65,6 +65,7 @@ function 🍺__brew
         swiftgen \
         swiftlint \
         tailor \
+        telnet \
         terminal-notifier \
         thefuck \
         trash \
