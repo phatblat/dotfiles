@@ -20,5 +20,6 @@ done
 
 echo ".dotfiles loaded"
 
+
 ### Added by the Bluemix CLI
 source /usr/local/Bluemix/bx/zsh_autocomplete
