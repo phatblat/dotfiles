@@ -32,7 +32,8 @@ set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GRADLE_OPTS -Xmx1g
 set --export GRADLE_HEAP_SPACE -Xmx1g
 set --export GROOVY_HOME (brew_home groovy)/libexec
-set --export JAVA_HOME (/usr/libexec/java_home)
+# Use Java 8 for not until 9 is more stable
+set --export JAVA_HOME (/usr/libexec/java_home -v 1.8)
 set --export JAVA_OPTS "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
 set --export ICLOUD_HOME "~/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
