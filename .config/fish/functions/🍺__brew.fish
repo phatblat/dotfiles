@@ -64,6 +64,7 @@ function 🍺__brew
         kylef/formulae/swiftenv \
         swiftgen \
         swiftlint \
+        swiftplate \
         tailor \
         telnet \
         terminal-notifier \
