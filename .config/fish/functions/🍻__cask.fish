@@ -119,7 +119,22 @@ function 🍻__cask
         caskroom/fonts/font-sourcecodepro-nerd-font \
         caskroom/fonts/font-spacemono-nerd-font \
         caskroom/fonts/font-terminus-nerd-font \
-        caskroom/fonts/font-ubuntumono-nerd-font
+        caskroom/fonts/font-ubuntumono-nerd-font \
+        caskroom/fonts/font-anonymice-powerline \
+        caskroom/fonts/font-source-code-pro-for-powerline \
+        caskroom/fonts/font-monofur-for-powerline \
+        caskroom/fonts/font-inconsolata-dz-for-powerline \
+        caskroom/fonts/font-inconsolata-for-powerline \
+        caskroom/fonts/font-liberation-mono-for-powerline \
+        caskroom/fonts/font-menlo-for-powerline \
+        caskroom/fonts/font-inconsolata-g-for-powerline \
+        caskroom/fonts/font-consolas-for-powerline \
+        caskroom/fonts/font-fira-mono-for-powerline \
+        caskroom/fonts/font-meslo-for-powerline \
+        caskroom/fonts/font-dejavu-sans-mono-for-powerline \
+        caskroom/fonts/font-roboto-mono-for-powerline \
+        caskroom/fonts/font-droid-sans-mono-for-powerline \
+        caskroom/fonts/font-ubuntu-mono-derivative-powerline
 
     # TODO: Re-enable $fonts on rundmg
     set -l casks $apps $quicklook_plugins
