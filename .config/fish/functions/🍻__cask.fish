@@ -46,6 +46,7 @@ function 🍻__cask
         java \
         jetbrains-toolbox \
         kaleidoscope \
+        licecap \
         macdown \
         oclint \
         omnigraffle \
