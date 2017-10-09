@@ -69,6 +69,7 @@ function 🍺__brew
         telnet \
         terminal-notifier \
         thefuck \
+        tig \
         trash \
         tree \
         uncrustify \
