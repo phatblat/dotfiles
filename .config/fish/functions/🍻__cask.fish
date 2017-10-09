@@ -38,6 +38,7 @@ function 🍻__cask
         gitup \
         google-chrome \
         gpgtools \
+        hex-fiend \
         hipchat \
         ios-console \
         istat-menus \
