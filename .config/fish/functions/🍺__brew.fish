@@ -14,6 +14,7 @@ function 🍺__brew
         babel \
         burl \
         carthage \
+        certbot \
         cloc \
         cloudfoundry/tap/cf-cli \
         cmake \
