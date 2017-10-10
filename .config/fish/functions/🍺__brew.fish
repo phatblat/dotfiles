@@ -28,6 +28,7 @@ function 🍺__brew
         findutils \
         git \
         git-lfs \
+        gitkraken \
         gnupg \
         goaccess \
         gradle \
