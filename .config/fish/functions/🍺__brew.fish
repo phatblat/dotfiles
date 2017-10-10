@@ -30,7 +30,6 @@ function 🍺__brew
         fortune \
         git \
         git-lfs \
-        gitkraken \
         gnupg \
         goaccess \
         gradle \
