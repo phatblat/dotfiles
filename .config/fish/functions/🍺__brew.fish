@@ -27,6 +27,7 @@ function 🍺__brew
         docker-compose \
         duti \
         findutils \
+        fortune \
         git \
         git-lfs \
         gitkraken \
