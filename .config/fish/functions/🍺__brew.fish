@@ -49,6 +49,7 @@ function 🍺__brew
         nginx \
         ninja \
         node \
+        nvm \
         packer \
         pacvim \
         postgresql \
