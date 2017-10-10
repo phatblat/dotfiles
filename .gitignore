@@ -136,6 +136,7 @@ tmp/
 .node_repl_history
 .npm/
 .npm-cache/
+.nvm/
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
 # tracking
