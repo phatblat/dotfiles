@@ -112,6 +112,7 @@ tmp/
 .fastlane_crash_reporting
 .gem/
 .git/
+.gitkraken/
 .gnupg/
 .gnupg_pre_2.1/
 .gradle/
@@ -191,3 +192,4 @@ zadd.awk
 
 # Everything is excluded by default
 # *
+
