@@ -19,6 +19,7 @@ function 🍺__brew
         cloudfoundry/tap/cf-cli \
         cmake \
         coreutils \
+        cowsay \
         curl \
         diff-so-fancy \
         direnv \
