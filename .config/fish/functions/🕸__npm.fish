@@ -23,7 +23,6 @@ function 🕸__npm
     end
 
     set -l global_packages \
-        cowsay \
         eslint \
         express-generator \
         fast-cli \
