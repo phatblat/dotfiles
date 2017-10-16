@@ -9,6 +9,7 @@ function ⚛️__apm
 
     set -l packages \
         atom-ide-ui \
+        bottom-dock \
         build \
         build-npm-apm \
         busy \
