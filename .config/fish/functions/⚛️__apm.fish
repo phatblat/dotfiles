@@ -10,11 +10,11 @@ function ⚛️__apm
     set -l packages \
         atom-ide-ui \
         build \
-        build-gradle \
         build-npm-apm \
         busy \
         dash \
         groovy \
+        gradle-manager \
         ide-html \
         ide-java \
         ide-json \
@@ -34,6 +34,7 @@ function ⚛️__apm
         vim-mode-plus
 
     set -l uninstall \
+        build-gradle \
         vim-mode
 
     set -l installed
