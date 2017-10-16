@@ -13,7 +13,6 @@ function ⚛️__apm
         build-npm-apm \
         busy \
         dash \
-        groovy \
         gradle-manager \
         ide-html \
         ide-java \
@@ -22,6 +21,7 @@ function ⚛️__apm
         ide-yaml \
         language-fish-shell \
         language-gradle \
+        language-groovy \
         linter \
         merge-conflicts \
         minimap \
