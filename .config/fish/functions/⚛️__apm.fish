@@ -69,7 +69,7 @@ function ⚛️__apm
     # --------------------------------------------------------------------------
 
     # Update installed packages
-    apm outdated --list; or apm update
+    test (apm upgrade --list --json | jq length) -eq 0; or apm upgrade --no-confirm
 
     # Install new formula
     set -l not_installed
