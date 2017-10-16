@@ -8,12 +8,18 @@ function ⚛️__apm
     echo
 
     set -l packages \
+        atom-ide-ui \
         build \
         build-gradle \
         build-npm-apm \
         busy \
         dash \
         groovy \
+        ide-html \
+        ide-java \
+        ide-json \
+        ide-typescript \
+        ide-yaml \
         language-fish-shell \
         language-gradle \
         linter \
