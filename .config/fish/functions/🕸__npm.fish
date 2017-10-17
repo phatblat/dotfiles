@@ -28,6 +28,7 @@ function 🕸__npm
         fast-cli \
         n \
         ralio \
+        realm-cli \
         realm-object-server \
         ts2kt
 
