@@ -46,11 +46,12 @@ Pictures/
 Public/
 VirtualBox VMs/
 bin/
+data/
 dev
 lib/
 mbox
+realm-object-server/
 tmp/
-
 
 #-------------------------------------------------------------------------------
 # Config files
