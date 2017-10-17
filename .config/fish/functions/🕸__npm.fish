@@ -28,6 +28,7 @@ function 🕸__npm
         fast-cli \
         n \
         ralio \
+        realm-object-server \
         ts2kt
 
     set -l installed_packages (npm list -g --depth=0)
