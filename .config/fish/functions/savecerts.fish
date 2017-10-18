@@ -29,7 +29,7 @@ function savecerts --argument-names hostname port
     #echo $hostname.der (stat -f%z $hostnane.der) bytes
 
     # Clean up temp PEM file
-    rm $hostname.pem
+    # rm $hostname.pem
 
     echo Certificate saved to file: $hostname.der
 end
