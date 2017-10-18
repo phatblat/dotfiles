@@ -109,6 +109,7 @@ tmp/
 # Include .dotfiles
 !.dotfiles/
 .dropbox/
+.emulator_console_auth_token
 .fastlane/
 .fastlane_crash_reporting
 .gem/
