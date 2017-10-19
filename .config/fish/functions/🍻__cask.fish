@@ -22,6 +22,7 @@ function 🍻__cask
         atom \
         back-in-time \
         bluemix-cli \
+        cardhop \
         charles \
         cheatsheet \
         cleanmymac \
