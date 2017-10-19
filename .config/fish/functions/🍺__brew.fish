@@ -15,6 +15,7 @@ function 🍺__brew
         burl \
         carthage \
         certbot \
+        vitorgalvao/tiny-scripts/cask-repair \
         cloc \
         cloudfoundry/tap/cf-cli \
         cmake \
