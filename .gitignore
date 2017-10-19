@@ -156,6 +156,7 @@ tmp/
 .rnd
 .rubygems/
 .slocdata/
+.sonar/
 .spaceship/
 .sqlite_history
 .ssh/
