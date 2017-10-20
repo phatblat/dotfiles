@@ -23,6 +23,7 @@ else
     set --erase EDITOR
 end
 
+# Upper case
 set --export ANDROID_HOME (brew_home)/share/android-sdk
 set --export ANDROID_SDK_ROOT (brew_home)/share/android-sdk
 set --export ANDROID_NDK_HOME (brew_home)/share/android-ndk
@@ -44,6 +45,9 @@ set --export LC_CTYPE en_US.UTF-8
 set --export OPENSSL_PATH (brew_home openssl)/bin/openssl
 set --export REALM_OBJECT_SERVER_VERSION 1.8.3
 set --export REALM_OBJECT_SERVER_PATH ~/dev/realm/_releases/realm-mobile-platform-$REALM_OBJECT_SERVER_VERSION
+
+# Lower case
+set --export github_user phatblat
 
 # fish_user_paths
 set --global fish_user_paths \
