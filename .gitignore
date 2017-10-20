@@ -165,6 +165,7 @@ tmp/
 # .uncrustify/
 .vim/
 .viminfo
+.vscode/
 .wget-hsts
 .z
 .zcompcache/
