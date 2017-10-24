@@ -167,6 +167,7 @@ tmp/
 .viminfo
 .vscode/
 .wget-hsts
+.yjp/
 .z
 .zcompcache/
 .zcompdump*
