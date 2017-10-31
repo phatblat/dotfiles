@@ -56,6 +56,7 @@ function 🍻__cask
         paw \
         quickradar \
         realm-browser \
+        realm-studio \
         screens \
         screens-connect \
         simpholders \
