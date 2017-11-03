@@ -126,6 +126,7 @@ tmp/
 .itmstransporter/
 .jenkins/
 .jenkins-hpl-map
+.konan/
 .lesshst
 # .liftoff/
 .lldb/module_cache/
