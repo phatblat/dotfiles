@@ -6,8 +6,8 @@ function ruby_upgrade --description='Upgrades ruby across major versions'
     brew install ruby
     brew link --overwrite ruby
 
-    bak /usr/local/lib/ruby/gems/2.4.0/gems
-    bak /usr/local/lib/ruby/gems/2.4.0/extensions
+    rm -rf /usr/local/lib/ruby/gems/2.4.0/gems
+    rm -rf /usr/local/lib/ruby/gems/2.4.0/extensions
 
     set -l tmpfile (mktemp /tmp/ruby_upgrade.XXXXXX)
     gem --version >/dev/null 2> $tmpfile
