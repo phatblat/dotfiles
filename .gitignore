@@ -164,6 +164,7 @@ tmp/
 .subversion/
 .synx/
 # .uncrustify/
+.tooling/
 .vim/
 .viminfo
 .vscode/
