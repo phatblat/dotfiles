@@ -28,4 +28,5 @@ function ruby_upgrade --description='Upgrades ruby across major versions'
     rm $tmpfile
 
     gem update --system
+    binstall
 end
