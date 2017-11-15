@@ -136,6 +136,7 @@ tmp/
 .lumberjack/
 # .m2/
 .m2/repository/
+.mono/
 .netrc
 .node-gyp/
 .node_repl_history
