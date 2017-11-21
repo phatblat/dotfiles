@@ -64,6 +64,7 @@ function 🍺__brew
         shellcheck \
         sloccount \
         socat \
+        sonar-scanner \
         sourcekitten \
         speedtest-cli \
         kylef/formulae/swiftenv \
