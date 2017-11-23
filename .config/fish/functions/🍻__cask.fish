@@ -46,6 +46,7 @@ function 🍻__cask
         iterm2 \
         java \
         jetbrains-toolbox \
+        jira-client \
         kaleidoscope \
         licecap \
         macdown \
