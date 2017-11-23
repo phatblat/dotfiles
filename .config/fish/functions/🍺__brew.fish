@@ -32,6 +32,7 @@ function 🍺__brew
         git \
         git-lfs \
         gnupg \
+        go-jira \
         goaccess \
         gradle \
         groovy \
