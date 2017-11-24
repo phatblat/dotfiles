@@ -1,6 +1,6 @@
 function gradle_wrapper --argument-names version --description='Upstalls the gradle wrapper'
     if test -z "$version"
-        set version 4.3.1
+        set version (gv)
     end
 
     gradle wrapper --gradle-version $version

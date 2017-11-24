@@ -1,5 +1,5 @@
 function gradle_wrapper_add --description="Updates the build.gradle and runs the wrapper task."
-    set gradleVersion 4.3.1
+    set gradleVersion (gv)
 
     # Configure the wrapper task.
     # https://github.com/fish-shell/fish-shell/issues/540#issuecomment-52779637
