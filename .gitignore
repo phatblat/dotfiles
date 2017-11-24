@@ -87,6 +87,7 @@ tmp/
 
 # Specific files
 .CFUserTextEncoding
+.JIRAClient/
 .Trash/
 .android/
 !.android/repositories.cfg
