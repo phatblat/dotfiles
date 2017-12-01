@@ -65,6 +65,7 @@ function 🍻__cask
         textmate \
         the-unarchiver \
         thingsmacsandboxhelper \
+        timing \
         tower \
         transmit \
         virtualbox \
