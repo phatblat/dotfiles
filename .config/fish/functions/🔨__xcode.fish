@@ -30,6 +30,9 @@ function 🔨__xcode
     set -l newest_version $installed[-1]
     if not string match "*(installed)" $newest_version
         xcversion install $newest_version --no-show-release-notes
+
+        # Clean out old simulators
+        xcrun simctl delete unavailable
     end
 
     echo
