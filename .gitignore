@@ -1,73 +1,75 @@
-#-------------------------------------------------------------------------------
-# Finder
-.DS_Store
 
-#-------------------------------------------------------------------------------
-# Bundler is configured to install home dir gems into ~/.rubygems
-.rubygems/
-
-*.swp
-gradlew.bat
-*.padl
-
-#-------------------------------------------------------------------------------
-# Xcode
-*.xccheckout
-*.xcscmblueprint
-xcuserdata
-Carthage/
-Pods/
-
-#-------------------------------------------------------------------------------
-# Directories and files containing sensitive info
-.envrc
-.raliorc/
-mobot-scripts
-private/
-
-#-------------------------------------------------------------------------------
-# Standard user directories
-
-Applications/
-Backup/
-Box Sync/
-Desktop/
-Documents/
-Downloads/
-Dropbox/
-# Fastlane/
-Fastlane/report.xml
-IdeaProjects/
-Library/
-Minecraft/
-Movies/
-Music/
-OmniPresence
-Pictures/
-Public/
-VirtualBox VMs/
-bin/
-data/
-dev
-lib/
-mbox
-realm-object-server/
-tmp/
-
-#-------------------------------------------------------------------------------
-# Config files
-
-# !.config/
-# NPM update notifier
-.config/configstore
-.config/direnv/
-# Include fish config files
+!.android/repositories.cfg
 !.config/fish/
-.config/fish/completions/
-# [fishd] imac: a820663a2c5d, greymatter: a8667f043f9d
-.config/fish/fishd.*
 !.config/fish/fishfile
 !.config/fish/functions/*.fish
+!.dotfiles/
+!.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
+!.oh-my-zsh/themes/agnoster-phatblat.zsh-theme
+# !.config/
+# *
+# .bundle/
+# .liftoff/
+# .m2/
+# .powerline/
+# .uncrustify/
+# Bundler is configured to install home dir gems into ~/.rubygems
+# Config files
+# Directories and files containing sensitive info
+# Everything is excluded by default
+# Fastlane/
+# Finder
+# Fisherman installed symlinks .config/fish/functions/*.fish
+# Hidden files and folders
+# Include .dotfiles
+# Include fish config files
+# NPM update notifier
+# Specific files
+# Standard user directories
+# TODO: Find pattern to exclude everything else.
+# Xcode
+# [fishd] imac: a820663a2c5d, greymatter: a8667f043f9d
+# tracking
+#-------------------------------------------------------------------------------
+*.padl
+*.swp
+*.xccheckout
+*.xcscmblueprint
+.*history
+.CFUserTextEncoding
+.DS_Store
+.JIRAClient/
+.Trash/
+.android/
+.antigen/
+.anyconnect
+.atom/
+.bash_history
+.bash_sessions/
+.bluemix/
+.bundle/cache/
+.cache/
+.cf/
+.cisco/
+.cocoapods/
+.conche/
+.config/configstore
+.config/direnv/
+.config/fish/completions/
+.config/fish/conf.d/done.fish
+.config/fish/conf.d/z.fish
+.config/fish/fishd.*
+.config/fish/functions/__z.fish
+.config/fish/functions/__z_add.fish
+.config/fish/functions/__z_complete.fish
+.config/fish/functions/__zo.fish
+.config/fish/functions/fish_logo.fish
+.config/fish/functions/get.fish
+.config/fish/functions/getopts.fish
+.config/fish/functions/humanize_duration.fish
+.config/fish/functions/mock.fish
+.config/fish/functions/z.awk
+.config/fish/functions/zadd.awk
 .config/fish/h
 .config/fisherman/
 .config/git/config
@@ -78,40 +80,13 @@ tmp/
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
 .config/upstall/last_run.*
-
-
-#-------------------------------------------------------------------------------
-# Hidden files and folders
-
-.*history
-
-# Specific files
-.CFUserTextEncoding
-.JIRAClient/
-.Trash/
-.android/
-!.android/repositories.cfg
-.antigen/
-.anyconnect
-.atom/
-.bash_history
-.bash_sessions/
-.bluemix/
-# .bundle/
-.bundle/cache/
-.cache/
-.cf/
-.cisco/
-.cocoapods/
-.conche/
 .cups/
 .dbvis/
 .did_show_opt_info
 .docker/
-# Include .dotfiles
-!.dotfiles/
 .dropbox/
 .emulator_console_auth_token
+.envrc
 .fastlane/
 .fastlane_crash_reporting
 .gem/
@@ -126,36 +101,31 @@ tmp/
 .iterm2/
 .iterm2_shell_integration.zsh
 .itmstransporter/
-.jenkins/
 .jenkins-hpl-map
+.jenkins/
 .konan/
 .lesshst
-# .liftoff/
 .lldb/module_cache/
 .local/
 .locks/
 .lumberjack/
-# .m2/
 .m2/repository/
 .mono/
 .netrc
 .node-gyp/
 .node_repl_history
-.npm/
 .npm-cache/
+.npm/
 .nvm/
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
-# tracking
-!.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
-!.oh-my-zsh/themes/agnoster-phatblat.zsh-theme
 .oracle_jre_usage/
 .phantomjs/
-# .powerline/
 .pry_history
 .putty/
 .ralio_recent
 .raliorc
+.raliorc/
 .rbenv/
 .rnd
 .rubygems/
@@ -166,7 +136,6 @@ tmp/
 .ssh/
 .subversion/
 .synx/
-# .uncrustify/
 .tooling/
 .vim/
 .viminfo
@@ -178,28 +147,33 @@ tmp/
 .zcompdump*
 .zsh-update
 .zsh_history
-
-
-#-------------------------------------------------------------------------------
-# Fisherman installed symlinks .config/fish/functions/*.fish
-.config/fish/functions/__z.fish
-.config/fish/functions/__z_add.fish
-.config/fish/functions/__z_complete.fish
-.config/fish/functions/__zo.fish
-.config/fish/conf.d/done.fish
-.config/fish/functions/fish_logo.fish
-.config/fish/functions/get.fish
-.config/fish/functions/getopts.fish
-.config/fish/functions/humanize_duration.fish
-.config/fish/functions/mock.fish
-.config/fish/functions/z.awk
-.config/fish/conf.d/z.fish
-.config/fish/functions/zadd.awk
-
-
-#-------------------------------------------------------------------------------
-# TODO: Find pattern to exclude everything else.
-
-# Everything is excluded by default
-# *
-
+Applications/
+Backup/
+Box Sync/
+Carthage/
+Desktop/
+Documents/
+Downloads/
+Dropbox/
+Fastlane/report.xml
+IdeaProjects/
+Library/
+Minecraft/
+Movies/
+Music/
+OmniPresence
+Pictures/
+Pods/
+Public/
+VirtualBox VMs/
+bin/
+data/
+dev
+gradlew.bat
+lib/
+mbox
+mobot-scripts
+private/
+realm-object-server/
+tmp/
+xcuserdata
