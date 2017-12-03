@@ -182,19 +182,19 @@ tmp/
 
 #-------------------------------------------------------------------------------
 # Fisherman installed symlinks .config/fish/functions/*.fish
-__z.fish
-__z_add.fish
-__z_complete.fish
-__zo.fish
-done.fish
-fish_logo.fish
-get.fish
-getopts.fish
-humanize_duration.fish
-mock.fish
-z.awk
-z.fish
-zadd.awk
+.config/fish/functions/__z.fish
+.config/fish/functions/__z_add.fish
+.config/fish/functions/__z_complete.fish
+.config/fish/functions/__zo.fish
+.config/fish/conf.d/done.fish
+.config/fish/functions/fish_logo.fish
+.config/fish/functions/get.fish
+.config/fish/functions/getopts.fish
+.config/fish/functions/humanize_duration.fish
+.config/fish/functions/mock.fish
+.config/fish/functions/z.awk
+.config/fish/conf.d/z.fish
+.config/fish/functions/zadd.awk
 
 
 #-------------------------------------------------------------------------------
