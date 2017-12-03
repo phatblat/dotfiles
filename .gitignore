@@ -6,31 +6,6 @@
 !.dotfiles/
 !.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
 !.oh-my-zsh/themes/agnoster-phatblat.zsh-theme
-# !.config/
-# *
-# .bundle/
-# .liftoff/
-# .m2/
-# .powerline/
-# .uncrustify/
-# Bundler is configured to install home dir gems into ~/.rubygems
-# Config files
-# Directories and files containing sensitive info
-# Everything is excluded by default
-# Fastlane/
-# Finder
-# Fisherman installed symlinks .config/fish/functions/*.fish
-# Hidden files and folders
-# Include .dotfiles
-# Include fish config files
-# NPM update notifier
-# Specific files
-# Standard user directories
-# TODO: Find pattern to exclude everything else.
-# Xcode
-# [fishd] imac: a820663a2c5d, greymatter: a8667f043f9d
-# tracking
-#-------------------------------------------------------------------------------
 *.padl
 *.swp
 *.xccheckout
