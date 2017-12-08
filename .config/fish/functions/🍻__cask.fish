@@ -61,6 +61,7 @@ function 🍻__cask
         screens-connect \
         simpholders \
         softraid \
+        stride \
         sublime-text \
         textmate \
         the-unarchiver \
