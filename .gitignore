@@ -141,6 +141,7 @@ Pictures/
 Pods/
 Public/
 VirtualBox VMs/
+__z_clean.fish
 bin/
 data/
 dev
