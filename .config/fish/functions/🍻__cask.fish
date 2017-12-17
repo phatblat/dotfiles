@@ -66,7 +66,6 @@ function 🍻__cask
         textmate \
         the-unarchiver \
         thingsmacsandboxhelper \
-        timing \
         tower \
         transmit \
         virtualbox \
@@ -144,7 +143,7 @@ function 🍻__cask
     # TODO: Re-enable $fonts on rundmg
     set -l casks $apps $quicklook_plugins
 
-    set -l uninstall battery-guardian cocoapods cocoapods-app textexpander things
+    set -l uninstall battery-guardian cocoapods cocoapods-app textexpander things timing
 
     # --------------------------------------------------------------------------
     #
