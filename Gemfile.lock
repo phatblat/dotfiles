@@ -171,7 +171,7 @@ GEM
       unicode-display_width (~> 1.1, >= 1.1.1)
     thread_safe (0.3.6)
     trollop (2.1.2)
-    tty-screen (0.6.3)
+    tty-screen (0.6.4)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
     uber (0.1.0)
