@@ -72,7 +72,8 @@ function 🍻__cask
         virtualbox \
         visual-studio \
         visual-studio-code \
-        vmware-fusion
+        vmware-fusion \
+        xmarks-safari
 
     set -l quicklook_plugins \
         betterzipql \
