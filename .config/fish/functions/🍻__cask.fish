@@ -53,6 +53,7 @@ function 🍻__cask
         oclint \
         omnigraffle \
         omnipresence \
+        paste \
         paw \
         quickradar \
         realm-browser \
