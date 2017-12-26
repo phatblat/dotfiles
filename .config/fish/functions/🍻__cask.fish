@@ -145,7 +145,8 @@ function 🍻__cask
     # TODO: Re-enable $fonts on rundmg
     set -l casks $apps $quicklook_plugins
 
-    set -l uninstall battery-guardian cocoapods cocoapods-app textexpander things timing
+    set -l uninstall battery-guardian cocoapods cocoapods-app sublime-text-dev \
+        textexpander things timing
 
     # --------------------------------------------------------------------------
     #
