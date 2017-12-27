@@ -29,6 +29,7 @@ function 🍺__brew
         duti \
         findutils \
         fortune \
+        gcovr \
         git \
         git-lfs \
         gnupg \
