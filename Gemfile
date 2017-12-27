@@ -5,6 +5,7 @@ gem 'cocoapods'
 gem 'fastlane'
 gem 'lolcat'
 gem 'rake'
+gem 'slather'
 #gem 'sqlite3'
 gem 'xcode-install'
 gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
