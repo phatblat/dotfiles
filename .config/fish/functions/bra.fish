@@ -1,4 +1,4 @@
 # List all git branches.
 function bra
-    git branch -av $argv
+    git branch -avv $argv
 end
