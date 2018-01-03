@@ -85,6 +85,7 @@ function 🍺__brew
         vapor/tap/toolbox \
         wget \
         xctool \
+        yarn \
         $custom_shells
 
     set -l formulae_no_flags (list -s $formulae)
