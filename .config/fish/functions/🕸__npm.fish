@@ -30,8 +30,7 @@ function 🕸__npm
         ralio \
         realm-cli \
         realm-object-server \
-        ts2kt \
-        yarn
+        ts2kt
 
     set -l installed_packages (npm list -g --depth=0)
     # Example output:
