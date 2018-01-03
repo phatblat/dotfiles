@@ -147,6 +147,7 @@ data/
 dev
 gradlew.bat
 lib/
+logs/
 mbox
 mobot-scripts
 private/
