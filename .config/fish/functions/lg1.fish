@@ -1,3 +1,10 @@
-function lg1 --wraps='lg' --description='Alias of lg -1'
-    lg -1 $argv
+function lg1 --description='Pretty history graph with one commit'
+    git log \
+        -1 \
+        --graph \
+        --abbrev-commit \
+        --date=relative \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+        $argv
 end
+
