@@ -73,6 +73,7 @@
 .groovy/
 .heroku/
 .idea/
+.install4j
 .iterm2/
 .iterm2_shell_integration.zsh
 .itmstransporter/
