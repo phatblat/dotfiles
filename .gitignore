@@ -107,6 +107,7 @@
 .rubygems/
 .slocdata/
 .sonar/
+.sonarlint/
 .spaceship/
 .sqlite_history
 .ssh/
