@@ -118,6 +118,7 @@
 .viminfo
 .vscode/
 .wget-hsts
+.yarnrc
 .yjp/
 .z
 .zcompcache/
