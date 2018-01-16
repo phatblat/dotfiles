@@ -32,6 +32,7 @@ function 🍻__cask
         disk-inventory-x \
         docker \
         docker-toolbox \
+        duet \
         fauxpas \
         geekbench \
         github-desktop \
