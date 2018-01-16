@@ -1,14 +1,14 @@
-# Edit dotfiles.
-function dotfiles
+function dotfiles --description='Edit dotfiles.' \
+        --argument-names=type
     set -l dotfiles ~/.dotfiles/
     set -l fishfiles ~/.config/fish/
 
-    if test -z "$argv"
+    if test -z "$type"
         edit $dotfiles $fishfiles
         return
     end
 
-    switch $argv[1]
+    switch $type
         case . dot dotfiles
             edit $dotfiles
         case fish fishfiles
