@@ -1,11 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'activesupport', '~> 4'
 gem 'cocoapods'
 gem 'fastlane'
 gem 'lolcat'
 gem 'rake'
-gem 'slather'
 #gem 'sqlite3'
 gem 'xcode-install'
 gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
