@@ -15,8 +15,9 @@ function firewalladd
 
     if test -e $app_binary
         echo "Adding $app_binary to the firewall"
-        sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add $app_binary
-        sudo /usr/libexec/ApplicationFirewall/socketfilterfw --unblockapp $app_binary
+        firewall --add $app_binary
+        firewall --unblockapp $app_binary
+        firewall_toggle
         return 0
     end
 

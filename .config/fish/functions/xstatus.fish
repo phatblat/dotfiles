@@ -1,7 +1,6 @@
 # Displays nginx process information.
 function xstatus --wraps ps
     ps \
-        # Columns
         -o user \
         -o pid \
         -o '%cpu' \
