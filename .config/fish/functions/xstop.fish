@@ -1,4 +1,4 @@
 # Stops nginx.
 function xstop
-    nginx -s stop $argv
+    sudo nginx -s stop $argv
 end
