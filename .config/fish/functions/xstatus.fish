@@ -1,5 +1,8 @@
 # Displays nginx process information.
 function xstatus --wraps ps
+    psgrep nginx
+    return
+
     ps \
         -o user \
         -o pid \
