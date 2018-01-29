@@ -136,7 +136,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_magick (4.5.1)
-    minitest (5.11.2)
+    minitest (5.11.3)
     molinillo (0.6.4)
     multi_json (1.13.1)
     multi_xml (0.6.0)
