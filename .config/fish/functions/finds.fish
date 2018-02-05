@@ -19,5 +19,7 @@ function finds --argument-names search_term base_dir
 
     echo "search_term: $search_term"
     echo "base_dir: $base_dir"
-    find $base_dir -name $search_term -print
+    echo "-----------------------------------"
+
+    find "$base_dir" -name "*$search_term*" -print
 end
