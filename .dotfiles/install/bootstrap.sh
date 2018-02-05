@@ -24,7 +24,9 @@ fi
 xcode-select -p
 xcode-select --install
 if [[ $? -eq 0 ]]; then
-  open https://developer.apple.com/downloads/
+    open https://developer.apple.com/downloads/
+    echo "Click the Install button to install the Xcode Command-Line Tools, then re-run this script."
+    exit 1
 fi
 
 # Clone the .dotfiles repo into $HOME
