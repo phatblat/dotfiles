@@ -36,7 +36,7 @@ function 🍻__cask
         fauxpas \
         geekbench \
         github \
-        github-pulse \
+        githubpulse \
         gitkraken \
         gitup \
         google-chrome \
