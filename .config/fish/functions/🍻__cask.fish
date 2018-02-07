@@ -35,7 +35,7 @@ function 🍻__cask
         duet \
         fauxpas \
         geekbench \
-        github-desktop \
+        github \
         gitkraken \
         gitup \
         google-chrome \
