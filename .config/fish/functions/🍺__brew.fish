@@ -80,6 +80,7 @@ function 🍺__brew
         thefuck \
         tig \
         trash \
+        travis \
         tree \
         uncrustify \
         utimer \
