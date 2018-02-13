@@ -27,6 +27,7 @@ function 🐍__pip
 
     set -l global_packages \
         doc2dash \
+        lizard \
         powerline-status \
         Pygments \
         # gitstatus segment fork for powerline-status
