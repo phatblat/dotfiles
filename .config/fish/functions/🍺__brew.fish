@@ -59,7 +59,7 @@ function 🍺__brew
         packer \
         pacvim \
         postgresql \
-        python \
+        python3 \
         qemu \
         rename \
         ruby \
@@ -96,7 +96,7 @@ function 🍺__brew
     # Error: No available formula with the name "macvim --with-override-system-vim"
     set -l no_clean_formulae macvim ruby
 
-    set -l uninstall android-sdk pivotal/tap/cloudfoundry-cli vim
+    set -l uninstall android-sdk pivotal/tap/cloudfoundry-cli python vim
 
     # --------------------------------------------------------------------------
     #
