@@ -11,11 +11,10 @@ function 🐍__pip
     echo
 
     # Ensure PIP is installed.
-    if not which -s pip
+    if not which -s pip3
         error "PIP is not installed."
         return 1
     end
-
 
     # # Verify the user owns the site-packages dir.
     # set -l site_packages /usr/local/lib/python2.7/site-packages
@@ -34,13 +33,13 @@ function 🐍__pip
         'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing'
 
     # Update pip
-    pip install --upgrade pip
+    pip3 install --upgrade pip setuptools wheel
 
     # TODO: Uninstall packages
     # TODO: Only install missing packages
     # Install packages
-    pip install --user --ignore-installed --upgrade --upgrade-strategy eager $global_packages
+    pip3 install --user --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
     # List installed packages
-    pip list
+    pip3 list
 end
