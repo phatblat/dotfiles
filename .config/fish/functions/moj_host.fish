@@ -11,7 +11,7 @@ function moj_host --description='Prints an emoji for the current host.'
             echo 💻
         case 'hi-c-era*'
             echo 🌋
-        case imac 'rundmg*'
+        case imac octodec 'rundmg*'
             echo 🖥
         case mini
             echo ⌨️
