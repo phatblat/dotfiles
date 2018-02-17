@@ -10,6 +10,7 @@ function 🗒__vundle
     echo "🗒  Vundle"
     echo
 
+    # Source repos
     set -l vim_dev          ~/dev/vim
     set -l vim_autoload     ~/.vim/autoload
     set -l vim_bundle_dir   ~/.vim/bundle
@@ -34,6 +35,16 @@ function 🗒__vundle
     # Symlink the plug.vim file into the autoload dir
     if not test -L $plug_autoload
         ln -sfv $plug_dir/plug.vim $plug_autoload
+    end
+
+    # brew.vim
+    set -l brew_dir         $vim_dev/brew.vim
+    set -l brew_autoload    $vim_autoload/brew.vim
+    clone_or_pull $brew_dir git@github.com:xu-cheng/brew.vim
+
+    # Symlink the .vim file into the autoload dir
+    if not test -L $brew_autoload
+        ln -sfv $plug_dir/brew.vim $brew_autoload
     end
 
     # Install vim-plug plugins
