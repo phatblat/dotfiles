@@ -59,7 +59,7 @@ function 🍺__brew
         packer \
         pacvim \
         postgresql \
-        python \
+        python3 \
         qemu \
         rename \
         ruby \
@@ -80,6 +80,7 @@ function 🍺__brew
         thefuck \
         tig \
         trash \
+        travis \
         tree \
         uncrustify \
         utimer \

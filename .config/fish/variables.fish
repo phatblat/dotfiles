@@ -51,13 +51,19 @@ set --export github_user phatblat
 
 # fish_user_paths
 set --global fish_user_paths \
-    ~/Library/Python/2.7/bin \
     /usr/local/sbin \
     /usr/local/opt/sqlite/bin \
     $fish_user_paths
 
 # PATH
 set --export --global PATH ./bin ~/bin (brew_home curl)/bin $ANDROID_HOME/tools/bin $PATH
+
+for python_version in 2.7 3.6
+    set --local python_bin_path ~/Library/Python/$python_version/bin
+    if test -d $python_bin_path
+        set --export --global PATH $PATH $python_bin_path
+    end
+end
 
 # ls color formatting - LS_COLWIDTHS
 #

@@ -103,6 +103,7 @@
 .raliorc
 .raliorc/
 .rbenv/
+.rest-client/
 .rnd
 .rubygems/
 .slocdata/
