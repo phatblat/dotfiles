@@ -27,6 +27,7 @@ function 🕸__npm
         express-generator \
         fast-cli \
         gitmoji-cli \
+        jshint \
         n \
         ralio \
         realm-cli \
