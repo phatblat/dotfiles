@@ -40,7 +40,7 @@ function 🍻__cask
         gitkraken \
         gitup \
         google-chrome \
-        gpgtools \
+        gpg-suite \
         hex-fiend \
         hipchat \
         ios-console \
@@ -57,7 +57,6 @@ function 🍻__cask
         omnipresence \
         paste \
         paw \
-        quickradar \
         realm-browser \
         realm-studio \
         screens \
@@ -78,7 +77,6 @@ function 🍻__cask
         xmarks-safari
 
     set -l quicklook_plugins \
-        betterzipql \
         provisioning \
         qlcolorcode \
         qlimagesize \
