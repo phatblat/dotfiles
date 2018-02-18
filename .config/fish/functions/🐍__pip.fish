@@ -39,7 +39,7 @@ function 🐍__pip
     # TODO: Uninstall packages
     # TODO: Only install missing packages
     # Install packages
-    pip3 install --user --ignore-installed --upgrade --upgrade-strategy eager $global_packages
+    pip3 install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
     # List installed packages
     pip3 list
