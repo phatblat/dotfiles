@@ -10,9 +10,12 @@ function brew_edit --argument-names token version
     end
 
     # /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/jenkins.rb
-    pushd (brew_home)
+    # brew --repository homebrew/core
+    pushd (brew_home)/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+    # TODO: Add/update fork
+
     git checkout master
-    git pull
+    git pull origin master
     git checkout -b $branch
 
     if brew info $token >/dev/null 2>&1
@@ -23,7 +26,15 @@ function brew_edit --argument-names token version
         brew create $token
     end
 
+    brew tests
     brew install --build-from-source $token
+    brew test $token
     brew audit --strict $token
+
+    # TODO: Commit
+    #git commit -m "$token $version"
+    # TODO: Publish branch
+    #git push --set-upstream phatblat $branch
+    # TODO: Open PR with hub
 end
 
