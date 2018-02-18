@@ -215,10 +215,14 @@ set t_Co=256
 
 let g:minBufExplForceSyntaxEnable = 1
 
+" FIXME: powerline is working despite the broken python lines below
+" E319: Sorry, the command is not available in this version: python3
+"let g:pymode_python = 'python3'
+
 " https://powerline.readthedocs.io/en/latest/usage/other.html#vim-statusline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+"python3 from powerline.vim import setup as powerline_setup
+"python3 powerline_setup()
+"python3 del powerline_setup
 
 if ! has('gui_running')
    set ttimeoutlen=10
