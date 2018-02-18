@@ -207,13 +207,15 @@ set shell=/bin/bash     " for fish shell
 "
 "-------------------------------------------------------------------------------
 " pip show powerline-status
-set runtimepath+=/usr/local/lib/python2.7/site-packages/bindings/vim
+set runtimepath+=/usr/local/lib/python3.6/site-packages/powerline/bindings/vim
 
 " These lines setup the environment to show graphics and colors correctly.
 set nocompatible
 set t_Co=256
 
 let g:minBufExplForceSyntaxEnable = 1
+
+" https://powerline.readthedocs.io/en/latest/usage/other.html#vim-statusline
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
