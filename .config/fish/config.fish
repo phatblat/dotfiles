@@ -53,12 +53,23 @@ if status is-interactive
 
         # http://powerline.readthedocs.io/en/latest/commands/daemon.html
         powerline-daemon --quiet
+
         # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
-        set -l python_packages  /usr/local/lib/python2.7/site-packages \
-                                ~/Library/Python/2.7/lib/python/site-packages
-        for folder in $python_packages
-            set fish_function_path $fish_function_path $folder/powerline/bindings/fish
+
+        # Python setup so we can start powerline
+        for python_version in 2.7 3.6
+            # Include system and user packages
+            for python_bin_path in /usr/local/lib/python$python_version/site-packages \
+                                   ~/Library/Python/$python_version/bin
+                if test -d $python_bin_path
+                    set --export --global PATH $PATH $python_bin_path
+                    if test -d $python_bin_path/powerline/bindings/fish
+                        set fish_function_path $fish_function_path $python_bin_path/powerline/bindings/fish
+                    end
+                end
+            end
         end
+
         powerline-setup # fish function in powerline/bindings/fish
     end
 
