@@ -27,6 +27,7 @@ function brew_edit --argument-names token version
     end
 
     brew tests
+    brew uninstall $token
     brew install --build-from-source $token
     brew test $token
     brew audit --strict $token
