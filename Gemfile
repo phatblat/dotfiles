@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'cocoapods'
 gem 'fastlane'
+gem 'json_pure' # Needed by https://github.com/junegunn/vim-github-dashboard
 gem 'lolcat'
 gem 'rake'
 #gem 'sqlite3'

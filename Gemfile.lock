@@ -124,6 +124,7 @@ GEM
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     json (2.1.0)
+    json_pure (2.1.0)
     jwt (2.1.0)
     little-plugger (1.1.4)
     logging (2.2.2)
@@ -206,6 +207,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods
   fastlane
+  json_pure
   lolcat
   net-scp
   net-ssh
