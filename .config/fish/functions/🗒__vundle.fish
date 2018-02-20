@@ -27,26 +27,6 @@ function 🗒__vundle
     and ./install.py --clang-completer
     and popd
 
-    # Vim-plug
-    set -l plug_dir         $vim_dev/vim-plug
-    set -l plug_autoload    $vim_autoload/plug.vim
-    clone_or_pull $plug_dir git@github.com:junegunn/vim-plug.git
-
-    # Symlink the plug.vim file into the autoload dir
-    if not test -L $plug_autoload
-        ln -sfv $plug_dir/plug.vim $plug_autoload
-    end
-
-    # brew.vim
-    set -l brew_dir         $vim_dev/brew.vim
-    set -l brew_autoload    $vim_autoload/brew.vim
-    clone_or_pull $brew_dir git@github.com:xu-cheng/brew.vim
-
-    # Symlink the .vim file into the autoload dir
-    if not test -L $brew_autoload
-        ln -sfv $plug_dir/brew.vim $brew_autoload
-    end
-
     # Install vim-plug plugins
     vim +PluginInstall +qall
 end

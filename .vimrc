@@ -152,13 +152,23 @@ set t_vb=
 " https://github.com/junegunn/vim-plug
 "
 "-------------------------------------------------------------------------------
+" Auto-install - https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
-" Swift
+" Brew syntax - https://github.com/xu-cheng/brew.vim
+Plug 'xu-cheng/brew.vim'
+
+" Swift syntax - https://github.com/keith/swift.vim
 Plug 'keith/swift.vim'
 
-" Using git URL
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+" FIXME: GitHub Dashboard - https://github.com/junegunn/vim-github-dashboard
+Plug 'junegunn/vim-github-dashboard'
 
 " Add plugins to &runtimepath
 call plug#end()
