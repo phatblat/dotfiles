@@ -57,7 +57,7 @@ if status is-interactive
         # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
 
         # Python setup so we can start powerline
-        for python_version in 2.7 3.6
+        for python_version in 3.6 # 2.7
             # Include system and user packages
             for python_bin_path in /usr/local/lib/python$python_version/site-packages \
                                    ~/Library/Python/$python_version/bin
