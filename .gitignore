@@ -115,6 +115,7 @@
 .subversion/
 .synx/
 .tooling/
+.travis/
 .vim/
 .viminfo
 .vscode/

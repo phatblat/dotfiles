@@ -29,3 +29,6 @@ export NVM_DIR="$HOME/.nvm"
 
 ### Added by the Bluemix CLI
 source /usr/local/Bluemix/bx/zsh_autocomplete
+
+# added by travis gem
+[ -f /Users/chatelain/.travis/travis.sh ] && source /Users/chatelain/.travis/travis.sh
