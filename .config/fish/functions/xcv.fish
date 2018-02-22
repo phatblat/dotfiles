@@ -6,12 +6,12 @@ function xcv --description='Displays the version of the currently selected Xcode
     set -l beta_version
 
     switch $build_version
-        #    9.0    9.1  9.2
-        case 9M136h 9B37 9C32c
+        #    9.0    9.1  9.2   9.3
+        case 9M136h 9B37 9C32c 9Q98q
             set beta_version "beta 1 "
-        case 9M137d 9B46 9C34b
+        case 9M137d 9B46 9C34b 9Q107o
             set beta_version "beta 2 "
-        case 9M174d
+        case 9M174d           9Q98q
             set beta_version "beta 3 "
         case 9M189t
             set beta_version "beta 4 "
