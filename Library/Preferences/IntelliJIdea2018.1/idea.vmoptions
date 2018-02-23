@@ -1,7 +1,7 @@
 # custom IntelliJ IDEA VM options
 
 -Xms128m
--Xmx750m
+-Xmx2g
 -XX:ReservedCodeCacheSize=240m
 -XX:+UseCompressedOops
 -Dfile.encoding=UTF-8
