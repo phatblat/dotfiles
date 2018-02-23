@@ -1,5 +1,4 @@
 function ignore \
-        --argument-names new_ignore \
         --description='Adds lines to .gitignore'
 
     set -l gitignore (root)/.gitignore
@@ -15,9 +14,9 @@ function ignore \
         echo "Creating .gitignore"
     end
 
-    if test -n "$new_ignore"
-        set ignore_list $new_ignore $ignore_list
-        set commit_message "Ignore $new_ignore"
+    if test -n "$argv"
+        set ignore_list $argv $ignore_list
+        set commit_message "Ignore $argv"
     end
 
     for pattern in $ignore_list
