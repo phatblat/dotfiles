@@ -77,7 +77,7 @@ function 🍻__cask
         xmarks-safari
 
     set -l quicklook_plugins \
-        provisioning \
+        provisionql \
         qlcolorcode \
         qlimagesize \
         qlmarkdown \
