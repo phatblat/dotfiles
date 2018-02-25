@@ -68,7 +68,6 @@ function 🍻__cask
         textmate \
         the-unarchiver \
         thingsmacsandboxhelper \
-        tmux \
         tower \
         transmit \
         veertu \
