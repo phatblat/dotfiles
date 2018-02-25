@@ -79,6 +79,7 @@ function 🍺__brew
         terminal-notifier \
         thefuck \
         tig \
+        tmux \
         trash \
         travis \
         tree \
