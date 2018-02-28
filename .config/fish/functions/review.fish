@@ -20,7 +20,7 @@
 #     next placeholders until the color is switched again.
 #
 function review --argument-names commit
-    set -l format 'commit:    %Cgreen%h%Creset
+    set -l format 'commit:    %Cgreen%H%Creset
 date:      %Cgreen%ar%Creset
 author:    %Cgreen%an%Creset <%Cgreen%ae%Creset>
 committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
