@@ -184,12 +184,13 @@ function 🍺__brew
     end
 
     # Ruby
-    set -l desired_ruby 2.4.2_1
+    set -l desired_ruby 2.5.0_2
     set -l ruby_versions (brew_versions ruby)
     if not test $desired_ruby = (brew_active_version ruby)
         if contains -- $desired_ruby $ruby_versions
             brew switch ruby $desired_ruby
             brew link --overwrite ruby
+            brew unlink ruby && brew link --overwrite ruby
 
             # May need to purge old gems
             # http://stackoverflow.com/questions/9434002/how-to-solve-ruby-installation-is-missing-psych-error#answer-43843417
