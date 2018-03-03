@@ -8,8 +8,8 @@ function ⏫__upstall
     echo "⏫  Upstall (Last ran: "$last_ran")"
     date_iso8601 >$last_ran_file
 
-    # Disabled by default: textmate
-    set -l all_modules ruby xcode brew cask fisherman pip npm powerline vundle apm macos
+    # Disabled by default: textmate xcode fisherman
+    set -l all_modules ruby brew cask pip npm powerline vundle apm macos
 
     if contains -- --nothing $argv
         # Smoke test
@@ -23,16 +23,16 @@ function ⏫__upstall
     end
 
     ⬆️__upmodule 🗄__gitconfig
-    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems" ruby       --norb $argv
-    ⬆️__upmodule 🔨__xcode       "🔨  Xcode"     xcode      --noxc $argv
-    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"  brew       --nobr $argv
-    ⬆️__upmodule 🍻__cask        "🍻  Cask"      cask       --noca $argv
-    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman" fisherman  --nofm $argv
-    ⬆️__upmodule 🐍__pip         "🐍  PIP"       pip        --nopy $argv
-    ⬆️__upmodule 🕸__npm         "🕸  NPM"       npm        --nojs $argv
+    ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems"  ruby       --norb $argv
+    ⬆️__upmodule 🔨__xcode       "🔨  Xcode"      xcode      --noxc $argv
+    ⬆️__upmodule 🍺__brew        "🍺  Homebrew"   brew       --nobr $argv
+    ⬆️__upmodule 🍻__cask        "🍻  Cask"       cask       --noca $argv
+    ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman"  fisherman  --nofm $argv
+    ⬆️__upmodule 🐍__pip         "🐍  PIP"        pip        --nopy $argv
+    ⬆️__upmodule 🕸__npm         "🕸  NPM"        npm        --nojs $argv
     ⬆️__upmodule ▶️__powerline   "▶️  Powerline"  powerline  --nopl $argv
-    ⬆️__upmodule 🗒__vundle      "🗒  Vundle"    vundle     --novi $argv
-    ⬆️__upmodule 📝__textmate    "📝  TextMate"  textmate   --notm $argv
-    ⬆️__upmodule ⚛️__apm         "⚛️  APM"       apm        --noap $argv
-    ⬆️__upmodule 🖥__macos       "🖥  macOS"     macos      --noos $argv
+    ⬆️__upmodule 🗒__vundle      "🗒  Vundle"     vundle     --novi $argv
+    ⬆️__upmodule 📝__textmate    "📝  TextMate"   textmate   --notm $argv
+    ⬆️__upmodule ⚛️__apm         "⚛️  APM"        apm        --noap $argv
+    ⬆️__upmodule 🖥__macos       "🖥  macOS"      macos      --noos $argv
 end
