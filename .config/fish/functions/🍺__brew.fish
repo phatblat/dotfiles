@@ -190,7 +190,7 @@ function 🍺__brew
         if contains -- $desired_ruby $ruby_versions
             brew switch ruby $desired_ruby
             brew link --overwrite ruby
-            brew unlink ruby && brew link --overwrite ruby
+            brew unlink ruby; and brew link --overwrite ruby
 
             # May need to purge old gems
             # http://stackoverflow.com/questions/9434002/how-to-solve-ruby-installation-is-missing-psych-error#answer-43843417
