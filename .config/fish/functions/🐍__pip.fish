@@ -11,7 +11,7 @@ function 🐍__pip
     echo
 
     # Ensure PIP is installed.
-    if not which -s pip3
+    if not which -s pip
         error "PIP is not installed."
         return 1
     end
@@ -34,13 +34,13 @@ function 🐍__pip
         'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing'
 
     # Update pip
-    pip3 install --upgrade pip setuptools wheel
+    pip install --upgrade pip setuptools wheel
 
     # TODO: Uninstall packages
     # TODO: Only install missing packages
     # Install packages
-    pip3 install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
+    pip install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
     # List installed packages
-    pip3 list
+    pip list
 end
