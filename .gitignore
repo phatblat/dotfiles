@@ -27,6 +27,7 @@
 .cache/
 .cf/
 .cisco/
+.classpath
 .cocoapods/
 .conche/
 .config/configstore
@@ -98,6 +99,7 @@
 .oh-my-zsh/themes/*
 .oracle_jre_usage/
 .phantomjs/
+.project
 .pry_history
 .putty/
 .ralio_recent
@@ -107,6 +109,7 @@
 .rest-client/
 .rnd
 .rubygems/
+.settings/
 .slocdata/
 .sonar/
 .sonarlint/
