@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'cocoapods'
+gem 'dotenv'
 gem 'fastlane'
 gem 'json_pure' # Needed by https://github.com/junegunn/vim-github-dashboard
 gem 'lolcat'

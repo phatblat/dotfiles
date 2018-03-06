@@ -206,6 +206,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods
+  dotenv
   fastlane
   json_pure
   lolcat
