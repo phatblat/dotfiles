@@ -48,7 +48,6 @@ function 🍺__brew
         kotlin \
         less \
         thoughtbot/formulae/liftoff \
-        "macvim --with-override-system-vim" \
         mas \
         maven \
         mtr \
@@ -167,6 +166,16 @@ function 🍺__brew
             brew install (list -s $formula)
         end
     end
+
+    # --------------------------------------------------------------------------
+    #
+    # MacVIM
+    #
+    # --------------------------------------------------------------------------
+
+    # MacVIM installed after all formulae because of issues with powerline in vim when python is updated
+    # https://github.com/editorconfig/editorconfig/wiki/FAQ#when-using-the-vim-plugin-i-got-e887-sorry-this-command-is-disabled-the-pythons-site-module-could-not-be-loaded
+    brew reinstall macvim --with-override-system-vim
 
     # --------------------------------------------------------------------------
     #
