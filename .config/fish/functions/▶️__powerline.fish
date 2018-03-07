@@ -21,7 +21,7 @@ function ▶️__powerline
     createdirs $vim_dev
 
     # Powerline plugin (powerline-status)
-    set -l python_packages /usr/local/lib/python2.7/site-packages
+    set -l python_packages /usr/local/lib/python3.6/site-packages
     set -l config_path $python_packages/powerline/config_files
 
     if not test -d $powerline_config
