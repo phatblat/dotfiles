@@ -13,7 +13,7 @@ function pushmobilespec --argument-names spec_file
             echo "No podspecs found in the current directory."
            return 1
         else
-            echo "Multiple podspecs found in the current directory (${spec_count}). Please specify which spec you would like to publish.\n  pushmobilespec Pod.podspec"
+            echo "Multiple podspecs found in the current directory ($spec_count). Please specify which spec you would like to publish.\n  pushmobilespec Pod.podspec"
             return 2
         end
     end
