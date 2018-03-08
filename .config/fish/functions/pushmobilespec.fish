@@ -1,5 +1,6 @@
-# Pushes a podspec to KPMobileSpecs.
-function pushmobilespec --argument-names spec_file
+function pushmobilespec \
+        --description="Pushes a podspec to KPMobileSpecs" \
+        --argument spec_file
     if test -z $spec_file
         # Attempt to locate spec in current dir when not file name provided
         set -l specs (ls -1 *.podspec | paste -sd " " -)
@@ -7,7 +8,7 @@ function pushmobilespec --argument-names spec_file
 
         # If specs does not contain an array, spec_count will be a char count
         # if [[ ! $(declare -p specs 2> /dev/null | grep -q '^typeset \-a') ]]; then
-        if test spec_count -eq 1
+        if test $spec_count -eq 1
             set spec_file $specs
         else if test $spec_count -eq 0
             echo "No podspecs found in the current directory."
