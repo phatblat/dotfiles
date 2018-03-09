@@ -1,7 +1,19 @@
-//gradle.consoleOutput = plain
+/*
+ * init.gradle
+ * https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.ResolutionStrategy.html
+ */
 
-// Offline mode
-//startParameter.offline = true
+import java.util.concurrent.TimeUnit
+
+buildscript.configurations.classpath {
+    resolutionStrategy {
+        // cache dynamic versions (+) for 10 minutes
+        cacheDynamicVersionsFor 10, TimeUnit.MINUTES
+
+        // don't cache changing modules at all
+        cacheChangingModulesFor 0, TimeUnit.SECONDS
+    }
+}
 
 /*
     1. Implement the "projectsEvaluated()" hook in the GroovyBuildListener class below to add a test listener to a project's `test` task. Use any of the test listeners you implemented for the testing exercise.
