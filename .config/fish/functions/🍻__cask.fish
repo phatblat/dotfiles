@@ -30,7 +30,6 @@ function 🍻__cask
         dash \
         dayone-cli \
         disk-inventory-x \
-        docker \
         docker-toolbox \
         duet \
         fauxpas \

@@ -27,6 +27,7 @@ function 🍺__brew
         direnv \
         docker \
         docker-compose \
+        docker-machine \
         duti \
         findutils \
         fortune \
