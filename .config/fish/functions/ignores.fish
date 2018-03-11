@@ -1,15 +1,28 @@
 # Standard ignored files.
 function ignores
-    # Xcode
     list -s \
+        # macOS
         .DS_Store \
+        # Xcode
         '*.xccheckout' \
         '*.xcscmblueprint' \
         xcuserdata \
         Carthage/ \
         Pods/ \
+        # Bundler
         .rubygems/ \
         bin/ \
+        # Gradle
         build/ \
-        .gradle/
+        .gradle/ \
+        gradlew.bat \
+        # IntelliJ IDEA
+        .idea/ \
+        '*.iml' \
+        '*.hprof' \
+        # VS Code
+        .classpath \
+        .project \
+        .settings \
+        .vscode/ 
 end
