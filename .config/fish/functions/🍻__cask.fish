@@ -21,6 +21,7 @@ function 🍻__cask
         anka-flow \
         atom \
         back-in-time \
+        banktivity \
         bluemix-cli \
         cardhop \
         charles \
