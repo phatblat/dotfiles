@@ -10,13 +10,13 @@ function ignore \
     else
         # Seed the list with standard ignores
         set ignore_list (ignores)
-        set commit_message "Standard ignores"
+        set commit_message "🙈 Standard ignores"
         echo "Creating .gitignore"
     end
 
     if test -n "$argv"
         set ignore_list $argv $ignore_list
-        set commit_message "Ignore $argv"
+        set commit_message "🙈 Ignore $argv"
     end
 
     for pattern in $ignore_list
