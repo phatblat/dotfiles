@@ -28,6 +28,7 @@ function 🕸__npm
         fast-cli \
         gitmoji-cli \
         jshint \
+        markdownlint \
         n \
         ralio \
         realm-cli \
