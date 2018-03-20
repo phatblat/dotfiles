@@ -47,6 +47,7 @@ function 🍻__cask
         istat-menus \
         iterm2 \
         java \
+        java8 \
         jetbrains-toolbox \
         jira-client \
         kaleidoscope \
