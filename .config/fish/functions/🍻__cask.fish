@@ -52,6 +52,7 @@ function 🍻__cask
         jira-client \
         kaleidoscope \
         licecap \
+        minikube \
         macdown \
         oclint \
         omnigraffle \
