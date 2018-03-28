@@ -47,6 +47,7 @@ function 🍺__brew
         jsonlint \
         jsonpp \
         kotlin \
+        kubernetes-helm \
         less \
         thoughtbot/formulae/liftoff \
         mas \
