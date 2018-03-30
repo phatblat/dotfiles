@@ -42,6 +42,7 @@ function 🍺__brew
         heroku \
         hub \
         infer \
+        jenv \
         jfrog-cli-go \
         jq \
         jsonlint \
