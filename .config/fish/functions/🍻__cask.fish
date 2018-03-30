@@ -48,6 +48,7 @@ function 🍻__cask
         iterm2 \
         java \
         caskroom/versions/java8 \
+        caskroom/versions/java9 \
         jetbrains-toolbox \
         jira-client \
         kaleidoscope \
