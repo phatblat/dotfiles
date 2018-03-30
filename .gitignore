@@ -81,6 +81,7 @@
 .itmstransporter/
 .jenkins-hpl-map
 .jenkins/
+.jenv/
 .konan/
 .lesshst
 .lldb/module_cache/
