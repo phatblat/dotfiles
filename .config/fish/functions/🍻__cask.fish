@@ -55,6 +55,7 @@ function 🍻__cask
         licecap \
         minikube \
         macdown \
+        ngrok \
         oclint \
         omnigraffle \
         omnipresence \
