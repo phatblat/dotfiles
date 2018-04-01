@@ -21,12 +21,15 @@
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": false,
         "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
         "suppressUpdateNotice": true,
         "suppressWelcomeNotice": true
     },
-    "gitlens.keymap": "alternate",
+    "gitlens.keymap": "chorded",
     "[markdown]": {
         "editor.wordWrap": "off",
         "editor.quickSuggestions": true
-    }
+    },
+    "gitlens.historyExplorer.enabled": true
 }
