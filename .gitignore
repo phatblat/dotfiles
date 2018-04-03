@@ -107,6 +107,8 @@
 .raliorc
 .raliorc/
 .rbenv/
+.repo_.gitconfig.json
+.repoconfig/
 .rest-client/
 .rnd
 .rubygems/
