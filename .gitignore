@@ -152,6 +152,7 @@ OmniPresence
 Pictures/
 Pods/
 Public/
+VMs/
 VirtualBox VMs/
 __z_clean.fish
 bin/
