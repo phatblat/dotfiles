@@ -54,6 +54,7 @@
 .config/git/ignore
 .config/gtk-2.0/
 .config/hub
+.config/thefuck
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
 .config/upstall/last_run.*
