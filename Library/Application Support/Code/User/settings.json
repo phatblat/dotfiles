@@ -31,5 +31,6 @@
         "editor.wordWrap": "off",
         "editor.quickSuggestions": true
     },
-    "gitlens.historyExplorer.enabled": true
+    "gitlens.historyExplorer.enabled": true,
+    "editor.dragAndDrop": false
 }
