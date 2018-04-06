@@ -1,153 +1,152 @@
-tap "caskroom/cask"
+tap "vapor/tap"
+tap "cloudfoundry/tap"
+tap "thoughtbot/formulae"
+tap "homebrew/core", "git@github.com:Homebrew/homebrew-core.git"
+tap "homebrew/test-bot"
+tap "homebrew/bundle"
+tap "homebrew/services"
 tap "caskroom/fonts"
 tap "caskroom/versions"
-tap "cloudfoundry/tap"
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap "kylef/formulae"
-tap "thoughtbot/formulae"
-tap "vapor/tap"
+tap "caskroom/cask", "git@github.com:caskroom/homebrew-cask.git"
+tap "mas-cli/tap"
+tap "macvim-dev/macvim"
+tap "vitorgalvao/tiny-scripts"
 cask "java"
-brew "android-sdk"
+cask "caskroom/versions/java8"
 brew "antigen"
-brew "readline"
+brew "artifactory"
+brew "artifactory-cli-go"
+brew "node"
+brew "babel"
 brew "bash"
-brew "boost"
 brew "burl"
-brew "git"
 brew "carthage"
+brew "python"
+brew "certbot"
 brew "cloc"
 brew "cmake"
-brew "cocoapods"
 brew "coreutils"
+brew "cowsay"
 brew "curl"
+brew "diff-so-fancy"
 brew "direnv"
+brew "docker", link: false
+brew "docker-compose", link: false
 brew "duti"
 brew "findutils"
 brew "fish"
+brew "fortune"
 brew "gcovr"
-brew "gdbm"
+brew "git"
 brew "git-lfs"
-brew "gmp"
 brew "gnupg"
+brew "go-jira"
 brew "goaccess"
 brew "gradle"
 brew "groovy"
 brew "heroku"
-brew "lua"
-brew "highlight"
+brew "hub"
+brew "infer"
 brew "jenkins"
-brew "oniguruma"
+brew "jenv"
+brew "jfrog-cli-go"
 brew "jq"
-brew "node"
 brew "jsonlint"
+brew "jsonpp"
+brew "kotlin"
+brew "kubernetes-helm"
 brew "less"
-brew "libyaml"
-brew "openssl"
-brew "sqlite"
-brew "python"
 brew "macvim", args: ["with-override-system-vim"]
 brew "mas"
 brew "maven"
-brew "md5sha1sum"
 brew "mtr"
-brew "openssl@1.1"
-brew "pcre"
 brew "nginx"
 brew "ninja"
-brew "nmap"
+brew "nvm"
 brew "packer"
 brew "pacvim"
-brew "pkg-config"
 brew "postgresql"
+brew "qemu"
 brew "rename"
 brew "ruby"
 brew "screenresolution"
 brew "shellcheck"
 brew "sloccount"
+brew "socat"
+brew "sonar-scanner"
 brew "sourcekitten"
-brew "speedtest_cli"
+brew "speedtest-cli"
+brew "swiftenv"
 brew "swiftgen"
 brew "swiftlint"
+brew "swiftplate"
 brew "tailor"
+brew "telnet"
 brew "terminal-notifier"
 brew "thefuck"
-brew "tokyo-cabinet"
+brew "tig"
+brew "tmux"
 brew "trash"
+brew "travis"
 brew "tree"
 brew "uncrustify"
+brew "utimer"
 brew "wget"
-brew "xcproj"
 brew "xctool"
-brew "xz"
+brew "yarn"
 brew "zsh"
 brew "cloudfoundry/tap/cf-cli"
-brew "kylef/formulae/swiftenv"
 brew "thoughtbot/formulae/liftoff"
-brew "vapor/tap/toolbox"
+brew "vitorgalvao/tiny-scripts/cask-repair"
+cask "android-ndk"
 cask "android-sdk"
+cask "android-studio"
+cask "anka-build"
+cask "anka-flow"
 cask "atom"
 cask "back-in-time"
-cask "betterzipql"
+cask "banktivity"
+cask "bluemix-cli"
+cask "cardhop"
 cask "charles"
-cask "cleanmymac"
+cask "cheatsheet"
 cask "cloudapp"
 cask "dash"
 cask "dayone-cli"
 cask "dbvisualizer"
+cask "deckset"
+cask "disk-inventory-x"
+cask "docker"
+cask "docker-toolbox"
+cask "duet"
 cask "fauxpas"
-cask "font-3270-nerd-font"
-cask "font-anonymouspro-nerd-font"
-cask "font-aurulentsansmono-nerd-font"
-cask "font-awesome-terminal-fonts"
-cask "font-bitstreamverasansmono-nerd-font"
-cask "font-codenewroman-nerd-font"
-cask "font-dejavu-sans"
-cask "font-dejavu-sans-mono-for-powerline"
-cask "font-dejavusansmono-nerd-font"
-cask "font-droidsansmono-nerd-font"
-cask "font-fantasquesansmono-nerd-font"
-cask "font-firacode-nerd-font"
-cask "font-firamono-nerd-font"
-cask "font-gohu-nerd-font"
-cask "font-hack-nerd-font"
-cask "font-hasklig-nerd-font"
-cask "font-heavydata-nerd-font"
-cask "font-hermit-nerd-font"
-cask "font-inconsolata-nerd-font"
-cask "font-iosevka-nerd-font"
-cask "font-lekton-nerd-font"
-cask "font-liberationmono-nerd-font"
-cask "font-meslo-nerd-font"
-cask "font-monofur-nerd-font"
-cask "font-monoid-nerd-font"
-cask "font-mononoki-nerd-font"
-cask "font-mplus-nerd-font"
-cask "font-profont-nerd-font"
-cask "font-proggyclean-nerd-font"
-cask "font-robotomono-nerd-font"
-cask "font-sharetechmono-nerd-font"
-cask "font-sourcecodepro-nerd-font"
-cask "font-spacemono-nerd-font"
-cask "font-terminus-nerd-font"
-cask "font-ubuntumono-nerd-font"
 cask "geekbench"
-cask "gemini"
-cask "github-desktop"
+cask "github"
+cask "githubpulse"
+cask "gitkraken"
+cask "gitup"
 cask "google-chrome"
-cask "gpgtools"
+cask "gpg-suite"
+cask "hex-fiend"
 cask "hipchat"
-cask "intellij-idea"
 cask "ios-console"
 cask "istat-menus"
 cask "iterm2"
-cask "iterm2-beta"
+cask "jetbrains-toolbox"
+cask "jira-client"
 cask "kaleidoscope"
+cask "licecap"
 cask "macdown"
+cask "minikube"
+cask "mono-mdk"
+cask "ngrok"
 cask "oclint"
 cask "omnigraffle"
 cask "omnipresence"
+cask "paste"
+cask "paw"
 cask "provisioning"
+cask "provisionql"
 cask "qlcolorcode"
 cask "qlimagesize"
 cask "qlmarkdown"
@@ -155,60 +154,82 @@ cask "qlprettypatch"
 cask "qlstephen"
 cask "quicklook-csv"
 cask "quicklook-json"
-cask "quickradar"
+cask "realm-browser"
+cask "realm-studio"
+cask "screens"
+cask "screens-connect"
 cask "simpholders"
 cask "softraid"
+cask "stride"
 cask "sublime-text"
-cask "sublime-text-dev"
 cask "textmate"
-cask "things-helper"
+cask "the-unarchiver"
+cask "thingsmacsandboxhelper"
 cask "tower"
 cask "transmit"
+cask "veertu"
 cask "virtualbox"
+cask "visual-studio"
+cask "visual-studio-code"
 cask "vmware-fusion"
 cask "webpquicklook"
+cask "xmarks-safari"
+cask "caskroom/versions/java9"
 mas "1Password", id: 443987910
 mas "Airmail 3", id: 918858936
+mas "Apple Configurator 2", id: 1037126344
 mas "Blackmagic Disk Speed Test", id: 425264550
 mas "CARROT Weather", id: 993487541
-mas "CodeBox", id: 412536790
-mas "Committed", id: 881634293
-mas "Copied", id: 1026349850
+mas "Cleaner for Memory", id: 748212890
 mas "DaisyDisk", id: 411643860
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 924726344
 mas "Disk Care", id: 913724705
 mas "Display Menu", id: 549083868
 mas "Divvy", id: 413857545
+mas "Dumper", id: 781577745
 mas "Evernote", id: 406056744
 mas "Fantastical 2", id: 975937182
 mas "Focused", id: 899966452
+mas "Gapplin", id: 768053424
+mas "GarageBand", id: 682658836
+mas "Gemini 2", id: 1090488118
 mas "GIFs", id: 961850017
 mas "iMovie", id: 408981434
 mas "iNet Network Scanner", id: 403304796
+mas "Install macOS High Sierra", id: 1246284741
 mas "iRamDisk", id: 492615400
 mas "iStat Mini", id: 927292435
 mas "JenkinsNotifier", id: 590383085
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Logoist 2", id: 905654078
+mas "macOS High Sierra", id: Install
 mas "Mactracker", id: 430255202
 mas "Meme Generator", id: 483350546
 mas "Memory Cleaner", id: 748212890
+mas "Mint QuickView", id: 533491939
 mas "Numbers", id: 409203825
 mas "Objective-Clean", id: 713910413
 mas "Pages", id: 409201541
+mas "Pastebot", id: 1179623856
 mas "PCalc", id: 403504866
+mas "Plaiiin Jenkins Status CE 1.6", id: 1135308344
 mas "Pocket", id: 568494494
 mas "Redacted", id: 984968384
+mas "Redshift Premium", id: 1317255531
 mas "Remote Desktop", id: 409907375
-mas "Screens", id: 446107677
+mas "Reverb", id: 1144697855
 mas "Server", id: 883878097
 mas "Sip", id: 507257563
 mas "Skitch", id: 425955336
+mas "Slack", id: 803453959
 mas "SnippetsLab", id: 1006087419
-mas "Swift-Clean", id: 1040160984
+mas "SoundCloud", id: 412754595
+mas "Spillo", id: 873245660
+mas "Swiftly-Clean", id: 1040160984
 mas "Things3", id: 904280696
 mas "Tweetbot", id: 557168941
 mas "Ulysses", id: 623795237
+mas "Xcode-9.3", id: 497799835
 mas "xScope", id: 889428659
