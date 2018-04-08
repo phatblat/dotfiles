@@ -12,6 +12,8 @@ function 🍺__brew
         antigen \
         artifactory \
         artifactory-cli-go \
+        autoconf \
+        automake \
         babel \
         burl \
         carthage \
@@ -50,6 +52,8 @@ function 🍺__brew
         kotlin \
         kubernetes-helm \
         less \
+        libssh2 \
+        libtool \
         thoughtbot/formulae/liftoff \
         mas \
         maven \
@@ -60,6 +64,7 @@ function 🍺__brew
         nvm \
         packer \
         pacvim \
+        pkg-config \
         postgresql \
         python3 \
         qemu \
