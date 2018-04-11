@@ -22,7 +22,7 @@ allprojects {
     configurations.all {
         resolutionStrategy {
             // cache dynamic versions (+) for 10 minutes
-            cacheDynamicVersionsFor 1, TimeUnit.HOUR
+            cacheDynamicVersionsFor 1, TimeUnit.HOURS
 
             // don't cache changing modules at all
             cacheChangingModulesFor 0, TimeUnit.SECONDS
