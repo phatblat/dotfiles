@@ -63,6 +63,7 @@ function 🍻__cask
         paw \
         realm-browser \
         realm-studio \
+        rocket \
         screens \
         screens-connect \
         simpholders \
