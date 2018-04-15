@@ -201,7 +201,8 @@ function 🍺__brew
     end
 
     # Ruby
-    set -l desired_ruby 2.5.0_2
+    set -l desired_ruby 2.5.1
+    set -l previous_version 2.5.0_2
     set -l ruby_versions (brew_versions ruby)
     if not test $desired_ruby = (brew_active_version ruby)
         if contains -- $desired_ruby $ruby_versions
@@ -211,7 +212,7 @@ function 🍺__brew
 
             # May need to purge old gems
             # http://stackoverflow.com/questions/9434002/how-to-solve-ruby-installation-is-missing-psych-error#answer-43843417
-            set -l path (brew_home)/lib/ruby/gems/2.4.0/extensions
+            set -l path (brew_home)/lib/ruby/gems/$previous_version/extensions
             if test $USER != (fileowner $path)
                 echo "Fixing permissions on $path"
                 sudo chown -R $USER (brew_home)/lib/ruby
