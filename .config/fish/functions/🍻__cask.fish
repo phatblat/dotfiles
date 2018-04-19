@@ -22,6 +22,7 @@ function 🍻__cask
         atom \
         back-in-time \
         banktivity \
+        bee \
         bluemix-cli \
         cardhop \
         charles \
