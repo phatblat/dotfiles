@@ -40,24 +40,6 @@
                 "highlight_groups": ["information:regular"],
                 "contents": "↝"
             }
-        ],
-        "right": [
-            {
-                "function": "powerline.segments.shell.last_pipe_status",
-                "priority": 10
-            },
-            {
-                "function": "powerline.segments.shell.jobnum",
-                "priority": 10
-            },
-            {
-                "function": "powerline.segments.common.time.date",
-                "name": "time",
-                "args": {
-                    "format": "%H:%M:%S",
-                    "istime": true
-                }
-            }
         ]
     }
 }
