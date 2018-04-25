@@ -79,8 +79,7 @@ function 🍻__cask
         veertu \
         virtualbox \
         visual-studio-code \
-        vmware-fusion \
-        xmarks-safari
+        vmware-fusion
 
     set -l quicklook_plugins \
         provisionql \
@@ -151,8 +150,17 @@ function 🍻__cask
     # TODO: Re-enable $fonts on rundmg
     set -l casks $apps $quicklook_plugins
 
-    set -l uninstall battery-guardian cocoapods cocoapods-app sublime-text-dev \
-        textexpander things timing
+    set -l uninstall \
+        battery-guardian \
+        cocoapods \
+        cocoapods-app \
+        mono-mdk \
+        sublime-text-dev \
+        textexpander \
+        things \
+        timing \
+        visual-stuio \
+        xmarks-safari
 
     # --------------------------------------------------------------------------
     #
