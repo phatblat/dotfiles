@@ -78,7 +78,6 @@ function 🍻__cask
         transmit \
         veertu \
         virtualbox \
-        visual-studio \
         visual-studio-code \
         vmware-fusion \
         xmarks-safari
