@@ -49,7 +49,6 @@ function 🍻__cask
         iterm2 \
         java \
         caskroom/versions/java8 \
-        caskroom/versions/java9 \
         jetbrains-toolbox \
         jira-client \
         kaleidoscope \
@@ -154,6 +153,7 @@ function 🍻__cask
         battery-guardian \
         cocoapods \
         cocoapods-app \
+        java9 \
         mono-mdk \
         sublime-text-dev \
         textexpander \
