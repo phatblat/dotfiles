@@ -1,8 +1,8 @@
-# Run Jekyll server in the foreground with the given environment variables.
-function serve
-    set reflog_content ~/dev/markdown/reflog/www
+function serve \
+        --description='Runs Jekyll server in the foreground with the given environment variables.'
+    set reflog_content ~/dev/www/reflog/www
     pushd $reflog_content
 
-    env (cat .env | xargs) bundle exec "jekyll serve $argv"
+    env (cat .env | xargs) ../bin/jekyll serve $argv
     popd
 end
