@@ -9,34 +9,44 @@
 #-------------------------------------------------------------------------------
 
 require 'rubygems'
-require 'zerg_xcode' # https://github.com/zerglings/zerg_xcode
+require 'xcodeproj' # https://github.com/CocoaPods/Xcodeproj
 
-project = ZergXcode.load(".")
-# puts project.attrs
+# Find.find('.') do |path|
+#   project_path = path if path =~ /.*\.xcodeproj$/
+# end
 
-build_configurations = project["buildConfigurationList"]["buildConfigurations"]
-build_settings = build_configurations[0]["buildSettings"]
+project_path = Dir.glob("*.xcodeproj").first
+
+if (!project_path) then
+  puts "No Xcode projects found in the current directory."
+  return
+end
+
+puts project_path
+
+project = Xcodeproj::Project.open(project_path)
+
+currentVersioningSystem = project.build_configuration_list.get_setting("VERSIONING_SYSTEM")["Debug"]
+currentProjectVersion = project.build_configuration_list.get_setting("CURRENT_PROJECT_VERSION")["Debug"]
 
 # Project level versioning system
-if (build_settings["VERSIONING_SYSTEM"]) then
+if (currentVersioningSystem) then
   puts "Versioning is already enabled at the project level"
-  puts "    VERSIONING_SYSTEM: " + build_settings["VERSIONING_SYSTEM"]
+  puts "    VERSIONING_SYSTEM: #{currentVersioningSystem}"
 else
-  build_configurations.each do |config|
-    config["buildSettings"]["VERSIONING_SYSTEM"] = "apple-generic"
-  end
-  project.save!
-  puts "Versioning system set to " + build_settings["VERSIONING_SYSTEM"]
+  project.build_configuration_list.set_setting "VERSIONING_SYSTEM", "apple-generic"
+  project.save
+  currentVersioningSystem = project.build_configuration_list.get_setting("VERSIONING_SYSTEM")["Debug"]
+  puts "Versioning system set to #{currentVersioningSystem}"
 end
 
 # Project version at project level
-if (build_settings["CURRENT_PROJECT_VERSION"]) then
+if (currentProjectVersion) then
   puts "Project version is already set"
-  puts "    CURRENT_PROJECT_VERSION: " + build_settings["CURRENT_PROJECT_VERSION"]
+  puts "    CURRENT_PROJECT_VERSION: #{currentProjectVersion}"
 else
-  build_configurations.each do |config|
-    config["buildSettings"]["CURRENT_PROJECT_VERSION"] = "1"
-  end
-  project.save!
-  puts "Project version set to " + build_settings["CURRENT_PROJECT_VERSION"]
+  project.build_configuration_list.set_setting "CURRENT_PROJECT_VERSION", "1"
+  project.save
+  currentProjectVersion = project.build_configuration_list.get_setting("CURRENT_PROJECT_VERSION")["Debug"]
+  puts "Project version set to #{currentProjectVersion}"
 end
