@@ -159,7 +159,6 @@ GEM
     paint (2.0.1)
     plist (3.4.0)
     public_suffix (2.0.5)
-    rake (12.3.1)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -208,7 +207,6 @@ GEM
       rouge (~> 2.0.7)
     xcpretty-travis-formatter (1.0.0)
       xcpretty (~> 0.2, >= 0.0.7)
-    zerg_xcode (0.5.0)
 
 PLATFORMS
   ruby
@@ -221,10 +219,8 @@ DEPENDENCIES
   lolcat
   net-scp
   net-ssh
-  rake
   xcode-install
   xcodeproj
-  zerg_xcode
 
 BUNDLED WITH
    1.16.1
