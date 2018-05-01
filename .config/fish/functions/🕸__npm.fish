@@ -30,6 +30,7 @@ function 🕸__npm
         jshint \
         markdownlint \
         n \
+        node-pre-gyp \
         ralio \
         realm-cli \
         realm-object-server \
