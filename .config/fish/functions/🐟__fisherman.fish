@@ -7,7 +7,12 @@ function 🐟__fisherman
     echo "🐟  Fisherman - https://fisherman.github.io"
     echo
 
-    set -l plugins laughedelic/fish_logo get mock z
+    set -l plugins \
+        laughedelic/fish_logo \
+        get \
+        mock \
+        nvm \
+        z
 
     set -l fisher_dir ~/dev/fish/fisher
     set -l function_source ../../../dev/fish/fisher/fisher.fish
