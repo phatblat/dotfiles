@@ -164,6 +164,7 @@ lib/
 logs/
 mbox
 mobot-scripts
+node_modules/
 private/
 realm-object-server/
 tmp/
