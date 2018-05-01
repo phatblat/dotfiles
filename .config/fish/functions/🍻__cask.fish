@@ -31,7 +31,6 @@ function 🍻__cask
         dbvisualizer \
         dash \
         dayone-cli \
-        disk-inventory-x \
         docker-toolbox \
         duet \
         fauxpas \
@@ -153,6 +152,7 @@ function 🍻__cask
         battery-guardian \
         cocoapods \
         cocoapods-app \
+        disk-inventory-x \
         java9 \
         mono-mdk \
         sublime-text-dev \
