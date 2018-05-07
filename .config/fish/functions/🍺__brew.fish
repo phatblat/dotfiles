@@ -22,6 +22,7 @@ function 🍺__brew
         cloc \
         cloudfoundry/tap/cf-cli \
         cmake \
+        configen \
         coreutils \
         cowsay \
         curl \
