@@ -57,6 +57,7 @@ function 🍺__brew
         thoughtbot/formulae/liftoff \
         mas \
         maven \
+        mint \
         mtr \
         nginx \
         ninja \
