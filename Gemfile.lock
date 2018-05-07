@@ -213,6 +213,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods
+  cocoapods-plugins
   dotenv
   fastlane
   json_pure
