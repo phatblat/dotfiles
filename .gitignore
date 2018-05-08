@@ -99,6 +99,7 @@
 .nvm/
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
+.op/
 .oracle_jre_usage/
 .phantomjs/
 .project
