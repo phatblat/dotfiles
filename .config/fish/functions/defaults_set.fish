@@ -84,6 +84,10 @@ function defaults_set
     # Verbose codesign logging
     #defaults write com.apple.dt.Xcode DVTCodesigningAllTheThingsLogLevel 3
 
+    # Multiple cursors (cmd+click)
+    # https://twitter.com/dmartincy/status/988094014804160514
+    defaults write com.apple.dt.Xcode PegasusMultipleCursorsEnabled -bool true
+
     # Show build times - http://stackoverflow.com/questions/1027923/how-to-enable-build-timing-in-xcode#answer-2801156
     defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
