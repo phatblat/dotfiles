@@ -8,17 +8,18 @@
 SHELL=/usr/local/bin/fish
 
 # Nightly
-10  4 * * *     🍺__brew >/dev/null
-20  4 * * *     xccheck
-30  4 * * *     bi --quiet; and bprum --silent
+10  4    * * *     🍺__brew >/dev/null
+20  4    * * *     xccheck
+30  4    * * *     bi --quiet; and bprum --silent
+*   */12 * * *     renew_certificates
 
 # Hourly
-00  * * * *     cron_reload
-01  * * * *     fetch --quiet
+00  *    * * *     cron_reload
+01  *    * * *     fetch --quiet
 
 # Once, cron & upstall debugging
-#32 19 * * *     env > ~/.dotfiles/cron/cronenv
-#02 11 * * *     status_current > ~/.dotfiles/cron/cronstatus
+#32 19    * * *     env > ~/.dotfiles/cron/cronenv
+#02 11    * * *     status_current > ~/.dotfiles/cron/cronstatus
 
 # --------------------------------------------------------
 # * * * * *     command to be executed
