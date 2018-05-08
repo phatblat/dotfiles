@@ -36,38 +36,7 @@ function 🐠__omf
 
     # Update omf and installed plugins
     omf update
-
-    # Install any missing plugins
-    set -l installed_plugins
-    for plugin in (omf list --plugin | string split \t)
-        # Skip empty strings
-        if test -n "$plugin"
-            set installed_plugins $installed_plugins $plugin
-        end
-    end
-
-    echo installed_plugins: $installed_plugins
-    set -l not_installed
-    for plugin in $plugins
-        # set -l plugin_name $plugin
-
-        # Split plugin name off of any in user/repo format
-        # set -l tokens (string split / $plugin)
-        # if test (count $tokens) -gt 1
-        #     set plugin_name $tokens[2]
-        # end
-
-        if not contains $plugin $installed_plugins
-            set not_installed $not_installed $plugin
-        end
-    end
-    echo not_installed: $not_installed
-    if test -n "$not_installed"
-        for plugin in $not_installed
-            echo "Installing $plugin"
-            omf install $plugin
-        end
-    end
+    omf install
 
     echo "Installed plugins: "
     omf list
