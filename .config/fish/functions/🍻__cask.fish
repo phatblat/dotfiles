@@ -15,6 +15,7 @@ function 🍻__cask
     echo
 
     set -l apps \
+        1password-cli \
         android-ndk \
         android-sdk \
         android-studio \
