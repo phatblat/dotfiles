@@ -61,7 +61,7 @@ function 🍻__cask
         omnipresence \
         paste \
         paw \
-        peripheryapp/periphery \
+        peripheryapp/periphery/periphery \
         realm-browser \
         realm-studio \
         rocket \
