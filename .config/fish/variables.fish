@@ -56,7 +56,7 @@ set --global fish_user_paths \
     $fish_user_paths
 
 # PATH
-set --export --global PATH ./bin ~/bin (brew_home curl)/bin $ANDROID_HOME/tools/bin $PATH
+set --export --global PATH ./bin ~/bin (brew_home)/bin (brew_home curl)/bin $ANDROID_HOME/tools/bin $PATH
 
 # ls color formatting - LS_COLWIDTHS
 #
