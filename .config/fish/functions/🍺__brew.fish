@@ -44,6 +44,7 @@ function 🍺__brew
         groovy \
         heroku \
         hub \
+        imagemagick \
         infer \
         jenv \
         jfrog-cli-go \
