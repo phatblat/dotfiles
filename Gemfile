@@ -6,7 +6,7 @@ gem 'dotenv'
 gem 'fastlane'
 gem 'json_pure' # Needed by https://github.com/junegunn/vim-github-dashboard
 gem 'lolcat'
-#gem 'sqlite3'
+gem 'solargraph'
 gem 'xcode-install'
 gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
 
