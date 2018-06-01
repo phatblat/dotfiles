@@ -116,6 +116,7 @@
 .rubygems/
 .settings/
 .slocdata/
+.solargraph/
 .sonar/
 .sonarlint/
 .spaceship/
