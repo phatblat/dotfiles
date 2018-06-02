@@ -36,8 +36,8 @@ set relativenumber
 " Auto-reload buffers when file changed on disk
 set autoread
 
-" Make it obvious where 90 characters is
-set textwidth=90
+" Wrap column, shows red guide
+set textwidth=120
 set colorcolumn=+1
 
 "" Whitespace
