@@ -33,7 +33,7 @@ set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GRADLE_OPTS -Xmx1g
 set --export GRADLE_HEAP_SPACE -Xmx1g
 set --export GROOVY_HOME (brew_home groovy)/libexec
-# Use Java 8 for not until 9 is more stable
+# Use Java 8 for now until 10 is more stable
 set --export --global JAVA_HOME (/usr/libexec/java_home -v 1.8)
 set --export JAVA_OPTS "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
 set --export ICLOUD_HOME "~/Library/Mobile Documents"
@@ -45,6 +45,10 @@ set --export LC_CTYPE en_US.UTF-8
 set --export OPENSSL_PATH (brew_home openssl)/bin/openssl
 set --export REALM_OBJECT_SERVER_VERSION 1.8.3
 set --export REALM_OBJECT_SERVER_PATH ~/dev/realm/_releases/realm-mobile-platform-$REALM_OBJECT_SERVER_VERSION
+
+# ls command colors - http://osxdaily.com/2013/02/05/improve-terminal-appearance-mac-os-x/
+set --export CLICOLOR 1
+set --export LSCOLORS ExFxBxDxCxegedabagacad
 
 # Lower case
 set --export github_user phatblat
