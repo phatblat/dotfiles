@@ -162,7 +162,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.0.1)
     netrc (0.11.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     os (0.9.6)
     paint (2.0.1)
