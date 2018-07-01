@@ -3,12 +3,14 @@ source 'https://rubygems.org'
 gem 'cocoapods'
 gem 'cocoapods-plugins'
 gem 'dotenv'
-gem 'fastlane'
 gem 'json_pure' # Needed by https://github.com/junegunn/vim-github-dashboard
 gem 'lolcat'
 gem 'solargraph'
-gem 'xcode-install'
 gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
+
+# Fastlane depends on unmaintined colored gem
+# gem 'fastlane'
+# gem 'xcode-install'
 
 # Works around issues running with Ruby 2.4
 # https://github.com/rails/rails/issues/27450#issuecomment-269121335
