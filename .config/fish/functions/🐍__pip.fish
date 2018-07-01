@@ -25,8 +25,11 @@ function 🐍__pip
     #     return 2
     # end
 
+    # Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lizard_ext'
+    # Consider using the `--user` option or check the permissions.
+    # sudo mkdir /usr/local/lizard_ext
+
     set -l global_packages \
-        doc2dash \
         lizard \
         powerline-status \
         Pygments \
@@ -36,8 +39,9 @@ function 🐍__pip
     # Update pip
     pip3 install --upgrade pip setuptools wheel
 
-    # TODO: Uninstall packages
-    # TODO: Only install missing packages
+    # Uninstall packages
+    pip3 uninstall doc2dash
+
     # Install packages
     pip3 install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
