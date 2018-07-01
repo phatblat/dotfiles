@@ -11,7 +11,7 @@ function 🐍__pip
     echo
 
     # Ensure PIP is installed.
-    if not which -s pip
+    if not which -s pip3
         error "PIP is not installed."
         return 1
     end
@@ -25,8 +25,11 @@ function 🐍__pip
     #     return 2
     # end
 
+    # Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lizard_ext'
+    # Consider using the `--user` option or check the permissions.
+    # sudo mkdir /usr/local/lizard_ext
+
     set -l global_packages \
-        doc2dash \
         lizard \
         powerline-status \
         Pygments \
@@ -34,13 +37,14 @@ function 🐍__pip
         'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing'
 
     # Update pip
-    pip install --upgrade pip setuptools wheel
+    pip3 install --upgrade pip setuptools wheel
 
-    # TODO: Uninstall packages
-    # TODO: Only install missing packages
+    # Uninstall packages
+    pip3 uninstall doc2dash
+
     # Install packages
-    pip install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
+    pip3 install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
     # List installed packages
-    pip list
+    pip3 list
 end
