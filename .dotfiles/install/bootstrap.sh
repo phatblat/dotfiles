@@ -29,6 +29,9 @@ if [[ $? -eq 0 ]]; then
     exit 1
 fi
 
+# TODO: accept license
+# sudo xcodebuild -license accept
+
 # Clone the .dotfiles repo into $HOME
 if [[ $PWD != $HOME ]]; then
     pushd $HOME
