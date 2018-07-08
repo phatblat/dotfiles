@@ -24,7 +24,6 @@ function 🍻__cask
         back-in-time \
         banktivity \
         bee \
-        bluemix-cli \
         cardhop \
         charles \
         cheatsheet \
@@ -44,6 +43,7 @@ function 🍻__cask
         gpg-suite \
         hex-fiend \
         hipchat \
+        ibm-cloud-cli \
         ios-console \
         istat-menus \
         iterm2 \
