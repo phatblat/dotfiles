@@ -27,7 +27,10 @@ function 🐍__pip
 
     # Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lizard_ext'
     # Consider using the `--user` option or check the permissions.
-    # sudo mkdir /usr/local/lizard_ext
+    if user_is_admin and not test -d /usr/local/lizard_ext
+        sudo mkdir /usr/local/lizard_ext
+        sudo chown $USER /usr/local/lizard_ext
+    end
 
     set -l global_packages \
         lizard \
