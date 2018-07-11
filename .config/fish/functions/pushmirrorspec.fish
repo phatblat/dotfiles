@@ -19,7 +19,7 @@ function pushmirrorspec \
         end
     end
 
-    set -l spec_repo_name "kp-internal-pods"
+    set -l spec_repo_name "kp-mirrored-pods"
 
     bundle exec "pod repo push \
         $spec_repo_name \
