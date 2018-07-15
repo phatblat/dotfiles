@@ -24,6 +24,7 @@ function 🍻__cask
         back-in-time \
         banktivity \
         bee \
+        bettertouchtool \
         cardhop \
         charles \
         cheatsheet \
