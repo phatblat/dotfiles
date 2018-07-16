@@ -1,4 +1,4 @@
-# Jump to the Homebrew Casks tap.
-function cask_dir
-    pushd (brew --repository)/Library/Taps/caskroom/homebrew-cask/Casks
+function cask_dir \
+        --description="Quick nav to the Homebrew Casks tap."
+    pushd (brew --repository)/Library/Taps/homebrew/homebrew-cask/Casks
 end
