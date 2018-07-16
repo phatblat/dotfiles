@@ -8,5 +8,5 @@ function cask_token --argument-names path
         return 2
     end
 
-    eval (brew --repository)/Library/Taps/caskroom/homebrew-cask/developer/bin/generate_cask_token $path
+    eval (brew --repository)/Library/Taps/homebrew/homebrew-cask/developer/bin/generate_cask_token $path
 end
