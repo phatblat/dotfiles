@@ -36,10 +36,8 @@ function 🍻__cask
         duet \
         fauxpas \
         geekbench \
-        github \
         githubpulse \
         gitkraken \
-        gitup \
         google-chrome \
         gpg-suite \
         hex-fiend \
