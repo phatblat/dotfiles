@@ -29,6 +29,10 @@
                 }
             },
             {
+                "function": "powerline_xcodeversion.xcodeversion",
+                "priority": 60
+            },
+            {
                 "function": "powerline_gitstatus.gitstatus",
                 "draw_hard_divider": true,
                 "draw_soft_divider": true,
