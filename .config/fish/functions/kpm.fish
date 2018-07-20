@@ -1,4 +1,6 @@
-function kpm --argument-names platform --description='Quick dir navigation to kpmobile'
+function kpm \
+        --description='Quick dir navigation to kpmobile' \
+        --argument-names platform
     set -l path ~/dev/kpmobile
 
     if test -n "$platform"
