@@ -92,7 +92,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-macho (1.2.0)
     ruby-progressbar (1.9.0)
-    solargraph (0.23.4)
+    solargraph (0.23.5)
       coderay (~> 1.1)
       eventmachine (~> 1.2, >= 1.2.5)
       htmlentities (~> 4.3, >= 4.3.4)
@@ -116,7 +116,7 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.5)
-    yard (0.9.14)
+    yard (0.9.15)
 
 PLATFORMS
   ruby
@@ -133,4 +133,4 @@ DEPENDENCIES
   xcodeproj
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
