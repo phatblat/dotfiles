@@ -24,7 +24,7 @@ function pushkpspec \
     bundle exec "pod repo push \
         $spec_repo_name \
         $spec_file \
-        --sources=git@github.kp.org:internal-pods/specs,git@github.kp.org:mirrored-pods/specs \
+        --sources=git@github.kp.org:internal-pods/specs,git@github.kp.org:mirrored-pods/specs,master \
         --use-libraries \
         --private \
         --allow-warnings \
