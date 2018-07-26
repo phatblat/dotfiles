@@ -45,7 +45,7 @@ function 🍻__cask
         ibm-cloud-cli \
         ios-console \
         istat-menus \
-        iterm2 \
+        iterm2-beta \
         java \
         caskroom/versions/java8 \
         jetbrains-toolbox \
@@ -154,6 +154,7 @@ function 🍻__cask
         cocoapods \
         cocoapods-app \
         disk-inventory-x \
+        iterm2 \
         java9 \
         mono-mdk \
         sublime-text-dev \
