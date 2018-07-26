@@ -42,6 +42,7 @@ function 🍻__cask
         gpg-suite \
         hex-fiend \
         hipchat \
+        hyper \
         ibm-cloud-cli \
         ios-console \
         istat-menus \
