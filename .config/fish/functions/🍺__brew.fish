@@ -25,6 +25,7 @@ function 🍺__brew
         configen \
         coreutils \
         cowsay \
+        ctags \
         curl \
         diff-so-fancy \
         direnv \
