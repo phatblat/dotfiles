@@ -36,6 +36,8 @@ function 🐍__pip
         awscli \
         lizard \
         powerline-status \
+        Pygments \
+        pylint \
         # gitstatus segment fork for powerline-status
         'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing' \
         Pygments \
