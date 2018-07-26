@@ -75,6 +75,7 @@
 .gradle/
 .groovy/
 .heroku/
+.hyper_plugins/
 .idea/
 .install4j
 .iterm2/
