@@ -1,4 +1,6 @@
-function function_template --argument-names function_name argname --description='Prints function_template'
+function function_template \
+        --argument-names function_name argname \
+        --description='Prints function_template'
     if test -z $function_name
         echo "Usage: function_template function_name [argname]"
         return 1
@@ -8,9 +10,11 @@ function function_template --argument-names function_name argname --description=
         set argname argname
     end
 
-    printf "function $function_name --description='$function_name' \n\
-\n\
-end" \
+    printf "function $function_name \n\
+        --description='$function_name' \n\
+    \n\
+end\n\
+" \
     | cat
 
     # echo $contents
