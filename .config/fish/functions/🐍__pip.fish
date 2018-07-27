@@ -35,9 +35,10 @@ function 🐍__pip
     set -l global_packages \
         lizard \
         powerline-status \
-        Pygments \
         # gitstatus segment fork for powerline-status
-        'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing'
+        'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing' \
+        Pygments \
+        twine
 
     # Update pip
     pip3 install --upgrade pip setuptools wheel
@@ -51,3 +52,4 @@ function 🐍__pip
     # List installed packages
     pip3 list
 end
+
