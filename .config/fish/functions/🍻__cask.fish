@@ -71,6 +71,7 @@ function 🍻__cask
         softraid \
         stride \
         sublime-text \
+        teacode \
         textmate \
         the-unarchiver \
         thingsmacsandboxhelper \
