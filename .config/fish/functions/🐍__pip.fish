@@ -33,6 +33,7 @@ function 🐍__pip
     end
 
     set -l global_packages \
+        awscli \
         lizard \
         powerline-status \
         # gitstatus segment fork for powerline-status
