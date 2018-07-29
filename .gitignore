@@ -20,6 +20,7 @@
 .antigen/
 .anyconnect
 .atom/
+.aws/credentials
 .bash_history
 .bash_sessions/
 .bluemix/
