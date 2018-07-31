@@ -27,6 +27,7 @@ function 🕸__npm
         express-generator \
         fast-cli \
         gitmoji-cli \
+        gulp \
         jshint \
         markdownlint \
         n \
