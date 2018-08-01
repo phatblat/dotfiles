@@ -33,5 +33,6 @@
     },
     "gitlens.historyExplorer.enabled": true,
     "editor.dragAndDrop": false,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "editor.multiCursorMergeOverlapping": false
 }
