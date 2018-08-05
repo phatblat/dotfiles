@@ -20,6 +20,7 @@ function 🍻__cask
         android-sdk \
         android-studio \
         anka-flow \
+        anylist \
         atom \
         back-in-time \
         banktivity \
