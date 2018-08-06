@@ -10,7 +10,7 @@ function function_template \
         set argname argname
     end
 
-    printf "function $function_name \n\
+    printf "function $function_name \\\n\
         --description='$function_name' \n\
     \n\
 end\n\
