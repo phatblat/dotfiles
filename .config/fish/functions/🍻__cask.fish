@@ -53,6 +53,7 @@ function 🍻__cask
         jetbrains-toolbox \
         jira-client \
         kaleidoscope \
+        karabiner-elements \
         licecap \
         minikube \
         macdown \
