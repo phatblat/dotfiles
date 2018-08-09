@@ -11,7 +11,6 @@ function 🍺__brew
     set -l formulae \
         antigen \
         artifactory \
-        artifactory-cli-go \
         autoconf \
         automake \
         babel \
@@ -70,7 +69,7 @@ function 🍺__brew
         pacvim \
         pkg-config \
         postgresql \
-        python3 \
+        python \
         qemu \
         rename \
         ruby \
@@ -102,8 +101,6 @@ function 🍺__brew
         yarn \
         $custom_shells
 
-    set -l formulae_no_flags (list -s $formulae)
-
     # Cleaning macvim with options generates error
     # Error: No available formula with the name "macvim --with-override-system-vim"
     set -l no_clean_formulae macvim ruby
@@ -117,9 +114,10 @@ function 🍺__brew
     # --------------------------------------------------------------------------
 
     # Verify the user owns the Homebrew dir.
-    if test $USER != (fileowner (brew_home)/Homebrew)
+    set -l homebrew_dir (brew_home)/Homebrew
+    if test $USER != (fileowner $homebrew_dir)
         if status is-login
-            echo "You must be the owner of "(brew_home)"/Homebrew to run this command."
+            echo "You must be the owner of "$homebrew_dir" to run this command."
         end
         return 1
     end
@@ -130,9 +128,17 @@ function 🍺__brew
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
 
-    # Update Homebrew
+    # --------------------------------------------------------------------------
+    #
+    # Update formulae
+    #
+    # --------------------------------------------------------------------------
+
+    echo 🚰  Updating formulae
     brew update
     set -l installed (brew list --full-name)
+    echo
+    echo ➡️ (moj_host)  Installed: $installed
 
     # --------------------------------------------------------------------------
     #
@@ -143,11 +149,18 @@ function 🍺__brew
     # Uninstall unwanted formulae
     set -l to_uninstall
     for formula in $uninstall
+        # Strip off tap prefix (e.g. caskroom/versions/java8)
+        set -l tokens (string split / $formula)
+        if test (count $tokens) -ge 3
+            set formula $tokens[3]
+        end
+
         if contains $formula $installed
             set to_uninstall $to_uninstall $formula
         end
     end
     if test -n "$to_uninstall"
+        echo 🗑️  Uninstalling $to_uninstall
         brew uninstall $to_uninstall
     end
 
@@ -158,26 +171,36 @@ function 🍺__brew
     # --------------------------------------------------------------------------
 
     # Update installed formulae
-    set -l outdated_formulae (brew outdated)
-    echo $outdated_formulae | tr ' ' \n
-    brew upgrade
+    set -l outdated_formulae (brew outdated --quiet)
+    if test -n "$outdated_formulae"
+        echo
+        echo 👵🏻 Outdated: $outdated_formulae
+        for outdated in $outdated_formulae
+            # Strip off tap prefix (e.g. caskroom/versions/java8)
+            set -l tokens (string split / $outdated)
+            if test (count $tokens) -ge 3
+                set outdated $tokens[3]
+            end
+            brew upgrade --verbose --display-times $outdated
+        end
+    end
 
     # Install new formula
     set -l not_installed
     for formula in $formulae
-        # Split flags off of formula name for is-installed check
-        set -l formula_name (list -s $formula)
-        if not contains $formula_name[1] $installed
-            # Include formula flags when installing
+        if not contains $formula $installed
             set not_installed $not_installed $formula
         end
     end
     if test -n "$not_installed"
         for formula in $not_installed
-            echo "Installing $formula"
-            brew install (list -s $formula)
+            echo
+            echo 🆕  Installing: $formula
+            brew install --verbose --display-times $formula
         end
     end
+
+    return
 
     # --------------------------------------------------------------------------
     #
@@ -187,7 +210,10 @@ function 🍺__brew
 
     # MacVIM installed after all formulae because of issues with powerline in vim when python is updated
     # https://github.com/editorconfig/editorconfig/wiki/FAQ#when-using-the-vim-plugin-i-got-e887-sorry-this-command-is-disabled-the-pythons-site-module-could-not-be-loaded
-    brew reinstall macvim --with-override-system-vim
+
+    if contains python4 $outdated_formulae
+        brew reinstall macvim --with-override-system-vim
+    end
 
     # --------------------------------------------------------------------------
     #
@@ -209,6 +235,8 @@ function 🍺__brew
     set -l previous_version 2.5.0_2
     set -l ruby_versions (brew_versions ruby)
     if not test $desired_ruby = (brew_active_version ruby)
+        echo
+        echo 💎  Updating Ruby to $desired_ruby
         if contains -- $desired_ruby $ruby_versions
             brew switch ruby $desired_ruby
             brew link --overwrite ruby
@@ -252,19 +280,24 @@ function 🍺__brew
         firewall_allow_nginx
     end
 
-    # Cleanup
+    # Skip cleanup for some unstable
     for formula in $no_clean_formulae
-        if contains $formula $formulae_no_flags
-            set -l index (contains --index $formula $formulae_no_flags)
+        if contains $formula $formulae
+            set -l index (contains --index $formula $formulae)
             set --erase formulae[$index]
         end
     end
-    # Cleanup the remaining formulae
-    brew cleanup --prune=30 $formulae_no_flags
 
-    # Doctor
+    echo
+    echo 🛀🏻  Cleanup
+    brew cleanup --prune=30 $formulae
+
+    echo
+    echo 👩🏻‍⚕️  Doctor
     brew doctor
 
-    # Info
-    brew info
+    # Slow, takes ~40s on greymatter
+    # echo
+    # echo ℹ️  Info
+    # brew info
 end

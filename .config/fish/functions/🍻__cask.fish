@@ -180,23 +180,31 @@ function 🍻__cask
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
 
-    # Verify the user owns the Homebrew dir.
-    # TODO: Should this be (brew_home)/Caskroom?
-    # if test $USER != (fileowner (brew_home))
-    #     if status is-login
-    #         echo "You must be the owner of "(brew_home)" to run this command."
-    #     end
-    #     return 1
-    # end
+    # Verify the user owns the Caskroom dir.
+    set -l caskroom_dir (brew_home)/Caskroom
+    if test $USER != (fileowner $caskroom_dir)
+        if status is-login
+            echo "You must be the owner of "$caskroom_dir" to run this command."
+        end
+        return 1
+    end
 
-    # if test '10.13' = (sw_vers -productVersion)
+    # if test '10.13' = (osversion)
     #     echo "Skipping Cask on highOS"
     #     return 1
     # end
 
-    # Update
+    # --------------------------------------------------------------------------
+    #
+    # Update formulae
+    #
+    # --------------------------------------------------------------------------
+
+    echo 🚰  Updating formulae
     brew update
     set -l installed (brew cask list -1 ^/dev/null)
+    echo
+    echo ➡️ (moj_host)  Installed: $installed
 
     # --------------------------------------------------------------------------
     #
@@ -207,11 +215,19 @@ function 🍻__cask
     # Uninstall unwanted formulae
     set -l to_uninstall
     for cask in $uninstall
+        # Strip off tap prefix (e.g. caskroom/versions/java8)
+        set -l tokens (string split / $cask)
+        if test (count $tokens) -ge 3
+            set cask $tokens[3]
+        end
+
         if contains $cask $installed
             set to_uninstall $to_uninstall $cask
         end
     end
     if test -n "$to_uninstall"
+        echo
+        echo 🗑   Uninstalling $to_uninstall
         brew cask uninstall --force $to_uninstall
     end
 
@@ -223,23 +239,33 @@ function 🍻__cask
 
     # Update installed casks
     set -l outdated_casks (brew cask outdated ^/dev/null)
-    echo Outdated:
-    list $outdated_casks
     # Example: charles (4.1.1) != 4.1.2
     # Cut everything but the first column
     # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
     if test -n "$outdated_casks"
-        brew cask reinstall --force $outdated_casks
+        echo
+        echo 👵🏻 Outdated: $outdated_casks
+        for outdated in $outdated_casks
+            brew cask reinstall --force $outdated
+        end
     end
 
     # Install new casks
     set -l not_installed
     for cask in $casks
+        # Strip off tap prefix (e.g. caskroom/versions/java8)
+        set -l tokens (string split / $cask)
+        if test (count $tokens) -ge 3
+            set cask $tokens[3]
+        end
+
         if not contains $cask $installed
             set not_installed $not_installed $cask
         end
     end
     if test -n "$not_installed"
+        echo
+        echo 🆕  Installing: $not_installed
         brew cask install --force $not_installed
     end
 
@@ -249,6 +275,7 @@ function 🍻__cask
     #
     # --------------------------------------------------------------------------
 
-    # Cleanup
+    echo
+    echo 🛀🏻  Cleanup
     brew cask cleanup --outdated
 end
