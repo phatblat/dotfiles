@@ -36,9 +36,12 @@ set relativenumber
 " Auto-reload buffers when file changed on disk
 set autoread
 
-" Wrap column, shows red guide
-set textwidth=120
-set colorcolumn=+1
+" Hard wrap column, shows red guide
+"set textwidth=120
+"set colorcolumn=+1
+
+" Soft wrap
+set wrap linebreak nolist
 
 "" Whitespace
 set nowrap                      " don't wrap lines
