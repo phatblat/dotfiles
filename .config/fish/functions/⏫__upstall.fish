@@ -8,12 +8,12 @@ function ⏫__upstall
     echo "⏫  Upstall (Last ran: "$last_ran")"
     date_iso8601 >$last_ran_file
 
-    # Disabled by default: textmate xcode fisherman
-    set -l all_modules ruby brew cask omf pip npm powerline vundle macos
+    # Disabled by default: textmate xcode fisherman apm
+    set -l all_modules ruby brew cask omf pip npm powerline vundle vscode macos
 
     if contains -- --nothing $argv
         # Smoke test
-        set argv --norb --noxc --nobr --noca --noomf --nofm --nopy --nojs ---nopl -novi --notm --noos
+        set argv --norb --noxc --nobr --noca --noomf --nofm --nopy --nojs ---nopl -novi --notm --novs --noos
     else if test -z "$argv"
         # No args means run all
         set argv $all_modules
@@ -35,5 +35,6 @@ function ⏫__upstall
     ⬆️__upmodule 🗒__vundle      "🗒  Vundle"     vundle     --novi $argv
     ⬆️__upmodule 📝__textmate    "📝  TextMate"   textmate   --notm $argv
     ⬆️__upmodule ⚛️__apm         "⚛️  APM"        apm        --noap $argv
+    ⬆️__upmodule 🆚__vscode      "🆚  VS Code"    vscode     --novs $argv
     ⬆️__upmodule 🖥__macos       "🖥  macOS"      macos      --noos $argv
 end
