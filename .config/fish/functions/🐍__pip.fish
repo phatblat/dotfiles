@@ -32,6 +32,13 @@ function 🐍__pip
         sudo chown $USER /usr/local/lizard_ext
     end
 
+    # Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/man'
+    # Consider using the `--user` option or check the permissions.
+    if not test -d /usr/local/man
+        sudo mkdir /usr/local/man
+        sudo chown $USER /usr/local/man
+    end
+
     set -l global_packages \
         awscli \
         lizard \
