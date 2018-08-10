@@ -17,8 +17,8 @@
                 }
             },
             {
-                "function": "powerline.segments.common.env.virtualenv",
-                "priority": 50
+                "function": "powerline_xcodeversion.xcodeversion",
+                "priority": 60
             },
             {
                 "function": "powerline.segments.shell.cwd",
@@ -27,10 +27,6 @@
                     "dir_limit_depth": 3,
                     "use_path_separator": true
                 }
-            },
-            {
-                "function": "powerline_xcodeversion.xcodeversion",
-                "priority": 60
             },
             {
                 "function": "powerline_gitstatus.gitstatus",
