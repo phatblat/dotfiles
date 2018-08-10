@@ -17,8 +17,8 @@
                 }
             },
             {
-                "function": "powerline.segments.common.env.virtualenv",
-                "priority": 50
+                "function": "powerline_xcodeversion.xcodeversion",
+                "priority": 60
             },
             {
                 "function": "powerline.segments.shell.cwd",
