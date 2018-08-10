@@ -34,5 +34,6 @@
     "gitlens.historyExplorer.enabled": true,
     "editor.dragAndDrop": false,
     "window.zoomLevel": 0,
-    "editor.multiCursorMergeOverlapping": false
+    "editor.multiCursorMergeOverlapping": false,
+    "workbench.colorTheme": "Eva Dark Bold"
 }
