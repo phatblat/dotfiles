@@ -2,11 +2,10 @@ function dotfiles --description='Edit dotfiles.' \
         --argument-names=type
     set -l dotfiles ~/.dotfiles/
     set -l cronfiles ~/.dotfiles/cron/
-    set -l fishfiles ~/.config/fish/
 
     if test -z "$type"
-        edit $dotfiles $fishfiles
-        return
+        echo "Usage: dotfiles [.|cron|fish|git|powerline]"
+        return 1
     end
 
     switch $type
@@ -14,10 +13,13 @@ function dotfiles --description='Edit dotfiles.' \
             edit $dotfiles
         case cron
             edit $cronfiles
-        case fish fishfiles
-            edit $fishfiles
         case '*'
-            echo "Usage: dotfiles [.|cron|fish]"
-            return 1
+            # Look for matching config dir
+            if test -d ~/.config/$type
+                edit ~/.config/$type
+            else
+                echo "Usage: dotfiles [.|cron|fish|git|powerline]"
+                return 2
+            end
     end
 end
