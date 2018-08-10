@@ -8,9 +8,12 @@ function xcv \
     # set -l marketing_version (echo $output | awk '{print $2}')
     # set -l build_version (echo $output | awk '{print $5}')
 
+    set -l active_version (xcode-select -p)
+    set -l version_plist (string replace Developer '' $active_version)version.plist
+
     # Parse for marketing version
     set -l marketing_version (\
-        plutil -p (xcode-select -p)/../Info.plist \
+        plutil -p $version_plist \
         | grep -e CFBundleShortVersionString \
         | sed 's/[^0-9\.]*//g' \
     )
@@ -23,8 +26,8 @@ function xcv \
 
     # Parse for build version
     set -l build_version (\
-        plutil -p (xcode-select -p)/../Info.plist \
-        | grep -e DTXcodeBuild \
+        plutil -p $version_plist \
+        | grep -e ProductBuildVersion \
         | awk '{print $3}' \
         | sed 's/"//g' \
     )
@@ -37,7 +40,7 @@ function xcv \
             set beta_version "beta 1 "
         case 102
             set beta_version "beta 2 "
-        case 10L201x 10L201y
+        case 10L201y
             set beta_version "beta 3 "
         case 104
             set beta_version "beta 4 "
