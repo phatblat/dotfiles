@@ -107,6 +107,7 @@
 .project
 .pry_history
 .putty/
+.pypirc
 .ralio_recent
 .raliorc
 .raliorc/
