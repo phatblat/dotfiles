@@ -47,6 +47,7 @@ function 🐍__pip
         pylint \
         # gitstatus segment fork for powerline-status
         'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing' \
+        powerline-xcodeversion \
         Pygments \
         twine
 
