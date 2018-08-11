@@ -54,6 +54,7 @@ function 🍻__cask
         jira-client \
         kaleidoscope \
         karabiner-elements \
+        keycastr \
         licecap \
         minikube \
         macdown \
