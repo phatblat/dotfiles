@@ -47,7 +47,7 @@ function 🍻__cask
         ibm-cloud-cli \
         ios-console \
         istat-menus \
-        iterm2-beta \
+        iterm2 \
         java \
         caskroom/versions/java8 \
         jetbrains-toolbox \
