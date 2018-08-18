@@ -159,7 +159,6 @@ function 🍻__cask
         cocoapods \
         cocoapods-app \
         disk-inventory-x \
-        iterm2 \
         java9 \
         mono-mdk \
         sublime-text-dev \
