@@ -33,6 +33,7 @@ function 🍻__cask
         dbvisualizer \
         dash \
         dayone-cli \
+        deckset \
         docker-toolbox \
         duet \
         fauxpas \
