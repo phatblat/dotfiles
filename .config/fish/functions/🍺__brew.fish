@@ -71,6 +71,7 @@ function 🍺__brew
         postgresql \
         python \
         qemu \
+        redis \
         rename \
         ruby \
         screenresolution \
