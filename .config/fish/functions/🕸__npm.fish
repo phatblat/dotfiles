@@ -23,6 +23,7 @@ function 🕸__npm
     end
 
     set -l global_packages \
+        atlas-connect \
         eslint \
         express-generator \
         fast-cli \
@@ -35,6 +36,7 @@ function 🕸__npm
         ralio \
         realm-cli \
         realm-object-server \
+        ngrok \
         ts2kt \
         tslint
 
