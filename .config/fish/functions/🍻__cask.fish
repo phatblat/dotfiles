@@ -21,6 +21,7 @@ function 🍻__cask
         android-studio \
         anka-flow \
         anylist \
+        appium \
         atom \
         back-in-time \
         banktivity \
@@ -49,6 +50,7 @@ function 🍻__cask
         ios-console \
         istat-menus \
         iterm2 \
+        iterm2-beta \
         java \
         caskroom/versions/java8 \
         jetbrains-toolbox \
