@@ -36,17 +36,17 @@ function xcv \
     set -l beta_version
     switch $build_version
         #    10.0
-        case 101
+        case 10L176w
             set beta_version "beta 1 "
-        case 102
+        case 10L177m
             set beta_version "beta 2 "
         case 10L201y
             set beta_version "beta 3 "
-        case 104
+        case 10L213o
             set beta_version "beta 4 "
-        case 105
+        case 10L221o
             set beta_version "beta 5 "
-        case 106
+        case 10L232m
             set beta_version "beta 6 "
     end
 
