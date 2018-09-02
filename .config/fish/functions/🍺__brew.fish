@@ -33,6 +33,7 @@ function 🍺__brew
         docker-machine \
         duti \
         findutils \
+        firebase-cli \
         fortune \
         gcovr \
         git \

@@ -38,6 +38,7 @@ function 🍻__cask
         docker-toolbox \
         duet \
         fauxpas \
+        firebase-admin \
         geekbench \
         githubpulse \
         gitkraken \
