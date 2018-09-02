@@ -59,6 +59,7 @@ function 🍻__cask
         karabiner-elements \
         keycastr \
         licecap \
+        microblog \
         minikube \
         macdown \
         ngrok \
