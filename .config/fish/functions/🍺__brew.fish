@@ -46,6 +46,7 @@ function 🍺__brew
         hub \
         imagemagick \
         infer \
+        jenkins \
         jenv \
         jfrog-cli-go \
         jq \
@@ -67,6 +68,7 @@ function 🍺__brew
         nvm \
         packer \
         pacvim \
+        phatblat/services/pbjenkins \
         pkg-config \
         postgresql \
         python \
