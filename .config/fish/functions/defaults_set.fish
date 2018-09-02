@@ -91,6 +91,9 @@ function defaults_set
     # Show build times - http://stackoverflow.com/questions/1027923/how-to-enable-build-timing-in-xcode#answer-2801156
     defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 
+    # Show xcode index count
+    defaults write com.apple.dt.Xcode IDEIndexerActivityShowNumericProgress -bool true
+
     #
     # Tweetbot
     #
