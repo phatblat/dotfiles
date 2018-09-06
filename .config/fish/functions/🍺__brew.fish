@@ -215,7 +215,7 @@ function 🍺__brew
     # MacVIM installed after all formulae because of issues with powerline in vim when python is updated
     # https://github.com/editorconfig/editorconfig/wiki/FAQ#when-using-the-vim-plugin-i-got-e887-sorry-this-command-is-disabled-the-pythons-site-module-could-not-be-loaded
 
-    if contains python4 $outdated_formulae
+    if contains python3 $outdated_formulae
         brew reinstall macvim --with-override-system-vim
     end
 
