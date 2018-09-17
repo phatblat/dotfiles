@@ -82,7 +82,7 @@ GEM
     rainbow (3.0.0)
     reverse_markdown (1.1.0)
       nokogiri
-    rubocop (0.59.0)
+    rubocop (0.59.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
