@@ -82,7 +82,7 @@ GEM
     rainbow (3.0.0)
     reverse_markdown (1.1.0)
       nokogiri
-    rubocop (0.59.1)
+    rubocop (0.59.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -92,7 +92,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-macho (1.2.0)
     ruby-progressbar (1.10.0)
-    solargraph (0.27.1)
+    solargraph (0.28.1)
       coderay (~> 1.1)
       eventmachine (~> 1.2, >= 1.2.5)
       htmlentities (~> 4.3, >= 4.3.4)
@@ -133,4 +133,4 @@ DEPENDENCIES
   xcodeproj
 
 BUNDLED WITH
-   1.16.4
+   1.16.5
