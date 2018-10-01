@@ -79,6 +79,7 @@ function 🍻__cask
         softraid \
         stride \
         sublime-text \
+        sublime-merge \
         teacode \
         textmate \
         the-unarchiver \
