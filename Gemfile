@@ -10,7 +10,7 @@ gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
 
 # Fastlane depends on unmaintined colored gem
 # gem 'fastlane'
-# gem 'xcode-install'
+gem 'xcode-install'
 
 # Works around issues running with Ruby 2.4
 # https://github.com/rails/rails/issues/27450#issuecomment-269121335
