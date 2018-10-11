@@ -11,6 +11,11 @@ function xcv \
     set -l active_version (xcode-select -p)
     set -l version_plist (string replace Developer '' $active_version)version.plist
 
+    if not test -f $version_plist
+        error Plist not found: $version_plist
+        return 1
+    end
+
     # Parse for marketing version
     set -l marketing_version (\
         plutil -p $version_plist \
