@@ -86,6 +86,7 @@ function 🍻__cask
         thingsmacsandboxhelper \
         tower \
         transmit \
+        homebrew/cask-drivers/twelvesouth-bassjump \
         virtualbox \
         visual-studio-code \
         vmware-fusion
