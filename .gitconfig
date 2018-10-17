@@ -79,9 +79,9 @@
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
-[filter "xmlplist"]
-    clean = git-plist-filter.sh
-    smudge = git-plist-filter.sh
+#[filter "xmlplist"]
+#    clean = git-plist-filter.sh
+#    smudge = git-plist-filter.sh
 [diff-so-fancy]
     markEmptyLines = false
     changeHunkIndicators = true

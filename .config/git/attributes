@@ -1,5 +1,5 @@
-*.plist filter=xmlplist
-*.qtz filter=xmlplist
+#*.plist filter=xmlplist
+#*.qtz filter=xmlplist
 
 # Xcode project file
 *.pbxproj merge=union
