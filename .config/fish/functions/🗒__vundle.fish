@@ -23,10 +23,7 @@ function 🗒__vundle
     # Install Vundle plugins
     vim +PluginInstall +qall
 
-    pushd $vim_bundle_dir/YouCompleteMe
-    and ./install.py --clang-completer
-    and popd
-
     # Install vim-plug plugins
     vim +PluginInstall +qall
 end
+🌗
