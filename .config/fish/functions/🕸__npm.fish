@@ -35,7 +35,6 @@ function 🕸__npm
         node-pre-gyp \
         ralio \
         realm-cli \
-        realm-object-server \
         ngrok \
         ts2kt \
         tslint
@@ -53,7 +52,9 @@ function 🕸__npm
     echo "Updating NPM"
     npm install npm@latest -g
 
-    # TODO: Add package uninstall
+    # Uninstall
+    npm uninstall -g \
+        realm-object-server
 
     # Update
     npm update -g

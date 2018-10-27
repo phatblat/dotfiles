@@ -87,6 +87,7 @@
 .jenv/
 .konan/
 .lesshst
+.lldb/
 .lldb/module_cache/
 .local/
 .locks/
