@@ -272,7 +272,9 @@ function 🍻__cask
     if test -n "$not_installed"
         echo
         echo 🆕  Installing: $not_installed
-        brew cask install --force $not_installed
+        for new_cask in $not_installed
+            brew cask install --force $new_cask
+        end
     end
 
     # --------------------------------------------------------------------------
