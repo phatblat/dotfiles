@@ -26,4 +26,3 @@ function 🗒__vundle
     # Install vim-plug plugins
     vim +PluginInstall +qall
 end
-
