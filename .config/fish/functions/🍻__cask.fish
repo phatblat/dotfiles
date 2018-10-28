@@ -51,7 +51,6 @@ function 🍻__cask
         ios-console \
         istat-menus \
         iterm2 \
-        iterm2-beta \
         java \
         caskroom/versions/java8 \
         jetbrains-toolbox \
