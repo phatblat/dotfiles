@@ -76,6 +76,7 @@ function 🍻__cask
         rocket \
         screens \
         simpholders \
+        skype-for-business \
         softraid \
         stride \
         sublime-text \
