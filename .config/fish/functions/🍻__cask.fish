@@ -75,7 +75,6 @@ function 🍻__cask
         realm-studio \
         rocket \
         screens \
-        screens-connect \
         simpholders \
         softraid \
         stride \
