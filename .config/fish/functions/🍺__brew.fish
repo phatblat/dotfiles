@@ -9,7 +9,6 @@ function 🍺__brew
     set -l custom_shells bash fish zsh
 
     set -l formulae \
-        antigen \
         artifactory \
         autoconf \
         automake \
@@ -43,7 +42,6 @@ function 🍺__brew
         goaccess \
         gradle \
         groovy \
-        heroku \
         hub \
         imagemagick \
         infer \
@@ -64,16 +62,13 @@ function 🍺__brew
         mint \
         mtr \
         nginx \
-        ninja \
         node \
         nvm \
         packer \
         pacvim \
         phatblat/services/pbjenkins \
         pkg-config \
-        postgresql \
         python \
-        qemu \
         redis \
         rename \
         ruby \
@@ -89,7 +84,6 @@ function 🍺__brew
         swiftlint \
         swiftplate \
         tailor \
-        telnet \
         terminal-notifier \
         thefuck \
         tig \
@@ -100,7 +94,6 @@ function 🍺__brew
         uncrustify \
         utimer \
         vapor/tap/toolbox \
-        wget \
         xctool \
         yarn \
         $custom_shells
