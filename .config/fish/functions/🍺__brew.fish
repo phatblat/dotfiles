@@ -42,6 +42,7 @@ function 🍺__brew
         goaccess \
         gradle \
         groovy \
+        heroku/brew/heroku \
         hub \
         imagemagick \
         infer \
