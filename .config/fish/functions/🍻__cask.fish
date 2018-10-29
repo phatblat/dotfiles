@@ -31,6 +31,7 @@ function 🍻__cask
         cardhop \
         charles \
         cheatsheet \
+        cleanmymac \
         cloudapp \
         dbvisualizer \
         dash \
