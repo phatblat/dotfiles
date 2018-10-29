@@ -71,14 +71,11 @@ function 🍻__cask
         paste \
         paw \
         peripheryapp/periphery/periphery \
-        realm-browser \
         realm-studio \
         rocket \
         screens \
-        simpholders \
         skype-for-business \
         softraid \
-        stride \
         sublime-text \
         sublime-merge \
         teacode \
