@@ -25,6 +25,12 @@ function defaults_set
     defaults write -g KeyRepeat -int 1          # normal minimum is 2 (30 ms)
 
     #
+    # Trackpad
+    #
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+
+    #
     # Finder
     #
 
