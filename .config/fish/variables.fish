@@ -58,12 +58,20 @@ set --export github_user phatblat
 
 # fish_user_paths
 set --global fish_user_paths \
+    /usr/local/opt/ruby/bin \
     /usr/local/sbin \
     /usr/local/opt/sqlite/bin \
     $fish_user_paths
 
 # PATH
-set --export --global PATH ./bin ~/bin (brew_home)/bin (brew_home curl)/bin $ANDROID_HOME/tools/bin /usr/local/opt/python/libexec/bin $PATH
+set --export --global PATH \
+    ./bin \
+    ~/bin \
+    (brew_home)/bin \
+    (brew_home curl)/bin \
+    $ANDROID_HOME/tools/bin \
+    /usr/local/opt/python/libexec/bin \
+    $PATH
 
 # ls color formatting - LS_COLWIDTHS
 #
