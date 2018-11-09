@@ -1,7 +1,8 @@
-# http://guides.rubygems.org/command-reference/#gem-environment
-# example: https://gist.github.com/jch/1331576
 ---
-gem: --no-document
-sources:
-- http://gems.rubyforge.org/
-- http://rubygems.org/
+:backtrace: false
+:bulk_threshold: 1000
+:sources:
+- https://rubygems.org/
+:update_sources: true
+:verbose: true
+gem: "--document=yri"
