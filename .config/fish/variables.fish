@@ -33,9 +33,10 @@ set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GRADLE_OPTS -Xmx1g
 set --export GRADLE_HEAP_SPACE -Xmx1g
 set --export GROOVY_HOME (brew_home groovy)/libexec
-# Use Java 8 for now until 10 is more stable
-set --export --global JAVA_HOME (/usr/libexec/java_home -v 1.8)
-set --export JAVA_OPTS "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
+# Suppressing Groovy warnings when gradle invoked from Java 9+
+# https://github.com/gradle/gradle/issues/2995
+# https://issues.apache.org/jira/browse/GROOVY-8339
+set --export JAVA_OPTS "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED"
 set --export ICLOUD_HOME "~/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
 set --export LANG en_US.UTF-8
@@ -55,12 +56,20 @@ set --export github_user phatblat
 
 # fish_user_paths
 set --global fish_user_paths \
+    /usr/local/opt/ruby/bin \
     /usr/local/sbin \
     /usr/local/opt/sqlite/bin \
     $fish_user_paths
 
 # PATH
-set --export --global PATH ./bin ~/bin (brew_home)/bin (brew_home curl)/bin $ANDROID_HOME/tools/bin /usr/local/opt/python/libexec/bin $PATH
+set --export --global PATH \
+    ./bin \
+    ~/bin \
+    (brew_home)/bin \
+    (brew_home curl)/bin \
+    $ANDROID_HOME/tools/bin \
+    /usr/local/opt/python/libexec/bin \
+    $PATH
 
 # ls color formatting - LS_COLWIDTHS
 #

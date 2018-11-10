@@ -14,10 +14,8 @@ function 🗄__gitconfig --argument-names email name
     set -l global_config ~/.config/git/config
 
     # Just print the current config when values are set.
-    if begin
-            test -n (git config --file $global_config user.name)
-            and test -n (git config --file $global_config user.email)
-        end
+    if test -n "(git config --file $global_config user.name)" -a \
+            -n "(git config --file $global_config user.email)"
         cat $global_config
         return 0
     end
@@ -25,11 +23,13 @@ function 🗄__gitconfig --argument-names email name
     # Prompt to add required values
 
     if test -z $name
-        get --prompt "Git user.name: " | read name
+        echo -n "Git user.name: "
+        read name
     end
 
     if test -z $email
-        get --prompt "Git user.email: " | read email
+        echo -n "Git user.email: "
+        read email
     end
 
     git config --file $global_config user.name "$name"

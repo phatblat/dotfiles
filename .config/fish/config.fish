@@ -11,8 +11,10 @@ end
 # Variables
 source ~/.config/fish/variables.fish
 
-# Directory-based variables
-eval (direnv hook fish)
+if which -s direnv
+    # Directory-based variables
+    eval (direnv hook fish)
+end
 
 # Termial colors
 set fish_color_autosuggestion 555\x1eyellow
@@ -78,6 +80,8 @@ if status is-interactive
     # Event Hooks
     reload fish_postexec
 
-    # The Fuck
-    eval (thefuck --alias | tr \n ';')
+    if which -s thefuck
+        # The Fuck
+        eval (thefuck --alias | tr \n ';')
+    end
 end
