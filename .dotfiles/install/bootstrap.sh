@@ -23,9 +23,18 @@ fi
 # Xcode requred to use bundled git
 xcode-select -p
 xcode-select --install
+
+# Download manually?
+# https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2.dmg
+
 if [[ $? -eq 0 ]]; then
-  open https://developer.apple.com/downloads/
+    open https://developer.apple.com/downloads/
+    echo "Click the Install button to install the Xcode Command-Line Tools, then re-run this script."
+    exit 1
 fi
+
+# TODO: accept license
+# sudo xcodebuild -license accept
 
 # Clone the .dotfiles repo into $HOME
 if [[ $PWD != $HOME ]]; then
