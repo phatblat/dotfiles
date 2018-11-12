@@ -4,7 +4,7 @@ function moj_user \
     switch $USER
         case 'admin'
             echo 🙆🏻‍♂️
-        case 'ben'
+        case 'ben' 'f*'
             echo 🚶
         case 'chatelain'
             echo 👨🏻‍🚀
