@@ -140,6 +140,7 @@
 .z
 .zcompcache/
 .zcompdump*
+.zoomus/
 .zsh-update
 .zsh_history
 Applications/
