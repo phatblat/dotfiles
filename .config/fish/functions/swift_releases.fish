@@ -1,6 +1,19 @@
 function swift_releases --description='Check for Swift releases'
-    for date in (jot - 10 20)
+    set -l year (date "+%Y")
+    set -l month (date "+%m")
+    set -l current_day (date "+%d")
+    for day in (jot - $current_day 1)
+        set -l date $year-$month-$day
         echo $date
-        curl -IL https://swift.org/builds/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2018-10-$date-a/swift-DEVELOPMENT-SNAPSHOT-2018-10-$date-a-osx.pkg
+
+        set -l release_slug "swift-DEVELOPMENT-SNAPSHOT-$date-a"
+        set -l url "https://swift.org/builds/development/xcode/$release_slug/$release_slug-osx.pkg"
+        echo $url
+
+        curl \
+            --head \
+            --location \
+            --write-out "%{http_code}\n\n" \
+            $url
     end
 end
