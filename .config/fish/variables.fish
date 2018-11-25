@@ -33,11 +33,6 @@ set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GRADLE_OPTS -Xmx1g
 set --export GRADLE_HEAP_SPACE -Xmx1g
 set --export GROOVY_HOME (brew_home groovy)/libexec
-# Suppressing Groovy warnings when gradle invoked from Java 9+
-# https://github.com/gradle/gradle/issues/2995
-# https://issues.apache.org/jira/browse/GROOVY-8339
-set --export JAVA_OPTS "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
-set --export JAVA_OPTS_11 "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED"
 set --export ICLOUD_HOME "~/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
 set --export LANG en_US.UTF-8
@@ -84,3 +79,6 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 # Obsolete rsync variables
 set --export phatblat_imac /Users/phatblat.bak/
 set --export phatblat_external /Volumes/ThunderBay/Users/phatblat/
+
+# Java
+setjdk 1.8
