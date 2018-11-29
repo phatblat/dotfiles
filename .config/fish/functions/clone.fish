@@ -1,6 +1,7 @@
 function clone \
         --description="Performs a git clone, then configures repo user." \
         --argument-names url dir
+
     if test -z "$url"
         echo "Usage: clone url [dir]"
         return 1
@@ -11,4 +12,6 @@ function clone \
 
     git clone -- $url $dir
     and pushd $dir
+    and user.email (email_url $url)
+    and user
 end
