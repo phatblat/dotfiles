@@ -68,7 +68,7 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.5)
-    fastlane (2.108.0)
+    fastlane (2.109.1)
       CFPropertyList (>= 2.3, < 4.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
@@ -177,7 +177,7 @@ GEM
     reverse_markdown (1.1.0)
       nokogiri
     rouge (2.0.7)
-    rubocop (0.60.0)
+    rubocop (0.61.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -198,7 +198,7 @@ GEM
       CFPropertyList
       naturally
     slack-notifier (2.3.2)
-    solargraph (0.29.1)
+    solargraph (0.29.3)
       eventmachine (~> 1.2, >= 1.2.5)
       htmlentities (~> 4.3, >= 4.3.4)
       kramdown (~> 1.16)
