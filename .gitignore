@@ -101,6 +101,7 @@
 .node_repl_history
 .npm-cache/
 .npm/
+.npmrc
 .nvm/
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
