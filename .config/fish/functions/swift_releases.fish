@@ -2,7 +2,12 @@ function swift_releases --description='Check for Swift releases'
     set -l year (date "+%Y")
     set -l month (date "+%m")
     set -l current_day (date "+%d")
+
     for day in (jot - $current_day 1)
+        # Zero pad month and day
+        set month (printf "%02d" $month)
+        set day (printf "%02d" $day)
+
         set -l date $year-$month-$day
         echo $date
 
