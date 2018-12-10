@@ -59,6 +59,7 @@
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
 .config/upstall/last_run.*
+.config/yarn/
 .cups/
 .dbvis/
 .did_show_opt_info
