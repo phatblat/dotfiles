@@ -1,6 +1,7 @@
 # Installs and updates SDKs.
 # https://sdkman.io/
-# curl -s "https://get.sdkman.io/" | bash
+# https://get.sdkman.io/
+# https://github.com/sdkman/sdkman-cli
 #
 # Sequencing
 # - After: omf
