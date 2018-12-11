@@ -122,6 +122,10 @@
 .rest-client/
 .rnd
 .rubygems/
+.sdkman/archives/
+.sdkman/candidates/
+.sdkman/src/
+.sdkman/var/
 .settings/
 .slocdata/
 .solargraph/

@@ -9,11 +9,11 @@ function ⏫__upstall
     date_iso8601 >$last_ran_file
 
     # Disabled by default: textmate xcode fisherman apm
-    set -l all_modules ruby brew cask omf pip npm powerline vundle vscode macos
+    set -l all_modules ruby brew cask omf sdkman pip npm powerline vundle vscode macos
 
     if contains -- --nothing $argv
         # Smoke test
-        set argv --norb --noxc --nobr --noca --noomf --nofm --nopy --nojs ---nopl -novi --notm --novs --noos
+        set argv --norb --noxc --nobr --noca --noomf --nofm --nosdk --nopy --nojs ---nopl -novi --notm --novs --noos
     else if test -z "$argv"
         # No args means run all
         set argv $all_modules
@@ -29,6 +29,7 @@ function ⏫__upstall
     ⬆️__upmodule 🍻__cask        "🍻  Cask"       cask       --noca $argv
     ⬆️__upmodule 🐠__omf         "🐠  oh-my-fish" omf        --noomf $argv
     ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman"  fisherman  --nofm $argv
+    ⬆️__upmodule 🧰__sdkman      "🧰  SDKman"     sdk        --nosdk $argv
     ⬆️__upmodule 🐍__pip         "🐍  PIP"        pip        --nopy $argv
     ⬆️__upmodule 🕸__npm         "🕸  NPM"        npm        --nojs $argv
     ⬆️__upmodule ▶️__powerline   "▶️  Powerline"  powerline  --nopl $argv
