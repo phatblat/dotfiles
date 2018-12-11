@@ -14,7 +14,8 @@ function 🧰__sdkman
         return 1
     end
 
-    if not test -d $sdkman_prefix
+    # Using /bin dir as test because /etc is tracked in dotfiles
+    if not test -d $sdkman_prefix/bin
         curl -s "https://get.sdkman.io/" | bash
     end
 
