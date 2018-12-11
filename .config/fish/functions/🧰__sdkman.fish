@@ -19,5 +19,5 @@ function 🧰__sdkman
 
     sdk selfupdate
     sdk current
-
+    sdk update
 end
