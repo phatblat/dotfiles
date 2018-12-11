@@ -49,6 +49,7 @@ set --export LSCOLORS ExFxBxDxCxegedabagacad
 
 # Lower case
 set --export github_user phatblat
+set --global --export sdkman_prefix ~/.sdkman
 
 # fish_user_paths
 set --global fish_user_paths \
