@@ -1,4 +1,6 @@
-# Updates oh-my-fish and the plugins it manages. Installs if missing.
+# Updates oh-my-fish and bundled packages.
+#
+# Edit .config/omf/bundle to change packages
 #
 # Sequencing
 # - After: brew (fish)
@@ -6,12 +8,6 @@
 function 🐠__omf
     echo "🐠  oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"
     echo
-
-    set -l plugins \
-        brew \
-        nvm
-
-    set -l themes none
 
     set -l omf_dir ~/dev/fish/oh-my-fish
 
@@ -27,7 +23,6 @@ function 🐠__omf
         popd
     end
 
-
     # --------------------------------------------------------------------------
     #
     # Upstall
@@ -36,6 +31,8 @@ function 🐠__omf
 
     # Update omf and installed plugins
     omf update
+
+    # Install missing packages from .config/omf/bundle
     omf install
 
     echo "Installed plugins: "
