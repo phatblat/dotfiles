@@ -54,6 +54,7 @@ function 🍺__brew
         jsonlint \
         jsonpp \
         kotlin \
+        holgerbrandl/tap/kscript \
         kubernetes-helm \
         less \
         libssh2 \
