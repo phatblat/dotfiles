@@ -1,8 +1,9 @@
 # Prompt the user for a yes/no response. Returns 0 (success) for YES and 1 (error) for NO.
-# Plugin Dependency: get
-function yn --argument-names prompt
-    get --prompt $prompt --default=y \
-        | read -l answer
+function yn \
+        --argument-names prompt
+    read \
+        --local answer \
+        --prompt-str="$prompt> "
 
     switch $answer
         case y yes Y YES
@@ -15,3 +16,4 @@ function yn --argument-names prompt
             yn $prompt
     end
 end
+
