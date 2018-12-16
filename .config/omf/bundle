@@ -1,5 +1,4 @@
 package brew
 package foreign-env
 package nvm
-package sdk
 theme default
