@@ -46,6 +46,7 @@ function 🍺__brew
         hub \
         imagemagick \
         infer \
+        jabba \
         jenkins \
         jenv \
         jfrog-cli-go \

@@ -35,6 +35,7 @@ set --export GRADLE_HEAP_SPACE -Xmx1g
 set --export GROOVY_HOME (brew_home groovy)/libexec
 set --export ICLOUD_HOME "~/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
+set --export JABBA_HOME ~/.jabba
 set --export LANG en_US.UTF-8
 set --export LANGUAGE en_US.UTF-8
 set --export LC_ALL en_US.UTF-8
@@ -82,4 +83,4 @@ set --export phatblat_imac /Users/phatblat.bak/
 set --export phatblat_external /Volumes/ThunderBay/Users/phatblat/
 
 # Java
-setjdk 1.8
+jabba use default
