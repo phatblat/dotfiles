@@ -84,6 +84,7 @@
 .iterm2/
 .iterm2_shell_integration.zsh
 .itmstransporter/
+.jabba/
 .jenkins-hpl-map
 .jenkins/
 .jenv/
