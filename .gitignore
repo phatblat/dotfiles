@@ -89,6 +89,7 @@
 .jenkins/
 .jenv/
 .konan/
+.kscript/
 .lesshst
 .lldb/
 .lldb/module_cache/
