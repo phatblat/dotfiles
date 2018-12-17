@@ -1,6 +1,6 @@
 # Writes out LICENSE.md file, adds link to readme and commits changes.
 function license
-    echo "The MIT License (MIT)
+    echo -n "The MIT License (MIT)
 
 Copyright (c) 2018 Ben Chatelain
 
@@ -24,7 +24,7 @@ SOFTWARE.
 " > LICENSE.md
 
     # Append license info to README.md
-    echo "
+    echo -n "
 # 📄 License
 
 This repo is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for rights and limitations.
