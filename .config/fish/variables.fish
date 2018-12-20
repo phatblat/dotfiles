@@ -30,8 +30,6 @@ set --export ANDROID_NDK_HOME (brew_home)/share/android-ndk
 set --export ARCHFLAGS "-arch x86_64"
 set --export GPG_TTY (tty)
 set --export GRADLE_HOME (brew_home gradle)/libexec
-set --export GRADLE_OPTS -Xmx1g
-set --export GRADLE_HEAP_SPACE -Xmx1g
 set --export GROOVY_HOME (brew_home groovy)/libexec
 set --export ICLOUD_HOME "~/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
