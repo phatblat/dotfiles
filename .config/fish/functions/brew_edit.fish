@@ -26,7 +26,6 @@ function brew_edit --argument-names token version
         brew create $token
     end
 
-    brew tests
     brew uninstall $token
     brew install --build-from-source $token
     brew test $token
@@ -38,4 +37,3 @@ function brew_edit --argument-names token version
     #git push --set-upstream phatblat $branch
     # TODO: Open PR with hub
 end
-
