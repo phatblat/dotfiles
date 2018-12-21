@@ -78,9 +78,5 @@ set --export --global PATH \
 # number of links, user name, group name, flags, file size, file name.
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
-# Obsolete rsync variables
-set --export phatblat_imac /Users/phatblat.bak/
-set --export phatblat_external /Volumes/ThunderBay/Users/phatblat/
-
 # Java
 jabba use default
