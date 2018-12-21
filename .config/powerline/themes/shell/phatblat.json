@@ -39,6 +39,10 @@
                 "type":"string",
                 "highlight_groups": ["information:regular"],
                 "contents": "↝"
+            },
+            {
+                "function": "powerline.segments.shell.last_status",
+                "priority": 60
             }
         ]
     }
