@@ -69,6 +69,12 @@ set --export --global PATH \
     /usr/local/opt/python/libexec/bin \
     $PATH
 
+# Custom HOME handling for octodec. Since /Users/phatblat is a symlink,
+# it causes PWD to not match HOME, preventing powerline from shorting paths.
+if begin string match --quiet phatblat $USER; and string match --quiet --entire octodec (hostname); end
+    set --export --global HOME /Volumes/ThunderBay/Users/phatblat
+end
+
 # ls color formatting - LS_COLWIDTHS
 #
 # If this variable is set, it is considered to be a colon-delimited list of
