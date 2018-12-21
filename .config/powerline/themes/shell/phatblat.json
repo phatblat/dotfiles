@@ -25,7 +25,8 @@
                 "priority": 10,
                 "args": {
                     "dir_limit_depth": 3,
-                    "use_path_separator": true
+                    "use_path_separator": true,
+                    "shorten_home": true
                 }
             },
             {
