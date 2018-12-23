@@ -156,7 +156,7 @@ function 🍻__cask
         caskroom/fonts/font-ubuntu-mono-derivative-powerline
 
     # TODO: Re-enable $fonts on rundmg
-    set -l casks $apps $quicklook_plugins
+    set -l all_casks $apps $quicklook_plugins
 
     set -l uninstall \
         battery-guardian \
@@ -256,15 +256,17 @@ function 🍻__cask
 
     # Install new casks
     set -l not_installed
-    for cask in $casks
+    for full_cask in $all_casks
         # Strip off tap prefix (e.g. caskroom/versions/java8)
+        set -l cask $full_cask
         set -l tokens (string split / $cask)
         if test (count $tokens) -ge 3
             set cask $tokens[3]
         end
 
         if not contains $cask $installed
-            set not_installed $not_installed $cask
+            # Use the full cask name prefixed with tap info for install
+            set not_installed $not_installed $full_cask
         end
     end
     if test -n "$not_installed"
