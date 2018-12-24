@@ -83,4 +83,7 @@ end
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
-jabba use default
+# FIXME: jabba doesn't update fish environment
+# jabba use default
+jabba deactivate
+setjdk 1.8
