@@ -72,6 +72,7 @@ function 🍺__brew
         phatblat/services/pbjenkins \
         pkg-config \
         python \
+        radare2 \
         redis \
         rename \
         ruby \
