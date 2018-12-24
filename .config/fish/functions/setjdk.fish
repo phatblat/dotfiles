@@ -18,7 +18,7 @@ function setjdk \
 
     # JAVA_HOME
     set --export --global JAVA_HOME $path
-    echo JAVA_HOME: $JAVA_HOME
+    # echo JAVA_HOME: $JAVA_HOME
 
     # JAVA_OPTS
     set --local common_options "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
@@ -33,5 +33,5 @@ function setjdk \
         set --export --global JAVA_OPTS "$common_options $java9_options"
     end
 
-    echo JAVA_OPTS: $JAVA_OPTS
+    # echo JAVA_OPTS: $JAVA_OPTS
 end
