@@ -97,6 +97,7 @@
 .locks/
 .lumberjack/
 .m2/repository/
+.marathon/
 .mono/
 .netrc
 .ngrok/
