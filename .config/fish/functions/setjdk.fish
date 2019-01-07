@@ -1,15 +1,15 @@
 function setjdk \
-        --argument-names version \
+        --argument-names java_version \
         --description "Updates JAVA_HOME to point to the given JDK version."
-    if test -z $version
+    if test -z $java_version
         echo "Usage: setjdk 1.8 (or) setjdk 1.8.0_111"
         return 1
     end
 
     set --local jhome /usr/libexec/java_home
-    set --local major_version (string split . $version)[1]
+    set --local major_version (string split . $java_version)[1]
 
-    set --local path (eval $jhome --version $version)
+    set --local path (eval $jhome --version $java_version)
     set --local last_error $status
     if test $last_error != 0
         eval $jhome --verbose
