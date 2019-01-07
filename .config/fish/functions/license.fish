@@ -1,8 +1,10 @@
-# Writes out LICENSE.md file, adds link to readme and commits changes.
-function license
+function license \
+        --description='Writes out LICENSE.md file, adds link to readme and commits changes.'
+
+    set -l year (date "+%Y")
     echo -n "The MIT License (MIT)
 
-Copyright (c) 2018 Ben Chatelain
+Copyright ©️ $year Ben Chatelain
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
