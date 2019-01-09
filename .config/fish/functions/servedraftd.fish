@@ -1,4 +1,6 @@
-# Run Jekyll server in the background showing drafts.
-function servedraftd
+function servedraft \
+        --wraps jekyll \
+        --description='Runs Jekyll server in the background showing drafts.'
+
     servedraft --detach $argv
 end
