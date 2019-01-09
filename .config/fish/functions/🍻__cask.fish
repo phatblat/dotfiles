@@ -62,6 +62,7 @@ function 🍻__cask
         keycastr \
         licecap \
         microblog \
+        microsoft-teams \
         minikube \
         macdown \
         ngrok \
