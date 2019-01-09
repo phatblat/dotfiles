@@ -1,5 +1,5 @@
 function served \
-        --wraps jekyll \
+        --wraps=jekyll \
         --description='Runs Jekyll server in the background.'
 
     serve  --incremental --detach $argv
