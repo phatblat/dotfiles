@@ -14,6 +14,6 @@
 #
 function gv --description='Prints gradle version'
     set output (gradle --version)
-    set version (string split " " $output[3])[2]
-    echo $version
+    set gradle_version (string split " " $output[3])[2]
+    echo $gradle_version
 end

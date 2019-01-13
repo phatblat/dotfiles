@@ -36,10 +36,10 @@ function 📝__textmate
                 case editorconfig
                     clone_or_pull $bundle git@github.com:Mr0grog/editorconfig-textmate.git
 
-                    set -l version 0.3.1
+                    set -l ec_version 0.3.1
                     # curl -L -O -#
                     curl --location --remote-name --progress-bar \
-                        https://github.com/Mr0grog/editorconfig-textmate/releases/download/v$version/editorconfig-textmate-$version.tmplugin.zip
+                        https://github.com/Mr0grog/editorconfig-textmate/releases/download/v$ec_version/editorconfig-textmate-$ec_version.tmplugin.zip
 
                     set newest_file (ls -1t | head -n 1)
                     unzip -o $newest_file
