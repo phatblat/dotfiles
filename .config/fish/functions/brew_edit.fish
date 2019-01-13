@@ -32,18 +32,4 @@ function brew_edit \
         # Otherwise, create
         brew create $token
     end
-
-    if brew ls --versions $token > /dev/null
-        brew uninstall $token
-    end
-
-    brew install --build-from-source $token
-    and brew test $token
-    and brew audit --strict $token
-
-    # TODO: Commit
-    #git commit -m "$token $formula_version"
-    # TODO: Publish branch
-    #git push --set-upstream phatblat $branch
-    # TODO: Open PR with hub
 end
