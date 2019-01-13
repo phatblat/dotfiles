@@ -7,15 +7,20 @@ function maslink \
 
     # Delete the symlink if the $remove parameter contains anything
     if test -n "$remove"
-        rm $destination
-        return $status
+        if rm $destination
+            masshow
+            return
+        else
+            return $status
+        end
     end
 
     if test -L $destination
-        error mas is already linked to $destination
-        return 1
+        error mas is already linked at $destination
+        masshow
+        return 2
     end
 
     ln -s $source $destination
-    ll (which mas)
+    masshow
 end
