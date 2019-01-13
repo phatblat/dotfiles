@@ -1,18 +1,25 @@
-# Manage Homebrew formulae.
-function brew_edit --argument-names token version
+function brew_edit \
+        --description='Manages Homebrew formulae' \
+        --argument-names token formula_version
+
     set -l branch $token
 
     if test -z "$token"
-        echo "Usage: brew_edit token [version]"
+        echo "Usage: brew_edit token [formula_version]"
         return 1
-    else if test -n "$version"
-        set branch $token"-"$version
+    else if test -n "$formula_version"
+        set branch $token"-"$formula_version
     end
 
-    # /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/jenkins.rb
-    # brew --repository homebrew/core
-    pushd (brew_home)/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
-    # TODO: Add/update fork
+    # Special handling for certain formulae
+    switch $token
+        case mas
+            brew tap-unpin mas-cli/tap
+            # brew uninstall --ignore-dependencies mas
+    end
+
+    # /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/
+    brew_core
 
     git checkout master
     git pull origin master
@@ -26,13 +33,16 @@ function brew_edit --argument-names token version
         brew create $token
     end
 
-    brew uninstall $token
+    if brew ls --versions $token > /dev/null
+        brew uninstall $token
+    end
+
     brew install --build-from-source $token
-    brew test $token
-    brew audit --strict $token
+    and brew test $token
+    and brew audit --strict $token
 
     # TODO: Commit
-    #git commit -m "$token $version"
+    #git commit -m "$token $formula_version"
     # TODO: Publish branch
     #git push --set-upstream phatblat $branch
     # TODO: Open PR with hub
