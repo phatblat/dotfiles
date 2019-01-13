@@ -1,12 +1,12 @@
 # Manage Homebrew casks.
-function cask_edit --argument-names token version
+function cask_edit --argument-names token cask_version
     set -l branch $token
 
     if test -z "$token"
-        echo "Usage: cask_edit token [version]"
+        echo "Usage: cask_edit token [cask_version]"
         return 1
-    else if test -n "$version"
-        set branch $token"-"$version
+    else if test -n "$cask_version"
+        set branch $token"-"$cask_version
     end
 
     cask_dir

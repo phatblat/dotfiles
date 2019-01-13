@@ -11,7 +11,7 @@
 # - oraclelicense	accept-securebackup-cookie	.oracle.com	/	5/14/2017, 11:56:38 AM	39 B
 #
 # Notes:
-# - `version` and `download_url` both need to be manually updated
+# - `java_version` and `download_url` both need to be manually updated
 #
 # Sequencing
 # - After: brew (has newer curl)
@@ -19,10 +19,10 @@ function ☕️__java
     echo "☕️  Java"
     echo
 
-    set -l version 1.8.0_131
+    set -l java_version 1.8.0_131
 
     # Check to see if update is necessary
-    if test $version = (jv)
+    if test $java_version = (jv)
         showjdks
         return
     end
