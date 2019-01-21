@@ -36,6 +36,7 @@
 .config/fish/completions/
 .config/fish/conf.d/done.fish
 .config/fish/conf.d/z.fish
+.config/fish/fish_variables
 .config/fish/fishd.*
 .config/fish/functions/__z.fish
 .config/fish/functions/__z_add.fish
