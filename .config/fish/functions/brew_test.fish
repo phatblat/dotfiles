@@ -12,6 +12,7 @@ function brew_test \
         case mas
             brew tap --list-pinned | grep mas-cli/tap
             and brew tap-unpin mas-cli/tap
+            and trash ~/Library/Caches/org.carthage.CarthageKit
     end
 
     if brew ls --versions $token > /dev/null
