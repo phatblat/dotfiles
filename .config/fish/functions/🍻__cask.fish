@@ -85,7 +85,6 @@ function 🍻__cask
         thingsmacsandboxhelper \
         tower \
         transmit \
-        homebrew/cask-drivers/twelvesouth-bassjump \
         virtualbox \
         visual-studio-code \
         vmware-fusion
@@ -170,6 +169,7 @@ function 🍻__cask
         textexpander \
         things \
         timing \
+        homebrew/cask-drivers/twelvesouth-bassjump \
         visual-stuio \
         xmarks-safari
 
@@ -297,4 +297,3 @@ function 🍻__cask
     echo 🛀🏻  Cleanup
     brew cleanup -prune=30
 end
-
