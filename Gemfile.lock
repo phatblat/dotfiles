@@ -66,7 +66,7 @@ GEM
     faraday-cookie_jar (0.0.6)
       faraday (>= 0.7.4)
       http-cookie (~> 1.0.0)
-    faraday_middleware (0.12.2)
+    faraday_middleware (0.13.0)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.5)
     fastlane (2.114.0)
@@ -188,7 +188,7 @@ GEM
     reverse_markdown (1.1.0)
       nokogiri
     rouge (2.0.7)
-    rubocop (0.63.0)
+    rubocop (0.63.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -209,7 +209,7 @@ GEM
       CFPropertyList
       naturally
     slack-notifier (2.3.2)
-    solargraph (0.31.0)
+    solargraph (0.31.1)
       backport (~> 0.3)
       htmlentities (~> 4.3, >= 4.3.4)
       jaro_winkler (~> 1.5)
@@ -251,7 +251,7 @@ GEM
       rouge (~> 2.0.7)
     xcpretty-travis-formatter (1.0.0)
       xcpretty (~> 0.2, >= 0.0.7)
-    yard (0.9.16)
+    yard (0.9.18)
 
 PLATFORMS
   ruby
