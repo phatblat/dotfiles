@@ -14,6 +14,7 @@
 .CFUserTextEncoding
 .DS_Store
 .JIRAClient/
+.KindleTransfer/
 .Trash/
 .Ultimate/
 .android/
@@ -166,6 +167,7 @@ Dropbox/
 EpuborLog/
 Fastlane/report.xml
 IdeaProjects/
+KindleTransfer2019.01.log
 Library/
 Minecraft/
 Movies/
