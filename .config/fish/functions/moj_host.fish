@@ -7,7 +7,7 @@ function moj_host --description='Prints an emoji for the current host.'
     end
 
     switch $host
-        case 'greymatter*' 'Bens-MacBook-Pro*' 'mcoe-am*'
+        case 'greymatter*' 'Bens-MacBook-Pro*' 'bens-mbp-wifi*' 'mcoe-am*'
             echo 💻
         case 'hi-c-era*'
             echo 🌋
