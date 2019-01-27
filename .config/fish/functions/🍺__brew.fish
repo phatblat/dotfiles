@@ -85,6 +85,7 @@ function 🍺__brew
         sourcery \
         speedtest-cli \
         kylef/formulae/swiftenv \
+        swiftformat \
         swiftgen \
         swiftlint \
         swiftplate \
