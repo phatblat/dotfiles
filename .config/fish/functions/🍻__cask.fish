@@ -59,6 +59,7 @@ function 🍻__cask
         jira-client \
         kaleidoscope \
         karabiner-elements \
+        keyboard-maestro \
         keycastr \
         licecap \
         microblog \
