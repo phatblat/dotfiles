@@ -82,6 +82,7 @@ function 🍺__brew
         socat \
         sonar-scanner \
         sourcekitten \
+        sourcery \
         speedtest-cli \
         kylef/formulae/swiftenv \
         swiftgen \
