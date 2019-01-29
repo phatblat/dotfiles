@@ -27,7 +27,7 @@ function 🐍__pip
 
     # Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lizard_ext'
     # Consider using the `--user` option or check the permissions.
-    if user_is_admin and not test -d /usr/local/lizard_ext
+    if begin user_is_admin; and not test -d /usr/local/lizard_ext; end
         sudo mkdir /usr/local/lizard_ext
         sudo chown $USER /usr/local/lizard_ext
     end
@@ -63,4 +63,3 @@ function 🐍__pip
     # List installed packages
     pip3 list
 end
-
