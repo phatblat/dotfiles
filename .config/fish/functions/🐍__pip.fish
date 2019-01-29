@@ -10,8 +10,10 @@ function 🐍__pip
     echo "🐍  PIP"
     echo
 
+    set --local pip pip
+
     # Ensure PIP is installed.
-    if not which -s pip3
+    if not which -s $pip
         error "PIP is not installed."
         return 1
     end
@@ -54,18 +56,18 @@ function 🐍__pip
         doc2dash
 
     # Update pip
-    pip3 install --upgrade pip setuptools wheel
+    $pip install --upgrade pip setuptools wheel
 
     # Uninstall packages
     for package in $uninstall_packages
-        if pip3 list | grep --quiet $package
-            pip3 uninstall $package
+        if $pip list | grep --quiet $package
+            $pip uninstall $package
         end
     end
 
     # Install packages
-    pip3 install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
+    $pip install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
     # List installed packages
-    pip3 list
+    $pip list
 end
