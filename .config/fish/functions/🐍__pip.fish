@@ -50,11 +50,18 @@ function 🐍__pip
         Pygments \
         twine
 
+    set -l uninstall_packages \
+        doc2dash
+
     # Update pip
     pip3 install --upgrade pip setuptools wheel
 
     # Uninstall packages
-    pip3 uninstall doc2dash
+    for package in $uninstall_packages
+        if pip3 list | grep --quiet $package
+            pip3 uninstall $package
+        end
+    end
 
     # Install packages
     pip3 install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
