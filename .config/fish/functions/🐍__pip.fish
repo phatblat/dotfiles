@@ -10,8 +10,10 @@ function 🐍__pip
     echo "🐍  PIP"
     echo
 
+    set --local pip pip
+
     # Ensure PIP is installed.
-    if not which -s pip3
+    if not which -s $pip
         error "PIP is not installed."
         return 1
     end
@@ -45,21 +47,27 @@ function 🐍__pip
         powerline-status \
         Pygments \
         pylint \
-        # gitstatus segment fork for powerline-status
-        'git+https://github.com/phatblat/powerline-gitstatus.git@segment-spacing' \
+        powerline-gitstatus \
         powerline-xcodeversion \
         Pygments \
         twine
 
+    set -l uninstall_packages \
+        doc2dash
+
     # Update pip
-    pip3 install --upgrade pip setuptools wheel
+    $pip install --upgrade pip setuptools wheel
 
     # Uninstall packages
-    pip3 uninstall doc2dash
+    for package in $uninstall_packages
+        if $pip list | grep --quiet $package
+            $pip uninstall $package
+        end
+    end
 
     # Install packages
-    pip3 install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
+    $pip install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
     # List installed packages
-    pip3 list
+    $pip list
 end
