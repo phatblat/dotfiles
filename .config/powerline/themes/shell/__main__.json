@@ -21,7 +21,18 @@
         },
         "gitstatus": {
             "args": {
-                "show_tag": false
+                "show_tag": "exact",
+                "formats": {
+                    "branch": "\ue0a0 {}",
+                    "tag": " ★ {}",
+                    "behind": " ↓ {}",
+                    "ahead": " ↑ {}",
+                    "staged": " ● {}",
+                    "unmerged": " ✖ {}",
+                    "changed": " ✚ {}",
+                    "untracked": " … {}",
+                    "stashed": " ⚑ {}"
+                }
             }
         }
     }
