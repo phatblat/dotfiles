@@ -10,6 +10,7 @@ function 🍺__brew
 
     set -l formulae \
         artifactory \
+        asciinema \
         autoconf \
         automake \
         babel \
