@@ -1,5 +1,5 @@
 {
-    "editor.fontSize": 16,
+    "editor.fontSize": 14,
     "editor.renderWhitespace": "all",
     "workbench.startupEditor": "newUntitledFile",
     "vim.disableAnnoyingNeovimMessage": true,
