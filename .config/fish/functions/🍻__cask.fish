@@ -172,7 +172,7 @@ function 🍻__cask
         things \
         timing \
         homebrew/cask-drivers/twelvesouth-bassjump \
-        visual-stuio \
+        visual-studio \
         xmarks-safari
 
     # --------------------------------------------------------------------------
