@@ -34,6 +34,11 @@
                     "stashed": " ⚑ {}"
                 }
             }
+        },
+        "xcodeversion": {
+            "args": {
+                "format": "🛠  {}"
+            }
         }
     }
 }
