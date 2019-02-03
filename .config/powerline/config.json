@@ -1,6 +1,10 @@
 {
     "common": {
-        "term_truecolor": false
+        "term_truecolor": true,
+        "ambiwidth": 2,
+        "log_level": "WARNING",
+        "reload_config": true,
+        "interval": 60
     },
     "ext": {
         "shell": {
