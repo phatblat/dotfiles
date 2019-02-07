@@ -41,5 +41,9 @@
     "explorer.confirmDragAndDrop": false,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "editor.rulers": [80,120]
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "java.configuration.checkProjectSettingsExclusions": false
 }
