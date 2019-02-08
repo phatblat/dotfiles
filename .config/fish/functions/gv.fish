@@ -13,7 +13,7 @@
 # OS:           Mac OS X 10.13.1 x86_64
 #
 function gv --description='Prints gradle version'
-    set output (gradle --version)
-    set gradle_version (string split " " $output[3])[2]
+    set --local output (gradle --version)
+    set --local gradle_version (string split " " $output[3])[2]
     echo $gradle_version
 end
