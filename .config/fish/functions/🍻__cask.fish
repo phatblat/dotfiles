@@ -61,6 +61,7 @@ function 🍻__cask
         karabiner-elements \
         keyboard-maestro \
         keycastr \
+        kobo \
         licecap \
         microblog \
         microsoft-teams \
