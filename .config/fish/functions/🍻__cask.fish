@@ -63,6 +63,7 @@ function 🍻__cask
         keycastr \
         kobo \
         licecap \
+        lunchy \
         microblog \
         microsoft-teams \
         minikube \
