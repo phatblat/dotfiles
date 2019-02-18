@@ -33,6 +33,7 @@ function 🕸__npm
         markdownlint \
         n \
         node-pre-gyp \
+        pocket-cli \
         ralio \
         realm-cli \
         ngrok \
