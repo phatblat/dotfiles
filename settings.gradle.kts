@@ -5,7 +5,7 @@
 
 rootProject.name = "dotfiles"
 
-val clamp = file("dev/gradle/Clamp")
+val clamp = file("dev/gradle/Clamp-DISABLED")
 if (clamp.exists()) {
     includeBuild(clamp) {
         dependencySubstitution {
