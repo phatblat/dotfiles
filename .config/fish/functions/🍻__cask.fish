@@ -18,7 +18,6 @@ function 🍻__cask
         1password-cli \
         android-ndk \
         android-sdk \
-        android-studio \
         anka-flow \
         anylist \
         appium \
@@ -163,6 +162,7 @@ function 🍻__cask
     set -l all_casks $apps $quicklook_plugins
 
     set -l uninstall \
+        android-studio \
         battery-guardian \
         cocoapods \
         cocoapods-app \
