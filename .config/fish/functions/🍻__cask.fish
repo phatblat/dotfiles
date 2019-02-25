@@ -57,7 +57,6 @@ function 🍻__cask
         jetbrains-toolbox \
         jira-client \
         kaleidoscope \
-        karabiner-elements \
         keyboard-maestro \
         keycastr \
         kobo \
@@ -168,6 +167,7 @@ function 🍻__cask
         cocoapods-app \
         disk-inventory-x \
         java9 \
+        karabiner-elements \
         mono-mdk \
         sublime-text-dev \
         textexpander \
