@@ -98,6 +98,7 @@
 .lldb/module_cache/
 .local/
 .locks/
+.lsp4xml/
 .lumberjack/
 .m2/repository/
 .marathon/
