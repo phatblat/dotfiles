@@ -1,5 +1,5 @@
 function nav \
-        --description='Quick nav to ApplePlatformVersions dir.' \
+        --description='Quick nav to a dir. Creates dir if not present.' \
         --argument-names dir
     if test -z "$dir"
         error "Usage: nav dir"
@@ -13,3 +13,4 @@ function nav \
         mkdir "$dir"
     end
 end
+
