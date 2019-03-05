@@ -75,6 +75,7 @@ function 🍻__cask
         paw \
         peripheryapp/periphery/periphery \
         realm-studio \
+        rescuetime \
         rocket \
         screens \
         skype-for-business \
