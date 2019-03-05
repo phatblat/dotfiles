@@ -27,6 +27,7 @@ function 🍻__cask
         bee \
         beoplay-software-update \
         bettertouchtool \
+        brave-browser \
         cardhop \
         charles \
         cheatsheet \
