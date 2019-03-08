@@ -52,6 +52,7 @@ function 🍻__cask
         ibm-cloud-cli \
         ios-console \
         istat-menus \
+        iterm2 \
         iterm2-beta \
         java \
         caskroom/versions/java8 \
