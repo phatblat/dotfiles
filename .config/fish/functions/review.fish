@@ -21,7 +21,7 @@
 #
 function review --argument-names commit
     set -l format 'commit:    %Cgreen%H%Creset
-date:      %Cgreen%ar%Creset
+date:      %Cgreen%ai%Creset
 author:    %Cgreen%an%Creset <%Cgreen%ae%Creset>
 committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
 
