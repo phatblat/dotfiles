@@ -10,28 +10,98 @@ function 🆚__vscode
 
     # Extensions to upstall
     set -l extensions \
-        TeddyDD.fish \
+        ahmadawais.shades-of-purple \
+        Alan.stylus \
         Apptorium.teacode-vsc-helper \
+        benjavr.jshintrc-generator \
+        bierner.markdown-preview-github-styles \
         castwide.solargraph \
+        cazzar09.Gradle \
+        christian-kohler.npm-intellisense \
+        cmstead.jsrefactor \
         codezombiech.gitignore \
+        DavidAnson.vscode-markdownlint \
+        dbaeumer.jshint \
+        dbaeumer.vscode-eslint \
+        dkundel.vscode-npm-source \
+        donjayamanne.githistory \
+        DSnake.java-debug \
+        eamodio.gitlens \
+        EditorConfig.EditorConfig \
         eg2.tslint \
+        eg2.vscode-npm-script \
+        Equinusocio.vsc-material-theme \
+        fallenwood.vimL \
+        felipecaputo.git-project-manager \
+        felixrieseberg.vsc-travis-ci-status \
         fisheva.eva-theme \
+        fivepointseven.node-version \
+        fmoronzirfas.open-in-marked \
+        formulahendry.auto-close-tag \
+        formulahendry.auto-rename-tag \
+        formulahendry.code-runner \
+        formulahendry.terminal \
+        georgewfraser.vscode-javac \
+        HookyQR.beautify \
+        humao.rest-client \
         jamesmaj.easy-icons \
+        joelday.docthis \
+        johnpapa.azure-functions-tools \
+        Kasik96.swift \
+        kevinkyang.auto-comment-blocks \
+        kevinmcgowan.TypeScriptImport \
+        kisstkondoros.vscode-codemetrics \
+        kumar-harsh.graphql-for-vscode \
+        leizongmin.node-module-intellisense \
         lunaryorn.fish-ide \
         mathiasfrohlich.Kotlin \
+        miramac.vscode-exec-node \
+        mitaki28.vscode-clang \
+        mkaufman.HTMLHint \
         mohsen1.prettify-json \
         monokai.theme-monokai-pro-vscode \
+        ms-azuretools.vscode-azurefunctions \
         ms-python.python \
+        ms-vscode.azure-account \
         ms-vscode.cpptools \
+        ms-vscode.js-atom-grammar \
+        ms-vscode.typescript-javascript-grammar \
+        ms-vsliveshare.vsliveshare \
+        ms-vsliveshare.vsliveshare-audio \
+        msjsdiag.debugger-for-chrome \
+        naumovs.node-modules-resolve \
+        nepaul.editorconfiggenerator \
+        nodesource.vscode-for-node-js-development-pack \
         PeterJausovec.vscode-docker \
+        PKief.material-icon-theme \
         pkosta2005.heroku-command \
+        prashaantt.node-tdd \
+        rbbit.typescript-hero \
         rebornix.ruby \
         redhat.java \
+        secanis.jenkinsfile-support \
+        Shan.code-settings-sync \
+        shanoor.vscode-nginx \
+        sidneys1.gitconfig \
+        skyapps.fish-vscode \
+        stevencl.addDocComments \
+        sysoev.language-stylus \
+        sysoev.vscode-open-in-github \
+        TeddyDD.fish \
+        timonwong.shellcheck \
+        twxs.cmake \
+        VisualStudioExptTeam.vscodeintellicode \
         vscjava.vscode-java-debug \
+        vscjava.vscode-java-dependency \
         vscjava.vscode-java-pack \
         vscjava.vscode-java-test \
         vscjava.vscode-maven \
+        vscode-icons-team.vscode-icons \
         vscodevim.vim \
+        wix.vscode-import-cost \
+        zeithaste.cursorCharCode \
+        zhouronghui.propertylist \
+        zhuangtongfa.Material-theme \
         ziyasal.vscode-open-in-github
 
     # Extensions to uninstall
