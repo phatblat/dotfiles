@@ -35,7 +35,7 @@
     "editor.dragAndDrop": false,
     "window.zoomLevel": 1,
     "editor.multiCursorMergeOverlapping": false,
-    "workbench.colorTheme": "Kimbie Dark",
+    "workbench.colorTheme": "Shades of Purple",
     "gitlens.views.fileHistory.enabled": true,
     "gitlens.views.lineHistory.enabled": true,
     "explorer.confirmDragAndDrop": false,
