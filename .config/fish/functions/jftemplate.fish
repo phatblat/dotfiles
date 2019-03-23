@@ -17,7 +17,7 @@ function jftemplate \
 
     nav $baseDir
     clone git@github.com:LogDashG/JenkinsfileTemplate.git $repoName
-    git remote rename origin upstream
+    git remote rename origin template
 
     echo "✨ Creating repo LogDashG/$repoName"
     hub create --copy LogDashG/$repoName
