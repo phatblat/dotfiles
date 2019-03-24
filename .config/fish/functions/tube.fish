@@ -1,3 +1,4 @@
-function tube --description='Quick nav to Tube project'
-    pushd ~/dev/jenkins/Tube
+function tube \
+        --description='Quick nav to Tube project'
+    nav ~/dev/jenkins/Tube
 end
