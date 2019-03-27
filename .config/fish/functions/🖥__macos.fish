@@ -11,9 +11,15 @@ function 🖥__macos
     mas upgrade
 
     echo
-    echo "Updating system software"
+    echo "⌛️ Recently installed macOS system updates"
+    softwareupdate --history
+
+    echo
+    echo "🔎 Checking macOS system updates"
 
     softwareupdate --list
+
+    # TODO: Detect when "No new software available." is printed and exit before update logic, exit
 
     # Example output:
     # Software Update Tool
@@ -32,8 +38,12 @@ function 🖥__macos
     # Finding available software
     # No new software available.
 
-    # Combine all switches?
-    # softwareupdate --list --download --all
-    # TODO: Need sudo to install
-    # softwareupdate --install --all
+    echo
+    echo "⬆️ Updating macOS system software"
+
+    # Download all updates before install
+    softwareupdate --download --all --no-scan
+
+    # sudo will prompt for password allowing one way to avoid a restart
+    sudo softwareupdate --install --all --no-scan --restart
 end
