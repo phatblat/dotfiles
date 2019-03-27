@@ -173,7 +173,7 @@ GEM
     optimist (3.0.0)
     os (1.0.0)
     paint (2.0.3)
-    parallel (1.14.0)
+    parallel (1.15.0)
     parser (2.6.2.0)
       ast (~> 2.4.0)
     plist (3.5.0)
