@@ -91,7 +91,8 @@ function 🍻__cask
         ultimate \
         virtualbox \
         visual-studio-code \
-        vmware-fusion
+        vmware-fusion \
+        zeplin
 
     set -l quicklook_plugins \
         provisionql \
