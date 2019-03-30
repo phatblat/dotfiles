@@ -50,5 +50,12 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.iconTheme": "vscode-icons",
     "jshint.nodePath": "/usr/local/lib/node_modules",
-    "shellcheck.executablePath": "/usr/local/bin/shellcheck"
+    "shellcheck.executablePath": "/usr/local/bin/shellcheck",
+    "ruby.codeCompletion": "rcodetools",
+    "ruby.intellisense": "rubyLocate",
+    "ruby.format": "rubocop",
+    "ruby.useBundler": true,
+    "ruby.useLanguageServer": true,
+    "ruby.interpreter.commandPath": "/usr/local/opt/ruby/bin/ruby",
+    "ruby.pathToBundler": "/Users/ben/bin/bundle"
 }
