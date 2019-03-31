@@ -35,7 +35,6 @@ function 🍻__cask
         cloudapp \
         dbvisualizer \
         dash \
-        dayone-cli \
         deckset \
         docker-toolbox \
         duet \
@@ -168,6 +167,7 @@ function 🍻__cask
         battery-guardian \
         cocoapods \
         cocoapods-app \
+        dayone-cli \
         disk-inventory-x \
         java9 \
         karabiner-elements \
