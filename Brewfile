@@ -1,72 +1,98 @@
-tap "vapor/tap"
 tap "cloudfoundry/tap"
-tap "thoughtbot/formulae"
-tap "homebrew/core", "git@github.com:Homebrew/homebrew-core.git"
-tap "homebrew/test-bot"
+tap "heroku/brew"
+tap "holgerbrandl/tap"
 tap "homebrew/bundle"
-tap "homebrew/services"
-tap "caskroom/fonts"
-tap "caskroom/versions"
-tap "caskroom/cask", "git@github.com:caskroom/homebrew-cask.git"
+tap "homebrew/cask"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "kylef/formulae"
 tap "mas-cli/tap"
-tap "macvim-dev/macvim"
+tap "peripheryapp/periphery"
+tap "phatblat/services"
+tap "thoughtbot/formulae"
+tap "vapor/tap"
 tap "vitorgalvao/tiny-scripts"
 cask "java"
-cask "caskroom/versions/java8"
-brew "antigen"
+cask "java8"
 brew "artifactory"
-brew "artifactory-cli-go"
+brew "python"
+brew "asciinema"
+brew "augeas"
+brew "autoconf"
+brew "automake"
 brew "node"
 brew "babel"
 brew "bash"
 brew "burl"
 brew "carthage"
-brew "python"
+brew "dialog"
 brew "certbot"
 brew "cloc"
 brew "cmake"
+brew "configen"
 brew "coreutils"
 brew "cowsay"
+brew "ctags"
 brew "curl"
 brew "diff-so-fancy"
 brew "direnv"
 brew "docker", link: false
+brew "libyaml"
 brew "docker-compose", link: false
+brew "docker-machine", link: false
 brew "duti"
 brew "findutils"
+brew "firebase-cli"
 brew "fish"
 brew "fortune"
+brew "freetype"
 brew "gcovr"
 brew "git"
 brew "git-lfs"
+brew "glib"
+brew "p11-kit"
+brew "gnutls"
+brew "libgpg-error"
 brew "gnupg"
+brew "go"
 brew "go-jira"
 brew "goaccess"
 brew "gradle"
 brew "groovy"
-brew "heroku"
+brew "highlight"
 brew "hub"
+brew "libtiff"
+brew "libtool"
+brew "webp"
+brew "imagemagick"
 brew "infer"
+brew "jabba"
 brew "jenkins"
 brew "jenv"
 brew "jfrog-cli-go"
+brew "oniguruma"
 brew "jq"
 brew "jsonlint"
 brew "jsonpp"
 brew "kotlin"
+brew "kubernetes-cli"
 brew "kubernetes-helm"
 brew "less"
-brew "macvim", args: ["with-override-system-vim"]
-brew "mas"
+brew "libmagic"
+brew "libssh2"
+brew "mas", link: false
 brew "maven"
+brew "mint"
 brew "mtr"
 brew "nginx"
-brew "ninja"
 brew "nvm"
 brew "packer"
 brew "pacvim"
-brew "postgresql"
-brew "qemu"
+brew "pkg-config"
+brew "yara"
+brew "radare2"
+brew "redis"
 brew "rename"
 brew "ruby"
 brew "screenresolution"
@@ -75,77 +101,89 @@ brew "sloccount"
 brew "socat"
 brew "sonar-scanner"
 brew "sourcekitten"
+brew "sourcery"
 brew "speedtest-cli"
-brew "swiftenv"
+brew "swiftformat"
 brew "swiftgen"
 brew "swiftlint"
 brew "swiftplate"
 brew "tailor"
-brew "telnet"
 brew "terminal-notifier"
 brew "thefuck"
 brew "tig"
 brew "tmux"
-brew "trash"
 brew "travis"
 brew "tree"
 brew "uncrustify"
 brew "utimer"
-brew "wget"
 brew "xctool"
 brew "yarn"
 brew "zsh"
 brew "cloudfoundry/tap/cf-cli"
+brew "heroku/brew/heroku"
+brew "holgerbrandl/tap/kscript"
+brew "kylef/formulae/swiftenv"
+brew "phatblat/services/pbjenkins", link: false
 brew "thoughtbot/formulae/liftoff"
 brew "vitorgalvao/tiny-scripts/cask-repair"
+cask "1password-cli"
+cask "ableton-live-suite9"
 cask "android-ndk"
 cask "android-sdk"
-cask "android-studio"
-cask "anka-build"
 cask "anka-flow"
+cask "anylist"
+cask "appium"
 cask "atom"
 cask "back-in-time"
 cask "banktivity"
-cask "bluemix-cli"
+cask "bee"
+cask "beoplay-software-update"
+cask "bettertouchtool"
+cask "brave-browser"
 cask "cardhop"
 cask "charles"
 cask "cheatsheet"
+cask "cleanmymac"
 cask "cloudapp"
 cask "dash"
 cask "dayone-cli"
 cask "dbvisualizer"
 cask "deckset"
-cask "disk-inventory-x"
 cask "docker"
 cask "docker-toolbox"
 cask "duet"
 cask "fauxpas"
+cask "firebase-admin"
 cask "geekbench"
-cask "github"
 cask "githubpulse"
 cask "gitkraken"
-cask "gitup"
 cask "google-chrome"
 cask "gpg-suite"
 cask "hex-fiend"
 cask "hipchat"
+cask "hyper"
+cask "ibm-cloud-cli"
 cask "ios-console"
 cask "istat-menus"
 cask "iterm2"
 cask "jetbrains-toolbox"
 cask "jira-client"
 cask "kaleidoscope"
+cask "keyboard-maestro"
+cask "keycastr"
+cask "kobo"
 cask "licecap"
+cask "lunchy"
 cask "macdown"
+cask "microblog"
+cask "microsoft-teams"
 cask "minikube"
-cask "mono-mdk"
 cask "ngrok"
 cask "oclint"
 cask "omnigraffle"
 cask "omnipresence"
 cask "paste"
 cask "paw"
-cask "provisioning"
 cask "provisionql"
 cask "qlcolorcode"
 cask "qlimagesize"
@@ -154,82 +192,45 @@ cask "qlprettypatch"
 cask "qlstephen"
 cask "quicklook-csv"
 cask "quicklook-json"
-cask "realm-browser"
 cask "realm-studio"
+cask "rescuetime"
+cask "rocket"
 cask "screens"
-cask "screens-connect"
-cask "simpholders"
+cask "skype-for-business"
 cask "softraid"
-cask "stride"
+cask "sublime-merge"
 cask "sublime-text"
+cask "teacode"
+cask "teamspeak-client"
 cask "textmate"
 cask "the-unarchiver"
 cask "thingsmacsandboxhelper"
 cask "tower"
 cask "transmit"
-cask "veertu"
+cask "ultimate"
 cask "virtualbox"
-cask "visual-studio"
 cask "visual-studio-code"
 cask "vmware-fusion"
 cask "webpquicklook"
-cask "xmarks-safari"
-cask "caskroom/versions/java9"
-mas "1Password", id: 443987910
-mas "Airmail 3", id: 918858936
-mas "Apple Configurator 2", id: 1037126344
-mas "Blackmagic Disk Speed Test", id: 425264550
-mas "CARROT Weather", id: 993487541
-mas "Cleaner for Memory", id: 748212890
-mas "DaisyDisk", id: 411643860
-mas "Day One", id: 1055511498
-mas "Deliveries", id: 924726344
-mas "Disk Care", id: 913724705
-mas "Display Menu", id: 549083868
-mas "Divvy", id: 413857545
-mas "Dumper", id: 781577745
-mas "Evernote", id: 406056744
-mas "Fantastical 2", id: 975937182
-mas "Focused", id: 899966452
-mas "Gapplin", id: 768053424
-mas "GarageBand", id: 682658836
-mas "Gemini 2", id: 1090488118
-mas "GIFs", id: 961850017
-mas "iMovie", id: 408981434
-mas "iNet Network Scanner", id: 403304796
-mas "Install macOS High Sierra", id: 1246284741
-mas "iRamDisk", id: 492615400
-mas "iStat Mini", id: 927292435
-mas "JenkinsNotifier", id: 590383085
-mas "Keynote", id: 409183694
-mas "Kindle", id: 405399194
-mas "Logoist 2", id: 905654078
-mas "macOS High Sierra", id: Install
-mas "Mactracker", id: 430255202
-mas "Meme Generator", id: 483350546
-mas "Memory Cleaner", id: 748212890
-mas "Mint QuickView", id: 533491939
-mas "Numbers", id: 409203825
-mas "Objective-Clean", id: 713910413
-mas "Pages", id: 409201541
-mas "Pastebot", id: 1179623856
-mas "PCalc", id: 403504866
-mas "Plaiiin Jenkins Status CE 1.6", id: 1135308344
-mas "Pocket", id: 568494494
-mas "Redacted", id: 984968384
-mas "Redshift Premium", id: 1317255531
-mas "Remote Desktop", id: 409907375
-mas "Reverb", id: 1144697855
-mas "Server", id: 883878097
-mas "Sip", id: 507257563
-mas "Skitch", id: 425955336
-mas "Slack", id: 803453959
-mas "SnippetsLab", id: 1006087419
-mas "SoundCloud", id: 412754595
-mas "Spillo", id: 873245660
-mas "Swiftly-Clean", id: 1040160984
-mas "Things3", id: 904280696
-mas "Tweetbot", id: 557168941
-mas "Ulysses", id: 623795237
-mas "Xcode-9.3", id: 497799835
-mas "xScope", id: 889428659
+cask "zeplin"
+cask "peripheryapp/periphery/periphery"
+mas "com.agilebits.onepassword7", id: 1333542190
+mas "com.apple.InstallAssistant.HighSierra", id: 1246284741
+mas "com.apple.InstallAssistant.Mavericks", id: 675248567
+mas "com.apple.InstallAssistant.Yosemite", id: 915041082
+mas "com.brettterpstra.marked2", id: 890031187
+mas "com.codebasesaga.macOS.Canopy", id: 1419224245
+mas "com.codingwithlove.clean", id: 418412301
+mas "com.culturedcode.ThingsMac", id: 904280696
+mas "com.ddeville.spillo", id: 873245660
+mas "com.flexibits.fantastical2.mac", id: 975937182
+mas "com.iconfactory.mac.xScope", id: 889428659
+mas "com.junecloud.mac.Deliveries", id: 924726344
+mas "com.mizage.Divvy", id: 413857545
+mas "com.steamclock.quests", id: 1447415753
+mas "com.swiftClean", id: 1040160984
+mas "com.tapbots.Tweetbot3Mac", id: 1384080005
+mas "com.tinyspeck.slackmacgap", id: 803453959
+mas "de.milchimgemuesefach.Display-Menu", id: 549083868
+mas "it.bloop.airmail2", id: 918858936
+mas "net.shinyfrog.bear", id: 1091189122
