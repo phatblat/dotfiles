@@ -1,4 +1,6 @@
-function apv --description='Quick nav to ApplePlatformVersions dir.'
-    pushd ~/dev/markdown/ApplePlatformVersions
+function apv \
+        --description='Quick nav to ApplePlatformVersions dir.'
+    nav ~/dev/markdown/ApplePlatformVersions
     pull
+    lg10
 end
