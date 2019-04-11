@@ -1,3 +1,4 @@
-function masd --description='Quick nav to mas dir'
-    pushd dev/macos/mas
+function masd \
+        --description='Quick nav to mas dir'
+    nav ~/dev/macos/mas
 end
