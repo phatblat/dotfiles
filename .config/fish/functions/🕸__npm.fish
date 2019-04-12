@@ -23,7 +23,6 @@ function 🕸__npm
     end
 
     set -l global_packages \
-        @davidahouse/lynn-cli \
         atlas-connect \
         eslint \
         express-generator \
@@ -31,6 +30,7 @@ function 🕸__npm
         gitmoji-cli \
         gulp \
         jshint \
+        lynn-cli \
         markdownlint \
         n \
         node-pre-gyp \
