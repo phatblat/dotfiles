@@ -23,6 +23,7 @@ function 🕸__npm
     end
 
     set -l global_packages \
+        @davidahouse/lynn-cli \
         atlas-connect \
         eslint \
         express-generator \
