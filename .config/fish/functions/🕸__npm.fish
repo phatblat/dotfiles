@@ -34,6 +34,7 @@ function 🕸__npm
         markdownlint \
         n \
         node-pre-gyp \
+        npm-check-updates \
         pocket-cli \
         ralio \
         realm-cli \
