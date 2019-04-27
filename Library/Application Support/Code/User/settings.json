@@ -48,7 +48,6 @@
     "java.configuration.checkProjectSettingsExclusions": false,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "workbench.iconTheme": "vscode-icons",
     "jshint.nodePath": "/usr/local/lib/node_modules",
     "shellcheck.executablePath": "/usr/local/bin/shellcheck",
     "ruby.codeCompletion": "rcodetools",
