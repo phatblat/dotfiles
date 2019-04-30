@@ -30,3 +30,4 @@ tasks.getByName<Wrapper>("wrapper") {
     distributionType = Wrapper.DistributionType.ALL
     finalizedBy(removeBatchFile)
 }
+
