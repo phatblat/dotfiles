@@ -20,9 +20,10 @@ if [[ -d ~/.dotfiles || -d ~/.git ]]; then
   exit 1
 fi
 
+set kernel=$(uname)
+
 # Ensure git is installed
 if ! command -v git; then
-    set kernel=$(uname)
     if [ $kernel == "Darwin" ]; then
         # macOS
         # Install Xcode CLI tools for bundled git
@@ -79,11 +80,17 @@ git remote set-url origin git@github.com:phatblat/dotfiles.git
 
 echo "Dotfiles now installed at $HOME"
 
-which -s brew
-if [[ $? -ne 0 ]]; then
-   # Install Homebrew
-   echo "Installing Homebrew"
-   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Ensure Homebrew is installed
+if ! command -v brew; then
+    # Install Homebrew
+    if [ $kernel == "Darwin" ]; then
+        echo "Installing Homebrew"
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    elif [ $kernel == "Linux" ]; then
+        echo "Installing Linuxbrew"
+        # https://docs.brew.sh/Homebrew-on-Linux
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    fi
 fi
 
 echo
