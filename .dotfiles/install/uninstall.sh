@@ -20,4 +20,5 @@ done
 
 rm -rfv "$HOME/.git"
 rm -rfv "$HOME/.dotfiles"
+rm -rfv "$HOME/.gitconfig"
 rm -rfv "$HOME/tmp/dotfiles"
