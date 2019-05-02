@@ -91,6 +91,7 @@ function 🍻__cask
         virtualbox \
         visual-studio-code \
         vmware-fusion \
+        vysor \
         zeplin
 
     set -l quicklook_plugins \
