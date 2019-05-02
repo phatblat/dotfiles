@@ -1,3 +1,4 @@
+#!/usr/bin/bash -e
 #-------------------------------------------------------------------------------
 #
 # install/bootstrap.sh
@@ -20,7 +21,8 @@ if [[ -d ~/.dotfiles || -d ~/.git ]]; then
   exit 1
 fi
 
-set kernel=$(uname)
+kernel=$(uname)
+echo "Kernel: $kernel"
 
 # Ensure git is installed
 if ! command -v git; then
