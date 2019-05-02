@@ -93,6 +93,10 @@ if ! command -v brew; then
     elif [ $kernel == "Linux" ]; then
         echo "Installing Linuxbrew"
         # https://docs.brew.sh/Homebrew-on-Linux
+
+        # Warning: /home/linuxbrew/.linuxbrew/bin is not in your PATH.
+        PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     fi
 fi
