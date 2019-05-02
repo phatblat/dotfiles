@@ -67,6 +67,8 @@ fi
 
 git init
 git remote add origin https://github.com/phatblat/dotfiles.git
+git fetch
+git branch --track master origin/master
 git branch --set-upstream-to=origin/master master
 git pull
 echo "Git status before checkout:"
