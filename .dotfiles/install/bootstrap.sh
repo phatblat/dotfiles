@@ -20,21 +20,39 @@ if [[ -d ~/.dotfiles || -d ~/.git ]]; then
   exit 1
 fi
 
-# Xcode requred to use bundled git
-xcode-select -p
-xcode-select --install
+# Ensure git is installed
+if ! command -v git; then
+    set kernel=$(uname)
+    if [ $kernel == "Darwin" ]; then
+        # macOS
+        # Install Xcode CLI tools for bundled git
+        xcode-select -p
+        xcode-select --install
 
-# Download manually?
-# https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2.dmg
+        # Download manually?
+        # https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2.dmg
 
-if [[ $? -eq 0 ]]; then
-    open https://developer.apple.com/downloads/
-    echo "Click the Install button to install the Xcode Command-Line Tools, then re-run this script."
-    exit 1
+        if [[ $? -eq 0 ]]; then
+            open https://developer.apple.com/downloads/
+            echo "Click the Install button to install the Xcode Command-Line Tools, then re-run this script."
+            exit 1
+        fi
+
+        # TODO: accept license
+        # sudo xcodebuild -license accept
+    elif [ $kernel == "Linux" ]; then
+        if command -v apt; then
+            # Use apt on ubuntu
+            sudo apt install git
+        else
+            echo "Only apt is supported for installing packages."
+            exit 2
+        fi
+    else
+        echo "Unsupported kernel: $kernel"
+        return 3
+    fi
 fi
-
-# TODO: accept license
-# sudo xcodebuild -license accept
 
 # Clone the .dotfiles repo into $HOME
 if [[ $PWD != $HOME ]]; then
@@ -43,7 +61,7 @@ fi
 
 if git rev-parse --git-dir >/dev/null 2>&1; then
     echo "$HOME is already a git repo. Unable to bootstrap .dotfiles."
-    exit 1
+    exit 4
 fi
 
 git init
