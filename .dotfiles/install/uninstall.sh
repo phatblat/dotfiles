@@ -9,15 +9,15 @@ echo
 echo ">>> install-uninstall"
 echo
 
-echo "WARNING: This script will remove dotfiles from your home directory."
-echo "Are you sure you wish to continue?"
-select yn in "Yes" "No"; do
-  case $yn in
+echo "WARNING: This script will remove dotfiles from your home directory ($HOME)."
+echo "Are you sure you wish to continue? (select number)"
+select number in "Yes" "No"; do
+  case $number in
     Yes ) break;;
     No ) exit;;
   esac
 done
 
-rm -rf "${HOME}/.git"
-rm -rf "${HOME}/.dotfiles"
-rm -rf "${HOME}/tmp/dotfiles"
+rm -rfv "$HOME/.git"
+rm -rfv "$HOME/.dotfiles"
+rm -rfv "$HOME/tmp/dotfiles"
