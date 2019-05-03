@@ -46,7 +46,7 @@ set fish_pager_color_progress cyan
 # GUI and items requiring a user
 if status is-interactive
     # Powerline
-    if ! command -v powerline-daemon
+    if command -v powerline-daemon
         # Not sure why these are needed, but they appear in several fish examples
         set --export POWERLINE_BASH_CONTINUATION    1
         set --export POWERLINE_BASH_SELECT          1
