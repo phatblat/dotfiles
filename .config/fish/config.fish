@@ -11,7 +11,7 @@ end
 # Variables
 source ~/.config/fish/variables.fish
 
-if ! command -v direnv
+if ! command -v direnv >/dev/null
     # Directory-based variables
     eval (direnv hook fish)
 end
@@ -80,7 +80,7 @@ if status is-interactive
     # Event Hooks
     reload fish_postexec
 
-    if ! command -v thefuck
+    if ! command -v thefuck >/dev/null
         # The Fuck
         eval (thefuck --alias | tr \n ';')
     end
