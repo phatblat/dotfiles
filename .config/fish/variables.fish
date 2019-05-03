@@ -5,24 +5,6 @@
 # Exported variables in fish shell.
 #
 
-# Editor
-set --export EDITOR_CLI "vim" # vi vim
-set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
-set --export CLI_WAIT_FLAG "-f"
-set --export GUI_WAIT_FLAG "-w"
-
-# EDITOR or VISUAL, only one defined
-# Use EDITOR for non-console users (su someoneelse) and SSH connections
-if not console_user; or is_ssh
-    set --export EDITOR $EDITOR_CLI
-    set --export WAIT_FLAG $CLI_WAIT_FLAG
-    set --erase VISUAL
-else
-    set --export VISUAL $EDITOR_GUI
-    set --export WAIT_FLAG $GUI_WAIT_FLAG
-    set --erase EDITOR
-end
-
 # Upper case
 set --export ANDROID_HOME (brew_home)/share/android-sdk
 set --export ANDROID_SDK_ROOT (brew_home)/share/android-sdk
@@ -51,6 +33,25 @@ set --export LSCOLORS ExFxBxDxCxegedabagacad
 set --export github_user phatblat
 set --global --export sdkman_prefix ~/.sdkman
 
+# Editor
+# After variables which depend on functions that define variables
+set --export EDITOR_CLI "vim" # vi vim
+set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
+set --export CLI_WAIT_FLAG "-f"
+set --export GUI_WAIT_FLAG "-w"
+
+# EDITOR or VISUAL, only one defined
+# Use EDITOR for non-console users (su someoneelse) and SSH connections
+if not console_user; or is_ssh
+    set --export EDITOR $EDITOR_CLI
+    set --export WAIT_FLAG $CLI_WAIT_FLAG
+    set --erase VISUAL
+else
+    set --export VISUAL $EDITOR_GUI
+    set --export WAIT_FLAG $GUI_WAIT_FLAG
+    set --erase EDITOR
+end
+
 # fish_user_paths
 set --global fish_user_paths \
     /usr/local/opt/ruby/bin \
@@ -69,7 +70,7 @@ set --export --global PATH \
     $PATH
 
 # Custom HOME handling for octodec. Since /Users/phatblat is a symlink,
-# it causes PWD to not match HOME, preventing powerline from shorting paths.
+# it causes PWD to not match HOME, preventing powerline from shortening paths.
 if begin string match --quiet phatblat $USER; and string match --quiet --entire octodec (hostname); end
     set --export --global HOME /Volumes/ThunderBay/Users/phatblat
 end
