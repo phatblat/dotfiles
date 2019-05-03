@@ -16,6 +16,7 @@ function 🍻__cask
 
     set -l apps \
         1password-cli \
+        android-file-transfer \
         android-ndk \
         android-sdk \
         anka-flow \
