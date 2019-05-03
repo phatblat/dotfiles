@@ -1,0 +1,12 @@
+[Default Applications]
+x-scheme-handler/http=chromium_chromium.desktop
+text/html=chromium_chromium.desktop
+text/xml=chromium_chromium.desktop
+application/xhtml_xml=chromium_chromium.desktop
+x-scheme-handler/https=chromium_chromium.desktop
+
+[Added Associations]
+text/html=chromium_chromium.desktop;
+text/xml=chromium_chromium.desktop;
+application/xhtml_xml=chromium_chromium.desktop;
+x-scheme-handler/https=chromium_chromium.desktop;
