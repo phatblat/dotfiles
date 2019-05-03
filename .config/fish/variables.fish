@@ -34,6 +34,7 @@ set --export GROOVY_HOME (brew_home groovy)/libexec
 set --export ICLOUD_HOME "~/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
 set --export JABBA_HOME ~/.jabba
+set --export KERNEL (uname)
 set --export LANG en_US.UTF-8
 set --export LANGUAGE en_US.UTF-8
 set --export LC_ALL en_US.UTF-8
