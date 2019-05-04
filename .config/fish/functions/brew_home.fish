@@ -3,7 +3,7 @@ function brew_home \
         --argument-names formula
 
     if test -z "$BREW_HOME"
-        if command -v brew >/dev/null
+        if type -q brew
             set --export BREW_HOME (brew --prefix)
         else
             if is_mac

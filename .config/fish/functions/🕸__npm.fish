@@ -8,7 +8,7 @@ function 🕸__npm
     echo
 
     # Ensure NPM is installed.
-    if not ! command -v npm
+    if not type -q npm
         error "NPM is not installed."
         return 1
     end
