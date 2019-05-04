@@ -11,7 +11,7 @@ end
 # Variables
 source ~/.config/fish/variables.fish
 
-if ! command -v direnv >/dev/null
+if not type -q direnv
     # Directory-based variables
     eval (direnv hook fish)
 end
@@ -46,7 +46,7 @@ set fish_pager_color_progress cyan
 # GUI and items requiring a user
 if status is-interactive
     # Powerline
-    if command -v powerline-daemon
+    if type -q powerline-daemon
         # Not sure why these are needed, but they appear in several fish examples
         set --export POWERLINE_BASH_CONTINUATION    1
         set --export POWERLINE_BASH_SELECT          1
@@ -83,7 +83,7 @@ if status is-interactive
     # Event Hooks
     reload fish_postexec
 
-    if ! command -v thefuck >/dev/null
+    if type -q thefuck
         # The Fuck
         eval (thefuck --alias | tr \n ';')
     end
