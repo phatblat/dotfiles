@@ -1,4 +1,3 @@
-
 !.android/repositories.cfg
 !.config/fish/
 !.config/fish/fishfile
@@ -45,6 +44,7 @@
 .config/Code/CachedExtensions/
 .config/Code/Cookies
 .config/Code/Cookies-journal
+.config/Code/GPUCache/
 .config/Code/Network Persistent State
 .config/Code/User/globalStorage/
 .config/Code/User/workspaceStorage/
@@ -53,6 +53,7 @@
 .config/Code/rapid_render.json
 .config/Code/storage.json
 .config/Todoist/
+.config/chromium/
 .config/configstore
 .config/dconf/
 .config/direnv/
@@ -78,12 +79,14 @@
 .config/git/config
 .config/git/gitk
 .config/git/ignore
+.config/gnome-control-center/
 .config/gnome-initial-setup-done
 .config/goa-1.0/
 .config/gtk-2.0/
 .config/hub
 .config/ibus/
 .config/libreoffice/
+.config/menus/
 .config/pulse/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
@@ -104,6 +107,7 @@
 .gem/
 .git/
 .gitkraken/
+.gnome/
 .gnupg/
 .gnupg_pre_2.1/
 .gradle/
