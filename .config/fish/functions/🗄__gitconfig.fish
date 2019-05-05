@@ -6,16 +6,21 @@
 #
 # Sequencing
 # - After: brew (git)
-function 🗄__gitconfig --argument-names email name
+function 🗄__gitconfig \
+        --argument-names email name
+
     echo "🗄  Git configuration"
     echo
 
     createdirs ~/.config/git
     set -l global_config ~/.config/git/config
+    if not test -d $global_config
+        touch $global_config
+    end
 
     # Just print the current config when values are set.
-    if test -n "(git config --file $global_config user.name)" -a \
-            -n "(git config --file $global_config user.email)"
+    if git config --file $global_config user.name; and \
+            git config --file $global_config user.email
         cat $global_config
         return 0
     end
