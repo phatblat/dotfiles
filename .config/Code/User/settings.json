@@ -1,0 +1,4 @@
+{
+    "breadcrumbs.enabled": true,
+    "shellcheck.executablePath": "/usr/bin/shellcheck"
+}

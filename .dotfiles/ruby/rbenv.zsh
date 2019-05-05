@@ -9,7 +9,7 @@ lj info 'ruby/rbenv.zsh'
 
 # export RBENV_ROOT=${HOME}/.rbenv
 #
-# if which -s rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# if ! command -v rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 #
 # ruby_version_file="${RBENV_ROOT}/version"
 # if [[ -f $ruby_version_file ]]; then

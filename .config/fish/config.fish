@@ -11,7 +11,7 @@ end
 # Variables
 source ~/.config/fish/variables.fish
 
-if which -s direnv
+if not type -q direnv
     # Directory-based variables
     eval (direnv hook fish)
 end
@@ -46,7 +46,7 @@ set fish_pager_color_progress cyan
 # GUI and items requiring a user
 if status is-interactive
     # Powerline
-    if which -s powerline-daemon
+    if type -q powerline-daemon
         # Not sure why these are needed, but they appear in several fish examples
         set --export POWERLINE_BASH_CONTINUATION    1
         set --export POWERLINE_BASH_SELECT          1
@@ -54,22 +54,25 @@ if status is-interactive
         # http://powerline.readthedocs.io/en/latest/commands/daemon.html
         powerline-daemon --quiet
 
-        # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
+        if is_mac
+            # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
 
-        # Python setup so we can start powerline
-        for python_version in 3.7
-            # Include system and user packages
-            for python_bin_path in /usr/local/lib/python$python_version/site-packages \
-                                   ~/Library/Python/$python_version/bin
-                if test -d $python_bin_path
-                    set --export --global PATH $PATH $python_bin_path
-                    if test -d $python_bin_path/powerline/bindings/fish
-                        set fish_function_path $fish_function_path $python_bin_path/powerline/bindings/fish
+            # Python setup so we can start powerline
+            for python_version in 3.7
+                # Include system and user packages
+                for python_bin_path in /usr/local/lib/python$python_version/site-packages \
+                                    ~/Library/Python/$python_version/bin
+                    if test -d $python_bin_path
+                        set --export --global PATH $PATH $python_bin_path
+                        if test -d $python_bin_path/powerline/bindings/fish
+                            set fish_function_path $fish_function_path $python_bin_path/powerline/bindings/fish
+                        end
                     end
                 end
             end
+        else if is_linux
+            set fish_function_path $fish_function_path /usr/share/powerline/bindings/fish
         end
-
         powerline-setup # fish function in powerline/bindings/fish
     end
 
@@ -80,7 +83,7 @@ if status is-interactive
     # Event Hooks
     reload fish_postexec
 
-    if which -s thefuck
+    if type -q thefuck
         # The Fuck
         eval (thefuck --alias | tr \n ';')
     end

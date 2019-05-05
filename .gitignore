@@ -6,13 +6,18 @@
 !.dotfiles/
 !.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
 !.oh-my-zsh/themes/agnoster-phatblat.zsh-theme
+*.hprof
+*.iml
 *.padl
 *.swp
 *.xccheckout
 *.xcscmblueprint
 .*history
+.AndroidStudio3.4/
 .CFUserTextEncoding
 .DS_Store
+.ICEauthority
+.IntelliJIdea2019.1/
 .JIRAClient/
 .KindleTransfer/
 .Trash/
@@ -33,8 +38,25 @@
 .classpath
 .cocoapods/
 .conche/
+.config/.todoist-linux.json
+.config/Code/Backups/
+.config/Code/Cache/
+.config/Code/CachedData
+.config/Code/CachedExtensions/
+.config/Code/Cookies
+.config/Code/Cookies-journal
+.config/Code/Network Persistent State
+.config/Code/User/globalStorage/
+.config/Code/User/workspaceStorage/
+.config/Code/languagepacks.json
+.config/Code/machineid
+.config/Code/rapid_render.json
+.config/Code/storage.json
+.config/Todoist/
 .config/configstore
+.config/dconf/
 .config/direnv/
+.config/evolution/
 .config/fish/completions/
 .config/fish/conf.d/done.fish
 .config/fish/conf.d/z.fish
@@ -56,14 +78,20 @@
 .config/git/config
 .config/git/gitk
 .config/git/ignore
+.config/gnome-initial-setup-done
+.config/goa-1.0/
 .config/gtk-2.0/
 .config/hub
+.config/ibus/
+.config/libreoffice/
+.config/pulse/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
 .config/upstall/last_run.*
 .config/verdaccio/htpasswd
 .config/yarn/
+.config/yelp/yelp.cfg
 .cups/
 .dbvis/
 .did_show_opt_info
@@ -88,6 +116,7 @@
 .iterm2_shell_integration.zsh
 .itmstransporter/
 .jabba/
+.java/
 .jenkins-hpl-map
 .jenkins/
 .jenv/
@@ -103,6 +132,7 @@
 .m2/repository/
 .marathon/
 .mono/
+.mozilla/
 .netrc
 .ngrok/
 .node-gyp/
@@ -116,6 +146,7 @@
 .op/
 .oracle_jre_usage/
 .phantomjs/
+.pki/
 .project
 .pry_history
 .putty/
@@ -133,6 +164,7 @@
 .sdkman/candidates/
 .sdkman/src/
 .sdkman/var/
+.settings
 .settings/
 .slocdata/
 .solargraph/
@@ -142,7 +174,9 @@
 .sqlite_history
 .ssh/
 .subversion/
+.sudo_as_admin_successful
 .synx/
+.thunderbird/
 .tooling/
 .travis/
 .vim/
@@ -157,6 +191,7 @@
 .zoomus/
 .zsh-update
 .zsh_history
+Android
 Applications/
 Backup/
 Box Sync/
@@ -184,9 +219,11 @@ Virtual Machines.localized/
 VirtualBox VMs/
 __z_clean.fish
 bin/
+build/
 cali_core4/
 data/
 dev
+examples.desktop
 gradlew.bat
 iCloud Drive (Archive)*/
 lib/
@@ -196,6 +233,7 @@ mobot-scripts
 node_modules/
 private/
 realm-object-server/
+snap/
 tmp/
 xcuserdata
 zclean.awk

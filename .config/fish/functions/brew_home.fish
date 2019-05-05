@@ -3,7 +3,15 @@ function brew_home \
         --argument-names formula
 
     if test -z "$BREW_HOME"
-        set --export BREW_HOME (brew --prefix)
+        if type -q brew
+            set --export BREW_HOME (brew --prefix)
+        else
+            if is_mac
+                set --export BREW_HOME /user/local
+            else if is_linux
+                set --export BREW_HOME /home/linuxbrew/.linuxbrew
+            end
+        end
     end
 
     if test -n "$formula"

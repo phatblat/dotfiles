@@ -38,7 +38,7 @@ function 💎__rubygems
     pushd ~
 
     # Ensure bundler is installed
-    if not which -s bundle
+    if not type -q bundle
         error "Bundler is not installed"
         return 1
     end

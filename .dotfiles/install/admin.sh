@@ -22,7 +22,7 @@ fi
 ls -ld /usr/local
 # sudo chown -R ${USER}:staff /usr/local
 
-which -s brew
+! command -v brew
 if [[ $? -ne 0 ]]; then
   # Install Homebrew
   echo "Installing Homebrew"

@@ -13,7 +13,7 @@ function 🐍__pip
     set --local pip pip
 
     # Ensure PIP is installed.
-    if not which -s $pip
+    if not type -q $pip
         error "PIP is not installed."
         return 1
     end
