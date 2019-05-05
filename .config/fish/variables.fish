@@ -65,6 +65,7 @@ set --export --global PATH \
     ~/bin \
     (brew_home)/bin \
     (brew_home curl)/bin \
+    /snap/bin \
     $ANDROID_HOME/tools/bin \
     /usr/local/opt/python/libexec/bin \
     $PATH
