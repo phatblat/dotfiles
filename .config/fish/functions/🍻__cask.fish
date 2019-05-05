@@ -189,7 +189,7 @@ function 🍻__cask
     # --------------------------------------------------------------------------
 
     # Ensure Homebrew is installed.
-    if not which -s brew
+    if not type -q brew
         echo "Installing Homebrew"
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end

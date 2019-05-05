@@ -59,7 +59,7 @@ else
   echo "You are not an admin. If you get errors an admin may need to install required tools on this Mac"
 fi
 
-which -s brew
+! command -v brew
 if [[ $? -ne 0 ]]; then
   echo "Homebrew is not installed."
   exit 1

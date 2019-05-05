@@ -5,5 +5,6 @@ function ls --wraps ls
     # -G      Enable colorized output.  This option is equivalent to defining
     # CLICOLOR in the environment.  (See lscolors.)
 
+    set -lx LC_ALL C
     command ls -Gp $argv
 end
