@@ -53,6 +53,7 @@
 .config/Code/rapid_render.json
 .config/Code/storage.json
 .config/Todoist/
+.config/balena-etcher-electron/
 .config/chromium/
 .config/configstore
 .config/dconf/
