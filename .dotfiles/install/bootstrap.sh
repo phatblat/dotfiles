@@ -16,7 +16,7 @@ echo ">>> install-bootstrap"
 echo
 
 # Check for existing dotfiles in user $HOME, bail if found
-if [[ -d ~/.dotfiles || -d ~/.git ]]; then
+if test -d ~/.dotfiles -o -d ~/.git; then
   echo "Dotfiles are already installed for $USER@$(hostname)"
   exit 1
 fi
