@@ -18,7 +18,7 @@ function 🧰__sdkman
     if not test -d $sdkman_prefix/bin
         echo "Installing SDKman"
         # Remove tracked etc/config file so that sdkman will actually install
-        rm -rf $sdkmaan_prefix/
+        rm -rf $sdkman_prefix/
         curl -s "https://get.sdkman.io/" | bash
         git checkout $sdkman_prefix
     end
