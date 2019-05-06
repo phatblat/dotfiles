@@ -20,7 +20,7 @@ function 🐍__pip
 
     # # Verify the user owns the site-packages dir.
     # set -l site_packages /usr/local/lib/python2.7/site-packages
-    # if test $USER != (fileowner $site_packages)
+    # if test "$USER" != (fileowner $site_packages)
     #     if status is-login
     #         echo "You must be the owner of "$site_packages" to run this command."
     #     end

@@ -22,7 +22,7 @@ function ☕️__java
     set -l java_version 1.8.0_131
 
     # Check to see if update is necessary
-    if test $java_version = (jv)
+    if test "$java_version" = (jv)
         showjdks
         return
     end

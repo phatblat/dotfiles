@@ -8,12 +8,12 @@
 function firewalladd
     echo $argv | read -l app_binary
 
-    if test -z $app_binary
+    if test -z "$app_binary"
         echo "Usage: firewalladd <path>"
         return 1
     end
 
-    if test -e $app_binary
+    if test -e "$app_binary"
         echo "Adding $app_binary to the firewall"
         firewall --add $app_binary
         firewall --unblockapp $app_binary

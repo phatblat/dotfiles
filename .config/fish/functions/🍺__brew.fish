@@ -123,7 +123,7 @@ function 🍺__brew
 
     # Verify the user owns the Homebrew dir.
     set -l homebrew_dir (brew_home)/Homebrew
-    if test $USER != (fileowner $homebrew_dir)
+    if test "$USER" != (fileowner $homebrew_dir)
         if status is-login
             echo "You must be the owner of "$homebrew_dir" to run this command."
         end
@@ -255,7 +255,7 @@ function 🍺__brew
             # May need to purge old gems
             # http://stackoverflow.com/questions/9434002/how-to-solve-ruby-installation-is-missing-psych-error#answer-43843417
             set -l path (brew_home)/lib/ruby/gems/$previous_version/extensions
-            if test $USER != (fileowner $path)
+            if test "$USER" != (fileowner $path)
                 echo "Fixing permissions on $path"
                 sudo chown -R $USER (brew_home)/lib/ruby
                 and rm -rf (brew_home)/lib/ruby/gems/
