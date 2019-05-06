@@ -1,4 +1,6 @@
 {
     "breadcrumbs.enabled": true,
-    "shellcheck.executablePath": "/usr/bin/shellcheck"
+    "shellcheck.executablePath": "/usr/bin/shellcheck",
+    "C_Cpp.updateChannel": "Insiders",
+    "editor.fontLigatures": true
 }
