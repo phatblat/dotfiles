@@ -68,6 +68,7 @@ set --export --global PATH \
     /snap/bin \
     $ANDROID_HOME/tools/bin \
     /usr/local/opt/python/libexec/bin \
+    ~/dev/chromium/depot_tools \
     $PATH
 
 # Custom HOME handling for octodec. Since /Users/phatblat is a symlink,
