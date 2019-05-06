@@ -1,4 +1,8 @@
 # Show all installed JDKs.
 function showjdks
-    /usr/libexec/java_home --verbose $argv
+    if is_mac
+        /usr/libexec/java_home --verbose $argv
+    else if is_linux
+        ll /usr/lib/jvm/
+    end
 end
