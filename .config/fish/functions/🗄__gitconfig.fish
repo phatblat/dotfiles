@@ -27,12 +27,12 @@ function 🗄__gitconfig \
 
     # Prompt to add required values
 
-    if test -z $name
+    if test -z "$name"
         echo -n "Git user.name: "
         read name
     end
 
-    if test -z $email
+    if test -z "$email"
         echo -n "Git user.email: "
         read email
     end

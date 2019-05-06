@@ -196,7 +196,7 @@ function 🍻__cask
 
     # Verify the user owns the Caskroom dir.
     set -l caskroom_dir (brew_home)/Caskroom
-    if test $USER != (fileowner $caskroom_dir)
+    if test "$USER" != (fileowner $caskroom_dir)
         if status is-login
             echo "You must be the owner of "$caskroom_dir" to run this command."
         end

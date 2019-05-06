@@ -17,18 +17,18 @@ function fish_title
 
     set -l job $_
 
-    if test $job = 'man'
+    if test "$job" = 'man'
         # Show args for these processes. First arg is job.
         echo $argv
         # No room left for dir
         return
-    else if test $job != 'fish'
+    else if test "$job" != 'fish'
         echo $job ' '
     end
 
     set -l dir (basename $PWD)
 
-    if test $HOME = $PWD
+    if test "$HOME" = $PWD
         # Show ~ when in $HOME
         echo '~'
     else
