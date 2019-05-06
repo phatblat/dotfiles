@@ -6,6 +6,11 @@ function setjdk \
         return 1
     end
 
+    if is_linux
+        set --export --global JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+        return
+    end
+
     set --local jhome /usr/libexec/java_home
     set --local major_version (string split . $java_version)[1]
 
