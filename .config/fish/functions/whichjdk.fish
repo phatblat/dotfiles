@@ -1,4 +1,8 @@
 # Displays path to the current JDK.
 function whichjdk
-    /usr/libexec/java_home $argv
+    if is_mac
+        /usr/libexec/java_home $argv
+    else if is_linux
+        java -version
+    end
 end
