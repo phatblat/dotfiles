@@ -1,4 +1,4 @@
-#!/usr/bin/bash -e
+#!/bin/bash -e
 #-------------------------------------------------------------------------------
 #
 # install/bootstrap.sh
@@ -87,10 +87,10 @@ echo "Dotfiles now installed at $HOME"
 # Ensure Homebrew is installed
 if ! command -v brew; then
     # Install Homebrew
-    if [ $kernel == "Darwin" ]; then
+    if test "$kernel" = "Darwin"; then
         echo "Installing Homebrew"
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    elif [ $kernel == "Linux" ]; then
+    elif test "$kernel" = "Linux"; then
         echo "Installing Linuxbrew"
         # https://docs.brew.sh/Homebrew-on-Linux
 
