@@ -35,7 +35,7 @@ if ! command -v git; then
         # Download manually?
         # https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2.dmg
 
-        if [[ $? -eq 0 ]]; then
+        if [ $? -eq 0 ]; then
             open https://developer.apple.com/downloads/
             echo "Click the Install button to install the Xcode Command-Line Tools, then re-run this script."
             exit 1
@@ -58,7 +58,7 @@ if ! command -v git; then
 fi
 
 # Clone the .dotfiles repo into $HOME
-if [[ $PWD != $HOME ]]; then
+if [ "$PWD" != "$HOME" ]; then
     pushd $HOME
 fi
 
