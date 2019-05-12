@@ -43,7 +43,7 @@ set --export GUI_WAIT_FLAG "-w"
 
 # EDITOR or VISUAL, only one defined
 # Use EDITOR for non-console users (su someoneelse) and SSH connections
-if not console_user; or is_ssh
+if not type -q $EDITOR_GUI; or not console_user; or is_ssh
     set --export EDITOR $EDITOR_CLI
     set --export WAIT_FLAG $CLI_WAIT_FLAG
     set --erase VISUAL
