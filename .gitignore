@@ -22,6 +22,7 @@
 .KindleTransfer/
 .Trash/
 .Ultimate/
+.Xauthority
 .android/
 .anka/
 .antigen/
@@ -98,6 +99,7 @@
 .config/yarn/
 .config/yelp/yelp.cfg
 .cups/
+.dbus/
 .dbvis/
 .did_show_opt_info
 .docker/
