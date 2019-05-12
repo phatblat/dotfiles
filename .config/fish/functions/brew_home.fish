@@ -15,8 +15,9 @@ function brew_home \
     end
 
     if test -n "$formula"
-        echo "/usr/local/opt/$formula"
+        echo "$BREW_HOME/opt/$formula"
     else
         echo $BREW_HOME
     end
 end
+
