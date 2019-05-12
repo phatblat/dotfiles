@@ -35,16 +35,5 @@ function ▶️__powerline
     set -l fonts_dir $vim_dev/powerline-fonts
     clone_or_pull $fonts_dir git@github.com:powerline/fonts.git
     eval $fonts_dir/install.sh
-
-    # Powerline Shell
-    # - https://github.com/banga/powerline-shell
-    set -l ps_dir           $vim_dev/powerline-shell
-    set -l powerline_shell  git@github.com:banga/powerline-shell.git
-    set -l fork             git@github.com:phatblat/powerline-shell.git # custom
-    clone_or_pull $ps_dir $fork custom
-
-    # Generate the powerline-shell.py based on config.py
-    pushd $ps_dir
-    ./install.py
-    popd
 end
+
