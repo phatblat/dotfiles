@@ -71,7 +71,10 @@ if status is-interactive
                 end
             end
         else if is_linux
-            set fish_function_path $fish_function_path /usr/share/powerline/bindings/fish
+            # snap location
+            # /usr/share/powerline/bindings/fish
+            set -l python_packages /home/linuxbrew/.linuxbrew/lib/python3.7/site-packages
+            set fish_function_path $fish_function_path $python_packages/powerline/bindings/fish/
         end
         powerline-setup # fish function in powerline/bindings/fish
     end
