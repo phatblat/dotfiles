@@ -4,7 +4,10 @@ function search \
     if is_linux
         echo "Snap"
         echo "-----------------------------------------------------------------"
-        snap search $argv
+        # Ubuntu snap
+        #snap search $argv
+        # snapd apt package
+        snap find $argv
 
         echo "APT"
         echo "-----------------------------------------------------------------"
