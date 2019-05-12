@@ -66,9 +66,9 @@ set --export --global PATH \
     ~/bin \
     (brew_home)/bin \
     (brew_home curl)/bin \
+    (brew_home python)/libexec/bin \
     /snap/bin \
     $ANDROID_HOME/tools/bin \
-    /usr/local/opt/python/libexec/bin \
     ~/dev/chromium/depot_tools \
     $PATH
 
@@ -92,3 +92,4 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 # jabba use default
 # jabba deactivate
 setjdk 1.8
+
