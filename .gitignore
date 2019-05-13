@@ -108,6 +108,7 @@
 .envrc
 .fastlane/
 .fastlane_crash_reporting
+.gconf/
 .gem/
 .git/
 .gitkraken/
