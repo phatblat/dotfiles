@@ -20,27 +20,33 @@ function swift_releases \
     set -l month (date "+%m")
     set -l current_day (date "+%d")
 
-    for day in (jot - $current_day 1)
+    # jot generates a decending sequence of integers
+    for day in (jot $days $current_day 1 -1)
         # Zero pad month and day
         set month (printf "%02d" $month)
         set day (printf "%02d" $day)
 
         set -l date $year-$month-$day
-        echo $date
+        echo -n $date
 
         set -l release_slug "swift$swift_version-DEVELOPMENT-SNAPSHOT-$date-a"
         set -l url "https://swift.org/builds/$branch_name/xcode/$release_slug/$release_slug-osx.pkg"
-        echo $url
+        #echo $url
 
-        curl \
-            --head \
-            --location \
-            --write-out "%{http_code}\n\n" \
-            $url
+        set -l status_code (
+            curl \
+                --head \
+                --location \
+                --silent \
+                --output /dev/null \
+                --write-out "%{http_code}" \
+                $url
+       )
 
-        set days (math "$days - 1")
-        if test $days -le 0
-            return
-        end
+       echo " - $status_code"
+       if test $status_code = 200
+           echo $url
+       end
     end
 end
+
