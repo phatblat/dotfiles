@@ -192,6 +192,7 @@
 .viminfo
 .vscode/
 .wget-hsts
+.xsel.log
 .yarnrc
 .yjp/
 .z
