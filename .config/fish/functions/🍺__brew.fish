@@ -32,6 +32,7 @@ function 🍺__brew
         docker-compose \
         docker-machine \
         duti \
+        f3 \
         findutils \
         firebase-cli \
         fortune \
