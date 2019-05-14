@@ -91,6 +91,7 @@
 .config/libreoffice/
 .config/menus/
 .config/pulse/
+.config/terminus/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
