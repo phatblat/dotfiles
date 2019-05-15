@@ -26,6 +26,7 @@ terminal:
       - '#89DDFF'
       - '#ffffff'
   ligatures: true
+  font: Source Code Pro for Powerline
 appearance:
   theme: Standard
   frame: thin
