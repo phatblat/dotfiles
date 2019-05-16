@@ -27,6 +27,10 @@ terminal:
       - '#ffffff'
   ligatures: true
   font: Source Code Pro for Powerline
+  environment: {}
+  autoOpen: true
+  bracketedPaste: true
+  copyOnSelect: true
 appearance:
   theme: Standard
   frame: thin
