@@ -8,9 +8,15 @@
 set --export KERNEL (uname)
 
 # Upper case
-set --export ANDROID_HOME (brew_home)/share/android-sdk
-set --export ANDROID_SDK_ROOT (brew_home)/share/android-sdk
-set --export ANDROID_NDK_HOME (brew_home)/share/android-ndk
+if is_mac
+    set --export ANDROID_HOME (brew_home)/share/android-sdk
+    set --export ANDROID_SDK_ROOT (brew_home)/share/android-sdk
+    set --export ANDROID_NDK_HOME (brew_home)/share/android-ndk
+else if is_linux
+    set --export ANDROID_HOME ~/Android/Sdk
+    set --export ANDROID_SDK_ROOT $ANDROID_HOME
+    set --export ANDROID_NDK_HOME
+end
 set --export ARCHFLAGS "-arch x86_64"
 set --export GPG_TTY (tty)
 set --export GRADLE_HOME (brew_home gradle)/libexec
@@ -69,6 +75,7 @@ set --export --global PATH \
     (brew_home python)/libexec/bin \
     /snap/bin \
     $ANDROID_HOME/tools/bin \
+    $ANDROID_HOME/platform-tools \
     ~/dev/chromium/depot_tools \
     $PATH
 
