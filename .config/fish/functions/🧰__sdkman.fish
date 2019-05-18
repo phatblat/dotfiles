@@ -15,7 +15,7 @@ function 🧰__sdkman
     end
 
     # Using /bin dir as test because /etc is tracked in dotfiles
-    if not test -d $sdkman_prefix/bin
+    if not test -d "$sdkman_prefix/bin"
         echo "Installing SDKman"
         # Remove tracked etc/config file so that sdkman will actually install
         rm -rf $sdkman_prefix/
