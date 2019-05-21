@@ -9,8 +9,8 @@ set --export KERNEL (uname)
 
 # Upper case
 if is_mac
-    set --export ANDROID_HOME (brew_home)/share/android-sdk
-    set --export ANDROID_SDK_ROOT (brew_home)/share/android-sdk
+    set --export ANDROID_HOME ~/Library/Android/sdk
+    set --export ANDROID_SDK_ROOT $ANDROID_HOME
     set --export ANDROID_NDK_HOME (brew_home)/share/android-ndk
 else if is_linux
     set --export ANDROID_HOME ~/Android/Sdk
@@ -99,4 +99,3 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 # jabba use default
 # jabba deactivate
 setjdk 1.8
-
