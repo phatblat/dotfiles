@@ -43,6 +43,7 @@ function 🐍__pip
 
     set -l global_packages \
         awscli \
+        bumpversion \
         lizard \
         powerline-status \
         Pygments \
