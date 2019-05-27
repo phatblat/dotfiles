@@ -98,9 +98,20 @@ if ! command -v brew; then
         PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+        if ! which snap >/dev/null; then
+            echo "Installing Snap"
+            sudo apt install snapd
+        fi
     fi
 fi
 
 echo
+echo "Installing shell dependencies"
+brew install diff-so-fancy
+brew install direnv
+
+echo
 echo "Installing Fish Shell"
 brew install fish
+
