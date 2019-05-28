@@ -93,6 +93,7 @@
 .config/libreoffice/
 .config/menus/
 .config/pulse/
+.config/sublime-text-3/
 .config/terminus/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
