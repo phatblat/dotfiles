@@ -117,5 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/phatblat/.sdkman"
-[[ -s "/home/phatblat/.sdkman/bin/sdkman-init.sh" ]] && source "/home/phatblat/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="~/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+. .bash_profile

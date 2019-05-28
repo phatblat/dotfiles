@@ -60,6 +60,7 @@
 .config/configstore
 .config/dconf/
 .config/direnv/
+.config/enchant/
 .config/evolution/
 .config/fish/completions/
 .config/fish/conf.d/done.fish
@@ -79,6 +80,7 @@
 .config/fish/functions/zadd.awk
 .config/fish/h
 .config/fisherman/
+.config/gedit/
 .config/git/config
 .config/git/gitk
 .config/git/ignore
@@ -91,6 +93,7 @@
 .config/libreoffice/
 .config/menus/
 .config/pulse/
+.config/sublime-text-3/
 .config/terminus/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
@@ -204,6 +207,7 @@
 .zsh_history
 Android
 Applications/
+Apps/
 Backup/
 Box Sync/
 Carthage/
