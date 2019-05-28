@@ -7,5 +7,9 @@ function fileowner \
         return 1
     end
 
-    id -un (stat -f%u $file)
+    if is_mac
+        id -un (stat -f%u $file)
+    else if is_linux
+        stat --format=%U $file
+    end
 end
