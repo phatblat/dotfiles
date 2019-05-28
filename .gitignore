@@ -60,6 +60,7 @@
 .config/configstore
 .config/dconf/
 .config/direnv/
+.config/enchant/
 .config/evolution/
 .config/fish/completions/
 .config/fish/conf.d/done.fish
