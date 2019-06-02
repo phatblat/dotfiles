@@ -55,5 +55,6 @@
     "ruby.format": "rubocop",
     "ruby.useBundler": true,
     "ruby.interpreter.commandPath": "/usr/local/opt/ruby/bin/ruby",
-    "ruby.pathToBundler": "/Users/ben/bin/bundle"
+    "ruby.pathToBundler": "/Users/ben/bin/bundle",
+    "vsicons.dontShowNewVersionMessage": true
 }
