@@ -90,9 +90,12 @@
 .config/gtk-2.0/
 .config/hub
 .config/ibus/
+.config/konsolerc
 .config/libreoffice/
+.config/lxterminal/
 .config/menus/
 .config/pulse/
+.config/session/
 .config/sublime-text-3/
 .config/terminus/
 .config/thefuck
