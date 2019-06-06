@@ -40,7 +40,7 @@ function xcv \
     # Check if this is a beta build
     set -l beta_version
     switch $build_version
-        #    10.0
+        # 10.0
         case 10L176w
             set beta_version "beta 1 "
         case 10L177m
@@ -56,7 +56,7 @@ function xcv \
         case 10A254a
             set beta_version "GM seed "
 
-        #    10.1
+        # 10.1
         case 10O23ud
             set beta_version "beta 1 "
         case 10O35n
@@ -64,7 +64,7 @@ function xcv \
         case 10O45e
             set beta_version "beta 3 "
 
-        #    10.2
+        # 10.2
         case 10P82s
             set beta_version "beta 1 "
         case 10P91b
@@ -73,6 +73,10 @@ function xcv \
             set beta_version "beta 3 "
         case 10P107d
             set beta_version "beta 4 "
+
+        # 11.0
+        case 11M336w
+            set beta_version "beta 1 "
     end
 
     echo "$marketing_version $beta_version($build_version)"
