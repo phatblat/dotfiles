@@ -195,6 +195,7 @@
 .thunderbird/
 .tooling/
 .travis/
+.vault-token
 .vim/
 .viminfo
 .vscode/
