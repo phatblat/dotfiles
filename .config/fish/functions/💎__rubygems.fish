@@ -23,7 +23,7 @@ function 💎__rubygems
         gem_update
 
         # Bundler
-        gem_install bundler -v "~> 1.0"
+        # gem_install bundler -v "~> 1.0"
         gem_install bundler -v "~> 2.0"
 
         # Fix for "Your bundle is locked to rake (12.0.0), but that version could not be found in any of the sources listed in your Gemfile."
