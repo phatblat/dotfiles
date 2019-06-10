@@ -1,4 +1,5 @@
 function gbe \
     --description='Shows Gradle build environment'
-    gw buildEnvironment
+
+    gw buildEnvironment $argv
 end
