@@ -88,7 +88,6 @@ function 🍻__cask
         thingsmacsandboxhelper \
         tower \
         transmit \
-        ultimate \
         virtualbox \
         visual-studio-code \
         vmware-fusion \
