@@ -4,7 +4,11 @@ function swift_releases \
 
     set -l branch_name development
 
-    if test -n "$swift_version"
+    if test $swift_version = "trunk"
+        # use default branch name
+        # clear swift version
+        set -e swift_version
+    else if test -n "$swift_version"
         set swift_version "-$swift_version"
         set branch_name "swift$swift_version-branch"
     end
@@ -49,4 +53,3 @@ function swift_releases \
        end
     end
 end
-
