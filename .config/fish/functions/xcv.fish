@@ -77,6 +77,8 @@ function xcv \
         # 11.0
         case 11M336w
             set beta_version "beta 1 "
+        case 11M337n
+            set beta_version "beta 2"
     end
 
     echo "$marketing_version $beta_version($build_version)"
