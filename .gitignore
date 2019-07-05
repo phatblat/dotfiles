@@ -90,6 +90,7 @@
 .config/gtk-2.0/
 .config/hub
 .config/ibus/
+.config/karabiner/automatic_backups/
 .config/konsolerc
 .config/libreoffice/
 .config/lxterminal/
