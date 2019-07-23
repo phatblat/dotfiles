@@ -39,7 +39,7 @@
                         "product_id": 24672,
                         "vendor_id": 65261
                     },
-                    "ignore": false,
+                    "ignore": true,
                     "manipulate_caps_lock_led": false,
                     "simple_modifications": []
                 }
