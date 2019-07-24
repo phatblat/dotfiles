@@ -171,7 +171,6 @@ function 🍻__cask
         dayone-cli \
         disk-inventory-x \
         java9 \
-        karabiner-elements \
         mono-mdk \
         sublime-text-dev \
         textexpander \
