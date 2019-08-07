@@ -56,8 +56,12 @@ function swift_releases \
         # jot generates a decending sequence of integers
         for day in (jot $days $current_day 1 -1)
             # Zero pad month and day
-            set month (printf "%02d" $month)
-            set day (printf "%02d" $day)
+            if test (string length $month) -eq 1
+                set month (printf "%02d" $month)
+            end
+            if test (string length $day) -eq 1
+                set day (printf "%02d" $day)
+            end
 
             set -l date $year-$month-$day
             echo -n $date
