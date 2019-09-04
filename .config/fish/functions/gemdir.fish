@@ -1,5 +1,4 @@
-# Prints the path to the system gem dir
-function gemdir
-    ruby -rubygems -e 'puts Gem.dir'
+function gemdir \
+        --description='Prints the path to the system gem dir'
+    ruby -r rubygems -e 'puts Gem.dir'
 end
-
