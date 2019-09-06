@@ -1,4 +1,5 @@
-# Open Xcode workspace in the current dir.
-function ow
-    open *.xcworkspace $argv
+function ow \
+        --description='Opens Xcode workspace in the current or subdir'
+    # Open all but project.xcworkspace
+    open (string match --entire --invert project.xcworkspace **.xcworkspace)
 end
