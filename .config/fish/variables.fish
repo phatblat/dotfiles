@@ -38,6 +38,7 @@ set --export LSCOLORS ExFxBxDxCxegedabagacad
 
 # Lower case
 set --export github_user phatblat
+set --export powerline_enabled 0
 set --global --export sdkman_prefix ~/.sdkman
 
 # Editor
