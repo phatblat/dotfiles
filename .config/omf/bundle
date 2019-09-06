@@ -1,4 +1,6 @@
 package brew
 package foreign-env
 package nvm
+theme agnoster
+theme bobthefish
 theme default
