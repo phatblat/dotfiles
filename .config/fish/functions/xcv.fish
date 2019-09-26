@@ -92,7 +92,8 @@ function xcv \
         case 11A419c
             set beta_version "GM seed 1 "
         case 11A420a
-            set beta_version "GM seed 2 "
+            # This GM became the final GA build
+            # set beta_version "GM seed 2 "
 
         # 11.1
         case 11A1027
