@@ -99,6 +99,10 @@ function xcv \
         case 11A1027
             # This GM became the final GA build
             # set beta_version "GM seed 1 "
+
+        # 11.2
+        case 11B41
+            set beta_version "beta 1 "
     end
 
     echo "$marketing_version $beta_version($build_version)"
