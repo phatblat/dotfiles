@@ -137,6 +137,7 @@
 .jenkins-hpl-map
 .jenkins/
 .jenv/
+.junique/
 .konan/
 .kscript/
 .lesshst
