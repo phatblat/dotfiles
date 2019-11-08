@@ -56,5 +56,6 @@
     "ruby.useBundler": true,
     "ruby.interpreter.commandPath": "/usr/local/opt/ruby/bin/ruby",
     "ruby.pathToBundler": "/Users/ben/bin/bundle",
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "python.jediEnabled": false
 }
