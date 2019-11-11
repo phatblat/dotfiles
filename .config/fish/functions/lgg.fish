@@ -1,8 +1,5 @@
-function lg1 --description='Pretty history graph with one commit'
-    set -l commit_count 1
-
+function lgg --description='Pretty history graph.'
     git log \
-        -$commit_count \
         --graph \
         --abbrev-commit \
         --date=relative \
