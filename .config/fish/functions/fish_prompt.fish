@@ -1,1 +1,1 @@
-/Users/ben/.local/share/omf/themes/emoji-powerline/fish_prompt.fish
+/Users/ben/.local/share/omf/themes/budspencer/fish_prompt.fish
