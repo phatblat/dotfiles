@@ -4,3 +4,4 @@ package nvm
 theme agnoster
 theme bobthefish
 theme default
+theme emoji-powerline

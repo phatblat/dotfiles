@@ -1,1 +1,1 @@
-/Users/phatblat/.local/share/omf/themes/bobthefish/fish_prompt.fish
+/Users/ben/.local/share/omf/themes/emoji-powerline/fish_prompt.fish
