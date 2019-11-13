@@ -39,6 +39,7 @@ function 🍺__brew
         gcovr \
         git \
         git-lfs \
+        gnu-sed \
         gnupg \
         go-jira \
         goaccess \
