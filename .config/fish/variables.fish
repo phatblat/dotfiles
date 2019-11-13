@@ -117,6 +117,13 @@ set --export --global PATH \
     ~/dev/chromium/depot_tools \
     $PATH
 
+# Extra paths for budspencer omf theme
+# https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#budspencer
+if test (uname -s) = "Darwin"
+  set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
+  set -gx PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
+end
+
 # Custom HOME handling for octodec. Since /Users/phatblat is a symlink,
 # it causes PWD to not match HOME, preventing powerline from shortening paths.
 if begin string match --quiet phatblat $USER; and string match --quiet --entire octodec (hostname); end
