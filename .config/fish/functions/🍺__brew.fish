@@ -38,6 +38,7 @@ function 🍺__brew
         fortune \
         gcovr \
         git \
+        git-filter-repo \
         git-lfs \
         gnu-sed \
         gnupg \
