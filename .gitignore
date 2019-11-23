@@ -195,6 +195,7 @@
 .subversion/
 .sudo_as_admin_successful
 .synx/
+.task/
 .thunderbird/
 .tooling/
 .travis/
