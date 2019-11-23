@@ -88,3 +88,5 @@
     stripLeadingSymbols = true
     useUnicodeRuler = true
 [universe]
+[gpg]
+	program = /usr/local/bin/gpg2
