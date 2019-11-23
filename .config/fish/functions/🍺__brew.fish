@@ -93,6 +93,8 @@ function 🍺__brew
         swiftgen \
         swiftlint \
         swiftplate \
+        task \
+        tasksh \
         tailor \
         terminal-notifier \
         thefuck \
