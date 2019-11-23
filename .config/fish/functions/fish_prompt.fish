@@ -1,1 +1,1 @@
-/Users/phatblat/.local/share/omf/themes/default/fish_prompt.fish
+/Users/phatblat/.local/share/omf/themes/simple-ass-prompt/fish_prompt.fish
