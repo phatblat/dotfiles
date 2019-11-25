@@ -58,5 +58,6 @@
     "ruby.pathToBundler": "/Users/ben/bin/bundle",
     "vsicons.dontShowNewVersionMessage": true,
     "python.jediEnabled": false,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false
 }

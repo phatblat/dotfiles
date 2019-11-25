@@ -8,7 +8,11 @@ function fileowner \
     end
 
     if is_mac
-        id -un (stat -f%u $file)
+        # Stock macOS
+        # id -un (stat -f%u $file)
+
+        # coreutils
+        stat -c '%U' $file
     else if is_linux
         stat --format=%U $file
     end
