@@ -25,7 +25,12 @@ function xcswitch --argument-names xcode_version
     # Creat a symlink so tools, like SwiftLint, that assume Xcode was
     # Installed via the MAS use the correct version.
     pushd /Applications
-    ln -fhs (basename $xcode_path) Xcode.app
+    # macOS /bin/ln has -h flag
+    # https://ss64.com/osx/ln.html
+    # -h     If the NewLinkFile (or directory) is a symbolic link, do not follow
+    #        it.  This is most useful with the -f option, to replace a symlink
+    #        which can point to a directory.
+    ln -fs (basename $xcode_path) Xcode.app
     popd
 
     xclist

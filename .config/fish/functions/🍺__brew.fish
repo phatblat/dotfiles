@@ -38,6 +38,7 @@ function 🍺__brew
         fortune \
         gcovr \
         git \
+        git-filter-repo \
         git-lfs \
         gnu-sed \
         gnupg \
@@ -92,6 +93,8 @@ function 🍺__brew
         swiftgen \
         swiftlint \
         swiftplate \
+        task \
+        tasksh \
         tailor \
         terminal-notifier \
         thefuck \

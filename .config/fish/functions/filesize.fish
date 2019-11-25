@@ -8,7 +8,7 @@ function filesize \
     end
 
     if is_mac
-        stat -f%z $file
+        stat -c '%s' $file
     else if is_linux
         stat --format=%s $file
     end
