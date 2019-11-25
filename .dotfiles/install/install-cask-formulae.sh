@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 #
 # install/install-cask-formulae.sh
-# Repeatable script which installs macOS apps through Homebrew Cask (http://caskroom.io)
+# Repeatable script which installs macOS apps through Homebrew Cask (https://formulae.brew.sh/cask/)
 #
 #-------------------------------------------------------------------------------
 
