@@ -16,6 +16,7 @@ function 🍻__cask
 
     set -l apps \
         1password-cli \
+        adoptopenjdk8 \
         android-file-transfer \
         android-ndk \
         android-sdk \
@@ -24,12 +25,9 @@ function 🍻__cask
         banktivity \
         bettertouchtool \
         brave-browser \
-        cardhop \
         charles \
         cheatsheet \
         cleanmymac \
-        cloudapp \
-        dbvisualizer \
         dash \
         deckset \
         fauxpas \
@@ -154,9 +152,11 @@ function 🍻__cask
         battery-guardian \
         bee \
         beoplay-software-update \
+        cloudapp \
         cocoapods \
         cocoapods-app \
         dayone-cli \
+        dbvisualizer \
         disk-inventory-x \
         docker-toolbox \
         duet \
