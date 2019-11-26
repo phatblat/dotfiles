@@ -34,15 +34,28 @@ function defaults_set
     # Finder
     #
 
+    # Preferences > General
+    defaults write com.apple.Finder ShowHardDrivesOnDesktop -bool true
+    defaults write com.apple.Finder ShowExternalHardDrivesOnDesktop -bool true
+    defaults write com.apple.Finder ShowRemovableMediaOnDesktop -bool true
+    defaults write com.apple.Finder ShowMountedServersOnDesktop -bool true
+
+    # New Finder windows show:
+    defaults write com.apple.Finder NewWindowTarget -string PfHm
+    defaults write com.apple.Finder NewWindowTargetPath -string "file:///Volumes/ThunderBay/Users/phatblat/"
+
+    # Show all file extensions
+    # https://www.defaults-write.com/display-the-file-extensions-in-finder/
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
     # Use AirDrop over every interface. srsly this should be a default.
     defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 
     # Always open everything in Finder's list view. This is important.
     defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
-    # Set the Finder prefs for showing a few different volumes on the Desktop.
-    defaults write com.apple.Finder ShowExternalHardDrivesOnDesktop -bool true
-    defaults write com.apple.Finder ShowRemovableMediaOnDesktop -bool true
+    # Hide the Tags section of the sidebar
+    defaults write com.apple.Finder SidebarTagsSctionDisclosedState -bool false
 
     # QuickLook text selection
     defaults write com.apple.Finder QLEnableTextSelection -bool true
