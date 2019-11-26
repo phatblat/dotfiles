@@ -19,14 +19,9 @@ function 🍻__cask
         android-file-transfer \
         android-ndk \
         android-sdk \
-        anka-flow \
         anylist \
-        appium \
-        atom \
         back-in-time \
         banktivity \
-        bee \
-        beoplay-software-update \
         bettertouchtool \
         brave-browser \
         cardhop \
@@ -37,8 +32,6 @@ function 🍻__cask
         dbvisualizer \
         dash \
         deckset \
-        docker-toolbox \
-        duet \
         fauxpas \
         firebase-admin \
         geekbench \
@@ -48,15 +41,11 @@ function 🍻__cask
         gpg-suite \
         hex-fiend \
         hipchat \
-        hyper \
         ibm-cloud-cli \
         ios-console \
         istat-menus \
         iterm2 \
-        java \
-        caskroom/versions/java8 \
         jetbrains-toolbox \
-        jira-client \
         kaleidoscope \
         keyboard-maestro \
         keycastr \
@@ -65,20 +54,15 @@ function 🍻__cask
         lunchy \
         microblog \
         microsoft-teams \
-        minikube \
         macdown \
         ngrok \
         oclint \
-        omnigraffle \
-        omnipresence \
         paste \
         paw \
         peripheryapp/periphery/periphery \
-        realm-studio \
         rescuetime \
         rocket \
         screens \
-        skype-for-business \
         softraid \
         sublime-text \
         sublime-merge \
@@ -88,7 +72,6 @@ function 🍻__cask
         thingsmacsandboxhelper \
         tower \
         transmit \
-        virtualbox \
         visual-studio-code \
         vmware-fusion \
         vysor \
@@ -165,19 +148,29 @@ function 🍻__cask
 
     set -l uninstall \
         android-studio \
+        anka-flow \
+        appium \
+        atom \
         battery-guardian \
+        bee \
+        beoplay-software-update \
         cocoapods \
         cocoapods-app \
         dayone-cli \
         disk-inventory-x \
+        docker-toolbox \
+        duet \
+        hyper \
         java9 \
         mono-mdk \
+        skype-for-business \
         sublime-text-dev \
         textexpander \
         things \
         timing \
         homebrew/cask-drivers/twelvesouth-bassjump \
         ultimate \
+        virtualbox \
         visual-studio \
         xmarks-safari
 
