@@ -27,6 +27,7 @@ function defaults_set
     #
     # Trackpad
     #
+    # https://apple.stackexchange.com/questions/180620/enabling-both-trackpad-drag-lock-and-3-finger-drag-at-once
     defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
     defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
 
@@ -69,6 +70,10 @@ function defaults_set
 
     # Remove the Delay for Auto-Hide & Auto-Show of Dock
     defaults write com.apple.Dock autohide-delay -float 0
+
+    # Disable automatically rearrange Spaces base on most recent use
+    defaults write com.apple.dock mru-spaces -bool false
+    defaults write com.apple.dock expose-group-apps -bool true
 
     #
     # Safari
