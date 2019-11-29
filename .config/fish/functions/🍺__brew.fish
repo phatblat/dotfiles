@@ -39,7 +39,8 @@ function 🍺__brew
         fortune \
         gcovr \
         git \
-        git-filter-repo \
+        # WIP: https://github.com/Homebrew/homebrew-core/pull/46550
+        # git-filter-repo \
         git-lfs \
         gnu-sed \
         gnupg \
@@ -60,7 +61,6 @@ function 🍺__brew
         jsonpp \
         kotlin \
         holgerbrandl/tap/kscript \
-        kubernetes-helm \
         less \
         libssh2 \
         libtool \
