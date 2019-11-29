@@ -106,7 +106,7 @@ function 🍺__brew
         tree \
         uncrustify \
         utimer \
-        vapor/tap/toolbox \
+        vapor/tap/vapor \
         xctool \
         yarn \
         $custom_shells
