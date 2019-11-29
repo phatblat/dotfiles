@@ -14,6 +14,7 @@ function 🍺__brew
         autoconf \
         automake \
         babel \
+        bat \
         burl \
         carthage \
         certbot \
