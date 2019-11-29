@@ -45,9 +45,19 @@ function defaults_set
     defaults write com.apple.Finder NewWindowTarget -string PfHm
     defaults write com.apple.Finder NewWindowTargetPath -string "file:///Volumes/ThunderBay/Users/phatblat/"
 
+    # Preferences > Advanced
     # Show all file extensions
     # https://www.defaults-write.com/display-the-file-extensions-in-finder/
     defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+    # https://www.defaults-write.com/disable-the-extension-change-warning-in-os-x-finder/
+    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+    # Suppress wanring when file moved from iCloud Drive
+    defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
+
+    # https://www.defaults-write.com/disable-the-warning-before-emptying-the-trash/
+    defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
     # Use AirDrop over every interface. srsly this should be a default.
     defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
