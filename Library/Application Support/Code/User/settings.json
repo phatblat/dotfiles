@@ -59,5 +59,6 @@
     "vsicons.dontShowNewVersionMessage": true,
     "python.jediEnabled": false,
     "explorer.confirmDelete": false,
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "window.openWithoutArgumentsInNewWindow": "on"
 }
