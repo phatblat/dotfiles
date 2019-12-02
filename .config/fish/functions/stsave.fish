@@ -1,4 +1,4 @@
 # Save a git stash.
 function stsave
-    git stash save $argv
+    git stash save --include-untracked $argv
 end
