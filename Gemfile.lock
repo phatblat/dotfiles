@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    CFPropertyList (3.0.1)
+    CFPropertyList (3.0.2)
     activesupport (4.2.11.1)
       i18n (~> 0.7)
       minitest (~> 5.1)
@@ -65,7 +65,7 @@ GEM
     dotenv (2.7.5)
     emoji_regex (1.0.1)
     escape (0.0.4)
-    excon (0.69.1)
+    excon (0.70.0)
     faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
     faraday-cookie_jar (0.0.6)
@@ -154,7 +154,7 @@ GEM
       paint (~> 2.1.0)
     manpages (0.6.1)
     maruku (0.7.3)
-    memoist (0.16.1)
+    memoist (0.16.2)
     mime-types (3.3)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
@@ -172,7 +172,7 @@ GEM
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
     netrc (0.11.0)
-    nokogiri (1.10.5)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     optimist (3.0.0)
     os (1.0.1)
