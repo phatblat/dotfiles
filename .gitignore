@@ -106,6 +106,7 @@
 .config/verdaccio/htpasswd
 .config/yarn/
 .config/yelp/yelp.cfg
+.cpan/
 .cups/
 .dbus/
 .dbvis/
