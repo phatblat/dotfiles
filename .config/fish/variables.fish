@@ -1,4 +1,4 @@
-#
+
 # ~/.config/fish/variables.fish
 # Dotfiles
 #
@@ -100,9 +100,9 @@ end
 
 # fish_user_paths
 set --global fish_user_paths \
-    /usr/local/opt/ruby/bin \
     /usr/local/sbin \
-    /usr/local/opt/sqlite/bin \
+    (brew_home ruby)/bin \
+    (brew_home sqlite)/bin \
     $fish_user_paths
 
 # PATH
@@ -112,11 +112,19 @@ set --export --global PATH \
     (brew_home)/bin \
     (brew_home curl)/bin \
     (brew_home python)/libexec/bin \
-    /snap/bin \
-    $ANDROID_HOME/tools/bin \
-    $ANDROID_HOME/platform-tools \
-    ~/dev/chromium/depot_tools \
     $PATH
+
+if test -d "$ANDROID_HOME"
+    set --export --global PATH $PATH \
+        $ANDROID_HOME/tools/bin \
+        $ANDROID_HOME/platform-tools
+end
+
+set --export --global CHROME_DEPOT_TOOLS ~/dev/chromium/depot_tools
+if test -d "$CHROME_DEPOT_TOOLS"
+    set --export --global PATH $PATH \
+        $CHROME_DEPOT_TOOLS
+end
 
 # Extra paths for budspencer omf theme
 # https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#budspencer
