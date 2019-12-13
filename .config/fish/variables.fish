@@ -114,6 +114,17 @@ set --export --global PATH \
     (brew_home python)/libexec/bin \
     $PATH
 
+if test -d (brew_home python)/libexec/bin
+    set --export --global PATH $PATH \
+        (brew_home python)/libexec/bin
+end
+
+set --export --global SWIFT_TOOLCHAIN ~/dev/swift/swift-5.1.2-RELEASE-ubuntu18.04/usr/bin
+if test -d "$SWIFT_TOOLCHAIN"
+    set --export --global PATH $PATH \
+        $SWIFT_TOOLCHAIN
+end
+
 if test -d "$ANDROID_HOME"
     set --export --global PATH $PATH \
         $ANDROID_HOME/tools/bin \
