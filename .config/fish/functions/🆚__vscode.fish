@@ -12,6 +12,9 @@ function 🆚__vscode
     set -l extensions \
         ahmadawais.shades-of-purple \
         Alan.stylus \
+        DSnake.java-debug \
+        TeddyDD.fish \
+        ahmadawais.shades-of-purple \
         Apptorium.teacode-vsc-helper \
         benjavr.jshintrc-generator \
         bierner.markdown-preview-github-styles \
@@ -25,7 +28,6 @@ function 🆚__vscode
         dbaeumer.vscode-eslint \
         dkundel.vscode-npm-source \
         donjayamanne.githistory \
-        DSnake.java-debug \
         eamodio.gitlens \
         EditorConfig.EditorConfig \
         eg2.tslint \
@@ -61,6 +63,7 @@ function 🆚__vscode
         mohsen1.prettify-json \
         monokai.theme-monokai-pro-vscode \
         ms-azuretools.vscode-azurefunctions \
+        ms-azuretools.vscode-docker \
         ms-python.python \
         ms-vscode.azure-account \
         ms-vscode.cpptools \
@@ -72,12 +75,10 @@ function 🆚__vscode
         naumovs.node-modules-resolve \
         nepaul.editorconfiggenerator \
         nodesource.vscode-for-node-js-development-pack \
-        PeterJausovec.vscode-docker \
         PKief.material-icon-theme \
         pkosta2005.heroku-command \
         prashaantt.node-tdd \
         rbbit.typescript-hero \
-        rebornix.ruby \
         redhat.java \
         secanis.jenkinsfile-support \
         Shan.code-settings-sync \
@@ -87,7 +88,6 @@ function 🆚__vscode
         stevencl.addDocComments \
         sysoev.language-stylus \
         sysoev.vscode-open-in-github \
-        TeddyDD.fish \
         timonwong.shellcheck \
         twxs.cmake \
         VisualStudioExptTeam.vscodeintellicode \
@@ -97,11 +97,11 @@ function 🆚__vscode
         vscjava.vscode-java-test \
         vscjava.vscode-maven \
         vscode-icons-team.vscode-icons \
-        vscodevim.vim \
+        wingrunr21.vscode-ruby \
         wix.vscode-import-cost \
         zeithaste.cursorCharCode \
         zhouronghui.propertylist \
-        zhuangtongfa.Material-theme \
+        zhuangtongfa.material-theme \
         ziyasal.vscode-open-in-github
 
     # Extensions to uninstall
