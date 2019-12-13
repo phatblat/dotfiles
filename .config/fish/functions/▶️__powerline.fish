@@ -33,6 +33,9 @@ function ▶️__powerline
         cp -R $config_path $powerline_config
     end
 
+    set -l font_dir ~/Library/Fonts/
+    command mkdir $font_dir
+
     # Powerline Fonts
     # - https://github.com/powerline/fonts
     echo "Installing Powerline Fonts"
@@ -40,4 +43,3 @@ function ▶️__powerline
     clone_or_pull $fonts_dir git@github.com:powerline/fonts.git
     eval $fonts_dir/install.sh
 end
-
