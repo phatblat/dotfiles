@@ -7,5 +7,7 @@ function untar --wraps='tar' \
         return 1
     end
 
+    # TODO: iterate files when no args, prompting before extract
+
     tar -zxvf $file
 end
