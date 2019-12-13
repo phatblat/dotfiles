@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'www/nginx.zsh'
-
 # nginx
 alias xconf='vi /usr/local/etc/nginx/nginx.conf'
 hash -d xconfd='/usr/local/etc/nginx'

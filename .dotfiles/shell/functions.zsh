@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'shell/functions.zsh'
-
 # Shell Help
 function bashman {
   man bash | less -p "^       $1 ";

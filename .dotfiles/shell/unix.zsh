@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'shell/unix.zsh'
-
 # members function - lists all members of the given group
 # Usage: members $group
 function members {
