@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'git/functions.zsh'
-
 ## Delete tag on local and remote
 function delete-tag {
   if [[ $# -ne 1 ]]; then

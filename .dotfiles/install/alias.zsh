@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'install/alias.zsh'
-
 #
 # Determines whether the current $USER is in the admin group.
 # Examples:

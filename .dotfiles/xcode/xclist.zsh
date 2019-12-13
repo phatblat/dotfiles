@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'xcode/xclist.zsh'
-
 function xclist {
   local xcode filename
 

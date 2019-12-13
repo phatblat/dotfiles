@@ -2,12 +2,12 @@
 fontName         = FuraCodeNerdFontC-Regular
 fontSize         = 14
 showIndentGuides = true
-showInvisibles   = true
+showInvisibles   = false
 showWrapColumn   = true
 softTabs         = true
 softWrap         = false
 tabSize          = 4
-theme            = 9E32B2C8-052E-46EE-B709-04B1C7559DA1
+theme            = 3C01FADD-7592-49DD-B7A5-1B82CA4E57B5
 wrapColumn       = 80
 
 [ *.fish ]
@@ -29,7 +29,7 @@ fileType         = source.ruby
 fileType         = source.groovy
 
 [ source ]
-showInvisibles   = true
+showInvisibles   = false
 softTabs         = true
 softWrap         = false
 tabSize          = 4
@@ -56,6 +56,7 @@ tabSize          = 4
 showInvisibles   = false
 
 [ source.shell ]
+showInvisibles   = false
 tabSize          = 2
 
 [ text ]

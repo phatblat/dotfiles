@@ -16,7 +16,7 @@ function 🍻__cask
 
     set -l apps \
         1password-cli \
-        adoptopenjdk8 \
+        homebrew/cask-versions/adoptopenjdk8 \
         android-file-transfer \
         android-ndk \
         android-sdk \
@@ -57,7 +57,7 @@ function 🍻__cask
         oclint \
         paste \
         paw \
-        peripheryapp/periphery/periphery \
+        periphery \
         rescuetime \
         rocket \
         screens \

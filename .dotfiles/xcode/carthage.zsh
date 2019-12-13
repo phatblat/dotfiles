@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'xcode/carthage.zsh'
-
 alias carthage-clean='rm -rf ~/Library/Caches/org.carthage.CarthageKit'
 
 # Bootstrap
