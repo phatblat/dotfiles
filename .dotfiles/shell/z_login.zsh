@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'shell/z_login.zsh'
-
 # Window title - for Timing.app <https://itunes.apple.com/us/app/timing/id431511738?mt=12>
 echo -ne "\e]1;${USER}@${HOST%%.*}:${PWD/#$HOME/~}\a"
 

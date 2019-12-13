@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'java/alias.zsh'
-
 alias whichjdk='/usr/libexec/java_home'
 alias showjdks='/usr/libexec/java_home -V'
 

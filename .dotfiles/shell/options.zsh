@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'shell/options.zsh'
-
 export TERM="xterm-256color"
 export LANGUAGE="en_US.UTF-8"
 export LANG="en_US.UTF-8"

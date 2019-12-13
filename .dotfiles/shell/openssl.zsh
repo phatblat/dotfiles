@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'shell/openssl.zsh'
-
 OPENSSL_VERSION="1.0.2k"
 OPENSSL_PATH="/usr/local/Cellar/openssl/${OPENSSL_VERSION}/bin/openssl"
 

@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'shell/editors.zsh'
-
 # edit
 export EDITOR='vi'
 export VISUAL='mate' #subl
