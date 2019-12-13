@@ -59,12 +59,6 @@ set smartcase                   " ... unless they contain at least one capital l
 
 let mapleader=","
 
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
 " Switch between files by hitting ,, twice
 nnoremap <leader><leader> <c-^>
 
