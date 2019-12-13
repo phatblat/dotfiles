@@ -9,6 +9,17 @@ function xcv \
     # set -l build_version (echo $output | awk '{print $5}')
 
     set -l active_version (xcode-select -p)
+    if test $active_version = /Library/Developer/CommandLineTools
+        echo -n "$active_version - "
+
+        # CLI tools are the active version of Xcode
+        pkgutil --pkg-info=com.apple.pkg.DevSDK \
+        | grep version \
+        | awk '{print $2}'
+
+        return
+    end
+
     set -l version_plist (string replace Developer '' $active_version)version.plist
 
     if not test -f $version_plist
