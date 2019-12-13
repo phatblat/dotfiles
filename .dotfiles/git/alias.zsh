@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'git/alias.zsh'
-
 # Hub - use hub as entry point for git command
 # alias git='hub'
 

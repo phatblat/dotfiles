@@ -73,19 +73,6 @@ fi
 
 
 #-------------------------------------------------------------------------------
-# Lumberjack - https://github.com/molovo/lumberjack
-#-------------------------------------------------------------------------------
-
-pushd ~/dev/shell > /dev/null
-
-echo "Installing Lumberjack - https://github.com/molovo/lumberjack"
-git clone https://github.com/molovo/lumberjack.git
-ln -s "${HOME}/dev/shell/lumberjack/lj" "/usr/local/bin/lj"
-
-popd > /dev/null
-
-
-#-------------------------------------------------------------------------------
 # Powerline Fonts
 #-------------------------------------------------------------------------------
 

@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'intellij/functions.zsh'
-
 # Launch IntelliJ IDEA
 # https://gist.github.com/chrisdarroch/7018927
 function idea {

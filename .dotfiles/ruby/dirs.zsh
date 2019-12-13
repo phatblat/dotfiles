@@ -5,8 +5,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'ruby/dirs.zsh'
-
 alias gem-userdir='ruby -rubygems -e "puts Gem.user_dir"'
 
 

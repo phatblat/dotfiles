@@ -99,12 +99,6 @@ function defaults_set
     defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
     defaults write -g WebKitDeveloperExtras -bool true
 
-    #
-    # Mail
-    #
-    # Disable OSX Mail app auto loading (malicious) remote content in e-mails
-    defaults write com.apple.mail-shared DisableURLLoading -bool true
-
     #  - http://furbo.org/2014/09/03/xcode-vs-gatekeeper/
     alias ungate='xattr -d com.apple.quarantine '
 

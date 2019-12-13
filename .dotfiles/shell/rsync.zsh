@@ -6,8 +6,6 @@
 #
 #-------------------------------------------------------------------------------
 
-lj info 'shell/rsync.zsh'
-
 #
 # Uses rsync to copy files between two locations.
 #
