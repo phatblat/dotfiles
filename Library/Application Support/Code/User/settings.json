@@ -60,5 +60,11 @@
     "python.jediEnabled": false,
     "explorer.confirmDelete": false,
     "editor.minimap.enabled": false,
-    "window.openWithoutArgumentsInNewWindow": "on"
+    "window.openWithoutArgumentsInNewWindow": "on",
+    "qiskit-vscode.config.firstRun": false,
+    "qiskit-vscode.ibmq.token": "33542ea6966055db01c78c8325f8304dae34f0f9118eb67183ecc178ab09b2f70d06b99a6a52ae803b8434f0d170062e360072942e46bcd98867ef678fca5279",
+    "qiskit-vscode.ibmq.hub": "",
+    "qiskit-vscode.ibmq.url": "",
+    "qiskit-vscode.ibmq.group": "",
+    "qiskit-vscode.ibmq.project": ""
 }
