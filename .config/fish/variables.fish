@@ -128,6 +128,7 @@ end
 if test -d "$ANDROID_HOME"
     set --export --global PATH $PATH \
         $ANDROID_HOME/tools/bin \
+        $ANDROID_HOME/build-tools/* \
         $ANDROID_HOME/platform-tools
 end
 
