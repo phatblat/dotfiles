@@ -287,6 +287,11 @@ function 🍻__cask
 
     # IBM Cloud
     if contains ibm-cloud-cli $outdated_casks
+        if test -f ~/.bashrc.bluemix_uninstall_bak
+            echo Cleaning up Bluemix backup file
+            diff ~/.bashrc ~/.bashrc.bluemix_uninstall_bak
+            rm -f ~/.bashrc.bluemix_uninstall_bak
+        end
         if test -f ~/.zshrc.bluemix_uninstall_bak
             echo Cleaning up Bluemix backup file
             diff ~/.zshrc ~/.zshrc.bluemix_uninstall_bak
