@@ -2,8 +2,8 @@
 # or EDITOR for CLI (SSH) sessions.
 function edit
     if test -z $VISUAL
-        eval $EDITOR $argv
+        eval "$EDITOR '$argv'"
     else
-        eval $VISUAL $argv
+        eval "$VISUAL '$argv'"
     end
 end
