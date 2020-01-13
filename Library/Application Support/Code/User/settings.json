@@ -67,5 +67,6 @@
     "qiskit-vscode.ibmq.url": "",
     "qiskit-vscode.ibmq.group": "",
     "qiskit-vscode.ibmq.project": "",
-    "workbench.activityBar.visible": true
+    "workbench.activityBar.visible": true,
+    "material-icon-theme.showWelcomeMessage": false
 }
