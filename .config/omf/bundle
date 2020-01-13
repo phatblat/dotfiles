@@ -1,4 +1,5 @@
 package brew
+package fish_logo
 package foreign-env
 package nvm
 theme agnoster
