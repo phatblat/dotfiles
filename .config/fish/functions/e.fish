@@ -4,6 +4,6 @@ function e
     if test -z "$argv"
         edit .
     else
-        edit $argv
+        edit "$argv"
     end
 end
