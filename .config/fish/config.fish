@@ -5,7 +5,7 @@
 
 # Fish logo
 if status is-interactive
-    logo
+    fish_logo brblue cyan green
 end
 
 # Variables
