@@ -73,7 +73,8 @@ function 🍻__cask
         visual-studio-code \
         vmware-fusion \
         vysor \
-        zeplin
+        zeplin \
+        homebrew/cask-drivers/zsa-wally
 
     set -l quicklook_plugins \
         provisionql \
