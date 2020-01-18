@@ -17,7 +17,7 @@ function git_bundle_create
     echo "HEAD: $head_sha"
     git stash list
     # git stash list -p # verbose diff of stash
-    git stash save "snapshot: "(date)
+    git stash save --include-untracked "snapshot: "(date)
 
     # Returns only the SHA of the last stash (will need the next one back in history in order to restore staging area status)
     set -l snapshot_sha (git show --pretty=oneline 'refs/stash@{0}' \
@@ -26,11 +26,10 @@ function git_bundle_create
     echo "snapshot: $snapshot_sha"
 
     # Restore the dirty work tree
-    git stash apply 'stash@{0}'
+    # git stash apply 'stash@{0}'
 
     # Create bundle
-    git tag -d snapshot_end
-    or true
+    git tag -d snapshot_end 2>/dev/null
     git tag snapshot_end $snapshot_sha
 
     # This requires the HEAD commit to be present in the local repo
