@@ -67,7 +67,7 @@ GEM
     e2mmap (0.1.0)
     emoji_regex (1.0.1)
     escape (0.0.4)
-    excon (0.71.1)
+    excon (0.72.0)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     faraday-cookie_jar (0.0.6)
@@ -215,7 +215,7 @@ GEM
       CFPropertyList
       naturally
     slack-notifier (2.3.2)
-    solargraph (0.38.4)
+    solargraph (0.38.5)
       backport (~> 1.1)
       benchmark
       bundler (>= 1.17.2)
