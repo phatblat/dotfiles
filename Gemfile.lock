@@ -215,7 +215,7 @@ GEM
       CFPropertyList
       naturally
     slack-notifier (2.3.2)
-    solargraph (0.38.2)
+    solargraph (0.38.4)
       backport (~> 1.1)
       benchmark
       bundler (>= 1.17.2)
@@ -235,7 +235,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tty-cursor (0.7.0)
+    tty-cursor (0.7.1)
     tty-screen (0.7.0)
     tty-spinner (0.9.2)
       tty-cursor (~> 0.7)
