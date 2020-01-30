@@ -26,7 +26,7 @@ echo "Kernel: $kernel"
 
 # Ensure git is installed
 if ! command -v git; then
-    if [ $kernel == "Darwin" ]; then
+    if [ $kernel = "Darwin" ]; then
         # macOS
         # Install Xcode CLI tools for bundled git
         xcode-select -p
@@ -43,7 +43,7 @@ if ! command -v git; then
 
         # TODO: accept license
         # sudo xcodebuild -license accept
-    elif [ $kernel == "Linux" ]; then
+    elif [ $kernel = "Linux" ]; then
         if command -v apt; then
             # Use apt on ubuntu
             sudo apt install git
@@ -114,4 +114,3 @@ brew install direnv
 echo
 echo "Installing Fish Shell"
 brew install fish
-
