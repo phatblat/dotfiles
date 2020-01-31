@@ -114,6 +114,11 @@ set --export --global PATH \
     (brew_home python)/libexec/bin \
     $PATH
 
+if test -d (brew_home)/sbin
+    set --export --global PATH $PATH \
+        (brew_home)/sbin
+end
+
 if test -d (brew_home python)/libexec/bin
     set --export --global PATH $PATH \
         (brew_home python)/libexec/bin
