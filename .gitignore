@@ -40,10 +40,12 @@
 .cocoapods/
 .conche/
 .config/.todoist-linux.json
+.config/BraveSoftware/
 .config/Code/Backups/
 .config/Code/Cache/
 .config/Code/CachedData
 .config/Code/CachedExtensions/
+.config/Code/Code Cache/
 .config/Code/Cookies
 .config/Code/Cookies-journal
 .config/Code/GPUCache/
@@ -54,6 +56,8 @@
 .config/Code/machineid
 .config/Code/rapid_render.json
 .config/Code/storage.json
+.config/Rygel/
+.config/Slack/
 .config/Todoist/
 .config/balena-etcher-electron/
 .config/chromium/
@@ -91,6 +95,7 @@
 .config/hub
 .config/ibus/
 .config/karabiner/automatic_backups/
+.config/kdeconnect/
 .config/konsolerc
 .config/libreoffice/
 .config/lxterminal/
