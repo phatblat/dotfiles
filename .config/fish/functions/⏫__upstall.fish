@@ -4,8 +4,10 @@ function ⏫__upstall
     createdirs ~/.config/upstall
 
     set -l last_ran_file ~/.config/upstall/last_run.(machine_id)
-    set -l last_ran (cat $last_ran_file)
-    echo "⏫  Upstall (Last ran: "$last_ran")"
+    if test -f $last_ran_file
+        set -l last_ran (cat $last_ran_file)
+        echo "⏫  Upstall (Last ran: "$last_ran")"
+    end
     date_iso8601 >$last_ran_file
 
     # Disabled by default: textmate xcode fisherman apm
