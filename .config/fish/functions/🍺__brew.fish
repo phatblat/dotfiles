@@ -83,7 +83,6 @@ function 🍺__brew
         ruby \
         screenresolution \
         shellcheck \
-        sloccount \
         socat \
         sonar-scanner \
         sourcekitten \
