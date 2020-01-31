@@ -1,4 +1,6 @@
-function lg10 --description='Pretty history graph with ten commits'
+function lg10 \
+    --description='Pretty history graph with ten commits'
+
     set -l commit_count 10
 
     git log \

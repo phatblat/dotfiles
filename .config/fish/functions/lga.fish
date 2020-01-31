@@ -1,4 +1,6 @@
-function lga
+function lga \
+    --description='Pretty history graph showing all'
+
     git log \
         --all \
         --graph \
