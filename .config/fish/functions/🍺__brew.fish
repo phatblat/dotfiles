@@ -116,8 +116,10 @@ function 🍺__brew
 
     set -l uninstall \
         android-sdk \
+        md5shasum \
         pivotal/tap/cloudfoundry-cli \
         python@2 \
+        sloccount \
         vim
 
     # --------------------------------------------------------------------------
