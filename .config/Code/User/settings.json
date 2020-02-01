@@ -1,7 +1,14 @@
 {
-    "breadcrumbs.enabled": true,
+    "breadcrumbs.enabled": false,
     "shellcheck.executablePath": "/usr/bin/shellcheck",
     "C_Cpp.updateChannel": "Insiders",
     "editor.fontLigatures": true,
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "window.menuBarVisibility": "toggle",
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "window.zoomLevel": 0
 }
