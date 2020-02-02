@@ -9,6 +9,7 @@
     "editor.renderControlCharacters": true,
     "window.menuBarVisibility": "toggle",
     "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": true,
-    "window.zoomLevel": 0
+    "workbench.activityBar.visible": false,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Abyss"
 }
