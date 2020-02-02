@@ -6,7 +6,11 @@ function 📦__apt \
 
     set -l packages \
         apt-file \
-        cpu-checker
+        bridge-utils \
+        cpu-checker \
+        libvirt-clients \
+        libvirt-daemon-system \
+        qemu-kvm 
     echo "packages: $packages"
 
     set -l uninstall
