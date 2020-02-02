@@ -7,10 +7,13 @@ function 📦__apt \
     set -l packages \
         apt-file \
         cpu-checker
+    echo "packages: $packages"
 
     set -l uninstall
 
-    set -l installed (apt-cache pkgnames)
+    # set -l installed (apt-cache pkgnames)
+    set -l installed (dpkg --get-selections | awk '{print $1}')
+    # echo "installed: $installed"
 
     # --------------------------------------------------------------------------
     #
@@ -25,6 +28,7 @@ function 📦__apt \
             set to_uninstall $to_uninstall $package
         end
     end
+    echo "to_uninstall: $to_uninstall"
     if test -n "$to_uninstall"
         echo "to_uninstall $to_uninstall"
         apt-get remove $to_uninstall
@@ -38,7 +42,7 @@ function 📦__apt \
     # --------------------------------------------------------------------------
 
     # Update installed packages
-    echo "apt-file update"
+    # echo "apt-file update"
     # apt-file update
     # sudo apt upgrade
 
@@ -50,10 +54,14 @@ function 📦__apt \
             set not_installed $not_installed $package
         end
     end
+    echo "not_installed: $not_installed"
     if test -n "$not_installed"
         for package in $not_installed
             echo "Installing $package"
-            apt-get install $package
+            sudo apt-get \
+                --assume-yes \
+                 --verbose-versions \
+                install $package
         end
     end
 end
