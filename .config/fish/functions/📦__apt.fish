@@ -10,7 +10,8 @@ function 📦__apt \
         cpu-checker \
         libvirt-clients \
         libvirt-daemon-system \
-        qemu-kvm 
+        qemu-kvm \
+        virt-manager
     echo "packages: $packages"
 
     set -l uninstall
