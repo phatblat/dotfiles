@@ -10,8 +10,27 @@ function ⏫__upstall
     end
     date_iso8601 >$last_ran_file
 
-    # Disabled by default: textmate xcode fisherman apm
-    set -l all_modules ruby brew cask omf sdkman pip npm powerline vundle vscode macos
+    # Disabled by default: apm fisherman textmate vundle xcode
+    set -l all_modules \
+        ruby \
+        brew \
+        omf \
+        sdkman \
+        pip \
+        npm \
+        powerline \
+        vscode
+
+    if is_mac
+        set all_modules $all_modules \
+            cask \
+            macos
+    else if is_linux
+        set all_modules $all_modules \
+            apt
+    end
+
+    echo "all_modules: $all_modules"
 
     if contains -- --nothing $argv
         # Smoke test
@@ -27,11 +46,12 @@ function ⏫__upstall
     ⬆️__upmodule 🗄__gitconfig
     ⬆️__upmodule 💎__rubygems    "💎  Ruby Gems"  ruby       --norb $argv
     ⬆️__upmodule 🔨__xcode       "🔨  Xcode"      xcode      --noxc $argv
+    ⬆️__upmodule 📦__apt         "📦  APT"        apt        --noapt $argv
     ⬆️__upmodule 🍺__brew        "🍺  Homebrew"   brew       --nobr $argv
     ⬆️__upmodule 🍻__cask        "🍻  Cask"       cask       --noca $argv
     ⬆️__upmodule 🐠__omf         "🐠  oh-my-fish" omf        --noomf $argv
     ⬆️__upmodule 🐟__fisherman   "🐟  Fisherman"  fisherman  --nofm $argv
-    ⬆️__upmodule 🧰__sdkman       "🧰  SDKman"      sdk        --nosdk $argv
+    ⬆️__upmodule 🧰__sdkman      "🧰  SDKman"     sdk        --nosdk $argv
     ⬆️__upmodule 🐍__pip         "🐍  PIP"        pip        --nopy $argv
     ⬆️__upmodule 🕸__npm         "🕸  NPM"        npm        --nojs $argv
     ⬆️__upmodule ▶️__powerline    "▶️  Powerline"   powerline  --nopl $argv
