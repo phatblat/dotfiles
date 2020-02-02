@@ -1,13 +1,9 @@
-# Sets git user.name and user.email
-#
 # ~/.gitconfig is tracked and shared. Sensitive or machine-specific data is
 # stored in the alternate global config file.
 # > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
-#
-# Sequencing
-# - After: brew (git)
 function 🗄__gitconfig \
-        --argument-names email name
+    --description='Sets git user.name and user.email in XDG_CONFIG_HOME' \
+    --argument-names email name
 
     echo "🗄  Git configuration"
     echo
