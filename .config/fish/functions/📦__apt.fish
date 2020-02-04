@@ -7,7 +7,11 @@ function 📦__apt \
     set -l packages \
         apt-file \
         bridge-utils \
-        cpu-checker \
+        cpu-checker \ \
+        clang \
+        libcurl3 \
+        libpython2.7 \
+        libpython2.7-dev \
         libvirt-clients \
         libvirt-daemon-system \
         qemu-kvm \
