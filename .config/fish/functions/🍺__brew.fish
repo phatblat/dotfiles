@@ -36,8 +36,7 @@ function 🍺__brew
         fortune \
         gcovr \
         git \
-        # WIP: https://github.com/Homebrew/homebrew-core/pull/46550
-        # git-filter-repo \
+        git-filter-repo \
         git-lfs \
         gnu-sed \
         gnupg \
