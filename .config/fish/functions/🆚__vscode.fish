@@ -3,7 +3,7 @@
 # https://code.visualstudio.com/docs/editor/extension-gallery#_command-line-extension-management
 #
 # Sequencing
-# - After: cask
+# - After: cask or apt
 function 🆚__vscode
     echo "🆚  VS Code"
     echo
@@ -13,13 +13,10 @@ function 🆚__vscode
         ahmadawais.shades-of-purple \
         Alan.stylus \
         DSnake.java-debug \
-        TeddyDD.fish \
         ahmadawais.shades-of-purple \
         Apptorium.teacode-vsc-helper \
-        benjavr.jshintrc-generator \
         bierner.markdown-preview-github-styles \
         castwide.solargraph \
-        cazzar09.Gradle \
         christian-kohler.npm-intellisense \
         cmstead.jsrefactor \
         codezombiech.gitignore \
@@ -48,7 +45,6 @@ function 🆚__vscode
         humao.rest-client \
         jamesmaj.easy-icons \
         joelday.docthis \
-        johnpapa.azure-functions-tools \
         Kasik96.swift \
         kevinkyang.auto-comment-blocks \
         kevinmcgowan.TypeScriptImport \
