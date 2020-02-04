@@ -8,7 +8,7 @@ function createdirs \
 
     for dir in $argv
         if not test -e $dir
-            mkdir -p $dir
+            command mkdir -p $dir
         end
     end
 end
