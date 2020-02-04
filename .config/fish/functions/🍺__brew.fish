@@ -8,6 +8,27 @@ function 🍺__brew
 
     set -l custom_shells bash fish zsh
 
+    # mac-only formulae
+    set -l formulae_mac \
+        carthage \
+        configen \
+        duti \
+        thoughtbot/formulae/liftoff \
+        mas \
+        screenresolution \
+        sourcekitten \
+        swiftformat \
+        swiftgen \
+        swiftlint \
+        swiftplate \
+        terminal-notifier \
+        trash \
+        xctool
+
+    # linux-only formulae
+    set -l formulae_linux
+
+    # multi-platform
     set -l formulae \
         artifactory \
         asciinema \
@@ -16,20 +37,17 @@ function 🍺__brew
         babel \
         bat \
         burl \
-        carthage \
         certbot \
         vitorgalvao/tiny-scripts/cask-repair \
         cloc \
         cloudfoundry/tap/cf-cli \
         cmake \
-        configen \
         coreutils \
         cowsay \
         ctags \
         curl \
         diff-so-fancy \
         direnv \
-        duti \
         f3 \
         findutils \
         firebase-cli \
@@ -58,8 +76,6 @@ function 🍺__brew
         less \
         libssh2 \
         libtool \
-        thoughtbot/formulae/liftoff \
-        mas \
         maven \
         mint \
         mtr \
@@ -75,33 +91,31 @@ function 🍺__brew
         redis \
         rename \
         ruby \
-        screenresolution \
         shellcheck \
         socat \
         sonar-scanner \
-        sourcekitten \
         sourcery \
         speedtest-cli \
         kylef/formulae/swiftenv \
-        swiftformat \
-        swiftgen \
-        swiftlint \
-        swiftplate \
         task \
         tasksh \
         tailor \
-        terminal-notifier \
         thefuck \
         tig \
         tmux \
-        trash \
         travis \
         tree \
         uncrustify \
         utimer \
-        xctool \
         yarn \
         $custom_shells
+
+    # Appebd platform-specific formulae
+    if is_mac
+        set formulae $formulae $formulae_mac
+    else if is_linux
+        set formulae $formulae $formulae_linux
+    end
 
     # Cleaning macvim with options generates error
     # Error: No available formula with the name "macvim --with-override-system-vim"
