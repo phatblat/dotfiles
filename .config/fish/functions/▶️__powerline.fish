@@ -33,13 +33,17 @@ function ▶️__powerline
         cp -R $config_path $powerline_config
     end
 
-    set -l font_dir ~/Library/Fonts/
-    command mkdir $font_dir
-
-    # Powerline Fonts
-    # - https://github.com/powerline/fonts
     echo "Installing Powerline Fonts"
-    set -l fonts_dir $vim_dev/powerline-fonts
-    clone_or_pull $fonts_dir git@github.com:powerline/fonts.git
-    eval $fonts_dir/install.sh
+    if is_mac
+        set -l font_dir ~/Library/Fonts/
+        createdirs $font_dir
+
+        # Powerline Fonts
+        # - https://github.com/powerline/fonts
+        set -l fonts_dir $vim_dev/powerline-fonts
+        clone_or_pull $fonts_dir git@github.com:powerline/fonts.git
+        eval $fonts_dir/install.sh
+    else if is_linux
+        sudo apt-get install fonts-powerline
+    end
 end
