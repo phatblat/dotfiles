@@ -29,9 +29,6 @@ function 🍺__brew
         curl \
         diff-so-fancy \
         direnv \
-        docker \
-        docker-compose \
-        docker-machine \
         duti \
         f3 \
         findutils \
@@ -51,9 +48,7 @@ function 🍺__brew
         heroku/brew/heroku \
         hub \
         imagemagick \
-        infer \
         jabba \
-        jenkins \
         jenv \
         jfrog-cli-go \
         jq \
@@ -105,7 +100,6 @@ function 🍺__brew
         tree \
         uncrustify \
         utimer \
-        vapor/tap/vapor \
         xctool \
         yarn \
         $custom_shells
@@ -116,10 +110,17 @@ function 🍺__brew
 
     set -l uninstall \
         android-sdk \
+        docker \
+        docker-compose \
+        docker-machine \
+        infer \
+        jenkins \
         md5shasum \
+        minikube \
         pivotal/tap/cloudfoundry-cli \
         python@2 \
         sloccount \
+        vapor \
         vim
 
     # --------------------------------------------------------------------------
