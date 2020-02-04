@@ -1,11 +1,14 @@
 function ignore \
-        --description='Adds lines to .gitignore'
+    --description='Adds lines to .gitignore'
 
     set -l gitignore (root)/.gitignore
     set -l ignore_list
     set -l commit_message
 
-    if test -f $gitignore -a (filesize $gitignore) -ne 0
+    touch $gitignore
+
+    if test (filesize $gitignore) -ne 0
+        # Read in current ignores
         set ignore_list (cat $gitignore)
     else
         # Seed the list with standard ignores
