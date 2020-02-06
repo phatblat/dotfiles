@@ -11,6 +11,7 @@ function 📦__apt \
         clang \
         libcurl3 \
         libicu-dev \
+        libncurses5 \
         libpython2.7 \
         libpython2.7-dev \
         libtinfo5 \
