@@ -268,6 +268,7 @@ node_modules/
 private/
 realm-object-server/
 snap/
+src/swift/swift-*
 tmp/
 xcuserdata
 zclean.awk
