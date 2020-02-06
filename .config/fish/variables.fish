@@ -124,10 +124,10 @@ if test -d (brew_home python)/libexec/bin
         (brew_home python)/libexec/bin
 end
 
-set --export --global SWIFT_TOOLCHAIN ~/dev/swift/swift-5.1.2-RELEASE-ubuntu18.04/usr/bin
+set --export --global SWIFT_TOOLCHAIN ~/src/swift/current
 if test -d "$SWIFT_TOOLCHAIN"
     set --export --global PATH $PATH \
-        $SWIFT_TOOLCHAIN
+        $SWIFT_TOOLCHAIN/usr/bin
 end
 
 if test -d "$ANDROID_HOME"
