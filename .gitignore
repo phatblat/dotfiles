@@ -49,6 +49,7 @@
 .config/Code/Cookies-journal
 .config/Code/GPUCache/
 .config/Code/Network Persistent State
+.config/Code/User/eq-material-theme-icons.json
 .config/Code/User/globalStorage/
 .config/Code/User/workspaceStorage/
 .config/Code/languagepacks.json
