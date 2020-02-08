@@ -12,6 +12,7 @@ function 📦__apt \
         libcurl3 \
         libicu-dev \
         libncurses5 \
+        libpam-u2f \
         libpython2.7 \
         libpython2.7-dev \
         libtinfo5 \
