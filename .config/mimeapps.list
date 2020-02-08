@@ -11,3 +11,4 @@ text/xml=chromium_chromium.desktop;chromium-browser.desktop;
 application/xhtml_xml=chromium_chromium.desktop;chromium-browser.desktop;
 x-scheme-handler/https=chromium_chromium.desktop;chromium-browser.desktop;brave-browser.desktop;
 x-scheme-handler/http=brave-browser.desktop;
+audio/x-vorbis+ogg=audacity.desktop;
