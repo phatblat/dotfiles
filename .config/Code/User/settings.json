@@ -11,5 +11,7 @@
     "workbench.statusBar.visible": true,
     "workbench.activityBar.visible": false,
     "window.zoomLevel": 0,
-    "workbench.colorTheme": "Abyss"
+    "workbench.colorTheme": "Abyss",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
