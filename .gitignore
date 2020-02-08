@@ -156,6 +156,7 @@
 .lumberjack/
 .m2/repository/
 .marathon/
+.minecraft/
 .mono/
 .mozilla/
 .netrc
