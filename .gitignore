@@ -27,6 +27,7 @@
 .antigen/
 .anyconnect
 .atom/
+.audacity-data/
 .aws/credentials
 .bash_history
 .bash_sessions/
