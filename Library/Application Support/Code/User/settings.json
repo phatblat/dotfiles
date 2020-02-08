@@ -67,6 +67,7 @@
     "qiskit-vscode.ibmq.url": "",
     "qiskit-vscode.ibmq.group": "",
     "qiskit-vscode.ibmq.project": "",
-    "workbench.activityBar.visible": true,
-    "material-icon-theme.showWelcomeMessage": false
+    "material-icon-theme.showWelcomeMessage": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.codeLens.includeSingleLineSymbols": true
 }
