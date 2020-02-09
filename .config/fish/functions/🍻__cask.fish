@@ -15,7 +15,6 @@ function 🍻__cask
     echo
 
     set -l apps \
-        1password-cli \
         homebrew/cask-versions/adoptopenjdk8 \
         android-file-transfer \
         android-ndk \
@@ -30,7 +29,6 @@ function 🍻__cask
         cleanmymac \
         dash \
         deckset \
-        fauxpas \
         firebase-admin \
         geekbench \
         githubpulse \
@@ -38,7 +36,6 @@ function 🍻__cask
         google-chrome \
         gpg-suite \
         hex-fiend \
-        hipchat \
         ibm-cloud-cli \
         ios-console \
         istat-menus \
@@ -146,6 +143,7 @@ function 🍻__cask
     set -l all_casks $apps $quicklook_plugins
 
     set -l uninstall \
+        1password-cli \
         android-studio \
         anka-flow \
         appium \
@@ -161,6 +159,8 @@ function 🍻__cask
         disk-inventory-x \
         docker-toolbox \
         duet \
+        fauxpas \
+        hipchat \
         hyper \
         java9 \
         mono-mdk \
