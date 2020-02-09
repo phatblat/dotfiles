@@ -60,6 +60,7 @@
 .config/Rygel/
 .config/Slack/
 .config/Todoist/
+.config/Yubico/
 .config/balena-etcher-electron/
 .config/chromium/
 .config/configstore
