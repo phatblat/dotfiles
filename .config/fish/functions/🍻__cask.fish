@@ -45,6 +45,7 @@ function 🍻__cask
         keyboard-maestro \
         keycastr \
         kobo \
+        latest \
         licecap \
         lunchy \
         microblog \
