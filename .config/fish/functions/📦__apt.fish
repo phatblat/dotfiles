@@ -19,6 +19,7 @@ function 📦__apt \
         libvirt-clients \
         libvirt-daemon-system \
         qemu-kvm \
+        trash-cli \
         virt-manager
     echo "packages: $packages"
 
