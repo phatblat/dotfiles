@@ -1,4 +1,5 @@
-function fishfiles --description='Edit fish dotfiles.'
-    set -l fishfiles ~/.config/fish/
-    edit $fishfiles
+function fishfiles \
+    --description='Edit fish dotfiles.'
+
+    edit ~/.config/fish/
 end
