@@ -1,6 +1,6 @@
 function u2f_key_add \
-        --description='Add U2F key' \
-        --argument-names argname
+    --description='Add U2F key' \
+    --argument-names argname
 
     set -l yubico_dir ~/.config/Yubico
     set -l key_file u2f_keys
