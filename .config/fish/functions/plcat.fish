@@ -1,5 +1,7 @@
-# Print the contents of a property list in XML format.
-function plcat --argument-names file
+function plcat \
+    --description='Library/Preferences/com.mizage.Divvy.plist' \
+    --argument-names file
+
     if test -z "$file"
         echo "Usage: plcat file"
         return 1
@@ -8,5 +10,7 @@ function plcat --argument-names file
         return 2
     end
 
-    plutil -convert xml1 -o - -- $file
+    plutil -convert xml1 -o - -- $file \
+        | bat
 end
+
