@@ -1,4 +1,7 @@
-function fish_right_prompt
+function fish_right_prompt \
+    --description 'Displays the prompt on the right side of the screen.'
+
+    # Custom powerline disabled
     if test -z "$POWERLINE_COMMAND"
         return
     end
