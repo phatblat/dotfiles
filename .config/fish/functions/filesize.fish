@@ -1,6 +1,6 @@
 function filesize \
-        --description="Prints size of file in bytes." \
-        --argument-names file
+    --description="Prints size of file in bytes." \
+    --argument-names file
 
     if test -z "$file"
         echo "Usage: filesize filename"
@@ -8,7 +8,9 @@ function filesize \
     end
 
     if is_mac
-        stat -c '%s' $file
+        # macOS args: -c '%s'
+        # coreutils: --format=%s
+        stat --format=%s $file
     else if is_linux
         stat --format=%s $file
     end
