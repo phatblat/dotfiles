@@ -42,6 +42,10 @@ set --export github_user phatblat
 set --export powerline_enabled 0
 set --global --export sdkman_prefix ~/.sdkman
 
+# Fix spacing for emoji and ambiguous characters
+set -xg fish_emoji_width 2
+set -xg fish_ambiguous_width 2
+
 # OMF bobthefish theme options
 # https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#bobthefish
 
