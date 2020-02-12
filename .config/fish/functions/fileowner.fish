@@ -1,6 +1,6 @@
 function fileowner \
-        --description='Displays the owner of a file.' \
-        --argument-names file
+    --description='Displays the owner of a file.' \
+    --argument-names file
 
     if test -z "$file"
         echo "Usage: fileowner file"
@@ -11,8 +11,10 @@ function fileowner \
         # Stock macOS
         # id -un (stat -f%u $file)
 
-        # coreutils
-        stat -c '%U' $file
+        # macOS args: -c '%U'
+        # coreutils: --format=%U
+
+        stat --format=%U $file
     else if is_linux
         stat --format=%U $file
     end
