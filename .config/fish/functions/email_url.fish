@@ -11,7 +11,7 @@ function email_url \
         return
     end
 
-    if string match --quiet --entire $work_domain $url
+    if string match --quiet --entire -- $work_domain $url
         echo $user.d.chatelain@$work_domain
     else
         echo $default
