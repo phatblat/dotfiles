@@ -7,10 +7,12 @@ function 📦__apt \
     set -l packages \
         apt-file \
         bridge-utils \
+        build-essential \
         cpu-checker \
         clang \
         libcurl3 \
         libicu-dev \
+        liblzma-dev \
         libncurses5 \
         libpam-u2f \
         libpython2.7 \
@@ -18,9 +20,12 @@ function 📦__apt \
         libtinfo5 \
         libvirt-clients \
         libvirt-daemon-system \
+        patch \
+        ruby-dev \
         qemu-kvm \
         trash-cli \
-        virt-manager
+        virt-manager \
+        zlib1g-dev
     echo "packages: $packages"
 
     set -l uninstall
