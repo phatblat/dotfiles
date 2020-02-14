@@ -56,14 +56,13 @@ function 🍺__brew
         git \
         git-filter-repo \
         git-lfs \
+        github/gh/gh \
         gnu-sed \
         gnupg \
         go-jira \
         goaccess \
         gradle \
         groovy \
-        heroku/brew/heroku \
-        hub \
         imagemagick \
         jabba \
         jenv \
@@ -126,6 +125,8 @@ function 🍺__brew
         docker \
         docker-compose \
         docker-machine \
+        heroku/brew/heroku \
+        hub \
         infer \
         jenkins \
         md5shasum \
