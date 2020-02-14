@@ -31,7 +31,7 @@ function ⏫__upstall \
     end
 
     # Log the default modules for the os
-    echo "all_modules: $all_modules"
+    # echo "all_modules: $all_modules"
 
     set -l modules_to_run
 
@@ -56,7 +56,7 @@ function ⏫__upstall \
         set modules_to_run $argv
     end
 
-    echo "modules_to_run: $modules_to_run"
+    # echo "modules_to_run: $modules_to_run"
 
     ⬆️__upmodule 🗄__gitconfig "🗄  Git config" git        --nog $modules_to_run
     ⬆️__upmodule 💎__rubygems  "💎  Ruby Gems"  ruby       --norb $modules_to_run
