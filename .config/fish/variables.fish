@@ -135,10 +135,11 @@ if test -d "$SWIFT_TOOLCHAIN"
 end
 
 if test -d "$ANDROID_HOME"
-    set --export --global PATH $PATH \
+    set --export --global PATH \
         $ANDROID_HOME/tools/bin \
         $ANDROID_HOME/build-tools/* \
-        $ANDROID_HOME/platform-tools
+        $ANDROID_HOME/platform-tools \
+        $PATH
 end
 
 set --export --global CHROME_DEPOT_TOOLS ~/dev/chromium/depot_tools
