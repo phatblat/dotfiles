@@ -1,6 +1,7 @@
-# Uploads public RSA SSH key to GitHub profile.
-# Requires manual entry of GitHub OTP code..
-function sshupload --argument-names keyfile
+function sshupload \
+    --description='Uploads public RSA SSH key to GitHub profile. Requires manual entry of GitHub OTP code.'
+    --argument-names keyfile
+
     if test -z $keyfile
         set keyfile ~/.ssh/id_rsa.pub
     end
