@@ -168,6 +168,7 @@
 .npm/
 .npmrc
 .nvm/
+.nyantray
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
 .op/
