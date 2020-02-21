@@ -1,9 +1,9 @@
-# Manage TextMate bundles.
-#
 # Sequencing
 # - After: cask (textmate)
-function 📝__textmate
-    echo "📝  TextMate - https://github.com/textmate/textmate"
+function 📝_textmate \
+    --description='Manage TextMate bundles.'
+
+    echo "📝 TextMate - https://github.com/textmate/textmate"
     echo
 
     set -l bundles blackpearl dashmate editorconfig fish gradle kotlin tomorrow-theme ublime

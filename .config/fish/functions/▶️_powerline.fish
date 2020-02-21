@@ -12,8 +12,10 @@
 #
 # Sequencing
 # - After: brew (python), pip (powerline-status)
-function ▶️__powerline
-    echo "▶️  Powerline"
+function ▶️_powerline \
+    --description='Upstalls Powerline'
+
+    echo "▶️ Powerline"
     echo
 
     set -l vim_dev          ~/dev/vim

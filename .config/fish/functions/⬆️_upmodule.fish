@@ -1,4 +1,4 @@
-function ⬆️__upmodule \
+function ⬆️_upmodule \
     --description='Optionally invokes an upstall module, provided the "skip" flag(s) are not given. Requires either 1 arg (no include/skip options), or 4+ args (include/skip flags & title)' \
     --argument-names \
         module_function \
@@ -8,7 +8,7 @@ function ⬆️__upmodule \
 
     # no args
     if test -z "$argv"
-        error "Usage: ⬆️__upmodule module_function [display_name include_flag skip_flag original_args]"
+        error "Usage: ⬆️_upmodule module_function [display_name include_flag skip_flag original_args]"
         return 1
     end
 
@@ -47,7 +47,7 @@ function ⬆️__upmodule \
             # echo $display_name" (skipped)"
         end
     else
-        echo "Usage: ⬆️__upmodule module_function [display_name include_flag skip_flag original_args]"
+        echo "Usage: ⬆️_upmodule module_function [display_name include_flag skip_flag original_args]"
         return 2
     end
 end

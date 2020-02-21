@@ -1,12 +1,13 @@
-# Installs and updates SDKs.
 # https://sdkman.io/
 # https://get.sdkman.io/
 # https://github.com/sdkman/sdkman-cli
 #
 # Sequencing
 # - After: omf
-function 🧰__sdkman
-    echo "🧰  SDKman"
+function 🧰_sdkman \
+    --description='Installs and updates SDKs'
+
+    echo "🧰 SDKman"
     echo
 
     if test -z "$sdkman_prefix"

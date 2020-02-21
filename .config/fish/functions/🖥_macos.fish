@@ -1,6 +1,7 @@
-# Manage macOS system updates.
-function 🖥__macos
-    echo "🖥  macOS"
+function 🖥_macos \
+    --description='Manage macOS system updates'
+
+    echo "🖥 macOS"
     echo
 
     echo "Updating Mac App Store apps"

@@ -1,12 +1,12 @@
-# Updates oh-my-fish and bundled packages.
-#
 # Edit .config/omf/bundle to change packages
 #
 # Sequencing
 # - After: brew (fish)
 # - Requires Fish Shell
-function 🐠__omf
-    echo "🐠  oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"
+function 🐠_omf \
+    --description='Updates oh-my-fish and bundled packages.'
+
+    echo "🐠 oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"
     echo
 
     set -l omf_dir ~/dev/fish/oh-my-fish

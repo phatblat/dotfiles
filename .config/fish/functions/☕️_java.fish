@@ -1,4 +1,3 @@
-# Installs and updates the Java SDK.
 # http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 # https://support.apple.com/kb/dl1572?locale=en_US
 #
@@ -15,7 +14,9 @@
 #
 # Sequencing
 # - After: brew (has newer curl)
-function ☕️__java
+function ☕️__java \
+    --description='Installs and updates the Java SDK.'
+
     echo "☕️  Java"
     echo
 

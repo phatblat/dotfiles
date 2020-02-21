@@ -1,10 +1,10 @@
-# Updates Fisherman and the plugins it manages. Installs if missing.
-#
 # Sequencing
 # - After: brew (fish)
 # - Requires Fish Shell
-function 🐟__fisherman
-    echo "🐟  Fisherman - https://fisherman.github.io"
+function 🐟_fisherman \
+    --description='Updates Fisherman and the plugins it manages. Installs if missing.'
+
+    echo "🐟 Fisherman - https://fisherman.github.io"
     echo
 
     set -l plugins \

@@ -1,10 +1,11 @@
-# Installs and updates Xcode.
 # https://developer.apple.com/downloads/
 #
 # Sequencing
 # - After: rubygems (uses xcode-install)
-function 🔨__xcode
-    echo "🔨  Xcode"
+function 🔨_xcode \
+    --description='Installs and updates Xcode.'
+
+    echo "🔨 Xcode"
     echo
 
     if test -z $XCODE_INSTALL_USER; and test -n (user.email)
