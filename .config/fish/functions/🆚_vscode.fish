@@ -1,11 +1,12 @@
-# Manages VS Code extensions.
 # https://code.visualstudio.com/docs/editor/command-line#_working-with-extensions
 # https://code.visualstudio.com/docs/editor/extension-gallery#_command-line-extension-management
 #
 # Sequencing
 # - After: cask or apt
-function 🆚__vscode
-    echo "🆚  VS Code"
+function 🆚_vscode \
+    --description='Manages VS Code extensions'
+
+    echo "🆚 VS Code"
     echo
 
     # Extensions to upstall

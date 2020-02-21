@@ -1,5 +1,3 @@
-# Updates Homebrew Casks and installed apps (casks).
-#
 # stderr often outputs several of the following messages, which seem to be
 # coming from outdated casks.
 #
@@ -10,7 +8,9 @@
 # Sequencing
 # - Requires ruby, but works with system ruby.
 # - Seems logical to run after brew, but not actually required.
-function 🍻__cask
+function 🍻__cask \
+    --description='Updates Homebrew Casks and installed apps'
+
     echo "🍻  Homebrew Cask"
     echo
 

@@ -1,4 +1,4 @@
-# Manages python packages using pip (https://pip.pypa.io/en/stable/).
+# https://pip.pypa.io/en/stable/
 # Python Package Index (PyPI) https://pypi.python.org/pypi
 #
 # Installs Powerline for Vim
@@ -6,8 +6,10 @@
 #
 # Sequencing
 # - After: brew (installed with python)
-function 🐍__pip
-    echo "🐍  PIP"
+function 🐍_pip \
+    --description='Manages python packages using pip'
+
+    echo "🐍 PIP"
     echo
 
     set --local pip pip

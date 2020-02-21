@@ -1,4 +1,6 @@
-# Alias for ⏫__upstall
-function upstall #--wraps ⏫__upstall
-    ⏫__upstall $argv
+function upstall \
+    --description='Alias for ⏫_upstall' \
+    --wraps ⏫_upstall
+
+    ⏫_upstall $argv
 end

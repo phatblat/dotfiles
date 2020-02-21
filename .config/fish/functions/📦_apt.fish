@@ -1,7 +1,7 @@
-function 📦__apt \
+function 📦_apt \
     --description='Updates APM packages Linux.'
 
-    echo "📦  Advanced Package Manager"
+    echo "📦 Advanced Package Manager"
     echo
 
     set -l packages \

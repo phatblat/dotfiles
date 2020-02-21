@@ -1,9 +1,10 @@
-# Updates Atom packages.
 # https://atom.io/packages
 #
 # Sequencing
 # - After: cask (atom)
-function ⚛️__apm
+function ⚛️_apm \
+    --description='Updates Atom packages.'
+
     echo "⚛️  Atom Package Manager"
     echo
 

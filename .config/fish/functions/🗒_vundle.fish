@@ -1,4 +1,3 @@
-# Installs and updates Vundle, plugin manager for Vim.
 # https://github.com/VundleVim/Vundle.vim#about
 #
 # Compatible with Pathogen plugin bundles
@@ -6,8 +5,10 @@
 #
 # Sequencing
 # - After: brew (python), pip (plugins)
-function 🗒__vundle
-    echo "🗒  Vundle"
+function 🗒_vundle \
+    --description='Installs and updates Vundle, plugin manager for Vim.'
+
+    echo "🗒 Vundle"
     echo
 
     # Source repos
