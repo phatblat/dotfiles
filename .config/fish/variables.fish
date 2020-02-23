@@ -22,7 +22,7 @@ set --export GPG_TTY (tty)
 set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GROOVY_HOME (brew_home groovy)/libexec
 set --export HOMEBREW_BAT (command --search bat)
-set --export ICLOUD_HOME "~/Library/Mobile Documents"
+set --export ICLOUD_HOME $HOME"/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
 set --export JABBA_HOME ~/.jabba
 set --export LANG en_US.UTF-8
