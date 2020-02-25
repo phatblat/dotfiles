@@ -37,7 +37,6 @@ set fish_color_status red
 set fish_color_user \x2do\x1egreen
 set fish_color_valid_path \x2d\x2dunderline
 set fish_greeting \x1d
-set fish_key_bindings fish\x5fdefault\x5fkey\x5fbindings
 set fish_pager_color_completion normal
 set fish_pager_color_description 555\x1eyellow
 set fish_pager_color_prefix cyan
