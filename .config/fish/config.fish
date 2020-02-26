@@ -11,7 +11,7 @@ end
 # Variables
 source ~/.config/fish/variables.fish
 
-if not type -q direnv
+if type -q direnv
     # Directory-based variables
     eval (direnv hook fish)
 end
