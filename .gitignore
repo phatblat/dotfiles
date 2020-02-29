@@ -87,6 +87,7 @@
 .config/fish/h
 .config/fisherman/
 .config/gedit/
+.config/ghb/
 .config/git/config
 .config/git/gitk
 .config/git/ignore
@@ -160,6 +161,7 @@
 .minecraft/
 .mono/
 .mozilla/
+.mplayer/
 .netrc
 .ngrok/
 .node-gyp/
