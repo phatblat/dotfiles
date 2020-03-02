@@ -1,6 +1,6 @@
 # Sequencing
 # - Requires ruby, but works with system ruby.
-function 🍺__brew \
+function 🍺_brew \
     --description='Updates Homebrew and installed formulae.'
 
     echo "🍺  Homebrew - https://brew.sh"
