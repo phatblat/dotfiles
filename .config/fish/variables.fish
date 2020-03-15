@@ -83,25 +83,6 @@ set -g fish_prompt_pwd_dir_length 0
 set -g theme_project_dir_length 1
 set -g theme_newline_cursor no
 
-# Editor
-# After variables which depend on functions that define variables
-set --export EDITOR_CLI "vim" # vi vim
-set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
-set --export CLI_WAIT_FLAG "-f"
-set --export GUI_WAIT_FLAG "-w"
-
-# EDITOR or VISUAL, only one defined
-# Use EDITOR for non-console users (su someoneelse) and SSH connections
-if not type -q $EDITOR_GUI; or not is_console_user; or is_ssh
-    set --export EDITOR $EDITOR_CLI
-    set --export WAIT_FLAG $CLI_WAIT_FLAG
-    set --erase VISUAL
-else
-    set --export VISUAL $EDITOR_GUI
-    set --export WAIT_FLAG $GUI_WAIT_FLAG
-    set --erase EDITOR
-end
-
 # fish_user_paths
 set --global fish_user_paths \
     /usr/local/sbin \
@@ -159,6 +140,25 @@ end
 # it causes PWD to not match HOME, preventing powerline from shortening paths.
 if begin string match --quiet phatblat $USER; and string match --quiet --entire octodec (hostname); end
     set --export --global HOME /Volumes/ThunderBay/Users/phatblat
+end
+
+# Editor
+# After variables which depend on functions that define variables
+set --export EDITOR_CLI "vim" # vi vim
+set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
+set --export CLI_WAIT_FLAG "-f"
+set --export GUI_WAIT_FLAG "-w"
+
+# EDITOR or VISUAL, only one defined
+# Use EDITOR for non-console users (su someoneelse) and SSH connections
+if not type -q $EDITOR_GUI; or not is_console_user; or is_ssh
+    set --export EDITOR $EDITOR_CLI
+    set --export WAIT_FLAG $CLI_WAIT_FLAG
+    set --erase VISUAL
+else
+    set --export VISUAL $EDITOR_GUI
+    set --export WAIT_FLAG $GUI_WAIT_FLAG
+    set --erase EDITOR
 end
 
 # ls color formatting - LS_COLWIDTHS
