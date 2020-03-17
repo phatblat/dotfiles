@@ -89,6 +89,7 @@ function 🍺_brew \
         radare2 \
         redis \
         rename \
+        rlwrap \
         ruby \
         shellcheck \
         socat \
