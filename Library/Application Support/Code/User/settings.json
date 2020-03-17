@@ -70,5 +70,9 @@
     "qiskit-vscode.ibmq.project": "",
     "material-icon-theme.showWelcomeMessage": false,
     "gitlens.codeLens.enabled": false,
-    "gitlens.codeLens.includeSingleLineSymbols": true
+    "gitlens.codeLens.includeSingleLineSymbols": true,
+    "editor.lineNumbers": "on",
+    "editor.lineNumbersMinChars": 1,
+    "editor.glyphMargin": false,
+    "editor.folding": false,
 }
