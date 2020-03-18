@@ -35,7 +35,7 @@ function bundle-pull \
 
     # Use a path relative to HOME to avoid user mismatches
     set -l repo_path (realpath --relative-to=$HOME $PWD)
-    set -l current_branch (current-branch)
+    set -l current_branch (current_branch)
 
     repeatchar -
 

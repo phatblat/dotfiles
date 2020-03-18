@@ -8,7 +8,7 @@ function ra \
 
     # Add a fork of the project with only the remote name is given.
     if test -z $url
-        set -l remote_url (git remote get-url (remote-for-current-branch))
+        set -l remote_url (git remote get-url (remote_for_current_branch))
         # Drop scheme and host
         set -l path (string split ':' $remote_url)[2]
         # Drop .git

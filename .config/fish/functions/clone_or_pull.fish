@@ -16,8 +16,8 @@ function clone_or_pull --argument-names folder_name git_url branch
         end
     else
         pushd $folder_name
-        if test -n "$branch" -a "$branch" != (current-branch)
-            echo "WARNING: $folder_name currently has the "(current-branch) \
+        if test -n "$branch" -a "$branch" != (current_branch)
+            echo "WARNING: $folder_name currently has the "(current_branch) \
                 " branch checked out (!=$branch)"
         end
         git pull
