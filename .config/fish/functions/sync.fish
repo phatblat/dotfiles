@@ -6,7 +6,11 @@ function sync \
         stsave
     end
 
-    c master
+    set -l sync_branch "master"
+    if test $sync_branch != (current_branch)
+        git checkout $sync_branch
+    end
+
     pull
 
     set -l remote_name (remote_for_current_branch)
