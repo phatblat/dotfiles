@@ -3,7 +3,7 @@
 function git_bundle_create
     set -l bundle_name snapshot.bundle
     set -l repo_path $PWD
-    set -l current_branch (current-branch)
+    set -l current_branch (current_branch)
 
     # Move into repo dir
     cd $repo_path
@@ -12,7 +12,7 @@ function git_bundle_create
     # Clean out previous bundle, if necessary
 
     # Snapshot
-    echo "current branch: "(current-branch)
+    echo "current branch: $current_branch"
     set -l head_sha (headsha)
     echo "HEAD: $head_sha"
     git stash list
