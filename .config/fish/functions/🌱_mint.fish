@@ -9,6 +9,21 @@ function 🌱_mint \
     # List of packages to upstall
     set -l packages \
         JamitLabs/Accio \
+        Carthage/Carthage \
+        jkmathew/Assetizer \
+        artemnovichkov/Carting \
+        num42/icon-resizer-swift \
+        mono0926/LicensePlist \
+        LinusU/RasterizeXCAssets \
+        krzysztofzablocki/Sourcery \
+        yonaskolb/SwagGen \
+        nicklockwood/SwiftFormat \
+        SwiftGen/SwiftGen \
+        realm/SwiftLint
+        MakeAWishFoundation/SwiftyMocky \
+        thii/xcbeautify \
+        yonaskolb/XcodeGen \
+        ChargePoint/xcparse
 
     set -l uninstall
 
