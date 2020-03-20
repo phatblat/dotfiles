@@ -38,6 +38,7 @@ function 🍺_brew \
         cloc \
         cloudfoundry/tap/cf-cli \
         cmake \
+        cmatrix \
         coreutils \
         cowsay \
         ctags \
@@ -88,6 +89,7 @@ function 🍺_brew \
         rlwrap \
         ruby \
         shellcheck \
+        sl \
         socat \
         sonar-scanner \
         speedtest-cli \
@@ -98,6 +100,7 @@ function 🍺_brew \
         thefuck \
         tig \
         tmux \
+        toilet \
         travis \
         tree \
         uncrustify \
