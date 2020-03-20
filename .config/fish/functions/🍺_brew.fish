@@ -10,16 +10,12 @@ function 🍺_brew \
 
     # mac-only formulae
     set -l formulae_mac \
-        carthage \
         configen \
         duti \
         thoughtbot/formulae/liftoff \
         mas \
         screenresolution \
         sourcekitten \
-        swiftformat \
-        swiftgen \
-        swiftlint \
         swiftplate \
         terminal-notifier \
         trash \
@@ -94,7 +90,6 @@ function 🍺_brew \
         shellcheck \
         socat \
         sonar-scanner \
-        sourcery \
         speedtest-cli \
         kylef/formulae/swiftenv \
         task \
@@ -123,6 +118,7 @@ function 🍺_brew \
 
     set -l uninstall \
         android-sdk \
+        carthage \
         docker \
         docker-compose \
         docker-machine \
@@ -135,6 +131,10 @@ function 🍺_brew \
         pivotal/tap/cloudfoundry-cli \
         python@2 \
         sloccount \
+        sourcery \
+        swiftformat \
+        swiftgen \
+        swiftlint \
         vapor \
         vim
 
