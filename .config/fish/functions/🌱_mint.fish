@@ -19,7 +19,7 @@ function 🌱_mint \
         yonaskolb/SwagGen \
         nicklockwood/SwiftFormat \
         SwiftGen/SwiftGen \
-        realm/SwiftLint
+        realm/SwiftLint \
         MakeAWishFoundation/SwiftyMocky \
         thii/xcbeautify \
         yonaskolb/XcodeGen \
