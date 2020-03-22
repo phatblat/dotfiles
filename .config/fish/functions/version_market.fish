@@ -1,5 +1,6 @@
 function version_market \
-    --description='Displays the marketing version of the current Xcode project.'
+    --description='Displays the marketing version of the current Xcode project.' \
+    --argument-names debug
 
     # Legacy agvtool command
     # agvtool what-marketing-version -terse1 $argv
@@ -10,22 +11,23 @@ function version_market \
     set -l plist_key "CFBundleShortVersionString"
     set -l build_setting_name "MARKETING_VERSION"
 
-    echo $plist_key
+    debug $plist_key
     set -l plist_files (ls -1 **/*Info.plist)
     for file in $plist_files
-        $plistbuddy -c "Print :$plist_key" $file
+        debug $file
+        debug $plistbuddy -c "Print :$plist_key" $file
     end
 
     set -l project_file (ls -1 *xcodeproj/project.pbxproj)
-    echo $project_file # L8r.xcodeproj/project.pbxproj
+    debug $project_file # L8r.xcodeproj/project.pbxproj
 
     # rootObject = F86CA260241E74FB004C3909 /* Project object */;
     set -l root_object ($plistbuddy -c "Print :rootObject" $project_file)
-    echo "root_object: $root_object"
+    debug "root_object: $root_object"
 
     # buildConfigurationList from Project object
     set -l build_config_list ($plistbuddy -c "Print :objects:$root_object:buildConfigurationList" $project_file)
-    echo "build_config_list: $build_config_list"
+    debug "build_config_list: $build_config_list"
 
     # buildConfigurations
     set -l build_configs
@@ -35,10 +37,10 @@ function version_market \
             break
         end
     end
-    echo "build_configs: $build_configs"
+    debug "build_configs: $build_configs"
 
     # buildSettings
-    echo $build_setting_name
+    debug $build_setting_name
     set -l marketing_versions
     for config in $build_configs
         echo $config
