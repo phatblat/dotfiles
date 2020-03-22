@@ -9,22 +9,22 @@ function version_build \
     set -l plist_key "CFBundleVersion"
     set -l build_setting_name "CURRENT_PROJECT_VERSION"
 
-    echo $plist_key
+    debug $plist_key
     set -l plist_files (ls -1 **/*Info.plist)
     for file in $plist_files
-        $plistbuddy -c "Print :$plist_key" $file
+        debug $plistbuddy -c "Print :$plist_key" $file
     end
 
     set -l project_file (ls -1 *xcodeproj/project.pbxproj)
-    echo $project_file # L8r.xcodeproj/project.pbxproj
+    debug $project_file # L8r.xcodeproj/project.pbxproj
 
     # rootObject = F86CA260241E74FB004C3909 /* Project object */;
     set -l root_object ($plistbuddy -c "Print :rootObject" $project_file)
-    echo "root_object: $root_object"
+    debug "root_object: $root_object"
 
     # buildConfigurationList from Project object
     set -l build_config_list ($plistbuddy -c "Print :objects:$root_object:buildConfigurationList" $project_file)
-    echo "build_config_list: $build_config_list"
+    debug "build_config_list: $build_config_list"
 
     # buildConfigurations
     set -l build_configs
@@ -34,10 +34,10 @@ function version_build \
             break
         end
     end
-    echo "build_configs: $build_configs"
+    debug "build_configs: $build_configs"
 
     # buildSettings
-    echo $build_setting_name
+    debug $build_setting_name
     set -l project_versions
     for config in $build_configs
         set project_versions ($plistbuddy -c "Print :objects:$config:buildSettings:$build_setting_name" $project_file) $project_versions
