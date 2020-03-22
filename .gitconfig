@@ -13,6 +13,7 @@
     enabled = true
 [core]
     pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+    whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
     #--HILITE-SEARCH
     #--pattern '^(Date|added|deleted|modified|renamed): |\\* '
 [alias]
