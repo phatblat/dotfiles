@@ -14,6 +14,7 @@ function 🌱_mint \
         artemnovichkov/Carting \
         num42/icon-resizer-swift \
         mono0926/LicensePlist \
+        JamitLabs/ProjLint \
         LinusU/RasterizeXCAssets \
         krzysztofzablocki/Sourcery \
         yonaskolb/SwagGen \
