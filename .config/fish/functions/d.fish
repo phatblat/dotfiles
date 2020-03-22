@@ -1,7 +1,17 @@
-# Git diff.
-function d
-    git diff \
-        --unified=1 --indent-heuristic --no-prefix --diff-algorithm=patience --word-diff=color \
-        $argv
-end
+function d \
+    --description='Git diff'
 
+    # --unified: Context lines
+    # --no-prefix: Do not show any source or destination prefix. (e.g. "a/" "b/")
+    # --no-indent-heuristic: Disable the default heuristic that shifts diff hunk boundaries to make patches easier to read.
+    git diff \
+        --unified=1 \
+        # --word-diff=color \
+        # --word-diff-regex='[^[:space:]]' \
+        $argv
+
+        # --diff-algorithm=default \
+        # --no-prefix \
+        # --no-indent-heuristic \
+        # --ignore-cr-at-eol \
+end
