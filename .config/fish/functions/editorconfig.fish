@@ -29,11 +29,14 @@ indent_size = 2
 indent_style = space
 max_line_length = 80
 
+[*.yml]
+indent_size = 2
+
 # Use tabs for property lists
 [*.plist]
 indent_style = tab
 
-# The JSON files contain newlines inconsistently
+# JSON files contain newlines inconsistently
 [*.json]
 insert_final_newline = ignore
 
