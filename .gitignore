@@ -97,6 +97,7 @@
 .config/gtk-2.0/
 .config/hub
 .config/ibus/
+.config/jgit
 .config/karabiner/automatic_backups/
 .config/kdeconnect/
 .config/konsolerc
