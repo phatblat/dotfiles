@@ -12,9 +12,9 @@ app_dirs=(
   "/Volumes/Thunderbay/Applications"
 )
 
-for app_dir in $app_dirs
+for app_dir in "${app_dirs[@]}"
 do
-  for xcode_version in $(ls -d ${app_dir}/Xcode*.app)
+  for xcode_version in "${app_dir}"/Xcode*.app
   do
     echo "Checking integrity of ${xcode_version}"
     /usr/sbin/spctl --assess --verbose "${xcode_version}"
