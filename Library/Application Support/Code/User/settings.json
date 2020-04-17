@@ -75,4 +75,5 @@
     "editor.lineNumbersMinChars": 1,
     "editor.glyphMargin": false,
     "editor.folding": false,
+    "java.requirements.JDK11Warning": false,
 }
