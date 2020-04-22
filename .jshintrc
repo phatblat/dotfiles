@@ -1,4 +1,14 @@
 {
-    "esversion": 6,
-    "asi": true
+  "asi": true,
+  "boss": true,
+  "esnext": false,
+  "esversion": 6,
+  "globals": {
+    "EventEmitter": true,
+    "Promise": true
+  },
+  "moz": true,
+  "node": true,
+  "strict": true,
+  "validthis": true
 }
