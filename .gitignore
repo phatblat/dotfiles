@@ -160,6 +160,7 @@
 .m2/repository/
 .marathon/
 .minecraft/
+.mint/
 .mono/
 .mozilla/
 .mplayer/
