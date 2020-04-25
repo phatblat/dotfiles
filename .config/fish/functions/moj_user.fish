@@ -10,8 +10,9 @@ function moj_user \
             echo 👨🏻‍🚀
         case phatblat
             echo 🎧
+        case jenkins
+            echo 👷🏻‍♂️
         case '*'
             echo (string sub --length 1 $USER)❓
     end
 end
-
