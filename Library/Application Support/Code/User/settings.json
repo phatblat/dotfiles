@@ -79,4 +79,6 @@
     "[html]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
+    "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
 }
