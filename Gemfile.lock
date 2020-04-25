@@ -197,7 +197,7 @@ GEM
     naturally (2.2.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (6.0.1)
+    net-ssh (6.0.2)
     netrc (0.11.0)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
