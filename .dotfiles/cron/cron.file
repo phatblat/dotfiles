@@ -6,7 +6,7 @@
 
 # Run commands in Fish shell environment as most are functions.
 SHELL=/usr/local/bin/fish
-PATH=/usr/local/bin:/usr/bin:/bin
+PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
 
 # Nightly
 10  4    * * *     🍺__brew >/dev/null
