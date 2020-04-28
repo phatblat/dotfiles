@@ -72,6 +72,7 @@ function 🍺_brew \
         less \
         libssh2 \
         libtool \
+        make \
         maven \
         mint \
         mtr \
