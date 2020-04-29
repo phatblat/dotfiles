@@ -1,6 +1,6 @@
 function function_template \
-        --description='Prints function_template' \
-        --argument-names function_name argname
+    --description='Prints function_template' \
+    --argument-names function_name argname
 
     if test -z $function_name
         echo "Usage: function_template function_name [argname]"
@@ -11,12 +11,15 @@ function function_template \
         set argname argname
     end
 
-    printf "function $function_name \\ \n\
-        --description='$function_name' \\ \n\
-        --argument-names $argname \n\
-\n\
-    \n\
-end\n\
+    printf "function $function_name \\
+    --description='$function_name' \\
+    --argument-names $argname
+
+    if test -z $argname
+        echo 'Usage: $function_name [$argname]'
+        return 1
+    end
+end
 " \
     | cat
 
