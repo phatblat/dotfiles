@@ -81,4 +81,5 @@
     },
     "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
+    "java.semanticHighlighting.enabled": true,
 }
