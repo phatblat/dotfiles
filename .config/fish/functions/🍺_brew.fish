@@ -46,6 +46,7 @@ function 🍺_brew \
         diff-so-fancy \
         direnv \
         f3 \
+        fileicon \
         findutils \
         firebase-cli \
         fortune \
