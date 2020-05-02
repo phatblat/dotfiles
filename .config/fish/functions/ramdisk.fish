@@ -28,5 +28,10 @@ function ramdisk \
         return $status
     end
 
+    set -l icon_file ~/Pictures/Icons/Agua\ Onyx\ Icons/Onyx\ Media\ Drive.png
+    if test $drive_name = "DerivedData"
+        fileicon set "/Volumes/$drive_name" "$icon_file"
+    end
+
     echo RAM disk created with $disk_size GB
 end
