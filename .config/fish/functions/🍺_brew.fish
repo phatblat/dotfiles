@@ -12,6 +12,7 @@ function 🍺_brew \
     set -l formulae_mac \
         configen \
         duti \
+        fileicon \
         thoughtbot/formulae/liftoff \
         mas \
         screenresolution \
@@ -46,7 +47,6 @@ function 🍺_brew \
         diff-so-fancy \
         direnv \
         f3 \
-        fileicon \
         findutils \
         firebase-cli \
         fortune \
