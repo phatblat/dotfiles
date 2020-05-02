@@ -265,6 +265,7 @@ build/
 cali_core4/
 data/
 dev
+dev.bak
 examples.desktop
 gradlew.bat
 lib/
