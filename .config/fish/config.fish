@@ -8,10 +8,6 @@ if status is-interactive
     fish_logo brblue cyan green
 end
 
-if is_octodec
-    derived_data
-end
-
 # Variables
 source ~/.config/fish/variables.fish
 
@@ -48,6 +44,11 @@ set fish_pager_color_progress cyan
 
 # GUI and items requiring a user
 if status is-interactive
+    # Set up Xcode DerivedData RAM disk
+    if is_octodec
+        derived_data
+    end
+
     # Powerline
     if begin; test $powerline_enabled -eq 1; and type -q powerline-daemon; end
         # Not sure why these are needed, but they appear in several fish examples
