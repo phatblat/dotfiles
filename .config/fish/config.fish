@@ -8,6 +8,10 @@ if status is-interactive
     fish_logo brblue cyan green
 end
 
+if is_octodec
+    derived_data
+end
+
 # Variables
 source ~/.config/fish/variables.fish
 
