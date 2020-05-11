@@ -82,4 +82,5 @@
     "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "java.semanticHighlighting.enabled": true,
+    "C_Cpp.updateChannel": "Insiders",
 }
