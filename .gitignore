@@ -229,6 +229,7 @@
 .zsh-update
 .zsh_history
 Android
+Applications
 Applications/
 Apps/
 Backup/
@@ -237,6 +238,7 @@ Calibre Library/
 Carthage/
 Desktop
 Documents
+Downloads
 Downloads/
 Dropbox/
 EpuborLog/
@@ -246,15 +248,19 @@ KindleTransfer2019.01.log
 Library.bak/
 Library/
 Minecraft/
+Movies
 Movies/
+Music
 Music/
 OmniPresence
 OneDrive - Kaiser Permanente/
+Pictures
 Pictures/
 Pods/
 Public/
 Recovered Files – */
 Ultimate/
+VMs
 VMs/
 Videos/
 Virtual Machines.localized/
