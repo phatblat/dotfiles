@@ -1,4 +1,5 @@
-# Add files to git staging area.
-function add
+function add \
+    --description='Add files to git staging area.'
+
     git add $argv
 end
