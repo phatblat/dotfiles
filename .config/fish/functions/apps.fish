@@ -1,5 +1,7 @@
-# Lists macOS apps installed on the current system
-function apps --argument-names option
+function apps \
+    --description='Lists macOS apps currently installed' \
+    --argument-names option
+
     if test -z "$option"
         set option default
     end
