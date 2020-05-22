@@ -136,12 +136,6 @@ if test (uname -s) = "Darwin"
   set -gx PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 end
 
-# Custom HOME handling for octodec. Since /Users/phatblat is a symlink,
-# it causes PWD to not match HOME, preventing powerline from shortening paths.
-if begin string match --quiet phatblat $USER; and string match --quiet --entire octodec (hostname); end
-    set --export --global HOME /Volumes/ThunderBay/Users/phatblat
-end
-
 # Editor
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI "vim" # vi vim
