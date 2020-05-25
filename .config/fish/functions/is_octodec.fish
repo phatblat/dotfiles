@@ -1,5 +1,5 @@
 function is_octodec \
     --description="Tests whether the current computer is octodec"
 
-    test (hostname) = "octodec.local"
+    string match --entire --quiet -- "octodec" (hostname)
 end
