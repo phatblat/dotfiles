@@ -208,6 +208,7 @@
 .ssh/
 .subversion/
 .sudo_as_admin_successful
+.swiftenv/
 .synx/
 .task/
 .thunderbird/
