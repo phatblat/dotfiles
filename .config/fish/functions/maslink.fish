@@ -4,6 +4,8 @@ function maslink \
 
     set -l folder_name
     switch (hostname)
+    case tredecim
+        set folder_name mas-cli-ebscznnslvpdynemhefdqlzulrxv
     case greymatter
         set folder_name mas-gbyvetvfnsdaiigwwzwjvnbutabs
     case octodec
