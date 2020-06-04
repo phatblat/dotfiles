@@ -42,6 +42,7 @@ function 🍻_cask \
         iterm2 \
         jetbrains-toolbox \
         kaleidoscope \
+        karabiner-elements \
         keyboard-maestro \
         keycastr \
         kobo \
