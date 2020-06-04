@@ -114,8 +114,6 @@ function 🍻_cask \
         homebrew/cask-fonts/font-robotomono-nerd-font \
         homebrew/cask-fonts/font-spacemono-nerd-font \
         homebrew/cask-fonts/font-ubuntumono-nerd-font \
-
-        # Powerline
         homebrew/cask-fonts/font-consolas-for-powerline \
         homebrew/cask-fonts/font-droid-sans-mono-for-powerline \
         homebrew/cask-fonts/font-dejavu-sans-mono-for-powerline \
