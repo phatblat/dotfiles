@@ -102,7 +102,6 @@ function 🍺_brew \
         thefuck \
         tig \
         tmux \
-        toilet \
         travis \
         tree \
         uncrustify \
@@ -124,6 +123,7 @@ function 🍺_brew \
     set -l uninstall \
         android-sdk \
         carthage \
+        cask-repair \
         docker \
         docker-compose \
         docker-machine \
