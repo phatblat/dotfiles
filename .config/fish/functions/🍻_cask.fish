@@ -53,7 +53,6 @@ function 🍻_cask \
         macdown \
         ngrok \
         oclint \
-        paste \
         paw \
         periphery \
         rescuetime \
@@ -91,43 +90,31 @@ function 🍻_cask \
     # the upstall process, these are excluded for now.
     set -l fonts \
         homebrew/cask-fonts/font-3270-nerd-font \
-        homebrew/cask-fonts/font-anonymouspro-nerd-font \
         homebrew/cask-fonts/font-aurulentsansmono-nerd-font \
         homebrew/cask-fonts/font-awesome-terminal-fonts \
         homebrew/cask-fonts/font-bitstreamverasansmono-nerd-font \
         homebrew/cask-fonts/font-codenewroman-nerd-font \
-        homebrew/cask-fonts/font-dejavu-sans \
         homebrew/cask-fonts/font-dejavusansmono-nerd-font \
         homebrew/cask-fonts/font-droidsansmono-nerd-font \
         homebrew/cask-fonts/font-fantasquesansmono-nerd-font \
         homebrew/cask-fonts/font-firacode-nerd-font \
         homebrew/cask-fonts/font-firamono-nerd-font \
-        homebrew/cask-fonts/font-gohu-nerd-font \
         homebrew/cask-fonts/font-hack-nerd-font \
-        homebrew/cask-fonts/font-hasklig-nerd-font \
         homebrew/cask-fonts/font-heavydata-nerd-font \
-        homebrew/cask-fonts/font-hermit-nerd-font \
         homebrew/cask-fonts/font-inconsolata-nerd-font \
         homebrew/cask-fonts/font-iosevka-nerd-font \
         homebrew/cask-fonts/font-jetbrains-mono \
         homebrew/cask-fonts/font-lekton-nerd-font \
-        homebrew/cask-fonts/font-liberationmono-nerd-font \
-        homebrew/cask-fonts/font-meslo-nerd-font \
         homebrew/cask-fonts/font-monofur-nerd-font \
         homebrew/cask-fonts/font-monoid-nerd-font \
         homebrew/cask-fonts/font-mononoki-nerd-font \
         homebrew/cask-fonts/font-mplus-nerd-font \
         homebrew/cask-fonts/font-profont-nerd-font \
-        homebrew/cask-fonts/font-proggyclean-nerd-font \
         homebrew/cask-fonts/font-robotomono-nerd-font \
-        homebrew/cask-fonts/font-sharetechmono-nerd-font \
-        homebrew/cask-fonts/font-sourcecodepro-nerd-font \
         homebrew/cask-fonts/font-spacemono-nerd-font \
-        homebrew/cask-fonts/font-terminus-nerd-font \
         homebrew/cask-fonts/font-ubuntumono-nerd-font \
 
         # Powerline
-        homebrew/cask-fonts/font-anonymice-powerline \
         homebrew/cask-fonts/font-consolas-for-powerline \
         homebrew/cask-fonts/font-droid-sans-mono-for-powerline \
         homebrew/cask-fonts/font-dejavu-sans-mono-for-powerline \
