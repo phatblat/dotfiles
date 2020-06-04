@@ -3410,7 +3410,28 @@
       },
       "github/gh/gh": null,
       "heroku/brew/heroku-node": null,
-      "phatblat/services/pbjenkins": null
+      "phatblat/services/pbjenkins": null,
+      "jfrog-cli": {
+        "version": "1.36.0",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/jfrog-cli-1.36.0.catalina.bottle.tar.gz",
+              "sha256": "dcdae99f6b81e7e5a42f0ff1a594ef9af5b32d9911bdb9f43346e51a309acfe9"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/jfrog-cli-1.36.0.mojave.bottle.tar.gz",
+              "sha256": "71db1527b636ad2628a414847132f57d1c7356415f8621b176044fc886fc0d53"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/jfrog-cli-1.36.0.high_sierra.bottle.tar.gz",
+              "sha256": "314c5e5c01aaf005e67ae6f69b011142fcab7acd7c740f1a3f73ad4368045085"
+            }
+          }
+        }
+      }
     },
     "cask": {
       "1password-cli": {
@@ -3420,19 +3441,31 @@
         "version": "9.7.7"
       },
       "android-file-transfer": {
-        "version": "latest"
+        "version": "latest",
+        "options": {
+          "full_name": "android-file-transfer"
+        }
       },
       "android-ndk": {
-        "version": "19"
+        "version": "21",
+        "options": {
+          "full_name": "android-ndk"
+        }
       },
       "android-sdk": {
-        "version": "4333796"
+        "version": "4333796",
+        "options": {
+          "full_name": "android-sdk"
+        }
       },
       "anka-flow": {
         "version": "2.1.2.112"
       },
       "anylist": {
-        "version": "1.1"
+        "version": "1.1",
+        "options": {
+          "full_name": "anylist"
+        }
       },
       "appium": {
         "version": "1.15.1"
@@ -3441,10 +3474,16 @@
         "version": "1.41.0"
       },
       "back-in-time": {
-        "version": "5"
+        "version": "5.1.3",
+        "options": {
+          "full_name": "back-in-time"
+        }
       },
       "banktivity": {
-        "version": "7"
+        "version": "7.5.1",
+        "options": {
+          "full_name": "banktivity"
+        }
       },
       "bee": {
         "version": "3.1.5,5468"
@@ -3453,22 +3492,37 @@
         "version": "1.0.6"
       },
       "bettertouchtool": {
-        "version": "3.213"
+        "version": "3.379-1602",
+        "options": {
+          "full_name": "bettertouchtool"
+        }
       },
       "brave-browser": {
-        "version": "79.1.1.20,101.20"
+        "version": "81.1.9.76,109.76",
+        "options": {
+          "full_name": "brave-browser"
+        }
       },
       "cardhop": {
         "version": "1.3.3"
       },
       "charles": {
-        "version": "4.5.5"
+        "version": "4.5.6",
+        "options": {
+          "full_name": "charles"
+        }
       },
       "cheatsheet": {
-        "version": "1.3.4"
+        "version": "1.3.4",
+        "options": {
+          "full_name": "cheatsheet"
+        }
       },
       "cleanmymac": {
-        "version": "4.5.1,1575024206"
+        "version": "4.6.3",
+        "options": {
+          "full_name": "cleanmymac"
+        }
       },
       "cloudapp": {
         "version": "5.6.0.1883"
@@ -3480,10 +3534,16 @@
         "version": "10.0.25"
       },
       "deckset": {
-        "version": "2.0.13,2551"
+        "version": "2.0.16,2578",
+        "options": {
+          "full_name": "deckset"
+        }
       },
       "docker": {
-        "version": "2.1.0.5,40693"
+        "version": "2.3.0.3,45519",
+        "options": {
+          "full_name": "docker"
+        }
       },
       "duet": {
         "version": "2.3.0.5"
@@ -3492,25 +3552,43 @@
         "version": "1.7.2"
       },
       "firebase-admin": {
-        "version": "1.0.1"
+        "version": "1.0.1",
+        "options": {
+          "full_name": "firebase-admin"
+        }
       },
       "geekbench": {
         "version": "5.0.4"
       },
       "githubpulse": {
-        "version": "latest"
+        "version": "latest",
+        "options": {
+          "full_name": "githubpulse"
+        }
       },
       "gitkraken": {
-        "version": "6.4.0"
+        "version": "7.0.0",
+        "options": {
+          "full_name": "gitkraken"
+        }
       },
       "google-chrome": {
-        "version": "79.0.3945.79"
+        "version": "83.0.4103.61",
+        "options": {
+          "full_name": "google-chrome"
+        }
       },
       "gpg-suite": {
-        "version": "2019.2"
+        "version": "2019.2",
+        "options": {
+          "full_name": "gpg-suite"
+        }
       },
       "hex-fiend": {
-        "version": "2.11.0"
+        "version": "2.12.0",
+        "options": {
+          "full_name": "hex-fiend"
+        }
       },
       "hipchat": {
         "version": "4.30.2-760"
@@ -3519,58 +3597,106 @@
         "version": "3.0.2"
       },
       "ibm-cloud-cli": {
-        "version": "0.18.1"
+        "version": "0.21.0",
+        "options": {
+          "full_name": "ibm-cloud-cli"
+        }
       },
       "ios-console": {
-        "version": "1.0.2"
+        "version": "1.0.2",
+        "options": {
+          "full_name": "ios-console"
+        }
       },
       "istat-menus": {
-        "version": "6.40"
+        "version": "6.40",
+        "options": {
+          "full_name": "istat-menus"
+        }
       },
       "iterm2": {
-        "version": "3.3.7"
+        "version": "3.3.10",
+        "options": {
+          "full_name": "iterm2"
+        }
       },
       "java": {
         "version": "13.0.1,9:cec27d702aa74d5a8630c65ae61e4305"
       },
       "jetbrains-toolbox": {
-        "version": "1.16.6207"
+        "version": "1.17.7018",
+        "options": {
+          "full_name": "jetbrains-toolbox"
+        }
       },
       "jira-client": {
         "version": "3.8.4"
       },
       "kaleidoscope": {
-        "version": "2.2.2-1376"
+        "version": "2.3.1,1441-apr-7-2020",
+        "options": {
+          "full_name": "kaleidoscope"
+        }
       },
       "keyboard-maestro": {
-        "version": "9.0.4"
+        "version": "9.0.5",
+        "options": {
+          "full_name": "keyboard-maestro"
+        }
       },
       "keycastr": {
-        "version": "0.9.8"
+        "version": "0.9.8",
+        "options": {
+          "full_name": "keycastr"
+        }
       },
       "kobo": {
-        "version": "latest"
+        "version": "latest",
+        "options": {
+          "full_name": "kobo"
+        }
       },
       "licecap": {
-        "version": "1.29"
+        "version": "1.30",
+        "options": {
+          "full_name": "licecap"
+        }
       },
       "lunchy": {
-        "version": "0.2.1"
+        "version": "0.2.1",
+        "options": {
+          "full_name": "lunchy"
+        }
       },
       "macdown": {
-        "version": "0.7.2"
+        "version": "0.7.2",
+        "options": {
+          "full_name": "macdown"
+        }
       },
       "microblog": {
-        "version": "1.9.1"
+        "version": "1.9.3",
+        "options": {
+          "full_name": "microblog"
+        }
       },
       "microsoft-teams": {
-        "version": "1.2.00.28258"
+        "version": "1.3.00.9271",
+        "options": {
+          "full_name": "microsoft-teams"
+        }
       },
       "ngrok": {
-        "version": "latest"
+        "version": "latest",
+        "options": {
+          "full_name": "ngrok"
+        }
       },
       "oclint": {
-        "version": "0.13.1,17.4.0"
+        "version": "0.13.1,17.4.0",
+        "options": {
+          "full_name": "oclint"
+        }
       },
       "omnigraffle": {
         "version": "7.12.1"
@@ -3579,85 +3705,331 @@
         "version": "2.5.3,8"
       },
       "paw": {
-        "version": "3.1.10"
+        "version": "3.1.10",
+        "options": {
+          "full_name": "paw"
+        }
       },
       "periphery": {
         "version": "1.5.1"
       },
       "provisionql": {
-        "version": "1.6.1"
+        "version": "1.6.1",
+        "options": {
+          "full_name": "provisionql"
+        }
       },
       "qlcolorcode": {
-        "version": "2.1.0"
+        "version": "2.1.0",
+        "options": {
+          "full_name": "qlcolorcode"
+        }
       },
       "qlimagesize": {
-        "version": "2.6.1"
+        "version": "2.6.1",
+        "options": {
+          "full_name": "qlimagesize"
+        }
       },
       "qlmarkdown": {
-        "version": "1.3.6"
+        "version": "1.3.6",
+        "options": {
+          "full_name": "qlmarkdown"
+        }
       },
       "qlprettypatch": {
-        "version": "1.0"
+        "version": "1.0",
+        "options": {
+          "full_name": "qlprettypatch"
+        }
       },
       "qlstephen": {
-        "version": "1.4.4"
+        "version": "1.5.1",
+        "options": {
+          "full_name": "qlstephen"
+        }
       },
       "quicklook-csv": {
-        "version": "1.3"
+        "version": "1.3",
+        "options": {
+          "full_name": "quicklook-csv"
+        }
       },
       "quicklook-json": {
-        "version": "latest"
+        "version": "latest",
+        "options": {
+          "full_name": "quicklook-json"
+        }
       },
       "rescuetime": {
-        "version": "latest"
+        "version": "2.15.0.1",
+        "options": {
+          "full_name": "rescuetime"
+        }
       },
       "rocket": {
-        "version": "1.6.1,62"
+        "version": "1.7.4,69",
+        "options": {
+          "full_name": "rocket"
+        }
       },
       "screens": {
-        "version": "4.7.2,25530"
+        "version": "4.7.5,25638",
+        "options": {
+          "full_name": "screens"
+        }
       },
       "softraid": {
-        "version": "5.8.1"
+        "version": "5.8.3",
+        "options": {
+          "full_name": "softraid"
+        }
       },
       "sublime-merge": {
-        "version": "1119"
+        "version": "2020",
+        "options": {
+          "full_name": "sublime-merge"
+        }
       },
       "sublime-text": {
-        "version": "3.211"
+        "version": "3.211",
+        "options": {
+          "full_name": "sublime-text"
+        }
       },
       "teacode": {
-        "version": "1.0"
+        "version": "1.0.1",
+        "options": {
+          "full_name": "teacode"
+        }
       },
       "textmate": {
-        "version": "2.0"
+        "version": "2.0.6",
+        "options": {
+          "full_name": "textmate"
+        }
       },
       "the-unarchiver": {
-        "version": "4.1.0,121:1549634528"
+        "version": "4.2.2,129:1590582775",
+        "options": {
+          "full_name": "the-unarchiver"
+        }
       },
       "thingsmacsandboxhelper": {
-        "version": "3.19"
+        "version": "3.21",
+        "options": {
+          "full_name": "thingsmacsandboxhelper"
+        }
       },
       "tower": {
-        "version": "3.6.0,205:1262a183"
+        "version": "4.5,231:61814c2f",
+        "options": {
+          "full_name": "tower"
+        }
       },
       "transmit": {
-        "version": "5.6.1"
+        "version": "5.6.5",
+        "options": {
+          "full_name": "transmit"
+        }
       },
       "visual-studio-code": {
-        "version": "1.41.0"
+        "version": "1.45.1",
+        "options": {
+          "full_name": "visual-studio-code"
+        }
       },
       "vmware-fusion": {
-        "version": "11.5.1-15018442"
+        "version": "11.5.5-16269456",
+        "options": {
+          "full_name": "vmware-fusion"
+        }
       },
       "vysor": {
-        "version": "2.1.2"
+        "version": "3.0.87",
+        "options": {
+          "full_name": "vysor"
+        }
       },
       "webpquicklook": {
-        "version": "latest"
+        "version": "latest",
+        "options": {
+          "full_name": "webpquicklook"
+        }
       },
       "zeplin": {
-        "version": "2.8,786"
+        "version": "3.6,918",
+        "options": {
+          "full_name": "zeplin"
+        }
+      },
+      "adoptopenjdk8": {
+        "version": "8,252:b09",
+        "options": {
+          "full_name": "adoptopenjdk8"
+        }
+      },
+      "font-3270-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-3270-nerd-font"
+        }
+      },
+      "font-aurulentsansmono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-aurulentsansmono-nerd-font"
+        }
+      },
+      "font-awesome-terminal-fonts": {
+        "version": "latest",
+        "options": {
+          "full_name": "font-awesome-terminal-fonts"
+        }
+      },
+      "font-bitstreamverasansmono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-bitstreamverasansmono-nerd-font"
+        }
+      },
+      "font-codenewroman-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-codenewroman-nerd-font"
+        }
+      },
+      "font-dejavusansmono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-dejavusansmono-nerd-font"
+        }
+      },
+      "font-droidsansmono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-droidsansmono-nerd-font"
+        }
+      },
+      "font-fantasquesansmono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-fantasquesansmono-nerd-font"
+        }
+      },
+      "font-firacode-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-firacode-nerd-font"
+        }
+      },
+      "font-firamono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-firamono-nerd-font"
+        }
+      },
+      "font-hack-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-hack-nerd-font"
+        }
+      },
+      "font-heavydata-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-heavydata-nerd-font"
+        }
+      },
+      "font-inconsolata-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-inconsolata-nerd-font"
+        }
+      },
+      "font-iosevka-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-iosevka-nerd-font"
+        }
+      },
+      "font-jetbrains-mono": {
+        "version": "1.0.6",
+        "options": {
+          "full_name": "font-jetbrains-mono"
+        }
+      },
+      "font-lekton-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-lekton-nerd-font"
+        }
+      },
+      "font-monofur-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-monofur-nerd-font"
+        }
+      },
+      "font-monoid-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-monoid-nerd-font"
+        }
+      },
+      "font-mononoki-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-mononoki-nerd-font"
+        }
+      },
+      "font-mplus-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-mplus-nerd-font"
+        }
+      },
+      "font-profont-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-profont-nerd-font"
+        }
+      },
+      "font-robotomono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-robotomono-nerd-font"
+        }
+      },
+      "font-spacemono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-spacemono-nerd-font"
+        }
+      },
+      "font-ubuntumono-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-ubuntumono-nerd-font"
+        }
+      },
+      "latest": {
+        "version": "0.6.3",
+        "options": {
+          "full_name": "latest"
+        }
+      },
+      "webponize": {
+        "version": "2.3.0",
+        "options": {
+          "full_name": "webponize"
+        }
+      },
+      "zsa-wally": {
+        "version": "1.1.3",
+        "options": {
+          "full_name": "zsa-wally"
+        }
       }
     },
     "mas": {
@@ -3812,6 +4184,34 @@
       "xScope": {
         "id": "889428659",
         "version": "4.4.1"
+      },
+      "GarageBand": {
+        "id": "682658836",
+        "version": "10.3.4"
+      },
+      "iMovie": {
+        "id": "408981434",
+        "version": "10.1.14"
+      },
+      "Keynote": {
+        "id": "409183694",
+        "version": "10.0"
+      },
+      "Numbers": {
+        "id": "409203825",
+        "version": "10.0"
+      },
+      "Pages": {
+        "id": "409201541",
+        "version": "10.0"
+      },
+      "Save to Pocket": {
+        "id": "1477385213",
+        "version": "1.1"
+      },
+      "Tab Space": {
+        "id": "1473726602",
+        "version": "3.7"
       }
     }
   },
