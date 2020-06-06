@@ -18,6 +18,7 @@ function maslink \
         return 1
     end
 
+    # Xcode GUI puts binary here
     set -l source $derived_data/$folder_name/Build/Products/Debug/mas
     set -l destination $HOME/bin/mas
 
