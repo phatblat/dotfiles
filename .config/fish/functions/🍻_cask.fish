@@ -129,7 +129,7 @@ function 🍻_cask \
         homebrew/cask-fonts/font-source-code-pro-for-powerline \
         homebrew/cask-fonts/font-ubuntu-mono-derivative-powerline
 
-    set -l all_casks $apps $quicklook_plugins $fonts
+    set -l all_casks $apps $quicklook_plugins #$fonts
 
     set -l uninstall \
         1password-cli \
