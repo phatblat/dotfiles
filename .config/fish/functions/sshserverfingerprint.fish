@@ -2,5 +2,5 @@ function sshserverfingerprint \
     --description='Print fingerprint of server SSH key' \
     --argument-names hostname
 
-    ssh-keyscan $hostname | ssh-keygen -lf -
+    ssh-keyscan $argv[1] | ssh-keygen -lf -
 end
