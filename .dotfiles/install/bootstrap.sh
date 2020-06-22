@@ -89,7 +89,7 @@ if ! command -v brew; then
     # Install Homebrew
     if test "$kernel" = "Darwin"; then
         echo "Installing Homebrew"
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     elif test "$kernel" = "Linux"; then
         echo "Installing Linuxbrew"
         # https://docs.brew.sh/Homebrew-on-Linux
