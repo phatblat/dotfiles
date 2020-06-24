@@ -1,4 +1,4 @@
 function masd \
         --description='Quick nav to mas dir'
-    nav ~/dev/macos/mas
+    nav ~/dev/mas-cli/mas
 end
