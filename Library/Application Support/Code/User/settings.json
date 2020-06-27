@@ -83,4 +83,5 @@
     "editor.fontLigatures": true,
     "java.semanticHighlighting.enabled": true,
     "C_Cpp.updateChannel": "Insiders",
+    "editor.renameOnType": true,
 }
