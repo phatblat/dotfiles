@@ -36,6 +36,7 @@ function 🍻_cask \
         gitkraken \
         google-chrome \
         gpg-suite \
+        grammarly \
         hex-fiend \
         ibm-cloud-cli \
         ios-console \
