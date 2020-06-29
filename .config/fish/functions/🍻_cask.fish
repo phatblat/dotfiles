@@ -29,6 +29,7 @@ function 🍻_cask \
         cleanmymac \
         dash \
         deckset \
+        elgato-stream-deck \
         firebase-admin \
         geekbench \
         githubpulse \
