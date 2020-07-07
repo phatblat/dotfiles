@@ -88,8 +88,9 @@
     changeHunkIndicators = true
     stripLeadingSymbols = true
     useUnicodeRuler = true
-[universe]
 [gpg]
 	program = /usr/local/bin/gpg
 [pull]
 	rebase = true
+[advice]
+    detachedHead = false
