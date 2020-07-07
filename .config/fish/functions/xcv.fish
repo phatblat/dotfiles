@@ -133,6 +133,12 @@ function xcv \
         # This build was released as the final version
         # case 11N132i
         #     set beta_version "beta 3 "
+
+        # 12.0
+        case 12A6159
+            set beta_version "beta 1 "
+        case 12A6163b
+            set beta_version "beta 2 "
     end
 
     echo "$marketing_version $beta_version($build_version)"
