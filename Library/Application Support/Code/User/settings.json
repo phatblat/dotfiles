@@ -84,4 +84,5 @@
     "java.semanticHighlighting.enabled": true,
     "C_Cpp.updateChannel": "Insiders",
     "editor.renameOnType": true,
+    "terminal.integrated.shell.osx": "/usr/local/bin/fish",
 }
