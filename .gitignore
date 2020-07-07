@@ -111,6 +111,7 @@
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
+.config/truffle/
 .config/upstall/last_run.*
 .config/verdaccio/htpasswd
 .config/yarn/
