@@ -143,6 +143,14 @@ if test (uname -s) = "Darwin"
   set -gx PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 end
 
+# MongoDB Realm
+set --export --global MONGODB_HOME ~/dev/mongodb/current
+if test -d "$MONGODB_HOME"
+    set -xg PATH \
+        "$MONGODB_HOME/bin" \
+        $PATH
+end
+
 # Editor
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI "vim" # vi vim
