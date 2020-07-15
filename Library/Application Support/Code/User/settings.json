@@ -85,4 +85,5 @@
     "C_Cpp.updateChannel": "Insiders",
     "editor.renameOnType": true,
     "terminal.integrated.shell.osx": "/usr/local/bin/fish",
+    "java.project.importOnFirstTimeStartup": "automatic",
 }
