@@ -33,6 +33,7 @@ function 🕸_npm \
         jshint \
         lynn-cli \
         markdownlint \
+        mongodb-realm-cli \
         n \
         node-pre-gyp \
         npm-check-updates \
