@@ -33,7 +33,7 @@
     },
     "gitlens.historyExplorer.enabled": true,
     "editor.dragAndDrop": false,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "editor.multiCursorMergeOverlapping": false,
     "workbench.colorTheme": "Shades of Purple",
     "gitlens.views.fileHistory.enabled": true,
