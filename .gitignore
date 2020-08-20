@@ -284,6 +284,7 @@ examples.desktop
 gradlew.bat
 lib/
 logs/
+markdown/
 mbox
 mobot-scripts
 node_modules/
