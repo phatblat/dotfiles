@@ -7,7 +7,7 @@ function maslink \
 
     switch (hostname)
     case tredecim
-        set folder_name mas-gbyvetvfnsdaiigwwzwjvnbutabs
+        set folder_name mas-crebdnsdmyoxeobfcrozyiypxcpm
     case greymatter
         set folder_name mas-gbyvetvfnsdaiigwwzwjvnbutabs
     case octodec
