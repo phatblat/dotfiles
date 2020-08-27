@@ -109,6 +109,7 @@ fi
 echo
 echo "Installing shell dependencies"
 brew install bat
+brew install coreutils
 brew install diff-so-fancy
 brew install direnv
 
