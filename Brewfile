@@ -92,7 +92,7 @@ brew "ruby"
 brew "macvim"
 brew "make"
 brew "makedepend"
-brew "mas", link: false
+brew "mas"
 brew "maven"
 brew "mint"
 brew "mtr"
