@@ -93,17 +93,17 @@ function 🍻_cask \
     # the upstall process, these are excluded for now.
     set -l fonts \
         homebrew/cask-fonts/font-3270-nerd-font \
-        homebrew/cask-fonts/font-aurulentsansmono-nerd-font \
+        homebrew/cask-fonts/font-aurulent-sans-mono-nerd-font \
         homebrew/cask-fonts/font-awesome-terminal-fonts \
-        homebrew/cask-fonts/font-bitstreamverasansmono-nerd-font \
-        homebrew/cask-fonts/font-codenewroman-nerd-font \
-        homebrew/cask-fonts/font-dejavusansmono-nerd-font \
-        homebrew/cask-fonts/font-droidsansmono-nerd-font \
-        homebrew/cask-fonts/font-fantasquesansmono-nerd-font \
-        homebrew/cask-fonts/font-firacode-nerd-font \
-        homebrew/cask-fonts/font-firamono-nerd-font \
+        homebrew/cask-fonts/font-bitstream-vera-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-code-new-roman-nerd-font \
+        homebrew/cask-fonts/font-dejavu-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-droid-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-fantasque-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-fira-code-nerd-font \
+        homebrew/cask-fonts/font-fira-mono-nerd-font \
         homebrew/cask-fonts/font-hack-nerd-font \
-        homebrew/cask-fonts/font-heavydata-nerd-font \
+        homebrew/cask-fonts/font-heavy-data-nerd-font \
         homebrew/cask-fonts/font-inconsolata-nerd-font \
         homebrew/cask-fonts/font-iosevka-nerd-font \
         homebrew/cask-fonts/font-jetbrains-mono \
@@ -113,9 +113,9 @@ function 🍻_cask \
         homebrew/cask-fonts/font-mononoki-nerd-font \
         homebrew/cask-fonts/font-mplus-nerd-font \
         homebrew/cask-fonts/font-profont-nerd-font \
-        homebrew/cask-fonts/font-robotomono-nerd-font \
-        homebrew/cask-fonts/font-spacemono-nerd-font \
-        homebrew/cask-fonts/font-ubuntumono-nerd-font \
+        homebrew/cask-fonts/font-roboto-mono-nerd-font \
+        homebrew/cask-fonts/font-space-mono-nerd-font \
+        homebrew/cask-fonts/font-ubuntu-mono-nerd-font \
         homebrew/cask-fonts/font-consolas-for-powerline \
         homebrew/cask-fonts/font-droid-sans-mono-for-powerline \
         homebrew/cask-fonts/font-dejavu-sans-mono-for-powerline \
