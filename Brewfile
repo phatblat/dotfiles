@@ -1,5 +1,4 @@
 tap "cloudfoundry/tap"
-tap "github/gh"
 tap "heroku/brew"
 tap "holgerbrandl/tap"
 tap "homebrew/bundle"
