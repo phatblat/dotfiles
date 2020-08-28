@@ -50,7 +50,6 @@ function 🍻_cask \
         kobo \
         latest \
         licecap \
-        lunchy \
         microblog \
         microsoft-teams \
         macdown \
