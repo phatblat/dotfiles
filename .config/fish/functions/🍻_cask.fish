@@ -292,5 +292,5 @@ function 🍻_cask \
 
     echo
     echo 🛀🏻  Cleanup
-    brew cleanup -prune=30
+    brew cleanup -prune
 end
