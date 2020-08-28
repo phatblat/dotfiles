@@ -73,7 +73,6 @@ function 🍻_cask \
         visual-studio-code \
         vmware-fusion \
         vysor \
-        webponize \
         zeplin \
         homebrew/cask-drivers/zsa-wally
 
