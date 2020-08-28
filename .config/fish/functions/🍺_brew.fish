@@ -95,6 +95,7 @@ function 🍺_brew \
         socat \
         sonar-scanner \
         speedtest-cli \
+        svn \
         kylef/formulae/swiftenv \
         task \
         tasksh \
