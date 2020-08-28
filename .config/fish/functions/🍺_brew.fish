@@ -329,7 +329,7 @@ function 🍺_brew \
 
     echo
     echo 🛀🏻  Cleanup
-    brew cleanup --prune=30 $formulae
+    brew cleanup --prune $formulae
 
     echo
     echo 👩🏻‍⚕️  Doctor
