@@ -35,7 +35,6 @@ function 🍺_brew \
         bat \
         burl \
         certbot \
-        vitorgalvao/tiny-scripts/cask-repair \
         cloc \
         cloudfoundry/tap/cf-cli \
         cmake \
@@ -51,10 +50,10 @@ function 🍺_brew \
         firebase-cli \
         fortune \
         gcovr \
+        gh \
         git \
         git-filter-repo \
         git-lfs \
-        github/gh/gh \
         gnu-sed \
         gnupg \
         go-jira \
