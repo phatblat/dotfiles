@@ -87,4 +87,6 @@
     "terminal.integrated.shell.osx": "/usr/local/bin/fish",
     "java.project.importOnFirstTimeStartup": "automatic",
     "workbench.iconTheme": "vscode-icons",
+    "solargraph.bundlerPath": "/usr/local/bin/bundle",
+    "solargraph.useBundler": true,
 }
