@@ -13,6 +13,7 @@ GROOVY_HOME=/usr/local/opt/groovy/libexec
 GUI_WAIT_FLAG=-w
 HOME=/Users/phatblat
 HOMEBREW_BAT=/usr/local/bin/bat
+HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 ICLOUD_DRIVE=/Users/phatblat/Library/Mobile Documents/com~apple~CloudDocs
 ICLOUD_HOME=/Users/phatblat/Library/Mobile Documents
 JABBA_HOME=/Users/phatblat/.jabba
