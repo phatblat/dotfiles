@@ -163,6 +163,7 @@
 .lumberjack/
 .m2/repository/
 .marathon/
+.markdownNavigator/
 .minecraft/
 .mint/
 .mongodb/
