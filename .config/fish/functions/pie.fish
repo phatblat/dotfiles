@@ -1,7 +1,7 @@
 function pie \
-    --description='Install pods for example app'
+    --description='Install pods for Example app.'
 
-    pod install \
+    pi \
         --project-directory=Example \
         $argv
 end

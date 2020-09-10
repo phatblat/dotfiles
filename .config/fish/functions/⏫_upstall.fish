@@ -14,6 +14,7 @@ function ⏫_upstall \
     set -l all_modules \
         ruby \
         brew \
+        mint \
         omf \
         sdkman \
         pip \
@@ -44,7 +45,8 @@ function ⏫_upstall \
             --nosdk --nopy  \
             --nojs --nopl \
             --novi --notm \
-            --novs --noos
+            --novs --noos \
+            --nomt
     else if test -z "$argv"
         # No args means run all
         set modules_to_run $all_modules
@@ -58,21 +60,22 @@ function ⏫_upstall \
 
     # echo "modules_to_run: $modules_to_run"
 
-    ⬆️_upmodule 🗄_gitconfig "🗄 Git config" git        --nog $modules_to_run
-    ⬆️_upmodule 💎_rubygems  "💎 Ruby Gems"  ruby       --norb $modules_to_run
-    ⬆️_upmodule 🔨_xcode     "🔨 Xcode"      xcode      --noxc $modules_to_run
-    ⬆️_upmodule 📦_apt       "📦 APT"        apt        --noapt $modules_to_run
-    ⬆️_upmodule 🍺_brew      "🍺 Homebrew"   brew       --nobr $modules_to_run
-    ⬆️_upmodule 🍻_cask      "🍻 Cask"       cask       --noca $modules_to_run
-    ⬆️_upmodule 🐠_omf       "🐠 oh-my-fish" omf        --noomf $modules_to_run
-    ⬆️_upmodule 🐟_fisherman "🐟 Fisherman"  fisherman  --nofm $modules_to_run
-    ⬆️_upmodule 🧰_sdkman    "🧰 SDKman"     sdk        --nosdk $modules_to_run
-    ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy $modules_to_run
-    ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs $modules_to_run
-    ⬆️_upmodule ▶️_powerline  "▶️ Powerline"   powerline  --nopl $modules_to_run
-    ⬆️_upmodule 🗒_vundle    "🗒 Vundle"     vundle     --novi $modules_to_run
-    ⬆️_upmodule 📝_textmate  "📝 TextMate"   textmate   --notm $modules_to_run
-    ⬆️_upmodule ⚛️_apm        "⚛️ APM"         apm        --noap $modules_to_run
-    ⬆️_upmodule 🆚_vscode    "🆚 VS Code"    vscode     --novs $modules_to_run
-    ⬆️_upmodule 🖥_macos     "🖥 macOS"      macos      --noos $modules_to_run
+    ⬆️_upmodule 🗄_gitconfig "🗄 Git config" git        --nog    $modules_to_run
+    ⬆️_upmodule 💎_rubygems  "💎 Ruby Gems"  ruby       --norb   $modules_to_run
+    ⬆️_upmodule 🔨_xcode     "🔨 Xcode"      xcode      --noxc   $modules_to_run
+    ⬆️_upmodule 📦_apt       "📦 APT"        apt        --noapt  $modules_to_run
+    ⬆️_upmodule 🍺_brew      "🍺 Homebrew"   brew       --nobr   $modules_to_run
+    ⬆️_upmodule 🍻_cask      "🍻 Cask"       cask       --noca   $modules_to_run
+    ⬆️_upmodule 🌱_mint      "🌱 Mint"       mint       --nomt   $modules_to_run
+    ⬆️_upmodule 🐠_omf       "🐠 oh-my-fish" omf        --noomf  $modules_to_run
+    ⬆️_upmodule 🐟_fisherman "🐟 Fisherman"  fisherman  --nofm   $modules_to_run
+    ⬆️_upmodule 🧰_sdkman    "🧰 SDKman"     sdk        --nosdk  $modules_to_run
+    ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy   $modules_to_run
+    ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs   $modules_to_run
+    ⬆️_upmodule ▶️_powerline  "▶️ Powerline"   powerline  --nopl   $modules_to_run
+    ⬆️_upmodule 🗒_vundle    "🗒 Vundle"     vundle     --novi   $modules_to_run
+    ⬆️_upmodule 📝_textmate  "📝 TextMate"   textmate   --notm   $modules_to_run
+    ⬆️_upmodule ⚛️_apm        "⚛️ APM"         apm        --noap   $modules_to_run
+    ⬆️_upmodule 🆚_vscode    "🆚 VS Code"    vscode     --novs   $modules_to_run
+    ⬆️_upmodule 🖥_macos     "🖥 macOS"      macos      --noos   $modules_to_run
 end

@@ -1,4 +1,5 @@
-# Displays Xcode project version information.
-function version_current
+function version_current \
+    --description='Displays Xcode project version information.'
+
     echo (version_market)" ("(version_build)")"
 end

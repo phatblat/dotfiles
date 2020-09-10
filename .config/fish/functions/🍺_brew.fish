@@ -10,16 +10,13 @@ function 🍺_brew \
 
     # mac-only formulae
     set -l formulae_mac \
-        carthage \
         configen \
         duti \
+        fileicon \
         thoughtbot/formulae/liftoff \
         mas \
         screenresolution \
         sourcekitten \
-        swiftformat \
-        swiftgen \
-        swiftlint \
         swiftplate \
         terminal-notifier \
         trash \
@@ -38,10 +35,10 @@ function 🍺_brew \
         bat \
         burl \
         certbot \
-        vitorgalvao/tiny-scripts/cask-repair \
         cloc \
         cloudfoundry/tap/cf-cli \
         cmake \
+        cmatrix \
         coreutils \
         cowsay \
         ctags \
@@ -53,10 +50,10 @@ function 🍺_brew \
         firebase-cli \
         fortune \
         gcovr \
+        gh \
         git \
         git-filter-repo \
         git-lfs \
-        github/gh/gh \
         gnu-sed \
         gnupg \
         go-jira \
@@ -75,6 +72,7 @@ function 🍺_brew \
         less \
         libssh2 \
         libtool \
+        make \
         maven \
         mint \
         mtr \
@@ -89,12 +87,14 @@ function 🍺_brew \
         radare2 \
         redis \
         rename \
+        rlwrap \
         ruby \
         shellcheck \
+        sl \
         socat \
         sonar-scanner \
-        sourcery \
         speedtest-cli \
+        svn \
         kylef/formulae/swiftenv \
         task \
         tasksh \
@@ -122,6 +122,8 @@ function 🍺_brew \
 
     set -l uninstall \
         android-sdk \
+        carthage \
+        cask-repair \
         docker \
         docker-compose \
         docker-machine \
@@ -134,6 +136,10 @@ function 🍺_brew \
         pivotal/tap/cloudfoundry-cli \
         python@2 \
         sloccount \
+        sourcery \
+        swiftformat \
+        swiftgen \
+        swiftlint \
         vapor \
         vim
 
@@ -322,7 +328,7 @@ function 🍺_brew \
 
     echo
     echo 🛀🏻  Cleanup
-    brew cleanup --prune=30 $formulae
+    brew cleanup --prune $formulae
 
     echo
     echo 👩🏻‍⚕️  Doctor

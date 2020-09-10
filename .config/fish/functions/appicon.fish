@@ -1,6 +1,6 @@
 function appicon \
-        --description='Resizes AppIcon' \
-        --argument-names file
+    --description='Resizes AppIcon' \
+    --argument-names file
 
     if test -z "$file"
         echo "Please provide a file name to resize"

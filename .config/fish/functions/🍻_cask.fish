@@ -29,12 +29,14 @@ function 🍻_cask \
         cleanmymac \
         dash \
         deckset \
+        elgato-stream-deck \
         firebase-admin \
         geekbench \
         githubpulse \
         gitkraken \
         google-chrome \
         gpg-suite \
+        grammarly \
         hex-fiend \
         ibm-cloud-cli \
         ios-console \
@@ -42,18 +44,17 @@ function 🍻_cask \
         iterm2 \
         jetbrains-toolbox \
         kaleidoscope \
+        karabiner-elements \
         keyboard-maestro \
         keycastr \
         kobo \
         latest \
         licecap \
-        lunchy \
         microblog \
         microsoft-teams \
         macdown \
         ngrok \
         oclint \
-        paste \
         paw \
         periphery \
         rescuetime \
@@ -89,59 +90,46 @@ function 🍻_cask \
     # TEMP: Cask doesn't check whether fonts are installed. To speed up
     # the upstall process, these are excluded for now.
     set -l fonts \
-        caskroom/fonts/font-3270-nerd-font \
-        caskroom/fonts/font-anonymouspro-nerd-font \
-        caskroom/fonts/font-aurulentsansmono-nerd-font \
-        caskroom/fonts/font-awesome-terminal-fonts \
-        caskroom/fonts/font-bitstreamverasansmono-nerd-font \
-        caskroom/fonts/font-codenewroman-nerd-font \
-        caskroom/fonts/font-dejavu-sans \
-        caskroom/fonts/font-dejavu-sans-mono-for-powerline \
-        caskroom/fonts/font-dejavusansmono-nerd-font \
-        caskroom/fonts/font-droidsansmono-nerd-font \
-        caskroom/fonts/font-fantasquesansmono-nerd-font \
-        caskroom/fonts/font-firacode-nerd-font \
-        caskroom/fonts/font-firamono-nerd-font \
-        caskroom/fonts/font-gohu-nerd-font \
-        caskroom/fonts/font-hack-nerd-font \
-        caskroom/fonts/font-hasklig-nerd-font \
-        caskroom/fonts/font-heavydata-nerd-font \
-        caskroom/fonts/font-hermit-nerd-font \
-        caskroom/fonts/font-inconsolata-nerd-font \
-        caskroom/fonts/font-iosevka-nerd-font \
-        caskroom/fonts/font-lekton-nerd-font \
-        caskroom/fonts/font-liberationmono-nerd-font \
-        caskroom/fonts/font-meslo-nerd-font \
-        caskroom/fonts/font-monofur-nerd-font \
-        caskroom/fonts/font-monoid-nerd-font \
-        caskroom/fonts/font-mononoki-nerd-font \
-        caskroom/fonts/font-mplus-nerd-font \
-        caskroom/fonts/font-profont-nerd-font \
-        caskroom/fonts/font-proggyclean-nerd-font \
-        caskroom/fonts/font-robotomono-nerd-font \
-        caskroom/fonts/font-sharetechmono-nerd-font \
-        caskroom/fonts/font-sourcecodepro-nerd-font \
-        caskroom/fonts/font-spacemono-nerd-font \
-        caskroom/fonts/font-terminus-nerd-font \
-        caskroom/fonts/font-ubuntumono-nerd-font \
-        caskroom/fonts/font-anonymice-powerline \
-        caskroom/fonts/font-source-code-pro-for-powerline \
-        caskroom/fonts/font-monofur-for-powerline \
-        caskroom/fonts/font-inconsolata-dz-for-powerline \
-        caskroom/fonts/font-inconsolata-for-powerline \
-        caskroom/fonts/font-liberation-mono-for-powerline \
-        caskroom/fonts/font-menlo-for-powerline \
-        caskroom/fonts/font-inconsolata-g-for-powerline \
-        caskroom/fonts/font-consolas-for-powerline \
-        caskroom/fonts/font-fira-mono-for-powerline \
-        caskroom/fonts/font-meslo-for-powerline \
-        caskroom/fonts/font-dejavu-sans-mono-for-powerline \
-        caskroom/fonts/font-roboto-mono-for-powerline \
-        caskroom/fonts/font-droid-sans-mono-for-powerline \
-        caskroom/fonts/font-ubuntu-mono-derivative-powerline
+        homebrew/cask-fonts/font-3270-nerd-font \
+        homebrew/cask-fonts/font-aurulent-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-awesome-terminal-fonts \
+        homebrew/cask-fonts/font-bitstream-vera-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-code-new-roman-nerd-font \
+        homebrew/cask-fonts/font-dejavu-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-droid-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-fantasque-sans-mono-nerd-font \
+        homebrew/cask-fonts/font-fira-code-nerd-font \
+        homebrew/cask-fonts/font-fira-mono-nerd-font \
+        homebrew/cask-fonts/font-hack-nerd-font \
+        homebrew/cask-fonts/font-heavy-data-nerd-font \
+        homebrew/cask-fonts/font-inconsolata-nerd-font \
+        homebrew/cask-fonts/font-iosevka-nerd-font \
+        homebrew/cask-fonts/font-jetbrains-mono \
+        homebrew/cask-fonts/font-lekton-nerd-font \
+        homebrew/cask-fonts/font-monofur-nerd-font \
+        homebrew/cask-fonts/font-monoid-nerd-font \
+        homebrew/cask-fonts/font-mononoki-nerd-font \
+        homebrew/cask-fonts/font-mplus-nerd-font \
+        homebrew/cask-fonts/font-profont-nerd-font \
+        homebrew/cask-fonts/font-roboto-mono-nerd-font \
+        homebrew/cask-fonts/font-space-mono-nerd-font \
+        homebrew/cask-fonts/font-ubuntu-mono-nerd-font \
+        homebrew/cask-fonts/font-consolas-for-powerline \
+        homebrew/cask-fonts/font-droid-sans-mono-for-powerline \
+        homebrew/cask-fonts/font-dejavu-sans-mono-for-powerline \
+        homebrew/cask-fonts/font-fira-mono-for-powerline \
+        homebrew/cask-fonts/font-inconsolata-for-powerline \
+        homebrew/cask-fonts/font-inconsolata-dz-for-powerline \
+        homebrew/cask-fonts/font-inconsolata-g-for-powerline \
+        homebrew/cask-fonts/font-liberation-mono-for-powerline \
+        homebrew/cask-fonts/font-menlo-for-powerline \
+        homebrew/cask-fonts/font-monofur-for-powerline \
+        homebrew/cask-fonts/font-meslo-for-powerline \
+        homebrew/cask-fonts/font-roboto-mono-for-powerline \
+        homebrew/cask-fonts/font-source-code-pro-for-powerline \
+        homebrew/cask-fonts/font-ubuntu-mono-derivative-powerline
 
-    # TODO: Re-enable $fonts on rundmg
-    set -l all_casks $apps $quicklook_plugins
+    set -l all_casks $apps $quicklook_plugins #$fonts
 
     set -l uninstall \
         1password-cli \
@@ -303,5 +291,5 @@ function 🍻_cask \
 
     echo
     echo 🛀🏻  Cleanup
-    brew cleanup -prune=30
+    brew cleanup -prune
 end

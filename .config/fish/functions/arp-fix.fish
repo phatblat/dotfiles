@@ -1,7 +1,9 @@
 # arp-fix
 # http://krypted.com/mac-security/disable-unicast-arp-cache-validation-in-os-x/
 # https://gist.github.com/blimmer/7242676
-function arp-fix
+function arp-fix \
+    --description='Disables unicast ARP cache validation'
+
     if not user_is_admin
         echo "You must be an admin to run this command."
         return 1
