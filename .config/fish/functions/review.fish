@@ -28,6 +28,9 @@ committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
     %s
 '
 
+    # --unified: Context lines
+    # --no-prefix: Do not show any source or destination prefix. (e.g. "a/" "b/")
+    # --no-indent-heuristic: Disable the default heuristic that shifts diff hunk boundaries to make patches easier to read.
     git \
         log \
         --max-count=1 \
@@ -40,10 +43,7 @@ committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
         -m \
         # Context lines
         --unified=1 \
-        --indent-heuristic \
         --no-prefix \
-        --diff-algorithm=patience \
-        --word-diff=color \
         $commit
 end
 

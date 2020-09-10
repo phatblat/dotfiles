@@ -22,6 +22,7 @@
 .Trash/
 .Ultimate/
 .Xauthority
+.advLdap/
 .android/
 .anka/
 .antigen/
@@ -97,6 +98,7 @@
 .config/gtk-2.0/
 .config/hub
 .config/ibus/
+.config/jgit
 .config/kactivitymanagerdrc
 .config/karabiner/automatic_backups/
 .config/kdeconnect/
@@ -106,18 +108,21 @@
 .config/lxterminal/
 .config/menus/
 .config/pulse/
+.config/realm/
 .config/session/
 .config/sublime-text-3/
 .config/terminus/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
+.config/truffle/
 .config/upstall/last_run.*
 .config/verdaccio/htpasswd
 .config/yarn/
 .config/yelp/yelp.cfg
 .cpan/
 .cups/
+.dbshell
 .dbus/
 .dbvis/
 .did_show_opt_info
@@ -160,7 +165,10 @@
 .lumberjack/
 .m2/repository/
 .marathon/
+.markdownNavigator/
 .minecraft/
+.mint/
+.mongodb/
 .mono/
 .mozilla/
 .mplayer/
@@ -208,6 +216,7 @@
 .ssh/
 .subversion/
 .sudo_as_admin_successful
+.swiftenv/
 .synx/
 .task/
 .thunderbird/
@@ -228,7 +237,9 @@
 .zoomus/
 .zsh-update
 .zsh_history
+.zsh_sessions/
 Android
+Applications
 Applications/
 Apps/
 Backup/
@@ -237,6 +248,7 @@ Calibre Library/
 Carthage/
 Desktop
 Documents
+Downloads
 Downloads/
 Dropbox/
 EpuborLog/
@@ -246,15 +258,20 @@ KindleTransfer2019.01.log
 Library.bak/
 Library/
 Minecraft/
+Movies
 Movies/
+Music
 Music/
 OmniPresence
 OneDrive - Kaiser Permanente/
+Pictures
+Pictures.lnk
 Pictures/
 Pods/
 Public/
 Recovered Files – */
 Ultimate/
+VMs
 VMs/
 Videos/
 Virtual Machines.localized/
@@ -265,10 +282,12 @@ build/
 cali_core4/
 data/
 dev
+dev.bak
 examples.desktop
 gradlew.bat
 lib/
 logs/
+markdown/
 mbox
 mobot-scripts
 node_modules/

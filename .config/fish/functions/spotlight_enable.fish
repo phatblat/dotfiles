@@ -1,5 +1,5 @@
-function spotlight_disable \
-        --description='Disables Spotlight indexing'
+function spotlight_enable \
+    --description='Enables Spotlight indexing'
 
     # https://ss64.com/osx/mdutil.html
     # -a             Apply command to all stores on all volumes.

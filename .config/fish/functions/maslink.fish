@@ -2,7 +2,26 @@ function maslink \
     --description='Links debug build of mas into the path' \
     --argument-names remove
 
-    set -l source $HOME/Library/Developer/Xcode/DerivedData/mas-aqppolouacncbpdkiaiefddzzlfq/Build/Products/Debug/mas
+    set -l derived_data $HOME/Library/Developer/Xcode/DerivedData
+    set -l folder_name
+
+    switch (hostname)
+    case tredecim
+        set folder_name mas-crebdnsdmyoxeobfcrozyiypxcpm
+    case tredecim-bigsur
+        set folder_name mas-aqgkhlyqitpqytcdqdncgnkvubmq
+    case greymatter
+        set folder_name mas-gbyvetvfnsdaiigwwzwjvnbutabs
+    case octodec
+        set folder_name mas-aqppolouacncbpdkiaiefddzzlfq
+    case '*'
+        error "This device is not set up for this command. Add the mas folder to the maslink function."
+        ls $derived_data
+        return 1
+    end
+
+    # Xcode GUI puts binary here
+    set -l source $derived_data/$folder_name/Build/Products/Debug/mas
     set -l destination $HOME/bin/mas
 
     # Delete the symlink if the $remove parameter contains anything

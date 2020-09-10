@@ -28,8 +28,6 @@ function funky --argument-names query option
         end
     end
 
-    echo "Custom, autoloaded functions containing '$query' in their definition:"
-
     if test -n "$option"
         switch $option
             case -C --column

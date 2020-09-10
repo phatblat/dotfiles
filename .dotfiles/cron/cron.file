@@ -6,6 +6,7 @@
 
 # Run commands in Fish shell environment as most are functions.
 SHELL=/usr/local/bin/fish
+PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
 
 # Nightly
 10  4    * * *     🍺__brew >/dev/null
@@ -18,8 +19,8 @@ SHELL=/usr/local/bin/fish
 01  *    * * *     fetch --quiet
 
 # Once, cron & upstall debugging
-#32 19    * * *     env > ~/.dotfiles/cron/cronenv
-#02 11    * * *     status_current > ~/.dotfiles/cron/cronstatus
+00 7     * * *     env > ~/.dotfiles/cron/cronenv
+00 7     * * *     status_current > ~/.dotfiles/cron/cronstatus
 
 # --------------------------------------------------------
 # * * * * *     command to be executed

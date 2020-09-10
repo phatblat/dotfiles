@@ -22,6 +22,7 @@ set --export GPG_TTY (tty)
 set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GROOVY_HOME (brew_home groovy)/libexec
 set --export HOMEBREW_BAT (command --search bat)
+set --export HOMEBREW_CLEANUP_MAX_AGE_DAYS 30
 set --export ICLOUD_HOME $HOME"/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
 set --export JABBA_HOME ~/.jabba
@@ -83,25 +84,6 @@ set -g fish_prompt_pwd_dir_length 0
 set -g theme_project_dir_length 1
 set -g theme_newline_cursor no
 
-# Editor
-# After variables which depend on functions that define variables
-set --export EDITOR_CLI "vim" # vi vim
-set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
-set --export CLI_WAIT_FLAG "-f"
-set --export GUI_WAIT_FLAG "-w"
-
-# EDITOR or VISUAL, only one defined
-# Use EDITOR for non-console users (su someoneelse) and SSH connections
-if not type -q $EDITOR_GUI; or not is_console_user; or is_ssh
-    set --export EDITOR $EDITOR_CLI
-    set --export WAIT_FLAG $CLI_WAIT_FLAG
-    set --erase VISUAL
-else
-    set --export VISUAL $EDITOR_GUI
-    set --export WAIT_FLAG $GUI_WAIT_FLAG
-    set --erase EDITOR
-end
-
 # fish_user_paths
 set --global fish_user_paths \
     /usr/local/sbin \
@@ -134,6 +116,13 @@ if test -d "$SWIFT_TOOLCHAIN"
         $SWIFT_TOOLCHAIN/usr/bin
 end
 
+set --export --global SWIFTENV_ROOT ~/.swiftenv
+set --export --global PATH $SWIFTENV_ROOT/bin $PATH
+if which swiftenv > /dev/null
+    status --is-interactive
+    and source (swiftenv init - | psub)
+end
+
 if test -d "$ANDROID_HOME"
     set --export --global PATH \
         $ANDROID_HOME/tools/bin \
@@ -155,10 +144,31 @@ if test (uname -s) = "Darwin"
   set -gx PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
 end
 
-# Custom HOME handling for octodec. Since /Users/phatblat is a symlink,
-# it causes PWD to not match HOME, preventing powerline from shortening paths.
-if begin string match --quiet phatblat $USER; and string match --quiet --entire octodec (hostname); end
-    set --export --global HOME /Volumes/ThunderBay/Users/phatblat
+# MongoDB Realm
+set --export --global MONGODB_HOME ~/dev/mongodb/current
+if test -d "$MONGODB_HOME"
+    set -xg PATH \
+        "$MONGODB_HOME/bin" \
+        $PATH
+end
+
+# Editor
+# After variables which depend on functions that define variables
+set --export EDITOR_CLI "vim" # vi vim
+set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
+set --export CLI_WAIT_FLAG "-f"
+set --export GUI_WAIT_FLAG "-w"
+
+# EDITOR or VISUAL, only one defined
+# Use EDITOR for non-console users (su someoneelse) and SSH connections
+if not type -q $EDITOR_GUI; or not is_console_user; or is_ssh
+    set --export EDITOR $EDITOR_CLI
+    set --export WAIT_FLAG $CLI_WAIT_FLAG
+    set --erase VISUAL
+else
+    set --export VISUAL $EDITOR_GUI
+    set --export WAIT_FLAG $GUI_WAIT_FLAG
+    set --erase EDITOR
 end
 
 # ls color formatting - LS_COLWIDTHS

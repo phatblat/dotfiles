@@ -9,6 +9,8 @@ function ignores
         xcuserdata \
         Carthage/ \
         Pods/ \
+        # Swift PM
+        .build/ \
         # Bundler
         .rubygems/ \
         bin/ \
@@ -24,5 +26,5 @@ function ignores
         .classpath \
         .project \
         .settings \
-        .vscode/ 
+        .vscode/
 end
