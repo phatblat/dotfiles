@@ -97,8 +97,10 @@
 .config/gtk-2.0/
 .config/hub
 .config/ibus/
+.config/kactivitymanagerdrc
 .config/karabiner/automatic_backups/
 .config/kdeconnect/
+.config/kglobalshortcutsrc
 .config/konsolerc
 .config/libreoffice/
 .config/lxterminal/
