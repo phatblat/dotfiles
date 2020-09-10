@@ -42,6 +42,7 @@
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/
+.config/Code/
 .config/Code/Backups/
 .config/Code/Cache/
 .config/Code/CachedData
