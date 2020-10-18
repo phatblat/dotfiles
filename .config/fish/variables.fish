@@ -31,6 +31,8 @@ set --export LANGUAGE en_US.UTF-8
 set --export LC_ALL en_US.UTF-8
 set --export LC_CTYPE en_US.UTF-8
 set --export OPENSSL_PATH (brew_home openssl)/bin/openssl
+# So rubygems native extension builds can find macOS headers
+set --export SDKROOT (xcrun --show-sdk-path)
 
 # ls command colors - http://osxdaily.com/2013/02/05/improve-terminal-appearance-mac-os-x/
 set --export CLICOLOR 1
