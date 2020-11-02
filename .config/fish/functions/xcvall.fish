@@ -3,5 +3,5 @@ function xcvall --description='Lists versions of all installed copies of Xcode.'
 
     echo
     echo "CLI tools"
-    pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+    pkginfo com.apple.pkg.CLTools_Executables
 end
