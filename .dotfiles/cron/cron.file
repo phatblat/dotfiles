@@ -11,7 +11,7 @@ PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
 # Nightly
 10  4    * * *     🍺__brew >/dev/null
 20  4    * * *     xccheck
-30  4    * * *     bi --quiet; and bprum --silent
+30  4    * * *     bi --quiet
 *   */12 * * *     renew_certificates
 
 # Hourly
