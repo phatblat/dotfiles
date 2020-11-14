@@ -35,7 +35,7 @@
     "editor.dragAndDrop": false,
     "window.zoomLevel": 0,
     "editor.multiCursorMergeOverlapping": false,
-    "workbench.colorTheme": "Default High Contrast",
+    "workbench.colorTheme": "Shades of Purple",
     "gitlens.views.fileHistory.enabled": true,
     "gitlens.views.lineHistory.enabled": true,
     "explorer.confirmDragAndDrop": false,
