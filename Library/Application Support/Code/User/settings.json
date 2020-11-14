@@ -92,4 +92,5 @@
     "shellcheck.customArgs": [
         "-x"
     ],
+    "extensions.ignoreRecommendations": false,
 }
