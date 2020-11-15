@@ -146,6 +146,7 @@
 .hyper_plugins/
 .idea/
 .install4j
+.ipfs/
 .iterm2/
 .iterm2_shell_integration.zsh
 .itmstransporter/
