@@ -216,6 +216,7 @@
 .spaceship/
 .sqlite_history
 .ssh/
+.standard-v14-cache/
 .subversion/
 .sudo_as_admin_successful
 .swiftenv/
