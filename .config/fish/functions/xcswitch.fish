@@ -30,7 +30,7 @@ function xcswitch --argument-names xcode_version
     # -h     If the NewLinkFile (or directory) is a symbolic link, do not follow
     #        it.  This is most useful with the -f option, to replace a symlink
     #        which can point to a directory.
-    ln -fs (basename $xcode_path) Xcode.app
+    ln -fsTv (basename $xcode_path) Xcode.app
     popd
 
     xclist
