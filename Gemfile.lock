@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    CFPropertyList (3.0.2)
+    CFPropertyList (3.0.3)
     activesupport (5.2.4.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -15,7 +15,7 @@ GEM
     ast (2.4.1)
     atomos (0.1.3)
     aws-eventstream (1.1.0)
-    aws-partitions (1.402.0)
+    aws-partitions (1.404.0)
     aws-sdk-core (3.110.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -202,7 +202,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     optimist (3.0.1)
     os (1.1.1)
-    paint (2.2.0)
+    paint (2.2.1)
     parallel (1.20.1)
     parser (2.7.2.0)
       ast (~> 2.4.1)
