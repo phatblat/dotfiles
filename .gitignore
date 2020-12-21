@@ -168,6 +168,7 @@
 .m2/repository/
 .marathon/
 .markdownNavigator/
+.mcreator/
 .minecraft/
 .mint/
 .mongodb/
