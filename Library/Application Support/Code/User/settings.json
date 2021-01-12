@@ -33,7 +33,7 @@
     },
     "gitlens.historyExplorer.enabled": true,
     "editor.dragAndDrop": false,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "editor.multiCursorMergeOverlapping": false,
     "gitlens.views.fileHistory.enabled": true,
     "gitlens.views.lineHistory.enabled": true,
