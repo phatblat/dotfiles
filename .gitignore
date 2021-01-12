@@ -176,6 +176,7 @@
 .mozilla/
 .mplayer/
 .netrc
+.nextmind/
 .ngrok/
 .node-gyp/
 .node_repl_history
