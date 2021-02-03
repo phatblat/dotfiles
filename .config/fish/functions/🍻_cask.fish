@@ -153,6 +153,7 @@ function 🍻_cask \
         hyper \
         java9 \
         mono-mdk \
+        opera-gx \
         skype-for-business \
         sublime-text-dev \
         textexpander \
