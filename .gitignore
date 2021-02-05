@@ -13,6 +13,7 @@
 *.xcscmblueprint
 .*history
 .AndroidStudio*/
+.ApacheDirectoryStudio/
 .CFUserTextEncoding
 .DS_Store
 .ICEauthority
