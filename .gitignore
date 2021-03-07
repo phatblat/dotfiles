@@ -191,6 +191,7 @@
 .op/
 .oracle_jre_usage/
 .phantomjs/
+.pingidentity/
 .pki/
 .project
 .pry_history
