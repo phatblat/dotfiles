@@ -116,6 +116,8 @@ GEM
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.1-arm64-darwin)
+      racc (~> 1.4)
     optimist (3.0.1)
     paint (2.2.1)
     parallel (1.20.1)
@@ -190,6 +192,7 @@ GEM
     yard (0.9.26)
 
 PLATFORMS
+  arm64-darwin-20
   x86_64-darwin-19
   x86_64-darwin-20
 
