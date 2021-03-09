@@ -7,6 +7,10 @@ gem 'lolcat', '~> 100.0'
 gem 'solargraph', '~> 0.40'
 gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
 
+# Not default since ruby 3
+# https://stackoverflow.com/a/65480744/39207
+gem 'rexml'
+
 # Fastlane depends on unmaintined colored gem
 # gem 'fastlane'
 gem 'xcode-install', '~> 2.0'
