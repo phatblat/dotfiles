@@ -14,7 +14,7 @@ function brew_edit \
     # Special handling for certain formulae
     switch $token
         case mas
-            brew tap-unpin mas-cli/tap
+            brew untap mas-cli/tap
             # brew uninstall --ignore-dependencies mas
     end
 
