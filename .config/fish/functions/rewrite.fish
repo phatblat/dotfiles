@@ -19,7 +19,7 @@ function rewrite \
     end
 
     # https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#CALLBACKS
-    git filter-repo \
+    git filter-repo --force \
         --email-callback \
         "return email.replace(b\"$old_value\", b\"$new_value\")"
 end
