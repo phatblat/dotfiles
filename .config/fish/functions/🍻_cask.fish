@@ -199,7 +199,7 @@ function 🍻_cask \
 
     echo 🚰  Updating formulae
     brew update
-    set -l installed (brew cask list -1 ^/dev/null)
+    set -l installed (brew list --casks -1 ^/dev/null)
     echo
     echo ➡️ (moj_host)  Installed: $installed
 
@@ -266,7 +266,7 @@ function 🍻_cask \
         echo
         echo 🆕  Installing: $not_installed
         for new_cask in $not_installed
-            brew cask install --force $new_cask
+            brew install --cask --force $new_cask
         end
     end
 
@@ -292,5 +292,6 @@ function 🍻_cask \
 
     echo
     echo 🛀🏻  Cleanup
-    brew cleanup -prune
+    # Removes downloads older than 120 days. Add '--prune 30' to shorten this to a month.
+    brew cleanup
 end
