@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '3.0.0'
+
 gem 'cocoapods', '~> 1.10'
 gem 'dotenv', '~> 2.7'
 gem 'json_pure', '~> 2.5' # Needed by https://github.com/junegunn/vim-github-dashboard
@@ -9,11 +11,12 @@ gem 'xcodeproj' # cocoapods dependency, some scripts depend on it
 
 # Not default since ruby 3
 # https://stackoverflow.com/a/65480744/39207
-gem 'rexml'
+gem 'rexml', '~> 3.2'
 
 # Fastlane depends on unmaintined colored gem
 # gem 'fastlane'
-gem 'xcode-install', '~> 2.0'
+# Xcode install depends on gem which requires ruby 2
+# gem 'xcode-install', '~> 2.6'
 
 # Works around issues running with Ruby 2.4
 # https://github.com/rails/rails/issues/27450#issuecomment-269121335
