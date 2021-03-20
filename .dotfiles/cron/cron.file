@@ -9,8 +9,8 @@ SHELL=/usr/local/bin/fish
 PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
 
 # Nightly
-10  4    * * *     🍺__brew >/dev/null
-20  4    * * *     xccheck
+10  4    * * *     upstall brew >/dev/null
+20  4    * * *     xccheck >/dev/null
 30  4    * * *     bi --quiet
 *   */12 * * *     renew_certificates
 
