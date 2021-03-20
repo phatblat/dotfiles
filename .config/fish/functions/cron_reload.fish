@@ -1,5 +1,6 @@
-# Reload Cron file.
-function cron_reload
+function cron_reload \
+    --description='Reloads cron file.'
+
     crontab $HOME/.dotfiles/cron/cron.file
 
     if not status is-interactive

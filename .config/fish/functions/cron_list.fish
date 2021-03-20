@@ -1,4 +1,5 @@
-# Show Cron file.
-function cron_list
+function cron_list \
+    --description='Prints cron file.'
+
     crontab -l
 end
