@@ -19,7 +19,7 @@ PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
 01  *    * * *     fetch --quiet
 
 # Once, cron & upstall debugging
-00 7     * * *     env > ~/.dotfiles/cron/cronenv
+00 7     * * *     env | sort > ~/.dotfiles/cron/cronenv
 00 7     * * *     status_current > ~/.dotfiles/cron/cronstatus
 
 # --------------------------------------------------------
