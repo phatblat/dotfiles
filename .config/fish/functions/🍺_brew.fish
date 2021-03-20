@@ -34,6 +34,7 @@ function 🍺_brew \
         babel \
         bat \
         burl \
+        carthage \
         certbot \
         cloc \
         cloudfoundry/tap/cf-cli \
@@ -122,7 +123,6 @@ function 🍺_brew \
 
     set -l uninstall \
         android-sdk \
-        carthage \
         cask-repair \
         docker \
         docker-compose \

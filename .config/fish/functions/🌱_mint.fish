@@ -9,7 +9,6 @@ function 🌱_mint \
     # List of packages to upstall
     set -l packages \
         JamitLabs/Accio \
-        Carthage/Carthage \
         jkmathew/Assetizer \
         artemnovichkov/Carting \
         num42/icon-resizer-swift \
