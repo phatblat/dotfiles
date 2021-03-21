@@ -110,6 +110,7 @@
 .config/lxterminal/
 .config/menus/
 .config/pulse/
+.config/realm-cli/
 .config/realm/
 .config/session/
 .config/sublime-text-3/
