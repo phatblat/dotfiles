@@ -33,7 +33,6 @@
     },
     "gitlens.historyExplorer.enabled": true,
     "editor.dragAndDrop": false,
-    "window.zoomLevel": 0,
     "editor.multiCursorMergeOverlapping": false,
     "gitlens.views.fileHistory.enabled": true,
     "gitlens.views.lineHistory.enabled": true,
@@ -94,4 +93,5 @@
     "extensions.ignoreRecommendations": false,
     "workbench.colorTheme": "Amethyst Dark (Higher Contrast)",
     "docker.showStartPage": false,
+    "window.zoomLevel": 1,
 }
