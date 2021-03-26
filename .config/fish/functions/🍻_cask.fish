@@ -243,7 +243,7 @@ function 🍻_cask \
         echo
         echo 👵🏻 Outdated: $outdated_casks
         for outdated in $outdated_casks
-            brew cask reinstall --force $outdated
+            brew update --cask $outdated
         end
     end
 
@@ -266,7 +266,7 @@ function 🍻_cask \
         echo
         echo 🆕  Installing: $not_installed
         for new_cask in $not_installed
-            brew install --cask --force $new_cask
+            brew install --cask $new_cask
         end
     end
 
