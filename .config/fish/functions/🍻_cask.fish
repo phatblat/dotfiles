@@ -15,7 +15,8 @@ function 🍻_cask \
     echo
 
     set -l apps \
-        homebrew/cask-versions/adoptopenjdk8 \
+        adoptopenjdk/openjdk/adoptopenjdk16 \
+        adoptopenjdk8 \
         android-file-transfer \
         android-ndk \
         android-sdk \
