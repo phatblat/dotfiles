@@ -17,9 +17,7 @@ function 🌱_mint \
         LinusU/RasterizeXCAssets \
         krzysztofzablocki/Sourcery \
         yonaskolb/SwagGen \
-        nicklockwood/SwiftFormat \
         SwiftGen/SwiftGen \
-        realm/SwiftLint \
         MakeAWishFoundation/SwiftyMocky \
         thii/xcbeautify \
         yonaskolb/XcodeGen \

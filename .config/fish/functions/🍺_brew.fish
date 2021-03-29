@@ -96,6 +96,8 @@ function 🍺_brew \
         speedtest-cli \
         svn \
         kylef/formulae/swiftenv \
+        swiftformat \
+        swiftlint \
         task \
         tasksh \
         tailor \
