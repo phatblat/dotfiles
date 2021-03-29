@@ -91,7 +91,7 @@
         "-x"
     ],
     "extensions.ignoreRecommendations": false,
-    "workbench.colorTheme": "Amethyst Dark (Higher Contrast)",
+    "workbench.colorTheme": "Eva Light",
     "docker.showStartPage": false,
     "window.zoomLevel": 1,
 }
