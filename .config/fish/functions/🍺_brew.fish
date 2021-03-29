@@ -17,7 +17,6 @@ function 🍺_brew \
         mas \
         screenresolution \
         sourcekitten \
-        swiftplate \
         terminal-notifier \
         trash \
         xctool
@@ -140,6 +139,7 @@ function 🍺_brew \
         swiftformat \
         swiftgen \
         swiftlint \
+        swiftplate \
         vapor \
         vim
 
