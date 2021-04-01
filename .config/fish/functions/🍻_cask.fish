@@ -71,6 +71,7 @@ function 🍻_cask \
         tower \
         transmit \
         visual-studio-code \
+        vivaldi \
         vmware-fusion \
         vysor \
         zeplin \
