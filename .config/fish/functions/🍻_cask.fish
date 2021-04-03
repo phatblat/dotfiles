@@ -30,6 +30,7 @@ function 🍻_cask \
         cleanmymac \
         dash \
         deckset \
+        docker \
         elgato-stream-deck \
         firebase-admin \
         geekbench \

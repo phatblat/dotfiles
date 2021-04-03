@@ -45,6 +45,8 @@ function 🍺_brew \
         curl \
         diff-so-fancy \
         direnv \
+        docker \
+        docker-compose \
         f3 \
         findutils \
         firebase-cli \
@@ -125,9 +127,6 @@ function 🍺_brew \
     set -l uninstall \
         android-sdk \
         cask-repair \
-        docker \
-        docker-compose \
-        docker-machine \
         heroku/brew/heroku \
         hub \
         infer \
