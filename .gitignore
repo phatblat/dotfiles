@@ -130,6 +130,7 @@
 .dbvis/
 .did_show_opt_info
 .docker/
+.dotfiles/cron/cronenv
 .dropbox/
 .emulator_console_auth_token
 .envrc
