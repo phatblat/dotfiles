@@ -1,4 +1,5 @@
 function pipeline \
-        --description='Quick nav to pipeline plugin project'
-    pushd ~/dev/mdp/PipelineGradlePlugin
+    --description='Quick nav to pipeline plugin project'
+
+    nav ~/dev/mdp/PipelineGradlePlugin
 end

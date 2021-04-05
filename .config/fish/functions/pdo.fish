@@ -7,5 +7,12 @@ function pdo \
     # - pingidentity-docker-builds"
     # - pingidentity-server-profiles"
 
+    echo $project
+
+    if test -z $project
+        nav $PING_IDENTITY_DEVOPS_HOME
+        return
+    end
+
     nav $PING_IDENTITY_DEVOPS_HOME/$project
 end
