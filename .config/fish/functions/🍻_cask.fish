@@ -37,7 +37,7 @@ function 🍻_cask \
         githubpulse \
         gitkraken \
         google-chrome \
-        google-photos-backup-and-sync \
+        google-drive \
         gpg-suite \
         grammarly \
         hex-fiend \
