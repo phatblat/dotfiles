@@ -42,7 +42,6 @@ function 🍻_cask \
         gpg-suite \
         grammarly \
         hex-fiend \
-        ibm-cloud-cli \
         ios-console \
         istat-menus \
         iterm2 \
@@ -156,6 +155,7 @@ function 🍻_cask \
         fauxpas \
         hipchat \
         hyper \
+        ibm-cloud-cli \
         java9 \
         mono-mdk \
         opera-gx \
@@ -280,20 +280,6 @@ function 🍻_cask \
     # Post Install
     #
     # --------------------------------------------------------------------------
-
-    # IBM Cloud
-    if contains ibm-cloud-cli $outdated_casks
-        if test -f ~/.bashrc.bluemix_uninstall_bak
-            echo Cleaning up Bluemix backup file
-            diff ~/.bashrc ~/.bashrc.bluemix_uninstall_bak
-            rm -f ~/.bashrc.bluemix_uninstall_bak
-        end
-        if test -f ~/.zshrc.bluemix_uninstall_bak
-            echo Cleaning up Bluemix backup file
-            diff ~/.zshrc ~/.zshrc.bluemix_uninstall_bak
-            rm -f ~/.zshrc.bluemix_uninstall_bak
-        end
-    end
 
     echo
     echo 🛀🏻  Cleanup

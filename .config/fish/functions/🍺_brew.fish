@@ -36,7 +36,6 @@ function 🍺_brew \
         carthage \
         certbot \
         cloc \
-        cloudfoundry/tap/cf-cli \
         cmake \
         cmatrix \
         coreutils \
@@ -127,13 +126,14 @@ function 🍺_brew \
     set -l uninstall \
         android-sdk \
         cask-repair \
+        cloudfoundry/tap/cf-cli \
+        pivotal/tap/cloudfoundry-cli \
         heroku/brew/heroku \
         hub \
         infer \
         jenkins \
         md5shasum \
         minikube \
-        pivotal/tap/cloudfoundry-cli \
         python@2 \
         sloccount \
         sourcery \
