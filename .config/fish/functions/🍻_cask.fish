@@ -27,6 +27,7 @@ function 🍻_cask \
         brave-browser \
         charles \
         cheatsheet \
+        chef-workstation \
         cleanmymac \
         dash \
         deckset \
