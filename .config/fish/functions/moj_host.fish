@@ -13,7 +13,7 @@ function moj_host --description='Prints an emoji for the current host.'
             echo 🐧
         case imac octodec 'rundmg*'
             echo 🖥
-        case mini
+        case m1 mini
             echo ⌨️
         case '*'
             echo (string sub --length 1 (hostname))❓

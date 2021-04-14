@@ -6,7 +6,7 @@ function moj_user \
             echo 🙆🏻‍♂️
         case ben 'f*'
             echo 🚶
-        case benchatelain chatelain
+        case benchatelain chatelain zoltar
             echo 👨🏻‍🚀
         case phatblat
             echo 🎧
