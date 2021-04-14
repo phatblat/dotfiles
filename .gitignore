@@ -39,6 +39,7 @@
 .cf/
 .cisco/
 .classpath
+.cmake-js/
 .cocoapods/
 .conche/
 .config/.todoist-linux.json
