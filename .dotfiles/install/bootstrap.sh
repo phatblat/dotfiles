@@ -106,6 +106,8 @@ if ! command -v brew; then
     fi
 fi
 
+eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
+
 echo
 echo "Installing shell dependencies"
 brew install bat
