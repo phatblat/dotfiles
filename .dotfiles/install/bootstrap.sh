@@ -26,16 +26,15 @@ echo "Kernel: $kernel"
 
 # Ensure git is installed
 if ! command -v git; then
-    if [ $kernel = "Darwin" ]; then
+    if [ "$kernel" = "Darwin" ]; then
         # macOS
         # Install Xcode CLI tools for bundled git
-        xcode-select -p
-        xcode-select --install
+        xcode-select --print-path
 
         # Download manually?
         # https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2/Command_Line_Tools_macOS_10.14_for_Xcode_10_Beta_2.dmg
 
-        if [ $? -eq 0 ]; then
+        if ! xcode-select --install; then
             open https://developer.apple.com/downloads/
             echo "Click the Install button to install the Xcode Command-Line Tools, then re-run this script."
             exit 1
@@ -43,7 +42,7 @@ if ! command -v git; then
 
         # TODO: accept license
         # sudo xcodebuild -license accept
-    elif [ $kernel = "Linux" ]; then
+    elif [ "$kernel" = "Linux" ]; then
         if command -v apt; then
             # Use apt on ubuntu
             sudo apt install git
@@ -59,7 +58,7 @@ fi
 
 # Clone the .dotfiles repo into $HOME
 if [ "$PWD" != "$HOME" ]; then
-    pushd $HOME
+    pushd "$HOME"
 fi
 
 if git rev-parse --git-dir >/dev/null 2>&1; then
