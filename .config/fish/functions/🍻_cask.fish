@@ -183,15 +183,6 @@ function 🍻_cask \
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
 
-    # Verify the user owns the Caskroom dir.
-    set -l caskroom_dir (brew_home)/Caskroom
-    if test "$USER" != (fileowner $caskroom_dir)
-        if status is-login
-            echo "You must be the owner of "$caskroom_dir" to run this command."
-        end
-        return 1
-    end
-
     # if test '10.13' = (osversion)
     #     echo "Skipping Cask on highOS"
     #     return 1
