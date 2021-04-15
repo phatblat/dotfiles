@@ -16,6 +16,8 @@ function 🕸_npm \
 
     # Verify the user owns the node_modules dir.
     set -l global_modules /usr/local/lib/node_modules
+    mkdir /usr/local/lib/node_modules
+    popd
     if test $USER != (fileowner $global_modules)
         if status is-login
             echo "You must be the owner of "$global_modules" to run this command."
