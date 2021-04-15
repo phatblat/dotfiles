@@ -17,7 +17,13 @@ else if is_linux
     set --export ANDROID_SDK_ROOT $ANDROID_HOME
     set --export ANDROID_NDK_HOME
 end
-set --export ARCHFLAGS "-arch x86_64"
+
+if is_arm
+    set --export ARCHFLAGS "-arch arm64"
+else
+    set --export ARCHFLAGS "-arch x86_64"
+end
+
 set --export GPG_TTY (tty)
 set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GROOVY_HOME (brew_home groovy)/libexec
