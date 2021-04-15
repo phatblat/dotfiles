@@ -37,6 +37,7 @@
 .bundle/cache/
 .cache/
 .cf/
+.chef/
 .cisco/
 .classpath
 .cmake-js/
