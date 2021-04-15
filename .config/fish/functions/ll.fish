@@ -1,4 +1,6 @@
-# long list
-function ll --wraps ls
-    ls -o $argv
+function ll \
+    --description='Long list' \
+    --wraps ls
+
+    ls -l $argv
 end
