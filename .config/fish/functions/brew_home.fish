@@ -7,7 +7,11 @@ function brew_home \
             set --export BREW_HOME (brew --prefix)
         else
             if is_mac
-                set --export BREW_HOME /user/local
+                if is_arm
+                    set --export BREW_HOME /opt/homebrew
+                else
+                    set --export BREW_HOME /usr/local
+                end
             else if is_linux
                 set --export BREW_HOME /home/linuxbrew/.linuxbrew
             end
@@ -20,4 +24,3 @@ function brew_home \
         echo $BREW_HOME
     end
 end
-
