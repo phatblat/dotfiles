@@ -21,7 +21,6 @@ function 🍻_cask \
         adoptopenjdk/openjdk/adoptopenjdk16 \
         android-file-transfer \
         android-ndk \
-        android-sdk \
         anylist \
         back-in-time \
         banktivity \
@@ -139,6 +138,7 @@ function 🍻_cask \
 
     set -l uninstall \
         1password-cli \
+        android-sdk \
         android-studio \
         anka-flow \
         appium \
