@@ -60,7 +60,6 @@ function 🍻_cask \
         ngrok \
         oclint \
         paw \
-        periphery \
         rescuetime \
         rocket \
         screens \
