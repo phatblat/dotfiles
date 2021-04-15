@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.0'
+ruby '3.0.1'
 
 gem 'cocoapods', '~> 1.10'
 gem 'dotenv', '~> 2.7'
