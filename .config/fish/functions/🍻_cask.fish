@@ -164,7 +164,6 @@ function 🍻_cask \
         textexpander \
         things \
         timing \
-        homebrew/cask-drivers/twelvesouth-bassjump \
         ultimate \
         virtualbox \
         visual-studio \
@@ -229,8 +228,8 @@ function 🍻_cask \
     end
     if test -n "$to_uninstall"
         echo
-        echo 🗑   Uninstalling $to_uninstall
-        brew cask uninstall --force $to_uninstall
+        echo 🗑  Uninstalling $to_uninstall
+        brew uninstall --cask --force $to_uninstall
     end
 
     # --------------------------------------------------------------------------
@@ -246,7 +245,7 @@ function 🍻_cask \
     # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
     if test -n "$outdated_casks"
         echo
-        echo 👵🏻 Outdated: $outdated_casks
+        echo 👵🏻  Outdated: $outdated_casks
         for outdated in $outdated_casks
             brew update --cask $outdated
         end
