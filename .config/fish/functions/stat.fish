@@ -1,5 +1,5 @@
-function stat \
-    --description='Wrapper for stat' \
+function ___stat \
+    --description='Disabled wrapper for stat' \
     --wraps='stat' \
     --argument-names argname
 

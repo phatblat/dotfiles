@@ -150,8 +150,10 @@ end
 # Extra paths for budspencer omf theme
 # https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#budspencer
 if test (uname -s) = "Darwin"
-  set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
-  set -gx PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
+    if is_coreutils
+        set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
+        set -gx PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
+    end
 end
 
 # MongoDB Realm

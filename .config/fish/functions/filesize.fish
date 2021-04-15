@@ -8,9 +8,13 @@ function filesize \
     end
 
     if is_mac
-        # macOS args: -c '%s'
-        # coreutils: --format=%s
-        stat --format=%s $file
+        if is_coreutils
+            # coreutils: --format=%s
+            stat --format=%s $file
+        else
+            # macOS args: -c '%s'
+            stat -c '%s' $file
+        end
     else if is_linux
         stat --format=%s $file
     end

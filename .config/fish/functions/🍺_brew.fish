@@ -38,7 +38,6 @@ function 🍺_brew \
         cloc \
         cmake \
         cmatrix \
-        coreutils \
         cowsay \
         ctags \
         curl \
@@ -128,6 +127,7 @@ function 🍺_brew \
         cask-repair \
         cloudfoundry/tap/cf-cli \
         pivotal/tap/cloudfoundry-cli \
+        coreutils \
         heroku/brew/heroku \
         hub \
         infer \

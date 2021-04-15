@@ -25,6 +25,7 @@ function savecerts --argument-names hostname port
 
     # FIXME: File is missing immediately after command
     #sleep 1 # File isn't written immediately
+    # if is_coreutils
     #stat -f%z $hostname.dir
     #echo $hostname.der (stat -f%z $hostnane.der) bytes
 
