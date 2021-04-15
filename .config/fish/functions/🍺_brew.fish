@@ -70,6 +70,7 @@ function 🍺_brew \
         kotlin \
         holgerbrandl/tap/kscript \
         less \
+        libarchive \
         libssh2 \
         libtool \
         make \

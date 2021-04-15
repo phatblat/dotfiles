@@ -47,6 +47,7 @@ function 🐍_pip \
         awscli \
         bumpversion \
         lizard \
+        opendrop \
         powerline-status \
         Pygments \
         pylint \
