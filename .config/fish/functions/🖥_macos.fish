@@ -1,22 +1,18 @@
 function 🖥_macos \
     --description='Manage macOS system updates'
 
-    echo "🖥 macOS"
+    echo "🖥  macOS"
     echo
 
-    echo "Updating Mac App Store apps"
-
-    echo using mas (mas version)
-    mas account
-    mas outdated
-    mas upgrade
+    echo "🌍  Rosetta 2"
+    sudo softwareupdate --install-rosetta
 
     echo
-    echo "⌛️ Recently installed macOS system updates"
+    echo "⌛️  Recently installed macOS system updates"
     softwareupdate --history
 
     echo
-    echo "🔎 Checking macOS system updates"
+    echo "🔎  Checking macOS system updates"
 
     softwareupdate --list
 
@@ -40,7 +36,7 @@ function 🖥_macos \
     # No new software available.
 
     echo
-    echo "⬆️ Updating macOS system software"
+    echo "⬆️  Updating macOS system software"
 
     # Download all updates before install
     softwareupdate --download --all --no-scan

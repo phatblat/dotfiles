@@ -72,10 +72,11 @@ function ⏫_upstall \
     ⬆️_upmodule 🧰_sdkman    "🧰 SDKman"     sdk        --nosdk  $modules_to_run
     ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy   $modules_to_run
     ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs   $modules_to_run
-    ⬆️_upmodule ▶️_powerline  "▶️ Powerline"   powerline  --nopl   $modules_to_run
+    ⬆️_upmodule ▶️_powerline  "▶️ Powerline"  powerline  --nopl   $modules_to_run
     ⬆️_upmodule 🗒_vundle    "🗒 Vundle"     vundle     --novi   $modules_to_run
     ⬆️_upmodule 📝_textmate  "📝 TextMate"   textmate   --notm   $modules_to_run
-    ⬆️_upmodule ⚛️_apm        "⚛️ APM"         apm        --noap   $modules_to_run
+    ⬆️_upmodule ⚛️_apm        "⚛️ APM"        apm        --noap   $modules_to_run
     ⬆️_upmodule 🆚_vscode    "🆚 VS Code"    vscode     --novs   $modules_to_run
+    ⬆️_upmodule 📺_mas       "📺 mas"        mas        --noas   $modules_to_run
     ⬆️_upmodule 🖥_macos     "🖥 macOS"      macos      --noos   $modules_to_run
 end
