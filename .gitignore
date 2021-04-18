@@ -34,6 +34,7 @@
 .bash_history
 .bash_sessions/
 .bluemix/
+.build/
 .bundle/cache/
 .cache/
 .cf/
@@ -213,6 +214,7 @@
 .rubygems/
 .sdkman/archives/
 .sdkman/candidates/
+.sdkman/contrib/
 .sdkman/src/
 .sdkman/var/
 .settings
