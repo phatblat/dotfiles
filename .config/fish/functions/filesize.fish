@@ -12,8 +12,8 @@ function filesize \
             # coreutils: --format=%s
             stat --format=%s $file
         else
-            # macOS args: -c '%s'
-            stat -c '%s' $file
+            # macOS args: -f '%z'
+            stat -f '%z' $file
         end
     else if is_linux
         stat --format=%s $file
