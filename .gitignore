@@ -299,6 +299,7 @@ dev
 dev.bak
 examples.desktop
 gradlew.bat
+javasharedresources/
 lib/
 logs/
 markdown/
