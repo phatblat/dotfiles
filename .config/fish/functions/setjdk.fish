@@ -12,7 +12,6 @@ function setjdk \
     if test -L $sdkman_symlink
         set java_version (readlink $sdkman_symlink)
         set path $sdkman_java_base/$java_version
-        echo $path
     end
 
     if test -z $java_version
@@ -48,7 +47,7 @@ function setjdk \
 
     # JAVA_HOME
     set --export --global JAVA_HOME $path
-    echo JAVA_HOME: $JAVA_HOME
+    # echo JAVA_HOME: $JAVA_HOME
 
     # JAVA_OPTS
     set --local common_options "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
