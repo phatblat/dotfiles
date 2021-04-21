@@ -230,6 +230,7 @@
 .subversion/
 .sudo_as_admin_successful
 .swiftenv/
+.swiftpm/
 .synx/
 .task/
 .thunderbird/
