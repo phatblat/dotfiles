@@ -6,6 +6,11 @@ function whichjdk
         if string match --entire --quiet /Library/Java/JavaVirtualMachines $JAVA_HOME
             # System JVMs
             /usr/libexec/java_home $argv
+        else
+            # SDKman?
+            if test -d $sdkman_prefix/candidates/java/current
+                ll $sdkman_prefix/candidates/java/current
+            end
         end
 
         java -version
