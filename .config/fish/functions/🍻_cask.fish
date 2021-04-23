@@ -35,6 +35,7 @@ function 🍻_cask \
         docker \
         elgato-stream-deck \
         firebase-admin \
+        franz \
         geekbench \
         githubpulse \
         gitkraken \
