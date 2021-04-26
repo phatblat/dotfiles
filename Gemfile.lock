@@ -59,7 +59,7 @@ GEM
     dotenv (2.7.6)
     e2mmap (0.1.0)
     escape (0.0.4)
-    ethon (0.13.0)
+    ethon (0.14.0)
       ffi (>= 1.15.0)
     ffi (1.15.0)
     fourflusher (2.3.1)
