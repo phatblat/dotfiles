@@ -148,8 +148,8 @@ end
 
 # Extra paths for budspencer omf theme
 # https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#budspencer
-if test (uname -s) = "Darwin"
-    if is_coreutils
+if is_mac
+    and if is_coreutils
         set --export --global PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
         set --export --global PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
     end
