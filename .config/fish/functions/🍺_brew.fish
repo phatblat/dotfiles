@@ -131,6 +131,7 @@ function 🍺_brew \
         coreutils \
         heroku/brew/heroku \
         hub \
+        ilmbase \
         infer \
         jenkins \
         md5shasum \
