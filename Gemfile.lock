@@ -80,7 +80,7 @@ GEM
       optimist (~> 3.0.0)
       paint (~> 2.1)
     manpages (0.6.1)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.4)
     molinillo (0.6.6)
     nanaimo (0.3.0)
