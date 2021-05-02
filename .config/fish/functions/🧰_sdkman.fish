@@ -24,6 +24,7 @@ function 🧰_sdkman \
         git checkout $sdkman_prefix
     end
 
+    sdk env install
     sdk selfupdate
     sdk current
     sdk update
