@@ -60,7 +60,6 @@ function 🍺_brew \
         goaccess \
         gradle \
         groovy \
-        imagemagick \
         jabba \
         jenv \
         jfrog-cli-go \
@@ -132,10 +131,12 @@ function 🍺_brew \
         heroku/brew/heroku \
         hub \
         ilmbase \
+        imagemagick \
         infer \
         jenkins \
         md5shasum \
         minikube \
+        openexr \
         python@2 \
         sloccount \
         sourcery \
