@@ -73,6 +73,7 @@ function 🍺_brew \
         libssh2 \
         libtool \
         make \
+        markdownlint-cli \
         maven \
         mint \
         mtr \
