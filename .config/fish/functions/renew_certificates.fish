@@ -1,6 +1,8 @@
-function renew_certificates --description='Renews certificates on servers.'
+function renew_certificates \
+    --description='Renews certificates on servers.'
+
     # Only run on server
-    if not string match --quiet --entire mini (hostname)
+    if not string match --quiet --entire m1 (hostname)
         return 1
     end
 
@@ -11,4 +13,3 @@ function renew_certificates --description='Renews certificates on servers.'
 
     sudo certbot renew
 end
-
