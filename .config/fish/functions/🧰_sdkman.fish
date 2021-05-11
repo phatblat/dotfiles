@@ -25,6 +25,7 @@ function 🧰_sdkman \
     end
 
     sdk env install
+    sdk env
     sdk selfupdate
     sdk current
     sdk update
