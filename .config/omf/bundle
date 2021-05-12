@@ -2,6 +2,7 @@ package fish_logo
 package foreign-env
 package nvm
 package sdk
+package sudope
 theme agnoster
 theme bobthefish
 theme budspencer
