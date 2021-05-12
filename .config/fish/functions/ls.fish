@@ -7,5 +7,5 @@ function ls \
     # CLICOLOR in the environment.  (See lscolors.)
 
     set -lx LC_ALL C
-    command ls -Gp $argv
+    command ls -p $argv
 end
