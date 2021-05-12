@@ -67,7 +67,8 @@ set -g theme_display_git_dirty_verbose yes
 set -g theme_display_git_stashed_verbose yes
 set -g theme_display_git_default_branch yes
 set -g theme_git_default_branches master main
-set -g theme_git_worktree_support yes
+# https://github.com/oh-my-fish/theme-bobthefish/issues/249
+set -g theme_git_worktree_support no
 set -g theme_use_abbreviated_branch_name yes
 set -g theme_display_vagrant yes
 set -g theme_display_docker_machine yes
