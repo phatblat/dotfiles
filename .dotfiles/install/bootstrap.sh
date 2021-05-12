@@ -105,7 +105,9 @@ if ! command -v brew; then
     fi
 fi
 
-eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
+# brew shellenv won't override a current PATH
+# eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
+export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
 
 echo
 echo "Installing shell dependencies"
