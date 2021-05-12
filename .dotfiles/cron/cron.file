@@ -6,7 +6,7 @@
 
 # Run commands in Fish shell environment as most are functions.
 PATH=/opt/homebrew/bin/fish:/usr/local/bin:/usr/sbin:/usr/bin:/bin
-SHELL=$(which fish)
+SHELL=(which fish)
 
 # Nightly
 10  4    * * *     upstall brew >/dev/null
