@@ -20,11 +20,7 @@
         "suppressFileNotUnderSourceControlWarning": false,
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true,
-        "suppressUpdateNotice": true,
-        "suppressWelcomeNotice": true
+        "suppressNoRepositoryWarning": false
     },
     "gitlens.keymap": "chorded",
     "[markdown]": {
@@ -35,7 +31,6 @@
     "editor.dragAndDrop": false,
     "editor.multiCursorMergeOverlapping": false,
     "gitlens.views.fileHistory.enabled": true,
-    "gitlens.views.lineHistory.enabled": true,
     "explorer.confirmDragAndDrop": false,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -77,12 +72,11 @@
     "[html]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
-    "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "java.semanticHighlighting.enabled": true,
     "C_Cpp.updateChannel": "Insiders",
-    "editor.renameOnType": true,
-    "terminal.integrated.shell.osx": "/usr/local/bin/fish",
+    "editor.linkedEditing": true,
+    "terminal.integrated.defaultProfile": "/usr/local/bin/fish",
     "java.project.importOnFirstTimeStartup": "automatic",
     "workbench.iconTheme": "vscode-icons",
     "solargraph.bundlerPath": "/usr/local/bin/bundle",
@@ -94,4 +88,5 @@
     "workbench.colorTheme": "Acid Purple (Classic)",
     "docker.showStartPage": false,
     "window.zoomLevel": 1,
+    "editor.fontFamily": "'Source Code Pro for Powerline', 'Courier New', monospace",
 }
