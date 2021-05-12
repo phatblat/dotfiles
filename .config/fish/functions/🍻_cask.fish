@@ -17,10 +17,7 @@ function 🍻_cask \
     set -l apps \
         # https://github.com/Homebrew/homebrew-cask-versions/blob/master/Casks/adoptopenjdk8.rb
         homebrew/cask-versions/adoptopenjdk8 \
-        # https://github.com/AdoptOpenJDK/homebrew-openjdk/blob/master/Casks/adoptopenjdk16.rb
-        adoptopenjdk/openjdk/adoptopenjdk16 \
         android-file-transfer \
-        android-ndk \
         anylist \
         back-in-time \
         banktivity \
@@ -138,6 +135,9 @@ function 🍻_cask \
 
     set -l uninstall \
         1password-cli \
+        # https://github.com/AdoptOpenJDK/homebrew-openjdk/blob/master/Casks/adoptopenjdk16.rb
+        adoptopenjdk/openjdk/adoptopenjdk16 \
+        android-ndk \
         android-sdk \
         android-studio \
         anka-flow \
