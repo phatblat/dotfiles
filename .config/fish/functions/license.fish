@@ -1,5 +1,5 @@
 function license \
-        --description='Writes out LICENSE.md file, adds link to readme and commits changes.'
+    --description='Writes out LICENSE.md file, adds link to readme and commits changes.'
 
     set -l year (date "+%Y")
     echo -n "The MIT License (MIT)
