@@ -59,7 +59,6 @@ set -xg fish_ambiguous_width 2
 
 # OMF bobthefish theme options
 # https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#bobthefish
-
 set -g theme_display_git yes
 set -g theme_display_git_dirty yes
 set -g theme_display_git_untracked yes
@@ -93,6 +92,11 @@ set -g theme_color_scheme gruvbox
 set -g fish_prompt_pwd_dir_length 0
 set -g theme_project_dir_length 1
 set -g theme_newline_cursor no
+
+# OMF danger theme options
+# https://github.com/oh-my-fish/theme-dangerous#readme
+set -U fish_key_bindings fish_vi_key_bindings
+set -U dangerous_nogreeting
 
 # fish_user_paths
 set --global fish_user_paths \
