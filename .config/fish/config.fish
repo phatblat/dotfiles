@@ -48,7 +48,7 @@ end
 if status is-interactive
     # Set up Xcode DerivedData RAM disk
     if is_octodec
-        derived_data
+        derived_data quiet
     end
 
     # Powerline

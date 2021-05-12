@@ -1,15 +1,15 @@
 function derived_data \
     --description='Spins up a RAM disk for Xcode DerivedData' \
-    --argument-names argname
+    --argument-names quiet
 
-    # if test -z argname
-    #     echo 'Usage: derived_data [argname]'
-    #     return 1
-    # end
-
+    set -l output
     if test -d /Volumes/DerivedData
-        diskutil list DerivedData
+        set output (diskutil list DerivedData)
     else
-        ramdisk 10 DerivedData
+        set output (ramdisk 10 DerivedData)
+    end
+
+    if test -z "$quiet"
+        list $output
     end
 end
