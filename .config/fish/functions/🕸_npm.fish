@@ -46,7 +46,7 @@ function 🕸_npm \
         tslint \
         ubolt
 
-    set -l installed_packages (npm list -g --depth=0)
+    set -l installed_packages (npm list --global --depth=0)
     # Example output:
     # /usr/local/lib
     # ├── fast-cli@0.2.1
@@ -57,15 +57,15 @@ function 🕸_npm \
     # string match "*ralio*" $installed_packages[5]
 
     echo "Updating NPM"
-    npm install npm@latest -g
+    npm install npm@latest --global
 
     # Uninstall
-    npm uninstall -g \
+    npm uninstall --global \
         ngrok \
         realm-object-server
 
     # Update
-    npm update -g
+    npm update --global
 
     # TODO: Refactor to only install missing packages
     npm install --global $global_packages
