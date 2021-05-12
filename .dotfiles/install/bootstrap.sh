@@ -105,17 +105,29 @@ if ! command -v brew; then
     fi
 fi
 
-# brew shellenv won't override a current PATH
-# eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
-export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
+if test -z $HOMEBREW_PREFIX; then
+    if -d /opt/homebrew; then
+        HOMEBREW_PREFIX=/opt/homebrew
+    else
+        HOMEBREW_PREFIX=/usr/local
+    fi
+fi
 
-echo
-echo "Installing shell dependencies"
-brew install bat
-brew install coreutils
-brew install diff-so-fancy
-brew install direnv
+# Only install tools if the 
+brew_owner=$(ls -ld $HOMEBREW_PREFIX | cut -d' ' -f3)
+if test $brew_owner = (whoami); then
+    # brew shellenv won't override a current PATH
+    # eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
+    export PATH=$HOMEBREW_PREFIX/bin:$PATH
 
-echo
-echo "Installing Fish Shell"
-brew install fish
+    echo
+    echo "Installing shell dependencies"
+    brew install bat
+    brew install coreutils
+    brew install diff-so-fancy
+    brew install direnv
+
+    echo
+    echo "Installing Fish Shell"
+    brew install fish
+fi
