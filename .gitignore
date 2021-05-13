@@ -63,6 +63,7 @@
 .config/Code/machineid
 .config/Code/rapid_render.json
 .config/Code/storage.json
+.config/GitHub\ActionsService/
 .config/Rygel/
 .config/Slack/
 .config/Todoist/
