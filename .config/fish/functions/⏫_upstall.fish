@@ -10,12 +10,13 @@ function ⏫_upstall \
     end
     date_iso8601 >$last_ran_file
 
-    # Disabled by default: apm fisherman textmate vundle xcode
+    # Disabled by default: apm textmate vundle xcode
     set -l all_modules \
         ruby \
         brew \
-        mint \
+        fisher \
         omf \
+        mint \
         sdkman \
         pip \
         npm \
@@ -66,16 +67,16 @@ function ⏫_upstall \
     ⬆️_upmodule 📦_apt       "📦 APT"        apt        --noapt  $modules_to_run
     ⬆️_upmodule 🍺_brew      "🍺 Homebrew"   brew       --nobr   $modules_to_run
     ⬆️_upmodule 🍻_cask      "🍻 Cask"       cask       --noca   $modules_to_run
+    ⬆️_upmodule 🐟_fisher    "🐟 Fisher"     fisher     --nofm   $modules_to_run
     ⬆️_upmodule 🌱_mint      "🌱 Mint"       mint       --nomt   $modules_to_run
     ⬆️_upmodule 🐠_omf       "🐠 oh-my-fish" omf        --noomf  $modules_to_run
-    ⬆️_upmodule 🐟_fisherman "🐟 Fisherman"  fisherman  --nofm   $modules_to_run
     ⬆️_upmodule 🧰_sdkman    "🧰 SDKman"     sdk        --nosdk  $modules_to_run
     ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy   $modules_to_run
     ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs   $modules_to_run
     ⬆️_upmodule ▶️_powerline  "▶️ Powerline"  powerline  --nopl   $modules_to_run
     ⬆️_upmodule 🗒_vundle    "🗒 Vundle"     vundle     --novi   $modules_to_run
     ⬆️_upmodule 📝_textmate  "📝 TextMate"   textmate   --notm   $modules_to_run
-    ⬆️_upmodule ⚛️_apm        "⚛️ APM"        apm        --noap   $modules_to_run
+    ⬆️_upmodule ⚛️_apm       "⚛️ APM"        apm        --noap   $modules_to_run
     ⬆️_upmodule 🆚_vscode    "🆚 VS Code"    vscode     --novs   $modules_to_run
     ⬆️_upmodule 📺_mas       "📺 mas"        mas        --noas   $modules_to_run
     ⬆️_upmodule 🖥_macos     "🖥 macOS"      macos      --noos   $modules_to_run
