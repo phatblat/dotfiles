@@ -14,14 +14,23 @@ function nv \
 
     set -l nvm_file .node-version
 
-    if test -n "$node_version"
-        cat $node_version >$nvm_file
+    if test -z $node_version
+        # Print version
+        if test -s $nvm_file
+            cat $nvm_file
+        else
+            node --version
+        end
         return
     end
 
-    if test -s $nvm_file
+    if test $node_version = "clear"
+        echo -n 🔥
+        rm -v $nvm_file
+    else if test $node_version = "set"
+        node --version >$nvm_file
         cat $nvm_file
-    else
-        node --version
+    else if test -n "$node_version"
+        cat $node_version >$nvm_file
     end
 end
