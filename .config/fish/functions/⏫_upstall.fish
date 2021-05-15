@@ -19,6 +19,7 @@ function ⏫_upstall \
         mint \
         sdkman \
         pip \
+        nvm \
         npm \
         powerline \
         vscode
@@ -72,6 +73,7 @@ function ⏫_upstall \
     ⬆️_upmodule 🐠_omf       "🐠 oh-my-fish" omf        --noomf  $modules_to_run
     ⬆️_upmodule 🧰_sdkman    "🧰 SDKman"     sdk        --nosdk  $modules_to_run
     ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy   $modules_to_run
+    ⬆️_upmodule 🕸_nvm       "🕸 NVM"        nvm        --nojs   $modules_to_run
     ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs   $modules_to_run
     ⬆️_upmodule ▶️_powerline  "▶️ Powerline"  powerline  --nopl   $modules_to_run
     ⬆️_upmodule 🗒_vundle    "🗒 Vundle"     vundle     --novi   $modules_to_run
