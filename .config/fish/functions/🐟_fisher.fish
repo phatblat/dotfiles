@@ -1,10 +1,10 @@
 # Sequencing
 # - After: brew (fish)
 # - Requires Fish Shell
-function 🐟_fisherman \
-    --description='Updates Fisherman and the plugins it manages. Installs if missing.'
+function 🐟_fisher \
+    --description='Updates Fisher and the plugins it manages. Installs if missing.'
 
-    echo "🐟 Fisherman - https://fisherman.github.io"
+    echo "🐟 Fisher - https://github.com/jorgebucaran/fisher"
     echo
 
     set -l plugins \
@@ -14,28 +14,19 @@ function 🐟_fisherman \
         nvm \
         z
 
-    set -l fisher_dir ~/dev/fish/fisher
-    set -l function_source ../../../dev/fish/fisher/fisher.fish
+    set -l repo_url git@github.com:oh-my-fish/oh-my-fish.git
+    set -l base_dir ~/dev/shell/fish
+    set -l fisher_dir $base_dir/fisher
+    set -l function_function $fisher_dir/functions/fisher.fish
     set -l function_symlink ~/.config/fish/functions/fisher.fish
 
     # Create parent directories
-    createdirs ~/dev/fish
+    createdirs $base_dir
 
-    if not test -e $fisher_dir
-        # Extracted from install script
-        # https://github.com/fisherman/fisherman#install (git.io/fisher)
-        set url "git@github.com:fisherman/fisherman.git"
-        git clone $url $fisher_dir
+    clone_or_pull $fisher_dir $repo_url
 
-        ln -fsv $function_source $function_symlink
-        echo "Fisherman installed -> $fisher_dir"
-    else
-        echo "Updating Fisherman"
-        # TODO: Replace with (fisher update)?
-        pushd $fisher_dir
-        and git pull
-        popd
-    end
+    source $function_function \
+        && fisher install jorgebucaran/fisher
 
     fisher --version
 
@@ -47,8 +38,9 @@ function 🐟_fisherman \
 
     # Update installed plugins
     fisher update
+
     # Restore the symlink to fisher.fish
-    git checkout ~/.config/fish/functions/fisher.fish
+    # git checkout ~/.config/fish/functions/fisher.fish
 
     # Install any missing plugins
     set -l installed (fisher ls -l)
