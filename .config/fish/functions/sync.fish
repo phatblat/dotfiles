@@ -18,5 +18,5 @@ function sync \
 
     bra
 
-    echo "prompt to delete any tracking branches that ahve lost their remotes, gone in bra output"
+    echo "prompt to delete any tracking branches that have lost their remotes, gone in bra output"
 end
