@@ -191,18 +191,18 @@ set --export NVM_DIR "$HOME/.nvm"
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI "vim" # vi vim
 set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
-set --export CLI_WAIT_FLAG "-f"
-set --export GUI_WAIT_FLAG "-w"
+set --export WAIT_FLAG_CLI "-f"
+set --export WAIT_FLAG_GUI "-w"
 
 # EDITOR or VISUAL, only one defined
 # Use EDITOR for non-console users (su someoneelse) and SSH connections
-if not type -q $EDITOR_GUI; or not is_console_user; or is_ssh
+if is_ssh; or not is_console_user
     set --export EDITOR $EDITOR_CLI
-    set --export WAIT_FLAG $CLI_WAIT_FLAG
+    set --export WAIT_FLAG $WAIT_FLAG_CLI
     set --erase VISUAL
 else
     set --export VISUAL $EDITOR_GUI
-    set --export WAIT_FLAG $GUI_WAIT_FLAG
+    set --export WAIT_FLAG $WAIT_FLAG_GUI
     set --erase EDITOR
 end
 
