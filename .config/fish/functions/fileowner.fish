@@ -8,14 +8,7 @@ function fileowner \
     end
 
     if is_mac
-        if is_coreutils
-            # coreutils: --format=%U
-            stat --format=%U $file
-        else
-            # macOS args: -c '%U'
-            # stat -c '%U' $file
-            ls -ld $file | string split --no-empty --fields 3 ' '
-        end
+        ls -ld $file | string split --no-empty --fields 3 ' '
     else if is_linux
         stat --format=%U $file
     end
