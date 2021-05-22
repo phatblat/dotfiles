@@ -14,7 +14,7 @@ function fileowner \
         else
             # macOS args: -c '%U'
             # stat -c '%U' $file
-            ls -ld $file | cut -d' ' -f3
+            ls -ld $file | string split --no-empty --fields 3 ' '
         end
     else if is_linux
         stat --format=%U $file
