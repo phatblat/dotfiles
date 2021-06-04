@@ -89,4 +89,5 @@
     "docker.showStartPage": false,
     "window.zoomLevel": 1,
     "editor.fontFamily": "'Source Code Pro for Powerline', 'Courier New', monospace",
+    "editor.copyWithSyntaxHighlighting": false,
 }
