@@ -106,16 +106,19 @@ if ! command -v brew; then
 fi
 
 if test -z $HOMEBREW_PREFIX; then
-    if -d /opt/homebrew; then
+    if test -d /opt/homebrew; then
         HOMEBREW_PREFIX=/opt/homebrew
     else
         HOMEBREW_PREFIX=/usr/local
     fi
 fi
 
-# Only install tools if the 
-brew_owner=$(ls -ld $HOMEBREW_PREFIX | cut -d' ' -f3)
-if test $brew_owner = (whoami); then
+# Only install tools if the user owns the homebrew prefix (not relevant for /usr/local as that stays owned by root)
+# brew_owner_id=$(stat -f '%u' $HOMEBREW_PREFIX)
+# if test $brew_owner_id = (id -u); then
+
+# Only install if user is admin with sudo access
+if stat -v; then
     # brew shellenv won't override a current PATH
     # eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
     export PATH=$HOMEBREW_PREFIX/bin:$PATH
