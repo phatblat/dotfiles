@@ -118,7 +118,7 @@ fi
 # if test $brew_owner_id = (id -u); then
 
 # Only install if user is admin with sudo access
-if stat -v; then
+if sudo -v; then
     # brew shellenv won't override a current PATH
     # eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
     export PATH=$HOMEBREW_PREFIX/bin:$PATH
