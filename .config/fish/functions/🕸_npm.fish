@@ -33,6 +33,7 @@ function 🕸_npm \
         gitmoji-cli \
         gulp \
         jshint \
+        json5 \
         lynn-cli \
         markdownlint \
         mongodb-realm-cli \
