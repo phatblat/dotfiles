@@ -1,12 +1,15 @@
 # Toggle wait
 # Given no arguments, switches the state of the editor ($VISUAL) wait flag.
 # Otherwise sets it to the given state (on / off)
-function toggle_wait --argument-names state
+function toggle_wait \
+    --description='Toggles the editor wait flag.' \
+    --argument-names state
+
     # Empty toggles the current state.
     if test -z $state
         if test -z $VISUAL
-            and string match --ignore-case '*'$WAIT_FLAG $EDITOR >/dev/null
-            or string match --ignore-case '*'$WAIT_FLAG $VISUAL >/dev/null
+                and string match --ignore-case '*'$WAIT_FLAG $EDITOR >/dev/null
+                or string match --ignore-case '*'$WAIT_FLAG $VISUAL >/dev/null
             echo -n "Wait mode enabled, disabling"
             set state off
         else
@@ -18,11 +21,11 @@ function toggle_wait --argument-names state
     switch $state
         case on ON On
             if test -z $VISUAL
-                set --global --export EDITOR "$EDITOR_CLI $CLI_WAIT_FLAG"
+                set --global --export EDITOR "$EDITOR_CLI $WAIT_FLAG_CLI"
                 or true # FIXME: set command returns non-zero even when sucessful
                 echo " (EDITOR: $EDITOR)"
             else
-                set --global --export VISUAL "$EDITOR_GUI $GUI_WAIT_FLAG"
+                set --global --export VISUAL "$EDITOR_GUI $WAIT_FLAG_GUI"
                 or true
                 echo " (VISUAL: $VISUAL)"
             end
