@@ -61,6 +61,7 @@ function 🍻_cask \
         rescuetime \
         rocket \
         screens \
+        simpholders \
         softraid \
         sublime-text \
         sublime-merge \
