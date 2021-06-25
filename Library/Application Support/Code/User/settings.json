@@ -69,9 +69,6 @@
     "editor.glyphMargin": false,
     "editor.folding": false,
     "java.requirements.JDK11Warning": false,
-    "[html]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
-    },
     "editor.fontLigatures": true,
     "java.semanticHighlighting.enabled": true,
     "C_Cpp.updateChannel": "Insiders",
@@ -90,4 +87,11 @@
     "window.zoomLevel": 1,
     "editor.fontFamily": "'Source Code Pro for Powerline', 'Courier New', monospace",
     "editor.copyWithSyntaxHighlighting": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[html]": {
+      "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[ruby]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
