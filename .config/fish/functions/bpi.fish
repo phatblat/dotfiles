@@ -1,4 +1,5 @@
-# Run pod install through Bundler.
-function bpi
-    bundle exec "pod install $argv"
+function bpi \
+    --description='Run pod install through Bundler.'
+
+    bundle exec pod install $argv
 end
