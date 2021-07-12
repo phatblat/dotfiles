@@ -23,10 +23,6 @@
         "suppressNoRepositoryWarning": false
     },
     "gitlens.keymap": "chorded",
-    "[markdown]": {
-        "editor.wordWrap": "off",
-        "editor.quickSuggestions": true
-    },
     "gitlens.historyExplorer.enabled": true,
     "editor.dragAndDrop": false,
     "editor.multiCursorMergeOverlapping": false,
@@ -91,8 +87,17 @@
     "[html]": {
       "editor.defaultFormatter": "HookyQR.beautify"
     },
+    "[lic]": {
+      "files.insertFinalNewline": false,
+      "files.trimFinalNewlines": true,
+    },
+    "[markdown]": {
+        "editor.wordWrap": "off",
+        "editor.quickSuggestions": true
+    },
     "[ruby]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "security.workspace.trust.untrustedFiles": "open"
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.trimTrailingWhitespace": true
 }
