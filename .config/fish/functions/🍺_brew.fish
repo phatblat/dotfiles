@@ -18,8 +18,7 @@ function 🍺_brew \
         screenresolution \
         sourcekitten \
         terminal-notifier \
-        trash \
-        xctool
+        trash
 
     # linux-only formulae
     set -l formulae_linux
@@ -146,7 +145,8 @@ function 🍺_brew \
         swiftlint \
         swiftplate \
         vapor \
-        vim
+        vim \
+        xctool
 
     # --------------------------------------------------------------------------
     #
