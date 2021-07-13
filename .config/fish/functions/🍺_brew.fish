@@ -142,7 +142,6 @@ function 🍺_brew \
         sourcery \
         swiftformat \
         swiftgen \
-        swiftlint \
         swiftplate \
         vapor \
         vim \
