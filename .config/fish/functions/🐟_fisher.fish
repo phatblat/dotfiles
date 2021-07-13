@@ -14,19 +14,20 @@ function 🐟_fisher \
         nvm \
         z
 
-    set -l repo_url git@github.com:oh-my-fish/oh-my-fish.git
+    set -l repo_url git@github.com:jorgebucaran/fisher.git
     set -l base_dir ~/dev/shell/fish
-    set -l fisher_dir $base_dir/fisher
-    set -l function_function $fisher_dir/functions/fisher.fish
+    set -l local_dir $base_dir/fisher
+    set -l fisher_function $local_dir/functions/fisher.fish
     set -l function_symlink ~/.config/fish/functions/fisher.fish
 
     # Create parent directories
     createdirs $base_dir
 
-    clone_or_pull $fisher_dir $repo_url
+    clone_or_pull $local_dir $repo_url
 
-    source $function_function \
-        && fisher install jorgebucaran/fisher
+    ln -Ffs $fisher_function $function_symlink \
+        && source $function_symlink \
+        || return
 
     fisher --version
 
@@ -64,7 +65,7 @@ function 🐟_fisher \
     if test -n "$not_installed"
         for plugin in $not_installed
             echo "Installing $plugin"
-            fisher $plugin
+            fisher install $plugin
         end
     end
 
