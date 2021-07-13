@@ -8,7 +8,7 @@ function clone_or_pull \
     end
 
     if not test -d $folder_name
-        git clone "$git_url" $folder_name
+        git clone $git_url $folder_name
 
         # Checkout branch
         if test -n "$branch"
@@ -20,7 +20,7 @@ function clone_or_pull \
         pushd $folder_name
         if test -n "$branch" -a "$branch" != (current_branch)
             echo "WARNING: $folder_name currently has the "(current_branch) \
-                " branch checked out (!=$branch)"
+                 " branch checked out (!=$branch)"
         end
         git pull
         popd

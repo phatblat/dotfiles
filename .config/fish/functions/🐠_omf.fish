@@ -9,17 +9,20 @@ function 🐠_omf \
     echo "🐠 oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"
     echo
 
-    set -l omf_dir ~/dev/fish/oh-my-fish
+    set -l repo_url git@github.com:oh-my-fish/oh-my-fish.git
+    set -l base_dir ~/dev/shell/fish
+    set -l local_dir $base_dir/oh-my-fish
 
     # Create parent directories
-    createdirs ~/dev/fish
+    createdirs $base_dir
 
-    clone_or_pull $omf_dir git@github.com:oh-my-fish/oh-my-fish.git
+    clone_or_pull $local_dir $repo_url
 
     # Install omf if necessary
     if not functions --query omf
-        pushd $omf_dir
+        pushd $local_dir
         bin/install --offline
+        # fish install --path=~/.local/share/omf --config=~/.config/omf
         popd
     end
 
