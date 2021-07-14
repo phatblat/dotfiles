@@ -76,6 +76,7 @@ function 🍻_cask \
         vmware-fusion \
         vysor \
         zeplin \
+        zoom \
         homebrew/cask-drivers/zsa-wally
 
     set -l quicklook_plugins \
