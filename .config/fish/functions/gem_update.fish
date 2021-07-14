@@ -3,7 +3,7 @@
 # This command will fail (even with sudo) without --bindir being directed
 # do a user-owned dir.
 function gem_update --argument-names gem_name
-    if test -z gem_name ^/dev/null
+    if test -z gem_name
         echo "Usage: gem_update gem_name ..."
         return 1
     end
