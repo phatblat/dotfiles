@@ -1,5 +1,5 @@
 function pi \
-    --desciption='Run pod install outside of Bundler.'
+    --description='Run pod install outside of Bundler.'
 
     pod install $argv
 end
