@@ -126,3 +126,14 @@ source $ZSH/oh-my-zsh.sh
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/phatblat/.sdkman"
 [[ -s "/Users/phatblat/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/phatblat/.sdkman/bin/sdkman-init.sh"
+
+function gw {
+    if [ -e ./gradlew ]; then
+        ./gradlew $argv
+        return
+    fi
+
+    echo "There is no Gradle wrapper in the current dir."
+    gradle $argv
+}
+
