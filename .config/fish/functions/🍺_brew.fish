@@ -44,6 +44,7 @@ function 🍺_brew \
         direnv \
         docker \
         docker-compose \
+        emojify \
         f3 \
         findutils \
         firebase-cli \
