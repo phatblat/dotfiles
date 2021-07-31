@@ -6,7 +6,6 @@
 
 # Configure the Fish shell environment as most are functions.
 PATH=/opt/homebrew/bin:/usr/local/bin:/usr/sbin:/usr/bin:/bin
-SHELL=/usr/local/bin/fish
 
 # Nightly
 10  4    * * *     upstall brew >/dev/null
