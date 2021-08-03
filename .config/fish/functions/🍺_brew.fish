@@ -90,6 +90,7 @@ function 🍺_brew \
         rename \
         rlwrap \
         ruby \
+        scrcpy \
         shellcheck \
         sl \
         socat \
