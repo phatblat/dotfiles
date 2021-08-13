@@ -1,1 +1,1 @@
-/Users/ben/dev/shell/fish/fisher/functions/fisher.fish
+/Users/phatblat/dev/shell/fish/fisher/functions/fisher.fish
