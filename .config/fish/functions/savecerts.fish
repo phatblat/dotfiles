@@ -10,7 +10,7 @@ function savecerts --argument-names hostname port
         set port 443
     end
 
-    #set -l output (eval $OPENSSL_PATH s_client -connect $hostname:$port -showcerts </dev/null) #^/dev/null)
+    #set -l output (eval $OPENSSL_PATH s_client -connect $hostname:$port -showcerts </dev/null) #2>/dev/null)
     showcerts $hostname $port >$hostname.pem
 
     # TODO: Capture stderr to catch message

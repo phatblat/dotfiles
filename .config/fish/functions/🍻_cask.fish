@@ -198,7 +198,7 @@ function 🍻_cask \
 
     echo 🚰  Updating formulae
     brew update
-    set -l installed (brew list --casks -1 ^/dev/null)
+    set -l installed (brew list --casks -1 2>/dev/null)
     echo
     echo ➡️ (moj_host)  Installed: $installed
 
@@ -234,7 +234,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Update installed casks
-    set -l outdated_casks (brew cask outdated ^/dev/null)
+    set -l outdated_casks (brew cask outdated 2>/dev/null)
     # Example: charles (4.1.1) != 4.1.2
     # Cut everything but the first column
     # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)

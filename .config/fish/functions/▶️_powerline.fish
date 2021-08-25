@@ -7,7 +7,7 @@
 # - https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
 
 # function fish_prompt
-#     <path/to/powerline-shell.py> $status --shell bare ^/dev/null
+#     <path/to/powerline-shell.py> $status --shell bare 2>/dev/null
 # end
 #
 # Sequencing

@@ -37,7 +37,7 @@ function emoji --argument-names char_name
         set char_name $argv[1]
 
         # Fetch character
-        set -l emoji (emoji_map $char_name ^/dev/null)
+        set -l emoji (emoji_map $char_name 2>/dev/null)
 
         if test -n "$emoji"
             set emoji_found $emoji_found $emoji

@@ -10,5 +10,5 @@ function provisioning_print --argument-names profile_path
         return 2
     end
 
-    security cms -D -i $profile_path ^/dev/null
+    security cms -D -i $profile_path 2>/dev/null
 end

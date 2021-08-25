@@ -1,6 +1,6 @@
 # Sets window/tab title.
 function title --argument-names name
-    if test -z $name ^/dev/null
+    if test -z $name 2>/dev/null
         echo "Usage: title Tab Name"
         return 1
     end

@@ -2,8 +2,10 @@
 # Binstubs are installed to /usr/local/bin alongside Homebrew binaries.
 # This command will fail (even with sudo) without --bindir being directed
 # do a user-owned dir.
-function gem_install --argument-names gem_name
-    if test -z gem_name ^/dev/null
+function gem_install \
+    --argument-names gem_name
+
+    if test -z gem_name 2>/dev/null
         echo "Usage: gem_install gem_name ..."
         return 1
     end
