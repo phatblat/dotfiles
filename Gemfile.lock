@@ -45,11 +45,11 @@ GEM
       netrc (~> 0.11)
       public_suffix
       typhoeus (~> 1.0)
-    cocoapods-deintegrate (1.0.4)
+    cocoapods-deintegrate (1.0.5)
     cocoapods-downloader (1.4.0)
     cocoapods-plugins (1.0.0)
       nap
-    cocoapods-search (1.0.0)
+    cocoapods-search (1.0.1)
     cocoapods-trunk (1.5.0)
       nap (>= 0.8, < 2.0)
       netrc (~> 0.11)
@@ -99,7 +99,7 @@ GEM
       racc (~> 1.4)
     optimist (3.0.1)
     paint (2.2.1)
-    parallel (1.20.1)
+    parallel (1.20.2)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     public_suffix (4.0.6)
@@ -109,7 +109,7 @@ GEM
     reverse_markdown (2.0.0)
       nokogiri
     rexml (3.2.5)
-    rubocop (1.19.0)
+    rubocop (1.19.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -118,7 +118,7 @@ GEM
       rubocop-ast (>= 1.9.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.9.1)
+    rubocop-ast (1.11.0)
       parser (>= 3.0.1.1)
     ruby-macho (1.4.0)
     ruby-progressbar (1.11.0)
@@ -175,4 +175,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.2.25
+   2.2.26
