@@ -99,5 +99,6 @@
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "security.workspace.trust.untrustedFiles": "open",
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "python.languageServer": "Microsoft"
 }
