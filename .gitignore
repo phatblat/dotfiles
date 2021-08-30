@@ -176,6 +176,7 @@
 .m2/repository/
 .marathon/
 .markdownNavigator/
+.matplotlib/
 .mcreator/
 .minecraft/
 .mint/
@@ -219,6 +220,8 @@
 .sdkman/contrib/
 .sdkman/src/
 .sdkman/var/
+.serverless/
+.serverlessrc
 .settings
 .settings/
 .slocdata/
