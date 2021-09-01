@@ -155,6 +155,7 @@
 .idea/
 .install4j
 .ipfs/
+.ipython/
 .iterm2/
 .iterm2_shell_integration.zsh
 .itmstransporter/
@@ -164,6 +165,7 @@
 .jenkins/
 .jenv/
 .junique/
+.keras/
 .konan/
 .kscript/
 .lesshst
