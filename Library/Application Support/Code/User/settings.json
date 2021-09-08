@@ -80,7 +80,7 @@
     "extensions.ignoreRecommendations": false,
     "workbench.colorTheme": "Acid Purple (Classic)",
     "docker.showStartPage": false,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "editor.fontFamily": "'Source Code Pro for Powerline', 'Courier New', monospace",
     "editor.copyWithSyntaxHighlighting": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -100,5 +100,6 @@
     },
     "security.workspace.trust.untrustedFiles": "open",
     "files.trimTrailingWhitespace": true,
-    "python.languageServer": "Microsoft"
+    "python.languageServer": "Microsoft",
+    "jupyter.askForKernelRestart": false
 }
