@@ -1,5 +1,5 @@
 function big \
-    --description='Force Bundler to use the Gemfile in the current dir.'
+    --description='Install gem bundle using the local Gemfile.'
 
     bi --gemfile=Gemfile
 end
