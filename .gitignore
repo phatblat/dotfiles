@@ -31,6 +31,7 @@
 .atom/
 .audacity-data/
 .aws/credentials
+.azurefunctions/
 .bash_history
 .bash_sessions/
 .bluemix/
