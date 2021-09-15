@@ -29,6 +29,8 @@ function 🍺_brew \
         asciinema \
         autoconf \
         automake \
+        azure-cli \
+        azure/functions/azure-functions-core-tools@3
         babel \
         bat \
         burl \
