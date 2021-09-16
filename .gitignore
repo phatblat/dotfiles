@@ -28,9 +28,11 @@
 .anka/
 .antigen/
 .anyconnect
+.aspnet/
 .atom/
 .audacity-data/
 .aws/credentials
+.azure-functions-core-tools/
 .azurefunctions/
 .bash_history
 .bash_sessions/
