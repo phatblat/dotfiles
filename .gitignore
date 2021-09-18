@@ -33,6 +33,7 @@
 .audacity-data/
 .aws/credentials
 .azure-functions-core-tools/
+.azure/
 .azurefunctions/
 .bash_history
 .bash_sessions/
