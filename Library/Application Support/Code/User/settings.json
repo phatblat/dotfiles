@@ -107,5 +107,6 @@
         "sha256": "9f053fe5893bda74e6fcbaa5847129f07d97757e1ca107940f92b3c8890a3a95",
         "allowed": true
       }
-    ]
+    ],
+    "tabnine.experimentalAutoImports": true
 }
