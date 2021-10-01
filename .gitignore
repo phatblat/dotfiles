@@ -156,6 +156,7 @@
 .groovy/
 .heroku/
 .hyper_plugins/
+.idapro/
 .idea/
 .install4j
 .ipfs/
