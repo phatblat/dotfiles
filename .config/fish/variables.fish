@@ -117,7 +117,7 @@ set -U dangerous_nogreeting
 # fish_user_paths
 set --global fish_user_paths \
     /usr/local/sbin \
-    (brew_home ruby)/bin \
+    # (brew_home ruby)/bin \
     (brew_home sqlite)/bin \
     $fish_user_paths
 
