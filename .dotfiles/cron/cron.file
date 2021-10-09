@@ -9,17 +9,17 @@ PATH=/opt/homebrew/bin:/usr/local/bin:/usr/sbin:/usr/bin:/bin
 SHELL=/usr/local/bin/fish
 
 # Nightly
-10  4    * * *     upstall brew >/dev/null
-30  4    * * *     bi --quiet
-*   */12 * * *     renew_certificates
+#10  4    * * *     upstall brew >/dev/null
+#30  4    * * *     bi --quiet
+#*   */12 * * *     renew_certificates
 
 # Hourly
-00  *    * * *     cron_reload
-01  *    * * *     fetch --quiet
+#00  *    * * *     cron_reload
+#01  *    * * *     fetch --quiet
 
 # Once, cron & upstall debugging
-*   *    * * *     env | sort > ~/.dotfiles/cron/cronenv
-00  7    * * *     status_current > ~/.dotfiles/cron/cronstatus
+#*   *    * * *     env | sort > ~/.dotfiles/cron/cronenv
+#00  7    * * *     status_current > ~/.dotfiles/cron/cronstatus
 
 # --------------------------------------------------------
 # * * * * *     command to be executed
