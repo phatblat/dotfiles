@@ -5,10 +5,6 @@ function masd \
     set -l base_dir ~/dev/mas-cli
     set -l local_dir $base_dir/mas
 
-    if test -d $base_dir/mas
-        rmdir $base_dir/mas ^| echo /dev/null
-    end
-
     # Create parent directories
     createdirs $base_dir
 
