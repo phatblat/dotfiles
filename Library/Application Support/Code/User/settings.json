@@ -100,7 +100,6 @@
     },
     "security.workspace.trust.untrustedFiles": "open",
     "files.trimTrailingWhitespace": true,
-    "python.languageServer": "Microsoft",
     "jupyter.askForKernelRestart": false,
     "java.imports.gradle.wrapper.checksums": [
       {
@@ -108,5 +107,7 @@
         "allowed": true
       }
     ],
-    "tabnine.experimentalAutoImports": true
+    "tabnine.experimentalAutoImports": true,
+    "python.languageServer": "Microsoft",
+    "redhat.telemetry.enabled": true
 }
