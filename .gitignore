@@ -218,6 +218,7 @@
 .raliorc
 .raliorc/
 .rbenv/
+.redhat/
 .repo_.gitconfig.json
 .repoconfig/
 .rest-client/
