@@ -30,6 +30,7 @@ function 🍻_cask \
         dash \
         deckset \
         docker \
+        elgato-control-center \
         elgato-stream-deck \
         firebase-admin \
         franz \
