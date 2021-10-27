@@ -132,6 +132,8 @@ function 🍺_brew \
         cloudfoundry/tap/cf-cli \
         pivotal/tap/cloudfoundry-cli \
         coreutils \
+        docker \
+        docker-compose \
         heroku/brew/heroku \
         hub \
         ilmbase \
