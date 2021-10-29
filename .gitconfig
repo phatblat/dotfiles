@@ -89,7 +89,7 @@
     stripLeadingSymbols = true
     useUnicodeRuler = true
 [gpg]
-	program = /usr/local/MacGPG2/bin/gpg2
+	program = /usr/local/bin/gpg
 [pull]
 	rebase = true
 [advice]
