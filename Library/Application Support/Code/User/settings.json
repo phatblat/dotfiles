@@ -108,6 +108,5 @@
       }
     ],
     "tabnine.experimentalAutoImports": true,
-    "python.languageServer": "Microsoft",
     "redhat.telemetry.enabled": true
 }
