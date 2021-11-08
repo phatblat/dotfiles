@@ -61,6 +61,7 @@ function 🍻_cask \
         paw \
         rescuetime \
         rocket \
+        safari-technology-preview \
         screens \
         simpholders \
         softraid \
