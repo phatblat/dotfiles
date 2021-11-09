@@ -1,9 +1,9 @@
-# Installs a Ruby gem at the system level (requires sudo permissions).
 # Binstubs are installed to /usr/local/bin alongside Homebrew binaries.
 # This command will fail (even with sudo) without --bindir being directed
 # do a user-owned dir.
 function gem_install \
-    --argument-names gem_name
+    --argument-names gem_name \
+    --description='Installs a Ruby gem at the system level (requires sudo permissions).'
 
     if test -z gem_name 2>/dev/null
         echo "Usage: gem_install gem_name ..."
@@ -16,5 +16,5 @@ function gem_install \
         set --erase argv
     end
 
-    gem install --force $gem_name --bindir (brew_home)/bin $argv
+    sudo gem install --force $gem_name --bindir (brew_home)/bin $argv
 end

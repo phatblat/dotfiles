@@ -1,4 +1,5 @@
-# Install Bundler with the proper bindir.
-function binstall
-    gem install bundler --bindir (brew_home)/bin $argv
+function binstall \
+    --description='Install Bundler with the proper bindir.'
+
+    sudo gem install bundler --bindir (brew_home)/bin $argv
 end

@@ -9,9 +9,7 @@ function 💎_rubygems \
     echo "💎 Updating Ruby Gems"
     echo
 
-    # TODO: Install ruby using homebrew
     # TODO: Check ownership of gemdir, require admin user only if using system ruby
-    # FIXME: Fix write permission on /usr/local/Cellar/ruby/2.4.1_1/bin/
     # Only admins can manage gems installed at the system level.
     if user_is_admin
         # Workaround to no access to /usr/bin on Sierra
@@ -23,29 +21,6 @@ function 💎_rubygems \
         gem_update
 
         # Bundler
-        # gem_install bundler -v "~> 1.0"
-        gem_install bundler -v "~> 2.0"
-
-        # Fix for "Your bundle is locked to rake (12.0.0), but that version could not be found in any of the sources listed in your Gemfile."
-        # http://stackoverflow.com/questions/41757144/your-bundle-is-locked-to-rake-12-0-0-but-that-version-could-not-be-found-in-a
-        gem_install rubygems-bundler
-
-        # Ensure write permissions
-        chmod u+w (brew_home ruby)/bin/*
-        gem regenerate_binstubs
+        binstall
     end
-
-    pushd ~
-
-    # Ensure bundler is installed
-    if not type -q bundle
-        error "Bundler is not installed"
-        return 1
-    end
-
-    # Update user gems
-    bundle outdated
-    bundle update
-
-    popd
 end
