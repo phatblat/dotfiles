@@ -246,23 +246,6 @@ function 🍺_brew \
         end
     end
 
-    return
-
-    # --------------------------------------------------------------------------
-    #
-    # MacVIM
-    #
-    # --------------------------------------------------------------------------
-
-    # MacVIM installed after all formulae because of issues with powerline in vim when python is updated
-    # https://github.com/editorconfig/editorconfig/wiki/FAQ#when-using-the-vim-plugin-i-got-e887-sorry-this-command-is-disabled-the-pythons-site-module-could-not-be-loaded
-
-    if contains python $outdated_formulae
-        # reinstall doesn't support options?
-        brew uninstall macvim
-        and brew install macvim --with-override-system-vim
-    end
-
     # --------------------------------------------------------------------------
     #
     # Post Install
@@ -276,34 +259,6 @@ function 🍺_brew \
 
         # Update system git config
         git lfs install --system
-    end
-
-    # Ruby
-    set -l desired_ruby 2.5.1
-    set -l previous_version 2.5.0_2
-    set -l ruby_versions (brew_versions ruby)
-    if not test $desired_ruby = (brew_active_version ruby)
-        echo
-        echo 💎  Updating Ruby to $desired_ruby
-        if contains -- $desired_ruby $ruby_versions
-            brew switch ruby $desired_ruby
-            brew link --overwrite ruby
-            brew unlink ruby; and brew link --overwrite ruby
-
-            # May need to purge old gems
-            # http://stackoverflow.com/questions/9434002/how-to-solve-ruby-installation-is-missing-psych-error#answer-43843417
-            set -l path (brew_home)/lib/ruby/gems/$previous_version/extensions
-            if test "$USER" != (fileowner $path)
-                echo "Fixing permissions on $path"
-                sudo chown -R $USER (brew_home)/lib/ruby
-                and rm -rf (brew_home)/lib/ruby/gems/
-                and brew reinstall ruby
-                # Postinstall shows permission errors
-                or brew postinstall ruby
-            end
-        else
-            echo "Ruby $desired_ruby is not installed."
-        end
     end
 
     # Check whether custom shells are registered
