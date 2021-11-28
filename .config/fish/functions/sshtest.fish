@@ -1,4 +1,4 @@
-# Tests SSH connection to GitHub.
-function sshtest
+function sshtest \
+    --description='Tests SSH connection to GitHub.'
     ssh -T git@github.com
 end
