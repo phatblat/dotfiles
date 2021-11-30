@@ -8,18 +8,10 @@ function 🌱_mint \
 
     # List of packages to upstall
     set -l packages \
-        JamitLabs/Accio \
         jkmathew/Assetizer \
         artemnovichkov/Carting \
         num42/icon-resizer-swift \
         mono0926/LicensePlist \
-        JamitLabs/ProjLint \
-        LinusU/RasterizeXCAssets \
-        krzysztofzablocki/Sourcery \
-        yonaskolb/SwagGen \
-        SwiftGen/SwiftGen \
-        MakeAWishFoundation/SwiftyMocky \
-        thii/xcbeautify \
         yonaskolb/XcodeGen \
         ChargePoint/xcparse
 
