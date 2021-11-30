@@ -7,14 +7,10 @@ function masrm \
     end
 
     set --local binary /usr/local/bin/mas
-    set --local framework /usr/local/Frameworks/MasKit.framework
 
     if not test -f $binary
         error No mas found at $binary
         return 2
-    else if not test -d $framework
-        error No MasKit.framework found at $framework
-        return 3
     end
 
     # Packges are installed by root
