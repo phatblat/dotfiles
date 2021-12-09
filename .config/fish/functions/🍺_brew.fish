@@ -60,6 +60,7 @@ function 🍺_brew \
         gnupg \
         go-jira \
         goaccess \
+        golang \
         gradle \
         groovy \
         jabba \
