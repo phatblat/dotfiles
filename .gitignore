@@ -185,6 +185,7 @@
 .m2/repository/
 .marathon/
 .markdownNavigator/
+.masv
 .matplotlib/
 .mcreator/
 .minecraft/
