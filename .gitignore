@@ -41,6 +41,7 @@
 .build/
 .bundle/cache/
 .cache/
+.cargo/
 .cf/
 .chef/
 .cisco/
@@ -226,6 +227,7 @@
 .rest-client/
 .rnd
 .rubygems/
+.rustup/
 .sdkman/archives/
 .sdkman/candidates/
 .sdkman/contrib/
