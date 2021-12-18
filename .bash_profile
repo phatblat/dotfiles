@@ -17,3 +17,4 @@ test -f '/usr/local/etc/bash_profile.ping-devops' && source '/usr/local/etc/bash
 
 # Source PingIdentity Files Alias - Added with 'ping-devops config' on Mon Mar  1 14:49:34 MST 2021
 sourcePingIdentityFiles
+. "$HOME/.cargo/env"
