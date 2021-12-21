@@ -160,6 +160,10 @@ if test -d "$ANDROID_HOME"
         $PATH
 end
 
+if test -d $HOME/.cargo/bin
+    fish_add_path $HOME/.cargo/bin
+end
+
 set --export --global CHROME_DEPOT_TOOLS $HOME/dev/chromium/depot_tools
 if test -d "$CHROME_DEPOT_TOOLS"
     set --export --global PATH $PATH \
