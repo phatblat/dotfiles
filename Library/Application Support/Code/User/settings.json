@@ -109,5 +109,6 @@
     ],
     "tabnine.experimentalAutoImports": true,
     "redhat.telemetry.enabled": true,
-    "java.home": "/Users/phatblat/.sdkman/candidates/java/11.0.11.hs-adpt"
+    "java.home": "/Users/phatblat/.sdkman/candidates/java/11.0.11.hs-adpt",
+    "git.autofetch": true
 }
