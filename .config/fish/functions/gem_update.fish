@@ -16,5 +16,5 @@ function gem_update \
         set --erase argv
     end
 
-    sudo gem update --force $gem_name --bindir (brew_home)/bin $argv
+    gem update --force $gem_name --bindir (brew_home)/bin $argv
 end

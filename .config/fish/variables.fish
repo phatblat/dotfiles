@@ -117,7 +117,6 @@ set -U dangerous_nogreeting
 # fish_user_paths
 set --global fish_user_paths \
     /usr/local/sbin \
-    # (brew_home ruby)/bin \
     (brew_home sqlite)/bin \
     $fish_user_paths
 
@@ -128,6 +127,10 @@ set --export --global PATH \
     (brew_home curl)/bin \
     (brew_home python)/libexec/bin \
     $PATH
+
+if test -d (brew_home ruby)/bin
+    fish_add_path (brew_home ruby)/bin
+end
 
 if test -d (brew_home)/sbin
     set --export --global PATH $PATH \
