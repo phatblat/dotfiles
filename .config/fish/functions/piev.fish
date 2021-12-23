@@ -1,5 +1,5 @@
 function piev \
     --description='Install pods for Example app with verbose output.'
 
-    pie --verbose
+    bundle exec pie --verbose
 end

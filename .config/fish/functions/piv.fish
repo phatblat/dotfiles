@@ -1,4 +1,5 @@
-# Install pods with verbose output.
-function piv
-    pod install --verbose $argv
+function piv \
+    --description='Install pods with verbose output.'
+
+    bundle exec pod install --verbose $argv
 end

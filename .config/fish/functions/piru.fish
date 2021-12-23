@@ -1,4 +1,5 @@
-# Install pods after updating repos.
-function piru
-    pod install --repo-update $argv
+function piru \
+    --description='Install pods after updating repos.'
+
+    bundle exec pod install --repo-update $argv
 end
