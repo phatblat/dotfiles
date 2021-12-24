@@ -257,6 +257,7 @@
 .vault-token
 .vim/
 .viminfo
+.vs-kubernetes/
 .vscode-cpptools/
 .vscode/
 .wget-hsts
