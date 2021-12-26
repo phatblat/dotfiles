@@ -76,6 +76,7 @@ function 🍺_brew \
         make \
         markdownlint-cli \
         maven \
+        minikube \
         mint \
         mtr \
         nginx \
@@ -147,7 +148,6 @@ function 🍺_brew \
         jenkins \
         jfrog-cli-go \
         md5shasum \
-        minikube \
         phatblat/services/pbjenkins \
         python@2 \
         sloccount \
