@@ -86,7 +86,6 @@ function 🍺_brew \
         nvm \
         packer \
         pacvim \
-        phatblat/services/pbjenkins \
         pkg-config \
         python \
         radare2 \
@@ -145,6 +144,7 @@ function 🍺_brew \
         md5shasum \
         minikube \
         openexr \
+        phatblat/services/pbjenkins \
         python@2 \
         sloccount \
         sourcery \
