@@ -57,8 +57,8 @@ function 🍺_brew \
         git-lfs \
         gnu-sed \
         gnupg \
+        go \
         goaccess \
-        golang \
         gradle \
         groovy \
         jabba \
@@ -84,7 +84,7 @@ function 🍺_brew \
         packer \
         pacvim \
         pkg-config \
-        python \
+        python@3.9 \
         radare2 \
         redis \
         rename \
