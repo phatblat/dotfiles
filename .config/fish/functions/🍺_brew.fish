@@ -212,7 +212,7 @@ function 🍺_brew \
     end
     if test -n "$to_uninstall"
         echo 🗑️  Uninstalling $to_uninstall
-        brew uninstall $to_uninstall
+        brew uninstall --formulae $to_uninstall
     end
 
     # --------------------------------------------------------------------------
