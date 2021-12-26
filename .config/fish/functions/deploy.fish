@@ -7,5 +7,4 @@ function deploy \
     end
 
     bundle exec jekyll build
-    octopress deploy
 end
