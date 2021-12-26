@@ -127,12 +127,19 @@ function 🍺_brew \
     # Error: No available formula with the name "macvim --with-override-system-vim"
     set -l no_clean_formulae macvim ruby
 
+    # FIXME: Can't uninstall dependencies:
+    # - coreutils
+    # - openexr
+    # Error: Refusing to uninstall /usr/local/Cellar/openexr/3.1.3 and /usr/local/Cellar/coreutils/9.0
+    # because they are required by aom, asdf, ffmpeg, jpeg-xl, libheif and scrcpy, which are currently installed.
+    # You can override this and force removal with:
+    # brew uninstall --ignore-dependencies coreutils docker docker-compose openexr
+
     set -l uninstall \
         android-sdk \
         cask-repair \
         cloudfoundry/tap/cf-cli \
         pivotal/tap/cloudfoundry-cli \
-        coreutils \
         docker \
         docker-compose \
         heroku/brew/heroku \
@@ -143,7 +150,6 @@ function 🍺_brew \
         jenkins \
         md5shasum \
         minikube \
-        openexr \
         phatblat/services/pbjenkins \
         python@2 \
         sloccount \
