@@ -57,7 +57,6 @@ function 🍺_brew \
         git-lfs \
         gnu-sed \
         gnupg \
-        go-jira \
         goaccess \
         golang \
         gradle \
@@ -97,7 +96,6 @@ function 🍺_brew \
         socat \
         sonar-scanner \
         speedtest-cli \
-        svn \
         kylef/formulae/swiftenv \
         swiftformat \
         swiftlint \
@@ -140,6 +138,7 @@ function 🍺_brew \
         pivotal/tap/cloudfoundry-cli \
         docker \
         docker-compose \
+        go-jira \
         heroku/brew/heroku \
         hub \
         ilmbase \
@@ -152,6 +151,7 @@ function 🍺_brew \
         python@2 \
         sloccount \
         sourcery \
+        subversion \
         swiftgen \
         swiftplate \
         vapor \
