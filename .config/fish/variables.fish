@@ -5,6 +5,7 @@
 # Exported variables in fish shell.
 #
 
+set -g simple_ass_prompt_greeting "Fish Shell version $version"
 set --export KERNEL (uname)
 
 # Upper case
