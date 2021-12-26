@@ -148,7 +148,6 @@ function 🍺_brew \
         python@2 \
         sloccount \
         sourcery \
-        swiftformat \
         swiftgen \
         swiftplate \
         vapor \
