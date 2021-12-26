@@ -45,8 +45,6 @@ function 🍺_brew \
         curl \
         diff-so-fancy \
         direnv \
-        docker \
-        docker-compose \
         emojify \
         f3 \
         findutils \
@@ -66,7 +64,6 @@ function 🍺_brew \
         groovy \
         jabba \
         jenv \
-        jfrog-cli-go \
         jq \
         jsonlint \
         jsonpp \
@@ -148,6 +145,7 @@ function 🍺_brew \
         imagemagick \
         infer \
         jenkins \
+        jfrog-cli-go \
         md5shasum \
         minikube \
         phatblat/services/pbjenkins \
