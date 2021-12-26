@@ -15,10 +15,7 @@ function 🍻_cask \
     echo
 
     set -l apps \
-        # https://github.com/Homebrew/homebrew-cask-versions/blob/master/Casks/adoptopenjdk8.rb
-        homebrew/cask-versions/adoptopenjdk8 \
         android-file-transfer \
-        anylist \
         back-in-time \
         banktivity \
         bettertouchtool \
@@ -67,6 +64,7 @@ function 🍻_cask \
         sublime-text \
         sublime-merge \
         teacode \
+        temurin8 \
         textmate \
         the-unarchiver \
         thingsmacsandboxhelper \
@@ -134,16 +132,20 @@ function 🍻_cask \
         homebrew/cask-fonts/font-source-code-pro-for-powerline \
         homebrew/cask-fonts/font-ubuntu-mono-derivative-powerline
 
-    set -l all_casks $apps $quicklook_plugins #$fonts
+    set -l all_casks $apps #$quicklook_plugins #$fonts
 
     set -l uninstall \
         1password-cli \
+        # https://github.com/Homebrew/homebrew-cask-versions/blob/master/Casks/adoptopenjdk8.rb
+        homebrew/cask-versions/adoptopenjdk8 \
+        adoptopenjdk/openjdk/adoptopenjdk8 \
         # https://github.com/AdoptOpenJDK/homebrew-openjdk/blob/master/Casks/adoptopenjdk16.rb
         adoptopenjdk/openjdk/adoptopenjdk16 \
         android-ndk \
         android-sdk \
         android-studio \
         anka-flow \
+        anylist \
         appium \
         atom \
         battery-guardian \
@@ -173,7 +175,8 @@ function 🍻_cask \
         ultimate \
         virtualbox \
         visual-studio \
-        xmarks-safari
+        xmarks-safari \
+        $quicklook_plugins
 
     # --------------------------------------------------------------------------
     #
