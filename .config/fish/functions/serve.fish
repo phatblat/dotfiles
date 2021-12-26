@@ -7,5 +7,5 @@ function serve \
         pushd $reflog_content
     end
 
-    env (cat .env | xargs) jekyll serve --open-url $argv
+    env (cat .env | xargs) bundle exec jekyll serve --open-url $argv
 end

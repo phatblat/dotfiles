@@ -2,5 +2,5 @@ function servedraft \
         --wraps=jekyll \
         --description='Runs Jekyll server showing drafts.'
 
-    serve --draft $argv
+    bundle exec serve --draft $argv
 end

@@ -6,6 +6,6 @@ function deploy \
         pushd $reflog_content
     end
 
-    jekyll build
+    bundle exec jekyll build
     octopress deploy
 end
