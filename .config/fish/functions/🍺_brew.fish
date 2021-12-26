@@ -187,7 +187,7 @@ function 🍺_brew \
 
     echo 🚰  Updating formulae
     brew update
-    set -l installed (brew list --full-name)
+    set -l installed (brew list --formulae --full-name)
     echo
     echo ➡️ (moj_host)  Installed: $installed
 
