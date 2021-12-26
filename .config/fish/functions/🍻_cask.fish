@@ -267,7 +267,7 @@ function 🍻_cask \
         echo
         echo 🆕  Installing: $not_installed
         for new_cask in $not_installed
-            brew install --cask $new_cask
+            brew install --cask --force $new_cask
         end
     end
 
