@@ -27,6 +27,7 @@ function 🍺_brew \
     set -l formulae \
         artifactory \
         asciinema \
+        asdf \
         autoconf \
         automake \
         azure-cli \
