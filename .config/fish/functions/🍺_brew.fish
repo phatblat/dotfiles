@@ -31,7 +31,7 @@ function 🍺_brew \
         autoconf \
         automake \
         azure-cli \
-        azure/functions/azure-functions-core-tools@3
+        azure/functions/azure-functions-core-tools@3 \
         babel \
         bat \
         burl \
