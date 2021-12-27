@@ -2,10 +2,12 @@ function 🖥_macos \
     --description='Manage macOS system updates'
 
     echo "🖥  macOS"
-    echo
 
-    echo "🌍  Rosetta 2"
-    sudo softwareupdate --install-rosetta
+    if is_arm
+        echo
+        echo "🌍  Rosetta 2"
+        sudo softwareupdate --install-rosetta
+    end
 
     echo
     echo "⌛️  Recently installed macOS system updates"
