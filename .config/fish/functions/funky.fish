@@ -1,9 +1,10 @@
-# Searches for functions with the given string in their definition.
-#
 # Options (ls style):
 # - `-C` `--column`     Force multi-column output; this is the default when output is to a terminal.
 # - `-l `--long`     List in long format.
-function funky --argument-names query option
+function funky \
+    --description='Searches for functions with the given string in their definition.' \
+    --argument-names query option
+
     if test -z $query
         echo Usage: funky $query
         return 1
@@ -40,6 +41,10 @@ function funky --argument-names query option
                 echo $funcs\n | column -x
                 return
         end
+    end
+
+    if test -z $funcs
+        return 1
     end
 
     list $funcs | column -x
