@@ -11,7 +11,6 @@ function 🐟_fisher \
         laughedelic/fish_logo \
         get \
         mock \
-        nvm \
         z
 
     set -l repo_url git@github.com:jorgebucaran/fisher.git
