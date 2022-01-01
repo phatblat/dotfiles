@@ -114,5 +114,6 @@
     "python.languageServer": "None",
     "vs-kubernetes": {
       "vscode-kubernetes.minikube-path.mac": "/Users/phatblat/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-    }
+    },
+    "editor.formatOnSave": true
 }
