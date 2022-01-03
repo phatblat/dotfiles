@@ -178,7 +178,6 @@ end
 # https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#budspencer
 if is_mac
     and if is_coreutils
-        set --export --global PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
         set --export --global PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
     end
 end
