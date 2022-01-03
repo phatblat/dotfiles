@@ -50,6 +50,7 @@ function 🍺_brew \
         findutils \
         firebase-cli \
         fortune \
+        fzf \
         gcovr \
         gh \
         git \

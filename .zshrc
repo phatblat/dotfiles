@@ -137,3 +137,5 @@ function gw {
     gradle $argv
 }
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
