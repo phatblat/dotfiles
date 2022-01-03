@@ -69,6 +69,8 @@ function 🍺_brew \
         jsonpp \
         kotlin \
         holgerbrandl/tap/kscript \
+        kubectx \
+        kubernetes-cli \
         less \
         libarchive \
         libssh2 \
