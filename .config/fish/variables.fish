@@ -149,12 +149,12 @@ if test -d "$SWIFT_TOOLCHAIN"
         $SWIFT_TOOLCHAIN/usr/bin
 end
 
-set --export --global SWIFTENV_ROOT $HOME/.swiftenv
-set --export --global PATH $SWIFTENV_ROOT/bin $PATH
-if which swiftenv > /dev/null
-    status --is-interactive
-    and source (swiftenv init - | psub)
-end
+# set --export --global SWIFTENV_ROOT $HOME/.swiftenv
+# set --export --global PATH $SWIFTENV_ROOT/bin $PATH
+# if which swiftenv > /dev/null
+#     status --is-interactive
+#     and source (swiftenv init - | psub)
+# end
 
 if test -d "$ANDROID_HOME"
     set --export --global PATH \
