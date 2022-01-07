@@ -11,6 +11,7 @@ function ignores
         Pods/ \
         # Swift PM
         .build/ \
+        .swiftpm/ \
         # Bundler
         .rubygems/ \
         bin/ \
