@@ -30,14 +30,14 @@ function 🕸_npm \
         node-pre-gyp \
         npm-check-updates \
         pocket-cli \
-        realm-cli \
         ts2kt \
         ubolt
 
     set -l uninstall \
         ralio \
-        ngrok \
+        realm-cli \
         realm-object-server \
+        ngrok \
         tslint
 
     # --------------------------------------------------------------------------
