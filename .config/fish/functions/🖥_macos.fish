@@ -41,8 +41,20 @@ function 🖥_macos \
     echo
     echo "⬆️  Updating macOS system software"
 
+    # set -l log_file (mktemp /tmp/softwareupdate.XXXXXX.log)
+    # echo "log_file: $log_file"
+
+    # tail -f $log_file &
+
     # Download all updates before install
-    softwareupdate --download --all --no-scan
+    # Swap stdout and stderr usng 3>&1 1>&2 2>&3 - https://serverfault.com/a/63708/17776
+    softwareupdate --download --all --no-scan 3>&1 1>&2 2>&3 | read output
+
+    # Exit when "No updates are available."
+    if test -n $output
+        echo $output
+        return
+    end
 
     # sudo will prompt for password allowing one way to avoid a restart
     sudo softwareupdate --install --all --no-scan --restart
