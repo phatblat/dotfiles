@@ -6,7 +6,7 @@
 function 🕸_nvm \
     --description='Installs nvm and updates node.'
 
-    echo "🕸 NVM"
+    echo "🕸 NVM - https://nvm.sh"
     echo
 
     # Ensure NVM is installed.
@@ -15,5 +15,7 @@ function 🕸_nvm \
         return 1
     end
 
+    # Upgrade node & npm
     nvm use node --latest-npm
+    nvm current > ~/.nvmrc
 end
