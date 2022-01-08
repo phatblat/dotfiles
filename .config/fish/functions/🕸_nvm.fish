@@ -16,6 +16,6 @@ function 🕸_nvm \
     end
 
     # Upgrade node & npm
-    nvm use node --latest-npm
+    nvm install node --latest-npm
     nvm current > ~/.nvmrc
 end
