@@ -36,7 +36,6 @@ function 🍺_brew \
         bat \
         burl \
         carthage \
-        certbot \
         cloc \
         cmake \
         cmatrix \
@@ -57,7 +56,6 @@ function 🍺_brew \
         git-filter-repo \
         git-lfs \
         gnu-sed \
-        gnupg \
         go \
         goaccess \
         gradle \
@@ -137,10 +135,12 @@ function 🍺_brew \
     set -l uninstall \
         android-sdk \
         cask-repair \
+        certbot \
         cloudfoundry/tap/cf-cli \
         pivotal/tap/cloudfoundry-cli \
         docker \
         docker-compose \
+        gnupg \
         go-jira \
         heroku/brew/heroku \
         hub \
@@ -151,7 +151,9 @@ function 🍺_brew \
         jfrog-cli-go \
         md5shasum \
         phatblat/services/pbjenkins \
+        protobuf protobuf-c \
         python@2 \
+        six \
         sloccount \
         sourcery \
         subversion \
@@ -159,7 +161,8 @@ function 🍺_brew \
         swiftplate \
         vapor \
         vim \
-        xctool
+        xctool \
+        yara
 
     # --------------------------------------------------------------------------
     #
