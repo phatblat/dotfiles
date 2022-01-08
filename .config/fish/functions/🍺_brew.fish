@@ -6,6 +6,12 @@ function 🍺_brew \
     echo "🍺  Homebrew - https://brew.sh"
     echo
 
+    # --------------------------------------------------------------------------
+    #
+    # Configuration
+    #
+    # --------------------------------------------------------------------------
+
     set -l custom_shells bash fish zsh
 
     # mac-only formulae
@@ -190,9 +196,18 @@ function 🍺_brew \
 
     # Ensure Homebrew is installed.
     if not type -q brew
-        echo "Installing Homebrew"
+        echo "📥 Installing Homebrew"
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
+
+    # --------------------------------------------------------------------------
+    #
+    # self-update
+    #
+    # --------------------------------------------------------------------------
+
+    echo "⬆️ Updating Homebrew"
+    brew update
 
     # --------------------------------------------------------------------------
     #
@@ -200,8 +215,8 @@ function 🍺_brew \
     #
     # --------------------------------------------------------------------------
 
-    echo 🚰  Updating formulae
-    brew update
+    echo "🚰  Updating formulae"
+
     set -l installed (brew list --formulae --full-name)
     echo
     echo ➡️ (moj_host)  Installed: $installed
@@ -240,7 +255,7 @@ function 🍺_brew \
     set -l outdated_formulae (brew outdated --quiet)
     if test -n "$outdated_formulae"
         echo
-        echo 👵🏻 Outdated: $outdated_formulae
+        echo "👵🏻 Outdated: $outdated_formulae"
         for outdated in $outdated_formulae
             # Strip off tap prefix (e.g. caskroom/versions/java8)
             set -l tokens (string split / $outdated)
