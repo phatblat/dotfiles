@@ -15,5 +15,5 @@ function 🕸_nvm \
         return 1
     end
 
-    nvm use node
+    nvm use node --latest-npm
 end
