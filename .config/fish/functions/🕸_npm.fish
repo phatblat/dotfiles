@@ -70,5 +70,7 @@ function 🕸_npm \
     # TODO: Refactor to only install missing packages
     npm install --global $global_packages
 
+    echo
+    echo 👩🏻‍⚕️  Doctor
     npm doctor
 end
