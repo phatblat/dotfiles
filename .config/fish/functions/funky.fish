@@ -43,7 +43,7 @@ function funky \
         end
     end
 
-    if test -z $funcs
+    if test -z "$funcs"
         return 1
     end
 
