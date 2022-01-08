@@ -44,7 +44,6 @@ function 🕸_npm \
         ralio \
         realm-cli \
         ts2kt \
-        tslint \
         ubolt
 
     set -l installed_packages (npm list --global --depth=0)
@@ -63,7 +62,8 @@ function 🕸_npm \
     # Uninstall
     npm uninstall --global \
         ngrok \
-        realm-object-server
+        realm-object-server \
+        tslint
 
     # Update
     npm update --global
