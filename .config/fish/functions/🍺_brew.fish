@@ -167,8 +167,17 @@ function 🍺_brew \
     #
     # --------------------------------------------------------------------------
 
+    # Determine the appropriate path to Homebrew
+    if is_arm
+        # /opt/homebrew/
+        set homebrew_dir (brew_home)
+    else
+        # /usr/local/Homebrew
+        set homebrew_dir (brew_home)/Homebrew
+    end
+    echo "homebrew_dir: $homebrew_dir" (brew_home)
+
     # Verify the user owns the Homebrew dir.
-    set -l homebrew_dir (brew_home)/Homebrew
     if test "$USER" != (fileowner $homebrew_dir)
         if status is-login
             echo "You must be the owner of "$homebrew_dir" to run this command."
