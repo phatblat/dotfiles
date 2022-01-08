@@ -15,5 +15,5 @@ function 🕸_nvm \
         return 1
     end
 
-    nvm install latest
+    nvm use node
 end
