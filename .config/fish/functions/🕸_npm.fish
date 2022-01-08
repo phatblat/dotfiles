@@ -40,7 +40,6 @@ function 🕸_npm \
         node-pre-gyp \
         npm-check-updates \
         pocket-cli \
-        ralio \
         realm-cli \
         ts2kt \
         ubolt
@@ -60,6 +59,7 @@ function 🕸_npm \
 
     # Uninstall
     npm uninstall --global \
+        ralio \
         ngrok \
         realm-object-server \
         tslint
