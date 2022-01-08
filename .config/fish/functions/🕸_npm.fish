@@ -15,9 +15,8 @@ function 🕸_npm \
     end
 
     # Verify the user owns the node_modules dir.
-    set -l global_modules /usr/local/lib/node_modules
-    mkdir /usr/local/lib/node_modules
-    popd
+    # Package location - /Users/phatblat/.nvm/versions/node/v17.3.0
+    set -l global_modules (npm get prefix)
     if test $USER != (fileowner $global_modules)
         if status is-login
             echo "You must be the owner of "$global_modules" to run this command."
@@ -65,8 +64,8 @@ function 🕸_npm \
         realm-object-server \
         tslint
 
-    # Update
-    npm update --global
+    # Update global packages using npm-check-updates
+    ncu -g
 
     # TODO: Refactor to only install missing packages
     npm install --global $global_packages
