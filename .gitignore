@@ -262,6 +262,7 @@
 .vscode/
 .wget-hsts
 .xsel.log
+.yarn/
 .yarnrc
 .yjp/
 .z
