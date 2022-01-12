@@ -116,5 +116,7 @@
     "vscode-kubernetes.minikube-path.mac": "/Users/phatblat/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
   },
   "editor.formatOnSave": true,
-  "liveServer.settings.donotShowInfoMsg": true
+  "liveServer.settings.donotShowInfoMsg": true,
+  "window.openFilesInNewWindow": "on",
+  "window.openFoldersInNewWindow": "on"
 }

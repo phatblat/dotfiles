@@ -201,7 +201,7 @@ set --export NVM_DIR "$HOME/.nvm"
 # Editor
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI "vim" # vi vim
-set --export EDITOR_GUI "code" # atom (vs)code mate mvim subl
+set --export EDITOR_GUI "code --new-window" # atom (vs)code mate mvim subl
 set --export WAIT_FLAG_CLI "-f"
 set --export WAIT_FLAG_GUI "-w"
 
