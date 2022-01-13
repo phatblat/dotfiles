@@ -3,16 +3,17 @@ function email_url \
         --argument-names url
 
     set -l user ben
-    set -l work_domain kp.org
-    set -l default $user@octop.ad
+    set -l work_org getditto
+    set -l work_domain ditto.live
+    set -l default $user@ditto.live
 
     if test -z "$url"
         echo $default
         return
     end
 
-    if string match --quiet --entire -- $work_domain $url
-        echo $user.d.chatelain@$work_domain
+    if string match --quiet --entire -- $work_org $url
+        echo $user@$work_domain
     else
         echo $default
     end
