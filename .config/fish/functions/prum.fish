@@ -1,4 +1,4 @@
-# Update the master CocoaPods repo.
-function prum
-    pod repo update master $argv
+function prum \
+    --description='Update the master CocoaPods repo.'
+    bundle exec pod repo update master $argv
 end

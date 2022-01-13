@@ -1,4 +1,4 @@
-# Lint a pod library in the current directory.
-function pll
-    pod lib lint $argv
+function pll \
+    --description='Lint a pod library in the current directory.'
+    bundle exec pod lib lint $argv
 end

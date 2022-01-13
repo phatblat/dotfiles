@@ -1,7 +1,7 @@
 function pue \
     --description='Update example app pods without updating repos.'
 
-    pod update \
+    bundle exec pod update \
         --project-directory=Example \
         --no-repo-update \
         $argv
