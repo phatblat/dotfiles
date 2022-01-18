@@ -27,5 +27,7 @@ function ignores
         .classpath \
         .project \
         .settings \
-        .vscode/
+        .vscode/ \
+        # Rust
+        target/
 end
