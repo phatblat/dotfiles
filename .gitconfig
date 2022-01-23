@@ -48,29 +48,6 @@
     newHighlight = green bold 22
 [push]
     default = simple
-[diff]
-    tool = Kaleidoscope
-    algorithm = patience
-[diff "l10n"]
-    textconv = iconv -f utf-16 -t utf-8
-[diff "plistbuddy"]
-    textconv = plistbuddy -c Print
-[difftool]
-    prompt = false
-[difftool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
-[difftool "Kaleidoscope"]
-    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[merge]
-    tool = Kaleidoscope
-[mergetool]
-    keepBackup = false
-    prompt = false
-[mergetool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
-[mergetool "Kaleidoscope"]
-    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-    trustExitCode = true
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
@@ -98,3 +75,26 @@
 	gpgsign = false
 [init]
 	defaultBranch = main
+[diff]
+    algorithm = patience
+	tool = Kaleidoscope
+[diff "l10n"]
+    textconv = iconv -f utf-16 -t utf-8
+[diff "plistbuddy"]
+    textconv = plistbuddy -c Print
+[difftool]
+	prompt = false
+[difftool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = Kaleidoscope
+[mergetool]
+    keepBackup = false
+	prompt = false
+[mergetool "FileMerge"]
+    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
