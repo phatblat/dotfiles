@@ -117,5 +117,6 @@
   "editor.formatOnSave": true,
   "liveServer.settings.donotShowInfoMsg": true,
   "window.openFilesInNewWindow": "on",
-  "window.openFoldersInNewWindow": "on"
+  "window.openFoldersInNewWindow": "on",
+  "trunk.trunkGrayOutNonBlockingIssues": false
 }
