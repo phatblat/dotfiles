@@ -77,6 +77,10 @@ function defaults_set
     # Disable auto-correct
     defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+    # Disable "Do you want to enable Dication?" prompt after tapping ctrl or fn twice?
+    # https://apple.stackexchange.com/questions/365048/disable-dictation-from-command-line
+    defaults write com.apple.HIToolbox AppleDictationAutoEnable -int 0
+
     # Set language and text formats
     # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
     # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
