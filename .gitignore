@@ -17,6 +17,7 @@
 .CFUserTextEncoding
 .DS_Store
 .ICEauthority
+.IdentityService/
 .IntelliJIdea2019.1/
 .JIRAClient/
 .KindleTransfer/
@@ -70,6 +71,7 @@
 .config/Code/storage.json
 .config/GitHub\ActionsService/
 .config/GitHub\\ActionsService/
+.config/Microsoft\\VisualStudio Services/
 .config/Rygel/
 .config/Slack/
 .config/Todoist/
@@ -131,6 +133,7 @@
 .config/truffle/
 .config/upstall/last_run.*
 .config/verdaccio/htpasswd
+.config/xbuild/
 .config/yarn/
 .config/yelp/yelp.cfg
 .cpan/
@@ -251,6 +254,7 @@
 .swiftpm/
 .synx/
 .task/
+.templateengine/
 .thunderbird/
 .tooling/
 .travis/
