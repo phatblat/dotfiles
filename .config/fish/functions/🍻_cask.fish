@@ -55,6 +55,7 @@ function 🍻_cask \
         ngrok \
         oclint \
         paw \
+        qt-creator \
         rescuetime \
         rocket \
         safari-technology-preview \
