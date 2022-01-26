@@ -40,6 +40,7 @@ function 🍺_brew \
         azure/functions/azure-functions-core-tools@3 \
         babel \
         bat \
+        boost \
         burl \
         carthage \
         clang-format \
