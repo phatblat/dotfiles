@@ -70,6 +70,7 @@ function 🍻_cask \
         thingsmacsandboxhelper \
         tower \
         transmit \
+        visual-studio \
         visual-studio-code \
         vivaldi \
         vmware-fusion \
