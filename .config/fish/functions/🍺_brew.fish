@@ -74,8 +74,6 @@ function 🍺_brew \
         jsonpp \
         kotlin \
         holgerbrandl/tap/kscript \
-        kubectx \
-        kubernetes-cli \
         less \
         libarchive \
         libssh2 \
@@ -83,7 +81,6 @@ function 🍺_brew \
         make \
         markdownlint-cli \
         maven \
-        minikube \
         mint \
         mtr \
         nginx \
@@ -157,8 +154,12 @@ function 🍺_brew \
         infer \
         jenkins \
         jfrog-cli-go \
+        kubectx \
+        kubernetes-cli \
         md5shasum \
+        minikube \
         phatblat/services/pbjenkins \
+        ping-devops \
         protobuf protobuf-c \
         python@2 \
         six \
