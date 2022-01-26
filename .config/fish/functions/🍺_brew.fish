@@ -42,6 +42,7 @@ function 🍺_brew \
         bat \
         burl \
         carthage \
+        clang-format \
         cloc \
         cmake \
         cmatrix \
@@ -106,6 +107,7 @@ function 🍺_brew \
         kylef/formulae/swiftenv \
         swiftformat \
         swiftlint \
+        swig \
         task \
         tasksh \
         tailor \
