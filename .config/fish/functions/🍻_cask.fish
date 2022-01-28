@@ -53,6 +53,7 @@ function 🍻_cask \
         microsoft-teams \
         macdown \
         ngrok \
+        obsidian \
         oclint \
         paw \
         qt-creator \
