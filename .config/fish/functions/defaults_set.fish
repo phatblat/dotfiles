@@ -112,10 +112,10 @@ function defaults_set
 
     # Preferences > General
     # Show icons for hard drives, servers, and removable media on the desktop
-    defaults write com.apple.Finder ShowHardDrivesOnDesktop -bool true
-    defaults write com.apple.Finder ShowExternalHardDrivesOnDesktop -bool true
-    defaults write com.apple.Finder ShowRemovableMediaOnDesktop -bool true
-    defaults write com.apple.Finder ShowMountedServersOnDesktop -bool true
+    defaults write com.apple.Finder ShowHardDrivesOnDesktop -bool false
+    defaults write com.apple.Finder ShowExternalHardDrivesOnDesktop -bool false
+    defaults write com.apple.Finder ShowRemovableMediaOnDesktop -bool false
+    defaults write com.apple.Finder ShowMountedServersOnDesktop -bool false
 
     # New Finder windows show:
     #
