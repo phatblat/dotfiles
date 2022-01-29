@@ -389,6 +389,10 @@ function defaults_set
     # Show xcode index count
     defaults write com.apple.dt.Xcode IDEIndexerActivityShowNumericProgress -bool true
 
+    # Xcode 13.3 beta 1 Swift compiler new mode that better utilizes available
+    # cores, resulting in faster builds for Swift projects.
+    defaults write com.apple.dt.XCBuild EnableSwiftBuildSystemIntegration 1
+
     #
     # Tweetbot
     #
