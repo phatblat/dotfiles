@@ -19,6 +19,7 @@ function 🕸_npm \
         eslint \
         express-generator \
         fast-cli \
+        generator-code \
         gitmoji-cli \
         gulp \
         jshint \
@@ -31,7 +32,8 @@ function 🕸_npm \
         npm-check-updates \
         pocket-cli \
         ts2kt \
-        ubolt
+        ubolt \
+        yo
 
     set -l uninstall \
         ralio \
