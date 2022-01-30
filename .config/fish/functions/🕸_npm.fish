@@ -98,7 +98,7 @@ function 🕸_npm \
     set -l outdated_json (npm outdated --global --json)
     if test ! "$outdated_json" = "{}"
         set -l outdated_packages (\
-            eval $outdated_json \
+            echo "$outdated_json" | \
             jq --raw-output 'keys | .[] | "\(.)"'\
         )
 
