@@ -169,6 +169,7 @@ function 🍺_brew \
         subversion \
         swiftgen \
         swiftplate \
+        terraform \
         vapor \
         vim \
         xctool \
