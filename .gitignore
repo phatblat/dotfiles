@@ -151,6 +151,7 @@
 .fastlane_crash_reporting
 .gconf/
 .gem/
+.ghidra/
 .git/
 .gitkraken/
 .gnome/
