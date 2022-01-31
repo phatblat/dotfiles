@@ -109,6 +109,7 @@ function 🍺_brew \
         task \
         tasksh \
         tailor \
+        tailscale \
         thefuck \
         tig \
         tmux \
