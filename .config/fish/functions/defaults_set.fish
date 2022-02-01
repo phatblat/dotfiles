@@ -140,7 +140,7 @@ function defaults_set
     defaults write com.apple.finder ShowPathbar -bool true
 
     # Display full POSIX path as Finder window title
-    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    defaults write com.apple.finder _FXShowPosixPathInTitle -bool false
 
     # Keep folders on top when sorting by name
     defaults write com.apple.finder _FXSortFoldersFirst -bool true
@@ -159,7 +159,13 @@ function defaults_set
     defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
     # Always open everything in Finder's list view. This is important.
-    defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+    # Use list view in all Finder windows by default
+    # Four-letter codes for the other view modes:
+    # - Nlsv: List View
+    # - icnv: Icon View
+    # - clmv: Column View
+    # - Flwv: Cover Flow View
+    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
     # Hide the Tags section of the sidebar
     defaults write com.apple.Finder SidebarTagsSctionDisclosedState -bool false
@@ -173,10 +179,6 @@ function defaults_set
     defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
     defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
     defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
-
-    # Use list view in all Finder windows by default
-    # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
-    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
     #
     # Desktop
