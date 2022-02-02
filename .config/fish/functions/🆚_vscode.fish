@@ -72,7 +72,6 @@ function 🆚_vscode \
         lunaryorn.fish-ide \
         mathiasfrohlich.Kotlin \
         miramac.vscode-exec-node \
-        matklad.rust-analyzer \
         mechatroner.rainbow-csv \
         mhcpnl.xcodestrings \
         mikestead.dotenv \
