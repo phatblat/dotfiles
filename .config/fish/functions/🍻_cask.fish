@@ -49,6 +49,7 @@ function 🍻_cask \
         kobo \
         latest \
         licecap \
+        loom \
         microblog \
         microsoft-teams \
         macdown \
