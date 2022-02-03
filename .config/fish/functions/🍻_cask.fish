@@ -178,7 +178,6 @@ function 🍻_cask \
         timing \
         ultimate \
         virtualbox \
-        visual-studio \
         xmarks-safari \
         $quicklook_plugins
 
