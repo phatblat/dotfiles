@@ -108,7 +108,7 @@
   ],
   "tabnine.experimentalAutoImports": true,
   "redhat.telemetry.enabled": true,
-  "java.home": "/Users/phatblat/.sdkman/candidates/java/11.0.11.hs-adpt",
+  "java.home": "/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home",
   "git.autofetch": true,
   "python.languageServer": "None",
   "vs-kubernetes": {
