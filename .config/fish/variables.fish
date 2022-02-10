@@ -164,6 +164,10 @@ if test -d "$ANDROID_HOME"
         $PATH
 end
 
+if test -d (brew_home make)/libexec/gnubin
+    fish_add_path (brew_home make)/libexec/gnubin
+end
+
 if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
 end
