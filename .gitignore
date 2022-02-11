@@ -102,6 +102,7 @@
 .config/fish/h
 .config/fisherman/
 .config/gedit/
+.config/gh/hosts.yml
 .config/ghb/
 .config/git/config
 .config/git/gitk
@@ -326,6 +327,7 @@ cali_core4/
 data/
 dev
 dev.bak
+ditto-cache/
 examples.desktop
 go/
 gradlew.bat
