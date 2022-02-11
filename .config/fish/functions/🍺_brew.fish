@@ -36,6 +36,7 @@ function 🍺_brew \
         asdf \
         autoconf \
         automake \
+        awscli \
         azure-cli \
         azure/functions/azure-functions-core-tools@3 \
         babel \
