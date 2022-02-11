@@ -119,5 +119,7 @@
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "trunk.trunkGrayOutNonBlockingIssues": true,
-  "cmake.configureOnOpen": true
+  "cmake.configureOnOpen": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true
 }
