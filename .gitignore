@@ -257,6 +257,7 @@
 .synx/
 .task/
 .templateengine/
+.terraform.d/
 .thunderbird/
 .tooling/
 .travis/
