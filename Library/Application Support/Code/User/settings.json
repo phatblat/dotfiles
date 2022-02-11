@@ -118,6 +118,6 @@
   "liveServer.settings.donotShowInfoMsg": true,
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
-  "trunk.trunkGrayOutNonBlockingIssues": false,
+  "trunk.trunkGrayOutNonBlockingIssues": true,
   "cmake.configureOnOpen": true
 }
