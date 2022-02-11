@@ -57,7 +57,7 @@ function 🕸_npm \
 
     # Verify the user owns the node_modules dir.
     # Package location - /Users/phatblat/.nvm/versions/node/v17.3.0
-    set -l global_modules (npm get prefix)
+    set -l global_modules (npm get prefix)"/lib/node_modules"
     if test $USER != (fileowner $global_modules)
         if status is-login
             echo "You must be the owner of "$global_modules" to run this command."
