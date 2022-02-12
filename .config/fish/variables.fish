@@ -133,6 +133,10 @@ if test -d (brew_home ruby)/bin
     fish_add_path (brew_home ruby)/bin
 end
 
+if test -d /usr/local/lib/ruby/gems/3.1.0/bin
+    fish_add_path /usr/local/lib/ruby/gems/3.1.0/bin
+end
+
 if test -d (brew_home)/sbin
     set --export --global PATH $PATH \
         (brew_home)/sbin
