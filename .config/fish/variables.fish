@@ -12,7 +12,13 @@ set --export KERNEL (uname)
 if is_mac
     set --export ANDROID_HOME $HOME/Library/Android/sdk
     set --export ANDROID_SDK_ROOT $ANDROID_HOME
-    set --export ANDROID_NDK_HOME (brew_home)/share/android-ndk
+    # NDK Versions
+    # - 21.4.7075529
+    # - 22.0.7026061
+    # - 23.1.7779620
+    # - 24.0.7956693
+    set --export NDK_VERSION 22.0.7026061
+    set --export ANDROID_NDK_HOME $HOME/Library/Android/sdk/ndk/$NDK_VERSION
 else if is_linux
     set --export ANDROID_HOME $HOME/Android/Sdk
     set --export ANDROID_SDK_ROOT $ANDROID_HOME
