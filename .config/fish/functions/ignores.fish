@@ -29,5 +29,12 @@ function ignores
         .settings \
         .vscode/ \
         # Rust
-        target/
+        target/ \
+        # CMake
+        .cxx/ \
+        cmake-build-debug/ \
+        .externalNativeBuild/ \
+        # Java
+        heapdump.*.phd \
+        javacore.*.txt
 end
