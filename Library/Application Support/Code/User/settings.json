@@ -112,7 +112,8 @@
   "git.autofetch": true,
   "python.languageServer": "None",
   "vs-kubernetes": {
-    "vscode-kubernetes.minikube-path.mac": "/Users/phatblat/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+    "vscode-kubernetes.minikube-path.mac": "/Users/phatblat/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vscode-kubernetes.kubectl-path.mac": "/Users/phatblat/.vs-kubernetes/tools/kubectl/kubectl"
   },
   "editor.formatOnSave": true,
   "liveServer.settings.donotShowInfoMsg": true,
