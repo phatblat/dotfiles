@@ -1,0 +1,7 @@
+#
+# ~/.cargo/cargo.toml
+#
+
+[build]
+# https://github.com/mozilla/sccache#usage
+rustc-wrapper = "/usr/local/bin/sccache"
