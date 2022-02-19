@@ -97,6 +97,7 @@ function 🍺_brew \
         rename \
         rlwrap \
         ruby \
+        sccache \
         scrcpy \
         shellcheck \
         sl \
