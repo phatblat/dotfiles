@@ -56,7 +56,6 @@ function 🐍_pip \
         twine
 
     set -l uninstall_packages \
-        awscli \
         doc2dash
 
     # Update pip
