@@ -35,6 +35,8 @@ function ignores
         cmake-build-debug/ \
         .externalNativeBuild/ \
         # Java
-        heapdump.*.phd \
-        javacore.*.txt
+        'heapdump.*.phd' \
+        'javacore.*.txt' \
+        # Rust/Cargo
+        target/
 end
