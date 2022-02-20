@@ -166,7 +166,6 @@ function 🍺_brew \
         ping-devops \
         protobuf protobuf-c \
         python@2 \
-        six \
         sloccount \
         sourcery \
         subversion \
