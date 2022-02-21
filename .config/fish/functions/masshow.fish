@@ -5,6 +5,8 @@ function masshow \
         return 1
     end
 
-    ll (which mas)
+    set -l path (which mas)
+    ll $path
+    lipo -info $path
     mas version
 end
