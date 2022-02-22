@@ -183,6 +183,7 @@
 .kube/
 .lemminx/
 .lesshst
+.linuxkit/
 .lldb/
 .lldb/module_cache/
 .local/
