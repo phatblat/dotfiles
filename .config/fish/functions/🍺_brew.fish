@@ -46,7 +46,6 @@ function 🍺_brew \
         carthage \
         clang-format \
         cloc \
-        cmake \
         cmatrix \
         cowsay \
         ctags \
@@ -147,6 +146,7 @@ function 🍺_brew \
         certbot \
         cloudfoundry/tap/cf-cli \
         pivotal/tap/cloudfoundry-cli \
+        cmake \
         docker \
         docker-compose \
         gnupg \

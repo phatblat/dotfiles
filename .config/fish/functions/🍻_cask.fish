@@ -23,6 +23,7 @@ function 🍻_cask \
         charles \
         cheatsheet \
         cleanmymac \
+        cmake \
         dash \
         deckset \
         docker \
