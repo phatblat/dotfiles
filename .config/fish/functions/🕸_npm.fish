@@ -33,6 +33,7 @@ function 🕸_npm \
         pocket-cli \
         ts2kt \
         ubolt \
+        vsce \
         yarn-audit-fix \
         yo
 
