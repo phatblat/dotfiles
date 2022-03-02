@@ -5,3 +5,7 @@
 [build]
 # https://github.com/mozilla/sccache#usage
 rustc-wrapper = "/usr/local/bin/sccache"
+
+[profile.dev]
+# https://endler.dev/2020/rust-compile-times/#xfaster-incremental-debug-builds-on-macos
+split-debuginfo = "unpacked"
