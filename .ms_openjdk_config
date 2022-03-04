@@ -1,0 +1,3 @@
+# Note that this file will be overwritten by the Visual Studio for Mac installer/updater whenever OpenJDK is updated by it!
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home"
+export PATH="\"/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home\";$PATH"
