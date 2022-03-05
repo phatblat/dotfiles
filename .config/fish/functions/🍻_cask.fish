@@ -30,6 +30,7 @@ function 🍻_cask \
         elgato-control-center \
         elgato-stream-deck \
         firebase-admin \
+        flutter \
         franz \
         geekbench \
         githubpulse \
