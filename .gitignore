@@ -140,6 +140,8 @@
 .config/yelp/yelp.cfg
 .cpan/
 .cups/
+.dart/
+.dartServer/
 .dbshell
 .dbus/
 .dbvis/
@@ -223,6 +225,7 @@
 .pki/
 .project
 .pry_history
+.pub-cache/
 .putty/
 .pylint.d/
 .pypirc
