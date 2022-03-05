@@ -101,6 +101,7 @@
 .config/fish/functions/zadd.awk
 .config/fish/h
 .config/fisherman/
+.config/flutter/tool_state
 .config/gedit/
 .config/gh/hosts.yml
 .config/ghb/
@@ -150,6 +151,7 @@
 .envrc
 .fastlane/
 .fastlane_crash_reporting
+.flutter
 .gconf/
 .gem/
 .ghidra/
