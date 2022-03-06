@@ -20,7 +20,7 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.yml]
+[*.{dart,yaml,yml}]
 indent_size = 2
 
 # Use 2 spaces for Ruby files
@@ -28,9 +28,6 @@ indent_size = 2
 indent_size = 2
 indent_style = space
 max_line_length = 80
-
-[*.yml]
-indent_size = 2
 
 # Use tabs for property lists
 [*.plist]
