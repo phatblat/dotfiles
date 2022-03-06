@@ -1,4 +1,5 @@
-# Update CococaPod repos
-function pru
+function pru \
+    --description='Update CococaPod repos.'
+
     pod repo update $argv
 end

@@ -1,4 +1,5 @@
-# Publish the phatblat branch
-function pp
+function pp \
+    --description='Publish the phatblat branch'
+
     publish phatblat
 end

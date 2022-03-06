@@ -1,4 +1,5 @@
-# Update pods without updating repos.
-function bpu
+function bpu \
+    --description='Update pods without updating repos.'
+
     bundle exec "pod update --no-repo-update $argv"
 end
