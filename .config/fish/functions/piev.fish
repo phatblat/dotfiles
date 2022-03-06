@@ -1,7 +1,7 @@
 function piev \
     --description='Install pods for Example app with verbose output.'
 
-    bundle exec pod install \
+    pod install \
         --project-directory=Example \
-         --verbose $argv
+        --verbose $argv
 end

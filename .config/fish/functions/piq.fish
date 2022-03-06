@@ -1,5 +1,5 @@
 function piq \
     --description='Quiet pod install'
 
-    bundle exec pi --silent $argv
+    pi --silent $argv
 end

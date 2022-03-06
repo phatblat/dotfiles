@@ -1,5 +1,6 @@
-# Special "local" pod install for KP Mobile.
-# @see pul
-function pil
-    LOCAL=1 bundle exec "pod install $argv"
+function pil \
+    --description='Special "local" pod install for KP Mobile. See pul'
+
+    LOCAL=1 \
+        pod install $argv
 end
