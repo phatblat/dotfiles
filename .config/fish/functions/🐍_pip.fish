@@ -50,13 +50,14 @@ function 🐍_pip \
         powerline-status \
         Pygments \
         pylint \
-        powerline-gitstatus \
-        powerline-xcodeversion \
         Pygments \
-        twine
+        twine \
+        vendorize
 
     set -l uninstall_packages \
-        doc2dash
+        doc2dash \
+        powerline-gitstatus \
+        powerline-xcodeversion
 
     # Update pip
     $pip install --upgrade pip setuptools wheel
