@@ -118,6 +118,7 @@ function 🍺_brew \
         tree \
         uncrustify \
         utimer \
+        virtualenv \
         watchman \
         yarn \
         $custom_shells
