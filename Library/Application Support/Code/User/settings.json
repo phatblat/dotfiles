@@ -133,5 +133,6 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": false
   },
-  "dart.flutterSdkPath": "/usr/local/Caskroom/flutter/2.10.3/flutter"
+  "dart.flutterSdkPath": "/usr/local/Caskroom/flutter/2.10.3/flutter",
+  "go.toolsManagement.autoUpdate": true
 }
