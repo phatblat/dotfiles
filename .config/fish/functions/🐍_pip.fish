@@ -47,7 +47,6 @@ function 🐍_pip \
         bumpversion \
         lizard \
         opendrop \
-        powerline-status \
         Pygments \
         pylint \
         Pygments \
@@ -56,6 +55,7 @@ function 🐍_pip \
 
     set -l uninstall_packages \
         doc2dash \
+        powerline-status \
         powerline-gitstatus \
         powerline-xcodeversion
 
