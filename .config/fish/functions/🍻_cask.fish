@@ -49,6 +49,7 @@ function 🍻_cask \
         keyboard-maestro \
         keycastr \
         kobo \
+        lastpass \
         latest \
         licecap \
         loom \
@@ -83,6 +84,7 @@ function 🍻_cask \
         zeplin \
         zoom \
         homebrew/cask-drivers/zsa-wally
+    # END: apps
 
     set -l quicklook_plugins \
         provisionql \
@@ -182,6 +184,7 @@ function 🍻_cask \
         virtualbox \
         xmarks-safari \
         $quicklook_plugins
+    # END: uninstall
 
     # --------------------------------------------------------------------------
     #

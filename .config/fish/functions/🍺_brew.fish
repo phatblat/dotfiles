@@ -75,6 +75,7 @@ function 🍺_brew \
         jsonpp \
         kotlin \
         holgerbrandl/tap/kscript \
+        lastpass-cli \
         less \
         libarchive \
         libssh2 \
@@ -122,6 +123,7 @@ function 🍺_brew \
         watchman \
         yarn \
         $custom_shells
+    # END: formulae
 
     # Appebd platform-specific formulae
     if is_mac
@@ -178,6 +180,7 @@ function 🍺_brew \
         vim \
         xctool \
         yara
+    # END: uninstall
 
     # --------------------------------------------------------------------------
     #
