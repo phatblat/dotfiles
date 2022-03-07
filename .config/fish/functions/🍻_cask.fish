@@ -61,6 +61,7 @@ function 🍻_cask \
         oclint \
         paw \
         qt-creator \
+        remotion \
         rescuetime \
         rocket \
         safari-technology-preview \
