@@ -127,6 +127,7 @@
 .config/realm-cli/
 .config/realm/
 .config/session/
+.config/stetic/
 .config/sublime-text-3/
 .config/terminus/
 .config/thefuck
@@ -148,6 +149,7 @@
 .did_show_opt_info
 .docker/
 .dotfiles/cron/cronenv
+.dotnet/
 .dropbox/
 .emulator_console_auth_token
 .envrc
@@ -214,6 +216,7 @@
 .npm-cache/
 .npm/
 .npmrc
+.nuget/packages/
 .nvm/
 .nyantray
 .oh-my-zsh/*
