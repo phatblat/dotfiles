@@ -14,25 +14,25 @@ I've now converted over to [Fish shell](https://fishshell.com), so the `.zsh` fi
 
 > This bootstrap has not been updated since to switch to Fish. I plan to greatly simplify the process as installing/updating will be a set of normal functions.
 
-The [`bootstrap.sh`](https://github.com/phatblat/dotfiles/blob/53dd7d0f9b057af43ef88485b8e3d7db34f02f2f/.dotfiles/install/bootstrap.sh) script is a half-ass attempt at installing these dotfiles into the `$HOME` directory of a freshly minted OS X user. It kinda works and something usually breaks when it's run. But, it usually does most of the work and with a kick or two things are up and running.
+The [`bootstrap.sh`](https://github.com/phatblat/dotfiles/blob/main/.dotfiles/install/bootstrap.sh) script is a half-ass attempt at installing these dotfiles into the `$HOME` directory of a freshly minted OS X user. It kinda works and something usually breaks when it's run. But, it usually does most of the work and with a kick or two things are up and running.
 
 Run at your own peril!
 
 ```
-curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/master/.dotfiles/install/bootstrap.sh | sh
+curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/main/.dotfiles/install/bootstrap.sh | sh
 ```
 
 Really, you should look at that script and laugh at the mess I've created instead of running it and hosing your `$HOME` directory. _You have been warned._ :boom:
 
 ## Git
 
-[`.gitconfig`](https://github.com/phatblat/dotfiles/blob/53dd7d0f9b057af43ef88485b8e3d7db34f02f2f/.gitconfig) is checked in but I use different `user.email` values on my work and personal Macs. This is accomplished by setting local-only values in the alternate user-global [`~/.config/git/config`](http://git-scm.com/docs/git-config#FILES), but is overridden on an as-needed basis by explicitly setting `user.email` in some repos.
+[`.gitconfig`](https://github.com/phatblat/dotfiles/blob/main/.gitconfig) is checked in but I use different `user.email` values on my work and personal Macs. This is accomplished by setting local-only values in the alternate user-global [`~/.config/git/config`](http://git-scm.com/docs/git-config#FILES), but is overridden on an as-needed basis by explicitly setting `user.email` in some repos.
 
-I've crafted a slew of short [aliases](https://github.com/phatblat/dotfiles/blob/master/.dotfiles/git/alias.zsh) for all the commands I use regularly. There's even a fancy experimental [bundle-pull script](https://github.com/phatblat/dotfiles/blob/master/.dotfiles/git/bundle-pull.rb) for quickly syncing a dirty work tree from one Mac to another.
+I've crafted a slew of short [aliases](https://github.com/phatblat/dotfiles/blob/main/.dotfiles/git/alias.zsh) for all the commands I use regularly. There's even a fancy experimental [bundle-pull script](https://github.com/phatblat/dotfiles/blob/main/.dotfiles/git/bundle-pull.rb) for quickly syncing a dirty work tree from one Mac to another.
 
 ## iOS
 
-There are some fancy functions for easily inspecting, bumping version and releasing an app with a versioned [xcode project](https://github.com/phatblat/dotfiles/blob/master/.dotfiles/xcode/alias.zsh).
+There are some fancy functions for easily inspecting, bumping version and releasing an app with a versioned [xcode project](https://github.com/phatblat/dotfiles/blob/main/.dotfiles/xcode/alias.zsh).
 
 ## Credit
 
