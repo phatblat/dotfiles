@@ -17,6 +17,7 @@ function 🍺_brew \
     # mac-only formulae
     set -l formulae_mac \
         configen \
+        dotnet \
         duti \
         fileicon \
         thoughtbot/formulae/liftoff \
