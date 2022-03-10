@@ -85,6 +85,8 @@ function 🍺_brew \
         markdownlint-cli \
         maven \
         mint \
+        mono \
+        mono-libgdiplus \
         mtr \
         nginx \
         node \
