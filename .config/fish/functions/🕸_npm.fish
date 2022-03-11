@@ -22,6 +22,7 @@ function 🕸_npm \
         generator-code \
         gitmoji-cli \
         gulp \
+        jake \
         jshint \
         json5 \
         lynn-cli \
