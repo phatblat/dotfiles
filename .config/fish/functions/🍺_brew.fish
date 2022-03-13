@@ -81,6 +81,7 @@ function 🍺_brew \
         libarchive \
         libssh2 \
         libtool \
+        macchina \
         make \
         markdownlint-cli \
         maven \
