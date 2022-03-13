@@ -44,6 +44,7 @@ function 🐍_pip \
     end
 
     set -l global_packages \
+        asitop \
         bumpversion \
         lizard \
         opendrop \
