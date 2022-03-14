@@ -115,7 +115,6 @@
     "vscode-kubernetes.minikube-path.mac": "/Users/phatblat/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
     "vscode-kubernetes.kubectl-path.mac": "/Users/phatblat/.vs-kubernetes/tools/kubectl/kubectl"
   },
-  "editor.formatOnSave": true,
   "liveServer.settings.donotShowInfoMsg": true,
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
@@ -134,5 +133,6 @@
     "editor.wordBasedSuggestions": false
   },
   "dart.flutterSdkPath": "/usr/local/Caskroom/flutter/2.10.3/flutter",
-  "go.toolsManagement.autoUpdate": true
+  "go.toolsManagement.autoUpdate": true,
+  "editor.formatOnSave": true
 }
