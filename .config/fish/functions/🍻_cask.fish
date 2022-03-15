@@ -40,6 +40,7 @@ function 🍻_cask \
         gpg-suite \
         grammarly \
         hex-fiend \
+        imageoptim \
         ios-console \
         istat-menus \
         iterm2 \

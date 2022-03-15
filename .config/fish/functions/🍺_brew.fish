@@ -20,6 +20,7 @@ function 🍺_brew \
         dotnet \
         duti \
         fileicon \
+        imageoptim-cli \
         thoughtbot/formulae/liftoff \
         mas \
         screenresolution \
