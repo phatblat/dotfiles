@@ -100,6 +100,8 @@ function 🍺_brew \
         radare2 \
         redis \
         rename \
+        ripgrep \
+        ripgrep-all \
         rlwrap \
         ruby \
         sccache \

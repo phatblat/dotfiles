@@ -32,8 +32,6 @@ function 🕸_npm \
         node-pre-gyp \
         npm-check-updates \
         pocket-cli \
-        ripgrep \
-        ripgrep-all \
         ts2kt \
         ubolt \
         vsce \
