@@ -140,8 +140,10 @@ if test -d (brew_home ruby)/bin
     fish_add_path (brew_home ruby)/bin
 end
 
-if test -d /usr/local/lib/ruby/gems/3.1.0/bin
-    fish_add_path /usr/local/lib/ruby/gems/3.1.0/bin
+set RUBY_VERSION 3.1.0
+set -l GEM_PATH (brew_home)/lib/ruby/gems/$RUBY_VERSION/bin
+if test -d $GEM_PATH
+    fish_add_path $GEM_PATH
 end
 
 if test -d (brew_home)/sbin
