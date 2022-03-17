@@ -96,6 +96,7 @@ function 🍺_brew \
         packer \
         pacvim \
         pkg-config \
+        publish \
         python@3.9 \
         radare2 \
         redis \
