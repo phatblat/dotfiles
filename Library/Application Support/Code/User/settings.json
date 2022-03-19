@@ -134,5 +134,6 @@
   },
   "dart.flutterSdkPath": "/usr/local/Caskroom/flutter/2.10.3/flutter",
   "go.toolsManagement.autoUpdate": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "debug.allowBreakpointsEverywhere": true
 }
