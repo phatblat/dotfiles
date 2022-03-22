@@ -16,6 +16,7 @@ function 🍺_brew \
 
     # mac-only formulae
     set -l formulae_mac \
+        1password \
         configen \
         dotnet \
         duti \
