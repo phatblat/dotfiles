@@ -58,6 +58,7 @@ function 🍻_cask \
         microsoft-teams \
         macdown \
         ngrok \
+        nova \
         obsidian \
         oclint \
         paw \
