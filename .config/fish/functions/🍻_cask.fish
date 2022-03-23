@@ -15,6 +15,7 @@ function 🍻_cask \
     echo
 
     set -l apps \
+        1password-cli \
         android-file-transfer \
         back-in-time \
         banktivity \
