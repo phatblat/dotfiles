@@ -75,6 +75,7 @@ function 🍻_cask \
         teacode \
         temurin8 \
         textmate \
+        tg-pro \
         the-unarchiver \
         thingsmacsandboxhelper \
         tower \
