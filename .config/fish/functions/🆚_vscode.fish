@@ -80,16 +80,6 @@ function 🆚_vscode \
         mohsen1.prettify-json \
         mongodb.mongodb-vscode \
         monokai.theme-monokai-pro-vscode \
-        ms-azure-devops.azure-pipelines \
-        ms-azuretools.vscode-apimanagement \
-        ms-azuretools.vscode-azureappservice \
-        ms-azuretools.vscode-azurefunctions \
-        ms-azuretools.vscode-azureresourcegroups \
-        ms-azuretools.vscode-azurestorage \
-        ms-azuretools.vscode-azurevirtualmachines \
-        ms-azuretools.vscode-bicep \
-        ms-azuretools.vscode-cosmosdb \
-        ms-azuretools.vscode-docker \
         ms-dotnettools.csharp \
         ms-dotnettools.vscode-dotnet-runtime \
         ms-kubernetes-tools.vscode-aks-tools \
@@ -102,15 +92,11 @@ function 🆚_vscode \
         ms-toolsai.vscode-ai \
         ms-toolsai.vscode-ai-remote \
         ms-vscode-remote.remote-containers \
-        ms-vscode.azure-account \
-        ms-vscode.azurecli \
         ms-vscode.cpptools \
         ms-vscode.js-atom-grammar \
         ms-vscode.typescript-javascript-grammar \
-        ms-vscode.vscode-node-azure-pack \
         ms-vsliveshare.vsliveshare \
         ms-vsliveshare.vsliveshare-audio \
-        msazurermtools.azurerm-vscode-tools \
         msjsdiag.debugger-for-chrome \
         naumovs.node-modules-resolve \
         nepaul.editorconfiggenerator \
