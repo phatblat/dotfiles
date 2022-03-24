@@ -77,7 +77,7 @@
   "solargraph.bundlerPath": "/usr/local/opt/ruby/bin/bundle",
   "shellcheck.customArgs": ["-x"],
   "extensions.ignoreRecommendations": false,
-  "workbench.colorTheme": "SynthWave '84",
+  "workbench.colorTheme": "Modern Purple Theme Dark",
   "docker.showStartPage": false,
   "window.zoomLevel": 1,
   "editor.fontFamily": "'Source Code Pro for Powerline', 'Courier New', monospace",
