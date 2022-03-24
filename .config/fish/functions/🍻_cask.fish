@@ -60,6 +60,7 @@ function 🍻_cask \
         macdown \
         ngrok \
         nova \
+        objectivesharpie \
         obsidian \
         oclint \
         paw \
