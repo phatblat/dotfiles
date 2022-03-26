@@ -41,7 +41,7 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "jshint.nodePath": "/usr/local/lib/node_modules",
-  "shellcheck.executablePath": "/usr/local/bin/shellcheck",
+  "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
   "ruby.codeCompletion": "rcodetools",
   "ruby.intellisense": "rubyLocate",
   "ruby.format": "rubocop",
