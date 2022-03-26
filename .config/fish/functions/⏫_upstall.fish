@@ -63,6 +63,7 @@ function ⏫_upstall \
     # echo "modules_to_run: $modules_to_run"
 
     ⬆️_upmodule 🗄_gitconfig "🗄 Git config" git        --nog    $modules_to_run
+    ⬆️_upmodule 🦀_rustup    "🦀 Rust"       rust       --nors   $modules_to_run
     ⬆️_upmodule 💎_rubygems  "💎 Ruby Gems"  ruby       --norb   $modules_to_run
     ⬆️_upmodule 🔨_xcode     "🔨 Xcode"      xcode      --noxc   $modules_to_run
     ⬆️_upmodule 📦_apt       "📦 APT"        apt        --noapt  $modules_to_run
@@ -75,7 +76,7 @@ function ⏫_upstall \
     ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy   $modules_to_run
     ⬆️_upmodule 🕸_nvm       "🕸 NVM"        nvm        --nojs   $modules_to_run
     ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs   $modules_to_run
-    ⬆️_upmodule ▶️_powerline  "▶️ Powerline"  powerline  --nopl   $modules_to_run
+    ⬆️_upmodule ▶️_powerline "▶️ Powerline"  powerline  --nopl   $modules_to_run
     ⬆️_upmodule 🗒_vundle    "🗒 Vundle"     vundle     --novi   $modules_to_run
     ⬆️_upmodule 📝_textmate  "📝 TextMate"   textmate   --notm   $modules_to_run
     ⬆️_upmodule ⚛️_apm       "⚛️ APM"        apm        --noap   $modules_to_run
