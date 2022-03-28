@@ -36,6 +36,7 @@ set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GROOVY_HOME (brew_home groovy)/libexec
 set --export HOMEBREW_BAT (command --search bat)
 set --export HOMEBREW_CLEANUP_MAX_AGE_DAYS 30
+set --export HOMEBREW_NO_ENV_HINTS 1
 set --export ICLOUD_HOME $HOME"/Library/Mobile Documents"
 set --export ICLOUD_DRIVE $ICLOUD_HOME"/com~apple~CloudDocs"
 set --export JABBA_HOME $HOME/.jabba
