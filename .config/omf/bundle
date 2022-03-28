@@ -4,11 +4,4 @@ package foreign-env
 package https://github.com/edc/bass
 package sdk
 package sudope
-theme agnoster
-theme bobthefish
-theme budspencer
-theme dangerous
 theme default
-theme emoji-powerline
-theme pure
-theme simple-ass-prompt

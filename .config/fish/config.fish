@@ -51,39 +51,7 @@ if status is-interactive
         derived_data quiet
     end
 
-    # Powerline
-    if begin; test $powerline_enabled -eq 1; and type -q powerline-daemon; end
-        # Not sure why these are needed, but they appear in several fish examples
-        set --export POWERLINE_BASH_CONTINUATION    1
-        set --export POWERLINE_BASH_SELECT          1
-
-        # http://powerline.readthedocs.io/en/latest/commands/daemon.html
-        powerline-daemon --quiet
-
-        if is_mac
-            # https://computers.tutsplus.com/tutorials/getting-spiffy-with-powerline--cms-20740#highlighter_632634
-
-            # Python setup so we can start powerline
-            for python_version in 3.7
-                # Include system and user packages
-                for python_bin_path in /usr/local/lib/python$python_version/site-packages \
-                                    ~/Library/Python/$python_version/bin
-                    if test -d $python_bin_path
-                        set --export --global PATH $PATH $python_bin_path
-                        if test -d $python_bin_path/powerline/bindings/fish
-                            set fish_function_path $fish_function_path $python_bin_path/powerline/bindings/fish
-                        end
-                    end
-                end
-            end
-        else if is_linux
-            # snap location
-            # /usr/share/powerline/bindings/fish
-            set -l python_packages /home/linuxbrew/.linuxbrew/lib/python3.7/site-packages
-            set fish_function_path $fish_function_path $python_packages/powerline/bindings/fish/
-        end
-        powerline-setup # fish function in powerline/bindings/fish
-    end
+    starship init fish | source
 
     # Use custom autoloaded functions
     # reload fish_mode_prompt
