@@ -116,6 +116,7 @@ function 🍺_brew \
         swiftformat \
         swiftlint \
         swig \
+        starship \
         task \
         tasksh \
         tailor \
