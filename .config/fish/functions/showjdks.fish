@@ -1,7 +1,18 @@
-# Show all installed JDKs.
-function showjdks
+function showjdks \
+    --description='Show all installed JDKs.'
+
+    if test -n "$JAVA_HOME"
+        echo JAVA_HOME: $JAVA_HOME
+        echo
+    end
+
     if is_mac
+        echo 🖥 /usr/libexec/java_home
         /usr/libexec/java_home --verbose $argv
+
+        echo
+        echo 🖥 /Library/Java/JavaVirtualMachines
+        ls -1 /Library/Java/JavaVirtualMachines
 
         set -l sdkman_path $HOME/.sdkman/candidates/java
         if test -d $sdkman_path
