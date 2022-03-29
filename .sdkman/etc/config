@@ -9,4 +9,6 @@ sdkman_colour_enable=true
 sdkman_auto_env=false
 sdkman_rosetta2_compatible=true
 sdkman_auto_complete=false
-sdkman_selfupdate_enable=true
+sdkman_auto_update=true
+sdkman_checksum_enable=true
+sdkman_selfupdate_feature=true
