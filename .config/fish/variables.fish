@@ -246,3 +246,6 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
 setjdk
+
+# .NET
+set --export DOTNET_ROOT (brew_home)/opt/dotnet/libexec
