@@ -248,4 +248,4 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 setjdk
 
 # .NET
-set --export DOTNET_ROOT (brew_home)/opt/dotnet/libexec
+set --export DOTNET_ROOT /usr/local/share/dotnet
