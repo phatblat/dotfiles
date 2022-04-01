@@ -58,6 +58,7 @@ function 🍻_cask \
         microblog \
         microsoft-teams \
         macdown \
+        moom \
         ngrok \
         nova \
         objectivesharpie \
@@ -87,6 +88,7 @@ function 🍻_cask \
         vivaldi \
         vmware-fusion \
         vysor \
+        witch \
         zeplin \
         zoom \
         homebrew/cask-drivers/zsa-wally
