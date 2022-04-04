@@ -249,5 +249,8 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 setjdk
 
 # .NET
+if test -d $HOME/.dotnet/tools
+    fish_add_path $HOME/.dotnet/tools
+end
 set --export DOTNET_ROOT /usr/local/share/dotnet
 set --export MONO_GAC_PREFIX (brew_home)
