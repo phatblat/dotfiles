@@ -17,7 +17,6 @@ function 🍺_brew \
     # mac-only formulae
     set -l formulae_mac \
         configen \
-        dotnet \
         duti \
         fileicon \
         imageoptim-cli \
@@ -39,8 +38,6 @@ function 🍺_brew \
         autoconf \
         automake \
         awscli \
-        azure-cli \
-        azure/functions/azure-functions-core-tools@3 \
         babel \
         bat \
         boost \
@@ -88,7 +85,6 @@ function 🍺_brew \
         markdownlint-cli \
         maven \
         mint \
-        mono \
         mono-libgdiplus \
         mtr \
         nginx \
@@ -156,6 +152,8 @@ function 🍺_brew \
 
     set -l uninstall \
         android-sdk \
+        azure-cli \
+        azure/functions/azure-functions-core-tools@3 \
         cask-repair \
         certbot \
         cloudfoundry/tap/cf-cli \
@@ -163,6 +161,7 @@ function 🍺_brew \
         cmake \
         docker \
         docker-compose \
+        dotnet \
         gnupg \
         go-jira \
         heroku/brew/heroku \
@@ -176,6 +175,7 @@ function 🍺_brew \
         kubernetes-cli \
         md5shasum \
         minikube \
+        mono \
         phatblat/services/pbjenkins \
         ping-devops \
         protobuf protobuf-c \
