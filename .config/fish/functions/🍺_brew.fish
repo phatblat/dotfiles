@@ -65,6 +65,7 @@ function 🍺_brew \
         git \
         git-filter-repo \
         git-lfs \
+        git-subrepo \
         gnu-sed \
         go \
         goaccess \
