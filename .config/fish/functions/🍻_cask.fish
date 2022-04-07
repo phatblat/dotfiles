@@ -151,7 +151,6 @@ function 🍻_cask \
     set -l all_casks $apps #$quicklook_plugins #$fonts
 
     set -l uninstall \
-        1password-cli \
         # https://github.com/Homebrew/homebrew-cask-versions/blob/master/Casks/adoptopenjdk8.rb
         homebrew/cask-versions/adoptopenjdk8 \
         adoptopenjdk/openjdk/adoptopenjdk8 \
