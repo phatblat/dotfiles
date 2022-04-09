@@ -1,5 +1,7 @@
-# Edit a function.
-function fe --argument-names function_name
+function fe \
+    --description='Edit a function.' \
+    --argument-names function_name
+
     set -l file ~/.config/fish/functions/$function_name.fish
 
     if begin not test -e $file
