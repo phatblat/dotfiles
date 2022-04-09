@@ -15,10 +15,12 @@ function function_template \
     --description='$function_name' \\
     --argument-names $argname
 
-    if test -z $argname
+    if test -z \$$argname
         echo 'Usage: $function_name [$argname]'
         return 1
     end
+
+
 end
 " \
     | cat
