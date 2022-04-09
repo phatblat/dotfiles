@@ -254,3 +254,8 @@ if test -d $HOME/.dotnet/tools
 end
 set --export DOTNET_ROOT /usr/local/share/dotnet
 set --export MONO_GAC_PREFIX (brew_home)
+
+# Flutter/Dart
+if test -d $HOME/.pub-cache/bin
+    fish_add_path $HOME/.pub-cache/bin
+end
