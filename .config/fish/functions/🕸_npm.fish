@@ -19,6 +19,7 @@ function 🕸_npm \
         eslint \
         express-generator \
         fast-cli \
+        firebase-tools \
         generator-code \
         gitmoji-cli \
         gulp \
