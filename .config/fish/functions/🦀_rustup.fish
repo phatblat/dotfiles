@@ -1,5 +1,5 @@
 function 🦀_rustup \
-    --description='Updates oh-my-fish and bundled packages.'
+    --description='Installs rustup.'
 
     echo "🦀 rustup - https://rustup.rs"
     echo
