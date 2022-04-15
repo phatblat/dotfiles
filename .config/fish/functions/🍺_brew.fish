@@ -104,6 +104,7 @@ function 🍺_brew \
         ruby \
         sccache \
         scrcpy \
+        sevenzip \
         shellcheck \
         sl \
         socat \
