@@ -38,5 +38,9 @@ function ignores
         'heapdump.*.phd' \
         'javacore.*.txt' \
         # Rust/Cargo
-        target/
+        target/ \
+        # Visual Studio, MSBuild
+        '*.dll' \
+        .vs/ \
+        obj/
 end
