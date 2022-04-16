@@ -42,5 +42,6 @@ function ignores
         # Visual Studio, MSBuild
         '*.dll' \
         .vs/ \
+        packages/ \
         obj/
 end
