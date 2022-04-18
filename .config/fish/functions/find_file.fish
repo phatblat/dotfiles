@@ -21,5 +21,5 @@ function find_file \
     echo "base_dir: $base_dir"
     echo "-----------------------------------"
 
-    find "$base_dir" -name "*$file_name*" -print
+    find "$base_dir" -name "*$file_name*" -print 2>/dev/null
 end
