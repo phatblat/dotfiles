@@ -88,6 +88,7 @@ function 🍻_cask \
         vivaldi \
         vmware-fusion \
         vysor \
+        warp \
         witch \
         zeplin \
         zoom \
