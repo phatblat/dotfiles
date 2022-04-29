@@ -1,5 +1,6 @@
 #
 # ~/.cargo/cargo.toml
+# https://doc.rust-lang.org/cargo/reference/config.html
 #
 
 [build]
