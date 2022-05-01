@@ -11,9 +11,15 @@ function path \
             echo PATH
             list $PATH
         case add
-            if test -d "$directory"
+            if test -z "$directory"
+                error "Usage: path add <directory>"
+                return 1
+            else if test -d "$directory"
                 # https://fishshell.com/docs/current/cmds/fish_add_path.html?highlight=fish_add_path
                 fish_add_path "$directory"
+            else
+                error "Directory not found: $directory"
+                return 2
             end
             path show
         case '*' show
