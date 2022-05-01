@@ -246,7 +246,7 @@ end
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
-setjdk
+jdk set $HOME/.sdkman/candidates/java/current
 
 # .NET
 if test -d $HOME/.dotnet/tools
