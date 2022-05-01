@@ -51,11 +51,11 @@ function jdk \
             # end
 
             # JAVA_OPTS
-            set --local common_options "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
+            # set --local common_options "-Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"
             # Suppressing Groovy warnings when gradle invoked from Java 9+
             # https://github.com/gradle/gradle/issues/2995
             # https://issues.apache.org/jira/browse/GROOVY-8339
-            set --local java9_options "--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED"
+            # set --local java9_options "--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED"
 
             # set --local major_version (string split . $java_version)[1]
             # if test $major_version -lt 9
@@ -67,6 +67,7 @@ function jdk \
 
             # JAVA_HOME
             set --export --global JAVA_HOME $jdk_path
+            path add $JAVA_HOME/bin
 
             jdk current
         case '*' current
