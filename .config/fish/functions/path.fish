@@ -21,7 +21,6 @@ function path \
                 error "Directory not found: $directory"
                 return 2
             end
-            path show
         case '*' show
             # Prints the current paths
             echo fish_user_paths
