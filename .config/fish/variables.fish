@@ -246,7 +246,12 @@ end
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
-jdk set $HOME/.sdkman/candidates/java/current
+set --local jdk_dir $HOME/.jabba/jdk/zulu@1.11.0-10/Contents/Home
+if not test -d $jdk_dir
+    jabba install zulu@1.11.0-10
+end
+jdk set $jdk_dir
+
 
 # .NET
 if test -d $HOME/.dotnet/tools
