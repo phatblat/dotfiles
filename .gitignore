@@ -166,6 +166,7 @@
 .gnupg_pre_2.1/
 .gradle/
 .groovy/
+.hawtjni/
 .heroku/
 .hyper_plugins/
 .idapro/
