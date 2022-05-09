@@ -8,6 +8,9 @@ function find_file \
         return 1
     end
 
+    mdfind -name $file_name
+    echo
+
     if test -z $base_dir
         set base_dir .
     end
