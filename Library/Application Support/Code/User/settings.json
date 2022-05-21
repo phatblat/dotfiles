@@ -135,5 +135,6 @@
   "go.toolsManagement.autoUpdate": true,
   "editor.formatOnSave": true,
   "debug.allowBreakpointsEverywhere": true,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "diffEditor.renderSideBySide": false
 }
