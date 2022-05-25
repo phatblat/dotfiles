@@ -18,7 +18,7 @@ if is_mac
     # - 22.0.7026061
     # - 23.1.7779620
     # - 24.0.7956693
-    set --export NDK_VERSION 22.0.7026061
+    set --export NDK_VERSION 23.1.7779620
     set --export ANDROID_NDK_HOME $HOME/Library/Android/sdk/ndk/$NDK_VERSION
 else if is_linux
     set --export ANDROID_HOME $HOME/Android/Sdk
@@ -176,6 +176,7 @@ if test -d "$ANDROID_HOME"
         $ANDROID_HOME/tools/bin \
         $ANDROID_HOME/build-tools/* \
         $ANDROID_HOME/platform-tools \
+        $ANDROID_NDK_HOME \
         $PATH
 end
 
