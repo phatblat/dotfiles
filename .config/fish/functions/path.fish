@@ -16,7 +16,7 @@ function path \
                 return 1
             else if test -d "$directory"
                 # https://fishshell.com/docs/current/cmds/fish_add_path.html?highlight=fish_add_path
-                fish_add_path "$directory"
+                fish_add_path --prepend "$directory"
             else
                 error "Directory not found: $directory"
                 return 2
