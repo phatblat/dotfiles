@@ -250,12 +250,13 @@ end
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
-set --local jdk_dir $HOME/.jabba/jdk/zulu@1.11.0-10/Contents/Home
-if not test -d $jdk_dir
-    jabba install zulu@1.11.0-10
+set --local jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
+if test -d $jdk_dir
+    jdk set $jdk_dir
+else
+    # jabba install $java_distro
+    error "JDK dir not found: $jdk_dir"
 end
-jdk set $jdk_dir
-
 
 # .NET
 if test -d $HOME/.dotnet/tools
