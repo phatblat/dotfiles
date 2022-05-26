@@ -173,9 +173,11 @@ end
 # end
 
 if test -d "$ANDROID_HOME"
+    # Use the latest installed version of the build tools
+    set --local BUILD_TOOLS_VERSION (ls -1r /Users/phatblat/Library/Android/sdk/build-tools/ | head -1)
     set --export --global PATH \
         $ANDROID_HOME/tools/bin \
-        $ANDROID_HOME/build-tools/* \
+        $ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION \
         $ANDROID_HOME/platform-tools \
         $ANDROID_NDK_HOME \
         $PATH
