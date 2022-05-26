@@ -24,9 +24,9 @@ function path \
         case '*' show
             # Prints the current paths
             echo fish_user_paths
-            echo $fish_user_paths
+            string join \n -- $fish_user_paths
             echo
             echo PATH
-            echo $PATH
+            string join \n -- $PATH
     end
 end
