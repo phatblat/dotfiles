@@ -250,7 +250,7 @@ end
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
-set --local jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
+set --local jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
 if test -d $jdk_dir
     jdk set $jdk_dir
 else
