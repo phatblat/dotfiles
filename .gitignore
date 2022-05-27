@@ -213,6 +213,7 @@
 .nextmind/
 .ngrok/
 .node-gyp/
+.node/
 .node_repl_history
 .npm-cache/
 .npm/
