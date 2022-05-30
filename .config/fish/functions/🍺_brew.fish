@@ -90,6 +90,7 @@ function 🍺_brew \
         nginx \
         node \
         nvm \
+        openjdk \
         packer \
         pacvim \
         pkg-config \
