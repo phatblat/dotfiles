@@ -69,6 +69,7 @@
 .config/Code/machineid
 .config/Code/rapid_render.json
 .config/Code/storage.json
+.config/GitHub/ActionsService/
 .config/GitHub\ActionsService/
 .config/GitHub\\ActionsService/
 .config/Microsoft\\VisualStudio Services/
