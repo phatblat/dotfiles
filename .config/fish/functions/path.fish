@@ -1,8 +1,8 @@
 function path \
-    --description='path' \
-    --argument-names command directory
+    --description='Path manipulation. Subcommands: show, list, add' \
+    --argument-names cmd directory
 
-    switch $command
+    switch $cmd
         case list
             # Pretty prints the current paths
             echo fish_user_paths
