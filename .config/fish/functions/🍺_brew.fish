@@ -107,6 +107,7 @@ function 🍺_brew \
         scrcpy \
         sevenzip \
         shellcheck \
+        shfmt \
         sl \
         socat \
         sonar-scanner \
