@@ -19,7 +19,6 @@ function 🍺_brew \
         configen \
         duti \
         fileicon \
-        imageoptim-cli \
         thoughtbot/formulae/liftoff \
         mas \
         screenresolution \
