@@ -95,6 +95,7 @@ function 🍺_brew \
         pkg-config \
         publish \
         python@3.9 \
+        qt \
         radare2 \
         redis \
         rename \
