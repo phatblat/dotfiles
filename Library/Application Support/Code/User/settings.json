@@ -136,5 +136,7 @@
   "editor.formatOnSave": true,
   "debug.allowBreakpointsEverywhere": true,
   "editor.minimap.enabled": false,
-  "diffEditor.renderSideBySide": false
+  "diffEditor.renderSideBySide": false,
+  "vscode-kubernetes.helm-path": "/opt/homebrew/bin/helm",
+  "vscode-kubernetes.kubectl-path": "/opt/homebrew/bin/kubectl"
 }
