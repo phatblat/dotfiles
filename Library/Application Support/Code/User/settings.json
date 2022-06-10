@@ -91,7 +91,11 @@
   },
   "[markdown]": {
     "editor.wordWrap": "off",
-    "editor.quickSuggestions": true
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
   },
   "[ruby]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
