@@ -79,7 +79,7 @@
   "workbench.colorTheme": "2077",
   "docker.showStartPage": false,
   "window.zoomLevel": 1,
-  "editor.fontFamily": "'Source Code Pro for Powerline', 'Courier New', monospace",
+  "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
   "editor.copyWithSyntaxHighlighting": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[html]": {
