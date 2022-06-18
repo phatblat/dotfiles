@@ -13,7 +13,6 @@ function 🌱_mint \
         num42/icon-resizer-swift \
         mono0926/LicensePlist \
         yonaskolb/SwagGen \
-        thii/xcbeautify \
         yonaskolb/XcodeGen \
         ChargePoint/xcparse
 

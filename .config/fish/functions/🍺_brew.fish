@@ -130,6 +130,7 @@ function 🍺_brew \
         utimer \
         virtualenv \
         watchman \
+        xcbeautify \
         yarn \
         $custom_shells
     # END: formulae
