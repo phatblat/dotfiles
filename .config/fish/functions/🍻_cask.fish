@@ -57,6 +57,7 @@ function 🍻_cask \
         licecap \
         loom \
         microblog \
+        microsoft-edge \
         microsoft-teams \
         macdown \
         moom \
