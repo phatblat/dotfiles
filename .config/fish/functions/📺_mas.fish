@@ -19,4 +19,7 @@ function 📺_mas \
     echo
     echo "⬆️ Updating macOS system software"
     mas upgrade
+
+    # Apple Configurator
+    # mas install 1037126344
 end
