@@ -68,7 +68,6 @@
   "java.requirements.JDK11Warning": false,
   "editor.fontLigatures": true,
   "java.semanticHighlighting.enabled": true,
-  "C_Cpp.updateChannel": "Insiders",
   "editor.linkedEditing": true,
   "terminal.integrated.defaultProfile": "/usr/local/bin/fish",
   "java.project.importOnFirstTimeStartup": "automatic",
