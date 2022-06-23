@@ -109,6 +109,7 @@
 .config/git/config
 .config/git/gitk
 .config/git/ignore
+.config/github-copilot/
 .config/gnome-control-center/
 .config/gnome-initial-setup-done
 .config/goa-1.0/
