@@ -40,7 +40,7 @@
   ],
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "jshint.nodePath": "/usr/local/lib/node_modules",
+  "jshint.nodePath": "/opt/homebrew/lib/node_modules",
   "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
   "ruby.codeCompletion": "rcodetools",
   "ruby.intellisense": "rubyLocate",
@@ -134,7 +134,7 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": false
   },
-  "dart.flutterSdkPath": "/usr/local/Caskroom/flutter/2.10.3/flutter",
+  "dart.flutterSdkPath": "/opt/homebrew/bin/flutter",
   "go.toolsManagement.autoUpdate": true,
   "editor.formatOnSave": true,
   "debug.allowBreakpointsEverywhere": true,
