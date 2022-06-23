@@ -143,5 +143,11 @@
   "diffEditor.renderSideBySide": false,
   "vscode-kubernetes.helm-path": "/opt/homebrew/bin/helm",
   "vscode-kubernetes.kubectl-path": "/opt/homebrew/bin/kubectl",
-  "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": true
+  }
 }
