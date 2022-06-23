@@ -31,7 +31,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "editor.rulers": [80, 120],
-  "java.configuration.checkProjectSettingsExclusions": false,
+  "java.import.generatesMetadataFilesAtProjectRoot": false,
   "java.testMethod": [
     "./gradlew",
     "testDebugUnitTest",
