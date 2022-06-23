@@ -52,6 +52,7 @@ function 🆚_vscode \
         formulahendry.terminal \
         georgewfraser.vscode-javac \
         fwcd.kotlin \
+        GitHub.copilot \
         golang.go \
         HookyQR.beautify \
         humao.rest-client \
