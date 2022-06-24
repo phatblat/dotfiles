@@ -23,6 +23,7 @@ function 🕸_npm \
         generator-code \
         gitmoji-cli \
         gulp \
+        @hubspot/cli
         jake \
         jshint \
         json5 \
