@@ -51,6 +51,11 @@ if status is-interactive
         derived_data quiet
     end
 
+    # Set up RAM disk for Cargo
+    if is_protop; or is_phatmini
+        cargo_target quiet
+    end
+
     starship init fish | source
 
     # Use custom autoloaded functions
