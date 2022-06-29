@@ -2,7 +2,7 @@ function derived_data \
     --description='Spins up a RAM disk for Xcode DerivedData' \
     --argument-names quiet
 
-    set -l drive_name CargoTarget
+    set -l drive_name DerivedData
     set -l target_path /Volumes/$drive_name
 
     set -l output
