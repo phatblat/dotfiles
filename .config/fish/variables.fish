@@ -275,3 +275,7 @@ set --local XAMARIN_IOS_BIN_DIR /Library/Frameworks/Xamarin.iOS.framework/Versio
 if test -d $XAMARIN_IOS_BIN_DIR
     fish_add_path $XAMARIN_IOS_BIN_DIR
 end
+
+# Bun
+set -Ux BUN_INSTALL "/Users/phatblat/.bun"
+set -px --path PATH "/Users/phatblat/.bun/bin"
