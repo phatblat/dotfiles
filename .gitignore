@@ -11,6 +11,7 @@
 *.swp
 *.xccheckout
 *.xcscmblueprint
+*Google Drive
 .*history
 .AndroidStudio*/
 .ApacheDirectoryStudio/
@@ -40,6 +41,7 @@
 .bash_sessions/
 .bluemix/
 .build/
+.bun/
 .bundle/cache/
 .cache/
 .cargo/
@@ -311,7 +313,6 @@ Downloads/
 Dropbox/
 EpuborLog/
 Fastlane/report.xml
-*Google Drive
 IdeaProjects/
 KindleTransfer2019.01.log
 Library.bak/
