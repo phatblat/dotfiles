@@ -19,11 +19,11 @@ function bundle-pull \
     set -l remote_username
     set -l remote_hostname
     switch $local_hostname
-        case tredecim.local
-            set remote_hostname octodec.local
+        case protop.local
+            set remote_hostname phatmini.local
             set remote_username phatblat
-        case octodec.local
-            set remote_hostname tredecim.local
+        case phatmini.local
+            set remote_hostname protop.local
             set remote_username phatblat
         case '*'
             echo "Unknown hostname: $local_hostname"
