@@ -15,8 +15,9 @@ function cargo_target \
     else
         set output (ramdisk $default_size $drive_name)
         fileicon set "/Volumes/$drive_name" "$icon_file"
-        set --export --global CARGO_TARGET_DIR $target_path
     end
+
+    set --export --global CARGO_TARGET_DIR $target_path
 
     if test -z "$quiet"
         list $output
