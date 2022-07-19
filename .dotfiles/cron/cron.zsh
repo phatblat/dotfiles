@@ -9,4 +9,4 @@
 #-------------------------------------------------------------------------------
 
 alias cron_reload="crontab $HOME/.dotfiles/cron/cron.file"
-cron_reload
+# cron_reload
