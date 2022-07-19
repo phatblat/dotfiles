@@ -9,6 +9,8 @@
 #
 #-------------------------------------------------------------------------------
 
+echo ".zshrc"
+
 for file in ~/.dotfiles/**/*.zsh
 do
   # Ensure $file is not a directory
