@@ -23,8 +23,8 @@ source "$(brew --prefix)/share/antigen/antigen.zsh"
 antigen use oh-my-zsh
 
 # Override oh-my-zsh aliases
-unalias d && alias d='git diff'
-unalias po && alias po='pod outdated --no-repo-update'
+unalias d  2>/dev/null && alias d='git diff'
+unalias po 2>/dev/null && alias po='pod outdated --no-repo-update'
 
 # Antigen Bundles
 # antigen bundle common-aliases
