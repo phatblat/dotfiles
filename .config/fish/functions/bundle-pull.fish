@@ -19,11 +19,11 @@ function bundle-pull \
     set -l remote_username
     set -l remote_hostname
     switch $local_hostname
-        case protop.local
-            set remote_hostname phatmini.local
+        case protop
+            set remote_hostname phatmini
             set remote_username phatblat
-        case phatmini.local
-            set remote_hostname protop.local
+        case phatmini
+            set remote_hostname protop
             set remote_username phatblat
         case '*'
             echo "Unknown hostname: $local_hostname"
@@ -41,7 +41,7 @@ function bundle-pull \
     echo
 
     # Create a git bundle file containing the diff of the working copy to HEAD.
-    ssh $remote_username@$remote_hostname "cd '$repo_path'; and git_bundle_create"
+    ssh $remote_username@$remote_hostname "fish; and cd '$repo_path'; and git_bundle_create"
 
     if test $status -ne 0
         return $status
