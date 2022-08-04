@@ -225,8 +225,8 @@ end
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI "vim" # vi vim
 set --export EDITOR_GUI "code --new-window" # atom (vs)code mate mvim subl
-set --export WAIT_FLAG_CLI "-f"
-set --export WAIT_FLAG_GUI "-w"
+set --export WAIT_FLAG_CLI "--nofork"
+set --export WAIT_FLAG_GUI "--wait"
 
 # EDITOR or VISUAL, only one defined
 # Use EDITOR for non-console users (su someoneelse) and SSH connections
