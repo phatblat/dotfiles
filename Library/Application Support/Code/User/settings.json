@@ -82,7 +82,7 @@
   "editor.copyWithSyntaxHighlighting": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[html]": {
-    "editor.defaultFormatter": "HookyQR.beautify"
+    "editor.defaultFormatter": "mkaufman.HTMLHint"
   },
   "[lic]": {
     "files.insertFinalNewline": false,
@@ -148,5 +148,8 @@
     "yaml": false,
     "plaintext": false,
     "markdown": true
-  }
+  },
+  "xml.java.home": "",
+  "dart.flutterCreateOrganization": null,
+  "githubPullRequests.pullBranch": "never"
 }
