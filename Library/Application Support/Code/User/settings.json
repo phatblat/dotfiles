@@ -109,8 +109,8 @@
     }
   ],
   "tabnine.experimentalAutoImports": true,
-  "redhat.telemetry.enabled": true,
-  "java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
+"redhat.telemetry.enabled": true,
+"java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
   "git.autofetch": true,
   "python.languageServer": "None",
   "vs-kubernetes": {
@@ -148,7 +148,7 @@
     "yaml": false,
     "plaintext": false,
     "markdown": true
-  },
+},
   "xml.java.home": "",
   "dart.flutterCreateOrganization": null,
   "githubPullRequests.pullBranch": "never"
