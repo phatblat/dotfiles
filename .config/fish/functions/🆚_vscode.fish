@@ -11,9 +11,14 @@ function 🆚_vscode \
 
     # Extensions to upstall
     set -l extensions \
+        2gua.rainbow-brackets \
+        adelphes.android-dev-ext \
         ahmadawais.shades-of-purple \
         Alan.stylus \
+        allan-carlos.night-rainbow \
+        amodio.amethyst-theme \
         Apptorium.teacode-vsc-helper \
+        bagetx.inf \
         bencoleman.armview \
         bierner.markdown-preview-github-styles \
         bungcip.better-toml \
@@ -22,7 +27,12 @@ function 🆚_vscode \
         cmstead.js-codeformer \
         cmstead.jsrefactor \
         codezombiech.gitignore \
+        cschlosser.doxdocgen \
+        Dart-Code.dart-code \
+        Dart-Code.flutter \
         DavidAnson.vscode-markdownlint \
+        dawhite.mustache \
+        daylerees.rainglow \
         dbaeumer.jshint \
         dbaeumer.vscode-eslint \
         deerawan.vscode-dash \
@@ -30,10 +40,13 @@ function 🆚_vscode \
         dnicolson.binary-plist \
         donjayamanne.githistory \
         DSnake.java-debug \
+        dsznajder.es7-react-js-snippets \
         eamodio.gitlens \
+        ecmel.vscode-html-css \
         EditorConfig.EditorConfig \
         eg2.tslint \
         eg2.vscode-npm-script \
+        Endormi.2077-theme \
         Equinusocio.vsc-community-material-theme \
         Equinusocio.vsc-material-theme \
         equinusocio.vsc-material-theme-icons \
@@ -45,20 +58,26 @@ function 🆚_vscode \
         fisheva.eva-theme \
         fivepointseven.node-version \
         flesler.url-encode \
+        flimberger.android-system-tools \
         fmoronzirfas.open-in-marked \
         formulahendry.auto-close-tag \
         formulahendry.auto-rename-tag \
         formulahendry.code-runner \
         formulahendry.terminal \
-        georgewfraser.vscode-javac \
         fwcd.kotlin \
+        georgewfraser.vscode-javac \
         GitHub.copilot \
+        GitHub.github-vscode-theme \
+        GitHub.vscode-pull-request-github \
+        gitpod.gitpod-desktop \
         golang.go \
+        hashicorp.terraform \
         HookyQR.beautify \
         humao.rest-client \
         jakearl.search-editor-apply-changes \
         jamesmaj.easy-icons \
-        joelday.docthis \
+        jeff-hykin.better-cpp-syntax \
+        josetr.cmake-language-support-vscode \
         joshuapoehls.json-escaper \
         jtavin.ldif \
         JuanBlanco.solidity \
@@ -67,68 +86,80 @@ function 🆚_vscode \
         kevinkyang.auto-comment-blocks \
         kevinmcgowan.TypeScriptImport \
         kisstkondoros.vscode-codemetrics \
-        kumar-harsh.graphql-for-vscode \
         kozet.purple-night \
+        kumar-harsh.graphql-for-vscode \
         leizongmin.node-module-intellisense \
         lunaryorn.fish-ide \
+        mariomatheu.syntax-project-pbxproj \
         mathiasfrohlich.Kotlin \
-        miramac.vscode-exec-node \
         mechatroner.rainbow-csv \
         mhcpnl.xcodestrings \
         mikestead.dotenv \
+        miramac.vscode-exec-node \
         mitaki28.vscode-clang \
         mkaufman.HTMLHint \
         mohsen1.prettify-json \
         mongodb.mongodb-vscode \
         monokai.theme-monokai-pro-vscode \
+        mpotthoff.vscode-android-webview-debug \
         ms-dotnettools.csharp \
         ms-dotnettools.vscode-dotnet-runtime \
-        ms-kubernetes-tools.vscode-aks-tools \
         ms-kubernetes-tools.vscode-kubernetes-tools \
         ms-python.python \
         ms-python.vscode-pylance \
         ms-toolsai.jupyter \
         ms-toolsai.jupyter-keymap \
         ms-toolsai.jupyter-renderers \
-        ms-toolsai.vscode-ai \
-        ms-toolsai.vscode-ai-remote \
         ms-vscode-remote.remote-containers \
+        ms-vscode-remote.remote-ssh \
+        ms-vscode-remote.remote-wsl \
+        ms-vscode.cmake-tools \
         ms-vscode.cpptools \
+        ms-vscode.cpptools-extension-pack \
+        ms-vscode.cpptools-themes \
         ms-vscode.js-atom-grammar \
-        ms-vscode.typescript-javascript-grammar \
+        ms-vscode.makefile-tools \
+        ms-vscode.powershell \
         ms-vsliveshare.vsliveshare \
         ms-vsliveshare.vsliveshare-audio \
         msjsdiag.debugger-for-chrome \
+        naco-siren.gradle-language \
+        nataliefruitema.modern-purple-theme \
         naumovs.node-modules-resolve \
         nepaul.editorconfiggenerator \
-        nhcarrigan.vscode-purple \
         nodesource.vscode-for-node-js-development-pack \
+        oderwat.indent-rainbow \
         Perkovec.emoji \
         phplasma.csv-to-table \
         PKief.material-icon-theme \
         pkosta2005.heroku-command \
         prashaantt.node-tdd \
         rbbit.typescript-hero \
+        rebornix.ruby \
         redhat.fabric8-analytics \
         redhat.java \
         redhat.vscode-xml \
         redhat.vscode-yaml \
         ritwickdey.LiveServer \
+        RobbOwen.synthwave-vscode \
         rust-lang.rust \
         secanis.jenkinsfile-support \
         Shan.code-settings-sync \
         shanoor.vscode-nginx \
         sidneys1.gitconfig \
+        silvenon.mdx \
         skyapps.fish-vscode \
         sohibe.java-generate-setters-getters \
         stevencl.addDocComments \
         stkb.rewrap \
+        surajbarkale.ninja \
         sysoev.language-stylus \
         sysoev.vscode-open-in-github \
         TabNine.tabnine-vscode \
         techer.open-in-browser \
         timonwong.shellcheck \
-        Trunk.io \
+        tombonnike.vscode-status-bar-format-toggle \
+        trunk.io \
         tushortz.java-imports-snippets \
         twxs.cmake \
         vadimcn.vscode-lldb \
