@@ -13,4 +13,15 @@ function 🦀_rustup \
     rustup check
     echo
     rustup update
+
+    set --local plugins \
+        cargo-readme
+
+    for plugin in $plugins
+        if test -f $HOME/.cargo/bin/$plugin
+            continue
+        end
+        echo "🦀 Installing plugin: $plugin"
+        cargo install $plugin
+    end
 end
