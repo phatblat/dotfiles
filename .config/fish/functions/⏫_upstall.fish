@@ -17,6 +17,7 @@ function ⏫_upstall \
         fisher \
         omf \
         mint \
+        rustup \
         sdkman \
         pip \
         nvm \
@@ -36,7 +37,7 @@ function ⏫_upstall \
     # Log the default modules for the os
     # echo "all_modules: $all_modules"
 
-    set -l modules_to_run
+    set --local modules_to_run
 
     if contains -- --nothing $argv
         # Smoke test
@@ -48,7 +49,7 @@ function ⏫_upstall \
             --nojs --nopl \
             --novi --notm \
             --novs --noos \
-            --nomt
+            --nomt --nors
     else if test -z "$argv"
         # No args means run all
         set modules_to_run $all_modules
@@ -63,7 +64,7 @@ function ⏫_upstall \
     # echo "modules_to_run: $modules_to_run"
 
     ⬆️_upmodule 🗄_gitconfig "🗄 Git config" git        --nog    $modules_to_run
-    ⬆️_upmodule 🦀_rustup    "🦀 Rust"       rust       --nors   $modules_to_run
+    ⬆️_upmodule 🦀_rustup    "🦀 Rustup"     rust       --nors   $modules_to_run
     ⬆️_upmodule 💎_rubygems  "💎 Ruby Gems"  ruby       --norb   $modules_to_run
     ⬆️_upmodule 🔨_xcode     "🔨 Xcode"      xcode      --noxc   $modules_to_run
     ⬆️_upmodule 📦_apt       "📦 APT"        apt        --noapt  $modules_to_run
