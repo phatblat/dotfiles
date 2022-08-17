@@ -151,5 +151,6 @@
   },
   "xml.java.home": "",
   "dart.flutterCreateOrganization": null,
-  "githubPullRequests.pullBranch": "never"
+  "githubPullRequests.pullBranch": "never",
+  "npm.keybindingsChangedWarningShown": true
 }
