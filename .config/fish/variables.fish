@@ -281,5 +281,7 @@ set -Ux BUN_INSTALL "/Users/phatblat/.bun"
 set -px --path PATH "/Users/phatblat/.bun/bin"
 
 set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
-set --export --global BOOST_VERSION (brew_active_version boost)
+# find_package called with invalid argument "1.79.0_1"
+# set --export --global BOOST_VERSION (brew_active_version boost)
+set --export --global BOOST_VERSION 1.79.0
 set --export --global BOOST_INCLUDE_DIR (brew_home)/include
