@@ -216,6 +216,8 @@
 .netrc
 .nextmind/
 .ngrok/
+.nix-defexpr/
+.nix-profile
 .node-gyp/
 .node/
 .node_repl_history
