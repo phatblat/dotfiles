@@ -1,6 +1,6 @@
 function jdk \
     --description='Manage installed JDKs.' \
-    --argument-names command jdk_path
+    --argument-names command jdk_path quiet
 
     if is_linux
         which java
@@ -69,7 +69,9 @@ function jdk \
             set --export --global JAVA_HOME $jdk_path
             path add $JAVA_HOME/bin
 
-            jdk current
+            if test -z $quiet
+                jdk current
+            end
         case '*' current
             # Prints info about the currently selected JDK
             set -l java_cmd (which java)

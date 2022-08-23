@@ -252,7 +252,7 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 # Java
 set --local jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
 if test -d $jdk_dir
-    jdk set $jdk_dir
+    jdk set $jdk_dir --quiet
 else
     # jabba install $java_distro
     error "JDK dir not found: $jdk_dir"
