@@ -11,6 +11,7 @@ function 🐟_fisher \
         laughedelic/fish_logo \
         get \
         mock \
+        lilyball/nix-env.fish \
         z
 
     set -l repo_url git@github.com:jorgebucaran/fisher.git
