@@ -4,7 +4,7 @@ function cargo_target \
 # argparse 'h/help' 'n/name' -- $argv
 
     set -l drive_name CargoTarget
-    set -l default_size 23
+    set -l default_size 30
     set -l target_path /Volumes/$drive_name
     set -l icon_file ~/Pictures/Icons/rustacean-flat-happy.webp
 
