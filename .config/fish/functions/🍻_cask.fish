@@ -57,10 +57,11 @@ function 🍻_cask \
         latest \
         licecap \
         loom \
+        macdown \
+        meld \
         microblog \
         microsoft-edge \
         microsoft-teams \
-        macdown \
         moom \
         ngrok \
         nova \
