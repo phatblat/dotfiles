@@ -107,3 +107,5 @@ export SDKMAN_DIR="/Users/phatblat/.sdkman"
 [[ -s "/Users/phatblat/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/phatblat/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source /Users/phatblat/.config/broot/launcher/bash/br

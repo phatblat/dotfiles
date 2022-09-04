@@ -12,3 +12,5 @@ export SDKMAN_DIR="~/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 . "$HOME/.cargo/env"
+
+source /Users/phatblat/.config/broot/launcher/bash/br

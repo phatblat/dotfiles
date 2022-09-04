@@ -124,3 +124,5 @@ export SDKMAN_DIR="~/.sdkman"
 . "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+source /Users/phatblat/.config/broot/launcher/bash/br
