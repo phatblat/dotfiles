@@ -28,7 +28,12 @@ if status is-interactive
         cargo_target quiet
     end
 
-    starship init fish | source
+    if command --query starship
+        starship init fish | source
+    end
+    if command --query zoxide
+        zoxide init fish | source
+    end
 
     # Use custom autoloaded functions
     # reload fish_mode_prompt
