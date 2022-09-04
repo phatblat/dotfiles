@@ -277,6 +277,7 @@
 .templateengine/
 .terraform.d/
 .thunderbird/
+.tldrc/
 .tooling/
 .travis/
 .vault-token
