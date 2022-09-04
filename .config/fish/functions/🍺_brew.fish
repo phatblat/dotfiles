@@ -52,6 +52,7 @@ function 🍺_brew \
         cowsay \
         ctags \
         curl \
+        curlie \
         diff-so-fancy \
         direnv \
         dog \
