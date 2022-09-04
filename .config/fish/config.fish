@@ -24,7 +24,7 @@ if status is-interactive
     end
 
     # Set up RAM disk for Cargo
-    if is_protop; or is_phatmini
+    if is_phatmini
         cargo_target quiet
     end
 
