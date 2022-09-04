@@ -12,10 +12,19 @@
 [rerere]
     enabled = true
 [core]
-    pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+    # pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+    pager = delta
     whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
     #--HILITE-SEARCH
     #--pattern '^(Date|added|deleted|modified|renamed): |\\* '
+[diff-so-fancy]
+    markEmptyLines = false
+    changeHunkIndicators = true
+    stripLeadingSymbols = true
+    useUnicodeRuler = true
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [color]
@@ -60,11 +69,6 @@
 #[filter "xmlplist"]
 #    clean = git-plist-filter.sh
 #    smudge = git-plist-filter.sh
-[diff-so-fancy]
-    markEmptyLines = false
-    changeHunkIndicators = true
-    stripLeadingSymbols = true
-    useUnicodeRuler = true
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg2
 [pull]
@@ -75,9 +79,14 @@
 	gpgsign = false
 [init]
 	defaultBranch = main
+[interactive]
+    diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false # required for git 2.37.0
 [diff]
     algorithm = patience
 	tool = Kaleidoscope
+    colorMoved = default
 [diff "l10n"]
     textconv = iconv -f utf-16 -t utf-8
 [diff "plistbuddy"]
@@ -90,6 +99,7 @@
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [merge]
 	tool = Kaleidoscope
+    conflictstyle = diff3
 [mergetool]
     keepBackup = false
 	prompt = false
