@@ -25,6 +25,7 @@ function 🍻_cask \
         cheatsheet \
         cleanmymac \
         cmake \
+        curlie \
         dash \
         deckset \
         docker \
@@ -42,8 +43,8 @@ function 🍻_cask \
         gpg-suite \
         grammarly \
         hex-fiend \
+        httpie \
         imageoptim \
-        ios-console \
         istat-menus \
         iterm2 \
         jetbrains-toolbox \

@@ -40,8 +40,12 @@ function 🍺_brew \
         babel \
         bat \
         boost \
+        bottom \
+        broot \
         burl \
         carthage \
+        cheat \
+        choose \
         clang-format \
         cloc \
         cmatrix \
@@ -50,8 +54,13 @@ function 🍺_brew \
         curl \
         diff-so-fancy \
         direnv \
+        dog \
+        duf \
+        dust \
         emojify \
+        exa \
         f3 \
+        fd \
         findutils \
         firebase-cli \
         fortune \
@@ -60,13 +69,19 @@ function 🍺_brew \
         gh \
         git \
         git-filter-repo \
+        git-delta \
         git-lfs \
         git-subrepo \
+        glances \
         gnu-sed \
         go \
         goaccess \
         gradle \
         groovy \
+        gping \
+        gtop \
+        httpie \
+        hyperfine \
         jabba \
         jenv \
         jq \
@@ -79,10 +94,12 @@ function 🍺_brew \
         libarchive \
         libssh2 \
         libtool \
+        lsd \
         macchina \
         make \
         markdownlint-cli \
         maven \
+        mcfly \
         mint \
         mono-libgdiplus \
         mtr \
@@ -93,6 +110,7 @@ function 🍺_brew \
         packer \
         pacvim \
         pkg-config \
+        procs \
         publish \
         python@3.9 \
         qt \
@@ -105,6 +123,7 @@ function 🍺_brew \
         ruby \
         sccache \
         scrcpy \
+        sd \
         sevenzip \
         shellcheck \
         shfmt \
@@ -121,8 +140,10 @@ function 🍺_brew \
         tasksh \
         tailor \
         tailscale \
+        the_silver_searcher \
         thefuck \
         tig \
+        tldr \
         tmux \
         travis \
         tree \
@@ -131,7 +152,9 @@ function 🍺_brew \
         virtualenv \
         watchman \
         xcbeautify \
+        xh \
         yarn \
+        zoxide \
         $custom_shells
     # END: formulae
 
