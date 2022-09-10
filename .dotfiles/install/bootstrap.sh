@@ -7,7 +7,7 @@
 # script for further one-time setup.
 #
 # Usage: Run the following command in a terminal:
-#   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/master/.dotfiles/install/bootstrap.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/phatblat/dotfiles/main/.dotfiles/install/bootstrap.sh | bash
 #
 #-------------------------------------------------------------------------------
 
@@ -69,12 +69,12 @@ fi
 git init
 git remote add origin https://github.com/phatblat/dotfiles.git
 git fetch
-git branch --track master origin/master
-git branch --set-upstream-to=origin/master master
+git branch --track main origin/main
+git branch --set-upstream-to=origin/main main
 git pull
 echo "Git status before checkout:"
 git status
-git checkout master --force
+git checkout main --force
 echo "Git status after checkout:"
 git status
 
@@ -86,30 +86,19 @@ echo "Dotfiles now installed at $HOME"
 # Ensure Homebrew is installed
 if ! command -v brew; then
     # Install Homebrew
-    if test "$kernel" = "Darwin"; then
-        echo "Installing Homebrew"
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    elif test "$kernel" = "Linux"; then
-        echo "Installing Linuxbrew"
-        # https://docs.brew.sh/Homebrew-on-Linux
-
-        # Warning: /home/linuxbrew/.linuxbrew/bin is not in your PATH.
-        PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-
-        if ! which snap >/dev/null; then
-            echo "Installing Snap"
-            sudo apt install snapd
-        fi
-    fi
+    echo "Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if test -z $HOMEBREW_PREFIX; then
-    if test -d /opt/homebrew; then
-        HOMEBREW_PREFIX=/opt/homebrew
-    else
-        HOMEBREW_PREFIX=/usr/local
+if test -z "$HOMEBREW_PREFIX"; then
+    if test "$kernel" = "Darwin"; then
+        if test -d /opt/homebrew; then
+            HOMEBREW_PREFIX=/opt/homebrew
+        else
+            HOMEBREW_PREFIX=/usr/local
+        fi
+    elif test "$kernel" = "Linux"; then
+        HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew
     fi
 fi
 
@@ -126,11 +115,20 @@ if sudo -v; then
     echo
     echo "Installing shell dependencies"
     brew install bat
-    brew install coreutils
     brew install diff-so-fancy
     brew install direnv
 
     echo
     echo "Installing Fish Shell"
     brew install fish
+
+
+    if test "$kernel" = "Linux"; then
+        # https://docs.brew.sh/Homebrew-on-Linux
+
+        if ! which snap >/dev/null; then
+            echo "Installing Snap"
+            brew install snap
+        fi
+    fi
 fi
