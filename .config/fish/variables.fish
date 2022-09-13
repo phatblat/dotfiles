@@ -252,7 +252,11 @@ end
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
-set --local jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+if is_mac
+    set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+else if is_linux
+    set --function jdk_dir /home/linuxbrew/.linuxbrew/Cellar/openjdk/18.0.2.1
+end
 if test -d $jdk_dir
     jdk set $jdk_dir --quiet
 else
