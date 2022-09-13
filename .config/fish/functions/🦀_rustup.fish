@@ -9,6 +9,9 @@ function 🦀_rustup \
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     end
 
+    echo "Reloading fish to pick up new cargo path"
+    reload
+
     rustup show
     rustup check
     echo
