@@ -51,8 +51,10 @@ set --export PING_IDENTITY_DEVOPS_HOME $HOME/dev/ping/devops
 set --export PING_IDENTITY_DEVOPS_REGISTRY docker.io/pingidentity
 set --export PING_IDENTITY_DEVOPS_TAG edge
 set --export PING_IDENTITY_ACCEPT_EULA Y
-# So rubygems native extension builds can find macOS headers
-set --export SDKROOT (xcrun --show-sdk-path)
+if is_mac
+    # So rubygems native extension builds can find macOS headers
+    set --export SDKROOT (xcrun --show-sdk-path)
+end
 
 # ls command colors - http://osxdaily.com/2013/02/05/improve-terminal-appearance-mac-os-x/
 set --export CLICOLOR 1
@@ -280,7 +282,10 @@ end
 set -Ux BUN_INSTALL "/Users/phatblat/.bun"
 set -px --path PATH "/Users/phatblat/.bun/bin"
 
-set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+if is_mac
+    set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+end
+
 # find_package called with invalid argument "1.79.0_1"
 # set --export --global BOOST_VERSION (brew_active_version boost)
 set --export --global BOOST_VERSION 1.79.0
