@@ -1,4 +1,4 @@
 # long list,show almost all,show type,human readable
 function la --wraps ls
-    ls -oAFh $argv
+    ls -laFh $argv
 end
