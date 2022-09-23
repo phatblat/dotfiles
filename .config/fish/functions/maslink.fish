@@ -6,6 +6,8 @@ function maslink \
     set -l folder_name
 
     switch (hostname)
+    case protop
+        set folder_name mas-euqirdsvwusoxnahudunkycvsjgn
     case tredecim
         set folder_name mas-crebdnsdmyoxeobfcrozyiypxcpm
     case tredecim-bigsur
