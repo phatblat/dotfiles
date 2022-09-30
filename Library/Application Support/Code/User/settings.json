@@ -152,5 +152,10 @@
   "xml.java.home": "",
   "dart.flutterCreateOrganization": null,
   "githubPullRequests.pullBranch": "never",
-  "npm.keybindingsChangedWarningShown": true
+  "npm.keybindingsChangedWarningShown": true,
+  "vscode-pets.petColor": "green",
+  "vscode-pets.petType": "zappy",
+  "vscode-pets.theme": "forest",
+  "vscode-pets.position": "explorer",
+  "vscode-pets.petSize": "medium"
 }
