@@ -152,6 +152,7 @@
 .dbus/
 .dbvis/
 .did_show_opt_info
+.diffusionbee/
 .docker/
 .dotfiles/cron/cronenv
 .dotnet/
