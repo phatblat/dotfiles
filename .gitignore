@@ -33,6 +33,7 @@
 .aspnet/
 .atom/
 .audacity-data/
+.aws/
 .aws/credentials
 .azure-functions-core-tools/
 .azure/
