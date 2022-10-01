@@ -27,7 +27,6 @@ val removeBatchFile by tasks.registering(Delete::class) { delete("gradlew.bat") 
 
 tasks.getByName<Wrapper>("wrapper") {
     gradleVersion = gradleWrapperVersion
-    distributionType = Wrapper.DistributionType.ALL
+    distributionType = Wrapper.DistributionType.BIN
     finalizedBy(removeBatchFile)
 }
-
