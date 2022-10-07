@@ -24,13 +24,15 @@ function 🍺_brew \
         screenresolution \
         sourcekitten \
         terminal-notifier \
-        trash
+        trash \
+        robotsandpencils/made/xcodes
 
     # linux-only formulae
     set -l formulae_linux
 
     # multi-platform
     set -l formulae \
+        aria2 \
         artifactory \
         asciinema \
         asdf \
