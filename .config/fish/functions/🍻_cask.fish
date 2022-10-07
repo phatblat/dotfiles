@@ -94,6 +94,7 @@ function 🍻_cask \
         vysor \
         warp \
         witch \
+        xcodes \
         zeplin \
         zoom \
         homebrew/cask-drivers/zsa-wally
