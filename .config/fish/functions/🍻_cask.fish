@@ -62,7 +62,6 @@ function 🍻_cask \
         microblog \
         microsoft-edge \
         microsoft-teams \
-        moom \
         ngrok \
         nova \
         objectivesharpie \
