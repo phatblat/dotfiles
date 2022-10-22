@@ -16,7 +16,6 @@ function 🍻_cask \
 
     set -l apps \
         1password-cli \
-        android-file-transfer \
         back-in-time \
         banktivity \
         bettertouchtool \
@@ -161,6 +160,7 @@ function 🍻_cask \
         adoptopenjdk/openjdk/adoptopenjdk8 \
         # https://github.com/AdoptOpenJDK/homebrew-openjdk/blob/master/Casks/adoptopenjdk16.rb
         adoptopenjdk/openjdk/adoptopenjdk16 \
+        android-file-transfer \
         android-ndk \
         android-sdk \
         android-studio \
