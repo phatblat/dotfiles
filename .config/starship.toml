@@ -1,3 +1,11 @@
+#
+# Starship Config
+# https://starship.rs/config/
+#
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 # Inserts a blank line between shell prompts
 add_newline = true
 
@@ -8,3 +16,6 @@ add_newline = true
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = false
+
+# [custom]
+# disabled = true
