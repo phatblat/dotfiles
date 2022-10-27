@@ -157,5 +157,15 @@
   "vscode-pets.petType": "zappy",
   "vscode-pets.theme": "forest",
   "vscode-pets.position": "explorer",
-  "vscode-pets.petSize": "medium"
+  "vscode-pets.petSize": "medium",
+  "files.exclude": {
+    "**/.trunk/*out": true
+  },
+  "files.watcherExclude": {
+    "**/.trunk/*out": true
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "clang-format.fallbackStyle": "Chromium"
 }
