@@ -37,6 +37,13 @@ function defaults_set
     # end #^>/dev/null &
 
     #
+    # Login Screen
+    #
+
+    # Show system info on login screen
+    defaults write com.apple.loginwindow AdminHostInfo HostName
+
+    #
     # Keyboard
     #
 
@@ -110,12 +117,16 @@ function defaults_set
     # Finder
     #
 
+    # Add "Quit Finder" menu item
+    defaults write com.apple.Finder QuitMenuItem -bool TRUE && killall Finder
+
+
     # Preferences > General
     # Show icons for hard drives, servers, and removable media on the desktop
-    defaults write com.apple.Finder ShowHardDrivesOnDesktop -bool false
-    defaults write com.apple.Finder ShowExternalHardDrivesOnDesktop -bool false
-    defaults write com.apple.Finder ShowRemovableMediaOnDesktop -bool false
-    defaults write com.apple.Finder ShowMountedServersOnDesktop -bool false
+    defaults write com.apple.Finder ShowHardDrivesOnDesktop -bool true
+    defaults write com.apple.Finder ShowExternalHardDrivesOnDesktop -bool true
+    defaults write com.apple.Finder ShowRemovableMediaOnDesktop -bool true
+    defaults write com.apple.Finder ShowMountedServersOnDesktop -bool true
 
     # New Finder windows show:
     #
@@ -168,7 +179,7 @@ function defaults_set
     defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
     # Hide the Tags section of the sidebar
-    defaults write com.apple.Finder SidebarTagsSctionDisclosedState -bool false
+    defaults write com.apple.Finder SidebarTagsSectionDisclosedState -bool false
 
     # Disable disk image verification
     defaults write com.apple.frameworks.diskimages skip-verify -bool true
@@ -179,6 +190,8 @@ function defaults_set
     defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
     defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
     defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+    defaults write com.apple.finder ComputerViewSettings.ListViewSettings.WindowState.ShowSidebar -bool true
 
     #
     # Desktop
