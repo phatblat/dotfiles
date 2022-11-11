@@ -19,6 +19,7 @@ function 🆚_vscode \
         amodio.amethyst-theme \
         Apptorium.teacode-vsc-helper \
         bagetx.inf \
+        bbenoist.Nix \
         bencoleman.armview \
         bierner.markdown-preview-github-styles \
         bungcip.better-toml \
@@ -142,7 +143,7 @@ function 🆚_vscode \
         redhat.vscode-yaml \
         ritwickdey.LiveServer \
         RobbOwen.synthwave-vscode \
-        rust-lang.rust \
+        rust-lang.rust-analyzer \
         secanis.jenkinsfile-support \
         Shan.code-settings-sync \
         shanoor.vscode-nginx \
