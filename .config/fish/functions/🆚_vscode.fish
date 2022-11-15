@@ -156,7 +156,6 @@ function 🆚_vscode \
         surajbarkale.ninja \
         sysoev.language-stylus \
         sysoev.vscode-open-in-github \
-        TabNine.tabnine-vscode \
         techer.open-in-browser \
         timonwong.shellcheck \
         tombonnike.vscode-status-bar-format-toggle \
