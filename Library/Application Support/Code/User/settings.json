@@ -167,5 +167,8 @@
   "[cpp]": {
     "editor.defaultFormatter": "xaver.clang-format"
   },
-  "clang-format.fallbackStyle": "Chromium"
+  "clang-format.fallbackStyle": "Chromium",
+  "files.associations": {
+    "CODEOWNERS": "plaintext"
+  }
 }
