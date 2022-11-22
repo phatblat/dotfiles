@@ -17,6 +17,7 @@
 .ApacheDirectoryStudio/
 .CFUserTextEncoding
 .DS_Store
+.GMA/
 .ICEauthority
 .IdentityService/
 .IntelliJIdea2019.1/
@@ -165,6 +166,7 @@
 .flutter
 .gconf/
 .gem/
+.geomapapp-home
 .ghidra/
 .git/
 .gitkraken/
