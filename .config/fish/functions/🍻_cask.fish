@@ -17,6 +17,7 @@ function 🍻_cask \
     set -l apps \
         1password \
         1password-cli \
+        alfred \
         back-in-time \
         banktivity \
         bettertouchtool \
