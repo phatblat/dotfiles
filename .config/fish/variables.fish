@@ -51,10 +51,6 @@ set --export PING_IDENTITY_DEVOPS_HOME $HOME/dev/ping/devops
 set --export PING_IDENTITY_DEVOPS_REGISTRY docker.io/pingidentity
 set --export PING_IDENTITY_DEVOPS_TAG edge
 set --export PING_IDENTITY_ACCEPT_EULA Y
-if is_mac
-    # So rubygems native extension builds can find macOS headers
-    set --export SDKROOT (xcrun --show-sdk-path)
-end
 
 # ls command colors - http://osxdaily.com/2013/02/05/improve-terminal-appearance-mac-os-x/
 set --export CLICOLOR 1
