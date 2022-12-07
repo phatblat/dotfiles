@@ -170,5 +170,10 @@
   "clang-format.fallbackStyle": "Chromium",
   "files.associations": {
     "CODEOWNERS": "plaintext"
-  }
+  },
+  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "rust-analyzer.cargo.sysroot": null
 }
