@@ -196,6 +196,7 @@ function 🍻_cask \
         timing \
         ultimate \
         virtualbox \
+        xcproj \
         xmarks-safari \
         $quicklook_plugins
     # END: uninstall
