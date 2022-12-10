@@ -26,6 +26,7 @@ function 🍻_cask \
         cheatsheet \
         cleanmymac \
         cmake \
+        contexts \
         dash \
         deckset \
         docker \
