@@ -39,17 +39,30 @@ function ⏫_upstall \
 
     set --local modules_to_run
 
+    # FIXME: --nothing doesn't work
     if contains -- --nothing $argv
         # Smoke test
         set modules_to_run \
-            --norb --noxc \
-            --nobr --noca \
-            --noomf --nofm \
-            --nosdk --nopy  \
-            --nojs --nopl \
-            --novi --notm \
-            --novs --noos \
-            --nomt --nors
+            --noas \
+            --noapt \
+            --nobr \
+            --noca \
+            --nofm \
+            --nog \
+            --nojs \
+            --nomt \
+            --nonx \
+            --noomf \
+            --noos \
+            --nopl \
+            --nopy \
+            --norb \
+            --nors \
+            --nosdk \
+            --notm \
+            --novi \
+            --novs \
+            --noxc \
     else if test -z "$argv"
         # No args means run all
         set modules_to_run $all_modules
@@ -61,7 +74,7 @@ function ⏫_upstall \
         set modules_to_run $argv
     end
 
-    # echo "modules_to_run: $modules_to_run"
+    echo "modules_to_run: $modules_to_run"
 
     ⬆️_upmodule 🗄_gitconfig "🗄 Git config" git        --nog    $modules_to_run
     ⬆️_upmodule 🦀_rustup    "🦀 Rustup"     rust       --nors   $modules_to_run
@@ -77,11 +90,12 @@ function ⏫_upstall \
     ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy   $modules_to_run
     ⬆️_upmodule 🕸_nvm       "🕸 NVM"        nvm        --nojs   $modules_to_run
     ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs   $modules_to_run
-    ⬆️_upmodule ▶️_powerline "▶️ Powerline"  powerline  --nopl   $modules_to_run
+    ⬆️_upmodule ▶️_powerline  "▶️ Powerline"   powerline  --nopl   $modules_to_run
     ⬆️_upmodule 🗒_vundle    "🗒 Vundle"     vundle     --novi   $modules_to_run
     ⬆️_upmodule 📝_textmate  "📝 TextMate"   textmate   --notm   $modules_to_run
-    ⬆️_upmodule ⚛️_apm       "⚛️ APM"        apm        --noap   $modules_to_run
+    ⬆️_upmodule ⚛️_apm        "⚛️ APM"         apm        --noap   $modules_to_run
     ⬆️_upmodule 🆚_vscode    "🆚 VS Code"    vscode     --novs   $modules_to_run
     ⬆️_upmodule 📺_mas       "📺 mas"        mas        --noas   $modules_to_run
     ⬆️_upmodule 🖥_macos     "🖥 macOS"      macos      --noos   $modules_to_run
+    ⬆️_upmodule ❄️_nix        "❄️ nix"         nix        --nonx   $modules_to_run
 end
