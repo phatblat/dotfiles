@@ -17,6 +17,14 @@
     whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
     #--HILITE-SEARCH
     #--pattern '^(Date|added|deleted|modified|renamed): |\\* '
+
+    # Set the length object names are abbreviated to. If unspecified or set to
+    # "auto", an appropriate value is computed based on the approximate number
+    # of packed objects in your repository, which hopefully is enough for
+    # abbreviated object names to stay unique for some time. If set to "no", no
+    # abbreviation is made and the object names are shown in their full length.
+    # The minimum length is 4.
+    abbrev = 4
 [diff-so-fancy]
     markEmptyLines = false
     changeHunkIndicators = true
@@ -27,6 +35,15 @@
     light = false      # set to true if you're in a terminal w/ a light background color
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    cat = cat-file -p
+    ind = ls-files -s
+    l = log --graph --pretty=\"%h %aN %cd %d %s\"
+    ll = !git --no-pager l
+    all = l --all
+    alll = !git --no-pager l --all
+[log]
+    abbrevCommit = yes
+    date = format:%F %R
 [color]
     ui = true
 [color "branch"]
