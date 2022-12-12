@@ -6,7 +6,7 @@ function ❄️_nix \
 
     if not command --query nix-channel
         echo "❄️ Installing nix..."
-        curl -L https://nixos.org/nix/install | sh
+        curl -L https://nixos.org/nix/install | sh -s -- --daemon
 
         nixtest
 
