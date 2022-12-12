@@ -7,6 +7,11 @@ function ❄️_nix \
     if not command --query nix-channel
         echo "❄️ Installing nix..."
         curl -L https://nixos.org/nix/install | sh
+
+        nixtest
+
+        nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
+        nix-channel --update
     end
 
 end
