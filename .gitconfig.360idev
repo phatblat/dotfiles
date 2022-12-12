@@ -1,0 +1,12 @@
+[alias]
+	cat = cat-file -p
+	ind = ls-files -s
+	l = log --graph --pretty=\"%h %aN %cd %d %s\"
+	ll = !git --no-pager l
+	all = l --all
+	alll = !git --no-pager l --all
+[core]
+	abbrev = 4
+[log]
+	abbrevCommit = yes
+	date = format:%F %R
