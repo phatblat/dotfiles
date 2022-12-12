@@ -295,3 +295,6 @@ end
 # set --export --global BOOST_VERSION (brew_active_version boost)
 set --export --global BOOST_VERSION 1.79.0
 set --export --global BOOST_INCLUDE_DIR (brew_home)/include
+
+# Nix
+set --export --global NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
