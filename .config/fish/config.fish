@@ -46,4 +46,7 @@ if status is-interactive
         # The Fuck
         eval (thefuck --alias | tr \n ';')
     end
+
+    # 1Password CLI plugin
+    source ~/.config/op/plugins.sh
 end
