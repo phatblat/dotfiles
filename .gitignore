@@ -108,6 +108,7 @@
 .config/fisherman/
 .config/flutter/tool_state
 .config/gedit/
+.config/gh/hosts-ci.yml
 .config/gh/hosts.yml
 .config/ghb/
 .config/git/config
