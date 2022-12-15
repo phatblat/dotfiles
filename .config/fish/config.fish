@@ -3,7 +3,7 @@
 # Dotfiles
 #
 
-ulimit -file-descriptor-count 4096
+ulimit --file-descriptor-count 4096
 
 # Fish logo
 if status is-interactive
