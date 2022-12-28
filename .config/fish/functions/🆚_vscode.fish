@@ -105,7 +105,6 @@ function 🆚_vscode \
         mpotthoff.vscode-android-webview-debug \
         ms-dotnettools.csharp \
         ms-dotnettools.vscode-dotnet-runtime \
-        ms-kubernetes-tools.vscode-kubernetes-tools \
         ms-python.python \
         ms-python.vscode-pylance \
         ms-toolsai.jupyter \
@@ -178,7 +177,8 @@ function 🆚_vscode \
         ziyasal.vscode-open-in-github
 
     # Extensions to uninstall
-    set -l uninstall
+    set -l uninstall \
+        ms-kubernetes-tools.vscode-kubernetes-tools
 
     set -l installed (code --list-extensions)
 
