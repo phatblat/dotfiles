@@ -62,12 +62,12 @@ function ⏫_upstall \
             --notm \
             --novi \
             --novs \
-            --noxc \
+            --noxc
     else if test -z "$argv"
         # No args means run all
         set modules_to_run $all_modules
-    else if test '--' = (string sub --length 2 -- $argv[1])
-        # Skip flag passed (upstall --something)
+    else if test '--' = "(string sub --length 2 -- $argv[1])"
+        # Skip flag passed (upstall --nofoo)
         set modules_to_run $argv $all_modules
     else
         # Run only the requested modules
