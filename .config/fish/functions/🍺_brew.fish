@@ -218,6 +218,7 @@ function 🍺_brew \
         terraform \
         vapor \
         vim \
+        xcproj \
         xctool \
         yara
     # END: uninstall
