@@ -19,7 +19,6 @@ function 🍺_brew \
         configen \
         duti \
         fileicon \
-        thoughtbot/formulae/liftoff \
         mas \
         screenresolution \
         sourcekitten \
@@ -203,6 +202,7 @@ function 🍺_brew \
         jfrog-cli-go \
         kubectx \
         kubernetes-cli \
+        thoughtbot/formulae/liftoff \
         md5shasum \
         minikube \
         mono \
@@ -283,12 +283,6 @@ function 🍺_brew \
     # Uninstall unwanted formulae
     set -l to_uninstall
     for formula in $uninstall
-        # Strip off tap prefix (e.g. caskroom/versions/java8)
-        set -l tokens (string split / $formula)
-        if test (count $tokens) -ge 3
-            set formula $tokens[3]
-        end
-
         if contains $formula $installed
             set to_uninstall $to_uninstall $formula
         end
