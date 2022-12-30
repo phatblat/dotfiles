@@ -237,7 +237,7 @@ function 🍺_brew \
         # /usr/local/Homebrew
         set homebrew_dir (brew_home)/Homebrew
     end
-    echo "homebrew_dir: $homebrew_dir" (brew_home)
+    echo "homebrew_dir: $homebrew_dir"
 
     # Verify the user owns the Homebrew dir.
     if test "$USER" != (fileowner $homebrew_dir)
@@ -299,7 +299,7 @@ function 🍺_brew \
     # --------------------------------------------------------------------------
 
     # Update installed formulae
-    set -l outdated_formulae (brew outdated --quiet)
+    set -l outdated_formulae (brew outdated --formulae --quiet)
     if test -n "$outdated_formulae"
         echo
         echo "👵🏻 Outdated: $outdated_formulae"

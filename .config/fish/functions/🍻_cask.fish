@@ -239,12 +239,6 @@ function 🍻_cask \
     # Uninstall unwanted formulae
     set -l to_uninstall
     for cask in $uninstall
-        # Strip off tap prefix (e.g. caskroom/versions/java8)
-        set -l tokens (string split / $cask)
-        if test (count $tokens) -ge 3
-            set cask $tokens[3]
-        end
-
         if contains $cask $installed
             set to_uninstall $to_uninstall $cask
         end
@@ -262,7 +256,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Update installed casks
-    set -l outdated_casks (brew cask outdated 2>/dev/null)
+    set -l outdated_casks (brew outdated --casks 2>/dev/null)
     # Example: charles (4.1.1) != 4.1.2
     # Cut everything but the first column
     # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
