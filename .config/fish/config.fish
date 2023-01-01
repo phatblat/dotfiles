@@ -7,7 +7,11 @@ ulimit --file-descriptor-count 4096
 
 # Fish logo
 if status is-interactive
-    fish_logo brblue cyan green
+    if type -q neofetch
+        neofetch --config ~/.config/neofetch/config.conf
+    else if type -q fish_logo
+        fish_logo brblue cyan green
+    end
 end
 
 # Variables

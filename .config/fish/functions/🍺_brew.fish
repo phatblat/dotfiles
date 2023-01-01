@@ -105,6 +105,7 @@ function 🍺_brew \
         mint \
         mono-libgdiplus \
         mtr \
+        neofetch \
         nginx \
         node \
         nvm \
