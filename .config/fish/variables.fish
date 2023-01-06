@@ -289,6 +289,7 @@ set -px --path PATH "/Users/phatblat/.bun/bin"
 
 if is_mac
     set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+    set --export --global CMAKE_BUILD_TYPE Debug
 end
 
 # brew_active_version doesn't work when version has an underscore
