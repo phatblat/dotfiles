@@ -31,7 +31,7 @@ if status is-interactive
 
     # Set up RAM disk for Cargo
     if is_phatmini
-        cargo_target quiet
+        # cargo_target quiet
     end
 
     if command --query starship
