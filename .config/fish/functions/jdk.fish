@@ -67,6 +67,7 @@ function jdk \
 
             # JAVA_HOME
             set --export --global JAVA_HOME $jdk_path
+            set --export --global CPPFLAGS "-I$jdk_path/include"
             path add $JAVA_HOME/bin
 
             if test -z $quiet
