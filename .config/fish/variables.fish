@@ -249,11 +249,13 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java
 if is_mac
-    # Use JDK 17 over 19
-    if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+    # Use JDK 19
+    if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
+        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+    else if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
         set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
     else
-        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+        error "JDK dir not found"
     end
 else if is_linux
     set --function jdk_dir /home/linuxbrew/.linuxbrew/Cellar/openjdk/18.0.2.1
