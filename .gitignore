@@ -281,6 +281,7 @@
 .synx/
 .task/
 .templateengine/
+.terminfo/
 .terraform.d/
 .thunderbird/
 .tldrc/
