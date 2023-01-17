@@ -19,7 +19,8 @@ if is_mac
     # - 23.1.7779620
     # - 24.0.7956693
     # - 24.0.8215888
-    set --export NDK_VERSION 24.0.8215888
+    # - 25.1.8937393
+    set --export NDK_VERSION 25.1.8937393
     set --export ANDROID_NDK_HOME $HOME/Library/Android/sdk/ndk/$NDK_VERSION
 else if is_linux
     set --export ANDROID_HOME $HOME/Android/Sdk
@@ -174,6 +175,7 @@ if test -d "$ANDROID_HOME"
     # Use the latest installed version of the build tools
     set --local BUILD_TOOLS_VERSION (ls -1r /Users/phatblat/Library/Android/sdk/build-tools/ | head -1)
     set --export --global PATH \
+        $ANDROID_HOME/cmdline-tools/latest/bin \
         $ANDROID_HOME/tools/bin \
         $ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION \
         $ANDROID_HOME/platform-tools \
