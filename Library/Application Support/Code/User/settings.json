@@ -110,7 +110,7 @@
   ],
   "tabnine.experimentalAutoImports": true,
   "redhat.telemetry.enabled": true,
-  "java.home": "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home",
+  "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
   "git.autofetch": true,
   "python.languageServer": "None",
   "vs-kubernetes": {
@@ -171,7 +171,9 @@
   "files.associations": {
     "CODEOWNERS": "plaintext"
   },
-  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+  "rust-analyzer.rustfmt.extraArgs": [
+    "+nightly"
+  ],
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
