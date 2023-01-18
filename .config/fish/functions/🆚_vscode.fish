@@ -158,7 +158,6 @@ function 🆚_vscode \
         techer.open-in-browser \
         timonwong.shellcheck \
         tombonnike.vscode-status-bar-format-toggle \
-        trunk.io \
         tushortz.java-imports-snippets \
         twxs.cmake \
         vadimcn.vscode-lldb \
@@ -178,7 +177,8 @@ function 🆚_vscode \
 
     # Extensions to uninstall
     set -l uninstall \
-        ms-kubernetes-tools.vscode-kubernetes-tools
+        ms-kubernetes-tools.vscode-kubernetes-tools \
+        trunk.io \
 
     set -l installed (code --list-extensions)
 
