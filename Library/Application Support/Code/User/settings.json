@@ -122,7 +122,7 @@
   "window.openFoldersInNewWindow": "on",
   "trunk.trunkGrayOutNonBlockingIssues": true,
   "cmake.configureOnOpen": true,
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.formatOnType": true,
   "[dart]": {
     "editor.formatOnSave": true,
@@ -136,7 +136,6 @@
   },
   "dart.flutterSdkPath": "/opt/homebrew/bin/flutter",
   "go.toolsManagement.autoUpdate": true,
-  "editor.formatOnSave": true,
   "debug.allowBreakpointsEverywhere": true,
   "editor.minimap.enabled": false,
   "diffEditor.renderSideBySide": false,
@@ -177,5 +176,8 @@
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "rust-analyzer.cargo.sysroot": null
+  "rust-analyzer.cargo.sysroot": null,
+  "rust-analyzer.cachePriming.enable": false,
+  "rust-analyzer.cargo.autoreload": false,
+  "rust-analyzer.cargo.buildScripts.enable": false
 }
