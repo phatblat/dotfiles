@@ -296,9 +296,9 @@ if is_mac
     set --export --global CMAKE_BUILD_TYPE Debug
 end
 
-# brew_active_version doesn't work when version has an underscore
+# Split on underscore to ignore the revision number
 # find_package called with invalid argument "1.79.0_1"
-set --export --global BOOST_VERSION (brew_active_version boost)
+set --export --global BOOST_VERSION (string split --fields 1 '_' (brew_active_version boost))
 set --export --global BOOST_INCLUDE_DIR (brew_home)/include
 
 # Nix
