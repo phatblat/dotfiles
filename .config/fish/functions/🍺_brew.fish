@@ -162,16 +162,14 @@ function 🍺_brew \
         $custom_shells
     # END: formulae
 
-    # Appebd platform-specific formulae
+    # Append platform-specific formulae
     if is_mac
         set formulae $formulae $formulae_mac
     else if is_linux
         set formulae $formulae $formulae_linux
     end
 
-    # Cleaning macvim with options generates error
-    # Error: No available formula with the name "macvim --with-override-system-vim"
-    set -l no_clean_formulae macvim ruby
+    set -l no_clean_formulae ruby
 
     # FIXME: Can't uninstall dependencies:
     # - coreutils
