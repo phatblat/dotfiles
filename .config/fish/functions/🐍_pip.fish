@@ -51,6 +51,7 @@ function 🐍_pip \
         Pygments \
         pylint \
         Pygments \
+        pynvim \
         twine \
         vendorize
 
