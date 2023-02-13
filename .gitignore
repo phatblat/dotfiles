@@ -82,6 +82,7 @@
 .config/Todoist/
 .config/Yubico/
 .config/balena-etcher-electron/
+.config/btop/btop.log
 .config/chromium/
 .config/configstore
 .config/dconf/
