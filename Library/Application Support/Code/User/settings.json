@@ -122,7 +122,7 @@
   "window.openFoldersInNewWindow": "on",
   "trunk.trunkGrayOutNonBlockingIssues": true,
   "cmake.configureOnOpen": true,
-  "editor.formatOnPaste": false,
+  "editor.formatOnPaste": true,
   "editor.formatOnType": true,
   "[dart]": {
     "editor.formatOnSave": true,
@@ -170,14 +170,13 @@
   "files.associations": {
     "CODEOWNERS": "plaintext"
   },
-  "rust-analyzer.rustfmt.extraArgs": [
-    "+nightly"
-  ],
+  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "rust-analyzer.cargo.sysroot": null,
   "rust-analyzer.cachePriming.enable": false,
   "rust-analyzer.cargo.autoreload": false,
-  "rust-analyzer.cargo.buildScripts.enable": false
+  "rust-analyzer.cargo.buildScripts.enable": false,
+  "editor.formatOnSave": true
 }
