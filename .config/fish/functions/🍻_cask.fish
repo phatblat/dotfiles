@@ -70,6 +70,7 @@ function 🍻_cask \
         oclint \
         paw \
         qt-creator \
+        raspberry-pi-imager \
         remotion \
         rescuetime \
         rocket \
