@@ -107,6 +107,7 @@ function 🍺_brew \
         neofetch \
         neovim \
         nginx \
+        nmap \
         node \
         nvm \
         openjdk \
