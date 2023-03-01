@@ -75,7 +75,7 @@
   "solargraph.bundlerPath": "/usr/local/opt/ruby/bin/bundle",
   "shellcheck.customArgs": ["-x"],
   "extensions.ignoreRecommendations": false,
-  "workbench.colorTheme": "2077",
+  "workbench.colorTheme": "Warlock Contrast (rainglow)",
   "docker.showStartPage": false,
   "window.zoomLevel": 1,
   "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
