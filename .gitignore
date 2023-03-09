@@ -288,6 +288,7 @@
 .tldrc/
 .tooling/
 .travis/
+.vagrant.d/
 .vault-token
 .vim/
 .viminfo
