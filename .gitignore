@@ -29,6 +29,7 @@
 .advLdap/
 .android/
 .anka/
+.ansible/
 .antigen/
 .anyconnect
 .aspnet/
