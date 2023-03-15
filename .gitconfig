@@ -1,88 +1,88 @@
 [credential]
-    helper = osxkeychain
+	helper = osxkeychain
 [github]
-    user = phatblat
+	user = phatblat
 # Rewrite git:// URLs to use https:// scheme - this breaks an ObjectiveGit test
 #[url "https://"]
 #    insteadOf = git://
 [hub]
-    protocol = ssh
+	protocol = ssh
 [branch]
-    autosetuprebase = always
+	autosetuprebase = always
 [rerere]
-    enabled = true
+	enabled = true
 [core]
-    # pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
-    pager = delta
-    whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
-    #--HILITE-SEARCH
-    #--pattern '^(Date|added|deleted|modified|renamed): |\\* '
+	# pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+	pager = delta
+	whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
+	#--HILITE-SEARCH
+	#--pattern '^(Date|added|deleted|modified|renamed): |\\* '
 
-    # Set the length object names are abbreviated to. If unspecified or set to
-    # "auto", an appropriate value is computed based on the approximate number
-    # of packed objects in your repository, which hopefully is enough for
-    # abbreviated object names to stay unique for some time. If set to "no", no
-    # abbreviation is made and the object names are shown in their full length.
-    # The minimum length is 4.
-    abbrev = 4
+	# Set the length object names are abbreviated to. If unspecified or set to
+	# "auto", an appropriate value is computed based on the approximate number
+	# of packed objects in your repository, which hopefully is enough for
+	# abbreviated object names to stay unique for some time. If set to "no", no
+	# abbreviation is made and the object names are shown in their full length.
+	# The minimum length is 4.
+	abbrev = 4
 [diff-so-fancy]
-    markEmptyLines = false
-    changeHunkIndicators = true
-    stripLeadingSymbols = true
-    useUnicodeRuler = true
+	markEmptyLines = false
+	changeHunkIndicators = true
+	stripLeadingSymbols = true
+	useUnicodeRuler = true
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    cat = cat-file -p
-    ind = ls-files -s
-    l = log --graph --pretty=\"%h %aN %cd %d %s\"
-    ll = !git --no-pager l
-    all = l --all
-    alll = !git --no-pager l --all
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	cat = cat-file -p
+	ind = ls-files -s
+	l = log --graph --pretty=\"%h %aN %cd %d %s\"
+	ll = !git --no-pager l
+	all = l --all
+	alll = !git --no-pager l --all
 [log]
-    abbrevCommit = yes
-    date = format:%F %R
+	abbrevCommit = yes
+	date = format:%F %R
 [color]
-    ui = true
+	ui = true
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-    meta = 227
-    frag = magenta bold
-    old = red bold
-    new = green bold
-    commit = 227 bold
-    whitespace = red reverse
+	meta = 227
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = 227 bold
+	whitespace = red reverse
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [color "sh"]
-    branch = yellow reverse
-    workdir = blue bold
-    dirty = red
-    dirty-stash = red
-    repo-state = red
+	branch = yellow reverse
+	workdir = blue bold
+	dirty = red
+	dirty-stash = red
+	repo-state = red
 [color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [push]
-    default = simple
+	default = simple
 [filter "lfs"]
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 # FIXME: Is this still relevant? Maybe gem now: https://github.com/alebedev/git-media
 [filter "media"]
-    clean = git-media-clean %f
-    smudge = git-media-smudge %f
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
 #[filter "xmlplist"]
 #    clean = git-plist-filter.sh
 #    smudge = git-plist-filter.sh
@@ -91,37 +91,37 @@
 [pull]
 	rebase = true
 [advice]
-    detachedHead = false
+	detachedHead = false
 [commit]
 	gpgsign = false
 [init]
 	defaultBranch = main
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [add.interactive]
-    useBuiltin = false # required for git 2.37.0
+	useBuiltin = false # required for git 2.37.0
 [diff]
-    algorithm = patience
+	algorithm = patience
 	tool = Kaleidoscope
-    colorMoved = default
+	colorMoved = default
 [diff "l10n"]
-    textconv = iconv -f utf-16 -t utf-8
+	textconv = iconv -f utf-16 -t utf-8
 [diff "plistbuddy"]
-    textconv = plistbuddy -c Print
+	textconv = plistbuddy -c Print
 [difftool]
 	prompt = false
 [difftool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
+	cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\"
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [merge]
 	tool = Kaleidoscope
-    conflictstyle = diff3
+	conflictstyle = diff3
 [mergetool]
-    keepBackup = false
+	keepBackup = false
 	prompt = false
 [mergetool "FileMerge"]
-    cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
+	cmd = /Applications/FileMerge.app -left \"$LOCAL\" -right \"$REMOTE\" -ancestor \"BASE\" -merge \"MERGED\"
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true

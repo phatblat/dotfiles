@@ -19,5 +19,5 @@ indent_size = 4
 indent_size = 2
 
 # Tab indentation (no size specified)
-[Makefile]
+[Makefile,.gitconfig]
 indent_style = tab
