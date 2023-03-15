@@ -195,6 +195,7 @@ function 🍺_brew \
         gnupg \
         go-jira \
         heroku/brew/heroku \
+        hexyl \
         hub \
         ilmbase \
         imagemagick \
