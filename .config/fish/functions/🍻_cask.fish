@@ -267,7 +267,10 @@ function 🍻_cask \
         echo
         echo 👵🏻  Outdated: $outdated_casks
         for outdated in $outdated_casks
-            brew upgrade --verbose --cask $outdated
+            brew upgrade \
+                --cask $outdated \
+                --verbose \
+                --force
         end
     end
 
