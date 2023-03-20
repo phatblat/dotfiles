@@ -37,6 +37,7 @@ function 🍻_cask \
         firebase-admin \
         flutter \
         franz \
+        ganache \
         geekbench \
         githubpulse \
         gitkraken \
