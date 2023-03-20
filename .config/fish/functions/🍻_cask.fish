@@ -18,6 +18,7 @@ function 🍻_cask \
         1password \
         1password-cli \
         alfred \
+        arc \
         back-in-time \
         banktivity \
         bettertouchtool \
