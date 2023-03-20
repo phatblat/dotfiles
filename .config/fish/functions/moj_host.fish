@@ -8,13 +8,13 @@ function moj_host \
     end
 
     switch $host
-        case 'protop*' 'tredecim*' 'Bens-MacBook-Pro*'
+        case 'DTO-A017'
             echo 💻
-        case phatmini octodec
+        case phatmini co-mac1
             echo 🖥
         case m1 mini
             echo ⌨️
-        case hacklet penguin pop-os 'labtop*'
+        case hacklet penguin pocket3 pop-os 'labtop*'
             echo 🐧
         case '*'
             echo (string sub --length 1 (hostname))❓
