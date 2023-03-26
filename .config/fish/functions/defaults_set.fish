@@ -321,6 +321,13 @@ function defaults_set
     defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
     #
+    # Remote Management
+    #
+
+    # Enable VNC access to the current macOS user's GUI session
+    defaults write /Library/Preferences/com.apple.RemoteManagement VNCAlwaysStartOnConsole -bool true
+
+    #
     # Mac App Store
     #
 
