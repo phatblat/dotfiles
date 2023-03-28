@@ -25,8 +25,8 @@ end
 # GUI and items requiring a user
 if status is-interactive
     # Set up RAM disk for Xcode DerivedData
-    if is_octodec; or is_phatmini
-        derived_data quiet
+    if is_phatmini
+        # derived_data quiet
     end
 
     # Set up RAM disk for Cargo
