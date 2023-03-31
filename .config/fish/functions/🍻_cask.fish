@@ -56,6 +56,7 @@ function 🍻_cask \
         keyboard-maestro \
         keycastr \
         kobo \
+        lapce \
         lastpass \
         latest \
         licecap \
