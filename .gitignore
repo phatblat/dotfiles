@@ -242,6 +242,7 @@
 .phantomjs/
 .pingidentity/
 .pki/
+.pnpm-state/
 .project
 .pry_history
 .pub-cache/
