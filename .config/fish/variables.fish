@@ -138,12 +138,19 @@ set --export --global PATH \
     (brew_home python)/libexec/bin \
     $PATH
 
-if test -d (brew_home ruby)/bin
-    fish_add_path (brew_home ruby)/bin
+# Ruby
+set --local ruby_home (brew_home ruby)
+if test -d $ruby_home/bin
+    fish_add_path $ruby_home/bin
+
+    set -gx LDFLAGS "-L$ruby_home/lib"
+    set -gx CPPFLAGS "-I$ruby_home/include"
+    set -gx PKG_CONFIG_PATH "$ruby_home/lib/pkgconfig"
 end
 
+# Ruby Gems
 set RUBY_VERSION 3.2.0
-set -l GEM_PATH (brew_home)/lib/ruby/gems/$RUBY_VERSION/bin
+set -l GEM_PATH $ruby_home/lib/ruby/gems/$RUBY_VERSION/bin
 if test -d $GEM_PATH
     fish_add_path $GEM_PATH
 end
