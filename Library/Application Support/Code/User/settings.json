@@ -179,5 +179,6 @@
   "rust-analyzer.cargo.autoreload": false,
   "rust-analyzer.cargo.buildScripts.enable": false,
   "editor.formatOnSave": true,
-  "git.openRepositoryInParentFolders": "never"
+  "git.openRepositoryInParentFolders": "never",
+  "dart.projectSearchDepth": 0
 }
