@@ -374,6 +374,7 @@ private/
 realm-object-server/
 snap/
 src/swift/swift-*
+system_logs.logarchive/
 tmp/
 xcuserdata
 zclean.awk
