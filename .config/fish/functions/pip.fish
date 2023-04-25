@@ -3,5 +3,7 @@ function pip \
     --description='Wrapper for pip' \
     --wraps=pip
 
-    CFLAGS=-I(brew --prefix)/include LDFLAGS=-L(brew --prefix)/lib python -m pip $argv
+    CFLAGS=-I(brew --prefix)/include \
+    LDFLAGS=-L(brew --prefix)/lib \
+    command pip $argv
 end
