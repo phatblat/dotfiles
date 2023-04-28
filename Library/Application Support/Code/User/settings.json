@@ -94,7 +94,8 @@
       "comments": "on",
       "strings": "on",
       "other": "on"
-    }
+    },
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "[ruby]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
