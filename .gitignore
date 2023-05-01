@@ -282,6 +282,7 @@
 .swiftenv/
 .swiftpm/
 .synx/
+.tart/
 .task/
 .templateengine/
 .terminfo/
