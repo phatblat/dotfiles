@@ -156,6 +156,7 @@
 .dbshell
 .dbus/
 .dbvis/
+.dev-data/
 .did_show_opt_info
 .diffusionbee/
 .docker/
