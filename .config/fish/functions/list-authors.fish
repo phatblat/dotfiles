@@ -14,7 +14,7 @@ function list-authors --argument-names format
         set format '%ae'
     case "ruby"
         # Ruby hash
-        format='"%an" => "%ae",'
+        set format '"%an" => "%ae",'
     case '*'
         # Custom format
         set format $format
