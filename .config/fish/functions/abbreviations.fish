@@ -3,8 +3,8 @@
 # https://brettterpstra.com/2019/11/11/fish-further-exploration/#abbreviations
 #
 
-abbr --add --universal -- = pushd
-abbr --add --universal -- _ dirs
-abbr --add --universal -- __ dirs -c
-abbr --add --universal -- - prevd --list
-abbr --add --universal -- + nextd --list
+abbr --add -- = pushd
+abbr --add -- _ dirs
+abbr --add -- __ dirs -c
+abbr --add -- - prevd --list
+abbr --add -- + nextd --list

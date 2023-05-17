@@ -9,7 +9,7 @@ function 🔨_xcode \
     echo
 
     if test -z $XCODE_INSTALL_USER; and test -n (user.email)
-        set --export --universal XCODE_INSTALL_USER (user.email)
+        set --export XCODE_INSTALL_USER (user.email)
     end
 
     # Currently selected version
