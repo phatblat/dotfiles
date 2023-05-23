@@ -5,7 +5,7 @@
 
 # Warpify subshells
 # https://docs.warp.dev/features/subshells
-printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish" }}\x9c'
+# printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish" }}\x9c'
 
 # resource limits
 ulimit --file-descriptor-count 4096
