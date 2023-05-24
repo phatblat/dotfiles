@@ -31,6 +31,7 @@ function 🕸_npm \
         lynn-cli \
         markdownlint \
         mongodb-realm-cli \
+        monofo \
         n \
         node-pre-gyp \
         npm-check-updates \
