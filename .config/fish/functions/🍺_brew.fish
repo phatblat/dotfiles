@@ -211,6 +211,7 @@ function 🍺_brew \
         phatblat/services/pbjenkins \
         ping-devops \
         protobuf protobuf-c \
+        pyenv \
         python@2 \
         sloccount \
         sourcery \
