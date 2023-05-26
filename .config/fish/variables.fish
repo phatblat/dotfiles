@@ -12,20 +12,8 @@ set --export KERNEL (uname)
 # Upper case
 if is_mac
     set --export ANDROID_HOME $HOME/Library/Android/sdk
-    set --export ANDROID_SDK_ROOT $ANDROID_HOME
-    # NDK Versions
-    # - 21.4.7075529
-    # - 22.0.7026061
-    # - 23.1.7779620
-    # - 24.0.7956693
-    # - 24.0.8215888
-    # - 25.1.8937393
-    set --export NDK_VERSION 25.1.8937393
-    set --export ANDROID_NDK_HOME $HOME/Library/Android/sdk/ndk/$NDK_VERSION
 else if is_linux
     set --export ANDROID_HOME $HOME/Android/Sdk
-    set --export ANDROID_SDK_ROOT $ANDROID_HOME
-    set --export ANDROID_NDK_HOME
 end
 
 if is_arm
@@ -180,9 +168,21 @@ end
 
 if test -d "$ANDROID_HOME"
     # Use the latest installed version of the build tools
-    set --local BUILD_TOOLS_VERSION (ls -1r /Users/phatblat/Library/Android/sdk/build-tools/ | head -1)
+    set --local BUILD_TOOLS_VERSION (ls -1r $HOME/Library/Android/sdk/build-tools/ | head -1)
+    # NDK Versions
+    # - 21.4.7075529
+    # - 22.0.7026061
+    # - 23.1.7779620
+    # - 24.0.7956693
+    # - 24.0.8215888
+    # - 25.1.8937393
+    set --export --global NDK_VERSION (ls -1r $HOME/Library/Android/sdk/ndk/ | head -1)
+    set --export ANDROID_NDK_HOME $HOME/Library/Android/sdk/ndk/$NDK_VERSION
+
     set --export --global PATH \
         $ANDROID_HOME/cmdline-tools/latest/bin \
+        $ANDROID_HOME/emulator \
+        $ANDROID_HOME/tools \
         $ANDROID_HOME/tools/bin \
         $ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION \
         $ANDROID_HOME/platform-tools \
@@ -295,8 +295,8 @@ if test -d $XAMARIN_IOS_BIN_DIR
 end
 
 # Bun
-set -Ux BUN_INSTALL "/Users/phatblat/.bun"
-set -px --path PATH "/Users/phatblat/.bun/bin"
+set -Ux BUN_INSTALL $HOME/.bun
+set -px --path PATH $HOME/.bun/bin
 
 if is_mac
     set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
