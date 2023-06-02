@@ -44,6 +44,7 @@
 .bash_sessions/
 .bluemix/
 .build/
+.buildkite/config.json
 .bun/
 .bundle/cache/
 .cache/
