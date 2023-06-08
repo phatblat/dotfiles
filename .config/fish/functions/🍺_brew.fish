@@ -151,6 +151,7 @@ function 🍺_brew \
         tmux \
         travis \
         tree \
+        typescript \
         uncrustify \
         utimer \
         virtualenv \
