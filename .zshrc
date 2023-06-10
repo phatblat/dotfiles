@@ -109,3 +109,6 @@ export SDKMAN_DIR="/Users/phatblat/.sdkman"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source /Users/phatblat/.config/broot/launcher/bash/br
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

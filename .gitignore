@@ -262,6 +262,7 @@
 .rnd
 .rubygems/
 .rustup/
+.rvm/
 .sdkman/archives/
 .sdkman/candidates/
 .sdkman/contrib/
