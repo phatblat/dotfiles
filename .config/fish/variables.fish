@@ -173,7 +173,7 @@ end
 
 if test -d "$ANDROID_HOME"
     # Use the latest installed version of the build tools
-    set --local BUILD_TOOLS_VERSION (ls -1r $HOME/Library/Android/sdk/build-tools/ | head -1)
+    set --local BUILD_TOOLS_VERSION (ls -1r $ANDROID_HOME/build-tools/ | head -1)
     # NDK Versions
     # - 21.4.7075529
     # - 22.0.7026061
@@ -181,8 +181,8 @@ if test -d "$ANDROID_HOME"
     # - 24.0.7956693
     # - 24.0.8215888
     # - 25.1.8937393
-    set --export --global NDK_VERSION (ls -1r $HOME/Library/Android/sdk/ndk/ | head -1)
-    set --export ANDROID_NDK_HOME $HOME/Library/Android/sdk/ndk/$NDK_VERSION
+    set --export --global NDK_VERSION (ls -1r $ANDROID_HOME/ndk/ | head -1)
+    set --export ANDROID_NDK_HOME $ANDROID_HOME/ndk/$NDK_VERSION
 
     set --export --global PATH \
         $ANDROID_HOME/cmdline-tools/latest/bin \
