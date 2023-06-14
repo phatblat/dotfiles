@@ -35,11 +35,18 @@ set --export LANG en_US.UTF-8
 set --export LANGUAGE en_US.UTF-8
 set --export LC_ALL en_US.UTF-8
 set --export LC_CTYPE en_US.UTF-8
-set --export OPENSSL_PATH (brew_home openssl)/bin/openssl
 set --export PING_IDENTITY_DEVOPS_HOME $HOME/dev/ping/devops
 set --export PING_IDENTITY_DEVOPS_REGISTRY docker.io/pingidentity
 set --export PING_IDENTITY_DEVOPS_TAG edge
 set --export PING_IDENTITY_ACCEPT_EULA Y
+
+# OpenSSL
+set --export OPENSSL_ROOT (brew_home openssl@3)
+fish_add_path $OPENSSL_ROOT/bin
+# For compilers to find openssl@3 you may need to set:
+set -gx LDFLAGS "-L$OPENSSL_ROOT/lib"
+set -gx CPPFLAGS "-I$OPENSSL_ROOT/include"
+set -gx PKG_CONFIG_PATH "$OPENSSL_ROOT/lib/pkgconfig"
 
 # ls command colors - http://osxdaily.com/2013/02/05/improve-terminal-appearance-mac-os-x/
 set --export CLICOLOR 1
@@ -136,9 +143,9 @@ set --local ruby_home (brew_home ruby)
 if test -d $ruby_home/bin
     fish_add_path $ruby_home/bin
 
-    set -gx LDFLAGS "-L$ruby_home/lib"
-    set -gx CPPFLAGS "-I$ruby_home/include"
-    set -gx PKG_CONFIG_PATH "$ruby_home/lib/pkgconfig"
+    set -gx LDFLAGS "$LDFLAGS -L$ruby_home/lib"
+    set -gx CPPFLAGS "$CPPFLAGS -I$ruby_home/include"
+    set -gx PKG_CONFIG_PATH "$PKG_CONFIG_PATH $ruby_home/lib/pkgconfig"
 end
 
 # Ruby Gems
