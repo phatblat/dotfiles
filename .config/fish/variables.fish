@@ -322,3 +322,6 @@ set --export --global BOOST_INCLUDE_DIR (brew_home)/include
 
 # Nix
 set --export --global NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
+
+# Go
+fish_add_path $HOME/go/bin
