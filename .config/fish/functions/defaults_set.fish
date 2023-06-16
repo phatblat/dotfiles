@@ -251,6 +251,7 @@ function defaults_set
 
     # Remove the Delay for Auto-Hide & Auto-Show of Dock
     defaults write com.apple.Dock autohide-delay -float 0
+    defaults write com.apple.dock no-bouncing -bool true
 
     # Disable the warning before emptying the Trash
     defaults write com.apple.finder WarnOnEmptyTrash -bool false
