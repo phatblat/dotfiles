@@ -296,6 +296,7 @@
 .travis/
 .vagrant.d/
 .vault-token
+.vault_pass.txt
 .vim/
 .viminfo
 .vs-kubernetes/
