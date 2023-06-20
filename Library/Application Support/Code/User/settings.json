@@ -71,7 +71,7 @@
   "editor.linkedEditing": true,
   "terminal.integrated.defaultProfile": "/usr/local/bin/fish",
   "java.project.importOnFirstTimeStartup": "automatic",
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "a-file-icon-vscode",
   "solargraph.bundlerPath": "/usr/local/opt/ruby/bin/bundle",
   "shellcheck.customArgs": ["-x"],
   "extensions.ignoreRecommendations": false,
@@ -181,5 +181,6 @@
   "rust-analyzer.cargo.buildScripts.enable": false,
   "editor.formatOnSave": true,
   "git.openRepositoryInParentFolders": "never",
-  "dart.projectSearchDepth": 0
+  "dart.projectSearchDepth": 0,
+  "workbench.productIconTheme": "material-product-icons"
 }
