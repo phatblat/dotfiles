@@ -134,6 +134,7 @@
 .config/lxterminal/
 .config/menus/
 .config/op/
+.config/packer/
 .config/pulse/
 .config/realm-cli/
 .config/realm/
