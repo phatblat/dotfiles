@@ -182,5 +182,6 @@
   "editor.formatOnSave": true,
   "git.openRepositoryInParentFolders": "never",
   "dart.projectSearchDepth": 0,
-  "workbench.productIconTheme": "material-product-icons"
+  "workbench.productIconTheme": "material-product-icons",
+  "update.showReleaseNotes": false
 }
