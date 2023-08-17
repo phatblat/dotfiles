@@ -169,7 +169,8 @@
   },
   "clang-format.fallbackStyle": "Chromium",
   "files.associations": {
-    "CODEOWNERS": "plaintext"
+    "CODEOWNERS": "plaintext",
+    ".yamllint": "yaml"
   },
   "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
   "[rust]": {
