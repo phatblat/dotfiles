@@ -17,5 +17,5 @@ add_newline = true
 [package]
 disabled = false
 
-# [custom]
-# disabled = true
+[battery]
+disabled = true
