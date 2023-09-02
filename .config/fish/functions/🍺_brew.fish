@@ -88,6 +88,7 @@ function 🍺_brew \
         jq \
         jsonlint \
         jsonpp \
+        just \
         kotlin \
         holgerbrandl/tap/kscript \
         lastpass-cli \
@@ -124,6 +125,7 @@ function 🍺_brew \
         ripgrep \
         ripgrep-all \
         rlwrap \
+        rtx \
         ruby \
         sccache \
         scrcpy \
