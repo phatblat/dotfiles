@@ -61,3 +61,6 @@ if status is-interactive
     # 1Password CLI plugin
     source ~/.config/op/plugins.sh
 end
+
+# Created by `pipx` on 2023-08-29 02:06:37
+set PATH $PATH /Users/phatblat/.local/bin
