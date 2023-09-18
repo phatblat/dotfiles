@@ -186,5 +186,6 @@
   "update.showReleaseNotes": false,
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
-  }
+  },
+  "lldb.suppressUpdateNotifications": true
 }
