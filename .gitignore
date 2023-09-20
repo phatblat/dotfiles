@@ -165,6 +165,7 @@
 .dotfiles/cron/cronenv
 .dotnet/
 .dropbox/
+.eclipse/
 .emulator_console_auth_token
 .envrc
 .fastlane/
