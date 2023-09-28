@@ -195,6 +195,7 @@
 .itmstransporter/
 .jabba/
 .java/
+.javacpp/
 .jenkins-hpl-map
 .jenkins/
 .jenv/
