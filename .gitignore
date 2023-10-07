@@ -153,6 +153,7 @@
 .config/yelp/yelp.cfg
 .cpan/
 .cups/
+.dart-tool/
 .dart/
 .dartServer/
 .dbshell
