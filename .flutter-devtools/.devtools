@@ -1,0 +1,10 @@
+{
+  "analyticsEnabled": true,
+  "isFirstRun": true,
+  "lastReleaseNotesVersion": "2.25.0",
+  "2023-Q4": {
+    "surveyActionTaken": false,
+    "surveyShownCount": 0
+  },
+  "inspector.customPubRootDirectories_gold_pan_xample": "[\"/Users/phatblat/dev/flutter/gold_pan_xample\"]"
+}
