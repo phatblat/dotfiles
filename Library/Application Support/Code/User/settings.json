@@ -77,7 +77,6 @@
   "extensions.ignoreRecommendations": false,
   "workbench.colorTheme": "Warlock Contrast (rainglow)",
   "docker.showStartPage": false,
-  "window.zoomLevel": 1,
   "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
   "editor.copyWithSyntaxHighlighting": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -188,5 +187,6 @@
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
   "lldb.suppressUpdateNotifications": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 1
 }
