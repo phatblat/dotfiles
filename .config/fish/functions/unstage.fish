@@ -1,7 +1,9 @@
-function unstage --description='Clears changes out of the git index.'
+function unstage \
+    --description='Restores files in the git index from HEAD.'
+
     if test -z "$argv"
-        reset .
+        git restore --staged .
     else
-        reset $argv
+        git restore --staged $argv
     end
 end
