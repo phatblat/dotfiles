@@ -36,5 +36,17 @@
   {
     "key": "ctrl+alt+n",
     "command": "-code-runner.run"
+  },
+  {
+    "key": "cmd+.",
+    "command": "code-runner.stop"
+  },
+  {
+    "key": "ctrl+alt+m",
+    "command": "-code-runner.stop"
+  },
+  {
+    "key": "shift+cmd+.",
+    "command": "workbench.output.action.clearOutput"
   }
 ]
