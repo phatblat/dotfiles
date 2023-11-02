@@ -48,5 +48,25 @@
   {
     "key": "shift+cmd+.",
     "command": "workbench.output.action.clearOutput"
+  },
+  {
+    "key": "cmd+'",
+    "command": "editor.action.marker.next",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+f8",
+    "command": "-editor.action.marker.next",
+    "when": "editorFocus"
+  },
+  {
+    "key": "shift+cmd+'",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorFocus"
+  },
+  {
+    "key": "f8",
+    "command": "-editor.action.marker.nextInFiles",
+    "when": "editorFocus"
   }
 ]
