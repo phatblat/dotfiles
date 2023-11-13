@@ -1,7 +1,6 @@
 {
   "editor.fontSize": 14,
   "editor.renderWhitespace": "all",
-  "workbench.startupEditor": "newUntitledFile",
   "vim.disableAnnoyingNeovimMessage": true,
   "sync.gist": "909306962e4deb90da87d2e2874451fe",
   "sync.lastUpload": "2017-10-20T02:29:24.353Z",
@@ -188,5 +187,6 @@
   },
   "lldb.suppressUpdateNotifications": true,
   "editor.formatOnSave": true,
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "workbench.startupEditor": "none"
 }
