@@ -186,6 +186,7 @@
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
   "lldb.suppressUpdateNotifications": true,
+  "window.zoomLevel": 1,
   "editor.formatOnSave": true,
   "window.zoomLevel": 1,
   "workbench.startupEditor": "none"
