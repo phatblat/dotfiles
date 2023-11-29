@@ -6,7 +6,7 @@ function masrm \
         return 1
     end
 
-    set --local binary /usr/local/bin/mas
+    set --local binary (brew --prefix)/bin/mas
 
     if not test -f $binary
         error No mas found at $binary
