@@ -19,9 +19,6 @@ function 🍻_cask \
         1password-cli \
         alfred \
         arc \
-        back-in-time \
-        banktivity \
-        bettertouchtool \
         brave-browser \
         charles \
         cheatsheet \
@@ -39,7 +36,6 @@ function 🍻_cask \
         franz \
         ganache \
         geekbench \
-        githubpulse \
         gitkraken \
         google-chrome \
         google-drive \
@@ -52,7 +48,6 @@ function 🍻_cask \
         iterm2 \
         jetbrains-toolbox \
         kaleidoscope \
-        karabiner-elements \
         keyboard-maestro \
         keycastr \
         kobo \
