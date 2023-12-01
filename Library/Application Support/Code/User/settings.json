@@ -189,5 +189,6 @@
   "window.zoomLevel": 1,
   "editor.formatOnSave": true,
   "window.zoomLevel": 1,
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "editor.wordWrap": "on"
 }
