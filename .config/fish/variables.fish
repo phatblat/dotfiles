@@ -44,9 +44,9 @@ set --export PING_IDENTITY_ACCEPT_EULA Y
 set --export OPENSSL_ROOT (brew_home openssl@3)
 fish_add_path $OPENSSL_ROOT/bin
 # For compilers to find openssl@3 you may need to set:
-set -gx LDFLAGS "-L$OPENSSL_ROOT/lib"
-set -gx CPPFLAGS "-I$OPENSSL_ROOT/include"
-set -gx PKG_CONFIG_PATH "$OPENSSL_ROOT/lib/pkgconfig"
+set --export --global LDFLAGS "-L$OPENSSL_ROOT/lib"
+set --export --global CPPFLAGS "-I$OPENSSL_ROOT/include"
+set --export --global PKG_CONFIG_PATH "$OPENSSL_ROOT/lib/pkgconfig"
 
 # ls command colors - http://osxdaily.com/2013/02/05/improve-terminal-appearance-mac-os-x/
 set --export CLICOLOR 1
@@ -58,46 +58,46 @@ set --export powerline_enabled 0
 set --global --export sdkman_prefix $HOME/.sdkman
 
 # Fix spacing for emoji and ambiguous characters
-set -xg fish_emoji_width 2
-set -xg fish_ambiguous_width 2
+set --export --global fish_emoji_width 2
+set --export --global fish_ambiguous_width 2
 
 # OMF bobthefish theme options
 # https://github.com/oh-my-fish/theme-bobthefish#readme
-set -g theme_display_git yes
-set -g theme_display_git_dirty yes
-set -g theme_display_git_untracked yes
-set -g theme_display_git_ahead_verbose yes
-set -g theme_display_git_dirty_verbose yes
-set -g theme_display_git_stashed_verbose yes
-set -g theme_display_git_default_branch yes
-set -g theme_git_default_branches master main
+set --global theme_display_git yes
+set --global theme_display_git_dirty yes
+set --global theme_display_git_untracked yes
+set --global theme_display_git_ahead_verbose yes
+set --global theme_display_git_dirty_verbose yes
+set --global theme_display_git_stashed_verbose yes
+set --global theme_display_git_default_branch yes
+set --global theme_git_default_branches master main
 # https://github.com/oh-my-fish/theme-bobthefish/issues/249
-set -g theme_git_worktree_support no
-set -g theme_use_abbreviated_branch_name yes
-set -g theme_display_vagrant yes
-set -g theme_display_docker_machine yes
-set -g theme_display_k8s_context yes
-set -g theme_display_k8s_namespace yes
-set -g theme_display_hg yes
-set -g theme_display_virtualenv yes
-set -g theme_display_ruby yes
-set -g theme_display_user ssh
-set -g theme_display_hostname ssh
-set -g theme_display_vi yes
-set -g theme_display_node yes
-set -g theme_display_date yes
-set -g theme_display_cmd_duration yes
-set -g theme_title_display_process yes
-set -g theme_title_display_path no
-set -g theme_title_use_abbreviated_path no
-set -g theme_date_format "+%a %H:%M"
-# set -g theme_date_timezone America/Los_Angeles
-set -g theme_avoid_ambiguous_glyphs yes
-set -g theme_powerline_fonts yes
-set -g theme_nerd_fonts yes
-set -g theme_show_exit_status yes
-set -g theme_display_jobs_verbose yes
-set -g default_user phatblat
+set --global theme_git_worktree_support no
+set --global theme_use_abbreviated_branch_name yes
+set --global theme_display_vagrant yes
+set --global theme_display_docker_machine yes
+set --global theme_display_k8s_context yes
+set --global theme_display_k8s_namespace yes
+set --global theme_display_hg yes
+set --global theme_display_virtualenv yes
+set --global theme_display_ruby yes
+set --global theme_display_user ssh
+set --global theme_display_hostname ssh
+set --global theme_display_vi yes
+set --global theme_display_node yes
+set --global theme_display_date yes
+set --global theme_display_cmd_duration yes
+set --global theme_title_display_process yes
+set --global theme_title_display_path no
+set --global theme_title_use_abbreviated_path no
+set --global theme_date_format "+%a %H:%M"
+# set --global theme_date_timezone America/Los_Angeles
+set --global theme_avoid_ambiguous_glyphs yes
+set --global theme_powerline_fonts yes
+set --global theme_nerd_fonts yes
+set --global theme_show_exit_status yes
+set --global theme_display_jobs_verbose yes
+set --global default_user phatblat
 # Color options
 # dark. The default bobthefish theme.
 # light. A lighter version of the default theme.
@@ -107,11 +107,11 @@ set -g default_user phatblat
 # gruvbox. An adaptation of gruvbox.
 # dracula. An adaptation of dracula.
 # nord. An adaptation of nord.
-set -g theme_color_scheme dracula
-set -g fish_prompt_pwd_dir_length 0
-set -g theme_project_dir_length 1
-set -g theme_newline_cursor no
-set -g theme_newline_prompt '$ '
+set --global theme_color_scheme dracula
+set --global fish_prompt_pwd_dir_length 0
+set --global theme_project_dir_length 1
+set --global theme_newline_cursor no
+set --global theme_newline_prompt '$ '
 
 # OMF danger theme options
 # https://github.com/oh-my-fish/theme-dangerous#readme
@@ -143,9 +143,9 @@ set --local ruby_home (brew_home ruby)
 if test -d $ruby_home/bin
     fish_add_path $ruby_home/bin
 
-    set -gx LDFLAGS "$LDFLAGS -L$ruby_home/lib"
-    set -gx CPPFLAGS "$CPPFLAGS -I$ruby_home/include"
-    set -gx PKG_CONFIG_PATH "$PKG_CONFIG_PATH $ruby_home/lib/pkgconfig"
+    set --export --global LDFLAGS "$LDFLAGS -L$ruby_home/lib"
+    set --export --global CPPFLAGS "$CPPFLAGS -I$ruby_home/include"
+    set --export --global PKG_CONFIG_PATH "$PKG_CONFIG_PATH $ruby_home/lib/pkgconfig"
 end
 
 # Ruby Gems
