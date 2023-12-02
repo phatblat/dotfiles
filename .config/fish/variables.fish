@@ -178,6 +178,9 @@ end
 #     and source (swiftenv init - | psub)
 # end
 
+# Xcode
+set --export --global DERIVED_DATA $HOME/Library/Developer/Xcode/DerivedData
+
 if test -d "$ANDROID_HOME"
     # Use the latest installed version of the build tools
     set --local BUILD_TOOLS_VERSION (ls -1r $ANDROID_HOME/build-tools/ | head -1)
@@ -202,18 +205,22 @@ if test -d "$ANDROID_HOME"
         $PATH
 end
 
+# coreutils
 if test -d (brew_home make)/libexec/gnubin
     fish_add_path (brew_home make)/libexec/gnubin
 end
 
+# rust/cargo
 if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
 end
 
+# mint
 if test -d $HOME/.mint/bin
     fish_add_path $HOME/.mint/bin
 end
 
+# chromium depot
 set --export --global CHROME_DEPOT_TOOLS $HOME/dev/chromium/depot_tools
 if test -d "$CHROME_DEPOT_TOOLS"
     set --export --global PATH $PATH \
@@ -268,9 +275,9 @@ end
 # number of links, user name, group name, flags, file size, file name.
 set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
-# Java
+# Java JDK
 if is_mac
-    # Use JDK 19
+    # Use latest JDK
     if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
         set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
     else if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
@@ -284,7 +291,6 @@ end
 if test -d $jdk_dir
     jdk set $jdk_dir --quiet
 else
-    # jabba install $java_distro
     error "JDK dir not found: $jdk_dir"
 end
 
