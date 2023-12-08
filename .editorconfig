@@ -21,3 +21,6 @@ indent_size = 2
 # Tab indentation (no size specified)
 [Makefile,.gitconfig]
 indent_style = tab
+
+[{*.nix}]
+indent_size = 2
