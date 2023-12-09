@@ -1,6 +1,6 @@
 {
   "analyticsEnabled": true,
-  "isFirstRun": true,
+  "isFirstRun": false,
   "lastReleaseNotesVersion": "2.25.0",
   "2023-Q4": {
     "surveyActionTaken": false,
