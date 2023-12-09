@@ -249,10 +249,10 @@ end
 
 # Editor
 # After variables which depend on functions that define variables
-set --export EDITOR_CLI "vim" # vi vim
+set --export EDITOR_CLI vim # vi vim
 set --export EDITOR_GUI "code --new-window" # atom (vs)code mate mvim subl
-set --export WAIT_FLAG_CLI "--nofork"
-set --export WAIT_FLAG_GUI "--wait"
+set --export WAIT_FLAG_CLI --nofork
+set --export WAIT_FLAG_GUI --wait
 
 # EDITOR or VISUAL, only one defined
 # Use EDITOR for non-console users (su someoneelse) and SSH connections
@@ -277,11 +277,11 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java JDK
 if is_mac
-    # Use latest JDK
-    if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
-        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
-    else if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+    # Use JDK 17 or latest
+    if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
         set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
+    else if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
+        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
     else
         error "JDK dir not found"
     end
