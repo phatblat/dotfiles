@@ -12,7 +12,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, home-manager, ... }: {
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
+  let
+    inherit (nix-darwin.lib) darwinSystem;
+
+  in {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#DTO-A017
     # darwinConfigurations."DTO-A017" = nix-darwin.lib.darwinSystem {
@@ -47,10 +51,9 @@
     # };
 
     darwinConfigurations = {
-      DTO-A017 = {
-        system = "aarch64-darwin";
     #   hostname = nix-darwin.lib.darwinSystem {
-        # system = "aarch64-darwin";
+      DTO-A017 = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
         modules = [
         # modules = attrValues self.darwinModules ++ [
           # Main `nix-darwin` config
