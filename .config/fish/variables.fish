@@ -12,6 +12,7 @@ set --export KERNEL (uname)
 # Upper case
 if is_mac
     set --export ANDROID_HOME $HOME/Library/Android/sdk
+    set --export PATH "$PATH:/Users/phatblat/Library/Application Support/JetBrains/Toolbox/scripts"
 else if is_linux
     set --export ANDROID_HOME $HOME/Android/Sdk
 end
