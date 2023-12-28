@@ -2,7 +2,9 @@
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.rulers": [80],
+    "editor.rulers": [
+      80
+    ],
     "editor.selectionHighlight": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
@@ -52,7 +54,10 @@
   "editor.minimap.enabled": false,
   "editor.multiCursorMergeOverlapping": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
@@ -118,8 +123,6 @@
   "window.zoomLevel": 1,
   "material-icon-theme.showWelcomeMessage": false,
   "npm.keybindingsChangedWarningShown": true,
-
-
   "python.jediEnabled": false,
   "python.languageServer": "None",
   "qiskit-vscode.config.firstRun": false,
@@ -135,14 +138,18 @@
   "ruby.useBundler": true,
   "ruby.interpreter.commandPath": "/opt/homebrew/opt/ruby/bin/ruby",
   "ruby.pathToBundler": "/opt/homebrew/lib/ruby/gems/3.1.0/bin/bundle",
-  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+  "rust-analyzer.rustfmt.extraArgs": [
+    "+nightly"
+  ],
   "rust-analyzer.cargo.sysroot": null,
   "rust-analyzer.cachePriming.enable": false,
   "rust-analyzer.cargo.autoreload": false,
   "rust-analyzer.cargo.buildScripts.enable": false,
   "security.workspace.trust.untrustedFiles": "open",
   "solargraph.bundlerPath": "/usr/local/opt/ruby/bin/bundle",
-  "shellcheck.customArgs": ["-x"],
+  "shellcheck.customArgs": [
+    "-x"
+  ],
   "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
   "sync.gist": "909306962e4deb90da87d2e2874451fe",
   "sync.lastUpload": "2017-10-20T02:29:24.353Z",
