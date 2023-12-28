@@ -107,7 +107,7 @@
       "allowed": true
     }
   ],
-  "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
+  "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home",
   "java.project.importOnFirstTimeStartup": "automatic",
   "java.requirements.JDK11Warning": false,
   "java.semanticHighlighting.enabled": true,
