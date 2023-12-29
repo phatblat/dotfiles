@@ -178,9 +178,9 @@
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "window.openWithoutArgumentsInNewWindow": "on",
-  "workbench.iconTheme": "a-file-icon-vscode",
-  "workbench.productIconTheme": "material-product-icons",
+  "workbench.productIconTheme": "materialiconic-product-icons",
   "workbench.startupEditor": "none",
   "xml.java.home": "",
-  "workbench.colorTheme": "SynthWave '84"
+  "workbench.colorTheme": "SynthWave '84",
+  "workbench.iconTheme": "file-icons"
 }
