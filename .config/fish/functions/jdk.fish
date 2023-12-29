@@ -18,6 +18,12 @@ function jdk \
             echo 🖥 /Library/Java/JavaVirtualMachines
             ls -1 /Library/Java/JavaVirtualMachines
 
+            if test -d "$HOME/Applications/Android Studio.app"
+              echo
+              echo 🤖 Android Studio
+              echo /Users/phatblat/Applications/Android Studio.app/Contents/jbr/Contents/Home
+            end
+
             set -l sdkman_path $HOME/.sdkman/candidates/java
             if test -d $sdkman_path
                 echo
