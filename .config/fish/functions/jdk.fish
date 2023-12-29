@@ -38,10 +38,10 @@ function jdk \
                 ls -1 $jabba_path
             end
         case set
-          jdk_set $jdk_path
+          jdk_set $jdk_path $quiet
         case studio
-          echo 🤖 Activating Android Studio JDK
-          jdk_set "$HOME/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+          # jdk_path 2nd arg may contain '--quiet'
+          jdk_set "$HOME/Applications/Android Studio.app/Contents/jbr/Contents/Home" $jdk_path
         case '*' current
             # Prints info about the currently selected JDK
             set -l java_cmd (which java)
@@ -49,24 +49,13 @@ function jdk \
             echo which java $java_cmd
             lipo -info $java_cmd
             java -version
+            echo CPPFLAGS: $CPPFLAGS
     end
-
-
-    # if string match --entire --quiet /Library/Java/JavaVirtualMachines $JAVA_HOME
-    #     # System JVMs
-    #     /usr/libexec/java_home $argv
-    # else
-    #     # SDKman?
-    #     if test -d $sdkman_prefix/candidates/java/current
-    #         ll $sdkman_prefix/candidates/java/current
-    #     end
-    # end
-
 end
 
 function jdk_set \
   --description='Activates a JDK' \
-  --argument-names jdk_path
+  --argument-names jdk_path quiet
 
   # Test JDK path
   if not test -d "$jdk_path"
@@ -101,8 +90,12 @@ function jdk_set \
   # end
   # echo JAVA_OPTS: $JAVA_OPTS
 
-  # Set JAVA_HOME and CPPFLAGS
+  # Set JAVA_HOME
   set --export --global JAVA_HOME "$jdk_path"
+
+  # Set CPPFLAGS
+  # Escape spaces in path
+  set jdk_path (string replace -a ' ' '\\ ' $jdk_path)
   set --export --global CPPFLAGS "$CPPFLAGS -I$jdk_path/include"
   path add $JAVA_HOME/bin
 
