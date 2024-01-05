@@ -103,6 +103,7 @@ function 🍺_brew \
         maven \
         mcfly \
         mint \
+        mise \
         mono-libgdiplus \
         mtr \
         neofetch \
@@ -125,7 +126,6 @@ function 🍺_brew \
         ripgrep \
         ripgrep-all \
         rlwrap \
-        rtx \
         ruby \
         sccache \
         scrcpy \
