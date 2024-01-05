@@ -39,9 +39,9 @@ if status is-interactive
         # cargo_target quiet
     end
 
-    if command --query oh-my-posh
-        oh-my-posh init fish | source
-    end
+    # if command --query oh-my-posh
+    #     oh-my-posh init fish | source
+    # end
     if command --query starship
         starship init fish | source
     end
