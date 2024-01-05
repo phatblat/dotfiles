@@ -5,3 +5,6 @@
 
 [settings]
 experimental = true
+
+[tools]
+ruby = "3.2"
