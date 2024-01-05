@@ -30,7 +30,6 @@ end
 if type -q mise
   eval "$(mise activate fish)"
   eval "$(mise hook-env --shell=fish)"
-  mise ls
 end
 
 # GUI and items requiring a user
