@@ -1,2 +1,7 @@
+#
+# ~/.config/mise/config.toml
+# https://mise.jdx.dev/configuration.html
+#
+
 [settings]
 experimental = true

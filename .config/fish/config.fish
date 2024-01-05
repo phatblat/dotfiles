@@ -27,6 +27,12 @@ if type -q direnv
     eval (direnv hook fish)
 end
 
+if type -q mise
+  eval "$(mise activate fish)"
+  eval "$(mise hook-env --shell=fish)"
+  mise ls
+end
+
 # GUI and items requiring a user
 if status is-interactive
     # Set up RAM disk for Xcode DerivedData
