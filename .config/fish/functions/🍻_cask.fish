@@ -95,7 +95,6 @@ function 🍻_cask \
         witch \
         xcodes \
         zeplin \
-        zoom \
         homebrew/cask-drivers/zsa-wally
     # END: apps
 
