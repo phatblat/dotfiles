@@ -16,7 +16,7 @@ if status is-interactive
     if type -q neofetch
         neofetch --config ~/.config/neofetch/config.conf
     else if type -q fish_logo
-        fish_logo brblue cyan green
+        fish_logo
     end
 end
 
