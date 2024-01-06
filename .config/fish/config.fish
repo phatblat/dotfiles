@@ -33,8 +33,8 @@ if type --query direnv
 end
 
 if type --query mise
-    eval "$(mise activate fish)"
-    eval "$(mise hook-env --shell=fish)"
+    eval (mise activate fish)
+    eval (mise hook-env --shell=fish)
 end
 
 # GUI and items requiring a user

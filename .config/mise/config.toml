@@ -9,3 +9,4 @@ experimental = true
 [tools]
 ruby = "3.2"
 dotnet = "8.0.100"
+java = "openjdk-17"
