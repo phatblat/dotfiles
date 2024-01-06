@@ -276,21 +276,21 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 # Java JDK
 if is_mac
     # Use JDK 17 or latest
-    jdk studio --quiet
+    jdk studio - quiet
     if test $status -ne 0
-      if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
-          set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
-      else if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
-          set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
-      else
-          error "JDK dir not found"
-      end
+        if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+            set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
+        else if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
+            set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+        else
+            error "JDK dir not found"
+        end
     end
 else if is_linux
     set --function jdk_dir /home/linuxbrew/.linuxbrew/Cellar/openjdk/18.0.2.1
 end
 if test -d $jdk_dir
-    jdk set $jdk_dir --quiet
+    jdk set $jdk_dir quiet
 else
     error "JDK dir not found: $jdk_dir"
 end
