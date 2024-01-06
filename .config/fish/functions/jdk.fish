@@ -85,14 +85,14 @@ function jdk_set \
     # end
     # echo JAVA_OPTS: $JAVA_OPTS
 
-    # Set JAVA_HOME
+    # Set JAVA_HOME and add to path
     set --export --global JAVA_HOME "$jdk_path"
-
-    # Set CPPFLAGS
-    # Escape spaces in path
-    set jdk_path (string replace -a ' ' '\\ ' $jdk_path)
-    set --export --global CPPFLAGS "$CPPFLAGS -I$jdk_path/include"
     path add $JAVA_HOME/bin
+
+    # Set CPPFLAGS if there are no spaces in jdk_path
+    if not has_space "$jdk_path"
+        set --export --global CPPFLAGS "$CPPFLAGS -I$jdk_path/include"
+    end
 
     if test -z $quiet
         jdk current
