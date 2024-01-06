@@ -25,7 +25,7 @@ function 🌱_mint \
     # --------------------------------------------------------------------------
 
     # Ensure Mint is installed.
-    if not type -q mint
+    if not type --query mint
         error "Mint is not installed"
         return 1
     end

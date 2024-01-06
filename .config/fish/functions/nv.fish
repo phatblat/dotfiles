@@ -2,12 +2,12 @@ function nv \
     --description='nv' \
     --argument-names node_version
 
-    if not type -q nvm
+    if not type --query nvm
         error "NVM is not installed."
         return 1
     end
 
-    if not type -q node
+    if not type --query node
         error "Nnode.js is not installed."
         return 2
     end
@@ -24,10 +24,10 @@ function nv \
         return
     end
 
-    if test $node_version = "clear"
+    if test $node_version = clear
         echo -n 🔥
         rm -v $nvm_file
-    else if test $node_version = "set"
+    else if test $node_version = set
         node --version >$nvm_file
         cat $nvm_file
     else if test -n "$node_version"

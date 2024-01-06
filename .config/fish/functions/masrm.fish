@@ -1,7 +1,7 @@
 function masrm \
-        --description='Uninstall mas package'
+    --description='Uninstall mas package'
 
-    if not type -q mas
+    if not type --query mas
         error mas is not installed
         return 1
     end
@@ -21,7 +21,7 @@ function masrm \
         brew uninstall mas
     end
 
-    if type -q mas
+    if type --query mas
         error Another copy of mas is still installed
         masshow
         return 4

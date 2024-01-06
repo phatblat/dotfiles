@@ -1,9 +1,9 @@
 function brew_home \
-        --description='Prints the Homebrew home dir or the location in the cellar where formula is or would be installed.' \
-        --argument-names formula
+    --description='Prints the Homebrew home dir or the location in the cellar where formula is or would be installed.' \
+    --argument-names formula
 
     if test -z "$BREW_HOME"
-        if type -q brew
+        if type --query brew
             set --export BREW_HOME (brew --prefix)
         else
             if is_mac

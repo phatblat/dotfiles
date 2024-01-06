@@ -9,9 +9,10 @@ ulimit --file-descriptor-count 4096
 # Fish logo
 if status is-interactive
     warpify
-    if type -q neofetch
+
+    if type --query neofetch
         neofetch --config ~/.config/neofetch/config.conf
-    else if type -q fish_logo
+    else if type --query fish_logo
         fish_logo
     end
 end
@@ -19,12 +20,12 @@ end
 # Variables
 source ~/.config/fish/variables.fish
 
-if type -q direnv
+if type --query direnv
     # Directory-based variables
     eval (direnv hook fish)
 end
 
-if type -q mise
+if type --query mise
     eval "$(mise activate fish)"
     eval "$(mise hook-env --shell=fish)"
 end
@@ -58,7 +59,7 @@ if status is-interactive
     # Event Hooks
     # reload fish_postexec
 
-    if type -q thefuck
+    if type --query thefuck
         # The Fuck
         eval (thefuck --alias | tr \n ';')
     end

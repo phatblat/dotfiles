@@ -56,7 +56,7 @@ function 🕸_npm \
     # --------------------------------------------------------------------------
 
     # Ensure NPM is installed.
-    if not type -q npm
+    if not type --query npm
         error "NPM is not installed."
         return 1
     end
@@ -94,7 +94,7 @@ function 🕸_npm \
         end
     end
     if test -n "$to_uninstall"
-        echo 🗑️  Uninstalling $to_uninstall
+        echo 🗑️ Uninstalling $to_uninstall
         npm uninstall --global $to_uninstall
     end
 
@@ -143,7 +143,7 @@ function 🕸_npm \
     if test -n "$not_installed"
         for package in $not_installed
             echo
-            echo 🆕  Installing: $package
+            echo 🆕 Installing: $package
             npm install --global $package
         end
     end
@@ -155,6 +155,6 @@ function 🕸_npm \
     # --------------------------------------------------------------------------
 
     echo
-    echo 👩🏻‍⚕️  Doctor
+    echo 👩🏻‍⚕️ Doctor
     npm doctor
 end

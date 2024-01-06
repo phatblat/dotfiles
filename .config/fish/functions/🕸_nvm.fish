@@ -10,12 +10,12 @@ function 🕸_nvm \
     echo
 
     # Ensure NVM is installed.
-    if not type -q nvm
+    if not type --query nvm
         error "NVM is not installed."
         return 1
     end
 
     # Upgrade node & npm
     nvm install node --latest-npm
-    nvm current > ~/.nvmrc
+    nvm current >~/.nvmrc
 end

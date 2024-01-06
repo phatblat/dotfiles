@@ -95,8 +95,7 @@ function 🍻_cask \
         witch \
         xcodes \
         zeplin \
-    # END: apps
-
+        # END: apps
     set -l quicklook_plugins \
         provisionql \
         qlcolorcode \
@@ -205,7 +204,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Ensure Homebrew is installed.
-    if not type -q brew
+    if not type --query brew
         echo "Installing Homebrew"
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
@@ -221,11 +220,11 @@ function 🍻_cask \
     #
     # --------------------------------------------------------------------------
 
-    echo 🚰  Updating formulae
+    echo 🚰 Updating formulae
     brew update
     set -l installed (brew list --casks -1 2>/dev/null)
     echo
-    echo ➡️ (moj_host)  Installed: $installed
+    echo ➡️ (moj_host) Installed: $installed
 
     # --------------------------------------------------------------------------
     #
@@ -242,7 +241,7 @@ function 🍻_cask \
     end
     if test -n "$to_uninstall"
         echo
-        echo 🗑  Uninstalling $to_uninstall
+        echo 🗑 Uninstalling $to_uninstall
         brew uninstall --cask --force $to_uninstall
     end
 
@@ -259,7 +258,7 @@ function 🍻_cask \
     # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
     if test -n "$outdated_casks"
         echo
-        echo 👵🏻  Outdated: $outdated_casks
+        echo 👵🏻 Outdated: $outdated_casks
         for outdated in $outdated_casks
             brew upgrade \
                 --cask $outdated \
@@ -285,7 +284,7 @@ function 🍻_cask \
     end
     if test -n "$not_installed"
         echo
-        echo 🆕  Installing: $not_installed
+        echo 🆕 Installing: $not_installed
         for new_cask in $not_installed
             brew install --cask --force $new_cask
         end
@@ -298,7 +297,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     echo
-    echo 🛀🏻  Cleanup
+    echo 🛀🏻 Cleanup
     # Removes downloads older than 120 days. Add '--prune 30' to shorten this to a month.
     brew cleanup
 end
