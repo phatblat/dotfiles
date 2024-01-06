@@ -134,11 +134,6 @@ set --export --global PATH \
     (brew_home python)/libexec/bin \
     $PATH
 
-# RVM
-if functions --query rvm
-    rvm default
-end
-
 # Ruby
 set --local ruby_home (brew_home ruby)
 if test -d $ruby_home/bin
