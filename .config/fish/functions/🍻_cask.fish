@@ -95,7 +95,6 @@ function 🍻_cask \
         witch \
         xcodes \
         zeplin \
-        homebrew/cask-drivers/zsa-wally
     # END: apps
 
     set -l quicklook_plugins \
