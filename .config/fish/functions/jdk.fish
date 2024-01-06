@@ -24,13 +24,6 @@ function jdk \
               echo /Users/phatblat/Applications/Android Studio.app/Contents/jbr/Contents/Home
             end
 
-            set -l sdkman_path $HOME/.sdkman/candidates/java
-            if test -d $sdkman_path
-                echo
-                echo 🧰 SDKman Java candidates in $sdkman_path
-                ls -1 $sdkman_path
-            end
-
             set -l jabba_path $HOME/.jabba/jdk
             if test -d $jabba_path
                 echo

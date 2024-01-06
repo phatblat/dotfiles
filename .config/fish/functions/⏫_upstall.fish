@@ -18,7 +18,6 @@ function ⏫_upstall \
         omf \
         mint \
         rustup \
-        sdkman \
         pip \
         nvm \
         npm \
@@ -86,7 +85,6 @@ function ⏫_upstall \
     ⬆️_upmodule 🐟_fisher    "🐟 Fisher"     fisher     --nofm   $modules_to_run
     ⬆️_upmodule 🌱_mint      "🌱 Mint"       mint       --nomt   $modules_to_run
     ⬆️_upmodule 🐠_omf       "🐠 oh-my-fish" omf        --noomf  $modules_to_run
-    ⬆️_upmodule 🧰_sdkman    "🧰 SDKman"     sdk        --nosdk  $modules_to_run
     ⬆️_upmodule 🐍_pip       "🐍 PIP"        pip        --nopy   $modules_to_run
     ⬆️_upmodule 🕸_nvm       "🕸 NVM"        nvm        --nojs   $modules_to_run
     ⬆️_upmodule 🕸_npm       "🕸 NPM"        npm        --nojs   $modules_to_run

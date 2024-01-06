@@ -56,7 +56,6 @@ set --export LSCOLORS ExFxBxDxCxegedabagacad
 # Lower case
 set --export github_user phatblat
 set --export powerline_enabled 0
-set --global --export sdkman_prefix $HOME/.sdkman
 
 # Fix spacing for emoji and ambiguous characters
 set --export --global fish_emoji_width 2

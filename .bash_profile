@@ -10,10 +10,6 @@
 
 export PATH="/opt/homebrew/bin:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
 . "${HOME}/.cargo/env"
 
 source /Users/phatblat/.config/broot/launcher/bash/br
