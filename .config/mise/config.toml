@@ -10,3 +10,4 @@ experimental = true
 ruby = "3.2"
 dotnet = "8.0.100"
 java = "openjdk-17"
+node = "21.5.0"
