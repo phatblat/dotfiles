@@ -12,6 +12,7 @@ ulimit --file-descriptor-count 4096
 
 # Fish logo
 if status is-interactive
+    warpify
     if type -q neofetch
         neofetch --config ~/.config/neofetch/config.conf
     else if type -q fish_logo
