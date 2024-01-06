@@ -15,6 +15,13 @@ if status is-interactive
     else if type --query fish_logo
         fish_logo
     end
+
+    # if command --query oh-my-posh
+    #     oh-my-posh init fish | source
+    # end
+    if command --query starship
+        starship init fish | source
+    end
 end
 
 # Variables
@@ -42,12 +49,6 @@ if status is-interactive
         # cargo_target quiet
     end
 
-    # if command --query oh-my-posh
-    #     oh-my-posh init fish | source
-    # end
-    if command --query starship
-        starship init fish | source
-    end
     if command --query zoxide
         zoxide init fish | source
     end
