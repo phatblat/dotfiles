@@ -28,8 +28,8 @@ if type -q direnv
 end
 
 if type -q mise
-  eval "$(mise activate fish)"
-  eval "$(mise hook-env --shell=fish)"
+    eval "$(mise activate fish)"
+    eval "$(mise hook-env --shell=fish)"
 end
 
 # GUI and items requiring a user
@@ -66,6 +66,3 @@ if status is-interactive
         eval (thefuck --alias | tr \n ';')
     end
 end
-
-# Created by `pipx` on 2023-08-29 02:06:37
-set PATH $PATH /Users/phatblat/.local/bin

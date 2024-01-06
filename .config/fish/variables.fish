@@ -133,6 +133,9 @@ set --export --global PATH \
     (brew_home python)/libexec/bin \
     $PATH
 
+# Created by `pipx` on 2023-08-29 02:06:37
+set PATH $PATH /Users/phatblat/.local/bin
+
 # Ruby
 set --local ruby_home (brew_home ruby)
 if test -d $ruby_home/bin
