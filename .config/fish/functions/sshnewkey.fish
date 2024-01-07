@@ -6,10 +6,10 @@ function sshnewkey \
         set comment "$USER@"(hostname)
     end
 
-    set -l keyfile ~/.ssh/id_ed25519
+    set -l key_file ~/.ssh/id_ed25519
 
     ssh-keygen \
         -t ed25519 \
         -C $comment \
-        -f $keyfile
+        -f $key_file
 end

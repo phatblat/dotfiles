@@ -1,13 +1,13 @@
 function sshupload \
     --description='Uploads public RSA SSH key to GitHub profile. Requires manual entry of GitHub OTP code.' \
-    --argument-names keyfile
+    --argument-names key_file
 
-    if test -z $keyfile
-        set keyfile ~/.ssh/id_rsa.pub
+    if test -z $key_file
+        set key_file (sshkey)
     end
 
-    if not test -f $keyfile
-        error "No SSH key found at $keyfile"
+    if not test -f $key_file
+        error "No SSH key found at $key_file"
         return 1
     end
 
@@ -18,11 +18,11 @@ function sshupload \
     end
 
     set -l github_user phatblat
-    set -l key (cat $keyfile)
+    set -l key (cat $key_file)
     set -l title $USER@$HOST_(date +%Y%m%d%H%M%S)
 
     # Upload default SSH key to GitHub
-    echo "Uploading SSH public key to GitHub [$keyfile]"
+    echo "Uploading SSH public key to GitHub [$key_file]"
 
     # echo -n "Password for GitHub user $github_user: "
     # read passowrd
