@@ -173,5 +173,6 @@
   "xml.java.home": "",
   "workbench.colorTheme": "SynthWave '84",
   "workbench.iconTheme": "file-icons",
-  "cmake.showOptionsMovedNotification": false
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.automaticReconfigure": false
 }
