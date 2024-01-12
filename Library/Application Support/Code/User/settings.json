@@ -174,5 +174,6 @@
   "workbench.colorTheme": "SynthWave '84",
   "workbench.iconTheme": "file-icons",
   "cmake.showOptionsMovedNotification": false,
-  "cmake.automaticReconfigure": false
+  "cmake.automaticReconfigure": false,
+  "cmake.buildBeforeRun": false
 }
