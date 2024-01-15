@@ -16,9 +16,6 @@ if status is-interactive
         fish_logo
     end
 
-    # if command --query oh-my-posh
-    #     oh-my-posh init fish | source
-    # end
     if command --query starship
         starship init fish | source
     end
