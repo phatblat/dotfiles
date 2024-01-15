@@ -26,7 +26,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "clang-format.fallbackStyle": "Chromium",
-  "cmake.configureOnOpen": true,
+  "cmake.configureOnOpen": false,
   "dart.flutterCreateOrganization": null,
   "dart.flutterSdkPath": "/opt/homebrew/bin/flutter",
   "dart.projectSearchDepth": 0,
@@ -175,5 +175,6 @@
   "workbench.iconTheme": "file-icons",
   "cmake.showOptionsMovedNotification": false,
   "cmake.automaticReconfigure": false,
-  "cmake.buildBeforeRun": false
+  "cmake.buildBeforeRun": false,
+  "cmake.configureOnEdit": false
 }
