@@ -2,9 +2,8 @@
 	helper = osxkeychain
 [github]
 	user = phatblat
-# Rewrite git:// URLs to use https:// scheme - this breaks an ObjectiveGit test
-#[url "https://"]
-#    insteadOf = git://
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
 [hub]
 	protocol = ssh
 [branch]
