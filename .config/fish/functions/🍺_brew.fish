@@ -47,19 +47,15 @@ function 🍺_brew \
         cheat \
         choose \
         clang-format \
-        cloc \
         cmatrix \
-        cowsay \
         ctags \
         curl \
         curlie \
         diff-so-fancy \
         direnv \
-        dog \
         duf \
         dust \
         emojify \
-        exa \
         f3 \
         fd \
         findutils \
@@ -96,6 +92,7 @@ function 🍺_brew \
         libarchive \
         libssh2 \
         libtool \
+        loc \
         lsd \
         macchina \
         make \
@@ -113,7 +110,9 @@ function 🍺_brew \
         node \
         nvm \
         openjdk \
-        packer \
+        openjdk-11 \
+        openjdk-17 \
+        hashicorp/tap/packer \
         pacvim \
         pkg-config \
         procs \
@@ -145,7 +144,6 @@ function 🍺_brew \
         task \
         tasksh \
         tailor \
-        tailscale \
         the_silver_searcher \
         thefuck \
         tig \

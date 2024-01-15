@@ -34,7 +34,6 @@ function 🍻_cask \
         firebase-admin \
         flutter \
         franz \
-        ganache \
         geekbench \
         gitkraken \
         google-chrome \
@@ -57,7 +56,6 @@ function 🍻_cask \
         licecap \
         loom \
         macdown \
-        meld \
         microblog \
         microsoft-edge \
         microsoft-teams \
@@ -66,7 +64,6 @@ function 🍻_cask \
         objectivesharpie \
         obsidian \
         oclint \
-        paw \
         qt-creator \
         raspberry-pi-imager \
         remotion \
@@ -96,7 +93,7 @@ function 🍻_cask \
         xcodes \
         zeplin \
         # END: apps
-    set -l quicklook_plugins \
+        set -l quicklook_plugins \
         provisionql \
         qlcolorcode \
         qlimagesize \
@@ -187,6 +184,7 @@ function 🍻_cask \
         opera-gx \
         skype-for-business \
         sublime-text-dev \
+        tailscale \
         textexpander \
         things \
         timing \
