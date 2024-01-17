@@ -125,7 +125,7 @@
   "qiskit-vscode.ibmq.url": "",
   "qiskit-vscode.ibmq.group": "",
   "qiskit-vscode.ibmq.project": "",
-  "redhat.telemetry.enabled": true,
+  "redhat.telemetry.enabled": false,
   "ruby.codeCompletion": "rcodetools",
   "ruby.intellisense": "rubyLocate",
   "ruby.format": "rubocop",
@@ -176,5 +176,7 @@
   "cmake.showOptionsMovedNotification": false,
   "cmake.automaticReconfigure": false,
   "cmake.buildBeforeRun": false,
-  "cmake.configureOnEdit": false
+  "cmake.configureOnEdit": false,
+  "java.import.maven.enabled": false,
+  "java.autobuild.enabled": false
 }
