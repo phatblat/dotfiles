@@ -168,10 +168,11 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
-"window.openWithoutArgumentsInNewWindow": "on",
+  "window.openWithoutArgumentsInNewWindow": "on",
   "workbench.colorTheme": "Warlock Contrast (rainglow)",
   "workbench.iconTheme": "a-file-icon-vscode",
   "workbench.productIconTheme": "material-product-icons",
   "workbench.startupEditor": "none",
-  "xml.java.home": ""
+  "xml.java.home": "",
+  "cmake.showOptionsMovedNotification": false
 }
