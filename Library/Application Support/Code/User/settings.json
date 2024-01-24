@@ -64,6 +64,7 @@
     ".yamllint": "yaml"
   },
   "files.exclude": {
+    "**/.git": false,
     "**/.trunk/*out": true
   },
   "files.insertFinalNewline": true,
@@ -169,7 +170,7 @@
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "window.openWithoutArgumentsInNewWindow": "on",
-  "workbench.colorTheme": "Warlock Contrast (rainglow)",
+  "workbench.colorTheme": "Dark Purple",
   "workbench.iconTheme": "a-file-icon-vscode",
   "workbench.productIconTheme": "material-product-icons",
   "workbench.startupEditor": "none",
