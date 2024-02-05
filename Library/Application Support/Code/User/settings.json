@@ -175,5 +175,6 @@
   "workbench.productIconTheme": "material-product-icons",
   "workbench.startupEditor": "none",
   "xml.java.home": "",
-  "cmake.showOptionsMovedNotification": false
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.buildDirectory": "/Users/phatblat/tmp/cmake/build"
 }
