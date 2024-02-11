@@ -176,5 +176,8 @@
   "workbench.startupEditor": "none",
   "xml.java.home": "",
   "cmake.showOptionsMovedNotification": false,
-  "cmake.buildDirectory": "/Users/phatblat/tmp/cmake/build"
+  "cmake.buildDirectory": "/Users/phatblat/tmp/cmake/build",
+  "search.exclude": {
+    "**/.git": true
+  }
 }
