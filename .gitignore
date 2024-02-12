@@ -152,6 +152,9 @@
 .config/xbuild/
 .config/yarn/
 .config/yelp/yelp.cfg
+.config/zed/.tmp*
+.config/zed/conversations/
+.config/zed/embeddings/
 .cpan/
 .cups/
 .dart-tool/
