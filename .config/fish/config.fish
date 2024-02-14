@@ -8,7 +8,7 @@ ulimit --file-descriptor-count 4096
 
 # Fish logo
 if status is-interactive
-    warpify
+    # warpify
 
     if type --query neofetch
         neofetch --config ~/.config/neofetch/config.conf
