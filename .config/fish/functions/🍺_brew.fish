@@ -31,6 +31,7 @@ function 🍺_brew \
 
     # multi-platform
     set -l formulae \
+        gofireflyio/aiac/aiac \
         aria2 \
         asciinema \
         asdf \
