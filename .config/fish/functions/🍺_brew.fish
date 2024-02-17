@@ -43,7 +43,6 @@ function 🍺_brew \
         boost \
         bottom \
         broot \
-        burl \
         carthage \
         cheat \
         choose \
