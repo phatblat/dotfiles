@@ -56,7 +56,6 @@ function ⏫_upstall \
             --nopy \
             --norb \
             --nors \
-            --nosdk \
             --notm \
             --novi \
             --novs \
