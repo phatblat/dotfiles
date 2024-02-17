@@ -35,7 +35,7 @@
   "docker.showStartPage": false,
   "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
   "editor.fontSize": 14,
-"editor.copyWithSyntaxHighlighting": false,
+  "editor.copyWithSyntaxHighlighting": false,
   "editor.defaultFormatter": null,
   "editor.dragAndDrop": false,
   "editor.folding": false,
@@ -177,5 +177,6 @@
   "cmake.buildDirectory": "/Users/phatblat/tmp/cmake/build",
   "search.exclude": {
     "**/.git": true
-  }
+  },
+  "prettier.configPath": "/opt/homebrew/bin/prettier"
 }

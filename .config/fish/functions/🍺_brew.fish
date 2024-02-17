@@ -114,6 +114,7 @@ function 🍺_brew \
         hashicorp/tap/packer \
         pacvim \
         pkg-config \
+        prettier \
         procs \
         publish \
         python@3.9 \
