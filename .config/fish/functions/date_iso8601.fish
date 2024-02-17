@@ -1,7 +1,7 @@
 # Prints date in ISO-8601 format.
 function date_iso8601 --argument-names format
     if test -z $format
-        set format "timezone"
+        set format timezone
     end
 
     switch $format

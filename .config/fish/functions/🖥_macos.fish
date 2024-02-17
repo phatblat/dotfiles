@@ -4,7 +4,9 @@ function 🖥_macos \
     echo "🖥  macOS"
 
     # Only install Rosetta 2 on M1 if not already installed.
-    if begin is_arm; and test ! -f /Library/Apple/usr/share/rosetta/rosetta; end
+    if begin
+            is_arm; and test ! -f /Library/Apple/usr/share/rosetta/rosetta
+        end
         echo
         echo "🌍  Rosetta 2"
         sudo softwareupdate --install-rosetta

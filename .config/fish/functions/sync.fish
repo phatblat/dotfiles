@@ -6,7 +6,7 @@ function sync \
         stsave
     end
 
-    set -l sync_branch "master"
+    set -l sync_branch master
     if test $sync_branch != (current_branch)
         git checkout $sync_branch
     end

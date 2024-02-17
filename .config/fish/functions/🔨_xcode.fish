@@ -33,7 +33,7 @@ function 🔨_xcode \
         set -l options --no-show-release-notes
 
         # Don't activate beta versions automatically
-        if string match "beta" $newest_version
+        if string match beta $newest_version
             set options options --no-switch
         end
 
@@ -48,7 +48,7 @@ function 🔨_xcode \
     xclist
 
     echo
-    echo "Themes"
+    echo Themes
     set -l xcode_themes_dir ~/Library/Developer/Xcode/UserData/FontAndColorThemes
     set -l xcode_dev_dir ~/dev/xcode
     set -l repo_dir $xcode_dev_dir/xcode-themes

@@ -4,7 +4,8 @@ function fn --argument function_name
 
     # File in autoload may not be loaded (syntax error) and
     # builtin functions won't have files in autoload dir.
-    if begin test -e $file
+    if begin
+            test -e $file
             or functions --query $function_name
         end
         yn "Function "$function_name" already exists. Edit?"

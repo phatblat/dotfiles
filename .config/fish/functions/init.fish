@@ -25,24 +25,24 @@ function init \
     return
 
     git init
-        or return $status
+    or return $status
 
     if not test -f README.md
-        echo "# $dir_name" > README.md
+        echo "# $dir_name" >README.md
         git add README.md
         git commit -m "🎉 Initial commit"
     end
 
     ignore
-        or return $status
+    or return $status
 
     license
-        or return $status
+    or return $status
 
     gh repo create "$dir_name" \
         --remote phatblat \
         --public \
         --push \
         --source .
-        or return $status
+    or return $status
 end

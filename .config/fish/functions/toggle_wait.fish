@@ -8,8 +8,8 @@ function toggle_wait \
     # Empty toggles the current state.
     if test -z $state
         if test -z $VISUAL
-                and string match --ignore-case '*'$WAIT_FLAG $EDITOR >/dev/null
-                or string match --ignore-case '*'$WAIT_FLAG $VISUAL >/dev/null
+            and string match --ignore-case '*'$WAIT_FLAG $EDITOR >/dev/null
+            or string match --ignore-case '*'$WAIT_FLAG $VISUAL >/dev/null
             echo -n "Wait mode enabled, disabling"
             set state off
         else

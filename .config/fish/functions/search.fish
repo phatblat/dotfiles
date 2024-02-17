@@ -2,24 +2,23 @@ function search \
     --description='Search for CLI tools through variouss package managers.'
 
     if is_linux
-        echo "Snap"
-        echo "-----------------------------------------------------------------"
+        echo Snap
+        echo -----------------------------------------------------------------
         # Ubuntu snap
         #snap search $argv
         # snapd apt package
         snap find $argv
 
-        echo "APT"
-        echo "-----------------------------------------------------------------"
+        echo APT
+        echo -----------------------------------------------------------------
         apt search $argv
     else if is_mac
         echo "Mac App Store"
-        echo "-----------------------------------------------------------------"
+        echo -----------------------------------------------------------------
         mas search $argv
     end
 
-    echo "Homebrew"
-    echo "-----------------------------------------------------------------"
+    echo Homebrew
+    echo -----------------------------------------------------------------
     brew search $argv
 end
-

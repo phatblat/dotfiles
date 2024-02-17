@@ -1,6 +1,6 @@
 function clone \
-        --description="Performs a git clone, then configures repo user." \
-        --argument-names url dir
+    --description="Performs a git clone, then configures repo user." \
+    --argument-names url dir
 
     if test -z "$url"
         echo "Usage: clone url [dir]"

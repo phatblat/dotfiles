@@ -1,4 +1,4 @@
 # Navigate up two directories.
 function cd..
-  cd ../..
+    cd ../..
 end

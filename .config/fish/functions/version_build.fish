@@ -6,8 +6,8 @@ function version_build \
 
     # Smarter logic which resolves build settings from project
     set -l plistbuddy /usr/libexec/PlistBuddy
-    set -l plist_key "CFBundleVersion"
-    set -l build_setting_name "CURRENT_PROJECT_VERSION"
+    set -l plist_key CFBundleVersion
+    set -l build_setting_name CURRENT_PROJECT_VERSION
 
     debug $plist_key
     set -l plist_files (ls -1 **/*Info.plist)

@@ -23,7 +23,7 @@ function function_template \
 
 end
 " \
-    | cat
+        | cat
 
     # echo $contents
     # | fish_indent --ansi

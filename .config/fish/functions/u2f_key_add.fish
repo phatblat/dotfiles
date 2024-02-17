@@ -9,10 +9,10 @@ function u2f_key_add \
 
     if not test -f $key_file
         echo "Adding initial U2Fkey to $key_file"
-        pamu2fcfg > $key_file
+        pamu2fcfg >$key_file
     else
         echo "Appending U2F key to $key_file"
-        pamu2fcfg -n >> $key_file
+        pamu2fcfg -n >>$key_file
     end
 
     popd

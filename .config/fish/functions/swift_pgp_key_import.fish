@@ -17,7 +17,7 @@ function swift_pgp_key_import \
         --recv-keys \
         '8A74 9566 2C3C D4AE 18D9  5637 FAF6 989E 1BC1 6FEA'
 
-     gpg --keyserver hkp://pool.sks-keyservers.net \
+    gpg --keyserver hkp://pool.sks-keyservers.net \
         --recv-keys \
         'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561'
 end

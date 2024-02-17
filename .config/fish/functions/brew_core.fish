@@ -7,4 +7,3 @@ function brew_core \
         pushd (brew_home)/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
     end
 end
-

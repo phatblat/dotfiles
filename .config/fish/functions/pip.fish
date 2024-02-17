@@ -4,6 +4,5 @@ function pip \
     --wraps=pip
 
     CFLAGS=-I(brew --prefix)/include \
-    LDFLAGS=-L(brew --prefix)/lib \
-    command pip $argv
+        LDFLAGS=-L(brew --prefix)/lib command pip $argv
 end

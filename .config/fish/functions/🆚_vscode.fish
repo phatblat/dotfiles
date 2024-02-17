@@ -227,7 +227,7 @@ function 🆚_vscode \
     end
     if test -n "$to_uninstall"
         for extension in $to_uninstall
-            echo 🔥  Uninstalling $extension
+            echo 🔥 Uninstalling $extension
             code --uninstall-extension $extension
         end
     end
@@ -250,10 +250,10 @@ function 🆚_vscode \
     end
     if test -n "$not_installed"
         for extension in $not_installed
-            echo 🆕  Installing $extension
+            echo 🆕 Installing $extension
             code --install-extension $extension
         end
     else
-        echo 👌🏻  All extensions installed
+        echo 👌🏻 All extensions installed
     end
 end

@@ -7,13 +7,13 @@ function rewrite \
         return 1
     end
 
-    if test $field != "email"
+    if test $field != email
         error "Only email replacements are currently supported."
         error "Usage: rewrite email old_value new_value"
         return 2
     end
 
-    if not command --search git-filter-repo > /dev/null
+    if not command --search git-filter-repo >/dev/null
         error "git-filter-repo is installed"
         return 3
     end

@@ -3,6 +3,5 @@
 function cleanall \
     --description='Recursively cleans all Gradle projects under the current dir.'
 
-    find . -type f -name gradlew -print0 | \
-        xargs -0 sh -c 'for arg do pushd `dirname "$arg"`; ./gradlew clean; popd >/dev/null; done' _
+    find . -type f -name gradlew -print0 | xargs -0 sh -c 'for arg do pushd `dirname "$arg"`; ./gradlew clean; popd >/dev/null; done' _
 end

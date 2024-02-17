@@ -1,10 +1,10 @@
 function swift_releases \
-        --description='Check for Swift releases' \
-        --argument-names swift_version days
+    --description='Check for Swift releases' \
+    --argument-names swift_version days
 
     set -l branch_name development
 
-    if test "$swift_version" = "trunk"
+    if test "$swift_version" = trunk
         # use default branch name
         # clear swift version
         set -e swift_version

@@ -18,7 +18,7 @@ function ▶️_powerline \
     echo "▶️ Powerline"
     echo
 
-    set -l vim_dev          ~/dev/vim
+    set -l vim_dev ~/dev/vim
     set -l powerline_config ~/.config/powerline
     createdirs $vim_dev
 

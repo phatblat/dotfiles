@@ -1,7 +1,7 @@
 # Edits Powerline Shell configuration.
 # https://github.com/banga/powerline-shell
 function pls_edit
-    set -l powerline_shell_dir  ~/dev/vim/powerline-shell
+    set -l powerline_shell_dir ~/dev/vim/powerline-shell
     set -l configuration config.py
     set -l compile_script install.py
     set -l runtime_script powerline-shell.py

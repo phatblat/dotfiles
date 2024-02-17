@@ -12,7 +12,7 @@ wrapper {
     distributionType = 'ALL'
     finalizedBy removeBatchFile
 }
-" | cat >> build.gradle
+" | cat >>build.gradle
 
     # Install the wrapper
     gradle wrapper

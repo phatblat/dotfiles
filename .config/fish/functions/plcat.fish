@@ -13,4 +13,3 @@ function plcat \
     plutil -convert xml1 -o - -- $file \
         | bat
 end
-

@@ -6,22 +6,22 @@ function maslink \
     set -l folder_name
 
     switch (hostname)
-    case DTO-A017
-        set folder_name mas-euqirdsvwusoxnahudunkycvsjgn
-    case protop
-        set folder_name mas-euqirdsvwusoxnahudunkycvsjgn
-    case tredecim
-        set folder_name mas-crebdnsdmyoxeobfcrozyiypxcpm
-    case tredecim-bigsur
-        set folder_name mas-aqgkhlyqitpqytcdqdncgnkvubmq
-    case greymatter
-        set folder_name mas-gbyvetvfnsdaiigwwzwjvnbutabs
-    case octodec
-        set folder_name mas-aqppolouacncbpdkiaiefddzzlfq
-    case '*'
-        error "This device is not set up for this command. Add the mas folder to the maslink function."
-        ls $derived_data
-        return 1
+        case DTO-A017
+            set folder_name mas-euqirdsvwusoxnahudunkycvsjgn
+        case protop
+            set folder_name mas-euqirdsvwusoxnahudunkycvsjgn
+        case tredecim
+            set folder_name mas-crebdnsdmyoxeobfcrozyiypxcpm
+        case tredecim-bigsur
+            set folder_name mas-aqgkhlyqitpqytcdqdncgnkvubmq
+        case greymatter
+            set folder_name mas-gbyvetvfnsdaiigwwzwjvnbutabs
+        case octodec
+            set folder_name mas-aqppolouacncbpdkiaiefddzzlfq
+        case '*'
+            error "This device is not set up for this command. Add the mas folder to the maslink function."
+            ls $derived_data
+            return 1
     end
 
     # Xcode GUI puts binary here

@@ -5,5 +5,5 @@ function psgrep --argument-names process
         return 1
     end
 
-    ps aux | grep --invert-match 'grep' | grep $process
+    ps aux | grep --invert-match grep | grep $process
 end

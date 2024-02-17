@@ -8,7 +8,7 @@ function moj_host \
     end
 
     switch $host
-        case 'DTO-A017'
+        case DTO-A017
             echo 💻
         case phatmini co-mac1
             echo 🖥

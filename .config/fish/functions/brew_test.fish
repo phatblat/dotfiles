@@ -1,6 +1,6 @@
 function brew_test \
-        --description='Installs and tests a Homebrew formula' \
-        --argument-names token formula_version
+    --description='Installs and tests a Homebrew formula' \
+    --argument-names token formula_version
 
     if test -z "$token"
         echo "Usage: brew_test token [formula_version]"
@@ -15,7 +15,7 @@ function brew_test \
             and trash ~/Library/Caches/org.carthage.CarthageKit
     end
 
-    if brew ls --versions $token > /dev/null
+    if brew ls --versions $token >/dev/null
         brew uninstall $token
     end
 

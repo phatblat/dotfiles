@@ -18,7 +18,7 @@ function ___stat \
 
     set -l stat_version (command stat --version)
     # echo "stat_version: $stat_version"
-    if not string match --entire --quiet -- "coreutils" $stat_version
+    if not string match --entire --quiet -- coreutils $stat_version
         error "WARN: stat in PATH is not part of coreutils"
     end
 

@@ -79,7 +79,7 @@ function 📦_apt \
             echo "Installing $package"
             sudo apt-get \
                 --assume-yes \
-                 --verbose-versions \
+                --verbose-versions \
                 install $package
         end
     end

@@ -1,7 +1,7 @@
 function cargo_target \
     --description='Spins up a RAM disk for Cargo target output' \
     --argument-names quiet
-# argparse 'h/help' 'n/name' -- $argv
+    # argparse 'h/help' 'n/name' -- $argv
 
     set -l drive_name CargoTarget
     set -l default_size 50

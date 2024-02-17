@@ -15,8 +15,7 @@ function 🗄_gitconfig \
     end
 
     # Just print the current config when values are set.
-    if git config --file $global_config user.name; and \
-            git config --file $global_config user.email
+    if git config --file $global_config user.name; and git config --file $global_config user.email
         cat $global_config
         return 0
     end

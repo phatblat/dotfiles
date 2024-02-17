@@ -1,6 +1,6 @@
 # Prompt the user for a yes/no response. Returns 0 (success) for YES and 1 (error) for NO.
 function yn \
-        --argument-names prompt
+    --argument-names prompt
     read \
         --local answer \
         --prompt-str="$prompt> "
@@ -16,4 +16,3 @@ function yn \
             yn $prompt
     end
 end
-

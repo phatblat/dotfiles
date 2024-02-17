@@ -1,5 +1,5 @@
 function mkdir \
-        --description='Create a directory and set CWD'
+    --description='Create a directory and set CWD'
 
     command mkdir -p $argv
 
@@ -14,4 +14,3 @@ function mkdir \
         end
     end
 end
-

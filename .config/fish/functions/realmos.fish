@@ -7,13 +7,13 @@ function realmos --argument-names command
     end
 
     switch "$command"
-    #     case 'status'
-    #         error 'status' subcommand not implemented
+        #     case 'status'
+        #         error 'status' subcommand not implemented
         case start
             echo Starting ROS at $REALM_OBJECT_SERVER_PATH
             eval $REALM_OBJECT_SERVER_PATH/start-object-server.command
-    #     case stop
-    #         error 'stop' subcommand not implemented
+            #     case stop
+            #         error 'stop' subcommand not implemented
         case '*'
             echo "Usage: realmos [status|start|stop]"
     end
