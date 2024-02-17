@@ -8,19 +8,27 @@
 root = true
 
 [*]
+charset = utf-8
 end_of_line = lf
 insert_final_newline = true
-trim_trailing_whitespace = true
-charset = utf-8
-indent_style = space
 indent_size = 4
+indent_style = space
+trim_trailing_whitespace = true
 
-[{*.js,*.json,*.yml}]
+[*.{dart,fish,js,json,nix,rb,podspec,yaml,yml}]
+indent_size = 2
+
+[{Podfile,Rakefile}]
 indent_size = 2
 
 # Tab indentation (no size specified)
-[Makefile,.gitconfig]
+[{Makefile,*.{gitconfig,plist}}]
 indent_style = tab
 
-[{*.nix}]
-indent_size = 2
+# Trailing spaces have meaning in Markdown
+[*.md]
+trim_trailing_whitespace = false
+
+# JSON files contain newlines inconsistently
+[*.json]
+insert_final_newline = ignore
