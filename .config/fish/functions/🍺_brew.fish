@@ -386,8 +386,7 @@ function 🍺_brew \
     echo 👩🏻‍⚕️ Doctor
     brew doctor
 
-    # Slow, takes ~40s on greymatter
-    # echo
-    # echo ℹ️  Info
-    # brew info
+    echo
+    echo ℹ️ Info
+    brew info
 end
