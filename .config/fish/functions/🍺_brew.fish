@@ -109,8 +109,8 @@ function 🍺_brew \
         nmap \
         node \
         openjdk \
-        openjdk-11 \
-        openjdk-17 \
+        openjdk@11 \
+        openjdk@17 \
         hashicorp/tap/packer \
         pacvim \
         pkg-config \
