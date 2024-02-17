@@ -241,10 +241,6 @@ if test -d "$MONGODB_HOME"
         $PATH
 end
 
-# set --export NVM_DIR "$HOME/.nvm"
-# [ -s "(brew_home nvm)/nvm.sh" ] && . "/(brew_home nvm)/nvm.sh"  # This loads nvm
-# [ -s "(brew_home nvm)/etc/bash_completion.d/nvm" ] && . "(brew_home nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # Editor
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI vim # vi vim

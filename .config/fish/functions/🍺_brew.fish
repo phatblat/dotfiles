@@ -108,7 +108,6 @@ function 🍺_brew \
         nginx \
         nmap \
         node \
-        nvm \
         openjdk \
         openjdk-11 \
         openjdk-17 \
@@ -210,6 +209,7 @@ function 🍺_brew \
         md5shasum \
         minikube \
         mono \
+        nvm \
         phatblat/services/pbjenkins \
         ping-devops \
         protobuf protobuf-c \
