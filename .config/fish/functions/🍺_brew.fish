@@ -113,6 +113,7 @@ function 🍺_brew \
         openjdk@17 \
         hashicorp/tap/packer \
         pacvim \
+        peripheryapp/periphery/periphery \
         pkg-config \
         prettier \
         procs \
