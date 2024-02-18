@@ -51,6 +51,7 @@ function 🍺_brew \
         ctags \
         curl \
         curlie \
+        danger/tap/danger-swift \
         diff-so-fancy \
         direnv \
         duf \
