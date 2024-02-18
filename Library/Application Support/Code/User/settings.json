@@ -178,5 +178,6 @@
   "search.exclude": {
     "**/.git": true
   },
-  "prettier.configPath": "/opt/homebrew/bin/prettier"
+  "prettier.configPath": "/opt/homebrew/bin/prettier",
+  "prettier.tabWidth": 4
 }
