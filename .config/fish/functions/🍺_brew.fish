@@ -93,6 +93,7 @@ function 🍺_brew \
         libarchive \
         libssh2 \
         libtool \
+        llvm \
         loc \
         lsd \
         macchina \
