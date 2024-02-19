@@ -87,7 +87,7 @@ function jdk_set \
 
     # Set JAVA_HOME and add to path
     set --export --global JAVA_HOME "$jdk_path"
-    path add $JAVA_HOME/bin
+    path_add $JAVA_HOME/bin
 
     # Set CPPFLAGS if there are no spaces in jdk_path
     if not has_space "$jdk_path"
