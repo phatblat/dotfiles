@@ -8,3 +8,6 @@ just = "1.24.0"
 node = "21.6.0"
 ruby = "3.2.3"
 
+[settings]
+experimental = true
+
