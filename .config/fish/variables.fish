@@ -319,6 +319,8 @@ set -px --path PATH $HOME/.bun/bin
 if is_mac
     set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
     set --export --global CMAKE_BUILD_TYPE Debug
+    # for wasm32-unknown-unknown support
+    set --export CC_wasm32_unknown_unknown (brew --prefix)/opt/llvm/bin/clang
 end
 
 # Split on underscore to ignore the revision number
