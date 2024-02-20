@@ -80,6 +80,7 @@ function 🍺_brew \
         gtop \
         httpie \
         hyperfine \
+        ios-deploy \
         jabba \
         jenv \
         jq \
