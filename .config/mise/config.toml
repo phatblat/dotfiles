@@ -7,6 +7,7 @@
 just = "1.24.0"
 node = "18.19.1"
 ruby = "3.2.3"
+yarn = "1.22.19"
 
 [settings]
 experimental = true
