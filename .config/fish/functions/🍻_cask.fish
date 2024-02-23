@@ -103,6 +103,7 @@ function 🍻_cask \
         qlstephen \
         quicklook-csv \
         quicklook-json \
+        tailscale \
         webpquicklook
 
     # TEMP: Cask doesn't check whether fonts are installed. To speed up
@@ -184,7 +185,6 @@ function 🍻_cask \
         opera-gx \
         skype-for-business \
         sublime-text-dev \
-        tailscale \
         textexpander \
         things \
         timing \
