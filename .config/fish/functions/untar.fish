@@ -1,6 +1,6 @@
 function untar --wraps='tar' \
     --description 'Extracts a tarball.' \
-    --argument file_name
+    --argument-names file_name
 
     if test -z $file_name 2>/dev/null
         error "Usage: untar file.tar.gz"

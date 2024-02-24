@@ -1,6 +1,6 @@
 function fn \
     --description 'Create a new function.' \
-    --argument function_name
+    --argument-names function_name
 
     set -l file ~/.config/fish/functions/$function_name.fish
 
