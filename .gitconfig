@@ -94,6 +94,9 @@
 #[filter "xmlplist"]
 #    clean = git-plist-filter.sh
 #    smudge = git-plist-filter.sh
+[gitbutler]
+	signCommits = true
+	gitbutlerCommitter = 1
 [github]
 	user = phatblat
 [gpg]
