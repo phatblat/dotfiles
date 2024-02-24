@@ -341,7 +341,6 @@ EpuborLog/
 Fastlane/report.xml
 IdeaProjects/
 KindleTransfer2019.01.log
-Library.bak/
 Library/
 Minecraft/
 Movies
@@ -369,7 +368,6 @@ build/
 cali_core4/
 data/
 dev
-dev.bak
 ditto-cache/
 examples.desktop
 go/
