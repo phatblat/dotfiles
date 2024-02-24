@@ -9,10 +9,6 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off"
   },
-  "[lic]": {
-    "files.insertFinalNewline": false,
-    "files.trimFinalNewlines": true
-  },
   "[markdown]": {
     "editor.wordWrap": "off",
     "editor.quickSuggestions": {
@@ -65,12 +61,9 @@
     "**/.git": false,
     "**/.trunk/*out": true
   },
-  "files.insertFinalNewline": true,
   "files.watcherExclude": {
     "**/.trunk/*out": true
   },
-  "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
