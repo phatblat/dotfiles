@@ -98,5 +98,34 @@
   {
     "key": "cmd+b",
     "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "shift+cmd+1",
+    "command": "-editor.action.replaceOne",
+    "when": "editorFocus && findWidgetVisible"
+  },
+  {
+    "key": "shift+cmd+1",
+    "command": "-search.action.replace",
+    "when": "isEditableItem && matchFocus && replaceActive && searchViewletVisible"
+  },
+  {
+    "key": "shift+cmd+1",
+    "command": "-search.action.replaceAllInFile",
+    "when": "fileMatchFocus && isEditableItem && replaceActive && searchViewletVisible"
+  },
+  {
+    "key": "shift+cmd+1",
+    "command": "-search.action.replaceAllInFolder",
+    "when": "folderMatchFocus && isEditableItem && replaceActive && searchViewletVisible"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "shift+cmd+1",
+    "command": "workbench.view.explorer"
   }
 ]
