@@ -3,8 +3,9 @@
 !.config/fish/fishfile
 !.config/fish/functions/*.fish
 !.dotfiles/
-!.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
-!.oh-my-zsh/themes/agnoster-phatblat.zsh-theme
+!.oh-my-zsh/themes/*
+!Library/Application Support/Code/User/*.json
+# Library/Application Support/*
 *.hprof
 *.iml
 *.padl
@@ -341,7 +342,161 @@ EpuborLog/
 Fastlane/report.xml
 IdeaProjects/
 KindleTransfer2019.01.log
-Library/
+Library/.localized
+Library/Accessibility/
+Library/Accounts/
+Library/AppleMediaServices/
+Library/Application Support/1Password/
+Library/Application Support/AddressBook/
+Library/Application Support/Alfred/
+Library/Application Support/Animoji/
+Library/Application Support/App Store/
+Library/Application Support/Arc/
+Library/Application Support/CEF/
+Library/Application Support/Caches/
+Library/Application Support/CallHistoryDB/
+Library/Application Support/CallHistoryTransactions/
+Library/Application Support/CloudDocs/
+Library/Application Support/Code/Cache/
+Library/Application Support/Code/CachedConfigurations/
+Library/Application Support/Code/CachedData/
+Library/Application Support/Code/CachedExtensionVSIXs/
+Library/Application Support/Code/CachedProfilesData/
+Library/Application Support/Code/Code Cache/
+Library/Application Support/Code/Cookies
+Library/Application Support/Code/Cookies-journal
+Library/Application Support/Code/Crashpad/
+Library/Application Support/Code/DawnCache/
+Library/Application Support/Code/GPUCache/
+Library/Application Support/Code/Local Storage/
+Library/Application Support/Code/Network Persistent State
+Library/Application Support/Code/Preferences
+Library/Application Support/Code/Service Worker/
+Library/Application Support/Code/Session Storage/
+Library/Application Support/Code/TransportSecurity
+Library/Application Support/Code/Trust Tokens
+Library/Application Support/Code/Trust Tokens-journal
+Library/Application Support/Code/User/*
+Library/Application Support/Code/WebStorage/
+Library/Application Support/Code/code.lock
+Library/Application Support/Code/databases/
+Library/Application Support/Code/languagepacks.json
+Library/Application Support/Code/machineid
+Library/Application Support/CrashReporter/
+Library/Application Support/Cron/
+Library/Application Support/DiskImages/
+Library/Application Support/Docker Desktop/
+Library/Application Support/FaceTime/
+Library/Application Support/FileProvider/
+Library/Application Support/Firefox/
+Library/Application Support/Google/
+Library/Application Support/JetBrains/
+Library/Application Support/Kaleidoscope/*
+Library/Application Support/Knowledge/
+Library/Application Support/Logitech/
+Library/Application Support/Loom/
+Library/Application Support/Many Tricks/
+Library/Application Support/Microsoft*/
+Library/Application Support/Microsoft/
+Library/Application Support/MobileSync/
+Library/Application Support/Mozilla/
+Library/Application Support/Notion Calendar/
+Library/Application Support/Notion/
+Library/Application Support/Sublime Text 3/Local/
+Library/Application Support/SyncServices/
+Library/Application Support/VisualStudio/
+Library/Application Support/Vivaldi/
+Library/Application Support/Xcode/
+Library/Application Support/Zed/
+Library/Application Support/act/
+Library/Application Support/app.kaleidoscope.v4*
+Library/Application Support/com.apple.*/
+Library/Application Support/com.elgato.StreamDeck/
+Library/Application Support/com.fournova.Tower3/
+Library/Application Support/com.gitbutler.app/
+Library/Application Support/com.robotsandpencils.XcodesApp/
+Library/Application Support/com.robotsandpencils.xcodes/
+Library/Application Support/dev.warp.Warp-Stable/
+Library/Application Support/drata-agent/
+Library/Application Support/draw.io/
+Library/Application Support/firestore/
+Library/Application Support/google-heartbeat-storage/
+Library/Application Support/homeenergyd/
+Library/Application Support/iCloud/
+Library/Application Support/iStat Menus/
+Library/Application Support/icdd/
+Library/Application Support/kotlin/
+Library/Application Support/networkserviceproxy/
+Library/Application Support/obs-studio/
+Library/Application Support/obsidian/
+Library/Application Support/org.dystroy.broot/launcher/fish/
+Library/Application Support/synergy/
+Library/Application Support/virtualenv/
+Library/Application Support/zoxide/
+Library/Assistant/
+Library/Autosave Information/
+Library/Biome/
+Library/Caches/
+Library/Calendars/
+Library/CloudStorage/
+Library/Compositions/
+Library/Contacts/
+Library/ContainerManager/
+Library/Containers/
+Library/Cookies/
+Library/CoreFollowUp/
+Library/Daemon Containers/
+Library/DataDeliveryServices/
+Library/Developer/
+Library/DoNotDisturb/
+Library/DuetExpertCenter/
+Library/Favorites/
+Library/Finance/
+Library/FontCollections/
+Library/Fonts/
+Library/FrontBoard/
+Library/Group Containers/
+Library/HTTPStorages/
+Library/HomeKit/
+Library/IdentityServices/
+Library/Input Methods/
+Library/IntelligencePlatform/
+Library/Intents/
+Library/KeyboardServices/
+Library/Keychains/
+Library/LanguageModeling/
+Library/LaunchAgents/
+Library/Mail/
+Library/Messages/
+Library/Metadata/
+Library/Mobile Documents/
+Library/MobileDevice/
+Library/News/
+Library/Passes/
+Library/PersonalizationPortrait/
+Library/Photos/
+Library/PreferencePanes/
+Library/Preferences/*
+Library/Reminders/
+Library/ResponseKit/
+Library/Safari/
+Library/SafariTechnologyPreview/
+Library/Saved Application State/
+Library/Sharing/
+Library/Shortcuts/
+Library/Spelling/
+Library/StatusKit/
+Library/Suggestions/
+Library/Translation/
+Library/Trial/
+Library/UnifiedAssetFramework/
+Library/VisualStudio/
+Library/Weather/
+Library/WebKit/
+Library/com.apple.*/
+Library/com.apple.aiml.instrumentation/
+Library/org.swift.swiftpm/
+Library/studentd/
 Minecraft/
 Movies
 Movies/
