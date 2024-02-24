@@ -187,7 +187,6 @@ function 🍺_brew \
 
     set -l uninstall \
         android-sdk \
-        artifactory \
         azure-cli \
         azure/functions/azure-functions-core-tools@3 \
         cask-repair \
