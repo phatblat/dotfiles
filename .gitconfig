@@ -45,9 +45,7 @@
 [core]
 	# pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
 	pager = delta
-	whitespace = -trailing-space,-indent-with-non-tab,-tab-in-indent
-	#--HILITE-SEARCH
-	#--pattern '^(Date|added|deleted|modified|renamed): |\\* '
+	whitespace = trailing-space,space-before-tab,tab-in-indent
 
 	# Set the length object names are abbreviated to. If unspecified or set to
 	# "auto", an appropriate value is computed based on the approximate number
