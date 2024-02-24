@@ -1,5 +1,7 @@
-# Save a function to user's autoload dir.
-function fs --argument function_name
+function fs \
+    --description "Save a function to user's autoload dir." \
+    --argument-names function_name
+
     set -l dest_file ~/.config/fish/functions/$function_name.fish
     set -l original_contents
     set -l comment_lines
@@ -7,7 +9,8 @@ function fs --argument function_name
     if test -e $dest_file
         set original_contents (cat $dest_file)
         for line in $original_contents
-            # Collect lines starting with a hash
+            # Collect lines starting with a hash.
+            # Many functions should have these moved into --description
             if test '#' = (string sub --length 1 $line)
                 set comment_lines $comment_lines $line
             end

@@ -1,5 +1,7 @@
-# Create a new function.
-function fn --argument function_name
+function fn \
+    --description 'Create a new function.' \
+    --argument function_name
+
     set -l file ~/.config/fish/functions/$function_name.fish
 
     # File in autoload may not be loaded (syntax error) and
