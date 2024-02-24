@@ -1,12 +1,11 @@
 function format \
-    --description='Format files' \
+    --description 'Format files.' \
     --argument-names type
 
     if test -z $type
         echo 'Usage: format [type]'
         return 1
     end
-
 
     switch $type
         case fish

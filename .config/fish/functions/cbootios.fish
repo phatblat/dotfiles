@@ -3,6 +3,6 @@ function cbootios \
 
     carthage bootstrap \
         --no-use-binaries \
-            --platform iOS \
+        --platform iOS \
         $argv
 end

@@ -1,5 +1,7 @@
-function dotfiles --description='Edit dotfiles.' \
-    --argument-names=type
+function dotfiles \
+    --description 'Edit dotfiles.' \
+    --argument-names type
+
     set -l dotfiles ~/.dotfiles/
     set -l cronfiles ~/.dotfiles/cron/
 
