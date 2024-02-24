@@ -11,7 +11,7 @@ function format \
     switch $type
         case fish
             # Format fish files
-            fish_format .config/fish/functions/*.fish
+            fish_format ~/.config/fish/functions/*.fish
         case '*'
             echo "Unsupported file type: $type"
             return 1
