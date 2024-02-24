@@ -1,5 +1,5 @@
 function 🖥_macos \
-    --description='Manage macOS system updates'
+    --description 'Manage macOS system updates'
 
     echo "🖥  macOS"
 

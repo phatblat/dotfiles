@@ -1,5 +1,5 @@
 function editorconfig \
-    --description='Generates an editorconfig.'
+    --description 'Generates an editorconfig.'
 
     set -l file_path (root)/.editorconfig
 

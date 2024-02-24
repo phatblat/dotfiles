@@ -1,5 +1,5 @@
 function diw \
-    --description='Remove all Ping Identity docker images'
+    --description 'Remove all Ping Identity docker images'
 
     echo "Running command to: Remove all Ping Identity Docker images"
 

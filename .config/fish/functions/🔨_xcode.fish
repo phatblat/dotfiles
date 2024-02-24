@@ -3,7 +3,7 @@
 # Sequencing
 # - After: rubygems (uses xcode-install)
 function 🔨_xcode \
-    --description='Installs and updates Xcode.'
+    --description 'Installs and updates Xcode.'
 
     echo "🔨 Xcode"
     echo

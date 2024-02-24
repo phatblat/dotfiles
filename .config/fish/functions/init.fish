@@ -1,5 +1,5 @@
 function init \
-    --description='Initialize a new git repo in current or optional directory arg' \
+    --description 'Initialize a new git repo in current or optional directory arg' \
     --argument-names dir_name
 
     set --local git_repo_root $(root 2>/dev/null)

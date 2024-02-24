@@ -1,6 +1,6 @@
 # https://stackoverflow.com/questions/8169999/how-can-i-create-a-self-signed-cert-for-localhost
 function create_cert_localhost \
-    --description='Create a self-signed certificate for localhost'
+    --description 'Create a self-signed certificate for localhost'
 
     echo "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth" | openssl req -x509 \
         -out localhost.crt \

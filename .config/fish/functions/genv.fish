@@ -1,5 +1,5 @@
 function genv \
-    --description='Grep environment' \
+    --description 'Grep environment' \
     --argument-names search_term
 
     if test -z $search_term

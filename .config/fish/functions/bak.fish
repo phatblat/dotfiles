@@ -1,5 +1,5 @@
 function bak \
-    --description='Backs up a file by appending .bak extension. When run on a file that already has .bak, the extension is removed.' \
+    --description 'Backs up a file by appending .bak extension. When run on a file that already has .bak, the extension is removed.' \
     --argument-names file
     if not test -e $file
         echo "🤷🏻‍♂️  '$file' does not exist"

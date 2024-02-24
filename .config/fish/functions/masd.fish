@@ -1,5 +1,5 @@
 function masd \
-    --description='Quick nav to mas dir'
+    --description 'Quick nav to mas dir'
 
     set -l repo_url git@github.com:mas-cli/mas.git
     set -l base_dir ~/dev/mas-cli

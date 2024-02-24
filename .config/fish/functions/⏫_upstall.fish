@@ -1,5 +1,5 @@
 function ⏫_upstall \
-    --description='Updates and installs system and shell dependencies such as utilities, libraries, plugins and apps. Sometimes these are custom forks or configuration to tweak any of these.'
+    --description 'Updates and installs system and shell dependencies such as utilities, libraries, plugins and apps. Sometimes these are custom forks or configuration to tweak any of these.'
 
     createdirs ~/.config/upstall
 

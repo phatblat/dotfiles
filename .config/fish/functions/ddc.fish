@@ -1,5 +1,5 @@
 function ddc \
-    --description='Docker deep clean'
+    --description 'Docker deep clean'
 
     # Prune containers
     dcp

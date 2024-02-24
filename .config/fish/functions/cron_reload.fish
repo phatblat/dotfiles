@@ -1,5 +1,5 @@
 function cron_reload \
-    --description='Reloads cron file.'
+    --description 'Reloads cron file.'
 
     crontab $HOME/.dotfiles/cron/cron.file
 

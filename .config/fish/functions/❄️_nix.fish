@@ -1,5 +1,5 @@
 function ❄️_nix \
-    --description='Installs rust tools.'
+    --description 'Installs rust tools.'
 
     echo "❄️ Nix - https://nixos.org/download.html#nix-install-macos"
     echo

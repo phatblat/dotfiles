@@ -1,5 +1,5 @@
 function restore \
-    --description='Discards changes in the working tree.'
+    --description 'Discards changes in the working tree.'
 
     if test -z "$argv"
         git restore .

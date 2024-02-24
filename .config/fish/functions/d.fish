@@ -1,5 +1,5 @@
 function d \
-    --description='Git diff'
+    --description 'Git diff'
 
     # --unified: Context lines
     # --no-prefix: Do not show any source or destination prefix. (e.g. "a/" "b/")

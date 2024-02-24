@@ -2,7 +2,7 @@
 # - After: brew (fish)
 # - Requires Fish Shell
 function 🐟_fisher \
-    --description='Updates Fisher and the plugins it manages. Installs if missing.'
+    --description 'Updates Fisher and the plugins it manages. Installs if missing.'
 
     echo "🐟 Fisher - https://github.com/jorgebucaran/fisher"
     echo

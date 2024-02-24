@@ -1,6 +1,6 @@
 # https://derflounder.wordpress.com/2018/01/06/setting-your-mac-to-receive-macos-beta-updates-using-seedutil/
 function seed \
-    --description='Wrapper for macOS seedutil' \
+    --description 'Wrapper for macOS seedutil' \
     --argument-names action
 
     set -l seed_cmd /System/Library/PrivateFrameworks/Seeding.framework/Versions/A/Resources/seedutil

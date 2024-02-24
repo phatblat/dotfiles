@@ -1,3 +1,3 @@
-function xtest --description='Validate nginx config'
+function xtest --description 'Validate nginx config'
     sudo nginx -t $argv
 end

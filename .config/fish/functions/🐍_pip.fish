@@ -7,7 +7,7 @@
 # Sequencing
 # - After: brew (installed with python)
 function 🐍_pip \
-    --description='Manages python packages using pip'
+    --description 'Manages python packages using pip'
 
     echo "🐍 PIP"
     echo

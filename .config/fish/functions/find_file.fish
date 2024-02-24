@@ -1,5 +1,5 @@
 function find_file \
-    --description='Finds files under the given base_dir (defaults to PWD).' \
+    --description 'Finds files under the given base_dir (defaults to PWD).' \
     --argument-names file_name base_dir
 
     if test -z $file_name

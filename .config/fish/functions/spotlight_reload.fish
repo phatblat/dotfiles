@@ -1,5 +1,5 @@
 function spotlight_reload \
-    --description='Reloads Spotlight which triggers a re-index'
+    --description 'Reloads Spotlight which triggers a re-index'
 
     spotlight_disable
 

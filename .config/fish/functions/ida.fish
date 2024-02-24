@@ -1,5 +1,5 @@
 function ida \
-    --description='Lauch IDA with elevated priveleges'
+    --description 'Lauch IDA with elevated priveleges'
 
     set -l ida_path "/Applications/IDA Pro 7.5"
 

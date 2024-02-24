@@ -1,3 +1,3 @@
-function gk --description='Quick launch for GitKraken'
+function gk --description 'Quick launch for GitKraken'
     open -a GitKraken
 end

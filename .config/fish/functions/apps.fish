@@ -1,5 +1,5 @@
 function apps \
-    --description='Lists macOS apps currently installed' \
+    --description 'Lists macOS apps currently installed' \
     --argument-names option
 
     if test -z "$option"

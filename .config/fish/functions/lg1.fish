@@ -1,5 +1,5 @@
 function lg1 \
-    --description='Pretty history graph with one commit'
+    --description 'Pretty history graph with one commit'
 
     set -l commit_count 1
 

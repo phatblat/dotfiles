@@ -1,5 +1,5 @@
 function files_changed \
-    --description='Shows files changed since a treeish' \
+    --description 'Shows files changed since a treeish' \
     --argument-names tree1 tree2
 
     if test -z $tree1

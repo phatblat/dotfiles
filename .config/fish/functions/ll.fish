@@ -1,5 +1,5 @@
 function ll \
-    --description='Long list' \
+    --description 'Long list' \
     --wraps ls
 
     ls -l $argv

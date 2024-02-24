@@ -1,5 +1,5 @@
 function reload \
-    --description='Reloads a single function or the entire fish shell.' \
+    --description 'Reloads a single function or the entire fish shell.' \
     --wraps functions \
     --argument-names function_name
 

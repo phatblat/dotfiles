@@ -1,5 +1,5 @@
 function 🦀_rustup \
-    --description='Installs rust tools.'
+    --description 'Installs rust tools.'
 
     echo "🦀 rustup - https://rustup.rs"
     echo

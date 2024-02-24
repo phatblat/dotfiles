@@ -1,5 +1,5 @@
 function brew_test \
-    --description='Installs and tests a Homebrew formula' \
+    --description 'Installs and tests a Homebrew formula' \
     --argument-names token formula_version
 
     if test -z "$token"

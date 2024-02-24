@@ -3,7 +3,7 @@
 # do a user-owned dir.
 function gem_install \
     --argument-names gem_name \
-    --description='Installs a Ruby gem at the system level (requires sudo permissions).'
+    --description 'Installs a Ruby gem at the system level (requires sudo permissions).'
 
     if test -z gem_name 2>/dev/null
         echo "Usage: gem_install gem_name ..."

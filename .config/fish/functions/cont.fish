@@ -1,5 +1,5 @@
 function cont \
-    --description='Commit an in-progress git merge or continue a rebase, cherry-pick or am (apply mail patch).'
+    --description 'Commit an in-progress git merge or continue a rebase, cherry-pick or am (apply mail patch).'
     if test -e .git/MERGE_HEAD
         echo "File exists"
         git commit 2>/dev/null

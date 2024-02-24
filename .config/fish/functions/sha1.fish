@@ -1,5 +1,5 @@
 function sha1 \
-    --description='Displays the SHA1 hash of files'
+    --description 'Displays the SHA1 hash of files'
 
     if test -z "$argv"
         echo "Usage: sha1 file1 file2..."

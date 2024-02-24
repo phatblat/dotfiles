@@ -1,5 +1,5 @@
 function sync \
-    --description='Synchronizes a git rep.'
+    --description 'Synchronizes a git rep.'
 
     if git_repo_dirty
         echo "📥 Stashing changes"

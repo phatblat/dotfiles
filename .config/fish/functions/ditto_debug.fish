@@ -1,5 +1,5 @@
 function ditto_debug \
-    --description='Toggles the DITTO_DEBUG flag.' \
+    --description 'Toggles the DITTO_DEBUG flag.' \
     --argument-names state
 
     if test -z $state

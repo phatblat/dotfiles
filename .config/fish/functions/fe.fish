@@ -1,5 +1,5 @@
 function fe \
-    --description='Edit a function.' \
+    --description 'Edit a function.' \
     --argument-names function_name
 
     set -l file ~/.config/fish/functions/$function_name.fish

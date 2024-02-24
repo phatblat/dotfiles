@@ -1,5 +1,5 @@
 function mdk \
-    --description='Quick nav to MDK' \
+    --description 'Quick nav to MDK' \
     --argument-names platform
     set -l path ~/dev/mdk
 

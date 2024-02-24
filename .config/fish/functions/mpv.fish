@@ -1,5 +1,5 @@
 function mpv \
-    --description='Quick nav to MicrosoftPlatformVersions dir.'
+    --description 'Quick nav to MicrosoftPlatformVersions dir.'
 
     set -l mpv_dir ~/dev/MicrosoftPlatformVersions
 

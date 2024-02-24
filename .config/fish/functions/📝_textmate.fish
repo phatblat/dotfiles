@@ -1,7 +1,7 @@
 # Sequencing
 # - After: cask (textmate)
 function 📝_textmate \
-    --description='Manage TextMate bundles.'
+    --description 'Manage TextMate bundles.'
 
     echo "📝 TextMate - https://github.com/textmate/textmate"
     echo

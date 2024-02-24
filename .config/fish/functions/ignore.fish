@@ -1,5 +1,5 @@
 function ignore \
-    --description='Adds lines to .gitignore'
+    --description 'Adds lines to .gitignore'
 
     set -l gitignore (root)/.gitignore
     set -l ignore_list

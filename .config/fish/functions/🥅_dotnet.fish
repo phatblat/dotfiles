@@ -1,5 +1,5 @@
 function 🥅_dotnet \
-    --description='Installs .NET tools and workpacks.'
+    --description 'Installs .NET tools and workpacks.'
 
     echo "🥅 dotnet"
     echo

@@ -1,5 +1,5 @@
 function xcv \
-    --description='Displays the version of the currently selected Xcode.' \
+    --description 'Displays the version of the currently selected Xcode.' \
     --argument-names short_flag
     # xcodebuild -version takes 250ms
     # Example output:

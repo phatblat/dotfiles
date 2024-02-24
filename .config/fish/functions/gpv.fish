@@ -1,5 +1,5 @@
 function gpv \
-    --description='Quick nav to GooglePlatformVersions dir.'
+    --description 'Quick nav to GooglePlatformVersions dir.'
 
     set -l gpv_dir ~/dev/GooglePlatformVersions
 

@@ -1,5 +1,5 @@
 function moj_host \
-    --description='Prints an emoji for the current host.'
+    --description 'Prints an emoji for the current host.'
     set -l host (hostname)
     if string match '*.*' $host >/dev/null
         set -l tokens (string split '.' $host)

@@ -1,3 +1,3 @@
-function prunep --description='Prunes phatblat remote'
+function prunep --description 'Prunes phatblat remote'
     prune phatblat
 end

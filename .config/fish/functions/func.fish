@@ -1,5 +1,5 @@
 function func \
-    --description='Prints colorized, indented source of a loaded function.' \
+    --description 'Prints colorized, indented source of a loaded function.' \
     --wraps functions \
     --argument-name name
     if test -z "$name"

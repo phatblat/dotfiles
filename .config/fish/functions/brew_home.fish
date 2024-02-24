@@ -1,5 +1,5 @@
 function brew_home \
-    --description='Prints the Homebrew home dir or the location in the cellar where formula is or would be installed.' \
+    --description 'Prints the Homebrew home dir or the location in the cellar where formula is or would be installed.' \
     --argument-names formula
 
     if test -z "$BREW_HOME"

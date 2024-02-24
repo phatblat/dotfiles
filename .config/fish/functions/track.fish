@@ -1,5 +1,5 @@
 function track --wraps=git \
-    --description='Creates a local tracking branch.' \
+    --description 'Creates a local tracking branch.' \
     --argument-names remote_branch local_name
     if test -z $remote_branch
         echo "Usage: track remote_branch [local_name]"

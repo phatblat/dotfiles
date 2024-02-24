@@ -2,7 +2,7 @@
 # stored in the alternate global config file.
 # > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.
 function 🗄_gitconfig \
-    --description='Sets git user.name and user.email in XDG_CONFIG_HOME' \
+    --description 'Sets git user.name and user.email in XDG_CONFIG_HOME' \
     --argument-names email name
 
     echo "🗄 Git configuration"

@@ -1,5 +1,5 @@
 function untar --wraps='tar' \
-    --description='Extracts a tarball.' \
+    --description 'Extracts a tarball.' \
     --argument file_name
 
     if test -z $file_name 2>/dev/null

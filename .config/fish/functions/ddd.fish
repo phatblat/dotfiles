@@ -1,5 +1,5 @@
 function ddd \
-    --description='Delete Derived Data'
+    --description 'Delete Derived Data'
 
     if test -z $DERIVED_DATA
         error "DERIVED_DATA is not set"

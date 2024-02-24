@@ -1,5 +1,5 @@
 function maslink \
-    --description='Links debug build of mas into the path' \
+    --description 'Links debug build of mas into the path' \
     --argument-names remove
 
     set -l derived_data $HOME/Library/Developer/Xcode/DerivedData

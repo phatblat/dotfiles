@@ -1,5 +1,5 @@
 function console_user \
-    --description="Prints the username of the user logged into the console (GUI)"
+    --description "Prints the username of the user logged into the console (GUI)"
 
     if is_mac
         fileowner /dev/console

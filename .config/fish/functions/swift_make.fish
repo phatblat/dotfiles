@@ -1,5 +1,5 @@
 function swift_make \
-    --description='Adds template Makefile for Swift projects.'
+    --description 'Adds template Makefile for Swift projects.'
 
     set -l repo ~/dev/swift/Makefile-swift
     set -l src_file $repo/Makefile

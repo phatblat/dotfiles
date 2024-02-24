@@ -1,6 +1,6 @@
 # https://swift.org/download/#installation-1
 function swift_pgp_key_import \
-    --description='Import the Swift PGP keys into your keyring'
+    --description 'Import the Swift PGP keys into your keyring'
 
     gpg --keyserver hkp://pool.sks-keyservers.net \
         --recv-keys \

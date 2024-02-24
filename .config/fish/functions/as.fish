@@ -1,5 +1,5 @@
 function as \
-    --description='Open project in Android Studio' \
+    --description 'Open project in Android Studio' \
     --argument-names path
 
     set -l arctic_fox ch-0/203.7935034 # patch 4 (only on tredecim)

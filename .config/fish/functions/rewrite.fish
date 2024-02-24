@@ -1,6 +1,6 @@
 function rewrite \
     --argument-names field old_value new_value \
-    --description='Rewrite commits changing author/committer name/email/time environment variables.'
+    --description 'Rewrite commits changing author/committer name/email/time environment variables.'
 
     if test (count $argv) -ne 3
         error "Usage: rewrite email old_value new_value"

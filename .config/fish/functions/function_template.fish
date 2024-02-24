@@ -1,5 +1,5 @@
 function function_template \
-    --description='Prints function_template' \
+    --description 'Prints function_template' \
     --argument-names function_name argname
 
     if test -z $function_name
@@ -12,7 +12,7 @@ function function_template \
     end
 
     printf "function $function_name \\
-    --description='$function_name' \\
+    --description '$function_name' \\
     --argument-names $argname
 
     if test -z \$$argname

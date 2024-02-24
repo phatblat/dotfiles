@@ -1,5 +1,5 @@
 function search \
-    --description='Search for CLI tools through variouss package managers.'
+    --description 'Search for CLI tools through variouss package managers.'
 
     if is_linux
         echo Snap

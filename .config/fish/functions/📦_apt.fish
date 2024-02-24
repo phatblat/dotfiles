@@ -1,5 +1,5 @@
 function 📦_apt \
-    --description='Updates APM packages Linux.'
+    --description 'Updates APM packages Linux.'
 
     echo "📦 Advanced Package Manager"
     echo

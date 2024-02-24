@@ -1,5 +1,5 @@
 function file_base \
-    --description='Prints the base name of the file after dropping extension' \
+    --description 'Prints the base name of the file after dropping extension' \
     --argument-names file_name
 
     if test -z $file_name

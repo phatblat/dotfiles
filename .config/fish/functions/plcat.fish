@@ -1,5 +1,5 @@
 function plcat \
-    --description='Library/Preferences/com.mizage.Divvy.plist' \
+    --description 'Library/Preferences/com.mizage.Divvy.plist' \
     --argument-names file
 
     if test -z "$file"

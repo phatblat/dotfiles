@@ -1,5 +1,5 @@
 function ginit \
-    --description="Git init"
+    --description "Git init"
 
     git init $argv
 end

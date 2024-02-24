@@ -1,5 +1,5 @@
 function lgfind \
-    --description='Search through lightweight log `lg` for a specific pattern.' \
+    --description 'Search through lightweight log `lg` for a specific pattern.' \
     --argument-names search_term
 
     if test -z "$search_term"

@@ -1,5 +1,5 @@
 function lg10 \
-    --description='Pretty history graph with ten commits'
+    --description 'Pretty history graph with ten commits'
 
     set -l commit_count 10
 

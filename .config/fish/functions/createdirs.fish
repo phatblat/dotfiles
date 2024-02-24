@@ -1,5 +1,5 @@
 function createdirs \
-    --description='Creates a set of directories if they don\'t exist.'
+    --description 'Creates a set of directories if they don\'t exist.'
 
     if test -z "$argv"
         echo "Usage: createdirs dir1 dir2 ..."

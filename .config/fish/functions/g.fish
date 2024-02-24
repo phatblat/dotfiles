@@ -1,3 +1,3 @@
-function g --wraps='gradle' --description='Gradle alias'
+function g --wraps='gradle' --description 'Gradle alias'
     gradle $argv
 end

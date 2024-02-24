@@ -13,7 +13,7 @@
 # Sequencing
 # - After: brew (python), pip (powerline-status)
 function ▶️_powerline \
-    --description='Upstalls Powerline'
+    --description 'Upstalls Powerline'
 
     echo "▶️ Powerline"
     echo

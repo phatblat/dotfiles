@@ -1,5 +1,5 @@
 function path_add \
-    --description='Path manipulation. Subcommands: show, list, add' \
+    --description 'Path manipulation. Subcommands: show, list, add' \
     --argument-names directory
 
     if test -z "$directory"

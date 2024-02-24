@@ -1,5 +1,5 @@
 function kpm \
-    --description='Quick dir navigation to kpmobile' \
+    --description 'Quick dir navigation to kpmobile' \
     --argument-names platform
     set -l path ~/dev/kpmobile
 

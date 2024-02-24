@@ -4,7 +4,7 @@
 # - After: brew (fish)
 # - Requires Fish Shell
 function 🐠_omf \
-    --description='Updates oh-my-fish and bundled packages.'
+    --description 'Updates oh-my-fish and bundled packages.'
 
     echo "🐠 oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"
     echo

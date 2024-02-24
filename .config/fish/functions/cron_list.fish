@@ -1,5 +1,5 @@
 function cron_list \
-    --description='Prints cron file.'
+    --description 'Prints cron file.'
 
     crontab -l
 end

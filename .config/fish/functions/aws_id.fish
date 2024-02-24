@@ -1,5 +1,5 @@
 function aws_id \
-    --description='aws_id' \
+    --description aws_id \
     --argument-names profile
 
     if test -z $profile

@@ -1,5 +1,5 @@
 function nodef \
-    --description='Removes default.profraw file.'
+    --description 'Removes default.profraw file.'
 
     if test -f default.profraw
         rm default.profraw

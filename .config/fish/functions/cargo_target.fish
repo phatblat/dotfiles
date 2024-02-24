@@ -1,5 +1,5 @@
 function cargo_target \
-    --description='Spins up a RAM disk for Cargo target output' \
+    --description 'Spins up a RAM disk for Cargo target output' \
     --argument-names quiet
     # argparse 'h/help' 'n/name' -- $argv
 

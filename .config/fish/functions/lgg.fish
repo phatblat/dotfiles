@@ -1,4 +1,4 @@
-function lgg --description='Pretty history graph.'
+function lgg --description 'Pretty history graph.'
     git log \
         --graph \
         --abbrev-commit \

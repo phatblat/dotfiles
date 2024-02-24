@@ -1,5 +1,5 @@
 function sshkey \
-    --description='Find the public key file'
+    --description 'Find the public key file'
 
     if test -f ~/.ssh/id_ed25519.pub
         echo ~/.ssh/id_ed25519.pub

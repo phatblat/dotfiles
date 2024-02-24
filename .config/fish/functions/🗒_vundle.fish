@@ -6,7 +6,7 @@
 # Sequencing
 # - After: brew (python), pip (plugins)
 function 🗒_vundle \
-    --description='Installs and updates Vundle, plugin manager for Vim.'
+    --description 'Installs and updates Vundle, plugin manager for Vim.'
 
     echo "🗒 Vundle"
     echo

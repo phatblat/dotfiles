@@ -1,5 +1,5 @@
 function sshkeyfingerprint \
-    --description='Show fingerprint of optional public key file.' \
+    --description 'Show fingerprint of optional public key file.' \
     --argument-names key_file
 
     if test -z $key_file

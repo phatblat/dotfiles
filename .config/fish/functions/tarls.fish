@@ -1,5 +1,5 @@
 function tarls \
-    --description='List contents of a tarball' \
+    --description 'List contents of a tarball' \
     --argument-names file_name
 
     if test -z $file_name

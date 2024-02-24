@@ -1,5 +1,5 @@
 function ff \
-    --description='Edit fish dotfiles.' \
+    --description 'Edit fish dotfiles.' \
     --wraps='ff'
 
     fishfiles

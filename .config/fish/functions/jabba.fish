@@ -1,7 +1,7 @@
 # https://github.com/shyiko/jabba
 # https://raw.githubusercontent.com/shyiko/jabba/master/install.sh
 function jabba \
-    --description='Fish shell wrapper for jabba'
+    --description 'Fish shell wrapper for jabba'
     set fd3 (mktemp /tmp/jabba-fd3.XXXXXX)
 
     # Run jabba and save output to temp file

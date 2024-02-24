@@ -1,5 +1,5 @@
 function swift_releases \
-    --description='Check for Swift releases' \
+    --description 'Check for Swift releases' \
     --argument-names swift_version days
 
     set -l branch_name development

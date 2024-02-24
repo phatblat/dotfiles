@@ -1,5 +1,5 @@
 function clone_or_pull \
-    --description='Clones a fresh copy or pulls an existing git repo.' \
+    --description 'Clones a fresh copy or pulls an existing git repo.' \
     --argument-names folder_name git_url branch
 
     if test -z "$folder_name" -o -z "$git_url"

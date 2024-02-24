@@ -1,6 +1,6 @@
 function find_appcast \
     --argument-names app_bundle \
-    --description="Alias for Homebrew find_appcast script https://github.com/homebrew/homebrew-cask/blob/master/doc/cask_language_reference/stanzas/appcast.md"
+    --description "Alias for Homebrew find_appcast script https://github.com/homebrew/homebrew-cask/blob/master/doc/cask_language_reference/stanzas/appcast.md"
     if test -z "$app_bundle"
         echo "Usage: find_sparkle_appcast /path/to/software.app"
         return 1

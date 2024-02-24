@@ -1,5 +1,5 @@
 function tmsnapshots \
-    --description='List Time Machine Snapshots'
+    --description 'List Time Machine Snapshots'
 
     tmutil listlocalsnapshots /
 end

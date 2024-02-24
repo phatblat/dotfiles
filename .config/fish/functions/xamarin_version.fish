@@ -1,5 +1,5 @@
 function xamarin_version \
-    --description='Determines the current version Xamarin'
+    --description 'Determines the current version Xamarin'
 
     set --local xamarin_ios /Library//Frameworks/Xamarin.iOS.framework/Versions
 

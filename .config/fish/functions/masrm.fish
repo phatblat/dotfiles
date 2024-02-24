@@ -1,5 +1,5 @@
 function masrm \
-    --description='Uninstall mas package'
+    --description 'Uninstall mas package'
 
     if not type --query mas
         error mas is not installed

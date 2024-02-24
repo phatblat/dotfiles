@@ -4,7 +4,7 @@
 # Sequencing
 # - After: cask or apt
 function 🆚_vscode \
-    --description='Manages VS Code extensions'
+    --description 'Manages VS Code extensions'
 
     echo "🆚 VS Code"
     echo

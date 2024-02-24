@@ -1,4 +1,4 @@
-function md --argument-names path --description='Make dir and pushd into it.'
+function md --argument-names path --description 'Make dir and pushd into it.'
     if test -z $path
         echo "Usage: md path"
         return 1

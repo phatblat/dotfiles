@@ -1,5 +1,5 @@
 function gradle_kill \
-    --description='Kills all running gradle processes'
+    --description 'Kills all running gradle processes'
 
     psgrep gradle
     psgrep gradle | cut -w -f 2 | while read pid

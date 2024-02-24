@@ -1,5 +1,5 @@
 function apv \
-    --description='Quick nav to ApplePlatformVersions dir.'
+    --description 'Quick nav to ApplePlatformVersions dir.'
 
     set -l apv_dir ~/dev/ApplePlatformVersions
 

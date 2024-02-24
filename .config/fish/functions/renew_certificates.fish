@@ -1,5 +1,5 @@
 function renew_certificates \
-    --description='Renews certificates on servers.'
+    --description 'Renews certificates on servers.'
 
     # Only run on server
     if not string match --quiet --entire m1 (hostname)

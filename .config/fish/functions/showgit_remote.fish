@@ -1,5 +1,5 @@
 function showgit_remote \
-    --description='Searches for .git repos recursively below the current dir, printing remote URL'
+    --description 'Searches for .git repos recursively below the current dir, printing remote URL'
     find . -type d -name .git $argv
 
     for git_dir in (showgit)

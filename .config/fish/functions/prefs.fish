@@ -1,5 +1,5 @@
 function prefs \
-    --description='Opens System Preferences, optionally to a specific pane. Specify "list" to see the available panes.' \
+    --description 'Opens System Preferences, optionally to a specific pane. Specify "list" to see the available panes.' \
     --argument-names pref_pane
 
     set -l cmd open -b com.apple.systempreferences

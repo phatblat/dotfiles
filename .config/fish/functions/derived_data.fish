@@ -1,5 +1,5 @@
 function derived_data \
-    --description='Spins up a RAM disk for Xcode DerivedData' \
+    --description 'Spins up a RAM disk for Xcode DerivedData' \
     --argument-names quiet
 
     set -l drive_name DerivedData

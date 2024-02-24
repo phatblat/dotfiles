@@ -1,5 +1,5 @@
 function version_market \
-    --description='Displays the marketing version of the current Xcode project.' \
+    --description 'Displays the marketing version of the current Xcode project.' \
     --argument-names debug
 
     # Legacy agvtool command

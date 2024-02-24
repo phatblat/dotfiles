@@ -1,5 +1,5 @@
 function version_build \
-    --description='Displays the project (aka build) version of the current Xcode project.'
+    --description 'Displays the project (aka build) version of the current Xcode project.'
 
     # Legacy agvtool command
     # agvtool what-version -terse $argv

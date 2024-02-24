@@ -1,5 +1,5 @@
 function pue \
-    --description='Update example app pods without updating repos.'
+    --description 'Update example app pods without updating repos.'
 
     pod update \
         --project-directory=Example \

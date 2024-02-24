@@ -1,5 +1,5 @@
 function brew_core \
-    --description='Quick nav to homebrew-core dir'
+    --description 'Quick nav to homebrew-core dir'
 
     if is_arm
         pushd (brew_home)/Library/Taps/homebrew/homebrew-core/Formula

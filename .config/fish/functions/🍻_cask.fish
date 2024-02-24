@@ -9,7 +9,7 @@
 # - Requires ruby, but works with system ruby.
 # - Seems logical to run after brew, but not actually required.
 function 🍻_cask \
-    --description='Updates Homebrew Casks and installed apps'
+    --description 'Updates Homebrew Casks and installed apps'
 
     echo "🍻  Homebrew Cask"
     echo

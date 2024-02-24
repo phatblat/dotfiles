@@ -1,5 +1,5 @@
 function xc \
-    --description='Xcode wrapper function'
+    --description 'Xcode wrapper function'
 
     if test -f Package.swift
         echo "Opening swift package"

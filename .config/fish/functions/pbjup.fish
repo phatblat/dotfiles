@@ -1,4 +1,4 @@
-function pbjup --description='Upgrade personal jenkins formula and restart service'
+function pbjup --description 'Upgrade personal jenkins formula and restart service'
     brew update
     brew upgrade pbjenkins
     #brew services list

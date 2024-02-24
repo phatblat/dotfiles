@@ -1,5 +1,5 @@
 function sshupload \
-    --description='Uploads public RSA SSH key to GitHub profile. Requires manual entry of GitHub OTP code.' \
+    --description 'Uploads public RSA SSH key to GitHub profile. Requires manual entry of GitHub OTP code.' \
     --argument-names key_file
 
     if test -z $key_file

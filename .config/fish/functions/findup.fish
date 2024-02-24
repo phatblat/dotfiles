@@ -1,5 +1,5 @@
 function findup \
-    --description='Recursively searches up the directory tree looking for files.' \
+    --description 'Recursively searches up the directory tree looking for files.' \
     --argument-names pattern
 
     if test -z $pattern

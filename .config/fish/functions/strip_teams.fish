@@ -1,5 +1,5 @@
 function strip_teams \
-    --description='Strip codesign from the Teams app' \
+    --description 'Strip codesign from the Teams app' \
     --argument-names path
 
     set -l teams_path "/Applications/Microsoft Teams.app"

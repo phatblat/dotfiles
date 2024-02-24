@@ -1,4 +1,4 @@
-function gradle_wrapper_add --description="Updates the build.gradle and runs the wrapper task."
+function gradle_wrapper_add --description "Updates the build.gradle and runs the wrapper task."
     set gradleVersion (gv)
 
     # Configure the wrapper task.

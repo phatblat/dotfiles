@@ -1,7 +1,7 @@
 # Sequencing
 # - Requires mint.
 function 🌱_mint \
-    --description='Updates Mint and installed packages.'
+    --description 'Updates Mint and installed packages.'
 
     echo "🌱 Mint - https://github.com/yonaskolb/Mint"
     echo

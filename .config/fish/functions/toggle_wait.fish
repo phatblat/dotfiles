@@ -2,7 +2,7 @@
 # Given no arguments, switches the state of the editor ($VISUAL) wait flag.
 # Otherwise sets it to the given state (on / off)
 function toggle_wait \
-    --description='Toggles the editor wait flag.' \
+    --description 'Toggles the editor wait flag.' \
     --argument-names state
 
     # Empty toggles the current state.

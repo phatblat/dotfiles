@@ -1,5 +1,5 @@
 function version \
-    --description='Manage version numbers for an Xcode project.' \
+    --description 'Manage version numbers for an Xcode project.' \
     --argument-names action market_version build_version
 
     if test -z $action

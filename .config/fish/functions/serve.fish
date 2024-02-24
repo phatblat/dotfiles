@@ -1,6 +1,6 @@
 function serve \
     --wraps=jekyll \
-    --description='Runs Jekyll server in the foreground with the given environment variables.'
+    --description 'Runs Jekyll server in the foreground with the given environment variables.'
 
     set reflog_content ~/dev/www/reflog
     if test "$PWD" != "$reflog_content"

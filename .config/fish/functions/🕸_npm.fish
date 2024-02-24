@@ -3,7 +3,7 @@
 # Sequencing
 # - After: brew (installed with node)
 function 🕸_npm \
-    --description='Installs and updates npm packages.'
+    --description 'Installs and updates npm packages.'
 
     echo "🕸 NPM - https://www.npmjs.com/"
     echo

@@ -1,5 +1,5 @@
 function jdk \
-    --description='Manage installed JDKs.' \
+    --description 'Manage installed JDKs.' \
     --argument-names command jdk_path quiet
 
     if is_linux
@@ -46,7 +46,7 @@ function jdk \
 end
 
 function jdk_set \
-    --description='Activates a JDK' \
+    --description 'Activates a JDK' \
     --argument-names jdk_path quiet
 
     # Test JDK path
