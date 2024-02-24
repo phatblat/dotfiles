@@ -6,11 +6,8 @@ function ls \
     # -G      Enable colorized output.  This option is equivalent to defining
     # CLICOLOR in the environment.  (See lscolors.)
 
-    set --local cmd 'command ls -p'
-    if command --query exa
-        set cmd exa
-    end
-
     set -lx LC_ALL C
-    eval $cmd $argv
+    set --local ls_options -pG
+
+    command ls $ls_options $argv
 end
