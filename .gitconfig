@@ -56,6 +56,7 @@
 	# abbreviation is made and the object names are shown in their full length.
 	# The minimum length is 4.
 	abbrev = 4
+	autocrlf = input
 [credential]
 	helper = osxkeychain
 [delta]
