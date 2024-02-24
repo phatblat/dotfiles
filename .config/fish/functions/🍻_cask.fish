@@ -32,6 +32,7 @@ function 🍻_cask \
         elgato-stream-deck \
         fig \
         firebase-admin \
+        flameshot \
         flutter \
         franz \
         geekbench \
@@ -75,6 +76,7 @@ function 🍻_cask \
         softraid \
         sublime-text \
         sublime-merge \
+        tailscale \
         teacode \
         temurin8 \
         textmate \
@@ -103,7 +105,6 @@ function 🍻_cask \
         qlstephen \
         quicklook-csv \
         quicklook-json \
-        tailscale \
         webpquicklook
 
     # TEMP: Cask doesn't check whether fonts are installed. To speed up
