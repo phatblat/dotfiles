@@ -101,7 +101,6 @@
 [github]
 	user = phatblat
 [gpg]
-	program = /usr/local/bin/gpg
 	format = ssh
 [hub]
 	protocol = ssh
