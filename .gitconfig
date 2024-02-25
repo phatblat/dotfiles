@@ -12,6 +12,7 @@
 	alll = !git --no-pager l --all
 [branch]
 	autosetuprebase = always
+	sort = -committerdate
 [color]
 	ui = true
 [color "branch"]
