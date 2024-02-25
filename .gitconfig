@@ -43,7 +43,7 @@
 [column]
 	ui = auto
 [commit]
-	gpgsign = false
+	gpgsign = true
 	repo-state = red
 [core]
 	# pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
