@@ -101,14 +101,8 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-#source $ZSH/oh-my-zsh.sh
-
-# User configuration
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source /Users/phatblat/.config/broot/launcher/bash/br
+# mise
+echo 'eval "$(~/.local/bin/mise activate zsh)"'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
