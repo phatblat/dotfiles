@@ -175,5 +175,6 @@
   "prettier.tabWidth": 4,
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "files.autoSave": "afterDelay"
 }
