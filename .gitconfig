@@ -40,6 +40,8 @@
 	workdir = blue bold
 	dirty = red
 	dirty-stash = red
+[column]
+	ui = auto
 [commit]
 	gpgsign = false
 	repo-state = red
