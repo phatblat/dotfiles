@@ -218,6 +218,8 @@ function 🍺_brew \
         ping-devops \
         protobuf protobuf-c \
         pyenv \
+        python-distlib \
+        python-platformdirs \
         python@2 \
         sloccount \
         sourcery \
