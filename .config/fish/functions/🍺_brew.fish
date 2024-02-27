@@ -227,6 +227,7 @@ function 🍺_brew \
         terraform \
         vapor \
         vim \
+        xcinfo \
         xcproj \
         xctool \
         yara
