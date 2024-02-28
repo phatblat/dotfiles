@@ -161,7 +161,6 @@ function 🍺_brew \
         virtualenv \
         watchman \
         xcbeautify \
-        xcodes \
         xh \
         yarn \
         zoxide \
