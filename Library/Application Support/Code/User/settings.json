@@ -126,7 +126,7 @@
   "ruby.interpreter.commandPath": "/opt/homebrew/opt/ruby/bin/ruby",
   "ruby.pathToBundler": "/opt/homebrew/lib/ruby/gems/3.1.0/bin/bundle",
   "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
-  "rust-analyzer.cargo.sysroot": null,
+  "rust-analyzer.cargo.sysroot": "/Users/phatblat/.rustup/toolchains/1.74.1-aarch64-apple-darwin",
   "rust-analyzer.cachePriming.enable": false,
   "rust-analyzer.cargo.autoreload": false,
   "rust-analyzer.cargo.buildScripts.enable": false,
