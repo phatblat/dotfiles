@@ -59,15 +59,17 @@ if status is-interactive
     end
 end
 
-# Variables
-source ~/.config/fish/variables.fish
+# Environment Variables - set once on login
+if status is-login
+    source ~/.config/fish/variables.fish
 
-if type --query direnv
-    # Directory-based variables
-    eval (direnv hook fish)
-end
+    if type --query direnv
+        # Directory-based variables
+        eval (direnv hook fish)
+    end
 
-if type --query mise
-    eval (mise activate fish)
-    eval (mise hook-env --shell=fish)
+    if type --query mise
+        eval (mise activate fish)
+        eval (mise hook-env --shell=fish)
+    end
 end
