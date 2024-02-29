@@ -5,7 +5,7 @@
 !.dotfiles/
 !.oh-my-zsh/themes/*
 !Library/Application Support/Code/User/*.json
-# Library/Application Support/*
+*.dll
 *.hprof
 *.iml
 *.padl
@@ -159,6 +159,7 @@
 .config/zed/embeddings/
 .cpan/
 .cups/
+.cxx/
 .dart-tool/
 .dart/
 .dartServer/
@@ -175,6 +176,7 @@
 .eclipse/
 .emulator_console_auth_token
 .envrc
+.externalNativeBuild/
 .fastlane/
 .fastlane_crash_reporting
 .flutter
@@ -305,6 +307,7 @@
 .vim/
 .viminfo
 .vs-kubernetes/
+.vs/
 .vscode-cpptools/
 .vscode/
 .wget-hsts
@@ -426,6 +429,7 @@ Library/Application Support/google-heartbeat-storage/
 Library/Application Support/homeenergyd/
 Library/Application Support/iCloud/
 Library/Application Support/iStat Menus/
+Library/Application Support/iTerm2/
 Library/Application Support/icdd/
 Library/Application Support/kotlin/
 Library/Application Support/networkserviceproxy/
@@ -532,12 +536,15 @@ __z_clean.fish
 bin/
 build/
 cali_core4/
+cmake-build-debug/
 data/
 dev
 ditto-cache/
 examples.desktop
 go/
 gradlew.bat
+heapdump.*.phd
+javacore.*.txt
 javasharedresources/
 lib/
 logs/
@@ -545,12 +552,15 @@ markdown/
 mbox
 mobot-scripts
 node_modules/
+obj/
 omp.cache
+packages/
 private/
 realm-object-server/
 snap/
 src/swift/swift-*
 system_logs.logarchive/
+target/
 tmp/
 xcuserdata
 zclean.awk
