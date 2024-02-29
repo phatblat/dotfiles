@@ -6,6 +6,35 @@
 # resource limits
 ulimit --file-descriptor-count 4096
 
+# shell state debug logging
+echo config.fish
+if status is-login
+    echo is-login
+end
+if status is-interactive
+    echo is-interactive
+end
+
+# Disable the default welcome greeting
+set --global --export fish_greeting
+
+if is_mac
+    # A lot of things check for XDG_CONFIG_HOME which isn't defined by default
+    # on macOS. This may speed up scripts slightly.
+    set --export --global XDG_CONFIG_HOME "$HOME/.config"
+
+    if is_arm
+        set --export --global BREW_HOME /opt/homebrew
+    else
+        set --export --global BREW_HOME /usr/local
+    end
+else if is_linux
+    set --export --global BREW_HOME /home/linuxbrew/.linuxbrew
+end
+
+set --export --global --prepend --path PATH \
+    /opt/homebrew/bin
+
 # GUI and items requiring a user
 if status is-interactive
     # warpify
