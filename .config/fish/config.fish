@@ -6,7 +6,7 @@
 # resource limits
 ulimit --file-descriptor-count 4096
 
-# Fish logo
+# GUI and items requiring a user
 if status is-interactive
     # warpify
 
@@ -18,6 +18,15 @@ if status is-interactive
 
     if command --query starship
         starship init fish | source
+    end
+
+    if command --query zoxide
+        zoxide init fish | source
+    end
+
+    if type --query thefuck
+        # The Fuck
+        eval (thefuck --alias | tr \n ';')
     end
 end
 
@@ -32,16 +41,4 @@ end
 if type --query mise
     eval (mise activate fish)
     eval (mise hook-env --shell=fish)
-end
-
-# GUI and items requiring a user
-if status is-interactive
-    if command --query zoxide
-        zoxide init fish | source
-    end
-
-    if type --query thefuck
-        # The Fuck
-        eval (thefuck --alias | tr \n ';')
-    end
 end
