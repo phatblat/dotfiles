@@ -1,5 +1,5 @@
 function is_linux \
-    --description "Tests whether the current computer is running Linux"
+    --description "Tests whether the current OS is Linux"
 
-    test "$KERNEL" = Linux
+    test (uname) = Linux
 end

@@ -7,7 +7,6 @@
 
 set --global --export fish_greeting ''
 set --global simple_ass_prompt_greeting "Fish Shell version $version"
-set --export KERNEL (uname)
 
 # Upper case
 if is_mac
