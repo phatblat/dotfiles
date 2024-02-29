@@ -36,26 +36,9 @@ end
 
 # GUI and items requiring a user
 if status is-interactive
-    # Set up RAM disk for Xcode DerivedData
-    if is_phatmini
-        # derived_data quiet
-    end
-
-    # Set up RAM disk for Cargo
-    if is_phatmini
-        # cargo_target quiet
-    end
-
     if command --query zoxide
         zoxide init fish | source
     end
-
-    # Use custom autoloaded functions
-    # reload fish_mode_prompt
-    # reload fish_right_prompt
-
-    # Event Hooks
-    # reload fish_postexec
 
     if type --query thefuck
         # The Fuck
