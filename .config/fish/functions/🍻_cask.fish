@@ -14,7 +14,7 @@ function 🍻_cask \
     echo "🍻  Homebrew Cask"
     echo
 
-    set -l apps \
+    set --local apps \
         1password \
         1password-cli \
         alfred \
@@ -108,7 +108,7 @@ function 🍻_cask \
 
     # TEMP: Cask doesn't check whether fonts are installed. To speed up
     # the upstall process, these are excluded for now.
-    set -l fonts \
+    set --local fonts \
         homebrew/cask-fonts/font-3270-nerd-font \
         homebrew/cask-fonts/font-aurulent-sans-mono-nerd-font \
         homebrew/cask-fonts/font-awesome-terminal-fonts \
@@ -148,9 +148,9 @@ function 🍻_cask \
         homebrew/cask-fonts/font-source-code-pro-for-powerline \
         homebrew/cask-fonts/font-ubuntu-mono-derivative-powerline
 
-    set -l all_casks $apps #$quicklook_plugins #$fonts
+    set --local all_casks $apps #$quicklook_plugins #$fonts
 
-    set -l uninstall \
+    set --local uninstall \
         # https://github.com/Homebrew/homebrew-cask-versions/blob/master/Casks/adoptopenjdk8.rb
         homebrew/cask-versions/adoptopenjdk8 \
         adoptopenjdk/openjdk/adoptopenjdk8 \
@@ -222,7 +222,7 @@ function 🍻_cask \
 
     echo 🚰 Updating formulae
     brew update
-    set -l installed (brew list --casks -1 2>/dev/null)
+    set --local installed (brew list --casks -1 2>/dev/null)
     echo
     echo ➡️ (moj_host) Installed: $installed
 
@@ -233,7 +233,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Uninstall unwanted formulae
-    set -l to_uninstall
+    set --local to_uninstall
     for cask in $uninstall
         if contains $cask $installed
             set to_uninstall $to_uninstall $cask
@@ -252,10 +252,10 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Update installed casks
-    set -l outdated_casks (brew outdated --casks 2>/dev/null)
+    set --local outdated_casks (brew outdated --casks 2>/dev/null)
     # Example: charles (4.1.1) != 4.1.2
     # Cut everything but the first column
-    # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
+    # set --local outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
     if test -n "$outdated_casks"
         echo
         echo 👵🏻 Outdated: $outdated_casks
@@ -268,11 +268,11 @@ function 🍻_cask \
     end
 
     # Install new casks
-    set -l not_installed
+    set --local not_installed
     for full_cask in $all_casks
         # Strip off tap prefix (e.g. caskroom/versions/java8)
-        set -l cask $full_cask
-        set -l tokens (string split / $cask)
+        set --local cask $full_cask
+        set --local tokens (string split / $cask)
         if test (count $tokens) -ge 3
             set cask $tokens[3]
         end
