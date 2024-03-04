@@ -88,7 +88,6 @@ function 🍻_cask \
         visual-studio \
         visual-studio-code \
         vivaldi \
-        vmware-fusion \
         vysor \
         warp \
         witch \
@@ -191,6 +190,7 @@ function 🍻_cask \
         timing \
         ultimate \
         virtualbox \
+        vmware-fusion \
         xcproj \
         xmarks-safari \
         $quicklook_plugins
