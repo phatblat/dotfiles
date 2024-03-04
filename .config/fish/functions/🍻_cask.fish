@@ -91,9 +91,10 @@ function 🍻_cask \
         warp \
         witch \
         xcodes \
-        zeplin \
-        # END: apps
-        set -l quicklook_plugins \
+        zeplin
+    # END: apps
+
+    set --local quicklook_plugins \
         provisionql \
         qlcolorcode \
         qlimagesize \
