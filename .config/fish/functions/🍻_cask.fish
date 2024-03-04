@@ -59,6 +59,7 @@ function 🍻_cask \
         macdown \
         microblog \
         microsoft-edge \
+        multiapp \
         ngrok \
         nova \
         objectivesharpie \
@@ -66,7 +67,6 @@ function 🍻_cask \
         oclint \
         qt-creator \
         raspberry-pi-imager \
-        remotion \
         rescuetime \
         rocket \
         safari-technology-preview \
