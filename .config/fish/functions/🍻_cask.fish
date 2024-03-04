@@ -59,7 +59,6 @@ function 🍻_cask \
         macdown \
         microblog \
         microsoft-edge \
-        microsoft-teams \
         ngrok \
         nova \
         objectivesharpie \
@@ -181,6 +180,7 @@ function 🍻_cask \
         hyper \
         ibm-cloud-cli \
         java9 \
+        microsoft-teams \
         mono-mdk \
         opera-gx \
         skype-for-business \
