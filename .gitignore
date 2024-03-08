@@ -512,6 +512,7 @@ Library/Weather/
 Library/WebKit/
 Library/com.apple.*/
 Library/com.apple.aiml.instrumentation/
+Library/homeenergyd/
 Library/org.swift.swiftpm/
 Library/studentd/
 Minecraft/
