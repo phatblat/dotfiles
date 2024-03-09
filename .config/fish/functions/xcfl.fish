@@ -2,6 +2,8 @@ function xcfl \
     --description "Runs Xcode first launch if necessary or forced" \
     --argument-names force
 
+    echo Xcode (xcv)
+
     if begin
             ! xcodebuild -checkFirstLaunchStatus
             or test "$force" = --force
