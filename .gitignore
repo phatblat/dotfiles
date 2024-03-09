@@ -323,6 +323,7 @@
 .zsh-update
 .zsh_history
 .zsh_sessions/
+/Library/pnpm
 2nd Brain/
 2ndBrain/
 Android
@@ -455,6 +456,7 @@ Library/ContainerManager/
 Library/Containers/
 Library/Cookies/
 Library/CoreFollowUp/
+Library/DES/
 Library/Daemon Containers/
 Library/DataDeliveryServices/
 Library/Developer/
