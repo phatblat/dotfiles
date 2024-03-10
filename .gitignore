@@ -379,6 +379,7 @@ Library/Application Support/Code/Code Cache/
 Library/Application Support/Code/Cookies
 Library/Application Support/Code/Cookies-journal
 Library/Application Support/Code/Crashpad/
+Library/Application Support/Code/CrashpadMetrics*.pma
 Library/Application Support/Code/DawnCache/
 Library/Application Support/Code/GPUCache/
 Library/Application Support/Code/Local Storage/
