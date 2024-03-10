@@ -301,6 +301,7 @@
 .tldrc/
 .tooling/
 .travis/
+.trunk/
 .vagrant.d/
 .vault-token
 .vault_pass.txt
