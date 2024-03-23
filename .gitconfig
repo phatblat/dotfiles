@@ -103,6 +103,7 @@
 	user = phatblat
 [gpg]
 	format = ssh
+	program = /usr/local/bin/gpg
 [hub]
 	protocol = ssh
 [init]
