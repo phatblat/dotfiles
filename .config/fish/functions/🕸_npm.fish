@@ -154,6 +154,10 @@ function 🕸_npm \
     # --------------------------------------------------------------------------
 
     echo
+    echo 🧹 Clean Cache
+    npm cache clean --force
+
+    echo
     echo 👩🏻‍⚕️ Doctor
     npm doctor
 end

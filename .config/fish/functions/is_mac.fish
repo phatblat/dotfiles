@@ -1,5 +1,5 @@
 function is_mac \
-    --description "Tests whether the current computer is running macOS"
+    --description "Tests whether the current OS is macOS"
 
-    test "$KERNEL" = Darwin
+    test (uname) = Darwin
 end

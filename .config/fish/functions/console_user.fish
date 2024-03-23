@@ -6,7 +6,7 @@ function console_user \
     else if is_linux
         fileowner /tmp/.X11-unix/X0
     else
-        error Unknown kernel: $KERNEL
+        error Unknown kernel: (uname)
         return 1
     end
 end

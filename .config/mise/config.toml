@@ -4,6 +4,7 @@
 #
 
 [tools]
+bun = "1.0.29"
 yarn = "1.22.19" # Before node to override yarn 4.1
 node = "20.11.1"
 just = "1.24.0"

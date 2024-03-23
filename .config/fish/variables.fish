@@ -7,7 +7,6 @@
 
 set --global --export fish_greeting ''
 set --global simple_ass_prompt_greeting "Fish Shell version $version"
-set --export KERNEL (uname)
 
 # Upper case
 if is_mac
@@ -312,9 +311,9 @@ if test -d $XAMARIN_IOS_BIN_DIR
     fish_add_path $XAMARIN_IOS_BIN_DIR
 end
 
-# Bun
-set -Ux BUN_INSTALL $HOME/.bun
-set -px --path PATH $HOME/.bun/bin
+# bun
+set --export --global BUN_INSTALL $HOME/.bun
+set --export --global --prepend --path PATH $HOME/.bun/bin
 
 if is_mac
     set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk

@@ -1,4 +1,4 @@
-# https://docs.warp.dev/features/subshells
+# https://docs.warp.dev/features/subshells#automatically-warpify-subshells
 function warpify \
     --description 'Warpifies subshell'
 
