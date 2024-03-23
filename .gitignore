@@ -307,6 +307,7 @@
 .vs-kubernetes/
 .vs/
 .vscode-cpptools/
+.vscode-insiders/
 .vscode/
 .wget-hsts
 .xsel.log
