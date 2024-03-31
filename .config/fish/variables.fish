@@ -157,6 +157,12 @@ if test -d (brew_home)/sbin
         (brew_home)/sbin
 end
 
+# Python site.USER_BASE
+if test -d ~/Library/Python/3.11/bin
+    set --prepend --export --global PATH \
+        ~/Library/Python/3.11/bin
+end
+
 if test -d (brew_home python)/libexec/bin
     set --export --global PATH $PATH \
         (brew_home python)/libexec/bin
