@@ -129,7 +129,5 @@
 [pull]
 	rebase = true
 [rerere]
-[url "git@github.com:"]
-    insteadOf = "https://github.com/"
 [user]
 	signingkey = /Users/phatblat/.ssh/id_ed25519.pub
