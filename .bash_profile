@@ -31,4 +31,3 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/android-studio
 # Aliases
 alias ll='ls -l'
 alias la='ls -la'
-

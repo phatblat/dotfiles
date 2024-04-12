@@ -19,4 +19,3 @@ source ~/.cargo/env
 
 # Jebrains Toolbox App scripts
 export PATH="$PATH:/Users/phatblat/Library/Application Support/JetBrains/Toolbox/scripts"
-
