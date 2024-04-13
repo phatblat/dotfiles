@@ -1,1 +1,0 @@
-/Users/phatblat/dev/shell/fish/fisher/functions/fisher.fish
