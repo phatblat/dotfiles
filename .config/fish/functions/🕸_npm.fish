@@ -25,28 +25,28 @@ function 🕸_npm \
         generator-code \
         gitmoji-cli \
         gulp \
-        @hubspot/cli \
         jake \
         jshint \
         json5 \
-        lynn-cli \
         markdownlint \
         mongodb-realm-cli \
         monofo \
         n \
         node-pre-gyp \
         npm-check-updates \
-        pocket-cli \
         ubolt \
         vsce \
         yarn-audit-fix \
         yo
 
     set -l uninstall \
+        @hubspot/cli \
+        lynn-cli \
+        ngrok \
+        pocket-cli \
         ralio \
         realm-cli \
         realm-object-server \
-        ngrok \
         ts2kt \
         tslint
 
