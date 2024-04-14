@@ -16,6 +16,7 @@ function 🕸_npm \
 
     set -l global_packages \
         @bchatard/alfred-jetbrains \
+        @mapbox/node-pre-gyp \
         atlas-connect \
         dukat \
         eslint \
@@ -32,7 +33,6 @@ function 🕸_npm \
         mongodb-realm-cli \
         monofo \
         n \
-        node-pre-gyp \
         npm-check-updates \
         ubolt \
         vsce \
@@ -43,6 +43,7 @@ function 🕸_npm \
         @hubspot/cli \
         lynn-cli \
         ngrok \
+        node-pre-gyp \
         pocket-cli \
         ralio \
         realm-cli \
