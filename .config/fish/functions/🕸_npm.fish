@@ -17,6 +17,7 @@ function 🕸_npm \
     set -l global_packages \
         @bchatard/alfred-jetbrains \
         atlas-connect \
+        dukat \
         eslint \
         express-generator \
         fast-cli \
@@ -36,7 +37,6 @@ function 🕸_npm \
         node-pre-gyp \
         npm-check-updates \
         pocket-cli \
-        ts2kt \
         ubolt \
         vsce \
         yarn-audit-fix \
@@ -47,6 +47,7 @@ function 🕸_npm \
         realm-cli \
         realm-object-server \
         ngrok \
+        ts2kt \
         tslint
 
     # --------------------------------------------------------------------------
