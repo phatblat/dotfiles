@@ -14,7 +14,6 @@ function ⏫_upstall \
     set -l all_modules \
         ruby \
         brew \
-        fisher \
         omf \
         mint \
         rustup \
@@ -80,7 +79,6 @@ function ⏫_upstall \
     ⬆️_upmodule 📦_apt "📦 APT" apt --noapt $modules_to_run
     ⬆️_upmodule 🍺_brew "🍺 Homebrew" brew --nobr $modules_to_run
     ⬆️_upmodule 🍻_cask "🍻 Cask" cask --noca $modules_to_run
-    ⬆️_upmodule 🐟_fisher "🐟 Fisher" fisher --nofm $modules_to_run
     ⬆️_upmodule 🌱_mint "🌱 Mint" mint --nomt $modules_to_run
     ⬆️_upmodule 🐠_omf "🐠 oh-my-fish" omf --noomf $modules_to_run
     ⬆️_upmodule 🐍_pip "🐍 PIP" pip --nopy $modules_to_run
