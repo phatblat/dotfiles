@@ -182,7 +182,6 @@ function 🆚_vscode \
         robbowen.synthwave-vscode \
         rust-lang.rust-analyzer \
         rvest.vs-code-prettier-eslint \
-        sclu1034.justfile \
         secanis.jenkinsfile-support \
         shan.code-settings-sync \
         shanoor.vscode-nginx \
@@ -191,7 +190,6 @@ function 🆚_vscode \
         skellock.just \
         skyapps.fish-vscode \
         sohibe.java-generate-setters-getters \
-        stevencl.adddoccomments \
         stkb.rewrap \
         surajbarkale.ninja \
         sysoev.language-stylus \
