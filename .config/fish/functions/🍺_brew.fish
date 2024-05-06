@@ -58,6 +58,7 @@ function 🍺_brew \
         dust \
         emojify \
         f3 \
+        fastfetch \
         fd \
         findutils \
         firebase-cli \

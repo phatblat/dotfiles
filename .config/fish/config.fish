@@ -39,8 +39,8 @@ set --export --global --prepend --path PATH \
 if status is-interactive
     # warpify
 
-    if type --query neofetch
-        neofetch --config ~/.config/neofetch/config.conf
+    if type --query fastfetch
+        fastfetch --config ~/.config/fastfetch/config.jsonc
     else if type --query fish_logo
         fish_logo
     end
