@@ -16,7 +16,6 @@ function 🆚_vscode \
         aaronyoung.dark-synthwave-vscode \
         adelphes.android-dev-ext \
         ahmadawais.shades-of-purple \
-        alan.stylus \
         allan-carlos.night-rainbow \
         altbdoor.change-tab-size \
         amodio.amethyst-theme \
@@ -39,7 +38,6 @@ function 🆚_vscode \
         davidanson.vscode-markdownlint \
         dawhite.mustache \
         daylerees.rainglow \
-        dbaeumer.jshint \
         dbaeumer.vscode-eslint \
         deerawan.vscode-dash \
         dhoeric.ansible-vault \
@@ -62,7 +60,6 @@ function 🆚_vscode \
         fabiospampinato.vscode-open-in-github \
         fallenwood.viml \
         felipecaputo.git-project-manager \
-        felixrieseberg.vsc-travis-ci-status \
         file-icons.file-icons \
         fisheva.eva-theme \
         fivepointseven.node-version \
@@ -84,7 +81,6 @@ function 🆚_vscode \
         golang.go \
         hashicorp.terraform \
         helligechris.synthwave-vscode-renew \
-        hookyqr.beautify \
         htmlhint.vscode-htmlhint \
         humao.rest-client \
         jakearl.search-editor-apply-changes \
@@ -97,10 +93,8 @@ function 🆚_vscode \
         josetr.cmake-language-support-vscode \
         joshuapoehls.json-escaper \
         jtavin.ldif \
-        juanblanco.solidity \
         jvitorfrancisco.theme-acid-purple \
         kaleidoscope-app.vscode-ksdiff \
-        kasik96.swift \
         kevinkyang.auto-comment-blocks \
         kevinmcgowan.typescriptimport \
         kisstkondoros.vscode-codemetrics \
@@ -120,7 +114,6 @@ function 🆚_vscode \
         mikestead.dotenv \
         miramac.vscode-exec-node \
         mitaki28.vscode-clang \
-        mkaufman.htmlhint \
         mohsen1.prettify-json \
         mongodb.mongodb-vscode \
         monokai.theme-monokai-pro-vscode \
@@ -168,7 +161,6 @@ function 🆚_vscode \
         phplasma.csv-to-table \
         pkief.material-icon-theme \
         pkief.material-product-icons \
-        pkosta2005.heroku-command \
         pokey.cursorless \
         pokey.parse-tree \
         prashaantt.node-tdd \
@@ -183,16 +175,13 @@ function 🆚_vscode \
         rust-lang.rust-analyzer \
         rvest.vs-code-prettier-eslint \
         secanis.jenkinsfile-support \
-        shan.code-settings-sync \
         shanoor.vscode-nginx \
         sidneys1.gitconfig \
-        silvenon.mdx \
         skellock.just \
         skyapps.fish-vscode \
         sohibe.java-generate-setters-getters \
         stkb.rewrap \
         surajbarkale.ninja \
-        sysoev.language-stylus \
         sysoev.vscode-open-in-github \
         tamasfe.even-better-toml \
         techer.open-in-browser \
@@ -201,7 +190,6 @@ function 🆚_vscode \
         tonybaloney.vscode-pets \
         tushortz.java-imports-snippets \
         twxs.cmake \
-        unifiedjs.vscode-mdx \
         vadimcn.vscode-lldb \
         visualstudioexptteam.intellicode-api-usage-examples \
         visualstudioexptteam.vscodeintellicode \
@@ -226,14 +214,25 @@ function 🆚_vscode \
 
     # Extensions to uninstall
     set -l uninstall \
+        alan.stylus \
         bungcip.better-toml \
         castwide.solargraph \
+        dbaeumer.jshint \
+        felixrieseberg.vsc-travis-ci-status \
+        hookyqr.beautify \
+        juanblanco.solidity \
         kasik96.swift \
+        mkaufman.htmlhint \
         ms-kubernetes-tools.vscode-kubernetes-tools \
         msjsdiag.debugger-for-chrome \
+        pkosta2005.heroku-command \
         rebornix.ruby \
+        shan.code-settings-sync \
+        silvenon.mdx \
         stevencl.adddoccomments \
+        sysoev.language-stylus \
         trunk.io \
+        unifiedjs.vscode-mdx \
         wingrunr21.vscode-ruby
 
     set -l installed (code --list-extensions)
