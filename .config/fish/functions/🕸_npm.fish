@@ -27,7 +27,6 @@ function 🕸_npm \
         gitmoji-cli \
         gulp \
         jake \
-        jshint \
         json5 \
         markdownlint \
         mongodb-realm-cli \
@@ -41,6 +40,7 @@ function 🕸_npm \
 
     set -l uninstall \
         @hubspot/cli \
+        jshint \
         lynn-cli \
         ngrok \
         node-pre-gyp \
