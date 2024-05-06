@@ -106,7 +106,6 @@ function 🍺_brew \
         mise \
         mono-libgdiplus \
         mtr \
-        neofetch \
         neovim \
         nginx \
         nmap \
@@ -212,6 +211,7 @@ function 🍺_brew \
         md5shasum \
         minikube \
         mono \
+        neofetch \
         nvm \
         phatblat/services/pbjenkins \
         ping-devops \
