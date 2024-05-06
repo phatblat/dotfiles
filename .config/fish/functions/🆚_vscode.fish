@@ -167,7 +167,6 @@ function 🆚_vscode \
         rbbit.typescript-hero \
         redhat.ansible \
         redhat.fabric8-analytics \
-        redhat.java \
         redhat.vscode-xml \
         redhat.vscode-yaml \
         ritwickdey.liveserver \
@@ -227,6 +226,7 @@ function 🆚_vscode \
         msjsdiag.debugger-for-chrome \
         pkosta2005.heroku-command \
         rebornix.ruby \
+        redhat.java \
         shan.code-settings-sync \
         silvenon.mdx \
         stevencl.adddoccomments \
