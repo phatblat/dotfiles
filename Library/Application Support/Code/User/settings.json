@@ -32,7 +32,7 @@
   "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.copyWithSyntaxHighlighting": false,
-  "editor.defaultFormatter": null,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.dragAndDrop": false,
   "editor.folding": false,
   "editor.fontLigatures": true,
