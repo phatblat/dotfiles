@@ -622,6 +622,7 @@ data/
 dev
 ditto-cache/
 examples.desktop
+fvm/
 go/
 gradlew.bat
 heapdump.*.phd
