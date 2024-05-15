@@ -6,5 +6,6 @@
     "surveyActionTaken": false,
     "surveyShownCount": 0
   },
-  "inspector.customPubRootDirectories_gold_pan_xample": "[\"/Users/phatblat/dev/flutter/gold_pan_xample\"]"
+  "inspector.customPubRootDirectories_gold_pan_xample": "[\"/Users/phatblat/dev/flutter/gold_pan_xample\"]",
+  "inspector.hoverEvalMode": "true"
 }
