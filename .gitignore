@@ -403,6 +403,7 @@ Library/Application Support/CrashReporter/
 Library/Application Support/Cron/
 Library/Application Support/Cypress/
 Library/Application Support/Dash/
+Library/Application Support/Deckset/
 Library/Application Support/DiffusionBee/
 Library/Application Support/DiskImages/
 Library/Application Support/Dock/
@@ -479,6 +480,7 @@ Library/Application Support/com.panic.Transmit/
 Library/Application Support/com.raycast.macos/
 Library/Application Support/com.robotsandpencils.XcodesApp/
 Library/Application Support/com.robotsandpencils.xcodes/
+Library/Application Support/com.unsignedinteger.Deckset-Paddle/
 Library/Application Support/dart/
 Library/Application Support/dev.lapce.Lapce-Stable/
 Library/Application Support/dev.warp.Warp-Stable/
