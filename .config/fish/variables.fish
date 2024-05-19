@@ -338,3 +338,6 @@ set --export --global NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles
 
 # Go
 fish_add_path $HOME/go/bin
+
+# JetPack Toolbox scripts
+fish_add_path $HOME/bin
