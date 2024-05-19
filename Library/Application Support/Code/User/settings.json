@@ -161,7 +161,7 @@
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "window.openWithoutArgumentsInNewWindow": "on",
-  "workbench.colorTheme": "Default Dark+",
+  "workbench.colorTheme": "Github Contrast (rainglow)",
   "workbench.iconTheme": "vs-seti",
   "workbench.productIconTheme": "materialiconic-product-icons",
   "workbench.startupEditor": "none",
