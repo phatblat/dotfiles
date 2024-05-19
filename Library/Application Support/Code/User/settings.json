@@ -161,7 +161,7 @@
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "window.openWithoutArgumentsInNewWindow": "on",
-  "workbench.colorTheme": "Allure Light (rainglow)",
+  "workbench.colorTheme": "Default Dark+",
   "workbench.iconTheme": "vs-seti",
   "workbench.productIconTheme": "materialiconic-product-icons",
   "workbench.startupEditor": "none",
