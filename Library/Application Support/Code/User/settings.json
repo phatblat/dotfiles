@@ -24,7 +24,7 @@
   "clang-format.fallbackStyle": "Chromium",
   "cmake.configureOnOpen": false,
   "dart.flutterCreateOrganization": null,
-  "dart.flutterSdkPath": "/opt/homebrew/bin/flutter",
+  "dart.flutterSdkPath": "/opt/homebrew/Caskroom/flutter/3.22.0/flutter",
   "dart.projectSearchDepth": 0,
   "debug.allowBreakpointsEverywhere": true,
   "diffEditor.renderSideBySide": false,
