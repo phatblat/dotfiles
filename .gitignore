@@ -149,6 +149,7 @@
 .config/truffle/
 .config/upstall/last_run.*
 .config/verdaccio/htpasswd
+.config/wtf/log.txt
 .config/xbuild/
 .config/yarn/
 .config/yelp/yelp.cfg
