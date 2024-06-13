@@ -177,5 +177,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.autoSave": "afterDelay",
-  "github.copilot.editor.enableAutoCompletions": true
+  "github.copilot.editor.enableAutoCompletions": true,
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "remote.SSH.remotePlatform": {
+    "*.gitpod.io": "linux"
+  }
 }
