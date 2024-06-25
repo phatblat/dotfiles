@@ -141,6 +141,7 @@
 .config/session/
 .config/stetic/
 .config/sublime-text-3/
+.config/swiftpm/
 .config/terminus/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
