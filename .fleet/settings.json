@@ -2,5 +2,5 @@
     "theme": "dark_purple",
     "editor.fontSize": 14.0,
     "editor.renderWhitespace": "All",
-    "keymap": "macos-vscode"
+    "keymap": "vscode"
 }
