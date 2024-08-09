@@ -385,6 +385,7 @@ Library/Application Support/Code/Crashpad/
 Library/Application Support/Code/CrashpadMetrics*.pma
 Library/Application Support/Code/DawnCache/
 Library/Application Support/Code/DawnGraphiteCache/
+Library/Application Support/Code/DawnWebGPUCache/
 Library/Application Support/Code/GPUCache/
 Library/Application Support/Code/Local Storage/
 Library/Application Support/Code/Network Persistent State
