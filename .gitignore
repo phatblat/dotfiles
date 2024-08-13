@@ -399,6 +399,7 @@ Library/Application Support/Code/Trust Tokens
 Library/Application Support/Code/Trust Tokens-journal
 Library/Application Support/Code/User/*
 Library/Application Support/Code/WebStorage/
+Library/Application Support/Code/blob_storage
 Library/Application Support/Code/code.lock
 Library/Application Support/Code/databases/
 Library/Application Support/Code/languagepacks.json
