@@ -157,6 +157,7 @@
 .config/zed/.tmp*
 .config/zed/conversations/
 .config/zed/embeddings/
+.continue/
 .cpan/
 .cups/
 .cxx/
