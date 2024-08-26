@@ -252,6 +252,7 @@
 .nyantray
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
+.ollama/
 .op/
 .oracle_jre_usage/
 .phantomjs/
