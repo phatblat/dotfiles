@@ -8,6 +8,8 @@ function jdk \
         return
     end
 
+    set --local ANDROID_STUDIO "$HOME/Applications/Android Studio.app"
+
     switch $command
         case list
             # List all installed JDKs
@@ -18,10 +20,11 @@ function jdk \
             echo 🖥 /Library/Java/JavaVirtualMachines
             ls -1 /Library/Java/JavaVirtualMachines
 
-            if test -d "$HOME/Applications/Android Studio.app"
+            # if test -d
+            if test -d "$ANDROID_STUDIO"
                 echo
                 echo 🤖 Android Studio
-                echo /Users/phatblat/Applications/Android Studio.app/Contents/jbr/Contents/Home
+                echo $ANDROID_STUDIO/Contents/jbr/Contents/Home
             end
 
             set -l jabba_path $HOME/.jabba/jdk
@@ -33,7 +36,7 @@ function jdk \
         case set
             jdk_set $jdk_path $quiet
         case studio
-            jdk_set "$HOME/Applications/Android Studio.app/Contents/jbr/Contents/Home" $quiet
+            jdk_set "$ANDROID_STUDIO/Contents/jbr/Contents/Home" $quiet
         case '*' current
             # Prints info about the currently selected JDK
             set -l java_cmd (which java)
