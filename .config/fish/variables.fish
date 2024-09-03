@@ -126,8 +126,8 @@ set --global fish_user_paths \
 # PATH
 set --export --global PATH \
     $HOME/bin \
-    /usr/local/bin \
     (brew_home)/bin \
+    /usr/local/bin \
     (brew_home curl)/bin \
     (brew_home python)/libexec/bin \
     $PATH
