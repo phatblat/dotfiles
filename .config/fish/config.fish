@@ -59,8 +59,10 @@ if status is-interactive
     end
 end
 
+
 # Environment Variables - set once on login
-if status is-login
+# or set if bash was the login shell and fish was opened as a subshell.
+if status is-login; or is_bash_login
     source ~/.config/fish/variables.fish
 
     if type --query direnv
