@@ -19,8 +19,7 @@ function ⏫_upstall \
         rustup \
         pip \
         npm \
-        powerline \
-        vscode
+        powerline
 
     if is_mac
         set all_modules $all_modules \
