@@ -37,7 +37,7 @@ set --export --global --prepend --path PATH \
 
 # GUI and items requiring a user
 if status is-interactive
-    # warpify
+    warpify
 
     if type --query fastfetch
         fastfetch --config ~/.config/fastfetch/config.jsonc
