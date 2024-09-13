@@ -52,7 +52,7 @@
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "extensions.ignoreRecommendations": false,
+  "extensions.ignoreRecommendations": true,
   "files.associations": {
     "CODEOWNERS": "plaintext",
     ".yamllint": "yaml"
