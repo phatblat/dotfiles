@@ -341,3 +341,6 @@ fish_add_path $HOME/go/bin
 
 # JetPack Toolbox scripts
 fish_add_path $HOME/bin
+
+# Kotlin Native commands
+fish_add_path $HOME/.konan/kotlin-native-prebuilt-macos-aarch64-2.0.0/bin
