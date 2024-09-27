@@ -615,6 +615,8 @@ Library/WebKit/
 Library/Xamarin/
 Library/com.apple.*/
 Library/com.apple.aiml.instrumentation/
+Library/com.pieces.os
+Library/com.pieces.pfd
 Library/homeenergyd/
 Library/iTunes/
 Library/org.swift.swiftpm/
