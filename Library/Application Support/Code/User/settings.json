@@ -184,5 +184,7 @@
   ],
   "remote.SSH.remotePlatform": {
     "*.gitpod.io": "linux"
-  }
+  },
+  "pieces.cloudCapabilities": "Blended",
+  "pieces.telemetry": true
 }
