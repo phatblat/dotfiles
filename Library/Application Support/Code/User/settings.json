@@ -186,5 +186,6 @@
     "*.gitpod.io": "linux"
   },
   "pieces.cloudCapabilities": "Blended",
-  "pieces.telemetry": true
+  "pieces.telemetry": true,
+  "editor.inlayHints.enabled": "offUnlessPressed"
 }
