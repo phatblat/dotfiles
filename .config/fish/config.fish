@@ -7,7 +7,6 @@
 ulimit --file-descriptor-count 4096
 
 # shell state debug logging
-echo config.fish
 if status is-login
     echo is-login
 end
@@ -72,6 +71,6 @@ if status is-login; or is_bash_login
 
     if type --query mise
         eval (mise activate fish)
-        eval (mise hook-env --shell=fish)
+        #eval (mise hook-env --shell=fish)
     end
 end
