@@ -344,3 +344,6 @@ fish_add_path $HOME/bin
 
 # Kotlin Native commands
 fish_add_path $HOME/.konan/kotlin-native-prebuilt-macos-aarch64-2.0.0/bin
+
+# Flutter Version Manager
+fish_add_path $HOME/fvm/default/bin
