@@ -29,3 +29,9 @@ alias la='ls -la'
 export NVM_DIR="$HOME/.nvm"
 # shellcheck disable=SC1091
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[ -f /Users/phatblat/.config/.dart-cli-completion/bash-config.bash ] && . /Users/phatblat/.config/.dart-cli-completion/bash-config.bash || true
+## [/Completion]
+
