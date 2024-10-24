@@ -129,5 +129,7 @@
 [pull]
 	rebase = true
 [rerere]
+[safe]
+	bareRepository = explicit
 [user]
 	signingkey = /Users/phatblat/.ssh/id_ed25519.pub
