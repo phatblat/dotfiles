@@ -8,7 +8,7 @@ function jdk \
         return
     end
 
-    set --local ANDROID_STUDIO_PRERELEASE " Koala Feature Drop 2024.1.2 Patch 1"
+    set --local ANDROID_STUDIO_PRERELEASE ""
     set --local ANDROID_STUDIO "$HOME/Applications/Android Studio$ANDROID_STUDIO_PRERELEASE.app"
 
     switch $command
