@@ -255,6 +255,7 @@
 .ollama/
 .op/
 .oracle_jre_usage/
+.pex/
 .phantomjs/
 .pingidentity/
 .pki/
