@@ -136,6 +136,7 @@
 .config/op/
 .config/packer/
 .config/pulse/
+.config/raycast/
 .config/realm-cli/
 .config/realm/
 .config/session/
