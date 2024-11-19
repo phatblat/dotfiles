@@ -14,50 +14,92 @@ function 🍻_cask \
     echo "🍻  Homebrew Cask"
     echo
 
-    set --local apps \
+    set -l apps \
         1password \
         1password-cli \
         alfred \
         arc \
+        brave-browser \
+        charles \
         cheatsheet \
         cleanmymac \
         cmake \
+        contexts \
+        dash \
         deckset \
         docker \
         elgato-control-center \
         elgato-stream-deck \
+        fig \
         firebase-admin \
-        flameshot \
         flutter \
         franz \
+        ganache \
         geekbench \
+        gitkraken \
+        google-chrome \
         google-drive \
+        gpg-suite \
+        grammarly \
         hex-fiend \
         httpie \
         imageoptim \
         istat-menus \
+        iterm2 \
         jetbrains-toolbox \
         kaleidoscope \
+        keyboard-maestro \
+        keycastr \
+        kobo \
+        lapce \
+        lastpass \
         latest \
+        licecap \
         loom \
+        macdown \
+        meld \
+        microblog \
+        microsoft-edge \
+        microsoft-teams \
         ngrok \
+        nova \
         objectivesharpie \
         obsidian \
         oclint \
+        paw \
+        qt-creator \
+        raspberry-pi-imager \
+        remotion \
+        rescuetime \
+        rocket \
+        safari-technology-preview \
         screens \
         simpholders \
-        tailscale \
+        softraid \
+        sublime-text \
+        sublime-merge \
+        teacode \
+        temurin8 \
+        textmate \
+        tg-pro \
         the-unarchiver \
         thingsmacsandboxhelper \
         tower \
         transmit \
+        visual-studio \
         visual-studio-code \
+        vivaldi \
+        vmware-fusion \
         vysor \
         warp \
-        xcodes
+        witch \
+        xcodes \
+        zeplin \
+        zoom \
+        homebrew/cask-drivers/zsa-wally
     # END: apps
 
-    set --local quicklook_plugins \
+    set -l quicklook_plugins \
         provisionql \
         qlcolorcode \
         qlimagesize \
@@ -130,68 +172,32 @@ function 🍻_cask \
         battery-guardian \
         bee \
         beoplay-software-update \
-        brave-browser \
-        charles \
         chef-workstation \
         cloudapp \
         cocoapods \
         cocoapods-app \
-        contexts \
-        dash \
         dayone-cli \
         dbvisualizer \
         disk-inventory-x \
         docker-toolbox \
         duet \
         fauxpas \
-        fig \
-        gitkraken \
-        google-chrome \
-        gpg-suite \
-        grammarly \
         hipchat \
         hyper \
         ibm-cloud-cli \
-        iterm2 \
         java9 \
-        keycastr \
-        keyboard-maestro \
-        kobo \
-        lapce \
-        lastpass \
-        licecap \
-        macdown \
-        microblog \
-        microsoft-edge \
-        microsoft-teams \
-        multiapp \
-        nova \
-        opera-gx \
         mono-mdk \
-        raspberry-pi-imager \
-        rescuetime \
-        rocket \
-        safari-technology-preview \
+        opera-gx \
         skype-for-business \
-        sublime-merge \
-        sublime-text \
         sublime-text-dev \
-        teacode \
-        temurin8 \
-        textmate \
-        tg-pro \
         textexpander \
         things \
         timing \
         ultimate \
         virtualbox \
-        visual-studio \
-        vivaldi \
-        vmware-fusion \
-        witch \
         xcproj \
         xmarks-safari \
-        zeplin
+        $quicklook_plugins
     # END: uninstall
 
     # --------------------------------------------------------------------------
