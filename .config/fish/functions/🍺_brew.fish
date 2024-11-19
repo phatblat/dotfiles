@@ -31,7 +31,6 @@ function 🍺_brew \
 
     # multi-platform
     set -l formulae \
-        gofireflyio/aiac/aiac \
         aria2 \
         asciinema \
         asdf \
@@ -43,22 +42,25 @@ function 🍺_brew \
         boost \
         bottom \
         broot \
+        burl \
         carthage \
         cheat \
         choose \
         clang-format \
+        cloc \
         cmatrix \
+        cowsay \
         ctags \
         curl \
         curlie \
-        danger/tap/danger-swift \
         diff-so-fancy \
         direnv \
+        dog \
         duf \
         dust \
         emojify \
+        exa \
         f3 \
-        fastfetch \
         fd \
         findutils \
         firebase-cli \
@@ -81,7 +83,6 @@ function 🍺_brew \
         gtop \
         httpie \
         hyperfine \
-        ios-deploy \
         jabba \
         jenv \
         jq \
@@ -95,8 +96,6 @@ function 🍺_brew \
         libarchive \
         libssh2 \
         libtool \
-        llvm \
-        loc \
         lsd \
         macchina \
         make \
@@ -104,21 +103,18 @@ function 🍺_brew \
         maven \
         mcfly \
         mint \
-        mise \
         mono-libgdiplus \
         mtr \
+        neofetch \
         neovim \
         nginx \
         nmap \
         node \
+        nvm \
         openjdk \
-        openjdk@11 \
-        openjdk@17 \
-        hashicorp/tap/packer \
+        packer \
         pacvim \
-        peripheryapp/periphery/periphery \
         pkg-config \
-        prettier \
         procs \
         publish \
         python@3.9 \
@@ -129,6 +125,7 @@ function 🍺_brew \
         ripgrep \
         ripgrep-all \
         rlwrap \
+        rtx \
         ruby \
         sccache \
         scrcpy \
@@ -148,6 +145,7 @@ function 🍺_brew \
         task \
         tasksh \
         tailor \
+        tailscale \
         the_silver_searcher \
         thefuck \
         tig \
@@ -161,6 +159,7 @@ function 🍺_brew \
         virtualenv \
         watchman \
         xcbeautify \
+        xcodes \
         xh \
         yarn \
         zoxide \
@@ -186,6 +185,7 @@ function 🍺_brew \
 
     set -l uninstall \
         android-sdk \
+        artifactory \
         azure-cli \
         azure/functions/azure-functions-core-tools@3 \
         cask-repair \
@@ -212,14 +212,10 @@ function 🍺_brew \
         md5shasum \
         minikube \
         mono \
-        neofetch \
-        nvm \
         phatblat/services/pbjenkins \
         ping-devops \
         protobuf protobuf-c \
         pyenv \
-        python-distlib \
-        python-platformdirs \
         python@2 \
         sloccount \
         sourcery \
@@ -229,7 +225,6 @@ function 🍺_brew \
         terraform \
         vapor \
         vim \
-        xcinfo \
         xcproj \
         xctool \
         yara
