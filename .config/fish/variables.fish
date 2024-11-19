@@ -134,9 +134,9 @@ set --export --global PATH \
     $PATH
 
 # RVM
-if functions --query rvm
-    rvm default
-end
+# if functions --query rvm
+#     rvm default
+# end
 
 # Ruby
 set --local ruby_home (brew_home ruby)
