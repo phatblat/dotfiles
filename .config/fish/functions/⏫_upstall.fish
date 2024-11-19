@@ -14,12 +14,16 @@ function ⏫_upstall \
     set -l all_modules \
         ruby \
         brew \
+        fisher \
         omf \
         mint \
         rustup \
+        sdkman \
         pip \
+        nvm \
         npm \
-        powerline
+        powerline \
+        vscode
 
     if is_mac
         set all_modules $all_modules \
@@ -54,6 +58,7 @@ function ⏫_upstall \
             --nopy \
             --norb \
             --nors \
+            --nosdk \
             --notm \
             --novi \
             --novs \
