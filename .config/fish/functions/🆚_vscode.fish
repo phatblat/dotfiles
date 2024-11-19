@@ -12,55 +12,52 @@ function 🆚_vscode \
     # Extensions to upstall
     set -l extensions \
         2gua.rainbow-brackets \
-        4ops.packer \
-        aaronyoung.dark-synthwave-vscode \
         adelphes.android-dev-ext \
         ahmadawais.shades-of-purple \
+        Alan.stylus \
         allan-carlos.night-rainbow \
-        altbdoor.change-tab-size \
         amodio.amethyst-theme \
         antfu.icons-carbon \
-        apptorium.teacode-vsc-helper \
+        Apptorium.teacode-vsc-helper \
         atommaterial.a-file-icon-vscode \
         bagetx.inf \
-        bbenoist.nix \
+        bbenoist.Nix \
         bencoleman.armview \
         bierner.markdown-preview-github-styles \
-        bysabi.prettier-vscode-standard \
+        bungcip.better-toml \
         christian-kohler.npm-intellisense \
-        christian-kohler.path-intellisense \
         cmstead.js-codeformer \
         cmstead.jsrefactor \
         codezombiech.gitignore \
         cschlosser.doxdocgen \
-        dart-code.dart-code \
-        dart-code.flutter \
-        davidanson.vscode-markdownlint \
+        Dart-Code.dart-code \
+        Dart-Code.flutter \
+        DavidAnson.vscode-markdownlint \
         dawhite.mustache \
         daylerees.rainglow \
+        dbaeumer.jshint \
         dbaeumer.vscode-eslint \
         deerawan.vscode-dash \
         dhoeric.ansible-vault \
         dkundel.vscode-npm-source \
         dnicolson.binary-plist \
         donjayamanne.githistory \
-        dsnake.java-debug \
+        DSnake.java-debug \
         dsznajder.es7-react-js-snippets \
         eamodio.gitlens \
         ecmel.vscode-html-css \
-        editorconfig.editorconfig \
+        EditorConfig.EditorConfig \
         eg2.tslint \
         eg2.vscode-npm-script \
-        endormi.2077-theme \
-        equinusocio.vsc-community-material-theme \
-        equinusocio.vsc-material-theme \
+        Endormi.2077-theme \
+        Equinusocio.vsc-community-material-theme \
+        Equinusocio.vsc-material-theme \
         equinusocio.vsc-material-theme-icons \
         esafirm.kotlin-formatter \
         esbenp.prettier-vscode \
-        fabiospampinato.vscode-open-in-github \
-        fallenwood.viml \
+        fallenwood.vimL \
         felipecaputo.git-project-manager \
-        file-icons.file-icons \
+        felixrieseberg.vsc-travis-ci-status \
         fisheva.eva-theme \
         fivepointseven.node-version \
         flesler.url-encode \
@@ -72,48 +69,46 @@ function 🆚_vscode \
         formulahendry.terminal \
         fwcd.kotlin \
         georgewfraser.vscode-javac \
-        github.copilot \
-        github.copilot-chat \
-        github.github-vscode-theme \
+        GitHub.copilot \
+        GitHub.github-vscode-theme \
         github.vscode-github-actions \
-        github.vscode-pull-request-github \
+        GitHub.vscode-pull-request-github \
         gitpod.gitpod-desktop \
         golang.go \
         hashicorp.terraform \
-        helligechris.synthwave-vscode-renew \
-        htmlhint.vscode-htmlhint \
+        HookyQR.beautify \
+        HTMLHint.vscode-htmlhint \
         humao.rest-client \
         jakearl.search-editor-apply-changes \
         jamesmaj.easy-icons \
-        jasonnutter.search-node-modules \
-        jawandarajbir.react-vscode-extension-pack \
         jeff-hykin.better-cpp-syntax \
         jetmartin.bats \
         jlwoolf.makefile-tools-nameable \
         josetr.cmake-language-support-vscode \
         joshuapoehls.json-escaper \
         jtavin.ldif \
+        JuanBlanco.solidity \
         jvitorfrancisco.theme-acid-purple \
         kaleidoscope-app.vscode-ksdiff \
+        Kasik96.swift \
         kevinkyang.auto-comment-blocks \
-        kevinmcgowan.typescriptimport \
+        kevinmcgowan.TypeScriptImport \
         kisstkondoros.vscode-codemetrics \
         kozet.purple-night \
         kumar-harsh.graphql-for-vscode \
         leizongmin.node-module-intellisense \
         lfm.vscode-makefile-term \
         lunaryorn.fish-ide \
-        makashi.dark-purple \
         mariomatheu.syntax-project-pbxproj \
         mark-wiemer.vscode-autohotkey-plus-plus \
-        mathiasfrohlich.kotlin \
-        me-dutour-mathieu.vscode-github-actions \
+        mathiasfrohlich.Kotlin \
         mechatroner.rainbow-csv \
         mhcpnl.xcodestrings \
         miguelsolorio.fluent-icons \
         mikestead.dotenv \
         miramac.vscode-exec-node \
         mitaki28.vscode-clang \
+        mkaufman.HTMLHint \
         mohsen1.prettify-json \
         mongodb.mongodb-vscode \
         monokai.theme-monokai-pro-vscode \
@@ -123,7 +118,6 @@ function 🆚_vscode \
         ms-dotnettools.dotnet-maui \
         ms-dotnettools.vscode-dotnet-runtime \
         ms-dotnettools.vscodeintellicode-csharp \
-        ms-python.debugpy \
         ms-python.isort \
         ms-python.python \
         ms-python.vscode-pylance \
@@ -134,7 +128,6 @@ function 🆚_vscode \
         ms-toolsai.vscode-jupyter-slideshow \
         ms-vscode-remote.remote-containers \
         ms-vscode-remote.remote-ssh \
-        ms-vscode-remote.remote-ssh-edit \
         ms-vscode-remote.remote-wsl \
         ms-vscode-remote.vscode-remote-extensionpack \
         ms-vscode.cmake-tools \
@@ -148,38 +141,38 @@ function 🆚_vscode \
         ms-vscode.remote-server \
         ms-vsliveshare.vsliveshare \
         ms-vsliveshare.vsliveshare-audio \
-        msjsdiag.vscode-react-native \
         naco-siren.gradle-language \
         nataliefruitema.modern-purple-theme \
         naumovs.node-modules-resolve \
         nepaul.editorconfiggenerator \
         nodesource.vscode-for-node-js-development-pack \
-        nur.just-black \
-        nyxb.materialiconic-product-icons \
         oderwat.indent-rainbow \
-        perkovec.emoji \
+        Perkovec.emoji \
         phplasma.csv-to-table \
-        pkief.material-icon-theme \
-        pkief.material-product-icons \
-        pokey.cursorless \
-        pokey.parse-tree \
+        PKief.material-icon-theme \
+        PKief.material-product-icons \
+        pkosta2005.heroku-command \
         prashaantt.node-tdd \
         rbbit.typescript-hero \
         redhat.ansible \
+        redhat.fabric8-analytics \
+        redhat.java \
         redhat.vscode-xml \
         redhat.vscode-yaml \
-        ritwickdey.liveserver \
-        robbowen.synthwave-vscode \
+        ritwickdey.LiveServer \
+        RobbOwen.synthwave-vscode \
         rust-lang.rust-analyzer \
-        rvest.vs-code-prettier-eslint \
         secanis.jenkinsfile-support \
+        Shan.code-settings-sync \
         shanoor.vscode-nginx \
         sidneys1.gitconfig \
-        skellock.just \
+        silvenon.mdx \
         skyapps.fish-vscode \
         sohibe.java-generate-setters-getters \
+        stevencl.addDocComments \
         stkb.rewrap \
         surajbarkale.ninja \
+        sysoev.language-stylus \
         sysoev.vscode-open-in-github \
         tamasfe.even-better-toml \
         techer.open-in-browser \
@@ -188,9 +181,10 @@ function 🆚_vscode \
         tonybaloney.vscode-pets \
         tushortz.java-imports-snippets \
         twxs.cmake \
+        unifiedjs.vscode-mdx \
         vadimcn.vscode-lldb \
-        visualstudioexptteam.intellicode-api-usage-examples \
-        visualstudioexptteam.vscodeintellicode \
+        VisualStudioExptTeam.intellicode-api-usage-examples \
+        VisualStudioExptTeam.vscodeintellicode \
         vscjava.vscode-gradle \
         vscjava.vscode-java-debug \
         vscjava.vscode-java-dependency \
@@ -201,38 +195,19 @@ function 🆚_vscode \
         wholroyd.jinja \
         wingrunr21.vscode-ruby \
         wix.vscode-import-cost \
-        xabikos.javascriptsnippets \
-        xabikos.reactsnippets \
         xaver.clang-format \
-        zeithaste.cursorcharcode \
-        zhang-renyang.vscode-react \
+        zeithaste.cursorCharCode \
         zhouronghui.propertylist \
         zhuangtongfa.material-theme \
         ziyasal.vscode-open-in-github
 
     # Extensions to uninstall
     set -l uninstall \
-        alan.stylus \
-        bungcip.better-toml \
         castwide.solargraph \
-        dbaeumer.jshint \
-        felixrieseberg.vsc-travis-ci-status \
-        hookyqr.beautify \
-        juanblanco.solidity \
-        kasik96.swift \
-        mkaufman.htmlhint \
         ms-kubernetes-tools.vscode-kubernetes-tools \
         msjsdiag.debugger-for-chrome \
-        pkosta2005.heroku-command \
         rebornix.ruby \
-        redhat.fabric8-analytics \
-        redhat.java \
-        shan.code-settings-sync \
-        silvenon.mdx \
-        stevencl.adddoccomments \
-        sysoev.language-stylus \
         trunk.io \
-        unifiedjs.vscode-mdx \
         wingrunr21.vscode-ruby
 
     set -l installed (code --list-extensions)
