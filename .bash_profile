@@ -35,3 +35,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -f /Users/phatblat/.config/.dart-cli-completion/bash-config.bash ] && . /Users/phatblat/.config/.dart-cli-completion/bash-config.bash || true
 ## [/Completion]
 
+. "$HOME/.cargo/env"
