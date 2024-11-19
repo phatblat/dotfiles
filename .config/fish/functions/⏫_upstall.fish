@@ -14,13 +14,10 @@ function ⏫_upstall \
     set -l all_modules \
         ruby \
         brew \
-        fisher \
         omf \
         mint \
         rustup \
-        sdkman \
         pip \
-        nvm \
         npm \
         powerline \
         vscode
@@ -58,7 +55,6 @@ function ⏫_upstall \
             --nopy \
             --norb \
             --nors \
-            --nosdk \
             --notm \
             --novi \
             --novs \
