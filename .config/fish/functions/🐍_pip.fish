@@ -73,12 +73,7 @@ function 🐍_pip \
     end
 
     # Install packages
-    $pip install \
-        --user \
-        --ignore-installed \
-        --upgrade \
-        --upgrade-strategy eager \
-        $global_packages
+    $pip install --ignore-installed --upgrade --upgrade-strategy eager $global_packages
 
     # List installed packages
     $pip list
