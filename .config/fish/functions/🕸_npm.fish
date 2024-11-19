@@ -16,9 +16,7 @@ function 🕸_npm \
 
     set -l global_packages \
         @bchatard/alfred-jetbrains \
-        @mapbox/node-pre-gyp \
         atlas-connect \
-        dukat \
         eslint \
         express-generator \
         fast-cli \
@@ -26,29 +24,29 @@ function 🕸_npm \
         generator-code \
         gitmoji-cli \
         gulp \
+        @hubspot/cli \
         jake \
+        jshint \
         json5 \
+        lynn-cli \
         markdownlint \
         mongodb-realm-cli \
         monofo \
         n \
+        node-pre-gyp \
         npm-check-updates \
+        pocket-cli \
+        ts2kt \
         ubolt \
         vsce \
         yarn-audit-fix \
         yo
 
     set -l uninstall \
-        @hubspot/cli \
-        jshint \
-        lynn-cli \
-        ngrok \
-        node-pre-gyp \
-        pocket-cli \
         ralio \
         realm-cli \
         realm-object-server \
-        ts2kt \
+        ngrok \
         tslint
 
     # --------------------------------------------------------------------------
@@ -64,6 +62,7 @@ function 🕸_npm \
     end
 
     # Verify the user owns the node_modules dir.
+    # Package location - /Users/phatblat/.nvm/versions/node/v17.3.0
     set -l global_modules (npm get prefix)"/lib/node_modules"
     if test $USER != (fileowner $global_modules)
         if status is-login
@@ -156,10 +155,6 @@ function 🕸_npm \
     # --------------------------------------------------------------------------
 
     echo
-    echo 🧹 Clean Cache
-    npm cache clean --force
-
-    echo
-    echo 👩🏻‍⚕️ Doctor
+    echo 👩🏻‍⚕️  Doctor
     npm doctor
 end
