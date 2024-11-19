@@ -1,5 +1,5 @@
 function dsl \
-    --description 'List docker services'
+    --description='List docker services'
 
     docker service ls $argv
 end

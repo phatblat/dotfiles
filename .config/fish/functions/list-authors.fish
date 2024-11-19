@@ -5,19 +5,19 @@ function list-authors --argument-names format
     end
 
     switch $format
-        case name_email
-            # Name & email formatting
-            set format '%an <%ae>'
-        case name
-            set format '%an'
-        case email
-            set format '%ae'
-        case ruby
-            # Ruby hash
-            set format '"%an" => "%ae",'
-        case '*'
-            # Custom format
-            set format $format
+    case "name_email"
+        # Name & email formatting
+        set format '%an <%ae>'
+    case "name"
+        set format '%an'
+    case "email"
+        set format '%ae'
+    case "ruby"
+        # Ruby hash
+        set format '"%an" => "%ae",'
+    case '*'
+        # Custom format
+        set format $format
     end
 
     # Iterate over the hash of all commits

@@ -1,3 +1,3 @@
-function cmt --description 'Commit with message'
+function cmt --description='Commit with message'
     git commit -m $argv
 end

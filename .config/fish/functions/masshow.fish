@@ -1,7 +1,7 @@
 function masshow \
-    --description 'Show which copy of mas is active'
+    --description='Show which copy of mas is active'
 
-    if not type --query mas
+    if not type -q mas
         return 1
     end
 

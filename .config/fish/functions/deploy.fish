@@ -1,5 +1,5 @@
 function deploy \
-    --description 'Builds and deploys static content.'
+    --description='Builds and deploys static content.'
 
     set reflog_content ~/dev/www/reflog
     if test "$pwd" != "$reflog_content"

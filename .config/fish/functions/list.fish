@@ -5,7 +5,7 @@
 # Options:
 #   -s Splits arguments on spaces.
 function list \
-    --description 'Prints a list with each element on a separate line.'
+        --description='Prints a list with each element on a separate line.'
     if test -z "$argv"
         echo "Usage: list [-s] 1 2 3 4 ..."
         return 1

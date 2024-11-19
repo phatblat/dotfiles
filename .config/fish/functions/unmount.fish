@@ -1,5 +1,5 @@
 function unmount \
-    --description 'Unmounts a drive' \
+    --description='Unmounts a drive' \
     --argument-names drive_path
 
     if test -z $drive_path

@@ -15,7 +15,7 @@ function bq
 
     set -l current_list_name brew_args
     for arg in $argv
-        if test "$arg" = --
+        if test "$arg" = "--"
             # Start collecting args for jq
             set current_list_name jq_args
             continue
@@ -29,5 +29,5 @@ function bq
     end
 
     brew info --json=v1 $brew_args \
-        | jq $jq_args
+    | jq $jq_args
 end

@@ -1,13 +1,10 @@
-function fn \
-    --description 'Create a new function.' \
-    --argument-names function_name
-
+# Create a new function.
+function fn --argument function_name
     set -l file ~/.config/fish/functions/$function_name.fish
 
     # File in autoload may not be loaded (syntax error) and
     # builtin functions won't have files in autoload dir.
-    if begin
-            test -e $file
+    if begin test -e $file
             or functions --query $function_name
         end
         yn "Function "$function_name" already exists. Edit?"

@@ -1,5 +1,5 @@
 function __re_extension \
-    --description 'remove extension from word under/before cursor'
+    --description='remove extension from word under/before cursor'
 
     commandline -f forward-word
     commandline -f backward-word

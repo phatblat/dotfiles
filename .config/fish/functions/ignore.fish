@@ -1,5 +1,5 @@
 function ignore \
-    --description 'Adds lines to .gitignore'
+    --description='Adds lines to .gitignore'
 
     set -l gitignore (root)/.gitignore
     set -l ignore_list
@@ -23,7 +23,7 @@ function ignore \
     end
 
     for pattern in $ignore_list
-        echo $pattern >>$gitignore
+        echo $pattern >> $gitignore
     end
 
     sort --unique --output=$gitignore $gitignore
@@ -36,3 +36,4 @@ function ignore \
     git add $gitignore
     git commit -m $commit_message
 end
+

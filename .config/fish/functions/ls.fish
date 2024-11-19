@@ -1,13 +1,16 @@
 function ls \
-    --description 'List files with colors and trailing slashes on directories' \
+    --description='List files with colors and trailing slashes on directories' \
     --wraps ls
     # -p      Write a slash (`/') after each filename if that file is a directory.
 
     # -G      Enable colorized output.  This option is equivalent to defining
     # CLICOLOR in the environment.  (See lscolors.)
 
-    set -lx LC_ALL C
-    set --local ls_options -pG
+    set --local cmd 'command ls -p'
+    if command --query exa
+        set cmd exa
+    end
 
-    command ls $ls_options $argv
+    set -lx LC_ALL C
+    eval $cmd $argv
 end

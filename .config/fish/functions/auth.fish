@@ -1,5 +1,5 @@
 function auth \
-    --description 'Quick nave to KPAuth' \
+    --description='Quick nave to KPAuth' \
     --argument-names platform
 
     set -l path ~/dev/mdk

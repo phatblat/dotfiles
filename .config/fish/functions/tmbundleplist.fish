@@ -9,7 +9,7 @@ function tmbundleplist --argument-names bundle_name bundle_description git_url
     set -l uuid (uuidgen)
 
     set -l content \
-        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
 <plist version=\"1.0\">
 <dict>
@@ -23,7 +23,7 @@ function tmbundleplist --argument-names bundle_name bundle_description git_url
     # Add source section if url provided
     if test -n "$git_url"
         set content $content \
-            "	<key>source</key>
+"	<key>source</key>
 	<dict>
 		<key>method</key>
 		<string>git</string>
@@ -33,8 +33,9 @@ function tmbundleplist --argument-names bundle_name bundle_description git_url
     end
 
     set content $content \
-        "</dict>
+"</dict>
 </plist>"
 
     echo $content\n
 end
+

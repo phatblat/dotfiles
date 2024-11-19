@@ -13,12 +13,12 @@
 # Sequencing
 # - After: brew (python), pip (powerline-status)
 function ▶️_powerline \
-    --description 'Upstalls Powerline'
+    --description='Upstalls Powerline'
 
     echo "▶️ Powerline"
     echo
 
-    set -l vim_dev ~/dev/vim
+    set -l vim_dev          ~/dev/vim
     set -l powerline_config ~/.config/powerline
     createdirs $vim_dev
 

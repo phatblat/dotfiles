@@ -1,3 +1,3 @@
-function gwo --description 'Gradle wrapper offline.'
+function gwo --description='Gradle wrapper offline.'
     gw $argv --offline
 end

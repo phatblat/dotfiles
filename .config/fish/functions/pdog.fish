@@ -1,5 +1,5 @@
 function pdog \
-    --description 'Quick nave to pingidentity-devops-getting-started'
+    --description='Quick nave to pingidentity-devops-getting-started'
 
     pdo pingidentity-devops-getting-started
 end

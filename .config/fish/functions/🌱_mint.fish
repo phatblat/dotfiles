@@ -1,7 +1,7 @@
 # Sequencing
 # - Requires mint.
 function 🌱_mint \
-    --description 'Updates Mint and installed packages.'
+    --description='Updates Mint and installed packages.'
 
     echo "🌱 Mint - https://github.com/yonaskolb/Mint"
     echo
@@ -25,7 +25,7 @@ function 🌱_mint \
     # --------------------------------------------------------------------------
 
     # Ensure Mint is installed.
-    if not type --query mint
+    if not type -q mint
         error "Mint is not installed"
         return 1
     end

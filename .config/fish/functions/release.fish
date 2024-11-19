@@ -28,11 +28,11 @@ function release
         --default="y" | read -l checked_in
 
     switch $checked_in
-        case y yes
-            echo YES
-        case n no
-            echo NO
-            return 1
+    case "y" "yes"
+        echo "YES"
+    case "n" "no"
+        echo "NO"
+        return 1
     end
 
     # Version

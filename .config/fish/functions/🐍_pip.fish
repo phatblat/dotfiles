@@ -7,7 +7,7 @@
 # Sequencing
 # - After: brew (installed with python)
 function 🐍_pip \
-    --description 'Manages python packages using pip'
+    --description='Manages python packages using pip'
 
     echo "🐍 PIP"
     echo
@@ -15,7 +15,7 @@ function 🐍_pip \
     set --local pip pip
 
     # Ensure PIP is installed.
-    if not type --query $pip
+    if not type -q $pip
         error "PIP is not installed."
         return 1
     end
@@ -31,9 +31,7 @@ function 🐍_pip \
 
     # Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lizard_ext'
     # Consider using the `--user` option or check the permissions.
-    if begin
-            user_is_admin; and not test -d /usr/local/lizard_ext
-        end
+    if begin user_is_admin; and not test -d /usr/local/lizard_ext; end
         sudo mkdir /usr/local/lizard_ext
         sudo chown $USER /usr/local/lizard_ext
     end

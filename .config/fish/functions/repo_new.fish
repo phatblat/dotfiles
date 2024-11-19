@@ -1,5 +1,5 @@
 function repo_new \
-    --description 'Creates a new GitHub repo using the local dir as the root' \
+    --description='Creates a new GitHub repo using the local dir as the root' \
     --argument-names repo_name
 
     if test -z $repo_name

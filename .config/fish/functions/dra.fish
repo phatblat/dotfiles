@@ -1,5 +1,5 @@
 function dra \
-    --description 'Removes all stopped docker containers'
+    --description='Removes all stopped docker containers'
 
     echo "Running command to: Remove all stopped containers"
     set -l running_containers (docker container ls --all --quiet)

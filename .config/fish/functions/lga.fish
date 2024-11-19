@@ -1,5 +1,5 @@
 function lga \
-    --description 'Pretty history graph showing all'
+    --description='Pretty history graph showing all'
 
     git log \
         --all \

@@ -1,3 +1,3 @@
-function pusht --description 'Push git tags'
+function pusht --description='Push git tags'
     git push --tags
 end

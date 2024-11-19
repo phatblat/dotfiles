@@ -1,6 +1,6 @@
 function shell_add \
     --argument-names new_shell \
-    --description 'Register a new shell in /etc/shells'
+    --description='Register a new shell in /etc/shells'
 
     if test -z $new_shell
         echo "Usage: shell_add new_shell"

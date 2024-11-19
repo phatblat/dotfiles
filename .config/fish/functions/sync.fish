@@ -1,12 +1,12 @@
 function sync \
-    --description 'Synchronizes a git rep.'
+    --description='Synchronizes a git rep.'
 
     if git_repo_dirty
         echo "📥 Stashing changes"
         stsave
     end
 
-    set -l sync_branch master
+    set -l sync_branch "master"
     if test $sync_branch != (current_branch)
         git checkout $sync_branch
     end

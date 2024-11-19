@@ -1,6 +1,6 @@
 function brew_edit \
-    --description 'Manages Homebrew formulae' \
-    --argument-names token formula_version
+        --description='Manages Homebrew formulae' \
+        --argument-names token formula_version
 
     set -l branch $token
 

@@ -1,5 +1,5 @@
 function epoc_date \
-    --description 'Converts epoc timestamps to a date' \
+    --description='Converts epoc timestamps to a date' \
     --argument-names epoc_timestamp
 
     # macos format

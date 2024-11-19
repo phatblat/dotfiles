@@ -1,6 +1,6 @@
 # Migrated from bundle-pull.rb ruby script
 function bundle-pull \
-    --description 'Copies a dirty working copy from one host to another.'
+        --description='Copies a dirty working copy from one host to another.'
 
     # Ensure current dir is in a clean git repo
     if not git_inside_repo

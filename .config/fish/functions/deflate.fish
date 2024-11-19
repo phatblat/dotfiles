@@ -1,4 +1,4 @@
-function deflate --argument-names path --description 'Unzip git blobs'
+function deflate --argument-names path --description='Unzip git blobs'
     if test -z "$path"
         echo "Usage: deflate .git/objects/55/7db03de997c86a4a028e1ebd3a1ceb225be238"
         return 1

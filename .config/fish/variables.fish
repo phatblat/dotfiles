@@ -7,11 +7,11 @@
 
 set --global --export fish_greeting ''
 set --global simple_ass_prompt_greeting "Fish Shell version $version"
+set --export KERNEL (uname)
 
 # Upper case
 if is_mac
     set --export ANDROID_HOME $HOME/Library/Android/sdk
-    set --export PATH "$PATH:/Users/phatblat/Library/Application Support/JetBrains/Toolbox/scripts"
 else if is_linux
     set --export ANDROID_HOME $HOME/Android/Sdk
 end
@@ -55,6 +55,7 @@ set --export LSCOLORS ExFxBxDxCxegedabagacad
 # Lower case
 set --export github_user phatblat
 set --export powerline_enabled 0
+set --global --export sdkman_prefix $HOME/.sdkman
 
 # Fix spacing for emoji and ambiguous characters
 set --export --global fish_emoji_width 2
@@ -126,14 +127,16 @@ set --global fish_user_paths \
 # PATH
 set --export --global PATH \
     $HOME/bin \
-    (brew_home)/bin \
     /usr/local/bin \
+    (brew_home)/bin \
     (brew_home curl)/bin \
     (brew_home python)/libexec/bin \
     $PATH
 
-# Created by `pipx` on 2023-08-29 02:06:37
-set PATH $PATH /Users/phatblat/.local/bin
+# RVM
+if functions --query rvm
+    rvm default
+end
 
 # Ruby
 set --local ruby_home (brew_home ruby)
@@ -155,12 +158,6 @@ end
 if test -d (brew_home)/sbin
     set --export --global PATH $PATH \
         (brew_home)/sbin
-end
-
-# Python site.USER_BASE
-if test -d ~/Library/Python/3.11/bin
-    set --prepend --export --global PATH \
-        ~/Library/Python/3.11/bin
 end
 
 if test -d (brew_home python)/libexec/bin
@@ -246,12 +243,16 @@ if test -d "$MONGODB_HOME"
         $PATH
 end
 
+# set --export NVM_DIR "$HOME/.nvm"
+# [ -s "(brew_home nvm)/nvm.sh" ] && . "/(brew_home nvm)/nvm.sh"  # This loads nvm
+# [ -s "(brew_home nvm)/etc/bash_completion.d/nvm" ] && . "(brew_home nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # Editor
 # After variables which depend on functions that define variables
-set --export EDITOR_CLI vim # vi vim
+set --export EDITOR_CLI "vim" # vi vim
 set --export EDITOR_GUI "code --new-window" # atom (vs)code mate mvim subl
-set --export WAIT_FLAG_CLI --nofork
-set --export WAIT_FLAG_GUI --wait
+set --export WAIT_FLAG_CLI "--nofork"
+set --export WAIT_FLAG_GUI "--wait"
 
 # EDITOR or VISUAL, only one defined
 # Use EDITOR for non-console users (su someoneelse) and SSH connections
@@ -276,30 +277,24 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 
 # Java JDK
 if is_mac
-    # Use JDK 17 or latest
-    jdk studio - quiet
-    if test $status -ne 0
-        if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
-            set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
-        else if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
-            set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
-        else
-            error "JDK dir not found"
-        end
+    # Use latest JDK
+    if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
+        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+    else if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
+    else
+        error "JDK dir not found"
     end
 else if is_linux
     set --function jdk_dir /home/linuxbrew/.linuxbrew/Cellar/openjdk/18.0.2.1
 end
 if test -d $jdk_dir
-    jdk set $jdk_dir quiet
+    jdk set $jdk_dir --quiet
 else
     error "JDK dir not found: $jdk_dir"
 end
 
 # .NET
-if test -x $HOME/.dotnet/dotnet
-    fish_add_path $HOME/.dotnet
-end
 if test -d $HOME/.dotnet/tools
     fish_add_path $HOME/.dotnet/tools
 end
@@ -317,15 +312,13 @@ if test -d $XAMARIN_IOS_BIN_DIR
     fish_add_path $XAMARIN_IOS_BIN_DIR
 end
 
-# bun
-set --export --global BUN_INSTALL $HOME/.bun
-set --export --global --prepend --path PATH $HOME/.bun/bin
+# Bun
+set -Ux BUN_INSTALL $HOME/.bun
+set -px --path PATH $HOME/.bun/bin
 
 if is_mac
     set --export --global CMAKE_OSX_SYSROOT (xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
     set --export --global CMAKE_BUILD_TYPE Debug
-    # for wasm32-unknown-unknown support
-    set --export CC_wasm32_unknown_unknown (brew --prefix)/opt/llvm/bin/clang
 end
 
 # Split on underscore to ignore the revision number
@@ -338,12 +331,3 @@ set --export --global NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles
 
 # Go
 fish_add_path $HOME/go/bin
-
-# JetPack Toolbox scripts
-fish_add_path $HOME/bin
-
-# Kotlin Native commands
-fish_add_path $HOME/.konan/kotlin-native-prebuilt-macos-aarch64-2.0.0/bin
-
-# Flutter Version Manager
-fish_add_path $HOME/fvm/default/bin

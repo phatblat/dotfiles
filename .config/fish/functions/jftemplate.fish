@@ -1,5 +1,5 @@
 function jftemplate \
-    --description 'Create a new repo based on JenkinsfileTemplate' \
+    --description='Create a new repo based on JenkinsfileTemplate' \
     --argument-names repoName
 
     if test -z $repoName

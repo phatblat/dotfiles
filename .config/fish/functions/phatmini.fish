@@ -1,3 +1,3 @@
-function phatmini --description 'SSH to phatmini'
+function phatmini --description='SSH to phatmini'
     ssh phatblat@phatmini.local $argv
 end

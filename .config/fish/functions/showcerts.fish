@@ -32,3 +32,4 @@ function showcerts --argument-names hostname port
     # string join "\n" $output #| less
     # return $output
 end
+

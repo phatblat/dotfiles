@@ -1,5 +1,5 @@
 function bpuru \
-    --description 'Update pods after updating repos.'
+    --description='Update pods after updating repos.'
 
     bundle exec "pod update $argv"
 end

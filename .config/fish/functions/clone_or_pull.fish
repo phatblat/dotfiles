@@ -1,5 +1,5 @@
 function clone_or_pull \
-    --description 'Clones a fresh copy or pulls an existing git repo.' \
+    --description='Clones a fresh copy or pulls an existing git repo.' \
     --argument-names folder_name git_url branch
 
     if test -z "$folder_name" -o -z "$git_url"
@@ -20,7 +20,7 @@ function clone_or_pull \
         pushd $folder_name
         if test -n "$branch" -a "$branch" != (current_branch)
             echo "WARNING: $folder_name currently has the "(current_branch) \
-                " branch checked out (!=$branch)"
+                 " branch checked out (!=$branch)"
         end
         git pull
         popd

@@ -52,8 +52,8 @@ function defaults_set
     defaults write -g ApplePressAndHoldEnabled -bool false
 
     # Set a blazingly fast keyboard repeat rate
-    defaults write -g InitialKeyRepeat -int 13 # normal minimum is 15 (225 ms)
-    defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+    defaults write -g InitialKeyRepeat -int 13  # normal minimum is 15 (225 ms)
+    defaults write -g KeyRepeat -int 2          # normal minimum is 2 (30 ms)
 
     # Enable full keyboard access for all controls
     # (e.g. enable Tab in modal dialogs)
@@ -91,13 +91,13 @@ function defaults_set
     # Set language and text formats
     # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
     # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-    defaults write NSGlobalDomain AppleLanguages -array en es
+    defaults write NSGlobalDomain AppleLanguages -array "en" "es"
     defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
-    defaults write NSGlobalDomain AppleMeasurementUnits -string Inches
+    defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
     defaults write NSGlobalDomain AppleMetricUnits -bool false
 
     # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-    sudo systemsetup -settimezone America/Denver
+    sudo systemsetup -settimezone "America/Denver"
 
     #
     # Trackpad
@@ -176,7 +176,7 @@ function defaults_set
     # - icnv: Icon View
     # - clmv: Column View
     # - Flwv: Cover Flow View
-    defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
+    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
     # Hide the Tags section of the sidebar
     defaults write com.apple.Finder SidebarTagsSectionDisclosedState -bool false
@@ -274,7 +274,7 @@ function defaults_set
     #
 
     # Disable indexing of Time Machine backup drive
-    sudo mdutil -i off /Volumes/ThunderBox
+    sudo mdutil -i off "/Volumes/ThunderBox"
 
     # Change indexing order and disable some search results
     # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
@@ -308,11 +308,11 @@ function defaults_set
         '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
         '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
     # Load new settings before rebuilding the index
-    killall mds >/dev/null 2>&1
+    killall mds > /dev/null 2>&1
     # Make sure indexing is enabled for the main volume
-    sudo mdutil -i on / >/dev/null
+    sudo mdutil -i on / > /dev/null
     # Rebuild the index from scratch
-    sudo mdutil -E / >/dev/null
+    sudo mdutil -E / > /dev/null
 
     #
     # Time Machine

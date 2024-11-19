@@ -1,6 +1,6 @@
 function xcbschemes \
-    --description 'Displays schemes for an Xcode project'
-
+        --description='Displays schemes for an Xcode project'
+    
     # Parse the xcodebuild -list output for schemes
     set --local schemes (xcblist \
         | grep Schemes: -A 10 \

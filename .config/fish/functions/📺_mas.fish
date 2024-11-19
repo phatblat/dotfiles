@@ -1,5 +1,5 @@
 function 📺_mas \
-    --description 'Manage Mac App Store apps'
+    --description='Manage Mac App Store apps'
 
     echo "📺 mas"
     echo

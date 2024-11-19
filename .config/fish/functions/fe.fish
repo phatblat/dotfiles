@@ -1,11 +1,10 @@
 function fe \
-    --description 'Edit a function.' \
+    --description='Edit a function.' \
     --argument-names function_name
 
     set -l file ~/.config/fish/functions/$function_name.fish
 
-    if begin
-            not test -e $file
+    if begin not test -e $file
             and not functions --query $function_name
         end
         yn "Function "$function_name" does not exist. Create?"

@@ -1,5 +1,5 @@
 function signing_cert_details \
-    --description 'Prints signing certificate details' \
+    --description='Prints signing certificate details' \
     --argument-names cert_name
 
     if test -z $cert_name

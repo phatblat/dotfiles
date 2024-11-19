@@ -1,5 +1,5 @@
 function pkgexpand \
-    --description 'Expands a pkg file' \
+    --description='Expands a pkg file' \
     --argument-names package dest_dir
 
     if test -z $package

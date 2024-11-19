@@ -1,5 +1,5 @@
 function find_file \
-    --description 'Finds files under the given base_dir (defaults to PWD).' \
+    --description='Finds files under the given base_dir (defaults to PWD).' \
     --argument-names file_name base_dir
 
     if test -z $file_name
@@ -22,7 +22,7 @@ function find_file \
 
     echo "file_name: $file_name"
     echo "base_dir: $base_dir"
-    echo -----------------------------------
+    echo "-----------------------------------"
 
     find "$base_dir" -name "*$file_name*" -print 2>/dev/null
 end

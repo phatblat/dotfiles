@@ -12,7 +12,7 @@
 # JVM:          1.8.0_111 (Oracle Corporation 25.111-b14)
 # OS:           Mac OS X 10.13.1 x86_64
 #
-function gv --description 'Prints gradle version'
+function gv --description='Prints gradle version'
     set --local output (gradle --version)
     set --local gradle_version (string split " " $output[3])[2]
     echo $gradle_version

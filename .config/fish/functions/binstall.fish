@@ -1,5 +1,5 @@
 function binstall \
-    --description 'Install Bundler with the proper bindir.'
+    --description='Install Bundler with the proper bindir.'
 
     gem install bundler --bindir (brew_home)/bin $argv
 end

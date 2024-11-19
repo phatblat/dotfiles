@@ -4,7 +4,7 @@
 # Sequencing
 # - Before: xcode
 function 💎_rubygems \
-    --description 'Installs and updates Ruby gems.'
+    --description='Installs and updates Ruby gems.'
 
     echo "💎 Updating Ruby Gems"
     echo

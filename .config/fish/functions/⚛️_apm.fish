@@ -3,7 +3,7 @@
 # Sequencing
 # - After: cask (atom)
 function ⚛️_apm \
-    --description 'Updates Atom packages.'
+    --description='Updates Atom packages.'
 
     echo "⚛️  Atom Package Manager"
     echo

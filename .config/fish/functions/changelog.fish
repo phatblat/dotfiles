@@ -1,5 +1,5 @@
 function changelog \
-    --description 'Create changelog'
+    --description='Create changelog'
 
     set --local fileName CHANGELOG.md
     set --local currentDir (string split '/' (pwd))[-1]

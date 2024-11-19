@@ -1,11 +1,9 @@
-function sshkeyfingerprint \
-    --description 'Show fingerprint of optional public key file.' \
-    --argument-names key_file
-
-    if test -z $key_file
-        set key_file (sshkey)
+# Show fingerprint of optional public key file, defaults to ~/.ssh/id_rsa.pub.
+function sshkeyfingerprint --argument-names file
+    if test -z $file
+        set file ~/.ssh/id_rsa.pub
     end
 
-    echo -n "[$key_file] "
-    ssh-keygen -l -E md5 -f $key_file
+    echo -n "[$file] "
+    ssh-keygen -l -E md5 -f $file
 end

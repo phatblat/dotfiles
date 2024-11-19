@@ -1,6 +1,6 @@
 function shell_switch \
     --argument-names new_shell \
-    --description 'Changes the current $USER\'s shell using dscl. Outputs only the command to run for non-admins.'
+    --description='Changes the current $USER\'s shell using dscl. Outputs only the command to run for non-admins.'
 
     if test -z $new_shell 2>/dev/null
         echo "Usage: shell_switch bash|zsh|fish"

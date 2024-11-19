@@ -3,7 +3,7 @@
 # Sequencing
 # - After: brew (installed with node)
 function 🕸_npm \
-    --description 'Installs and updates npm packages.'
+    --description='Installs and updates npm packages.'
 
     echo "🕸 NPM - https://www.npmjs.com/"
     echo
@@ -58,7 +58,7 @@ function 🕸_npm \
     # --------------------------------------------------------------------------
 
     # Ensure NPM is installed.
-    if not type --query npm
+    if not type -q npm
         error "NPM is not installed."
         return 1
     end
@@ -95,7 +95,7 @@ function 🕸_npm \
         end
     end
     if test -n "$to_uninstall"
-        echo 🗑️ Uninstalling $to_uninstall
+        echo 🗑️  Uninstalling $to_uninstall
         npm uninstall --global $to_uninstall
     end
 
@@ -144,7 +144,7 @@ function 🕸_npm \
     if test -n "$not_installed"
         for package in $not_installed
             echo
-            echo 🆕 Installing: $package
+            echo 🆕  Installing: $package
             npm install --global $package
         end
     end

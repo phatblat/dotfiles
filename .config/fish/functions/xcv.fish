@@ -1,6 +1,6 @@
 function xcv \
-    --description 'Displays the version of the currently selected Xcode.' \
-    --argument-names short_flag
+        --description='Displays the version of the currently selected Xcode.' \
+        --argument-names short_flag
     # xcodebuild -version takes 250ms
     # Example output:
     #   Xcode 10.0
@@ -14,8 +14,8 @@ function xcv \
 
         # CLI tools are the active version of Xcode
         pkgutil --pkg-info=com.apple.pkg.DevSDK \
-            | grep version \
-            | awk '{print $2}'
+        | grep version \
+        | awk '{print $2}'
 
         return
     end
@@ -67,7 +67,7 @@ function xcv \
         case 10A254a
             set beta_version "GM seed "
 
-            # 10.1
+        # 10.1
         case 10O23ud
             set beta_version "beta 1 "
         case 10O35n
@@ -75,7 +75,7 @@ function xcv \
         case 10O45e
             set beta_version "beta 3 "
 
-            # 10.2
+        # 10.2
         case 10P82s
             set beta_version "beta 1 "
         case 10P91b
@@ -85,7 +85,7 @@ function xcv \
         case 10P107d
             set beta_version "beta 4 "
 
-            # 11.0
+        # 11.0
         case 11M336w
             set beta_version "beta 1 "
         case 11M337n
@@ -106,35 +106,35 @@ function xcv \
             # This GM became the final GA build
             # set beta_version "GM seed 2 "
 
-            # 11.1
+        # 11.1
         case 11A1027
             # This GM became the final GA build
             # set beta_version "GM seed 1 "
 
-            # 11.2
+        # 11.2
         case 11B41
             set beta_version "beta 1 "
         case 11B44
             set beta_version "beta 2 "
 
-            # 11.2.1
+        # 11.2.1
         case 11B53
             set beta_version "GM seed "
 
-            # 11.3
+        # 11.3
         case 11C24b
             set beta_version "beta 1 "
 
-            # 11.4
+        # 11.4
         case 11N111s
             set beta_version "beta 1 "
         case 11N123k
             set beta_version "beta 2 "
-            # This build was released as the final version
-            # case 11N132i
-            #     set beta_version "beta 3 "
+        # This build was released as the final version
+        # case 11N132i
+        #     set beta_version "beta 3 "
 
-            # 12.0
+        # 12.0
         case 12A6159
             set beta_version "beta 1 "
         case 12A6163b
@@ -148,15 +148,15 @@ function xcv \
         case 12A8189n
             set beta_version "beta 6 "
 
-            # 12.1.1
+        # 12.1.1
         case 12A7605b
             set beta_version "RC "
 
-            # 12.2
+        # 12.2
         case 12B5044c
             set beta_version "RC "
 
-            # 13.0
+        # 13.0
         case 13A5154h
             set beta_version "beta 1 "
         case 13A5155e
@@ -168,7 +168,7 @@ function xcv \
         case 13A5212g
             set beta_version "beta 5 "
 
-            # 13.3
+        # 13.3
         case 13E5086k
             set beta_version "beta 1 "
         case 13E5095k
@@ -176,7 +176,7 @@ function xcv \
         case 13E5104i
             set beta_version "beta 3 "
 
-            # 14.0
+        # 14.0
         case 14A5228q
             set beta_version "beta 1 "
         case 14A5229c

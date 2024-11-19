@@ -1,4 +1,4 @@
-function gw --description 'Invokes a build using the Gradle wrapper script.'
+function gw --description='Invokes a build using the Gradle wrapper script.'
     if test -e ./gradlew
         ./gradlew $argv
         return

@@ -1,5 +1,5 @@
 function moj_user \
-    --description 'Prints an emoji for the current user.'
+    --description='Prints an emoji for the current user.'
 
     switch $USER
         case admin

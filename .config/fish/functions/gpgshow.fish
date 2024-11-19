@@ -4,3 +4,4 @@ function gpgshow
         --keyid-format short \
         $argv
 end
+

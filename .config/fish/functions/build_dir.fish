@@ -1,5 +1,5 @@
 function build_dir \
-    --description 'Displays the Xcode build dir of the current project'
+        --description='Displays the Xcode build dir of the current project'
     # e.g. /Users/ben/Library/Developer/Xcode/DerivedData/mas-cli-cpnrglfzdqvgargxhvgrgxzambih/Build/Products
 
     set --local projects $argv
@@ -19,7 +19,7 @@ function build_dir \
         end
 
         eval $command \
-            | grep -m 1 BUILD_DIR \
+            | grep -m 1 "BUILD_DIR" \
             | grep -oEi "\/.*"
     end
 end

@@ -1,5 +1,5 @@
 function shell_choose \
-    --description 'Interactive prompting for choosing a new default shell.'
+    --description='Interactive prompting for choosing a new default shell.'
 
     set -l shells bash zsh fish
     set -l current_shell (basename $SHELL)

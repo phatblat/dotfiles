@@ -1,5 +1,5 @@
 function gem_pristine \
-    --description 'Runs the pristine command for all gems'
+    --description='Runs the pristine command for all gems'
 
     # Fix gem write permissions
     # ERROR:  While executing gem ... (Errno::EACCES)

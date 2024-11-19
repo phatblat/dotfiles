@@ -2,5 +2,8 @@ package android-sdk
 package fish_logo
 package foreign-env
 package https://github.com/edc/bass
+package nvm
+package rvm
+package sdk
 package sudope
 theme default

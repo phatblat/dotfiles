@@ -3,7 +3,7 @@
 # do a user-owned dir.
 function gem_update \
     --argument-names gem_name \
-    --description 'Updates a Ruby gem at the system level (requires sudo permissions).'
+    --description='Updates a Ruby gem at the system level (requires sudo permissions).'
 
     if test -z gem_name
         echo "Usage: gem_update gem_name ..."

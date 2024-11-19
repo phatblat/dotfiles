@@ -9,7 +9,7 @@
 # - Requires ruby, but works with system ruby.
 # - Seems logical to run after brew, but not actually required.
 function 🍻_cask \
-    --description 'Updates Homebrew Casks and installed apps'
+    --description='Updates Homebrew Casks and installed apps'
 
     echo "🍻  Homebrew Cask"
     echo
@@ -71,7 +71,7 @@ function 🍻_cask \
 
     # TEMP: Cask doesn't check whether fonts are installed. To speed up
     # the upstall process, these are excluded for now.
-    set --local fonts \
+    set -l fonts \
         homebrew/cask-fonts/font-3270-nerd-font \
         homebrew/cask-fonts/font-aurulent-sans-mono-nerd-font \
         homebrew/cask-fonts/font-awesome-terminal-fonts \
@@ -111,9 +111,9 @@ function 🍻_cask \
         homebrew/cask-fonts/font-source-code-pro-for-powerline \
         homebrew/cask-fonts/font-ubuntu-mono-derivative-powerline
 
-    set --local all_casks $apps #$quicklook_plugins #$fonts
+    set -l all_casks $apps #$quicklook_plugins #$fonts
 
-    set --local uninstall \
+    set -l uninstall \
         # https://github.com/Homebrew/homebrew-cask-versions/blob/master/Casks/adoptopenjdk8.rb
         homebrew/cask-versions/adoptopenjdk8 \
         adoptopenjdk/openjdk/adoptopenjdk8 \
@@ -201,7 +201,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Ensure Homebrew is installed.
-    if not type --query brew
+    if not type -q brew
         echo "Installing Homebrew"
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
@@ -217,11 +217,11 @@ function 🍻_cask \
     #
     # --------------------------------------------------------------------------
 
-    echo 🚰 Updating formulae
+    echo 🚰  Updating formulae
     brew update
-    set --local installed (brew list --casks -1 2>/dev/null)
+    set -l installed (brew list --casks -1 2>/dev/null)
     echo
-    echo ➡️ (moj_host) Installed: $installed
+    echo ➡️ (moj_host)  Installed: $installed
 
     # --------------------------------------------------------------------------
     #
@@ -230,7 +230,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Uninstall unwanted formulae
-    set --local to_uninstall
+    set -l to_uninstall
     for cask in $uninstall
         if contains $cask $installed
             set to_uninstall $to_uninstall $cask
@@ -238,7 +238,7 @@ function 🍻_cask \
     end
     if test -n "$to_uninstall"
         echo
-        echo 🗑 Uninstalling $to_uninstall
+        echo 🗑  Uninstalling $to_uninstall
         brew uninstall --cask --force $to_uninstall
     end
 
@@ -249,13 +249,13 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     # Update installed casks
-    set --local outdated_casks (brew outdated --casks 2>/dev/null)
+    set -l outdated_casks (brew outdated --casks 2>/dev/null)
     # Example: charles (4.1.1) != 4.1.2
     # Cut everything but the first column
-    # set --local outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
+    # set -l outdated_casks (echo $outdated_casks\n | cut -f 1 -d ' ' -)
     if test -n "$outdated_casks"
         echo
-        echo 👵🏻 Outdated: $outdated_casks
+        echo 👵🏻  Outdated: $outdated_casks
         for outdated in $outdated_casks
             brew upgrade \
                 --cask $outdated \
@@ -265,11 +265,11 @@ function 🍻_cask \
     end
 
     # Install new casks
-    set --local not_installed
+    set -l not_installed
     for full_cask in $all_casks
         # Strip off tap prefix (e.g. caskroom/versions/java8)
-        set --local cask $full_cask
-        set --local tokens (string split / $cask)
+        set -l cask $full_cask
+        set -l tokens (string split / $cask)
         if test (count $tokens) -ge 3
             set cask $tokens[3]
         end
@@ -281,7 +281,7 @@ function 🍻_cask \
     end
     if test -n "$not_installed"
         echo
-        echo 🆕 Installing: $not_installed
+        echo 🆕  Installing: $not_installed
         for new_cask in $not_installed
             brew install --cask --force $new_cask
         end
@@ -294,7 +294,7 @@ function 🍻_cask \
     # --------------------------------------------------------------------------
 
     echo
-    echo 🛀🏻 Cleanup
+    echo 🛀🏻  Cleanup
     # Removes downloads older than 120 days. Add '--prune 30' to shorten this to a month.
     brew cleanup
 end

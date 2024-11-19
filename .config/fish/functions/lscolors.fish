@@ -29,13 +29,13 @@ function lscolors --argument-names theme
         case default
             set --global --export CLICOLOR exfxcxdxbxegedabagacad
 
-            # http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/#more-27553
+        # http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/#more-27553
         case light
             set --global --export CLICOLOR ExFxBxDxCxegedabagacad
         case dark
             set --global --export CLICOLOR GxFxCxDxBxegedabagaced
 
-            # http://www.norbauer.com/rails-consulting/notes/ls-colors-and-terminal-app.html#column
+        # http://www.norbauer.com/rails-consulting/notes/ls-colors-and-terminal-app.html#column
         case linux
             set --global --export CLICOLOR ExGxBxDxCxEgEdxbxgxcxd
 

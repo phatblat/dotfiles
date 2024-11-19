@@ -1,5 +1,5 @@
 function fileowner \
-    --description 'Displays the owner of a file.' \
+    --description='Displays the owner of a file.' \
     --argument-names file
 
     if test -z "$file"

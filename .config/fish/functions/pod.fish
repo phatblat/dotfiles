@@ -1,5 +1,5 @@
 function pod \
-    --description 'Display the local version of CocoaPods.' \
+    --description='Display the local version of CocoaPods.' \
     --wraps='pod'
 
     set -l cmd_prefix

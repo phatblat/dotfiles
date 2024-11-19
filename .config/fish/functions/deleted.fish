@@ -1,5 +1,5 @@
 function deleted \
-    --description 'Lists files deleted from git history.'
+    --description='Lists files deleted from git history.'
 
     git log --diff-filter=D --summary
 end

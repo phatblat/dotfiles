@@ -1,5 +1,5 @@
 function d \
-    --description 'Git diff'
+    --description='Git diff'
 
     # --unified: Context lines
     # --no-prefix: Do not show any source or destination prefix. (e.g. "a/" "b/")
@@ -9,10 +9,10 @@ function d \
         --no-prefix \
         $argv
 
-    # word diff conflicts with diff-so-fancy
-    # --word-diff=color \
-    # --word-diff-regex='[^[:space:]]' \
-    # --diff-algorithm=default \
-    # --no-indent-heuristic \
-    # --ignore-cr-at-eol \
+        # word diff conflicts with diff-so-fancy
+        # --word-diff=color \
+        # --word-diff-regex='[^[:space:]]' \
+        # --diff-algorithm=default \
+        # --no-indent-heuristic \
+        # --ignore-cr-at-eol \
 end

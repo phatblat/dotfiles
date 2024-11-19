@@ -1,5 +1,5 @@
 function nav \
-    --description 'Quick nav to a dir. Creates dir if not present.' \
+    --description='Quick nav to a dir. Creates dir if not present.' \
     --argument-names dir
 
     if test -z "$dir"

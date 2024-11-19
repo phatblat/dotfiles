@@ -1,5 +1,5 @@
 function editorconfig \
-    --description 'Generates an editorconfig.'
+    --description='Generates an editorconfig.'
 
     set -l file_path (root)/.editorconfig
 
@@ -44,6 +44,6 @@ indent_style = tab
 # Trailing spaces have meaning in Markdown
 [*.md]
 trim_trailing_whitespace = false
-" >$file_path
+" > $file_path
 
 end

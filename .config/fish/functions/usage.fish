@@ -1,5 +1,5 @@
 function usage \
-    --description 'Show disk usage for a directory' \
+    --description='Show disk usage for a directory' \
     --argument-names path
 
     if test -z $path

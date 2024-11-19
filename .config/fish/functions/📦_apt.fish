@@ -1,5 +1,5 @@
 function 📦_apt \
-    --description 'Updates APM packages Linux.'
+    --description='Updates APM packages Linux.'
 
     echo "📦 Advanced Package Manager"
     echo
@@ -79,7 +79,7 @@ function 📦_apt \
             echo "Installing $package"
             sudo apt-get \
                 --assume-yes \
-                --verbose-versions \
+                 --verbose-versions \
                 install $package
         end
     end

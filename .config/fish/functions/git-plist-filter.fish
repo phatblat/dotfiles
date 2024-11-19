@@ -1,5 +1,5 @@
 #!/usr/local/bin/fish
-function git-plist-filter --description 'Converts plist data to XML format (stdin->stdout).'
+function git-plist-filter --description='Converts plist data to XML format (stdin->stdout).'
     #!/bin/sh
     # had to do this because git doesn't like attaching stdin and out to plutil (waitpid error)
 

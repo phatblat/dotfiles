@@ -1,5 +1,5 @@
 function dnl \
-    --description 'List docker networks'
+    --description='List docker networks'
 
     docker network ls $argv
 end

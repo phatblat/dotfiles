@@ -1,5 +1,5 @@
 function pingdownload \
-    --description 'Downloads Ping DevOps tools'
+    --description='Downloads Ping DevOps tools'
 
     docker run \
         --env-file ~/.pingidentity/devops \

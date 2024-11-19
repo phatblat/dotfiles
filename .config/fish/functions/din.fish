@@ -1,5 +1,5 @@
 function din \
-    --description 'Remove all docker images'
+    --description='Remove all docker images'
 
     echo "Running command to: Remove all Docker images"
 

@@ -1,6 +1,6 @@
 function ra \
-    --description 'Adds a git remote' \
-    --argument-names name url
+        --description 'Adds a git remote' \
+        --argument-names name url
     if test -z $name
         error Remote name required
         return 1

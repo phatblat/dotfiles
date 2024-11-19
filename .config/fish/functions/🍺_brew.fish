@@ -1,9 +1,9 @@
 # Sequencing
 # - Requires ruby, but works with system ruby.
 function 🍺_brew \
-    --description 'Updates Homebrew and installed formulae.'
+    --description='Updates Homebrew and installed formulae.'
 
-    echo "🍺 Homebrew - https://brew.sh"
+    echo "🍺  Homebrew - https://brew.sh"
     echo
 
     # --------------------------------------------------------------------------
@@ -260,7 +260,7 @@ function 🍺_brew \
     end
 
     # Ensure Homebrew is installed.
-    if not type --query brew
+    if not type -q brew
         echo "📥 Installing Homebrew"
         ruby -e "(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')"
     end
@@ -284,7 +284,7 @@ function 🍺_brew \
 
     set -l installed (brew list --formulae --full-name)
     echo
-    echo ➡️ (moj_host) Installed: $installed
+    echo ➡️ (moj_host)  Installed: $installed
 
     # --------------------------------------------------------------------------
     #
@@ -300,7 +300,7 @@ function 🍺_brew \
         end
     end
     if test -n "$to_uninstall"
-        echo 🗑️ Uninstalling $to_uninstall
+        echo 🗑️  Uninstalling $to_uninstall
         brew uninstall --formulae $to_uninstall
     end
 
@@ -335,7 +335,7 @@ function 🍺_brew \
     if test -n "$not_installed"
         for formula in $not_installed
             echo
-            echo 🆕 Installing: $formula
+            echo 🆕  Installing: $formula
             brew install --verbose --display-times $formula
         end
     end
@@ -372,7 +372,7 @@ function 🍺_brew \
     end
 
     # Update firewall rules if a new version of nginx was installed
-    if contains nginx $outdated_formulae
+    if contains "nginx" $outdated_formulae
         echo
         firewall_allow_nginx
     end
@@ -386,14 +386,15 @@ function 🍺_brew \
     end
 
     echo
-    echo 🛀🏻 Cleanup
+    echo 🛀🏻  Cleanup
     brew cleanup --prune=30 $formulae
 
     echo
-    echo 👩🏻‍⚕️ Doctor
+    echo 👩🏻‍⚕️  Doctor
     brew doctor
 
-    echo
-    echo ℹ️ Info
-    brew info
+    # Slow, takes ~40s on greymatter
+    # echo
+    # echo ℹ️  Info
+    # brew info
 end

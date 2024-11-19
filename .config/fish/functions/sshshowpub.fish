@@ -1,5 +1,4 @@
-function sshshowpub \
-    --description 'Prints SSH public key.'
-    set key_file (sshkey)
-    cat $key_file
+# Print SSH public key.
+function sshshowpub
+    cat ~/.ssh/id_rsa.pub
 end

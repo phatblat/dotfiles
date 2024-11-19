@@ -5,7 +5,7 @@ function restart
         return 1
     end
 
-    if test (fdesetup isactive) = true
+    if test (fdesetup isactive) = "true"
         # FileVault authenticated restart
         sudo fdesetup authrestart -verbose
     else

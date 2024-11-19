@@ -1,5 +1,5 @@
 function pull_ssh_config \
-    --description 'Copies SSH config to local'
+    --description='Copies SSH config to local'
 
     if test phatmini = (hostname)
         echo 'pull_ssh_config should be run on a remote host'

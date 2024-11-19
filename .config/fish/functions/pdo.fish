@@ -1,5 +1,5 @@
 function pdo \
-    --description 'Quick nav to Ping DevOps projects' \
+    --description='Quick nav to Ping DevOps projects' \
     --argument-names project
 
     # Examples:

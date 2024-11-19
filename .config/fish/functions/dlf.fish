@@ -1,5 +1,5 @@
 function dlf \
-    --description 'Alias of dlogs'
+    --description='Alias of dlogs'
 
     dlogs $argv
 end

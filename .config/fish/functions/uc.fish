@@ -5,8 +5,8 @@ function uc
         \( -name "*.h" -or -name "*.m" \) \
         -exec \
         uncrustify \
-        -lOC \
-        -c ~/.uncrustify/uncrustify_obj_c.cfg \
-        --no-backup \
+            -lOC \
+            -c ~/.uncrustify/uncrustify_obj_c.cfg \
+            --no-backup \
         {} \;
 end
