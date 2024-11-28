@@ -42,6 +42,12 @@ function ignores
         # Visual Studio, MSBuild
         '*.dll' \
         .vs/ \
+        obj/ \
         packages/ \
-        obj/
+        # Visual Studio, MSBuild
+        .vscode/ \
+        # Bazel
+        'bazel-*' \
+        # Buck2
+        buck-out/
 end
