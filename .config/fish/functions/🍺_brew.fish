@@ -59,7 +59,6 @@ function 🍺_brew \
         duf \
         dust \
         emojify \
-        exa \
         f3 \
         fd \
         findutils \
