@@ -278,20 +278,17 @@ set --export LS_COLWIDTHS 0:10:0:10:0:0:10:0
 # Java JDK
 if is_mac
     # Use latest JDK
-    if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
-        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+    if test -d "/Users/phatblat/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+        jdk studio
+    else if test -d /Library/Java/JavaVirtualMachines/openjdk.jdk
+        jdk set /Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
     else if test -d /Library/Java/JavaVirtualMachines/openjdk-17.jdk
-        set --function jdk_dir /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
+        jdk set /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
     else
         error "JDK dir not found"
     end
 else if is_linux
-    set --function jdk_dir /home/linuxbrew/.linuxbrew/Cellar/openjdk/18.0.2.1
-end
-if test -d $jdk_dir
-    jdk set $jdk_dir --quiet
-else
-    error "JDK dir not found: $jdk_dir"
+    jdk set /home/linuxbrew/.linuxbrew/Cellar/openjdk/18.0.2.1
 end
 
 # .NET
