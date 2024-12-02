@@ -47,6 +47,11 @@ if status is-interactive
         # 1Password CLI plugin
         source ~/.config/op/plugins.sh
     end
+
+    # Warpify non-login shells that don' thave WARP_BOOTSTRAPPED defined.
+    if begin ! status is-login; and test -z "$WARP_BOOTSTRAPPED"; end
+        warpify
+    end
 end
 
 # Created by `pipx` on 2023-08-29 02:06:37
