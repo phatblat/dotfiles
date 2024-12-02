@@ -43,8 +43,10 @@ if status is-interactive
         eval (thefuck --alias | tr \n ';')
     end
 
-    # 1Password CLI plugin
-    source ~/.config/op/plugins.sh
+    if test -f ~/.config/op/plugins.sh
+        # 1Password CLI plugin
+        source ~/.config/op/plugins.sh
+    end
 end
 
 # Created by `pipx` on 2023-08-29 02:06:37
