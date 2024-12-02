@@ -32,6 +32,12 @@ if status is-interactive
         zoxide init fish | source
     end
 
+    if command --query fzf
+        # Set up fzf key bindings
+        fzf --fish | source
+        fzf_key_bindings
+    end
+
     if type -q thefuck
         # The Fuck
         eval (thefuck --alias | tr \n ';')
