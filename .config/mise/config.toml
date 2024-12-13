@@ -10,7 +10,7 @@ yarn = "1.22.19" # Before node to override yarn 4.1
 node = "23.4.0"
 just = "1.38.0"
 ruby = "3.3.6"
-python = "3.12.3"
+python = "3.13.0"
 
 [settings]
 experimental = true
