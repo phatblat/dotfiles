@@ -5,6 +5,7 @@
 
 [tools]
 bun = "1.0.29"
+dotnet = "8.0.404"
 yarn = "1.22.19" # Before node to override yarn 4.1
 node = "20.12.2"
 just = "1.35.0"
@@ -13,4 +14,3 @@ python = "3.12.3"
 
 [settings]
 experimental = true
-
