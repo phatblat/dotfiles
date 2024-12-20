@@ -302,6 +302,9 @@ set --export MONO_GAC_PREFIX (brew_home)
 if test -d $HOME/.pub-cache/bin
     fish_add_path $HOME/.pub-cache/bin
 end
+if test -d $HOME/fvm/default/bin
+    fish_add_path $HOME/fvm/default/bin
+end
 
 # Xamarin.iOS tools
 set --local XAMARIN_IOS_BIN_DIR /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin
