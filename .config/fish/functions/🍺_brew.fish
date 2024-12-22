@@ -104,7 +104,6 @@ function 🍺_brew \
         mint \
         mono-libgdiplus \
         mtr \
-        neofetch \
         neovim \
         nginx \
         nmap \
@@ -189,6 +188,7 @@ function 🍺_brew \
         azure/functions/azure-functions-core-tools@3 \
         cask-repair \
         certbot \
+        cheatsheet \
         cloudfoundry/tap/cf-cli \
         pivotal/tap/cloudfoundry-cli \
         cmake \
@@ -211,11 +211,14 @@ function 🍺_brew \
         md5shasum \
         minikube \
         mono \
+        mono-mdk-for-visual-studio \
+        neofetch \
         phatblat/services/pbjenkins \
         ping-devops \
         protobuf protobuf-c \
         pyenv \
         python@2 \
+        screens \
         sloccount \
         sourcery \
         subversion \
