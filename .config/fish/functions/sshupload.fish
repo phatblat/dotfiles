@@ -3,7 +3,7 @@ function sshupload \
     --argument-names keyfile
 
     if test -z $keyfile
-        set keyfile ~/.ssh/id_rsa.pub
+        set keyfile (sshkey)
     end
 
     if not test -f $keyfile

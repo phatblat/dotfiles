@@ -1,7 +1,11 @@
-# Show fingerprint of optional public key file, defaults to ~/.ssh/id_rsa.pub.
+# Show fingerprint of optional public key file, defaults to ~/.ssh/id_ed25519.pub.
 function sshkeyfingerprint --argument-names file
     if test -z $file
-        set file ~/.ssh/id_rsa.pub
+        set file (sshkey)
+        if test $status -ne 0
+            # Key file not found
+            return 1
+        end
     end
 
     echo -n "[$file] "
