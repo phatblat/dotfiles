@@ -133,3 +133,5 @@
 	signingkey = /Users/phatblat/.ssh/id_ed25519.pub
 [http]
 	postBuffer = 157286400
+[gpg "ssh"]
+	allowedSignersFile = /Users/phatblat/.git-allowed-signers
