@@ -671,6 +671,7 @@ dev
 ditto-cache/
 examples.desktop
 fvm/
+games/
 go/
 gradlew.bat
 heapdump.*.phd
