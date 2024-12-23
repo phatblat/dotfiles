@@ -318,6 +318,7 @@
 .vscode-insiders/
 .vscode/
 .wget-hsts
+.wine/
 .xsel.log
 .yarn/
 .yarnrc
