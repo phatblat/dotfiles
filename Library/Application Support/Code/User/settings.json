@@ -187,5 +187,6 @@
   },
   "pieces.cloudCapabilities": "Blended",
   "pieces.telemetry": true,
-  "editor.inlayHints.enabled": "offUnlessPressed"
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "pieces.OS.launchOnStartup": "Yes"
 }
