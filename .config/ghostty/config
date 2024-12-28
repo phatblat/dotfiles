@@ -2,6 +2,8 @@
 
 theme = BlueBerryPie
 
+copy-on-select = true
+
 keybind = global:ctrl+`=toggle_quick_terminal
 quick-terminal-autohide = false
 quick-terminal-animation-duration = 0
