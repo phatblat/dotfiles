@@ -1,5 +1,7 @@
 # https://ghostty.org/docs/config
 
+theme = BlueBerryPie
+
 keybind = global:ctrl+`=toggle_quick_terminal
 quick-terminal-autohide = false
 quick-terminal-animation-duration = 0
