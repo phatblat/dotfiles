@@ -35,4 +35,4 @@ quick-terminal-screen = macos-menu-bar
 
 # Key Bindings
 keybind = global:ctrl+`=toggle_quick_terminal
-keybind = ctrl+d=new_split:right
+keybind = super+d=new_split:right
