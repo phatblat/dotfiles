@@ -15,7 +15,7 @@ window-padding-x = 4
 window-padding-y = 2
 
 cursor-click-to-move = true
-cursor-color = D20F39
+cursor-color = 5CB1B3
 cursor-style = block
 cursor-style-blink =
 cursor-text =
@@ -30,7 +30,7 @@ copy-on-select = true
 
 # Quick Terminal
 quick-terminal-animation-duration = 0
-quick-terminal-autohide = true
+quick-terminal-autohide = false
 quick-terminal-position = top
 quick-terminal-screen = macos-menu-bar
 
