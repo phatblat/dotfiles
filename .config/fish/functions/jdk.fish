@@ -105,7 +105,10 @@ function jdk_set \
         set --export --global CPPFLAGS "$CPPFLAGS -I$jdk_path/include"
     end
 
-    if test -z $quiet
-        jdk current
+
+    # echo "quiet: '$quiet'"
+    if test -z "$quiet"
+        # FIXME: Empty arg check isn't working
+        # jdk current
     end
 end
