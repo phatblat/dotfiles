@@ -25,6 +25,7 @@ selection-foreground =
 selection-background =
 
 # Behavior
+confirm-close-surface = false
 copy-on-select = true
 
 # Quick Terminal
