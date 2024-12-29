@@ -1,4 +1,5 @@
 # https://ghostty.org/docs/config
+# ghostty +show-config --default --docs | bat --language sh
 
 # Shell
 initial-command = /opt/homebrew/bin/fish
