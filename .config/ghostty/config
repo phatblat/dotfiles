@@ -33,7 +33,7 @@ copy-on-select = true
 quick-terminal-animation-duration = 0
 quick-terminal-autohide = false
 quick-terminal-position = top
-quick-terminal-screen = macos-menu-bar
+quick-terminal-screen = main
 
 # Key Bindings
 keybind = global:ctrl+`=toggle_quick_terminal
