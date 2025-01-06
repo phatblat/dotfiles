@@ -162,6 +162,7 @@
 .continue/
 .cpan/
 .cups/
+.cursor/
 .cxx/
 .dart-tool/
 .dart/
@@ -416,6 +417,7 @@ Library/Application Support/Code/languagepacks.json
 Library/Application Support/Code/machineid
 Library/Application Support/CrashReporter/
 Library/Application Support/Cron/
+Library/Application Support/Cursor/
 Library/Application Support/Cypress/
 Library/Application Support/Dash/
 Library/Application Support/Deckset/
