@@ -236,6 +236,7 @@
 .mcreator/
 .minecraft/
 .mint/
+.mintlify/
 .mongodb/
 .mono/
 .mozilla/
