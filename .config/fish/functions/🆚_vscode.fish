@@ -43,7 +43,6 @@ function 🆚_vscode \
         ecmel.vscode-html-css \
         editorconfig.editorconfig \
         endormi.2077-theme \
-        equinusocio.vsc-community-material-theme \
         equinusocio.vsc-material-theme \
         equinusocio.vsc-material-theme-icons \
         esafirm.kotlin-formatter \
@@ -81,7 +80,6 @@ function 🆚_vscode \
         juanblanco.solidity \
         jvitorfrancisco.theme-acid-purple \
         kaleidoscope-app.vscode-ksdiff \
-        kasik96.swift \
         kevinkyang.auto-comment-blocks \
         kevinmcgowan.typescriptimport \
         kisstkondoros.vscode-codemetrics \
@@ -154,7 +152,6 @@ function 🆚_vscode \
         sidneys1.gitconfig \
         skyapps.fish-vscode \
         sohibe.java-generate-setters-getters \
-        stevencl.adddoccomments \
         stkb.rewrap \
         surajbarkale.ninja \
         sysoev.language-stylus \
@@ -194,8 +191,10 @@ function 🆚_vscode \
         eamodio.gitlens \
         eg2.tslint \
         eg2.vscode-npm-script \
+        equinusocio.vsc-community-material-theme \
         formulahendry.terminal \
         hookyqr.beautify \
+        kasik96.swift \
         mkaufman.htmlhint \
         ms-kubernetes-tools.vscode-kubernetes-tools \
         ms-vsliveshare.vsliveshare \
@@ -203,6 +202,7 @@ function 🆚_vscode \
         msjsdiag.debugger-for-chrome \
         rebornix.ruby \
         shan.code-settings-sync \
+        stevencl.adddoccomments \
         trunk.io \
         wingrunr21.vscode-ruby
 
