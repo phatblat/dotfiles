@@ -11,7 +11,6 @@ function 🆚_vscode \
 
     # Extensions to upstall
     set -l extensions \
-        2gua.rainbow-brackets \
         adelphes.android-dev-ext \
         ahmadawais.shades-of-purple \
         Alan.stylus \
@@ -24,7 +23,6 @@ function 🆚_vscode \
         bbenoist.Nix \
         bencoleman.armview \
         bierner.markdown-preview-github-styles \
-        bungcip.better-toml \
         christian-kohler.npm-intellisense \
         cmstead.js-codeformer \
         cmstead.jsrefactor \
@@ -35,20 +33,15 @@ function 🆚_vscode \
         DavidAnson.vscode-markdownlint \
         dawhite.mustache \
         daylerees.rainglow \
-        dbaeumer.jshint \
         dbaeumer.vscode-eslint \
         deerawan.vscode-dash \
         dhoeric.ansible-vault \
         dkundel.vscode-npm-source \
         dnicolson.binary-plist \
         donjayamanne.githistory \
-        DSnake.java-debug \
         dsznajder.es7-react-js-snippets \
-        eamodio.gitlens \
         ecmel.vscode-html-css \
         EditorConfig.EditorConfig \
-        eg2.tslint \
-        eg2.vscode-npm-script \
         Endormi.2077-theme \
         Equinusocio.vsc-community-material-theme \
         Equinusocio.vsc-material-theme \
@@ -66,7 +59,6 @@ function 🆚_vscode \
         formulahendry.auto-close-tag \
         formulahendry.auto-rename-tag \
         formulahendry.code-runner \
-        formulahendry.terminal \
         fwcd.kotlin \
         georgewfraser.vscode-javac \
         GitHub.copilot \
@@ -76,7 +68,6 @@ function 🆚_vscode \
         gitpod.gitpod-desktop \
         golang.go \
         hashicorp.terraform \
-        HookyQR.beautify \
         HTMLHint.vscode-htmlhint \
         humao.rest-client \
         jakearl.search-editor-apply-changes \
@@ -108,7 +99,6 @@ function 🆚_vscode \
         mikestead.dotenv \
         miramac.vscode-exec-node \
         mitaki28.vscode-clang \
-        mkaufman.HTMLHint \
         mohsen1.prettify-json \
         mongodb.mongodb-vscode \
         monokai.theme-monokai-pro-vscode \
@@ -139,8 +129,6 @@ function 🆚_vscode \
         ms-vscode.powershell \
         ms-vscode.remote-explorer \
         ms-vscode.remote-server \
-        ms-vsliveshare.vsliveshare \
-        ms-vsliveshare.vsliveshare-audio \
         naco-siren.gradle-language \
         nataliefruitema.modern-purple-theme \
         naumovs.node-modules-resolve \
@@ -153,7 +141,6 @@ function 🆚_vscode \
         PKief.material-product-icons \
         pkosta2005.heroku-command \
         prashaantt.node-tdd \
-        rbbit.typescript-hero \
         redhat.ansible \
         redhat.fabric8-analytics \
         redhat.java \
@@ -163,10 +150,8 @@ function 🆚_vscode \
         RobbOwen.synthwave-vscode \
         rust-lang.rust-analyzer \
         secanis.jenkinsfile-support \
-        Shan.code-settings-sync \
         shanoor.vscode-nginx \
         sidneys1.gitconfig \
-        silvenon.mdx \
         skyapps.fish-vscode \
         sohibe.java-generate-setters-getters \
         stevencl.addDocComments \
@@ -193,7 +178,6 @@ function 🆚_vscode \
         vscjava.vscode-maven \
         vscode-icons-team.vscode-icons \
         wholroyd.jinja \
-        wingrunr21.vscode-ruby \
         wix.vscode-import-cost \
         xaver.clang-format \
         zeithaste.cursorCharCode \
@@ -203,10 +187,22 @@ function 🆚_vscode \
 
     # Extensions to uninstall
     set -l uninstall \
+        2gua.rainbow-brackets \
+        bungcip.better-toml \
         castwide.solargraph \
+        dbaeumer.jshint \
+        eamodio.gitlens \
+        eg2.tslint \
+        eg2.vscode-npm-script \
+        formulahendry.terminal \
+        hookyqr.beautify \
+        mkaufman.HTMLHint \
         ms-kubernetes-tools.vscode-kubernetes-tools \
+        ms-vsliveshare.vsliveshare \
+        ms-vsliveshare.vsliveshare-audio \
         msjsdiag.debugger-for-chrome \
         rebornix.ruby \
+        shan.code-settings-sync \
         trunk.io \
         wingrunr21.vscode-ruby
 
