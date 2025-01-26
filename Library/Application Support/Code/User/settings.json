@@ -2,9 +2,7 @@
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.rulers": [
-      80
-    ],
+    "editor.rulers": [80],
     "editor.selectionHighlight": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
@@ -60,10 +58,7 @@
   "editor.minimap.enabled": false,
   "editor.multiCursorMergeOverlapping": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "editor.suggestSelection": "first",
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
@@ -154,16 +149,12 @@
   "rust-analyzer.cargo.autoreload": false,
   "rust-analyzer.cargo.buildScripts.enable": false,
   "rust-analyzer.cargo.sysroot": "/Users/phatblat/.rustup/toolchains/1.74.1-aarch64-apple-darwin",
-  "rust-analyzer.rustfmt.extraArgs": [
-    "+nightly"
-  ],
+  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
   "search.exclude": {
     "**/.git": true
   },
   "security.workspace.trust.untrustedFiles": "open",
-  "shellcheck.customArgs": [
-    "-x"
-  ],
+  "shellcheck.customArgs": ["-x"],
   "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
   "solargraph.bundlerPath": "/usr/local/opt/ruby/bin/bundle",
   "sync.anonymousGist": false,
@@ -194,9 +185,12 @@
   "window.openFoldersInNewWindow": "on",
   "window.openWithoutArgumentsInNewWindow": "on",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Default Dark+",
+  "workbench.colorTheme": "Default Light+",
   "workbench.iconTheme": "vs-seti",
   "workbench.productIconTheme": "materialiconic-product-icons",
   "workbench.startupEditor": "none",
-  "xml.java.home": ""
+  "xml.java.home": "",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  }
 }
