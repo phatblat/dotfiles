@@ -139,6 +139,7 @@ set --export --global PATH \
 # end
 
 # Ruby
+set --local brew_home (brew_home)
 set --local ruby_home (brew_home ruby)
 if test -d $ruby_home/bin
     fish_add_path $ruby_home/bin
