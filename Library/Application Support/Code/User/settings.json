@@ -192,5 +192,8 @@
   "xml.java.home": "",
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "ansible.validation.lint.path": "uvx ansible-lint",
+  "ansible.ansible.path": "uvx ansible",
+  "ansible.ansibleNavigator.path": "uvx ansible-navigator"
 }
