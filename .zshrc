@@ -106,3 +106,6 @@ echo 'eval "$(~/.local/bin/mise activate zsh)"'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Added by Windsurf
+export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
