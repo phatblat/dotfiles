@@ -58,6 +58,7 @@
 .classpath
 .cmake-js/
 .cocoapods/
+.codeium/
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/
@@ -321,6 +322,7 @@
 .vscode-insiders/
 .vscode/
 .wget-hsts
+.windsurf/
 .wine/
 .xsel.log
 .yarn/
@@ -486,6 +488,7 @@ Library/Application Support/VisualStudio/
 Library/Application Support/Vivaldi/
 Library/Application Support/Wallpaper Wizard/
 Library/Application Support/WaveboxApp/
+Library/Application Support/Windsurf/
 Library/Application Support/Witch/
 Library/Application Support/Xcode/
 Library/Application Support/Zed/
