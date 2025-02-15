@@ -36,3 +36,6 @@ export NVM_DIR="$HOME/.nvm"
 ## [/Completion]
 
 . "$HOME/.cargo/env"
+
+# Added by Windsurf
+export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
