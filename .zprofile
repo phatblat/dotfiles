@@ -19,3 +19,7 @@ source ~/.cargo/env
 
 # Jebrains Toolbox App scripts
 export PATH="$PATH:/Users/phatblat/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
