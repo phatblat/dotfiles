@@ -261,6 +261,7 @@
 .ollama/
 .op/
 .oracle_jre_usage/
+.orbstack/
 .pex/
 .phantomjs/
 .pingidentity/
@@ -661,6 +662,7 @@ Music
 Music/
 OmniPresence
 OneDrive
+OrbStack/
 Parallels/
 Pictures
 Pictures.lnk
