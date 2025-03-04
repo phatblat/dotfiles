@@ -112,6 +112,7 @@
 .config/fish/h
 .config/fisherman/
 .config/flutter/tool_state
+.config/gcloud/
 .config/gedit/
 .config/gh/hosts-ci.yml
 .config/gh/hosts.yml
