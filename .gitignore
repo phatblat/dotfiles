@@ -322,6 +322,7 @@
 .vs/
 .vscode-cpptools/
 .vscode-insiders/
+.vscode-server/
 .vscode/
 .wget-hsts
 .windsurf/
