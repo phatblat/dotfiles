@@ -325,6 +325,7 @@
 .vscode-server/
 .vscode/
 .wget-hsts
+.windsurf-server/
 .windsurf/
 .wine/
 .xsel.log
