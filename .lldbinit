@@ -5,4 +5,4 @@ command alias foundation expr @import Foundation
 
 # LLDB scripts from DerekSelander
 #command script import "~/dev/xcode/LLDB/lldb_commands/dslldb.py"
-command script import "~/Library/Application Support/Kaleidoscope/lldb_ksdiff.py"
+command script import "/Users/phatblat/Library/Application Support/Kaleidoscope/lldb_ksdiff.py"
