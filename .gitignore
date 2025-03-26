@@ -290,6 +290,7 @@
 .serverlessrc
 .settings
 .settings/
+.skiko/
 .slocdata/
 .solargraph/
 .sonar/
