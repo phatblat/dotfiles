@@ -1,0 +1,7 @@
+# https://github.com/warpdotdev/Workflows/blob/main/FORMAT.md
+---
+name: Example workflow
+command: echo {{string}}
+arguments:
+  - name: string
+    description: The value to echo
