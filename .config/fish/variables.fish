@@ -252,7 +252,7 @@ end
 # Editor
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI "vim" # vi vim
-set --export EDITOR_GUI "code --new-window" # atom (vs)code mate mvim subl
+set --export EDITOR_GUI "windsurf --new-window"
 set --export WAIT_FLAG_CLI "--nofork"
 set --export WAIT_FLAG_GUI "--wait"
 
