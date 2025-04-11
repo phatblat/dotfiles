@@ -15,14 +15,14 @@
 
 echo ".zshrc"
 
-for file in ~/.dotfiles/**/*.zsh
-do
-  # Ensure $file is not a directory
-  if [[ -f "$file" ]]; then
-    echo $file
-    source "$file"
-  fi
-done
+# for file in ~/.dotfiles/**/*.zsh
+# do
+#   # Ensure $file is not a directory
+#   if [[ -f "$file" ]]; then
+#     echo $file
+#     source "$file"
+#   fi
+# done
 
 echo ".dotfiles loaded"
 
