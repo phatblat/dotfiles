@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 ################################################################################
 # mise
 ################################################################################
-echo 'eval "$($HOME/.local/bin/mise activate zsh)"'
+eval "$(mise activate zsh)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
