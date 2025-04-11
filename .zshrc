@@ -26,12 +26,15 @@ echo ".zshrc"
 
 echo ".dotfiles loaded"
 
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+################################################################################
+# oh-my-zsh
+################################################################################
+
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/phatblat/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,11 +104,13 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+################################################################################
 # mise
-echo 'eval "$(~/.local/bin/mise activate zsh)"'
+################################################################################
+echo 'eval "$($HOME/.local/bin/mise activate zsh)"'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # Added by Windsurf
-export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"

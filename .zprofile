@@ -15,11 +15,11 @@ export PATH="/opt/homebrew/bin:$PATH"
 eval "$(brew shellenv)"
 
 # Cargo
-source ~/.cargo/env
+source $PATH/.cargo/env
 
 # Jebrains Toolbox App scripts
-export PATH="$PATH:/Users/phatblat/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$PATH/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+source $PATH/.orbstack/shell/init.zsh 2>/dev/null || :
