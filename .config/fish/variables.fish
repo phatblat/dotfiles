@@ -144,10 +144,10 @@ set --local ruby_home (brew_home ruby)
 if test -d $ruby_home/bin
     fish_add_path $ruby_home/bin
 
-    set --export --global LDFLAGS "$LDFLAGS -L$ruby_home/lib"
-    set --export --global CFLAGS "-I $brew_home/include -I ext -I $ruby_home/include -L $brew_home/lib"
-    set --export --global CPPFLAGS $CFLAGS
-    set --export --global PKG_CONFIG_PATH "$PKG_CONFIG_PATH $ruby_home/lib/pkgconfig"
+    # set --export --global LDFLAGS "$LDFLAGS -L$ruby_home/lib"
+    # set --export --global CFLAGS "-I $brew_home/include -I ext -I $ruby_home/include -L $brew_home/lib"
+    # set --export --global CPPFLAGS $CFLAGS
+    # set --export --global PKG_CONFIG_PATH "$PKG_CONFIG_PATH $ruby_home/lib/pkgconfig"
 end
 
 # Ruby Gems
