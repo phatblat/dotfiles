@@ -49,9 +49,8 @@ function 🐍_pip \
         bumpversion \
         lizard \
         opendrop \
-        Pygments \
+        pre-commit \
         pylint \
-        Pygments \
         pynvim \
         twine \
         vendorize
