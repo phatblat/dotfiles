@@ -55,4 +55,9 @@ if status is-interactive
 end
 
 # Created by `pipx` on 2023-08-29 02:06:37
-set PATH $PATH /Users/phatblat/.local/bin
+set PATH $PATH ~/.local/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f ~/dev/google-cloud-sdk/path.fish.inc ]
+    . ~/dev/google-cloud-sdk/path.fish.inc
+end
