@@ -11,6 +11,7 @@ node = "23.4.0"
 just = "1.38.0"
 ruby = "3.3.6"
 python = "3.13.0"
+terraform = "1.11.4"
 
 [settings]
 experimental = true
