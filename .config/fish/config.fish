@@ -43,11 +43,6 @@ if status is-interactive
         eval (thefuck --alias | tr \n ';')
     end
 
-    if test -f ~/.config/op/plugins.sh
-        # 1Password CLI plugin
-        source ~/.config/op/plugins.sh
-    end
-
     # Warpify non-login shells that don' thave WARP_BOOTSTRAPPED defined.
     if begin ! status is-login; and test -z "$WARP_BOOTSTRAPPED"; end
         warpify
