@@ -14,3 +14,4 @@ python = "3.13.0"
 
 [settings]
 experimental = true
+idiomatic_version_file_enable_tools = ["node", "node"]
