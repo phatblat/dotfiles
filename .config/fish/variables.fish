@@ -40,6 +40,8 @@ set --export PING_IDENTITY_DEVOPS_REGISTRY docker.io/pingidentity
 set --export PING_IDENTITY_DEVOPS_TAG edge
 set --export PING_IDENTITY_ACCEPT_EULA Y
 
+set --export CC_wasm32_unknown_unknown (brew_home)"/opt/llvm/bin/clang"
+
 # OpenSSL
 set --export OPENSSL_ROOT (brew_home openssl@3)
 fish_add_path $OPENSSL_ROOT/bin
