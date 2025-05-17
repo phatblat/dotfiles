@@ -6,8 +6,8 @@
 [tools]
 bun = "1.1.38"
 dotnet = "8.0.404"
-yarn = "1.22.19" # Before node to override yarn 4.1
-node = "23.4.0"
+yarn = "1.22.19"     # Before node to override yarn 4.1
+node = "23.11.1"
 just = "1.38.0"
 ruby = "3.3.6"
 python = "3.13.0"
