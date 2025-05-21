@@ -51,6 +51,10 @@ _default:
 @versions:
     mise --version
 
+[group('info')]
+@outdated:
+    mise outdated --bump
+
 #
 # configuration group recipes
 #
