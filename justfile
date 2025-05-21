@@ -12,6 +12,7 @@ set ignore-comments := true
 # script-interpreter - Command used to invoke recipes with empty [script] attribute.
 
 set script-interpreter := ['bash', '-eu']
+set quiet := true
 
 # unstable - Enable unstable features. Required for --fmt.
 
@@ -20,10 +21,6 @@ set unstable := true
 #
 # variables
 #
-
-true := 'true'
-false := 'false'
-
 # ANSI colors for formatting output
 
 color_gray := '\e[90m'
@@ -37,6 +34,7 @@ color_reset := '\e[0m'
 
 alias fmt := format
 alias ls := list
+alias od := outdated
 
 #
 # info group recipes
@@ -47,12 +45,14 @@ alias ls := list
 _default:
     just --list
 
+# Lists installed tools managed by mise
 [group('info')]
-@versions:
-    mise --version
+list:
+    mise list --global
 
+# Lists available upgrades
 [group('info')]
-@outdated:
+outdated:
     mise outdated --bump
 
 #
@@ -61,15 +61,12 @@ _default:
 
 # Installs tools using mise
 [group('configuration')]
-@install:
+install:
     mise install
-
-list:
-    mise list --global
 
 # Formats mise config and justfile
 [group('configuration')]
-@format:
+format:
     mise fmt
     just --fmt
 
