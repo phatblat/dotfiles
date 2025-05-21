@@ -151,4 +151,3 @@ export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/phatblat/.dart-cli-completion/zsh-config.zsh ]] && . /Users/phatblat/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-

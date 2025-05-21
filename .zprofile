@@ -26,4 +26,3 @@ export PATH="$PATH:$PATH/Library/Application Support/JetBrains/Toolbox/scripts"
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source $PATH/.orbstack/shell/init.zsh 2>/dev/null || :
-
