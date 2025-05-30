@@ -1,5 +1,6 @@
 ---
 "input:open_completion_suggestions": ctrl-space
-"editor_view:insert_autosuggestion": tab
 "input:toggle_natural_language_command_search": ctrl-cmd-r
-"terminal:clear_blocks": none
+"editor_view:clear_lines": none
+"editor_view:insert_autosuggestion": tab
+"terminal:clear_blocks": shift-cmd-K
