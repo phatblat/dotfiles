@@ -4,7 +4,7 @@ function email_url \
 
     set -l user ben
     set -l work_org getditto
-    set -l work_domain ditto.live
+    set -l work_domain ditto.com
     set -l default $user@octop.ad
 
     if test -z "$url"
