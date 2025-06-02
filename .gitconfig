@@ -47,6 +47,7 @@
 [commit]
 	gpgsign = true
 	repo-state = red
+	template = ~/.gitmessage
 [core]
 	# pager = diff-so-fancy | less --tabs=4 --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
 	pager = delta
@@ -131,8 +132,8 @@
 	rebase = true
 [rerere]
 [user]
-	signingkey = /Users/phatblat/.ssh/id_ed25519.pub
+	signingkey = ~/.ssh/id_ed25519.pub
 [http]
 	postBuffer = 157286400
 [gpg "ssh"]
-	allowedSignersFile = /Users/phatblat/.git-allowed-signers
+	allowedSignersFile = ~/.git-allowed-signers
