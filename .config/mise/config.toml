@@ -6,7 +6,7 @@
 [tools]
 bun = "1.1.38"
 direnv = "2.36.0"
-dotnet = ["9.0.300", "8.0.409"]
+dotnet = ["8.0.409"]
 node = "23.11.1"
 "npm:yarn" = "1.22.19"
 "npm:prettier" = "3.5.3"
