@@ -49,5 +49,12 @@ function ignores
         # Bazel
         'bazel-*' \
         # Buck2
-        buck-out/
+        buck-out/ \
+        # Python
+        __pycache__/ \
+        # Node.js
+        node_modules/ \
+        # npm
+        .npm/ \
+
 end
