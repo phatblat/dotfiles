@@ -56,3 +56,8 @@ set PATH $PATH ~/.local/bin
 if [ -f ~/dev/google-cloud-sdk/path.fish.inc ]
     . ~/dev/google-cloud-sdk/path.fish.inc
 end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH ~/.cache/lm-studio/bin
+# End of LM Studio CLI section
+

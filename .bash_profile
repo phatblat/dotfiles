@@ -43,3 +43,8 @@ export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.bash 2>/dev/null || :
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+# End of LM Studio CLI section
+

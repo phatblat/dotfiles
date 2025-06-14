@@ -127,3 +127,8 @@ source /Users/phatblat/.config/broot/launcher/bash/br
 export PATH="$PATH:$HOME/.rvm/bin"
 eval "$(mise hook-env --shell=bash)"
 export PATH="/opt/homebrew/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+# End of LM Studio CLI section
+
