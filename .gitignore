@@ -321,6 +321,7 @@
 .vault_pass.txt
 .vim/
 .viminfo
+.void-editor/
 .vs-kubernetes/
 .vs/
 .vscode-cpptools/
@@ -498,6 +499,7 @@ Library/Application Support/Twitch/
 Library/Application Support/Vershd/
 Library/Application Support/VisualStudio/
 Library/Application Support/Vivaldi/
+Library/Application Support/Void/
 Library/Application Support/Wallpaper Wizard/
 Library/Application Support/WaveboxApp/
 Library/Application Support/Windsurf/
