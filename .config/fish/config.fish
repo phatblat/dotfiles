@@ -61,3 +61,8 @@ end
 set -gx PATH $PATH ~/.cache/lm-studio/bin
 # End of LM Studio CLI section
 
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/phatblat/.cache/lm-studio/bin
+# End of LM Studio CLI section
+
