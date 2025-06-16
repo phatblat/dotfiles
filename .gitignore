@@ -228,6 +228,7 @@
 .linuxkit/
 .lldb/
 .lldb/module_cache/
+.lmstudio/
 .local/
 .locks/
 .lsp4xml/
