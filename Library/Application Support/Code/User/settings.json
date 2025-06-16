@@ -195,5 +195,16 @@
   },
   "ansible.validation.lint.path": "uvx ansible-lint",
   "ansible.ansible.path": "uvx ansible",
-  "ansible.ansibleNavigator.path": "uvx ansible-navigator"
+  "ansible.ansibleNavigator.path": "uvx ansible-navigator",
+  "yaml.schemas": {
+    "/Users/phatblat/.vscode/extensions/continue.continue-1.0.13-darwin-arm64/config-yaml-schema.json": [
+      ".continue/**/*.yaml"
+    ]
+  },
+  "continue.enableConsole": true,
+  "continue.enableQuickActions": true,
+  "continue.telemetryEnabled": false,
+  "telemetry.feedback.enabled": false,
+  "chat.commandCenter.enabled": false,
+  "workbench.secondarySideBar.showLabels": false
 }
