@@ -164,6 +164,7 @@
 .config/zed/.tmp*
 .config/zed/conversations/
 .config/zed/embeddings/
+.config/zed/prompts/
 .continue/
 .cpan/
 .cups/
