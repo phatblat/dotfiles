@@ -130,6 +130,7 @@
 .config/hub
 .config/ibus/
 .config/jgit
+.config/jj/
 .config/kactivitymanagerdrc
 .config/karabiner/automatic_backups/
 .config/kdeconnect/
