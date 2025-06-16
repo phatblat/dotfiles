@@ -22,6 +22,8 @@ else
     set --export ARCHFLAGS "-arch x86_64"
 end
 
+set --export XDG_CONFIG_HOME $HOME/.config
+
 set --export GPG_TTY (tty)
 set --export GRADLE_HOME (brew_home gradle)/libexec
 set --export GROOVY_HOME (brew_home groovy)/libexec
