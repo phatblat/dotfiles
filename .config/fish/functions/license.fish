@@ -34,5 +34,5 @@ This repo is licensed under the MIT License. See the [LICENSE](LICENSE.md) file 
 
     # Commit the changes
     git add LICENSE.md README.md
-    git commit -m '📄 Add license to README.md'
+    git commit -m 'chore: add license to README.md'
 end
