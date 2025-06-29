@@ -1,0 +1,148 @@
+# Additional converted Fish functions (Batch 2)
+
+# getudid - Prints and copies the UDID of the connected iOS device
+function getudid() {
+    local udid=$(system_profiler SPUSBDataType | \
+        grep -A 11 -w "iPad\|iPhone\|iPad" | \
+        grep "Serial Number" | \
+        awk '{ print $3 }')
+    
+    if [[ -z "$udid" ]]; then
+        echo "No device detected. Please ensure an iOS device is plugged in."
+        return 1
+    else
+        for identifier in $udid; do
+            echo -n "$identifier" | pbcopy
+            echo "UDID: $identifier"
+        done
+    fi
+}
+
+# swift_pgp_key_import - Import the Swift PGP keys into your keyring
+function swift_pgp_key_import() {
+    gpg --keyserver hkp://pool.sks-keyservers.net \
+        --recv-keys \
+        '7463 A81A 4B2E EA1B 551F  FBCF D441 C977 412B 37AD' \
+        '1BE1 E29A 084C B305 F397  D62A 9F59 7F4D 21A5 6D5F' \
+        'A3BA FD35 56A5 9079 C068  94BD 63BC 1CFE 91D3 06C6' \
+        '5E4D F843 FB06 5D7F 7E24  FBA2 EF54 30F0 71E1 B235' \
+        '8513 444E 2DA3 6B7C 1659  AF4D 7638 F1FB 2B2B 08C4' \
+        'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561' \
+        '8A74 9566 2C3C D4AE 18D9  5637 FAF6 989E 1BC1 6FEA'
+    
+    # https://swift.org/download/#active-signing-keys
+    gpg --keyserver hkp://pool.sks-keyservers.net \
+        --recv-keys \
+        '8A74 9566 2C3C D4AE 18D9  5637 FAF6 989E 1BC1 6FEA'
+    
+    gpg --keyserver hkp://pool.sks-keyservers.net \
+        --recv-keys \
+        'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561'
+}
+
+# unshallow - Converts a shallow git repo to full
+function unshallow() {
+    git fetch --unshallow "$@"
+}
+
+# sync - Synchronizes a git repo
+function sync() {
+    if git_repo_dirty; then
+        echo "📥 Stashing changes"
+        stsave
+    fi
+    
+    local sync_branch="master"
+    if [[ "$sync_branch" != "$(current_branch)" ]]; then
+        git checkout "$sync_branch"
+    fi
+    
+    pull
+    
+    local remote_name=$(remote_for_current_branch)
+    prune "$remote_name"
+    
+    bra
+    
+    echo "prompt to delete any tracking branches that have lost their remotes, gone in bra output"
+}
+
+# gitconfig_setup - Sets git user.name and user.email in XDG_CONFIG_HOME
+function gitconfig_setup() {
+    local email="$1"
+    local name="$2"
+    
+    echo "🗄 Git configuration"
+    echo
+    
+    mkdir -p ~/.config/git
+    local global_config=~/.config/git/config
+    if [[ ! -f "$global_config" ]]; then
+        touch "$global_config"
+    fi
+    
+    # Just print the current config when values are set
+    if git config --file "$global_config" user.name >/dev/null 2>&1 && \
+       git config --file "$global_config" user.email >/dev/null 2>&1; then
+        cat "$global_config"
+        return 0
+    fi
+    
+    # Prompt to add required values
+    if [[ -z "$name" ]]; then
+        echo -n "Git user.name: "
+        read name
+    fi
+    
+    if [[ -z "$email" ]]; then
+        echo -n "Git user.email: "
+        read email
+    fi
+    
+    git config --file "$global_config" user.name "$name"
+    git config --file "$global_config" user.email "$email"
+    
+    echo "$global_config"
+    cat "$global_config"
+}
+
+# dss - Scale one or multiple replicated docker services
+function dss() {
+    docker service scale "$@"
+}
+
+# lgfind - Search through lightweight log `lg` for a specific pattern
+function lgfind() {
+    local search_term="$1"
+    if [[ -z "$search_term" ]]; then
+        echo "Usage: lgfind 'search term'"
+        return 1
+    fi
+    
+    lg -S "$search_term"
+}
+
+# ls - List files with colors and trailing slashes on directories
+function ls() {
+    # -p      Write a slash (`/') after each filename if that file is a directory.
+    # -G      Enable colorized output.  This option is equivalent to defining
+    # CLICOLOR in the environment.  (See lscolors.)
+    command ls -p "$@"
+}
+
+# fishlog - View fish daemon log
+function fishlog() {
+    less "/tmp/fishd.log.$USER"
+}
+
+# ida - Launch IDA with elevated privileges
+function ida() {
+    local ida_path="/Applications/IDA Pro 7.5"
+    
+    if [[ ! -d "$ida_path" ]]; then
+        echo "IDA is not installed"
+        return 1
+    fi
+    
+    sudo "$ida_path/idabin/ida64" "$@"
+}

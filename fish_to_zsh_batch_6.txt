@@ -1,0 +1,125 @@
+# Additional converted Fish functions (Batch 6)
+
+# clone - Performs a git clone, then configures repo user
+function clone() {
+    local url="$1"
+    local dir="$2"
+    
+    if [[ -z "$url" ]]; then
+        echo "Usage: clone url [dir]"
+        return 1
+    fi
+    
+    if [[ -z "$dir" ]]; then
+        # Extract directory name from URL (remove .git extension and get basename)
+        dir=$(basename "$url" .git)
+    fi
+    
+    git clone -- "$url" "$dir" && \
+    pushd "$dir" && \
+    git config user.email "$(email_url "$url")" && \
+    user
+}
+
+# macos - Manage macOS system updates (converted from 🖥_macos)
+function macos() {
+    echo "🖥  macOS"
+    
+    # Only install Rosetta 2 on M1 if not already installed
+    if [[ "$(uname -m)" == "arm64" && ! -f "/Library/Apple/usr/share/rosetta/rosetta" ]]; then
+        echo
+        echo "🌍  Rosetta 2"
+        sudo softwareupdate --install-rosetta
+    fi
+    
+    echo
+    echo "⌛️  Recently installed macOS system updates"
+    softwareupdate --history
+    
+    echo
+    echo "🔎  Checking macOS system updates"
+    softwareupdate --list
+    
+    echo
+    echo "⬆️  Updating macOS system software"
+    
+    # Download all updates before install
+    local output=$(softwareupdate --download --all --no-scan 2>&1)
+    
+    # Exit when "No updates are available."
+    if [[ -n "$output" ]]; then
+        echo "$output"
+        return
+    fi
+    
+    # sudo will prompt for password allowing one way to avoid a restart
+    sudo softwareupdate --install --all --no-scan --restart
+}
+
+# dcw - Diff the git staging area using word diff
+function dcw() {
+    git diff --cached --word-diff "$@"
+}
+
+# bpie - Install pods for Example app
+function bpie() {
+    bundle exec pod install \
+        --project-directory=Example \
+        "$@"
+}
+
+# dlogs - Fetch the logs of a docker container
+function dlogs() {
+    docker logs --follow "$@"
+}
+
+# ltime - Time last command took to complete
+function ltime() {
+    if [[ -n "$CMD_DURATION" ]]; then
+        echo "$(echo "scale=3; $CMD_DURATION / 1000" | bc)s"
+    else
+        echo "No command duration available"
+    fi
+}
+
+# nix_install - Installs nix tools (converted from ❄️_nix)
+function nix_install() {
+    echo "❄️ Nix - https://nixos.org/download.html#nix-install-macos"
+    echo
+    
+    if ! command -v nix-channel >/dev/null 2>&1; then
+        echo "❄️ Installing nix..."
+        curl -L https://nixos.org/nix/install | sh -s -- --daemon
+        
+        nixtest
+        
+        nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
+        nix-channel --update
+    fi
+}
+
+# brew_versions - Lists installed versions of a formula
+function brew_versions() {
+    local formula="$1"
+    if [[ -z "$formula" ]]; then
+        echo "Usage: brew_versions formula"
+        return 1
+    elif ! brew list "$formula" >/dev/null 2>&1; then
+        echo "$formula is not installed." >&2
+        return 2
+    fi
+    
+    # brew list --versions ruby output:
+    # ruby 2.3.3 2.4.1_1
+    brew list --versions "$formula" | cut -d' ' -f2-
+}
+
+# pil - Special "local" pod install for KP Mobile
+function pil() {
+    LOCAL=1 pod install "$@"
+}
+
+# is_linux - Tests whether the current computer is running Linux
+function is_linux() {
+    [[ "$OSTYPE" == "linux-gnu"* ]]
+}
