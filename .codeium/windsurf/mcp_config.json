@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": ""
+      }
+    },
+    "git": {
+      "command": "/Users/phatblat/.local/share/mise/installs/uv/0.7.16/uv-aarch64-apple-darwin/uv",
+      "args": [
+        "tool",
+        "run",
+        "mcp-server-git"
+      ],
+      "env": {}
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/phatblat"
+      ],
+      "env": {}
+    }
+  }
+}
