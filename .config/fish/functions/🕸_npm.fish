@@ -15,7 +15,9 @@ function 🕸_npm \
     # --------------------------------------------------------------------------
 
     set -l global_packages \
+        @anthropic-ai/claude-code \
         @bchatard/alfred-jetbrains \
+        @hubspot/cli \
         atlas-connect \
         eslint \
         express-generator \
@@ -24,7 +26,6 @@ function 🕸_npm \
         generator-code \
         gitmoji-cli \
         gulp \
-        @hubspot/cli \
         jake \
         jshint \
         json5 \
