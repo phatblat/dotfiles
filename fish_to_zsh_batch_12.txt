@@ -1,0 +1,69 @@
+# Additional converted Fish functions (Batch 12)
+
+# l - List files showing size, show type, human readable
+function l() {
+    ls -lFh "$@"
+}
+
+# la - Long list, show almost all, show type, human readable
+function la() {
+    ls -laFh "$@"
+}
+
+# ll - Long list
+function ll() {
+    ls -l "$@"
+}
+
+# lt - Long list, sorted by date, show type, human readable
+function lt() {
+    ls -otFh "$@"
+}
+
+# g - Gradle alias
+function g() {
+    gradle "$@"
+}
+
+# s - Display abbreviated git status
+function s() {
+    git status -sb "$@"
+}
+
+# d - Git diff with custom formatting
+function d() {
+    # --unified: Context lines
+    # --no-prefix: Do not show any source or destination prefix. (e.g. "a/" "b/")
+    # --no-indent-heuristic: Disable the default heuristic that shifts diff hunk boundaries to make patches easier to read.
+    git diff \
+        --unified=1 \
+        --no-prefix \
+        "$@"
+        
+        # word diff conflicts with diff-so-fancy
+        # --word-diff=color \
+        # --word-diff-regex='[^[:space:]]' \
+        # --diff-algorithm=default \
+        # --no-indent-heuristic \
+        # --ignore-cr-at-eol \
+}
+
+# a - Add files to git staging area
+function a() {
+    git add "$@"
+}
+
+# c - Performs a git checkout
+function c() {
+    git checkout "$@"
+}
+
+# o - Short alias for open
+function o() {
+    if [[ -z "$1" ]]; then
+        open .
+    else
+        # -t  Causes the given path to be opened with the default app, as determined via LaunchServices
+        open -t "$@"
+    fi
+}
