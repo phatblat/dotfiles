@@ -1,9 +1,11 @@
-# Wrapper for ps which isolates processes containing
-function psgrep --argument-names process
-    if test -z "$process"
-        echo "Usage: psgrep process"
+function psgrep \
+    --description 'Wrapper for ps which isolates processes containing a given string.' \
+    --argument-names process_name
+
+    if test -z "$process_name"
+        echo "Usage: psgrep process_name"
         return 1
     end
 
-    ps aux | grep --invert-match 'grep' | grep $process
+    ps aux | grep --invert-match 'grep' | grep $process_name
 end
