@@ -4,18 +4,18 @@
 #
 
 [tools]
-bun = "1.1.38"
-direnv = "2.36.0"
-dotnet = ["8.0.409"]
-node = "23.11.1"
-"npm:yarn" = "1.22.19"
-"npm:prettier" = "3.5.3"
-just = "1.38.0"
-packer = "1.12.0"
-python = "3.13.0"
-ruby = "3.3.6"
-terraform = "1.11.4"
+bun = "1.2.18"
+direnv = "2.37.0"
+dotnet = "9.0.301"
+just = "1.41.0"
+node = "24.4.0"
 "npm:ccusage" = "15.3.1"
+"npm:prettier" = "3.6.2"
+"npm:yarn" = "1.22.22"
+packer = "1.13.1"
+python = "3.13.5"
+ruby = "3.4.4"
+terraform = "1.12.2"
 
 [settings]
 experimental = true
