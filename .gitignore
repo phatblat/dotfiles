@@ -57,6 +57,7 @@
 .cisco/
 .classpath
 .claude.json
+.claude.json.backup
 .claude/
 .cmake-js/
 .cocoapods/
