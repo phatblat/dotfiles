@@ -2,7 +2,7 @@ function aws_test \
     --description='Test AWS credentials' \
     --argument-names profile_name
 
-    if test -z $argname
+    if test -z $profile_name
         set profile_name default
     end
 
