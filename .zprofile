@@ -18,18 +18,18 @@ eval "$(brew shellenv)"
 export PATH="$HOME/fvm/default/bin:$PATH"
 
 # Cargo
-source $PATH/.cargo/env
+source $HOME/.cargo/env
 
 # Jebrains Toolbox App scripts
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
-source $PATH/.orbstack/shell/init.zsh 2>/dev/null || :
+source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # Java
-export $JAVA_HOME="/opt/homebrew/opt/openjdk@17"
-export $PATH="$JAVA_HOME/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+export PATH="$JAVA_HOME/bin:$PATH"
 
 # Aliases
 alias ll='ls -l'
