@@ -4,6 +4,7 @@
 #
 
 [tools]
+"aqua:astral-sh/uv" = "0.7.21"
 bun = "1.2.18"
 direnv = "2.37.0"
 dotnet = "9.0.302"
