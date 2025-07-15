@@ -56,6 +56,11 @@ list:
 outdated:
     mise outdated --bump
 
+# Show Claude usage statistics
+[group('info')]
+usage:
+    ccusage
+
 #
 # configuration group recipes
 #
