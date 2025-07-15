@@ -1,5 +1,5 @@
 #
-# justfile for build-infra
+# justfile for ~phatblat
 #
 # export - Export all variables as environment variables.
 
@@ -35,6 +35,7 @@ color_reset := '\e[0m'
 alias fmt := format
 alias ls := list
 alias od := outdated
+alias up := upgrade
 
 #
 # info group recipes
@@ -63,6 +64,11 @@ outdated:
 [group('configuration')]
 install:
     mise install
+
+# Upgrades tools using mise
+[group('configuration')]
+upgrade:
+    mise upgrade --bump
 
 # Formats mise config and justfile
 [group('configuration')]
