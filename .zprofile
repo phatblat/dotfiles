@@ -8,7 +8,7 @@
 #
 #-------------------------------------------------------------------------------
 
-echo ".zprofile"
+# echo ".zprofile"
 
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
