@@ -67,4 +67,3 @@ set -gx PATH $PATH /Users/phatblat/.cache/lm-studio/bin
 # End of LM Studio CLI section
 
 
-alias claude="/Users/phatblat/.claude/local/claude"
