@@ -4,13 +4,14 @@
 #
 
 [tools]
-"aqua:astral-sh/uv" = "0.8.0"
-direnv = "2.37.0"
+"aqua:astral-sh/uv" = "0.8.3"
+direnv = "2.37.1"
 dotnet = "9.0.303"
-just = "1.42.2"
+just = "1.42.4"
 node = "24.4.1"
-"npm:ccusage" = "15.5.0"
-"npm:mint" = "4.2.24"
+"npm:@anthropic-ai/claude-code" = "1.0.61"
+"npm:ccusage" = "15.5.2"
+"npm:mint" = "4.2.34"
 "npm:prettier" = "3.6.2"
 "npm:yarn" = "1.22.22"
 packer = "1.13.1"
