@@ -156,4 +156,5 @@ export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
+eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
