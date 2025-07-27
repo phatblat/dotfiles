@@ -223,8 +223,7 @@ $env.config = {
     }
 
     filesize: {
-        metric: false # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-        format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
+        # metric and format options have been removed in newer versions
     }
 
     cursor_shape: {
@@ -234,8 +233,7 @@ $env.config = {
     }
 
     color_config: $dark_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
-    use_grid_icons: true
-    footer_mode: "25" # always, never, number_of_rows, auto
+    footer_mode: 25 # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     use_ansi_coloring: true
@@ -736,27 +734,27 @@ $env.config = {
             }
         }
         # VI Bindings
-        {
-            name: nu_vi_insert_mode
-            modifier: control
-            keycode: char_y
-            mode: vi_normal
-            event: {send: viinsertatlinestart}
-        }
+        # {
+        #     name: nu_vi_insert_mode
+        #     modifier: control
+        #     keycode: char_y
+        #     mode: vi_normal
+        #     event: {send: viinsertatlinestart}
+        # }
     ]
 }
 
 # Load starship prompt if available
-let starship_cache = ($nu.home-path | path join '.cache' 'starship' 'init.nu')
-if (which starship | is-not-empty) and ($starship_cache | path exists) {
-    source $starship_cache
+if (which starship | is-not-empty) and ("~/.cache/starship/init.nu" | path expand | path exists) {
+    source ~/.cache/starship/init.nu
 }
 
 # Load zoxide if available  
-let zoxide_cache = ($nu.home-path | path join '.cache' 'zoxide' 'init.nu')
-if (which zoxide | is-not-empty) and ($zoxide_cache | path exists) {
-    source $zoxide_cache
+if (which zoxide | is-not-empty) and ("~/.cache/zoxide/init.nu" | path expand | path exists) {
+    source ~/.cache/zoxide/init.nu
 }
+
+# mise integration will be loaded from env.nu
 
 # Useful aliases
 alias ll = ls -la
