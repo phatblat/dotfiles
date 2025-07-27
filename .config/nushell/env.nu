@@ -85,3 +85,7 @@ if (which zoxide | is-not-empty) {
     mkdir $zoxide_cache
     zoxide init nushell | save -f ($zoxide_cache | path join 'init.nu')
 }
+
+# Activate mise
+let mise_path = $nu.default-config-dir | path join mise.nu
+^mise activate nu | save $mise_path --force
