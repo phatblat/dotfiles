@@ -140,6 +140,7 @@
 .config/libreoffice/
 .config/lxterminal/
 .config/menus/
+.config/nushell/history.txt
 .config/op/
 .config/packer/
 .config/pulse/
