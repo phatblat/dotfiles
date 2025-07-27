@@ -7,6 +7,7 @@
 "aqua:astral-sh/uv" = "0.8.3"
 direnv = "2.37.1"
 dotnet = "9.0.303"
+fd = "10.2.0"
 just = "1.42.4"
 node = "24.4.1"
 "npm:@anthropic-ai/claude-code" = "1.0.61"
