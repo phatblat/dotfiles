@@ -774,3 +774,6 @@ alias gl = git pull
 # Development aliases
 alias j = just
 alias m = make
+
+# Source single-character aliases from fish shell conversion
+source ~/.config/nushell/single-char-aliases.nu
