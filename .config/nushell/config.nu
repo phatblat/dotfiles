@@ -777,3 +777,29 @@ alias m = make
 
 # Source single-character aliases from fish shell conversion
 source ~/.config/nushell/single-char-aliases.nu
+
+# Load mise (tool version management)
+source ~/.config/nushell/mise.nu
+
+# Load zoxide (smart directory navigation)
+if ('~/.cache/zoxide/init.nu' | path expand | path exists) {
+    source ~/.cache/zoxide/init.nu
+}
+
+# Load starship prompt
+if ('~/.cache/starship/init.nu' | path expand | path exists) {
+    source ~/.cache/starship/init.nu
+}
+
+# Zoxide aliases (in case the init script doesn't create them)
+alias z = zoxide query --
+alias zi = zoxide query -i
+alias za = zoxide add
+alias zq = zoxide query
+alias zr = zoxide remove
+
+# Load direnv
+# NOTE: Commented out until direnv adds support for Nushell
+# if ('~/.cache/direnv/init.nu' | path expand | path exists) {
+#     source ~/.cache/direnv/init.nu
+# }

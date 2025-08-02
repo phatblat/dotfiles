@@ -89,3 +89,18 @@ if (which zoxide | is-not-empty) {
 # Activate mise
 let mise_path = $nu.default-config-dir | path join mise.nu
 ^mise activate nu | save $mise_path --force
+
+# Initialize direnv if available
+# NOTE: Commented out until direnv adds support for Nushell
+# if (which direnv | is-not-empty) {
+#     let direnv_cache = ($nu.home-path | path join '.cache' 'direnv')
+#     mkdir $direnv_cache
+#     direnv hook nu | save -f ($direnv_cache | path join 'init.nu')
+# }
+
+# Add common paths
+$env.PATH = ($env.PATH | split row (char esep) | prepend [
+    ($nu.home-path | path join 'bin')
+    ($nu.home-path | path join '.cargo' 'bin')
+    ($nu.home-path | path join '.local' 'bin')
+] | uniq)
