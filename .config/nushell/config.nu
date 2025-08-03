@@ -803,3 +803,12 @@ alias zr = zoxide remove
 # if ('~/.cache/direnv/init.nu' | path expand | path exists) {
 #     source ~/.cache/direnv/init.nu
 # }
+
+# Git log functions
+def lg [] {
+    lg10
+}
+
+def lg10 [...args] {
+    git log -10 --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' ...$args
+}
