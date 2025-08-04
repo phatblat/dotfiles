@@ -35,6 +35,7 @@ color_reset := '\e[0m'
 alias fmt := format
 alias ls := list
 alias od := outdated
+alias ub := usage-board
 alias up := upgrade
 
 #
@@ -60,6 +61,11 @@ outdated:
 [group('info')]
 usage:
     ccusage
+
+# Show Claude usage statistics dashboard
+[group('info')]
+usage-board:
+    ccusage blocks --live
 
 #
 # configuration group recipes
