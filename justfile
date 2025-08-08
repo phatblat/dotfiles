@@ -87,6 +87,11 @@ format:
     mise fmt
     just --fmt
 
+# Removes default.store files
+[group('configuration')]
+clean:
+    rm "$HOME/Library/Application Support/default.store"*
+
 #
 # checks group recipes
 #
