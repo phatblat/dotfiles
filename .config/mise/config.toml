@@ -20,7 +20,7 @@ packer = "1.14.0"
 python = "3.13.5"
 ruby = "3.4.5"
 terraform = "1.12.2"
-uv = "0.8.4"
+uv = "0.8.5"
 
 [settings]
 experimental = true
