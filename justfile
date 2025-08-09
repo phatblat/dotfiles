@@ -87,10 +87,11 @@ format:
     mise fmt
     just --fmt
 
-# Removes default.store files
+# Removes default.store files and *.hprof files
 [group('configuration')]
 clean:
     rm "$HOME/Library/Application Support/default.store"*
+    rm "$HOME"/*.hprof
 
 #
 # checks group recipes
