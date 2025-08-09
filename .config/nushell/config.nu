@@ -812,3 +812,64 @@ def lg [] {
 def lg10 [...args] {
     git log -10 --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' ...$args
 }
+
+# Git push
+def push [...args] {
+    git push ...$args
+}
+
+# Force a git push
+def pushf [...args] {
+    git push --force ...$args
+}
+
+# Git pull
+def pull [...args] {
+    git pull ...$args
+}
+
+# Fetch branch from the default git remote
+def fetch [...args] {
+    git fetch --prune ...$args
+}
+
+# Creates a local tracking branch
+def track [remote_branch?: string, local_name?: string] {
+    if $remote_branch == null {
+        print "Usage: track remote_branch [local_name]"
+        return
+    }
+    if $local_name == null {
+        git checkout --track $remote_branch
+    } else {
+        git checkout --track $remote_branch -b $local_name
+    }
+}
+
+# List git remote details
+def rv [] {
+    let remotes = git remote -v | lines
+    
+    if ($remotes | is-empty) {
+        print "No remotes are currently defined."
+        return
+    }
+    
+    # Parse git remote -v output and get unique remotes
+    let parsed_remotes = $remotes | each {|line|
+        let parts = $line | split column -c '\t'
+        if ($parts | length) > 0 {
+            $parts | get column1
+        }
+    } | uniq
+    
+    # Display remotes in a table
+    $parsed_remotes | each {|remote| 
+        {remote: $remote}
+    }
+}
+
+# Forcefully delete a branch from git
+def bd [...args] {
+    git branch -D ...$args
+}
