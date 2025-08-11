@@ -17,10 +17,10 @@ gradle = "9.0.0"
 just = "1.42.4"
 node = "24.4.1"
 packer = "1.14.1"
-python = "3.13.5"
+python = "3.13.6"
 ruby = "3.4.5"
 terraform = "1.12.2"
-uv = "0.8.5"
+uv = "0.8.8"
 
 [settings]
 experimental = true
