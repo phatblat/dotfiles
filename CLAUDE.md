@@ -58,6 +58,11 @@ make          # Default target
 make build    # Build project
 make test     # Run tests
 make clean    # Clean build artifacts
+
+# For Gradle-based projects (Kotlin/Java)
+./gradlew build   # Build project
+./gradlew test    # Run tests
+./gradlew clean   # Clean build artifacts
 ```
 
 ### Development Workflow
@@ -68,6 +73,46 @@ direnv allow  # Load project environment variables (if .envrc exists)
 
 # Common development tasks
 mise exec -- <command>  # Run command with project tools
+```
+
+### Testing Commands
+```bash
+# Rust projects
+cargo test                    # Run all tests
+cargo test --workspace       # Test entire workspace
+cargo test -- --nocapture    # Show println! output
+
+# Swift projects
+swift test                   # Run all tests
+swift test --parallel       # Run tests in parallel
+
+# Kotlin/Gradle projects
+./gradlew test              # Run unit tests
+./gradlew connectedTest     # Run instrumented tests (Android)
+./gradlew check             # Run all verification tasks
+
+# Ditto specific
+make test                   # Run core tests
+make test-android          # Run Android SDK tests
+make test-ios              # Run iOS SDK tests
+```
+
+### Linting and Formatting
+```bash
+# Rust
+cargo fmt                   # Format code
+cargo fmt --check          # Check formatting without changes
+cargo clippy               # Run linter
+cargo clippy -- -D warnings # Treat warnings as errors
+
+# Kotlin
+./gradlew ktlintCheck      # Check code style
+./gradlew ktlintFormat     # Auto-format code
+./gradlew detekt           # Static code analysis
+
+# Swift
+swiftlint                  # Lint code (if installed)
+swift-format               # Format code (if installed)
 ```
 
 ## Git Configuration
@@ -111,11 +156,29 @@ The primary focus is on Ditto, a real-time synchronization platform:
 - Extensive cross-compilation support
 - CI/CD via Buildkite with custom infrastructure
 
+**Common Ditto Commands**:
+```bash
+make                    # Build default targets
+make test              # Run all tests
+make test-rust         # Run Rust tests only
+make build-android     # Build Android SDK
+make build-ios         # Build iOS SDK
+make clean             # Clean all build artifacts
+```
+
 ### KMP Projects (`dev/kmp/`)
 - Kotlin Multiplatform Mobile projects
 - Gradle-based builds (`build.gradle.kts`)
 - Focus on Rust integration with KMP
 - Use `mise` for tool management
+
+**Common KMP Commands**:
+```bash
+./gradlew build                    # Build all targets
+./gradlew :shared:test            # Test shared module
+./gradlew :androidApp:assembleDebug # Build Android app
+./gradlew :shared:iosSimulatorArm64Test # Test iOS
+```
 
 ### Swift Projects (`dev/swift/`)
 - Swift Package Manager projects
@@ -169,3 +232,140 @@ The workspace includes 700+ custom Fish functions providing shortcuts for:
 - Complex multi-platform builds still use Make
 
 This workspace represents a sophisticated, enterprise-level development environment focused on real-time synchronization technology with emphasis on multi-platform SDK development and modern developer experience.
+
+## Troubleshooting
+
+### Common Build Issues
+
+**Rust/Cargo Issues**:
+```bash
+# Clear cargo cache if builds fail
+cargo clean
+rm -rf ~/.cargo/registry/cache
+
+# Update dependencies
+cargo update
+
+# Check for outdated dependencies
+cargo outdated
+```
+
+**Android Build Issues**:
+```bash
+# Clean Android build cache
+./gradlew clean
+./gradlew --stop  # Stop Gradle daemon
+rm -rf ~/.gradle/caches
+
+# Ensure Android SDK is properly set
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+```
+
+**iOS/macOS Build Issues**:
+```bash
+# Clean derived data
+rm -rf ~/Library/Developer/Xcode/DerivedData
+
+# Reset Swift Package Manager cache
+swift package reset
+
+# Update CocoaPods (if used)
+pod repo update
+pod install
+```
+
+### Environment Setup Issues
+
+**mise Tool Version Conflicts**:
+```bash
+# Reset mise plugins
+mise plugins update
+
+# Reinstall specific tool
+mise uninstall <tool>@<version>
+mise install <tool>@<version>
+
+# Check which tools are installed
+mise list
+```
+
+**Fish Shell Issues**:
+```fish
+# Reload configuration
+source ~/.config/fish/config.fish
+
+# Debug function loading
+functions -v <function-name>
+
+# Clear Fish command history if corrupted
+rm ~/.local/share/fish/fish_history
+```
+
+## Quick Start Guides
+
+### Starting a New Rust Project
+```bash
+cd dev/rust
+cargo new my-project
+cd my-project
+echo "rust = \"stable\"" > mise.toml
+mise install
+just init  # If using justfile
+```
+
+### Starting a New KMP Project
+```bash
+cd dev/kmp
+# Use Android Studio's KMP wizard or:
+git clone https://github.com/Kotlin/kmm-basic-sample.git my-project
+cd my-project
+mise install
+./gradlew build
+```
+
+### Starting a New Swift Package
+```bash
+cd dev/swift
+mkdir my-package && cd my-package
+swift package init --type library
+# or --type executable for CLI tools
+swift build
+swift test
+```
+
+## CI/CD Integration
+
+### Running CI Checks Locally
+
+**For Buildkite Projects**:
+```bash
+# Install buildkite CLI
+brew install buildkite/buildkite/bk
+
+# Run pipeline locally (requires Docker)
+bk local run
+
+# Validate pipeline without running
+bk pipeline validate
+```
+
+**Pre-push Checks**:
+```bash
+# Run these before pushing to avoid CI failures
+just lint      # If justfile exists
+just test
+cargo fmt --check  # For Rust projects
+./gradlew check    # For Gradle projects
+```
+
+## Additional Resources
+
+- **Ditto Documentation**: Internal docs in `dev/ditto/docs/`
+- **Fish Shell Docs**: https://fishshell.com/docs/current/
+- **mise Documentation**: https://mise.jdx.dev/
+- **Just Documentation**: https://just.systems/
+
+## Nushell Migration Note
+
+This workspace is currently experimenting with Nushell as a potential replacement for Fish shell. The `nushell` branch contains experimental configurations. Fish shell remains the primary shell for now.

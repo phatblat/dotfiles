@@ -35,6 +35,7 @@ color_reset := '\e[0m'
 alias fmt := format
 alias ls := list
 alias od := outdated
+alias ub := usage-board
 alias up := upgrade
 
 #
@@ -61,6 +62,11 @@ outdated:
 usage:
     ccusage
 
+# Show Claude usage statistics dashboard
+[group('info')]
+usage-board:
+    ccusage blocks --live
+
 #
 # configuration group recipes
 #
@@ -80,6 +86,12 @@ upgrade:
 format:
     mise fmt
     just --fmt
+
+# Removes default.store files and *.hprof files from home directory
+[group('configuration')]
+clean:
+    rm -f "$HOME/Library/Application Support/default.store"*
+    rm -f "$HOME"/*.hprof
 
 #
 # checks group recipes

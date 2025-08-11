@@ -116,11 +116,21 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. .bash_profile
-. "$HOME/.cargo/env"
+# Cargo & Rust
+source "$HOME/.cargo/env"
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Initialize zoxide
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init bash)"
+fi
+
+# Activate mise
+eval "$(mise activate bash)"
+
+# broot
 source /Users/phatblat/.config/broot/launcher/bash/br
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

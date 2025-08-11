@@ -1,0 +1,1 @@
+{"apps":{"http":{"servers":{"srv0":{"listen":[":12345"],"routes":[{"handle":[{"handler":"reverse_proxy","upstreams":[{"dial":"localhost:1234"}]}]}]}}}}}

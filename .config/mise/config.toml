@@ -4,22 +4,24 @@
 #
 
 [tools]
-"aqua:astral-sh/uv" = "0.8.3"
-direnv = "2.37.1"
-dotnet = "9.0.303"
-just = "1.42.4"
-node = "24.4.1"
-"npm:@anthropic-ai/claude-code" = "1.0.61"
+"npm:@anthropic-ai/claude-code" = "1.0.64"
 "npm:ccusage" = "15.5.2"
-"npm:mint" = "4.2.34"
+"npm:mint" = "4.2.45"
 "npm:prettier" = "3.6.2"
 "npm:yarn" = "1.22.22"
-packer = "1.13.1"
-python = "3.13.5"
+bun = "1.2.20"
+direnv = "2.37.1"
+dotnet = "8.0.412"
+fd = "10.2.0"
+gradle = "9.0.0"
+just = "1.42.4"
+node = "24.4.1"
+packer = "1.14.1"
+python = "3.13.6"
 ruby = "3.4.5"
 terraform = "1.12.2"
+uv = "0.8.8"
 
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["node", "node"]
-
