@@ -4,7 +4,7 @@
 #
 
 [tools]
-"npm:@anthropic-ai/claude-code" = "1.0.64"
+"npm:@anthropic-ai/claude-code" = "1.0.72"
 "npm:ccusage" = "15.5.2"
 "npm:mint" = "4.2.45"
 "npm:prettier" = "3.6.2"
