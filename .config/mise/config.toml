@@ -6,7 +6,7 @@
 [tools]
 "npm:@anthropic-ai/claude-code" = "1.0.72"
 "npm:ccusage" = "15.9.3"
-"npm:mint" = "4.2.45"
+"npm:mint" = "4.2.65"
 "npm:prettier" = "3.6.2"
 "npm:yarn" = "1.22.22"
 bun = "1.2.20"
