@@ -21,11 +21,4 @@ disabled = false
 disabled = true
 
 [line_break]
-disabled = true
-
-# Get editor completions based on the config schema
-'' = 'https://starship.rs/config-schema.json'
-
-# Disables the custom module
-[custom]
 disabled = false
