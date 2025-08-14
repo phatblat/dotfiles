@@ -4,9 +4,9 @@
 #
 
 [tools]
-"npm:@anthropic-ai/claude-code" = "1.0.72"
-"npm:ccusage" = "15.9.3"
-"npm:mint" = "4.2.65"
+"npm:@anthropic-ai/claude-code" = "1.0.81"
+"npm:ccusage" = "15.9.5"
+"npm:mint" = "4.2.71"
 "npm:prettier" = "3.6.2"
 "npm:yarn" = "1.22.22"
 bun = "1.2.20"
@@ -15,13 +15,14 @@ dotnet = "8.0.412"
 fd = "10.2.0"
 gradle = "9.0.0"
 just = "1.42.4"
-node = "24.5.0"
+node = "24.6.0"
 packer = "1.14.1"
 python = "3.13.6"
 ruby = "3.4.5"
 terraform = "1.12.2"
-uv = "0.8.8"
-go = "1.24.6"
+uv = "0.8.10"
+go = "1.25.0"
+shfmt = "3.12.0"
 
 [settings]
 experimental = true
