@@ -23,6 +23,7 @@ terraform = "1.12.2"
 uv = "0.8.10"
 go = "1.25.0"
 shfmt = "3.12.0"
+"npm:@tauri-apps/cli" = "2.7.1"
 
 [settings]
 experimental = true
