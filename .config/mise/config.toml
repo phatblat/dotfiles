@@ -4,26 +4,26 @@
 #
 
 [tools]
-"npm:@anthropic-ai/claude-code" = "1.0.81"
-"npm:ccusage" = "15.9.5"
-"npm:mint" = "4.2.71"
+"npm:@anthropic-ai/claude-code" = "1.0.83"
+"npm:@tauri-apps/cli" = "2.7.1"
+"npm:ccusage" = "15.9.7"
+"npm:mint" = "4.2.75"
 "npm:prettier" = "3.6.2"
 "npm:yarn" = "1.22.22"
 bun = "1.2.20"
 direnv = "2.37.1"
 dotnet = "8.0.412"
 fd = "10.2.0"
+go = "1.25.0"
 gradle = "9.0.0"
 just = "1.42.4"
 node = "24.6.0"
 packer = "1.14.1"
-python = "3.13.6"
+python = "3.13.7"
 ruby = "3.4.5"
-terraform = "1.12.2"
-uv = "0.8.10"
-go = "1.25.0"
 shfmt = "3.12.0"
-"npm:@tauri-apps/cli" = "2.7.1"
+terraform = "1.12.2"
+uv = "0.8.11"
 
 [settings]
 experimental = true
