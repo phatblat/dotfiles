@@ -873,3 +873,6 @@ def rv [] {
 def bd [...args] {
     git branch -D ...$args
 }
+
+# Claude alias
+alias claude = ~/.claude/local/claude

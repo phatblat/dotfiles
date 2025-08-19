@@ -44,3 +44,6 @@ export NVM_DIR="$HOME/.config/nvm"
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
+# Claude alias
+alias claude="$HOME/.claude/local/claude"
+

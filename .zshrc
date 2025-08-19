@@ -149,12 +149,14 @@ export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/phatblat/.dart-cli-completion/zsh-config.zsh ]] && . /Users/phatblat/.dart-cli-completion/zsh-config.zsh || true
+[[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
+
+alias claude="$HOME/.claude/local/claude"

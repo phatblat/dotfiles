@@ -4,7 +4,6 @@
 #
 
 [tools]
-"npm:@anthropic-ai/claude-code" = "1.0.83"
 "npm:@tauri-apps/cli" = "2.7.1"
 "npm:ccusage" = "15.9.7"
 "npm:mint" = "4.2.75"

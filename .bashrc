@@ -142,3 +142,6 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
+# Claude alias
+alias claude="$HOME/.claude/local/claude"
+
