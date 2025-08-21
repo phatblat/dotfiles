@@ -1,0 +1,59 @@
+{
+  "env": {
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "DISABLE_AUTOUPDATER": "0"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "if [[ \"$( jq -r .tool_input.file_path )\" =~ \\.(ts|tsx|js|jsx)$ ]]; then prettier --write \"$( jq -r .tool_input.file_path )\"; fi",
+            "type": "command"
+          },
+          {
+            "command": "if [[ \"$( jq -r .tool_input.file_path )\" =~ \\.go$ ]]; then gofmt -w \"$( jq -r .tool_input.file_path )\"; fi",
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit|MultiEdit"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "if [[ \"$(jq -r .tool_input.command)\" =~ \"git commit\" ]] && [[ \"$(git branch --show-current 2>/dev/null)\" =~ ^(main|master)$ ]]; then echo \"Direct commits to main/master branch are not allowed\"; exit 2; fi",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(abbr:*)",
+      "Bash(brew list:*)",
+      "Bash(brew install:*)",
+      "Bash(ccr code)",
+      "Bash(echo:*)",
+      "Bash(fish:*)",
+      "Bash(git add:*)",
+      "Bash(grep:*)",
+      "Bash(mise config:*)",
+      "Bash(nu:*)",
+      "Bash(perl:*)",
+      "Bash(pip index versions:*)",
+      "Bash(rm:*)",
+      "Bash(sed:*)"
+    ],
+    "deny": []
+  },
+  "statusLine": {
+    "command": "npx -y @owloops/claude-powerline@latest --style=powerline",
+    "padding": 0,
+    "type": "command"
+  }
+}

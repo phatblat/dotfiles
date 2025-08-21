@@ -1,0 +1,3 @@
+- never use the word comprehensive
+- do not leave trailing spaces at the end of lines you touch unless they have meaning
+- when needing to install a cli tool globally, use `mise search` and `mise use` with the value of the latest version number. these mise commands should be ran in the $HOME directory to update the ~/.config/mise/config.toml file. when a tool is not available through mise, install through homebrew using the `brew search` and `brew install` commands.

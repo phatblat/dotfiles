@@ -57,8 +57,6 @@
 .cisco/
 .classpath
 .claude.json
-.claude.json.backup
-.claude/
 .cmake-js/
 .cocoapods/
 .codeium/
@@ -707,7 +705,6 @@ __z_clean.fish
 bin/
 build/
 cali_core4/
-claude/
 cmake-build-debug/
 data/
 dev
