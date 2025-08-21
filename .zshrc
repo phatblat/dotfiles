@@ -160,3 +160,8 @@ eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
 alias claude="$HOME/.claude/local/claude"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+# End of LM Studio CLI section
+
