@@ -12,35 +12,35 @@ This document catalogs all Fish shell functions, aliases, abbreviations, and var
 
 ### Git Functions (130+)
 - [x] `a.fish` - git add
-- [ ] `aa.fish` - git add all
-- [ ] `abort.fish` - git abort operations
-- [ ] `add.fish` - git add
-- [ ] `amend.fish` - git commit amend
-- [ ] `amendne.fish` - git commit amend no edit
-- [ ] `ane.fish` - amend no edit
+- [x] `aa.fish` - git add all
+- [x] `abort.fish` - git abort operations
+- [x] `add.fish` - git add
+- [x] `amend.fish` - git commit amend
+- [x] `amendne.fish` - git commit amend no edit
+- [x] `ane.fish` - amend no edit
 - [ ] `assume.fish` - git assume unchanged
 - [ ] `assumed.fish` - list assumed files
-- [ ] `bisect.fish` - git bisect
+- [x] `bisect.fish` - git bisect
 - [x] `branch.fish` - git branch operations
 - [x] `checkout.fish` - git checkout
-- [ ] `cherry-pick.fish` - git cherry-pick
-- [ ] `clone.fish` - git clone
+- [x] `cherry-pick.fish` - git cherry-pick
+- [x] `clone.fish` - git clone
 - [ ] `clone_or_pull.fish` - clone or pull repo
-- [ ] `cmt.fish` - git commit
-- [ ] `cmtne.fish` - git commit no edit
-- [ ] `commit.fish` - git commit
+- [x] `cmt.fish` - git commit
+- [x] `cmtne.fish` - git commit no edit
+- [x] `commit.fish` - git commit
 - [ ] `cont.fish` - git continue
 - [ ] `current_branch.fish` - show current branch
-- [ ] `delete-tag.fish` - delete git tag
+- [x] `delete-tag.fish` - delete git tag
 - [ ] `deleted.fish` - show deleted files
 - [x] `diff.fish` - git diff
-- [ ] `difftool.fish` - git difftool
+- [x] `difftool.fish` - git difftool
 - [ ] `dirty.fish` - check if repo is dirty
 - [x] `fetch.fish` - git fetch
 - [ ] `files_changed.fish` - list changed files
 - [ ] `format-patch.fish` - git format-patch
-- [ ] `gc.fish` - git gc
-- [ ] `gd.fish` - git diff
+- [x] `gc.fish` - git gc
+- [x] `gd.fish` - git diff
 - [ ] `gh_token_test.fish` - test GitHub token
 - [ ] `gi.fish` - git init
 - [ ] `ginit.fish` - git init
@@ -63,30 +63,30 @@ This document catalogs all Fish shell functions, aliases, abbreviations, and var
 - [ ] `ignored.fish` - list ignored files
 - [ ] `ignores.fish` - show ignores
 - [ ] `index.fish` - git index operations
-- [ ] `init.fish` - git init
+- [x] `init.fish` - git init
 - [ ] `lfs.fish` - git lfs
 - [x] `lg.fish` - git log graph
-- [ ] `lg1.fish` - git log oneline
+- [x] `lg1.fish` - git log oneline
 - [x] `lg10.fish` - git log 10 commits
 - [ ] `lga.fish` - git log all
 - [ ] `lgfind.fish` - find in git log
 - [ ] `lgg.fish` - git log grep
 - [ ] `lggrep.fish` - grep git log
 - [ ] `list-authors.fish` - list git authors
-- [ ] `log.fish` - git log
+- [x] `log.fish` - git log
 - [ ] `log1.fish` - git log oneline
-- [ ] `log10.fish` - git log 10
-- [ ] `ls-files.fish` - git ls-files
-- [ ] `ls-remote.fish` - git ls-remote
+- [x] `log10.fish` - git log 10
+- [x] `ls-files.fish` - git ls-files
+- [x] `ls-remote.fish` - git ls-remote
 - [ ] `ls-tree.fish` - git ls-tree
 - [x] `merge.fish` - git merge
 - [ ] `merge-base.fish` - git merge-base
-- [ ] `mergetool.fish` - git mergetool
+- [x] `mergetool.fish` - git mergetool
 - [ ] `mirror.fish` - git mirror
 - [ ] `ours.fish` - git checkout --ours
-- [ ] `pick.fish` - git cherry-pick
-- [ ] `pop.fish` - git stash pop
-- [ ] `prune.fish` - git prune
+- [x] `pick.fish` - git cherry-pick
+- [x] `pop.fish` - git stash pop
+- [x] `prune.fish` - git prune
 - [ ] `prunep.fish` - git prune packed
 - [ ] `prunesvn.fish` - prune svn
 - [x] `pull.fish` - git pull
@@ -97,13 +97,13 @@ This document catalogs all Fish shell functions, aliases, abbreviations, and var
 - [ ] `pushtags.fish` - git push tags
 - [x] `rebase.fish` - git rebase
 - [ ] `ref.fish` - git ref
-- [ ] `reflog.fish` - git reflog
-- [ ] `remote.fish` - git remote
+- [x] `reflog.fish` - git reflog
+- [x] `remote.fish` - git remote
 - [ ] `remote_for_current_branch.fish` - get remote for branch
-- [ ] `reset.fish` - git reset
-- [ ] `restore.fish` - git restore
+- [x] `reset.fish` - git reset
+- [x] `restore.fish` - git restore
 - [ ] `rev-list.fish` - git rev-list
-- [ ] `rev-parse.fish` - git rev-parse
+- [x] `rev-parse.fish` - git rev-parse
 - [ ] `revert.fish` - git revert
 - [ ] `rewrite.fish` - git rewrite
 - [ ] `scrub.fish` - git scrub
@@ -112,28 +112,28 @@ This document catalogs all Fish shell functions, aliases, abbreviations, and var
 - [ ] `sha1.fish` - SHA1 hash
 - [ ] `sha256.fish` - SHA256 hash
 - [ ] `shacopy.fish` - copy SHA
-- [ ] `shortlog.fish` - git shortlog
+- [x] `shortlog.fish` - git shortlog
 - [ ] `shortsha.fish` - short SHA
-- [ ] `show.fish` - git show
+- [x] `show.fish` - git show
 - [ ] `showgit.fish` - show git info
 - [ ] `showgit_remote.fish` - show git remote
 - [ ] `showsvn.fish` - show SVN info
 - [ ] `skip.fish` - git skip
 - [x] `st.fish` - git status
-- [ ] `stapply.fish` - git stash apply
-- [ ] `stash.fish` - git stash
+- [x] `stapply.fish` - git stash apply
+- [x] `stash.fish` - git stash
 - [ ] `status_current.fish` - current status
-- [ ] `stdrop.fish` - git stash drop
-- [ ] `stlist.fish` - git stash list
-- [ ] `stpop.fish` - git stash pop
-- [ ] `stsave.fish` - git stash save
-- [ ] `stshow.fish` - git stash show
+- [x] `stdrop.fish` - git stash drop
+- [x] `stlist.fish` - git stash list
+- [x] `stpop.fish` - git stash pop
+- [x] `stsave.fish` - git stash save
+- [x] `stshow.fish` - git stash show
 - [ ] `stsnapshot.fish` - git stash snapshot
-- [ ] `submodule.fish` - git submodule
+- [x] `submodule.fish` - git submodule
 - [ ] `subrepo.fish` - git subrepo
 - [ ] `subs.fish` - git submodules
 - [ ] `sync.fish` - git sync
-- [ ] `tag.fish` - git tag
+- [x] `tag.fish` - git tag
 - [ ] `theirs.fish` - git checkout --theirs
 - [x] `track.fish` - git track
 - [ ] `tracked.fish` - list tracked files

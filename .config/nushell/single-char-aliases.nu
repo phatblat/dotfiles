@@ -2,22 +2,22 @@
 
 # a - Add files to git staging area
 def a [...files] {
-    git add ...$files
+    ^git add ...$files
 }
 
 # b - Manage git branch
 def b [...args] {
-    git branch ...$args
+    ^git branch ...$args
 }
 
 # c - Performs a git checkout
 def c [...args] {
-    git checkout ...$args
+    ^git checkout ...$args
 }
 
 # d - Git diff with custom options
 def d [...args] {
-    git diff --unified=1 --no-prefix ...$args
+    ^git diff --unified=1 --no-prefix ...$args
 }
 
 # e - Short alias for editing a file using VISUAL or EDITOR
@@ -34,7 +34,7 @@ def g [...args] {
 
 # m - Git merge
 def m [...args] {
-    git merge ...$args
+    ^git merge ...$args
 }
 
 # o - Short alias for open
@@ -51,10 +51,10 @@ def o [path?: string] {
 def r [count?: int = 10] {
     # Note: toggle_wait is a fish-specific function
     # In nushell, we can just run the command directly
-    git rebase --interactive $"HEAD~($count)"
+    ^git rebase --interactive $"HEAD~($count)"
 }
 
 # s - Display abbreviated git status
 def s [...args] {
-    git status -sb ...$args
+    ^git status -sb ...$args
 }

@@ -764,12 +764,12 @@ alias c = clear
 alias e = exit
 
 # Git aliases
-alias g = git
-alias ga = git add
-alias gst = git status
-alias gc = git commit
-alias gp = git push
-alias gl = git pull
+alias g = ^git 
+alias ga = ^git add
+alias gst = ^git status
+alias gc = ^git commit
+alias gp = ^git push
+alias gl = ^git pull
 
 # Development aliases
 alias j = just
@@ -810,27 +810,27 @@ def lg [] {
 }
 
 def lg10 [...args] {
-    git log -10 --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' ...$args
+    ^git log -10 --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' ...$args
 }
 
 # Git push
 def push [...args] {
-    git push ...$args
+    ^git push ...$args
 }
 
-# Force a git push
+# Force a ^git push
 def pushf [...args] {
-    git push --force ...$args
+    ^git push --force ...$args
 }
 
 # Git pull
 def pull [...args] {
-    git pull ...$args
+    ^git pull ...$args
 }
 
-# Fetch branch from the default git remote
+# Fetch branch from the default ^git remote
 def fetch [...args] {
-    git fetch --prune ...$args
+    ^git fetch --prune ...$args
 }
 
 # Creates a local tracking branch
@@ -840,22 +840,22 @@ def track [remote_branch?: string, local_name?: string] {
         return
     }
     if $local_name == null {
-        git checkout --track $remote_branch
+        ^git checkout --track $remote_branch
     } else {
-        git checkout --track $remote_branch -b $local_name
+        ^git checkout --track $remote_branch -b $local_name
     }
 }
 
-# List git remote details
+# List ^git remote details
 def rv [] {
-    let remotes = git remote -v | lines
+    let remotes = ^git remote -v | lines
     
     if ($remotes | is-empty) {
         print "No remotes are currently defined."
         return
     }
     
-    # Parse git remote -v output and get unique remotes
+    # Parse ^git remote -v output and get unique remotes
     let parsed_remotes = $remotes | each {|line|
         let parts = $line | split column -c '\t'
         if ($parts | length) > 0 {
@@ -871,7 +871,262 @@ def rv [] {
 
 # Forcefully delete a branch from git
 def bd [...args] {
-    git branch -D ...$args
+    ^git branch -D ...$args
+}
+
+# Git add all modified tracked files
+def aa [...args] {
+    ^git add --update ...$args
+}
+
+# Abort git operations (merge, rebase, cherry-pick, am)
+def abort [...args] {
+    # Try each operation in sequence until one succeeds
+    try { ^git merge --abort } catch {
+        try { ^git rebase --abort } catch {
+            try { ^git cherry-pick --abort } catch {
+                try { ^git am --abort } catch {
+                    print "No git operation to abort"
+                }
+            }
+        }
+    }
+}
+
+# Amend the previous git commit
+def amend [...args] {
+    ^git commit --verbose --amend ...$args
+}
+
+# Amend previous commit without editing the message
+def amendne [...args] {
+    ^git commit --verbose --amend --no-edit ...$args
+}
+
+# Short alias for amendne
+def ane [...args] {
+    amendne ...$args
+}
+
+# Pretty history graph with one commit
+def lg1 [...args] {
+    ^git log -1 --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' ...$args
+}
+
+# Git diff with unified format and no prefix
+def gd [...args] {
+    ^git diff --unified=1 --no-prefix ...$args
+}
+
+# Git status short format
+def gs [...args] {
+    ^git status -sb ...$args
+}
+
+# Git commit
+def cmt [...args] {
+    ^git commit --verbose ...$args
+}
+
+# Git commit no edit
+def cmtne [...args] {
+    ^git commit --verbose --no-edit ...$args
+}
+
+# Git stash operations
+def stash [...args] {
+    ^git stash ...$args
+}
+
+# Apply and remove the top ^git stash
+def stpop [...args] {
+    ^git stash pop ...$args
+}
+
+# Save a ^git stash with untracked files
+def stsave [...args] {
+    ^git stash save --include-untracked ...$args
+}
+
+# List ^git stashes
+def stlist [...args] {
+    ^git stash list ...$args
+}
+
+# Show ^git stash contents
+def stshow [...args] {
+    ^git stash show ...$args
+}
+
+# Drop ^git stash
+def stdrop [...args] {
+    ^git stash drop ...$args
+}
+
+# Apply ^git stash without removing it
+def stapply [...args] {
+    ^git stash apply ...$args
+}
+
+# Undoes the last commit but leaves staging area intact
+def pop [...args] {
+    ^git reset --soft HEAD^ ...$args
+}
+
+# Git checkout operations
+def co [...args] {
+    ^git checkout ...$args
+}
+
+# Git clone
+def clone [...args] {
+    ^git clone ...$args
+}
+
+# Git init
+def init [...args] {
+    ^git init ...$args
+}
+
+# Git merge
+def merge [...args] {
+    ^git merge ...$args
+}
+
+# Git rebase
+def rebase [...args] {
+    ^git rebase ...$args
+}
+
+# Interactive rebase for last N commits (default 10)
+def ri [count: int = 10] {
+    ^git rebase --interactive $"HEAD~($count)"
+}
+
+# Git reset
+def reset [...args] {
+    ^git reset ...$args
+}
+
+# Git restore  
+def restore [...args] {
+    ^git restore ...$args
+}
+
+# Git show
+def show [...args] {
+    ^git show ...$args
+}
+
+# Git tag
+def tag [...args] {
+    ^git tag ...$args
+}
+
+# Delete ^git tag
+def "delete-tag" [tag: string] {
+    ^git tag -d $tag
+    ^git push origin --delete $tag
+}
+
+# Git cherry-pick
+def "cherry-pick" [...args] {
+    ^git cherry-pick ...$args
+}
+
+# Git reflog
+def reflog [...args] {
+    ^git reflog ...$args
+}
+
+# Git remote
+def remote [...args] {
+    ^git remote ...$args
+}
+
+# Git status (full)
+def status [...args] {
+    ^git status ...$args
+}
+
+# Git log
+def log [...args] {
+    ^git log ...$args
+}
+
+# Git log last 10 commits
+def log10 [...args] {
+    ^git log -10 ...$args
+}
+
+# Git add (simple wrapper)
+def add [...args] {
+    ^git add ...$args
+}
+
+# Git commit (simple wrapper)  
+def commit [...args] {
+    ^git commit ...$args
+}
+
+# Git diff tool
+def difftool [...args] {
+    ^git difftool ...$args
+}
+
+# Git merge tool
+def mergetool [...args] {
+    ^git mergetool ...$args
+}
+
+# Git pick (cherry-pick alias)
+def pick [...args] {
+    ^git cherry-pick ...$args
+}
+
+# Git prune
+def prune [...args] {
+    ^git prune ...$args
+}
+
+# Git submodule
+def submodule [...args] {
+    ^git submodule ...$args
+}
+
+# Git blame
+def blame [...args] {
+    ^git blame ...$args
+}
+
+# Git bisect
+def bisect [...args] {
+    ^git bisect ...$args
+}
+
+# Git gc (garbage collect)
+def gc [...args] {
+    ^git gc ...$args
+}
+
+# Git ls-files
+def "ls-files" [...args] {
+    ^git ls-files ...$args
+}
+
+# Git ls-remote
+def "ls-remote" [...args] {
+    ^git ls-remote ...$args
+}
+
+# Git rev-parse
+def "rev-parse" [...args] {
+    ^git rev-parse ...$args
+}
+
+# Git shortlog
+def shortlog [...args] {
+    ^git shortlog ...$args
 }
 
 # Claude alias
