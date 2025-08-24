@@ -1,0 +1,8 @@
+# https://github.com/koalaman/shellcheck/wiki/Directive#external-sources
+
+ # Look for 'source'd files relative to the checked script,
+ # and also look for absolute paths in /mnt/chroot
+source-path=SCRIPTDIR
+source-path=SCRIPTDIR/.bashrc
+
+# external-sources=true
