@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -12,6 +14,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
+        # shellcheck source=/dev/null
         . "$HOME/.bashrc"
     fi
 fi
@@ -26,6 +29,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# shellcheck source=/dev/null
 . "$HOME/.cargo/env"
 
 
@@ -35,9 +39,11 @@ export PATH="$PATH:/Users/zoltar/Library/Application Support/JetBrains/Toolbox/s
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export NVM_DIR="$HOME/.nvm"
+        # shellcheck source=/dev/null
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export NVM_DIR="$HOME/.config/nvm"
+        # shellcheck source=/dev/null
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Added by LM Studio CLI (lms)
@@ -47,14 +53,14 @@ export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # Claude function - Run local claude installation or install if missing
 claude() {
     if [ -e .claude/local/claude ]; then
-        .claude/local/claude "$@"
+        ~/.claude/local/claude "$@"
     else
         echo "Claude not found locally. Installing..."
         mise exec npm:@anthropic-ai/claude-code -- claude migrate-installer
 
         # After installation, run the command if it now exists
         if [ -e .claude/local/claude ]; then
-            .claude/local/claude "$@"
+            ~/.claude/local/claude "$@"
         else
             echo "Installation may have failed. Please check the output above."
             return 1
