@@ -44,6 +44,21 @@ export NVM_DIR="$HOME/.config/nvm"
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
-# Claude alias
-alias claude="$HOME/.claude/local/claude"
+# Claude function - Run local claude installation or install if missing
+claude() {
+    if [ -e .claude/local/claude ]; then
+        .claude/local/claude "$@"
+    else
+        echo "Claude not found locally. Installing..."
+        mise exec npm:@anthropic-ai/claude-code -- claude migrate-installer
+
+        # After installation, run the command if it now exists
+        if [ -e .claude/local/claude ]; then
+            .claude/local/claude "$@"
+        else
+            echo "Installation may have failed. Please check the output above."
+            return 1
+        fi
+    fi
+}
 
