@@ -335,14 +335,16 @@ set --export --global BOOST_INCLUDE_DIR (brew_home)/include
 # Nix
 set --export --global NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
 
-# Go
-# GOPATH is automatically set by mise, but we can set additional Go environment variables
+# GOPRIVATE
 set --export GOPRIVATE "github.com/phatblat/*"
 
-# Ensure Go binaries are in PATH (this is handled by mise but we keep it for compatibility)
-fish_add_path $HOME/go/bin
-
-# Set GOPATH if not set by mise
+# GOPATH - where to download Go packages
 if not set -q GOPATH
     set --export GOPATH $HOME/go
 end
+
+# /Users/phatblat/.local/share/mise/installs/go/1.25.0/bin
+set --export GOROOT (mise bin-paths | rg go | head -1 | string replace '/bin' '')
+
+# Ensure Go binaries are in PATH (this is handled by mise but we keep it for compatibility)
+fish_add_path $GOROOT/bin
