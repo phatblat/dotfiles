@@ -66,4 +66,7 @@ set -gx PATH $PATH ~/.cache/lm-studio/bin
 set -gx PATH $PATH /Users/phatblat/.cache/lm-studio/bin
 # End of LM Studio CLI section
 
+# mise activation for Go and other tools
+mise activate fish | source
+
 
