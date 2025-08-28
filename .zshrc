@@ -159,7 +159,24 @@ export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
-alias claude="$HOME/.claude/local/claude"
+claude() {
+    local claude_path="$HOME/.claude/local/claude"
+    
+    if [[ -e "$claude_path" ]]; then
+        "$claude_path" "$@"
+    else
+        echo "Claude not found locally. Installing..."
+        mise exec npm:@anthropic-ai/claude-code -- claude migrate-installer
+        
+        # After installation, run the command if it now exists
+        if [[ -e "$claude_path" ]]; then
+            "$claude_path" "$@"
+        else
+            echo "Installation may have failed. Please check the output above."
+            return 1
+        fi
+    fi
+}
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
