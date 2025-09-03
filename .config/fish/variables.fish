@@ -256,7 +256,7 @@ end
 # Editor
 # After variables which depend on functions that define variables
 set --export EDITOR_CLI "vim" # vi vim
-set --export EDITOR_GUI "windsurf --new-window" # code, cursor, void, windsurf
+set --export EDITOR_GUI "zed" # code, cursor, void, windsurf, zed
 set --export WAIT_FLAG_CLI "--nofork"
 set --export WAIT_FLAG_GUI "--wait"
 
