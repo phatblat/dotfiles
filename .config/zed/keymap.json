@@ -1,0 +1,7 @@
+[
+  {
+    "bindings": {
+      "cmd-l": "workspace::ToggleRightDock"
+    }
+  }
+]
