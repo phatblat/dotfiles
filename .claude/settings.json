@@ -35,26 +35,37 @@
   "model": "opusplan",
   "permissions": {
     "allow": [
+      "Bash(./gradlew:*)",
       "Bash(abbr:*)",
       "Bash(brew list:*)",
       "Bash(brew install:*)",
       "Bash(ccr code)",
+      "Bash(cd:*)",
+      "Bash(done)",
       "Bash(echo:*)",
+      "Bash(fd:*)",
+      "Bash(find:*)",
       "Bash(fish:*)",
-      "Bash(git add:*)",
+      "Bash(for:*)",
+      "Bash(git:*)",
       "Bash(grep:*)",
+      "Bash(just:*)",
+      "Bash(ls:*)",
       "Bash(mise config:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
       "Bash(nu:*)",
       "Bash(perl:*)",
       "Bash(pip index versions:*)",
       "Bash(rm:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
   },
   "statusLine": {
     "type": "command",
-    "command": "npx -y @owloops/claude-powerline@latest --style=powerline",
+    "command": "bun x -y @owloops/claude-powerline@latest --style=powerline",
     "padding": 0
   }
 }
