@@ -7,7 +7,10 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "Ayu Dark",
+  "agent": {
+    "always_allow_tool_actions": true
+  },
+  "theme": "Colorizer Pro",
   "ui_font_size": 16,
   "buffer_font_size": 16
 }
