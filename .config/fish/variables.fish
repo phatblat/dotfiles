@@ -348,3 +348,6 @@ set --export GOROOT (mise bin-paths | rg go | head -1 | string replace '/bin' ''
 
 # Ensure Go binaries are in PATH (this is handled by mise but we keep it for compatibility)
 fish_add_path $GOROOT/bin
+
+# kubectl krew plugin
+fish_add_path $HOME/.krew/bin
