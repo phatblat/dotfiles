@@ -90,6 +90,7 @@
 .config/Todoist/
 .config/Yubico/
 .config/balena-etcher-electron/
+.config/biolab.si/
 .config/btop/btop.log
 .config/chessx/
 .config/chromium/
