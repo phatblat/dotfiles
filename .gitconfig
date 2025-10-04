@@ -4,6 +4,7 @@
 	detachedHead = false
 	forceDeleteBranch = false
 	skippedCherryPicks = false
+	statusHints = false
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	cat = cat-file -p
@@ -63,7 +64,7 @@
 	autocrlf = input
 [credential]
 	helper = 1password
-	helper = 
+	helper =
 	helper = /usr/local/share/gcm-core/git-credential-manager
 	guiPrompt = false
 [delta]
