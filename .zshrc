@@ -182,3 +182,5 @@ claude() {
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
+export NODE_EXTRA_CA_CERTS=/opt/homebrew/var/lib/caddy/pki/authorities/local/root.crt
+export NODE_EXTRA_CA_CERTS="/Users/phatblat/Library/Application Support/mkcert/rootCA.pem"

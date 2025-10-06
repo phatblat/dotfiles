@@ -70,3 +70,4 @@ set -gx PATH $PATH /Users/phatblat/.cache/lm-studio/bin
 mise activate fish | source
 
 
+set -x NODE_EXTRA_CA_CERTS (mkcert -CAROOT)/rootCA.pem
