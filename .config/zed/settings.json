@@ -8,10 +8,11 @@
 // from the command palette or from `Zed` application menu.
 {
   "agent": {
+    "single_file_review": false,
     "default_profile": "write",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-thinking"
+      "provider": "lmstudio",
+      "model": "qwen/qwen3-coder-30b"
     },
     "always_allow_tool_actions": true
   },
