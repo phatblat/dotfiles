@@ -11,8 +11,8 @@
     "single_file_review": false,
     "default_profile": "write",
     "default_model": {
-      "provider": "lmstudio",
-      "model": "qwen/qwen3-coder-30b"
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
     },
     "always_allow_tool_actions": true
   },
