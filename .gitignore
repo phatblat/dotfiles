@@ -59,6 +59,7 @@
 .claude-code-router/.claude-code-router.pid
 .claude.json
 .claude.json.backup
+.claude/debug/
 .cmake-js/
 .cocoapods/
 .codeium/
