@@ -290,6 +290,7 @@
 .raliorc/
 .rbenv/
 .redhat/
+.redscript-ide/
 .repo_.gitconfig.json
 .repoconfig/
 .rest-client/
