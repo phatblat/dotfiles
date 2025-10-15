@@ -3,5 +3,11 @@
     "bindings": {
       "cmd-l": "workspace::ToggleRightDock"
     }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-1": "workspace::ToggleLeftDock"
+    }
   }
 ]
