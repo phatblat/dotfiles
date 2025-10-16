@@ -1379,10 +1379,45 @@ function xv() {
 
 # edit - Edit using the configured VISUAL editor (TextMate) for GUI terminal sessions or EDITOR for CLI (SSH) sessions
 function edit() {
-    if [[ -z "$VISUAL" ]]; then
-        eval "$EDITOR '$*'"
+    local editor_cmd
+    
+    # Determine which editor to use
+    if [[ -n "$VISUAL" ]]; then
+        editor_cmd="$VISUAL"
+    elif [[ -n "$EDITOR" ]]; then
+        editor_cmd="$EDITOR"
     else
-        eval "$VISUAL '$*'"
+        # Default to editors in order of preference: zed, void, windsurf, cursor, code, nvim, vim
+        if command -v zed >/dev/null 2>&1; then
+            editor_cmd="zed"
+        elif command -v void >/dev/null 2>&1; then
+            editor_cmd="void"
+        elif command -v windsurf >/dev/null 2>&1; then
+            editor_cmd="windsurf"
+        elif command -v cursor >/dev/null 2>&1; then
+            editor_cmd="cursor"
+        elif command -v code >/dev/null 2>&1; then
+            editor_cmd="code"
+        elif command -v nvim >/dev/null 2>&1; then
+            editor_cmd="nvim"
+        elif command -v vim >/dev/null 2>&1; then
+            editor_cmd="vim"
+        else
+            echo "No editor found. Please set VISUAL or EDITOR environment variable."
+            return 1
+        fi
+    fi
+    
+    # Execute the editor with the provided arguments
+    $editor_cmd "$@"
+}
+
+# e - Short alias for editing a file. Given no args, the current folder will be opened
+function e() {
+    if [[ -z "$1" ]]; then
+        edit .
+    else
+        edit "$@"
     fi
 }
 
