@@ -9,5 +9,11 @@
     "bindings": {
       "cmd-1": "workspace::ToggleLeftDock"
     }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-2": "terminal_panel::Toggle"
+    }
   }
 ]
