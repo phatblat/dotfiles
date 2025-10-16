@@ -2356,3 +2356,6 @@ export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
 
 # Initialize zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
+
+# Initialize mise - version manager for tools
+eval "$(mise activate zsh)"
