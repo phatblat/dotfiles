@@ -13,7 +13,7 @@
     "default_profile": "write",
     "default_model": {
       "provider": "anthropic",
-      "model": "claude-opus-4-1-latest"
+      "model": "claude-3-5-haiku-latest"
     },
     "always_allow_tool_actions": true
   },
