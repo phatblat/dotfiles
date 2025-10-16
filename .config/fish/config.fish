@@ -48,9 +48,10 @@ if status is-interactive
     end
 
     # Warpify non-login shells that don' thave WARP_BOOTSTRAPPED defined.
-    if begin ! status is-login; and test -z "$WARP_BOOTSTRAPPED"; end
-        warpify
-    end
+    # TEMPORARILY DISABLED - may be causing hangs
+    # if begin ! status is-login; and test -z "$WARP_BOOTSTRAPPED"; end
+    #     warpify
+    # end
 end
 
 # Created by `pipx` on 2023-08-29 02:06:37
@@ -72,6 +73,5 @@ set -gx PATH $PATH /Users/phatblat/.cache/lm-studio/bin
 
 # mise activation for Go and other tools
 mise activate fish | source
-
 
 set -x NODE_EXTRA_CA_CERTS (mkcert -CAROOT)/rootCA.pem
