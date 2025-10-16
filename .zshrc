@@ -2318,3 +2318,6 @@ function o() {
 
 # Added by Windsurf
 export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
+
+# Initialize zoxide - a smarter cd command
+eval "$(zoxide init zsh)"
