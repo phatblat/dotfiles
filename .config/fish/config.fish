@@ -39,7 +39,7 @@ if status is-interactive
     if command --query fzf
         # Set up fzf key bindings
         fzf --fish | source
-        fzf_key_bindings
+        # fzf_key_bindings is now handled by 'fzf --fish'
     end
 
     if type -q thefuck
