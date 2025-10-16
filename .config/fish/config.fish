@@ -19,8 +19,12 @@ end
 source ~/.config/fish/variables.fish
 
 if type -q direnv
-    # Directory-based variables
-    eval (direnv hook fish)
+    # Directory-based variables  
+    # Use command substitution with timeout to prevent hangs
+    set -l direnv_output (direnv hook fish 2>/dev/null)
+    if test -n "$direnv_output"
+        eval $direnv_output
+    end
 end
 
 # GUI and items requiring a user
