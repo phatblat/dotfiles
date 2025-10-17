@@ -2354,6 +2354,109 @@ function o() {
 # Added by Windsurf
 export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
 
+# JDK management functions
+function is_linux() {
+    [[ "$KERNEL" == "Linux" ]]
+}
+
+function path_add() {
+    local directory="$1"
+    if [[ -z "$directory" ]]; then
+        echo "Usage: path_add <directory>" >&2
+        return 1
+    elif [[ -d "$directory" ]]; then
+        export PATH="$directory:$PATH"
+    else
+        echo "Directory not found: $directory" >&2
+        return 2
+    fi
+}
+
+function has_space() {
+    local string="$1"
+    [[ "$string" =~ " " ]]
+}
+
+function jdk() {
+    local command="$1"
+    local jdk_path="$2"
+    local quiet="$3"
+
+    if is_linux; then
+        which java
+        java -version
+        return
+    fi
+
+    local ANDROID_STUDIO_PRERELEASE=""
+    local ANDROID_STUDIO="$HOME/Applications/Android Studio${ANDROID_STUDIO_PRERELEASE}.app"
+
+    case "$command" in
+        list)
+            echo "🖥 /usr/libexec/java_home"
+            /usr/libexec/java_home --verbose "$@"
+
+            echo
+            echo "🖥 /Library/Java/JavaVirtualMachines"
+            ls -1 /Library/Java/JavaVirtualMachines
+
+            if [[ -d "$ANDROID_STUDIO" ]]; then
+                echo
+                echo "🤖 Android Studio"
+                echo "$ANDROID_STUDIO/Contents/jbr/Contents/Home"
+            fi
+
+            local jabba_path="$HOME/.jabba/jdk"
+            if [[ -d "$jabba_path" ]]; then
+                echo
+                echo "🐸 Jabba Java candidates in $jabba_path"
+                ls -1 "$jabba_path"
+            fi
+            ;;
+        set)
+            jdk_set "$jdk_path" "$quiet"
+            ;;
+        studio)
+            jdk_set "$ANDROID_STUDIO/Contents/jbr/Contents/Home" "$quiet"
+            ;;
+        *)
+            jdk_current
+            ;;
+    esac
+}
+
+function jdk_set() {
+    local jdk_path="$1"
+    local quiet="$2"
+
+    if [[ "$jdk_path" == "-" ]]; then
+        echo "Skipping jdk_path check"
+    elif [[ ! -d "$jdk_path" ]]; then
+        echo "Path not found: $jdk_path" >&2
+        return 2
+    elif [[ ! -f "$jdk_path/bin/java" ]]; then
+        echo "No java binary found at path: $jdk_path/bin/java" >&2
+        return 3
+    fi
+
+    export JAVA_HOME="$jdk_path"
+    path_add "$JAVA_HOME/bin"
+
+    if ! has_space "$jdk_path"; then
+        export CPPFLAGS="$CPPFLAGS -I$jdk_path/include"
+    fi
+}
+
+function jdk_current() {
+    local java_cmd
+    java_cmd=$(which java)
+    echo "JAVA_HOME: $JAVA_HOME"
+    echo "which java: $java_cmd"
+    lipo -info "$java_cmd"
+    java -version
+    echo "CPPFLAGS: $CPPFLAGS"
+}
+
 # Initialize zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
 
