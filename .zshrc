@@ -2387,6 +2387,122 @@ if [[ -d "$ANDROID_HOME" ]]; then
     fi
 fi
 
+# Git and file utilities
+function root() {
+    git rev-parse --show-toplevel "$@"
+}
+
+function filesize() {
+    local file="$1"
+    if [[ -z "$file" ]]; then
+        echo "Usage: filesize filename" >&2
+        return 1
+    fi
+
+    if is_mac; then
+        stat -f '%z' "$file"
+    elif is_linux; then
+        stat --format=%s "$file"
+    fi
+}
+
+function list() {
+    if [[ -z "$@" ]]; then
+        echo "Usage: list [-s] 1 2 3 4 ..." >&2
+        return 1
+    fi
+
+    local items=("$@")
+    if [[ "$1" == "-s" ]]; then
+        if [[ ${#@} -lt 2 ]]; then
+            echo "Usage: list -s 1 2 3 4 ..." >&2
+            return 2
+        fi
+        shift
+        items=($@)
+    fi
+
+    printf '%s\n' "${items[@]}"
+}
+
+function ignores() {
+    list -s \
+        ".DS_Store" \
+        "*.xccheckout" \
+        "*.xcscmblueprint" \
+        "xcuserdata" \
+        "Carthage/" \
+        "Pods/" \
+        ".build/" \
+        ".swiftpm/" \
+        ".rubygems/" \
+        "bin/" \
+        "build/" \
+        ".gradle/" \
+        "gradlew.bat" \
+        ".idea/" \
+        "*.iml" \
+        "*.hprof" \
+        ".classpath" \
+        ".project" \
+        ".settings" \
+        ".vscode/" \
+        "target/" \
+        ".cxx/" \
+        "cmake-build-debug/" \
+        ".externalNativeBuild/" \
+        "heapdump.*.phd" \
+        "javacore.*.txt" \
+        "*.dll" \
+        ".vs/" \
+        "obj/" \
+        "packages/" \
+        "bazel-*" \
+        "buck-out/" \
+        "__pycache__/" \
+        "node_modules/" \
+        ".npm/"
+}
+
+function ignore() {
+    local gitignore="$(root)/.gitignore"
+    local ignore_list
+    local commit_message
+
+    touch "$gitignore"
+
+    if [[ -s "$gitignore" ]]; then
+        ignore_list=$(cat "$gitignore")
+    else
+        ignore_list=$(ignores)
+        commit_message="chore: add standard ignores"
+        echo "Creating .gitignore"
+    fi
+
+    if [[ -n "$@" ]]; then
+        ignore_list="$@ $ignore_list"
+        commit_message="chore: ignore $@"
+    fi
+
+    {
+        while IFS= read -r pattern; do
+            echo "$pattern"
+        done <<< "$ignore_list"
+    } | sort -u > "$gitignore"
+
+    if [[ -z "$commit_message" ]]; then
+        echo "Nothing new added to ignores, just sorted and removed duplicates."
+        return
+    fi
+
+    git add "$gitignore"
+    git commit -m "$commit_message"
+}
+
+function ignored() {
+    git status --ignored --porcelain 2>/dev/null
+}
+
 # JDK management functions
 function path_add() {
     local directory="$1"
