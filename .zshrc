@@ -2354,11 +2354,40 @@ function o() {
 # Added by Windsurf
 export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
 
-# JDK management functions
+# System kernel detection
+export KERNEL=$(uname)
+
+# System detection functions
+function is_mac() {
+    [[ "$KERNEL" == "Darwin" ]]
+}
+
 function is_linux() {
     [[ "$KERNEL" == "Linux" ]]
 }
 
+function is_arm() {
+    [[ "$(uname -m)" == "arm64" ]]
+}
+
+# Android SDK configuration
+if is_mac; then
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+elif is_linux; then
+    export ANDROID_HOME="$HOME/Android/Sdk"
+fi
+
+if [[ -d "$ANDROID_HOME" ]]; then
+    local BUILD_TOOLS_VERSION=$(ls -1r "$ANDROID_HOME/build-tools/" 2>/dev/null | head -1)
+    export NDK_VERSION=$(ls -1r "$ANDROID_HOME/ndk/" 2>/dev/null | head -1)
+    export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/$NDK_VERSION"
+
+    if [[ -n "$BUILD_TOOLS_VERSION" ]]; then
+        export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH"
+    fi
+fi
+
+# JDK management functions
 function path_add() {
     local directory="$1"
     if [[ -z "$directory" ]]; then
