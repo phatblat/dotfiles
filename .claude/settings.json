@@ -73,5 +73,6 @@
     "type": "command",
     "command": "bun x -y @owloops/claude-powerline@latest --style=powerline",
     "padding": 0
-  }
+  },
+  "alwaysThinkingEnabled": true
 }
