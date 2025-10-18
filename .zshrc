@@ -72,6 +72,15 @@ ZSH_THEME="sorin" # set by `omz`
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew)
 
+# Install Oh My Zsh if missing
+if [[ ! -f "$ZSH/oh-my-zsh.sh" ]]; then
+    echo "Oh My Zsh not found. Installing..."
+    (
+        unset ZSH
+        RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    )
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -107,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 alias claude='/Users/phatblat/.claude/local/claude'
 
 # Auto-Warpify
-[[ "$-" == *i* ]] && printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh", "uname": "Darwin" }}�' 
+[[ "$-" == *i* ]] && printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh", "uname": "Darwin" }}�'
 
 # Converted Fish functions
 
@@ -152,28 +161,28 @@ function omf_update() {
     local base_dir=~/dev/shell/fish
     local local_dir="$base_dir/oh-my-fish"
     local repo_url="git@github.com:oh-my-fish/oh-my-fish.git"
-    
+
     # Create parent directories
     mkdir -p "$base_dir"
-    
+
     # Clone or pull (you'll need to implement clone_or_pull function)
     if [[ ! -d "$local_dir" ]]; then
         git clone "$repo_url" "$local_dir"
     else
         pushd "$local_dir" && git pull && popd
     fi
-    
+
     # Install omf if necessary
     if ! command -v omf >/dev/null; then
         pushd "$local_dir"
         bin/install --offline
         popd
     fi
-    
+
     # Update omf and installed plugins
     omf update
     omf install
-    
+
     echo "Installed plugins: "
     omf list
     omf doctor
@@ -246,7 +255,7 @@ function ra() {
         echo "Remote name required"
         return 1
     fi
-    
+
     # Add a fork of the project when only the remote name is given
     if [[ -z "$url" ]]; then
         local remote_url=$(git remote get-url $(git symbolic-ref --short HEAD | sed 's|.*/||'))
@@ -257,7 +266,7 @@ function ra() {
         local project=${path##*/}
         url="git@github.com:${name}/${project}.git"
     fi
-    
+
     git remote add "$name" "$url"
     git fetch "$name"
 }
@@ -277,7 +286,7 @@ function func() {
         echo "$name does not exist"
         return 2
     fi
-    
+
     # For Zsh functions, use 'functions' command or 'type'
     if type "$name" | grep -q "function"; then
         type "$name"
@@ -294,7 +303,7 @@ function getudid() {
         grep -A 11 -w "iPad\|iPhone\|iPad" | \
         grep "Serial Number" | \
         awk '{ print $3 }')
-    
+
     if [[ -z "$udid" ]]; then
         echo "No device detected. Please ensure an iOS device is plugged in."
         return 1
@@ -317,12 +326,12 @@ function swift_pgp_key_import() {
         '8513 444E 2DA3 6B7C 1659  AF4D 7638 F1FB 2B2B 08C4' \
         'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561' \
         '8A74 9566 2C3C D4AE 18D9  5637 FAF6 989E 1BC1 6FEA'
-    
+
     # https://swift.org/download/#active-signing-keys
     gpg --keyserver hkp://pool.sks-keyservers.net \
         --recv-keys \
         '8A74 9566 2C3C D4AE 18D9  5637 FAF6 989E 1BC1 6FEA'
-    
+
     gpg --keyserver hkp://pool.sks-keyservers.net \
         --recv-keys \
         'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561'
@@ -339,19 +348,19 @@ function sync() {
         echo "📥 Stashing changes"
         stsave
     fi
-    
+
     local sync_branch="master"
     if [[ "$sync_branch" != "$(current_branch)" ]]; then
         git checkout "$sync_branch"
     fi
-    
+
     pull
-    
+
     local remote_name=$(remote_for_current_branch)
     prune "$remote_name"
-    
+
     bra
-    
+
     echo "prompt to delete any tracking branches that have lost their remotes, gone in bra output"
 }
 
@@ -359,37 +368,37 @@ function sync() {
 function gitconfig_setup() {
     local email="$1"
     local name="$2"
-    
+
     echo "🗄 Git configuration"
     echo
-    
+
     mkdir -p ~/.config/git
     local global_config=~/.config/git/config
     if [[ ! -f "$global_config" ]]; then
         touch "$global_config"
     fi
-    
+
     # Just print the current config when values are set
     if git config --file "$global_config" user.name >/dev/null 2>&1 && \
        git config --file "$global_config" user.email >/dev/null 2>&1; then
         cat "$global_config"
         return 0
     fi
-    
+
     # Prompt to add required values
     if [[ -z "$name" ]]; then
         echo -n "Git user.name: "
         read name
     fi
-    
+
     if [[ -z "$email" ]]; then
         echo -n "Git user.email: "
         read email
     fi
-    
+
     git config --file "$global_config" user.name "$name"
     git config --file "$global_config" user.email "$email"
-    
+
     echo "$global_config"
     cat "$global_config"
 }
@@ -406,7 +415,7 @@ function lgfind() {
         echo "Usage: lgfind 'search term'"
         return 1
     fi
-    
+
     lg -S "$search_term"
 }
 
@@ -426,12 +435,12 @@ function fishlog() {
 # ida - Launch IDA with elevated privileges
 function ida() {
     local ida_path="/Applications/IDA Pro 7.5"
-    
+
     if [[ ! -d "$ida_path" ]]; then
         echo "IDA is not installed"
         return 1
     fi
-    
+
     sudo "$ida_path/idabin/ida64" "$@"
 }
 
@@ -444,7 +453,7 @@ function derived_data() {
     local default_size=10
     local target_path="/Volumes/$drive_name"
     local icon_file="~/Pictures/Icons/Agua Onyx Icons/Onyx Media Drive.png"
-    
+
     if [[ -d "$target_path" ]]; then
         echo "$drive_name already mounted"
         local output=$(diskutil list "$drive_name")
@@ -452,7 +461,7 @@ function derived_data() {
         local output=$(ramdisk "$default_size" "$drive_name")
         fileicon set "$target_path" "$icon_file"
     fi
-    
+
     if [[ -z "$quiet" ]]; then
         echo "$output"
     fi
@@ -480,10 +489,10 @@ function textmate() {
     local bundles=(blackpearl dashmate editorconfig fish gradle kotlin tomorrow-theme ublime)
     local bundle_dev="~/dev/textmate"
     local bundle_dir="~/Library/Application Support/TextMate/Bundles"
-    
+
     mkdir -p "$bundle_dev" "$bundle_dir"
     pushd "$bundle_dev"
-    
+
     for bundle in "${bundles[@]}"; do
         if [[ ! -e "$bundle.tmbundle" ]]; then
             case "$bundle" in
@@ -546,10 +555,10 @@ function delete-tag() {
         echo "Usage: delete-tag <tag>"
         return 1
     fi
-    
+
     local current_branch=$(git rev-parse --abbrev-ref HEAD)
     local current_remote=$(git config branch."$current_branch".remote)
-    
+
     git tag --delete "$tag"
     git push "$current_remote" --delete refs/tags/"$tag"
 }
@@ -571,7 +580,7 @@ function members() {
         echo "Usage: members group"
         return 1
     fi
-    
+
     for user in $(dscl . -list /Users); do
         if dsmemberutil checkmembership -U "$user" -G "$group" | grep -q "is a member"; then
             echo "$user"
@@ -596,13 +605,13 @@ function erase() {
 function rubygems() {
     echo "💎 Updating Ruby Gems"
     echo
-    
+
     if user_is_admin; then
         # Workaround to no access to /usr/bin on Sierra
         # Updating rubygems-update
         gem update --system
         gem update
-        
+
         # Bundler
         gem install bundler
     fi
@@ -621,7 +630,7 @@ function amendne() {
 # apv - Quick nav to ApplePlatformVersions dir
 function apv() {
     local apv_dir="~/dev/ApplePlatformVersions"
-    
+
     if [[ ! -d "$apv_dir" ]]; then
         cd ~/dev
         git clone git@github.com:phatblat/ApplePlatformVersions.git
@@ -629,7 +638,7 @@ function apv() {
         cd "$apv_dir"
         git pull
     fi
-    
+
     lg10
 }
 
@@ -642,12 +651,12 @@ function be() {
 function realmos() {
     local command="$1"
     echo "Realm Object Server"
-    
+
     if [[ ! -e "$REALM_OBJECT_SERVER_PATH" ]]; then
         echo "No such path: $REALM_OBJECT_SERVER_PATH"
         return 1
     fi
-    
+
     case "$command" in
         start)
             echo "Starting ROS at $REALM_OBJECT_SERVER_PATH"
@@ -676,17 +685,17 @@ function shell_switch() {
         echo "Usage: shell_switch bash|zsh|fish"
         return 1
     fi
-    
+
     local brew_binaries=$(brew --prefix)/bin
     local new_shell_path="$brew_binaries/$new_shell"
-    
+
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         chsh --shell "$new_shell_path"
         return $?
     fi
-    
+
     local cmd="sudo dscl . -change $HOME UserShell $SHELL $new_shell_path"
-    
+
     if [[ "$(basename $SHELL)" != "$new_shell" ]]; then
         if user_is_admin; then
             eval "$cmd"
@@ -718,7 +727,7 @@ function cargo_target() {
     local default_size=50
     local target_path="/Volumes/$drive_name"
     local icon_file="~/Pictures/Icons/rustacean-flat-happy.webp"
-    
+
     local output
     if [[ -d "$target_path" ]]; then
         echo "$drive_name already mounted"
@@ -727,9 +736,9 @@ function cargo_target() {
         output=$(ramdisk "$default_size" "$drive_name")
         fileicon set "/Volumes/$drive_name" "$icon_file"
     fi
-    
+
     export CARGO_TARGET_DIR="$target_path"
-    
+
     if [[ -z "$quiet" ]]; then
         echo "$output"
     fi
@@ -840,18 +849,18 @@ function func_count() {
     local custom=$(find ~/.config/fish/functions -type f -maxdepth 1 -name '*.fish' | wc -l | xargs)
     local plugins=$(find ~/.config/fish/functions -type l -maxdepth 1 -name '*.fish' | wc -l | xargs)
     local autoloaded=$(ls -1 ~/.config/fish/functions/*.fish | wc -l | xargs)
-    
+
     echo "Functions: $all ($custom custom, $plugins plugins, $autoloaded autoloaded)"
 }
 
 # r - Interactive rebase for the last few commits
 function r() {
     local count=${1:-10}
-    
+
     toggle_wait on
-    
+
     git rebase --interactive HEAD~$count
-    
+
     toggle_wait off
 }
 # Additional converted Fish functions (Batch 4)
@@ -863,7 +872,7 @@ function fileowner() {
         echo "Usage: fileowner file"
         return 1
     fi
-    
+
     if [[ "$OSTYPE" == "darwin"* ]]; then
         ls -ld "$file" | awk '{print $3}'
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -888,7 +897,7 @@ function xc() {
         open Package.swift "$@"
         return
     fi
-    
+
     # Find workspaces (ignore ones inside xcodeproj bundle)
     local workspaces=( $(find . -name "*.xcworkspace" -not -path "*/project.xcworkspace*" 2>/dev/null) )
     if [[ ${#workspaces[@]} -gt 0 ]]; then
@@ -899,7 +908,7 @@ function xc() {
             return
         fi
     fi
-    
+
     # Find projects (ignore CocoaPods projects)
     local projects=( $(find . -name "*.xcodeproj" -not -name "Pods.xcodeproj" 2>/dev/null) )
     if [[ ${#projects[@]} -gt 0 ]]; then
@@ -910,7 +919,7 @@ function xc() {
             return
         fi
     fi
-    
+
     echo "No Xcode projects found in the current directory."
     return 1
 }
@@ -1042,7 +1051,7 @@ function bog() {
 # mpv - Quick nav to MicrosoftPlatformVersions dir
 function mpv() {
     local mpv_dir=~/dev/MicrosoftPlatformVersions
-    
+
     if [[ ! -d "$mpv_dir" ]]; then
         cd ~/dev
         git clone git@github.com:phatblat/MicrosoftPlatformVersions.git
@@ -1050,7 +1059,7 @@ function mpv() {
         cd "$mpv_dir"
         git pull
     fi
-    
+
     lg10
 }
 
@@ -1067,7 +1076,7 @@ function gpgtest() {
         echo "Usage: gpgtest key_id passphrase"
         return 1
     fi
-    
+
     echo "$passphrase" | \
         gpg -o /dev/null \
             --local-user "$key_id" \
@@ -1091,13 +1100,13 @@ function erase() {
 function rubygems() {
     echo "💎 Updating Ruby Gems"
     echo
-    
+
     if user_is_admin; then
         # Workaround to no access to /usr/bin on Sierra
         # Updating rubygems-update
         gem update --system
         gem update
-        
+
         # Bundler
         gem install bundler
     fi
@@ -1116,7 +1125,7 @@ function amendne() {
 # apv - Quick nav to ApplePlatformVersions dir
 function apv() {
     local apv_dir="~/dev/ApplePlatformVersions"
-    
+
     if [[ ! -d "$apv_dir" ]]; then
         cd ~/dev
         git clone git@github.com:phatblat/ApplePlatformVersions.git
@@ -1124,7 +1133,7 @@ function apv() {
         cd "$apv_dir"
         git pull
     fi
-    
+
     lg10
 }
 
@@ -1137,12 +1146,12 @@ function be() {
 function realmos() {
     local command="$1"
     echo "Realm Object Server"
-    
+
     if [[ ! -e "$REALM_OBJECT_SERVER_PATH" ]]; then
         echo "No such path: $REALM_OBJECT_SERVER_PATH"
         return 1
     fi
-    
+
     case "$command" in
         start)
             echo "Starting ROS at $REALM_OBJECT_SERVER_PATH"
@@ -1171,17 +1180,17 @@ function shell_switch() {
         echo "Usage: shell_switch bash|zsh|fish"
         return 1
     fi
-    
+
     local brew_binaries=$(brew --prefix)/bin
     local new_shell_path="$brew_binaries/$new_shell"
-    
+
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         chsh --shell "$new_shell_path"
         return $?
     fi
-    
+
     local cmd="sudo dscl . -change $HOME UserShell $SHELL $new_shell_path"
-    
+
     if [[ "$(basename $SHELL)" != "$new_shell" ]]; then
         if user_is_admin; then
             eval "$cmd"
@@ -1205,17 +1214,17 @@ function shell_switch() {
 function clone() {
     local url="$1"
     local dir="$2"
-    
+
     if [[ -z "$url" ]]; then
         echo "Usage: clone url [dir]"
         return 1
     fi
-    
+
     if [[ -z "$dir" ]]; then
         # Extract directory name from URL (remove .git extension and get basename)
         dir=$(basename "$url" .git)
     fi
-    
+
     git clone -- "$url" "$dir" && \
     pushd "$dir" && \
     git config user.email "$(email_url "$url")" && \
@@ -1225,34 +1234,34 @@ function clone() {
 # macos - Manage macOS system updates (converted from 🖥_macos)
 function macos() {
     echo "🖥  macOS"
-    
+
     # Only install Rosetta 2 on M1 if not already installed
     if [[ "$(uname -m)" == "arm64" && ! -f "/Library/Apple/usr/share/rosetta/rosetta" ]]; then
         echo
         echo "🌍  Rosetta 2"
         sudo softwareupdate --install-rosetta
     fi
-    
+
     echo
     echo "⌛️  Recently installed macOS system updates"
     softwareupdate --history
-    
+
     echo
     echo "🔎  Checking macOS system updates"
     softwareupdate --list
-    
+
     echo
     echo "⬆️  Updating macOS system software"
-    
+
     # Download all updates before install
     local output=$(softwareupdate --download --all --no-scan 2>&1)
-    
+
     # Exit when "No updates are available."
     if [[ -n "$output" ]]; then
         echo "$output"
         return
     fi
-    
+
     # sudo will prompt for password allowing one way to avoid a restart
     sudo softwareupdate --install --all --no-scan --restart
 }
@@ -1287,13 +1296,13 @@ function ltime() {
 function nix_install() {
     echo "❄️ Nix - https://nixos.org/download.html#nix-install-macos"
     echo
-    
+
     if ! command -v nix-channel >/dev/null 2>&1; then
         echo "❄️ Installing nix..."
         curl -L https://nixos.org/nix/install | sh -s -- --daemon
-        
+
         nixtest
-        
+
         nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
         nix-channel --update
     fi
@@ -1309,7 +1318,7 @@ function brew_versions() {
         echo "$formula is not installed." >&2
         return 2
     fi
-    
+
     # brew list --versions ruby output:
     # ruby 2.3.3 2.4.1_1
     brew list --versions "$formula" | cut -d' ' -f2-
@@ -1340,7 +1349,7 @@ function gw() {
         ./gradlew "$@"
         return
     fi
-    
+
     echo "There is no Gradle wrapper in the current dir."
     gradle "$@"
 }
@@ -1352,12 +1361,12 @@ function provisioning_print() {
         echo "Usage: provisioning_print path/to/profile.mobileprovision"
         return 1
     fi
-    
+
     if [[ ! -e "$profile_path" ]]; then
         echo "$profile_path does not exist"
         return 2
     fi
-    
+
     security cms -D -i "$profile_path" 2>/dev/null
 }
 
@@ -1368,7 +1377,7 @@ function appcast_url() {
         echo "Usage: appcast_url url"
         return 1
     fi
-    
+
     brew cask _appcast_checkpoint --calculate "$url"
 }
 
@@ -1380,7 +1389,7 @@ function xv() {
 # edit - Edit using the configured VISUAL editor (TextMate) for GUI terminal sessions or EDITOR for CLI (SSH) sessions
 function edit() {
     local editor_cmd
-    
+
     # Determine which editor to use
     if [[ -n "$VISUAL" ]]; then
         editor_cmd="$VISUAL"
@@ -1407,7 +1416,7 @@ function edit() {
             return 1
         fi
     fi
-    
+
     # Execute the editor with the provided arguments
     $editor_cmd "$@"
 }
@@ -1429,30 +1438,30 @@ function upmodule() {
     local skip_flag="$4"
     shift 4
     local original_args=("$@")
-    
+
     # no args
     if [[ -z "$module_function" ]]; then
         echo "Usage: upmodule module_function [display_name include_flag skip_flag original_args]"
         return 1
     fi
-    
+
     if ! command -v "$module_function" >/dev/null 2>&1; then
         echo "Unknown function: $module_function"
         return 2
     fi
-    
+
     # 1 arg
     if [[ $# -eq 0 && -z "$display_name" ]]; then
         repeatchar -
         eval "$module_function"
-    
+
     # 4+ args
     elif [[ -n "$display_name" && -n "$include_flag" && -n "$skip_flag" ]]; then
         if ! command -v "$module_function" >/dev/null 2>&1; then
             echo "Unknown function: $module_function"
             return 4
         fi
-        
+
         if [[ " ${original_args[*]} " =~ " $skip_flag " ]]; then
             # Skip module if skip flag was given
             repeatchar -
@@ -1481,7 +1490,7 @@ function s() {
 function fq() {
     local function_name="$1"
     local file="~/.config/fish/functions/$function_name.fish"
-    
+
     command -v "$function_name" >/dev/null 2>&1 || [[ -e "$file" ]]
 }
 
@@ -1503,7 +1512,7 @@ function cargo_target() {
     local default_size=50
     local target_path="/Volumes/$drive_name"
     local icon_file="~/Pictures/Icons/rustacean-flat-happy.webp"
-    
+
     local output
     if [[ -d "$target_path" ]]; then
         echo "$drive_name already mounted"
@@ -1512,9 +1521,9 @@ function cargo_target() {
         output=$(ramdisk "$default_size" "$drive_name")
         fileicon set "/Volumes/$drive_name" "$icon_file"
     fi
-    
+
     export CARGO_TARGET_DIR="$target_path"
-    
+
     if [[ -z "$quiet" ]]; then
         echo "$output"
     fi
@@ -1551,61 +1560,43 @@ function moj_user() {
 # ignores - Standard ignored files
 function ignores() {
     cat <<EOF
-# macOS
-.DS_Store
-# Xcode
+*.dll
+*.hprof
+*.iml
 *.xccheckout
 *.xcscmblueprint
-xcuserdata
+.DS_Store
+.build/
+.classpath
+.cxx/
+.externalNativeBuild/
+.gradle/
+.idea/
+.npm/
+.project
+.rubygems/
+.settings
+.swiftpm/
+.target/
+.vs/
+.vscode/
+.vscode/
 Carthage/
 Pods/
-# Swift PM
-.build/
-.swiftpm/
-# Bundler
-.rubygems/
+__pycache__/
+bazel-*
 bin/
-# Gradle
+buck-out/
 build/
-.gradle/
-gradlew.bat
-# IntelliJ IDEA
-.idea/
-*.iml
-*.hprof
-# VS Code
-.classpath
-.project
-.settings
-.vscode/
-# Rust
-.target/
-# CMake
-.cxx/
 cmake-build-debug/
-.externalNativeBuild/
-# Java
+gradlew.bat
 heapdump.*.phd
 javacore.*.txt
-# Rust/Cargo
-target/
-# Visual Studio, MSBuild
-*.dll
-.vs/
+node_modules/
 obj/
 packages/
-# Visual Studio, MSBuild
-.vscode/
-# Bazel
-bazel-*
-# Buck2
-buck-out/
-# Python
-__pycache__/
-# Node.js
-node_modules/
-# npm
-.npm/
+target/
+xcuserdata
 EOF
 }
 
@@ -1625,18 +1616,18 @@ function func_count() {
     local custom=$(find ~/.config/fish/functions -type f -maxdepth 1 -name '*.fish' | wc -l | xargs)
     local plugins=$(find ~/.config/fish/functions -type l -maxdepth 1 -name '*.fish' | wc -l | xargs)
     local autoloaded=$(ls -1 ~/.config/fish/functions/*.fish | wc -l | xargs)
-    
+
     echo "Functions: $all ($custom custom, $plugins plugins, $autoloaded autoloaded)"
 }
 
 # r - Interactive rebase for the last few commits
 function r() {
     local count=${1:-10}
-    
+
     toggle_wait on
-    
+
     git rebase --interactive HEAD~$count
-    
+
     toggle_wait off
 }
 # Additional converted Fish functions (Batch 9)
@@ -1668,7 +1659,7 @@ function showcert() {
         echo "Usage: showcert cert_file"
         return 1
     fi
-    
+
     eval "$OPENSSL_PATH x509 -in $cert_file -inform DER -text -noout"
 }
 
@@ -1693,7 +1684,7 @@ function brew_logs() {
 function mdk() {
     local platform="$1"
     local path="~/dev/mdk"
-    
+
     if [[ -n "$platform" ]]; then
         case "$platform" in
             i|ios)
@@ -1702,7 +1693,7 @@ function mdk() {
                 path="$path/android" ;;
         esac
     fi
-    
+
     pushd "$path"
 }
 
@@ -1713,7 +1704,7 @@ function lggrep() {
         echo "Usage: lggrep '.*'"
         return 1
     fi
-    
+
     lg -G "$pattern"
 }
 
@@ -1727,7 +1718,7 @@ function bq() {
     if [[ -z "$*" ]]; then
         cat <<EOF
 Usage: bq [formula_name] [-- jq_filter]
-Filter examples: 
+Filter examples:
   formula                                                                           (raw json, filter with grep to find keys)
   formula -- .[0].name                                                              (formula name)
   formula -- .[0].linked_keg                                                        (active version)
@@ -1735,28 +1726,28 @@ Filter examples:
 EOF
         return 1
     fi
-    
+
     local brew_args=()
     local jq_args=()
     local collecting_jq=false
-    
+
     for arg in "$@"; do
         if [[ "$arg" == "--" ]]; then
             collecting_jq=true
             continue
         fi
-        
+
         if [[ "$collecting_jq" == true ]]; then
             jq_args+=("$arg")
         else
             brew_args+=("$arg")
         fi
     done
-    
+
     if [[ ${#jq_args[@]} -eq 0 ]]; then
         jq_args=(".")
     fi
-    
+
     brew info --json=v1 "${brew_args[@]}" | jq "${jq_args[@]}"
 }
 
@@ -1768,10 +1759,10 @@ function configg() {
 # spotlight_reload - Reloads Spotlight which triggers a re-index
 function spotlight_reload() {
     spotlight_disable
-    
+
     sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
     sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
-    
+
     spotlight_enable
 }
 
@@ -1789,7 +1780,7 @@ function ane() {
 function reload() {
     local function_name="$1"
     local file="~/.config/fish/functions/$function_name.fish"
-    
+
     if [[ -z "$function_name" ]]; then
         source ~/.zshrc
         return
@@ -1840,7 +1831,7 @@ function dash() {
         echo "Usage: dash query   (prefix query with 'docset_name:' to limit)"
         return 1
     fi
-    
+
     open "dash://$query"
 }
 
@@ -1903,7 +1894,7 @@ function ddd() {
         echo "DERIVED_DATA is not set"
         return 1
     fi
-    
+
     if [[ -d "$DERIVED_DATA" ]]; then
         echo "Deleting derived data directory $DERIVED_DATA"
         rm -rf "$DERIVED_DATA"
@@ -1922,12 +1913,12 @@ function masd() {
     local repo_url="git@github.com:mas-cli/mas.git"
     local base_dir="~/dev/mas-cli"
     local local_dir="$base_dir/mas"
-    
+
     # Create parent directories
     mkdir -p "$base_dir"
-    
+
     clone_or_pull "$local_dir" "$repo_url"
-    
+
     pushd "$local_dir"
 }
 
@@ -1944,13 +1935,13 @@ function big() {
 # git-plist-filter - Converts plist data to XML format (stdin->stdout)
 function git-plist-filter() {
     # had to do this because git doesn't like attaching stdin and out to plutil (waitpid error)
-    
+
     # TMPDIR isn't set for ssh logins!
     local TMPDIR="${TMPDIR:-$(getconf DARWIN_USER_TEMP_DIR)}"
     local function_name="git-plist-filter"
-    
+
     local TMPFILE=$(mktemp "$TMPDIR/$function_name.XXXXXX")
-    
+
     # Drop stdin to temp file
     cat > "$TMPFILE"
     plutil -convert xml1 "$TMPFILE"
@@ -2000,13 +1991,13 @@ function ruby_upgrade() {
     brew cleanup ruby
     brew install ruby
     brew link --overwrite ruby
-    
+
     rm -rf /usr/local/lib/ruby/gems/2.4.0/gems
     rm -rf /usr/local/lib/ruby/gems/2.4.0/extensions
-    
+
     local tmpfile=$(mktemp /tmp/ruby_upgrade.XXXXXX)
     gem --version >/dev/null 2>"$tmpfile"
-    
+
     echo "Looping over gem errors"
     while read -r line; do
         local pristine_cmd=$(echo "$line" | sed 's/.*Try: //')
@@ -2015,7 +2006,7 @@ function ruby_upgrade() {
         fi
     done < "$tmpfile"
     rm "$tmpfile"
-    
+
     gem update --system
     gem install bundler
 }
@@ -2040,15 +2031,15 @@ function clone_or_pull() {
     local folder_name="$1"
     local git_url="$2"
     local branch="$3"
-    
+
     if [[ -z "$folder_name" || -z "$git_url" ]]; then
         echo "Usage: clone_or_pull folder url [branch]"
         return 1
     fi
-    
+
     if [[ ! -d "$folder_name" ]]; then
         git clone "$git_url" "$folder_name"
-        
+
         # Checkout branch
         if [[ -n "$branch" ]]; then
             pushd "$folder_name"
@@ -2068,12 +2059,12 @@ function clone_or_pull() {
 # editorconfig - Generates an editorconfig
 function editorconfig() {
     local file_path="$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.editorconfig"
-    
+
     if [[ -f "$file_path" ]]; then
         echo "EditorConfig file already exists at: $file_path"
         return 1
     fi
-    
+
     cat > "$file_path" <<'EOF'
 # http://editorconfig.org
 root = true
@@ -2117,44 +2108,44 @@ EOF
 function xcode() {
     echo "🔨 Xcode"
     echo
-    
+
     if [[ -z "$XCODE_INSTALL_USER" && -n "$(git config user.email)" ]]; then
         export XCODE_INSTALL_USER="$(git config user.email)"
     fi
-    
+
     # Currently selected version
     xcode-select --print-path
-    
+
     # Update the list of available versions to install
     xcversion update
-    
+
     # Install the CLI tools, if necessary
     if [[ ! -e "/Library/Developer/CommandLineTools/usr/lib/libxcrun.dylib" ]]; then
         xcversion install-cli-tools
     fi
-    
+
     echo "Available:"
     xcversion list
     local installed=$(xcversion list)
     local newest_version=$(echo "$installed" | tail -n 1)
     if [[ ! "$newest_version" == *"(installed)"* ]]; then
         local options=(--no-show-release-notes)
-        
+
         # Don't activate beta versions automatically
         if [[ "$newest_version" == *"beta"* ]]; then
             options+=("--no-switch")
         fi
-        
+
         xcversion install "$newest_version" "${options[@]}"
-        
+
         # Clean out old simulators
         xcrun simctl delete unavailable
     fi
-    
+
     echo
     echo "Installed:"
     xclist
-    
+
     echo
     echo "Themes"
     local xcode_themes_dir=~/Library/Developer/Xcode/UserData/FontAndColorThemes
@@ -2187,14 +2178,14 @@ function g() {
 function fe() {
     local function_name="$1"
     local file="~/.config/fish/functions/${function_name}.fish"
-    
+
     if [[ ! -e "$file" && ! $(functions "$function_name") ]]; then
         if yn "Function "$function_name" does not exist. Create?"; then
             touch "$file"
         fi
         return
     fi
-    
+
     if [[ -e "$file" ]]; then
         # Edit an autoloaded function
         $EDITOR "$file"
@@ -2204,7 +2195,7 @@ function fe() {
         funced "$function_name"
         funcsave "$function_name"
     fi
-    
+
     if [[ $? -eq 0 ]]; then
         echo "$function_name function reloaded."
     else
@@ -2228,18 +2219,18 @@ function arp-fix() {
         echo "You must be an admin to run this command."
         return 1
     fi
-    
+
     sw_vers -productVersion
-    
+
     local arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
     echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
-    
+
     local arp_fixed="net.link.ether.inet.arp_unicast_lim=0"
-    
+
     if [[ $arp_status -ne 0 ]]; then
         sudo sysctl -w $arp_fixed
         arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
-        
+
         # After installation, run the command if it now exists
         if [[ $arp_status -eq 0 ]]; then
             echo "Fixed ARP issue"
@@ -2251,7 +2242,7 @@ function arp-fix() {
     else
         echo "Runtime ARP status is correct"
     fi
-    
+
     local sysctl_file="/etc/sysctl.conf"
     if [[ ! -e "$sysctl_file" ]]; then
         echo "$arp_fixed" | sudo tee "$sysctl_file"
@@ -2322,7 +2313,7 @@ function d() {
         --unified=1 \
         --no-prefix \
         "$@"
-        
+
         # word diff conflicts with diff-so-fancy
         # --word-diff=color \
         # --word-diff-regex='[^[:space:]]' \
@@ -2611,4 +2602,3 @@ eval "$(mise activate zsh)"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
-
