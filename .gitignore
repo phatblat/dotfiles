@@ -118,7 +118,7 @@ __z_clean.fish
 .config/libreoffice/
 .config/lxterminal/
 .config/menus/
-.config/Microsoft\VisualStudio Services/
+.config/Microsoft\\VisualStudio Services/
 .config/nushell/history.txt
 .config/op/
 .config/packer/
