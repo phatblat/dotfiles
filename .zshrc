@@ -2593,6 +2593,61 @@ function jdk_current() {
     echo "CPPFLAGS: $CPPFLAGS"
 }
 
+# Git log functions - pretty history graph
+
+# lg - Alias for lg10
+function lg() {
+    lg10 "$@"
+}
+
+# lg1 - Pretty history graph with one commit
+function lg1() {
+    local commit_count=1
+    local format='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+    git log \
+        -$commit_count \
+        --graph \
+        --abbrev-commit \
+        --date=relative \
+        --pretty=format:"$format" \
+        "$@"
+}
+
+# lg10 - Pretty history graph with ten commits
+function lg10() {
+    local commit_count=10
+
+    git log \
+        -$commit_count \
+        --graph \
+        --abbrev-commit \
+        --date=relative \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+        "$@"
+}
+
+# lga - Pretty history graph showing all
+function lga() {
+    git log \
+        --all \
+        --graph \
+        --abbrev-commit \
+        --date=relative \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+        "$@"
+}
+
+# lgg - Pretty history graph
+function lgg() {
+    git log \
+        --graph \
+        --abbrev-commit \
+        --date=relative \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+        "$@"
+}
+
 # Initialize zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
 
