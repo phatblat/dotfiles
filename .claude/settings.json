@@ -33,7 +33,6 @@
       "WebFetch(domain:github.com)"
     ],
     "deny": [
-      "Bash(git push:*)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",
@@ -65,6 +64,10 @@
           {
             "type": "command",
             "command": "if [[ \"$(jq -r .tool_input.command)\" =~ \"git commit\" ]] && [[ \"$(git branch --show-current 2>/dev/null)\" =~ ^(main|master)$ ]]; then echo \"Direct commits to main/master branch are not allowed\"; exit 2; fi"
+          },
+          {
+            "type": "command",
+            "command": "if [[ \"$(jq -r .tool_input.command)\" =~ ^git\\ push ]]; then echo \"Git push commands require explicit user approval\"; exit 2; fi"
           }
         ]
       }
