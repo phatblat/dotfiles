@@ -82,6 +82,7 @@ if [[ ! -f "$ZSH/oh-my-zsh.sh" ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+unfunction d 2>/dev/null  # Remove Oh My Zsh directory stack viewer
 
 # Autoload custom functions
 # Add functions directory to fpath and enable autoloading
