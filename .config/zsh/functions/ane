@@ -1,0 +1,4 @@
+# ane - Git amend, without changing the commit message
+function ane() {
+    git commit --amend --no-edit
+}

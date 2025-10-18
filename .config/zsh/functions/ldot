@@ -1,0 +1,4 @@
+# ldot - List hidden files
+function ldot() {
+    ls -ld .* "$@"
+}

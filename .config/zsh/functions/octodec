@@ -1,0 +1,4 @@
+# octodec - SSH to octodec
+function octodec() {
+    ssh phatblat@octodec.local "$@"
+}

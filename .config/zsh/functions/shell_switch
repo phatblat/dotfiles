@@ -1,0 +1,34 @@
+# shell_switch - Changes the current $USER's shell using dscl
+function shell_switch() {
+    local new_shell="$1"
+    if [[ -z "$new_shell" ]]; then
+        echo "Usage: shell_switch bash|zsh|fish"
+        return 1
+    fi
+
+    local brew_binaries=$(brew --prefix)/bin
+    local new_shell_path="$brew_binaries/$new_shell"
+
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        chsh --shell "$new_shell_path"
+        return $?
+    fi
+
+    local cmd="sudo dscl . -change $HOME UserShell $SHELL $new_shell_path"
+
+    if [[ "$(basename $SHELL)" != "$new_shell" ]]; then
+        if user_is_admin; then
+            eval "$cmd"
+            echo -n "Changed "$(dscl . -read $HOME UserShell)
+            echo
+            eval "$new_shell_path"
+        else
+            echo "Have an admin run the following command:"
+            echo "    $cmd"
+            return
+        fi
+    else
+        echo "No changes."
+        return
+    fi
+}

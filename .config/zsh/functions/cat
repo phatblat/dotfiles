@@ -1,0 +1,4 @@
+# cat - Wrapper for bat because I can never remember
+function cat() {
+    bat "$@"
+}

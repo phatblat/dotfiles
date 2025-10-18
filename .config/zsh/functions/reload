@@ -1,0 +1,20 @@
+# reload - Reloads a single function or the entire fish shell
+function reload() {
+    local function_name="$1"
+    local file="~/.config/fish/functions/$function_name.fish"
+
+    if [[ -z "$function_name" ]]; then
+        source ~/.zshrc
+        return
+    elif [[ -e "$file" ]]; then
+        source "$file"
+        if [[ $? -ne 0 ]]; then
+            return $?
+        fi
+        # TODO: Show diff of function (memory vs file system)
+        # func $function_name
+    else
+        echo "$function_name does not exist in function autoload dir."
+        return 1
+    fi
+}

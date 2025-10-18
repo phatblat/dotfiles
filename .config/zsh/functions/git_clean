@@ -1,0 +1,4 @@
+# git_clean
+function git_clean() {
+    git clean -xffd
+}

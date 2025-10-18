@@ -1,0 +1,9 @@
+# func_count - Prints a count of all functions
+function func_count() {
+    local all=$(functions | wc -l | xargs)
+    local custom=$(find ~/.config/fish/functions -type f -maxdepth 1 -name '*.fish' | wc -l | xargs)
+    local plugins=$(find ~/.config/fish/functions -type l -maxdepth 1 -name '*.fish' | wc -l | xargs)
+    local autoloaded=$(ls -1 ~/.config/fish/functions/*.fish | wc -l | xargs)
+
+    echo "Functions: $all ($custom custom, $plugins plugins, $autoloaded autoloaded)"
+}

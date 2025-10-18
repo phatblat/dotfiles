@@ -1,0 +1,58 @@
+# xcode - Installs and updates Xcode (converted from 🔨_xcode)
+function xcode() {
+    echo "🔨 Xcode"
+    echo
+
+    if [[ -z "$XCODE_INSTALL_USER" && -n "$(git config user.email)" ]]; then
+        export XCODE_INSTALL_USER="$(git config user.email)"
+    fi
+
+    # Currently selected version
+    xcode-select --print-path
+
+    # Update the list of available versions to install
+    xcversion update
+
+    # Install the CLI tools, if necessary
+    if [[ ! -e "/Library/Developer/CommandLineTools/usr/lib/libxcrun.dylib" ]]; then
+        xcversion install-cli-tools
+    fi
+
+    echo "Available:"
+    xcversion list
+    local installed=$(xcversion list)
+    local newest_version=$(echo "$installed" | tail -n 1)
+    if [[ ! "$newest_version" == *"(installed)"* ]]; then
+        local options=(--no-show-release-notes)
+
+        # Don't activate beta versions automatically
+        if [[ "$newest_version" == *"beta"* ]]; then
+            options+=("--no-switch")
+        fi
+
+        xcversion install "$newest_version" "${options[@]}"
+
+        # Clean out old simulators
+        xcrun simctl delete unavailable
+    fi
+
+    echo
+    echo "Installed:"
+    xclist
+
+    echo
+    echo "Themes"
+    local xcode_themes_dir=~/Library/Developer/Xcode/UserData/FontAndColorThemes
+    local xcode_dev_dir=~/dev/xcode
+    local repo_dir="$xcode_dev_dir/xcode-themes"
+    mkdir -p "$xcode_themes_dir" "$xcode_dev_dir"
+    clone_or_pull "$repo_dir" "git@github.com:hdoria/xcode-themes.git"
+    pushd "$repo_dir"
+    for theme in *.dvtcolortheme; do
+        if [[ ! -e "$xcode_themes_dir/$theme" ]]; then
+            # Only copy new themes
+            cp -v "$theme" "$xcode_themes_dir"
+        fi
+    done
+    popd
+}

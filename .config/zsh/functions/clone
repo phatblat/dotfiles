@@ -1,0 +1,20 @@
+# clone - Performs a git clone, then configures repo user
+function clone() {
+    local url="$1"
+    local dir="$2"
+
+    if [[ -z "$url" ]]; then
+        echo "Usage: clone url [dir]"
+        return 1
+    fi
+
+    if [[ -z "$dir" ]]; then
+        # Extract directory name from URL (remove .git extension and get basename)
+        dir=$(basename "$url" .git)
+    fi
+
+    git clone -- "$url" "$dir" && \
+    pushd "$dir" && \
+    git config user.email "$(email_url "$url")" && \
+    user
+}

@@ -1,0 +1,7 @@
+# pbjup - Upgrade personal jenkins formula and restart service
+function pbjup() {
+    brew update
+    brew upgrade pbjenkins
+    echo "♻️ 👷🏻‍♂️ Restarting jenkins using admin privileges"
+    sudo launchctl kickstart -kp system/pbjenkins
+}

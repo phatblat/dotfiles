@@ -1,0 +1,4 @@
+# brew_logs - Quick nav to Homebrew logs dir
+function brew_logs() {
+    pushd ~/Library/Logs/Homebrew/
+}

@@ -1,0 +1,38 @@
+# gitconfig_setup - Sets git user.name and user.email in XDG_CONFIG_HOME
+function gitconfig_setup() {
+    local email="$1"
+    local name="$2"
+
+    echo "🗄 Git configuration"
+    echo
+
+    mkdir -p ~/.config/git
+    local global_config=~/.config/git/config
+    if [[ ! -f "$global_config" ]]; then
+        touch "$global_config"
+    fi
+
+    # Just print the current config when values are set
+    if git config --file "$global_config" user.name >/dev/null 2>&1 && \
+       git config --file "$global_config" user.email >/dev/null 2>&1; then
+        cat "$global_config"
+        return 0
+    fi
+
+    # Prompt to add required values
+    if [[ -z "$name" ]]; then
+        echo -n "Git user.name: "
+        read name
+    fi
+
+    if [[ -z "$email" ]]; then
+        echo -n "Git user.email: "
+        read email
+    fi
+
+    git config --file "$global_config" user.name "$name"
+    git config --file "$global_config" user.email "$email"
+
+    echo "$global_config"
+    cat "$global_config"
+}

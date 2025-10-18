@@ -1,0 +1,4 @@
+# pushf - Force a git push
+function pushf() {
+    git push --force "$@"
+}

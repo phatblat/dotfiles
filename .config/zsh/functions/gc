@@ -1,0 +1,4 @@
+# gc - Run git garbage collection
+function gc() {
+    git gc --prune=now
+}

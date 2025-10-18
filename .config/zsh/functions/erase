@@ -1,0 +1,4 @@
+# erase - Erase fish functions
+function erase() {
+    functions --erase "$@"
+}

@@ -1,0 +1,10 @@
+# showcert - Prints server certificate file details
+function showcert() {
+    local cert_file="$1"
+    if [[ ! -e "$cert_file" ]]; then
+        echo "Usage: showcert cert_file"
+        return 1
+    fi
+
+    eval "$OPENSSL_PATH x509 -in $cert_file -inform DER -text -noout"
+}

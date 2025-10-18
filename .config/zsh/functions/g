@@ -1,0 +1,4 @@
+# g - Gradle alias
+function g() {
+    gradle "$@"
+}

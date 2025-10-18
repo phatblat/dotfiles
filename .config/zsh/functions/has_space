@@ -1,0 +1,4 @@
+function has_space() {
+    local string="$1"
+    [[ "$string" =~ " " ]]
+}

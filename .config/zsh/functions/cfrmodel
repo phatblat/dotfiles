@@ -1,0 +1,4 @@
+# cfrmodel - Quick dir nav to CFR Model project
+function cfrmodel() {
+    pushd ~/dev/realm/ClinicalFacilityRealmModel
+}

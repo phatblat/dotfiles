@@ -1,0 +1,4 @@
+# System detection functions
+function is_mac() {
+    [[ "$KERNEL" == "Darwin" ]]
+}

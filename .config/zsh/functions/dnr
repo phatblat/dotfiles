@@ -1,0 +1,4 @@
+# dnr - Remove one or more docker networks
+function dnr() {
+    docker network rm "$@"
+}

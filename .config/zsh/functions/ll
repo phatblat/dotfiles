@@ -1,0 +1,4 @@
+# ll - Long list
+function ll() {
+    ls -l "$@"
+}

@@ -1,0 +1,4 @@
+# lt - Long list, sorted by date, show type, human readable
+function lt() {
+    ls -otFh "$@"
+}

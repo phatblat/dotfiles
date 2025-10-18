@@ -1,0 +1,4 @@
+# branch - Manage git branches
+function branch() {
+    git branch "$@"
+}

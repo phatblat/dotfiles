@@ -1,0 +1,4 @@
+# Git and file utilities
+function root() {
+    git rev-parse --show-toplevel "$@"
+}

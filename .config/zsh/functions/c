@@ -1,0 +1,4 @@
+# c - Performs a git checkout
+function c() {
+    git checkout "$@"
+}

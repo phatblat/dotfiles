@@ -1,0 +1,4 @@
+# is_octodec - Tests whether the current computer is octodec
+function is_octodec() {
+    [[ "$(hostname)" == *"octodec"* ]]
+}

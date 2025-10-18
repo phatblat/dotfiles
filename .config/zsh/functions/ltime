@@ -1,0 +1,8 @@
+# ltime - Time last command took to complete
+function ltime() {
+    if [[ -n "$CMD_DURATION" ]]; then
+        echo "$(echo "scale=3; $CMD_DURATION / 1000" | bc)s"
+    else
+        echo "No command duration available"
+    fi
+}

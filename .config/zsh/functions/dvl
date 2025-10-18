@@ -1,0 +1,4 @@
+# dvl - List docker volumes
+function dvl() {
+    docker volume ls "$@"
+}

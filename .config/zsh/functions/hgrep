@@ -1,0 +1,4 @@
+# hgrep - Grep command history
+function hgrep() {
+    history | grep "$@"
+}

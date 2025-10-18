@@ -1,0 +1,34 @@
+# macos - Manage macOS system updates (converted from 🖥_macos)
+function macos() {
+    echo "🖥  macOS"
+
+    # Only install Rosetta 2 on M1 if not already installed
+    if [[ "$(uname -m)" == "arm64" && ! -f "/Library/Apple/usr/share/rosetta/rosetta" ]]; then
+        echo
+        echo "🌍  Rosetta 2"
+        sudo softwareupdate --install-rosetta
+    fi
+
+    echo
+    echo "⌛️  Recently installed macOS system updates"
+    softwareupdate --history
+
+    echo
+    echo "🔎  Checking macOS system updates"
+    softwareupdate --list
+
+    echo
+    echo "⬆️  Updating macOS system software"
+
+    # Download all updates before install
+    local output=$(softwareupdate --download --all --no-scan 2>&1)
+
+    # Exit when "No updates are available."
+    if [[ -n "$output" ]]; then
+        echo "$output"
+        return
+    fi
+
+    # sudo will prompt for password allowing one way to avoid a restart
+    sudo softwareupdate --install --all --no-scan --restart
+}

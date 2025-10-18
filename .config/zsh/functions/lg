@@ -1,0 +1,4 @@
+# lg - Alias for lg10
+function lg() {
+    lg10 "$@"
+}

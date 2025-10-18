@@ -1,0 +1,16 @@
+# mdk - Quick nav to MDK
+function mdk() {
+    local platform="$1"
+    local path="~/dev/mdk"
+
+    if [[ -n "$platform" ]]; then
+        case "$platform" in
+            i|ios)
+                path="$path/ios" ;;
+            a|android)
+                path="$path/android" ;;
+        esac
+    fi
+
+    pushd "$path"
+}

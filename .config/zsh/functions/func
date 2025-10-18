@@ -1,0 +1,18 @@
+# func - Prints colorized, indented source of a loaded function
+function func() {
+    local name="$1"
+    if [[ -z "$name" ]]; then
+        echo "Usage: func name"
+        return 1
+    elif ! command -v "$name" >/dev/null && ! type "$name" >/dev/null; then
+        echo "$name does not exist"
+        return 2
+    fi
+
+    # For Zsh functions, use 'functions' command or 'type'
+    if type "$name" | grep -q "function"; then
+        type "$name"
+    else
+        echo "$name is not a function"
+    fi
+}

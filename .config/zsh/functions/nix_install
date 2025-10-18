@@ -1,0 +1,15 @@
+# nix_install - Installs nix tools (converted from ❄️_nix)
+function nix_install() {
+    echo "❄️ Nix - https://nixos.org/download.html#nix-install-macos"
+    echo
+
+    if ! command -v nix-channel >/dev/null 2>&1; then
+        echo "❄️ Installing nix..."
+        curl -L https://nixos.org/nix/install | sh -s -- --daemon
+
+        nixtest
+
+        nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
+        nix-channel --update
+    fi
+}

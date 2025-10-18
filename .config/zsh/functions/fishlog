@@ -1,0 +1,4 @@
+# fishlog - View fish daemon log
+function fishlog() {
+    less "/tmp/fishd.log.$USER"
+}

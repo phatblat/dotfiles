@@ -1,0 +1,28 @@
+# fe - Edit a function
+function fe() {
+    local function_name="$1"
+    local file="~/.config/fish/functions/${function_name}.fish"
+
+    if [[ ! -e "$file" && ! $(functions "$function_name") ]]; then
+        if yn "Function "$function_name" does not exist. Create?"; then
+            touch "$file"
+        fi
+        return
+    fi
+
+    if [[ -e "$file" ]]; then
+        # Edit an autoloaded function
+        $EDITOR "$file"
+        source "$file"
+    else
+        # Edit a builtin function, save to autoload
+        funced "$function_name"
+        funcsave "$function_name"
+    fi
+
+    if [[ $? -eq 0 ]]; then
+        echo "$function_name function reloaded."
+    else
+        echo "Error reloading $function_name. Please check your syntax in $file"
+    fi
+}

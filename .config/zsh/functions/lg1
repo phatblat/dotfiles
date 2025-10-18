@@ -1,0 +1,13 @@
+# lg1 - Pretty history graph with one commit
+function lg1() {
+    local commit_count=1
+    local format='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+    git log \
+        -$commit_count \
+        --graph \
+        --abbrev-commit \
+        --date=relative \
+        --pretty=format:"$format" \
+        "$@"
+}

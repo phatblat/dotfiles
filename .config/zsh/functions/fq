@@ -1,0 +1,7 @@
+# fq - Check for existence of a function
+function fq() {
+    local function_name="$1"
+    local file="~/.config/fish/functions/$function_name.fish"
+
+    command -v "$function_name" >/dev/null 2>&1 || [[ -e "$file" ]]
+}

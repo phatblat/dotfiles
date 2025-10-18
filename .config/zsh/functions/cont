@@ -1,0 +1,13 @@
+# cont - Commit an in-progress git merge or continue a rebase, cherry-pick or am
+function cont() {
+    if [[ -e .git/MERGE_HEAD ]]; then
+        echo "File exists"
+        git commit >/dev/null
+    elif [[ -e .git/REBASE_HEAD ]]; then
+        git rebase --continue >/dev/null
+    elif [[ -e .git/CHERRY_PICK_HEAD ]]; then
+        git cherry-pick --continue "$@"
+    else
+        git am --continue >/dev/null
+    fi
+}

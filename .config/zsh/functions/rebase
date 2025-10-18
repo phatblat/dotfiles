@@ -1,0 +1,4 @@
+# rebase - Git rebase
+function rebase() {
+    git rebase "$@"
+}

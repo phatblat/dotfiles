@@ -1,0 +1,21 @@
+# sync - Synchronizes a git repo
+function sync() {
+    if git_repo_dirty; then
+        echo "📥 Stashing changes"
+        stsave
+    fi
+
+    local sync_branch="master"
+    if [[ "$sync_branch" != "$(current_branch)" ]]; then
+        git checkout "$sync_branch"
+    fi
+
+    pull
+
+    local remote_name=$(remote_for_current_branch)
+    prune "$remote_name"
+
+    bra
+
+    echo "prompt to delete any tracking branches that have lost their remotes, gone in bra output"
+}

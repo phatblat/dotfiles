@@ -1,0 +1,3 @@
+function is_arm() {
+    [[ "$(uname -m)" == "arm64" ]]
+}

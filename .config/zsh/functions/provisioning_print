@@ -1,0 +1,15 @@
+# provisioning_print - Prints a text version of a provisioning profile
+function provisioning_print() {
+    local profile_path="$1"
+    if [[ -z "$profile_path" ]]; then
+        echo "Usage: provisioning_print path/to/profile.mobileprovision"
+        return 1
+    fi
+
+    if [[ ! -e "$profile_path" ]]; then
+        echo "$profile_path does not exist"
+        return 2
+    fi
+
+    security cms -D -i "$profile_path" 2>/dev/null
+}

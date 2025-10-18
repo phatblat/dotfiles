@@ -1,0 +1,4 @@
+# pru - Update CocoaPod repos
+function pru() {
+    pod repo update "$@"
+}

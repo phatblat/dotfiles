@@ -1,0 +1,4 @@
+# xv - Prints Xcode version information
+function xv() {
+    xcodebuild -version "$@"
+}

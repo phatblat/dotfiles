@@ -1,0 +1,4 @@
+# log10 - Alias for git log
+function log10() {
+    git log -10 --pretty=fuller "$@"
+}

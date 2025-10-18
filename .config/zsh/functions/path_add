@@ -1,0 +1,13 @@
+# JDK management functions
+function path_add() {
+    local directory="$1"
+    if [[ -z "$directory" ]]; then
+        echo "Usage: path_add <directory>" >&2
+        return 1
+    elif [[ -d "$directory" ]]; then
+        export PATH="$directory:$PATH"
+    else
+        echo "Directory not found: $directory" >&2
+        return 2
+    fi
+}

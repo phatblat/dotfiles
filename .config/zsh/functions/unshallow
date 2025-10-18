@@ -1,0 +1,4 @@
+# unshallow - Converts a shallow git repo to full
+function unshallow() {
+    git fetch --unshallow "$@"
+}

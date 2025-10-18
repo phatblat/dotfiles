@@ -1,0 +1,10 @@
+# r - Interactive rebase for the last few commits
+function r() {
+    local count=${1:-10}
+
+    toggle_wait on
+
+    git rebase --interactive HEAD~$count
+
+    toggle_wait off
+}

@@ -1,0 +1,4 @@
+# itwire - Quick dir navigation to ITWire
+function itwire() {
+    pushd ~/dev/bluemix/ITWire
+}

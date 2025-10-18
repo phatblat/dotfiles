@@ -1,0 +1,4 @@
+# push - Git push
+function push() {
+    git push "$@"
+}

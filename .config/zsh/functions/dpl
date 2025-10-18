@@ -1,0 +1,4 @@
+# dpl - View output from docker containers
+function dpl() {
+    docker compose logs --follow "$@"
+}

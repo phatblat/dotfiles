@@ -1,0 +1,4 @@
+# git_inside_repo - Detects whether $PWD is inside a git repo or not
+function git_inside_repo() {
+    git rev-parse --is-inside-work-tree >/dev/null 2>&1
+}

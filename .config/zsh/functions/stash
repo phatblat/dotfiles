@@ -1,0 +1,4 @@
+# stash - Git stash
+function stash() {
+    git stash "$@"
+}
