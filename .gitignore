@@ -1,4 +1,5 @@
 __z_clean.fish
+!.android/repositories.cfg
 !.config/fish/
 !.config/fish/fishfile
 !.config/fish/functions/*.fish
@@ -41,7 +42,7 @@ __z_clean.fish
 .claude.json
 .claude.json.backup
 .claude/debug/
-.claude/history.jsonl !.android/repositories.cfg
+.claude/history.jsonl
 .cmake-js/
 .cocoapods/
 .codeium/
