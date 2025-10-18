@@ -2648,6 +2648,31 @@ function lgg() {
         "$@"
 }
 
+# review - Review a given commit with detailed information and diff
+function review() {
+    local commit="$1"
+    local format='commit:    %Cgreen%H%Creset
+date:      %Cgreen%ai%Creset
+author:    %Cgreen%an%Creset <%Cgreen%ae%Creset>
+committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
+
+    %s
+'
+
+    # --unified: Context lines
+    # --no-prefix: Do not show any source or destination prefix. (e.g. "a/" "b/")
+    # -m: For merge commits, show full diff
+    git log \
+        --max-count=1 \
+        --pretty=format:"$format" \
+        --stat \
+        --patch \
+        -m \
+        --unified=1 \
+        --no-prefix \
+        $commit
+}
+
 # Initialize zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
 
