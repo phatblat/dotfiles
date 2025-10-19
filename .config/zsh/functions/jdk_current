@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function jdk_current() {
     local java_cmd
     java_cmd=$(which java)

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # mt - Short alias for git mergetool
 function mt() {
     git mergetool "$@"

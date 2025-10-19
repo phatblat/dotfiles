@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # clone_or_pull - Clones a fresh copy or pulls an existing git repo
 function clone_or_pull() {
     local folder_name="$1"

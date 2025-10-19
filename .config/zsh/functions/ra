@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # ra - Adds a git remote
 function ra() {
     local name="$1"

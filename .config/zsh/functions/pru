@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # pru - Update CocoaPod repos
 function pru() {
     pod repo update "$@"

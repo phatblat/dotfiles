@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # is_phatmini
 function is_phatmini() {
     if [[ "$(hostname)" == *"phatmini"* ]]; then

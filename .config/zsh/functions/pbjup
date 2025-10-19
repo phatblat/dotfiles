@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # pbjup - Upgrade personal jenkins formula and restart service
 function pbjup() {
     brew update

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # ls - List files with colors and trailing slashes on directories
 function ls() {
     # -p      Write a slash (`/') after each filename if that file is a directory.

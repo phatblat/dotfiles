@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # showcert - Prints server certificate file details
 function showcert() {
     local cert_file="$1"

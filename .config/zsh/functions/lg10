@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # lg10 - Pretty history graph with ten commits
 function lg10() {
     local commit_count=10

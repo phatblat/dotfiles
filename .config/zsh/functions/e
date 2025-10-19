@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # e - Short alias for editing a file. Given no args, the current folder will be opened
 function e() {
     if [[ -z "$1" ]]; then

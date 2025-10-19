@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # lg1 - Pretty history graph with one commit
 function lg1() {
     local commit_count=1

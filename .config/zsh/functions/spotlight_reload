@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # spotlight_reload - Reloads Spotlight which triggers a re-index
 function spotlight_reload() {
     spotlight_disable

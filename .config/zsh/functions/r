@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # r - Interactive rebase for the last few commits
 function r() {
     local count=${1:-10}

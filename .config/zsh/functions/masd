@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # masd - Quick nav to mas dir
 function masd() {
     local repo_url="git@github.com:mas-cli/mas.git"

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # omf_update - Updates oh-my-fish and bundled packages (from 🐠_omf)
 function omf_update() {
     echo "🐠 oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"

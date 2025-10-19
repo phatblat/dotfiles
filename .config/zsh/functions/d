@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # d - Git diff with custom formatting
 function d() {
     # --unified: Context lines

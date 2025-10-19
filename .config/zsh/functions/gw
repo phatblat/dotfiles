@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # gw - Invokes a build using the Gradle wrapper script
 function gw() {
     if [[ -e ./gradlew ]]; then

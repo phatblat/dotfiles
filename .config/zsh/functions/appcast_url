@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # appcast_url - Calculate appcast checkpoint
 function appcast_url() {
     local url="$1"

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # review - Review a given commit with detailed information and diff
 function review() {
     local commit="$1"

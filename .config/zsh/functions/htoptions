@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # htoptions - Send an HTTP request using the OPTIONS method using burl
 function htoptions() {
     burl OPTIONS "$@"

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function ignores() {
     list -s \
         ".DS_Store" \

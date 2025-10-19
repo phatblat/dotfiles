@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # gpgcopypub - Copies the public key for any GPG key found
 function gpgcopypub() {
     local keyid=$(gpgkeyid)

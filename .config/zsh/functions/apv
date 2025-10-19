@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # apv - Quick nav to ApplePlatformVersions dir
 function apv() {
     local apv_dir="~/dev/ApplePlatformVersions"

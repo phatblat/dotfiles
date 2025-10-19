@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # swift_pgp_key_import - Import the Swift PGP keys into your keyring
 function swift_pgp_key_import() {
     gpg --keyserver hkp://pool.sks-keyservers.net \

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # bq - Query brew information
 function bq() {
     if [[ -z "$*" ]]; then

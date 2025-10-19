@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # lgg - Pretty history graph
 function lgg() {
     git log \

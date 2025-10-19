@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # checkout - Perform a git checkout
 function checkout() {
     git checkout "$@"

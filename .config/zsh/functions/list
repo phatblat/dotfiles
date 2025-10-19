@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function list() {
     if [[ -z "$@" ]]; then
         echo "Usage: list [-s] 1 2 3 4 ..." >&2

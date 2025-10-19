@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # brew_versions - Lists installed versions of a formula
 function brew_versions() {
     local formula="$1"

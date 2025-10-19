@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # provisioning_print - Prints a text version of a provisioning profile
 function provisioning_print() {
     local profile_path="$1"

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # octodec - SSH to octodec
 function octodec() {
     ssh phatblat@octodec.local "$@"

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # dit - Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 function dit() {
     docker image tag "$@"

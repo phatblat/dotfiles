@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # lga - Pretty history graph showing all
 function lga() {
     git log \

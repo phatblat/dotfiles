@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # ddd - Delete Derived Data
 function ddd() {
     if [[ -z "$DERIVED_DATA" ]]; then

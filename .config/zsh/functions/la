@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # la - Long list, show almost all, show type, human readable
 function la() {
     ls -laFh "$@"

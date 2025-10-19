@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # bisect - Git bisect
 function bisect() {
     git bisect "$@"

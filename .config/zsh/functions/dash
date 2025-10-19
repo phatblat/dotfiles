@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # dash - Dash shell integration
 function dash() {
     local query="$1"

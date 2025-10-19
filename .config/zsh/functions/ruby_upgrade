@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # ruby_upgrade - Upgrades ruby across major versions
 function ruby_upgrade() {
     brew update

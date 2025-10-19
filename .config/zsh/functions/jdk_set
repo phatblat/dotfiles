@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function jdk_set() {
     local jdk_path="$1"
     local quiet="$2"

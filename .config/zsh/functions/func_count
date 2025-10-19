@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # func_count - Prints a count of all functions
 function func_count() {
     local all=$(functions | wc -l | xargs)

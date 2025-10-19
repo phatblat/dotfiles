@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # o - Short alias for open
 function o() {
     if [[ -z "$1" ]]; then

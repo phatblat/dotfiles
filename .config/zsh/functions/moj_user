@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # moj_user - Prints an emoji for the current user
 function moj_user() {
     case "$USER" in

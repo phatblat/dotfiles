@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # shortlog - Alias for shortlog
 function shortlog() {
     git shortlog

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # mdk - Quick nav to MDK
 function mdk() {
     local platform="$1"

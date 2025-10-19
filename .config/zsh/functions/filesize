@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function filesize() {
     local file="$1"
     if [[ -z "$file" ]]; then

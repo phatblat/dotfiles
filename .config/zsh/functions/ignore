@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function ignore() {
     local gitignore="$(root)/.gitignore"
     local ignore_list

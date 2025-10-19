@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # realmos - Manage Realm Object Server
 function realmos() {
     local command="$1"

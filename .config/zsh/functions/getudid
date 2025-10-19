@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # getudid - Prints and copies the UDID of the connected iOS device
 function getudid() {
     local udid=$(system_profiler SPUSBDataType | \

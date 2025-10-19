@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # sync - Synchronizes a git repo
 function sync() {
     if git_repo_dirty; then

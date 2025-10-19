@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # mpv - Quick nav to MicrosoftPlatformVersions dir
 function mpv() {
     local mpv_dir=~/dev/MicrosoftPlatformVersions

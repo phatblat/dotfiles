@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # cfrservice - Quick dir nav to CFR Service project
 function cfrservice() {
     pushd ~/dev/realm/ClinicalFacilityRealmService

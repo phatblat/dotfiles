@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # fq - Check for existence of a function
 function fq() {
     local function_name="$1"

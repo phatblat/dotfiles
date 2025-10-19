@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # xcvmget - Show a live list of Xcode versions available to download
 function xcvmget() {
     bundle exec ruby -e "

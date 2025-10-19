@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # clone - Performs a git clone, then configures repo user
 function clone() {
     local url="$1"

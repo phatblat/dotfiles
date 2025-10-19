@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # gpgtest - Test GPG key with passphrase
 function gpgtest() {
     local key_id="$1"

@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # ll - Long list
 function ll() {
     ls -l "$@"

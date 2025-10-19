@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # ccu - Update dependencies without building using Carthage
 function ccu() {
     carthage update --no-use-binaries --no-build "$@"

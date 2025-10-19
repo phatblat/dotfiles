@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function jdk() {
     local command="$1"
     local jdk_path="$2"

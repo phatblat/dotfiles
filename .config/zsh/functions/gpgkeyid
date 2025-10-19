@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # gpgkeyid - Prints the long format key identifiers of all GPG keys found
 function gpgkeyid() {
     gpg --list-secret-keys \

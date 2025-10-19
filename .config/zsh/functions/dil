@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # dil - List docker images
 function dil() {
     docker images "$@"

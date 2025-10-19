@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function has_space() {
     local string="$1"
     [[ "$string" =~ " " ]]

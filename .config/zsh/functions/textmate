@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # textmate - Manage TextMate bundles (converted from 📝_textmate)
 function textmate() {
     echo "📝 TextMate - https://github.com/textmate/textmate"

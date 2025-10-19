@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # sg - Quick dir navigation to SwiftGen
 function sg() {
     pushd ~/dev/xcode/SwiftGen

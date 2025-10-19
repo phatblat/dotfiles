@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # chexe - Set executable permissions
 function chexe() {
     local files="$*"

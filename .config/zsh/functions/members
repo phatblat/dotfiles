@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # members - List members of the given group
 function members() {
     local group="$1"

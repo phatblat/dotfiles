@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # fileowner - Displays the owner of a file
 function fileowner() {
     local file="$1"

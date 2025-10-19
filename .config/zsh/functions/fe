@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # fe - Edit a function
 function fe() {
     local function_name="$1"

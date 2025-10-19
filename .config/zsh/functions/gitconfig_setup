@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # gitconfig_setup - Sets git user.name and user.email in XDG_CONFIG_HOME
 function gitconfig_setup() {
     local email="$1"

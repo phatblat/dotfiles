@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 function is_arm() {
     [[ "$(uname -m)" == "arm64" ]]
 }
