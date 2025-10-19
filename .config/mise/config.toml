@@ -26,6 +26,7 @@ ruby = "3.4.7"
 shfmt = "3.12.0"
 terraform = "1.13.4"
 uv = "0.9.3"
+shellcheck = "0.11.0"
 
 [settings]
 experimental = true
