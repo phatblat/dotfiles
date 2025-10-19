@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # xcode - Installs and updates Xcode (converted from 🔨_xcode)
 function xcode() {
     echo "🔨 Xcode"

@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # openports - Lists open ports for the current user
 function openports() {
     lsof -i | grep LISTEN

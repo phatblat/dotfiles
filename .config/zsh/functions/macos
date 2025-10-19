@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # macos - Manage macOS system updates (converted from 🖥_macos)
 function macos() {
     echo "🖥  macOS"

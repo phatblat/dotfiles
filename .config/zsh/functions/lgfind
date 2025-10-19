@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # lgfind - Search through lightweight log `lg` for a specific pattern
 function lgfind() {
     local search_term="$1"

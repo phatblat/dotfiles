@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # shell_switch - Changes the current $USER's shell using dscl
 function shell_switch() {
     local new_shell="$1"

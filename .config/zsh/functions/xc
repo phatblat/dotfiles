@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # xc - Xcode wrapper function
 function xc() {
     if [[ -f Package.swift ]]; then

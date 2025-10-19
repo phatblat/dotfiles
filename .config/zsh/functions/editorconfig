@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # editorconfig - Generates an editorconfig
 function editorconfig() {
     local file_path="$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.editorconfig"

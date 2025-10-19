@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # rubygems - Installs and updates Ruby gems (converted from 💎_rubygems)
 function rubygems() {
     echo "💎 Updating Ruby Gems"

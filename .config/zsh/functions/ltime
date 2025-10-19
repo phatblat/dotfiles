@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # ltime - Time last command took to complete
 function ltime() {
     if [[ -n "$CMD_DURATION" ]]; then

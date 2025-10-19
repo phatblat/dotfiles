@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # cont - Commit an in-progress git merge or continue a rebase, cherry-pick or am
 function cont() {
     if [[ -e .git/MERGE_HEAD ]]; then

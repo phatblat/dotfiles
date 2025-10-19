@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # xlog - Quick nav to nginx log dir
 function xlog() {
     local subdir="$1"

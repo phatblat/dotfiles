@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # bi - Short alias for installing gems using Bundler
 function bi() {
     bundle install "$@"

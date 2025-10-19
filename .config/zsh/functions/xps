@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # xps - Short alias for displaying nginx status
 function xps() {
     xstatus "$@"

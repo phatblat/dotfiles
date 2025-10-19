@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # big - Install gem bundle using the local Gemfile
 function big() {
     bundle install --gemfile=Gemfile

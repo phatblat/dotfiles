@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # derived_data - Spins up a RAM disk for Xcode DerivedData
 function derived_data() {
     local quiet="$1"

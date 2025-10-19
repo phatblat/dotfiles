@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # nix_install - Installs nix tools (converted from ❄️_nix)
 function nix_install() {
     echo "❄️ Nix - https://nixos.org/download.html#nix-install-macos"

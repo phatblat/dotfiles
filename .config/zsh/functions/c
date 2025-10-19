@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # c - Performs a git checkout
 function c() {
     git checkout "$@"

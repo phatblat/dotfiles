@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # ida - Launch IDA with elevated privileges
 function ida() {
     local ida_path="/Applications/IDA Pro 7.5"

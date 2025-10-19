@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # lggrep - Grep through lightweight log `lg` for a regex pattern
 function lggrep() {
     local pattern="$1"

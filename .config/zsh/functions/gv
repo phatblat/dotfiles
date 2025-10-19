@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # gv - Prints gradle version
 function gv() {
     local output=$(gradle --version)

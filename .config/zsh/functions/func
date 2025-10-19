@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # func - Prints colorized, indented source of a loaded function
 function func() {
     local name="$1"

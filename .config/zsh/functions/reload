@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+
 # reload - Reloads a single function or the entire fish shell
 function reload() {
     local function_name="$1"
