@@ -4,6 +4,7 @@
 #
 
 [tools]
+"npm:@anthropic-ai/claude-code" = "latest"
 "npm:@linear/cli" = "0.0.5"
 "npm:@musistudio/claude-code-router" = "1.0.62"
 "npm:@tauri-apps/cli" = "2.8.4"
@@ -25,7 +26,6 @@ ruby = "3.4.7"
 shfmt = "3.12.0"
 terraform = "1.13.4"
 uv = "0.9.3"
-"npm:@anthropic-ai/claude-code" = "latest"
 
 [settings]
 experimental = true
