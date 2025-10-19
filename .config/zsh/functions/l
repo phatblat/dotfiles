@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# l - List files showing size, show type, human readable
+function l() {
+    ls -lFh "$@"
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# qllist - List QuickLook plugins
+function qllist() {
+    qlmanage -m plugins "$@"
+}

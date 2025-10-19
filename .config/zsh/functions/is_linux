@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+function is_linux() {
+    [[ "$KERNEL" == "Linux" ]]
+}

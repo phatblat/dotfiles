@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# lg10 - Pretty history graph with ten commits
+function lg10() {
+    local commit_count=10
+
+    git log \
+        -$commit_count \
+        --graph \
+        --abbrev-commit \
+        --date=relative \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+        "$@"
+}

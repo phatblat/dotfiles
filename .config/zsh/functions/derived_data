@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+# derived_data - Spins up a RAM disk for Xcode DerivedData
+function derived_data() {
+    local quiet="$1"
+    local drive_name="DerivedData"
+    local default_size=10
+    local target_path="/Volumes/$drive_name"
+    local icon_file="~/Pictures/Icons/Agua Onyx Icons/Onyx Media Drive.png"
+
+    if [[ -d "$target_path" ]]; then
+        echo "$drive_name already mounted"
+        local output=$(diskutil list "$drive_name")
+    else
+        local output=$(ramdisk "$default_size" "$drive_name")
+        fileicon set "$target_path" "$icon_file"
+    fi
+
+    if [[ -z "$quiet" ]]; then
+        echo "$output"
+    fi
+}

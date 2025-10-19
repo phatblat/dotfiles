@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# xcbschemes - Displays schemes for an Xcode project
+function xcbschemes() {
+    local schemes=($(xcblist | grep "Schemes:" -A 10 | tail -n +2 | sed -e 's/^[ \t]*//'))
+    # Remove the last empty element
+    schemes=("${schemes[@]:0:$((${#schemes[@]} - 1))}")
+    for scheme in "${schemes[@]}"; do
+        echo "$scheme"
+    done
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# git_clean
+function git_clean() {
+    git clean -xffd
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# rl - Quick dir navigation to reflog
+function rl() {
+    pushd ~/dev/www/reflog/www
+}

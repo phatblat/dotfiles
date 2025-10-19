@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# masd - Quick nav to mas dir
+function masd() {
+    local repo_url="git@github.com:mas-cli/mas.git"
+    local base_dir="~/dev/mas-cli"
+    local local_dir="$base_dir/mas"
+
+    # Create parent directories
+    mkdir -p "$base_dir"
+
+    clone_or_pull "$local_dir" "$repo_url"
+
+    pushd "$local_dir"
+}

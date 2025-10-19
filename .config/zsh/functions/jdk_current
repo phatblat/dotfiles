@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+function jdk_current() {
+    local java_cmd
+    java_cmd=$(which java)
+    echo "JAVA_HOME: $JAVA_HOME"
+    echo "which java: $java_cmd"
+    lipo -info "$java_cmd"
+    java -version
+    echo "CPPFLAGS: $CPPFLAGS"
+}

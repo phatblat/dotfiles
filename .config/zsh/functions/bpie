@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# bpie - Install pods for Example app
+function bpie() {
+    bundle exec pod install \
+        --project-directory=Example \
+        "$@"
+}

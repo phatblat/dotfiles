@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+
+function ignore() {
+    local gitignore="$(root)/.gitignore"
+    local ignore_list
+    local commit_message
+
+    touch "$gitignore"
+
+    if [[ -s "$gitignore" ]]; then
+        ignore_list=$(cat "$gitignore")
+    else
+        ignore_list=$(ignores)
+        commit_message="chore: add standard ignores"
+        echo "Creating .gitignore"
+    fi
+
+    if [[ $# -gt 0 ]]; then
+        ignore_list="$* $ignore_list"
+        commit_message="chore: ignore $*"
+    fi
+
+    {
+        while IFS= read -r pattern; do
+            echo "$pattern"
+        done <<< "$ignore_list"
+    } | sort -u > "$gitignore"
+
+    if [[ -z "$commit_message" ]]; then
+        echo "Nothing new added to ignores, just sorted and removed duplicates."
+        return
+    fi
+
+    git add "$gitignore"
+    git commit -m "$commit_message"
+}

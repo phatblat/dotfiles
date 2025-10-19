@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# apv - Quick nav to ApplePlatformVersions dir
+function apv() {
+    local apv_dir="~/dev/ApplePlatformVersions"
+
+    if [[ ! -d "$apv_dir" ]]; then
+        cd ~/dev
+        git clone git@github.com:phatblat/ApplePlatformVersions.git
+    else
+        cd "$apv_dir"
+        git pull
+    fi
+
+    lg10
+}

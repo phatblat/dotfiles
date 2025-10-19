@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# mpv - Quick nav to MicrosoftPlatformVersions dir
+function mpv() {
+    local mpv_dir=~/dev/MicrosoftPlatformVersions
+
+    if [[ ! -d "$mpv_dir" ]]; then
+        cd ~/dev
+        git clone git@github.com:phatblat/MicrosoftPlatformVersions.git
+    else
+        cd "$mpv_dir"
+        git pull
+    fi
+
+    lg10
+}

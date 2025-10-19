@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# cat - Wrapper for bat because I can never remember
+function cat() {
+    bat "$@"
+}

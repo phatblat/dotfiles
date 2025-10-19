@@ -97,8 +97,16 @@ clean:
 # checks group recipes
 #
 
-# Checks justfile and ansible playbooks
+# Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
 lint:
     mise fmt --check
     just --fmt --check
+    @echo "Linting shell scripts..."
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
+
+# Format shell scripts in .config/zsh/functions
+[group('checks')]
+lint-fix:
+    @echo "Formatting shell scripts..."
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shfmt -w -i 4 -sr {} +

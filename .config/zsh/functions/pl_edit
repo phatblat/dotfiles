@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# pl_edit - Edit Powerline config files
+function pl_edit() {
+    echo "Kill the powerline-daemon (-k) to see changes."
+    psgrep powerline-daemon
+    $EDITOR ~/.config/powerline
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# dash - Dash shell integration
+function dash() {
+    local query="$1"
+    if [[ -z "$query" ]]; then
+        echo "Usage: dash query   (prefix query with 'docset_name:' to limit)"
+        return 1
+    fi
+
+    open "dash://$query"
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# amendne - Amend previous commit without editing the message
+function amendne() {
+    git commit --verbose --amend --no-edit "$@"
+}

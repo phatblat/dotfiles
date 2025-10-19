@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# hgrep - Grep command history
+function hgrep() {
+    history | grep "$@"
+}

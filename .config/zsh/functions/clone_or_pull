@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+# clone_or_pull - Clones a fresh copy or pulls an existing git repo
+function clone_or_pull() {
+    local folder_name="$1"
+    local git_url="$2"
+    local branch="$3"
+
+    if [[ -z "$folder_name" || -z "$git_url" ]]; then
+        echo "Usage: clone_or_pull folder url [branch]"
+        return 1
+    fi
+
+    if [[ ! -d "$folder_name" ]]; then
+        git clone "$git_url" "$folder_name"
+
+        # Checkout branch
+        if [[ -n "$branch" ]]; then
+            pushd "$folder_name"
+            git checkout "$branch"
+            popd
+        fi
+    else
+        pushd "$folder_name"
+        if [[ -n "$branch" && "$branch" != "$(git rev-parse --abbrev-ref HEAD)" ]]; then
+            echo "WARNING: $folder_name currently has the $(git rev-parse --abbrev-ref HEAD) branch checked out (!=$branch)"
+        fi
+        git pull
+        popd
+    fi
+}

@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+# is_phatmini
+function is_phatmini() {
+    if [[ "$(hostname)" == *"phatmini"* ]]; then
+        return 0
+    else
+        return 1
+    fi
+}

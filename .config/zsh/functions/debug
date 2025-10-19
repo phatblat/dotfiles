@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# debug - Prints args only when debug env var is set
+function debug() {
+    if [[ -n "$debug" ]]; then
+        echo "DEBUG:" "$@"
+    fi
+}

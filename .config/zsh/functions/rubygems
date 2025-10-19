@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+# rubygems - Installs and updates Ruby gems (converted from 💎_rubygems)
+function rubygems() {
+    echo "💎 Updating Ruby Gems"
+    echo
+
+    if user_is_admin; then
+        # Workaround to no access to /usr/bin on Sierra
+        # Updating rubygems-update
+        gem update --system
+        gem update
+
+        # Bundler
+        gem install bundler
+    fi
+}

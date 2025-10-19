@@ -1,0 +1,52 @@
+#!/usr/bin/env zsh
+
+# upmodule - Optionally invokes an upstall module (converted from ⬆️_upmodule)
+function upmodule() {
+    local module_function="$1"
+    local display_name="$2"
+    local include_flag="$3"
+    local skip_flag="$4"
+    shift 4
+    local original_args=("$@")
+
+    # no args
+    if [[ -z "$module_function" ]]; then
+        echo "Usage: upmodule module_function [display_name include_flag skip_flag original_args]"
+        return 1
+    fi
+
+    if ! command -v "$module_function" > /dev/null 2>&1; then
+        echo "Unknown function: $module_function"
+        return 2
+    fi
+
+    # 1 arg
+    if [[ $# -eq 0 && -z "$display_name" ]]; then
+        repeatchar -
+        eval "$module_function"
+
+    # 4+ args
+    elif [[ -n "$display_name" && -n "$include_flag" && -n "$skip_flag" ]]; then
+        if ! command -v "$module_function" > /dev/null 2>&1; then
+            echo "Unknown function: $module_function"
+            return 4
+        fi
+
+        if [[ " ${original_args[*]} " =~ " $skip_flag " ]]; then
+            # Skip module if skip flag was given
+            repeatchar -
+            echo "$display_name (skipped)"
+        elif [[ " ${original_args[*]} " =~ " $include_flag " ]]; then
+            # Run module if asked for
+            repeatchar -
+            eval "$module_function"
+        else
+            # Otherwise, skip
+            # echo "$display_name (skipped)"
+            :
+        fi
+    else
+        echo "Usage: upmodule module_function [display_name include_flag skip_flag original_args]"
+        return 2
+    fi
+}

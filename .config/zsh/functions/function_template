@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+
+# function_template
+function function_template() {
+    local function_name="$1"
+    local argname="$2"
+    if [[ -z "$function_name" ]]; then
+        echo "Usage: function_template function_name [argname]"
+        return 1
+    fi
+    if [[ -z "$argname" ]]; then
+        argname="argname"
+    fi
+    printf "function %s() {\n" "$function_name"
+    printf "    # %s does something\n" "$function_name"
+    printf "    if [[ -z \"\\$%s\" ]]; then\n" "$argname"
+    printf "        echo 'Usage: %s [%s]'\n" "$function_name" "$argname"
+    printf "        return 1\n"
+    printf "    fi\n"
+    printf "\n}\n"
+}

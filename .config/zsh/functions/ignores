@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+function ignores() {
+    list -s \
+        ".DS_Store" \
+        "*.xccheckout" \
+        "*.xcscmblueprint" \
+        "xcuserdata" \
+        "Carthage/" \
+        "Pods/" \
+        ".build/" \
+        ".swiftpm/" \
+        ".rubygems/" \
+        "bin/" \
+        "build/" \
+        ".gradle/" \
+        "gradlew.bat" \
+        ".idea/" \
+        "*.iml" \
+        "*.hprof" \
+        ".classpath" \
+        ".project" \
+        ".settings" \
+        ".vscode/" \
+        "target/" \
+        ".cxx/" \
+        "cmake-build-debug/" \
+        ".externalNativeBuild/" \
+        "heapdump.*.phd" \
+        "javacore.*.txt" \
+        "*.dll" \
+        ".vs/" \
+        "obj/" \
+        "packages/" \
+        "bazel-*" \
+        "buck-out/" \
+        "__pycache__/" \
+        "node_modules/" \
+        ".npm/"
+}

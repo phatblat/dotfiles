@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# objg - Quick nav to Objective-Git
+function objg() {
+    pushd ~/dev/libgit2/objective-git
+}

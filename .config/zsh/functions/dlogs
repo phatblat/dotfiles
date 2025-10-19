@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# dlogs - Fetch the logs of a docker container
+function dlogs() {
+    docker logs --follow "$@"
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# unshallow - Converts a shallow git repo to full
+function unshallow() {
+    git fetch --unshallow "$@"
+}

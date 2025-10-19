@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+# getudid - Prints and copies the UDID of the connected iOS device
+function getudid() {
+    local udid=$(system_profiler SPUSBDataType |
+        grep -A 11 -w "iPad\|iPhone\|iPad" |
+        grep "Serial Number" |
+        awk '{ print $3 }')
+
+    if [[ -z "$udid" ]]; then
+        echo "No device detected. Please ensure an iOS device is plugged in."
+        return 1
+    else
+        for identifier in $udid; do
+            echo -n "$identifier" | pbcopy
+            echo "UDID: $identifier"
+        done
+    fi
+}

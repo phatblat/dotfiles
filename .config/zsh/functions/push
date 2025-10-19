@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# push - Git push
+function push() {
+    git push "$@"
+}

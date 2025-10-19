@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+function ignored() {
+    git status --ignored --porcelain 2> /dev/null
+}

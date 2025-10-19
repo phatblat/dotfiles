@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# dss - Scale one or multiple replicated docker services
+function dss() {
+    docker service scale "$@"
+}
