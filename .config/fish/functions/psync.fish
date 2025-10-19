@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Syncs files between two directories. Without a 3rd argument, only does a dry run.
 function psync --argument-names source_dir destination_dir dry_run
     if test -z $source_dir -o -z $destination_dir

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function plcat \
     --description='Library/Preferences/com.mizage.Divvy.plist' \
     --argument-names file
@@ -13,4 +14,3 @@ function plcat \
     plutil -convert xml1 -o - -- $file \
         | bat
 end
-

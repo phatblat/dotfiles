@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Dictionary/Map Data Structure for emoji.
 #
 # Replicating a simple map in fish. A *_map function accepting 0-Many key names and returning various values. Values are printed to stdout.

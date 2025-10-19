@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 #
 # bindings.fish
 # https://brettterpstra.com/2019/11/11/fish-further-exploration/#bindings

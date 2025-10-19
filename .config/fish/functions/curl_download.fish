@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Download a file using curl with the most common options:
 # -f, --fail            Fail silently on server errors.
 # -L, --location        Follow redirects.

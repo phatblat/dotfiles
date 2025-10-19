@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function 📦_apt \
     --description='Updates APM packages Linux.'
 

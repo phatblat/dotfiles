@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pod \
     --description='Display the local version of CocoaPods.' \
     --wraps='pod'

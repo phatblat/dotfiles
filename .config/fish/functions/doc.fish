@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function doc \
     --description='Quickly launch docker containers in the current dir.' \
     --argument-names image_name image_version

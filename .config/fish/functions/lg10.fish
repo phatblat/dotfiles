@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lg10 \
     --description='Pretty history graph with ten commits'
 

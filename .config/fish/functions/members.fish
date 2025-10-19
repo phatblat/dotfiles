@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # List members of the given group.
 function members --argument-names group
     if test -z $group

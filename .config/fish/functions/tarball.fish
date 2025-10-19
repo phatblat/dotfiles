@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function tarball --wraps='tar' \
         --description='Creates a tarball.' \
         --argument file_or_dir

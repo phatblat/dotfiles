@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function untar --wraps='tar' \
         --description='Extracts a tarball.' \
         --argument file_name

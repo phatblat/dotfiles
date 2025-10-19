@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function gradle_wrapper_add --description="Updates the build.gradle and runs the wrapper task."
     set gradleVersion (gv)
 

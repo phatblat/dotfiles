@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ida \
     --description='Lauch IDA with elevated priveleges'
 

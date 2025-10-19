@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Sequencing
 # - Requires mint.
 function 🌱_mint \

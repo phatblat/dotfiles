@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function unstage \
     --description='Restores files in the git index from HEAD.'
 

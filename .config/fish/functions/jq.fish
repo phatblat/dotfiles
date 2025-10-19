@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function jq --description "Wrapper around jq with input preservation on failure" --wraps jq
     set -l input (cat)
 

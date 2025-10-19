@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function chexe \
         --description='Set executable permissions' \
         --argument-names files

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function served \
         --wraps=jekyll \
         --description='Runs Jekyll server in the background.'

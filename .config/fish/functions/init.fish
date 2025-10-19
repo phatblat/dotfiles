@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function init \
     --description='Initialize a new git repo in current or optional directory arg' \
     --argument-names dir_name

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bug \
     --description='Update gem bundle using the local Gemfile.'
 

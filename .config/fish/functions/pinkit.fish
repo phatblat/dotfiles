@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pinkit \
     --description='Quick nav to PinKit dir'
 

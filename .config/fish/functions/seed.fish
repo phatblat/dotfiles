@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://derflounder.wordpress.com/2018/01/06/setting-your-mac-to-receive-macos-beta-updates-using-seedutil/
 function seed \
     --description='Wrapper for macOS seedutil' \

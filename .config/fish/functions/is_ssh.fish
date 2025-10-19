@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function is_ssh \
     --description="Tests whether the current terminal session is an SSH session"
 

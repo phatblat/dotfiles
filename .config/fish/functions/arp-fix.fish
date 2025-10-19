@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # arp-fix
 # http://krypted.com/mac-security/disable-unicast-arp-cache-validation-in-os-x/
 # https://gist.github.com/blimmer/7242676

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pingdownload \
     --description='Downloads Ping DevOps tools'
 

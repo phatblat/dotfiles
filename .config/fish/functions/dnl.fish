@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dnl \
     --description='List docker networks'
 

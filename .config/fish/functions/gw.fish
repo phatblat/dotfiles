@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function gw --description='Invokes a build using the Gradle wrapper script.'
     if test -e ./gradlew
         ./gradlew $argv

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Migrated from bundle-pull.rb ruby script
 function bundle-pull \
         --description='Copies a dirty working copy from one host to another.'

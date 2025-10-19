@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints a count of all functions
 function func_count
     set -l all (string trim (functions | wc -w))

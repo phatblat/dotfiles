@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Debugging for the status function.
 #
 # User:

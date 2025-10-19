@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function root \
     --description='Display the path to the root of the current git repo.'
 

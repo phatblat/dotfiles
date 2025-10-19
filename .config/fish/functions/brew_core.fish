@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function brew_core \
     --description='Quick nav to homebrew-core dir'
 
@@ -7,4 +8,3 @@ function brew_core \
         pushd (brew_home)/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
     end
 end
-

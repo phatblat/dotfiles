@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Performs release steps on an Xcode project.
 #
 # 1. Increments the project/build version.

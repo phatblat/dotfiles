@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints date in ISO-8601 format.
 function date_iso8601 --argument-names format
     if test -z $format

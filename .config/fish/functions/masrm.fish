@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function masrm \
         --description='Uninstall mas package'
 

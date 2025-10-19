@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # stderr often outputs several of the following messages, which seem to be
 # coming from outdated casks.
 #

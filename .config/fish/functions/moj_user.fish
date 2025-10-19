@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function moj_user \
     --description='Prints an emoji for the current user.'
 

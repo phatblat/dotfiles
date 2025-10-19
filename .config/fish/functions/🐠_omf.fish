@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Edit .config/omf/bundle to change packages
 #
 # Sequencing

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function binstall \
     --description='Install Bundler with the proper bindir.'
 

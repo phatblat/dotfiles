@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function __re_extension \
     --description='remove extension from word under/before cursor'
 

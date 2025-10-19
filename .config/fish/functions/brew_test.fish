@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function brew_test \
         --description='Installs and tests a Homebrew formula' \
         --argument-names token formula_version

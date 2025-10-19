@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function update_nvm \
     --description 'Upstalls NVM' \
     --argument-names nvm_version

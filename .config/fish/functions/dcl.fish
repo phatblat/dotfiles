@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dcl \
     --description='List all docker containers'
 

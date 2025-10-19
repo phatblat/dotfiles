@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function __prev_token \
     --description='repeats last token on the command line'
 

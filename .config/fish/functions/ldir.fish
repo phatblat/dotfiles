@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # List dirs
 function ldir --wraps ls
     for path in (find . -type d -maxdepth 1)

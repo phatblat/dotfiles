@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function nv \
     --description='nv' \
     --argument-names node_version

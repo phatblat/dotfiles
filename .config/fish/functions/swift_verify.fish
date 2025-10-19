@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://swift.org/download/#installation-1
 function swift_verify \
     --description='swift_verify' \

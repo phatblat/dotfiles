@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function chat \
     --description='chat' \
     --argument-names message

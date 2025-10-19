@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function amendne \
     --description='Amend previous commit without editing the message.'
 

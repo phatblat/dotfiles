@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function mdk \
         --description='Quick nav to MDK' \
         --argument-names platform

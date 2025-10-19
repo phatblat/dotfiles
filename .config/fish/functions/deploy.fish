@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function deploy \
     --description='Builds and deploys static content.'
 

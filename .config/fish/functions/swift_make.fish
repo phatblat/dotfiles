@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function swift_make \
     --description='Adds template Makefile for Swift projects.'
 

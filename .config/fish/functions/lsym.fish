@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # List symbolic links in the current dir.
 function lsym --wraps ls
     for path in (find . -type l -maxdepth 1)

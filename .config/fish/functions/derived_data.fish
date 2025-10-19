@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function derived_data \
     --description='Spins up a RAM disk for Xcode DerivedData' \
     --argument-names quiet

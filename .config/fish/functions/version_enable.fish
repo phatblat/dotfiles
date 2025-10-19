@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function version_enable \
     --description='Runs the enable-versioning.rb ruby script.'
 

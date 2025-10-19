@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function spotlight_disable \
     --description='Disables Spotlight indexing'
 

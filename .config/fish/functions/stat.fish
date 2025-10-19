@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ___stat \
     --description='Disabled wrapper for stat' \
     --wraps='stat' \

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function nixgc \
     --description='Runs nix garbage collection and optimisation'
 

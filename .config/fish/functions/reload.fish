@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function reload \
     --description='Reloads a single function or the entire fish shell.' \
     --wraps functions \

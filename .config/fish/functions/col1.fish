@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints the first column of input (first argument).
 # Multi-line content can be passed on stdin, assumed when given no arguments, or
 # a single dash.

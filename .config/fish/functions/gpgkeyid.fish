@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # This will return multiple 8-char values if there are multiple secret keys.
 function gpgkeyid --description='Prints the long format key identifiers of all GPG keys found.'
     gpg --list-secret-keys \

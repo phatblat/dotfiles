@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function gpv \
     --description='Quick nav to GooglePlatformVersions dir.'
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function clone \
         --description="Performs a git clone, then configures repo user." \
         --argument-names url dir

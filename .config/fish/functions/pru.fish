@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pru \
     --description='Update CococaPod repos.'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function spotlight_enable \
     --description='Enables Spotlight indexing'
 

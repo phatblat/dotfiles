@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function appicon \
     --description='Resizes AppIcon' \
     --argument-names file

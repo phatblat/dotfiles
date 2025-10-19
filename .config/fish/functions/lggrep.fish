@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Grep through lightweight log `lg` for a regex pattern.
 function lggrep --argument-names pattern
     if test -z "$pattern"

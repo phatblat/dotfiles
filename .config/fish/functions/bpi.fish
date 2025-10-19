@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bpi \
     --description='Run pod install through Bundler.'
 

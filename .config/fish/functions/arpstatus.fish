@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function arpstatus \
     --description='Shows the current value of arp_unicast_lim.'
 

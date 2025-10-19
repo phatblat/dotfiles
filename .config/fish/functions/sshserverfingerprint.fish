@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function sshserverfingerprint \
     --description='Print fingerprint of server SSH key' \
     --argument-names host_name

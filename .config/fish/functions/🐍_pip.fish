@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://pip.pypa.io/en/stable/
 # Python Package Index (PyPI) https://pypi.python.org/pypi
 #

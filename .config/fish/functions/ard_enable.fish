@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://support.apple.com/en-us/HT201710
 function ard_enable \
     --description='Enables Apple Remote Desktop'

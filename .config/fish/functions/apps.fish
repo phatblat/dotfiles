@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function apps \
     --description='Lists macOS apps currently installed' \
     --argument-names option

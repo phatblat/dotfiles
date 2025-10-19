@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function brew_home \
         --description='Prints the Homebrew home dir or the location in the cellar where formula is or would be installed.' \
         --argument-names formula

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pdo \
     --description='Quick nav to Ping DevOps projects' \
     --argument-names project

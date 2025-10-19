@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function abort \
     --description='Aborts an in-progress git merge, rebase, cherry-pick or am (apply mail patch).'
 

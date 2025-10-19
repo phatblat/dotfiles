@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function nav \
     --description='Quick nav to a dir. Creates dir if not present.' \
     --argument-names dir

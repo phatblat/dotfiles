@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Sets window/tab title.
 function title --argument-names name
     if test -z $name 2>/dev/null

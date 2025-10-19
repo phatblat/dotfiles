@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Displays process information with custom format.
 #
 # Keywords for columns (-o):

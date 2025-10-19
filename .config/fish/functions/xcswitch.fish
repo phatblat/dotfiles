@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Switch the active version of Xcode.
 function xcswitch --argument-names xcode_version
     if not user_is_admin

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bpru \
     --description='Update CocoaPod repos.'
 

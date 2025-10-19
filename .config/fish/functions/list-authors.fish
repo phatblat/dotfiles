@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Collect a list of all commit authors from the current repo.
 function list-authors --argument-names format
     if test -z $format

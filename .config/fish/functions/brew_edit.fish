@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function brew_edit \
         --description='Manages Homebrew formulae' \
         --argument-names token formula_version

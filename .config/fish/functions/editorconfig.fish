@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function editorconfig \
     --description='Generates an editorconfig.'
 

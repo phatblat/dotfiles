@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function user_is_admin \
         --description='Tests whether USER is a member of the admin group.'
     if is_mac

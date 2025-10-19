@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function rewrite \
     --argument-names field old_value new_value \
     --description='Rewrite commits changing author/committer name/email/time environment variables.'

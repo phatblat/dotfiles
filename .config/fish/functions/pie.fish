@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pie \
     --description='Install pods for Example app.'
 

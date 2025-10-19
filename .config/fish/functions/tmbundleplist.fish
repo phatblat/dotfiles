@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Generates the XML contents for a minimal TextMate bundle Info.plist.
 # Content goes to stdout. Redirect to a file after previewing results.
 function tmbundleplist --argument-names bundle_name bundle_description git_url
@@ -38,4 +39,3 @@ function tmbundleplist --argument-names bundle_name bundle_description git_url
 
     echo $content\n
 end
-

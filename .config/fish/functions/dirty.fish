@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dirty \
     --description 'Show repo dirty files'
 

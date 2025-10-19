@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 #!/usr/local/bin/fish
 function git-plist-filter --description='Converts plist data to XML format (stdin->stdout).'
     #!/bin/sh

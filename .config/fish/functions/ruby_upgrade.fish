@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ruby_upgrade --description='Upgrades ruby across major versions' 
     brew update
     brew info ruby

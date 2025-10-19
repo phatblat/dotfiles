@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function aws_id \
     --description aws_id \
     --argument-names profile

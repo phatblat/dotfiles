@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function 🥅_dotnet \
     --description='Installs .NET tools and workpacks.'
 

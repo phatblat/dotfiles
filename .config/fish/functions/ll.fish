@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ll \
     --description='Long list' \
     --wraps ls

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function email_url \
         --description='Determines an appropriate contact for a given url' \
         --argument-names url

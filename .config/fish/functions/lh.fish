@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lh \
     --description 'List files with human-readable sizes'
 

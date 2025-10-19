@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function gem_pristine \
     --description='Runs the pristine command for all gems'
 

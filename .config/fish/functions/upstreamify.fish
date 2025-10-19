@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function upstreamify \
     --description='Renames origin to upstream'
 

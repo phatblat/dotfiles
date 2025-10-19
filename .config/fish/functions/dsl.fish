@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dsl \
     --description='List docker services'
 

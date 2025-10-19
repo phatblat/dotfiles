@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bpuru \
     --description='Update pods after updating repos.'
 

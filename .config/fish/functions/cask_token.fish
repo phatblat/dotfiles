@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Generates a cask token for an app.
 function cask_token --argument-names path
     if test -z "$path"

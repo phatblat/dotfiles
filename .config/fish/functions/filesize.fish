@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function filesize \
     --description="Prints size of file in bytes." \
     --argument-names file

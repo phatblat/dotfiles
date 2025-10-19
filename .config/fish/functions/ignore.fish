@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ignore \
     --description='Adds lines to .gitignore'
 
@@ -36,4 +37,3 @@ function ignore \
     git add $gitignore
     git commit -m $commit_message
 end
-

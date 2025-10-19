@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Create a new function.
 function fn --argument function_name
     set -l file ~/.config/fish/functions/$function_name.fish

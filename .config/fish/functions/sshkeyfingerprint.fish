@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Show fingerprint of optional public key file, defaults to ~/.ssh/id_ed25519.pub.
 function sshkeyfingerprint --argument-names file
     if test -z $file

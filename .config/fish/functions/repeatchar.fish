@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Repeats a character a fixed number of times.
 function repeatchar --argument-names char length
     if test -z $char

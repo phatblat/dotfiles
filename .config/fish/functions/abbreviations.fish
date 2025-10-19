@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 #
 # Fish Shell Abbreviations
 # https://brettterpstra.com/2019/11/11/fish-further-exploration/#abbreviations

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lgfind \
     --description='Search through lightweight log `lg` for a specific pattern.' \
     --argument-names search_term

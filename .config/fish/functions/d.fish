@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function d \
     --description='Git diff'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bootcamp \
     --description='Restarts to Windows bootcamp'
 

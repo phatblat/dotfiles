@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function usage \
     --description='Show disk usage for a directory' \
     --argument-names path

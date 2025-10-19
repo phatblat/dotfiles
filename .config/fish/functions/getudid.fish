@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function getudid \
     --description='Prints and copies the UDID of the connected iOS device.'
 

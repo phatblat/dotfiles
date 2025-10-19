@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # List functions.
 function fl --argument-names filter
     set -l all_funcs (functions)

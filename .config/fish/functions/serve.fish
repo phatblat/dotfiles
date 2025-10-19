@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function serve \
         --wraps=jekyll \
         --description='Runs Jekyll server in the foreground with the given environment variables.'

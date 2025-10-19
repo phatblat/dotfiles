@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pv \
     --description='Display the local version of CocoaPods.'
 

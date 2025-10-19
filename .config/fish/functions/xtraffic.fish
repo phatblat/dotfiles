@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Display HTTP traffic stats using goaccess.
 function xtraffic
     goaccess \

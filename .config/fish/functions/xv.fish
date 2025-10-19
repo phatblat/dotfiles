@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints Xcode version information.
 #
 # Interesting options:

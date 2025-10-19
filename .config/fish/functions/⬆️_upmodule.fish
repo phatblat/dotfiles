@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ⬆️_upmodule \
     --description='Optionally invokes an upstall module, provided the "skip" flag(s) are not given. Requires either 1 arg (no include/skip options), or 4+ args (include/skip flags & title)' \
     --argument-names \

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function track --wraps=git \
         --description='Creates a local tracking branch.' \
         --argument-names remote_branch local_name

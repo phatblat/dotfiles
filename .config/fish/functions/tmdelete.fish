@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://appleinsider.com/articles/21/06/26/how-to-delete-time-machine-local-snapshots-in-macos#how-to-delete-all-time-machine-local-snapshots
 function tmdelete \
     --description='Delete Time Machine stapshot' \

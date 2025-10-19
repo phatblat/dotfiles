@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function strip_teams \
     --description='Strip codesign from the Teams app' \
     --argument-names path

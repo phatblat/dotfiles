@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # ~/.gitconfig is tracked and shared. Sensitive or machine-specific data is
 # stored in the alternate global config file.
 # > If $XDG_CONFIG_HOME is not set or empty, $HOME/.config/git/config will be used.

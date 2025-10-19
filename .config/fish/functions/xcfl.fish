@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function xcfl \
     --description "Runs Xcode first launch if necessary or forced" \
     --argument-names force

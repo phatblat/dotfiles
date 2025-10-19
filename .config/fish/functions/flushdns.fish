@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Flush macOS DNS cache.
 function flushdns
     if not user_is_admin

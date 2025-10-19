@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Filter and sort a git diff showing only the changed lines.
 function sortdiff
     git diff $argv \

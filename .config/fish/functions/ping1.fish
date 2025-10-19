@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ping1 \
     --description='Sends a single ping to a host'
 

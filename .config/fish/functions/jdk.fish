@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function jdk \
     --description='Manage installed JDKs.' \
     --argument-names command jdk_path quiet

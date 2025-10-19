@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function 🖥_macos \
     --description='Manage macOS system updates'
 

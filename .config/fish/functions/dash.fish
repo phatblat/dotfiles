@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Dash shell integration.
 # You can initiate a Dash search from within Terminal by executing "open dash://{query}".
 #

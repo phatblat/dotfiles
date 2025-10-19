@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://swift.org/download/#installation-1
 function swift_pgp_key_import \
     --description='Import the Swift PGP keys into your keyring'

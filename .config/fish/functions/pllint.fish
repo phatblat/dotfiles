@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Runs powerline-lint on custom config only.
 #
 # powerline-lint options:

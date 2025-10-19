@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pingmini \
     --description='Check network status of mini.'
 

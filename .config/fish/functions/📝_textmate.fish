@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Sequencing
 # - After: cask (textmate)
 function 📝_textmate \

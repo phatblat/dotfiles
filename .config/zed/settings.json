@@ -23,7 +23,11 @@
   "autosave": "on_focus_change",
   "buffer_font_size": 16,
   "file_types": {
-    "Shell Script": [".config/zsh/functions/*", "*.zsh"]
+    "Shell Script": [
+      ".config/fish/functions/*",
+      ".config/zsh/functions/*",
+      "*.zsh"
+    ]
   },
   "theme": "Dracula",
   "ui_font_size": 16

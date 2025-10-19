@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function prefs \
     --description='Opens System Preferences, optionally to a specific pane. Specify "list" to see the available panes.' \
     --argument-names pref_pane

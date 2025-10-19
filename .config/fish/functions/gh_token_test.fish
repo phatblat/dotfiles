@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function gh_token_test \
     --description='Tests the GitHub personal access token in DOTFILES_GITHUB_TOKEN' \
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints a text version of a provisioning profile.
 function provisioning_print --argument-names profile_path
     if test -z $profile_path

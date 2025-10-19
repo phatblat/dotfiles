@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Deletes the given path and removes it from all git commits.
 function scrub --argument-names delete_path
     if test -z $delete_path

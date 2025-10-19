@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function cont \
         --description='Commit an in-progress git merge or continue a rebase, cherry-pick or am (apply mail patch).'
     if test -e .git/MERGE_HEAD

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function touchbar_restart \
     --description='Restarts the TouchBar server.'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Sequencing
 # - Requires ruby, but works with system ruby.
 function 🍺_brew \

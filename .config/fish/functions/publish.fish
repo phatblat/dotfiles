@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Publishes the current branch to the named remote.
 function publish --argument-names remote
     if test -z $remote

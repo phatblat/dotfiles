@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function brew_deps \
     --description='Lists dependencies of brew packages.'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Edits Powerline Shell configuration.
 # https://github.com/banga/powerline-shell
 function pls_edit

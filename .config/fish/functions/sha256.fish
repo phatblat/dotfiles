@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # sha256
 function sha256
     if test -z "$argv"

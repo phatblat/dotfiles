@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints the port that a local Minecraft server is running on.
 # java      32416 phatblat   65u     IPv6 0xcfa44781bf7c86d5        0t0      TCP *:54217 (LISTEN)
 function minecraft_server_port --argument-names arg1

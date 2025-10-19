@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Manage the Homebrew Cask cache. Without args the contents of the cache are displayed.
 function cask_cache --argument-names command
     if test -z "$command"

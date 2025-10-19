@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Scans through installer package identifiers for the given name.
 function pkgfind --argument-names filter
     if test -z $filter

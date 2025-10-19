@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Saves a dirty working copy as a stash.
 function stsnapshot
     set current_date (date)

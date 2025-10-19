@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function clone_or_pull \
     --description='Clones a fresh copy or pulls an existing git repo.' \
     --argument-names folder_name git_url branch

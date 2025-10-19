@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function nixtest \
     --description='Tests a Nix installation'
 

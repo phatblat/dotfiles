@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # brew_active_version
 function brew_active_version --argument-names formula
     if test -z "$formula"

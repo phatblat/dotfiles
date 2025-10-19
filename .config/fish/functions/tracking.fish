@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function tracking \
     --description='Display tracking information for the current branch.'
 

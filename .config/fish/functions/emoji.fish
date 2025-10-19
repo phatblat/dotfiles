@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints an emoji cheat sheet for commit comments.
 #
 # Taken from:

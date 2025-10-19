@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Manage applications that can receive connections through the firewall.
 #
 # usage: /usr/libexec/ApplicationFirewall/socketfilterfw [-c] [-w] [-d] [-l] [-T] [-U] [-B] [-L] [-a listen or accept] [-p pid to write] [--getglobalstate] [--setglobalstate on | off] [--getblockall] [--setblockall on | off] [--listapps] [--getappblocked <path>] [--blockapp <path>] [--unblockapp <path>] [--add <path>] [--remove <path>] [--getallowsigned] [--setallowsigned] [--setallowsignedapp] [--getstealthmode] [--setstealthmode on | off] [--getloggingmode] [--setloggingmode on | off] [--getloggingopt] [--setloggingopt throttled | brief | detail]

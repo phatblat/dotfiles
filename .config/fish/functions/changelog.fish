@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function changelog \
     --description='Create changelog'
 

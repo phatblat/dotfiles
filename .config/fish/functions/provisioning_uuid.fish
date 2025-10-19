@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints the UUID 
 function provisioning_uuid --argument-names profile_path
     if test -z $profile_path

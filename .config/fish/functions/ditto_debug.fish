@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ditto_debug \
     --description='Toggles the DITTO_DEBUG flag.' \
     --argument-names state

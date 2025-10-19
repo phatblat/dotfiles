@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function sshupload \
     --description='Uploads public RSA SSH key to GitHub profile. Requires manual entry of GitHub OTP code.' \
     --argument-names keyfile

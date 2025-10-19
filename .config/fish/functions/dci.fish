@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dci \
     --description='Display detailed information on one or more docker containers'
 

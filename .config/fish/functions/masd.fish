@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function masd \
     --description='Quick nav to mas dir'
 

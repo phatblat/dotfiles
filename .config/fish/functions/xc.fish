@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function xc \
     --description='Xcode wrapper function'
 

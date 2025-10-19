@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function showgit_remote \
     --description='Searches for .git repos recursively below the current dir, printing remote URL'
     find . -type d -name .git $argv

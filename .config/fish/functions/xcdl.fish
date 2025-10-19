@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function xcdl \
     --description "Downloads platform tools for Xcode" \
     --argument-names platform

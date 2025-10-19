@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function appcast_url \
     --argument-names url
 

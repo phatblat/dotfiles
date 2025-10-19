@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Displays information for a Dwarf symbol file.
 function dsyminfo --wraps dwarfdump --argument-names file
     if test -z "$file"

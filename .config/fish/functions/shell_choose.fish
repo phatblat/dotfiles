@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function shell_choose \
     --description='Interactive prompting for choosing a new default shell.'
 

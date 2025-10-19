@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Restarts the computer without prompt
 function restart
     if not user_is_admin

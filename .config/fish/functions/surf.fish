@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function surf \
     --description='Opens Windsurf' \
     --argument-names path

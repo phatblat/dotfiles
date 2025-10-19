@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function nodef \
     --description='Removes default.profraw file.'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lg1 \
     --description='Pretty history graph with one commit'
 

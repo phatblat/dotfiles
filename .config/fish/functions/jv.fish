@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Example output (goes to stderr!):
 #
 #    java version "1.8.0_131"

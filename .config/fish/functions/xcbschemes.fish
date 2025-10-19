@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function xcbschemes \
         --description='Displays schemes for an Xcode project'
     

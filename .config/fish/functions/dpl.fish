@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dpl \
     --description='View output from docker containers'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bprum \
     --description='Update the master CocoaPods repo.'
 

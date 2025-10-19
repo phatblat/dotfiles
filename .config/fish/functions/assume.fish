@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function assume \
     --description='Ignore changes to the given files.'
 

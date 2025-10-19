@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Sets all file and directory permissions to 644 and 755, respectively.
 function fixperms --argument-names base_dir
     if test -z "$base_dir"

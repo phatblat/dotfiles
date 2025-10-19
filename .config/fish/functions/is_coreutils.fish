@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function is_coreutils \
     --description='Tests whether coreutils is installed'
 

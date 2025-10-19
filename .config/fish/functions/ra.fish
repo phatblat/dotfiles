@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ra \
         --description 'Adds a git remote' \
         --argument-names name url

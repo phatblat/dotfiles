@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function amend \
     --description='Amend the previous git commit.'
 

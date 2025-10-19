@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://github.com/shyiko/jabba
 # https://raw.githubusercontent.com/shyiko/jabba/master/install.sh
 function jabba \

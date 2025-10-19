@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function renew_certificates \
     --description='Renews certificates on servers.'
 

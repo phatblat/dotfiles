@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function swift_releases \
         --description='Check for Swift releases' \
         --argument-names swift_version days

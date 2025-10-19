@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://www.everythingcli.org/find-exec-vs-find-xargs/
 # https://stackoverflow.com/questions/6958689/calling-multiple-commands-with-xargs/6958957#6958957
 function cleanall \

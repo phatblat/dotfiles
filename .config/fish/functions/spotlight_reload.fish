@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function spotlight_reload \
     --description='Reloads Spotlight which triggers a re-index'
 

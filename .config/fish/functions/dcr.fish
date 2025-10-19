@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dcr \
     --description='Remove one or more running docker containers'
 

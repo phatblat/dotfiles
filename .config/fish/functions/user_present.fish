@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Indicates whether a user is present
 function user_present
     if begin status is-login

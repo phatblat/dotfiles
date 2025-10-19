@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function console_user \
     --description="Prints the username of the user logged into the console (GUI)"
 

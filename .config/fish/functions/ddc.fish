@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ddc \
     --description='Docker deep clean'
 

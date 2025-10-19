@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function auth \
     --description='Quick nave to KPAuth' \
     --argument-names platform

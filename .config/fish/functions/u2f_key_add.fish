@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function u2f_key_add \
     --description='Add U2F key' \
     --argument-names argname

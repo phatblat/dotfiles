@@ -1,4 +1,4 @@
-
+#!/usr/bin/env fish
 # https://blog.macsales.com/46348-how-to-create-and-use-a-ram-disk-with-your-mac-warnings-included/
 function ramdisk \
     --description='ramdisk' \

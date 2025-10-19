@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function maslink \
     --description='Links debug build of mas into the path' \
     --argument-names remove

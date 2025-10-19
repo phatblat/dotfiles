@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function iphones \
     --description 'Show connected iOS devices'
 

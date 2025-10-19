@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bpiru \
     --description='Run pod install through Bundler, updating repos beforehand.'
 

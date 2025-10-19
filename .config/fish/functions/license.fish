@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function license \
     --description='Writes out LICENSE.md file, adds link to readme and commits changes.'
 

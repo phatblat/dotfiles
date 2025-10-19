@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pue \
     --description='Update example app pods without updating repos.'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Connect to Jenkins Dev using SSH.
 function jenkins_restart
     set -l jenkins_service_config /Library/LaunchDaemons/jenkins.plist

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function din \
     --description='Remove all docker images'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lg \
     --description='Alias for lg10'
 

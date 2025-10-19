@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function xamarin_version \
     --description='Determines the current version Xamarin'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function search \
     --description='Search for CLI tools through variouss package managers.'
 
@@ -22,4 +23,3 @@ function search \
     echo "-----------------------------------------------------------------"
     brew search $argv
 end
-

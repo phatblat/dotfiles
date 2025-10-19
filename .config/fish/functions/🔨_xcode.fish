@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://developer.apple.com/downloads/
 #
 # Sequencing

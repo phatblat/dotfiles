@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Manage Homebrew casks.
 function cask_edit --argument-names token cask_version
     set -l branch $token

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bu \
         --description='Update gems in the bundle.' \
         --wraps=bundle

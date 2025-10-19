@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pkgexpand \
     --description='Expands a pkg file' \
     --argument-names package dest_dir

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function cron_reload \
     --description='Reloads cron file.'
 

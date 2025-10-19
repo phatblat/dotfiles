@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Extracts the UUID from a .mobileprovision profile.
 function profile_id --argument-names profile
     if test -z $profile

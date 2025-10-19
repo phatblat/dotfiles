@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function sshkey \
     --description 'Find the public key file'
 

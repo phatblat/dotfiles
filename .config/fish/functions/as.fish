@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function as \
     --description='Open project in Android Studio' \
     --argument-names path

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://gist.github.com/ttscoff/86fe788beb8c586986de179e6d6515c7
 function bid \
     --description 'Get bundle ID for app name'

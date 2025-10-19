@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function function_template \
     --description='Prints function_template' \
     --argument-names function_name argname

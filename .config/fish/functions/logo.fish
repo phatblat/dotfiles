@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints the fish logo.
 # https://github.com/fish-shell/fish-shell/issues/114#issuecomment-24101750
 function logo

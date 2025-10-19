@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function mpv \
     --description='Quick nav to MicrosoftPlatformVersions dir.'
 

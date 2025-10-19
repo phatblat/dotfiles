@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Query brew information
 function bq
     if test -z "$argv"

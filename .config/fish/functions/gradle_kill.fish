@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function gradle_kill \
     --description='Kills all running gradle processes'
 

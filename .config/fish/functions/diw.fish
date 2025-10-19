@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function diw \
     --description='Remove all Ping Identity docker images'
 

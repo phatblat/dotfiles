@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function debug \
     --description='Prints args only when debug env var is set.'
 

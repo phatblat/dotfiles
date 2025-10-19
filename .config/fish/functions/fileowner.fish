@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function fileowner \
     --description='Displays the owner of a file.' \
     --argument-names file

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function mkdir \
         --description='Create a directory and set CWD'
 
@@ -14,4 +15,3 @@ function mkdir \
         end
     end
 end
-

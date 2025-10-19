@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function sync \
     --description='Synchronizes a git rep.'
 

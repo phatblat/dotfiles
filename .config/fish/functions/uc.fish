@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Runs uncrustify on all Objective-C files under the current dir.
 function uc
     find . \

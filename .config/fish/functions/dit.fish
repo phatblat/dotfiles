@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dit \
     --description='Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 

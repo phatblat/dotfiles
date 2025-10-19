@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Print system info
 function sysinfo
     uname -a

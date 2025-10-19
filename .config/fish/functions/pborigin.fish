@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Rename the 'origin' remote to 'phatblat'
 function pborigin --argument-names arg1
     set -l all_remotes (git remote)

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pull_ssh_config \
     --description='Copies SSH config to local'
 

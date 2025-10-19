@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function realmos --argument-names command
     echo Realm Object Server
 

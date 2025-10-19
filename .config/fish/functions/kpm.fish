@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function kpm \
         --description='Quick dir navigation to kpmobile' \
         --argument-names platform

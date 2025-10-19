@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pbjup --description='Upgrade personal jenkins formula and restart service'
     brew update
     brew upgrade pbjenkins

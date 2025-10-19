@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Short alias for open.
 function o --wraps open --argument-names path
     if test -z $path

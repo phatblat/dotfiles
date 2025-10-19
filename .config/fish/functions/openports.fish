@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Lists open ports for the current user.
 #
 # Example output:

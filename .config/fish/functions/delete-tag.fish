@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Deletes a git tag from both the local and remote repos.
 function delete-tag --argument-names tag
     if test -z $tag

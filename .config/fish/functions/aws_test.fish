@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function aws_test \
     --description='Test AWS credentials' \
     --argument-names profile_name

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function xlog \
         --description='Quick nav to nginx log dir' \
         --argument-names subdir

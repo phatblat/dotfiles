@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://docs.npmjs.com/cli
 #
 # Sequencing

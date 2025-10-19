@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Review a given commit, default: HEAD.
 #
 # Custom pretty format

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Saves server certificates in binary (DER) format for a given host_name and optional port.
 function savecerts --argument-names host_name port
     if test -z $host_name

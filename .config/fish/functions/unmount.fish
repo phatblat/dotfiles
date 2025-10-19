@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function unmount \
     --description='Unmounts a drive' \
     --argument-names drive_path

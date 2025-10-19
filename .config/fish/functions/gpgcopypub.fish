@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Copies the public key for any GPG key found.
 function gpgcopypub
     set -l keyid (gpgkeyid)

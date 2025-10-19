@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ddd \
     --description='Delete Derived Data'
 

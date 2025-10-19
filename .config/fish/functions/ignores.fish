@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Standard ignored files.
 function ignores
     list -s \

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function remote_for_current_branch \
     --description='Displays the name of the remote for the current branch.'
 

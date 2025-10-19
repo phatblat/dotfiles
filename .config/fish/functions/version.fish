@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function version \
     --description='Manage version numbers for an Xcode project.' \
     --argument-names action market_version build_version

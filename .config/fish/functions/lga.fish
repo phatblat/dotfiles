@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lga \
     --description='Pretty history graph showing all'
 

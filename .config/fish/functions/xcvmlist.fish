@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # xcvmlist
 #
 # List versions of Xcode stored in the xcode-install cache.

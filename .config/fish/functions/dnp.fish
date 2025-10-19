@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dnp \
     --description='Remove all unused docker networks, without confirmation'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ignored \
     --description='Show files ignored by git'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Creates a git bundle containing any changes in the working copy and index
 # that haven't been committed.
 function git_bundle_create

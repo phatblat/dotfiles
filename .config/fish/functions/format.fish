@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function format \
     --description 'Format files.' \
     --argument-names type

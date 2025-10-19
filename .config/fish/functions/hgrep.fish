@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function hgrep \
     --description='Grep command history'
 

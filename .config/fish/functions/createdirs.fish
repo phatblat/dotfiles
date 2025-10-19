@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function createdirs \
     --description='Creates a set of directories if they don\'t exist.'
 

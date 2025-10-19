@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function path_add \
     --description 'Path manipulation. Subcommands: show, list, add' \
     --argument-names directory

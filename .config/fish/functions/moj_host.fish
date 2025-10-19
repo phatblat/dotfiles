@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function moj_host \
     --description='Prints an emoji for the current host.'
     set -l host (hostname)

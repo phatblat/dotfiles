@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ccuss \
         --wraps carthage \
         --description='Update depencencies in git submodules without building using Carthage over SSH'

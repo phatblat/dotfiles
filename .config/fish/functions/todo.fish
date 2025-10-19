@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function todo \
     --description="Edit the rebase todo file (~/.git/rebase-merge/git-rebase-todo)"
 

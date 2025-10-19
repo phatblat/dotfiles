@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function xcv \
         --description='Displays the version of the currently selected Xcode.' \
         --argument-names short_flag

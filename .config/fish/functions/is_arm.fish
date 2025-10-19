@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function is_arm \
     --description='Tests whether the current system is arm'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dnc \
     --description='Create a docker network'
 

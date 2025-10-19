@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function masshow \
     --description='Show which copy of mas is active'
 

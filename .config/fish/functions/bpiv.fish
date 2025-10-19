@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bpiv \
     --description='Run a verbose pod install through Bundler.'
 

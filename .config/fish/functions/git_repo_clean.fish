@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function git_repo_clean \
         --description='Detects a clean work tree.'
 

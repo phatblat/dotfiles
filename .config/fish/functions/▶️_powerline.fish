@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Powerline for Vim and terminal prompt. Powerline is a Python plugin installed
 # by PIP, but it has some additional setup steps. Also, there's a separate
 # project for powerline shell prompts.

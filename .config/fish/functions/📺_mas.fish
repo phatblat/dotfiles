@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function 📺_mas \
     --description='Manage Mac App Store apps'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Shows server certificate information.
 function showcerts --argument-names host_name port
     if test -z $host_name
@@ -32,4 +33,3 @@ function showcerts --argument-names host_name port
     # string join "\n" $output #| less
     # return $output
 end
-

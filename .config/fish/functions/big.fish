@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function big \
     --description='Install gem bundle using the local Gemfile.'
 

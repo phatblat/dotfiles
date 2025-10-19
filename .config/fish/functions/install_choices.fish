@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints the choices available in the given installation package.
 function install_choices --argument-names package_file
     if test -z $package_file

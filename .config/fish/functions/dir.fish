@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dir \
     --description='Remove one or more docker images, forcefully'
 

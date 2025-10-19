@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function skip \
     --description='Skip the current commit in a git rebase/cherry-pick/am.'
 

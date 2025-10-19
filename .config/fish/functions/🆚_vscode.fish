@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://code.visualstudio.com/docs/editor/command-line#_working-with-extensions
 # https://code.visualstudio.com/docs/editor/extension-gallery#_command-line-extension-management
 #

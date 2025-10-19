@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # xcvmget
 #
 # Show a live list versions of Xcode versions available to download.

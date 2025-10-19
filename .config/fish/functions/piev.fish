@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function piev \
     --description='Install pods for Example app with verbose output.'
 

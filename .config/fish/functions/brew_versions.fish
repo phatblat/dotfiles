@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Lists installed versions of a formula.
 function brew_versions --argument-names formula
     if test -z "$formula"

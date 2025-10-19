@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function piv \
     --description='Install pods with verbose output.'
 

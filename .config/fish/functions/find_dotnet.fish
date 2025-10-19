@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function find_dotnet \
     --description='Locates all copies of the dotnet command'
 

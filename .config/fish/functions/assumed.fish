@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function assumed \
     --description='List files in the current repo for which changes are ignored.'
 

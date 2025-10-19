@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # gpgtest
 function gpgtest --argument-names key_id passphrase
     if test -z "$key_id" #-o -z "$passphrase"

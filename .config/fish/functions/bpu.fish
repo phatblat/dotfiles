@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function bpu \
     --description='Update pods without updating repos.'
 

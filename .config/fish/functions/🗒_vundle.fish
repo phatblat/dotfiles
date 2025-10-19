@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://github.com/VundleVim/Vundle.vim#about
 #
 # Compatible with Pathogen plugin bundles

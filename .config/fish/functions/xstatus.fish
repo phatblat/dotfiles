@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Displays nginx process information.
 function xstatus --wraps ps
     psgrep nginx

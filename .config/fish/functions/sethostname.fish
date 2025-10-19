@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # http://osxdaily.com/2012/10/24/set-the-hostname-computer-name-and-bonjour-name-separately-in-os-x/
 # https://www.naschenweng.info/2016/12/29/os-set-hostname-computer-name-bonjour-command-line/
 function sethostname \

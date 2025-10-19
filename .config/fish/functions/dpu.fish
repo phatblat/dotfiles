@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dpu \
     --description='Builds, (re)creates, starts, and attaches to containers for a service.'
 

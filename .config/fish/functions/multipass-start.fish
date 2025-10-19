@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function multipass-start \
     --description='Starts the multipass service and GUI app'
 

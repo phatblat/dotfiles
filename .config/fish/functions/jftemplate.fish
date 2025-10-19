@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function jftemplate \
     --description='Create a new repo based on JenkinsfileTemplate' \
     --argument-names repoName

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function genv \
     --description='Grep environment' \
     --argument-names search_term

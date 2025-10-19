@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function 🦀_rustup \
     --description='Installs rust tools.'
 

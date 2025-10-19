@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pul \
     --description='Special "local" pod update for KP Mobile. See pil'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dra \
     --description='Removes all stopped docker containers'
 

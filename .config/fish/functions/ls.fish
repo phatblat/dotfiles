@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function ls \
     --description='List files with colors and trailing slashes on directories' \
     --wraps ls

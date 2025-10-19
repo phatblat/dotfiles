@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://docs.warp.dev/features/subshells#automatically-warpify-subshells
 function warpify \
     --description 'Warpifies subshell'

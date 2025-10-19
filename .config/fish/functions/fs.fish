@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Save a function to user's autoload dir.
 function fs --argument function_name
     set -l dest_file ~/.config/fish/functions/$function_name.fish

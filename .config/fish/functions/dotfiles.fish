@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dotfiles --description='Edit dotfiles.' \
         --argument-names=type
     set -l dotfiles ~/.dotfiles/

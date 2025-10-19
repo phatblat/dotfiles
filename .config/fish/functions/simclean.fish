@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function simclean \
     --description='Deletes all unavailable simulators'
 

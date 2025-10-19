@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function build_dir \
         --description='Displays the Xcode build dir of the current project'
     # e.g. /Users/ben/Library/Developer/Xcode/DerivedData/mas-cli-cpnrglfzdqvgargxhvgrgxzambih/Build/Products

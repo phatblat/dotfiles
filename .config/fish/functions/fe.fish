@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function fe \
     --description='Edit a function.' \
     --argument-names function_name

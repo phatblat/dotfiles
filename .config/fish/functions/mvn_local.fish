@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://stackoverflow.com/a/16218772
 function mvn_local \
     --description='Displays path to Maven local repo'

@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function shell_switch \
     --argument-names new_shell \
     --description='Changes the current $USER\'s shell using dscl. Outputs only the command to run for non-admins.'

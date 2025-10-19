@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function version_current \
     --description='Displays Xcode project version information.'
 

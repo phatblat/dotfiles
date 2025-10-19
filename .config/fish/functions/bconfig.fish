@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Configures Bundler.
 function bconfig
     bundle config --local clean true

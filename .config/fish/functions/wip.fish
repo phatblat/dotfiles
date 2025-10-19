@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function wip \
     --description='Commits WIP work'
 

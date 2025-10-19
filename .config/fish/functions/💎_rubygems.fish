@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Bundler is used to install most gems locally for the projects that need them.
 # Only a few gems are installed at the system level.
 #

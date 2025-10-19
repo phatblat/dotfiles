@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function shell_add \
     --argument-names new_shell \
     --description='Register a new shell in /etc/shells'

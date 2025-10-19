@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lgg --description='Pretty history graph.'
     git log \
         --graph \

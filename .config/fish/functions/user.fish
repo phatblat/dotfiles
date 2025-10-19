@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function user \
         --description="Displays information about the current user."
 

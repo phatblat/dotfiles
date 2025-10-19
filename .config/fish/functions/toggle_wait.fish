@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Toggle wait
 # Given no arguments, switches the state of the editor ($VISUAL) wait flag.
 # Otherwise sets it to the given state (on / off)

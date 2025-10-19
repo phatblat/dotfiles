@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Options (ls style):
 # - `-C` `--column`     Force multi-column output; this is the default when output is to a terminal.
 # - `-l `--long`     List in long format.

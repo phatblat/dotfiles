@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function brew_cache_purge \
     --description='Purges the Homebrew cache'
 

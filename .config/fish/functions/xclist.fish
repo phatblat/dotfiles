@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints a clean list of paths for all installed versions of Xcode
 #
 # Options:

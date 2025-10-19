@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # https://github.com/fish-shell/fish-shell/issues/206#issuecomment-255232968
 function line \
     --argument-names line_number \

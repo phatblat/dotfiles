@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function sha1 \
     --description='Displays the SHA1 hash of files'
 

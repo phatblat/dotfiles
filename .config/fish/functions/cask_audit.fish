@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Audits a Homebrew cask.
 function cask_audit --argument-names token
     if test -z "$token"

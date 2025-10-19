@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function pid \
     --description 'Wrapper for ps which isolates processes containing a given string.' \
     --argument-names process_name

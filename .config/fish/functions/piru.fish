@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function piru \
     --description='Install pods after updating repos.'
 

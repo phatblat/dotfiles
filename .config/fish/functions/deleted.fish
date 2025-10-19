@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function deleted \
     --description='Lists files deleted from git history.'
 

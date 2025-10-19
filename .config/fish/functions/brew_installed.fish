@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Checks whether a formula is currently installed.
 function brew_installed --argument-names formula
     if test -z "$formula"

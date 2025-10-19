@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function repo_new \
     --description='Creates a new GitHub repo using the local dir as the root' \
     --argument-names repo_name

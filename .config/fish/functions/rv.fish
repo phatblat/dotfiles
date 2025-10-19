@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # List git remote details.
 function rv
     # Example input:

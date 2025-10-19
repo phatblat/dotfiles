@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function dsa \
     --description='Stops all running docker containers'
 

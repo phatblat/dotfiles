@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function has_space \
     --description 'Tests whether string continas a space' \
     --argument-names string

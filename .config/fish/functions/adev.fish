@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function adev \
     --description='Open the Apple Developer portal news page.'
 

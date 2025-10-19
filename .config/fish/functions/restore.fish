@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function restore \
     --description='Discards changes in the working tree.'
 

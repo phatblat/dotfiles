@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 # Prints a list with each element on a separate line. Handy for returning a list
 # from a function.
 # https://github.com/fish-shell/fish-shell/issues/445
