@@ -15,9 +15,9 @@ function ignore() {
         echo "Creating .gitignore"
     fi
 
-    if [[ -n "$@" ]]; then
-        ignore_list="$@ $ignore_list"
-        commit_message="chore: ignore $@"
+    if [[ $# -gt 0 ]]; then
+        ignore_list="$* $ignore_list"
+        commit_message="chore: ignore $*"
     fi
 
     {
