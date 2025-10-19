@@ -1,1 +1,7 @@
-gittower "$(root)" "$@"
+#!/usr/bin/env zsh
+
+# tower - Open the current repo in Tower
+# https://www.git-tower.com/help/mac/integration/cli-tool
+function tower() {
+    gittower $(root) "$@"
+}
