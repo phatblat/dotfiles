@@ -7,10 +7,12 @@ function mdk() {
 
     if [[ -n "$platform" ]]; then
         case "$platform" in
-            i|ios)
-                path="$path/ios" ;;
-            a|android)
-                path="$path/android" ;;
+        i | ios)
+            path="$path/ios"
+            ;;
+        a | android)
+            path="$path/android"
+            ;;
         esac
     fi
 

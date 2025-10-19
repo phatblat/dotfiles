@@ -6,7 +6,7 @@ function brew_versions() {
     if [[ -z "$formula" ]]; then
         echo "Usage: brew_versions formula"
         return 1
-    elif ! brew list "$formula" >/dev/null 2>&1; then
+    elif ! brew list "$formula" > /dev/null 2>&1; then
         echo "$formula is not installed." >&2
         return 2
     fi

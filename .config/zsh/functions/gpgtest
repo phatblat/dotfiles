@@ -9,9 +9,9 @@ function gpgtest() {
         return 1
     fi
 
-    echo "$passphrase" | \
+    echo "$passphrase" |
         gpg -o /dev/null \
             --local-user "$key_id" \
-            -as - \
-        && echo "The correct passphrase was entered for this key"
+            -as - &&
+        echo "The correct passphrase was entered for this key"
 }

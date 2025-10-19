@@ -13,5 +13,5 @@ function provisioning_print() {
         return 2
     fi
 
-    security cms -D -i "$profile_path" 2>/dev/null
+    security cms -D -i "$profile_path" 2> /dev/null
 }

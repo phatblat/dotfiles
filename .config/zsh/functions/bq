@@ -3,7 +3,7 @@
 # bq - Query brew information
 function bq() {
     if [[ -z "$*" ]]; then
-        cat <<EOF
+        cat << EOF
 Usage: bq [formula_name] [-- jq_filter]
 Filter examples:
   formula                                                                           (raw json, filter with grep to find keys)

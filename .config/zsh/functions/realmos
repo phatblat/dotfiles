@@ -11,12 +11,12 @@ function realmos() {
     fi
 
     case "$command" in
-        start)
-            echo "Starting ROS at $REALM_OBJECT_SERVER_PATH"
-            eval "$REALM_OBJECT_SERVER_PATH/start-object-server.command"
-            ;;
-        *)
-            echo "Usage: realmos [start]"
-            ;;
+    start)
+        echo "Starting ROS at $REALM_OBJECT_SERVER_PATH"
+        eval "$REALM_OBJECT_SERVER_PATH/start-object-server.command"
+        ;;
+    *)
+        echo "Usage: realmos [start]"
+        ;;
     esac
 }

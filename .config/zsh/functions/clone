@@ -15,8 +15,8 @@ function clone() {
         dir=$(basename "$url" .git)
     fi
 
-    git clone -- "$url" "$dir" && \
-    pushd "$dir" && \
-    git config user.email "$(email_url "$url")" && \
-    user
+    git clone -- "$url" "$dir" &&
+        pushd "$dir" &&
+        git config user.email "$(email_url "$url")" &&
+        user
 }

@@ -5,7 +5,7 @@ function nix_install() {
     echo "❄️ Nix - https://nixos.org/download.html#nix-install-macos"
     echo
 
-    if ! command -v nix-channel >/dev/null 2>&1; then
+    if ! command -v nix-channel > /dev/null 2>&1; then
         echo "❄️ Installing nix..."
         curl -L https://nixos.org/nix/install | sh -s -- --daemon
 

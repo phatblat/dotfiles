@@ -13,7 +13,7 @@ function ruby_upgrade() {
     rm -rf /usr/local/lib/ruby/gems/2.4.0/extensions
 
     local tmpfile=$(mktemp /tmp/ruby_upgrade.XXXXXX)
-    gem --version >/dev/null 2>"$tmpfile"
+    gem --version > /dev/null 2> "$tmpfile"
 
     echo "Looping over gem errors"
     while read -r line; do

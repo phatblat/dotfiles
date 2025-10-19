@@ -6,7 +6,7 @@ function func() {
     if [[ -z "$name" ]]; then
         echo "Usage: func name"
         return 1
-    elif ! command -v "$name" >/dev/null && ! type "$name" >/dev/null; then
+    elif ! command -v "$name" > /dev/null && ! type "$name" > /dev/null; then
         echo "$name does not exist"
         return 2
     fi

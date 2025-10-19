@@ -4,12 +4,12 @@
 function cont() {
     if [[ -e .git/MERGE_HEAD ]]; then
         echo "File exists"
-        git commit >/dev/null
+        git commit > /dev/null
     elif [[ -e .git/REBASE_HEAD ]]; then
-        git rebase --continue >/dev/null
+        git rebase --continue > /dev/null
     elif [[ -e .git/CHERRY_PICK_HEAD ]]; then
         git cherry-pick --continue "$@"
     else
-        git am --continue >/dev/null
+        git am --continue > /dev/null
     fi
 }

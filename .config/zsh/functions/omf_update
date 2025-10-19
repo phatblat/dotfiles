@@ -19,7 +19,7 @@ function omf_update() {
     fi
 
     # Install omf if necessary
-    if ! command -v omf >/dev/null; then
+    if ! command -v omf > /dev/null; then
         pushd "$local_dir"
         bin/install --offline
         popd
