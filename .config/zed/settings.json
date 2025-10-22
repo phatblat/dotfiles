@@ -23,6 +23,6 @@
   "file_types": {
     "Shell Script": [".config/zsh/functions/*", "*.zsh"]
   },
-  "theme": "Ayu Dark",
+  "theme": "Dracula",
   "ui_font_size": 16
 }
