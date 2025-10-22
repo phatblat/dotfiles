@@ -42,6 +42,7 @@ __z_clean.fish
 .claude.json
 .claude.json.backup
 .claude/debug/
+.claude/file-history/
 .claude/history.jsonl
 .cmake-js/
 .cocoapods/
