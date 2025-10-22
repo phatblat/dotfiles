@@ -16,15 +16,14 @@ function ignore() {
     fi
 
     if [[ $# -gt 0 ]]; then
-        ignore_list="$* $ignore_list"
+        {
+            printf '%s\n' "$@"
+            printf '%s\n' "$ignore_list"
+        } | sort -u >"$gitignore"
         commit_message="chore: ignore $*"
+    else
+        printf '%s\n' "$ignore_list" | sort -u >"$gitignore"
     fi
-
-    {
-        while IFS= read -r pattern; do
-            echo "$pattern"
-        done <<< "$ignore_list"
-    } | sort -u > "$gitignore"
 
     if [[ -z "$commit_message" ]]; then
         echo "Nothing new added to ignores, just sorted and removed duplicates."
