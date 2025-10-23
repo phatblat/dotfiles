@@ -183,6 +183,7 @@ __z_clean.fish
 .gem/
 .geomapapp-home
 .ghidra/
+.git-ai/bin
 .git/
 .gitkraken/
 .GMA/
