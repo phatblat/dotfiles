@@ -1,0 +1,2 @@
+# Git pull.
+git pull "$@"
