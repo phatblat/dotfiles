@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ditto": {
+      "type": "http",
+      "url": "https://docs.ditto.live/mcp"
+    }
+  }
+}
