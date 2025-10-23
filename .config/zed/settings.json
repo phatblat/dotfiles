@@ -7,6 +7,8 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "format_on_save": "on",
+  "redact_private_values": true,
   "agent": {
     "play_sound_when_agent_done": true,
     "single_file_review": false,
