@@ -82,7 +82,7 @@ if [[ ! -f "$ZSH/oh-my-zsh.sh" ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
-unfunction d 2>/dev/null  # Remove Oh My Zsh directory stack viewer
+unfunction d 2>/dev/null # Remove Oh My Zsh directory stack viewer
 
 # Autoload custom functions
 # Add functions directory to fpath and enable autoloading
@@ -161,7 +161,7 @@ function git-plist-filter() {
     local TMPFILE=$(mktemp "$TMPDIR/$function_name.XXXXXX")
 
     # Drop stdin to temp file
-    cat > "$TMPFILE"
+    cat >"$TMPFILE"
     plutil -convert xml1 "$TMPFILE"
     cat "$TMPFILE"
     rm "$TMPFILE"
@@ -242,6 +242,11 @@ eval "$(zoxide init zsh)"
 
 # Initialize mise - version manager for tools
 eval "$(mise activate zsh)"
+
+# Initialize direnv - directory-based environment variables
+if command -v direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
