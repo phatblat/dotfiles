@@ -1,0 +1,3 @@
+show_sidebar = true
+pixel_ratio = 2.0
+query = "SELECT * FROM __feature_flags"
