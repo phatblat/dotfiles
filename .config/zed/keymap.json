@@ -15,5 +15,31 @@
     "bindings": {
       "cmd-2": "terminal_panel::Toggle"
     }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-cmd-left": "pane::GoBack"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-cmd-right": "pane::GoForward"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-'": [
+        "editor::GoToPreviousDiagnostic",
+        {
+          "severity": {
+            "min": "hint",
+            "max": "error"
+          }
+        }
+      ]
+    }
   }
 ]
