@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "terminal": {
+    "keep_selection_on_copy": false
+  },
   "format_on_save": "on",
   "redact_private_values": true,
   "agent": {
