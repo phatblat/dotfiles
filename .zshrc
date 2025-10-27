@@ -251,3 +251,6 @@ fi
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
+
+# Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
+export PATH="/Users/phatblat/.git-ai/bin:$PATH"
