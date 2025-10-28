@@ -53,6 +53,7 @@ __z_clean.fish
 .config/biolab.si/
 .config/BraveSoftware/
 .config/btop/btop.log
+.config/cachix/
 .config/chessx/
 .config/chromium/
 .config/Code/
