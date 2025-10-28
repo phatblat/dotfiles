@@ -10,16 +10,16 @@
 
 export PATH="/opt/homebrew/bin:$PATH"
 
-. "${HOME}/.cargo/env"
+. "$HOME/.cargo/env"
 
-source /Users/phatblat/.config/broot/launcher/bash/br
+source "$HOME/.config/broot/launcher/bash/br"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export HOMEBREW_PREFIX=$(brew --prefix)
 
 # JDK
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/android-studio
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17
 
 # Aliases
 alias ll='ls -l'
@@ -28,23 +28,22 @@ alias la='ls -la'
 # NVM
 export NVM_DIR="$HOME/.nvm"
 # shellcheck disable=SC1091
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[ -f /Users/phatblat/.config/.dart-cli-completion/bash-config.bash ] && . /Users/phatblat/.config/.dart-cli-completion/bash-config.bash || true
+[ -f "$HOME/.config/.dart-cli-completion/bash-config.bash" ] && . "$HOME/.config/.dart-cli-completion/bash-config.bash" || true
 ## [/Completion]
 
 . "$HOME/.cargo/env"
 
 # Added by Windsurf
-export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
-source ~/.orbstack/shell/init.bash 2>/dev/null || :
+source "$HOME/.orbstack/shell/init.bash" 2>/dev/null || :
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 # End of LM Studio CLI section
-
