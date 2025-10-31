@@ -191,6 +191,7 @@ __z_clean.fish
 .gnome/
 .gnupg_pre_2.1/
 .gnupg/
+.google-cloud-sdk/
 .gradle/
 .groovy/
 .hawtjni/
