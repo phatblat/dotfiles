@@ -19,6 +19,10 @@
   "format_on_save": "on",
   "redact_private_values": true,
   "agent": {
+    "inline_assistant_model": {
+      "provider": "lmstudio",
+      "model": "qwen/qwen3-coder-30b"
+    },
     "play_sound_when_agent_done": true,
     "single_file_review": false,
     "default_profile": "write",
