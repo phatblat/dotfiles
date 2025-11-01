@@ -100,7 +100,7 @@ let mise_path = $nu.default-config-dir | path join mise.nu
 
 # Add common paths
 $env.PATH = ($env.PATH | split row (char esep) | prepend [
+    ($nu.home-path | path join '.local' 'bin')
     ($nu.home-path | path join 'bin')
     ($nu.home-path | path join '.cargo' 'bin')
-    ($nu.home-path | path join '.local' 'bin')
 ] | uniq)

@@ -19,7 +19,7 @@ end
 source ~/.config/fish/variables.fish
 
 if type -q direnv
-    # Directory-based variables  
+    # Directory-based variables
     # Use command substitution with timeout to prevent hangs
     set -l direnv_output (direnv hook fish 2>/dev/null)
     if test -n "$direnv_output"
@@ -54,8 +54,8 @@ if status is-interactive
     # end
 end
 
-# Created by `pipx` on 2023-08-29 02:06:37
-set PATH $PATH ~/.local/bin
+# Add .local/bin to PATH
+fish_add_path --prepend ~/.local/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f ~/dev/google-cloud-sdk/path.fish.inc ]

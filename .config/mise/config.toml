@@ -4,7 +4,6 @@
 #
 
 [tools]
-"npm:@anthropic-ai/claude-code" = "2.0.27"
 "npm:@linear/cli" = "0.0.5"
 "npm:@musistudio/claude-code-router" = "1.0.64"
 "npm:@tauri-apps/cli" = "2.9.1"

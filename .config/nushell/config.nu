@@ -749,7 +749,7 @@ if (which starship | is-not-empty) and ("~/.cache/starship/init.nu" | path expan
     source ~/.cache/starship/init.nu
 }
 
-# Load zoxide if available  
+# Load zoxide if available
 if (which zoxide | is-not-empty) and ("~/.cache/zoxide/init.nu" | path expand | path exists) {
     source ~/.cache/zoxide/init.nu
 }
@@ -764,7 +764,7 @@ alias c = clear
 alias e = exit
 
 # Git aliases
-alias g = ^git 
+alias g = ^git
 alias ga = ^git add
 alias gst = ^git status
 alias gc = ^git commit
@@ -849,12 +849,12 @@ def track [remote_branch?: string, local_name?: string] {
 # List ^git remote details
 def rv [] {
     let remotes = ^git remote -v | lines
-    
+
     if ($remotes | is-empty) {
         print "No remotes are currently defined."
         return
     }
-    
+
     # Parse ^git remote -v output and get unique remotes
     let parsed_remotes = $remotes | each {|line|
         let parts = $line | split column -c '\t'
@@ -862,9 +862,9 @@ def rv [] {
             $parts | get column1
         }
     } | uniq
-    
+
     # Display remotes in a table
-    $parsed_remotes | each {|remote| 
+    $parsed_remotes | each {|remote|
         {remote: $remote}
     }
 }
@@ -1008,7 +1008,7 @@ def reset [...args] {
     ^git reset ...$args
 }
 
-# Git restore  
+# Git restore
 def restore [...args] {
     ^git restore ...$args
 }
@@ -1064,7 +1064,7 @@ def add [...args] {
     ^git add ...$args
 }
 
-# Git commit (simple wrapper)  
+# Git commit (simple wrapper)
 def commit [...args] {
     ^git commit ...$args
 }
@@ -1128,6 +1128,3 @@ def "rev-parse" [...args] {
 def shortlog [...args] {
     ^git shortlog ...$args
 }
-
-# Claude alias
-alias claude = ~/.claude/local/claude

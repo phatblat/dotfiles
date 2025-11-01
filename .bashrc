@@ -116,6 +116,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Add .local/bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
 # Cargo & Rust
 source "$HOME/.cargo/env"
 
@@ -141,7 +144,3 @@ export PATH="/opt/homebrew/bin:$PATH"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
-
-# Claude alias
-alias claude="$HOME/.claude/local/claude"
-
