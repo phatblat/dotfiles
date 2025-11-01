@@ -42,6 +42,6 @@
       "*.zsh"
     ]
   },
-  "theme": "Dracula",
+  "theme": "Ayu Dark",
   "ui_font_size": 16
 }
