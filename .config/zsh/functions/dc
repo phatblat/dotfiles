@@ -1,0 +1,2 @@
+# Diff the git staging area
+git diff --cached "$@"
