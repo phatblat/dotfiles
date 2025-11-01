@@ -81,11 +81,12 @@ install:
 upgrade:
     mise upgrade --bump
 
-# Formats mise config and justfile
+# Formats mise config, justfile, and Claude settings.json
 [group('configuration')]
 format:
     mise fmt
     just --fmt
+    jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
 
 # Removes default.store files and *.hprof files from home directory
 [group('configuration')]
