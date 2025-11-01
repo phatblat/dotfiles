@@ -7,6 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "languages": {
+    "Shell Script": {
+      "preferred_line_length": 120
+    }
+  },
   "show_whitespaces": "all",
   "agent_servers": {
     "claude": {
