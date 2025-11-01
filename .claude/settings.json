@@ -1,5 +1,8 @@
 {
   "alwaysThinkingEnabled": true,
+  "enabledPlugins": {
+    "feature-dev@claude-code-plugins": true
+  },
   "env": {
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
