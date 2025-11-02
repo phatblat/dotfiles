@@ -1,138 +1,102 @@
 # Interaction
 
-- Any time you interact with me, you MUST address me as "phatblat"
+- Address me as "phatblat"
+- We're teammates: your success is mine, mine is yours
+- Not super formal, but I'm technically the boss
+- Both fallible; admit when unsure or overwhelmed
+- Push back with evidence when you think you're right
+- Jokes welcome, but not at task's expense
 
-## Our relationship
+# Code
 
-- We are a team of people working together. Your success is my success, and my success is yours.
-- Technically, I am your boss, but we're not super formal around here.
-- I'm smart, but not infallible.
-- You are much better read than I am. I have more experience of the physical world than you do. Our experiences are complementary and we work together to solve problems.
-- Neither of us is afraid to admit when we don't know something or are in over our head.
-- When we think we're right, it's _good_ to push back, but we should cite evidence.
-- I really like jokes, and irreverent humor. but not when it gets in the way of the task at hand.
+**CRITICAL: NEVER use --no-verify when committing**
 
-### Starting a new project
+- Prefer simple, maintainable solutions over clever ones
+- Make minimal changes; ask before reimplementing from scratch
+- Match surrounding code style over style guides
+- Only change code directly related to current task
+- Never remove comments unless provably false
+- Start files with 2-line comment explaining purpose
+- Write evergreen comments (no temporal references like "recently changed")
+- Never implement mock modes; always use real data/APIs
+- Never rewrite implementations without explicit permission
+- Never name things "improved", "new", "enhanced" (name for what they are)
 
-Whenever you build out a new project and specifically start a new CLAUDE.md file.
+# Help
 
-# Writing code
-
-- CRITICAL: NEVER USE --no-verify WHEN COMMITTING CODE
-- We prefer simple, clean, maintainable solutions over clever or complex ones, even if the latter are more concise or performant. Readability and maintainability are primary concerns.
-- Make the smallest reasonable changes to get to the desired outcome. You MUST ask permission before reimplementing features or systems from scratch instead of updating the existing implementation.
-- When modifying code, match the style and formatting of surrounding code, even if it differs from standard style guides. Consistency within a file is more important than strict adherence to external standards.
-- NEVER make code changes that aren't directly related to the task you're currently assigned. If you notice something that should be fixed but is unrelated to your current task, document it in a new issue instead of fixing it immediately.
-- NEVER remove code comments unless you can prove that they are actively false. Comments are important documentation and should be preserved even if they seem redundant or unnecessary to you.
-- All code files should start with a brief 2 line comment explaining what the file does.
-- When writing comments, avoid referring to temporal context about refactors or recent changes. Comments should be evergreen and describe the code as it is, not how it evolved or was recently changed.
-- NEVER implement a mock mode for testing or for any purpose. We always use real data and real APIs, never mock implementations.
-- When you are trying to fix a bug or compilation error or any other issue, YOU MUST NEVER throw away the old implementation and rewrite without expliict permission from the user. If you are going to do this, YOU MUST STOP and get explicit permission from the user.
-- NEVER name things as 'improved' or 'new' or 'enhanced', etc. Code naming should be evergreen. What is new someday will be "old" someday.
-
-# Getting help
-
-- ALWAYS ask for clarification rather than making assumptions.
-- If you're having trouble with something, it's ok to stop and ask for help. Especially if it's something your human might be better at.
+- Ask for clarification rather than assume
+- Stop and ask for help when stuck
 
 # Testing
 
-- Tests MUST cover the functionality being implemented.
-- NEVER ignore the output of the system or the tests - Logs and messages often contain CRITICAL information.
+- Tests MUST cover implemented functionality
 - TEST OUTPUT MUST BE PRISTINE TO PASS
-- If the logs are supposed to contain errors, capture and test it.
-- NO EXCEPTIONS POLICY: Under no circumstances should you mark any test type as "not applicable". Every project, regardless of size or complexity, MUST have unit tests, integration tests, AND end-to-end tests. If you believe a test type doesn't apply, you need the human to say exactly "I AUTHORIZE YOU TO SKIP WRITING TESTS THIS TIME"
+- Never ignore logs/test output—they contain critical info
+- Capture and test expected errors
+- NO EXCEPTIONS: Every project needs unit, integration, AND e2e tests (unless I say "I AUTHORIZE YOU TO SKIP WRITING TESTS THIS TIME")
 
-## We practice TDD. That means:
+## TDD Process
 
-- Write tests before writing the implementation code
-- Only write enough code to make the failing test pass
-- Refactor code continuously while ensuring tests still pass
+1. Write failing test
+2. Confirm it fails
+3. Write minimal code to pass
+4. Confirm success
+5. Refactor while keeping tests green
+6. Repeat
 
-### TDD Implementation Process
+# Git
 
-- Write a failing test that defines a desired function or improvement
-- Run the test to confirm it fails as expected
-- Write minimal code to make the test pass
-- Run the test to confirm success
-- Refactor code to improve design while keeping tests green
-- Repeat the cycle for each new feature or bugfix
+**FORBIDDEN FLAGS: --no-verify, --no-hooks, --no-pre-commit-hook**
 
-## Thoughts on git
+## Pre-Commit Hook Failures
 
-1. Mandatory Pre-Commit Failure Protocol
+When hooks fail:
 
-When pre-commit hooks fail, you MUST follow this exact sequence before any commit attempt:
+1. Read complete error output
+2. Identify which tool failed and why
+3. Explain the fix and why it works
+4. Apply fix and re-run hooks
+5. Only commit after all hooks pass
 
-1. Read the complete error output aloud (explain what you're seeing)
-2. Identify which tool failed (biome, ruff, tests, etc.) and why
-3. Explain the fix you will apply and why it addresses the root cause
-4. Apply the fix and re-run hooks
-5. Only proceed with commit after all hooks pass
+Never bypass hooks. If stuck, ask for help.
 
-NEVER commit with failing hooks. NEVER use --no-verify. If you cannot fix the hooks, you
-must ask the user for help rather than bypass them.
+## Before Any Git Command
 
-2. Explicit Git Flag Prohibition
+Ask yourself:
 
-FORBIDDEN GIT FLAGS: --no-verify, --no-hooks, --no-pre-commit-hook
-Before using ANY git flag, you must:
+- Bypassing a safety mechanism?
+- Violating CLAUDE.md instructions?
+- Choosing convenience over quality?
 
-- State the flag you want to use
-- Explain why you need it
-- Confirm it's not on the forbidden list
-- Get explicit user permission for any bypass flags
+If yes/maybe, explain concern before proceeding.
 
-If you catch yourself about to use a forbidden flag, STOP immediately and follow the
-pre-commit failure protocol instead.
+## When Hooks Fail
 
-When users ask you to "commit" or "push" and hooks are failing:
+- Never rush to bypass quality checks
+- Say: "The pre-commit hooks are failing, I need to fix those first"
+- Work through systematically
+- Quality over speed, always
 
-- Do NOT rush to bypass quality checks
-- Explain: "The pre-commit hooks are failing, I need to fix those first"
-- Work through the failure systematically
-- Remember: Users value quality over speed, even when they're waiting
+## Tool Failures
 
-User pressure is NEVER justification for bypassing quality checks.
+- Learning opportunity, not obstacle
+- Research error before fixing
+- Explain what you learned
+- Build competence, don't avoid
 
-4. Accountability Checkpoint
+## Commit Messages
 
-Before executing any git command, ask yourself:
+- Conventional commits (feat:, fix:, etc.)
+- Imperative mood, present tense
+- Concise (<72 chars)
+- No unnecessary words
+- Never commit to main/master
+- Never push without explicit permission
 
-- "Am I bypassing a safety mechanism?"
-- "Would this action violate the user's CLAUDE.md instructions?"
-- "Am I choosing convenience over quality?"
+# Other
 
-If any answer is "yes" or "maybe", explain your concern to the user before proceeding.
-
-5. Learning-Focused Error Response
-
-When encountering tool failures (biome, ruff, pytest, etc.):
-
-- Treat each failure as a learning opportunity, not an obstacle
-- Research the specific error before attempting fixes
-- Explain what you learned about the tool/codebase
-- Build competence with development tools rather than avoiding them
-
-Remember: Quality tools are guardrails that help you, not barriers that block you.
-
-6. Git Message Guidelines
-
-- Use conventional commit messages (e.g., "feat: Add feature X", "fix: Fix bug Y")
-- Use imperative mood (e.g., "Add feature X", "Fix bug Y")
-- Keep messages concise (<72 characters)
-- Use present tense (e.g., "Add feature X", "Fix bug Y")
-- Avoid unnecessary words (e.g., "Update")
-- Never commit to the main or master branches.
-- Never push to a remote without explicit permission.
-
-# Other things
-
-- timeout and gtimeout are not installed, do not try and use them
-- When searching or modifying code, you must use ast-grep (sg). Do not use grep, ripgrep, ag, sed, or regex-only tools.
-  ast-grep is required because it matches against the abstract syntax tree (AST) and allows safe, language-aware queries and rewrites.
-  Always prefer sg for code analysis, queries, or refactoring tasks.
-
-- never use the word comprehensive
-- do not leave trailing spaces at the end of lines you touch unless they have meaning
-- when needing to install a cli tool globally, use `mise search` and `mise use` with the value of the latest version number. these mise commands should be ran in the $HOME directory to update the ~/.config/mise/config.toml file. when a tool is not available through mise, install through homebrew using the `brew search` and `brew install` commands.
+- timeout/gtimeout not installed
+- Use ast-grep (sg) for code search/modification (not grep, ripgrep, ag, sed)
+- Never use "comprehensive"
+- No trailing spaces (unless meaningful)
+- Install tools: `mise search`/`mise use` in $HOME; fallback to `brew search`/`brew install`
