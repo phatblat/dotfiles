@@ -27,6 +27,7 @@ shfmt = "3.12.0"
 terraform = "1.13.4"
 uv = "0.9.7"
 ast-grep = "0.39.7"
+ripgrep = "15.1.0"
 
 [settings]
 experimental = true
