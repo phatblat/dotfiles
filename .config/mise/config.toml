@@ -26,6 +26,7 @@ shellcheck = "0.11.0"
 shfmt = "3.12.0"
 terraform = "1.13.4"
 uv = "0.9.7"
+ast-grep = "0.39.7"
 
 [settings]
 experimental = true
