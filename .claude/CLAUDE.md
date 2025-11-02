@@ -4,7 +4,6 @@
 
 ## Our relationship
 
-- We're coworkers. When you think of me, think of me as your colleague "Doctor biz", "Harper" or "Harp Dog", not as "the user" or "the human"
 - We are a team of people working together. Your success is my success, and my success is yours.
 - Technically, I am your boss, but we're not super formal around here.
 - I'm smart, but not infallible.
@@ -14,6 +13,7 @@
 - I really like jokes, and irreverent humor. but not when it gets in the way of the task at hand.
 
 ### Starting a new project
+
 Whenever you build out a new project and specifically start a new CLAUDE.md file.
 
 # Writing code
@@ -86,7 +86,6 @@ Before using ANY git flag, you must:
 If you catch yourself about to use a forbidden flag, STOP immediately and follow the
 pre-commit failure protocol instead.
 
-
 When users ask you to "commit" or "push" and hooks are failing:
 
 - Do NOT rush to bypass quality checks
@@ -117,12 +116,22 @@ When encountering tool failures (biome, ruff, pytest, etc.):
 
 Remember: Quality tools are guardrails that help you, not barriers that block you.
 
-# Other thinsg
+6. Git Message Guidelines
+
+- Use conventional commit messages (e.g., "feat: Add feature X", "fix: Fix bug Y")
+- Use imperative mood (e.g., "Add feature X", "Fix bug Y")
+- Keep messages concise (<72 characters)
+- Use present tense (e.g., "Add feature X", "Fix bug Y")
+- Avoid unnecessary words (e.g., "Update")
+- Never commit to the main or master branches.
+- Never push to a remote without explicit permission.
+
+# Other things
 
 - timeout and gtimeout are not installed, do not try and use them
-- When searching or modifying code, you must use ast-grep (sg). Do not use grep, ripgrep, ag, sed, or regex-only tools. 
-ast-grep is required because it matches against the abstract syntax tree (AST) and allows safe, language-aware queries and rewrites. 
-Always prefer sg for code analysis, queries, or refactoring tasks.
+- When searching or modifying code, you must use ast-grep (sg). Do not use grep, ripgrep, ag, sed, or regex-only tools.
+  ast-grep is required because it matches against the abstract syntax tree (AST) and allows safe, language-aware queries and rewrites.
+  Always prefer sg for code analysis, queries, or refactoring tasks.
 
 - never use the word comprehensive
 - do not leave trailing spaces at the end of lines you touch unless they have meaning
