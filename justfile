@@ -87,6 +87,7 @@ format:
     mise fmt
     just --fmt
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
+    jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
 
 # Removes default.store files and *.hprof files from home directory
 [group('configuration')]
