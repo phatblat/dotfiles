@@ -1,3 +1,28 @@
 show_sidebar = true
 pixel_ratio = 2.0
-query = "SELECT * FROM __feature_flags"
+
+[[databases.databases]]
+id = "0c737e63-fa14-4425-90fd-44525b33fa85"
+slug = "dql-browser"
+connection_type = "Server"
+persistence_dir = "/Users/phatblat/tmp/ditto-9ac9c915-111a-4e46-9b60-a4944ec503df"
+last_opened = "2025-11-02T16:17:09.762613Z"
+auth_provider = "development"
+current_query = "SELECT * FROM system:all_collections"
+query_history = []
+
+[[databases.databases]]
+id = "07e32d06-fa96-4cd9-adef-0e36f66e57a2"
+connection_type = "SmallPeersOnly"
+persistence_dir = "/Users/phatblat/tmp/ditto-07e32d06-fa96-4cd9-adef-0e36f66e57a2"
+last_opened = "2025-11-02T16:12:21.706056Z"
+current_query = "SELECT * FROM system:all_collections"
+query_history = ["SELECT * FROM system:all_collections"]
+
+[[databases.databases]]
+id = "57d4e48a-142f-4ef6-992f-daeadbe82e08"
+connection_type = "SmallPeersOnly"
+persistence_dir = "/Users/phatblat/tmp/ditto-57d4e48a-142f-4ef6-992f-daeadbe82e08"
+last_opened = "2025-11-02T15:50:02.999134Z"
+current_query = "SELECT * FROM system:all_collections"
+query_history = []
