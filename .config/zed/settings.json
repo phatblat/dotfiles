@@ -1,41 +1,22 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
-  "languages": {
-    "Shell Script": {
-      "preferred_line_length": 120
-    }
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "model": "claude-3-5-haiku-latest",
+      "provider": "anthropic"
+    },
+    "default_profile": "write",
+    "inline_assistant_model": {
+      "model": "qwen/qwen3-coder-30b",
+      "provider": "lmstudio"
+    },
+    "play_sound_when_agent_done": true,
+    "single_file_review": false
   },
-  "show_whitespaces": "all",
   "agent_servers": {
     "claude": {
       "default_mode": "acceptEdits"
     }
-  },
-  "terminal": {
-    "keep_selection_on_copy": false
-  },
-  "format_on_save": "on",
-  "redact_private_values": true,
-  "agent": {
-    "inline_assistant_model": {
-      "provider": "lmstudio",
-      "model": "qwen/qwen3-coder-30b"
-    },
-    "play_sound_when_agent_done": true,
-    "single_file_review": false,
-    "default_profile": "write",
-    "default_model": {
-      "provider": "anthropic",
-      "model": "claude-3-5-haiku-latest"
-    },
-    "always_allow_tool_actions": true
   },
   "auto_update": true,
   "autosave": "on_focus_change",
@@ -46,6 +27,17 @@
       ".config/zsh/functions/*",
       "*.zsh"
     ]
+  },
+  "format_on_save": "on",
+  "languages": {
+    "Shell Script": {
+      "preferred_line_length": 120
+    }
+  },
+  "redact_private_values": true,
+  "show_whitespaces": "all",
+  "terminal": {
+    "keep_selection_on_copy": false
   },
   "theme": "Ayu Dark",
   "ui_font_size": 16
