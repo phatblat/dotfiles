@@ -251,3 +251,5 @@ export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 
 # Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
 export PATH="/Users/phatblat/.git-ai/bin:$PATH"
+
+alias claude="/Users/phatblat/.claude/local/claude"
