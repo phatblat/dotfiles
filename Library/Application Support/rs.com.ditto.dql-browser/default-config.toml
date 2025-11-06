@@ -5,27 +5,18 @@ pixel_ratio = 2.0
 id = "0c737e63-fa14-4425-90fd-44525b33fa85"
 slug = "dql-browser"
 connection_type = "Server"
-persistence_dir = "/Users/phatblat/tmp/ditto-9ac9c915-111a-4e46-9b60-a4944ec503df"
-last_opened = "2025-11-02T22:43:55.500407Z"
+persistence_dir = "/Users/phatblat/Library/Application Support/com.ditto.dql-browser/databases/ditto-0c737e63-fa14-4425-90fd-44525b33fa85"
+last_opened = "2025-11-03T19:52:49.404799Z"
 auth_provider = "development"
-current_query = "SELECT * FROM cars"
-query_history = [
-    "SELECT * FROM system:all_collections",
-    "SELECT * FROM system:collections",
-    "SELECT * FROM __feature_flags",
-    """insert into cars DOCUMENTS (deserialize_json('{"key":"value"}'))""",
-    "SELECT * FROM all_collections",
-    "SELECT * FROM cars",
-    "SELECT * FROM collections",
-    "SELECT * FROM data_sync_info",
-]
+current_query = "SELECT * FROM system:all_collections"
+query_history = ["SELECT * FROM system:all_collections"]
 
 [[databases.databases]]
 id = "e9aefa4f-3a11-4d22-ac9a-d701b49249f2"
 connection_type = "SmallPeersOnly"
 persistence_dir = "/Users/phatblat/Library/Application Support/rs.com.ditto.dql-browser/new_db"
-last_opened = "2025-11-02T23:08:54.295826Z"
-current_query = "SELECT * FROM active_requests"
+last_opened = "2025-11-03T18:20:11.421632Z"
+current_query = "SELECT * FROM collections"
 query_history = [
     "SELECT * FROM system:all_collections",
     "SELECT * FROM collections",
@@ -34,3 +25,39 @@ query_history = [
     "SELECT * FROM all_collections",
     "SELECT * FROM active_requests",
 ]
+
+[[databases.databases]]
+id = "e010cb8e-2108-41f0-9153-4ebd68147823"
+connection_type = "SmallPeersOnly"
+persistence_dir = "/Users/phatblat/Library/Application Support/com.ditto.dql-browser/databases/e010cb8e-2108-41f0-9153-4ebd68147823"
+last_opened = "2025-11-03T18:20:52.710324Z"
+current_query = "SELECT * FROM system:all_collections"
+query_history = []
+
+[[databases.databases]]
+id = "25fd02c0-1305-4c1f-aaf4-fa72152cf913"
+slug = "bens-cars"
+connection_type = "Server"
+persistence_dir = "/Users/phatblat/Library/Application Support/com.ditto.dql-browser/databases/ditto-25fd02c0-1305-4c1f-aaf4-fa72152cf913"
+last_opened = "2025-11-03T19:54:27.087915Z"
+auth_provider = "development"
+current_query = "SELECT * FROM system:all_collections"
+query_history = []
+
+[[databases.databases]]
+id = "6eff5920-8ab1-43f4-8803-8187f0d389fe"
+slug = "cars"
+connection_type = "Server"
+persistence_dir = "/Users/phatblat/Library/Application Support/com.ditto.dql-browser/databases/ditto-cars"
+last_opened = "2025-11-03T19:56:36.214575Z"
+auth_provider = "development"
+current_query = "SELECT * FROM indexes"
+query_history = ["SELECT * FROM indexes"]
+
+[[databases.databases]]
+id = "74dba787-750e-4f39-ba30-383721f3e7ee"
+connection_type = "SmallPeersOnly"
+persistence_dir = "/Users/phatblat/Library/Application Support/com.ditto.dql-browser/databases/74dba787-750e-4f39-ba30-383721f3e7ee"
+last_opened = "2025-11-03T19:50:33.321242Z"
+current_query = "SELECT * FROM system:all_collections"
+query_history = ["SELECT * FROM system:all_collections"]
