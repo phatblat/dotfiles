@@ -79,6 +79,7 @@ install:
 # Upgrades tools using mise
 [group('configuration')]
 upgrade:
+    claude update
     mise upgrade --bump
 
 # Formats mise config, justfile, and Claude settings.json
