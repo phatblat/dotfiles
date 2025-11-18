@@ -1,5 +1,5 @@
 {
-  "tab_size": 2,
+  "hard_tabs": false,
   "agent": {
     "always_allow_tool_actions": true,
     "default_model": {
@@ -35,7 +35,7 @@
       "preferred_line_length": 120
     }
   },
-  "redact_private_values": true,
+  "redact_private_values": false,
   "show_whitespaces": "all",
   "terminal": {
     "keep_selection_on_copy": false
