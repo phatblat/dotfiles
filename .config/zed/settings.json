@@ -38,11 +38,7 @@
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
-        "cargo": {
-          "extraEnv": {
-            "CARGO_TARGET_DIR": "/Users/phatblat/caches/zed_cargo_target"
-          }
-        }
+        "analyzerTargetDir": true
       }
     }
   },
