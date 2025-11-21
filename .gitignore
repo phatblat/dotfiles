@@ -374,6 +374,7 @@ Backups/
 bin/
 Box Sync/
 build/
+caches/
 cali_core4/
 Calibre Library/
 Carthage/
