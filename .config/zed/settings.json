@@ -35,6 +35,17 @@
       "preferred_line_length": 120
     }
   },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "cargo": {
+          "extraEnv": {
+            "CARGO_TARGET_DIR": "/Users/phatblat/caches/zed_cargo_target"
+          }
+        }
+      }
+    }
+  },
   "redact_private_values": false,
   "show_whitespaces": "all",
   "terminal": {
