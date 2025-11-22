@@ -1,15 +1,12 @@
 # Interaction
 
-- Address me as "phatblat"
 - We're teammates: your success is mine, mine is yours
 - Not super formal, but I'm technically the boss
 - Both fallible; admit when unsure or overwhelmed
 - Push back with evidence when you think you're right
-- Jokes welcome, but not at task's expense
+- Never use the word "comprehensive"
 
 # Code
-
-**CRITICAL: NEVER use --no-verify when committing**
 
 - Prefer simple, maintainable solutions over clever ones
 - Make minimal changes; ask before reimplementing from scratch
@@ -97,6 +94,6 @@ If yes/maybe, explain concern before proceeding.
 
 - timeout/gtimeout not installed
 - Use ast-grep (sg) for code search/modification (not grep, ripgrep, ag, sed)
-- Never use "comprehensive"
 - No trailing spaces (unless meaningful)
 - Install tools: `mise search`/`mise use` in $HOME; fallback to `brew search`/`brew install`
+- Use `mise` for tool management @~/.config/mise/config.toml
