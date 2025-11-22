@@ -19,10 +19,10 @@ function ignore() {
         {
             printf '%s\n' "$@"
             printf '%s\n' "$ignore_list"
-        } | sort -u >"$gitignore"
+        } | sort -u > "$gitignore"
         commit_message="chore: ignore $*"
     else
-        printf '%s\n' "$ignore_list" | sort -u >"$gitignore"
+        printf '%s\n' "$ignore_list" | sort -u > "$gitignore"
     fi
 
     if [[ -z "$commit_message" ]]; then
