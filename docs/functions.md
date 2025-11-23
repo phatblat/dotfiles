@@ -4,12 +4,12 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 510 aliases/functions across 4 shells**
+**Total: 501 aliases/functions across 4 shells**
 
 **Shell Statistics:**
 
-- Fish: 405 functions (most comprehensive)
-- Zsh: 156 functions
+- Fish: 375 functions (most comprehensive)
+- Zsh: 151 functions
 - Nushell: 76 aliases/functions (actively being configured)
 - Bash: 2 aliases (minimal usage)
 
@@ -81,16 +81,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `bo`                        | ➖  | ✅   | ➖  | ➖   | Bundle open                                         |
 | `bog`                       | ➖  | ✅   | ✅  | ➖   | Update gem bundle using local Gemfile               |
 | `bootcamp`                  | ➖  | ✅   | ➖  | ➖   | Restarts to Windows bootcamp                        |
-| `bpi`                       | ➖  | ✅   | ➖  | ➖   | Run pod install through Bundler                     |
-| `bpie`                      | ➖  | ✅   | ✅  | ➖   | Install pods for Example app                        |
-| `bpiru`                     | ➖  | ✅   | ➖  | ➖   | Pod install through Bundler, update repos           |
-| `bpiv`                      | ➖  | ✅   | ➖  | ➖   | Verbose pod install through Bundler                 |
-| `bpo`                       | ➖  | ✅   | ➖  | ➖   | Bundle pod open                                     |
-| `bpru`                      | ➖  | ✅   | ➖  | ➖   | Update CocoaPod repos                               |
-| `bprum`                     | ➖  | ✅   | ➖  | ➖   | Update master CocoaPods repo                        |
-| `bpu`                       | ➖  | ✅   | ➖  | ➖   | Update pods without updating repos                  |
-| `bpuru`                     | ➖  | ✅   | ➖  | ➖   | Update pods after updating repos                    |
-| `bpx`                       | ➖  | ✅   | ➖  | ➖   | Install bundle, pods, open in Xcode                 |
 | `bq`                        | ➖  | ➖   | ✅  | ➖   | Query brew information                              |
 | `br`                        | ➖  | ✅   | ➖  | ➖   | Broot launcher script                               |
 | `bra`                       | ➖  | ✅   | ➖  | ➖   | Branch related                                      |
@@ -266,7 +256,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `gpgkeyid`                  | ➖  | ✅   | ✅  | ➖   | Prints long format key IDs of all GPG keys          |
 | `gpgrep`                    | ➖  | ✅   | ➖  | ➖   | Grep for gradle properties                          |
 | `gpgtest`                   | ➖  | ➖   | ✅  | ➖   | Test GPG key with passphrase                        |
-| `gpi`                       | ➖  | ✅   | ✅  | ➖   | Runs podInstall gradle task                         |
 | `gpv`                       | ➖  | ✅   | ➖  | ➖   | Quick nav to GooglePlatformVersions dir             |
 | `gradle_cache_clean`        | ➖  | ✅   | ➖  | ➖   | Cleans gradle cache                                 |
 | `gradle_kill`               | ➖  | ✅   | ➖  | ➖   | Kills all running gradle processes                  |
@@ -342,7 +331,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `merge-base`                | ➖  | ➖   | ✅  | ➖   | Git merge-base wrapper                              |
 | `mergetool`                 | ✅  | ➖   | ➖  | ➖   | Git merge tool                                      |
 | `minic`                     | ➖  | ✅   | ➖  | ➖   | SSH into mini as chatelain                          |
-| `mirrored-pods`             | ➖  | ✅   | ➖  | ➖   | Jump to kp-mirrored-pods dir                        |
 | `mkdir`                     | ➖  | ✅   | ➖  | ➖   | Create directory and set CWD                        |
 | `moj_host`                  | ➖  | ✅   | ➖  | ➖   | Prints emoji for current host                       |
 | `moj_user`                  | ➖  | ✅   | ✅  | ➖   | Prints emoji for current user                       |
@@ -374,49 +362,31 @@ This document tracks the implementation status of all shell functions and aliase
 | `pdog`                      | ➖  | ✅   | ➖  | ➖   | Quick nav to pingidentity-devops-getting-started    |
 | `pdos`                      | ➖  | ✅   | ➖  | ➖   | Quick nav to pingidentity-server-profiles           |
 | `phatmini`                  | ➖  | ✅   | ➖  | ➖   | SSH to phatmini                                     |
-| `pi`                        | ➖  | ✅   | ➖  | ➖   | Runs pod install                                    |
 | `pick`                      | ✅  | ➖   | ✅  | ➖   | Short alias for cherry-pick                         |
-| `pie`                       | ➖  | ✅   | ➖  | ➖   | Install pods for Example app                        |
-| `piev`                      | ➖  | ✅   | ➖  | ➖   | Install pods for Example with verbose output        |
-| `pil`                       | ➖  | ✅   | ✅  | ➖   | Special "local" pod install for KP Mobile           |
 | `ping1`                     | ➖  | ✅   | ➖  | ➖   | Sends single ping to host                           |
 | `pingdownload`              | ➖  | ✅   | ➖  | ➖   | Downloads Ping DevOps tools                         |
 | `pingmini`                  | ➖  | ✅   | ➖  | ➖   | Check network status of mini                        |
 | `pinkit`                    | ➖  | ✅   | ➖  | ➖   | Quick nav to PinKit dir                             |
 | `pip`                       | ➖  | ✅   | ➖  | ➖   | Wrapper for pip                                     |
 | `pipeline`                  | ➖  | ✅   | ➖  | ➖   | Quick nav to pipeline plugin project                |
-| `piq`                       | ➖  | ✅   | ➖  | ➖   | Quiet pod install                                   |
-| `piru`                      | ➖  | ✅   | ➖  | ➖   | Install pods after updating repos                   |
-| `piv`                       | ➖  | ✅   | ➖  | ➖   | Install pods with verbose output                    |
 | `pkgexpand`                 | ➖  | ✅   | ➖  | ➖   | Expands pkg file                                    |
 | `pl_edit`                   | ➖  | ➖   | ✅  | ➖   | Edit Powerline config files                         |
 | `play`                      | ➖  | ✅   | ➖  | ➖   | Open Xcode playground                               |
 | `plcat`                     | ➖  | ✅   | ➖  | ➖   | Show Divvy plist                                    |
 | `plformat`                  | ➖  | ✅   | ➖  | ➖   | Format plist files                                  |
-| `pll`                       | ➖  | ✅   | ➖  | ➖   | Lint pod library in current directory               |
-| `pllvnc`                    | ➖  | ✅   | ➖  | ➖   | Lint pod in current dir with verbose output         |
-| `po`                        | ➖  | ✅   | ➖  | ➖   | List outdated pods                                  |
-| `pod`                       | ➖  | ✅   | ➖  | ➖   | Display local version of CocoaPods                  |
-| `poe`                       | ➖  | ✅   | ➖  | ➖   | Show outdated pods for example app                  |
 | `pop`                       | ✅  | ✅   | ➖  | ➖   | Undo last commit but leave staging area             |
 | `ports`                     | ➖  | ✅   | ➖  | ➖   | Shows open TCP ports                                |
 | `powerlinetest`             | ➖  | ➖   | ✅  | ➖   | Print special Powerline characters test font        |
 | `pp`                        | ➖  | ✅   | ➖  | ➖   | Publish the phatblat branch                         |
 | `prefs`                     | ➖  | ✅   | ➖  | ➖   | Opens System Preferences to specific pane           |
 | `provisioning_print`        | ➖  | ➖   | ✅  | ➖   | Prints text version of provisioning profile         |
-| `pru`                       | ➖  | ✅   | ✅  | ➖   | Update CococaPod repos                              |
-| `prum`                      | ➖  | ✅   | ➖  | ➖   | Update master CocoaPods repo                        |
 | `prune`                     | ✅  | ✅   | ✅  | ➖   | Prune obsolete remote branches on given remote      |
 | `prunep`                    | ➖  | ✅   | ➖  | ➖   | Prunes phatblat remote                              |
-| `pu`                        | ➖  | ✅   | ✅  | ➖   | Update Pods without updating repos                  |
-| `pue`                       | ➖  | ✅   | ➖  | ➖   | Update example app pods without updating repos      |
-| `pul`                       | ➖  | ✅   | ➖  | ➖   | Special "local" pod update for KP Mobile            |
 | `pull`                      | ✅  | ➖   | ➖  | ➖   | Git pull                                            |
 | `pull_ssh_config`           | ➖  | ✅   | ➖  | ➖   | Copies SSH config to local                          |
 | `push`                      | ✅  | ➖   | ✅  | ➖   | Git push                                            |
 | `pushf`                     | ✅  | ✅   | ✅  | ➖   | Force git push                                      |
 | `pusht`                     | ➖  | ✅   | ➖  | ➖   | Push git tags                                       |
-| `pv`                        | ➖  | ✅   | ➖  | ➖   | Display local version of CocoaPods                  |
 | `qllist`                    | ➖  | ➖   | ✅  | ➖   | List QuickLook plugins                              |
 | `r`                         | ✅  | ➖   | ✅  | ➖   | Interactive rebase for last few commits             |
 | `ra`                        | ➖  | ➖   | ✅  | ➖   | Adds git remote                                     |

@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-
-# gpi - Runs podInstall gradle task
-function gpi() {
-    gw podInstall
-}
