@@ -10,17 +10,17 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Fish: 375 functions (most comprehensive)
 - Zsh: 151 functions
-- Nushell: 76 aliases/functions (actively being configured)
+- Nushell: 90 aliases/functions (actively being configured)
 - Bash: 2 aliases (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 1
-- Implemented in 3 shells: 15
-- Implemented in 2 shells: 96
-- Implemented in 1 shell only: 398
+- Implemented in 3 shells: 20
+- Implemented in 2 shells: 106
+- Implemented in 1 shell only: 388
 
-**Functions Implemented in Multiple Shells:** 112
+**Functions Implemented in Multiple Shells:** 127
 
 ## Status Legend
 
@@ -231,7 +231,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `funky`                     | ➖  | ✅   | ➖  | ➖   | Searches for functions with string in def           |
 | `g`                         | ✅  | ✅   | ✅  | ➖   | Gradle alias                                        |
 | `ga`                        | ✅  | ➖   | ➖  | ➖   | Git add                                             |
-| `gbe`                       | ➖  | ✅   | ➖  | ➖   | Shows Gradle build environment                      |
+| `gbe`                       | ✅  | ✅   | ➖  | ➖   | Shows Gradle build environment                      |
 | `gc`                        | ✅  | ✅   | ✅  | ➖   | Run git garbage collection                          |
 | `gd`                        | ✅  | ✅   | ➖  | ➖   | Launch gradle in debug mode                         |
 | `gem_install`               | ➖  | ✅   | ➖  | ➖   | Installs Ruby gem at system level                   |
@@ -254,22 +254,22 @@ This document tracks the implementation status of all shell functions and aliase
 | `gp`                        | ✅  | ✅   | ➖  | ➖   | Edit current user Gradle properties                 |
 | `gpgcopypub`                | ➖  | ➖   | ✅  | ➖   | Copies public key for any GPG key found             |
 | `gpgkeyid`                  | ➖  | ✅   | ✅  | ➖   | Prints long format key IDs of all GPG keys          |
-| `gpgrep`                    | ➖  | ✅   | ➖  | ➖   | Grep for gradle properties                          |
+| `gpgrep`                    | ✅  | ✅   | ➖  | ➖   | Grep for gradle properties                          |
 | `gpgtest`                   | ➖  | ➖   | ✅  | ➖   | Test GPG key with passphrase                        |
 | `gpv`                       | ➖  | ✅   | ➖  | ➖   | Quick nav to GooglePlatformVersions dir             |
-| `gradle_cache_clean`        | ➖  | ✅   | ➖  | ➖   | Cleans gradle cache                                 |
-| `gradle_kill`               | ➖  | ✅   | ➖  | ➖   | Kills all running gradle processes                  |
-| `gradle_wrapper`            | ➖  | ✅   | ➖  | ➖   | Upstalls gradle wrapper                             |
-| `gradle_wrapper_add`        | ➖  | ✅   | ➖  | ➖   | Updates build.gradle and runs wrapper task          |
+| `gradle_cache_clean`        | ✅  | ✅   | ➖  | ➖   | Cleans gradle cache                                 |
+| `gradle_kill`               | ✅  | ✅   | ➖  | ➖   | Kills all running gradle processes                  |
+| `gradle_wrapper`            | ✅  | ✅   | ➖  | ➖   | Upstalls gradle wrapper                             |
+| `gradle_wrapper_add`        | ✅  | ✅   | ➖  | ➖   | Updates build.gradle and runs wrapper task          |
 | `gs`                        | ✅  | ➖   | ➖  | ➖   | Git status short format                             |
 | `gst`                       | ✅  | ➖   | ➖  | ➖   | Git status                                          |
-| `gt`                        | ➖  | ✅   | ➖  | ➖   | Alias for gradle tasks                              |
-| `gta`                       | ➖  | ✅   | ➖  | ➖   | Alias for gradle tasks --all                        |
-| `gv`                        | ➖  | ✅   | ✅  | ➖   | Prints gradle version                               |
-| `gw`                        | ➖  | ✅   | ✅  | ➖   | Invokes build using Gradle wrapper script           |
-| `gwd`                       | ➖  | ✅   | ➖  | ➖   | Debug gradle                                        |
-| `gwo`                       | ➖  | ✅   | ✅  | ➖   | Gradle wrapper offline                              |
-| `gwv`                       | ➖  | ✅   | ✅  | ➖   | Prints version of gradle wrapper                    |
+| `gt`                        | ✅  | ✅   | ➖  | ➖   | Alias for gradle tasks                              |
+| `gta`                       | ✅  | ✅   | ➖  | ➖   | Alias for gradle tasks --all                        |
+| `gv`                        | ✅  | ✅   | ✅  | ➖   | Prints gradle version                               |
+| `gw`                        | ✅  | ✅   | ✅  | ➖   | Invokes build using Gradle wrapper script           |
+| `gwd`                       | ✅  | ✅   | ➖  | ➖   | Debug gradle                                        |
+| `gwo`                       | ✅  | ✅   | ✅  | ➖   | Gradle wrapper offline                              |
+| `gwv`                       | ✅  | ✅   | ✅  | ➖   | Prints version of gradle wrapper                    |
 | `headshort`                 | ➖  | ➖   | ✅  | ➖   | Prints 7-char abbreviated sha1 of HEAD              |
 | `hgrep`                     | ➖  | ✅   | ✅  | ➖   | Grep command history                                |
 | `home`                      | ➖  | ✅   | ➖  | ➖   | Go home                                             |
