@@ -39,7 +39,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `aa`                        | ✅  | ✅   | ➖  | ➖   | Add all modified tracked files to git staging       |
 | `abort`                     | ✅  | ✅   | ➖  | ➖   | Abort git merge/rebase/cherry-pick/am               |
 | `add`                       | ✅  | ✅   | ➖  | ➖   | Add files to git staging area                       |
-| `adevices`                  | ➖  | ✅   | ➖  | ➖   | Android devices                                     |
 | `af`                        | ➖  | ✅   | ➖  | ➖   | Forced add files to git staging area                |
 | `ai`                        | ➖  | ✅   | ➖  | ➖   | Interactively add files to git staging area         |
 | `aks`                       | ➖  | ✅   | ➖  | ➖   | AKS related function                                |
