@@ -90,11 +90,12 @@ format:
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
     jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
 
-# Removes default.store files and *.hprof files from home directory
+# Removes default.store files, *.hprof files, and homebrew cache from home directory
 [group('configuration')]
 clean:
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f "$HOME"/*.hprof
+    rm -rf "$(brew --cache)"
 
 #
 # checks group recipes
