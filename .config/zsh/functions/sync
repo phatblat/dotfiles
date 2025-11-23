@@ -14,7 +14,8 @@ function sync() {
 
     pull
 
-    local remote_name=$(remote_for_current_branch)
+    local remote_name
+    remote_name=$(remote_for_current_branch)
     prune "$remote_name"
 
     bra

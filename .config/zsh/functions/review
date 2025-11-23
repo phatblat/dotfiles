@@ -22,5 +22,5 @@ committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
         -m \
         --unified=1 \
         --no-prefix \
-        $commit
+        "$commit"
 }

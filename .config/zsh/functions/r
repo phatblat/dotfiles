@@ -6,7 +6,7 @@ function r() {
 
     toggle_wait on
 
-    git rebase --interactive HEAD~$count
+    git rebase --interactive "HEAD~$count"
 
     toggle_wait off
 }

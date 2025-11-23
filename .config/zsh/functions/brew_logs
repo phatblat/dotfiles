@@ -2,5 +2,5 @@
 
 # brew_logs - Quick nav to Homebrew logs dir
 function brew_logs() {
-    pushd ~/Library/Logs/Homebrew/
+    pushd ~/Library/Logs/Homebrew/ || return
 }

@@ -16,16 +16,16 @@ function clone_or_pull() {
 
         # Checkout branch
         if [[ -n "$branch" ]]; then
-            pushd "$folder_name"
+            pushd "$folder_name" || return
             git checkout "$branch"
-            popd
+            popd || return
         fi
     else
-        pushd "$folder_name"
+        pushd "$folder_name" || return
         if [[ -n "$branch" && "$branch" != "$(git rev-parse --abbrev-ref HEAD)" ]]; then
             echo "WARNING: $folder_name currently has the $(git rev-parse --abbrev-ref HEAD) branch checked out (!=$branch)"
         fi
         git pull
-        popd
+        popd || return
     fi
 }

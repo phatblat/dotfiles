@@ -2,5 +2,5 @@
 
 # cfrmodel - Quick dir nav to CFR Model project
 function cfrmodel() {
-    pushd ~/dev/realm/ClinicalFacilityRealmModel
+    pushd ~/dev/realm/ClinicalFacilityRealmModel || return
 }

@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 
 function ignore() {
-    local gitignore="$(root)/.gitignore"
+    local gitignore
+    gitignore="$(root)/.gitignore"
     local ignore_list
     local commit_message
 

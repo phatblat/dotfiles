@@ -5,10 +5,10 @@ function mpv() {
     local mpv_dir=~/dev/MicrosoftPlatformVersions
 
     if [[ ! -d "$mpv_dir" ]]; then
-        cd ~/dev
+        cd ~/dev || return
         git clone git@github.com:phatblat/MicrosoftPlatformVersions.git
     else
-        cd "$mpv_dir"
+        cd "$mpv_dir" || return
         git pull
     fi
 

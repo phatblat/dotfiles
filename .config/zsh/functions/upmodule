@@ -32,11 +32,11 @@ function upmodule() {
             return 4
         fi
 
-        if [[ " ${original_args[*]} " =~ " $skip_flag " ]]; then
+        if [[ " ${original_args[*]} " =~ $skip_flag ]]; then
             # Skip module if skip flag was given
             repeatchar -
             echo "$display_name (skipped)"
-        elif [[ " ${original_args[*]} " =~ " $include_flag " ]]; then
+        elif [[ " ${original_args[*]} " =~ $include_flag ]]; then
             # Run module if asked for
             repeatchar -
             eval "$module_function"

@@ -6,7 +6,7 @@ function cargo_target() {
     local drive_name="CargoTarget"
     local default_size=50
     local target_path="/Volumes/$drive_name"
-    local icon_file="~/Pictures/Icons/rustacean-flat-happy.webp"
+    local icon_file="$HOME/Pictures/Icons/rustacean-flat-happy.webp"
 
     local output
     if [[ -d "$target_path" ]]; then

@@ -2,5 +2,5 @@
 
 # rl - Quick dir navigation to reflog
 function rl() {
-    pushd ~/dev/www/reflog/www
+    pushd ~/dev/www/reflog/www || return
 }

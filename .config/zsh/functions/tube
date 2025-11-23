@@ -2,5 +2,5 @@
 
 # tube - Quick nav to Tube project
 function tube() {
-    pushd ~/dev/jenkins/Tube
+    pushd ~/dev/jenkins/Tube || return
 }

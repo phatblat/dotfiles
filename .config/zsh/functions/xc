@@ -9,7 +9,8 @@ function xc() {
     fi
 
     # Find workspaces (ignore ones inside xcodeproj bundle)
-    local workspaces=($(find . -name "*.xcworkspace" -not -path "*/project.xcworkspace*" 2> /dev/null))
+    local workspaces
+    mapfile -t workspaces < <(find . -name "*.xcworkspace" -not -path "*/project.xcworkspace*" 2> /dev/null)
     if [[ ${#workspaces[@]} -gt 0 ]]; then
         printf '%s\n' "${workspaces[@]}"
         if [[ -d "${workspaces[1]}" ]]; then
@@ -20,7 +21,8 @@ function xc() {
     fi
 
     # Find projects (ignore CocoaPods projects)
-    local projects=($(find . -name "*.xcodeproj" -not -name "Pods.xcodeproj" 2> /dev/null))
+    local projects
+    mapfile -t projects < <(find . -name "*.xcodeproj" -not -name "Pods.xcodeproj" 2> /dev/null)
     if [[ ${#projects[@]} -gt 0 ]]; then
         printf '%s\n' "${projects[@]}"
         if [[ -d "${projects[1]}" ]]; then

@@ -5,11 +5,11 @@ function textmate() {
     echo "📝 TextMate - https://github.com/textmate/textmate"
     echo
     local bundles=(blackpearl dashmate editorconfig fish gradle kotlin tomorrow-theme ublime)
-    local bundle_dev="~/dev/textmate"
-    local bundle_dir="~/Library/Application Support/TextMate/Bundles"
+    local bundle_dev="$HOME/dev/textmate"
+    local bundle_dir="$HOME/Library/Application Support/TextMate/Bundles"
 
     mkdir -p "$bundle_dev" "$bundle_dir"
-    pushd "$bundle_dev"
+    pushd "$bundle_dev" || return
 
     for bundle in "${bundles[@]}"; do
         if [[ ! -e "$bundle.tmbundle" ]]; then
@@ -29,7 +29,8 @@ function textmate() {
                 clone_or_pull "$bundle" "git@github.com:Mr0grog/editorconfig-textmate.git"
                 local ec_version=0.3.1
                 curl -L -O -# "https://github.com/Mr0grog/editorconfig-textmate/releases/download/v$ec_version/editorconfig-textmate-$ec_version.tmplugin.zip"
-                local newest_file=$(ls -1t | head -n 1)
+                local newest_file
+                newest_file=$(find . -maxdepth 1 -type f -name '*.zip' -print0 | xargs -0 ls -t | head -n 1)
                 unzip -o "$newest_file"
                 rm -f "$newest_file"
                 [[ $(status is-login) ]] && open "editorconfig-textmate.tmplugin"
@@ -63,5 +64,5 @@ function textmate() {
     done
     echo "$bundle_dev"
     ls
-    popd
+    popd || return
 }

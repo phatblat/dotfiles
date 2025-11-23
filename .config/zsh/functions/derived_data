@@ -6,13 +6,15 @@ function derived_data() {
     local drive_name="DerivedData"
     local default_size=10
     local target_path="/Volumes/$drive_name"
-    local icon_file="~/Pictures/Icons/Agua Onyx Icons/Onyx Media Drive.png"
+    local icon_file="$HOME/Pictures/Icons/Agua Onyx Icons/Onyx Media Drive.png"
 
     if [[ -d "$target_path" ]]; then
         echo "$drive_name already mounted"
-        local output=$(diskutil list "$drive_name")
+        local output
+        output=$(diskutil list "$drive_name")
     else
-        local output=$(ramdisk "$default_size" "$drive_name")
+        local output
+        output=$(ramdisk "$default_size" "$drive_name")
         fileicon set "$target_path" "$icon_file"
     fi
 

@@ -2,7 +2,9 @@
 
 # gv - Prints gradle version
 function gv() {
-    local output=$(gradle --version)
-    local gradle_version=$(echo "$output" | sed -n '3p' | awk '{print $2}')
+    local output
+    output=$(gradle --version)
+    local gradle_version
+    gradle_version=$(echo "$output" | sed -n '3p' | awk '{print $2}')
     echo "$gradle_version"
 }

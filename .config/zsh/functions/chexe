@@ -6,5 +6,5 @@ function chexe() {
     if [[ -z "$files" ]]; then
         files="*.sh"
     fi
-    chmod +x $files
+    chmod +x "$files"
 }

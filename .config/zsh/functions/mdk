@@ -3,7 +3,7 @@
 # mdk - Quick nav to MDK
 function mdk() {
     local platform="$1"
-    local path="~/dev/mdk"
+    local path="$HOME/dev/mdk"
 
     if [[ -n "$platform" ]]; then
         case "$platform" in
@@ -16,5 +16,5 @@ function mdk() {
         esac
     fi
 
-    pushd "$path"
+    pushd "$path" || return
 }

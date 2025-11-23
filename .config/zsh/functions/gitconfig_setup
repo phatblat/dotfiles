@@ -24,12 +24,12 @@ function gitconfig_setup() {
     # Prompt to add required values
     if [[ -z "$name" ]]; then
         echo -n "Git user.name: "
-        read name
+        read -r name
     fi
 
     if [[ -z "$email" ]]; then
         echo -n "Git user.email: "
-        read email
+        read -r email
     fi
 
     git config --file "$global_config" user.name "$name"

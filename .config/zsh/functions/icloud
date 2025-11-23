@@ -2,5 +2,5 @@
 
 # icloud - Changes directory to ICLOUD_HOME
 function icloud() {
-    pushd "$ICLOUD_HOME" "$@"
+    pushd "$ICLOUD_HOME" "$@" || return
 }

@@ -4,6 +4,6 @@
 function gpgkeyid() {
     gpg --list-secret-keys \
         --keyid-format short |
-        egrep -o "^sec.*/\w+" |
+        grep -E -o "^sec.*/\w+" |
         cut -d "/" -f 2
 }

@@ -11,7 +11,8 @@ function ra() {
 
     # Add a fork of the project when only the remote name is given
     if [[ -z "$url" ]]; then
-        local remote_url=$(git remote get-url $(git symbolic-ref --short HEAD | sed 's|.*/||'))
+        local remote_url
+        remote_url=$(git remote get-url "$(git symbolic-ref --short HEAD | sed 's|.*/||')")
         # Drop scheme and host
         local path=${remote_url##*:}
         # Drop .git

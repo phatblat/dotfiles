@@ -23,7 +23,8 @@ function macos() {
     echo "⬆️  Updating macOS system software"
 
     # Download all updates before install
-    local output=$(softwareupdate --download --all --no-scan 2>&1)
+    local output
+    output=$(softwareupdate --download --all --no-scan 2>&1)
 
     # Exit when "No updates are available."
     if [[ -n "$output" ]]; then

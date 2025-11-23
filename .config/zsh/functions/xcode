@@ -6,7 +6,8 @@ function xcode() {
     echo
 
     if [[ -z "$XCODE_INSTALL_USER" && -n "$(git config user.email)" ]]; then
-        export XCODE_INSTALL_USER="$(git config user.email)"
+        export XCODE_INSTALL_USER
+        XCODE_INSTALL_USER="$(git config user.email)"
     fi
 
     # Currently selected version
@@ -22,8 +23,10 @@ function xcode() {
 
     echo "Available:"
     xcversion list
-    local installed=$(xcversion list)
-    local newest_version=$(echo "$installed" | tail -n 1)
+    local installed
+    installed=$(xcversion list)
+    local newest_version
+    newest_version=$(echo "$installed" | tail -n 1)
     if [[ ! "$newest_version" == *"(installed)"* ]]; then
         local options=(--no-show-release-notes)
 
@@ -49,12 +52,12 @@ function xcode() {
     local repo_dir="$xcode_dev_dir/xcode-themes"
     mkdir -p "$xcode_themes_dir" "$xcode_dev_dir"
     clone_or_pull "$repo_dir" "git@github.com:hdoria/xcode-themes.git"
-    pushd "$repo_dir"
+    pushd "$repo_dir" || return
     for theme in *.dvtcolortheme; do
         if [[ ! -e "$xcode_themes_dir/$theme" ]]; then
             # Only copy new themes
             cp -v "$theme" "$xcode_themes_dir"
         fi
     done
-    popd
+    popd || return
 }

@@ -2,7 +2,8 @@
 
 # editorconfig - Generates an editorconfig
 function editorconfig() {
-    local file_path="$(git rev-parse --show-toplevel 2> /dev/null || pwd)/.editorconfig"
+    local file_path
+    file_path="$(git rev-parse --show-toplevel 2> /dev/null || pwd)/.editorconfig"
 
     if [[ -f "$file_path" ]]; then
         echo "EditorConfig file already exists at: $file_path"

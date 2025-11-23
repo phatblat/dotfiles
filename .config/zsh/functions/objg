@@ -2,5 +2,5 @@
 
 # objg - Quick nav to Objective-Git
 function objg() {
-    pushd ~/dev/libgit2/objective-git
+    pushd ~/dev/libgit2/objective-git || return
 }

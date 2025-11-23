@@ -2,5 +2,5 @@
 
 # ol - Quick dir navigation to Outlets
 function ol() {
-    pushd ~/dev/ios/pods/Outlets
+    pushd ~/dev/ios/pods/Outlets || return
 }

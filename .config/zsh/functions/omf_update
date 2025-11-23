@@ -15,14 +15,14 @@ function omf_update() {
     if [[ ! -d "$local_dir" ]]; then
         git clone "$repo_url" "$local_dir"
     else
-        pushd "$local_dir" && git pull && popd
+        pushd "$local_dir" || return && git pull && popd || return
     fi
 
     # Install omf if necessary
     if ! command -v omf > /dev/null; then
-        pushd "$local_dir"
+        pushd "$local_dir" || return
         bin/install --offline
-        popd
+        popd || return
     fi
 
     # Update omf and installed plugins
