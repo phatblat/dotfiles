@@ -36,6 +36,10 @@ $env.NU_PLUGIN_DIRS = [
 # Add homebrew to PATH
 $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 
+# Editor configuration
+$env.EDITOR = "zed"
+$env.VISUAL = "zed"
+
 # Starship prompt
 if (which starship | is-not-empty) {
     let starship_cache = ($nu.home-path | path join '.cache' 'starship')
