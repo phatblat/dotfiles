@@ -24,6 +24,14 @@ Personal development workspace with home directory (`/Users/phatblat`) as Git re
 - Config: `~/.config/nushell/`
 - History: `Library/Application Support/nushell/history.txt` (gitignored)
 
+### Function/Alias Management
+
+When adding or removing shell functions/aliases:
+
+1. Update statistics in the Summary section of `~/docs/functions.md`
+2. Add or remove corresponding rows in the functions table
+3. Remove any obsolete entries from the Known Issues section
+
 **Tool Management**: mise
 
 - Global: `~/.config/mise/config.toml`
