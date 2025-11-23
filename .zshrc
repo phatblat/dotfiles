@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -251,4 +253,3 @@ export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 
 # Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
 export PATH="/Users/phatblat/.git-ai/bin:$PATH"
-
