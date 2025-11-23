@@ -136,6 +136,11 @@ let light_theme = {
     shape_vardecl: purple
 }
 
+# Load starship prompt if available (must be before $env.config)
+if (which starship | is-not-empty) and ("~/.cache/starship/init.nu" | path expand | path exists) {
+    source ~/.cache/starship/init.nu
+}
+
 # External completer example
 # let carapace_completer = {|spans|
 #     carapace $spans.0 nushell $spans | from json
@@ -742,11 +747,6 @@ $env.config = {
         #     event: {send: viinsertatlinestart}
         # }
     ]
-}
-
-# Load starship prompt if available
-if (which starship | is-not-empty) and ("~/.cache/starship/init.nu" | path expand | path exists) {
-    source ~/.cache/starship/init.nu
 }
 
 # Load zoxide if available
