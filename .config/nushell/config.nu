@@ -634,6 +634,22 @@ $env.config = {
     ]
 }
 
+# Direnv
+$env.config = {
+  hooks: {
+    pre_prompt: [{ ||
+      if (which direnv | is-empty) {
+        return
+      }
+
+      direnv export json | from json | default {} | load-env
+      if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
+        $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
+      }
+    }]
+  }
+}
+
 # Load zoxide if available
 if (which zoxide | is-not-empty) and ("~/.cache/zoxide/init.nu" | path expand | path exists) {
     source ~/.cache/zoxide/init.nu
