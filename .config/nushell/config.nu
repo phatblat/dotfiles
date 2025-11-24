@@ -636,6 +636,12 @@ $env.config = {
 # Load mise (tool version management)
 # source ~/.config/nushell/mise.nu
 
+'
+let mise_path = $nu.default-config-dir | path join mise.nu
+^mise activate nu | save $mise_path --force
+' | save $nu.env-path --append
+"\nuse ($nu.default-config-dir | path join mise.nu)" | save $nu.config-path --append
+
 # Load zoxide if available
 if (which zoxide | is-not-empty) and ("~/.cache/zoxide/init.nu" | path expand | path exists) {
     source ~/.cache/zoxide/init.nu
@@ -660,3 +666,5 @@ $env.PROMPT_INDICATOR_VI_NORMAL = "〉"
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 
 # All custom aliases and functions are now autoloaded from ~/.config/nushell/autoload/
+
+use ($nu.default-config-dir | path join mise.nu)

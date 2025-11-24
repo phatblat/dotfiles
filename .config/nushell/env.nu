@@ -119,3 +119,6 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend [
     ($nu.home-path | path join 'bin')
     ($nu.home-path | path join '.cargo' 'bin')
 ] | uniq)
+
+let mise_path = $nu.default-config-dir | path join mise.nu
+^mise activate nu | save $mise_path --force
