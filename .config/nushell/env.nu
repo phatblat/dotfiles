@@ -51,6 +51,10 @@ $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 $env.EDITOR = "zed"
 $env.VISUAL = "zed"
 
+# Activate mise
+let mise_path = $nu.default-config-dir | path join mise.nu
+^mise activate nu | save $mise_path --force
+
 # Starship prompt
 if (which starship | is-not-empty) {
     let starship_cache = ($nu.home-path | path join '.cache' 'starship')
@@ -101,10 +105,6 @@ if (which zoxide | is-not-empty) {
     zoxide init nushell | save -f ($zoxide_cache | path join 'init.nu')
 }
 
-# Activate mise
-let mise_path = $nu.default-config-dir | path join mise.nu
-^mise activate nu | save $mise_path --force
-
 # Initialize direnv if available
 # NOTE: Commented out until direnv adds support for Nushell
 # if (which direnv | is-not-empty) {
@@ -119,6 +119,3 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend [
     ($nu.home-path | path join 'bin')
     ($nu.home-path | path join '.cargo' 'bin')
 ] | uniq)
-
-let mise_path = $nu.default-config-dir | path join mise.nu
-^mise activate nu | save $mise_path --force

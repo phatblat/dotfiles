@@ -1,11 +1,30 @@
+def "parse vars" [] {
+  $in | from csv --noheaders --no-infer | rename 'op' 'name' 'value'
+}
+
+def --env "update-env" [] {
+  for $var in $in {
+    if $var.op == "set" {
+      if ($var.name | str upcase) == 'PATH' {
+        $env.PATH = ($var.value | split row (char esep))
+      } else {
+        load-env {($var.name): $var.value}
+      }
+    } else if $var.op == "hide" and $var.name in $env {
+      hide-env $var.name
+    }
+  }
+}
+export-env {
+  
+  "hide,DOTNET_ROOT,
 hide,GOBIN,
 hide,GOROOT,
-set,PATH,/opt/homebrew/bin:/Users/phatblat/.git-ai/bin:/Users/phatblat/.cache/lm-studio/bin:/Applications/Warp.app/Contents/Resources/bin:/Users/phatblat/Library/Android/sdk/cmdline-tools/latest/bin:/Users/phatblat/Library/Android/sdk/emulator:/Users/phatblat/Library/Android/sdk/tools:/Users/phatblat/Library/Android/sdk/tools/bin:/Users/phatblat/Library/Android/sdk/build-tools/36.0.0/:/Users/phatblat/Library/Android/sdk/platform-tools:/Users/phatblat/Library/Android/sdk/ndk/28.2.13676358/:/Users/phatblat/.codeium/windsurf/bin:/Users/phatblat/.local/bin:/usr/local/bin:/opt/homebrew/opt/openjdk@17/bin:/Users/phatblat/fvm/default/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin:/Applications/Little Snitch.app/Contents/Components:/opt/homebrew/opt/openjdk@17/bin:/Users/phatblat/.cargo/bin:/Users/phatblat/.puro/bin:/Users/phatblat/.puro/shared/pub_cache/bin:/Users/phatblat/.puro/envs/default/flutter/bin:/Users/phatblat/Library/Application Support/JetBrains/Toolbox/scripts
+set,PATH,/Users/phatblat/.local/bin:/Users/phatblat/bin:/Users/phatblat/.cargo/bin:/opt/homebrew/bin:/Users/phatblat/.git-ai/bin:/Users/phatblat/.cache/lm-studio/bin:/Applications/Warp.app/Contents/Resources/bin:/Users/phatblat/Library/Android/sdk/cmdline-tools/latest/bin:/Users/phatblat/Library/Android/sdk/emulator:/Users/phatblat/Library/Android/sdk/tools:/Users/phatblat/Library/Android/sdk/tools/bin:/Users/phatblat/Library/Android/sdk/build-tools/36.1.0/:/Users/phatblat/Library/Android/sdk/platform-tools:/Users/phatblat/Library/Android/sdk/ndk/28.1.13356709/:/Users/phatblat/.codeium/windsurf/bin:/usr/local/bin:/Users/phatblat/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/opt/openjdk@17/bin:/Users/phatblat/fvm/default/bin:/opt/homebrew/sbin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin:/Users/phatblat/.local/share/mise/installs/node/18.14.2/bin:/Users/phatblat/.puro/bin:/Users/phatblat/.puro/shared/pub_cache/bin:/Users/phatblat/.puro/envs/default/flutter/bin:/Users/phatblat/Library/Application Support/JetBrains/Toolbox/scripts
 hide,MISE_SHELL,
 hide,__MISE_DIFF,
 hide,__MISE_DIFF,
-export-env {
-  
+" | parse vars | update-env
   $env.MISE_SHELL = "nu"
   let mise_hook = {
     condition: { "MISE_SHELL" in $env }
@@ -22,10 +41,6 @@ def --env add-hook [field: cell-path new_hook: any] {
   $env.config = ($old_config | upsert $field ($old_hooks ++ [$new_hook]))
 }
 
-def "parse vars" [] {
-  $in | from csv --noheaders --no-infer | rename 'op' 'name' 'value'
-}
-
 export def --env --wrapped main [command?: string, --help, ...rest: string] {
   let commands = ["deactivate", "shell", "sh"]
 
@@ -39,20 +54,6 @@ export def --env --wrapped main [command?: string, --help, ...rest: string] {
     | update-env
   } else {
     ^"/opt/homebrew/bin/mise" $command ...$rest
-  }
-}
-
-def --env "update-env" [] {
-  for $var in $in {
-    if $var.op == "set" {
-      if ($var.name | str upcase) == 'PATH' {
-        $env.PATH = ($var.value | split row (char esep))
-      } else {
-        load-env {($var.name): $var.value}
-      }
-    } else if $var.op == "hide" {
-      hide-env $var.name
-    }
   }
 }
 
