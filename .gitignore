@@ -100,6 +100,7 @@
 .config/chromium/
 .config/configstore
 .config/dconf/
+.config/delta/lesshst
 .config/direnv/
 .config/enchant/
 .config/evolution/
