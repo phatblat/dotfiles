@@ -2,6 +2,9 @@
 #
 # version = "0.106.0"
 
+$env.XDG_CONFIG_HOME = $nu.home-path | path join '.config'
+$env.XDG_DATA_HOME = $env.XDG_CONFIG_HOME
+
 # Use nushell functions to define your right and left prompt
 $env.PROMPT_COMMAND = {|| create_left_prompt }
 $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }

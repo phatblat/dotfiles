@@ -7,7 +7,13 @@
 
 # print $"CURRENT_FILE ($env.CURRENT_FILE)"
 print $"XDG_CONFIG_HOME ($env.XDG_CONFIG_HOME)"
-print $"NU_DEFAULT_CONFIG_DIR ($nu.default-config-dir)"
+print $"XDG_DATA_HOME ($env.XDG_DATA_HOME)"
+print $"NU_VENDOR_AUTOLOAD_DIRS ($env.NU_VENDOR_AUTOLOAD_DIRS)"
+print $"nu.home-path: ($nu.home-path)"
+print $"nu.data-dir: ($nu.data-dir)"
+print $"nu.default-config-dir: ($nu.default-config-dir)"
+print $"nu.user-autoload-dirs: ($nu.user-autoload-dirs)"
+print $"nu.vendor-autoload-dirs: ($nu.vendor-autoload-dirs)"
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
