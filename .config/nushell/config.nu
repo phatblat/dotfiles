@@ -1,6 +1,13 @@
 # Nushell Config File
 #
 # version = "0.106.0"
+#
+# List all availablesettings
+#   config nu --doc | nu-highlight | less -R
+
+# print $"CURRENT_FILE ($env.CURRENT_FILE)"
+print $"XDG_CONFIG_HOME ($env.XDG_CONFIG_HOME)"
+print $"NU_DEFAULT_CONFIG_DIR ($nu.default-config-dir)"
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -768,8 +775,7 @@ alias gl = ^git pull
 alias j = just
 alias m = make
 
-# Source single-character aliases from fish shell conversion
-source ~/.config/nushell/single-char-aliases.nu
+# Single-character aliases now loaded from autoload directory
 
 # Load mise (tool version management)
 # source ~/.config/nushell/mise.nu
