@@ -1,0 +1,19 @@
+# Copy SSH public key to pasteboard/clipboard
+
+local key_file
+
+if [[ -f ~/.ssh/id_ed25519.pub ]]; then
+    key_file=~/.ssh/id_ed25519.pub
+elif [[ -f ~/.ssh/id_rsa.pub ]]; then
+    key_file=~/.ssh/id_rsa.pub
+else
+    echo "Error: No SSH key file found." >&2
+    return 1
+fi
+
+# Copy the key
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    pbcopy < "$key_file"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    xsel --clipboard < "$key_file"
+fi

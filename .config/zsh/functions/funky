@@ -1,0 +1,34 @@
+# Searches for functions with the given string in their definition
+# Usage: funky query [-C|--column|-l|--long]
+
+local query=$1
+local option=$2
+
+if [[ -z "$query" ]]; then
+    echo "Usage: funky query"
+    return 1
+fi
+
+local results=($(grep "$query" ~/.config/zsh/functions/* 2>/dev/null | cut -d: -f1 | sort -u))
+
+if [[ ${#results[@]} -eq 0 ]]; then
+    return 1
+fi
+
+local funcs=()
+for path in "${results[@]}"; do
+    local func_name=$(basename "$path")
+    funcs+=("$func_name")
+done
+
+case "$option" in
+    -C|--column)
+        printf '%s\n' "${funcs[@]}" | column -x
+        ;;
+    -l|--long)
+        printf '%s\n' "${funcs[@]}"
+        ;;
+    *)
+        printf '%s\n' "${funcs[@]}" | column -x
+        ;;
+esac
