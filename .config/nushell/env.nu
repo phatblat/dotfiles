@@ -98,12 +98,12 @@ def create_right_prompt [] {
     ([$last_exit_code, (char space), $time_segment] | str join)
 }
 
-# Use zoxide for smart directory navigation if available
-if (which zoxide | is-not-empty) {
-    let zoxide_cache = ($nu.home-path | path join '.cache' 'zoxide')
-    mkdir $zoxide_cache
-    zoxide init nushell | save -f ($zoxide_cache | path join 'init.nu')
-}
+# Write zoxide init
+# if (which zoxide | is-not-empty) {
+#     let zoxide_cache = ($nu.home-path | path join '.cache' 'zoxide')
+#     mkdir $zoxide_cache
+#     zoxide init nushell | save --force ($zoxide_cache | path join 'init.nu')
+# }
 
 # Initialize direnv if available
 # NOTE: Commented out until direnv adds support for Nushell
@@ -115,7 +115,7 @@ if (which zoxide | is-not-empty) {
 
 # Add common paths
 $env.PATH = ($env.PATH | split row (char esep) | prepend [
-    ($nu.home-path | path join '.local' 'bin')
     ($nu.home-path | path join 'bin')
+    ($nu.home-path | path join '.local' 'bin')
     ($nu.home-path | path join '.cargo' 'bin')
 ] | uniq)
