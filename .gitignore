@@ -146,6 +146,9 @@
 .config/lxterminal/
 .config/menus/
 .config/mise/.fake-asdf/
+.config/mise/installs/
+.config/mise/plugins/
+.config/mise/shims/
 .config/nushell/history.txt
 .config/op/
 .config/packer/
