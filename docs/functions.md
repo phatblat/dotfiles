@@ -4,23 +4,23 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 507 aliases/functions across 4 shells**
+**Total: 509 aliases/functions across 4 shells**
 
 **Shell Statistics:**
 
 - Fish: 375 functions (most comprehensive)
-- Zsh: 151 functions
-- Nushell: 96 aliases/functions (actively being configured)
+- Zsh: 153 functions
+- Nushell: 98 aliases/functions (actively being configured)
 - Bash: 2 aliases (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 1
-- Implemented in 3 shells: 20
+- Implemented in 3 shells: 21
 - Implemented in 2 shells: 107
 - Implemented in 1 shell only: 388
 
-**Functions Implemented in Multiple Shells:** 128
+**Functions Implemented in Multiple Shells:** 129
 
 ## Status Legend
 
@@ -436,6 +436,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `spotlight_disable`         | ➖  | ✅   | ➖  | ➖   | Disables Spotlight indexing                         |
 | `spotlight_enable`          | ➖  | ✅   | ➖  | ➖   | Enables Spotlight indexing                          |
 | `spotlight_reload`          | ➖  | ✅   | ✅  | ➖   | Reloads Spotlight triggering re-index               |
+| `sshcopypub`                | ✅  | ✅   | ✅  | ➖   | Copy SSH public key to pasteboard/clipboard         |
 | `sshserverfingerprint`      | ➖  | ✅   | ➖  | ➖   | Print fingerprint of server SSH key                 |
 | `sshtest`                   | ➖  | ✅   | ➖  | ➖   | Tests SSH connection to GitHub                      |
 | `sshupload`                 | ➖  | ✅   | ➖  | ➖   | Uploads public RSA SSH key to GitHub profile        |
