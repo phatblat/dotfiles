@@ -136,11 +136,6 @@ let light_theme = {
     shape_vardecl: purple
 }
 
-# Load starship prompt if available (must be before $env.config)
-if (which starship | is-not-empty) and ("~/.cache/starship/init.nu" | path expand | path exists) {
-    source ~/.cache/starship/init.nu
-}
-
 # External completer example
 # let carapace_completer = {|spans|
 #     carapace $spans.0 nushell $spans | from json
@@ -754,8 +749,6 @@ if (which zoxide | is-not-empty) and ("~/.cache/zoxide/init.nu" | path expand | 
     source ~/.cache/zoxide/init.nu
 }
 
-# mise integration will be loaded from env.nu
-
 # Useful aliases
 alias ll = ls -la
 alias la = ls -a
@@ -786,10 +779,7 @@ if ('~/.cache/zoxide/init.nu' | path expand | path exists) {
     source ~/.cache/zoxide/init.nu
 }
 
-# Load starship prompt
-if ('~/.cache/starship/init.nu' | path expand | path exists) {
-    source ~/.cache/starship/init.nu
-}
+
 
 # Zoxide aliases (in case the init script doesn't create them)
 alias z = zoxide query --
