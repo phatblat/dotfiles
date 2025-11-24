@@ -6,30 +6,20 @@
 #   config nu --doc | nu-highlight | less -R
 
 # print $"CURRENT_FILE ($env.CURRENT_FILE)"
-print $"nu.home-path: ($nu.home-path)"
-print $"XDG_DATA_DIRS ($env.XDG_DATA_DIRS)"
-print $"XDG_DATA_HOME ($env.XDG_DATA_HOME)"
-print $"nu.data-dir: ($nu.data-dir)"
-print $"XDG_CONFIG_HOME ($env.XDG_CONFIG_HOME)"
-print $"nu.default-config-dir: ($nu.default-config-dir)"
-print $"nu.config-path: ($nu.config-path)"
-print $"nu.user-autoload-dirs: ($nu.user-autoload-dirs)"
-print $"NU_VENDOR_AUTOLOAD_DIRS ($env.NU_VENDOR_AUTOLOAD_DIRS)"
-print $"nu.vendor-autoload-dirs: \n-($nu.vendor-autoload-dirs | str join "\n-")"
+# print $"nu.home-path: ($nu.home-path)"
+# print $"XDG_DATA_DIRS ($env.XDG_DATA_DIRS)"
+# print $"XDG_DATA_HOME ($env.XDG_DATA_HOME)"
+# print $"nu.data-dir: ($nu.data-dir)"
+# print $"XDG_CONFIG_HOME ($env.XDG_CONFIG_HOME)"
+# print $"nu.default-config-dir: ($nu.default-config-dir)"
+# print $"nu.config-path: ($nu.config-path)"
+# print $"nu.user-autoload-dirs: ($nu.user-autoload-dirs)"
+# print $"NU_VENDOR_AUTOLOAD_DIRS ($env.NU_VENDOR_AUTOLOAD_DIRS)"
+# print $"nu.vendor-autoload-dirs: \n-($nu.vendor-autoload-dirs | str join "\n-")"
 
 use std/config dark-theme
 use std/config light-theme
 use ($nu.default-config-dir | path join mise.nu)
-
-# For more information on defining custom themes, see
-# https://www.nushell.sh/book/coloring_and_theming.html
-# And here is the theme collection
-# https://github.com/nushell/nu_scripts/tree/main/themes
-
-# External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell $spans | from json
-# }
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
@@ -641,7 +631,6 @@ $env.config = {
       if (which direnv | is-empty) {
         return
       }
-
       direnv export json | from json | default {} | load-env
       if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
         $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
@@ -651,9 +640,10 @@ $env.config = {
 }
 
 # Load zoxide if available
-if (which zoxide | is-not-empty) and ("~/.cache/zoxide/init.nu" | path expand | path exists) {
+if ("~/.cache/zoxide/init.nu" | path expand | path exists) {
     source ~/.cache/zoxide/init.nu
 }
+
 
 # Starship
 $env.STARSHIP_SHELL = "nu"
