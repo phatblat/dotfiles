@@ -10,8 +10,8 @@ export def ignore [...patterns: string] {
     mut commit_message = ""
 
     if $file_size > 0b {
-        # Read current ignores
-        $ignore_list = (open $gitignore | lines)
+        # Read current ignores, filter out empty lines
+        $ignore_list = (open $gitignore | lines | where $it != "")
     } else {
         # Seed with standard ignores
         $ignore_list = (ignores)
