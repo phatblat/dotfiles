@@ -640,10 +640,6 @@ $env.config = {
 if (which zoxide | is-not-empty) and ("~/.cache/zoxide/init.nu" | path expand | path exists) {
     source ~/.cache/zoxide/init.nu
 }
-# Load zoxide (smart directory navigation)
-if ('~/.cache/zoxide/init.nu' | path expand | path exists) {
-    source ~/.cache/zoxide/init.nu
-}
 
 # Starship
 $env.STARSHIP_SHELL = "nu"
