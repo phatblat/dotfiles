@@ -4,23 +4,23 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 501 aliases/functions across 4 shells**
+**Total: 507 aliases/functions across 4 shells**
 
 **Shell Statistics:**
 
 - Fish: 375 functions (most comprehensive)
 - Zsh: 151 functions
-- Nushell: 90 aliases/functions (actively being configured)
+- Nushell: 96 aliases/functions (actively being configured)
 - Bash: 2 aliases (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 1
 - Implemented in 3 shells: 20
-- Implemented in 2 shells: 106
+- Implemented in 2 shells: 107
 - Implemented in 1 shell only: 388
 
-**Functions Implemented in Multiple Shells:** 127
+**Functions Implemented in Multiple Shells:** 128
 
 ## Status Legend
 
@@ -238,7 +238,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `gem_pristine`              | ➖  | ✅   | ➖  | ➖   | Runs pristine command for all gems                  |
 | `gem_update`                | ➖  | ✅   | ➖  | ➖   | Updates Ruby gem at system level                    |
 | `gemdir`                    | ➖  | ✅   | ➖  | ➖   | Prints path to system gem dir                       |
-| `genv`                      | ➖  | ✅   | ➖  | ➖   | Grep environment                                    |
+| `genv`                      | ✅  | ✅   | ➖  | ➖   | Grep environment                                    |
 | `getudid`                   | ➖  | ✅   | ✅  | ➖   | Prints and copies UDID of connected iOS device      |
 | `gh_token_test`             | ➖  | ✅   | ➖  | ➖   | Tests GitHub personal access token                  |
 | `gi`                        | ➖  | ✅   | ➖  | ➖   | Creates .gitignore file using gitignore.io          |
