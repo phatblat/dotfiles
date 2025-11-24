@@ -24,3 +24,6 @@ disabled = true
 
 [line_break]
 disabled = false
+
+[env_var.MISE_SHELL]
+disabled = false
