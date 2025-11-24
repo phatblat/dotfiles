@@ -779,7 +779,7 @@ alias m = make
 source ~/.config/nushell/single-char-aliases.nu
 
 # Load mise (tool version management)
-source ~/.config/nushell/mise.nu
+# source ~/.config/nushell/mise.nu
 
 # Load zoxide (smart directory navigation)
 if ('~/.cache/zoxide/init.nu' | path expand | path exists) {
