@@ -3,6 +3,7 @@
 # version = "0.106.0"
 
 $env.XDG_CONFIG_HOME = $nu.home-path | path join '.config'
+$env.XDG_DATA_DIRS = $env.XDG_CONFIG_HOME
 $env.XDG_DATA_HOME = $env.XDG_CONFIG_HOME
 
 # Use nushell functions to define your right and left prompt
@@ -34,6 +35,13 @@ $env.NU_LIB_DIRS = [
 $env.NU_PLUGIN_DIRS = [
     # Add paths to your plugin directories here
     # ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
+    ($nu.current-exe | path dirname)
+    ...$NU_PLUGIN_DIRS
+]
+
+# Vendor autoload directories
+$env.NU_VENDOR_AUTOLOAD_DIRS = [
+    ($env.XDG_CONFIG_HOME | path join 'nushell' 'vendor' 'autoload')
 ]
 
 # Add homebrew to PATH

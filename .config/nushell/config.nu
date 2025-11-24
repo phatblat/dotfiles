@@ -6,14 +6,15 @@
 #   config nu --doc | nu-highlight | less -R
 
 # print $"CURRENT_FILE ($env.CURRENT_FILE)"
-print $"XDG_CONFIG_HOME ($env.XDG_CONFIG_HOME)"
-print $"XDG_DATA_HOME ($env.XDG_DATA_HOME)"
-print $"NU_VENDOR_AUTOLOAD_DIRS ($env.NU_VENDOR_AUTOLOAD_DIRS)"
 print $"nu.home-path: ($nu.home-path)"
+print $"XDG_DATA_DIRS ($env.XDG_DATA_DIRS)"
+print $"XDG_DATA_HOME ($env.XDG_DATA_HOME)"
 print $"nu.data-dir: ($nu.data-dir)"
+print $"XDG_CONFIG_HOME ($env.XDG_CONFIG_HOME)"
 print $"nu.default-config-dir: ($nu.default-config-dir)"
 print $"nu.user-autoload-dirs: ($nu.user-autoload-dirs)"
-print $"nu.vendor-autoload-dirs: ($nu.vendor-autoload-dirs)"
+print $"NU_VENDOR_AUTOLOAD_DIRS ($env.NU_VENDOR_AUTOLOAD_DIRS)"
+print $"nu.vendor-autoload-dirs: \n-($nu.vendor-autoload-dirs | str join "\n-")"
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
