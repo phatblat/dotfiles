@@ -76,6 +76,11 @@ usage-board:
 install:
     mise install
 
+# Installs Claude Code native binary
+[group('configuration')]
+install-claude:
+    npx @anthropic-ai/claude-code install
+
 # Upgrades tools using mise
 [group('configuration')]
 upgrade:
