@@ -29,7 +29,7 @@ color_red := '\e[31m'
 color_reset := '\e[0m'
 
 #
-# aliass
+# aliases
 #
 
 alias fmt := format

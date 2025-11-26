@@ -23,7 +23,7 @@ use std/config light-theme
 # Load mise if available
 const mise_init = "~/.config/nushell/mise.nu"
 if ($mise_init | path expand | path exists) {
-    use $mise_init
+    source $mise_init
 }
 
 # The default config record. This is where much of your global configuration is setup.
