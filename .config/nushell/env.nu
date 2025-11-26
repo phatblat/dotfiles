@@ -51,10 +51,6 @@ $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 $env.EDITOR = "zed"
 $env.VISUAL = "zed"
 
-# Activate mise
-let mise_path = $nu.default-config-dir | path join mise.nu
-^mise activate nu | save $mise_path --force
-
 # Starship prompt
 if (which starship | is-not-empty) {
     let starship_cache = ($nu.home-path | path join '.cache' 'starship')

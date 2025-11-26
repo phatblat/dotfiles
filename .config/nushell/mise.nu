@@ -1,22 +1,5 @@
-def "parse vars" [] {
-  $in | from csv --noheaders --no-infer | rename 'op' 'name' 'value'
-}
-
-def --env "update-env" [] {
-  for $var in $in {
-    if $var.op == "set" {
-      if ($var.name | str upcase) == 'PATH' {
-        $env.PATH = ($var.value | split row (char esep))
-      } else {
-        load-env {($var.name): $var.value}
-      }
-    } else if $var.op == "hide" and $var.name in $env {
-      hide-env $var.name
-    }
-  }
-}
 export-env {
-  
+
   $env.MISE_SHELL = "nu"
   let mise_hook = {
     condition: { "MISE_SHELL" in $env }
@@ -33,6 +16,10 @@ def --env add-hook [field: cell-path new_hook: any] {
   $env.config = ($old_config | upsert $field ($old_hooks ++ [$new_hook]))
 }
 
+def "parse vars" [] {
+  $in | from csv --noheaders --no-infer | rename 'op' 'name' 'value'
+}
+
 export def --env --wrapped main [command?: string, --help, ...rest: string] {
   let commands = ["deactivate", "shell", "sh"]
 
@@ -46,6 +33,20 @@ export def --env --wrapped main [command?: string, --help, ...rest: string] {
     | update-env
   } else {
     ^"/opt/homebrew/bin/mise" $command ...$rest
+  }
+}
+
+def --env "update-env" [] {
+  for $var in $in {
+    if $var.op == "set" {
+      if ($var.name | str upcase) == 'PATH' {
+        $env.PATH = ($var.value | split row (char esep))
+      } else {
+        load-env {($var.name): $var.value}
+      }
+    } else if $var.op == "hide" {
+      hide-env $var.name
+    }
   }
 }
 

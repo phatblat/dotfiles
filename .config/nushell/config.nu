@@ -19,7 +19,12 @@
 
 use std/config dark-theme
 use std/config light-theme
-use ($nu.default-config-dir | path join mise.nu)
+
+# Load mise if available
+const mise_init = "~/.config/nushell/mise.nu"
+if ($mise_init | path expand | path exists) {
+    use $mise_init
+}
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
