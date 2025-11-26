@@ -94,13 +94,6 @@ def create_right_prompt [] {
     ([$last_exit_code, (char space), $time_segment] | str join)
 }
 
-# Write zoxide init
-# if (which zoxide | is-not-empty) {
-#     let zoxide_cache = ($nu.home-path | path join '.cache' 'zoxide')
-#     mkdir $zoxide_cache
-#     zoxide init nushell | save --force ($zoxide_cache | path join 'init.nu')
-# }
-
 # Initialize direnv if available
 # NOTE: Commented out until direnv adds support for Nushell
 # if (which direnv | is-not-empty) {
