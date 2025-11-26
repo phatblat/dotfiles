@@ -470,7 +470,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `todo`                      | ➖  | ✅   | ➖  | ➖   | Edit rebase todo file                               |
 | `toggle_wait`               | ➖  | ✅   | ➖  | ➖   | Toggles editor wait flag                            |
 | `touchbar_restart`          | ➖  | ✅   | ➖  | ➖   | Restarts TouchBar server                            |
-| `tower`                     | ➖  | ✅   | ✅  | ➖   | Open current repo in Tower                          |
+| `tower`                     | ✅  | ✅   | ✅  | ➖   | Open current repo in Tower                          |
 | `track`                     | ✅  | ✅   | ➖  | ➖   | Creates local tracking branch                       |
 | `tracking`                  | ➖  | ✅   | ➖  | ➖   | Display tracking info for current branch            |
 | `tube`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to Tube project                           |
