@@ -98,6 +98,7 @@
 .config/cachix/
 .config/chessx/
 .config/chromium/
+.config/claude/versions
 .config/configstore
 .config/dconf/
 .config/delta/lesshst
