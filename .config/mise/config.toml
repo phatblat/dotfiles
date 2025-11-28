@@ -31,6 +31,7 @@ uv = "0.9.12"
 ast-grep = "0.40.0"
 ripgrep = "15.1.0"
 yq = "4.49.2"
+actionlint = "1.7.9"
 
 [settings]
 experimental = true
