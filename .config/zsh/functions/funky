@@ -9,7 +9,8 @@ if [[ -z "$query" ]]; then
     return 1
 fi
 
-local results=($(grep "$query" ~/.config/zsh/functions/* 2>/dev/null | cut -d: -f1 | sort -u))
+local results
+read -r -d '' -A results < <(grep "$query" ~/.config/zsh/functions/* 2> /dev/null | cut -d: -f1 | sort -u)
 
 if [[ ${#results[@]} -eq 0 ]]; then
     return 1
@@ -17,18 +18,19 @@ fi
 
 local funcs=()
 for path in "${results[@]}"; do
-    local func_name=$(basename "$path")
+    local func_name
+    func_name=$(basename "$path")
     funcs+=("$func_name")
 done
 
 case "$option" in
-    -C|--column)
-        printf '%s\n' "${funcs[@]}" | column -x
-        ;;
-    -l|--long)
-        printf '%s\n' "${funcs[@]}"
-        ;;
-    *)
-        printf '%s\n' "${funcs[@]}" | column -x
-        ;;
+-C | --column)
+    printf '%s\n' "${funcs[@]}" | column -x
+    ;;
+-l | --long)
+    printf '%s\n' "${funcs[@]}"
+    ;;
+*)
+    printf '%s\n' "${funcs[@]}" | column -x
+    ;;
 esac
