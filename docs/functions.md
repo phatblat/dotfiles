@@ -4,23 +4,23 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 509 aliases/functions across 4 shells**
+**Total: 510 aliases/functions across 4 shells**
 
 **Shell Statistics:**
 
 - Fish: 375 functions (most comprehensive)
 - Zsh: 153 functions
-- Nushell: 98 aliases/functions (actively being configured)
+- Nushell: 99 aliases/functions (actively being configured)
 - Bash: 2 aliases (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 1
 - Implemented in 3 shells: 21
-- Implemented in 2 shells: 107
-- Implemented in 1 shell only: 388
+- Implemented in 2 shells: 108
+- Implemented in 1 shell only: 387
 
-**Functions Implemented in Multiple Shells:** 129
+**Functions Implemented in Multiple Shells:** 130
 
 ## Status Legend
 
@@ -276,7 +276,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `htoptions`                 | ➖  | ➖   | ✅  | ➖   | Send HTTP request using OPTIONS method              |
 | `icloud`                    | ➖  | ➖   | ✅  | ➖   | Changes directory to ICLOUD_HOME                    |
 | `ida`                       | ➖  | ✅   | ✅  | ➖   | Launch IDA with elevated privileges                 |
-| `ignore`                    | ➖  | ✅   | ➖  | ➖   | Adds lines to .gitignore                            |
+| `ignore`                    | ✅  | ✅   | ✅  | ➖   | Adds lines to .gitignore                            |
 | `ignored`                   | ➖  | ✅   | ➖  | ➖   | Show files ignored by git                           |
 | `init`                      | ✅  | ✅   | ➖  | ➖   | Initialize new git repo in current/optional dir     |
 | `is_arm`                    | ➖  | ✅   | ➖  | ➖   | Tests whether current system is arm                 |

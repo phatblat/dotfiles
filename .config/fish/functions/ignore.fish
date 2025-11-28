@@ -27,7 +27,7 @@ function ignore \
         echo $pattern >> $gitignore
     end
 
-    sort --unique --output=$gitignore $gitignore
+    LC_ALL=C sort --unique --output=$gitignore $gitignore
 
     if test -z "$commit_message"
         echo "Nothing new added to ignores, just sorted and removed duplicates."
