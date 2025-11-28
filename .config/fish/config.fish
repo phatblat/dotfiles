@@ -30,7 +30,11 @@ end
 # GUI and items requiring a user
 if status is-interactive
     if command --query starship
-        starship init fish | source
+        # Only enable starship on desktop Warp (has WARP_IS_LOCAL_SHELL_SESSION)
+        # Disables on iOS Warp where it hangs
+        if set -q WARP_IS_LOCAL_SHELL_SESSION
+            starship init fish | source
+        end
     end
     if command --query zoxide
         zoxide init fish | source
