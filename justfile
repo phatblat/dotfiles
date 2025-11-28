@@ -71,6 +71,28 @@ usage-board:
 # configuration group recipes
 #
 
+# Adds a new tool using mise, installing the latest version
+[group('configuration')]
+add tool:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if ! mise search "{{ tool }}" &>/dev/null; then
+        echo "Tool '{{ tool }}' not found in mise registries"
+        exit 1
+    fi
+
+    echo "Finding latest version of {{ tool }}..."
+    version=$(mise ls-remote "{{ tool }}" | tail -n1)
+
+    if [ -z "$version" ]; then
+        echo "Could not determine latest version of {{ tool }}"
+        exit 1
+    fi
+
+    echo "Installing {{ tool }}@$version..."
+    mise use "{{ tool }}@$version"
+
 # Installs tools using mise
 [group('configuration')]
 install:
