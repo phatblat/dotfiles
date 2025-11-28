@@ -39,6 +39,7 @@ __z_clean.fish
 .cisco/
 .classpath
 .claude-code-router/.claude-code-router.pid
+.claude-worktrees/
 .claude.json
 .claude.json.backup
 .claude/debug/
