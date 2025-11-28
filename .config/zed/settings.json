@@ -1,8 +1,4 @@
 {
-  "search": {
-    "include_ignored": true
-  },
-  "hard_tabs": false,
   "agent": {
     "always_allow_tool_actions": true,
     "default_model": {
@@ -33,6 +29,7 @@
     ]
   },
   "format_on_save": "on",
+  "hard_tabs": false,
   "languages": {
     "Shell Script": {
       "preferred_line_length": 120
@@ -46,6 +43,9 @@
     }
   },
   "redact_private_values": false,
+  "search": {
+    "include_ignored": true
+  },
   "show_whitespaces": "all",
   "terminal": {
     "keep_selection_on_copy": false
