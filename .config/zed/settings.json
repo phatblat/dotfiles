@@ -21,6 +21,9 @@
   "auto_update": true,
   "autosave": "on_focus_change",
   "buffer_font_size": 16,
+  "file_finder": {
+    "include_ignored": "smart"
+  },
   "file_types": {
     "Shell Script": [
       ".config/fish/functions/*",
@@ -44,7 +47,7 @@
   },
   "redact_private_values": false,
   "search": {
-    "include_ignored": true
+    "include_ignored": false
   },
   "show_whitespaces": "all",
   "terminal": {
