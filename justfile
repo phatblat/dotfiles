@@ -57,6 +57,24 @@ list:
 outdated:
     mise outdated --bump
 
+# Search for a tool in mise or homebrew
+[group('info')]
+search tool:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if mise search "{{ tool }}" &>/dev/null; then
+        echo "Finding latest version of {{ tool }} in mise..."
+        version=$(mise ls-remote "{{ tool }}" | tail -n1)
+        echo -e "Latest version: {{ color_green }}{{ tool }}@$version{{ color_reset }}"
+    elif brew search "{{ tool }}" | grep -q "{{ tool }}"; then
+        echo "Tool '{{ tool }}' found in homebrew:"
+        brew info "{{ tool }}"
+    else
+        echo "Tool '{{ tool }}' not found in mise or homebrew"
+        exit 1
+    fi
+
 # Show Claude usage statistics
 [group('info')]
 usage:
