@@ -742,6 +742,7 @@ Movies/
 Music
 Music/
 node_modules/
+nohup.out
 obj/
 OmniPresence
 omp.cache
