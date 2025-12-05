@@ -202,7 +202,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `e`                         | ✅  | ➖   | ✅  | ➖   | Edit file (opens folder if no args)                 |
 | `edit`                      | ➖  | ✅   | ✅  | ➖   | Edit using configured VISUAL editor                 |
 | `editorconfig`              | ➖  | ✅   | ✅  | ➖   | Generates an editorconfig                           |
-| `email_url`                 | ➖  | ✅   | ➖  | ➖   | Determines appropriate contact for URL              |
+| `email_url`                 | ➖  | ✅   | ✅  | ➖   | Determines appropriate contact for URL              |
 | `en1`                       | ➖  | ✅   | ➖  | ➖   | Shows en1 network interface                         |
 | `entitlements`              | ➖  | ➖   | ✅  | ➖   | Display entitlements in codesign info               |
 | `epoc_date`                 | ➖  | ✅   | ➖  | ➖   | Converts epoch timestamps to date                   |
@@ -484,10 +484,10 @@ This document tracks the implementation status of all shell functions and aliase
 | `upstall`                   | ➖  | ✅   | ➖  | ➖   | Alias for ⏫_upstall                                |
 | `upstreamify`               | ➖  | ✅   | ➖  | ➖   | Renames origin to upstream                          |
 | `usage`                     | ➖  | ✅   | ➖  | ➖   | Show disk usage for directory                       |
-| `user`                      | ➖  | ✅   | ➖  | ➖   | Displays info about current user                    |
-| `user.email`                | ➖  | ✅   | ➖  | ➖   | Manages user.email git config setting               |
+| `user`                      | ➖  | ✅   | ✅  | ➖   | Displays info about current user                    |
+| `user.email`                | ➖  | ✅   | ✅  | ➖   | Manages user.email git config setting               |
 | `user.name`                 | ➖  | ✅   | ✅  | ➖   | Manages user.name git config setting                |
-| `user.signingkey`           | ➖  | ✅   | ➖  | ➖   | Manages user.signingkey git config setting          |
+| `user.signingkey`           | ➖  | ✅   | ✅  | ➖   | Manages user.signingkey git config setting          |
 | `user_is_admin`             | ➖  | ✅   | ➖  | ➖   | Tests whether USER is member of admin group         |
 | `version`                   | ➖  | ✅   | ➖  | ➖   | Manage version numbers for Xcode project            |
 | `version_build`             | ➖  | ✅   | ➖  | ➖   | Displays project version of current Xcode project   |

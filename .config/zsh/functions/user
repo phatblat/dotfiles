@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+# user - Displays information about the current user
+function user() {
+    printf "%s: %s <%s> [signingKey: %s]\n" \
+        "$USER" \
+        "$(git config user.name)" \
+        "$(git config user.email)" \
+        "$(git config user.signingkey)"
+}

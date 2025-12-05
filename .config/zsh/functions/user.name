@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# user.name - Manages the user.name git configuration setting
+function user.name() {
+    git config user.name "$@"
+}
