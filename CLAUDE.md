@@ -70,6 +70,14 @@ When adding or removing shell functions/aliases:
 
 ## Editor Configuration
 
+File formats:
+
+- Unless specified, use UTF-8 encoding with Unix line endings
+- Write general files in markdown format, unless specified otherwise
+- Code files should be written in a consistent style, following the conventions of the language or framework being used
+- See `.editorconfig` for details
+- When new language file formats are changed, update the `.editorconfig` file accordingly
+
 **Zed**: Primary editor
 
 - Rust analyzer: Custom CARGO_TARGET_DIR with analyzerTargetDir enabled
