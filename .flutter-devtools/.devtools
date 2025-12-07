@@ -1,7 +1,7 @@
 {
   "analyticsEnabled": true,
   "isFirstRun": false,
-  "lastReleaseNotesVersion": "2.37.2",
+  "lastReleaseNotesVersion": "2.45.0",
   "2023-Q4": {
     "surveyActionTaken": false,
     "surveyShownCount": 0
@@ -11,5 +11,10 @@
   "2024-Q2": {
     "surveyActionTaken": false,
     "surveyShownCount": 0
-  }
+  },
+  "2025-Q3": {
+    "surveyActionTaken": false,
+    "surveyShownCount": 0
+  },
+  "cpuProfiler.filter": "|[{\"native\":false},{\"core-dart\":false},{\"core-flutter\":false}]"
 }
