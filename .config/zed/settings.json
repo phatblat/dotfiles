@@ -1,4 +1,5 @@
 {
+  "tab_size": 2,
   "agent": {
     "always_allow_tool_actions": true,
     "default_model": {
@@ -10,7 +11,7 @@
       "model": "qwen/qwen3-coder-30b",
       "provider": "lmstudio"
     },
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": false,
     "single_file_review": false
   },
   "agent_servers": {
