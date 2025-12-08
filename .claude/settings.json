@@ -83,6 +83,7 @@
       "WebFetch(domain:github.com)"
     ],
     "deny": [
+      "Bash(git push:*)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",
