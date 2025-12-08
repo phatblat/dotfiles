@@ -8,9 +8,9 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Fish: 375 functions (most comprehensive)
-- Zsh: 153 functions
-- Nushell: 99 aliases/functions (actively being configured)
+- Fish: 376 functions (most comprehensive)
+- Zsh: 154 functions
+- Nushell: 100 aliases/functions (actively being configured)
 - Bash: 2 aliases (minimal usage)
 
 **Shell Coverage:**
@@ -132,6 +132,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `cmtne`                     | ✅  | ✅   | ➖  | ➖   | Commit with default message                         |
 | `co`                        | ✅  | ➖   | ➖  | ➖   | Git checkout operations                             |
 | `commit`                    | ✅  | ➖   | ➖  | ➖   | Git commit                                          |
+| `commit_count`              | ✅  | ✅   | ✅  | ➖   | Count commits by date for a branch                  |
 | `configg`                   | ➖  | ➖   | ✅  | ➖   | Manage global git configuration                     |
 | `console_user`              | ➖  | ✅   | ➖  | ➖   | Prints username of console user                     |
 | `cont`                      | ➖  | ✅   | ✅  | ➖   | Commit merge or continue rebase/cherry-pick         |

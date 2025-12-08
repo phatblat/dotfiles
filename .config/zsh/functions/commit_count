@@ -1,0 +1,16 @@
+# Count commits by date for a branch over a time period
+function commit_count() {
+  local days=7
+  local branch
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+  if [[ -n "$1" ]]; then
+    days="$1"
+  fi
+
+  if [[ -n "$2" ]]; then
+    branch="$2"
+  fi
+
+  git log "$branch" --since="$days days ago" --pretty=format:"%ad" --date=short | sort | uniq -c | sort -rn
+}
