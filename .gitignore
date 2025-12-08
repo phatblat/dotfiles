@@ -189,6 +189,7 @@ __z_clean.fish
 .fastlane_crash_reporting
 .fastlane/
 .flutter
+.flutter-devtools/
 .gconf/
 .gem/
 .geomapapp-home
