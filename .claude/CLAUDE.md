@@ -93,6 +93,18 @@ If yes/maybe, explain concern before proceeding.
 
 - Example: `ben/fix-authentication-bug`
 
+## Ticket Workflow
+
+When asked to start work on a ticket, always:
+
+1. Implement the change
+2. Test the build
+3. Run any related tests
+4. Lint the code changed (use lint make targets or just recipes)
+5. Commit the code
+
+Wait for review before creating PRs—phatblat always reviews first.
+
 ## Commit Messages
 
 - Conventional commits (feat:, fix:, etc.)
