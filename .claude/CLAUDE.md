@@ -81,6 +81,18 @@ If yes/maybe, explain concern before proceeding.
 - Explain what you learned
 - Build competence, don't avoid
 
+## Topic Branches
+
+**For getditto organization repos**: `ben/<linear-ticket>/kebab-lower-case-description`
+
+- Linear ticket: lowercase issue ID (e.g., TEAM-1234 → team-1234)
+- Description: brief title summarizing the effort
+- Example: `ben/team-1234/add-user-authentication`
+
+**For all other repos**: `ben/kebab-lower-case-description`
+
+- Example: `ben/fix-authentication-bug`
+
 ## Commit Messages
 
 - Conventional commits (feat:, fix:, etc.)
