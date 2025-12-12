@@ -42,6 +42,7 @@ __z_clean.fish
 .claude-worktrees/
 .claude.json
 .claude.json.backup
+.claude/.credentials.json
 .claude/debug/
 .claude/file-history/
 .claude/history.jsonl
