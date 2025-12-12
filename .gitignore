@@ -47,6 +47,7 @@ __z_clean.fish
 .claude/file-history/
 .claude/history.jsonl
 .claude/plugins/
+.claude/stats-cache.json
 .cmake-js/
 .cocoapods/
 .codeium/
