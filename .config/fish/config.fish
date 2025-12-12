@@ -3,6 +3,8 @@
 # Dotfiles
 #
 
+set -gx MISE_PIN 1
+
 # resource limits
 ulimit --file-descriptor-count 4096
 

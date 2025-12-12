@@ -5,6 +5,8 @@
 
 set export := true
 
+MISE_PIN := "1"
+
 # ignore-comments - Ignore comments when formatting.
 
 set ignore-comments := true

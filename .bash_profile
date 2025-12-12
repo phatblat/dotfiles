@@ -3,6 +3,8 @@
 # .bash_profile
 #
 
+export MISE_PIN=1
+
 # linux PATHs
 # export PATH=/snap/bin:${PATH}
 # export PATH=/home/linuxbrew/.linuxbrew/sbin:${PATH}

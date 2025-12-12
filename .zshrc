@@ -1,4 +1,5 @@
 export XDG_CONFIG_HOME=$HOME/.config
+export MISE_PIN=1
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
@@ -76,11 +77,11 @@ plugins=(git brew)
 
 # Install Oh My Zsh if missing
 if [[ ! -f "$ZSH/oh-my-zsh.sh" ]]; then
-    echo "Oh My Zsh not found. Installing..."
-    (
-        unset ZSH
-        RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    )
+  echo "Oh My Zsh not found. Installing..."
+  (
+    unset ZSH
+    RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  )
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -126,91 +127,91 @@ autoload -Uz ~/.config/zsh/functions/*(:t)
 
 # delete-tag - Deletes a git tag from both the local and remote repos
 function delete-tag() {
-    local tag="$1"
-    if [[ -z "$tag" ]]; then
-        echo "Usage: delete-tag <tag>"
-        return 1
-    fi
+  local tag="$1"
+  if [[ -z "$tag" ]]; then
+    echo "Usage: delete-tag <tag>"
+    return 1
+  fi
 
-    local current_branch=$(git rev-parse --abbrev-ref HEAD)
-    local current_remote=$(git config branch."$current_branch".remote)
+  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  local current_remote=$(git config branch."$current_branch".remote)
 
-    git tag --delete "$tag"
-    git push "$current_remote" --delete refs/tags/"$tag"
+  git tag --delete "$tag"
+  git push "$current_remote" --delete refs/tags/"$tag"
 }
 
 # user.name - Manages the user.name git configuration setting
 function user.name() {
-    git config user.name "$@"
+  git config user.name "$@"
 }
 
 # merge-base - Git merge-base wrapper
 function merge-base() {
-    git merge-base "$@"
+  git merge-base "$@"
 }
 
 # git-plist-filter - Converts plist data to XML format (stdin->stdout)
 function git-plist-filter() {
-    # had to do this because git doesn't like attaching stdin and out to plutil (waitpid error)
+  # had to do this because git doesn't like attaching stdin and out to plutil (waitpid error)
 
-    # TMPDIR isn't set for ssh logins!
-    local TMPDIR="${TMPDIR:-$(getconf DARWIN_USER_TEMP_DIR)}"
-    local function_name="git-plist-filter"
+  # TMPDIR isn't set for ssh logins!
+  local TMPDIR="${TMPDIR:-$(getconf DARWIN_USER_TEMP_DIR)}"
+  local function_name="git-plist-filter"
 
-    local TMPFILE=$(mktemp "$TMPDIR/$function_name.XXXXXX")
+  local TMPFILE=$(mktemp "$TMPDIR/$function_name.XXXXXX")
 
-    # Drop stdin to temp file
-    cat >"$TMPFILE"
-    plutil -convert xml1 "$TMPFILE"
-    cat "$TMPFILE"
-    rm "$TMPFILE"
+  # Drop stdin to temp file
+  cat >"$TMPFILE"
+  plutil -convert xml1 "$TMPFILE"
+  cat "$TMPFILE"
+  rm "$TMPFILE"
 }
 
 # format-patch - Git format-patch wrapper
 function format-patch() {
-    git format-patch "$@"
+  git format-patch "$@"
 }
 
 # arp-fix - Disables unicast ARP cache validation
 function arp-fix() {
-    if ! user_is_admin; then
-        echo "You must be an admin to run this command."
-        return 1
-    fi
+  if ! user_is_admin; then
+    echo "You must be an admin to run this command."
+    return 1
+  fi
 
-    sw_vers -productVersion
+  sw_vers -productVersion
 
-    local arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
-    echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
+  local arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
+  echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
 
-    local arp_fixed="net.link.ether.inet.arp_unicast_lim=0"
+  local arp_fixed="net.link.ether.inet.arp_unicast_lim=0"
 
-    if [[ $arp_status -ne 0 ]]; then
-        sudo sysctl -w $arp_fixed
-        arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
+  if [[ $arp_status -ne 0 ]]; then
+    sudo sysctl -w $arp_fixed
+    arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
 
-        # After installation, run the command if it now exists
-        if [[ $arp_status -eq 0 ]]; then
-            echo "Fixed ARP issue"
-        else
-            echo "Something went wrong"
-            echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
-            return 1
-        fi
+    # After installation, run the command if it now exists
+    if [[ $arp_status -eq 0 ]]; then
+      echo "Fixed ARP issue"
     else
-        echo "Runtime ARP status is correct"
+      echo "Something went wrong"
+      echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
+      return 1
     fi
+  else
+    echo "Runtime ARP status is correct"
+  fi
 
-    local sysctl_file="/etc/sysctl.conf"
-    if [[ ! -e "$sysctl_file" ]]; then
-        echo "$arp_fixed" | sudo tee "$sysctl_file"
-        echo "ARP fix added to $sysctl_file"
-    elif ! grep -q "$arp_fixed" "$sysctl_file"; then
-        echo "$arp_fixed" | sudo tee -a "$sysctl_file"
-        echo "ARP fix added to $sysctl_file"
-    else
-        echo "$sysctl_file already contains the ARP fix."
-    fi
+  local sysctl_file="/etc/sysctl.conf"
+  if [[ ! -e "$sysctl_file" ]]; then
+    echo "$arp_fixed" | sudo tee "$sysctl_file"
+    echo "ARP fix added to $sysctl_file"
+  elif ! grep -q "$arp_fixed" "$sysctl_file"; then
+    echo "$arp_fixed" | sudo tee -a "$sysctl_file"
+    echo "ARP fix added to $sysctl_file"
+  else
+    echo "$sysctl_file already contains the ARP fix."
+  fi
 }
 
 # Added by Windsurf
@@ -221,19 +222,19 @@ export KERNEL=$(uname)
 
 # Android SDK configuration
 if is_mac; then
-    export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
 elif is_linux; then
-    export ANDROID_HOME="$HOME/Android/Sdk"
+  export ANDROID_HOME="$HOME/Android/Sdk"
 fi
 
 if [[ -d "$ANDROID_HOME" ]]; then
-    local BUILD_TOOLS_VERSION=$(ls -1r "$ANDROID_HOME/build-tools/" 2>/dev/null | head -1)
-    export NDK_VERSION=$(ls -1r "$ANDROID_HOME/ndk/" 2>/dev/null | head -1)
-    export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/$NDK_VERSION"
+  local BUILD_TOOLS_VERSION=$(ls -1r "$ANDROID_HOME/build-tools/" 2>/dev/null | head -1)
+  export NDK_VERSION=$(ls -1r "$ANDROID_HOME/ndk/" 2>/dev/null | head -1)
+  export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/$NDK_VERSION"
 
-    if [[ -n "$BUILD_TOOLS_VERSION" ]]; then
-        export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH"
-    fi
+  if [[ -n "$BUILD_TOOLS_VERSION" ]]; then
+    export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH"
+  fi
 fi
 
 # Initialize zoxide - a smarter cd command
@@ -244,7 +245,7 @@ eval "$(mise activate zsh)"
 
 # Initialize direnv - directory-based environment variables
 if command -v direnv &>/dev/null; then
-    eval "$(direnv hook zsh)"
+  eval "$(direnv hook zsh)"
 fi
 
 # Added by LM Studio CLI (lms)
