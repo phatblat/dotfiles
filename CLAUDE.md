@@ -2,89 +2,185 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Repository Structure
+## Repository Overview
 
-Personal development workspace with home directory (`/Users/phatblat`) as Git repository.
+This is a personal dotfiles repository that serves as a cross-machine configuration sync system. The home directory (`/Users/phatblat`) is the git repository root, containing shell configurations, custom scripts, and development tools alongside standard macOS user directories.
 
 ### Key Directories
 
-- `dev/` - Main development workspace
-- `bin/` - Custom scripts and utilities
-- `.config/` - Configuration files
+- **`.config/`** — Configuration for multiple shells and tools
+  - `fish/` — Fish shell config (primary shell)
+  - `nushell/` — Nushell config (actively being expanded)
+  - `zed/` — Zed editor settings
+  - `mise/config.toml` — Tool version manager configuration
 
-## Shell Environment
+- **`.dotfiles/`** — Topic-organized shell functions and installers for legacy Bash/Zsh (not actively maintained)
+  - Organized by topic: `git/`, `xcode/`, `macos/`, `install/`, etc.
+  - Zsh files (`.zsh` extension) not being updated; Fish is the primary target
 
-**Primary Shell**: Fish Shell
+- **`bin/`** — Custom utility scripts
+  - Includes build helpers, git utilities, and IDE wrappers
 
-- Config: `~/.config/fish/config.fish`
-- Custom functions: `~/.config/fish/functions/`
+- **`dev/`** — Development workspace organized by language/tool
+  - `vim/` — Vim configurations and plugins
+  - `go/`, `nix/`, `terraform/`, `gha/`, `tracing/` — Project directories
+  - Each contains subdirectories for specific projects
 
-**Secondary Shell**: Nushell (actively being configured)
+- **`docs/`** — Documentation including `functions.md` (shell function inventory)
 
-- Config: `~/.config/nushell/`
-- History: `Library/Application Support/nushell/history.txt` (gitignored)
+## Shell Configuration
 
-### Function/Alias Management
+### Fish Shell (Primary)
 
-When adding or removing shell functions/aliases:
+**Config Path:** `~/.config/fish/config.fish`
 
-1. Update statistics in the Summary section of `~/docs/functions.md`
-2. Add or remove corresponding rows in the functions table
-3. Remove any obsolete entries from the Known Issues section
+Fish is the primary shell with the most comprehensive function/alias coverage (~376 functions). Key characteristics:
 
-**Tool Management**: mise
+- Modern syntax, incompatible with Bash/Zsh by design
+- Functions stored in `~/.config/fish/functions/`
+- Dramatically easier to remember than other shells
 
-- Global: `~/.config/mise/config.toml`
-- Project: `mise.toml` files
-- Recent additions: claude-code-router, ast-grep, docker-cli, docker-compose, yq
+### Zsh (Legacy)
 
-## Development Standards
+Functions still in `.zsh` files but **not actively maintained**. New functions target Fish exclusively.
 
-### Code Quality
+### Nushell (In Development)
 
-- Prefer simple, maintainable solutions over clever ones
-- Match existing code style within each file
-- Make minimal changes to achieve desired outcomes
-- Never use `--no-verify` when committing
-- Ask for clarification rather than making assumptions
+Actively being configured with growing function coverage. Provides modern, structured output.
 
-### Testing
+### Bash (Minimal)
 
-- Practice TDD - write tests first
-- All tests must pass before committing
-- Test output must be pristine to pass
+Only 2 basic aliases; not a focus.
 
-### Git Workflow
+## Development Tools & Versions
 
-- GPG commit signing enabled
-- Use descriptive commit messages using conventional commit style
-- Create feature branches for new work
-- Git rerere enabled for conflict resolution
+**Tool Management:** `mise` (replaces nvm, rbenv, pyenv, etc.)
 
-## Communication
+**Global Tools Configured** (see `~/.config/mise/config.toml`):
 
-- Address me as "phatblat"
-- We're colleagues working together
-- Ask for help when needed
-- Push back with evidence when you think you're right
+- Node 24.11.1
+- Python 3.14.2
+- Ruby 3.4.7
+- Go 1.25.5
+- Rust (via rustup)
+- Gradle 9.2.1
+- Docker, Docker Compose
+- Terraform, Packer
+- Specialized tools: ast-grep, ripgrep, yq, actionlint
+
+Set `MISE_PIN=1` in all shells to lock versions.
+
+## Common Commands
+
+### Building & Linting
+
+**Using justfile** (`~/justfile`):
+
+- `just` — List available recipes
+- `just install` — Install mise tools globally
+- `just upgrade` — Update tools
+- `just format` — Format mise config, justfile, and Claude settings
+- `just lint` — Check justfile and shell scripts
+- `just lint-fix` — Format shell scripts with shfmt
+
+### Shell Function Management
+
+The repository tracks 510+ shell functions across 4 shells. When adding/removing functions:
+
+1. Update statistics in `~/docs/functions.md` Summary section
+2. Add/remove rows in the functions table
+3. Remove obsolete entries from Known Issues section
+
+**Key statistics location:** `~/docs/functions.md` (rows 5-21)
+
+### Code Search
+
+Use **`ast-grep` (sg)** for code search and modification, NOT grep/ripgrep/sed:
+
+```bash
+sg --pattern 'function_name' --lang fish
+```
+
+## Architecture & Code Patterns
+
+### Shell Function Organization
+
+**Fish Functions:** Each function is typically a separate file in `~/.config/fish/functions/`. Naming convention uses underscores for related groups (e.g., `git_*`, `docker_*`).
+
+**Function Categories:** (See `functions.md`)
+
+- Git workflows: 100+ functions (a*, c*, d*, g*, l*, s*, t\* aliases)
+- Docker/Container management: 40+ functions
+- Build systems: Gradle, Xcode, Carthage integration
+- System utilities: Brew, macOS, file operations
+- Development: iOS, Android, Xcode specific tooling
+
+### Git Configuration
+
+**GPG Signing:** Enabled. Global config at `~/.gitconfig` with email overrides in `~/.config/git/config`.
+
+**Git Aliases:** Extensive collection in `.dotfiles/git/` (not updated for Fish era, but patterns preserved in Fish functions).
+
+**Rerere Enabled:** Git rerere helps with conflict resolution.
+
+### macOS Multi-Machine Sync
+
+This repo is synced across multiple Macs. Challenges:
+
+- Many git repos in subdirectories confuse some git apps
+- Local-only git config in `~/.config/git/config` overrides `.gitconfig` user email
+- Bootstrap script exists but outdated (not updated since Bash era)
 
 ## Editor Configuration
 
-File formats:
+**Primary Editor:** Zed
 
-- Unless specified, use UTF-8 encoding with Unix line endings
-- Write general files in markdown format, unless specified otherwise
-- Code files should be written in a consistent style, following the conventions of the language or framework being used
-- See `.editorconfig` for details
-- When new language file formats are changed, update the `.editorconfig` file accordingly
+**EditorConfig** (`~/.editorconfig`):
 
-**Zed**: Primary editor
+- Default: UTF-8, LF line endings, 2-space indent
+- Java/Gradle: 4-space indent
+- Markdown: No trailing space trimming (intentional)
+- Makefile/plist: Tab indentation
 
-- Rust analyzer: Custom CARGO_TARGET_DIR with analyzerTargetDir enabled
-- Tab size: 2 spaces
-- Hard tabs disabled
-- Private values redaction disabled
+**Zed Settings:**
 
-## Project-Specific Configuration
+- Rust analyzer with custom `CARGO_TARGET_DIR`
+- analyzerTargetDir enabled
+- Tab size: 2 spaces (hard tabs disabled)
 
-For detailed project instructions, check for CLAUDE.md files in project directories.
+## Code Quality Standards
+
+### Git Workflow
+
+- Conventional commits: `feat:`, `fix:`, etc. (imperative mood, present tense)
+- No `--no-verify` flag usage; respect pre-commit hooks
+- Feature branches: Topic-based naming (e.g., `ben/fix-thing`)
+- Never force push to main/master
+- GPG commit signing enabled
+
+### When Hooks Fail
+
+1. Read complete error output
+2. Identify which tool failed and why
+3. Explain the fix and work through systematically
+4. Only commit after all hooks pass (never bypass)
+
+## Project Context
+
+**Language Focus:** Primarily shell scripting, with supporting Go, Ruby, Python, and Swift tooling.
+
+**Primary Use Cases:**
+
+- Cross-machine dotfile synchronization
+- Git workflow automation
+- macOS system management
+- Development environment orchestration
+- iOS/Android development tooling
+
+## Communication Notes
+
+- Address user as "phatblat"
+- Teammates: both fallible, push back with evidence
+- Prefer simple, maintainable solutions
+- Match surrounding code style over guides
+- Only change code directly related to current task
