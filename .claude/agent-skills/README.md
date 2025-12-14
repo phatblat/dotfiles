@@ -32,6 +32,33 @@ input: {
 
 ---
 
+#### `code-browser`
+**Path**: `agent-skills/tools/code-browser.md`
+
+**Purpose**: Search and locate code in a codebase
+
+**Search Types**: implementation, usage, pattern, concept, inheritance
+
+**What It Does**:
+- Searches for code matching specific criteria
+- Groups results by relevance (primary implementations vs. usage)
+- Returns file paths, line numbers, code snippets
+- Does NOT analyze or interpret findings
+
+**Used By**: `implementor`, `research-agent`, `code-analyzer`, architecture agents
+
+**Example Invocation**:
+```
+[invoke code-browser]
+input: {
+  "action": "search",
+  "query": "payment processing",
+  "searchType": "concept"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:

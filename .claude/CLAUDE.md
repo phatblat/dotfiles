@@ -121,9 +121,14 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
 - **test-runner** — Execute test suites and report results
   - Detects framework (cargo, npm, pytest, go, gradle, maven, dotnet)
   - Returns raw test output, exit code, duration
-  - Used by: implementor, project-planner, and any testing agents
+  - Used by: implementor, project-planner, any testing agents
 
-_More skills coming: code-browser, code-converter, language-specific tools_
+- **code-browser** — Search and locate code in codebase
+  - Search types: implementation, usage, pattern, concept, inheritance
+  - Returns file paths, line numbers, code snippets (grouped by relevance)
+  - Used by: research agents, code-analyzer, implementor, architecture agents
+
+_More skills coming: code-converter, language-specific tools, tech-writer_
 
 # Other
 
