@@ -82,6 +82,11 @@ search tool:
 usage:
     ccusage
 
+# Open Claude usage online
+[group('info')]
+usage-web:
+  open https://claude.ai/settings/usage
+
 # Show Claude usage statistics dashboard
 [group('info')]
 usage-board:
@@ -157,8 +162,8 @@ doctor:
 # Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
 lint:
-    mise fmt --check
     just --fmt --check
+    mise fmt --check
     @echo "Linting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
 
