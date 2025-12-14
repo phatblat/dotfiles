@@ -148,6 +148,12 @@ clean:
 # checks group recipes
 #
 
+# Runs system diagnostics using mise and homebrew
+[group('checks')]
+doctor:
+    mise doctor
+    brew doctor
+
 # Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
 lint:
