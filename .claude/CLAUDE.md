@@ -114,6 +114,17 @@ Wait for review before creating PRs—phatblat always reviews first.
 - Never commit to main/master
 - Never push without explicit permission
 
+# Agent Skills
+
+Available reusable agent capabilities (see `.claude/agent-skills/`):
+
+- **test-runner** — Execute test suites and report results
+  - Detects framework (cargo, npm, pytest, go, gradle, maven, dotnet)
+  - Returns raw test output, exit code, duration
+  - Used by: implementor, project-planner, and any testing agents
+
+_More skills coming: code-browser, code-converter, language-specific tools_
+
 # Other
 
 - timeout/gtimeout not installed
