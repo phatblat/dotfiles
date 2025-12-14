@@ -39,6 +39,6 @@ quick-terminal-position = top
 quick-terminal-screen = main
 
 # Key Bindings
-#keybind = global:ctrl+`=toggle_quick_terminal
+keybind = global:ctrl+`=toggle_quick_terminal
 keybind = super+d=new_split:right
 keybind = shift+enter=text:\n
