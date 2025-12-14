@@ -148,7 +148,12 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns structured issues with locations and suggestions
   - Used by: python-expert, code-reviewer, security-auditor
 
-_More skills coming: code-converter, language-specific validators (go)_
+- **format-converter** — Convert data between different formats
+  - Supported: JSON, YAML, XML, CSV, TSV, TOML, Markdown, JSONL, Plain Text
+  - Returns: converted data + validation report + data integrity metrics
+  - Used by: data-format-converter, api-developer, documentation-generator
+
+_More skills coming: language-specific validators (go), container operations_
 
 # Other
 

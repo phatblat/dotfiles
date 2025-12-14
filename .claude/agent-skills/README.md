@@ -180,17 +180,43 @@ input: {
 
 ---
 
+#### `format-converter`
+**Path**: `agent-skills/tools/format-converter.md`
+
+**Purpose**: Convert data between different structured and semi-structured formats
+
+**Supported Formats**: JSON, YAML, XML, CSV, TSV, TOML, Markdown, JSONL, Plain Text
+
+**What It Does**:
+- Converts data between supported formats with validation
+- Detects source format (auto-detect or explicit)
+- Transforms to target format with format-specific rules
+- Validates output correctness and data integrity
+- Returns converted data + validation report + preservation metrics
+- Warns about lossy conversions
+- Does NOT modify original data
+
+**Used By**: `data-format-converter`, api-developer, documentation-generator
+
+**Example Invocation**:
+```
+[invoke format-converter]
+input: {
+  "action": "convert",
+  "sourceData": "{\"name\": \"Alice\", \"age\": 30}",
+  "sourceFormat": "json",
+  "targetFormat": "yaml"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
-- `code-browser.md` → Browse/search code
-- `code-converter.md` → Transform between formats
 - `go-expert.md` → Go-specific operations
-- `rust-expert.md` → Rust-specific operations
-- `shell-expert.md` → Shell script validation
 - `container-expert.md` → Docker/container operations
-- `tech-writer.md` → Documentation generation
 
 ---
 
@@ -247,4 +273,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-13
+Last Updated: 2025-12-14
