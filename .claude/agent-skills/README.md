@@ -613,12 +613,77 @@ input: {
 
 ---
 
+#### `cmake-executor`
+**Path**: `~/.claude/skills/cmake-executor.md`
+
+**Purpose**: Execute CMake build system operations with structured output
+
+**Supported Commands**: configure, build, test, install, clean, reconfigure, list-targets
+
+**What It Does**:
+- Configures projects with generators and options
+- Builds targets with parallel execution
+- Runs CTest test suites
+- Installs artifacts to prefix
+- Lists available targets
+- Returns structured results with exit codes, output, metadata
+
+**Used By**: `cmake-expert`, cpp-expert, build-engineer
+
+**Example Invocation**:
+```
+[invoke cmake-executor]
+input: {
+  "action": "cmake",
+  "command": "configure",
+  "args": {
+    "sourceDir": ".",
+    "buildDir": "build",
+    "generator": "Ninja"
+  }
+}
+```
+
+---
+
+#### `make-executor`
+**Path**: `~/.claude/skills/make-executor.md`
+
+**Purpose**: Execute GNU Make build operations with structured output
+
+**Supported Commands**: build, clean, install, test, check, all, distclean, custom
+
+**What It Does**:
+- Builds targets with parallel execution
+- Cleans build artifacts
+- Installs to prefix
+- Runs tests
+- Executes custom targets
+- Returns structured results with exit codes, output, metadata
+
+**Used By**: `make-expert`, build-engineer
+
+**Example Invocation**:
+```
+[invoke make-executor]
+input: {
+  "action": "make",
+  "command": "build",
+  "args": {
+    "target": "all",
+    "parallel": 8
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
 - `awk-expert.md` → AWK script execution
-- `cmake-expert.md` → CMake project management
+- `doxygen-expert.md` → Documentation generation
 
 ---
 

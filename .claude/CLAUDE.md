@@ -236,7 +236,19 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Includes: unit/widget/integration tests, pub dependencies, FFI bindings validation
   - Used by: flutter-dart-expert, code-reviewer, mobile-developer
 
-_More skills coming: build tools (CMake, Make), specialized validators_
+- **cmake-executor** — Execute CMake build system operations with structured output
+  - Commands: configure, build, test, install, clean, list-targets
+  - Features: generator selection, parallel builds, CTest execution
+  - Returns: structured results with exit codes, artifacts, test results
+  - Used by: cmake-expert, cpp-expert, build-engineer
+
+- **make-executor** — Execute GNU Make build operations with structured output
+  - Commands: build, clean, install, test, custom targets
+  - Features: parallel builds, variable overrides, dry-run mode
+  - Returns: structured results with exit codes, artifacts, build steps
+  - Used by: make-expert, build-engineer
+
+_More skills coming: specialized generators (Doxygen), script executors_
 
 # Other
 
