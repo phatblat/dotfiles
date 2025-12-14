@@ -202,7 +202,7 @@ input: {
 - Detects broken links and outdated content warnings
 - Does NOT modify documentation
 
-**Used By**: `ditto-docs`, ditto-sdk-expert, tech-writer, documentation-reviewer
+**Used By**: `ditto-docs`, ditto-sdk-architect, tech-writer, documentation-reviewer
 
 **Example Invocation**:
 ```
@@ -231,7 +231,7 @@ input: {
 - Returns validation report with issues and suggestions
 - Does NOT modify queries
 
-**Used By**: `dql-expert`, ditto-sdk-expert, implementor
+**Used By**: `dql-expert`, ditto-sdk-architect, implementor
 
 **Example Invocation**:
 ```

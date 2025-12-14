@@ -198,7 +198,7 @@ When searching by platform, returns API reference for:
 
 ## Integration Notes
 
-- **Used by agents**: ditto-docs, ditto-sdk-expert, tech-writer, documentation-reviewer
+- **Used by agents**: ditto-docs, ditto-sdk-architect, tech-writer, documentation-reviewer
 - **Returns structured data**: Search results with URLs and metadata
 - **Always fresh**: Never caches results - always queries current docs
 - **Platform-aware**: Can filter results by SDK platform

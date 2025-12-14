@@ -265,7 +265,7 @@ Output:
 
 ## Integration Notes
 
-- **Used by agents**: dql-expert, ditto-sdk-expert, implementor
+- **Used by agents**: dql-expert, ditto-sdk-architect, implementor
 - **Returns structured data**: Validation report with issues and suggestions
 - **Version-aware**: Can validate against specific SDK versions
 - **Migration-aware**: Identifies legacy query builder patterns

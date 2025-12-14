@@ -157,13 +157,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Search types: general, api, guide, example, dql
   - Filters: platform (Swift, JS, Rust, C++, Java, Kotlin, Flutter, C#), version
   - Returns: documentation pages, URLs, excerpts, warnings about broken/outdated links
-  - Used by: ditto-docs, ditto-sdk-expert, tech-writer
+  - Used by: ditto-docs, ditto-sdk-architect, tech-writer
 
 - **dql-validator** — Validate Ditto Query Language (DQL) queries
   - Validates: syntax, compatibility, optimization
   - Detects: legacy patterns, unsupported operators, indexing opportunities
   - Returns: validation report with issues and suggestions
-  - Used by: dql-expert, ditto-sdk-expert, implementor
+  - Used by: dql-expert, ditto-sdk-architect, implementor
 
 - **linear-searcher** — Search Linear issues with relationships
   - Filters: status, assignee, label, project, team, cycle
