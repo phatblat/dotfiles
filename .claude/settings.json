@@ -1,6 +1,5 @@
 {
   "alwaysThinkingEnabled": true,
-  "defaultMode": "acceptEdits",
   "enabledPlugins": {
     "feature-dev@claude-code-plugins": true
   },
@@ -81,8 +80,12 @@
       "Bash(pip index versions:*)",
       "Bash(rm:*)",
       "Bash(sed:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(/bin/ls:*)",
+      "Bash(wc:*)",
+      "Bash(tree:*)"
     ],
+    "defaultMode": "dontAsk",
     "deny": [
       "Bash(git push:*)",
       "Read(./.env)",
