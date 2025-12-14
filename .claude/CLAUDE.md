@@ -128,7 +128,12 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns file paths, line numbers, code snippets (grouped by relevance)
   - Used by: research agents, code-analyzer, implementor, architecture agents
 
-_More skills coming: code-converter, language-specific tools, tech-writer_
+- **shell-validator** — Validate shell scripts (Bash/sh/Zsh)
+  - Checks: syntax, portability (macOS/Linux), best practices, security, formatting
+  - Returns structured issues with locations and suggestions
+  - Used by: shell-expert, script-reviewer, automation agents
+
+_More skills coming: code-converter, language-specific tools (go, rust, python), tech-writer_
 
 # Other
 

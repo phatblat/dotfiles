@@ -59,6 +59,35 @@ input: {
 
 ---
 
+#### `shell-validator`
+**Path**: `agent-skills/tools/shell-validator.md`
+
+**Purpose**: Validate shell scripts for correctness, portability, and best practices
+
+**Validation Types**: syntax, portability, best-practices, security, formatting
+
+**What It Does**:
+- Runs shellcheck to detect syntax and logic errors
+- Checks for macOS vs Linux portability issues
+- Validates against best practices and security standards
+- Returns structured issues with locations and suggestions
+- Does NOT modify or rewrite scripts
+
+**Used By**: `shell-expert`, script-reviewer, automation-developer
+
+**Example Invocation**:
+```
+[invoke shell-validator]
+input: {
+  "action": "validate",
+  "scriptPath": "deploy.sh",
+  "checks": "all",
+  "targetPlatforms": ["macos", "linux"]
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
