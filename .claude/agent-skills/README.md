@@ -334,6 +334,36 @@ input: {
 
 ---
 
+#### `slack-searcher`
+**Path**: `agent-skills/tools/slack-searcher.md`
+
+**Purpose**: Search and retrieve messages, files, and conversations from Slack workspaces
+
+**Search Types**: messages, files, threads, all
+
+**What It Does**:
+- Searches Slack messages by keywords, users, channels, date ranges
+- Retrieves files by filename or metadata
+- Fetches threaded conversations with full reply context
+- Returns matched results with metadata and attachments
+- Includes message reactions and thread information
+- Does NOT create, edit, or delete messages
+
+**Used By**: `slack-expert`, team-analyst, knowledge-base-assistant
+
+**Example Invocation**:
+```
+[invoke slack-searcher]
+input: {
+  "action": "search",
+  "query": "deployment",
+  "filters": {"channel": "engineering"},
+  "includeThreads": true
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:

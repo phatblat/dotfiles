@@ -182,7 +182,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: exit code, stdout/stderr, metadata, duration
   - Used by: github-expert, implementor, project-planner
 
-_More skills coming: language-specific validators (go), container operations_
+- **slack-searcher** — Search and retrieve Slack messages and files
+  - Search types: messages, files, threads, all
+  - Filters: channel, user, date range, content type
+  - Returns: matched messages with metadata, threads, attachments, reactions
+  - Used by: slack-expert, team-analyst, knowledge-base-assistant
+
+_More skills coming: language-specific validators (go, javascript), container operations_
 
 # Other
 
