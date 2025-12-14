@@ -143,7 +143,12 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: APIs, doc coverage %, code examples, documentation gaps, suggested structure
   - Used by: tech-writer, documentation-reviewer, api-designer
 
-_More skills coming: code-converter, language-specific validators (go, python)_
+- **python-validator** — Validate Python code (Black, Pylint, mypy, bandit)
+  - Checks: formatting, linting, type checking, security, dependency audit
+  - Returns structured issues with locations and suggestions
+  - Used by: python-expert, code-reviewer, security-auditor
+
+_More skills coming: code-converter, language-specific validators (go)_
 
 # Other
 

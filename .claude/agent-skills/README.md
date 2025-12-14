@@ -149,6 +149,37 @@ input: {
 
 ---
 
+#### `python-validator`
+**Path**: `agent-skills/tools/python-validator.md`
+
+**Purpose**: Validate Python code for style, types, and security
+
+**Validation Types**: format, lint, types, security, dependencies
+
+**What It Does**:
+- Checks formatting with Black/PEP 8
+- Runs Pylint/Ruff for code quality
+- Validates type hints with mypy
+- Detects security issues with bandit
+- Checks for vulnerable/outdated dependencies
+- Returns structured issues with locations and suggestions
+- Does NOT modify code or auto-format
+
+**Used By**: `python-expert`, code-reviewer, security-auditor
+
+**Example Invocation**:
+```
+[invoke python-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "pythonVersion": "3.13"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
