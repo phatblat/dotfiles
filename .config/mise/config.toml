@@ -30,7 +30,7 @@ terraform = "1.14.2"
 uv = "0.9.17"
 ast-grep = "0.40.1"
 ripgrep = "15.1.0"
-yq = "4.49.2"
+yq = "4.50.1"
 actionlint = "1.7.9"
 
 [settings]
