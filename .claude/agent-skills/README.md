@@ -88,6 +88,36 @@ input: {
 
 ---
 
+#### `rust-validator`
+**Path**: `agent-skills/tools/rust-validator.md`
+
+**Purpose**: Validate Rust code for correctness, style, and performance
+
+**Validation Types**: compile, clippy, formatting, dependency audit
+
+**What It Does**:
+- Compiles the project to catch errors (cargo build)
+- Runs clippy to detect performance and style issues
+- Checks formatting compliance (cargo fmt)
+- Audits dependencies for vulnerabilities (cargo audit)
+- Returns structured issues with locations and suggestions
+- Does NOT modify code or auto-format
+
+**Used By**: `rust-expert`, code-reviewer, performance-optimizer
+
+**Example Invocation**:
+```
+[invoke rust-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "toolchain": "stable"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:

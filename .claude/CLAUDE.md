@@ -133,7 +133,12 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns structured issues with locations and suggestions
   - Used by: shell-expert, script-reviewer, automation agents
 
-_More skills coming: code-converter, language-specific tools (go, rust, python), tech-writer_
+- **rust-validator** — Validate Rust code (cargo projects)
+  - Checks: compilation, clippy lints, formatting, dependency audit
+  - Returns structured issues with locations and clippy codes
+  - Used by: rust-expert, code-reviewer, performance-optimizer
+
+_More skills coming: code-converter, language-specific tools (go, python), tech-writer_
 
 # Other
 
