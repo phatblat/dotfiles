@@ -218,7 +218,25 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with exit codes, output, parsed metadata
   - Used by: container-expert, devops-engineer, infrastructure-developer
 
-_More skills coming: language-specific validators (Android, .NET), build tools_
+- **android-validator** — Validate Android applications for correctness, style, and build integrity
+  - Checks: compilation (kotlinc/javac), linting (Android Lint), formatting (ktlint), build (Gradle)
+  - Includes: unit tests (JUnit), instrumentation tests, NDK/JNI validation
+  - Returns: structured issues with locations, lint warnings, build errors
+  - Used by: android-expert, code-reviewer, mobile-developer
+
+- **dotnet-validator** — Validate .NET applications for correctness, style, and build integrity
+  - Checks: compilation (Roslyn), formatting (dotnet format), analysis (Roslyn analyzers), build
+  - Supports: .NET 6+, .NET Framework, .NET Standard, .NET MAUI
+  - Includes: unit tests (xUnit, NUnit, MSTest), NuGet package validation
+  - Used by: dotnet-expert, code-reviewer, dotnet-developer
+
+- **dart-validator** — Validate Flutter/Dart projects for correctness, style, and build integrity
+  - Checks: analysis (dart analyze), formatting (dart format), build (flutter), tests
+  - Platforms: iOS, Android, web, desktop (macOS, Windows, Linux)
+  - Includes: unit/widget/integration tests, pub dependencies, FFI bindings validation
+  - Used by: flutter-dart-expert, code-reviewer, mobile-developer
+
+_More skills coming: build tools (CMake, Make), specialized validators_
 
 # Other
 

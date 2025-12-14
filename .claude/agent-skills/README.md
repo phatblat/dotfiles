@@ -520,12 +520,105 @@ input: {
 
 ---
 
+#### `android-validator`
+**Path**: `~/.claude/skills/android-validator.md`
+
+**Purpose**: Validate Android applications for correctness, style, and build integrity
+
+**Validation Types**: compile, lint, format, build, test, ndk, all
+
+**What It Does**:
+- Compiles Kotlin/Java code (kotlinc, javac)
+- Runs Android Lint for Android-specific issues
+- Checks formatting with ktlint
+- Builds with Gradle (assembleDebug/assembleRelease)
+- Runs unit tests (JUnit) and instrumentation tests
+- Validates NDK/JNI native code (optional)
+- Detects project type and module structure automatically
+
+**Used By**: `android-expert`, code-reviewer, mobile-developer
+
+**Example Invocation**:
+```
+[invoke android-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "module": "app"
+}
+```
+
+---
+
+#### `dotnet-validator`
+**Path**: `~/.claude/skills/dotnet-validator.md`
+
+**Purpose**: Validate .NET applications and libraries for correctness, style, and build integrity
+
+**Validation Types**: compile, format, analyze, build, test, restore, all
+
+**What It Does**:
+- Compiles C#/F# code (Roslyn compiler)
+- Checks formatting with dotnet format
+- Runs Roslyn analyzers and code analysis
+- Builds with dotnet build or msbuild
+- Runs unit tests (xUnit, NUnit, MSTest)
+- Validates NuGet package dependencies
+- Supports .NET 6+, .NET Framework, .NET Standard
+
+**Used By**: `dotnet-expert`, code-reviewer, dotnet-developer
+
+**Example Invocation**:
+```
+[invoke dotnet-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "configuration": "Debug"
+}
+```
+
+---
+
+#### `dart-validator`
+**Path**: `~/.claude/skills/dart-validator.md`
+
+**Purpose**: Validate Flutter and Dart projects for correctness, style, and build integrity
+
+**Validation Types**: analyze, format, build, test, pub, ffi, all
+
+**What It Does**:
+- Runs dart analyze for static analysis
+- Checks formatting with dart format
+- Builds Flutter apps for target platforms (iOS, Android, web, desktop)
+- Runs unit, widget, and integration tests
+- Validates pub package dependencies
+- Checks FFI native bindings (optional)
+- Detects Flutter apps vs pure Dart packages
+
+**Used By**: `flutter-dart-expert`, code-reviewer, mobile-developer
+
+**Example Invocation**:
+```
+[invoke dart-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "platform": "android"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
-- `android-expert.md` → Android development tools
-- `dotnet-expert.md` → .NET validation
+- `awk-expert.md` → AWK script execution
+- `cmake-expert.md` → CMake project management
 
 ---
 
