@@ -85,7 +85,7 @@ usage:
 # Open Claude usage online
 [group('info')]
 usage-web:
-  open https://claude.ai/settings/usage
+    open https://claude.ai/settings/usage
 
 # Show Claude usage statistics dashboard
 [group('info')]
