@@ -153,6 +153,35 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: converted data + validation report + data integrity metrics
   - Used by: data-format-converter, api-developer, documentation-generator
 
+- **ditto-docs-search** — Search Ditto SDK documentation
+  - Search types: general, api, guide, example, dql
+  - Filters: platform (Swift, JS, Rust, C++, Java, Kotlin, Flutter, C#), version
+  - Returns: documentation pages, URLs, excerpts, warnings about broken/outdated links
+  - Used by: ditto-docs, ditto-sdk-expert, tech-writer
+
+- **dql-validator** — Validate Ditto Query Language (DQL) queries
+  - Validates: syntax, compatibility, optimization
+  - Detects: legacy patterns, unsupported operators, indexing opportunities
+  - Returns: validation report with issues and suggestions
+  - Used by: dql-expert, ditto-sdk-expert, implementor
+
+- **linear-searcher** — Search Linear issues with relationships
+  - Filters: status, assignee, label, project, team, cycle
+  - Returns: matched issues with linked PRs, tickets, parent/child relationships
+  - Used by: linear-expert, project-planner, implementor
+
+- **notion-searcher** — Search Notion pages and databases
+  - Search types: pages, databases, title, tags, content
+  - Filters: workspace, database, tag, status
+  - Returns: matched content with hierarchy and metadata
+  - Used by: notion-expert, tech-writer, project-planner
+
+- **git-executor** — Execute git commands with safety checks
+  - Commands: commit, branch, checkout, merge, rebase, push, pull, fetch, log, diff, status, stash
+  - Safety: prevents main commits, unsafe force-push
+  - Returns: exit code, stdout/stderr, metadata, duration
+  - Used by: github-expert, implementor, project-planner
+
 _More skills coming: language-specific validators (go), container operations_
 
 # Other

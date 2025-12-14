@@ -185,27 +185,150 @@ input: {
 
 **Purpose**: Convert data between different structured and semi-structured formats
 
-**Supported Formats**: JSON, YAML, XML, CSV, TSV, TOML, Markdown, JSONL, Plain Text
+---
+
+#### `ditto-docs-search`
+**Path**: `agent-skills/tools/ditto-docs-search.md`
+
+**Purpose**: Search Ditto SDK documentation and retrieve API references, guides, and examples
+
+**Supported Search Types**: general, api, guide, example, dql
 
 **What It Does**:
-- Converts data between supported formats with validation
-- Detects source format (auto-detect or explicit)
-- Transforms to target format with format-specific rules
-- Validates output correctness and data integrity
-- Returns converted data + validation report + preservation metrics
-- Warns about lossy conversions
-- Does NOT modify original data
+- Searches docs.ditto.live for Ditto documentation
+- Returns documentation pages with URLs and excerpts
+- Supports platform-specific filtering (Swift, JS, Rust, C++, Java, Kotlin, Flutter, C#)
+- Includes SDK version selection (latest, v4, v5-preview)
+- Detects broken links and outdated content warnings
+- Does NOT modify documentation
 
-**Used By**: `data-format-converter`, api-developer, documentation-generator
+**Used By**: `ditto-docs`, ditto-sdk-expert, tech-writer, documentation-reviewer
 
 **Example Invocation**:
 ```
-[invoke format-converter]
+[invoke ditto-docs-search]
 input: {
-  "action": "convert",
-  "sourceData": "{\"name\": \"Alice\", \"age\": 30}",
-  "sourceFormat": "json",
-  "targetFormat": "yaml"
+  "action": "search",
+  "query": "how to set up sync",
+  "searchType": "guide"
+}
+```
+
+---
+
+#### `dql-validator`
+**Path**: `agent-skills/tools/dql-validator.md`
+
+**Purpose**: Validate Ditto Query Language (DQL) queries for syntax, compatibility, and optimization
+
+**Validation Types**: syntax, compatibility, optimization, all
+
+**What It Does**:
+- Validates DQL query syntax against language rules
+- Checks compatibility with DQL feature set
+- Suggests performance optimizations
+- Detects legacy query builder patterns
+- Returns validation report with issues and suggestions
+- Does NOT modify queries
+
+**Used By**: `dql-expert`, ditto-sdk-expert, implementor
+
+**Example Invocation**:
+```
+[invoke dql-validator]
+input: {
+  "action": "validate",
+  "query": "SELECT * FROM users WHERE age > 18",
+  "validateFor": "all"
+}
+```
+
+---
+
+#### `linear-searcher`
+**Path**: `agent-skills/tools/linear-searcher.md`
+
+**Purpose**: Search Linear issues with relationships to pull requests, tickets, and logs
+
+**Search Categories**: content, assignee, label, status, cycle
+
+**What It Does**:
+- Searches Linear issues by multiple criteria
+- Returns matched issues with metadata and relationships
+- Retrieves linked PRs, Zendesk tickets, parent/child issues
+- Supports filtering by project, team, cycle, status
+- Handles issue dependencies and cross-references
+- Does NOT modify issues
+
+**Used By**: `linear-expert`, project-planner, implementor
+
+**Example Invocation**:
+```
+[invoke linear-searcher]
+input: {
+  "action": "search",
+  "query": "authentication",
+  "searchBy": "content",
+  "includeLinks": true
+}
+```
+
+---
+
+#### `notion-searcher`
+**Path**: `agent-skills/tools/notion-searcher.md`
+
+**Purpose**: Search Notion workspace for pages, databases, and documentation
+
+**Search Types**: all, pages, databases, title, tags, content
+
+**What It Does**:
+- Searches Notion for pages and database entries
+- Returns matched content with metadata and hierarchy
+- Supports filtering by workspace, database, tag, status
+- Includes page relationships (parent/child)
+- Provides content previews (optional)
+- Does NOT create or modify pages
+
+**Used By**: `notion-expert`, tech-writer, project-planner
+
+**Example Invocation**:
+```
+[invoke notion-searcher]
+input: {
+  "action": "search",
+  "query": "meeting notes",
+  "searchIn": "pages",
+  "includeContent": true
+}
+```
+
+---
+
+#### `git-executor`
+**Path**: `agent-skills/tools/git-executor.md`
+
+**Purpose**: Execute git commands and return structured results with safety checks
+
+**Supported Commands**: commit, branch, checkout, merge, rebase, push, pull, fetch, log, diff, status, stash, reset
+
+**What It Does**:
+- Executes git commands with timeout protection
+- Returns exit code, stdout, stderr, execution time
+- Parses output for metadata
+- Enforces safety checks (prevents main commits, unsafe force-push)
+- Detects merge conflicts and destructive operations
+- Does NOT interpret results
+
+**Used By**: `github-expert`, implementor, project-planner
+
+**Example Invocation**:
+```
+[invoke git-executor]
+input: {
+  "action": "execute",
+  "command": "commit",
+  "args": ["-m", "feat: new feature"]
 }
 ```
 
