@@ -1,5 +1,6 @@
 {
   "alwaysThinkingEnabled": true,
+  "defaultMode": "acceptEdits",
   "enabledPlugins": {
     "feature-dev@claude-code-plugins": true
   },
