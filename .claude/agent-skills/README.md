@@ -456,12 +456,76 @@ input: {
 
 ---
 
+#### `cpp-validator`
+**Path**: `~/.claude/skills/cpp-validator.md`
+
+**Purpose**: Validate C++ code for correctness, style, and build integrity
+
+**Validation Types**: compile, lint, format, static, build, test, all
+
+**What It Does**:
+- Compiles C++ code using g++ or clang++
+- Runs clang-tidy for modernization and best practices
+- Checks formatting with clang-format
+- Performs static analysis with cppcheck
+- Builds CMake projects
+- Runs unit tests (doctest, Google Test, Catch2)
+- Supports C++11 through C++23 standards
+
+**Used By**: `cpp-expert`, code-reviewer, systems-developer
+
+**Example Invocation**:
+```
+[invoke cpp-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "standard": "c++17"
+}
+```
+
+---
+
+#### `docker-executor`
+**Path**: `~/.claude/skills/docker-executor.md`
+
+**Purpose**: Execute Docker and container operations with structured output
+
+**Supported Commands**: build, run, ps, logs, exec, stop, start, restart, rm, images, network, volume, compose
+
+**What It Does**:
+- Executes Docker commands and returns structured results
+- Manages container lifecycle (create, start, stop, remove)
+- Builds images and manages registries
+- Handles Docker Compose operations
+- Manages networks and volumes
+- Includes safety checks for destructive operations
+- Parses output into structured metadata
+
+**Used By**: `container-expert`, devops-engineer, infrastructure-developer
+
+**Example Invocation**:
+```
+[invoke docker-executor]
+input: {
+  "action": "docker",
+  "command": "build",
+  "args": {
+    "dockerfile": "Dockerfile",
+    "tag": "myapp:latest"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
-- `container-expert.md` → Docker/container operations
-- `cpp-expert.md` → C++ validation
+- `android-expert.md` → Android development tools
+- `dotnet-expert.md` → .NET validation
 
 ---
 

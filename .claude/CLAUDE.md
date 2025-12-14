@@ -206,7 +206,19 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Includes: dependency validation, XCTest execution and coverage
   - Used by: swift-expert, code-reviewer, ios-developer
 
-_More skills coming: language-specific validators (C++), container operations_
+- **cpp-validator** — Validate C++ code for correctness, style, and build integrity
+  - Checks: compilation (g++/clang++), linting (clang-tidy), formatting (clang-format), static analysis (cppcheck)
+  - Supports: C++11 through C++23 standards, CMake projects
+  - Includes: build validation, unit tests (doctest, Google Test, Catch2)
+  - Used by: cpp-expert, code-reviewer, systems-developer
+
+- **docker-executor** — Execute Docker and container operations with structured output
+  - Commands: build, run, ps, logs, exec, images, network, volume, compose operations
+  - Features: container lifecycle management, image management, safety checks
+  - Returns: structured results with exit codes, output, parsed metadata
+  - Used by: container-expert, devops-engineer, infrastructure-developer
+
+_More skills coming: language-specific validators (Android, .NET), build tools_
 
 # Other
 
