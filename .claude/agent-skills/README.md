@@ -7,7 +7,7 @@ Reusable capability modules that agents can invoke to perform specific tasks.
 ### Tools
 
 #### `test-runner`
-**Path**: `agent-skills/tools/test-runner.md`
+**Path**: `~/.claude/skills/test-runner.md`
 
 **Purpose**: Execute test suites and report results
 
@@ -33,7 +33,7 @@ input: {
 ---
 
 #### `code-browser`
-**Path**: `agent-skills/tools/code-browser.md`
+**Path**: `~/.claude/skills/code-browser.md`
 
 **Purpose**: Search and locate code in a codebase
 
@@ -60,7 +60,7 @@ input: {
 ---
 
 #### `shell-validator`
-**Path**: `agent-skills/tools/shell-validator.md`
+**Path**: `~/.claude/skills/shell-validator.md`
 
 **Purpose**: Validate shell scripts for correctness, portability, and best practices
 
@@ -89,7 +89,7 @@ input: {
 ---
 
 #### `rust-validator`
-**Path**: `agent-skills/tools/rust-validator.md`
+**Path**: `~/.claude/skills/rust-validator.md`
 
 **Purpose**: Validate Rust code for correctness, style, and performance
 
@@ -119,7 +119,7 @@ input: {
 ---
 
 #### `doc-extractor`
-**Path**: `agent-skills/tools/doc-extractor.md`
+**Path**: `~/.claude/skills/doc-extractor.md`
 
 **Purpose**: Extract documentation-relevant information from source code
 
@@ -150,7 +150,7 @@ input: {
 ---
 
 #### `python-validator`
-**Path**: `agent-skills/tools/python-validator.md`
+**Path**: `~/.claude/skills/python-validator.md`
 
 **Purpose**: Validate Python code for style, types, and security
 
@@ -181,14 +181,14 @@ input: {
 ---
 
 #### `format-converter`
-**Path**: `agent-skills/tools/format-converter.md`
+**Path**: `~/.claude/skills/format-converter.md`
 
 **Purpose**: Convert data between different structured and semi-structured formats
 
 ---
 
 #### `ditto-docs-search`
-**Path**: `agent-skills/tools/ditto-docs-search.md`
+**Path**: `~/.claude/skills/ditto-docs-search.md`
 
 **Purpose**: Search Ditto SDK documentation and retrieve API references, guides, and examples
 
@@ -217,7 +217,7 @@ input: {
 ---
 
 #### `dql-validator`
-**Path**: `agent-skills/tools/dql-validator.md`
+**Path**: `~/.claude/skills/dql-validator.md`
 
 **Purpose**: Validate Ditto Query Language (DQL) queries for syntax, compatibility, and optimization
 
@@ -246,7 +246,7 @@ input: {
 ---
 
 #### `linear-searcher`
-**Path**: `agent-skills/tools/linear-searcher.md`
+**Path**: `~/.claude/skills/linear-searcher.md`
 
 **Purpose**: Search Linear issues with relationships to pull requests, tickets, and logs
 
@@ -276,7 +276,7 @@ input: {
 ---
 
 #### `notion-searcher`
-**Path**: `agent-skills/tools/notion-searcher.md`
+**Path**: `~/.claude/skills/notion-searcher.md`
 
 **Purpose**: Search Notion workspace for pages, databases, and documentation
 
@@ -306,7 +306,7 @@ input: {
 ---
 
 #### `git-executor`
-**Path**: `agent-skills/tools/git-executor.md`
+**Path**: `~/.claude/skills/git-executor.md`
 
 **Purpose**: Execute git commands and return structured results with safety checks
 
@@ -335,7 +335,7 @@ input: {
 ---
 
 #### `slack-searcher`
-**Path**: `agent-skills/tools/slack-searcher.md`
+**Path**: `~/.claude/skills/slack-searcher.md`
 
 **Purpose**: Search and retrieve messages, files, and conversations from Slack workspaces
 
@@ -365,7 +365,7 @@ input: {
 ---
 
 #### `go-validator`
-**Path**: `agent-skills/tools/go-validator.md`
+**Path**: `~/.claude/skills/go-validator.md`
 
 **Purpose**: Validate Go projects for correctness, style, and dependency health
 
