@@ -194,7 +194,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured validation report with line-specific issues
   - Used by: go-expert, code-reviewer, performance-optimizer
 
-_More skills coming: language-specific validators (javascript), container operations_
+- **js-validator** — Validate JavaScript/TypeScript projects for code quality
+  - Checks: linting (ESLint), formatting (Prettier), types (tsc), deps (npm audit), tests
+  - Frameworks: React, Vue, Angular, Next.js, Node.js, React Native (auto-detected)
+  - Returns: structured issues with locations, type errors, vulnerabilities
+  - Used by: js-expert, code-reviewer, frontend-developer
+
+_More skills coming: language-specific validators (C++, Swift), container operations_
 
 # Other
 

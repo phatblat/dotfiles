@@ -394,12 +394,44 @@ input: {
 
 ---
 
+#### `js-validator`
+**Path**: `~/.claude/skills/js-validator.md`
+
+**Purpose**: Validate JavaScript and TypeScript projects for code quality, style, and type correctness
+
+**Validation Types**: lint, format, types, deps, test, all
+
+**What It Does**:
+- Runs ESLint to detect code quality issues
+- Checks formatting with Prettier
+- Validates types using TypeScript compiler (tsc)
+- Audits dependencies for security vulnerabilities (npm audit)
+- Runs tests with Jest/Vitest/Mocha
+- Detects frameworks automatically (React, Vue, Angular, Next.js, Node.js, React Native)
+- Returns structured issues with locations and suggestions
+
+**Used By**: `js-expert`, code-reviewer, frontend-developer
+
+**Example Invocation**:
+```
+[invoke js-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "language": "typescript"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
 - `container-expert.md` → Docker/container operations
-- `js-expert.md` → JavaScript/TypeScript validation
+- `cpp-expert.md` → C++ validation
+- `swift-expert.md` → Swift validation
 
 ---
 
