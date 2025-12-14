@@ -364,12 +364,42 @@ input: {
 
 ---
 
+#### `go-validator`
+**Path**: `agent-skills/tools/go-validator.md`
+
+**Purpose**: Validate Go projects for correctness, style, and dependency health
+
+**Validation Types**: compile, lint, format, deps, test, all
+
+**What It Does**:
+- Compiles projects using `go build` to detect errors
+- Runs `go vet` and `golangci-lint` for code quality
+- Checks formatting with `gofmt`
+- Validates dependencies with `go mod`
+- Runs tests and reports coverage
+- Returns structured issues with line-specific locations
+
+**Used By**: `go-expert`, code-reviewer, performance-optimizer
+
+**Example Invocation**:
+```
+[invoke go-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "goVersion": "1.21"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
-- `go-expert.md` → Go-specific operations
 - `container-expert.md` → Docker/container operations
+- `js-expert.md` → JavaScript/TypeScript validation
 
 ---
 

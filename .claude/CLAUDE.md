@@ -188,7 +188,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: matched messages with metadata, threads, attachments, reactions
   - Used by: slack-expert, team-analyst, knowledge-base-assistant
 
-_More skills coming: language-specific validators (go, javascript), container operations_
+- **go-validator** — Validate Go projects for correctness and quality
+  - Checks: compilation (go build), linting (go vet, golangci-lint)
+  - Includes: formatting (go fmt), dependencies (go mod), tests (go test)
+  - Returns: structured validation report with line-specific issues
+  - Used by: go-expert, code-reviewer, performance-optimizer
+
+_More skills coming: language-specific validators (javascript), container operations_
 
 # Other
 
