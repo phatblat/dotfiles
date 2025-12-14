@@ -134,13 +134,15 @@ upgrade:
     claude update
     mise upgrade --bump
 
-# Formats mise config, justfile, and Claude settings.json
+# Formats mise config, justfile Claude settings.json and shell scripts
 [group('configuration')]
 format:
     mise fmt
     just --fmt
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
     jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
+    @echo "Formatting shell scripts..."
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shfmt -w -i 4 -sr {} +
 
 # Removes default.store files, *.hprof files, and homebrew cache from home directory
 [group('configuration')]
@@ -166,9 +168,3 @@ lint:
     mise fmt --check
     @echo "Linting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
-
-# Format shell scripts in .config/zsh/functions
-[group('checks')]
-lint-fix:
-    @echo "Formatting shell scripts..."
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shfmt -w -i 4 -sr {} +
