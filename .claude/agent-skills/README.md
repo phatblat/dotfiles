@@ -425,13 +425,43 @@ input: {
 
 ---
 
+#### `swift-validator`
+**Path**: `~/.claude/skills/swift-validator.md`
+
+**Purpose**: Validate Swift code for correctness, style, and build integrity
+
+**Validation Types**: compile, lint, format, build, deps, test, all
+
+**What It Does**:
+- Compiles Swift code using `swiftc` or Xcode
+- Runs SwiftLint to detect style violations and best practices
+- Checks formatting with SwiftFormat
+- Builds Xcode projects/workspaces with xcodebuild
+- Validates Swift Package Manager dependencies
+- Runs XCTest suites and reports coverage
+- Detects project type automatically (SPM, Xcode project, workspace)
+
+**Used By**: `swift-expert`, code-reviewer, ios-developer
+
+**Example Invocation**:
+```
+[invoke swift-validator]
+input: {
+  "action": "validate",
+  "projectPath": ".",
+  "checks": "all",
+  "scheme": "MyApp"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
 - `container-expert.md` → Docker/container operations
 - `cpp-expert.md` → C++ validation
-- `swift-expert.md` → Swift validation
 
 ---
 

@@ -200,7 +200,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured issues with locations, type errors, vulnerabilities
   - Used by: js-expert, code-reviewer, frontend-developer
 
-_More skills coming: language-specific validators (C++, Swift), container operations_
+- **swift-validator** — Validate Swift code for correctness, style, and build integrity
+  - Checks: compilation (swiftc), linting (SwiftLint), formatting (SwiftFormat), build (xcodebuild)
+  - Projects: SPM (Package.swift), Xcode projects/workspaces (auto-detected)
+  - Includes: dependency validation, XCTest execution and coverage
+  - Used by: swift-expert, code-reviewer, ios-developer
+
+_More skills coming: language-specific validators (C++), container operations_
 
 # Other
 
