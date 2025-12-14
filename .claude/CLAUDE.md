@@ -248,7 +248,19 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with exit codes, artifacts, build steps
   - Used by: make-expert, build-engineer
 
-_More skills coming: specialized generators (Doxygen), script executors_
+- **doxygen-validator** — Validate Doxygen documentation comments in source code
+  - Checks: link generation, tag usage, formatting, content quality, organization
+  - Languages: C++, C, Java, Python, other Doxygen-supported languages
+  - Returns: structured issues by severity with suggestions, coverage metrics
+  - Used by: doxygen-expert, tech-writer, documentation-reviewer
+
+- **markdown-validator** — Validate Markdown documentation files for correctness and style
+  - Checks: syntax, style consistency, link validity, formatting, accessibility
+  - Flavors: CommonMark, GitHub Flavored Markdown, Kramdown, Pandoc
+  - Returns: structured issues by severity with fixable flag, link health, metrics
+  - Used by: tech-writer, documentation-reviewer, markdown-expert
+
+_More skills coming: script executors (AWK)_
 
 # Other
 

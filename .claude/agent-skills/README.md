@@ -678,12 +678,78 @@ input: {
 
 ---
 
+#### `doxygen-validator`
+**Path**: `~/.claude/skills/doxygen-validator.md`
+
+**Purpose**: Validate Doxygen documentation comments in source code
+
+**Supported Languages**: C++, C, Java, Python, other Doxygen-supported languages
+
+**What It Does**:
+- Validates cross-references and link generation (@ref, @see, \link)
+- Checks tag usage (@param, @return, @throws, @brief, @details)
+- Validates comment formatting and structure
+- Identifies missing documentation and quality issues
+- Returns structured issues by severity with suggestions
+- Does NOT generate HTML/PDF documentation or modify source
+
+**Used By**: `doxygen-expert`, tech-writer, documentation-reviewer
+
+**Example Invocation**:
+```
+[invoke doxygen-validator]
+input: {
+  "action": "doxygen",
+  "command": "validate",
+  "args": {
+    "path": "src/api.h",
+    "checks": "all",
+    "language": "cpp"
+  }
+}
+```
+
+---
+
+#### `markdown-validator`
+**Path**: `~/.claude/skills/markdown-validator.md`
+
+**Purpose**: Validate Markdown documentation files for correctness and style
+
+**Supported Flavors**: CommonMark, GitHub Flavored Markdown (GFM), Kramdown, Pandoc
+
+**What It Does**:
+- Checks Markdown syntax errors
+- Validates style consistency (headings, lists, emphasis)
+- Verifies internal and external links
+- Checks code block formatting and tables
+- Ensures accessibility (alt text, heading hierarchy)
+- Returns structured issues by severity with fixable flag
+- Does NOT convert or render Markdown
+
+**Used By**: `tech-writer`, documentation-reviewer, markdown-expert
+
+**Example Invocation**:
+```
+[invoke markdown-validator]
+input: {
+  "action": "markdown",
+  "command": "validate",
+  "args": {
+    "path": "docs/",
+    "checks": "all",
+    "flavor": "gfm"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
 
 - `awk-expert.md` → AWK script execution
-- `doxygen-expert.md` → Documentation generation
 
 ---
 
