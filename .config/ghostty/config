@@ -3,14 +3,16 @@
 # ghostty +show-config --default --docs | bat --language sh
 
 # Shell
-initial-command = /opt/homebrew/bin/fish
-command = /opt/homebrew/bin/fish
+initial-command = /opt/homebrew/bin/nu
+command = /opt/homebrew/bin/nu
 
 # Style
-theme = BlueBerryPie
+# ghostty +list-themes
+# /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
+theme = TokyoNight
 
 font-family = JetBrains Mono
-font-size = 14 
+font-size = 14
 font-thicken = false
 
 window-padding-x = 4
