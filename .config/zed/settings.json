@@ -1,5 +1,4 @@
 {
-  "tab_size": 2,
   "agent": {
     "always_allow_tool_actions": true,
     "default_model": {
@@ -51,6 +50,7 @@
     "include_ignored": false
   },
   "show_whitespaces": "all",
+  "tab_size": 2,
   "terminal": {
     "keep_selection_on_copy": false
   },
