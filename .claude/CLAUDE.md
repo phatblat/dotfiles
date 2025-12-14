@@ -138,7 +138,12 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns structured issues with locations and clippy codes
   - Used by: rust-expert, code-reviewer, performance-optimizer
 
-_More skills coming: code-converter, language-specific tools (go, python), tech-writer_
+- **doc-extractor** — Extract documentation information from source code
+  - Extraction types: comments, structure, examples, undocumented, all
+  - Returns: APIs, doc coverage %, code examples, documentation gaps, suggested structure
+  - Used by: tech-writer, documentation-reviewer, api-designer
+
+_More skills coming: code-converter, language-specific validators (go, python)_
 
 # Other
 

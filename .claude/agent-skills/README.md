@@ -118,6 +118,37 @@ input: {
 
 ---
 
+#### `doc-extractor`
+**Path**: `agent-skills/tools/doc-extractor.md`
+
+**Purpose**: Extract documentation-relevant information from source code
+
+**Extraction Types**: comments, structure, examples, undocumented, all
+
+**What It Does**:
+- Extracts documentation comments and docstrings
+- Parses code structure and public APIs
+- Identifies undocumented code items
+- Extracts and validates code examples
+- Suggests documentation structure
+- Returns structured extraction data
+- Does NOT generate documentation
+
+**Used By**: `tech-writer`, documentation-reviewer, api-designer
+
+**Example Invocation**:
+```
+[invoke doc-extractor]
+input: {
+  "action": "extract",
+  "sourcePath": "src/lib.rs",
+  "language": "rust",
+  "extractTypes": "all"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 These archived agents should be converted to skills once the pattern is established:
