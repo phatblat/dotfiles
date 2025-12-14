@@ -1,5 +1,5 @@
 {
-  "theme": "custom",
+  "theme": "tokyo-night",
   "display": {
     "style": "powerline",
     "charset": "unicode",
@@ -16,7 +16,7 @@
             "enabled": true
           },
           "session": {
-            "enabled": true,
+            "enabled": false,
             "type": "both",
             "costSource": "calculated"
           },
@@ -29,15 +29,15 @@
       {
         "segments": {
           "block": {
-            "enabled": true,
+            "enabled": false,
             "type": "weighted",
             "burnType": "tokens"
           },
           "version": {
-            "enabled": true
+            "enabled": false
           },
           "metrics": {
-            "enabled": true,
+            "enabled": false,
             "showResponseTime": true,
             "showLastResponseTime": true,
             "showDuration": true,
@@ -46,7 +46,7 @@
             "showLinesRemoved": true
           },
           "context": {
-            "enabled": true,
+            "enabled": false,
             "showPercentageOnly": false
           },
           "tmux": {
@@ -57,7 +57,7 @@
       {
         "segments": {
           "git": {
-            "enabled": true,
+            "enabled": false,
             "showSha": true,
             "showWorkingTree": true,
             "showOperation": true,
