@@ -3,7 +3,12 @@
   "extends": ["config:recommended"],
   "assignAutomerge": true,
   "assignees": ["phatblat"],
+  "labels": ["dependencies"],
   "platformAutomerge": true,
+  "mise": {
+    "enabled": true,
+    "fileMatch": ["\\.config/mise/config\\.toml$"]
+  },
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
@@ -11,6 +16,18 @@
       "automerge": true,
       "automergeStrategy": "rebase",
       "automergeType": "pr"
+    },
+    {
+      "description": "Group all mise tool updates",
+      "matchManagers": ["mise"],
+      "groupName": "mise tools"
+    },
+    {
+      "description": "Group all npm tool updates",
+      "matchManagers": ["mise"],
+      "matchDepPatterns": ["^npm:"],
+      "groupName": "mise npm tools"
     }
-  ]
+  ],
+  "schedule": ["before 9am on monday"]
 }
