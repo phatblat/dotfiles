@@ -893,6 +893,39 @@ input: {
 
 ---
 
+#### `diagram-generator`
+**Path**: `~/.claude/skills/diagram-generator.md`
+
+**Purpose**: Generate, validate, and render diagrams using diagram-as-code tools
+
+**Supported Tools**: Mermaid, PlantUML, GraphViz (DOT), D2
+
+**What It Does**:
+- Generates diagram syntax for flowcharts, sequence diagrams, class diagrams, ER diagrams, etc.
+- Validates diagram syntax for correctness
+- Renders diagrams to output formats (SVG, PNG, PDF)
+- Supports multiple themes and styling options
+- Batch processes multiple diagrams
+- Returns structured results with validation status, rendered artifacts, metadata
+- Handles Mermaid (12+ diagram types), PlantUML (8+ diagram types), GraphViz, D2
+
+**Used By**: `uml-expert`, architecture-designer, documentation-generator
+
+**Example Invocation**:
+```
+[invoke diagram-generator]
+input: {
+  "action": "generate",
+  "tool": "mermaid",
+  "diagramType": "flowchart",
+  "syntax": "graph TD\\n  A[Start] --> B{Decision}\\n  B -->|Yes| C[Process]\\n  B -->|No| D[End]",
+  "outputFormat": "svg",
+  "outputPath": "diagrams/flow.svg"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -952,4 +985,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator)

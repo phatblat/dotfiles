@@ -289,6 +289,14 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with status codes, headers, body, timing, rate limit info
   - Used by: rest-expert, api-developer, integration-engineer
 
+- **diagram-generator** — Generate, validate, and render diagrams using diagram-as-code tools
+  - Tools: Mermaid (12+ types), PlantUML (8+ types), GraphViz (DOT), D2
+  - Diagram types: flowchart, sequence, class, ER, state, Gantt, architecture, etc.
+  - Outputs: SVG, PNG, PDF with theming and custom styling
+  - Features: syntax validation, batch processing, metadata export, optimization
+  - Returns: structured results with validation status, rendered artifacts, file metadata
+  - Used by: uml-expert, architecture-designer, documentation-generator
+
 # Other
 
 - timeout/gtimeout not installed
