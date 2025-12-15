@@ -10,7 +10,7 @@
       "model": "qwen/qwen3-coder-30b",
       "provider": "lmstudio"
     },
-    "play_sound_when_agent_done": false,
+    "play_sound_when_agent_done": true,
     "single_file_review": false
   },
   "agent_servers": {
