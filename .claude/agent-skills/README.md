@@ -961,6 +961,42 @@ input: {
 
 ---
 
+#### `macos-system`
+**Path**: `~/.claude/skills/macos-system.md`
+
+**Purpose**: Execute macOS system operations for configuration, automation, and information gathering
+
+**Supported Commands**: defaults, PlistBuddy, launchctl, brew, mas, system_profiler, sw_vers, osascript, diskutil
+
+**What It Does**:
+- Manages system preferences (defaults read/write, PlistBuddy)
+- Controls services (launchctl load/unload/start/stop)
+- Manages packages (Homebrew, Mac App Store CLI)
+- Gathers system information (hardware, software, version)
+- Executes AppleScript and Automator workflows
+- Manages applications (open, kill, list running apps)
+- Returns structured results with command output, parsed metadata, status codes
+
+**Used By**: `macos-expert`, system-administrator, automation-engineer
+
+**Example Invocation**:
+```
+[invoke macos-system]
+input: {
+  "action": "execute",
+  "command": "defaults",
+  "operation": "write",
+  "args": {
+    "domain": "com.apple.dock",
+    "key": "autohide",
+    "value": true,
+    "type": "bool"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -1020,4 +1056,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain, macos-system)

@@ -305,6 +305,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with build output, flash status, serial data, debug info
   - Used by: embedded-expert, iot-developer, firmware-engineer
 
+- **macos-system** — Execute macOS system operations for configuration and automation
+  - Commands: defaults, PlistBuddy, launchctl, brew, mas, system_profiler, sw_vers, osascript, diskutil
+  - Operations: preferences management, service control, package management, system info, AppleScript
+  - Features: SIP awareness, TCC permission handling, version compatibility checks
+  - Returns: structured results with command output, parsed metadata, security warnings
+  - Used by: macos-expert, system-administrator, automation-engineer
+
 # Other
 
 - timeout/gtimeout not installed
