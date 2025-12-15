@@ -66,11 +66,11 @@ search tool:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    if mise search "{{ tool }}" &>/dev/null; then
+    if mise search --match-type equal "{{ tool }}" &>/dev/null 2>&1; then
         echo "Finding latest version of {{ tool }} in mise..."
         version=$(mise ls-remote "{{ tool }}" | tail -n1)
         echo -e "Latest version: {{ color_green }}{{ tool }}@$version{{ color_reset }}"
-    elif brew search "{{ tool }}" | grep -q "{{ tool }}"; then
+    elif brew search "{{ tool }}" 2>&1| grep -q "{{ tool }}"; then
         echo "Tool '{{ tool }}' found in homebrew:"
         brew info "{{ tool }}"
     else
