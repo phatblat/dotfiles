@@ -16,7 +16,7 @@ val gradleWrapperVersion: String by project
 plugins {
     // Gradle plugin portal - https://plugins.gradle.org/
     // id("at.phatbl.clamp") version "1.1.1"
-    id("at.phatbl.shellexec") version "1.2.0"
+    id("at.phatbl.shellexec") version "1.5.2"
 }
 
 /* -------------------------------------------------------------------------- */
