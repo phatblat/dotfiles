@@ -1031,6 +1031,39 @@ input: {
 
 ---
 
+#### `document-processor`
+**Path**: `~/.claude/skills/document-processor.md`
+
+**Purpose**: Execute document processing operations including LaTeX compilation, BibTeX processing, and format conversion
+
+**Supported Operations**: LaTeX compilation (pdflatex, xelatex, lualatex), BibTeX processing (bibtex, biber), document conversion (pandoc, ps2pdf, pdftotext)
+
+**What It Does**:
+- Compiles LaTeX documents to PDF/DVI (pdflatex, xelatex, lualatex, latex)
+- Processes bibliographies (bibtex, biber)
+- Converts documents between formats (pandoc, ps2pdf, pdf2ps, pdftotext, pdftk)
+- Counts words in LaTeX documents (texcount)
+- Checks LaTeX syntax (chktex, lacheck)
+- Returns structured results with compilation output, errors, generated artifacts, metadata
+- Handles full LaTeX → BibTeX → LaTeX workflow automatically
+
+**Used By**: `paper-expert`, documentation-generator, academic-writer
+
+**Example Invocation**:
+```
+[invoke document-processor]
+input: {
+  "action": "compile-with-bib",
+  "engine": "pdflatex",
+  "bibEngine": "bibtex",
+  "document": "paper.tex",
+  "bibliography": "references.bib",
+  "workingDir": "latex-project/"
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -1090,4 +1123,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain, macos-system, linux-system)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain, macos-system, linux-system, document-processor)

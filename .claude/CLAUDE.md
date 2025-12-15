@@ -319,6 +319,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with command output, parsed metrics, status codes
   - Used by: linux-expert, system-administrator, devops-engineer
 
+- **document-processor** — Execute document processing operations for LaTeX and format conversion
+  - Operations: LaTeX compilation (pdflatex, xelatex, lualatex), bibliography (bibtex, biber), conversion (pandoc)
+  - Tools: pdftotext, ps2pdf, pdf2ps, pdftk, texcount, chktex, lacheck
+  - Features: full LaTeX→BibTeX→LaTeX workflow, multi-pass compilation, format conversion (PDF/PS/Markdown/HTML)
+  - Returns: structured results with compilation output, errors, generated artifacts, metadata
+  - Used by: paper-expert, documentation-generator, academic-writer
+
 # Other
 
 - timeout/gtimeout not installed
