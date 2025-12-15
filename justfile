@@ -34,6 +34,7 @@ color_reset := '\e[0m'
 # aliases
 #
 
+alias cc := claude-continue
 alias fmt := format
 alias ls := list
 alias od := outdated
@@ -77,18 +78,37 @@ search tool:
         exit 1
     fi
 
+#
+# claude group recipes
+#
+
+# Continue Claude Code session bypassing permissions
+[group('claude')]
+claude-continue:
+    claude --continue --permission-mode bypassPermissions
+
+# Installs Claude Code native binary
+[group('claude')]
+install-claude:
+    npx @anthropic-ai/claude-code install
+
+# Upgrades Claude Code
+[group('claude')]
+upgrade-claude:
+    claude update
+
 # Show Claude usage statistics
-[group('info')]
+[group('claude')]
 usage:
     ccusage
 
 # Open Claude usage online
-[group('info')]
+[group('claude')]
 usage-web:
-  open https://claude.ai/settings/usage
+    open https://claude.ai/settings/usage
 
 # Show Claude usage statistics dashboard
-[group('info')]
+[group('claude')]
 usage-board:
     ccusage blocks --live
 
@@ -123,15 +143,9 @@ add tool:
 install:
     mise install
 
-# Installs Claude Code native binary
-[group('configuration')]
-install-claude:
-    npx @anthropic-ai/claude-code install
-
 # Upgrades tools using mise
 [group('configuration')]
-upgrade:
-    claude update
+upgrade: upgrade-claude
     mise upgrade --bump
 
 # Formats mise config, justfile Claude settings.json and shell scripts

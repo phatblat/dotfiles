@@ -3,14 +3,16 @@
 # ghostty +show-config --default --docs | bat --language sh
 
 # Shell
-initial-command = /opt/homebrew/bin/fish
-command = /opt/homebrew/bin/fish
+initial-command = /opt/homebrew/bin/nu
+command = /opt/homebrew/bin/nu
 
 # Style
-theme = BlueBerryPie
+# ghostty +list-themes
+# /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
+theme = TokyoNight
 
 font-family = JetBrains Mono
-font-size = 14 
+font-size = 14
 font-thicken = false
 
 window-padding-x = 4
@@ -28,7 +30,8 @@ selection-background =
 
 # Behavior
 confirm-close-surface = false
-copy-on-select = true
+copy-on-select = clipboard
+initial-window = false
 
 # Quick Terminal
 quick-terminal-animation-duration = 0
@@ -37,6 +40,6 @@ quick-terminal-position = top
 quick-terminal-screen = main
 
 # Key Bindings
-#keybind = global:ctrl+`=toggle_quick_terminal
+keybind = global:ctrl+`=toggle_quick_terminal
 keybind = super+d=new_split:right
 keybind = shift+enter=text:\n
