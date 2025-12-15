@@ -147,6 +147,7 @@ install:
 [group('configuration')]
 upgrade *args: upgrade-claude
     mise upgrade --bump {{ args }}
+    claude /git ~/.config/mise/config.toml
 
 # Formats mise config, justfile Claude settings.json and shell scripts
 [group('configuration')]
