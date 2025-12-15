@@ -312,6 +312,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with command output, parsed metadata, security warnings
   - Used by: macos-expert, system-administrator, automation-engineer
 
+- **linux-system** — Execute Linux system operations for configuration and monitoring
+  - Commands: systemctl, apt/dnf/pacman/zypper, journalctl, sysctl, free, df, top, vmstat, iostat
+  - Operations: service management, package management, system info, performance monitoring, log analysis
+  - Features: distribution auto-detection, kernel parameter configuration, systemd integration
+  - Returns: structured results with command output, parsed metrics, status codes
+  - Used by: linux-expert, system-administrator, devops-engineer
+
 # Other
 
 - timeout/gtimeout not installed

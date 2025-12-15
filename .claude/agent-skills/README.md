@@ -997,6 +997,40 @@ input: {
 
 ---
 
+#### `linux-system`
+**Path**: `~/.claude/skills/linux-system.md`
+
+**Purpose**: Execute Linux system operations for configuration, monitoring, and information gathering
+
+**Supported Commands**: systemctl, apt/dnf/pacman, journalctl, sysctl, free, df, top, vmstat, iostat, uname
+
+**What It Does**:
+- Manages services (systemctl start/stop/enable/status)
+- Manages packages (apt, dnf, yum, pacman, zypper)
+- Gathers system information (uname, /proc, /sys, lsb_release)
+- Monitors performance (free, df, top, vmstat, iostat, sar)
+- Analyzes logs (journalctl, dmesg)
+- Configures system (sysctl, hostnamectl, timedatectl)
+- Auto-detects distribution and uses appropriate commands
+- Returns structured results with command output, parsed metadata, status codes
+
+**Used By**: `linux-expert`, system-administrator, devops-engineer
+
+**Example Invocation**:
+```
+[invoke linux-system]
+input: {
+  "action": "execute",
+  "command": "systemctl",
+  "operation": "status",
+  "args": {
+    "service": "nginx"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -1056,4 +1090,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain, macos-system)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain, macos-system, linux-system)
