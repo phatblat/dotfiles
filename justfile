@@ -34,6 +34,7 @@ color_reset := '\e[0m'
 # aliases
 #
 
+alias cc := claude-continue
 alias fmt := format
 alias ls := list
 alias od := outdated
@@ -95,6 +96,11 @@ usage-board:
 #
 # configuration group recipes
 #
+
+# Continue Claude Code session bypassing permissions
+[group('configuration')]
+claude-continue:
+    claude --continue --permission-mode bypassPermissions
 
 # Adds a new tool using mise, installing the latest version
 [group('configuration')]
