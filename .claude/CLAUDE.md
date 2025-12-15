@@ -297,6 +297,14 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with validation status, rendered artifacts, file metadata
   - Used by: uml-expert, architecture-designer, documentation-generator
 
+- **embedded-toolchain** — Execute embedded development operations for microcontrollers and SBCs
+  - Platforms: Arduino, ESP32/ESP8266, STM32, nRF52, Raspberry Pi Pico, AVR, RISC-V
+  - Operations: compile, flash, serial monitor, debug (GDB/OpenOCD), device detection
+  - Toolchains: Arduino CLI, ESP-IDF, ARM GCC, PlatformIO, avrdude, esptool, J-Link
+  - Features: build artifacts, memory usage analysis, serial communication, filesystem upload
+  - Returns: structured results with build output, flash status, serial data, debug info
+  - Used by: embedded-expert, iot-developer, firmware-engineer
+
 # Other
 
 - timeout/gtimeout not installed

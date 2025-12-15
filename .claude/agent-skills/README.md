@@ -926,6 +926,41 @@ input: {
 
 ---
 
+#### `embedded-toolchain`
+**Path**: `~/.claude/skills/embedded-toolchain.md`
+
+**Purpose**: Execute embedded systems development operations for microcontrollers and SBCs
+
+**Supported Platforms**: Arduino, ESP32/ESP8266, STM32, nRF52, Raspberry Pi Pico, AVR, RISC-V
+
+**What It Does**:
+- Compiles firmware for embedded platforms (Arduino CLI, ESP-IDF, ARM GCC, PlatformIO)
+- Flashes firmware to devices (avrdude, esptool, OpenOCD, J-Link)
+- Monitors serial communication (read/write serial ports)
+- Starts debugging sessions (GDB, OpenOCD)
+- Lists and detects connected devices
+- Manages filesystem uploads (SPIFFS, LittleFS)
+- Returns structured results with build output, flash status, serial data, memory usage
+
+**Used By**: `embedded-expert`, iot-developer, firmware-engineer
+
+**Example Invocation**:
+```
+[invoke embedded-toolchain]
+input: {
+  "action": "compile",
+  "platform": "esp32",
+  "toolchain": "esp-idf",
+  "projectPath": "my-project/",
+  "board": "esp32dev",
+  "config": {
+    "optimization": "O2"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -985,4 +1020,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain)
