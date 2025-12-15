@@ -192,7 +192,6 @@ install:
 [group('configuration')]
 upgrade *args: update-nix
     mise upgrade --bump {{ args }}
-    claude /git ~/.config/mise/config.toml
 
 # Updates home-manager flake and rebuilds configuration
 [group('configuration')]
