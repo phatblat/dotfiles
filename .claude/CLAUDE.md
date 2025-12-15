@@ -260,7 +260,12 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured issues by severity with fixable flag, link health, metrics
   - Used by: tech-writer, documentation-reviewer, markdown-expert
 
-_More skills coming: script executors (AWK)_
+- **awk-executor** — Execute AWK scripts and one-liners for data processing
+  - Modes: one-liner, script, file, pipeline
+  - Variants: macOS BSD awk, GNU awk (gawk), auto-detect
+  - Features: pattern matching, field processing, aggregation, preprocessing/postprocessing
+  - Returns: structured results with exit codes, output, metadata (lines processed, duration)
+  - Used by: awk-expert, data-processor, log-analyzer
 
 # Other
 

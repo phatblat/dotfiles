@@ -745,11 +745,44 @@ input: {
 
 ---
 
+#### `awk-executor`
+**Path**: `~/.claude/skills/awk-executor.md`
+
+**Purpose**: Execute AWK scripts and one-liners for data processing tasks
+
+**Supported Modes**: one-liner, script, file, pipeline
+
+**What It Does**:
+- Executes AWK programs for pattern matching and text extraction
+- Supports both macOS BSD awk and GNU awk (gawk)
+- Handles field/record processing with custom separators
+- Processes log files, CSV, TSV, and structured text data
+- Supports preprocessing (grep, sort) and postprocessing pipelines
+- Returns structured results with exit codes, output, metadata
+- Auto-detects appropriate AWK variant based on script features
+
+**Used By**: `awk-expert`, data-processor, log-analyzer
+
+**Example Invocation**:
+```
+[invoke awk-executor]
+input: {
+  "action": "execute",
+  "mode": "one-liner",
+  "script": "{ count[$3]++ } END { for (k in count) print k, count[k] }",
+  "inputFiles": ["server.log"],
+  "options": {
+    "fieldSeparator": " ",
+    "postProcess": "sort -k2 -nr"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
-These archived agents should be converted to skills once the pattern is established:
-
-- `awk-expert.md` → AWK script execution
+_No agents awaiting conversion at this time._
 
 ---
 
@@ -806,4 +839,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14
+Last Updated: 2025-12-14 (added awk-executor)
