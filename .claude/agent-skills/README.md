@@ -1064,6 +1064,39 @@ input: {
 
 ---
 
+#### `vscode-executor`
+**Path**: `~/.claude/skills/vscode-executor.md`
+
+**Purpose**: Execute Visual Studio Code CLI operations for extension management, file/folder operations, and command execution
+
+**Supported Operations**: Extension management (install, uninstall, list), file/folder operations (open, diff, goto-line), workspace operations (add-folder, new-window), command execution (via URIs)
+
+**What It Does**:
+- Installs/uninstalls VS Code extensions (code --install-extension, code --uninstall-extension)
+- Lists installed extensions with versions (code --list-extensions)
+- Opens files, folders, and workspaces (code path/to/file)
+- Opens diff view comparing files (code --diff file1 file2)
+- Executes VS Code commands via URIs (vscode://command/...)
+- Manages profiles and windows (--profile, --new-window)
+- Returns structured results with command output, extension lists, operation status
+- Auto-detects platform (macOS, Linux, Windows)
+
+**Used By**: `vscode-expert`, editor-automation, workspace-manager
+
+**Example Invocation**:
+```
+[invoke vscode-executor]
+input: {
+  "action": "execute",
+  "operation": "install-extension",
+  "args": {
+    "extensionId": "ms-python.python"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -1123,4 +1156,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain, macos-system, linux-system, document-processor)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client, diagram-generator, embedded-toolchain, macos-system, linux-system, document-processor, vscode-executor)

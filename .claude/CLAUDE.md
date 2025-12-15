@@ -326,6 +326,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with compilation output, errors, generated artifacts, metadata
   - Used by: paper-expert, documentation-generator, academic-writer
 
+- **vscode-executor** — Execute Visual Studio Code CLI operations for automation
+  - Operations: extension management (install, uninstall, list), file/folder operations (open, diff, goto-line)
+  - Commands: code --install-extension, code --list-extensions, code --diff, command URIs (vscode://command/...)
+  - Features: workspace management, profile support, cross-platform (macOS, Linux, Windows)
+  - Returns: structured results with command output, extension lists, operation status
+  - Used by: vscode-expert, editor-automation, workspace-manager
+
 # Other
 
 - timeout/gtimeout not installed
