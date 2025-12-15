@@ -267,6 +267,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with exit codes, output, metadata (lines processed, duration)
   - Used by: awk-expert, data-processor, log-analyzer
 
+- **network-diagnostics** — Execute network diagnostic commands for troubleshooting
+  - Commands: ping, traceroute, mtr, netstat, ss, tcpdump, dig, nslookup, ifconfig, ip, arp, nc
+  - Platforms: macOS, Linux, Windows (auto-detects and adjusts syntax)
+  - Features: connectivity tests, DNS lookup, packet capture, interface status, connection monitoring
+  - Returns: structured results with exit codes, parsed metadata (latency, packet loss, hops, etc.)
+  - Used by: network-expert, infrastructure-developer, devops-engineer
+
 # Other
 
 - timeout/gtimeout not installed

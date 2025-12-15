@@ -780,6 +780,40 @@ input: {
 
 ---
 
+#### `network-diagnostics`
+**Path**: `~/.claude/skills/network-diagnostics.md`
+
+**Purpose**: Execute network diagnostic commands for connectivity troubleshooting and analysis
+
+**Supported Commands**: ping, traceroute, mtr, netstat, ss, tcpdump, dig, nslookup, ifconfig, ip, arp, route, nc
+
+**What It Does**:
+- Executes network diagnostic commands (ping, traceroute, netstat, tcpdump, etc.)
+- Tests connectivity and measures latency
+- Displays network configuration and interface status
+- Monitors connections and bandwidth usage
+- Performs DNS lookups and packet capture
+- Returns structured results with exit codes, output, parsed metadata
+- Handles platform differences (macOS, Linux, Windows)
+
+**Used By**: `network-expert`, infrastructure-developer, devops-engineer
+
+**Example Invocation**:
+```
+[invoke network-diagnostics]
+input: {
+  "action": "diagnose",
+  "command": "ping",
+  "args": {
+    "host": "8.8.8.8",
+    "count": 5,
+    "timeout": 10
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -839,4 +873,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics)
