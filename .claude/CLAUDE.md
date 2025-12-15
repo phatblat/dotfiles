@@ -274,6 +274,13 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with exit codes, parsed metadata (latency, packet loss, hops, etc.)
   - Used by: network-expert, infrastructure-developer, devops-engineer
 
+- **ml-executor** — Execute machine learning operations for training, evaluation, and inference
+  - Frameworks: TensorFlow/Keras, PyTorch, scikit-learn, XGBoost, LightGBM
+  - Operations: train, evaluate, predict, preprocess, hyperparameter tuning, model management
+  - Features: GPU acceleration, cross-validation, data augmentation, model checkpointing
+  - Returns: structured results with metrics, predictions, training logs, artifacts (models, plots)
+  - Used by: ml-expert, data-scientist, ml-engineer
+
 # Other
 
 - timeout/gtimeout not installed

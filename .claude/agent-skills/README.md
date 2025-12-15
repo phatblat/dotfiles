@@ -814,6 +814,46 @@ input: {
 
 ---
 
+#### `ml-executor`
+**Path**: `~/.claude/skills/ml-executor.md`
+
+**Purpose**: Execute machine learning operations for model training, evaluation, and inference
+
+**Supported Frameworks**: TensorFlow/Keras, PyTorch, scikit-learn, XGBoost, LightGBM
+
+**What It Does**:
+- Trains ML models with specified configurations
+- Evaluates models on test/validation data and computes metrics
+- Runs inference/predictions on new data
+- Performs data preprocessing and augmentation
+- Executes hyperparameter tuning (grid search, random search, Bayesian optimization)
+- Manages models (save, load, convert formats)
+- Returns structured results with metrics, predictions, training logs, artifacts
+- Supports GPU acceleration with auto-detection
+
+**Used By**: `ml-expert`, data-scientist, ml-engineer
+
+**Example Invocation**:
+```
+[invoke ml-executor]
+input: {
+  "action": "train",
+  "framework": "pytorch",
+  "config": {
+    "modelScript": "train_model.py",
+    "dataPath": "data/train/",
+    "epochs": 50,
+    "batchSize": 32,
+    "learningRate": 0.001,
+    "validationSplit": 0.2
+  },
+  "outputDir": "models/run1",
+  "gpuEnabled": true
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -873,4 +913,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor)
