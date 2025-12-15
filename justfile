@@ -145,8 +145,8 @@ install:
 
 # Upgrades tools using mise
 [group('configuration')]
-upgrade: upgrade-claude
-    mise upgrade --bump
+upgrade *args: upgrade-claude
+    mise upgrade --bump {{ args }}
 
 # Formats mise config, justfile Claude settings.json and shell scripts
 [group('configuration')]
