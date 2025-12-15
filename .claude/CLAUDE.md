@@ -281,6 +281,14 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
   - Returns: structured results with metrics, predictions, training logs, artifacts (models, plots)
   - Used by: ml-expert, data-scientist, ml-engineer
 
+- **http-client** — Execute HTTP requests for REST API testing and integration
+  - Methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+  - Authentication: Bearer, Basic, API key, OAuth1/2, Digest, custom headers
+  - Content types: JSON, XML, form data, multipart, binary
+  - Features: retry with backoff, file upload/download, SSL validation, proxy support
+  - Returns: structured results with status codes, headers, body, timing, rate limit info
+  - Used by: rest-expert, api-developer, integration-engineer
+
 # Other
 
 - timeout/gtimeout not installed

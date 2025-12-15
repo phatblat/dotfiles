@@ -854,6 +854,45 @@ input: {
 
 ---
 
+#### `http-client`
+**Path**: `~/.claude/skills/http-client.md`
+
+**Purpose**: Execute HTTP requests for REST API testing and integration
+
+**Supported Methods**: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+
+**What It Does**:
+- Executes HTTP requests with various methods and payloads
+- Handles authentication (Bearer, Basic, API key, OAuth1/2, Digest, custom)
+- Supports multiple content types (JSON, XML, form data, multipart, binary)
+- Manages headers, query parameters, and request/response bodies
+- Implements retry logic with exponential backoff
+- Handles file uploads and downloads
+- Returns structured results with status codes, headers, body, timing metadata
+- Validates SSL certificates and reports TLS version
+
+**Used By**: `rest-expert`, api-developer, integration-engineer
+
+**Example Invocation**:
+```
+[invoke http-client]
+input: {
+  "action": "request",
+  "method": "POST",
+  "url": "https://api.example.com/v1/users",
+  "auth": {
+    "type": "bearer",
+    "token": "eyJhbGciOiJIUzI1NiIs..."
+  },
+  "body": {
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+}
+```
+
+---
+
 ## Future Skills Candidates
 
 _No agents awaiting conversion at this time._
@@ -913,4 +952,4 @@ When the agent needs to search code:
 ## Version
 
 Created: 2025-12-13
-Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor)
+Last Updated: 2025-12-14 (added awk-executor, network-diagnostics, ml-executor, http-client)
