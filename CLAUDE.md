@@ -85,13 +85,13 @@ Set `MISE_PIN=1` in all shells to lock versions.
 
 ### Shell Function Management
 
-The repository tracks 510+ shell functions across 4 shells. When adding/removing functions:
+**IMPORTANT:** When creating, modifying, or deleting shell functions, always update `~/docs/functions.md`:
 
-1. Update statistics in `~/docs/functions.md` Summary section
-2. Add/remove rows in the functions table
-3. Remove obsolete entries from Known Issues section
+1. Add/remove/update the row in the functions table (sorted alphabetically)
+2. Update the checkmarks for which shells implement it (nu, fish, zsh, bash)
+3. Update the Summary statistics if shell counts change
 
-**Key statistics location:** `~/docs/functions.md` (rows 5-21)
+The repository tracks 749 shell functions across 4 shells.
 
 ### Code Search
 
