@@ -213,6 +213,9 @@ format:
 # Removes default.store files, *.hprof files, and homebrew cache from home directory
 [group('configuration')]
 clean:
+    trash $(mise cache)
+    mise prune
+    brew cleanup
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f "$HOME"/*.hprof
     rm -rf "$(brew --cache)"
