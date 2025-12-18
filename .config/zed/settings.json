@@ -42,6 +42,9 @@
     "rust-analyzer": {
       "initialization_options": {
         "analyzerTargetDir": true
+      },
+      "env": {
+        "DITTOFFI_SEARCH_PATH": "/Users/phatblat/dev/ditto/ditto-sdks/target/aarch64-apple-darwin/debug"
       }
     }
   },
