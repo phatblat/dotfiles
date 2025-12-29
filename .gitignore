@@ -133,6 +133,7 @@ __z_clean.fish
 .config/mise/installs/
 .config/mise/plugins/
 .config/mise/shims/
+.config/mole/
 .config/nushell/history.txt
 .config/op/
 .config/packer/
