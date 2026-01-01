@@ -138,6 +138,26 @@ add tool:
     echo "Installing {{ tool }}@$version..."
     mise use "{{ tool }}@$version"
 
+# Removes a tool from mise config and uninstalls it
+[group('configuration')]
+remove tool:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if ! mise list --global | grep -q "{{ tool }}"; then
+        echo "Tool '{{ tool }}' is not installed via mise"
+        exit 1
+    fi
+
+    # Only uninstall if there are actual versions installed
+    if mise list "{{ tool }}" 2>/dev/null | grep -q "{{ tool }}"; then
+        echo "Uninstalling {{ tool }}..."
+        mise uninstall "{{ tool }}"
+    fi
+
+    echo "Removing {{ tool }} from mise config..."
+    mise rm "{{ tool }}"
+
 # Installs tools using mise
 [group('configuration')]
 install:
