@@ -35,6 +35,7 @@ color_reset := '\e[0m'
 #
 
 alias cc := claude-continue
+alias f := free
 alias fmt := format
 alias ls := list
 alias od := outdated
@@ -49,6 +50,11 @@ alias up := upgrade
 [script]
 _default:
     just --list
+
+# Display free space on root drive
+[group('info')]
+free:
+    @df -h / | awk 'NR==2 {print "Free space on /: " $4 " (" $5 " used)"}'
 
 # Lists installed tools managed by mise
 [group('info')]
