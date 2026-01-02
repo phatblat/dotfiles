@@ -12,6 +12,7 @@
 "npm:mint" = "4.2.256"
 "npm:prettier" = "3.7.4"
 "npm:yarn" = "1.22.22"
+"pipx:pyright" = "1.1.407"
 "pipx:python-lsp-server" = "1.14.0"
 actionlint = "1.7.10"
 ast-grep = "0.40.3"
