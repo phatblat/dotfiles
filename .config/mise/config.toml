@@ -30,7 +30,7 @@ uv = "0.9.18"
 ast-grep = "0.40.3"
 ripgrep = "15.1.0"
 yq = "4.50.1"
-actionlint = "1.7.9"
+actionlint = "1.7.10"
 gemini = "0.22.5"
 lazygit = "0.57.0"
 
