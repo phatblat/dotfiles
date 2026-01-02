@@ -2,6 +2,12 @@ export XDG_CONFIG_HOME=$HOME/.config
 export MISE_PIN=1
 export ENABLE_LSP_TOOL=1
 
+# LLVM (Homebrew keg-only)
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export CMAKE_PREFIX_PATH="/opt/homebrew/opt/llvm"
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
