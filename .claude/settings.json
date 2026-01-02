@@ -79,7 +79,9 @@
       "WebFetch(domain:github.com)",
       "Bash(/bin/ls:*)",
       "Bash(wc:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(which:*)",
+      "Bash(brew --prefix:*)"
     ],
     "defaultMode": "dontAsk",
     "deny": [
