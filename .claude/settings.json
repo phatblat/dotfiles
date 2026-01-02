@@ -54,8 +54,7 @@
     "allow": [
       "Bash(./gradlew:*)",
       "Bash(abbr:*)",
-      "Bash(brew list:*)",
-      "Bash(brew install:*)",
+      "Bash(brew:*)",
       "Bash(ccr code)",
       "Bash(cd:*)",
       "Bash(done)",
@@ -68,7 +67,7 @@
       "Bash(grep:*)",
       "Bash(just:*)",
       "Bash(ls:*)",
-      "Bash(mise config:*)",
+      "Bash(mise:*)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
       "Bash(nu:*)",
@@ -80,8 +79,7 @@
       "Bash(/bin/ls:*)",
       "Bash(wc:*)",
       "Bash(tree:*)",
-      "Bash(which:*)",
-      "Bash(brew --prefix:*)"
+      "Bash(which:*)"
     ],
     "defaultMode": "dontAsk",
     "deny": [
