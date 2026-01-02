@@ -80,4 +80,7 @@ set -gx PATH $PATH /Users/phatblat/.cache/lm-studio/bin
 # mise activation for Go and other tools
 mise activate fish | source
 
-set -x NODE_EXTRA_CA_CERTS (mkcert -CAROOT)/rootCA.pem
+# Set mkcert CA root for Node.js if mkcert is available
+if command --query mkcert
+    set -x NODE_EXTRA_CA_CERTS (mkcert -CAROOT)/rootCA.pem
+end
