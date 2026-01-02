@@ -12,7 +12,7 @@ add_newline = true
 command_timeout = 1000
 
 [aws]
-disabled = true
+disabled = false
 
 [battery]
 disabled = true
@@ -23,6 +23,9 @@ disabled = true
 
 [env_var.MISE_SHELL]
 # This works
+disabled = false
+
+[gcloud]
 disabled = false
 
 [line_break]
