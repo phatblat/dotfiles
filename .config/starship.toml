@@ -36,5 +36,8 @@ disabled = false
 [package]
 disabled = false
 
+[shell]
+disabled = false
+
 [status]
 disabled = true
