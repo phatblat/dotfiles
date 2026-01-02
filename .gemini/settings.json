@@ -6,5 +6,8 @@
   },
   "model": {
     "name": "auto-gemini-3"
+  },
+  "general": {
+    "previewFeatures": true
   }
 }
