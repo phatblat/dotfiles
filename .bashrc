@@ -3,6 +3,7 @@
 # for examples
 
 export MISE_PIN=1
+export ENABLE_LSP_TOOL=1
 
 # If not running interactively, don't do anything
 case $- in
@@ -148,5 +149,5 @@ export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 
 # Source git aliases
 if [ -f ~/.dotfiles/git/alias.bash ]; then
-    source ~/.dotfiles/git/alias.bash
+  source ~/.dotfiles/git/alias.bash
 fi

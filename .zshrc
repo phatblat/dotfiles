@@ -1,5 +1,6 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export MISE_PIN=1
+export ENABLE_LSP_TOOL=1
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH

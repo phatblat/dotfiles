@@ -2,6 +2,7 @@
 #
 # version = "0.106.0"
 
+$env.ENABLE_LSP_TOOL = 1
 $env.XDG_CONFIG_HOME = $nu.home-path | path join '.config'
 $env.XDG_DATA_DIRS = $env.XDG_CONFIG_HOME
 $env.XDG_DATA_HOME = $env.XDG_CONFIG_HOME

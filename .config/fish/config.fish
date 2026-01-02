@@ -4,6 +4,7 @@
 #
 
 set -gx MISE_PIN 1
+set -gx ENABLE_LSP_TOOL 1
 
 # resource limits
 ulimit --file-descriptor-count 4096
