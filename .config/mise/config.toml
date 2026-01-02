@@ -11,6 +11,7 @@
 "npm:ccusage" = "17.2.0"
 "npm:mint" = "4.2.256"
 "npm:prettier" = "3.7.4"
+"npm:vscode-langservers-extracted" = "4.10.0"
 "npm:yarn" = "1.22.22"
 "pipx:pyright" = "1.1.407"
 "pipx:python-lsp-server" = "1.14.0"
