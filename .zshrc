@@ -250,6 +250,11 @@ if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+# Initialize starship - prompt
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
