@@ -314,6 +314,7 @@ __z_clean.fish
 .serverlessrc
 .settings
 .settings/
+.shiv/
 .skiko/
 .slocdata/
 .solargraph/
