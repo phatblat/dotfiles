@@ -6,11 +6,7 @@
 #-------------------------------------------------------------------------------
 
 # ls
-alias l='ls -lFh'         # size,show type,human readable
-alias ll='ls -l'          # long list
-alias la='ls -lAFh'       # long list,show almost all,show type,human readable
 alias lr='ls -tRFh'       # sorted by date,recursive,show type,human readable
-alias lt='ls -ltFh'       # long list,sorted by date,show type,human readable
 alias ldot="la -d .*"     # List hidden files
 alias ldir="ls -ld */"    # List dirs
 alias ldotdir="la -d .*/" # List hidden dirs

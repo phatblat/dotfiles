@@ -1,6 +1,5 @@
 #!/usr/bin/env fish
-function lg \
-    --description='Alias for lg10'
-
-    lg10
+# Launch lazygit
+function lg --description='Launch lazygit'
+    lazygit $argv
 end

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# lg - Alias for lg10
+# lg - Launch lazygit
 function lg() {
-    lg10 "$@"
+    lazygit "$@"
 }

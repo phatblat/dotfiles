@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# l - List files showing size, show type, human readable
+# l - Pretty git log graph with ten commits
 function l() {
-    ls -lFh "$@"
+    lg10 "$@"
 }

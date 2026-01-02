@@ -427,7 +427,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `lgfind`                      | ➖  | ✅   | ➖  | ➖   | Search through lightweight log lg for pattern       |
 | `lggrep`                      | ➖  | ✅   | ➖  | ➖   | Grep through lightweight log `lg` for a regex patt  |
 | `lgg`                         | ➖  | ✅   | ➖  | ➖   | Pretty history graph                                |
-| `lg`                          | ✅  | ✅   | ✅  | ➖   | Alias for lg10                                      |
+| `lg`                          | ✅  | ✅   | ✅  | ✅   | Launch lazygit                                      |
 | `lh`                          | ➖  | ✅   | ➖  | ➖   | Fish function                                       |
 | `license`                     | ➖  | ✅   | ✅  | ➖   | Writes LICENSE.md, adds link to readme              |
 | `line`                        | ➖  | ✅   | ➖  | ➖   | https://github.com/fish-shell/fish-shell/issues/20  |
@@ -448,7 +448,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `ls`                          | ➖  | ✅   | ➖  | ➖   | List files with colors and trailing slashes         |
 | `ltime`                       | ➖  | ✅   | ➖  | ➖   | https://github.com/fish-shell/fish-shell/issues/11  |
 | `lt`                          | ➖  | ✅   | ✅  | ➖   | long list,sorted by date,show type,human readable   |
-| `l`                           | ✅  | ✅   | ✅  | ✅   | List files showing size,show type,human readable    |
+| `l`                           | ✅  | ✅   | ✅  | ✅   | Pretty git log graph with ten commits              |
 | `machine_id`                  | ➖  | ✅   | ➖  | ➖   | Fish function                                       |
 | `mas_tap`                     | ➖  | ✅   | ➖  | ➖   | Prints path to installed mas tap                    |
 | `masd`                        | ➖  | ✅   | ➖  | ➖   | Quick nav to mas dir                                |

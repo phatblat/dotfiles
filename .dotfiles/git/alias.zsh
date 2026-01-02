@@ -37,10 +37,6 @@ alias untracked='git ls-files --others --exclude-standard'
 alias ls-files='git ls-files'
 
 ## Log
-alias log='git log --pretty=fuller'
-alias l='git log --pretty=oneline --abbrev-commit --max-count=15'
-alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
-alias lga="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias show="git show"
 alias review='git log -p --max-count=1'
 alias new='git log $1@{1}..$1@{0} "$@"'

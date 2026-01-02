@@ -2,5 +2,5 @@
 
 # log - Alias for `git log`
 function log() {
-    git log --pretty=fuller "$@"
+  git log --pretty=fuller "$@"
 }
