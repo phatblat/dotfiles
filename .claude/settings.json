@@ -57,6 +57,7 @@
       "Bash(brew:*)",
       "Bash(ccr code)",
       "Bash(cd:*)",
+      "Bash(claude:*)",
       "Bash(done)",
       "Bash(echo:*)",
       "Bash(fd:*)",
