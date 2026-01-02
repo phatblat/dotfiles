@@ -38,6 +38,7 @@ alias cc := claude-continue
 alias f := free
 alias fmt := format
 alias ls := list
+alias lsm := list-missing
 alias od := outdated
 alias ub := usage-board
 alias up := upgrade
@@ -60,6 +61,11 @@ free:
 [group('info')]
 list:
     mise list --global
+
+# Lists missing tools managed by mise
+[group('info')]
+list-missing:
+    mise list --global --missing
 
 # Lists available upgrades
 [group('info')]
