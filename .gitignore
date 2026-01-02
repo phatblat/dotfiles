@@ -195,6 +195,10 @@ __z_clean.fish
 .flutter-devtools/
 .gconf/
 .gem/
+.gemini/google_accounts.json
+.gemini/installation_id
+.gemini/oauth_creds.json
+.gemini/state.json
 .geomapapp-home
 .ghidra/
 .git-ai/bin
