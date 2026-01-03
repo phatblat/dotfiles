@@ -14,10 +14,6 @@ This is a personal dotfiles repository that serves as a cross-machine configurat
   - `zed/` — Zed editor settings
   - `mise/config.toml` — Tool version manager configuration
 
-- **`.dotfiles/`** — Topic-organized shell functions and installers for legacy Bash/Zsh (not actively maintained)
-  - Organized by topic: `git/`, `xcode/`, `macos/`, `install/`, etc.
-  - Zsh files (`.zsh` extension) not being updated; Fish is the primary target
-
 - **`bin/`** — Custom utility scripts
   - Includes build helpers, git utilities, and IDE wrappers
 
@@ -119,7 +115,7 @@ sg --pattern 'function_name' --lang fish
 
 **GPG Signing:** Enabled. Global config at `~/.gitconfig` with email overrides in `~/.config/git/config`.
 
-**Git Aliases:** Extensive collection in `.dotfiles/git/` (not updated for Fish era, but patterns preserved in Fish functions).
+**Git Aliases:** Defined as Fish functions in `~/.config/fish/functions/`.
 
 **Rerere Enabled:** Git rerere helps with conflict resolution.
 
