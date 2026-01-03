@@ -18,7 +18,66 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    # Previously installed
     pkgs.claude-code
+
+    # CLI Tools (migrated from Homebrew)
+    pkgs.act
+    pkgs.apktool
+    pkgs.aria2
+    pkgs.awscli2
+    pkgs.bat
+    pkgs.bazelisk
+    pkgs.btop
+    pkgs.caddy
+    pkgs.cmake
+    pkgs.cocoapods
+    pkgs.direnv
+    pkgs.fish
+    pkgs.fswatch
+    pkgs.fzf
+    pkgs.swig
+    pkgs.gh
+    pkgs.git
+    pkgs.delta
+    pkgs.git-lfs
+    pkgs.git-subrepo
+    pkgs.gnupg
+    pkgs.imagemagick
+    pkgs.jdt-language-server
+    pkgs.jujutsu
+    pkgs.just
+    pkgs.kotlin-language-server
+    pkgs.lazygit
+    pkgs.llvmPackages.llvm
+    pkgs.gnumake
+    pkgs.mas
+    pkgs.mise
+    pkgs.mkcert
+    pkgs.neovim
+    pkgs.nextdns
+    pkgs.nushell
+    pkgs.omnisharp-roslyn
+    pkgs.openjdk17
+    pkgs.pnpm
+    pkgs.protobuf
+    pkgs.ripgrep
+    pkgs.solargraph
+    pkgs.speedtest-cli
+    pkgs.starship
+    pkgs.todoist
+    pkgs.tree
+    pkgs.xcbeautify
+    pkgs.xcodes
+    pkgs.zig
+    pkgs.zoxide
+    pkgs.zsh
+    pkgs.tart
+
+    # GUI Apps (migrated from Homebrew casks)
+    # pkgs.calibre  # marked as broken in nixpkgs
+    pkgs.wezterm
+    pkgs.zed-editor
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

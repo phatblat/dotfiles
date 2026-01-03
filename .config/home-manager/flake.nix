@@ -16,10 +16,7 @@
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;
-        config.allowUnfreePredicate = pkg:
-          builtins.elem (pkgs.lib.getName pkg) [
-            "claude-code"
-          ];
+        config.allowUnfree = true;
       };
     in
     {
