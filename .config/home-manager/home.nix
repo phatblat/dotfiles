@@ -58,7 +58,6 @@
     pkgs.nextdns
     pkgs.nushell
     pkgs.omnisharp-roslyn
-    pkgs.openjdk17
     pkgs.pnpm
     pkgs.protobuf
     pkgs.ripgrep
@@ -73,6 +72,20 @@
     pkgs.zoxide
     pkgs.zsh
     pkgs.tart
+
+    # Libraries and runtimes (migrated from Homebrew)
+    pkgs.bash
+    pkgs.glib
+    pkgs.icu
+    pkgs.ncurses
+    pkgs.openssl
+    pkgs.openjdk21
+    pkgs.pcre2
+    pkgs.pkgconf
+    pkgs.python312
+    pkgs.readline
+    pkgs.softnet
+    pkgs.sqlite
 
     # GUI Apps (migrated from Homebrew casks)
     # pkgs.calibre  # marked as broken in nixpkgs
