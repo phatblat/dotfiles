@@ -4,12 +4,12 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 761 unique functions/aliases across 4 shells**
+**Total: 760 unique functions/aliases across 4 shells**
 
 **Shell Statistics:**
 
-- Fish: 685 functions (most comprehensive)
-- Zsh: 188 functions
+- Fish: 684 functions (most comprehensive)
+- Zsh: 187 functions
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 5 aliases (minimal usage)
 
@@ -17,10 +17,10 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Implemented in all 4 shells: 4
 - Implemented in 3 shells: 40
-- Implemented in 2 shells: 173
+- Implemented in 2 shells: 172
 - Implemented in 1 shell only: 498
 
-**Functions Implemented in Multiple Shells:** 217
+**Functions Implemented in Multiple Shells:** 216
 
 ## Status Legend
 
@@ -332,7 +332,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `gemdir`                      | ➖  | ✅   | ➖  | ➖   | Prints path to system gem dir                       |
 | `genv`                        | ✅  | ✅   | ✅  | ➖   | Grep environment                                    |
 | `getudid`                     | ➖  | ✅   | ✅  | ➖   | Prints and copies UDID of connected iOS device      |
-| `ghostty`                     | ➖  | ✅   | ✅  | ➖   | Wrapper for Ghostty terminal emulator               |
 | `gh_token_test`               | ➖  | ✅   | ➖  | ➖   | Tests GitHub personal access token                  |
 | `ginit`                       | ➖  | ✅   | ➖  | ➖   | Git init                                            |
 | `git-plist-filter`            | ➖  | ✅   | ✅  | ➖   | Converts plist data to XML format                   |
