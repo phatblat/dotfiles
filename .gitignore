@@ -427,6 +427,7 @@ Library/apktool/
 Library/AppleMediaServices/
 Library/Application Scripts/
 Library/Application Support/.com.contextsformac.Contexts.plist
+Library/Application Support/.FUS/
 Library/Application Support/1Password/
 Library/Application Support/act/
 Library/Application Support/AddressBook/
@@ -770,6 +771,7 @@ private/
 Public/
 realm-object-server/
 Recovered Files – */
+Samsung/
 snap/
 src/swift/swift-*
 system_logs.logarchive/
