@@ -39,7 +39,7 @@ shfmt = "3.12.0"
 terraform = "1.14.3"
 uv = "0.9.22"
 yq = "4.50.1"
-gcloud = "555.0.0"
+gcloud = "550.0.0"
 
 [settings]
 experimental = true
