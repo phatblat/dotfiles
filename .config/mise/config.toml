@@ -6,7 +6,7 @@
 [tools]
 "go:golang.org/x/tools/gopls" = "0.21.0"
 "npm:@linear/cli" = "0.0.5"
-"npm:@musistudio/claude-code-router" = "1.0.73"
+"npm:@musistudio/claude-code-router" = "2.0.0"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:ccusage" = "17.2.0"
 "npm:mint" = "4.2.257"
