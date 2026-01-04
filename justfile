@@ -72,6 +72,18 @@ list-missing:
 outdated:
     mise outdated --bump
 
+# Lists installed Nix packages
+[group('info')]
+list-nix:
+    #!/usr/bin/env bash
+    nix-store -q --requisites ~/.nix-profile |
+      xargs -I {} basename {} |
+      sed 's/^[a-z0-9]\{32\}-//' |
+      sed -E 's/-(lib|dev|bin|static|doc)$//' |
+      sort -u |
+      sed -E 's/^(.*)-([0-9].*)$/\1 \2/' |
+      column -t
+
 # Search for a tool in mise or homebrew
 [group('info')]
 search tool:
