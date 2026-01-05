@@ -36,7 +36,6 @@
     pkgs.fish
     pkgs.fswatch
     pkgs.fzf
-    pkgs.swig
     pkgs.gh
     pkgs.git
     pkgs.delta
