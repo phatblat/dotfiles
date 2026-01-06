@@ -8,7 +8,7 @@
 "npm:@linear/cli" = "0.0.5"
 "npm:@musistudio/claude-code-router" = "2.0.0"
 "npm:@vtsls/language-server" = "0.3.0"
-"npm:ccusage" = "17.2.0"
+"npm:ccusage" = "17.2.1"
 "npm:mint" = "4.2.258"
 "npm:prettier" = "3.7.4"
 "npm:vscode-langservers-extracted" = "4.10.0"
