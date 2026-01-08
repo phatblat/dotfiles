@@ -189,9 +189,15 @@ install:
 
 # Upgrades tools using mise
 [group('configuration')]
-upgrade *args: upgrade-claude
+upgrade *args: update-nix
     mise upgrade --bump {{ args }}
     claude /git ~/.config/mise/config.toml
+
+# Updates nixpkgs channel and rebuilds home-manager configuration
+[group('claude')]
+update-nix:
+    nix-channel --update
+    home-manager switch
 
 # Formats mise config, justfile Claude settings.json and shell scripts
 [group('configuration')]
