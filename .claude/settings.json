@@ -84,16 +84,31 @@
     "padding": 0
   },
   "enabledPlugins": {
+    "bash-language-server@claude-code-lsps": true,
     "clangd@claude-code-lsps": true,
+    "code-review@claude-code-plugins": true,
+    "code-review@claude-plugins-official": true,
+    "commit-commands@claude-code-plugins": true,
+    "dart-analyzer@claude-code-lsps": true,
     "feature-dev@claude-code-plugins": true,
+    "github@claude-plugins-official": true,
     "gopls@claude-code-lsps": true,
     "jdtls@claude-code-lsps": true,
+    "kotlin-lsp@claude-code-lsps": true,
+    "lua-language-server@claude-code-lsps": true,
+    "nixd@claude-code-lsps": true,
+    "Notion@claude-plugins-official": true,
     "omnisharp@claude-code-lsps": true,
+    "pyright-lsp@claude-plugins-official": true,
     "pyright@claude-code-lsps": true,
     "rust-analyzer@claude-code-lsps": true,
+    "slack@claude-plugins-official": true,
     "solargraph@claude-code-lsps": true,
-    "vscode-html-css@claude-code-lsps": true,
-    "vtsls@claude-code-lsps": true
+    "sourcekit-lsp@claude-code-lsps": true,
+    "terraform-ls@claude-code-lsps": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "vtsls@claude-code-lsps": true,
+    "yaml-language-server@claude-code-lsps": true
   },
   "alwaysThinkingEnabled": true
 }
