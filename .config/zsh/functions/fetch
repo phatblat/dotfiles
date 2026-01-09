@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# fetch - Fetch branch from the default git remote
+function fetch() {
+    git fetch --prune "$@"
+}
