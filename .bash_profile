@@ -5,6 +5,16 @@
 
 export MISE_PIN=1
 
+# Source Nix profile
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+  . ~/.nix-profile/etc/profile.d/nix.sh
+fi
+
+# Add Nix profile bin to PATH if not already present
+if [ -d ~/.nix-profile/bin ]; then
+  export PATH="$HOME/.nix-profile/bin:$PATH"
+fi
+
 # linux PATHs
 # export PATH=/snap/bin:${PATH}
 # export PATH=/home/linuxbrew/.linuxbrew/sbin:${PATH}
