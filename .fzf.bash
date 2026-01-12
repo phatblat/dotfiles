@@ -10,4 +10,4 @@ fi
 
 # Key bindings
 # ------------
-source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/key-bindings.bash" 2> /dev/null
