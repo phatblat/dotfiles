@@ -11,12 +11,12 @@ This document tracks the implementation status of all shell functions and aliase
 - Fish: 684 functions (most comprehensive)
 - Zsh: 188 functions
 - Nushell: 102 aliases/functions (actively being configured)
-- Bash: 6 functions (minimal usage)
+- Bash: 7 functions (minimal usage)
 
 **Shell Coverage:**
 
-- Implemented in all 4 shells: 5
-- Implemented in 3 shells: 40
+- Implemented in all 4 shells: 6
+- Implemented in 3 shells: 39
 - Implemented in 2 shells: 171
 - Implemented in 1 shell only: 498
 
@@ -260,7 +260,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `dvp`                         | ➖  | ✅   | ➖  | ➖   | Remove all unused local docker volumes              |
 | `dvr`                         | ➖  | ✅   | ➖  | ➖   | Remove docker volumes                               |
 | `dw`                          | ➖  | ✅   | ➖  | ➖   | Git diff with word diff                             |
-| `d`                           | ✅  | ✅   | ✅  | ➖   | Git diff                                            |
+| `d`                           | ✅  | ✅   | ✅  | ✅   | Git diff                                            |
 | `ebw`                         | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                |
 | `editorconfig`                | ➖  | ✅   | ✅  | ➖   | Generates an editorconfig                           |
 | `editw`                       | ➖  | ✅   | ➖  | ➖   | Edit (and wait) using the configured VISUAL editor  |

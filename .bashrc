@@ -158,6 +158,15 @@ export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
 # Git function aliases
+function d() {
+    # --unified: Context lines
+    # --no-prefix: Do not show any source or destination prefix. (e.g. "a/" "b/")
+    git diff \
+        --unified=1 \
+        --no-prefix \
+        "$@"
+}
+
 function s() {
     git status -sb "$@"
 }
