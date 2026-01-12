@@ -11,12 +11,12 @@ This document tracks the implementation status of all shell functions and aliase
 - Fish: 684 functions (most comprehensive)
 - Zsh: 188 functions
 - Nushell: 102 aliases/functions (actively being configured)
-- Bash: 7 functions (minimal usage)
+- Bash: 11 functions (minimal usage)
 
 **Shell Coverage:**
 
-- Implemented in all 4 shells: 6
-- Implemented in 3 shells: 39
+- Implemented in all 4 shells: 8
+- Implemented in 3 shells: 37
 - Implemented in 2 shells: 171
 - Implemented in 1 shell only: 498
 
@@ -389,8 +389,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `ida`                         | ➖  | ✅   | ✅  | ➖   | Launch IDA with elevated privileges                 |
 | `idea`                        | ➖  | ➖   | ➖  | ➖   | Open IntelliJ IDEA                                  |
 | `ignored`                     | ✅  | ✅   | ✅  | ➖   | Show files ignored by git                           |
-| `ignores`                     | ✅  | ✅   | ✅  | ➖   | Standard ignored files                              |
-| `ignore`                      | ✅  | ✅   | ✅  | ➖   | Adds lines to .gitignore                            |
+| `ignores`                     | ✅  | ✅   | ✅  | ✅   | Standard ignored files                              |
+| `ignore`                      | ✅  | ✅   | ✅  | ✅   | Adds lines to .gitignore                            |
 | `index`                       | ➖  | ✅   | ➖  | ➖   | Prints the index of a value in a list               |
 | `init`                        | ✅  | ✅   | ➖  | ➖   | Initialize new git repo in current/optional dir     |
 | `install_choices`             | ➖  | ✅   | ➖  | ➖   | Prints the choices available in the given installa  |
@@ -437,7 +437,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `line`                        | ➖  | ✅   | ➖  | ➖   | https://github.com/fish-shell/fish-shell/issues/20  |
 | `list-authors`                | ➖  | ✅   | ➖  | ➖   | Collect a list of all commit authors from the curr  |
 | `list_codesign_identities`    | ➖  | ✅   | ➖  | ➖   | Fish function                                       |
-| `list`                        | ➖  | ✅   | ✅  | ➖   | Prints a list with each element on a separate line  |
+| `list`                        | ➖  | ✅   | ✅  | ✅   | Prints a list with each element on a separate line  |
 | `ll`                          | ✅  | ✅   | ✅  | ✅   | Long list                                           |
 | `log10`                       | ✅  | ✅   | ✅  | ➖   | Alias for git log                                   |
 | `log1`                        | ➖  | ✅   | ➖  | ➖   | Alias for git log                                   |
@@ -592,7 +592,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `rewrite`                     | ➖  | ✅   | ➖  | ➖   | Rewrite commits changing author/committer info      |
 | `ri`                          | ✅  | ➖   | ➖  | ➖   | Interactive rebase for last N commits (default 10)  |
 | `rl`                          | ➖  | ✅   | ✅  | ➖   | Quick dir navigation                                |
-| `root`                        | ➖  | ✅   | ✅  | ➖   | Display path to root of current git repo            |
+| `root`                        | ➖  | ✅   | ✅  | ✅   | Display path to root of current git repo            |
 | `rp`                          | ➖  | ✅   | ➖  | ➖   | Git reset using patch                               |
 | `ruby_upgrade`                | ➖  | ✅   | ✅  | ➖   | Upgrades ruby across major versions                 |
 | `rubygems`                    | ➖  | ➖   | ✅  | ➖   | Installs and updates Ruby gems                      |

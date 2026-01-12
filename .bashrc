@@ -171,6 +171,103 @@ function s() {
     git status -sb "$@"
 }
 
+function root() {
+    git rev-parse --show-toplevel "$@"
+}
+
+function list() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: list [-s] 1 2 3 4 ..." >&2
+        return 1
+    fi
+
+    local items=("$@")
+    if [[ "$1" == "-s" ]]; then
+        if [[ $# -lt 2 ]]; then
+            echo "Usage: list -s 1 2 3 4 ..." >&2
+            return 2
+        fi
+        shift
+        items=("$@")
+    fi
+
+    printf '%s\n' "${items[@]}"
+}
+
+function ignores() {
+    list -s \
+        ".DS_Store" \
+        "*.xccheckout" \
+        "*.xcscmblueprint" \
+        "xcuserdata" \
+        "Carthage/" \
+        "Pods/" \
+        ".build/" \
+        ".swiftpm/" \
+        ".rubygems/" \
+        "bin/" \
+        "build/" \
+        ".gradle/" \
+        "gradlew.bat" \
+        ".idea/" \
+        "*.iml" \
+        "*.hprof" \
+        ".classpath" \
+        ".project" \
+        ".settings" \
+        ".vscode/" \
+        "target/" \
+        ".cxx/" \
+        "cmake-build-debug/" \
+        ".externalNativeBuild/" \
+        "heapdump.*.phd" \
+        "javacore.*.txt" \
+        "*.dll" \
+        ".vs/" \
+        "obj/" \
+        "packages/" \
+        "bazel-*" \
+        "buck-out/" \
+        "__pycache__/" \
+        "node_modules/" \
+        ".npm/"
+}
+
+function ignore() {
+    local gitignore
+    gitignore="$(root)/.gitignore"
+    local ignore_list
+    local commit_message
+
+    touch "$gitignore"
+
+    if [[ -s "$gitignore" ]]; then
+        ignore_list=$(cat "$gitignore")
+    else
+        ignore_list=$(ignores)
+        commit_message="chore: add standard ignores"
+        echo "Creating .gitignore"
+    fi
+
+    if [[ $# -gt 0 ]]; then
+        {
+            printf '%s\n' "$@"
+            printf '%s\n' "$ignore_list"
+        } | sort -u > "$gitignore"
+        commit_message="chore: ignore $*"
+    else
+        printf '%s\n' "$ignore_list" | sort -u > "$gitignore"
+    fi
+
+    if [[ -z "$commit_message" ]]; then
+        echo "Nothing new added to ignores, just sorted and removed duplicates."
+        return
+    fi
+
+    git add "$gitignore"
+    git commit -m "$commit_message"
+}
+
 # Source git aliases
 if [ -f ~/.dotfiles/git/alias.bash ]; then
   source ~/.dotfiles/git/alias.bash
