@@ -8,8 +8,8 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Fish: 684 functions (most comprehensive)
-- Zsh: 190 functions
+- Zsh: 191 functions (primary shell)
+- Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
 

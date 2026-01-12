@@ -9,9 +9,9 @@ This is a personal dotfiles repository that serves as a cross-machine configurat
 ### Key Directories
 
 - **`.config/`** — Configuration for multiple shells and tools
-  - `fish/` — Fish shell config (primary shell, 685 functions)
+  - `zsh/` — Zsh shell config (primary shell, 191 functions)
+  - `fish/` — Fish shell config (secondary shell, 685 functions)
   - `nushell/` — Nushell config (actively being expanded, 102 aliases)
-  - `zsh/` — Zsh config (legacy, 188 functions, not actively maintained)
   - `zed/` — Zed editor settings
   - `mise/config.toml` — Tool version manager configuration
 
@@ -29,18 +29,20 @@ This is a personal dotfiles repository that serves as a cross-machine configurat
 
 ### Shell Priority & Maintenance
 
-1. **Fish (Primary)** — `~/.config/fish/config.fish`
+1. **Zsh (Primary)** — `~/.zshrc`
+   - 191 functions in `~/.config/zsh/functions/*` (standalone autoload files)
+   - Main shell for daily use, actively maintained
+   - **ALWAYS use standalone autoload functions** — never define functions directly in `.zshrc`
+   - All new functions target Zsh first
+
+2. **Fish (Secondary)** — `~/.config/fish/config.fish`
    - 685 functions in `~/.config/fish/functions/*.fish`
    - Modern syntax, incompatible with Bash/Zsh by design
-   - All new functions target Fish exclusively
+   - Still maintained but no longer primary
 
-2. **Nushell (Active Development)** — `~/.config/nushell/config.nu`
+3. **Nushell (Active Development)** — `~/.config/nushell/config.nu`
    - 102 aliases/functions, actively being expanded
    - Provides modern, structured output
-
-3. **Zsh (Legacy)** — `~/.zshrc`
-   - 188 functions in `.zsh` files
-   - No longer actively maintained, new functions not added
 
 4. **Bash (Minimal)** — `~/.bashrc`
    - Only 5 basic aliases, not a focus
@@ -59,7 +61,11 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 **CRITICAL:** When creating, modifying, or deleting shell functions:
 
-1. Update the function file in the appropriate shell directory
+1. Update the function file in the appropriate shell directory (prioritize Zsh as primary shell)
+   - **Zsh (PRIMARY):** ALWAYS create standalone files in `~/.config/zsh/functions/` (never define in `.zshrc`)
+   - **Fish:** Create standalone files in `~/.config/fish/functions/`
+   - **Nushell:** Define in `~/.config/nushell/config.nu`
+   - **Bash:** Define in `~/.bashrc`
 2. **ALWAYS update `~/docs/functions.md`:**
    - Add/remove/update the row in the alphabetically-sorted table
    - Update checkmarks for which shells implement it (nu, fish, zsh, bash)
@@ -195,7 +201,7 @@ sg --pattern 'function_name' --lang fish
 
 ## Project Context
 
-**Language Focus:** Primarily shell scripting (Fish), with supporting tooling in Go, Ruby, Python, Swift, and other languages.
+**Language Focus:** Primarily shell scripting (Zsh), with supporting tooling in Go, Ruby, Python, Swift, and other languages.
 
 **Primary Use Cases:**
 
