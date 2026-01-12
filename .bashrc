@@ -157,6 +157,11 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
+# Git function aliases
+function s() {
+    git status -sb "$@"
+}
+
 # Source git aliases
 if [ -f ~/.dotfiles/git/alias.bash ]; then
   source ~/.dotfiles/git/alias.bash

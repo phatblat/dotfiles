@@ -11,12 +11,12 @@ This document tracks the implementation status of all shell functions and aliase
 - Fish: 684 functions (most comprehensive)
 - Zsh: 188 functions
 - Nushell: 102 aliases/functions (actively being configured)
-- Bash: 5 aliases (minimal usage)
+- Bash: 6 functions (minimal usage)
 
 **Shell Coverage:**
 
-- Implemented in all 4 shells: 4
-- Implemented in 3 shells: 41
+- Implemented in all 4 shells: 5
+- Implemented in 3 shells: 40
 - Implemented in 2 shells: 171
 - Implemented in 1 shell only: 498
 
@@ -676,7 +676,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `swiftpm`                     | ➖  | ✅   | ➖  | ➖   | Quick nav to SwiftPM-Plugin project                 |
 | `sync`                        | ➖  | ✅   | ✅  | ➖   | Synchronizes git rep                                |
 | `sysinfo`                     | ➖  | ✅   | ➖  | ➖   | Print system info                                   |
-| `s`                           | ✅  | ✅   | ✅  | ➖   | Display abbreviated git status                      |
+| `s`                           | ✅  | ✅   | ✅  | ✅   | Display abbreviated git status                      |
 | `tag`                         | ✅  | ✅   | ➖  | ➖   | Manage git tags                                     |
 | `tarball`                     | ➖  | ✅   | ➖  | ➖   | Creates tarball                                     |
 | `tarls`                       | ➖  | ✅   | ➖  | ➖   | List contents of tarball                            |
