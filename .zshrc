@@ -143,6 +143,11 @@ autoload -Uz ~/.config/zsh/functions/*(:t)
 # Auto-Warpify
 [[ "$-" == *i* ]] && printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh", "uname": "Darwin" }}�'
 
+# aa - Add all modified tracked files to git staging area
+function aa() {
+  git add --update "$@"
+}
+
 # delete-tag - Deletes a git tag from both the local and remote repos
 function delete-tag() {
   local tag="$1"
