@@ -148,6 +148,11 @@ function aa() {
   git add --update "$@"
 }
 
+# cmt - Commit with message
+function cmt() {
+  git commit -m "$@"
+}
+
 # delete-tag - Deletes a git tag from both the local and remote repos
 function delete-tag() {
   local tag="$1"

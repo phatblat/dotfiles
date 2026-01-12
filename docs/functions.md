@@ -9,15 +9,15 @@ This document tracks the implementation status of all shell functions and aliase
 **Shell Statistics:**
 
 - Fish: 684 functions (most comprehensive)
-- Zsh: 189 functions
+- Zsh: 190 functions
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 9
-- Implemented in 3 shells: 37
-- Implemented in 2 shells: 170
+- Implemented in 3 shells: 38
+- Implemented in 2 shells: 169
 - Implemented in 1 shell only: 498
 
 **Functions Implemented in Multiple Shells:** 216
@@ -166,7 +166,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `clone`                       | ✅  | ✅   | ✅  | ➖   | Git clone, then configure repo user                 |
 | `clv`                         | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                |
 | `cmtne`                       | ✅  | ✅   | ➖  | ➖   | Commit with default message                         |
-| `cmt`                         | ✅  | ✅   | ➖  | ➖   | Commit with message                                 |
+| `cmt`                         | ✅  | ✅   | ✅  | ➖   | Commit with message                                 |
 | `codesign_verify`             | ➖  | ✅   | ➖  | ➖   | Verify the codesign of a bundle                     |
 | `col1`                        | ➖  | ✅   | ➖  | ➖   | Prints the first column of input (first argument)   |
 | `commit_count`                | ✅  | ✅   | ✅  | ➖   | Count commits by date for a branch                  |
