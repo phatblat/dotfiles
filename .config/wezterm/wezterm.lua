@@ -14,5 +14,7 @@ config.font_size = 15
 config.font = wezterm.font 'JetBrains Mono'
 config.color_scheme = 'AdventureTime'
 
+config.default_prog = { '/Users/phatblat/.nix-profile/bin/zsh' }
+
 -- Finally, return the configuration to wezterm:
 return config
