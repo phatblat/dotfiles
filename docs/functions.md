@@ -655,7 +655,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `status`                      | ✅  | ➖   | ➖  | ➖   | Git status (full)                                   |
 | `stat`                        | ➖  | ✅   | ➖  | ➖   | Disabled wrapper for stat                           |
 | `stdrop`                      | ✅  | ✅   | ➖  | ➖   | Remove a git stash                                  |
-| `stlist`                      | ✅  | ✅   | ➖  | ➖   | List git stashes                                    |
+| `stlist`                      | ✅  | ✅   | ✅  | ➖   | List git stashes                                    |
 | `stpop`                       | ✅  | ✅   | ➖  | ➖   | Apply and remove the top git stash                  |
 | `strip_teams`                 | ➖  | ✅   | ➖  | ➖   | Strip codesign from Teams app                       |
 | `stsave`                      | ✅  | ✅   | ✅  | ➖   | Save a git stash                                    |

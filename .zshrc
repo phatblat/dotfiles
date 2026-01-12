@@ -190,6 +190,11 @@ function format-patch() {
   git format-patch "$@"
 }
 
+# stlist - List git stashes
+function stlist() {
+  git stash list "$@"
+}
+
 # arp-fix - Disables unicast ARP cache validation
 function arp-fix() {
   if ! user_is_admin; then
