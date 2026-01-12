@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# cmt - Commit with message
+function cmt() {
+  git commit -m "$@"
+}

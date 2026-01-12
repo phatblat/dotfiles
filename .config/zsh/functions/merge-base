@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# merge-base - Git merge-base wrapper
+function merge-base() {
+  git merge-base "$@"
+}

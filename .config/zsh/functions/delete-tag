@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# delete-tag - Deletes a git tag from both the local and remote repos
+function delete-tag() {
+  local tag="$1"
+  if [[ -z "$tag" ]]; then
+    echo "Usage: delete-tag <tag>"
+    return 1
+  fi
+
+  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  local current_remote=$(git config branch."$current_branch".remote)
+
+  git tag --delete "$tag"
+  git push "$current_remote" --delete refs/tags/"$tag"
+}

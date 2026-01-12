@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# stlist - List git stashes
+function stlist() {
+  git stash list "$@"
+}
