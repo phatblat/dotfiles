@@ -11,12 +11,12 @@ This document tracks the implementation status of all shell functions and aliase
 - Fish: 684 functions (most comprehensive)
 - Zsh: 188 functions
 - Nushell: 102 aliases/functions (actively being configured)
-- Bash: 11 functions (minimal usage)
+- Bash: 12 functions (minimal usage)
 
 **Shell Coverage:**
 
-- Implemented in all 4 shells: 8
-- Implemented in 3 shells: 37
+- Implemented in all 4 shells: 9
+- Implemented in 3 shells: 36
 - Implemented in 2 shells: 171
 - Implemented in 1 shell only: 498
 
@@ -279,7 +279,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `faccess`                     | ➖  | ✅   | ➖  | ➖   | Tail the nginx access log                           |
 | `fc`                          | ➖  | ✅   | ➖  | ➖   | Count functions                                     |
 | `ferror`                      | ➖  | ✅   | ➖  | ➖   | Tail the nginx error log                            |
-| `fetch`                       | ✅  | ✅   | ✅  | ➖   | Fetch branch from default git remote                |
+| `fetch`                       | ✅  | ✅   | ✅  | ✅   | Fetch branch from default git remote                |
 | `fe`                          | ➖  | ✅   | ✅  | ➖   | Edit a function                                     |
 | `ff`                          | ➖  | ✅   | ➖  | ➖   | Edit fish dotfiles                                  |
 | `file_base`                   | ➖  | ✅   | ➖  | ➖   | Prints base name after dropping extension           |

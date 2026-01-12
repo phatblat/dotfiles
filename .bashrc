@@ -167,6 +167,10 @@ function d() {
         "$@"
 }
 
+function fetch() {
+    git fetch --prune "$@"
+}
+
 function s() {
     git status -sb "$@"
 }
