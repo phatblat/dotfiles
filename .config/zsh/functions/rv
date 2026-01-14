@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+# List git remote details.
+
+function rv() {
+    # Example input:
+    # origin    git@github.com:phatblat/mas.git (fetch)
+    # origin    git@github.com:phatblat/mas.git (push)
+    # upstream    git@github.com:mas-cli/mas.git (fetch)
+    # upstream    git@github.com:mas-cli/mas.git (push)
+    local input
+    input=$(git remote -v)
+
+    if [[ -z "$input" ]]; then
+        echo "No remotes are currently defined."
+        return 1
+    fi
+
+    local output=()
+    local last_remote=""
+    while IFS= read -r line; do
+        # Split line by tab to get remote name and URL
+        local remote_name="${line%%	*}"
+        local rest="${line#*	}"
+        local url="${rest%% *}"
+
+        if [[ "$last_remote" != "$remote_name" ]]; then
+            # Only add one line for each remote to output
+            output+=("$remote_name" "$url")
+            last_remote="$remote_name"
+        fi
+    done <<< "$input"
+
+    # echo output
+    printf '%s\n' "${output[@]}" | column
+}
