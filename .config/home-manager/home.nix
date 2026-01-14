@@ -88,6 +88,7 @@
 
     # GUI Apps (migrated from Homebrew casks)
     # pkgs.calibre  # marked as broken in nixpkgs
+    pkgs.thunderbird
     pkgs.wezterm
     pkgs.zed-editor
   ];
