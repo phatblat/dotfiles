@@ -10,7 +10,7 @@
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:ccusage" = "18.0.5"
 "npm:mint" = "4.2.269"
-"npm:prettier" = "3.7.4"
+"npm:prettier" = "3.8.0"
 "npm:vscode-langservers-extracted" = "4.10.0"
 "npm:yarn" = "1.22.22"
 "pipx:pyright" = "1.1.408"
