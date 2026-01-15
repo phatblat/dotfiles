@@ -197,7 +197,8 @@ upgrade *args: update-nix
 [group('claude')]
 update-nix:
     nix-channel --update
-    home-manager switch
+    nix flake update --flake ~/.config/home-manager
+    home-manager switch --flake ~/.config/home-manager
 
 # Formats mise config, justfile Claude settings.json and shell scripts
 [group('configuration')]
