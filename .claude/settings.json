@@ -108,7 +108,8 @@
     "terraform-ls@claude-code-lsps": true,
     "typescript-lsp@claude-plugins-official": true,
     "vtsls@claude-code-lsps": true,
-    "yaml-language-server@claude-code-lsps": true
+    "yaml-language-server@claude-code-lsps": true,
+    "document-skills@anthropic-agent-skills": true
   },
   "alwaysThinkingEnabled": true
 }
