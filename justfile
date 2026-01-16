@@ -37,6 +37,7 @@ color_reset := '\e[0m'
 alias cc := claude-continue
 alias f := free
 alias fmt := format
+alias i := install
 alias ls := list
 alias lsm := list-missing
 alias od := outdated
