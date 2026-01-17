@@ -194,10 +194,9 @@ upgrade *args: update-nix
     mise upgrade --bump {{ args }}
     claude /git ~/.config/mise/config.toml
 
-# Updates nixpkgs channel and rebuilds home-manager configuration
-[group('claude')]
+# Updates home-manager flake and rebuilds configuration
+[group('configuration')]
 update-nix:
-    nix-channel --update
     nix flake update --flake ~/.config/home-manager
     home-manager switch --flake ~/.config/home-manager
 
