@@ -111,5 +111,6 @@
     "yaml-language-server@claude-code-lsps": true,
     "document-skills@anthropic-agent-skills": true
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "autoUpdatesChannel": "latest"
 }
