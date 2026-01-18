@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 191 functions (primary shell)
+- Zsh: 192 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -16,8 +16,8 @@ This document tracks the implementation status of all shell functions and aliase
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 9
-- Implemented in 3 shells: 38
-- Implemented in 2 shells: 169
+- Implemented in 3 shells: 39
+- Implemented in 2 shells: 168
 - Implemented in 1 shell only: 498
 
 **Functions Implemented in Multiple Shells:** 216
@@ -165,7 +165,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `clone_or_pull`               | ➖  | ✅   | ✅  | ➖   | Clone fresh or pull existing git repo               |
 | `clone`                       | ✅  | ✅   | ✅  | ➖   | Git clone, then configure repo user                 |
 | `clv`                         | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                |
-| `cmtne`                       | ✅  | ✅   | ➖  | ➖   | Commit with default message                         |
+| `cmtne`                       | ✅  | ✅   | ✅  | ➖   | Commit with default message                         |
 | `cmt`                         | ✅  | ✅   | ✅  | ➖   | Commit with message                                 |
 | `codesign_verify`             | ➖  | ✅   | ➖  | ➖   | Verify the codesign of a bundle                     |
 | `col1`                        | ➖  | ✅   | ➖  | ➖   | Prints the first column of input (first argument)   |

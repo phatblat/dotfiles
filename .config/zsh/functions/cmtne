@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# cmtne - Commit with default message
+function cmtne() {
+    git commit --no-edit "$@"
+}
