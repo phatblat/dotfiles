@@ -204,6 +204,26 @@ lint:
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
 
 #
+# claude-code-router (ccr) recipes
+#
+
+# Show status of CCR
+[group('claude-code-router')]
+ccr-status:
+    ccr status
+
+# Start CCR
+[group('claude-code-router')]
+ccr-start:
+    ccr start &
+    ccr status
+
+# Stop CCR
+[group('claude-code-router')]
+ccr-stop:
+    ccr stop
+
+#
 # claude group recipes
 #
 
