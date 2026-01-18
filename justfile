@@ -227,6 +227,11 @@ ccr-stop:
 # claude group recipes
 #
 
+# Run Claude throught CCR
+[group('claude')]
+code:
+    ccr code --permission-mode bypassPermissions
+
 # Continue Claude Code session bypassing permissions
 [group('claude')]
 claude-continue:
