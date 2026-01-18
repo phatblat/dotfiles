@@ -104,60 +104,6 @@ search tool:
     fi
 
 #
-# claude group recipes
-#
-
-# Continue Claude Code session bypassing permissions
-[group('claude')]
-claude-continue:
-    claude --continue --permission-mode bypassPermissions
-
-# Installs Claude Code native binary
-[group('claude')]
-install-claude:
-    npx @anthropic-ai/claude-code install
-
-# Upgrades Claude Code
-[group('claude')]
-upgrade-claude:
-    claude update
-
-# Show Claude usage statistics
-[group('claude')]
-usage:
-    ccusage
-
-# Open Claude usage online
-[group('claude')]
-usage-web:
-    open https://claude.ai/settings/usage
-
-# Show Claude usage statistics dashboard
-[group('claude')]
-usage-board:
-    ccusage blocks --live
-
-# Start LM Studio server
-[group('lm-studio')]
-lms-start:
-    lms server start
-
-# Stop LM Studio server
-[group('lm-studio')]
-lms-stop:
-    lms server stop
-
-# Reload model
-[group('lm-studio')]
-lms-reload:
-    lms unload qwen/qwen3-coder-480b
-    lms load qwen/qwen3-coder-480b \
-        --context-length 65536 --gpu max -y
-    lms ls
-    lms ps
-    lms server status
-
-#
 # configuration group recipes
 #
 
@@ -256,3 +202,57 @@ lint:
     mise fmt --check
     @echo "Linting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
+
+#
+# claude group recipes
+#
+
+# Continue Claude Code session bypassing permissions
+[group('claude')]
+claude-continue:
+    claude --continue --permission-mode bypassPermissions
+
+# Installs Claude Code native binary
+[group('claude')]
+install-claude:
+    npx @anthropic-ai/claude-code install
+
+# Upgrades Claude Code
+[group('claude')]
+upgrade-claude:
+    claude update
+
+# Show Claude usage statistics
+[group('claude')]
+usage:
+    ccusage
+
+# Open Claude usage online
+[group('claude')]
+usage-web:
+    open https://claude.ai/settings/usage
+
+# Show Claude usage statistics dashboard
+[group('claude')]
+usage-board:
+    ccusage blocks --live
+
+# Start LM Studio server
+[group('lm-studio')]
+lms-start:
+    lms server start
+
+# Stop LM Studio server
+[group('lm-studio')]
+lms-stop:
+    lms server stop
+
+# Reload model
+[group('lm-studio')]
+lms-reload:
+    lms unload qwen/qwen3-coder-480b
+    lms load qwen/qwen3-coder-480b \
+        --context-length 65536 --gpu max -y
+    lms ls
+    lms ps
+    lms server status
