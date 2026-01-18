@@ -137,6 +137,26 @@ usage-web:
 usage-board:
     ccusage blocks --live
 
+# Start LM Studio server
+[group('lm-studio')]
+lms-start:
+    lms server start
+
+# Stop LM Studio server
+[group('lm-studio')]
+lms-stop:
+    lms server stop
+
+# Reload model
+[group('lm-studio')]
+lms-reload:
+    lms unload qwen/qwen3-coder-480b
+    lms load qwen/qwen3-coder-480b \
+        --context-length 65536 --gpu max -y
+    lms ls
+    lms ps
+    lms server status
+
 #
 # configuration group recipes
 #
