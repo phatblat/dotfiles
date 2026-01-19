@@ -19,6 +19,7 @@ __z_clean.fish
 .aspnet/
 .atom/
 .audacity-data/
+.auto-claude/
 .aws/
 .aws/credentials
 .azure-functions-core-tools/
