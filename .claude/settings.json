@@ -45,7 +45,7 @@
     ],
     "defaultMode": "dontAsk"
   },
-  "model": "opusplan",
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
