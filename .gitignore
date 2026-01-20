@@ -1,4 +1,3 @@
-__z_clean.fish
 !.android/repositories.cfg
 !.config/fish/
 !.config/fish/fishfile
@@ -6,6 +5,14 @@ __z_clean.fish
 !.dotfiles/
 !.oh-my-zsh/themes/*
 !Library/Application Support/Code/User/*.json
+*.dll
+*.hprof
+*.iml
+*.padl
+*.swp
+*.xccheckout
+*.xcscmblueprint
+*Google Drive
 .*history
 .advLdap/
 .android/
@@ -19,6 +26,8 @@ __z_clean.fish
 .aspnet/
 .atom/
 .audacity-data/
+.auto-claude-security.json
+.auto-claude-status
 .auto-claude/
 .aws/
 .aws/credentials
@@ -51,6 +60,7 @@ __z_clean.fish
 .claude/plans/
 .claude/plugins/
 .claude/stats-cache.json
+.claude_settings.json
 .cmake-js/
 .cocoapods/
 .codeium/
@@ -90,9 +100,9 @@ __z_clean.fish
 .config/fish/fish_history
 .config/fish/fish_variables
 .config/fish/fishd.*
+.config/fish/functions/__z.fish
 .config/fish/functions/__z_add.fish
 .config/fish/functions/__z_complete.fish
-.config/fish/functions/__z.fish
 .config/fish/functions/__zo.fish
 .config/fish/functions/fish_logo.fish
 .config/fish/functions/get.fish
@@ -192,8 +202,8 @@ __z_clean.fish
 .envrc
 .Epubor_Keys/
 .externalNativeBuild/
-.fastlane_crash_reporting
 .fastlane/
+.fastlane_crash_reporting
 .flutter
 .flutter-devtools/
 .gconf/
@@ -209,8 +219,8 @@ __z_clean.fish
 .gitkraken/
 .GMA/
 .gnome/
-.gnupg_pre_2.1/
 .gnupg/
+.gnupg_pre_2.1/
 .google-cloud-sdk/
 .gradle/
 .groovy/
@@ -225,8 +235,8 @@ __z_clean.fish
 .IntelliJIdea2019.1/
 .ipfs/
 .ipython/
-.iterm2_shell_integration.zsh
 .iterm2/
+.iterm2_shell_integration.zsh
 .itmstransporter/
 .jabba/
 .java/
@@ -273,9 +283,9 @@ __z_clean.fish
 .ngrok/
 .nix-defexpr/
 .nix-profile
-.node_repl_history
 .node-gyp/
 .node/
+.node_repl_history
 .npm-cache/
 .npm/
 .npmrc
@@ -313,6 +323,7 @@ __z_clean.fish
 .rubygems/
 .rustup/
 .rvm/
+.security-key
 .serverless/
 .serverlessrc
 .settings
@@ -345,8 +356,8 @@ __z_clean.fish
 .trunk/
 .Ultimate/
 .vagrant.d/
-.vault_pass.txt
 .vault-token
+.vault_pass.txt
 .vim/
 .viminfo
 .void-editor/
@@ -360,6 +371,7 @@ __z_clean.fish
 .windsurf-server/
 .windsurf/
 .wine/
+.worktrees/
 .Xauthority
 .xsel.log
 .yarn/
@@ -370,20 +382,13 @@ __z_clean.fish
 .zcompdump*
 .zed/
 .zoomus/
+.zsh-update
 .zsh_history*
 .zsh_sessions/
-.zsh-update
-*.dll
-*.hprof
-*.iml
-*.padl
-*.swp
-*.xccheckout
-*.xcscmblueprint
-*Google Drive
 /Library/pnpm
 2nd Brain/
 2ndBrain/
+__z_clean.fish
 Android
 ApkProjects/
 Applications
@@ -457,8 +462,8 @@ Library/Application Support/Chromium/
 Library/Application Support/Claude/
 Library/Application Support/claudia.asterisk.so/
 Library/Application Support/CleanMyMac X/
-Library/Application Support/CleanMyMac_5_HealthMonitor/
 Library/Application Support/CleanMyMac_5/
+Library/Application Support/CleanMyMac_5_HealthMonitor/
 Library/Application Support/Clockify Desktop/
 Library/Application Support/CloudDocs/
 Library/Application Support/co.podzim.BoltGPT/
@@ -756,6 +761,7 @@ Library/Weather/
 Library/WebKit/
 Library/Xamarin/
 logs/
+logs/security/
 markdown/
 mbox
 Minecraft/
