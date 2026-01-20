@@ -9,8 +9,8 @@ This is a personal dotfiles repository that serves as a cross-machine configurat
 ### Key Directories
 
 - **`.config/`** — Configuration for multiple shells and tools
-  - `zsh/` — Zsh shell config (primary shell, 191 functions)
-  - `fish/` — Fish shell config (secondary shell, 685 functions)
+  - `zsh/` — Zsh shell config (primary shell, 192 functions)
+  - `fish/` — Fish shell config (secondary shell, 684 functions)
   - `nushell/` — Nushell config (actively being expanded, 102 aliases)
   - `zed/` — Zed editor settings
   - `mise/config.toml` — Tool version manager configuration
@@ -23,29 +23,30 @@ This is a personal dotfiles repository that serves as a cross-machine configurat
   - Each contains subdirectories for specific projects
 
 - **`docs/`** — Documentation
-  - `functions.md` — Complete inventory of 761 shell functions/aliases across 4 shells
+  - `functions.md` — Complete inventory of 760 shell functions/aliases across 4 shells
 
 ## Shell Configuration Architecture
 
 ### Shell Priority & Maintenance
 
 1. **Zsh (Primary)** — `~/.zshrc`
-   - 191 functions in `~/.config/zsh/functions/*` (standalone autoload files)
+   - 192 functions in `~/.config/zsh/functions/*` (standalone autoload files)
    - Main shell for daily use, actively maintained
    - **ALWAYS use standalone autoload functions** — never define functions directly in `.zshrc`
    - All new functions target Zsh first
 
 2. **Fish (Secondary)** — `~/.config/fish/config.fish`
-   - 685 functions in `~/.config/fish/functions/*.fish`
+   - 684 functions in `~/.config/fish/functions/*.fish`
    - Modern syntax, incompatible with Bash/Zsh by design
    - Still maintained but no longer primary
 
 3. **Nushell (Active Development)** — `~/.config/nushell/config.nu`
    - 102 aliases/functions, actively being expanded
    - Provides modern, structured output
+   - Functions defined in `~/.config/nushell/autoload/*.nu`
 
 4. **Bash (Minimal)** — `~/.bashrc`
-   - Only 5 basic aliases, not a focus
+   - Only 12 basic aliases, not a focus
 
 ### Shell Function Categories
 
@@ -64,18 +65,20 @@ Functions are organized by purpose (see `functions.md` for complete list):
 1. Update the function file in the appropriate shell directory (prioritize Zsh as primary shell)
    - **Zsh (PRIMARY):** ALWAYS create standalone files in `~/.config/zsh/functions/` (never define in `.zshrc`)
    - **Fish:** Create standalone files in `~/.config/fish/functions/`
-   - **Nushell:** Define in `~/.config/nushell/config.nu`
+   - **Nushell:** Create standalone files in `~/.config/nushell/autoload/`
    - **Bash:** Define in `~/.bashrc`
+
 2. **ALWAYS update `~/docs/functions.md`:**
    - Add/remove/update the row in the alphabetically-sorted table
    - Update checkmarks for which shells implement it (nu, fish, zsh, bash)
    - Update the Summary statistics if shell counts change
+
 3. Test the function in the target shell
 
-**Function Statistics:** 761 total unique functions across 4 shells
-- Implemented in all 4 shells: 4
-- Implemented in 3 shells: 40
-- Implemented in 2 shells: 173
+**Function Statistics:** 760 total unique functions across 4 shells
+- Implemented in all 4 shells: 9
+- Implemented in 3 shells: 39
+- Implemented in 2 shells: 168
 - Implemented in 1 shell only: 498
 
 ## Development Tools & Versions
@@ -84,10 +87,10 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 **Key Global Tools** (see `~/.config/mise/config.toml`):
 
-- **Languages:** Node 24.12.0, Python 3.14.2, Ruby 4.0.0, Go 1.25.5, .NET 10.0.101
-- **Build Systems:** Gradle 9.2.1, Just 1.46.0
-- **Containers:** Docker CLI 29.1.3, Docker Compose 5.0.1
-- **Infrastructure:** Terraform 1.14.3, Packer 1.14.3, gcloud 555.0.0
+- **Languages:** Node 25.3.0, Python 3.14.2, Ruby 3.4.8, Go 1.25.6, .NET 10.0.102
+- **Build Systems:** Gradle 9.3.0, Just 1.46.0
+- **Containers:** Docker CLI 29.1.5, Docker Compose 5.0.1
+- **Infrastructure:** Terraform 1.14.3, Packer 1.14.3, gcloud 552.0.0
 - **Specialized Tools:** ast-grep 0.40.3, ripgrep 15.1.0, fd 10.3.0, yq 4.50.1, actionlint 1.7.10, shellcheck 0.11.0, shfmt 3.12.0
 
 **Version Locking:** Set `MISE_PIN=1` in all shells to lock tool versions (already configured in Fish and justfile).
