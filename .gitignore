@@ -1,3 +1,4 @@
+__z_clean.fish
 !.android/repositories.cfg
 !.config/fish/
 !.config/fish/fishfile
@@ -5,14 +6,6 @@
 !.dotfiles/
 !.oh-my-zsh/themes/*
 !Library/Application Support/Code/User/*.json
-*.dll
-*.hprof
-*.iml
-*.padl
-*.swp
-*.xccheckout
-*.xcscmblueprint
-*Google Drive
 .*history
 .advLdap/
 .android/
@@ -48,6 +41,7 @@
 .chef/
 .cisco/
 .classpath
+.claude_settings.json
 .claude-code-router/.claude-code-router.pid
 .claude-server-commander/
 .claude-worktrees/
@@ -60,7 +54,6 @@
 .claude/plans/
 .claude/plugins/
 .claude/stats-cache.json
-.claude_settings.json
 .cmake-js/
 .cocoapods/
 .codeium/
@@ -100,9 +93,9 @@
 .config/fish/fish_history
 .config/fish/fish_variables
 .config/fish/fishd.*
-.config/fish/functions/__z.fish
 .config/fish/functions/__z_add.fish
 .config/fish/functions/__z_complete.fish
+.config/fish/functions/__z.fish
 .config/fish/functions/__zo.fish
 .config/fish/functions/fish_logo.fish
 .config/fish/functions/get.fish
@@ -202,8 +195,8 @@
 .envrc
 .Epubor_Keys/
 .externalNativeBuild/
-.fastlane/
 .fastlane_crash_reporting
+.fastlane/
 .flutter
 .flutter-devtools/
 .gconf/
@@ -219,8 +212,8 @@
 .gitkraken/
 .GMA/
 .gnome/
-.gnupg/
 .gnupg_pre_2.1/
+.gnupg/
 .google-cloud-sdk/
 .gradle/
 .groovy/
@@ -235,8 +228,8 @@
 .IntelliJIdea2019.1/
 .ipfs/
 .ipython/
-.iterm2/
 .iterm2_shell_integration.zsh
+.iterm2/
 .itmstransporter/
 .jabba/
 .java/
@@ -283,9 +276,9 @@
 .ngrok/
 .nix-defexpr/
 .nix-profile
+.node_repl_history
 .node-gyp/
 .node/
-.node_repl_history
 .npm-cache/
 .npm/
 .npmrc
@@ -356,8 +349,8 @@
 .trunk/
 .Ultimate/
 .vagrant.d/
-.vault-token
 .vault_pass.txt
+.vault-token
 .vim/
 .viminfo
 .void-editor/
@@ -380,15 +373,23 @@
 .z
 .zcompcache/
 .zcompdump*
+.zed_server/
 .zed/
 .zoomus/
-.zsh-update
 .zsh_history*
 .zsh_sessions/
+.zsh-update
+*.dll
+*.hprof
+*.iml
+*.padl
+*.swp
+*.xccheckout
+*.xcscmblueprint
+*Google Drive
 /Library/pnpm
 2nd Brain/
 2ndBrain/
-__z_clean.fish
 Android
 ApkProjects/
 Applications
@@ -462,8 +463,8 @@ Library/Application Support/Chromium/
 Library/Application Support/Claude/
 Library/Application Support/claudia.asterisk.so/
 Library/Application Support/CleanMyMac X/
-Library/Application Support/CleanMyMac_5/
 Library/Application Support/CleanMyMac_5_HealthMonitor/
+Library/Application Support/CleanMyMac_5/
 Library/Application Support/Clockify Desktop/
 Library/Application Support/CloudDocs/
 Library/Application Support/co.podzim.BoltGPT/
