@@ -1,4 +1,18 @@
 {
+  "ssh_connections": [
+    {
+      "host": "phatbrain.local",
+      "username": "phatblat",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/Users/phatblat"
+          ]
+        }
+      ]
+    }
+  ],
   "agent": {
     "always_allow_tool_actions": true,
     "default_model": {
