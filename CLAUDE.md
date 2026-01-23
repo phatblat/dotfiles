@@ -68,7 +68,17 @@ Functions are organized by purpose (see `functions.md` for complete list):
 1. Update the function file in the appropriate shell directory (prioritize Zsh as primary shell)
    - **Zsh (PRIMARY):** ALWAYS create standalone files in `~/.config/zsh/functions/` (never define in `.zshrc`)
      - Start every file with `#!/usr/bin/env zsh` shebang
+     - Add a comment describing the function (e.g., `# function_name - Description`)
+     - **CRITICAL:** File content must be the function body directly, NOT wrapped in `function name() { }`
+     - Zsh autoload expects the file content to BE the function body
      - Autoload files do NOT need execute permissions
+     - Example:
+       ```zsh
+       #!/usr/bin/env zsh
+
+       # aa - Add all modified tracked files to git staging area
+       git add --update "$@"
+       ```
    - **Fish:** Create standalone files in `~/.config/fish/functions/`
    - **Nushell:** Create standalone files in `~/.config/nushell/autoload/`
    - **Bash:** Define in `~/.bashrc`
@@ -80,17 +90,14 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 3. Test the function in the target shell
 
-### Critical: Shell Function Overrides
+### Shell Function Overrides
 
-**IMPORTANT:** Several common commands are overridden by Zsh functions:
+Several common commands are overridden by Zsh functions:
 
 - `cat` → wraps `bat` (modern cat replacement with syntax highlighting)
 - `ls` → wraps `command ls -p` (adds trailing slashes on directories)
 
-**Impact:** Standard Bash commands like `cat file | head` will fail in Zsh because `cat` is defined as a function. When running Bash commands:
-- Use `command cat` to bypass the function wrapper
-- Use Read tool instead of `cat` for file reading in Claude Code
-- Use Glob tool instead of `ls` for file listing in Claude Code
+Use `command cat` or `command ls` to bypass these wrappers if needed.
 
 ## Development Tools & Versions
 
