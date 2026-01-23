@@ -64,6 +64,8 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 1. Update the function file in the appropriate shell directory (prioritize Zsh as primary shell)
    - **Zsh (PRIMARY):** ALWAYS create standalone files in `~/.config/zsh/functions/` (never define in `.zshrc`)
+     - Start every file with `#!/usr/bin/env zsh` shebang
+     - Autoload files do NOT need execute permissions
    - **Fish:** Create standalone files in `~/.config/fish/functions/`
    - **Nushell:** Create standalone files in `~/.config/nushell/autoload/`
    - **Bash:** Define in `~/.bashrc`
