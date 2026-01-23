@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 # Renames origin to upstream.
 
-function upstreamify() {
-    remote rename origin upstream
-    rv
-}
+remote rename origin upstream
+rv

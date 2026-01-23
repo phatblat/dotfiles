@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # xv - Prints Xcode version information
-function xv() {
-    xcodebuild -version "$@"
-}
+xcodebuild -version "$@"

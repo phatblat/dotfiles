@@ -1,12 +1,10 @@
 #!/usr/bin/env zsh
 
 # lggrep - Grep through lightweight log `lg` for a regex pattern
-function lggrep() {
-    local pattern="$1"
-    if [[ -z "$pattern" ]]; then
-        echo "Usage: lggrep '.*'"
-        return 1
-    fi
+local pattern="$1"
+if [[ -z "$pattern" ]]; then
+echo "Usage: lggrep '.*'"
+return 1
+fi
 
-    lg -G "$pattern"
-}
+lg -G "$pattern"

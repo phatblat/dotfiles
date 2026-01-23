@@ -1,9 +1,7 @@
 #!/usr/bin/env zsh
 
 # fq - Check for existence of a function
-function fq() {
-    local function_name="$1"
-    local file="$HOME/.config/fish/functions/$function_name.fish"
+local function_name="$1"
+local file="$HOME/.config/fish/functions/$function_name.fish"
 
-    command -v "$function_name" > /dev/null 2>&1 || [[ -e "$file" ]]
-}
+command -v "$function_name" > /dev/null 2>&1 || [[ -e "$file" ]]

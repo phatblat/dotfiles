@@ -1,11 +1,9 @@
 #!/usr/bin/env zsh
 
 # lgg - Pretty history graph
-function lgg() {
-    git log \
-        --graph \
-        --abbrev-commit \
-        --date=relative \
-        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
-        "$@"
-}
+git log \
+--graph \
+--abbrev-commit \
+--date=relative \
+--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+"$@"

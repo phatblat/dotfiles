@@ -1,12 +1,10 @@
 #!/usr/bin/env zsh
 
 # lgfind - Search through lightweight log `lg` for a specific pattern
-function lgfind() {
-    local search_term="$1"
-    if [[ -z "$search_term" ]]; then
-        echo "Usage: lgfind 'search term'"
-        return 1
-    fi
+local search_term="$1"
+if [[ -z "$search_term" ]]; then
+echo "Usage: lgfind 'search term'"
+return 1
+fi
 
-    lg -S "$search_term"
-}
+lg -S "$search_term"

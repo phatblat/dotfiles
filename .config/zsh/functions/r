@@ -1,12 +1,10 @@
 #!/usr/bin/env zsh
 
 # r - Interactive rebase for the last few commits
-function r() {
-    local count=${1:-10}
+local count=${1:-10}
 
-    toggle_wait on
+toggle_wait on
 
-    git rebase --interactive "HEAD~$count"
+git rebase --interactive "HEAD~$count"
 
-    toggle_wait off
-}
+toggle_wait off

@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # log10 - Alias for git log
-function log10() {
-    git log -10 --pretty=fuller "$@"
-}
+git log -10 --pretty=fuller "$@"

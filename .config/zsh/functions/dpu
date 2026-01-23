@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # dpu - Builds, (re)creates, starts, and attaches to containers for a service
-function dpu() {
-    docker compose up --detach "$@"
-}
+docker compose up --detach "$@"

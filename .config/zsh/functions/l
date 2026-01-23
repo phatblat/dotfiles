@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # l - Pretty git log graph with ten commits
-function l() {
-    lg10 "$@"
-}
+lg10 "$@"

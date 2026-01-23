@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # icloud - Changes directory to ICLOUD_HOME
-function icloud() {
-    pushd "$ICLOUD_HOME" "$@" || return
-}
+pushd "$ICLOUD_HOME" "$@" || return

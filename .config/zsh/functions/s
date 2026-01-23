@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # s - Display abbreviated git status
-function s() {
-    git status -sb "$@"
-}
+git status -sb "$@"

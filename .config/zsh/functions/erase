@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # erase - Erase fish functions
-function erase() {
-    functions --erase "$@"
-}
+functions --erase "$@"

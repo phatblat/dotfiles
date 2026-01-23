@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # stash - Git stash
-function stash() {
-    git stash "$@"
-}
+git stash "$@"

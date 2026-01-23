@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # g - Gradle alias
-function g() {
-    gradle "$@"
-}
+gradle "$@"

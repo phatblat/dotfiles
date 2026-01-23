@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # Git and file utilities
-function root() {
-    git rev-parse --show-toplevel "$@"
-}
+git rev-parse --show-toplevel "$@"

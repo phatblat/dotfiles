@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # brew_logs - Quick nav to Homebrew logs dir
-function brew_logs() {
-    pushd ~/Library/Logs/Homebrew/ || return
-}
+pushd ~/Library/Logs/Homebrew/ || return

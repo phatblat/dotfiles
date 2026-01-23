@@ -1,16 +1,14 @@
 #!/usr/bin/env zsh
 
 # fileowner - Displays the owner of a file
-function fileowner() {
-    local file="$1"
-    if [[ -z "$file" ]]; then
-        echo "Usage: fileowner file"
-        return 1
-    fi
+local file="$1"
+if [[ -z "$file" ]]; then
+echo "Usage: fileowner file"
+return 1
+fi
 
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        find "$file" -maxdepth 0 -printf '%u\n' 2> /dev/null || stat -f '%Su' "$file"
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        stat --format=%U "$file"
-    fi
-}
+if [[ "$OSTYPE" == "darwin"* ]]; then
+find "$file" -maxdepth 0 -printf '%u\n' 2> /dev/null || stat -f '%Su' "$file"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+stat --format=%U "$file"
+fi

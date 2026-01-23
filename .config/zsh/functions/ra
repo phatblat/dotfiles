@@ -1,26 +1,24 @@
 #!/usr/bin/env zsh
 
 # ra - Adds a git remote
-function ra() {
-    local name="$1"
-    local url="$2"
-    if [[ -z "$name" ]]; then
-        echo "Remote name required"
-        return 1
-    fi
+local name="$1"
+local url="$2"
+if [[ -z "$name" ]]; then
+echo "Remote name required"
+return 1
+fi
 
-    # Add a fork of the project when only the remote name is given
-    if [[ -z "$url" ]]; then
-        local remote_url
-        remote_url=$(git remote get-url "$(git symbolic-ref --short HEAD | sed 's|.*/||')")
-        # Drop scheme and host
-        local path=${remote_url##*:}
-        # Drop .git
-        path=${path%%.git}
-        local project=${path##*/}
-        url="git@github.com:${name}/${project}.git"
-    fi
+# Add a fork of the project when only the remote name is given
+if [[ -z "$url" ]]; then
+local remote_url
+remote_url=$(git remote get-url "$(git symbolic-ref --short HEAD | sed 's|.*/||')")
+# Drop scheme and host
+local path=${remote_url##*:}
+# Drop .git
+path=${path%%.git}
+local project=${path##*/}
+url="git@github.com:${name}/${project}.git"
+fi
 
-    git remote add "$name" "$url"
-    git fetch "$name"
-}
+git remote add "$name" "$url"
+git fetch "$name"

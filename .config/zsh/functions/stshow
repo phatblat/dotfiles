@@ -1,5 +1,3 @@
 #!/usr/bin/env zsh
 # stshow - Show a git stash
-function stshow() {
-  git stash show -p "$@"
-}
+git stash show -p "$@"

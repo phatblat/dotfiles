@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # gwo - Gradle wrapper offline
-function gwo() {
-    gw "$@" --offline
-}
+gw "$@" --offline

@@ -1,25 +1,23 @@
 #!/usr/bin/env zsh
 
 # cargo_target - Spins up a RAM disk for Cargo target output
-function cargo_target() {
-    local quiet="$1"
-    local drive_name="CargoTarget"
-    local default_size=50
-    local target_path="/Volumes/$drive_name"
-    local icon_file="$HOME/Pictures/Icons/rustacean-flat-happy.webp"
+local quiet="$1"
+local drive_name="CargoTarget"
+local default_size=50
+local target_path="/Volumes/$drive_name"
+local icon_file="$HOME/Pictures/Icons/rustacean-flat-happy.webp"
 
-    local output
-    if [[ -d "$target_path" ]]; then
-        echo "$drive_name already mounted"
-        output=$(diskutil list "$drive_name")
-    else
-        output=$(ramdisk "$default_size" "$drive_name")
-        fileicon set "/Volumes/$drive_name" "$icon_file"
-    fi
+local output
+if [[ -d "$target_path" ]]; then
+echo "$drive_name already mounted"
+output=$(diskutil list "$drive_name")
+else
+output=$(ramdisk "$default_size" "$drive_name")
+fileicon set "/Volumes/$drive_name" "$icon_file"
+fi
 
-    export CARGO_TARGET_DIR="$target_path"
+export CARGO_TARGET_DIR="$target_path"
 
-    if [[ -z "$quiet" ]]; then
-        echo "$output"
-    fi
-}
+if [[ -z "$quiet" ]]; then
+echo "$output"
+fi

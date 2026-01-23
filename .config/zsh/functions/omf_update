@@ -1,35 +1,33 @@
 #!/usr/bin/env zsh
 
 # omf_update - Updates oh-my-fish and bundled packages (from 🐠_omf)
-function omf_update() {
-    echo "🐠 oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"
-    echo
-    local base_dir=~/dev/shell/fish
-    local local_dir="$base_dir/oh-my-fish"
-    local repo_url="git@github.com:oh-my-fish/oh-my-fish.git"
+echo "🐠 oh-my-fish - https://github.com/oh-my-fish/oh-my-fish"
+echo
+local base_dir=~/dev/shell/fish
+local local_dir="$base_dir/oh-my-fish"
+local repo_url="git@github.com:oh-my-fish/oh-my-fish.git"
 
-    # Create parent directories
-    mkdir -p "$base_dir"
+# Create parent directories
+mkdir -p "$base_dir"
 
-    # Clone or pull (you'll need to implement clone_or_pull function)
-    if [[ ! -d "$local_dir" ]]; then
-        git clone "$repo_url" "$local_dir"
-    else
-        pushd "$local_dir" || return && git pull && popd || return
-    fi
+# Clone or pull (you'll need to implement clone_or_pull function)
+if [[ ! -d "$local_dir" ]]; then
+git clone "$repo_url" "$local_dir"
+else
+pushd "$local_dir" || return && git pull && popd || return
+fi
 
-    # Install omf if necessary
-    if ! command -v omf > /dev/null; then
-        pushd "$local_dir" || return
-        bin/install --offline
-        popd || return
-    fi
+# Install omf if necessary
+if ! command -v omf > /dev/null; then
+pushd "$local_dir" || return
+bin/install --offline
+popd || return
+fi
 
-    # Update omf and installed plugins
-    omf update
-    omf install
+# Update omf and installed plugins
+omf update
+omf install
 
-    echo "Installed plugins: "
-    omf list
-    omf doctor
-}
+echo "Installed plugins: "
+omf list
+omf doctor

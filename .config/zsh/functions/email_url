@@ -1,21 +1,19 @@
 #!/usr/bin/env zsh
 
 # email_url - Determines an appropriate contact for a given url
-function email_url() {
-    local url="$1"
-    local user="ben"
-    local work_org="getditto"
-    local work_domain="ditto.com"
-    local default="$user@octop.ad"
+local url="$1"
+local user="ben"
+local work_org="getditto"
+local work_domain="ditto.com"
+local default="$user@octop.ad"
 
-    if [[ -z "$url" ]]; then
-        echo "$default"
-        return
-    fi
+if [[ -z "$url" ]]; then
+echo "$default"
+return
+fi
 
-    if [[ "$url" == *"$work_org"* ]]; then
-        echo "$user@$work_domain"
-    else
-        echo "$default"
-    fi
-}
+if [[ "$url" == *"$work_org"* ]]; then
+echo "$user@$work_domain"
+else
+echo "$default"
+fi

@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # stsave - Save a git stash
-function stsave() {
-    git stash push --include-untracked "$@"
-}
+git stash push --include-untracked "$@"

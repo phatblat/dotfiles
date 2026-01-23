@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # user.signingkey - Manages the user.signingkey git configuration setting
-function user.signingkey() {
-    git config user.signingkey "$@"
-}
+git config user.signingkey "$@"

@@ -1,17 +1,15 @@
 #!/usr/bin/env zsh
 
 # brew_versions - Lists installed versions of a formula
-function brew_versions() {
-    local formula="$1"
-    if [[ -z "$formula" ]]; then
-        echo "Usage: brew_versions formula"
-        return 1
-    elif ! brew list "$formula" > /dev/null 2>&1; then
-        echo "$formula is not installed." >&2
-        return 2
-    fi
+local formula="$1"
+if [[ -z "$formula" ]]; then
+echo "Usage: brew_versions formula"
+return 1
+elif ! brew list "$formula" > /dev/null 2>&1; then
+echo "$formula is not installed." >&2
+return 2
+fi
 
-    # brew list --versions ruby output:
-    # ruby 2.3.3 2.4.1_1
-    brew list --versions "$formula" | cut -d' ' -f2-
-}
+# brew list --versions ruby output:
+# ruby 2.3.3 2.4.1_1
+brew list --versions "$formula" | cut -d' ' -f2-

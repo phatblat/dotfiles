@@ -1,13 +1,11 @@
 #!/usr/bin/env zsh
 # Grep environment variables
 
-function genv() {
-    local search_term="$1"
+local search_term="$1"
 
-    if [[ -z "$search_term" ]]; then
-        echo 'Usage: genv search_term'
-        return 1
-    fi
+if [[ -z "$search_term" ]]; then
+echo 'Usage: genv search_term'
+return 1
+fi
 
-    env | grep -i "$search_term"
-}
+env | grep -i "$search_term"

@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # format-patch - Git format-patch wrapper
-function format-patch() {
-  git format-patch "$@"
-}
+git format-patch "$@"

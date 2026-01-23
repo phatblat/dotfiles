@@ -2,6 +2,4 @@
 
 # octodec - SSH to octodec
 # shellcheck disable=SC2029
-function octodec() {
-    ssh phatblat@octodec.local "$@"
-}
+ssh phatblat@octodec.local "$@"

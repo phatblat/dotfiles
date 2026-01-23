@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # user.email - Manages the user.email git configuration setting
-function user.email() {
-    git config user.email "$@"
-}
+git config user.email "$@"

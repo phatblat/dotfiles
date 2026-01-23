@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # pick - Short alias for cherry-pick
-function pick() {
-    git cherry-pick "$@"
-}
+git cherry-pick "$@"

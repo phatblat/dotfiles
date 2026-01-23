@@ -1,15 +1,13 @@
 #!/usr/bin/env zsh
 
-function filesize() {
-    local file="$1"
-    if [[ -z "$file" ]]; then
-        echo "Usage: filesize filename" >&2
-        return 1
-    fi
+local file="$1"
+if [[ -z "$file" ]]; then
+echo "Usage: filesize filename" >&2
+return 1
+fi
 
-    if is_mac; then
-        stat -f '%z' "$file"
-    elif is_linux; then
-        stat --format=%s "$file"
-    fi
-}
+if is_mac; then
+stat -f '%z' "$file"
+elif is_linux; then
+stat --format=%s "$file"
+fi

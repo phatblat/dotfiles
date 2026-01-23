@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # configg - Manage global git configuration (~/.gitconfig)
-function configg() {
-    git config --global "$@"
-}
+git config --global "$@"

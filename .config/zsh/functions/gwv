@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # gwv - Prints the version of the gradle wrapper
-function gwv() {
-    gw --version
-}
+gw --version

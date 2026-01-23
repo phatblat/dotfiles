@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # aa - Add all modified tracked files to git staging area
-function aa() {
-  git add --update "$@"
-}
+git add --update "$@"

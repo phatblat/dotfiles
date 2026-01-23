@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # assume - Ignore changes to the given files
-function assume() {
-    git update-index --assume-unchanged "$@"
-}
+git update-index --assume-unchanged "$@"

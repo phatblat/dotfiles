@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # ol - Quick dir navigation to Outlets
-function ol() {
-    pushd ~/dev/ios/pods/Outlets || return
-}
+pushd ~/dev/ios/pods/Outlets || return

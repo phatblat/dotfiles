@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # theirs - Checkout theirs for unmerged paths
-function theirs() {
-    git checkout --theirs "$@" && git add "$@"
-}
+git checkout --theirs "$@" && git add "$@"

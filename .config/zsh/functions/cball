@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # cball - Build all platforms using Carthage
-function cball() {
-    carthage build --platform all "$@"
-}
+carthage build --platform all "$@"

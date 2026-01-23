@@ -1,31 +1,29 @@
 #!/usr/bin/env zsh
 
 # ruby_upgrade - Upgrades ruby across major versions
-function ruby_upgrade() {
-    brew update
-    brew info ruby
-    brew unlink ruby
-    brew cleanup ruby
-    brew install ruby
-    brew link --overwrite ruby
+brew update
+brew info ruby
+brew unlink ruby
+brew cleanup ruby
+brew install ruby
+brew link --overwrite ruby
 
-    rm -rf /usr/local/lib/ruby/gems/2.4.0/gems
-    rm -rf /usr/local/lib/ruby/gems/2.4.0/extensions
+rm -rf /usr/local/lib/ruby/gems/2.4.0/gems
+rm -rf /usr/local/lib/ruby/gems/2.4.0/extensions
 
-    local tmpfile
-    tmpfile=$(mktemp /tmp/ruby_upgrade.XXXXXX)
-    gem --version > /dev/null 2> "$tmpfile"
+local tmpfile
+tmpfile=$(mktemp /tmp/ruby_upgrade.XXXXXX)
+gem --version > /dev/null 2> "$tmpfile"
 
-    echo "Looping over gem errors"
-    while read -r line; do
-        local pristine_cmd
-        pristine_cmd="${line##*Try: }"
-        if [[ -n "$pristine_cmd" ]]; then
-            eval "$pristine_cmd"
-        fi
-    done < "$tmpfile"
-    rm "$tmpfile"
+echo "Looping over gem errors"
+while read -r line; do
+local pristine_cmd
+pristine_cmd="${line##*Try: }"
+if [[ -n "$pristine_cmd" ]]; then
+eval "$pristine_cmd"
+fi
+done < "$tmpfile"
+rm "$tmpfile"
 
-    gem update --system
-    gem install bundler
-}
+gem update --system
+gem install bundler

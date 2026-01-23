@@ -1,25 +1,23 @@
 #!/usr/bin/env zsh
 
 # moj_user - Prints an emoji for the current user
-function moj_user() {
-    case "$USER" in
-    admin)
-        echo "🙆🏻‍♂️"
-        ;;
-    ben | f*)
-        echo "🚶"
-        ;;
-    benchatelain | chatelain | zoltar)
-        echo "👨🏻‍🚀"
-        ;;
-    phatblat)
-        echo "🎧"
-        ;;
-    jenkins)
-        echo "👷🏻‍♂️"
-        ;;
-    *)
-        echo "${USER:0:1}❓"
-        ;;
-    esac
-}
+case "$USER" in
+admin)
+echo "🙆🏻‍♂️"
+;;
+ben | f*)
+echo "🚶"
+;;
+benchatelain | chatelain | zoltar)
+echo "👨🏻‍🚀"
+;;
+phatblat)
+echo "🎧"
+;;
+jenkins)
+echo "👷🏻‍♂️"
+;;
+*)
+echo "${USER:0:1}❓"
+;;
+esac

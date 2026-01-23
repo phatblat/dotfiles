@@ -1,15 +1,13 @@
 #!/usr/bin/env zsh
 
 # func_count - Prints a count of all functions
-function func_count() {
-    local all
-    all=$(functions | wc -l | xargs)
-    local custom
-    custom=$(find ~/.config/fish/functions -type f -maxdepth 1 -name '*.fish' | wc -l | xargs)
-    local plugins
-    plugins=$(find ~/.config/fish/functions -type l -maxdepth 1 -name '*.fish' | wc -l | xargs)
-    local autoloaded
-    autoloaded=$(find ~/.config/fish/functions -maxdepth 1 -name '*.fish' | wc -l | xargs)
+local all
+all=$(functions | wc -l | xargs)
+local custom
+custom=$(find ~/.config/fish/functions -type f -maxdepth 1 -name '*.fish' | wc -l | xargs)
+local plugins
+plugins=$(find ~/.config/fish/functions -type l -maxdepth 1 -name '*.fish' | wc -l | xargs)
+local autoloaded
+autoloaded=$(find ~/.config/fish/functions -maxdepth 1 -name '*.fish' | wc -l | xargs)
 
-    echo "Functions: $all ($custom custom, $plugins plugins, $autoloaded autoloaded)"
-}
+echo "Functions: $all ($custom custom, $plugins plugins, $autoloaded autoloaded)"

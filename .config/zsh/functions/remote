@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 # Git remote.
 
-function remote() {
-    git remote "$@"
-}
+git remote "$@"

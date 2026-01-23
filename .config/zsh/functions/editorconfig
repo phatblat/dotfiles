@@ -1,16 +1,15 @@
 #!/usr/bin/env zsh
 
 # editorconfig - Generates an editorconfig
-function editorconfig() {
-    local file_path
-    file_path="$(git rev-parse --show-toplevel 2> /dev/null || pwd)/.editorconfig"
+local file_path
+file_path="$(git rev-parse --show-toplevel 2> /dev/null || pwd)/.editorconfig"
 
-    if [[ -f "$file_path" ]]; then
-        echo "EditorConfig file already exists at: $file_path"
-        return 1
-    fi
+if [[ -f "$file_path" ]]; then
+echo "EditorConfig file already exists at: $file_path"
+return 1
+fi
 
-    cat > "$file_path" << 'EOF'
+cat > "$file_path" << 'EOF'
 # http://editorconfig.org
 root = true
 
@@ -47,4 +46,3 @@ indent_style = tab
 [*.md]
 trim_trailing_whitespace = false
 EOF
-}

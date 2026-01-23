@@ -1,12 +1,10 @@
 #!/usr/bin/env zsh
 
 # gw - Invokes a build using the Gradle wrapper script
-function gw() {
-    if [[ -e ./gradlew ]]; then
-        ./gradlew "$@"
-        return
-    fi
+if [[ -e ./gradlew ]]; then
+./gradlew "$@"
+return
+fi
 
-    echo "There is no Gradle wrapper in the current dir."
-    gradle "$@"
-}
+echo "There is no Gradle wrapper in the current dir."
+gradle "$@"

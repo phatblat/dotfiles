@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # brew_cache_purge - Purges the Homebrew cache
-function brew_cache_purge() {
-    rm -rf "$(brew --cache)"
-}
+rm -rf "$(brew --cache)"

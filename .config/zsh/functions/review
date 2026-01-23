@@ -1,17 +1,17 @@
 # Review a given commit, default: HEAD.
 git \
-    log \
-    --max-count=1 \
-    --pretty=format:'commit:    %Cgreen%H%Creset
+log \
+--max-count=1 \
+--pretty=format:'commit:    %Cgreen%H%Creset
 date:      %Cgreen%ai%Creset
 author:    %Cgreen%an%Creset <%Cgreen%ae%Creset>
 committer: %Cgreen%cn%Creset <%Cgreen%ce%Creset>
 
-    %s
+%s
 ' \
-    --stat \
-    --patch \
-    -m \
-    --unified=1 \
-    --no-prefix \
-    "${1:-HEAD}"
+--stat \
+--patch \
+-m \
+--unified=1 \
+--no-prefix \
+"${1:-HEAD}"

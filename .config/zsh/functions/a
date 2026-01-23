@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # a - Add files to git staging area
-function a() {
-    git add "$@"
-}
+git add "$@"

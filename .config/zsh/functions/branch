@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # branch - Manage git branches
-function branch() {
-    git branch "$@"
-}
+git branch "$@"

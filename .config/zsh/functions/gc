@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
 
 # gc - Run git garbage collection
-function gc() {
-    git gc --prune=now
-}
+git gc --prune=now

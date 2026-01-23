@@ -1,10 +1,8 @@
 #!/usr/bin/env zsh
 
 # chexe - Set executable permissions
-function chexe() {
-    local files="$*"
-    if [[ -z "$files" ]]; then
-        files="*.sh"
-    fi
-    chmod +x "$files"
-}
+local files="$*"
+if [[ -z "$files" ]]; then
+files="*.sh"
+fi
+chmod +x "$files"
