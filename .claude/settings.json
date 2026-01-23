@@ -88,7 +88,7 @@
     "clangd@claude-code-lsps": true,
     "code-review@claude-plugins-official": true,
     "commit-commands@claude-code-plugins": true,
-    "csharp-lsp@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": false,
     "dart-analyzer@claude-code-lsps": false,
     "document-skills@anthropic-agent-skills": true,
     "feature-dev@claude-plugins-official": true,
