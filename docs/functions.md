@@ -660,7 +660,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `stpop`                     | ✅  | ✅   | ➖  | ➖   | Apply and remove the top git stash                   |
 | `strip_teams`               | ➖  | ✅   | ➖  | ➖   | Strip codesign from Teams app                        |
 | `stsave`                    | ✅  | ✅   | ✅  | ➖   | Save a git stash                                     |
-| `stshow`                    | ✅  | ✅   | ➖  | ➖   | Show a git stash                                     |
+| `stshow`                    | ✅  | ✅   | ✅  | ➖   | Show a git stash                                     |
 | `stsnapshot`                | ➖  | ✅   | ➖  | ➖   | Saves a dirty working copy as a stash                |
 | `st`                        | ➖  | ✅   | ➖  | ➖   | Git stash                                            |
 | `submodule`                 | ✅  | ✅   | ➖  | ➖   | Git submodule                                        |
