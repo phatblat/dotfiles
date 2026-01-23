@@ -4,11 +4,11 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 760 unique functions/aliases across 4 shells**
+**Total: 761 unique functions/aliases across 4 shells**
 
 **Shell Statistics:**
 
-- Zsh: 194 functions (primary shell)
+- Zsh: 195 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -136,6 +136,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `cbmacv`                    | ➖  | ✅   | ➖  | ➖   | Build iOS platform using Carthage with verbose out   |
 | `cbmac`                     | ➖  | ✅   | ➖  | ➖   | Build Mac platform using Carthage.                   |
 | `cbootios`                  | ➖  | ✅   | ➖  | ➖   | Bootstrap Carthage dependencies for iOS              |
+| `cc`                        | ➖  | ➖   | ✅  | ➖   | Claude Code with --dangerously-skip-permissions      |
 | `ccoss`                     | ➖  | ✅   | ➖  | ➖   | Checkout into submodules using Carthage SSH          |
 | `ccos`                      | ➖  | ✅   | ➖  | ➖   | Checkout source using Carthage over SSH              |
 | `ccov`                      | ➖  | ✅   | ➖  | ➖   | Checkout source of dependencies using Carthage wit   |
