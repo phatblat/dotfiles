@@ -1,0 +1,4 @@
+# Remove a git stash.
+# Usage: stdrop [stash@{n}]
+
+git stash drop "$@"
