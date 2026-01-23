@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -20,6 +20,9 @@
   home.packages = [
     # Previously installed
     pkgs.claude-code
+
+    # Custom packages
+    (pkgs.callPackage ./packages/opcode.nix { })
 
     # CLI Tools (migrated from Homebrew)
     pkgs.act
