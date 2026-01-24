@@ -1,6 +1,11 @@
 {
   description = "Home Manager configuration of phatblat";
 
+  nixConfig = {
+    extra-substituters = [ "https://phatblat.cachix.org" ];
+    extra-trusted-public-keys = [ "phatblat.cachix.org-1:dMcU2tWbHr+K6/0NaUI91vPu/80R/n/00/LItUJ0/I4=" ];
+  };
+
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
