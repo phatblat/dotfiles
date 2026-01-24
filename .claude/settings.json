@@ -1,9 +1,74 @@
 {
+  "alwaysThinkingEnabled": true,
+  "autoUpdatesChannel": "latest",
+  "enabledPlugins": {
+    "bash-language-server@claude-code-lsps": true,
+    "clangd@claude-code-lsps": true,
+    "code-review@claude-plugins-official": true,
+    "commit-commands@claude-code-plugins": true,
+    "csharp-lsp@claude-plugins-official": false,
+    "dart-analyzer@claude-code-lsps": false,
+    "document-skills@anthropic-agent-skills": true,
+    "feature-dev@claude-plugins-official": true,
+    "github@claude-plugins-official": false,
+    "gopls@claude-code-lsps": true,
+    "jdtls@claude-code-lsps": true,
+    "kotlin-lsp@claude-code-lsps": true,
+    "lua-language-server@claude-code-lsps": true,
+    "nixd@claude-code-lsps": true,
+    "omnisharp@claude-code-lsps": true,
+    "plugin-dev@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "pyright@claude-code-lsps": true,
+    "rust-analyzer@claude-code-lsps": true,
+    "slack@claude-plugins-official": false,
+    "solargraph@claude-code-lsps": true,
+    "sourcekit-lsp@claude-code-lsps": true,
+    "superpowers@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "terraform-ls@claude-code-lsps": true,
+    "typescript-lsp@claude-plugins-official": false,
+    "vtsls@claude-code-lsps": true,
+    "yaml-language-server@claude-code-lsps": true
+  },
   "env": {
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
     "DISABLE_AUTOUPDATER": "0"
   },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "if [[ \"$( jq -r .tool_input.file_path )\" =~ \\.(ts|tsx|js|jsx)$ ]]; then prettier --write \"$( jq -r .tool_input.file_path )\"; fi",
+            "type": "command"
+          },
+          {
+            "command": "if [[ \"$( jq -r .tool_input.file_path )\" =~ \\.go$ ]]; then gofmt -w \"$( jq -r .tool_input.file_path )\"; fi",
+            "type": "command"
+          },
+          {
+            "command": "git-ai checkpoint claude --hook-input stdin",
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit|MultiEdit"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "git-ai checkpoint claude --hook-input stdin",
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit|MultiEdit"
+      }
+    ]
+  },
+  "model": "opus",
   "permissions": {
     "allow": [
       "Bash(./gradlew:*)",
@@ -42,77 +107,11 @@
       "Read(./secrets/**)",
       "Read(./config/credentials.json)",
       "Read(./build)"
-    ],
-    "defaultMode": "dontAsk"
-  },
-  "model": "opus",
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [[ \"$( jq -r .tool_input.file_path )\" =~ \\.(ts|tsx|js|jsx)$ ]]; then prettier --write \"$( jq -r .tool_input.file_path )\"; fi"
-          },
-          {
-            "type": "command",
-            "command": "if [[ \"$( jq -r .tool_input.file_path )\" =~ \\.go$ ]]; then gofmt -w \"$( jq -r .tool_input.file_path )\"; fi"
-          },
-          {
-            "type": "command",
-            "command": "git-ai checkpoint claude --hook-input stdin"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Write|Edit|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "git-ai checkpoint claude --hook-input stdin"
-          }
-        ]
-      }
     ]
   },
   "statusLine": {
-    "type": "command",
     "command": "bun x -y @owloops/claude-powerline@latest",
-    "padding": 0
-  },
-  "enabledPlugins": {
-    "bash-language-server@claude-code-lsps": true,
-    "clangd@claude-code-lsps": true,
-    "code-review@claude-plugins-official": true,
-    "commit-commands@claude-code-plugins": true,
-    "csharp-lsp@claude-plugins-official": false,
-    "dart-analyzer@claude-code-lsps": false,
-    "document-skills@anthropic-agent-skills": true,
-    "feature-dev@claude-plugins-official": true,
-    "github@claude-plugins-official": false,
-    "gopls@claude-code-lsps": true,
-    "jdtls@claude-code-lsps": true,
-    "kotlin-lsp@claude-code-lsps": true,
-    "lua-language-server@claude-code-lsps": true,
-    "nixd@claude-code-lsps": true,
-    "omnisharp@claude-code-lsps": true,
-    "plugin-dev@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "pyright@claude-code-lsps": true,
-    "rust-analyzer@claude-code-lsps": true,
-    "slack@claude-plugins-official": false,
-    "solargraph@claude-code-lsps": true,
-    "sourcekit-lsp@claude-code-lsps": true,
-    "superpowers@claude-plugins-official": true,
-    "swift-lsp@claude-plugins-official": true,
-    "terraform-ls@claude-code-lsps": true,
-    "typescript-lsp@claude-plugins-official": false,
-    "vtsls@claude-code-lsps": true,
-    "yaml-language-server@claude-code-lsps": true
-  },
-  "alwaysThinkingEnabled": true,
-  "autoUpdatesChannel": "latest"
+    "padding": 0,
+    "type": "command"
+  }
 }
