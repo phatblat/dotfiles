@@ -1,0 +1,166 @@
+# ci.yaml
+# Main Harness CI pipeline for phatblat dotfiles
+# Triggers on push and PR to all branches
+
+pipeline:
+  name: Dotfiles CI
+  identifier: dotfiles_ci
+  projectIdentifier: dotfiles
+  orgIdentifier: default
+  tags:
+    ci: ""
+    dotfiles: ""
+  properties:
+    ci:
+      codebase:
+        connectorRef: github_phatblat
+        repoName: phatblat
+        build: <+input>
+  stages:
+    - stage:
+        name: Lint
+        identifier: lint
+        description: Lint all shell scripts
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: MacOS
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - parallel:
+                  - step:
+                      type: Run
+                      name: Lint Zsh
+                      identifier: lint_zsh
+                      spec:
+                        shell: Bash
+                        command: just lint-zsh
+                  - step:
+                      type: Run
+                      name: Lint Fish
+                      identifier: lint_fish
+                      spec:
+                        shell: Bash
+                        command: just lint-fish
+                  - step:
+                      type: Run
+                      name: Lint Nushell
+                      identifier: lint_nushell
+                      spec:
+                        shell: Bash
+                        command: just lint-nushell
+                  - step:
+                      type: Run
+                      name: Lint Bin
+                      identifier: lint_bin
+                      spec:
+                        shell: Bash
+                        command: just lint-bin
+
+              - step:
+                  type: Run
+                  name: Check Format
+                  identifier: check_format
+                  spec:
+                    shell: Bash
+                    command: just lint
+
+    - stage:
+        name: Test
+        identifier: test
+        description: Run shell script tests
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: MacOS
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run Tests
+                  identifier: run_tests
+                  spec:
+                    shell: Bash
+                    command: |
+                      if [ -d ~/tests ]; then
+                        bats ~/tests/
+                      else
+                        echo "No tests directory found, skipping..."
+                      fi
+        when:
+          pipelineStatus: Success
+
+    - stage:
+        name: Build Nix Cache
+        identifier: build_nix
+        description: Build home-manager and push to Cachix
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: MacOS
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Build and Push
+                  identifier: build_push
+                  spec:
+                    shell: Bash
+                    envVariables:
+                      CACHIX_AUTH_TOKEN: <+secrets.getValue("CACHIX_AUTH_TOKEN")>
+                    command: |
+                      cd ~/.config/home-manager
+                      nix build .#homeConfigurations.phatblat.activationPackage \
+                        --no-link \
+                        --print-out-paths | cachix push phatblat
+        when:
+          pipelineStatus: Success
+
+  # Trigger on push and PR to all branches
+  triggers:
+    - trigger:
+        name: Push Trigger
+        identifier: push_trigger
+        enabled: true
+        source:
+          type: Webhook
+          spec:
+            type: Github
+            spec:
+              type: Push
+              spec:
+                connectorRef: github_phatblat
+                autoAbortPreviousExecutions: true
+                actions: []
+    - trigger:
+        name: PR Trigger
+        identifier: pr_trigger
+        enabled: true
+        source:
+          type: Webhook
+          spec:
+            type: Github
+            spec:
+              type: PullRequest
+              spec:
+                connectorRef: github_phatblat
+                autoAbortPreviousExecutions: true
+                actions:
+                  - Open
+                  - Reopen
+                  - Synchronize
