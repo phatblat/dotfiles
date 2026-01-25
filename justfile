@@ -5,7 +5,7 @@
 
 set export := true
 
-MISE_PIN := "1"
+export MISE_PIN := "1"
 
 # ignore-comments - Ignore comments when formatting.
 
@@ -25,9 +25,9 @@ set unstable := true
 #
 # ANSI colors for formatting output
 
-color_gray := '\e[90m'
+# color_gray := '\e[90m'
+# color_red := '\e[31m'
 color_green := '\e[32m'
-color_red := '\e[31m'
 color_reset := '\e[0m'
 
 #
