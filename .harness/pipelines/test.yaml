@@ -1,0 +1,48 @@
+# test.yaml
+# Harness CI pipeline for running shell script tests
+
+pipeline:
+  name: Run Tests
+  identifier: run_tests
+  projectIdentifier: dotfiles
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Test
+        identifier: test
+        description: Run bats-core tests for shell scripts
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: MacOS
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Install Test Dependencies
+                  identifier: install_deps
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Ensuring bats-core is available..."
+                      command -v bats || npm install -g bats
+
+              - step:
+                  type: Run
+                  name: Run Tests
+                  identifier: run_tests
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Running tests..."
+                      if [ -d ~/tests ]; then
+                        bats ~/tests/
+                      else
+                        echo "No tests directory found, skipping..."
+                      fi
