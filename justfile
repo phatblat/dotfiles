@@ -162,6 +162,8 @@ upgrade *args: update-nix
 # Updates home-manager flake and rebuilds configuration
 [group('configuration')]
 update-nix:
+    sudo determinate-nixd upgrade
+    determinate-nixd status
     nix flake update --flake ~/.config/home-manager
     home-manager switch --flake ~/.config/home-manager
 
