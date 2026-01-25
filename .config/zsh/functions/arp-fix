@@ -8,7 +8,8 @@ fi
 
 sw_vers -productVersion
 
-local arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
+local arp_status
+arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
 echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
 
 local arp_fixed="net.link.ether.inet.arp_unicast_lim=0"
