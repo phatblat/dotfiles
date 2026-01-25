@@ -190,13 +190,51 @@ doctor:
     claude doctor
     claudekit doctor
 
-# Checks justfile and shell scripts in .config/zsh/functions
+# Lints Zsh functions with shellcheck
+# Uses ksh dialect and excludes SC2168 (local in function body) since these are zsh autoload files
+[group('checks')]
+lint-zsh:
+    @echo "Linting Zsh functions..."
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2168 {} +
+
+# Validates Fish functions syntax
+[group('checks')]
+lint-fish:
+    @echo "Validating Fish functions..."
+    @fish -n ~/.config/fish/config.fish
+    @find ~/.config/fish/functions -name '*.fish' -exec fish -n {} +
+    @find ~/.config/fish/conf.d -name '*.fish' -exec fish -n {} +
+
+# Validates Nushell scripts syntax
+[group('checks')]
+lint-nushell:
+    @echo "Validating Nushell scripts..."
+    @nu --commands 'source ~/.config/nushell/config.nu'
+
+# Lints bin scripts with shellcheck
+[group('checks')]
+lint-bin:
+    @echo "Linting bin scripts..."
+    @shellcheck ~/bin/*.sh
+
+# Runs all linting checks
+[group('checks')]
+lint-all: lint-zsh lint-fish lint-nushell lint-bin
+    @echo "All linting complete"
+
+# Checks justfile and mise config formatting
 [group('checks')]
 lint:
     just --fmt --check
     mise fmt --check
-    @echo "Linting shell scripts..."
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
+
+# Runs bats tests
+[group('tests')]
+[script]
+test:
+    echo "Running tests..."
+    eval "$(mise activate bash)"
+    bats ~/tests/
 
 # Formats mise config, justfile Claude settings.json and shell scripts
 [group('configuration')]
