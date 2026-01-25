@@ -1,0 +1,56 @@
+# nix-build.yaml
+# Harness CI pipeline for building Nix home-manager and pushing to Cachix
+
+pipeline:
+  name: Build and Push Nix Cache
+  identifier: nix_cache
+  projectIdentifier: dotfiles
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Build Nix
+        identifier: build_nix
+        description: Build home-manager configuration and push to Cachix
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: MacOS
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Build Home Manager
+                  identifier: build_home_manager
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Building home-manager configuration..."
+                      cd ~/.config/home-manager
+
+                      # Build the home-manager activation package
+                      nix build .#homeConfigurations.phatblat.activationPackage \
+                        --no-link \
+                        --print-out-paths
+
+              - step:
+                  type: Run
+                  name: Push to Cachix
+                  identifier: push_cachix
+                  spec:
+                    shell: Bash
+                    envVariables:
+                      CACHIX_AUTH_TOKEN: <+secrets.getValue("CACHIX_AUTH_TOKEN")>
+                    command: |
+                      echo "Pushing to Cachix..."
+                      cd ~/.config/home-manager
+
+                      # Build and push all outputs to cachix
+                      nix build .#homeConfigurations.phatblat.activationPackage \
+                        --no-link \
+                        --print-out-paths | cachix push phatblat
