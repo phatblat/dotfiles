@@ -55,6 +55,7 @@ __z_clean.fish
 .claude/plans/
 .claude/plugins/
 .claude/stats-cache.json
+.clawdbot/
 .cmake-js/
 .cocoapods/
 .codeium/
