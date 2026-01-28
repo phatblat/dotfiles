@@ -122,8 +122,8 @@ Use `command cat` or `command ls` to bypass these wrappers if needed.
 **Build & Management** (`~/justfile`):
 
 - `just` or `just --list` — List all available recipes
-- `just install` — Install all mise-managed tools globally
-- `just upgrade [args]` — Upgrade tools and Claude Code, update Nix home-manager, commit mise config changes
+- `just install` (alias: `just i`) — Install all mise-managed tools globally
+- `just upgrade [args]` (alias: `just up`) — Update Nix home-manager, then upgrade mise-managed tools
 - `just update-nix` — Update home-manager flake and rebuild configuration
 - `just add <tool>` — Add and install latest version of a tool via mise
 - `just remove <tool>` — Remove and uninstall a tool from mise
@@ -145,12 +145,25 @@ Use `command cat` or `command ls` to bypass these wrappers if needed.
 
 **Claude Code:**
 
+- `just code` — Run Claude through Claude Code Router (CCR)
 - `just claude-continue` (alias: `just cc`) — Continue Claude session bypassing permissions
 - `just usage` — Show Claude usage statistics
 - `just usage-board` (alias: `just ub`) — Show live Claude usage dashboard
 - `just usage-web` — Open Claude usage in browser
 - `just install-claude` — Install Claude Code native binary
-- `just upgrade-claude` — Upgrade Claude Code (also runs as part of `just upgrade`)
+- `just upgrade-claude` — Upgrade Claude Code
+
+**Claude Code Router (CCR):**
+
+- `just ccr-status` — Show status of CCR
+- `just ccr-start` — Start CCR
+- `just ccr-stop` — Stop CCR
+
+**LM Studio:**
+
+- `just lms-start` — Start LM Studio server
+- `just lms-stop` — Stop LM Studio server
+- `just lms-reload` — Reload model
 
 **Cleanup:**
 
