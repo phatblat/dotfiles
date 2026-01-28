@@ -107,11 +107,11 @@ Use `command cat` or `command ls` to bypass these wrappers if needed.
 
 **Key Global Tools** (see `~/.config/mise/config.toml`):
 
-- **Languages:** Node 25.3.0, Python 3.14.2, Ruby 3.4.8, Go 1.25.6, .NET 10.0.102
+- **Languages:** Node 25.4.0, Python 3.14.2, Ruby 4.0.1, Go 1.25.6, .NET 10.0.102
 - **Build Systems:** Gradle 9.3.0, Just 1.46.0
-- **Containers:** Docker CLI 29.1.5, Docker Compose 5.0.1
-- **Infrastructure:** Terraform 1.14.3, Packer 1.14.3, gcloud 552.0.0
-- **Specialized Tools:** ast-grep 0.40.3, ripgrep 15.1.0, fd 10.3.0, yq 4.50.1, actionlint 1.7.10, shellcheck 0.11.0, shfmt 3.12.0
+- **Containers:** Docker CLI 29.1.5, Docker Compose 5.0.2
+- **Infrastructure:** Terraform 1.14.3, Packer 1.14.3, gcloud 553.0.0
+- **Specialized Tools:** ripgrep 15.1.0, fd 10.3.0, yq 4.50.1, actionlint 1.7.10, shellcheck 0.11.0, shfmt 3.12.0
 
 **Version Locking:** Set `MISE_PIN=1` in all shells to lock tool versions (already configured in Fish and justfile).
 
