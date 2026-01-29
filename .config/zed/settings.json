@@ -1,4 +1,5 @@
 {
+  "relative_line_numbers": "disabled",
   "ssh_connections": [
     {
       "host": "phatbrain.local",
