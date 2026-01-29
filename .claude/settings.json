@@ -99,7 +99,14 @@
       "Bash(/bin/ls:*)",
       "Bash(wc:*)",
       "Bash(tree:*)",
-      "Bash(which:*)"
+      "Bash(which:*)",
+      "Edit(./**)",
+      "Glob(./**)",
+      "Grep(./**)",
+      "Read(./**)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Write(./**)"
     ],
     "deny": [
       "Read(./.env)",
@@ -107,7 +114,8 @@
       "Read(./secrets/**)",
       "Read(./config/credentials.json)",
       "Read(./build)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   },
   "statusLine": {
     "command": "bun x -y @owloops/claude-powerline@latest",
