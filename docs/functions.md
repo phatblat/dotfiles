@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 195 functions (primary shell)
+- Zsh: 197 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -17,10 +17,10 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Implemented in all 4 shells: 9
 - Implemented in 3 shells: 39
-- Implemented in 2 shells: 168
-- Implemented in 1 shell only: 498
+- Implemented in 2 shells: 170
+- Implemented in 1 shell only: 496
 
-**Functions Implemented in Multiple Shells:** 216
+**Functions Implemented in Multiple Shells:** 218
 
 ## Status Legend
 
@@ -309,7 +309,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `fixopenwith`               | ➖  | ✅   | ➖  | ➖   | Forces a refresh of the "Open With" list of applic   |
 | `fixperms`                  | ➖  | ✅   | ➖  | ➖   | Sets all file and directory permissions to 644 and   |
 | `fk`                        | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
-| `flushdns`                  | ➖  | ✅   | ➖  | ➖   | Flush macOS DNS cache                                |
+| `flushdns`                  | ➖  | ✅   | ✅  | ➖   | Flush macOS DNS cache                                |
 | `fl`                        | ➖  | ✅   | ➖  | ➖   | List functions                                       |
 | `fn`                        | ➖  | ✅   | ➖  | ➖   | Create a new function                                |
 | `format-patch`              | ➖  | ✅   | ✅  | ➖   | Git format-patch wrapper                             |
@@ -715,7 +715,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `user.email`                | ➖  | ✅   | ✅  | ➖   | Manages user.email git config setting                |
 | `user.name`                 | ➖  | ✅   | ✅  | ➖   | Manages user.name git config setting                 |
 | `user.signingkey`           | ➖  | ✅   | ✅  | ➖   | Manages user.signingkey git config setting           |
-| `user_is_admin`             | ➖  | ✅   | ➖  | ➖   | Tests whether USER is member of admin group          |
+| `user_is_admin`             | ➖  | ✅   | ✅  | ➖   | Tests whether USER is member of admin group          |
 | `user_present`              | ➖  | ✅   | ➖  | ➖   | Indicates whether a user is present                  |
 | `user`                      | ➖  | ✅   | ✅  | ➖   | Displays info about current user                     |
 | `uuid_from_profile`         | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
