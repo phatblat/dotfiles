@@ -38,7 +38,7 @@ shellcheck = "0.11.0"
 shfmt = "3.12.0"
 terraform = "1.14.4"
 uv = "0.9.27"
-yq = "4.50.1"
+yq = "4.52.2"
 
 [settings]
 experimental = true
