@@ -104,8 +104,7 @@
       "Glob(./**)",
       "Grep(./**)",
       "Read(./**)",
-      "WebFetch(*)",
-      "WebSearch(*)",
+      "WebFetch(domain:*)",
       "Write(./**)"
     ],
     "deny": [
