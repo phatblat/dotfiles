@@ -24,9 +24,9 @@ set unstable := true
 # variables
 #
 # ANSI colors for formatting output
-
 # color_gray := '\e[90m'
 # color_red := '\e[31m'
+
 color_green := '\e[32m'
 color_reset := '\e[0m'
 
@@ -184,7 +184,8 @@ clean:
     mise prune
     brew cleanup
     rm -f "$HOME/Library/Application Support/default.store"*
-    rm -f "$HOME"/*.hprof
+    rm -f $HOME/*.hprof
+    rm -f $HOME/.claude.json.backup.*
     rm -rf "$(brew --cache)"
 
 #
