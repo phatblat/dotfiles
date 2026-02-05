@@ -1,9 +1,8 @@
 __z_clean.fish
 !.android/repositories.cfg
-!.config/fish/
-!.config/fish/fishfile
-!.config/fish/functions/*.fish
-!.dotfiles/
+.cargo/*
+!.cargo/config.toml
+!.cargo/env*
 !.oh-my-zsh/themes/*
 !Library/Application Support/Code/User/*.json
 .*history
@@ -35,7 +34,6 @@ __z_clean.fish
 .bun/
 .bundle/cache/
 .cache/
-.cargo/
 .cf/
 .CFUserTextEncoding
 .chef/
