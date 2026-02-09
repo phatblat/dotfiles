@@ -1,12 +1,16 @@
 {
   "mcpServers": {
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+    },
     "mintlify-ditto": {
       "type": "http",
       "url": "https://docs.ditto.live/mcp"
     },
-    "linear": {
+    "gemini-cli": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+      "args": ["-y", "gemini-mcp-tool"]
     }
   }
 }
