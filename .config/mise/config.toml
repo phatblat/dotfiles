@@ -36,7 +36,7 @@ ripgrep = "15.1.0"
 ruby = "4.0.1"
 shellcheck = "0.11.0"
 shfmt = "3.12.0"
-terraform = "1.14.4"
+terraform = "1.14.5"
 uv = "0.10.0"
 yq = "4.52.2"
 
