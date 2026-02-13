@@ -7,7 +7,8 @@
 local TMPDIR="${TMPDIR:-$(getconf DARWIN_USER_TEMP_DIR)}"
 local function_name="git-plist-filter"
 
-local TMPFILE=$(mktemp "$TMPDIR/$function_name.XXXXXX")
+local TMPFILE
+TMPFILE=$(mktemp "$TMPDIR/$function_name.XXXXXX")
 
 # Drop stdin to temp file
 cat > "$TMPFILE"

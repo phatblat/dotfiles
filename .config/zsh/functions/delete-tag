@@ -7,8 +7,10 @@ if [[ -z "$tag" ]]; then
     return 1
 fi
 
-local current_branch=$(git rev-parse --abbrev-ref HEAD)
-local current_remote=$(git config branch."$current_branch".remote)
+local current_branch
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+local current_remote
+current_remote=$(git config branch."$current_branch".remote)
 
 git tag --delete "$tag"
 git push "$current_remote" --delete refs/tags/"$tag"
