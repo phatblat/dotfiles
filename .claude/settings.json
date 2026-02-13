@@ -107,14 +107,14 @@
       "WebFetch(domain:*)",
       "Write(./**)"
     ],
+    "defaultMode": "acceptEdits",
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",
       "Read(./config/credentials.json)",
       "Read(./build)"
-    ],
-    "defaultMode": "acceptEdits"
+    ]
   },
   "statusLine": {
     "command": "bun x -y @owloops/claude-powerline@latest",

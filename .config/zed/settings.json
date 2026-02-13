@@ -1,19 +1,4 @@
 {
-  "relative_line_numbers": "disabled",
-  "ssh_connections": [
-    {
-      "host": "phatbrain.local",
-      "username": "phatblat",
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/Users/phatblat"
-          ]
-        }
-      ]
-    }
-  ],
   "agent": {
     "always_allow_tool_actions": true,
     "default_model": {
@@ -55,19 +40,34 @@
   },
   "lsp": {
     "rust-analyzer": {
-      "initialization_options": {
-        "analyzerTargetDir": true
-      },
       "env": {
         "DITTOFFI_SEARCH_PATH": "/Users/phatblat/dev/ditto/ditto-sdks/target/aarch64-apple-darwin/debug"
+      },
+      "initialization_options": {
+        "analyzerTargetDir": true
       }
     }
   },
   "redact_private_values": false,
+  "relative_line_numbers": "disabled",
   "search": {
     "include_ignored": false
   },
   "show_whitespaces": "all",
+  "ssh_connections": [
+    {
+      "args": [],
+      "host": "phatbrain.local",
+      "projects": [
+        {
+          "paths": [
+            "/Users/phatblat"
+          ]
+        }
+      ],
+      "username": "phatblat"
+    }
+  ],
   "tab_size": 2,
   "terminal": {
     "keep_selection_on_copy": false
