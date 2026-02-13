@@ -1,4 +1,42 @@
 {
   "style": "powerline",
-  "theme": "tokyo-night"
+  "theme": "tokyo-night",
+  "display": {
+    "charset": "unicode",
+    "colorCompatibility": "truecolor",
+    "lines": [
+      {
+        "segments": {
+          "directory": {
+            "enabled": true,
+            "style": "full"
+          },
+          "git": {
+            "enabled": true,
+            "showSha": true,
+            "showWorkingTree": false,
+            "showOperation": true,
+            "showTag": false,
+            "showTimeSinceCommit": false,
+            "showStashCount": false,
+            "showUpstream": false,
+            "showRepoName": false
+          },
+          "model": {
+            "enabled": true
+          },
+          "context": {
+            "enabled": true,
+            "showPercentageOnly": false
+          },
+          "session": {
+            "enabled": true,
+            "type": "breakdown",
+            "costSource": "calculated"
+          },
+          "today": { "enabled": true }
+        }
+      }
+    ]
+  }
 }
