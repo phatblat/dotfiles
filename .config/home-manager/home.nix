@@ -63,6 +63,7 @@
     pkgs.pnpm
     pkgs.protobuf
     pkgs.ripgrep
+    pkgs.shellharden
     pkgs.solargraph
     pkgs.speedtest-cli
     pkgs.starship
