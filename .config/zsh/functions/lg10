@@ -4,7 +4,7 @@
 local commit_count=10
 
 git log \
-    -$commit_count \
+    -"$commit_count" \
     --graph \
     --abbrev-commit \
     --date=relative \

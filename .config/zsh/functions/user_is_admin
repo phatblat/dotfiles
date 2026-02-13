@@ -2,7 +2,7 @@
 
 # user_is_admin - Tests whether USER is a member of the admin group
 if is_mac; then
-    [[ "$(dsmemberutil checkmembership -U $USER -G "admin")" == "user is a member of the group" ]]
+    [[ "$(dsmemberutil checkmembership -U "$USER" -G "admin")" == "user is a member of the group" ]]
 elif [[ "$OSTYPE" == linux* ]]; then
     groups | grep -q adm
 fi

@@ -14,7 +14,7 @@ echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
 local arp_fixed="net.link.ether.inet.arp_unicast_lim=0"
 
 if [[ $arp_status -ne 0 ]]; then
-    sudo sysctl -w $arp_fixed
+    sudo sysctl -w "$arp_fixed"
     arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
 
     # After installation, run the command if it now exists

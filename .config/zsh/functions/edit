@@ -31,4 +31,4 @@ else
 fi
 
 # Execute the editor with the provided arguments
-$editor_cmd "$@"
+"$editor_cmd" "$@"

@@ -13,7 +13,7 @@ fi
 
 if [[ -e "$file" ]]; then
     # Edit an autoloaded function
-    $EDITOR "$file"
+    "$EDITOR" "$file"
     # shellcheck disable=SC1090
     source "$file"
 else

@@ -3,4 +3,4 @@
 # pl_edit - Edit Powerline config files
 echo "Kill the powerline-daemon (-k) to see changes."
 psgrep powerline-daemon
-$EDITOR ~/.config/powerline
+"$EDITOR" ~/.config/powerline

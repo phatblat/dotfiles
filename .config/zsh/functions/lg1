@@ -5,7 +5,7 @@ local commit_count=1
 local format='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 
 git log \
-    -$commit_count \
+    -"$commit_count" \
     --graph \
     --abbrev-commit \
     --date=relative \
