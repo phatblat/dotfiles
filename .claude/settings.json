@@ -229,7 +229,7 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "statusLine": {
-    "command": "bun x -y @owloops/claude-powerline@latest",
+    "command": "bun x -y @owloops/claude-powerline@latest --config=~/.config/claude-powerline/config.json",
     "padding": 0,
     "type": "command"
   }
