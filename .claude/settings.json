@@ -116,6 +116,7 @@
       "Read(./build)"
     ]
   },
+  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "command": "bun x -y @owloops/claude-powerline@latest",
     "padding": 0,
