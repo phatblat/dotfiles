@@ -9,15 +9,15 @@ local icon_file="$HOME/Pictures/Icons/rustacean-flat-happy.webp"
 
 local output
 if [[ -d "$target_path" ]]; then
-echo "$drive_name already mounted"
-output=$(diskutil list "$drive_name")
+    echo "$drive_name already mounted"
+    output=$(diskutil list "$drive_name")
 else
-output=$(ramdisk "$default_size" "$drive_name")
-fileicon set "/Volumes/$drive_name" "$icon_file"
+    output=$(ramdisk "$default_size" "$drive_name")
+    fileicon set "/Volumes/$drive_name" "$icon_file"
 fi
 
 export CARGO_TARGET_DIR="$target_path"
 
 if [[ -z "$quiet" ]]; then
-echo "$output"
+    echo "$output"
 fi

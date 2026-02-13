@@ -3,8 +3,8 @@
 # lgfind - Search through lightweight log `lg` for a specific pattern
 local search_term="$1"
 if [[ -z "$search_term" ]]; then
-echo "Usage: lgfind 'search term'"
-return 1
+    echo "Usage: lgfind 'search term'"
+    return 1
 fi
 
 lg -S "$search_term"

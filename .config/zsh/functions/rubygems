@@ -5,11 +5,11 @@ echo "💎 Updating Ruby Gems"
 echo
 
 if user_is_admin; then
-# Workaround to no access to /usr/bin on Sierra
-# Updating rubygems-update
-gem update --system
-gem update
+    # Workaround to no access to /usr/bin on Sierra
+    # Updating rubygems-update
+    gem update --system
+    gem update
 
-# Bundler
-gem install bundler
+    # Bundler
+    gem install bundler
 fi

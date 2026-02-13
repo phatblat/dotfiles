@@ -8,15 +8,15 @@ local target_path="/Volumes/$drive_name"
 local icon_file="$HOME/Pictures/Icons/Agua Onyx Icons/Onyx Media Drive.png"
 
 if [[ -d "$target_path" ]]; then
-echo "$drive_name already mounted"
-local output
-output=$(diskutil list "$drive_name")
+    echo "$drive_name already mounted"
+    local output
+    output=$(diskutil list "$drive_name")
 else
-local output
-output=$(ramdisk "$default_size" "$drive_name")
-fileicon set "$target_path" "$icon_file"
+    local output
+    output=$(ramdisk "$default_size" "$drive_name")
+    fileicon set "$target_path" "$icon_file"
 fi
 
 if [[ -z "$quiet" ]]; then
-echo "$output"
+    echo "$output"
 fi

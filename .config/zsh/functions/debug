@@ -2,5 +2,5 @@
 
 # debug - Prints args only when debug env var is set
 if [[ -n "$debug" ]]; then
-echo "DEBUG:" "$@"
+    echo "DEBUG:" "$@"
 fi

@@ -8,26 +8,26 @@ local commit_message
 touch "$gitignore"
 
 if [[ -s "$gitignore" ]]; then
-ignore_list=$(cat "$gitignore")
+    ignore_list=$(cat "$gitignore")
 else
-ignore_list=$(ignores)
-commit_message="chore: add standard ignores"
-echo "Creating .gitignore"
+    ignore_list=$(ignores)
+    commit_message="chore: add standard ignores"
+    echo "Creating .gitignore"
 fi
 
 if [[ $# -gt 0 ]]; then
-{
-printf '%s\n' "$@"
-printf '%s\n' "$ignore_list"
-} | sort -u > "$gitignore"
-commit_message="chore: ignore $*"
+    {
+        printf '%s\n' "$@"
+        printf '%s\n' "$ignore_list"
+    } | sort -u > "$gitignore"
+    commit_message="chore: ignore $*"
 else
-printf '%s\n' "$ignore_list" | sort -u > "$gitignore"
+    printf '%s\n' "$ignore_list" | sort -u > "$gitignore"
 fi
 
 if [[ -z "$commit_message" ]]; then
-echo "Nothing new added to ignores, just sorted and removed duplicates."
-return
+    echo "Nothing new added to ignores, just sorted and removed duplicates."
+    return
 fi
 
 git add "$gitignore"

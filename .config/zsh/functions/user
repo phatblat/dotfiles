@@ -2,7 +2,7 @@
 
 # user - Displays information about the current user
 printf "%s: %s <%s> [signingKey: %s]\n" \
-"$USER" \
-"$(git config user.name)" \
-"$(git config user.email)" \
-"$(git config user.signingkey)"
+    "$USER" \
+    "$(git config user.name)" \
+    "$(git config user.email)" \
+    "$(git config user.signingkey)"

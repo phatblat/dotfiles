@@ -4,8 +4,8 @@
 local ida_path="/Applications/IDA Pro 7.5"
 
 if [[ ! -d "$ida_path" ]]; then
-echo "IDA is not installed"
-return 1
+    echo "IDA is not installed"
+    return 1
 fi
 
 sudo "$ida_path/idabin/ida64" "$@"

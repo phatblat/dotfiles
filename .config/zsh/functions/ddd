@@ -2,13 +2,13 @@
 
 # ddd - Delete Derived Data
 if [[ -z "$DERIVED_DATA" ]]; then
-echo "DERIVED_DATA is not set"
-return 1
+    echo "DERIVED_DATA is not set"
+    return 1
 fi
 
 if [[ -d "$DERIVED_DATA" ]]; then
-echo "Deleting derived data directory $DERIVED_DATA"
-rm -rf "$DERIVED_DATA"
+    echo "Deleting derived data directory $DERIVED_DATA"
+    rm -rf "$DERIVED_DATA"
 else
-echo "Derived data directory does not exist"
+    echo "Derived data directory does not exist"
 fi

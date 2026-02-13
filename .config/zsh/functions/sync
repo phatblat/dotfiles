@@ -2,13 +2,13 @@
 
 # sync - Synchronizes a git repo
 if git_repo_dirty; then
-echo "📥 Stashing changes"
-stsave
+    echo "📥 Stashing changes"
+    stsave
 fi
 
 local sync_branch="master"
 if [[ "$sync_branch" != "$(current_branch)" ]]; then
-git checkout "$sync_branch"
+    git checkout "$sync_branch"
 fi
 
 pull

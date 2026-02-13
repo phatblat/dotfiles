@@ -1,18 +1,18 @@
 #!/usr/bin/env zsh
 
 if [[ $# -eq 0 ]]; then
-echo "Usage: list [-s] 1 2 3 4 ..." >&2
-return 1
+    echo "Usage: list [-s] 1 2 3 4 ..." >&2
+    return 1
 fi
 
 local items=("$@")
 if [[ "$1" == "-s" ]]; then
-if [[ $# -lt 2 ]]; then
-echo "Usage: list -s 1 2 3 4 ..." >&2
-return 2
-fi
-shift
-items=("$@")
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: list -s 1 2 3 4 ..." >&2
+        return 2
+    fi
+    shift
+    items=("$@")
 fi
 
 printf '%s\n' "${items[@]}"

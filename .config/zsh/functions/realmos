@@ -5,16 +5,16 @@ local command="$1"
 echo "Realm Object Server"
 
 if [[ ! -e "$REALM_OBJECT_SERVER_PATH" ]]; then
-echo "No such path: $REALM_OBJECT_SERVER_PATH"
-return 1
+    echo "No such path: $REALM_OBJECT_SERVER_PATH"
+    return 1
 fi
 
 case "$command" in
 start)
-echo "Starting ROS at $REALM_OBJECT_SERVER_PATH"
-eval "$REALM_OBJECT_SERVER_PATH/start-object-server.command"
-;;
+    echo "Starting ROS at $REALM_OBJECT_SERVER_PATH"
+    eval "$REALM_OBJECT_SERVER_PATH/start-object-server.command"
+    ;;
 *)
-echo "Usage: realmos [start]"
-;;
+    echo "Usage: realmos [start]"
+    ;;
 esac

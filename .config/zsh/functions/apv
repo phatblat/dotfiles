@@ -4,11 +4,11 @@
 local apv_dir="$HOME/dev/ApplePlatformVersions"
 
 if [[ ! -d "$apv_dir" ]]; then
-cd ~/dev || return
-git clone git@github.com:phatblat/ApplePlatformVersions.git
+    cd ~/dev || return
+    git clone git@github.com:phatblat/ApplePlatformVersions.git
 else
-cd "$apv_dir" || return
-git pull
+    cd "$apv_dir" || return
+    git pull
 fi
 
 lg10

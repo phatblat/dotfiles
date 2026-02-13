@@ -3,11 +3,11 @@
 # brew_versions - Lists installed versions of a formula
 local formula="$1"
 if [[ -z "$formula" ]]; then
-echo "Usage: brew_versions formula"
-return 1
+    echo "Usage: brew_versions formula"
+    return 1
 elif ! brew list "$formula" > /dev/null 2>&1; then
-echo "$formula is not installed." >&2
-return 2
+    echo "$formula is not installed." >&2
+    return 2
 fi
 
 # brew list --versions ruby output:

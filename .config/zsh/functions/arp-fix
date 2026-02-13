@@ -2,8 +2,8 @@
 
 # arp-fix - Disables unicast ARP cache validation
 if ! user_is_admin; then
-echo "You must be an admin to run this command."
-return 1
+    echo "You must be an admin to run this command."
+    return 1
 fi
 
 sw_vers -productVersion
@@ -14,28 +14,28 @@ echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
 local arp_fixed="net.link.ether.inet.arp_unicast_lim=0"
 
 if [[ $arp_status -ne 0 ]]; then
-sudo sysctl -w $arp_fixed
-arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
+    sudo sysctl -w $arp_fixed
+    arp_status=$(sysctl net.link.ether.inet.arp_unicast_lim | awk '{print $2}')
 
-# After installation, run the command if it now exists
-if [[ $arp_status -eq 0 ]]; then
-echo "Fixed ARP issue"
+    # After installation, run the command if it now exists
+    if [[ $arp_status -eq 0 ]]; then
+        echo "Fixed ARP issue"
+    else
+        echo "Something went wrong"
+        echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
+        return 1
+    fi
 else
-echo "Something went wrong"
-echo "net.link.ether.inet.arp_unicast_lim: $arp_status"
-return 1
-fi
-else
-echo "Runtime ARP status is correct"
+    echo "Runtime ARP status is correct"
 fi
 
 local sysctl_file="/etc/sysctl.conf"
 if [[ ! -e "$sysctl_file" ]]; then
-echo "$arp_fixed" | sudo tee "$sysctl_file"
-echo "ARP fix added to $sysctl_file"
+    echo "$arp_fixed" | sudo tee "$sysctl_file"
+    echo "ARP fix added to $sysctl_file"
 elif ! grep -q "$arp_fixed" "$sysctl_file"; then
-echo "$arp_fixed" | sudo tee -a "$sysctl_file"
-echo "ARP fix added to $sysctl_file"
+    echo "$arp_fixed" | sudo tee -a "$sysctl_file"
+    echo "ARP fix added to $sysctl_file"
 else
-echo "$sysctl_file already contains the ARP fix."
+    echo "$sysctl_file already contains the ARP fix."
 fi

@@ -3,8 +3,8 @@
 # dash - Dash shell integration
 local query="$1"
 if [[ -z "$query" ]]; then
-echo "Usage: dash query   (prefix query with 'docset_name:' to limit)"
-return 1
+    echo "Usage: dash query   (prefix query with 'docset_name:' to limit)"
+    return 1
 fi
 
 open "dash://$query"

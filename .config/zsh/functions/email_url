@@ -8,12 +8,12 @@ local work_domain="ditto.com"
 local default="$user@octop.ad"
 
 if [[ -z "$url" ]]; then
-echo "$default"
-return
+    echo "$default"
+    return
 fi
 
 if [[ "$url" == *"$work_org"* ]]; then
-echo "$user@$work_domain"
+    echo "$user@$work_domain"
 else
-echo "$default"
+    echo "$default"
 fi

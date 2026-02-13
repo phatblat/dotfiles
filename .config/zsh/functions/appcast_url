@@ -3,8 +3,8 @@
 # appcast_url - Calculate appcast checkpoint
 local url="$1"
 if [[ -z "$url" ]]; then
-echo "Usage: appcast_url url"
-return 1
+    echo "Usage: appcast_url url"
+    return 1
 fi
 
 brew cask _appcast_checkpoint --calculate "$url"

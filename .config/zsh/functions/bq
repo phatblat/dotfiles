@@ -2,7 +2,7 @@
 
 # bq - Query brew information
 if [[ -z "$*" ]]; then
-cat << EOF
+    cat << EOF
 Usage: bq [formula_name] [-- jq_filter]
 Filter examples:
 formula                                                                           (raw json, filter with grep to find keys)
@@ -10,7 +10,7 @@ formula -- .[0].name                                                            
 formula -- .[0].linked_keg                                                        (active version)
 --installed -- 'map(select(.keg_only == true and .linked_keg != null) | .name)'   (names of linked keg-only formulae)
 EOF
-return 1
+    return 1
 fi
 
 local brew_args=()
@@ -18,20 +18,20 @@ local jq_args=()
 local collecting_jq=false
 
 for arg in "$@"; do
-if [[ "$arg" == "--" ]]; then
-collecting_jq=true
-continue
-fi
+    if [[ "$arg" == "--" ]]; then
+        collecting_jq=true
+        continue
+    fi
 
-if [[ "$collecting_jq" == true ]]; then
-jq_args+=("$arg")
-else
-brew_args+=("$arg")
-fi
+    if [[ "$collecting_jq" == true ]]; then
+        jq_args+=("$arg")
+    else
+        brew_args+=("$arg")
+    fi
 done
 
 if [[ ${#jq_args[@]} -eq 0 ]]; then
-jq_args=(".")
+    jq_args=(".")
 fi
 
 brew info --json=v1 "${brew_args[@]}" | jq "${jq_args[@]}"

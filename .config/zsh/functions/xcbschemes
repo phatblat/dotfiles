@@ -6,5 +6,5 @@ mapfile -t schemes < <(xcblist | grep "Schemes:" -A 10 | tail -n +2 | sed -e 's/
 # Remove the last empty element
 schemes=("${schemes[@]:0:$((${#schemes[@]} - 1))}")
 for scheme in "${schemes[@]}"; do
-echo "$scheme"
+    echo "$scheme"
 done

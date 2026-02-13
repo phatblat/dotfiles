@@ -10,7 +10,7 @@ local function_name="git-plist-filter"
 local TMPFILE=$(mktemp "$TMPDIR/$function_name.XXXXXX")
 
 # Drop stdin to temp file
-cat >"$TMPFILE"
+cat > "$TMPFILE"
 plutil -convert xml1 "$TMPFILE"
 cat "$TMPFILE"
 rm "$TMPFILE"

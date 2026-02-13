@@ -5,9 +5,9 @@ local jdk_path="$2"
 local quiet="$3"
 
 if is_linux; then
-which java
-java -version
-return
+    which java
+    java -version
+    return
 fi
 
 local ANDROID_STUDIO_PRERELEASE=""
@@ -15,33 +15,33 @@ local ANDROID_STUDIO="$HOME/Applications/Android Studio${ANDROID_STUDIO_PRERELEA
 
 case "$command" in
 list)
-echo "🖥 /usr/libexec/java_home"
-/usr/libexec/java_home --verbose "$@"
+    echo "🖥 /usr/libexec/java_home"
+    /usr/libexec/java_home --verbose "$@"
 
-echo
-echo "🖥 /Library/Java/JavaVirtualMachines"
-ls -1 /Library/Java/JavaVirtualMachines
+    echo
+    echo "🖥 /Library/Java/JavaVirtualMachines"
+    ls -1 /Library/Java/JavaVirtualMachines
 
-if [[ -d "$ANDROID_STUDIO" ]]; then
-echo
-echo "🤖 Android Studio"
-echo "$ANDROID_STUDIO/Contents/jbr/Contents/Home"
-fi
+    if [[ -d "$ANDROID_STUDIO" ]]; then
+        echo
+        echo "🤖 Android Studio"
+        echo "$ANDROID_STUDIO/Contents/jbr/Contents/Home"
+    fi
 
-local jabba_path="$HOME/.jabba/jdk"
-if [[ -d "$jabba_path" ]]; then
-echo
-echo "🐸 Jabba Java candidates in $jabba_path"
-ls -1 "$jabba_path"
-fi
-;;
+    local jabba_path="$HOME/.jabba/jdk"
+    if [[ -d "$jabba_path" ]]; then
+        echo
+        echo "🐸 Jabba Java candidates in $jabba_path"
+        ls -1 "$jabba_path"
+    fi
+    ;;
 set)
-jdk_set "$jdk_path" "$quiet"
-;;
+    jdk_set "$jdk_path" "$quiet"
+    ;;
 studio)
-jdk_set "$ANDROID_STUDIO/Contents/jbr/Contents/Home" "$quiet"
-;;
+    jdk_set "$ANDROID_STUDIO/Contents/jbr/Contents/Home" "$quiet"
+    ;;
 *)
-jdk_current
-;;
+    jdk_current
+    ;;
 esac

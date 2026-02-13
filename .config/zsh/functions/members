@@ -3,12 +3,12 @@
 # members - List members of the given group
 local group="$1"
 if [[ -z "$group" ]]; then
-echo "Usage: members group"
-return 1
+    echo "Usage: members group"
+    return 1
 fi
 
 for user in $(dscl . -list /Users); do
-if dsmemberutil checkmembership -U "$user" -G "$group" | grep -q "is a member"; then
-echo "$user"
-fi
+    if dsmemberutil checkmembership -U "$user" -G "$group" | grep -q "is a member"; then
+        echo "$user"
+    fi
 done

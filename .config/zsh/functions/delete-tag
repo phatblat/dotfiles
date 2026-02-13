@@ -3,8 +3,8 @@
 # delete-tag - Deletes a git tag from both the local and remote repos
 local tag="$1"
 if [[ -z "$tag" ]]; then
-echo "Usage: delete-tag <tag>"
-return 1
+    echo "Usage: delete-tag <tag>"
+    return 1
 fi
 
 local current_branch=$(git rev-parse --abbrev-ref HEAD)

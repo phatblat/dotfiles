@@ -3,21 +3,21 @@
 # moj_user - Prints an emoji for the current user
 case "$USER" in
 admin)
-echo "🙆🏻‍♂️"
-;;
+    echo "🙆🏻‍♂️"
+    ;;
 ben | f*)
-echo "🚶"
-;;
+    echo "🚶"
+    ;;
 benchatelain | chatelain | zoltar)
-echo "👨🏻‍🚀"
-;;
+    echo "👨🏻‍🚀"
+    ;;
 phatblat)
-echo "🎧"
-;;
+    echo "🎧"
+    ;;
 jenkins)
-echo "👷🏻‍♂️"
-;;
+    echo "👷🏻‍♂️"
+    ;;
 *)
-echo "${USER:0:1}❓"
-;;
+    echo "${USER:0:1}❓"
+    ;;
 esac

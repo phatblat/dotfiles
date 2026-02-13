@@ -3,18 +3,18 @@
 local jdk_path="$1"
 
 if [[ "$jdk_path" == "-" ]]; then
-echo "Skipping jdk_path check"
+    echo "Skipping jdk_path check"
 elif [[ ! -d "$jdk_path" ]]; then
-echo "Path not found: $jdk_path" >&2
-return 2
+    echo "Path not found: $jdk_path" >&2
+    return 2
 elif [[ ! -f "$jdk_path/bin/java" ]]; then
-echo "No java binary found at path: $jdk_path/bin/java" >&2
-return 3
+    echo "No java binary found at path: $jdk_path/bin/java" >&2
+    return 3
 fi
 
 export JAVA_HOME="$jdk_path"
 path_add "$JAVA_HOME/bin"
 
 if ! has_space "$jdk_path"; then
-export CPPFLAGS="$CPPFLAGS -I$jdk_path/include"
+    export CPPFLAGS="$CPPFLAGS -I$jdk_path/include"
 fi

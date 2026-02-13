@@ -5,8 +5,8 @@ echo "🔨 Xcode"
 echo
 
 if [[ -z "$XCODE_INSTALL_USER" && -n "$(git config user.email)" ]]; then
-export XCODE_INSTALL_USER
-XCODE_INSTALL_USER="$(git config user.email)"
+    export XCODE_INSTALL_USER
+    XCODE_INSTALL_USER="$(git config user.email)"
 fi
 
 # Currently selected version
@@ -17,7 +17,7 @@ xcversion update
 
 # Install the CLI tools, if necessary
 if [[ ! -e "/Library/Developer/CommandLineTools/usr/lib/libxcrun.dylib" ]]; then
-xcversion install-cli-tools
+    xcversion install-cli-tools
 fi
 
 echo "Available:"
@@ -27,17 +27,17 @@ installed=$(xcversion list)
 local newest_version
 newest_version=$(echo "$installed" | tail -n 1)
 if [[ ! "$newest_version" == *"(installed)"* ]]; then
-local options=(--no-show-release-notes)
+    local options=(--no-show-release-notes)
 
-# Don't activate beta versions automatically
-if [[ "$newest_version" == *"beta"* ]]; then
-options+=("--no-switch")
-fi
+    # Don't activate beta versions automatically
+    if [[ "$newest_version" == *"beta"* ]]; then
+        options+=("--no-switch")
+    fi
 
-xcversion install "$newest_version" "${options[@]}"
+    xcversion install "$newest_version" "${options[@]}"
 
-# Clean out old simulators
-xcrun simctl delete unavailable
+    # Clean out old simulators
+    xcrun simctl delete unavailable
 fi
 
 echo
@@ -53,9 +53,9 @@ mkdir -p "$xcode_themes_dir" "$xcode_dev_dir"
 clone_or_pull "$repo_dir" "git@github.com:hdoria/xcode-themes.git"
 pushd "$repo_dir" || return
 for theme in *.dvtcolortheme; do
-if [[ ! -e "$xcode_themes_dir/$theme" ]]; then
-# Only copy new themes
-cp -v "$theme" "$xcode_themes_dir"
-fi
+    if [[ ! -e "$xcode_themes_dir/$theme" ]]; then
+        # Only copy new themes
+        cp -v "$theme" "$xcode_themes_dir"
+    fi
 done
 popd || return

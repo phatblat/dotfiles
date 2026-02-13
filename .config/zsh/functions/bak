@@ -4,20 +4,20 @@
 local file="$1"
 
 if [[ ! -e "$file" ]]; then
-echo "🤷🏻‍♂️  '$file' does not exist"
-return 1
+    echo "🤷🏻‍♂️  '$file' does not exist"
+    return 1
 fi
 
 # Strip off trailing slash from dir autocompletion
 file="${file%/}"
 
 if [[ "$file" == *.bak ]]; then
-# Remove the .bak extension
-local new_name="${file%.bak}"
-mv "$file" "$new_name"
-echo "🚚  Renamed to '$new_name'"
+    # Remove the .bak extension
+    local new_name="${file%.bak}"
+    mv "$file" "$new_name"
+    echo "🚚  Renamed to '$new_name'"
 else
-# Append a .bak extension
-mv "$file" "$file.bak"
-echo "🚚  Renamed to '$file.bak'"
+    # Append a .bak extension
+    mv "$file" "$file.bak"
+    echo "🚚  Renamed to '$file.bak'"
 fi

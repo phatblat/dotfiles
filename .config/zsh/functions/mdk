@@ -5,14 +5,14 @@ local platform="$1"
 local path="$HOME/dev/mdk"
 
 if [[ -n "$platform" ]]; then
-case "$platform" in
-i | ios)
-path="$path/ios"
-;;
-a | android)
-path="$path/android"
-;;
-esac
+    case "$platform" in
+    i | ios)
+        path="$path/ios"
+        ;;
+    a | android)
+        path="$path/android"
+        ;;
+    esac
 fi
 
 pushd "$path" || return

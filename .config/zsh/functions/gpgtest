@@ -4,12 +4,12 @@
 local key_id="$1"
 local passphrase="$2"
 if [[ -z "$key_id" ]]; then
-echo "Usage: gpgtest key_id passphrase"
-return 1
+    echo "Usage: gpgtest key_id passphrase"
+    return 1
 fi
 
 echo "$passphrase" |
-gpg -o /dev/null \
---local-user "$key_id" \
--as - &&
-echo "The correct passphrase was entered for this key"
+    gpg -o /dev/null \
+        --local-user "$key_id" \
+        -as - &&
+    echo "The correct passphrase was entered for this key"

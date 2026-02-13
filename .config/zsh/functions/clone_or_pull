@@ -6,24 +6,24 @@ local git_url="$2"
 local branch="$3"
 
 if [[ -z "$folder_name" || -z "$git_url" ]]; then
-echo "Usage: clone_or_pull folder url [branch]"
-return 1
+    echo "Usage: clone_or_pull folder url [branch]"
+    return 1
 fi
 
 if [[ ! -d "$folder_name" ]]; then
-git clone "$git_url" "$folder_name"
+    git clone "$git_url" "$folder_name"
 
-# Checkout branch
-if [[ -n "$branch" ]]; then
-pushd "$folder_name" || return
-git checkout "$branch"
-popd || return
-fi
+    # Checkout branch
+    if [[ -n "$branch" ]]; then
+        pushd "$folder_name" || return
+        git checkout "$branch"
+        popd || return
+    fi
 else
-pushd "$folder_name" || return
-if [[ -n "$branch" && "$branch" != "$(git rev-parse --abbrev-ref HEAD)" ]]; then
-echo "WARNING: $folder_name currently has the $(git rev-parse --abbrev-ref HEAD) branch checked out (!=$branch)"
-fi
-git pull
-popd || return
+    pushd "$folder_name" || return
+    if [[ -n "$branch" && "$branch" != "$(git rev-parse --abbrev-ref HEAD)" ]]; then
+        echo "WARNING: $folder_name currently has the $(git rev-parse --abbrev-ref HEAD) branch checked out (!=$branch)"
+    fi
+    git pull
+    popd || return
 fi

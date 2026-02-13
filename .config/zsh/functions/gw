@@ -2,8 +2,8 @@
 
 # gw - Invokes a build using the Gradle wrapper script
 if [[ -e ./gradlew ]]; then
-./gradlew "$@"
-return
+    ./gradlew "$@"
+    return
 fi
 
 echo "There is no Gradle wrapper in the current dir."

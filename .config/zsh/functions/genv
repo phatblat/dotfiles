@@ -4,8 +4,8 @@
 local search_term="$1"
 
 if [[ -z "$search_term" ]]; then
-echo 'Usage: genv search_term'
-return 1
+    echo 'Usage: genv search_term'
+    return 1
 fi
 
 env | grep -i "$search_term"

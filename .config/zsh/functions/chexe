@@ -3,6 +3,6 @@
 # chexe - Set executable permissions
 local files="$*"
 if [[ -z "$files" ]]; then
-files="*.sh"
+    files="*.sh"
 fi
 chmod +x "$files"
