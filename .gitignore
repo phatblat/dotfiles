@@ -1,6 +1,5 @@
 __z_clean.fish
 !.android/repositories.cfg
-.cargo/*
 !.cargo/config.toml
 !.cargo/env*
 !.oh-my-zsh/themes/*
@@ -34,6 +33,7 @@ __z_clean.fish
 .bun/
 .bundle/cache/
 .cache/
+.cargo/*
 .cf/
 .CFUserTextEncoding
 .chef/
@@ -45,6 +45,7 @@ __z_clean.fish
 .claude-worktrees/
 .claude.json
 .claude.json.backup
+.claude.json.backup.*
 .claude/.credentials.json
 .claude/debug/
 .claude/file-history/
@@ -437,6 +438,7 @@ Library/AppleMediaServices/
 Library/Application Scripts/
 Library/Application Support/.com.contextsformac.Contexts.plist
 Library/Application Support/.FUS/
+Library/Application Support/@nimbalyst/
 Library/Application Support/1Password/
 Library/Application Support/act/
 Library/Application Support/AddressBook/
@@ -660,7 +662,6 @@ Library/Application Support/xyz.chatbotapp.app/
 Library/Application Support/xyz.chatboxapp.app/
 Library/Application Support/Zed/
 Library/Application Support/zen/
-Library/Application Support/@nimbalyst/
 Library/Application Support/zoom.us/
 Library/Application Support/zoxide/
 Library/Assistant/
