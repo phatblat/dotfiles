@@ -18,9 +18,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # Previously installed
-    pkgs.claude-code
-
     # Custom packages
     (pkgs.callPackage ./packages/opcode.nix { })
 
