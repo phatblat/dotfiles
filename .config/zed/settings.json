@@ -1,7 +1,5 @@
 {
   "agent": {
-    "show_turn_stats": true,
-    "message_editor_min_lines": 5,
     "always_allow_tool_actions": true,
     "default_model": {
       "model": "claude-3-5-haiku-latest",
@@ -12,7 +10,9 @@
       "model": "qwen/qwen3-coder-30b",
       "provider": "lmstudio"
     },
+    "message_editor_min_lines": 5,
     "play_sound_when_agent_done": true,
+    "show_turn_stats": true,
     "single_file_review": true
   },
   "agent_servers": {

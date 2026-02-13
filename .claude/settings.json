@@ -8,7 +8,7 @@
     "commit-commands@claude-code-plugins": true,
     "csharp-lsp@claude-plugins-official": false,
     "dart-analyzer@claude-code-lsps": false,
-    "document-skills@anthropic-agent-skills": true,
+    "document-skills@anthropic-agent-skills": false,
     "feature-dev@claude-plugins-official": true,
     "github@claude-plugins-official": false,
     "gopls@claude-code-lsps": true,
@@ -56,58 +56,58 @@
         "matcher": "Write|Edit|MultiEdit"
       },
       {
-        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run lint-changed"
+            "command": "claudekit-hooks run lint-changed",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Write|Edit|MultiEdit"
       },
       {
-        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run typecheck-changed"
+            "command": "claudekit-hooks run typecheck-changed",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Write|Edit|MultiEdit"
       },
       {
-        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run check-any-changed"
+            "command": "claudekit-hooks run check-any-changed",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Write|Edit|MultiEdit"
       },
       {
-        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run test-changed"
+            "command": "claudekit-hooks run test-changed",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Write|Edit|MultiEdit"
       },
       {
-        "matcher": "Edit|MultiEdit",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run check-comment-replacement"
+            "command": "claudekit-hooks run check-comment-replacement",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Edit|MultiEdit"
       },
       {
-        "matcher": "Edit|MultiEdit",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run check-unused-parameters"
+            "command": "claudekit-hooks run check-unused-parameters",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Edit|MultiEdit"
       }
     ],
     "PreToolUse": [
@@ -121,61 +121,61 @@
         "matcher": "Write|Edit|MultiEdit"
       },
       {
-        "matcher": "Read|Edit|MultiEdit|Write|Bash",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run file-guard"
+            "command": "claudekit-hooks run file-guard",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Read|Edit|MultiEdit|Write|Bash"
       }
     ],
+    "SessionStart": [],
     "Stop": [
       {
-        "matcher": "*",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run typecheck-project"
+            "command": "claudekit-hooks run typecheck-project",
+            "type": "command"
           },
           {
-            "type": "command",
-            "command": "claudekit-hooks run lint-project"
+            "command": "claudekit-hooks run lint-project",
+            "type": "command"
           },
           {
-            "type": "command",
-            "command": "claudekit-hooks run test-project"
+            "command": "claudekit-hooks run test-project",
+            "type": "command"
           },
           {
-            "type": "command",
-            "command": "claudekit-hooks run check-todos"
+            "command": "claudekit-hooks run check-todos",
+            "type": "command"
           },
           {
-            "type": "command",
-            "command": "claudekit-hooks run self-review"
+            "command": "claudekit-hooks run self-review",
+            "type": "command"
           },
           {
-            "type": "command",
-            "command": "claudekit-hooks run create-checkpoint"
+            "command": "claudekit-hooks run create-checkpoint",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "*"
       }
     ],
     "SubagentStop": [],
-    "SessionStart": [],
     "UserPromptSubmit": [
       {
-        "matcher": "*",
         "hooks": [
           {
-            "type": "command",
-            "command": "claudekit-hooks run codebase-map"
+            "command": "claudekit-hooks run codebase-map",
+            "type": "command"
           },
           {
-            "type": "command",
-            "command": "claudekit-hooks run thinking-level"
+            "command": "claudekit-hooks run thinking-level",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "*"
       }
     ]
   },
