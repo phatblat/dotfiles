@@ -114,6 +114,29 @@ Wait for review before creating PRs—phatblat always reviews first.
 - Never commit to main/master
 - Never push without explicit permission
 
+## Pull Request Format
+
+```
+Closes <LINEAR-TICKET>
+
+## Summary
+
+<Brief problem description with code sample showing the issue>
+
+## Fix
+
+<What changed and why>
+
+## Test plan
+
+<What tests were added/modified>
+```
+
+- Always reference the Linear ticket at the top with `Closes <TICKET-ID>`
+- Summary must include a concrete code sample demonstrating the problem
+- Fix/Solution section includes brief rationale and relevant details
+- Test plan lists specific assertions added
+
 # Agent Skills
 
 Available reusable agent capabilities (see `.claude/agent-skills/`):
