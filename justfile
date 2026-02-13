@@ -187,6 +187,8 @@ clean:
 doctor:
     mise doctor
     brew doctor
+    claude doctor
+    claudekit doctor
 
 # Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
