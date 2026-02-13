@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Fixes color in claude-code by forcing truecolor/16m
+export FORCE_COLOR=3
+
+# GitHub
+export GITHUB_TOKEN=
+export GITHUB_PERSONAL_ACCESS_TOKEN="${GITHUB_TOKEN}"
+export MISE_GITHUB_TOKEN="${GITHUB_TOKEN}"
