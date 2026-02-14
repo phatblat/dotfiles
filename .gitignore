@@ -219,6 +219,7 @@ __z_clean.fish
 .google-cloud-sdk/
 .gradle/
 .groovy/
+.harness/
 .hawtjni/
 .heroku/
 .hyper_plugins/
