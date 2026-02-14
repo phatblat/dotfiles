@@ -137,6 +137,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `cbmac`                     | ➖  | ✅   | ➖  | ➖   | Build Mac platform using Carthage.                   |
 | `cbootios`                  | ➖  | ✅   | ➖  | ➖   | Bootstrap Carthage dependencies for iOS              |
 | `cc`                        | ➖  | ➖   | ✅  | ➖   | Claude Code with --dangerously-skip-permissions      |
+| `ccc`                       | ➖  | ➖   | ✅  | ➖   | Continue a Claude Code session with default config   |
 | `ccoss`                     | ➖  | ✅   | ➖  | ➖   | Checkout into submodules using Carthage SSH          |
 | `ccos`                      | ➖  | ✅   | ➖  | ➖   | Checkout source using Carthage over SSH              |
 | `ccov`                      | ➖  | ✅   | ➖  | ➖   | Checkout source of dependencies using Carthage wit   |

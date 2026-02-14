@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ccc - Continue a Claude Code session with default configuration
+cc --continue "$@"
