@@ -1,6 +1,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export MISE_PIN=1
 export ENABLE_LSP_TOOL=1
+export FORCE_COLOR=3
 
 # Source Nix profile
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
