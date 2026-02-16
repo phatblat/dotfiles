@@ -369,3 +369,7 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
 - Daily notes archived into yearly subfolders under `~/2ndBrain/Daily Notes/` (e.g., `2024/`, `2025/`)
 - Current year's notes stay at the top level of `Daily Notes/`
 - At year boundary, move prior year's notes into a new subfolder
+- Attachments (images) organized in `~/2ndBrain/Attachments/` with yearly subfolders (2023/, 2024/, etc.)
+- Screenshots go into `Attachments/YYYY/` based on their filename date
+- Non-screenshot images go into `Attachments/misc/`
+- Wikilinks (`![[filename]]`) resolve by filename regardless of folder, so moves don't break links
