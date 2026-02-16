@@ -15,8 +15,8 @@ ls -1 ~/Desktop/Screenshot\ 2*.png 2>/dev/null
 ```
 If no screenshots are found, report "No screenshots on Desktop" and stop.
 
-### 2. Read Daily Notes for Matching Dates
-For each unique date found in the screenshot filenames (format: `Screenshot YYYY-MM-DD at HH.MM.SS.png`), read the corresponding daily note from the VM mount at `the workspace mount directory's `Daily Notes/` subfolder`. Daily note filenames use the format `YYYY-MM-DD Weekday.md`. Identify which screenshots are already embedded in notes (look for `![[Screenshot YYYY-MM-DD at HH.MM.SS.png]]` patterns).
+### 2. Read daily-note for Matching Dates
+For each unique date found in the screenshot filenames (format: `Screenshot YYYY-MM-DD at HH.MM.SS.png`), read the corresponding daily note from the VM mount at `the workspace mount directory's `daily-note/` subfolder`. Daily note filenames use the format `YYYY-MM-DD Weekday.md`. Identify which screenshots are already embedded in notes (look for `![[Screenshot YYYY-MM-DD at HH.MM.SS.png]]` patterns).
 
 ### 3. Move Uncaptured Screenshots to Vault
 For screenshots NOT already referenced in daily notes, use `mcp__Control_your_Mac__osascript` to move them:
@@ -56,7 +56,7 @@ for part in parts[1:]:
 
 Then use the `Read` tool to view each decoded JPEG thumbnail.
 
-### 5. Add Embeds with Descriptions to Daily Notes
+### 5. Add Embeds with Descriptions to daily-note
 For each screenshot, write a brief one-line description of what it shows, then add it to the corresponding daily note. Use the `Edit` tool to insert at a contextually appropriate location in the note (near related content sections).
 
 Format:

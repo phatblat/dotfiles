@@ -366,8 +366,8 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
 
 # Obsidian Vault
 - Path: `~/2ndBrain`
-- Daily notes archived into yearly subfolders under `~/2ndBrain/Daily Notes/` (e.g., `2024/`, `2025/`)
-- All daily notes go into yearly subfolders: `Daily Notes/YYYY/`
+- Daily notes archived into yearly subfolders under `~/2ndBrain/daily-note/` (e.g., `2024/`, `2025/`)
+- All daily notes go into yearly subfolders: `daily-note/YYYY/`
 - At year boundary, create new subfolder and update Obsidian daily-notes.json folder setting
 - Attachments (images) organized in `~/2ndBrain/Attachments/` with yearly subfolders (2023/, 2024/, etc.)
 - Screenshots go into `Attachments/YYYY/` based on their filename date
