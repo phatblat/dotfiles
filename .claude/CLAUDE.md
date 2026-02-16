@@ -373,3 +373,8 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
 - Screenshots go into `attachments/YYYY/` based on their filename date
 - Non-screenshot images go into `attachments/misc/`
 - Wikilinks (`![[filename]]`) resolve by filename regardless of folder, so moves don't break links
+
+# Session Plans
+- At the end of every session, write a summary of the session's plan to `~/2ndBrain/claude-plans/plan-summary.md`
+- Append each new summary under a date heading (e.g., `## 2026-02-16`)
+- Include: what was planned, what was accomplished, and any outstanding items
