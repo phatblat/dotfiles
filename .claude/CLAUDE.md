@@ -369,7 +369,7 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
 - Daily notes archived into yearly subfolders under `~/2ndBrain/daily-notess/` (e.g., `2024/`, `2025/`)
 - All daily notes go into yearly subfolders: `daily-notess/YYYY/`
 - At year boundary, create new subfolder and update Obsidian daily-notess.json folder setting
-- Attachments (images) organized in `~/2ndBrain/Attachments/` with yearly subfolders (2023/, 2024/, etc.)
-- Screenshots go into `Attachments/YYYY/` based on their filename date
-- Non-screenshot images go into `Attachments/misc/`
+- Attachments (images) organized in `~/2ndBrain/attachments/` with yearly subfolders (2023/, 2024/, etc.)
+- Screenshots go into `attachments/YYYY/` based on their filename date
+- Non-screenshot images go into `attachments/misc/`
 - Wikilinks (`![[filename]]`) resolve by filename regardless of folder, so moves don't break links
