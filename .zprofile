@@ -35,6 +35,8 @@ export PATH="$JAVA_HOME/bin:$PATH"
 alias ll='ls -l'
 alias la='ls -la'
 
+
+
 # Source .zshrc for login shells (ensures functions are autoloaded)
 if [[ -r "$HOME/.zshrc" ]]; then
   source "$HOME/.zshrc"

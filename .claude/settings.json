@@ -1,11 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "PAI_DIR": "${PAI_DIR}",
+    "PAI_DIR": "/Users/phatblat/.claude",
     "PROJECTS_DIR": "${PROJECTS_DIR}",
     "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "80000",
     "BASH_DEFAULT_TIMEOUT_MS": "600000",
-    "PAI_CONFIG_DIR": "${PAI_DIR}/../.config/PAI",
+    "PAI_CONFIG_DIR": "/Users/phatblat/.config/PAI",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "permissions": {
@@ -705,32 +705,24 @@
     "skills/PAI/USER/DAIDENTITY.md"
   ],
   "daidentity": {
-    "name": "{DAIDENTITY.NAME}",
-    "fullName": "{DAIDENTITY.FULLNAME}",
-    "displayName": "{DAIDENTITY.NAME}",
+    "name": "phatass",
+    "fullName": "phatass — Personal AI",
+    "displayName": "PHATASS",
     "color": "#3B82F6",
     "voices": {
       "main": {
-        "_docs": "Primary DA voice - stability 0.85 for consistent output, style 0.3 for minimal variation",
-        "voiceId": "YOUR_VOICE_ID_HERE",
-        "voiceName": "Your Voice Name (Premium)",
-        "stability": 0.85,
-        "similarity_boost": 0.7,
-        "style": 0.3,
-        "speed": 1.1,
-        "use_speaker_boost": true,
-        "volume": 1.2
+        "voiceId": "21m00Tcm4TlvDq8ikWAM",
+        "stability": 0.35,
+        "similarityBoost": 0.8,
+        "style": 0.9,
+        "speed": 1.1
       },
       "algorithm": {
-        "_docs": "Algorithm phase announcer voice",
-        "voiceId": "YOUR_VOICE_ID_HERE",
-        "voiceName": "Algorithm Voice",
-        "stability": 0.3,
-        "similarity_boost": 0.75,
-        "style": 0.8,
-        "speed": 1.2,
-        "use_speaker_boost": true,
-        "volume": 1
+        "voiceId": "21m00Tcm4TlvDq8ikWAM",
+        "stability": 0.35,
+        "similarityBoost": 0.8,
+        "style": 0.9,
+        "speed": 1.1
       }
     },
     "personality": {
@@ -749,12 +741,13 @@
       "curiosity": 90,
       "playfulness": 45
     },
-    "startupCatchphrase": "{name} here, ready to go"
+    "startupCatchphrase": "{name} here, ready to go",
+    "voiceId": "21m00Tcm4TlvDq8ikWAM"
   },
   "principal": {
-    "name": "{PRINCIPAL.NAME}",
+    "name": "phatblat",
     "pronunciation": "{PRINCIPAL.PRONUNCIATION}",
-    "timezone": "{PRINCIPAL.TIMEZONE}",
+    "timezone": "America/Denver",
     "voiceClone": {
       "_docs": "Principal's ElevenLabs voice clone for narration, audiobooks, and content read in their voice",
       "voiceId": "YOUR_VOICE_ID_HERE",
@@ -763,7 +756,7 @@
     }
   },
   "pai": {
-    "repoUrl": "github.com/danielmiessler/PAI",
+    "repoUrl": "https://github.com/danielmiessler/PAI",
     "version": "3.0"
   },
   "contextDisplay": {
@@ -837,15 +830,15 @@
     }
   },
   "counts": {
-    "skills": 0,
-    "workflows": 0,
-    "hooks": 0,
+    "skills": 37,
+    "workflows": 162,
+    "hooks": 20,
     "signals": 0,
-    "files": 0,
+    "files": 12,
     "work": 0,
     "sessions": 0,
     "research": 0,
     "ratings": 0,
-    "updatedAt": ""
+    "updatedAt": "2026-02-16T23:19:12.647Z"
   }
 }

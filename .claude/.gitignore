@@ -1,39 +1,24 @@
-# Claude Code runtime directories (session-specific, machine-specific)
-projects/
-file-history/
-debug/
-todos/
-session-env/
-shell-snapshots/
-paste-cache/
-chrome/
-
-# Claude Code command history
-history.jsonl
-
-# Node/Bun
-node_modules/
 **/node_modules/
-
-# Statsig analytics (Claude Code creates this)
-[Ss]tatsig/
-
-# Bun build cache
 *.bun-build
-
-# Environment files (may contain API keys)
-.env
-.env.local
-.env.*.local
-
-# macOS
-.DS_Store
-
-# System state caches (regenerated automatically)
 *.cache
 *.log
-
-# Accidental npm/bun debris
-/package.json
-/package-lock.json
+.DS_Store
+.env
+.env.*.local
+.env.local
 /bun.lock
+/package-lock.json
+/package.json
+[Ss]tatsig/
+MEMORY/
+cache/
+chrome/
+debug/
+file-history/
+history.jsonl
+node_modules/
+paste-cache/
+projects/
+session-env/
+shell-snapshots/
+todos/
