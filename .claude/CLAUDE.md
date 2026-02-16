@@ -363,3 +363,9 @@ Available reusable agent capabilities (see `.claude/agent-skills/`):
 - No trailing spaces (unless meaningful)
 - Install tools: `mise search`/`mise use` in $HOME; fallback to `brew search`/`brew install`
 - Use `mise` for tool management @~/.config/mise/config.toml
+
+# Obsidian Vault
+- Path: `~/2ndBrain`
+- Daily notes archived into yearly subfolders under `~/2ndBrain/Daily Notes/` (e.g., `2024/`, `2025/`)
+- Current year's notes stay at the top level of `Daily Notes/`
+- At year boundary, move prior year's notes into a new subfolder
