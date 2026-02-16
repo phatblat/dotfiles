@@ -384,6 +384,7 @@ __z_clean.fish
 .zsh_history*
 .zsh_sessions/
 .zsh-update
+*.bak
 *.dll
 *.hprof
 *.iml
