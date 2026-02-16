@@ -2,6 +2,7 @@ __z_clean.fish
 !.android/repositories.cfg
 !.cargo/config.toml
 !.cargo/env*
+!.logseq/preferences.json
 !.oh-my-zsh/themes/*
 !Library/Application Support/Code/User/*.json
 .*history
@@ -258,6 +259,7 @@ __z_clean.fish
 .lmstudio/
 .local/
 .locks/
+.logseq/plugins/
 .lsp4xml/
 .lumberjack/
 .m2/repository/
@@ -594,6 +596,7 @@ Library/Application Support/LM Studio/
 Library/Application Support/Logi/LogiPluginService/
 Library/Application Support/LogiOptionsPlus/
 Library/Application Support/Logitech/
+Library/Application Support/Logseq/
 Library/Application Support/Loom/
 Library/Application Support/Many Tricks/
 Library/Application Support/Microsoft*/
@@ -768,6 +771,7 @@ Library/WebKit/
 Library/Xamarin/
 logs/
 logs/security/
+logseq/
 markdown/
 mbox
 Minecraft/
