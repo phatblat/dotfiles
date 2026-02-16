@@ -4,7 +4,7 @@ Organize macOS Desktop screenshot files into the Obsidian vault ("2nd Brain") by
 
 ## Objective
 
-Move any screenshot PNG files from the macOS Desktop (`~/Desktop/Screenshot *.png`) into the Obsidian vault at `/Users/phatblat/Documents/2nd Brain/`, then add Obsidian image embeds with brief descriptions to the matching daily notes.
+Move any screenshot PNG files from the macOS Desktop (`~/Desktop/Screenshot *.png`) into the Obsidian vault at `~/2ndBrain/`, then add Obsidian image embeds with brief descriptions to the matching daily notes.
 
 ## Steps
 
@@ -16,12 +16,12 @@ ls -1 ~/Desktop/Screenshot\ 2*.png 2>/dev/null
 If no screenshots are found, report "No screenshots on Desktop" and stop.
 
 ### 2. Read Daily Notes for Matching Dates
-For each unique date found in the screenshot filenames (format: `Screenshot YYYY-MM-DD at HH.MM.SS.png`), read the corresponding daily note from the VM mount at `/sessions/peaceful-epic-bell/mnt/2nd Brain/Daily Notes/`. Daily note filenames use the format `YYYY-MM-DD Weekday.md`. Identify which screenshots are already embedded in notes (look for `![[Screenshot YYYY-MM-DD at HH.MM.SS.png]]` patterns).
+For each unique date found in the screenshot filenames (format: `Screenshot YYYY-MM-DD at HH.MM.SS.png`), read the corresponding daily note from the VM mount at `the workspace mount directory's `Daily Notes/` subfolder`. Daily note filenames use the format `YYYY-MM-DD Weekday.md`. Identify which screenshots are already embedded in notes (look for `![[Screenshot YYYY-MM-DD at HH.MM.SS.png]]` patterns).
 
 ### 3. Move Uncaptured Screenshots to Vault
 For screenshots NOT already referenced in daily notes, use `mcp__Control_your_Mac__osascript` to move them:
 ```bash
-mv ~/Desktop/'Screenshot YYYY-MM-DD at HH.MM.SS.png' '/Users/phatblat/Documents/2nd Brain/'
+mv ~/Desktop/'Screenshot YYYY-MM-DD at HH.MM.SS.png' '~/2ndBrain/'
 ```
 Leave screenshots that are already captured in notes on the Desktop.
 
@@ -30,7 +30,7 @@ Since the VM mount is a snapshot and won't reflect Mac-side file moves, use this
 
 For batches of screenshots, use `mcp__Control_your_Mac__osascript`:
 ```bash
-cd '/Users/phatblat/Documents/2nd Brain' && for f in 'Screenshot YYYY-MM-DD at HH.MM.SS.png' ...; do
+cd ~/2ndBrain && for f in 'Screenshot YYYY-MM-DD at HH.MM.SS.png' ...; do
   name=$(echo "$f" | sed 's/Screenshot 2026-//' | sed 's/ at /_/' | sed 's/.png//');
   sips -Z 400 -s format jpeg -s formatOptions 50 "$f" --out "/tmp/${name}.jpg" 2>/dev/null;
   echo "===FILE:${name}===";
@@ -79,6 +79,6 @@ After updating all daily notes, re-read each modified note to confirm the embeds
 - Do not modify existing content in daily notes — only insert new screenshot embeds
 - Process screenshots in chronological order by date, then by time
 - Batch osascript calls to minimize round-trips (group by date)
-- The VM mount path is `/sessions/peaceful-epic-bell/mnt/2nd Brain/`
-- The Mac vault path is `/Users/phatblat/Documents/2nd Brain/`
+- The VM mount path is the selected workspace folder (mounted read-only)
+- The Mac vault path is `~/2ndBrain/`
 - Thumbnails working directory: `/sessions/peaceful-epic-bell/thumbs/` (create if needed)
