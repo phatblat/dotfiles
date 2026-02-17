@@ -1,39 +1,19 @@
+__z_clean.fish
 !.android/repositories.cfg
 !.cargo/config.toml
 !.cargo/env*
 !.logseq/preferences.json
 !.oh-my-zsh/themes/*
 !Library/Application Support/Code/User/*.json
-*.bak
-*.dll
-*.hprof
-*.iml
-*.padl
-*.swp
-*.xccheckout
-*.xcscmblueprint
-*Google Drive
 .*history
-.AndroidStudio*/
-.ApacheDirectoryStudio/
-.CFUserTextEncoding
-.DS_Store
-.Epubor_Keys/
-.GMA/
-.ICEauthority
-.IdentityService/
-.IntelliJIdea2019.1/
-.JIRAClient/
-.KindleTransfer/
-.Trash/
-.Ultimate/
-.Xauthority
 .advLdap/
 .android/
+.AndroidStudio*/
 .anka/
 .ansible/
 .antigen/
 .anyconnect
+.ApacheDirectoryStudio/
 .asdf/
 .aspnet/
 .atom/
@@ -56,9 +36,11 @@
 .cache/
 .cargo/*
 .cf/
+.CFUserTextEncoding
 .chef/
 .cisco/
 .classpath
+.claude_settings.json
 .claude-code-router/.claude-code-router.pid
 .claude-server-commander/
 .claude-worktrees/
@@ -72,16 +54,24 @@
 .claude/paste-cache/
 .claude/plans/
 .claude/plugins/
+.claude/settings.json
+.claude/skills/PAI/SKILL.md
 .claude/stats-cache.json
 .claude/tasks/
-.claude_settings.json
 .clawdbot/
 .cmake-js/
 .cocoapods/
 .codeium/
 .conche/
 .config/.todoist-linux.json
+.config/balena-etcher-electron/
+.config/biolab.si/
 .config/BraveSoftware/
+.config/btop/btop.log
+.config/cachix/
+.config/chessx/
+.config/chromium/
+.config/claude/versions
 .config/Code/
 .config/Code/Backups/
 .config/Code/Cache/
@@ -91,28 +81,14 @@
 .config/Code/Cookies
 .config/Code/Cookies-journal
 .config/Code/GPUCache/
+.config/Code/languagepacks.json
+.config/Code/machineid
 .config/Code/Network Persistent State
+.config/Code/rapid_render.json
+.config/Code/storage.json
 .config/Code/User/eq-material-theme-icons.json
 .config/Code/User/globalStorage/
 .config/Code/User/workspaceStorage/
-.config/Code/languagepacks.json
-.config/Code/machineid
-.config/Code/rapid_render.json
-.config/Code/storage.json
-.config/GitHub/ActionsService/
-.config/GitHub\ActionsService/
-.config/Microsoft\\VisualStudio Services/
-.config/Rygel/
-.config/Slack/
-.config/Todoist/
-.config/Yubico/
-.config/balena-etcher-electron/
-.config/biolab.si/
-.config/btop/btop.log
-.config/cachix/
-.config/chessx/
-.config/chromium/
-.config/claude/versions
 .config/configstore
 .config/dconf/
 .config/delta/lesshst
@@ -122,9 +98,9 @@
 .config/fish/fish_history
 .config/fish/fish_variables
 .config/fish/fishd.*
-.config/fish/functions/__z.fish
 .config/fish/functions/__z_add.fish
 .config/fish/functions/__z_complete.fish
+.config/fish/functions/__z.fish
 .config/fish/functions/__zo.fish
 .config/fish/functions/fish_logo.fish
 .config/fish/functions/get.fish
@@ -145,6 +121,8 @@
 .config/git/gitk
 .config/git/ignore
 .config/github-copilot/
+.config/GitHub/ActionsService/
+.config/GitHub\ActionsService/
 .config/gnome-control-center/
 .config/gnome-initial-setup-done
 .config/goa-1.0/
@@ -161,6 +139,7 @@
 .config/libreoffice/
 .config/lxterminal/
 .config/menus/
+.config/Microsoft\\VisualStudio Services/
 .config/mise/.fake-asdf/
 .config/mise/installs/
 .config/mise/plugins/
@@ -173,7 +152,9 @@
 .config/raycast/
 .config/realm-cli/
 .config/realm/
+.config/Rygel/
 .config/session/
+.config/Slack/
 .config/stetic/
 .config/sublime-text-3/
 .config/swiftpm/
@@ -181,6 +162,7 @@
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
 .config/thefuck/settings.pyc
+.config/Todoist/
 .config/tool_state
 .config/truffle/
 .config/upstall/last_run.*
@@ -189,6 +171,7 @@
 .config/xbuild/
 .config/yarn/
 .config/yelp/yelp.cfg
+.config/Yubico/
 .config/zed/.tmp*
 .config/zed/conversations/
 .config/zed/embeddings/
@@ -211,12 +194,14 @@
 .dotfiles/cron/cronenv
 .dotnet/
 .dropbox/
+.DS_Store
 .eclipse/
 .emulator_console_auth_token
 .envrc
+.Epubor_Keys/
 .externalNativeBuild/
-.fastlane/
 .fastlane_crash_reporting
+.fastlane/
 .flutter
 .flutter-devtools/
 .gconf/
@@ -230,9 +215,10 @@
 .git-ai/bin
 .git/
 .gitkraken/
+.GMA/
 .gnome/
-.gnupg/
 .gnupg_pre_2.1/
+.gnupg/
 .google-cloud-sdk/
 .gradle/
 .groovy/
@@ -240,13 +226,16 @@
 .hawtjni/
 .heroku/
 .hyper_plugins/
+.ICEauthority
 .idapro/
 .idea/
+.IdentityService/
 .install4j
+.IntelliJIdea2019.1/
 .ipfs/
 .ipython/
-.iterm2/
 .iterm2_shell_integration.zsh
+.iterm2/
 .itmstransporter/
 .jabba/
 .java/
@@ -254,10 +243,12 @@
 .jenkins-hpl-map
 .jenkins/
 .jenv/
+.JIRAClient/
 .junique/
 .jupyter/
 .keras/
 .kindle/
+.KindleTransfer/
 .konan/
 .krew/
 .kscript/
@@ -292,9 +283,9 @@
 .ngrok/
 .nix-defexpr/
 .nix-profile
+.node_repl_history
 .node-gyp/
 .node/
-.node_repl_history
 .npm-cache/
 .npm/
 .npmrc
@@ -360,11 +351,13 @@
 .thunderbird/
 .tldrc/
 .tooling/
+.Trash/
 .travis/
 .trunk/
+.Ultimate/
 .vagrant.d/
-.vault-token
 .vault_pass.txt
+.vault-token
 .vim/
 .viminfo
 .void-editor/
@@ -379,6 +372,7 @@
 .windsurf/
 .wine/
 .worktrees/
+.Xauthority
 .xsel.log
 .yarn/
 .yarnrc
@@ -386,12 +380,21 @@
 .z
 .zcompcache/
 .zcompdump*
-.zed/
 .zed_server/
+.zed/
 .zoomus/
-.zsh-update
 .zsh_history*
 .zsh_sessions/
+.zsh-update
+*.bak
+*.dll
+*.hprof
+*.iml
+*.padl
+*.swp
+*.xccheckout
+*.xcscmblueprint
+*Google Drive
 /Library/pnpm
 2nd Brain/
 2ndBrain/
@@ -403,69 +406,101 @@ Applications/
 Apps/
 Backup/
 Backups/
+bin/
 Box Sync/
+build/
+caches/
+cali_core4/
 Calibre Library/
 Carthage/
+cmake-build-debug/
 Creative Cloud Files/
+data/
 Desktop
+dev
+ditto-cache/
 Documents
 Downloads
 Downloads/
 Dropbox/
 EpuborLog/
+examples.desktop
 Fastlane/report.xml
+fvm/
+games/
+go/
+gradlew.bat
+heapdump.*.phd
+iCloud Drive (Archive)/
 IdeaProjects/
+javacore.*.txt
+javasharedresources/
 KindleTransfer2019.01.log
+lib/
 Library/.localized
 Library/Accessibility/
 Library/Accounts/
+Library/apktool/
 Library/AppleMediaServices/
 Library/Application Scripts/
-Library/Application Support/.FUS/
 Library/Application Support/.com.contextsformac.Contexts.plist
-Library/Application Support/1Password/
+Library/Application Support/.FUS/
 Library/Application Support/@nimbalyst/
-Library/Application Support/AYA/
+Library/Application Support/1Password/
+Library/Application Support/act/
 Library/Application Support/AddressBook/
 Library/Application Support/Alfred/
 Library/Application Support/Animoji/
 Library/Application Support/App Store/
+Library/Application Support/app.kaleidoscope.v3/
+Library/Application Support/app.kaleidoscope.v4*
 Library/Application Support/Arc/
 Library/Application Support/AskPermission/
+Library/Application Support/auto-claude-ui/
+Library/Application Support/AYA/
+Library/Application Support/balena-etcher/
+Library/Application Support/balenaEtcher/
 Library/Application Support/Bartender/
 Library/Application Support/BraveSoftware/
-Library/Application Support/CD Projekt Red/
-Library/Application Support/CEF/
 Library/Application Support/Caches/
 Library/Application Support/Caddy/
 Library/Application Support/CallHistoryDB/
 Library/Application Support/CallHistoryTransactions/
+Library/Application Support/CD Projekt Red/
+Library/Application Support/CEF/
 Library/Application Support/Chromium/
 Library/Application Support/Claude/
+Library/Application Support/claudia.asterisk.so/
 Library/Application Support/CleanMyMac X/
-Library/Application Support/CleanMyMac_5/
 Library/Application Support/CleanMyMac_5_HealthMonitor/
+Library/Application Support/CleanMyMac_5/
 Library/Application Support/Clockify Desktop/
 Library/Application Support/CloudDocs/
+Library/Application Support/co.podzim.BoltGPT/
 Library/Application Support/Code - Insiders/
 Library/Application Support/Code/
 Library/Application Support/Code/.com.microsoft.VSCode.*
+Library/Application Support/Code/blob_storage
 Library/Application Support/Code/Cache/
 Library/Application Support/Code/CachedConfigurations/
 Library/Application Support/Code/CachedData/
-Library/Application Support/Code/CachedExtensionVSIXs/
 Library/Application Support/Code/CachedExtensions/
+Library/Application Support/Code/CachedExtensionVSIXs/
 Library/Application Support/Code/CachedProfilesData/
 Library/Application Support/Code/Code Cache/
+Library/Application Support/Code/code.lock
 Library/Application Support/Code/Cookies
 Library/Application Support/Code/Cookies-journal
 Library/Application Support/Code/Crashpad/
 Library/Application Support/Code/CrashpadMetrics*.pma
+Library/Application Support/Code/databases/
 Library/Application Support/Code/DawnCache/
 Library/Application Support/Code/DawnGraphiteCache/
 Library/Application Support/Code/DawnWebGPUCache/
 Library/Application Support/Code/GPUCache/
+Library/Application Support/Code/languagepacks.json
 Library/Application Support/Code/Local Storage/
+Library/Application Support/Code/machineid
 Library/Application Support/Code/Network Persistent State
 Library/Application Support/Code/Preferences
 Library/Application Support/Code/Service Worker/
@@ -477,111 +512,8 @@ Library/Application Support/Code/Trust Tokens
 Library/Application Support/Code/Trust Tokens-journal
 Library/Application Support/Code/User/*
 Library/Application Support/Code/WebStorage/
-Library/Application Support/Code/blob_storage
-Library/Application Support/Code/code.lock
-Library/Application Support/Code/databases/
-Library/Application Support/Code/languagepacks.json
-Library/Application Support/Code/machineid
-Library/Application Support/CrashReporter/
-Library/Application Support/Cron/
-Library/Application Support/Cursor/
-Library/Application Support/Cypress/
-Library/Application Support/Dash/
-Library/Application Support/Deckset/
-Library/Application Support/Dia/
-Library/Application Support/DifferentialPrivacy/
-Library/Application Support/DiffusionBee/
-Library/Application Support/DiskImages/
-Library/Application Support/Dock/
-Library/Application Support/Docker Desktop/
-Library/Application Support/EcammLive/
-Library/Application Support/FaceTime/
-Library/Application Support/Figma/
-Library/Application Support/FileProvider/
-Library/Application Support/Final Cut Pro/
-Library/Application Support/Firefox/
-Library/Application Support/Google/
-Library/Application Support/Goose/
-Library/Application Support/HelloGames/
-Library/Application Support/Hopper/Scripts/
-Library/Application Support/Insomnia/
-Library/Application Support/IsolatedStorage/
-Library/Application Support/Jan/
-Library/Application Support/JetBrains Space/
-Library/Application Support/JetBrains/
-Library/Application Support/JxBrowser/
-Library/Application Support/Kaleidoscope/*
-Library/Application Support/Kindle/
-Library/Application Support/Knowledge/
-Library/Application Support/Kobo/
-Library/Application Support/LM Studio/
-Library/Application Support/Ledger Live/
-Library/Application Support/Linear/
-Library/Application Support/Logi/LogiPluginService/
-Library/Application Support/LogiOptionsPlus/
-Library/Application Support/Logitech/
-Library/Application Support/Logseq/
-Library/Application Support/Loom/
-Library/Application Support/Many Tricks/
-Library/Application Support/Microsoft*/
-Library/Application Support/Microsoft/
-Library/Application Support/MobileSync/
-Library/Application Support/Motion/
-Library/Application Support/Mozilla/
-Library/Application Support/Msty/
-Library/Application Support/Mullvad VPN/
-Library/Application Support/Notion Calendar/
-Library/Application Support/Notion Mail/
-Library/Application Support/Notion/
-Library/Application Support/Nova/
-Library/Application Support/Ollama/
-Library/Application Support/Orange/
-Library/Application Support/Remotion/
-Library/Application Support/Rocket/
-Library/Application Support/SESStorage/
-Library/Application Support/Sentry/
-Library/Application Support/Sidekick/
-Library/Application Support/Signal/
-Library/Application Support/SimPholders/
-Library/Application Support/Slack/
-Library/Application Support/Slite/
-Library/Application Support/SourceTree/
-Library/Application Support/Spark Desktop/
-Library/Application Support/Spotify/
-Library/Application Support/Steam/
-Library/Application Support/Sublime Text 3/Local/
-Library/Application Support/SyncServices/
-Library/Application Support/TG Pro/
-Library/Application Support/TabNine/
-Library/Application Support/TextMate/
-Library/Application Support/Things Sandbox Helper/
-Library/Application Support/Thunderbird/
-Library/Application Support/Todoist/
-Library/Application Support/Transmit/
-Library/Application Support/Twitch/
-Library/Application Support/Vershd/
-Library/Application Support/VisualStudio/
-Library/Application Support/Vivaldi Snapshot/
-Library/Application Support/Vivaldi/
-Library/Application Support/Void/
-Library/Application Support/Wallpaper Wizard/
-Library/Application Support/WaveboxApp/
-Library/Application Support/Windsurf/
-Library/Application Support/Witch/
-Library/Application Support/Xamarin/
-Library/Application Support/Xcode/
-Library/Application Support/Zed/
-Library/Application Support/act/
-Library/Application Support/app.kaleidoscope.v3/
-Library/Application Support/app.kaleidoscope.v4*
-Library/Application Support/auto-claude-ui/
-Library/Application Support/balena-etcher/
-Library/Application Support/balenaEtcher/
-Library/Application Support/claudia.asterisk.so/
-Library/Application Support/co.podzim.BoltGPT/
 Library/Application Support/coing.ClockifyDesktop/
 Library/Application Support/com.*
-Library/Application Support/com.TickTick.task.mac/
 Library/Application Support/com.apple.*/
 Library/Application Support/com.bugsnag.Bugsnag/
 Library/Application Support/com.contextsformac.Contexts/
@@ -590,8 +522,8 @@ Library/Application Support/com.ecamm.EcammLive/
 Library/Application Support/com.elgato.StreamDeck/
 Library/Application Support/com.fournova.Tower3/
 Library/Application Support/com.gitbutler.app/
-Library/Application Support/com.imobie.DroidKit/
 Library/Application Support/com.imobie.droidkit-installer/
+Library/Application Support/com.imobie.DroidKit/
 Library/Application Support/com.isaacmarovitz.Whisky/
 Library/Application Support/com.kapeli.dashdoc/
 Library/Application Support/com.lastpass.lastpassmacdesktop/
@@ -602,52 +534,142 @@ Library/Application Support/com.panic.Nova/
 Library/Application Support/com.panic.Transmit/
 Library/Application Support/com.raycast.macos/
 Library/Application Support/com.readdle.SparkDesktop.helper/
-Library/Application Support/com.robotsandpencils.XcodesApp/
 Library/Application Support/com.robotsandpencils.xcodes/
+Library/Application Support/com.robotsandpencils.XcodesApp/
+Library/Application Support/com.TickTick.task.mac/
 Library/Application Support/com.unsignedinteger.Deckset-Paddle/
+Library/Application Support/CrashReporter/
+Library/Application Support/Cron/
 Library/Application Support/csdevkit/
+Library/Application Support/Cursor/
+Library/Application Support/Cypress/
 Library/Application Support/dart/
+Library/Application Support/Dash/
+Library/Application Support/Deckset/
 Library/Application Support/dev.lapce.Lapce-Stable/
 Library/Application Support/dev.warp.Warp-Stable/
+Library/Application Support/Dia/
+Library/Application Support/DifferentialPrivacy/
+Library/Application Support/DiffusionBee/
 Library/Application Support/discord/
+Library/Application Support/DiskImages/
 Library/Application Support/ditto/
 Library/Application Support/dk.shape.Tartelet/
+Library/Application Support/Dock/
+Library/Application Support/Docker Desktop/
 Library/Application Support/drata-agent/
 Library/Application Support/draw.io/
+Library/Application Support/EcammLive/
 Library/Application Support/elgato/
+Library/Application Support/FaceTime/
+Library/Application Support/Figma/
+Library/Application Support/FileProvider/
+Library/Application Support/Final Cut Pro/
+Library/Application Support/Firefox/
 Library/Application Support/firestore/
 Library/Application Support/google-heartbeat-storage/
+Library/Application Support/Google/
+Library/Application Support/Goose/
 Library/Application Support/gopls/
+Library/Application Support/HelloGames/
 Library/Application Support/homeenergyd/
+Library/Application Support/Hopper/Scripts/
+Library/Application Support/icdd/
 Library/Application Support/iCloud/
+Library/Application Support/imobieTrack/
+Library/Application Support/Insomnia/
+Library/Application Support/io.sentry/
+Library/Application Support/IsolatedStorage/
 Library/Application Support/iStat Menus 7/
 Library/Application Support/iStat Menus/
 Library/Application Support/iTerm2/
-Library/Application Support/icdd/
-Library/Application Support/imobieTrack/
-Library/Application Support/io.sentry/
+Library/Application Support/Jan/
+Library/Application Support/JetBrains Space/
+Library/Application Support/JetBrains/
+Library/Application Support/JxBrowser/
+Library/Application Support/Kaleidoscope/*
+Library/Application Support/Kindle/
+Library/Application Support/Knowledge/
+Library/Application Support/Kobo/
 Library/Application Support/kotlin/
 Library/Application Support/lazygit/state.yml
+Library/Application Support/Ledger Live/
+Library/Application Support/Linear/
+Library/Application Support/LM Studio/
+Library/Application Support/Logi/LogiPluginService/
+Library/Application Support/LogiOptionsPlus/
+Library/Application Support/Logitech/
+Library/Application Support/Logseq/
+Library/Application Support/Loom/
+Library/Application Support/Many Tricks/
+Library/Application Support/Microsoft*/
+Library/Application Support/Microsoft/
 Library/Application Support/mkcert/
+Library/Application Support/MobileSync/
+Library/Application Support/Motion/
+Library/Application Support/Mozilla/
+Library/Application Support/Msty/
+Library/Application Support/Mullvad VPN/
 Library/Application Support/multipass-client-certificate/
 Library/Application Support/multipass-gui/
 Library/Application Support/networkserviceproxy/
 Library/Application Support/ngrok/
+Library/Application Support/Notion Calendar/
+Library/Application Support/Notion Mail/
+Library/Application Support/Notion/
+Library/Application Support/Nova/
 Library/Application Support/nushell/history.txt
 Library/Application Support/obs-studio/
 Library/Application Support/obsidian/
+Library/Application Support/Ollama/
 Library/Application Support/opcode.asterisk.so/
+Library/Application Support/Orange/
 Library/Application Support/org.dystroy.broot/launcher/fish/
 Library/Application Support/pai-installer/
+Library/Application Support/Remotion/
+Library/Application Support/Rocket/
 Library/Application Support/rs.com.ditto.dql-browser/
 Library/Application Support/rs.snackos.gyro.staging/
+Library/Application Support/Sentry/
+Library/Application Support/SESStorage/
+Library/Application Support/Sidekick/
+Library/Application Support/Signal/
+Library/Application Support/SimPholders/
+Library/Application Support/Slack/
+Library/Application Support/Slite/
+Library/Application Support/SourceTree/
+Library/Application Support/Spark Desktop/
+Library/Application Support/Spotify/
+Library/Application Support/Steam/
+Library/Application Support/Sublime Text 3/Local/
 Library/Application Support/summary-events/
+Library/Application Support/SyncServices/
 Library/Application Support/synergy/
+Library/Application Support/TabNine/
 Library/Application Support/team.Immersed/
+Library/Application Support/TextMate/
+Library/Application Support/TG Pro/
+Library/Application Support/Things Sandbox Helper/
+Library/Application Support/Thunderbird/
+Library/Application Support/Todoist/
+Library/Application Support/Transmit/
+Library/Application Support/Twitch/
+Library/Application Support/Vershd/
 Library/Application Support/virtualenv/
+Library/Application Support/VisualStudio/
+Library/Application Support/Vivaldi Snapshot/
+Library/Application Support/Vivaldi/
+Library/Application Support/Void/
 Library/Application Support/vysor/
+Library/Application Support/Wallpaper Wizard/
+Library/Application Support/WaveboxApp/
+Library/Application Support/Windsurf/
+Library/Application Support/Witch/
+Library/Application Support/Xamarin/
+Library/Application Support/Xcode/
 Library/Application Support/xyz.chatbotapp.app/
 Library/Application Support/xyz.chatboxapp.app/
+Library/Application Support/Zed/
 Library/Application Support/zen/
 Library/Application Support/zoom.us/
 Library/Application Support/zoxide/
@@ -661,16 +683,20 @@ Library/Calendars/
 Library/CloudStorage/
 Library/ColorPickers/
 Library/Colors/
+Library/com.apple.*/
+Library/com.apple.aiml.instrumentation/
+Library/com.pieces.os
+Library/com.pieces.pfd
 Library/Compositions/
 Library/Contacts/
 Library/ContainerManager/
 Library/Containers/
 Library/Cookies/
 Library/CoreFollowUp/
-Library/DES/
 Library/Daemon Containers/
 Library/DataAccess/
 Library/DataDeliveryServices/
+Library/DES/
 Library/Developer/
 Library/DoNotDisturb/
 Library/DuetExpertCenter/
@@ -682,13 +708,15 @@ Library/FrontBoard/
 Library/Google/
 Library/Group Containers/
 Library/GroupContainersAlias
-Library/HTTPStorages/
+Library/homeenergyd/
 Library/HomeKit/
+Library/HTTPStorages/
 Library/IdentityServices/
 Library/Input Methods/
 Library/IntelligencePlatform/
 Library/Intents/
 Library/Internet Plug-Ins/
+Library/iTunes/
 Library/Java/
 Library/Keyboard Layouts/
 Library/Keyboard/
@@ -705,11 +733,12 @@ Library/Metadata/
 Library/Mobile Documents/
 Library/MobileDevice/
 Library/News/
-Library/PPM
-Library/PPM/
+Library/org.swift.swiftpm/
 Library/Passes/
 Library/PersonalizationPortrait/
 Library/Photos/
+Library/PPM
+Library/PPM/
 Library/PreferencePanes/
 Library/Preferences/*
 Library/Printers/
@@ -731,6 +760,7 @@ Library/Spelling/
 Library/Spotlight/
 Library/StatusKit/
 Library/Stickers/
+Library/studentd/
 Library/Suggestions/
 Library/Synergy/
 Library/Thunderbird/
@@ -743,73 +773,45 @@ Library/VisualStudio/
 Library/Weather/
 Library/WebKit/
 Library/Xamarin/
-Library/apktool/
-Library/com.apple.*/
-Library/com.apple.aiml.instrumentation/
-Library/com.pieces.os
-Library/com.pieces.pfd
-Library/homeenergyd/
-Library/iTunes/
-Library/org.swift.swiftpm/
-Library/studentd/
-Minecraft/
-Movies
-Movies/
-Music
-Music/
-OmniPresence
-OneDrive
-OrbStack/
-Parallels/
-Pictures
-Pictures.lnk
-Pictures/
-Pods/
-Public/
-Recovered Files – */
-Samsung/
-Ultimate/
-VMs
-VMs/
-Videos/
-Virtual Machines.localized/
-VirtualBox VMs/
-__z_clean.fish
-bin/
-build/
-caches/
-cali_core4/
-cmake-build-debug/
-data/
-dev
-ditto-cache/
-examples.desktop
-fvm/
-games/
-go/
-gradlew.bat
-heapdump.*.phd
-iCloud Drive (Archive)/
-javacore.*.txt
-javasharedresources/
-lib/
 logs/
 logs/security/
 logseq/
 markdown/
 mbox
+Minecraft/
 mobot-scripts
+Movies
+Movies/
+Music
+Music/
 node_modules/
 nohup.out
 obj/
+OmniPresence
 omp.cache
+OneDrive
+OrbStack/
 packages/
+Parallels/
+Pictures
+Pictures.lnk
+Pictures/
+Pods/
 private/
+Public/
 realm-object-server/
+Recovered Files – */
+Samsung/
 snap/
 src/swift/swift-*
 system_logs.logarchive/
 target/
 tmp/
+Ultimate/
+Videos/
+Virtual Machines.localized/
+VirtualBox VMs/
+VMs
+VMs/
 xcuserdata
 zclean.awk
