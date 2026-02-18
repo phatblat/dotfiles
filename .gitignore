@@ -54,6 +54,7 @@ __z_clean.fish
 .claude/paste-cache/
 .claude/plans/
 .claude/plugins/
+.claude/powerline/
 .claude/settings.json
 .claude/skills/PAI/SKILL.md
 .claude/stats-cache.json
