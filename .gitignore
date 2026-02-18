@@ -52,6 +52,7 @@ __z_clean.fish
 .claude/debug/
 .claude/file-history/
 .claude/history.jsonl
+.claude/image-cache/
 .claude/paste-cache/
 .claude/plans/
 .claude/plugins/
