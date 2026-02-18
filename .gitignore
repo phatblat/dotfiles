@@ -34,6 +34,7 @@ __z_clean.fish
 .bun/
 .bundle/cache/
 .cache/
+.cagent/
 .cargo/*
 .cf/
 .CFUserTextEncoding
@@ -70,6 +71,7 @@ __z_clean.fish
 .config/BraveSoftware/
 .config/btop/btop.log
 .config/cachix/
+.config/cagent/
 .config/chessx/
 .config/chromium/
 .config/claude/versions
