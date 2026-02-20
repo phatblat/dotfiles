@@ -1,0 +1,77 @@
+# lint.yaml
+# Harness CI pipeline for linting shell scripts across all shells
+
+pipeline:
+  name: Lint Shell Scripts
+  identifier: lint_shell_scripts
+  projectIdentifier: dotfiles
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Lint
+        identifier: lint
+        description: Lint all shell scripts (Zsh, Fish, Nushell, bin)
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: MacOS
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Lint Zsh Functions
+                  identifier: lint_zsh
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Linting Zsh functions..."
+                      find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s bash {} +
+
+              - step:
+                  type: Run
+                  name: Validate Fish Functions
+                  identifier: lint_fish
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Validating Fish functions..."
+                      fish -n ~/.config/fish/config.fish
+                      find ~/.config/fish/functions -name '*.fish' -exec fish -n {} +
+                      find ~/.config/fish/conf.d -name '*.fish' -exec fish -n {} +
+
+              - step:
+                  type: Run
+                  name: Validate Nushell Scripts
+                  identifier: lint_nushell
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Validating Nushell scripts..."
+                      nu --commands 'source ~/.config/nushell/config.nu'
+
+              - step:
+                  type: Run
+                  name: Lint Bin Scripts
+                  identifier: lint_bin
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Linting bin scripts..."
+                      shellcheck ~/bin/*.sh
+
+              - step:
+                  type: Run
+                  name: Check Formatting
+                  identifier: check_format
+                  spec:
+                    shell: Bash
+                    command: |
+                      echo "Checking justfile and mise config formatting..."
+                      just --fmt --check
+                      mise fmt --check
