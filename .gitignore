@@ -54,6 +54,7 @@ __z_clean.fish
 .claude/history.jsonl
 .claude/ide/
 .claude/image-cache/
+.claude/mcp-needs-auth-cache.json
 .claude/paste-cache/
 .claude/plans/
 .claude/plugins/
