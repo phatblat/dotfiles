@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 197 functions (primary shell)
+- Zsh: 198 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -335,6 +335,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `genv`                      | ✅  | ✅   | ✅  | ➖   | Grep environment                                     |
 | `getudid`                   | ➖  | ✅   | ✅  | ➖   | Prints and copies UDID of connected iOS device       |
 | `gh_token_test`             | ➖  | ✅   | ➖  | ➖   | Tests GitHub personal access token                   |
+| `github-pat-refresh`        | ✅  | ➖   | ➖  | ➖   | Extend fine-grained GitHub PAT expiration by N days  |
 | `ginit`                     | ➖  | ✅   | ➖  | ➖   | Git init                                             |
 | `git-plist-filter`          | ➖  | ✅   | ✅  | ➖   | Converts plist data to XML format                    |
 | `git_bundle_create`         | ➖  | ✅   | ➖  | ➖   | Creates a git bundle containing any changes in the   |

@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+# github-pat-refresh - Extend fine-grained GitHub PAT expiration by N days (default: 30)
+# Requires GITHUB_PAT_ID in environment (set in ~/.envrc, not tracked in source control)
+#
+# Usage: github-pat-refresh [days]
+#   days - number of days to extend (default: 30)
+
+local pat_id="${GITHUB_PAT_ID}"
+if [[ -z "$pat_id" ]]; then
+  print -u2 "Error: GITHUB_PAT_ID not set — add it to ~/.envrc"
+  return 1
+fi
+
+local days="${1:-30}"
+local expires_at
+expires_at=$(date -v "+${days}d" +%Y-%m-%d)
+
+print "Extending PAT ${pat_id} expiry by ${days} days → ${expires_at}"
+
+gh api \
+  --method PATCH \
+  "/user/personal-access-tokens/${pat_id}" \
+  -f "expires_at=${expires_at}" \
+  --jq '"  \(.name): expires \(.expires_at)"'

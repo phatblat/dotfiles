@@ -7,3 +7,5 @@ export FORCE_COLOR=3
 export GITHUB_TOKEN=
 export GITHUB_PERSONAL_ACCESS_TOKEN="${GITHUB_TOKEN}"
 export MISE_GITHUB_TOKEN="${GITHUB_TOKEN}"
+# Used by the github-pat-refresh function
+export GITHUB_PAT_ID=
