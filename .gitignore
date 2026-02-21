@@ -211,6 +211,7 @@ __z_clean.fish
 .flutter-devtools/
 .gconf/
 .gem/
+.gemini/
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
