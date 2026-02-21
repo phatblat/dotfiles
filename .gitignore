@@ -792,6 +792,7 @@ Music/
 node_modules/
 nohup.out
 obj/
+obsidian.test/
 OmniPresence
 omp.cache
 OneDrive
