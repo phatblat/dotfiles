@@ -182,6 +182,7 @@ __z_clean.fish
 .config/zed/conversations/
 .config/zed/embeddings/
 .config/zed/prompts/
+.config/zed/settings_backup.json
 .continue/
 .cpan/
 .cups/
