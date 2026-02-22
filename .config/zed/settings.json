@@ -1,6 +1,8 @@
 {
   "agent": {
-    "always_allow_tool_actions": true,
+    "tool_permissions": {
+      "default": "allow"
+    },
     "default_model": {
       "model": "claude-3-5-haiku-latest",
       "provider": "anthropic"
