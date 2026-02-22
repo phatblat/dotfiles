@@ -23,11 +23,7 @@
           "today": {
             "enabled": true,
             "type": "both"
-          }
-        }
-      },
-      {
-        "segments": {
+          },
           "block": {
             "enabled": false,
             "type": "weighted",
@@ -113,20 +109,6 @@
         "bg": "#7a7a7a",
         "fg": "#f0f0f0"
       }
-    }
-  },
-  "budget": {
-    "session": {
-      "warningThreshold": 80
-    },
-    "today": {
-      "amount": 5,
-      "warningThreshold": 80
-    },
-    "block": {
-      "amount": 20000000,
-      "type": "tokens",
-      "warningThreshold": 80
     }
   },
   "modelContextLimits": {
