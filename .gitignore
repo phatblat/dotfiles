@@ -67,6 +67,7 @@ __z_clean.fish
 .cmake-js/
 .cocoapods/
 .codeium/
+.codepilot/
 .conche/
 .config/.todoist-linux.json
 .config/balena-etcher-electron/
@@ -520,6 +521,7 @@ Library/Application Support/Code/Trust Tokens
 Library/Application Support/Code/Trust Tokens-journal
 Library/Application Support/Code/User/*
 Library/Application Support/Code/WebStorage/
+Library/Application Support/codepilot/
 Library/Application Support/coing.ClockifyDesktop/
 Library/Application Support/com.*
 Library/Application Support/com.apple.*/
