@@ -3,15 +3,7 @@ name: CreateSkill
 description: Create and validate skills. USE WHEN create skill, new skill, skill structure, canonicalize. SkillSearch('createskill') for docs.
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/CreateSkill/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
+##🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
 
@@ -35,8 +27,6 @@ If this directory exists, load and apply any PREFERENCES.md, configurations, or 
 MANDATORY skill creation framework for ALL skill creation requests.
 
 ## Authoritative Source
-
-**Before creating ANY skill, READ:** `~/.claude/skills/PAI/SkillSystem.md`
 
 **Canonical example to follow:** `~/.claude/skills/_YOURSKILL/SKILL.md`
 
@@ -104,8 +94,6 @@ skills/SkillName/Tools/Utils/Helper.ts           # THREE levels - NO
 **If you need to organize many workflows, use clear filenames instead of subdirectories:**
 - Good: `Workflows/CompanyDueDiligence.md`
 - Bad: `Workflows/Company/DueDiligence.md`
-
-**See:** `~/.claude/skills/PAI/SkillSystem.md` (Flat Folder Structure section)
 
 ---
 
@@ -209,7 +197,7 @@ Brief description.
 
 ❌ **Don't use for:**
 - Simple skills (< 50 lines)
-- Pure utility wrappers (use PAI/Tools.md instead)
+- Pure utility wrappers
 
 ### Benefits
 
@@ -217,8 +205,6 @@ Brief description.
 - **Organization:** SKILL.md = routing, context files = SOPs for specific aspects
 - **Efficiency:** Workflows load only what they actually need
 - **Maintainability:** Easier to update individual sections
-
-**See:** `~/.claude/skills/PAI/SkillSystem.md` (Dynamic Loading Pattern section)
 
 ---
 

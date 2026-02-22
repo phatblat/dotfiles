@@ -4,14 +4,6 @@ description: Social media scraping, business data, e-commerce via Apify actors. 
 context: fork
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Apify/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
 ## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
@@ -41,7 +33,7 @@ This skill is a **file-based MCP** - a code-first API wrapper that replaces toke
 
 **Why file-based?** Filter data in code BEFORE returning to model context = 97.5% token savings.
 
-**Architecture:** See `~/.claude/skills/PAI/DOCUMENTATION/FileBasedMCPs.md`
+**Architecture:** File-based MCP pattern - code-first API wrapper replacing token-heavy MCP protocol calls.
 
 ## 🎯 Overview
 

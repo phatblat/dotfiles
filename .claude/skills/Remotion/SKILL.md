@@ -26,11 +26,6 @@ description: Programmatic video creation with React. USE WHEN video, animation, 
 
 Create professional videos programmatically with React.
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Remotion/`
-
 ## Workflow Routing
 
 | Trigger | Workflow |
@@ -39,7 +34,7 @@ Create professional videos programmatically with React.
 
 ## Quick Reference
 
-- **Theme:** Always use PAI_THEME from `Tools/Theme.ts`
+- **Theme:** Always use theme constants from `Tools/Theme.ts`
 - **Art Integration:** Load Art preferences before creating content
 - **Critical:** NO CSS animations - use `useCurrentFrame()` only
 - **Output:** Always to `~/Downloads/` first
@@ -61,7 +56,7 @@ npx remotion render {composition-id} ~/Downloads/{name}.mp4
 | Tool | Purpose |
 |------|---------|
 | `Tools/Render.ts` | Render, list compositions, create projects |
-| `Tools/Theme.ts` | PAI theme constants derived from Art |
+| `Tools/Theme.ts` | Theme constants derived from Art |
 
 ## Links
 

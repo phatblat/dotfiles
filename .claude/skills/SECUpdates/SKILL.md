@@ -4,14 +4,7 @@ description: Security news aggregation from tldrsec, no.security, and other sour
 context: fork
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/SECUpdates/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-## Voice Notification (REQUIRED)
+##Voice Notification (REQUIRED)
 
 **Send this notification BEFORE doing anything else:**
 

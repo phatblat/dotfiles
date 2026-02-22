@@ -65,7 +65,7 @@ Models are stored at: `~/.claude/MEMORY/RESEARCH/WorldModels/`
 
 ## Skill Integrations
 
-This skill orchestrates multiple PAI capabilities:
+This skill orchestrates multiple capabilities:
 
 - **RedTeam** — Adversarial stress testing of ideas against each horizon
 - **FirstPrinciples** — Decompose idea assumptions into hard/soft/assumption constraints
@@ -81,7 +81,3 @@ curl -s -X POST http://localhost:8888/notify \
   -d '{"message": "Running WORKFLOW_NAME in the World Threat Model Harness", "voice_id": "YOUR_VOICE_ID_HERE"}'
 ```
 
-## Customization Check
-
-Before execution, check for user customizations at:
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/WorldThreatModelHarness/`

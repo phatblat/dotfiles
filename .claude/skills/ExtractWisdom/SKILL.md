@@ -3,14 +3,7 @@ name: ExtractWisdom
 description: Dynamic wisdom extraction that adapts sections to content. USE WHEN extract wisdom, analyze video, analyze podcast, extract insights, what's interesting, extract from YouTube, what did I miss, key takeaways. Replaces static extract_wisdom with content-adaptive extraction.
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/ExtractWisdom/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-# ExtractWisdom — Dynamic Content Extraction
+#ExtractWisdom — Dynamic Content Extraction
 
 **The next generation of extract_wisdom.** Instead of static sections (IDEAS, QUOTES, HABITS...), this skill detects what wisdom domains actually exist in the content and builds custom sections around them.
 
@@ -60,7 +53,7 @@ The output should feel like your smartest friend watched/read the thing and is t
 
 ## Tone Rules (CRITICAL)
 
-**Canonical voice reference: `skills/PAI/USER/WRITINGSTYLE.md`** — read this file for the full voice definition. The bullets should sound like {PRINCIPAL.NAME} telling a friend about it over coffee. Not compressed info nuggets. Not clever one-liners. Actual spoken observations.
+The bullets should sound like you telling a friend about it over coffee. Not compressed info nuggets. Not clever one-liners. Actual spoken observations.
 
 **THREE LEVELS — we're aiming for Level 3:**
 

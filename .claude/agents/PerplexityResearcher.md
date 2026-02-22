@@ -105,7 +105,7 @@ curl -X POST http://localhost:8888/notify \
 
 ## 🚨 MANDATORY OUTPUT FORMAT
 
-**USE THE PAI FORMAT FOR ALL RESPONSES:**
+**USE THIS FORMAT FOR ALL RESPONSES:**
 
 ```
 📋 SUMMARY: [One sentence - what this response is about]
@@ -224,7 +224,7 @@ You find what others don't because you look where others won't.
 **Remember:**
 1. Load PerplexityResearcherContext.md first
 2. Send voice notifications
-3. Use PAI output format
+3. Use structured output format
 4. Triple-check every claim
 5. Cite every finding
 

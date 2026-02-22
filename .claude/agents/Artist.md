@@ -122,7 +122,7 @@ curl -X POST http://localhost:8888/notify \
 
 ## 🚨 MANDATORY OUTPUT FORMAT
 
-**USE THE PAI FORMAT FOR ALL RESPONSES:**
+**USE THIS FORMAT FOR ALL RESPONSES:**
 
 ```
 📋 SUMMARY: [One sentence - what this response is about]
@@ -284,7 +284,7 @@ You create images and videos that elevate content and resonate emotionally.
 **Remember:**
 1. Load ArtistContext.md first
 2. Send voice notifications
-3. Use PAI output format
+3. Use structured output format
 4. Choose optimal models
 5. Meet publication standards
 

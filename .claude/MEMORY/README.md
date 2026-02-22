@@ -2,8 +2,6 @@
 
 **Version:** 7.0 (Projects-native architecture, 2026-01-12)
 
-Full documentation: `~/.claude/skills/PAI/MEMORYSYSTEM.md`
-
 ---
 
 ## Architecture
@@ -37,14 +35,14 @@ Hook Events trigger domain-specific captures:
 | **RESEARCH/** | Agent output captures | Markdown | Write on agent completion |
 | **SECURITY/** | Security audit events | JSONL | Write on security decisions |
 | **STATE/** | Fast runtime data (caches, current state) | JSON | High-frequency read/write |
-| **PAISYSTEMUPDATES/** | Architecture change history | Markdown | Manual, infrequent |
+| **UPDATES/** | Architecture change history | Markdown | Manual, infrequent |
 
 ---
 
 ## Directory Details
 
 ### Claude Code projects/
-**Native session storage.** Complete JSONL transcripts for every session. This is the actual "firehose" - every message, tool call, and response. PAI leverages this native storage rather than duplicating it. 30-day retention, managed by Claude Code.
+**Native session storage.** Complete JSONL transcripts for every session. This is the actual "firehose" - every message, tool call, and response. 30-day retention, managed by Claude Code.
 
 ### WORK/
 **Primary work tracking system.** Each work unit gets a directory with META.yaml, items/, verification artifacts, and child work. Created on UserPromptSubmit, updated on Stop, marked COMPLETED on SessionEnd.
@@ -71,7 +69,7 @@ Hook Events trigger domain-specific captures:
 ### RESEARCH/
 **Agent output captures.** Markdown files from spawned agents (researchers, architects, engineers).
 
-### PAISYSTEMUPDATES/
+### UPDATES/
 **Architecture change history.** Canonical tracking of all system changes over time.
 
 ---

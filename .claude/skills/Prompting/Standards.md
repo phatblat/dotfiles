@@ -691,23 +691,23 @@ An **open-source framework** for augmenting humans using AI.
 
 **Location:** github.com/danielmiessler/Fabric
 
-## Native Fabric Patterns in PAI
+## Native Fabric Patterns
 
-**Location:** `~/.claude/skills/PAI/Tools/fabric/Patterns/`
+**Location:** `~/.claude/skills/Fabric/Patterns/`
 
-PAI maintains a local copy of all Fabric patterns for native execution. Instead of spawning the `fabric` CLI for every pattern-based task, the system reads and applies patterns directly as prompts.
+A local copy of all Fabric patterns is maintained for native execution. Instead of spawning the `fabric` CLI for every pattern-based task, the system reads and applies patterns directly as prompts.
 
 ### When to Use Native Patterns (Default)
 
 For any pattern-based processing, the system will:
-1. Read `tools/fabric/Patterns/{pattern_name}/system.md`
+1. Read `Patterns/{pattern_name}/system.md`
 2. Apply the pattern instructions directly to the content
 3. Execute without external CLI calls
 
 **Examples:**
-- `extract_wisdom` → Read and apply `tools/fabric/Patterns/extract_wisdom/system.md`
-- `summarize` → Read and apply `tools/fabric/Patterns/summarize/system.md`
-- `analyze_claims` → Read and apply `tools/fabric/Patterns/analyze_claims/system.md`
+- `extract_wisdom` → Read and apply `Patterns/extract_wisdom/system.md`
+- `summarize` → Read and apply `Patterns/summarize/system.md`
+- `analyze_claims` → Read and apply `Patterns/analyze_claims/system.md`
 
 ### When to Still Use the Fabric CLI
 
@@ -717,15 +717,6 @@ Only use the `fabric` command for:
 - **`-l`** - List available patterns: `fabric -l`
 
 These operations require the CLI because they access external services or configuration.
-
-### Updating Patterns
-
-Run the update script to sync latest patterns:
-```bash
-~/.claude/skills/PAI/Tools/fabric/update-patterns.sh
-```
-
-This pulls upstream updates via `fabric -U` and syncs to PAI's local copy.
 
 ---
 
@@ -988,15 +979,15 @@ Verify across multiple sources. Develop competing hypotheses. Track confidence l
 
 # Prompt Templating System
 
-**Foundation:** Based on Anthropic's official `{{variable}}` syntax, industry patterns (LangChain, Handlebars, DSPy), and PAI's unique skill architecture.
+**Foundation:** Based on Anthropic's official `{{variable}}` syntax, industry patterns (LangChain, Handlebars, DSPy), and the skill architecture.
 
-**Philosophy:** Templates enable prompts to write prompts—dynamic composition where structure is fixed but content is parameterized. This is core PAI DNA.
+**Philosophy:** Templates enable prompts to write prompts—dynamic composition where structure is fixed but content is parameterized. Programmatic prompt generation at scale.
 
 ---
 
 ## Core Syntax
 
-PAI uses Handlebars notation for template variables:
+The system uses Handlebars notation for template variables:
 
 | Syntax | Purpose | Example |
 |--------|---------|---------|
@@ -1232,7 +1223,7 @@ const output = renderTemplate('Primitives/Briefing.hbs', {
 
 ---
 
-## Integration with PAI Systems
+## Integration with Systems
 
 | System | Template Use |
 |--------|--------------|

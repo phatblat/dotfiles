@@ -4,15 +4,7 @@ description: Progressive URL scraping. USE WHEN Bright Data, scrape URL, web scr
 context: fork
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/BrightData/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
+##🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
 
@@ -176,9 +168,5 @@ Skill Response:
 5. Total time: ~5-10 seconds
 
 ---
-
-**Related Documentation:**
-- `~/.claude/skills/PAI/SkillSystem.md` - Canonical structure guide
-- `~/.claude/skills/PAI/CONSTITUTION.md` - Overall PAI philosophy
 
 **Last Updated:** 2025-11-23

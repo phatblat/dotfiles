@@ -4,7 +4,7 @@
 **Token Savings:** 90-98% vs traditional MCP approach
 **Execution Time:** ~10 seconds typical
 
-## Integration with PAI Skills
+## Integration with Other Skills
 
 ### Social Skill Integration
 
@@ -215,7 +215,7 @@ Q: Why not use MCP?
 A: 90-98% token savings, faster execution, better control.
 
 Q: What if script fails?
-A: Check `APIFY_TOKEN` in `${PAI_DIR}/.env`, verify network, check Apify status.
+A: Check `APIFY_TOKEN` in `~/.claude/.env`, verify network, check Apify status.
 
 Q: Can I add new actors?
 A: Yes! Follow `STANDARDS.md` pattern, hardcode actor ID, filter in code.
@@ -232,4 +232,4 @@ A: Use `debug-tweet-structure.ts` to inspect raw data, check console output.
 - ✅ 4 production-ready scripts
 - ✅ Comprehensive documentation
 
-**This is now the standard for all Twitter operations in PAI.**
+**This is now the standard for all Twitter operations.**

@@ -3,13 +3,6 @@ name: Fabric
 description: Intelligent prompt pattern system with 240+ specialized patterns for content analysis, extraction, and transformation. USE WHEN user says 'use fabric', 'fabric pattern', 'run fabric', 'update fabric', 'update patterns', 'sync fabric', 'extract wisdom', 'summarize with fabric', 'create threat model', 'analyze with fabric', OR any request to apply Fabric patterns to content.
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Fabric/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
 ## Voice Notification
 
 **When executing a workflow, do BOTH:**
@@ -27,7 +20,6 @@ If this directory exists, load and apply any PREFERENCES.md, configurations, or 
    Running the **WorkflowName** workflow in the **Fabric** skill to ACTION...
    ```
 
-**Full documentation:** `~/.claude/skills/PAI/THENOTIFICATIONSYSTEM.md`
 
 # Fabric
 
@@ -82,7 +74,7 @@ User: "Use fabric to create a threat model for this API"
 
 ### Pattern Execution (Native - No CLI Required)
 
-Instead of calling `fabric -p pattern_name`, PAI executes patterns natively:
+Instead of calling `fabric -p pattern_name`, patterns are executed natively:
 1. Reads `Patterns/{pattern_name}/system.md`
 2. Applies pattern instructions directly as prompt
 3. Returns results without external CLI calls
@@ -181,8 +173,7 @@ Each pattern's `system.md` contains the full prompt that defines:
 ## Changelog
 
 ### 2026-01-18
-- Initial skill creation (extracted from PAI/Tools/fabric)
+- Initial skill creation
 - Native pattern execution (no CLI dependency for most patterns)
 - Two workflows: ExecutePattern, UpdatePatterns
 - 240+ patterns organized by category
-- PAI Pack ready structure

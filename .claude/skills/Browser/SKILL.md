@@ -4,14 +4,6 @@ description: Debug-first browser automation with always-on visibility. Console l
 version: 2.0.0
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Browser/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
 ## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
@@ -41,7 +33,7 @@ If this directory exists, load and apply any PREFERENCES.md, configurations, or 
 
 Debugging shouldn't be opt-in. Like good logging frameworks - you don't turn on logging when you have a problem, you have it enabled from the start so the data exists when problems occur.
 
-**Headless by default.** All automation runs in headless mode. When the user says "show me" or wants to see what the assistant is seeing, open the URL in their preferred browser from `~/.claude/skills/PAI/USER/TECHSTACKPREFERENCES.md`:
+**Headless by default.** All automation runs in headless mode. When the user says "show me" or wants to see what the assistant is seeing, open the URL in their preferred browser:
 
 ```bash
 # Open URL in user's preferred browser

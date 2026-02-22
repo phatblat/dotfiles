@@ -28,24 +28,14 @@ description: Dynamic agent composition and management system. USE WHEN user says
 
 ## Configuration: Base + User Merge
 
-The Agents skill uses the standard PAI SYSTEM/USER two-tier pattern:
+The Agents skill uses a two-tier configuration pattern:
 
-| Location | Purpose | Updates With PAI? |
-|----------|---------|-------------------|
-| `Data/Traits.yaml` | Base traits, example voices | Yes |
-| `USER/SKILLCUSTOMIZATIONS/Agents/Traits.yaml` | Your voices, prosody, agents | No |
+| Location | Purpose |
+|----------|---------|
+| `Data/Traits.yaml` | Base traits, example voices |
+| User customization directory | Your voices, prosody, agents |
 
-**How it works:** ComposeAgent.ts loads base traits, then merges user customizations over them. Your customizations are never overwritten by PAI updates.
-
-### User Customization Directory
-
-Create your customizations at:
-```
-~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Agents/
-├── Traits.yaml       # Your traits, voices, prosody settings
-├── NamedAgents.md    # Your named agent backstories (optional)
-└── VoiceConfig.json  # Voice server configuration (optional)
-```
+**How it works:** ComposeAgent.ts loads base traits, then merges user customizations over them.
 
 ## Voice Prosody Settings
 
@@ -63,7 +53,7 @@ Each voice can have prosody settings that control how it sounds. These are passe
 
 ### Example Voice Configuration
 
-In your `USER/SKILLCUSTOMIZATIONS/Agents/Traits.yaml`:
+In your user customization `Traits.yaml`:
 
 ```yaml
 voice_mappings:

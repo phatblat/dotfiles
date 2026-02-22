@@ -3,15 +3,7 @@ name: IterativeDepth
 description: Multi-angle iterative exploration for deeper ISC extraction. USE WHEN iterative depth, deep exploration, multi-angle analysis, explore deeper, multiple perspectives on problem, examine from angles, OR when the Algorithm's OBSERVE phase needs enhanced ISC extraction.
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/IterativeDepth/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
-# IterativeDepth
+#IterativeDepth
 
 **Structured multi-angle exploration of the same problem to extract deeper understanding and richer ISC criteria.**
 

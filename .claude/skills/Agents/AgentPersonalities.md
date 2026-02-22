@@ -1,12 +1,12 @@
 # Agent Personalities
 
-**Canonical source of truth for all PAI agent personality definitions.**
+**Canonical source of truth for all agent personality definitions.**
 
-This file defines the character, voice settings, backstories, and personality traits for all agents in the PAI system. The voice server reads this configuration to deliver personality-driven voice communication.
+This file defines the character, voice settings, backstories, and personality traits for all agents in the system. The voice server reads this configuration to deliver personality-driven voice communication.
 
 ## Hybrid Agent Model
 
-PAI uses a **hybrid agent system** that combines:
+The system uses a **hybrid agent model** that combines:
 
 1. **Named Agents** (this file) - Persistent identities with rich backstories, voice mappings, and relationship continuity
 2. **Custom Agents** (Traits.yaml + ComposeAgent) - Task-specific specialists composed on-the-fly from traits with unique voices and colors
@@ -714,7 +714,7 @@ Voice server automatically loads this configuration at startup. To update person
 
 - **v1.3.2** (2025-11-16): DRAMATIC voice differentiation - 97% rate increase, 54% similarity increase, 42% stability increase using personality psychology mapping
 - **v1.3.1** (2025-11-16): Deep character development - backstories, life events, refined voice characteristics
-- **v1.3.0** (2025-11-16): Centralized in PAI, increased expressiveness for all agents
+- **v1.3.0** (2025-11-16): Centralized agent config, increased expressiveness for all agents
 - **v1.2.1** (2025-11-16): Enhanced DA expressiveness specifically
 - **v1.2.0** (2025-11-16): Added character personalities for 5 key agents
 - **v1.1.0** (2025-11-16): Initial agent personality system

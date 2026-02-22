@@ -7,20 +7,7 @@ description: Complete visual content system. USE WHEN user wants to create visua
 
 Complete visual content system for creating illustrations, diagrams, and visual content.
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Art/`
-
-If this directory exists, load and apply:
-- `PREFERENCES.md` - Aesthetic preferences, default model, output location
-- `CharacterSpecs.md` - Character design specifications
-- `SceneConstruction.md` - Scene composition guidelines
-
-These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
+##🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
 
@@ -90,7 +77,7 @@ Route to the appropriate workflow based on the request.
 - Character design specifications
 - Scene composition rules
 
-**Load from:** `~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Art/PREFERENCES.md`
+**Load from:** User customization preferences if available.
 
 ---
 
@@ -98,7 +85,7 @@ Route to the appropriate workflow based on the request.
 
 **User customization** may include reference images for consistent style.
 
-Check `~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Art/PREFERENCES.md` for:
+Check user customization preferences for:
 - Reference image locations
 - Style examples by use case
 - Character and scene reference guidance
@@ -174,7 +161,7 @@ bun run ~/.claude/skills/Art/Tools/Generate.ts \
 - Up to 6 object reference images
 - Maximum 14 total reference images per request
 
-**API keys in:** `${PAI_DIR}/.env`
+**API keys in:** `~/.claude/.env`
 
 ## Examples
 

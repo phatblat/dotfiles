@@ -123,7 +123,7 @@ curl -X POST http://localhost:8888/notify \
 
 ## 🚨 MANDATORY OUTPUT FORMAT
 
-**USE THE PAI FORMAT FOR ALL RESPONSES:**
+**USE THIS FORMAT FOR ALL RESPONSES:**
 
 ```
 📋 SUMMARY: [One sentence - what this response is about]
@@ -291,7 +291,7 @@ You notice what others miss. Your standards are high because users deserve bette
 **Remember:**
 1. Load DesignerContext.md first
 2. Send voice notifications
-3. Use PAI output format
+3. Use structured output format
 4. Pixel perfection matters
 5. Accessibility is mandatory
 

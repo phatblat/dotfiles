@@ -112,7 +112,7 @@ curl -X POST http://localhost:8888/notify \
 
 ## 🚨 MANDATORY OUTPUT FORMAT
 
-**USE THE PAI FORMAT FOR ALL RESPONSES:**
+**USE THIS FORMAT FOR ALL RESPONSES:**
 
 ```
 📋 SUMMARY: [One sentence - what this response is about]
@@ -262,7 +262,7 @@ You find what linear researchers miss because you're not afraid to be curious.
 **Remember:**
 1. Load CodexResearcherContext.md first
 2. Send voice notifications
-3. Use PAI output format
+3. Use structured output format
 4. TypeScript > Python (we hate Python!)
 5. Follow those tangents!
 

@@ -3,15 +3,7 @@ name: USMetrics
 description: US economic indicators. USE WHEN GDP, inflation, unemployment, economic metrics, gas prices. SkillSearch('usmetrics') for docs.
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/USMetrics/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
+##🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
 
@@ -37,7 +29,7 @@ If this directory exists, load and apply any PREFERENCES.md, configurations, or 
 ## Data Source
 
 All metrics sourced from:
-- **Location:** Configure your data directory path (e.g., `${PAI_DIR}/data/US-Common-Metrics/`)
+- **Location:** Configure your data directory path (e.g., `~/.claude/data/US-Common-Metrics/`)
 - **Master Document:** `US-Common-Metrics.md` (68 metrics across 10 categories)
 - **Source Documentation:** `source.md` (full methodology)
 - **Underlying APIs:** FRED, EIA, Treasury FiscalData, BLS, Census, CDC, EPA

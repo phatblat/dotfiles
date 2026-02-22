@@ -4,8 +4,8 @@
 # For BitBar/SwiftBar - updates every 5 seconds
 
 # Get the VoiceServer directory
-PAI_DIR="${PAI_DIR:-$HOME/.claude}"
-VOICE_SERVER_DIR="$PAI_DIR/VoiceServer"
+CLAUDE_DIR="${CLAUDE_DIR:-$HOME/.claude}"
+VOICE_SERVER_DIR="$CLAUDE_DIR/VoiceServer"
 
 # Check if server is running
 if curl -s -f http://localhost:8888/health > /dev/null 2>&1; then
@@ -41,7 +41,7 @@ fi
 
 echo "---"
 echo "Check Status | bash='$VOICE_SERVER_DIR/status.sh' terminal=true"
-echo "View Logs | bash='tail -f ~/Library/Logs/pai-voice-server.log' terminal=true"
+echo "View Logs | bash='tail -f ~/Library/Logs/voice-server.log' terminal=true"
 echo "---"
 echo "Test Voice | bash='curl -X POST http://localhost:8888/notify -H \"Content-Type: application/json\" -d \"{\\\"message\\\":\\\"Testing voice server\\\"}\"' terminal=false"
 echo "---"

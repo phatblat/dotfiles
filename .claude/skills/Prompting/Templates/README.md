@@ -1,11 +1,11 @@
-# PAI Templating System
+# Templating System
 
 **Version:** 1.0.0
 **Rollback Point:** v2.5.0
 
 ## Overview
 
-The PAI templating system enables **prompts that write prompts**—dynamic composition where structure is fixed but content is parameterized. Based on Anthropic's official `{{variable}}` syntax and industry best practices.
+The templating system enables **prompts that write prompts**--dynamic composition where structure is fixed but content is parameterized. Based on Anthropic's official `{{variable}}` syntax and industry best practices.
 
 ## Directory Structure
 
@@ -36,7 +36,7 @@ Templates/
 
 ## Core Syntax
 
-PAI uses Handlebars notation for template variables:
+The system uses Handlebars notation for template variables:
 
 | Syntax | Purpose | Example |
 |--------|---------|---------|
@@ -168,7 +168,7 @@ cd ~/.claude
 git checkout v2.5.0
 # Or to just undo templating:
 rm -rf Templates/
-git checkout v2.5.0 -- skills/PAI/Prompting.md
+git checkout v2.5.0 -- skills/Prompting/
 ```
 
 ## Token Savings
@@ -304,7 +304,5 @@ This system is based on research from:
 
 ## Related Documentation
 
-- `~/.claude/skills/PAI/Prompting.md` (Templating section)
-- `~/.claude/History/research/2025-12/2025-12-09-templating-system-research.md`
-- `~/.claude/History/learnings/2025-12/2025-12-09-021700_LEARNING_complete-templating-system-and-evals-integration.md`
+- `~/.claude/skills/Prompting/Standards.md` (Templating section)
 - `~/.claude/skills/Evals/SKILL.md`

@@ -10,7 +10,7 @@
 ### Before (v1.0.0 - Over-engineered)
 
 - ❌ 5 elaborate YAML files with memory blocks and init prompts
-- ❌ Duplicated PAI content (stack preferences, coding standards)
+- ❌ Duplicated base system content (stack preferences, coding standards)
 - ❌ Complex AgentProfileLoader.ts with YAML parsing
 - ❌ Three layers of redundant context
 
@@ -19,7 +19,7 @@
 - ✅ 5 simple markdown context files (one per agent type)
 - ✅ References Skills, doesn't duplicate content
 - ✅ Simple LoadAgentContext.ts (just reads markdown)
-- ✅ Supplements PAI without redundancy
+- ✅ Supplements base context without redundancy
 
 ---
 
@@ -65,12 +65,12 @@ Example: `ArchitectContext.md`
 **Model**: opus
 
 ## Required Knowledge (Pre-load from Skills)
-- **skills/PAI/CONSTITUTION.md** - Foundational principles
-- **skills/PAI/CoreStack.md** - Stack preferences
+- **skills/Development/METHODOLOGY.md** - Development methodology
+- **skills/Development/SKILL.md** - Development workflows
 
 ## Task-Specific Knowledge
 - **api** → skills/Development/References/APIDesign.md
-- **security** → skills/PAI/SecurityProtocols.md
+- **security** → skills/Development/References/security-standards.md
 ```
 
 ### 2. Simple Loader Reads Context
@@ -101,10 +101,10 @@ await Task({
 
 ## Key Benefits
 
-1. **No Duplication**: PAI already provides constitutional principles, stack preferences, etc.
+1. **No Duplication**: The base system already provides stack preferences, development standards, etc.
 2. **Simple**: One markdown file per agent - easy to understand and maintain
 3. **References Skills**: Acts as "reading list" pointing to existing knowledge
-4. **Supplements PAI**: Adds agent-specific context without replacing base knowledge
+4. **Supplements Base Context**: Adds agent-specific context without replacing base knowledge
 5. **Maintainable**: When Skills change, just update references, not content
 
 ---
@@ -138,10 +138,9 @@ bun run ~/.claude/skills/Agents/Tools/LoadAgentContext.ts Engineer "Implement TD
 
 ## What Agents Get When Spawned
 
-1. **PAI context** (auto-loaded at session start)
-   - Constitutional principles
+1. **Base context** (auto-loaded at session start)
    - Stack preferences
-   - Security protocols
+   - Development standards
 
 2. **Agent-specific context** (from `*Context.md`)
    - Role definition

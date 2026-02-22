@@ -3,15 +3,7 @@ name: Prompting
 description: Meta-prompting system for dynamic prompt generation using templates, standards, and patterns. USE WHEN meta-prompting, template generation, prompt optimization, or programmatic prompt composition.
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/Prompting/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
+##🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
 
@@ -123,7 +115,7 @@ const agent = composeAgent(['security', 'skeptical', 'thorough'], task, traits);
 
 ## Token Efficiency
 
-The templating system eliminated **~35,000 tokens (65% reduction)** across PAI:
+The templating system eliminated **~35,000 tokens (65% reduction)** across the skill system:
 
 | Area | Before | After | Savings |
 |------|--------|-------|---------|
@@ -177,4 +169,4 @@ The templating system eliminated **~35,000 tokens (65% reduction)** across PAI:
 
 ---
 
-**Philosophy:** Prompts that write prompts. Structure is code, content is data. Meta-prompting enables dynamic composition where the same template with different data generates specialized agents, workflows, and evaluation frameworks. This is core PAI DNA - programmatic prompt generation at scale.
+**Philosophy:** Prompts that write prompts. Structure is code, content is data. Meta-prompting enables dynamic composition where the same template with different data generates specialized agents, workflows, and evaluation frameworks. Programmatic prompt generation at scale.

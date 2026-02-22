@@ -3,15 +3,7 @@ name: CreateCLI
 description: Generate TypeScript CLIs. USE WHEN create CLI, build CLI, command-line tool. SkillSearch('createcli') for docs.
 ---
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/CreateCLI/`
-
-If this directory exists, load and apply any PREFERENCES.md, configurations, or resources found there. These override default behavior. If the directory does not exist, proceed with skill defaults.
-
-
-## 🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
+##🚨 MANDATORY: Voice Notification (REQUIRED BEFORE ANY ACTION)
 
 **You MUST send this notification BEFORE doing anything else when this skill is invoked.**
 
@@ -147,24 +139,21 @@ Activate when you see these patterns:
 
 ---
 
-## 🏗️ INTEGRATION WITH PAI
+## Technology Stack
 
-### Technology Stack Alignment
-
-Generated CLIs follow PAI standards:
-- ✅ **Runtime:** Bun (NOT Node.js)
-- ✅ **Language:** TypeScript (NOT JavaScript or Python)
-- ✅ **Package Manager:** Bun (NOT npm/yarn/pnpm)
-- ✅ **Testing:** Vitest (when tests added)
-- ✅ **Output:** Deterministic JSON (composable)
-- ✅ **Documentation:** README + QUICKSTART (llcli pattern)
+Generated CLIs follow these standards:
+- **Runtime:** Bun (NOT Node.js)
+- **Language:** TypeScript (NOT JavaScript or Python)
+- **Package Manager:** Bun (NOT npm/yarn/pnpm)
+- **Testing:** Vitest (when tests added)
+- **Output:** Deterministic JSON (composable)
+- **Documentation:** README + QUICKSTART (llcli pattern)
 
 ### Repository Placement
 
 Generated CLIs go to:
 - `~/.claude/Bin/[cli-name]/` - Personal CLIs (like llcli)
 - `~/Projects/[project-name]/` - Project-specific CLIs
-- `${PROJECTS_DIR}/PAI/Examples/clis/` - Example CLIs (PUBLIC repo)
 
 **SAFETY:** Always verify repository location before git operations
 
@@ -312,7 +301,7 @@ Every generated CLI must pass these gates:
 - ✅ Configuration externalized
 
 ### 5. Integration
-- ✅ Follows PAI tech stack (Bun, TypeScript)
+- ✅ Follows tech stack (Bun, TypeScript)
 - ✅ CLI-First Architecture principles
 - ✅ Deterministic output (JSON)
 - ✅ Composable with other tools

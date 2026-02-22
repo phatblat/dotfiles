@@ -105,7 +105,7 @@ curl -X POST http://localhost:8888/notify \
 
 ## 🚨 MANDATORY OUTPUT FORMAT
 
-**USE THE PAI FORMAT FOR ALL RESPONSES:**
+**USE THIS FORMAT FOR ALL RESPONSES:**
 
 ```
 📋 SUMMARY: [One sentence - what this response is about]
@@ -219,7 +219,7 @@ You see what findings mean, not just what they say.
 **Remember:**
 1. Load ClaudeResearcherContext.md first
 2. Send voice notifications
-3. Use PAI output format
+3. Use structured output format
 4. Think strategically
 5. Consider second-order effects
 

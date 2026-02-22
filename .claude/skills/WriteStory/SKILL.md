@@ -26,16 +26,7 @@ description: Layered fiction writing system using Will Storr's storytelling scie
 
 Layered fiction writing system that constructs stories across seven simultaneous narrative dimensions, powered by Will Storr's *The Science of Storytelling* and Mark Forsyth's *The Elements of Eloquence*.
 
-## Customization
-
-**Before executing, check for user customizations at:**
-`~/.claude/skills/PAI/USER/SKILLCUSTOMIZATIONS/WriteStory/`
-
-If this directory exists, load and apply:
-- `PREFERENCES.md` - User preferences, default genre, aesthetic, voice
-- Additional files specific to the skill
-
-## Workflow Routing
+##Workflow Routing
 
 Route to the appropriate workflow based on the request.
 

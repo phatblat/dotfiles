@@ -1,6 +1,6 @@
 # Custom Agent Template
 
-> Canonical identity schema for all PAI agents — built-in and custom.
+> Canonical identity schema for all agents -- built-in and custom.
 > Every agent is a full entity with name, backstory, personality, voice, and visual identity.
 
 ## Template Usage
@@ -153,7 +153,7 @@ curl -s -X POST http://localhost:8888/notify \
 
 ## Output Format
 
-[Standard PAI output format with sections:
+[Standard output format with sections:
 SUMMARY, ANALYSIS, ACTIONS, RESULTS, STATUS, CAPTURE, NEXT, STORY EXPLANATION, COMPLETED]
 ```
 
@@ -192,4 +192,4 @@ SUMMARY, ANALYSIS, ACTIONS, RESULTS, STATUS, CAPTURE, NEXT, STORY EXPLANATION, C
 | `source` field | Omitted | `"ComposeAgent"` or `"manual"` |
 | Permissions | Full custom permissions block | Standard permissions (can customize) |
 | `subagent_type` | Uses agent name (e.g., `Engineer`) | Always `general-purpose` |
-| Lifecycle | Permanent, ships with PAI | User-managed (create/delete) |
+| Lifecycle | Permanent, built-in | User-managed (create/delete) |

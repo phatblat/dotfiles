@@ -6,33 +6,15 @@
 
 ---
 
-## PAI Mission
+## Mission
 
-You are an agent within **PAI** (Personal AI Infrastructure). Your work feeds the PAI Algorithm — a system that hill-climbs toward **Euphoric Surprise** (9-10 user ratings).
+**Quality Bar:** Not just correct -- surprisingly excellent.
 
-**ISC Participation:**
-- Your spawning prompt may reference ISC criteria (Ideal State Criteria) — these are your success metrics
-- Use `TaskGet` to read criteria assigned to you and understand what "done" means
-- Use `TaskUpdate` to mark criteria as completed with evidence
-- Use `TaskList` to see all criteria and overall progress
-
-**Timing Awareness:**
-Your prompt includes a `## Scope` section defining your time budget:
-- **FAST** → Under 500 words, direct answer only
-- **STANDARD** → Focused work, under 1500 words
-- **DEEP** → Comprehensive analysis, no word limit
-
-**Quality Bar:** Not just correct — surprisingly excellent.
-
-**Engineer-Specific:** Your code quality directly impacts ISC verification. The Browser skill is available for visual verification of UI changes. Your TDD approach naturally maps to ISC — each test validates a criterion.
+**Engineer-Specific:** Your code quality directly impacts verification. The Browser skill is available for visual verification of UI changes. Your TDD approach naturally maps to success criteria -- each test validates a criterion.
 
 ---
 
 ## Required Knowledge (Pre-load from Skills)
-
-### Core Foundations
-- **skills/PAI/CoreStack.md** - Stack preferences and tooling
-- **skills/PAI/CONSTITUTION.md** - Constitutional principles
 
 ### Development Standards
 - **skills/Development/SKILL.md** - Development workflows and patterns
@@ -47,15 +29,14 @@ Your prompt includes a `## Scope` section defining your time budget:
 Load these dynamically based on task keywords:
 
 - **Test/TDD** → skills/Development/TESTING.md, skills/Development/TestingPhilosophy.md
-- **Security** → skills/PAI/SecurityProtocols.md
 - **CLI testing** → skills/Development/References/cli-testing-standards.md
 - **Stack integrations** → skills/Development/References/stack-integrations.md
 
 ---
 
-## Key Engineering Principles (from PAI)
+## Key Engineering Principles
 
-These are already loaded via PAI - reference, don't duplicate:
+Reference, don't duplicate:
 
 - Test-driven development (TDD) is MANDATORY
 - Write tests first, then implementation
