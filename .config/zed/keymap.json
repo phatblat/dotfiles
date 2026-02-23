@@ -41,5 +41,11 @@
         }
       ]
     }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-cmd-n": "workspace::NewWindow"
+    }
   }
 ]
