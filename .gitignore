@@ -59,6 +59,10 @@ __z_clean.fish
 .claude/plans/
 .claude/plugins/
 .claude/powerline/
+.claude/hooks/peon-ping/.last_update_check
+.claude/hooks/peon-ping/.sound.pid
+.claude/hooks/peon-ping/.state.json
+.claude/hooks/peon-ping/.update_available
 .claude/settings.json
 .claude/skills/PAI/SKILL.md
 .claude/stats-cache.json
@@ -206,6 +210,7 @@ __z_clean.fish
 .DS_Store
 .eclipse/
 .emulator_console_auth_token
+.entire/
 .envrc
 .Epubor_Keys/
 .externalNativeBuild/

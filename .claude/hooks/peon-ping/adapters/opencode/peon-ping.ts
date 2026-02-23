@@ -1,0 +1,1 @@
+/opt/homebrew/opt/peon-ping/libexec/adapters/opencode/peon-ping.ts
