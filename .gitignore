@@ -101,6 +101,7 @@ __z_clean.fish
 .config/delta/lesshst
 .config/direnv/
 .config/enchant/
+.config/entire/
 .config/evolution/
 .config/fish/fish_history
 .config/fish/fish_variables
