@@ -306,6 +306,7 @@ __z_clean.fish
 .oh-my-zsh/themes/*
 .ollama/
 .op/
+.openpeon/
 .oracle_jre_usage/
 .orbstack/
 .pex/
