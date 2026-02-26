@@ -90,14 +90,6 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 3. Test the function in the target shell
 
-### Shell Function Overrides
-
-Several common commands are overridden by Zsh functions:
-
-- `cat` → wraps `bat` (modern cat replacement with syntax highlighting)
-- `ls` → wraps `command ls -p` (adds trailing slashes on directories)
-
-Use `command cat` or `command ls` to bypass these wrappers if needed.
 
 ## Development Tools & Versions
 
