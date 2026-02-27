@@ -1,0 +1,4 @@
+[tool.basedpyright]
+include = [
+    "scripts",
+]
