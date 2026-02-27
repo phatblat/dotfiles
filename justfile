@@ -190,6 +190,11 @@ doctor:
     claude doctor
     claudekit doctor
 
+# Checks .gitignore is correctly sorted with negation overrides intact
+[group('checks')]
+lint-gitignore:
+    ~/scripts/sort-gitignore < ~/.gitignore | diff --brief - ~/.gitignore
+
 # Lints Python scripts with ruff
 [group('checks')]
 lint-python:
@@ -197,11 +202,16 @@ lint-python:
 
 # Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
-lint: lint-python
+lint: lint-gitignore lint-python
     just --fmt --check
     mise fmt --check
     @echo "Linting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
+
+# Sorts .gitignore with negation-aware ordering
+[group('configuration')]
+format-gitignore:
+    ~/scripts/sort-gitignore < ~/.gitignore | sponge ~/.gitignore
 
 # Formats and sorts mise config
 [group('configuration')]
@@ -214,7 +224,7 @@ format-mise:
 
 # Formats mise config, justfile, Claude settings.json and shell scripts
 [group('configuration')]
-format: format-mise
+format: format-gitignore format-mise
     just --fmt
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
     jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
