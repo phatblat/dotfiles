@@ -7,7 +7,7 @@ if [[ -z "$group" ]]; then
     return 1
 fi
 
-for user in $(dscl . -list /Users); do
+for user in "$(dscl . -list /Users)"; do
     if dsmemberutil checkmembership -U "$user" -G "$group" | grep -q "is a member"; then
         echo "$user"
     fi
