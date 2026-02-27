@@ -193,7 +193,7 @@ doctor:
 # Lints Python scripts with ruff
 [group('checks')]
 lint-python:
-    ruff check ~/.config/mise/sort-tools.py
+    ruff check ~/scripts/sort-tools.py
 
 # Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
@@ -210,7 +210,7 @@ format-mise:
     set -euo pipefail
     mise fmt
     # Sort [tools] entries alphabetically while preserving the rest of the file
-    python3 ~/.config/mise/sort-tools.py
+    python3 ~/scripts/sort-tools.py
 
 # Formats mise config, justfile, Claude settings.json and shell scripts
 [group('configuration')]

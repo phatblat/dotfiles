@@ -20,7 +20,9 @@ next_section = match.group(3)
 
 # Split into lines, separate comments/blanks from tool entries
 lines = tools_block.strip().split("\n")
-tool_lines = [l for l in lines if l.strip() and not l.strip().startswith("#")]
+tool_lines = [
+    line for line in lines if line.strip() and not line.strip().startswith("#")
+]
 
 
 # Sort by the raw key (including quotes) so quoted backend-qualified
