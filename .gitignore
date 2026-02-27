@@ -1,3 +1,4 @@
+__pycache__/
 __z_clean.fish
 !.android/repositories.cfg
 !.cargo/config.toml
