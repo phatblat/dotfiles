@@ -6,7 +6,8 @@
       "accelerator": "Alt+Space"
     },
     "localAgentModeTrustedFolders": ["/Users/phatblat"],
-    "coworkScheduledTasksEnabled": false,
-    "sidebarMode": "chat"
+    "coworkScheduledTasksEnabled": true,
+    "sidebarMode": "chat",
+    "coworkWebSearchEnabled": true
   }
 }
