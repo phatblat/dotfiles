@@ -24,7 +24,6 @@
 .Xauthority
 .advLdap/
 .android/
-!.android/repositories.cfg
 .anka/
 .ansible/
 .antigen/
