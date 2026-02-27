@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "obsidian": {
+      "command": "npx",
+      "args": ["-y", "@mauricio.wolff/mcp-obsidian@latest", "/Users/phatblat/2ndBrain"]
+    },
     "linear": {
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
