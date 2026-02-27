@@ -6,6 +6,8 @@
 # mise-managed tools, ordered alphabetically
 [tools]
 "github:harness/harness-cli" = "1.3.6"
+"github:steveyegge/gastown" = "0.7.0"
+"go:github.com/steveyegge/beads/cmd/bd" = "0.56.1"
 "go:golang.org/x/tools/gopls" = "0.21.1"
 "npm:@linear/cli" = "0.0.5"
 "npm:@musistudio/claude-code-router" = "2.0.0"
