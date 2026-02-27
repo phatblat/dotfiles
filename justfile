@@ -190,9 +190,14 @@ doctor:
     claude doctor
     claudekit doctor
 
+# Lints Python scripts with ruff
+[group('checks')]
+lint-python:
+    ruff check ~/.config/mise/sort-tools.py
+
 # Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
-lint:
+lint: lint-python
     just --fmt --check
     mise fmt --check
     @echo "Linting shell scripts..."
