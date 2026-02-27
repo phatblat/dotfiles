@@ -198,10 +198,18 @@ lint:
     @echo "Linting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
 
-# Formats mise config, justfile Claude settings.json and shell scripts
+# Formats and sorts mise config
 [group('configuration')]
-format:
+format-mise:
+    #!/usr/bin/env bash
+    set -euo pipefail
     mise fmt
+    # Sort [tools] entries alphabetically while preserving the rest of the file
+    python3 ~/.config/mise/sort-tools.py
+
+# Formats mise config, justfile, Claude settings.json and shell scripts
+[group('configuration')]
+format: format-mise
     just --fmt
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
     jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
