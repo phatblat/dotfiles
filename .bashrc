@@ -129,8 +129,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Add .local/bin to PATH
-export PATH="$HOME/.local/bin:$PATH"
+# Add .local/bin and scripts to PATH
+export PATH="$HOME/scripts:$HOME/.local/bin:$PATH"
 
 # Cargo & Rust
 source "$HOME/.cargo/env"
