@@ -1,13 +1,15 @@
 {
   "mcpServers": {},
   "preferences": {
+    "coworkScheduledTasksEnabled": true,
+    "coworkWebSearchEnabled": true,
+    "localAgentModeTrustedFolders": [
+      "/Users/phatblat"
+    ],
     "menuBarEnabled": true,
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
-    "localAgentModeTrustedFolders": ["/Users/phatblat"],
-    "coworkScheduledTasksEnabled": true,
-    "sidebarMode": "chat",
-    "coworkWebSearchEnabled": true
+    "sidebarMode": "chat"
   }
 }
