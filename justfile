@@ -202,6 +202,7 @@ lint-python:
     ruff check ~/scripts/sort-tools.py
 
 # Lints Zsh functions with shellcheck
+
 # Uses ksh dialect and excludes SC2168 (local in function body) since these are zsh autoload files
 [group('checks')]
 lint-zsh:
@@ -389,3 +390,10 @@ lms-reload:
     lms ls
     lms ps
     lms server status
+
+# gastown group recipes
+
+# Attach to the Gas Town mayor tmux session
+[group('gastown')]
+mayor:
+    cd ~/gt && gt mayor attach
