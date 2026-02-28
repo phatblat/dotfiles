@@ -199,6 +199,9 @@
   "yaml.schemas": {
     "/Users/phatblat/.vscode/extensions/continue.continue-1.0.13-darwin-arm64/config-yaml-schema.json": [
       ".continue/**/*.yaml"
+    ],
+    "file:///Users/phatblat/.vscode/extensions/continue.continue-1.2.15-darwin-arm64/config-yaml-schema.json": [
+      ".continue/**/*.yaml"
     ]
   },
   "continue.enableConsole": true,
