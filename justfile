@@ -300,7 +300,12 @@ usage-board:
 # Start the Gastown dashboard web server
 [group('gastown')]
 gt-dashboard-start:
-    gt dashboard --port 8080 &
+    #!/usr/bin/env bash
+    if lsof -iTCP:8080 -sTCP:LISTEN -t &>/dev/null; then
+        echo "Dashboard already running on port 8080"
+    else
+        cd ~/gt && gt dashboard --port 8080 &
+    fi
 
 # Stop the Gastown dashboard web server
 [group('gastown')]
@@ -309,13 +314,13 @@ gt-dashboard-stop:
 
 # Open the Gastown dashboard in browser
 [group('gastown')]
-gt-dashboard-open:
+gt-dashboard-open: gt-dashboard-start
     open http://localhost:8080
 
 # Open the Gastown feed TUI
 [group('gastown')]
 gt-feed:
-    gt feed
+    cd ~/gt && gt feed
 
 #
 # lm-studio group recipes

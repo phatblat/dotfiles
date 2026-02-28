@@ -250,6 +250,7 @@
 .google-cloud-sdk/
 .gradle/
 .groovy/
+.gt/
 .harness/
 .hawtjni/
 .heroku/
