@@ -839,3 +839,9 @@ target/
 tmp/
 xcuserdata
 zclean.awk
+
+# Gas Town (added by gt)
+.beads/
+.runtime/
+.claude/commands/
+.logs/
