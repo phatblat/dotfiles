@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# sort-gitignore - Sort .gitignore lines, keeping negation overrides (!) after their parent rules.
+# Usage: sort-gitignore < .gitignore > .gitignore.sorted
+
+export LC_ALL=C
+
+awk '{
+    key = $0
+    sub(/^!/, "", key)
+    if ($0 ~ /^!/) key = key "~"
+    print key "\t" $0
+}' | sort -t$'\t' -k1,1 -u | cut -f2-

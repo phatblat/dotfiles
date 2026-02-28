@@ -190,21 +190,45 @@ doctor:
     claude doctor
     claudekit doctor
 
+# Checks .gitignore is correctly sorted with negation overrides intact
+[group('checks')]
+lint-gitignore:
+    ~/scripts/sort-gitignore < ~/.gitignore | diff --brief - ~/.gitignore
+
+# Lints Python scripts with ruff
+[group('checks')]
+lint-python:
+    ruff check ~/scripts/sort-tools.py
+
 # Checks justfile and shell scripts in .config/zsh/functions
 [group('checks')]
-lint:
+lint: lint-gitignore lint-python
     just --fmt --check
     mise fmt --check
     @echo "Linting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
 
-# Formats mise config, justfile Claude settings.json and shell scripts
+# Sorts .gitignore with negation-aware ordering
 [group('configuration')]
-format:
+format-gitignore:
+    ~/scripts/sort-gitignore < ~/.gitignore | sponge ~/.gitignore
+
+# Formats and sorts mise config
+[group('configuration')]
+format-mise:
+    #!/usr/bin/env bash
+    set -euo pipefail
     mise fmt
+    # Sort [tools] entries alphabetically while preserving the rest of the file
+    python3 ~/scripts/sort-tools.py
+
+# Formats mise config, justfile, Claude settings.json and shell scripts
+[group('configuration')]
+format: format-gitignore format-mise
     just --fmt
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
     jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
+    jq --sort-keys --indent 2 . ~/Library/Application\ Support/Claude/claude_desktop_config.json | sponge ~/Library/Application\ Support/Claude/claude_desktop_config.json
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shfmt -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellharden --replace {} +

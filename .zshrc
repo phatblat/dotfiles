@@ -20,7 +20,7 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export CMAKE_PREFIX_PATH="/opt/homebrew/opt/llvm"
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/scripts:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

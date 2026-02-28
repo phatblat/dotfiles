@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# cat - Wrapper for bat because I can never remember
-bat "$@"

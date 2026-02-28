@@ -128,7 +128,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `cask_dir`                  | ➖  | ✅   | ➖  | ➖   | Quick nav to Homebrew Casks tap                      |
 | `cask_edit`                 | ➖  | ✅   | ➖  | ➖   | Manage Homebrew casks                                |
 | `cask_token`                | ➖  | ✅   | ➖  | ➖   | Generates a cask token for an app                    |
-| `cat`                       | ➖  | ✅   | ✅  | ➖   | Wrapper for bat                                      |
 | `cballv`                    | ➖  | ✅   | ➖  | ➖   | Build all platforms using Carthage with verbose ou   |
 | `cball`                     | ➖  | ✅   | ✅  | ➖   | Build all platforms using Carthage                   |
 | `cbiosv`                    | ➖  | ✅   | ➖  | ➖   | Build iOS platform using Carthage with verbose out   |
@@ -452,7 +451,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `ls-tree`                   | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `lscolors`                  | ➖  | ✅   | ➖  | ➖   | lscolors                                             |
 | `lsym`                      | ➖  | ✅   | ➖  | ➖   | List symbolic links in the current dir               |
-| `ls`                        | ➖  | ✅   | ✅  | ➖   | List files with colors and trailing slashes          |
 | `ltime`                     | ➖  | ✅   | ✅  | ➖   | https://github.com/fish-shell/fish-shell/issues/11   |
 | `lt`                        | ➖  | ✅   | ✅  | ➖   | long list,sorted by date,show type,human readable    |
 | `l`                         | ✅  | ✅   | ✅  | ✅   | Pretty git log graph with ten commits                |

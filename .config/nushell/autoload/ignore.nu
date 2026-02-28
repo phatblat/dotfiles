@@ -24,8 +24,8 @@ export def ignore [...patterns: string] {
         $commit_message = $"chore: ignore ($patterns | str join ' ')"
     }
 
-    # Write all patterns and sort unique (using external sort for consistency with fish)
-    $ignore_list | uniq | to text | ^sort --unique | save --force $gitignore
+    # Sort with negation-aware ordering (! lines after their parent rules)
+    $ignore_list | uniq | to text | ^($nu.home-path | path join "scripts" "sort-gitignore") | save --force $gitignore
 
     if ($commit_message | is-empty) {
         print "Nothing new added to ignores, just sorted and removed duplicates."

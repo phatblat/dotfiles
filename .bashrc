@@ -129,8 +129,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Add .local/bin to PATH
-export PATH="$HOME/.local/bin:$PATH"
+# Add .local/bin and scripts to PATH
+export PATH="$HOME/scripts:$HOME/.local/bin:$PATH"
 
 # Cargo & Rust
 source "$HOME/.cargo/env"
@@ -258,10 +258,10 @@ function ignore() {
         {
             printf '%s\n' "$@"
             printf '%s\n' "$ignore_list"
-        } | sort -u > "$gitignore"
+        } | ~/scripts/sort-gitignore > "$gitignore"
         commit_message="chore: ignore $*"
     else
-        printf '%s\n' "$ignore_list" | sort -u > "$gitignore"
+        printf '%s\n' "$ignore_list" | ~/scripts/sort-gitignore > "$gitignore"
     fi
 
     if [[ -z "$commit_message" ]]; then

@@ -62,8 +62,8 @@ if status is-interactive
     # end
 end
 
-# Add .local/bin to PATH
-fish_add_path --prepend ~/.local/bin
+# Add .local/bin and scripts to PATH
+fish_add_path --prepend ~/.local/bin ~/scripts
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f ~/dev/google-cloud-sdk/path.fish.inc ]

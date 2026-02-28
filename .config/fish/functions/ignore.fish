@@ -23,11 +23,7 @@ function ignore \
         set commit_message "chore: ignore $argv"
     end
 
-    for pattern in $ignore_list
-        echo $pattern >> $gitignore
-    end
-
-    LC_ALL=C sort --unique --output=$gitignore $gitignore
+    printf '%s\n' $ignore_list | ~/scripts/sort-gitignore > $gitignore
 
     if test -z "$commit_message"
         echo "Nothing new added to ignores, just sorted and removed duplicates."

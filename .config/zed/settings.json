@@ -1,8 +1,5 @@
 {
   "agent": {
-    "tool_permissions": {
-      "default": "allow"
-    },
     "default_model": {
       "model": "claude-3-5-haiku-latest",
       "provider": "anthropic"
@@ -15,7 +12,10 @@
     "message_editor_min_lines": 5,
     "play_sound_when_agent_done": true,
     "show_turn_stats": true,
-    "single_file_review": true
+    "single_file_review": true,
+    "tool_permissions": {
+      "default": "allow"
+    }
   },
   "agent_servers": {
     "claude": {
