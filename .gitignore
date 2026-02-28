@@ -206,6 +206,7 @@
 .config/zed/prompts/
 .config/zed/settings_backup.json
 .continue/
+.copilot/
 .cpan/
 .cups/
 .cursor/
