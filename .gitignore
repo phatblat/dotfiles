@@ -220,6 +220,7 @@
 .did_show_opt_info
 .diffusionbee/
 .docker/
+.dolt/
 .dotfiles/cron/cronenv
 .dotnet/
 .dropbox/
