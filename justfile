@@ -35,6 +35,7 @@ color_reset := '\e[0m'
 #
 
 alias cc := claude-continue
+alias dashboard := gt-dashboard-open
 alias f := free
 alias fmt := format
 alias i := install
@@ -291,6 +292,34 @@ usage-web:
 [group('claude')]
 usage-board:
     ccusage blocks --live
+
+#
+# gastown group recipes
+#
+
+# Start the Gastown dashboard web server
+[group('gastown')]
+gt-dashboard-start:
+    gt dashboard --port 8080 &
+
+# Stop the Gastown dashboard web server
+[group('gastown')]
+gt-dashboard-stop:
+    -pkill -f 'gt dashboard'
+
+# Open the Gastown dashboard in browser
+[group('gastown')]
+gt-dashboard-open:
+    open http://localhost:8080
+
+# Open the Gastown feed TUI
+[group('gastown')]
+gt-feed:
+    gt feed
+
+#
+# lm-studio group recipes
+#
 
 # Start LM Studio server
 [group('lm-studio')]
