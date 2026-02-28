@@ -317,6 +317,12 @@ gt-dashboard-stop:
 gt-dashboard-open: gt-dashboard-start
     open http://localhost:8080
 
+# Start and attach to the Mayor session
+[group('gastown')]
+gt-mayor:
+    cd ~/gt && gt mayor status 2>&1 | grep -q "is running" || gt mayor start
+    cd ~/gt && gt mayor attach
+
 # Open the Gastown feed TUI
 [group('gastown')]
 gt-feed:
