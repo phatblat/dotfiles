@@ -35,6 +35,7 @@ color_reset := '\e[0m'
 #
 
 alias cc := claude-continue
+alias dashboard := gt-dashboard-open
 alias f := free
 alias fmt := format
 alias i := install
@@ -291,6 +292,45 @@ usage-web:
 [group('claude')]
 usage-board:
     ccusage blocks --live
+
+#
+# gastown group recipes
+#
+
+# Start the Gastown dashboard web server
+[group('gastown')]
+gt-dashboard-start:
+    #!/usr/bin/env bash
+    if lsof -iTCP:8080 -sTCP:LISTEN -t &>/dev/null; then
+        echo "Dashboard already running on port 8080"
+    else
+        cd ~/gt && gt dashboard --port 8080 &
+    fi
+
+# Stop the Gastown dashboard web server
+[group('gastown')]
+gt-dashboard-stop:
+    -pkill -f 'gt dashboard'
+
+# Open the Gastown dashboard in browser
+[group('gastown')]
+gt-dashboard-open: gt-dashboard-start
+    open http://localhost:8080
+
+# Start and attach to the Mayor session
+[group('gastown')]
+gt-mayor:
+    cd ~/gt && gt mayor status 2>&1 | grep -q "is running" || gt mayor start
+    cd ~/gt && gt mayor attach
+
+# Open the Gastown feed TUI
+[group('gastown')]
+gt-feed:
+    cd ~/gt && gt feed
+
+#
+# lm-studio group recipes
+#
 
 # Start LM Studio server
 [group('lm-studio')]

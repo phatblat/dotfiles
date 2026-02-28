@@ -206,6 +206,7 @@
 .config/zed/prompts/
 .config/zed/settings_backup.json
 .continue/
+.copilot/
 .cpan/
 .cups/
 .cursor/
@@ -220,6 +221,7 @@
 .did_show_opt_info
 .diffusionbee/
 .docker/
+.dolt/
 .dotfiles/cron/cronenv
 .dotnet/
 .dropbox/
@@ -250,6 +252,7 @@
 .google-cloud-sdk/
 .gradle/
 .groovy/
+.gt/
 .harness/
 .hawtjni/
 .heroku/
@@ -809,6 +812,7 @@ fvm/
 games/
 go/
 gradlew.bat
+gt/
 heapdump.*.phd
 iCloud Drive (Archive)/
 javacore.*.txt
