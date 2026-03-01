@@ -23,7 +23,7 @@
 "pipx:python-lsp-server" = "1.14.0"
 act = "0.2.84"
 actionlint = "1.7.11"
-awscli = "2.34.0"
+awscli = { version = "2.34.0", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.13.0"
 bazelisk = "1.28.1"
