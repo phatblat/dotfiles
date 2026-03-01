@@ -32,7 +32,6 @@
     pkgs.caddy
     pkgs.cmake
     pkgs.cocoapods
-    pkgs.direnv
     pkgs.fish
     pkgs.fswatch
     pkgs.fzf
@@ -45,9 +44,7 @@
     pkgs.imagemagick
     pkgs.jdt-language-server
     pkgs.jujutsu
-    pkgs.just
     pkgs.kotlin-language-server
-    pkgs.lazygit
     pkgs.llvmPackages.llvm
     pkgs.gnumake
     pkgs.mas
@@ -59,7 +56,6 @@
     pkgs.omnisharp-roslyn
     pkgs.pnpm
     pkgs.protobuf
-    pkgs.ripgrep
     pkgs.shellharden
     pkgs.solargraph
     pkgs.speedtest-cli
