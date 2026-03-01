@@ -242,10 +242,11 @@
 .flutter-devtools/
 .gconf/
 .gem/
-.gemini/
+.gemini/*
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
+!.gemini/settings.json
 .gemini/state.json
 .geomapapp-home
 .ghidra/
