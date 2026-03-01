@@ -223,11 +223,11 @@ lint-nushell:
     @echo "Validating Nushell scripts..."
     @nu --commands 'source ~/.config/nushell/config.nu'
 
-# Lints bin scripts with shellcheck
+# Lints bin scripts with shellcheck (excludes vendor scripts)
 [group('checks')]
 lint-bin:
     @echo "Linting bin scripts..."
-    @shellcheck ~/bin/*.sh
+    @find ~/bin -name '*.sh' ! -name 'dotnet-install.sh' -exec shellcheck {} +
 
 # Runs all linting checks
 [group('checks')]

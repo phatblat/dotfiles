@@ -1,7 +1,7 @@
 #!/bin/bash
 # http://stackoverflow.com/questions/6682335/how-can-check-if-particular-application-software-is-installed-in-mac-os#answer-8024765
 
-APPLESCRIPT=`cat <<EOF
+APPLESCRIPT=$(cat <<EOF
 on run argv
   try
     tell application "Finder"
@@ -12,8 +12,8 @@ on run argv
     return 1
   end try
 end run
-EOF`
+EOF
+)
 
-retcode=`osascript -e "$APPLESCRIPT"`
-exit $retcode
-
+retcode=$(osascript -e "$APPLESCRIPT")
+exit "$retcode"
