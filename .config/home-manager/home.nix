@@ -22,43 +22,28 @@
     (pkgs.callPackage ./packages/opcode.nix { })
 
     # CLI Tools (migrated from Homebrew)
-    pkgs.act
+    # Note: act, awscli2, bat, bazelisk, caddy, delta, fzf, gh, git-lfs, jujutsu,
+    #       mas, neovim, pnpm, starship, xcodes, zig, zoxide → managed by mise
     pkgs.apktool
     pkgs.aria2
-    pkgs.awscli2
-    pkgs.bat
-    pkgs.bazelisk
-    pkgs.caddy
     pkgs.fish
     pkgs.fswatch # no mise backend available
-    pkgs.fzf
-    pkgs.gh
     pkgs.git
-    pkgs.delta
-    pkgs.git-lfs
     pkgs.git-subrepo
     pkgs.gnupg
     pkgs.jdt-language-server
-    pkgs.jujutsu
     pkgs.kotlin-language-server
     pkgs.llvmPackages.llvm
     pkgs.gnumake
-    pkgs.mas
     pkgs.mise
-    pkgs.neovim
     pkgs.nextdns
     pkgs.nushell
     pkgs.omnisharp-roslyn
-    pkgs.pnpm
     pkgs.shellharden
     pkgs.solargraph
     pkgs.speedtest-cli
-    pkgs.starship
     pkgs.todoist
     pkgs.tree # no mise backend available
-    pkgs.xcodes
-    pkgs.zig
-    pkgs.zoxide
     pkgs.zsh
     pkgs.tart
 
