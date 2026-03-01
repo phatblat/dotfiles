@@ -1,6 +1,8 @@
+
+# Gas Town (added by gt)
 *.bak
-*.gastown-backup
 *.dll
+*.gastown-backup
 *.hprof
 *.iml
 *.padl
@@ -43,6 +45,7 @@
 .azurefunctions/
 .bash_history
 .bash_sessions/
+.beads/
 .bluemix/
 .build/
 .buildkite/config.json
@@ -58,13 +61,13 @@
 .cisco/
 .classpath
 .claude-code-router/.claude-code-router.pid
-.codex/
 .claude-server-commander/
 .claude-worktrees/
 .claude.json
 .claude.json.backup
 .claude.json.backup.*
 .claude/.credentials.json
+.claude/commands/
 .claude/debug/
 .claude/file-history/
 .claude/history.jsonl
@@ -90,6 +93,7 @@
 .cocoapods/
 .codeium/
 .codepilot/
+.codex/
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/
@@ -289,6 +293,7 @@
 .lmstudio/
 .local/
 .locks/
+.logs/
 .logseq/plugins/
 !.logseq/preferences.json
 .lsp4xml/
@@ -352,6 +357,7 @@
 .rest-client/
 .rnd
 .rubygems/
+.runtime/
 .rustup/
 .rvm/
 .security-key
@@ -466,7 +472,6 @@ Library/Application Support/Chromium/
 Library/Application Support/Claude/*
 !Library/Application Support/Claude/claude_desktop_config.json
 Library/Application Support/CleanMyMac X/
-Library/Application Support/Codex/
 Library/Application Support/CleanMyMac_5/
 Library/Application Support/CleanMyMac_5_HealthMonitor/
 Library/Application Support/Clockify Desktop/
@@ -507,6 +512,7 @@ Library/Application Support/Code/code.lock
 Library/Application Support/Code/databases/
 Library/Application Support/Code/languagepacks.json
 Library/Application Support/Code/machineid
+Library/Application Support/Codex/
 Library/Application Support/CrashReporter/
 Library/Application Support/Cron/
 Library/Application Support/Cursor/
@@ -842,9 +848,3 @@ target/
 tmp/
 xcuserdata
 zclean.awk
-
-# Gas Town (added by gt)
-.beads/
-.runtime/
-.claude/commands/
-.logs/
