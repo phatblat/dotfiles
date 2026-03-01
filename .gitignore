@@ -93,7 +93,8 @@
 .cocoapods/
 .codeium/
 .codepilot/
-.codex/
+.codex/*
+!.codex/config.toml
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/

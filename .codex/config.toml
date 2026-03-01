@@ -1,0 +1,11 @@
+model = "gpt-5.3-codex"
+model_reasoning_effort = "high"
+personality = "friendly"
+[projects."/Users/phatblat"]
+trust_level = "trusted"
+
+[features]
+collaboration_modes = true
+steer = true
+unified_exec = true
+apps = false
