@@ -28,12 +28,9 @@
     pkgs.awscli2
     pkgs.bat
     pkgs.bazelisk
-    pkgs.btop
     pkgs.caddy
-    pkgs.cmake
-    pkgs.cocoapods
     pkgs.fish
-    pkgs.fswatch
+    pkgs.fswatch # no mise backend available
     pkgs.fzf
     pkgs.gh
     pkgs.git
@@ -41,7 +38,6 @@
     pkgs.git-lfs
     pkgs.git-subrepo
     pkgs.gnupg
-    pkgs.imagemagick
     pkgs.jdt-language-server
     pkgs.jujutsu
     pkgs.kotlin-language-server
@@ -49,20 +45,17 @@
     pkgs.gnumake
     pkgs.mas
     pkgs.mise
-    pkgs.mkcert
     pkgs.neovim
     pkgs.nextdns
     pkgs.nushell
     pkgs.omnisharp-roslyn
     pkgs.pnpm
-    pkgs.protobuf
     pkgs.shellharden
     pkgs.solargraph
     pkgs.speedtest-cli
     pkgs.starship
     pkgs.todoist
-    pkgs.tree
-    pkgs.xcbeautify
+    pkgs.tree # no mise backend available
     pkgs.xcodes
     pkgs.zig
     pkgs.zoxide
