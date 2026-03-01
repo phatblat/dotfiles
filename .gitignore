@@ -1,4 +1,5 @@
 *.bak
+*.gastown-backup
 *.dll
 *.hprof
 *.iml
@@ -57,6 +58,7 @@
 .cisco/
 .classpath
 .claude-code-router/.claude-code-router.pid
+.codex/
 .claude-server-commander/
 .claude-worktrees/
 .claude.json
@@ -464,6 +466,7 @@ Library/Application Support/Chromium/
 Library/Application Support/Claude/*
 !Library/Application Support/Claude/claude_desktop_config.json
 Library/Application Support/CleanMyMac X/
+Library/Application Support/Codex/
 Library/Application Support/CleanMyMac_5/
 Library/Application Support/CleanMyMac_5_HealthMonitor/
 Library/Application Support/Clockify Desktop/
