@@ -13,7 +13,7 @@
     {
       "name": "lm-studio",
       "type": "openai",
-      "api_base_url": "http://${LMSTUDIO_HOST}:1234/v1/chat/completions",
+      "api_base_url": "http://phathub.local:1234/v1/chat/completions",
       "api_key": "lm-studio",
       "models": [
         "qwen/qwen3-coder-480b",
