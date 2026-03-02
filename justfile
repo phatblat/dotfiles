@@ -367,6 +367,25 @@ gt-mayor:
 gt-feed:
     cd ~/gt && gt feed
 
+# Create and sling one polecat per outdated mise tool bump
+[group('gastown')]
+gt-mise-bump-polecats rig='dotfiles':
+    ~/scripts/gt-mise-bump-polecats --all --rig {{ rig }}
+
+# Dry-run preview of all outdated mise tool bump dispatches
+[group('gastown')]
+gt-mise-bump-polecats-dry-run rig='dotfiles':
+    ~/scripts/gt-mise-bump-polecats --all --rig {{ rig }} --dry-run
+
+# Create and sling a single tool bump to one polecat
+[group('gastown')]
+gt-mise-bump-polecat tool current bump rig='dotfiles':
+    ~/scripts/gt-mise-bump-polecats \
+        --tool {{ tool }} \
+        --current {{ current }} \
+        --bump {{ bump }} \
+        --rig {{ rig }}
+
 #
 # lm-studio group recipes
 #
