@@ -1,0 +1,81 @@
+{
+  "providers" : [
+    {
+      "enabled" : true,
+      "id" : "codex"
+    },
+    {
+      "enabled" : true,
+      "id" : "claude"
+    },
+    {
+      "enabled" : false,
+      "id" : "cursor"
+    },
+    {
+      "enabled" : false,
+      "id" : "opencode"
+    },
+    {
+      "enabled" : false,
+      "id" : "factory"
+    },
+    {
+      "enabled" : true,
+      "id" : "gemini"
+    },
+    {
+      "enabled" : false,
+      "id" : "antigravity"
+    },
+    {
+      "enabled" : false,
+      "id" : "copilot"
+    },
+    {
+      "enabled" : false,
+      "id" : "zai"
+    },
+    {
+      "enabled" : false,
+      "id" : "minimax"
+    },
+    {
+      "enabled" : false,
+      "id" : "kimi"
+    },
+    {
+      "enabled" : false,
+      "id" : "kiro"
+    },
+    {
+      "enabled" : false,
+      "id" : "vertexai"
+    },
+    {
+      "enabled" : false,
+      "id" : "augment"
+    },
+    {
+      "enabled" : false,
+      "id" : "jetbrains"
+    },
+    {
+      "enabled" : false,
+      "id" : "kimik2"
+    },
+    {
+      "enabled" : false,
+      "id" : "amp"
+    },
+    {
+      "enabled" : false,
+      "id" : "synthetic"
+    },
+    {
+      "enabled" : false,
+      "id" : "warp"
+    }
+  ],
+  "version" : 1
+}
