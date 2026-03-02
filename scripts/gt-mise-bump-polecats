@@ -1,0 +1,157 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+RIG="dotfiles"
+WORKSPACE="${GT_WORKSPACE:-$HOME/gt}"
+FORMULA="${GT_MISE_FORMULA:-dotfiles-mise-bump-pr}"
+DRY_RUN=false
+MODE="all"
+TOOL=""
+CURRENT=""
+BUMP=""
+
+usage() {
+  cat <<'EOF'
+Usage:
+  gt-mise-bump-polecats --all [--rig <rig>] [--workspace <path>] [--dry-run]
+  gt-mise-bump-polecats --tool <name> --current <version> --bump <version> [--rig <rig>] [--workspace <path>] [--dry-run]
+
+Examples:
+  gt-mise-bump-polecats --all --rig dotfiles
+  gt-mise-bump-polecats --tool gh --current 2.86.0 --bump 2.87.3 --rig dotfiles
+  gt-mise-bump-polecats --all --dry-run
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --all)
+      MODE="all"
+      shift
+      ;;
+    --tool)
+      MODE="single"
+      TOOL="${2:-}"
+      shift 2
+      ;;
+    --current)
+      CURRENT="${2:-}"
+      shift 2
+      ;;
+    --bump)
+      BUMP="${2:-}"
+      shift 2
+      ;;
+    --rig)
+      RIG="${2:-}"
+      shift 2
+      ;;
+    --workspace)
+      WORKSPACE="${2:-}"
+      shift 2
+      ;;
+    --formula)
+      FORMULA="${2:-}"
+      shift 2
+      ;;
+    --dry-run)
+      DRY_RUN=true
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown argument: $1" >&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+require_cmd() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    echo "Missing required command: $1" >&2
+    exit 1
+  fi
+}
+
+normalize_tool() {
+  local raw_tool="$1"
+  local branch_tool="${raw_tool#*:}"
+
+  echo "$branch_tool" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9._-]+/-/g'
+}
+
+dispatch_one() {
+  local raw_tool="$1"
+  local current="$2"
+  local bump="$3"
+  local branch_tool bead_id title desc args
+
+  branch_tool="$(normalize_tool "$raw_tool")"
+  title="Bump ${raw_tool} to ${bump} in dotfiles mise config"
+  desc=$(cat <<EOF
+One-line version bump in .config/mise/config.toml.
+
+Tool: ${raw_tool}
+Current: ${current}
+Target: ${bump}
+
+Required outcome:
+- Update exactly one line for ${raw_tool} in .config/mise/config.toml.
+- Run \`just format-mise\` in /Users/phatblat.
+- Commit message: chore(mise): bump ${branch_tool} to ${bump}
+- Branch name: ben/mise-bump-${branch_tool}-${bump}
+- Push branch and open PR to main.
+- PR body: One-line bump in .config/mise/config.toml.
+EOF
+)
+  args="In /Users/phatblat, bump ${raw_tool} from ${current} to ${bump} in .config/mise/config.toml. Keep the PR to a single-line version change."
+
+  if [[ "$DRY_RUN" == true ]]; then
+    echo "DRY RUN:"
+    echo "  title: $title"
+    echo "  rig: $RIG"
+    echo "  formula: $FORMULA"
+    echo "  args: $args"
+    return
+  fi
+
+  bead_id="$(cd "$WORKSPACE" && command bd create --silent --rig "$RIG" --type chore --priority 3 --title "$title" --description "$desc")"
+  (
+    cd "$WORKSPACE"
+    gt sling "$bead_id" "$RIG" --merge=local --no-convoy --formula "$FORMULA" --args "$args"
+  )
+  echo "${bead_id} ${raw_tool} ${current} -> ${bump}"
+}
+
+require_cmd mise
+require_cmd gt
+require_cmd bd
+
+if [[ ! -d "$WORKSPACE" ]]; then
+  echo "Gas Town workspace not found: $WORKSPACE" >&2
+  exit 1
+fi
+
+if [[ "$MODE" == "single" ]]; then
+  if [[ -z "$TOOL" || -z "$CURRENT" || -z "$BUMP" ]]; then
+    echo "--tool, --current, and --bump are required in single mode" >&2
+    exit 1
+  fi
+  dispatch_one "$TOOL" "$CURRENT" "$BUMP"
+  exit 0
+fi
+
+rows="$(mise outdated --bump | awk 'NR>1 && NF>=4 {print $1 "\t" $3 "\t" $4}')"
+if [[ -z "$rows" ]]; then
+  echo "No pending mise upgrades found."
+  exit 0
+fi
+
+while IFS=$'\t' read -r tool current bump; do
+  [[ -z "${tool:-}" ]] && continue
+  dispatch_one "$tool" "$current" "$bump"
+done <<< "$rows"
