@@ -13,6 +13,7 @@ personality = true
 runtime_metrics = true
 shell_tool = true
 unified_exec = true
+steer = true
 
 [projects."/Users/phatblat"]
 trust_level = "trusted"
