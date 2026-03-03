@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# bD - Forcefully delete a branch from git
+git branch -D "$@"
