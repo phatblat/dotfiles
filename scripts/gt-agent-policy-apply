@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WORKSPACE="${GT_WORKSPACE:-$HOME/gt}"
+SAFE_AGENT="${GT_SAFE_AGENT:-gemini}"
+LOW_RISK_RIGS="${GT_LOW_RISK_RIGS:-forge,l8r,mintlify_docs,dql_browser}"
+MODE="${1:-apply}"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  gt-agent-policy-apply [apply|show]
+
+Environment variables:
+  GT_WORKSPACE      Gas Town workspace path (default: ~/gt)
+  GT_SAFE_AGENT     Safe/low-risk agent (default: gemini)
+  GT_LOW_RISK_RIGS  CSV list of low-risk rigs
+                    (default: forge,l8r,mintlify_docs,dql_browser)
+EOF
+}
+
+if [[ "$MODE" != "apply" && "$MODE" != "show" ]]; then
+  usage >&2
+  exit 1
+fi
+
+if [[ ! -d "$WORKSPACE" ]]; then
+  echo "Workspace not found: $WORKSPACE" >&2
+  exit 1
+fi
+
+IFS=',' read -r -a rigs <<< "$LOW_RISK_RIGS"
+cd "$WORKSPACE"
+
+for rig in "${rigs[@]}"; do
+  [[ -z "$rig" ]] && continue
+  if [[ "$MODE" == "apply" ]]; then
+    gt rig settings set "$rig" role_agents.witness "$SAFE_AGENT"
+    gt rig settings set "$rig" role_agents.refinery "$SAFE_AGENT"
+  fi
+  echo "=== $rig"
+  gt rig settings show "$rig" | jq '.role_agents'
+done

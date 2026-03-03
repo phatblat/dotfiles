@@ -386,6 +386,26 @@ gt-mise-bump-polecat tool current bump rig='dotfiles':
         --bump {{ bump }} \
         --rig {{ rig }}
 
+# Apply low-risk rig role-agent policy (witness/refinery -> gemini)
+[group('gastown')]
+gt-agent-policy-apply:
+    ~/scripts/gt-agent-policy-apply apply
+
+# Show current low-risk rig role-agent policy
+[group('gastown')]
+gt-agent-policy-show:
+    ~/scripts/gt-agent-policy-apply show
+
+# Smart sling wrapper: auto-route low-risk work to gemini, high-risk to codex
+[group('gastown')]
+gt-sling-smart bead target *args:
+    ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }}
+
+# Preview smart sling routing decision without dispatching
+[group('gastown')]
+gt-sling-smart-dry-run bead target *args:
+    ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }} --dry-run
+
 #
 # lm-studio group recipes
 #

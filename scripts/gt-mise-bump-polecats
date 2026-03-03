@@ -122,7 +122,7 @@ EOF
   bead_id="$(cd "$WORKSPACE" && command bd create --silent --rig "$RIG" --type chore --priority 3 --title "$title" --description "$desc")"
   (
     cd "$WORKSPACE"
-    gt sling "$bead_id" "$RIG" --merge=local --no-convoy --formula "$FORMULA" --args "$args"
+    "$HOME/scripts/gt-sling-smart" "$bead_id" "$RIG" --risk low --merge=local --no-convoy --formula "$FORMULA" --args "$args"
   )
   echo "${bead_id} ${raw_tool} ${current} -> ${bump}"
 }
