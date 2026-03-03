@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# gt - Run gastown commands from ~/gt directory
+(cd ~/gt && command gt "$@")

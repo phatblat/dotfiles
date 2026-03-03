@@ -363,7 +363,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `gst`                       | ✅  | ➖   | ➖  | ➖   | Git status                                           |
 | `gs`                        | ✅  | ➖   | ➖  | ➖   | Git status short format                              |
 | `gta`                       | ✅  | ✅   | ➖  | ➖   | Alias for gradle tasks --all                         |
-| `gt`                        | ✅  | ✅   | ➖  | ➖   | Alias for gradle tasks                               |
+| `gt`                        | ✅  | ✅   | ✅  | ➖   | Gastown wrapper (zsh); gradle tasks alias (nu/fish)  |
 | `gv`                        | ✅  | ✅   | ✅  | ➖   | > gradle --version                                   |
 | `gwd`                       | ✅  | ✅   | ➖  | ➖   | org.gradle.debug=true is the equivalent of: -Dorg    |
 | `gwo`                       | ✅  | ✅   | ✅  | ➖   | Gradle wrapper offline                               |
