@@ -816,6 +816,7 @@ build/
 caches/
 cali_core4/
 cmake-build-debug/
+conductor/
 data/
 dev
 ditto-cache/
