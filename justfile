@@ -269,6 +269,7 @@ format: format-gitignore format-mise
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
     jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
     jq --sort-keys --indent 2 . ~/Library/Application\ Support/Claude/claude_desktop_config.json | sponge ~/Library/Application\ Support/Claude/claude_desktop_config.json
+    jq --sort-keys --indent 2 . ~/.codexbar/config.json | sponge ~/.codexbar/config.json
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shfmt -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellharden --replace {} +
