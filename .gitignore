@@ -60,6 +60,7 @@
 .chef/
 .cisco/
 .classpath
+.claude-accounts/
 .claude-code-router/.claude-code-router.pid
 .claude-server-commander/
 .claude-worktrees/
