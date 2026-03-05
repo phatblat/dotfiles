@@ -137,19 +137,11 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 **Claude Code:**
 
-- `just code` — Run Claude through Claude Code Router (CCR)
-- `just claude-continue` (alias: `just cc`) — Continue Claude session bypassing permissions
 - `just usage` — Show Claude usage statistics
 - `just usage-board` (alias: `just ub`) — Show live Claude usage dashboard
 - `just usage-web` — Open Claude usage in browser
 - `just install-claude` — Install Claude Code native binary
 - `just upgrade-claude` — Upgrade Claude Code
-
-**Claude Code Router (CCR):**
-
-- `just ccr-status` — Show status of CCR
-- `just ccr-start` — Start CCR
-- `just ccr-stop` — Stop CCR
 
 **LM Studio:**
 

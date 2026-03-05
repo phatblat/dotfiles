@@ -34,7 +34,6 @@ color_reset := '\e[0m'
 # aliases
 #
 
-alias cc := claude-continue
 alias dashboard := gt-dashboard-open
 alias f := free
 alias fmt := format
@@ -235,38 +234,8 @@ format: format-gitignore format-mise
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellharden --replace {} +
 
 #
-# claude-code-router (ccr) recipes
-#
-
-# Show status of CCR
-[group('claude-code-router')]
-ccr-status:
-    ccr status
-
-# Start CCR
-[group('claude-code-router')]
-ccr-start:
-    ccr start &
-    ccr status
-
-# Stop CCR
-[group('claude-code-router')]
-ccr-stop:
-    ccr stop
-
-#
 # claude group recipes
 #
-
-# Run Claude throught CCR
-[group('claude')]
-code:
-    ccr code --permission-mode bypassPermissions
-
-# Continue Claude Code session bypassing permissions
-[group('claude')]
-claude-continue:
-    claude --continue --permission-mode bypassPermissions
 
 # Installs Claude Code native binary
 [group('claude')]
