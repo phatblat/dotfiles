@@ -1,0 +1,38 @@
+{
+  "type": "town-settings",
+  "version": 1,
+  "default_agent": "claude",
+  "agents": {
+    "claude-haiku": {
+      "command": "claude",
+      "args": [
+        "--dangerously-skip-permissions",
+        "--model",
+        "haiku"
+      ]
+    },
+    "claude-sonnet": {
+      "command": "claude",
+      "args": [
+        "--dangerously-skip-permissions",
+        "--model",
+        "sonnet"
+      ]
+    },
+    "claude-opus": {
+      "command": "claude",
+      "args": [
+        "--dangerously-skip-permissions",
+        "--model",
+        "opus"
+      ]
+    }
+  },
+  "role_agents": {
+    "deacon": "claude-haiku",
+    "mayor": "claude-opus",
+    "refinery": "claude-sonnet",
+    "witness": "claude-sonnet"
+  },
+  "cost_tier": "economy"
+}

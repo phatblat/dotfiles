@@ -67,6 +67,7 @@
 .claude.json
 .claude.json.backup
 .claude.json.backup.*
+.claude.json.tmp.60106.1772720677979
 .claude/.credentials.json
 .claude/commands/
 .claude/debug/
@@ -826,9 +827,9 @@ games/
 go/
 gradlew.bat
 gt/*
-!gt/settings/
 gt/settings/*
 !gt/settings/config.json
+!gt/settings/
 heapdump.*.phd
 iCloud Drive (Archive)/
 javacore.*.txt
