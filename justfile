@@ -165,7 +165,7 @@ upgrade-commits:
     #!/usr/bin/env bash
     set -euo pipefail
     json=$(mise outdated --bump --json)
-    if [ "$json" = "{}" ]; then
+    if echo "$json" | jq -e 'type == "object" and (keys | length) == 0' >/dev/null 2>&1; then
         echo "All tools are up to date"
         exit 0
     fi
