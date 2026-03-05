@@ -175,7 +175,7 @@ upgrade-commits:
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump "$tool"
         git add ~/.config/mise/config.toml
-        git commit -m "chore: bump $tool $current → $bump"
+        git commit --only -- ~/.config/mise/config.toml -m "chore: bump $tool $current → $bump"
     done
 
 # Updates home-manager flake and rebuilds configuration
