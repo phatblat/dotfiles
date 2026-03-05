@@ -1,7 +1,7 @@
 {
   "default_pack": "peon",
   "volume": 0.5,
-  "enabled": true,
+  "enabled": false,
   "desktop_notifications": true,
   "categories": {
     "session.start": true,
