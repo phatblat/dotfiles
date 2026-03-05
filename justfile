@@ -156,8 +156,27 @@ install:
 
 # Upgrades tools using mise
 [group('configuration')]
-upgrade *args: update-nix
+upgrade *args:
     mise upgrade --bump {{ args }}
+
+# Upgrades each outdated tool and commits the version change individually
+[group('configuration')]
+upgrade-commits:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    json=$(mise outdated --bump --json)
+    if echo "$json" | jq -e 'type == "object" and (keys | length) == 0' >/dev/null 2>&1; then
+        echo "All tools are up to date"
+        exit 0
+    fi
+    echo "$json" | jq -r 'keys[]' | while read -r tool; do
+        current=$(echo "$json" | jq -r --arg t "$tool" '.[$t].current')
+        bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
+        echo "Upgrading $tool: $current → $bump"
+        mise upgrade --bump "$tool"
+        git add ~/.config/mise/config.toml
+        git commit --only -- ~/.config/mise/config.toml -m "chore: bump $tool $current → $bump"
+    done
 
 # Updates home-manager flake and rebuilds configuration
 [group('configuration')]
