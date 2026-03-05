@@ -1,0 +1,19 @@
+# https://developers.openai.com/codex/config-reference
+model = "gpt-5.3-codex"
+model_reasoning_effort = "high"
+# file_opener = "zed"
+personality = "pragmatic"
+suppress_unstable_features_warning = true
+
+[features]
+apps = false
+collaboration_modes = true
+multi_agent = true
+personality = true
+runtime_metrics = true
+shell_tool = true
+unified_exec = true
+steer = true
+
+[projects."/Users/phatblat"]
+trust_level = "trusted"

@@ -1,5 +1,8 @@
+
+# Gas Town (added by gt)
 *.bak
 *.dll
+*.gastown-backup
 *.hprof
 *.iml
 *.padl
@@ -42,6 +45,7 @@
 .azurefunctions/
 .bash_history
 .bash_sessions/
+.beads/
 .bluemix/
 .build/
 .buildkite/config.json
@@ -56,6 +60,7 @@
 .chef/
 .cisco/
 .classpath
+.claude-accounts/
 .claude-code-router/.claude-code-router.pid
 .claude-server-commander/
 .claude-worktrees/
@@ -63,6 +68,7 @@
 .claude.json.backup
 .claude.json.backup.*
 .claude/.credentials.json
+.claude/commands/
 .claude/debug/
 .claude/file-history/
 .claude/history.jsonl
@@ -88,6 +94,8 @@
 .cocoapods/
 .codeium/
 .codepilot/
+.codex/*
+!.codex/config.toml
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/
@@ -236,10 +244,11 @@
 .flutter-devtools/
 .gconf/
 .gem/
-.gemini/
+.gemini/*
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
+!.gemini/settings.json
 .gemini/state.json
 .geomapapp-home
 .ghidra/
@@ -287,6 +296,7 @@
 .lmstudio/
 .local/
 .locks/
+.logs/
 .logseq/plugins/
 !.logseq/preferences.json
 .lsp4xml/
@@ -350,6 +360,7 @@
 .rest-client/
 .rnd
 .rubygems/
+.runtime/
 .rustup/
 .rvm/
 .security-key
@@ -504,6 +515,7 @@ Library/Application Support/Code/code.lock
 Library/Application Support/Code/databases/
 Library/Application Support/Code/languagepacks.json
 Library/Application Support/Code/machineid
+Library/Application Support/Codex/
 Library/Application Support/CrashReporter/
 Library/Application Support/Cron/
 Library/Application Support/Cursor/
@@ -804,6 +816,7 @@ build/
 caches/
 cali_core4/
 cmake-build-debug/
+conductor/
 data/
 dev
 ditto-cache/
@@ -839,9 +852,3 @@ target/
 tmp/
 xcuserdata
 zclean.awk
-
-# Gas Town (added by gt)
-.beads/
-.runtime/
-.claude/commands/
-.logs/

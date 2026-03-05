@@ -82,7 +82,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `battleapp`                 | ➖  | ✅   | ➖  | ➖   | Quick nav to BattleApp dir                           |
 | `bconfig`                   | ➖  | ✅   | ➖  | ➖   | Configures Bundler                                   |
 | `bdm`                       | ➖  | ✅   | ➖  | ➖   | Delete local branches which have been merged into    |
-| `bd`                        | ✅  | ✅   | ✅  | ➖   | Forcefully delete a branch from git                  |
+| `bD`                        | ✅  | ✅   | ✅  | ➖   | Forcefully delete a branch from git                  |
 | `bef`                       | ➖  | ✅   | ➖  | ➖   | Short alias for executing Fastlane through Bundler   |
 | `be`                        | ➖  | ✅   | ✅  | ➖   | Short alias for executing gems through Bundler       |
 | `bid`                       | ➖  | ✅   | ➖  | ➖   | https://gist.github.com/ttscoff/86fe788beb8c586986   |
@@ -363,7 +363,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `gst`                       | ✅  | ➖   | ➖  | ➖   | Git status                                           |
 | `gs`                        | ✅  | ➖   | ➖  | ➖   | Git status short format                              |
 | `gta`                       | ✅  | ✅   | ➖  | ➖   | Alias for gradle tasks --all                         |
-| `gt`                        | ✅  | ✅   | ➖  | ➖   | Alias for gradle tasks                               |
+| `gt`                        | ✅  | ✅   | ✅  | ➖   | Gastown wrapper (zsh); gradle tasks alias (nu/fish)  |
 | `gv`                        | ✅  | ✅   | ✅  | ➖   | > gradle --version                                   |
 | `gwd`                       | ✅  | ✅   | ➖  | ➖   | org.gradle.debug=true is the equivalent of: -Dorg    |
 | `gwo`                       | ✅  | ✅   | ✅  | ➖   | Gradle wrapper offline                               |

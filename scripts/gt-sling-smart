@@ -1,0 +1,185 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SAFE_AGENT="${GT_SAFE_AGENT:-gemini}"
+RISKY_AGENT="${GT_RISKY_AGENT:-codex}"
+LOW_RISK_RIGS="${GT_LOW_RISK_RIGS:-forge,l8r,mintlify_docs,dql_browser}"
+WORKSPACE="${GT_WORKSPACE:-$HOME/gt}"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  gt-sling-smart <bead> <target> [wrapper flags] [gt sling flags]
+
+Wrapper flags:
+  --risk <low|high>   Override auto classification.
+  --dry-run           Print selected route and resulting gt sling command.
+  -h, --help          Show this help.
+
+Notes:
+  - If --agent is already passed in gt sling flags, it is respected.
+  - Risk routing defaults:
+      low  -> $GT_SAFE_AGENT   (default: gemini)
+      high -> $GT_RISKY_AGENT  (default: codex)
+
+Examples:
+  gt-sling-smart dx-123 ditto_devx --merge=local
+  gt-sling-smart dx-123 ditto_devx --risk low --merge=local
+  gt-sling-smart dx-123 ditto_devx --agent claude --merge=local
+EOF
+}
+
+require_cmd() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    echo "Missing required command: $1" >&2
+    exit 1
+  fi
+}
+
+contains_csv_value() {
+  local needle="$1"
+  local csv="$2"
+  local item
+  IFS=',' read -r -a values <<< "$csv"
+  for item in "${values[@]}"; do
+    if [[ "$item" == "$needle" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+require_cmd gt
+require_cmd bd
+require_cmd jq
+
+manual_risk=""
+dry_run=false
+declare -a positional=()
+declare -a gt_flags=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --risk)
+      manual_risk="${2:-}"
+      shift 2
+      ;;
+    --dry-run)
+      dry_run=true
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      positional+=("$1")
+      shift
+      ;;
+  esac
+done
+
+if [[ "${#positional[@]}" -lt 2 ]]; then
+  usage >&2
+  exit 1
+fi
+
+bead="${positional[0]}"
+target="${positional[1]}"
+if [[ "${#positional[@]}" -gt 2 ]]; then
+  gt_flags=("${positional[@]:2}")
+fi
+
+explicit_agent=false
+for ((i=0; i<${#gt_flags[@]}; i++)); do
+  token="${gt_flags[$i]}"
+  if [[ "$token" == "--agent" || "$token" == --agent=* ]]; then
+    explicit_agent=true
+    break
+  fi
+done
+
+rig="$target"
+if [[ "$target" == */* ]]; then
+  rig="${target%%/*}"
+fi
+
+title=""
+description=""
+issue_type=""
+json=""
+if json="$(command bd show "$bead" --json 2>/dev/null)"; then
+  :
+elif [[ -d "$WORKSPACE" ]] && json="$(cd "$WORKSPACE" && command bd show "$bead" --json 2>/dev/null)"; then
+  :
+fi
+
+if [[ -n "$json" ]]; then
+  title="$(printf '%s' "$json" | jq -r '.[0].title // ""')"
+  description="$(printf '%s' "$json" | jq -r '.[0].description // ""')"
+  issue_type="$(printf '%s' "$json" | jq -r '.[0].issue_type // ""')"
+fi
+
+text="${bead} ${title} ${description} ${issue_type}"
+text_lower="$(printf '%s' "$text" | tr '[:upper:]' '[:lower:]')"
+title_lower="$(printf '%s' "$title" | tr '[:upper:]' '[:lower:]')"
+description_lower="$(printf '%s' "$description" | tr '[:upper:]' '[:lower:]')"
+
+high_regex='rebase|merge conflict|release pipeline|release gate|security|auth|credential|secret|production|prod|hotfix|incident|migration|schema|rollback'
+low_regex='review|audit|inventory|summary|status|docs|documentation|cleanup|triage|classify|branch|report|outdated|bump|chore'
+
+risk="high"
+reason="default_high"
+if [[ -n "$manual_risk" ]]; then
+  case "$manual_risk" in
+    low|high)
+      risk="$manual_risk"
+      reason="manual"
+      ;;
+    *)
+      echo "Invalid --risk value: $manual_risk (expected low|high)" >&2
+      exit 1
+      ;;
+  esac
+elif [[ "$title_lower" =~ $low_regex ]]; then
+  risk="low"
+  reason="title_low_keyword"
+elif [[ "$title_lower" =~ $high_regex ]]; then
+  risk="high"
+  reason="title_high_keyword"
+elif [[ "$description_lower" =~ $high_regex ]]; then
+  risk="high"
+  reason="high_keyword"
+elif [[ "$description_lower" =~ $low_regex || "$text_lower" =~ $low_regex ]]; then
+  risk="low"
+  reason="low_keyword"
+elif contains_csv_value "$rig" "$LOW_RISK_RIGS"; then
+  risk="low"
+  reason="low_risk_rig"
+fi
+
+chosen_agent="$RISKY_AGENT"
+if [[ "$risk" == "low" ]]; then
+  chosen_agent="$SAFE_AGENT"
+fi
+
+cmd=(gt sling "$bead" "$target")
+if [[ "$explicit_agent" == false ]]; then
+  cmd+=(--agent "$chosen_agent")
+fi
+cmd+=("${gt_flags[@]}")
+
+if [[ "$explicit_agent" == true ]]; then
+  echo "routing: bead=$bead target=$target rig=$rig risk=$risk reason=$reason agent=explicit_from_flags"
+else
+  echo "routing: bead=$bead target=$target rig=$rig risk=$risk reason=$reason agent=$chosen_agent"
+fi
+
+if [[ "$dry_run" == true ]]; then
+  printf 'command: '
+  printf '%q ' "${cmd[@]}"
+  printf '\n'
+  exit 0
+fi
+
+"${cmd[@]}"

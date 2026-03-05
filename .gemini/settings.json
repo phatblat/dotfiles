@@ -8,6 +8,14 @@
     "name": "auto-gemini-3"
   },
   "general": {
-    "previewFeatures": true
+    "previewFeatures": true,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "30d"
+    }
+  },
+  "ui": {
+    "showHomeDirectoryWarning": false
   }
 }

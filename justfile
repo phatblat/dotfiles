@@ -200,13 +200,52 @@ lint-gitignore:
 lint-python:
     ruff check ~/scripts/sort-tools.py
 
-# Checks justfile and shell scripts in .config/zsh/functions
+# Lints Zsh functions with shellcheck
+
+# Uses ksh dialect and excludes SC2168 (local in function body) since these are zsh autoload files
 [group('checks')]
-lint: lint-gitignore lint-python
+lint-zsh:
+    @echo "Linting Zsh functions..."
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2168 {} +
+
+# Validates Fish functions syntax
+[group('checks')]
+lint-fish:
+    @echo "Validating Fish functions..."
+    @fish -n ~/.config/fish/config.fish
+    @find ~/.config/fish/functions -name '*.fish' -exec fish -n {} +
+    @find ~/.config/fish/conf.d -name '*.fish' -exec fish -n {} +
+
+# Validates Nushell scripts syntax
+[group('checks')]
+lint-nushell:
+    @echo "Validating Nushell scripts..."
+    @nu --commands 'source ~/.config/nushell/config.nu'
+
+# Lints bin scripts with shellcheck (excludes vendor scripts)
+[group('checks')]
+lint-bin:
+    @echo "Linting bin scripts..."
+    @find ~/bin -name '*.sh' ! -name 'dotnet-install.sh' -exec shellcheck {} +
+
+# Runs all linting checks
+[group('checks')]
+lint-all: lint-zsh lint-fish lint-nushell lint-bin
+    @echo "All linting complete"
+
+# Checks justfile and mise config formatting, gitignore, python, and shell scripts
+[group('checks')]
+lint: lint-gitignore lint-python lint-all
     just --fmt --check
     mise fmt --check
-    @echo "Linting shell scripts..."
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2111 {} +
+
+# Runs bats tests
+[group('tests')]
+[script]
+test:
+    echo "Running tests..."
+    eval "$(mise activate bash)"
+    bats ~/tests/
 
 # Sorts .gitignore with negation-aware ordering
 [group('configuration')]
@@ -229,6 +268,7 @@ format: format-gitignore format-mise
     jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
     jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
     jq --sort-keys --indent 2 . ~/Library/Application\ Support/Claude/claude_desktop_config.json | sponge ~/Library/Application\ Support/Claude/claude_desktop_config.json
+    jq --sort-keys --indent 2 . ~/.codexbar/config.json | sponge ~/.codexbar/config.json
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shfmt -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellharden --replace {} +
@@ -289,13 +329,52 @@ gt-dashboard-open: gt-dashboard-start
 # Start and attach to the Mayor session
 [group('gastown')]
 gt-mayor:
-    cd ~/gt && gt mayor status 2>&1 | grep -q "is running" || gt mayor start
+    cd ~/gt && gt mayor status 2>&1 | grep -q "is running" || gt mayor start --agent codex
     cd ~/gt && gt mayor attach
 
 # Open the Gastown feed TUI
 [group('gastown')]
 gt-feed:
     cd ~/gt && gt feed
+
+# Create and sling one polecat per outdated mise tool bump
+[group('gastown')]
+gt-mise-bump-polecats rig='dotfiles':
+    ~/scripts/gt-mise-bump-polecats --all --rig {{ rig }}
+
+# Dry-run preview of all outdated mise tool bump dispatches
+[group('gastown')]
+gt-mise-bump-polecats-dry-run rig='dotfiles':
+    ~/scripts/gt-mise-bump-polecats --all --rig {{ rig }} --dry-run
+
+# Create and sling a single tool bump to one polecat
+[group('gastown')]
+gt-mise-bump-polecat tool current bump rig='dotfiles':
+    ~/scripts/gt-mise-bump-polecats \
+        --tool {{ tool }} \
+        --current {{ current }} \
+        --bump {{ bump }} \
+        --rig {{ rig }}
+
+# Apply low-risk rig role-agent policy (witness/refinery -> gemini)
+[group('gastown')]
+gt-agent-policy-apply:
+    ~/scripts/gt-agent-policy-apply apply
+
+# Show current low-risk rig role-agent policy
+[group('gastown')]
+gt-agent-policy-show:
+    ~/scripts/gt-agent-policy-apply show
+
+# Smart sling wrapper: auto-route low-risk work to gemini, high-risk to codex
+[group('gastown')]
+gt-sling-smart bead target *args:
+    ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }}
+
+# Preview smart sling routing decision without dispatching
+[group('gastown')]
+gt-sling-smart-dry-run bead target *args:
+    ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }} --dry-run
 
 #
 # lm-studio group recipes
@@ -320,3 +399,10 @@ lms-reload:
     lms ls
     lms ps
     lms server status
+
+# gastown group recipes
+
+# Attach to the Gas Town mayor tmux session
+[group('gastown')]
+mayor:
+    cd ~/gt && gt mayor attach
