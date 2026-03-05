@@ -34,7 +34,6 @@ color_reset := '\e[0m'
 # aliases
 #
 
-alias cc := claude-continue
 alias dashboard := gt-dashboard-open
 alias f := free
 alias fmt := format
@@ -277,16 +276,6 @@ format: format-gitignore format-mise
 #
 # claude group recipes
 #
-
-# Run Claude Code
-[group('claude')]
-code:
-    claude --permission-mode bypassPermissions
-
-# Continue Claude Code session bypassing permissions
-[group('claude')]
-claude-continue:
-    claude --continue --permission-mode bypassPermissions
 
 # Installs Claude Code native binary
 [group('claude')]

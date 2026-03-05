@@ -137,8 +137,6 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 **Claude Code:**
 
-- `just code` — Run Claude Code
-- `just claude-continue` (alias: `just cc`) — Continue Claude session bypassing permissions
 - `just usage` — Show Claude usage statistics
 - `just usage-board` (alias: `just ub`) — Show live Claude usage dashboard
 - `just usage-web` — Open Claude usage in browser
