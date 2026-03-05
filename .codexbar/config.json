@@ -1,6 +1,7 @@
 {
   "providers": [
     {
+      "cookieSource": "auto",
       "enabled": true,
       "id": "claude"
     },
