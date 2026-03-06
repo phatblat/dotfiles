@@ -12,7 +12,7 @@
 "go:golang.org/x/tools/gopls" = "0.21.1"
 "npm:@linear/cli" = "0.0.5"
 "npm:@vtsls/language-server" = "0.3.0"
-"npm:ccusage" = "18.0.8"
+"npm:ccusage" = "18.0.9"
 "npm:claudekit" = "0.9.4"
 "npm:gastown-gui" = "0.9.4"
 "npm:mint" = "4.2.405"
