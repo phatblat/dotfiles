@@ -1,5 +1,6 @@
 {
   "preferences": {
+    "ccdScheduledTasksEnabled": true,
     "coworkScheduledTasksEnabled": true,
     "coworkWebSearchEnabled": true,
     "menuBarEnabled": false,
