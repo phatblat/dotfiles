@@ -590,7 +590,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `rev-parse`                 | ➖  | ✅   | ➖  | ➖   | Git rev-parse                                        |
 | `revert`                    | ➖  | ✅   | ➖  | ➖   | Git revert                                           |
 | `review`                    | ✅  | ✅   | ✅  | ➖   | Review a given commit, default: HEAD                 |
-| `rewrite`                   | ➖  | ✅   | ➖  | ➖   | Rewrite commits changing author/committer info       |
+| `rewrite`                   | ➖  | ✅   | ✅  | ➖   | Rewrite commits changing author/committer info       |
 | `ri`                        | ✅  | ➖   | ➖  | ➖   | Interactive rebase for last N commits (default 10)   |
 | `rl`                        | ➖  | ✅   | ✅  | ➖   | Quick dir navigation                                 |
 | `root`                      | ➖  | ✅   | ✅  | ✅   | Display path to root of current git repo             |

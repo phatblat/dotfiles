@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+
+# rewrite - Rewrite commits changing author/committer email using git-filter-repo
+if [[ $# -ne 3 ]]; then
+    echo "error: Usage: rewrite email old_value new_value" >&2
+    return 1
+fi
+
+local field=$1
+local old_value=$2
+local new_value=$3
+
+if [[ $field != "email" ]]; then
+    echo "error: Only email replacements are currently supported." >&2
+    echo "error: Usage: rewrite email old_value new_value" >&2
+    return 2
+fi
+
+if ! command -v git-filter-repo &> /dev/null; then
+    echo "error: git-filter-repo is not installed" >&2
+    return 3
+fi
+
+# https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#CALLBACKS
+git filter-repo --force \
+    --email-callback \
+    "return email.replace(b\"$old_value\", b\"$new_value\")"
