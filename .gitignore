@@ -68,6 +68,7 @@
 .claude.json.backup
 .claude.json.backup.*
 .claude.json.tmp.60106.1772720677979
+.claude.json.tmp.8325.1773042876273
 .claude/.credentials.json
 .claude/commands/
 .claude/debug/
