@@ -181,6 +181,7 @@
 .config/kglobalshortcutsrc
 .config/konsolerc
 .config/libreoffice/
+.config/linear/
 .config/lxterminal/
 .config/menus/
 .config/mise/.fake-asdf/
