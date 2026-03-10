@@ -1,9 +1,5 @@
 {
   "mcpServers": {
-    "obsidian": {
-      "command": "npx",
-      "args": ["-y", "@mauricio.wolff/mcp-obsidian@latest", "/Users/phatblat/2ndBrain"]
-    },
     "linear": {
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
@@ -12,9 +8,13 @@
       "type": "http",
       "url": "https://docs.ditto.live/mcp"
     },
-    "gemini-cli": {
+    "obsidian": {
       "command": "npx",
-      "args": ["-y", "gemini-mcp-tool"]
+      "args": [
+        "-y",
+        "@mauricio.wolff/mcp-obsidian@latest",
+        "/Users/phatblat/2ndBrain"
+      ]
     }
   }
 }
