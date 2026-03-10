@@ -301,6 +301,8 @@ format: format-gitignore format-mise
 install-claude:
     npx @anthropic-ai/claude-code install
 
+alias uc := upgrade-claude
+
 # Upgrades Claude Code
 [group('claude')]
 upgrade-claude:
