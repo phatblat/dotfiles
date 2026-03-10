@@ -137,6 +137,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `cbootios`                  | ➖  | ✅   | ➖  | ➖   | Bootstrap Carthage dependencies for iOS              |
 | `cc`                        | ➖  | ➖   | ✅  | ➖   | Claude Code with --dangerously-skip-permissions      |
 | `ccc`                       | ➖  | ➖   | ✅  | ➖   | Continue a Claude Code session with default config   |
+| `ccr`                       | ➖  | ➖   | ✅  | ➖   | Resume a Claude Code session                         |
 | `ccoss`                     | ➖  | ✅   | ➖  | ➖   | Checkout into submodules using Carthage SSH          |
 | `ccos`                      | ➖  | ✅   | ➖  | ➖   | Checkout source using Carthage over SSH              |
 | `ccov`                      | ➖  | ✅   | ➖  | ➖   | Checkout source of dependencies using Carthage wit   |

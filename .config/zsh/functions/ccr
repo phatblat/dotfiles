@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ccr - Resume a Claude Code session
+cc --resume "$@"
