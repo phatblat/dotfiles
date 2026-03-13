@@ -28,21 +28,21 @@ fi
 
 # https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html#CALLBACKS
 case $field in
-    email)
-        git filter-repo --force \
-            "${refs_arg[@]}" \
-            --email-callback \
-            "return email.replace(b\"$old_value\", b\"$new_value\")"
-        ;;
-    name)
-        git filter-repo --force \
-            "${refs_arg[@]}" \
-            --name-callback \
-            "return name.replace(b\"$old_value\", b\"$new_value\")"
-        ;;
-    *)
-        echo "error: Unsupported field '$field'. Supported fields: email, name" >&2
-        echo "error: Usage: rewrite <email|name> old_value new_value [limit]" >&2
-        return 2
-        ;;
+email)
+    git filter-repo --force \
+        "${refs_arg[@]}" \
+        --email-callback \
+        "return email.replace(b\"$old_value\", b\"$new_value\")"
+    ;;
+name)
+    git filter-repo --force \
+        "${refs_arg[@]}" \
+        --name-callback \
+        "return name.replace(b\"$old_value\", b\"$new_value\")"
+    ;;
+*)
+    echo "error: Unsupported field '$field'. Supported fields: email, name" >&2
+    echo "error: Usage: rewrite <email|name> old_value new_value [limit]" >&2
+    return 2
+    ;;
 esac
