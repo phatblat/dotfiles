@@ -86,6 +86,7 @@
 .claude/plans/
 .claude/plugins/
 .claude/powerline/
+.claude/sessions/
 .claude/settings.json
 .claude/skills/PAI/SKILL.md
 .claude/stats-cache.json
