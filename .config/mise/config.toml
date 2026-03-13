@@ -35,6 +35,7 @@ caddy = "2.11.2"
 cmake = "4.2.3"
 cocoapods = "1.16.2"
 codex = "0.114.0"
+dart = { version = "3.9.4", url = "https://storage.googleapis.com/dart-archive/channels/stable/release/{{ version }}/sdk/dartsdk-{{ os() }}-{{ arch() }}-release.zip", version_list_url = "https://storage.googleapis.com/storage/v1/b/dart-archive/o?prefix=channels/stable/release/&delimiter=/", version_regex = 'channels/stable/release/(\d+\.\d+\.\d+)/' }
 delta = "0.18.2"
 direnv = "2.37.1"
 docker-cli = "29.3.0"
@@ -74,7 +75,6 @@ xcodes = "1.6.2"
 yq = "4.52.4"
 zig = "0.15.2"
 zoxide = "0.9.9"
-dart = { version = "3.9.4", url = "https://storage.googleapis.com/dart-archive/channels/stable/release/{{ version }}/sdk/dartsdk-{{ os() }}-{{ arch() }}-release.zip", version_list_url = "https://storage.googleapis.com/storage/v1/b/dart-archive/o?prefix=channels/stable/release/&delimiter=/", version_regex = 'channels/stable/release/(\d+\.\d+\.\d+)/' }
 
 [settings]
 experimental = true
