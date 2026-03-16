@@ -12,7 +12,7 @@ if [[ -z "$argname" ]]; then
 fi
 printf "function %s() {\n" "$function_name"
 printf "    # %s does something\n" "$function_name"
-printf "    if [[ -z \"\\$%s\" ]]; then\n" "$argname"
+printf '    if [[ -z "$%s" ]]; then\n' "$argname"
 printf "        echo 'Usage: %s [%s]'\n" "$function_name" "$argname"
 printf "        return 1\n"
 printf "    fi\n"
