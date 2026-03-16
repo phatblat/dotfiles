@@ -17,3 +17,6 @@ steer = true
 
 [projects."/Users/phatblat"]
 trust_level = "trusted"
+
+[projects."/"]
+trust_level = "trusted"
