@@ -70,6 +70,18 @@
         }
       ],
       "username": "phatblat"
+    },
+    {
+      "args": [],
+      "host": "phathub.local",
+      "projects": [
+        {
+          "paths": [
+            "/Users/phatblat"
+          ]
+        }
+      ],
+      "username": "phatblat"
     }
   ],
   "tab_size": 2,
