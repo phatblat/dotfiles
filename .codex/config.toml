@@ -1,5 +1,5 @@
 # https://developers.openai.com/codex/config-reference
-model = "gpt-5.3-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "high"
 # file_opener = "zed"
 personality = "pragmatic"
@@ -17,3 +17,12 @@ steer = true
 
 [projects."/Users/phatblat"]
 trust_level = "trusted"
+
+[projects."/"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+
+[tui.model_availability_nux]
+"gpt-5.3-codex-spark" = 3
