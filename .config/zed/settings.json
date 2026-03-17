@@ -19,8 +19,8 @@
   },
   "agent_servers": {
     "claude-acp": {
-      "type": "registry",
-      "default_mode": "acceptEdits"
+      "default_mode": "acceptEdits",
+      "type": "registry"
     }
   },
   "auto_update": true,
