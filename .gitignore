@@ -808,6 +808,7 @@ fvm/
 games/
 go/
 gradlew.bat
+gt/
 gt/*
 gt/settings/*
 !gt/settings/config.json
