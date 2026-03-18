@@ -67,7 +67,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/phatblat/.claude/hooks/rtk-rewrite.sh"
+            "command": "/Users/phatblat/.claude/hooks/rtk-rewrite.sh",
+            "timeout": 5
           }
         ]
       }
@@ -140,6 +141,5 @@
       }
     ]
   },
-  "enabledPlugins": {},
-  "skipDangerousModePermissionPrompt": true
+  "enabledPlugins": {}
 }
