@@ -37,7 +37,7 @@ if [ -n "$file_path" ]; then
     #
     # Example:
     # protected_patterns='\.env($|\.)|\.ssh/|\.pem$|\.key$'
-    protected_patterns='YOUR_PATTERNS_HERE'
+    protected_patterns='\.env($|\.)|\.ssh/|id_(rsa|ed25519|ecdsa)|\.pem$|\.key$|\.p12$|\.pfx$|\.jks$|\.aws/credentials|\.docker/config\.json|kubeconfig|\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials'
 
     if [ "$protected_patterns" != "YOUR_PATTERNS_HERE" ]; then
         if echo "$file_path" | grep -qiE "$protected_patterns"; then
@@ -68,7 +68,7 @@ if [ -n "$content" ]; then
     #
     # TODO: Add your regex patterns matching the prefixes of each provider.
     # See: https://docs.gitguardian.com/secrets-detection/detectors
-    secret_patterns='YOUR_PATTERNS_HERE'
+    secret_patterns='AKIA[0-9A-Z]{16}|sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{36}|gho_[a-zA-Z0-9]{36}|glpat-[a-zA-Z0-9_-]{20}|xox[bpoas]-[a-zA-Z0-9-]+|-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----|password\s*[:=]\s*["\x27][^"\x27]{8,}'
 
     if [ "$secret_patterns" != "YOUR_PATTERNS_HERE" ]; then
         if echo "$content" | grep -qE "$secret_patterns"; then
