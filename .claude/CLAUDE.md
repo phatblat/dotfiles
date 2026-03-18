@@ -4,11 +4,13 @@
 
 1. Always respond in the user's language (code comments stay in English)
 2. Professional, direct, practical, skeptical tone
-3. Copyright: Your Name. Apache 2.0
+3. Copyright: Ben Chatelain. Apache 2.0
 
 ---
 
 ## Toolchain
+
+@RTK.md
 
 ```
 Python  : uv (package manager), ruff (format + lint), pytest
@@ -98,4 +100,3 @@ When context is compacted, ALWAYS preserve:
 - Test results and failures
 - Key architectural decisions made during session
 
-@RTK.md
