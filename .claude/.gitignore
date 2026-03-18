@@ -14,7 +14,6 @@ MEMORY/
 [Ss]tatsig/
 cache/
 chrome/
-commands/
 debug/
 file-history/
 history.jsonl
