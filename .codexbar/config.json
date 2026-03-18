@@ -76,6 +76,18 @@
     {
       "enabled": false,
       "id": "warp"
+    },
+    {
+      "enabled": false,
+      "id": "kilo"
+    },
+    {
+      "enabled": false,
+      "id": "ollama"
+    },
+    {
+      "enabled": false,
+      "id": "openrouter"
     }
   ],
   "version": 1
