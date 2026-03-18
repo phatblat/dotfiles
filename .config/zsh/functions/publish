@@ -2,8 +2,8 @@
 
 # publish - Publish the current branch to the named remote
 if [[ -z "$1" ]]; then
-  echo "Usage: publish <remote>"
-  return 1
+    echo "Usage: publish <remote>"
+    return 1
 fi
 
 local branch
