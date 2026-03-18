@@ -1,1 +1,0 @@
-/opt/homebrew/opt/peon-ping/libexec/scripts/win-play.ps1

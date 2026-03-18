@@ -68,28 +68,6 @@
 .claude.json.backup
 .claude.json.backup.*
 .claude.json.tmp.*
-.claude/.credentials.json
-.claude/commands/
-.claude/debug/
-.claude/file-history/
-.claude/history.jsonl
-.claude/hooks/peon-ping/.last_update_check
-.claude/hooks/peon-ping/.sound.pid
-.claude/hooks/peon-ping/.state.json
-.claude/hooks/peon-ping/.update_available
-.claude/ide/
-.claude/image-cache/
-.claude/mcp-needs-auth-cache.json
-.claude/paste-cache/
-.claude/plans/
-.claude/plugins/
-.claude/powerline/
-.claude/sessions/
-.claude/settings.json
-.claude/skills/PAI/SKILL.md
-.claude/stats-cache.json
-.claude/tasks/
-.claude/telemetry/
 .claude_settings.json
 .clawdbot/
 .cmake-js/
@@ -679,6 +657,8 @@ Library/Application Support/org.dystroy.broot/launcher/fish/
 Library/Application Support/pai-installer/
 Library/Application Support/rs.com.ditto.dql-browser/
 Library/Application Support/rs.snackos.gyro.staging/
+Library/Application Support/rtk/history.db
+Library/Application Support/rtk/tee/
 Library/Application Support/summary-events/
 Library/Application Support/synergy/
 Library/Application Support/team.Immersed/
