@@ -557,7 +557,7 @@ Enable Remix Mode to extend videos. Each extension adds ~4-5 seconds, up to 21s 
 
 ---
 
-## 14. Moderation System & Creative Workarounds
+## 14. Moderation System
 
 ### How Moderation Works
 
@@ -577,114 +577,8 @@ Enable Remix Mode to extend videos. Each extension adds ~4-5 seconds, up to 21s 
 | Minors sexualized | **PERMANENT BAN** |
 | Deepfakes of real people | **PERMANENT BAN** |
 | Hate speech | **BLOCKED + sanctions** |
-| Fine art nude (artistic context) | **Possible with proper framing** |
-| Boudoir / glamour | **Possible with proper vocabulary** |
-| Fashion editorial (daring) | **Possible with editorial framing** |
-| Classical art / Renaissance | **Possible with art historical context** |
 
-### Banned / High-Risk Words (Community-Sourced, Non-Exhaustive)
-
-**Instantly blocked**: `nude`, `naked`, `topless`, `porn`, `hentai`, `erotic`, `bondage`, `fetish`, `XXX`, `orgasm`, `bdsm`
-
-**Body parts (sexual context)**: `breasts`, `nipple`, `vagina`, `penis`, `crotch`, `cleavage`
-
-**Clothing (sexual context)**: `lingerie`, `thong`, `see-through`, `transparent`, `no clothes`, `speedo`
-
-**Contextually risky**: `voluptuous`, `provocative`, `sultry`, `seductive`, `scantily clad`, `twerk`
-
-**Violence**: `blood`, `corpse`, `decapitate`, `massacre`, `torture`, `gore`
-
-**IMPORTANT**: No official banned list exists. The filter is dynamic and contextual. A combination of individually safe words can still trigger moderation.
-
-### Vocabulary Substitution Table
-
-| Avoid | Use Instead |
-|-------|-------------|
-| sexy | alluring, captivating, magnetic, glamorous |
-| seductive | intriguing, mysterious, compelling, enigmatic |
-| hot | stunning, radiant, breathtaking, striking |
-| beautiful body | graceful figure, elegant form, sculptural silhouette |
-| curves | silhouette, contours, form, lines |
-| skin | complexion, luminous skin, porcelain |
-| naked/nude | bare shoulders, draped form, figure study, unadorned |
-| revealing | elegant decollete, backless silhouette, plunging neckline |
-| erotic | sensual, romantic, intimate, passionate |
-| provocative | bold, daring, confident, avant-garde, audacious |
-| cleavage | decolletage, neckline, decollete |
-| skin-tight | form-fitting, body-conscious, figure-hugging |
-| lingerie | intimate wear, delicate lace garment, silk ensemble |
-| bikini | two-piece bathing suit, swimwear, beach attire |
-
-### Indirect Description Techniques
-
-**Through Light**: "Golden light caressing shoulders", "Soft shadows playing across silhouette", "Candlelight dancing on bare shoulders"
-
-**Through Fabric**: "Silk barely touching form", "Sheer material catching light", "Draped material suggesting form beneath", "Diaphanous gown"
-
-**Through Emotion**: "Intimate moment of vulnerability", "Powerful display of feminine confidence", "Quiet elegance"
-
-**Through Metaphor**: "Like a Renaissance masterpiece", "Channeling Botticelli's Venus", "Reminiscent of Rodin's sculptures"
-
-**Through Pose**: "Fingers trailing along collarbone", "Glance over bare shoulder", "Reclining odalisque pose"
-
-### Legitimate Artistic Contexts (Safe Framing)
-
-| Context | Keywords That Help |
-|---------|-------------------|
-| Fine Art Figure Study | `fine art photography`, `figure study`, `museum quality` |
-| Boudoir Photography | `boudoir photography`, `intimate portrait`, `fine art intimate` |
-| Fashion Editorial | `high fashion editorial`, `Vogue style`, `avant-garde fashion` |
-| Classical Painting | `Renaissance portrait`, `old masters style`, `Botticelli inspired` |
-| Dance/Movement Art | `dance photography`, `ballet`, `movement study` |
-| Vintage Pin-Up Art | `vintage pin-up illustration`, `1950s style`, `Gil Elvgren` |
-| Sculpture Reference | `classical marble sculpture`, `Rodin inspired` |
-
-### Permissive Environments
-
-Settings where certain attire is natural and expected:
-
-| Setting | Natural Context |
-|---------|-----------------|
-| Beach/Pool | Swimwear, sun exposure |
-| Spa/Wellness | Robes, towels, treatment room |
-| Bathroom/Bath | Bathing context, steam |
-| Bedroom (morning) | Just waking, intimate moment |
-| Artist's Studio | Model for art, figure study |
-| Dance Studio | Athletic wear, movement |
-| Backstage/Dressing Room | Getting ready, fashion context |
-
-### Compositional Strategies for Artistic Content
-
-| Technique | Effect |
-|-----------|--------|
-| Close-up face/eyes | Emotion over body |
-| Silhouette/contre-jour | Suggestion without explicit detail |
-| Partial framing | Only shoulders, back, profile visible |
-| Strategic shadows | Chiaroscuro concealment |
-| Fabric draping | Elegant concealment with suggestion |
-| Environmental elements | Flowers, steam, water obscure |
-| Artistic blur | Soft focus concealment |
-| Negative space | Minimalist framing, less is more |
-
-### Publication/Brand References for Glamour
-
-| Reference | Produces |
-|-----------|----------|
-| `Vogue editorial style` | High fashion, sophisticated |
-| `Harper's Bazaar fashion spread` | Editorial elegance |
-| `Victoria's Secret fashion show` | Confident haute couture |
-| `Sports Illustrated Swimsuit` | Professional swimwear photography |
-| `Maxim magazine style` | Glamour, suggestive but professional |
-
-### Multi-Prompt Strategy for Sensitive Content
-
-Use weights to emphasize artistic framing over subject description:
-
-```
-elegant woman in evening gown ::2 luxurious bedroom ::1 warm golden light ::1.5 fine art photography ::2 --ar 3:4 --raw
-```
-
-The style and lighting elements dominate the generation, steering away from literal interpretation.
+**IMPORTANT**: Always follow Midjourney's Terms of Service. Do not attempt to circumvent content moderation filters.
 
 ---
 
