@@ -5,13 +5,13 @@
 
 # mise-managed tools, ordered alphabetically
 [tools]
-"github:dolthub/dolt" = "1.83.7"
+"github:dolthub/dolt" = "1.83.8"
 "github:harness/harness-cli" = "1.3.12"
 "github:schpet/linear-cli" = "1.11.1"
 "github:steveyegge/gastown" = "0.12.1"
 "go:github.com/steveyegge/beads/cmd/bd" = "0.61.0"
 "go:golang.org/x/tools/gopls" = "0.21.1"
-"npm:@googleworkspace/cli" = "0.18.0"
+"npm:@googleworkspace/cli" = "0.18.1"
 "npm:@linear/cli" = "0.0.5"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:ccusage" = "18.0.10"
@@ -26,7 +26,7 @@
 "vfox:mise-plugins/vfox-gcloud" = "561.0.0"
 act = "0.2.84"
 actionlint = "1.7.11"
-awscli = { version = "2.34.11", symlink_bins = "true" }
+awscli = { version = "2.34.12", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.13.0"
 bazelisk = "1.28.1"
