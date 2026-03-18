@@ -11,6 +11,17 @@
 
 set -euo pipefail
 
+format_with_prettier() {
+    local target="$1"
+    if [ -x "./node_modules/.bin/prettier" ]; then
+        ./node_modules/.bin/prettier --write "$target" 2>/dev/null || true
+    elif command -v prettier >/dev/null 2>&1; then
+        prettier --write "$target" 2>/dev/null || true
+    elif command -v npx >/dev/null 2>&1; then
+        npx --no-install prettier --write "$target" 2>/dev/null || true
+    fi
+}
+
 # Lire stdin JSON
 input=$(cat)
 
@@ -20,9 +31,7 @@ file_path=$(echo "$input" | jq -r '.tool_input.file_path // empty' 2>/dev/null |
 if [ -n "$file_path" ] && [ -f "$file_path" ]; then
     case "$file_path" in
         *.ts|*.tsx|*.js|*.jsx|*.mjs|*.cjs)
-            if command -v npx >/dev/null 2>&1; then
-                npx prettier --write "$file_path" 2>/dev/null || true
-            fi
+            format_with_prettier "$file_path"
             ;;
         *.py)
             if command -v ruff >/dev/null 2>&1; then
@@ -32,9 +41,7 @@ if [ -n "$file_path" ] && [ -f "$file_path" ]; then
             fi
             ;;
         *.json)
-            if command -v npx >/dev/null 2>&1; then
-                npx prettier --write "$file_path" 2>/dev/null || true
-            fi
+            format_with_prettier "$file_path"
             ;;
     esac
 fi
