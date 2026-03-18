@@ -63,9 +63,8 @@ fi
 context="$context | 💡 Skills and agents available"
 
 # Output JSON valide
-# Escape special characters for JSON
-escaped_context=$(echo "$context" | sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | tr '\n' ' ')
-
-echo "{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"$escaped_context\"}}"
+# Use jq for safe JSON string encoding to prevent shell injection via project metadata
+printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":%s}}\n' \
+  "$(printf '%s' "$context" | jq -Rs '.')"
 
 exit 0
