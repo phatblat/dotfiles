@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# pre-commit hook — lint shell scripts before committing
+#
+# Runs shellcheck on zsh functions and bin scripts.
+# Requires: shellcheck (managed by mise)
+#
+
+set -e
+
+# Only lint if relevant files are staged
+staged_files=$(git diff --cached --name-only --diff-filter=ACM)
+
+run_zsh_lint=false
+run_bin_lint=false
+
+for file in $staged_files; do
+    case "$file" in
+        .config/zsh/functions/*) run_zsh_lint=true ;;
+        bin/*.sh)                run_bin_lint=true ;;
+    esac
+done
+
+if [ "$run_zsh_lint" = false ] && [ "$run_bin_lint" = false ]; then
+    exit 0
+fi
+
+# Ensure shellcheck is available
+if ! command -v shellcheck >/dev/null 2>&1; then
+    echo "pre-commit: shellcheck not found, skipping lint"
+    exit 0
+fi
+
+errors=0
+
+if [ "$run_zsh_lint" = true ]; then
+    echo "pre-commit: linting zsh functions..."
+    staged_zsh=$(echo "$staged_files" | grep '^\.config/zsh/functions/' || true)
+    if [ -n "$staged_zsh" ]; then
+        # shellcheck: ksh dialect for zsh, exclude SC2168 (local in autoload)
+        echo "$staged_zsh" | xargs -I{} shellcheck -s ksh -e SC2168 "$HOME/{}" || errors=1
+    fi
+fi
+
+if [ "$run_bin_lint" = true ]; then
+    echo "pre-commit: linting bin scripts..."
+    staged_bin=$(echo "$staged_files" | grep '^bin/.*\.sh$' || true)
+    if [ -n "$staged_bin" ]; then
+        echo "$staged_bin" | xargs -I{} shellcheck "$HOME/{}" || errors=1
+    fi
+fi
+
+if [ "$errors" -ne 0 ]; then
+    echo "pre-commit: lint failed, commit aborted"
+    exit 1
+fi
