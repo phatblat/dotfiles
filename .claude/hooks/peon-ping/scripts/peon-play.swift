@@ -1,1 +1,0 @@
-/opt/homebrew/opt/peon-ping/libexec/scripts/peon-play.swift
