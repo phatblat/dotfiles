@@ -97,3 +97,5 @@ When context is compacted, ALWAYS preserve:
 - Pending tasks and TODO items
 - Test results and failures
 - Key architectural decisions made during session
+
+@RTK.md
