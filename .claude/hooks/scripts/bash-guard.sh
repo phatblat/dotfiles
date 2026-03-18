@@ -44,7 +44,7 @@ fi
 #
 # Example:
 # dangerous_patterns='rm -rf /|rm -rf ~|:(){ :|:& };:|curl.*\| *sh'
-dangerous_patterns='YOUR_PATTERNS_HERE'
+dangerous_patterns='rm\s+-rf\s+(/|~|\*|\.\.)|>\s*/dev/sd|mkfs\s|dd\s+if=.*of=/dev|chmod\s+(-R\s+)?777|chmod\s+\+s|:\(\)\{.*:\|:&\}\;|curl[^|]*\|\s*(ba)?sh|wget[^|]*\|\s*(ba)?sh|truncate\s|shred\s'
 
 if [ "$dangerous_patterns" != "YOUR_PATTERNS_HERE" ]; then
     if echo "$command" | grep -qE "$dangerous_patterns"; then
@@ -63,7 +63,7 @@ fi
 #
 # Example:
 # obfuscation_patterns='eval .*\$|base64 -d.*\|.*(sh|bash)'
-obfuscation_patterns='YOUR_PATTERNS_HERE'
+obfuscation_patterns='eval\s+.*\$|base64\s+-d.*\|\s*(ba)?sh|sed\s+.*e\s|awk\s+.*system\s*\(|bash\s+<\('
 
 if [ "$obfuscation_patterns" != "YOUR_PATTERNS_HERE" ]; then
     if echo "$command" | grep -qE "$obfuscation_patterns"; then
