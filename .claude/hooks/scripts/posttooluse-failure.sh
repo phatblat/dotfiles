@@ -17,4 +17,5 @@ if [ -f "$LOG_FILE" ] && [ "$(stat -f%z "$LOG_FILE" 2>/dev/null || stat -c%s "$L
   mv "$LOG_FILE" "$LOG_FILE.old"
 fi
 
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] FAIL tool=$TOOL_NAME error=$(echo "$ERROR" | tr '\n' ' ' | head -c 200)" >> "$LOG_FILE"
+error_sanitized=$(printf '%s' "$ERROR" | tr '\n' ' ' | head -c 200)
+printf '[%s] FAIL tool=%s error=%s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$TOOL_NAME" "$error_sanitized" >> "$LOG_FILE"
