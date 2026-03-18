@@ -93,8 +93,10 @@ Use `mcp__linear__save_issue` to:
 
 ```bash
 git fetch origin
-git checkout -b <branch-name> origin/<base-branch>
+git checkout -b <branch-name> origin/<base-branch> --no-track
 ```
+
+**IMPORTANT:** Use `--no-track` to avoid setting the topic branch to track the base branch (e.g., `main`). Tracking will be established between the local and remote copies of the topic branch when pushing in Phase 6.
 
 If the base branch doesn't exist on remote, error and ask the user.
 
@@ -183,11 +185,13 @@ Each commit message should reference the ticket: `Resolves DEVX-696` or `Part of
 
 ## Phase 6: Push & Open Draft PR
 
-### 6.1 Push branch
+### 6.1 Push topic branch
 
 ```bash
 git push -u origin <branch-name>
 ```
+
+This pushes the topic branch to the remote and sets up tracking between the local and remote copies of the same branch (via `-u`). Never push directly to the base branch.
 
 ### 6.2 Determine PR labels
 
