@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# publish - Publish the current branch to the named remote
+if [[ -z "$1" ]]; then
+  echo "Usage: publish <remote>"
+  return 1
+fi
+
+local branch
+branch=$(git rev-parse --abbrev-ref HEAD)
+git push -u "$1" "$branch"

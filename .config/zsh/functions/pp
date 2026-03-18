@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# pp - Publish the current branch to the phatblat remote
+publish phatblat

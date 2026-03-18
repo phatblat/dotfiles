@@ -539,7 +539,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `pop`                       | ✅  | ✅   | ➖  | ➖   | Undo last commit but leave staging area              |
 | `ports`                     | ➖  | ✅   | ➖  | ➖   | https://apple.stackexchange.com/questions/117644/h   |
 | `powerlinetest`             | ➖  | ✅   | ✅  | ➖   | Print special Powerline characters to test current   |
-| `pp`                        | ➖  | ✅   | ➖  | ➖   | Publish the phatblat branch                          |
+| `pp`                        | ➖  | ✅   | ✅  | ➖   | Publish the phatblat branch                          |
 | `prefs`                     | ➖  | ✅   | ➖  | ➖   | Opens System Preferences to specific pane            |
 | `prettyjson`                | ➖  | ✅   | ➖  | ➖   | Prints a formatted version of a JSON file            |
 | `print_profile`             | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -555,7 +555,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `psgrep`                    | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `psl`                       | ➖  | ✅   | ➖  | ➖   | Displays process information with custom format      |
 | `psync`                     | ➖  | ✅   | ➖  | ➖   | Syncs files between two directories. Without a 3rd   |
-| `publish`                   | ➖  | ✅   | ➖  | ➖   | Publishes the current branch to the named remote     |
+| `publish`                   | ➖  | ✅   | ✅  | ➖   | Publishes the current branch to the named remote     |
 | `pull_ssh_config`           | ➖  | ✅   | ➖  | ➖   | Copies SSH config to local                           |
 | `pull`                      | ✅  | ✅   | ✅  | ➖   | Git pull                                             |
 | `pushf`                     | ✅  | ✅   | ✅  | ➖   | Force git push                                       |
