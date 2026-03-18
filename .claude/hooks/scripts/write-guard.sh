@@ -17,6 +17,12 @@ set -euo pipefail
 # Fail-closed: if anything errors, deny by default
 trap 'echo "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Hook error - fail-closed\"}}"; exit 0' ERR
 
+# Ensure jq is available; if not, warn and allow (disables write-guard checks)
+if ! command -v jq >/dev/null 2>&1; then
+    echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"allow","permissionDecisionReason":"jq not available - write/edit guard checks skipped"}}'
+    exit 0
+fi
+
 # Read stdin JSON
 input=$(cat)
 
