@@ -1,12 +1,13 @@
 {
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "MAX_MCP_OUTPUT_TOKENS": "25000"
+  },
   "permissions": {
     "deny": []
   },
   "model": "opus[1m]",
-  "env": {
-    "BASH_DEFAULT_TIMEOUT_MS": "300000",
-    "MAX_MCP_OUTPUT_TOKENS": "25000"
-  },
   "hooks": {
     "SessionStart": [
       {
@@ -141,5 +142,6 @@
       }
     ]
   },
-  "enabledPlugins": {}
+  "enabledPlugins": {},
+  "skipDangerousModePermissionPrompt": true
 }
