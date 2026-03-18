@@ -5,6 +5,14 @@
     "MAX_MCP_OUTPUT_TOKENS": "25000"
   },
   "permissions": {
+    "allow": [
+      "mcp__acp__Edit",
+      "mcp__acp__Bash",
+      "mcp__acp__Write",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.basedpyright.com)",
+      "Bash(claude mcp list)"
+    ],
     "deny": []
   },
   "model": "opus[1m]",
