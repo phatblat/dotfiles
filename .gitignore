@@ -217,6 +217,7 @@
 .eclipse/
 .emulator_console_auth_token
 .entire/
+.env
 .envrc
 .externalNativeBuild/
 .fastlane/
