@@ -178,6 +178,11 @@ upgrade-commits:
         git commit -m "chore: bump $tool $current → $bump"
     done
 
+# Updates homebrew and lists outdated formulae/casks
+[group('configuration')]
+update-brew:
+    brew update && brew outdated
+
 # Updates home-manager flake and rebuilds configuration
 [group('configuration')]
 update-nix:
