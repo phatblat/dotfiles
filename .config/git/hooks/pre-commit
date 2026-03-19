@@ -27,8 +27,8 @@ fi
 
 # Ensure shellcheck is available
 if ! command -v shellcheck >/dev/null 2>&1; then
-    echo "pre-commit: shellcheck not found, skipping lint"
-    exit 0
+    echo "pre-commit: shellcheck not found — install with: mise install shellcheck"
+    exit 1
 fi
 
 errors=0
