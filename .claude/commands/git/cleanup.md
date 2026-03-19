@@ -41,7 +41,7 @@ For each candidate branch:
 
 2. **PR status**: Query GitHub for the branch's PR state:
    ```bash
-   gh pr list --head "<branch>" --state all --json number,state,mergedAt --jq '.[0] | "\(.number)|\(.state)|\(.mergedAt // "n/a")"'
+   gh pr list --head "<branch>" --state all --json number,state,mergedAt --jq '.[0] | "\(.number)|\(.state)|\(.mergedAt // \"n/a\")"'
    ```
 
 ### 5. Classify Branches
