@@ -11,7 +11,7 @@ local old_value=$2
 local new_value=$3
 local limit=${4:-}
 
-if [[ -n $limit && ! $limit =~ '^[0-9]+$' ]]; then
+if [[ -n $limit && ! $limit =~ ^[0-9]+$ ]]; then
     echo "error: limit must be a positive integer, got: '$limit'" >&2
     return 1
 fi

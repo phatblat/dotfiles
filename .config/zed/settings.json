@@ -62,23 +62,16 @@
   "ssh_connections": [
     {
       "args": [],
-      "host": "phatbrain.local",
-      "projects": [
-        {
-          "paths": [
-            "/Users/phatblat"
-          ]
-        }
-      ],
-      "username": "phatblat"
-    },
-    {
-      "args": [],
       "host": "phathub.local",
       "projects": [
         {
           "paths": [
             "/Users/phatblat"
+          ]
+        },
+        {
+          "paths": [
+            "/Users/phatblat/dev/claude/gastown"
           ]
         }
       ],

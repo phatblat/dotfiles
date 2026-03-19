@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#
+# pre-commit hook — lint shell scripts before committing
+#
+# Runs shellcheck on zsh functions and bin scripts.
+# Requires: shellcheck (managed by mise)
+#
+
+set -e
+
+# Collect staged files into NUL-delimited temp files for safe iteration
+zsh_list=$(mktemp)
+bin_list=$(mktemp)
+trap 'rm -f "$zsh_list" "$bin_list"' EXIT
+
+git diff --cached --name-only -z --diff-filter=ACM | while IFS= read -r -d '' file; do
+    case "$file" in
+        .config/zsh/functions/*) printf '%s\0' "$file" >> "$zsh_list" ;;
+        bin/*.sh)                printf '%s\0' "$file" >> "$bin_list" ;;
+    esac
+done
+
+# Exit early if no relevant files staged
+if [ ! -s "$zsh_list" ] && [ ! -s "$bin_list" ]; then
+    exit 0
+fi
+
+# Ensure shellcheck is available
+if ! command -v shellcheck >/dev/null 2>&1; then
+    echo "pre-commit: shellcheck not found — install with: mise install shellcheck"
+    exit 1
+fi
+
+errors=0
+
+if [ -s "$zsh_list" ]; then
+    echo "pre-commit: linting zsh functions..."
+    # shellcheck: ksh dialect for zsh, exclude SC2168 (local in autoload)
+    xargs -0 -I{} shellcheck -s ksh -e SC2168 {} < "$zsh_list" || errors=1
+fi
+
+if [ -s "$bin_list" ]; then
+    echo "pre-commit: linting bin scripts..."
+    xargs -0 -I{} shellcheck {} < "$bin_list" || errors=1
+fi
+
+if [ "$errors" -ne 0 ]; then
+    echo "pre-commit: lint failed, commit aborted"
+    exit 1
+fi

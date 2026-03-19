@@ -1,5 +1,8 @@
 {
-  "enabledPlugins": {},
+  "enabledPlugins": {
+    "kotlin-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "300000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
@@ -10,7 +13,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/permission-git.sh",
+            "command": "bash ~/.claude/hooks/scripts/permission-git.sh",
             "timeout": 2,
             "type": "command"
           }
@@ -22,7 +25,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/write-format.sh",
+            "command": "bash ~/.claude/hooks/scripts/write-format.sh",
             "timeout": 15,
             "type": "command"
           }
@@ -32,7 +35,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/bash-vuln.sh",
+            "command": "bash ~/.claude/hooks/scripts/bash-vuln.sh",
             "timeout": 3,
             "type": "command"
           }
@@ -44,7 +47,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/posttooluse-failure.sh",
+            "command": "bash ~/.claude/hooks/scripts/posttooluse-failure.sh",
             "timeout": 3,
             "type": "command"
           }
@@ -55,7 +58,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/pre-compact.sh",
+            "command": "bash ~/.claude/hooks/scripts/pre-compact.sh",
             "timeout": 5,
             "type": "command"
           }
@@ -66,7 +69,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/write-guard.sh",
+            "command": "bash ~/.claude/hooks/scripts/write-guard.sh",
             "timeout": 3,
             "type": "command"
           }
@@ -76,7 +79,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/bash-guard.sh",
+            "command": "bash ~/.claude/hooks/scripts/bash-guard.sh",
             "timeout": 3,
             "type": "command"
           }
@@ -98,7 +101,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/session-end.sh",
+            "command": "bash ~/.claude/hooks/scripts/session-end.sh",
             "timeout": 3,
             "type": "command"
           }
@@ -109,7 +112,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/session-start.sh",
+            "command": "bash ~/.claude/hooks/scripts/session-start.sh",
             "timeout": 5,
             "type": "command"
           }
@@ -120,7 +123,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/stop.sh",
+            "command": "bash ~/.claude/hooks/scripts/stop.sh",
             "timeout": 5,
             "type": "command"
           }
@@ -131,7 +134,7 @@
       {
         "hooks": [
           {
-            "command": "bash .claude/hooks/scripts/user-prompt-secrets.sh",
+            "command": "bash ~/.claude/hooks/scripts/user-prompt-secrets.sh",
             "timeout": 2,
             "type": "command"
           }

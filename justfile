@@ -293,6 +293,16 @@ format: format-gitignore format-mise
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellharden --replace {} +
 
 #
+# git group recipes
+#
+
+# Installs git hooks from tracked directory
+[group('git')]
+git-hooks:
+    git config --local core.hooksPath .config/git/hooks
+    @echo "Git hooks installed from .config/git/hooks/"
+
+#
 # claude group recipes
 #
 
