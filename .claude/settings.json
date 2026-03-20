@@ -1,5 +1,6 @@
 {
   "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "wasteland@gastownhall-marketplace": true
