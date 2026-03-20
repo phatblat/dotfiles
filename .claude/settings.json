@@ -1,12 +1,21 @@
 {
   "enabledPlugins": {
     "kotlin-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "wasteland@gastownhall-marketplace": true
   },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "300000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "MAX_MCP_OUTPUT_TOKENS": "25000"
+  },
+  "extraKnownMarketplaces": {
+    "gastownhall-marketplace": {
+      "source": {
+        "repo": "gastownhall/marketplace",
+        "source": "github"
+      }
+    }
   },
   "hooks": {
     "PermissionRequest": [
