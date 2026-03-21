@@ -82,21 +82,21 @@ Uncertainty → State immediately
 
 Always state confidence when making claims:
 
-| Level | Meaning | Action |
-|-------|---------|--------|
-| HIGH | Verified via tool/source | State source |
-| MEDIUM | Single source | Add caveat |
-| LOW | No verification possible | Warn explicitly |
-| UNKNOWN | Cannot verify | Say "I don't know" |
+| Level   | Meaning                  | Action             |
+| ------- | ------------------------ | ------------------ |
+| HIGH    | Verified via tool/source | State source       |
+| MEDIUM  | Single source            | Add caveat         |
+| LOW     | No verification possible | Warn explicitly    |
+| UNKNOWN | Cannot verify            | Say "I don't know" |
 
 ---
 
 ## Compact Preservation
 
 When context is compacted, ALWAYS preserve:
+
 - List of modified files with paths
 - Current git branch and uncommitted changes
 - Pending tasks and TODO items
 - Test results and failures
 - Key architectural decisions made during session
-
