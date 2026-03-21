@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 198 functions (primary shell)
+- Zsh: 199 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -696,7 +696,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `tower`                     | ✅  | ✅   | ✅  | ➖   | https://www.git-tower.com/help/mac/integration/cli   |
 | `tracked`                   | ➖  | ✅   | ➖  | ➖   | Displays files tracked in the current git repo       |
 | `tracking`                  | ➖  | ✅   | ➖  | ➖   | Display tracking info for current branch             |
-| `track`                     | ✅  | ✅   | ➖  | ➖   | Creates local tracking branch                        |
+| `track`                     | ✅  | ✅   | ✅  | ➖   | Creates local tracking branch                        |
 | `tredecim`                  | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `tube`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to Tube project                            |
 | `u2f_key_add`               | ➖  | ✅   | ➖  | ➖   | Add U2F key                                          |
