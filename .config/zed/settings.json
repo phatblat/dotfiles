@@ -73,6 +73,11 @@
           "paths": [
             "/Users/phatblat/dev/claude/gastown"
           ]
+        },
+        {
+          "paths": [
+            "/Users/phatblat/dev/ldg/wave-rider"
+          ]
         }
       ],
       "username": "phatblat"
