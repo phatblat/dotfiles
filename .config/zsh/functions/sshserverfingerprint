@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# sshserverfingerprint - Print fingerprint of server SSH key
+ssh-keyscan "$1" | ssh-keygen -lf -

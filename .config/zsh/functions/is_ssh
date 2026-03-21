@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# is_ssh - Tests whether the current terminal session is an SSH session
+[[ -n "$SSH_CLIENT" || -n "$SSH_TTY" ]]

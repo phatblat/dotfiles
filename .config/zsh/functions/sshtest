@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# sshtest - Tests SSH connection to GitHub
+ssh -T git@github.com

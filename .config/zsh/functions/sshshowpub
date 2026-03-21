@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# sshshowpub - Print SSH public key
+cat "$(sshkey)"

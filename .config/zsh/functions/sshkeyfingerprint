@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# sshkeyfingerprint - Show fingerprint of optional public key file, defaults to ~/.ssh/id_ed25519.pub
+local file="${1}"
+if [[ -z "$file" ]]; then
+    file=$(sshkey)
+    if [[ $? -ne 0 ]]; then
+        # Key file not found
+        return 1
+    fi
+fi
+
+echo -n "[$file] "
+ssh-keygen -l -E md5 -f "$file"

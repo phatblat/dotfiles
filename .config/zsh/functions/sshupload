@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+
+# sshupload - Uploads public RSA SSH key to GitHub profile
+# Requires DOTFILES_GITHUB_TOKEN environment variable
+local keyfile="${1}"
+if [[ -z "$keyfile" ]]; then
+    keyfile=$(sshkey)
+fi
+
+if [[ ! -f "$keyfile" ]]; then
+    echo "Error: No SSH key found at $keyfile" >&2
+    return 1
+fi
+
+local token="$DOTFILES_GITHUB_TOKEN"
+if [[ -z "$token" ]]; then
+    echo "Error: Please set DOTFILES_GITHUB_TOKEN in .envrc" >&2
+    return 2
+fi
+
+local github_user="phatblat"
+local key=$(cat "$keyfile")
+local title="${USER}@${HOST}_$(date +%Y%m%d%H%M%S)"
+
+echo "Uploading SSH public key to GitHub [$keyfile]"
+
+curl \
+    --request POST \
+    --url "https://api.github.com/user/keys" \
+    --header "Authorization: token $token" \
+    --data "{\"title\":\"$title\",\"key\":\"$key\"" \
+    --verbose

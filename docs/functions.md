@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 199 functions (primary shell)
+- Zsh: 207 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -67,7 +67,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `ard_enable`                | ➖  | ✅   | ➖  | ➖   | https://support.apple.com/en-us/HT201710             |
 | `ard_restart`               | ➖  | ✅   | ➖  | ➖   | https://support.apple.com/en-us/HT201710             |
 | `arp-fix`                   | ➖  | ✅   | ✅  | ➖   | arp-fix                                              |
-| `arpstatus`                 | ➖  | ✅   | ➖  | ➖   | Shows current value of arp_unicast_lim               |
+| `arpstatus`                 | ➖  | ✅   | ✅  | ➖   | Shows current value of arp_unicast_lim               |
 | `assumed`                   | ➖  | ✅   | ➖  | ➖   | List files for which changes are ignored             |
 | `assume`                    | ➖  | ✅   | ✅  | ➖   | Ignore changes to given files                        |
 | `asv`                       | ➖  | ✅   | ➖  | ➖   | Quick nav to ApplePlatformVersions dir               |
@@ -408,7 +408,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `is_mac`                    | ➖  | ✅   | ✅  | ➖   | Tests whether current computer running macOS         |
 | `is_octodec`                | ➖  | ✅   | ✅  | ➖   | Tests whether current computer is octodec            |
 | `is_phatmini`               | ➖  | ✅   | ✅  | ➖   | Tests whether current computer is phatmini           |
-| `is_ssh`                    | ➖  | ✅   | ➖  | ➖   | Tests whether current session is SSH                 |
+| `is_ssh`                    | ➖  | ✅   | ✅  | ➖   | Tests whether current session is SSH                 |
 | `itwire`                    | ➖  | ✅   | ✅  | ➖   | Quick dir navigation                                 |
 | `jabba`                     | ➖  | ✅   | ➖  | ➖   | https://github.com/shyiko/jabba                      |
 | `java_ports`                | ➖  | ✅   | ➖  | ➖   | java_ports                                           |
@@ -642,13 +642,13 @@ This document tracks the implementation status of all shell functions and aliase
 | `spotlight_enable`          | ➖  | ✅   | ➖  | ➖   | Enables Spotlight indexing                           |
 | `spotlight_reload`          | ➖  | ✅   | ✅  | ➖   | Reloads Spotlight triggering re-index                |
 | `sshcopypub`                | ✅  | ✅   | ✅  | ➖   | Copy SSH public key to pasteboard/clipboard          |
-| `sshkeyfingerprint`         | ➖  | ✅   | ➖  | ➖   | Show fingerprint of optional public key file, defa   |
-| `sshkey`                    | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `sshkeyfingerprint`         | ➖  | ✅   | ✅  | ➖   | Show fingerprint of optional public key file, defa   |
+| `sshkey`                    | ➖  | ✅   | ✅  | ➖   | Find the public key file                             |
 | `sshnewkey`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `sshserverfingerprint`      | ➖  | ✅   | ➖  | ➖   | Print fingerprint of server SSH key                  |
-| `sshshowpub`                | ➖  | ✅   | ➖  | ➖   | Print SSH public key                                 |
-| `sshtest`                   | ➖  | ✅   | ➖  | ➖   | Tests SSH connection to GitHub                       |
-| `sshupload`                 | ➖  | ✅   | ➖  | ➖   | Uploads public RSA SSH key to GitHub profile         |
+| `sshserverfingerprint`      | ➖  | ✅   | ✅  | ➖   | Print fingerprint of server SSH key                  |
+| `sshshowpub`                | ➖  | ✅   | ✅  | ➖   | Print SSH public key                                 |
+| `sshtest`                   | ➖  | ✅   | ✅  | ➖   | Tests SSH connection to GitHub                       |
+| `sshupload`                 | ➖  | ✅   | ✅  | ➖   | Uploads public RSA SSH key to GitHub profile         |
 | `stapply`                   | ✅  | ✅   | ➖  | ➖   | Apply a git stash                                    |
 | `starship_off`              | ✅  | ➖   | ➖  | ➖   | Remove starship prompt                               |
 | `starship_on`               | ✅  | ➖   | ➖  | ➖   | Regenerate and load starship prompt                  |
