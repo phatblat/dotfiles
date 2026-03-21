@@ -39,7 +39,7 @@ jobs:
       HOME: ${{ github.workspace }}
       MISE_PIN: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install mise
         uses: jdx/mise-action@v2
