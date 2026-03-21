@@ -31,6 +31,9 @@ source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
 export PATH="$JAVA_HOME/bin:$PATH"
 
+# Expose CLI paths to GUI apps (e.g. CodexBar)
+launchctl setenv CLAUDE_CLI_PATH "$HOME/.local/bin/claude"
+
 # Aliases
 alias ll='ls -l'
 alias la='ls -la'
