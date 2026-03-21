@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dnc - Create a docker network
+docker network create "$@"

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dpp - List docker containers managed by docker compose
+docker compose ps "$@"

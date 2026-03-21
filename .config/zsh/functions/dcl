@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dcl - List all docker containers
+docker container ls -a "$@"

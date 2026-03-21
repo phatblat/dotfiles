@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dpd - Stop containers and remove containers, networks, volumes, and images created by up
+docker compose down "$@"

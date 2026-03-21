@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dvr - Remove one or more volumes
+docker volume rm "$@"

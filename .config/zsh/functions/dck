@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dck - Alias for dcstop
+dcstop

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dvc - Create a docker volume
+docker volume create "$@"

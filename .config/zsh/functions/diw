@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# diw - Remove all Ping Identity docker images
+echo "Running command to: Remove all Ping Identity Docker images"
+
+# Prune unused images
+dip
+
+local images
+images=$(docker image ls --format '{{.Repository}} {{.ID}}' 'pingidentity/*')
+if [[ -n "$images" ]]; then
+  docker image rm --force $(docker image ls --format '{{.ID}}' 'pingidentity/*')
+else
+  echo "***No Ping Identity images present to remove***"
+fi

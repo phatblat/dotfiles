@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dct - Display the running processes of a docker container
+docker container top "$@"

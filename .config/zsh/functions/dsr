@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dsr - Remove one or more docker services
+docker service rm "$@"

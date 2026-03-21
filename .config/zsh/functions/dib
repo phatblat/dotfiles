@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dib - Build an image from a Dockerfile
+docker image build "$@"

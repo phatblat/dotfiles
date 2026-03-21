@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# doc - Quickly launch docker containers in the current dir
+local image_name="$1"
+local image_version="${2:-latest}"
+docker run --rm --privileged --interactive --tty \
+  --volume "$PWD:/src" \
+  --workdir "/src" \
+  "$image_name:$image_version"

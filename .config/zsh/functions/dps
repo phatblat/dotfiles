@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dps - List docker containers
+docker ps "$@"

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dvp - Remove all unused local docker volumes, without confirmation
+docker volume prune --force "$@"

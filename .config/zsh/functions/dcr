@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dcr - Remove one or more running docker containers
+docker container rm --force "$@"

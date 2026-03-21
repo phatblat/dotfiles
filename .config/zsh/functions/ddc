@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+# ddc - Docker deep clean (prune containers, volumes, images, networks)
+dcp
+dvp
+dip
+dnp

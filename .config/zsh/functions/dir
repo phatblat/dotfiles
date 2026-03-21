@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dir - Remove one or more docker images, forcefully
+docker image rm --force "$@"

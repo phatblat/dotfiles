@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dce - Executes a command in a running container
+docker container exec --interactive --tty "$@"

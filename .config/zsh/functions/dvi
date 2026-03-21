@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dvi - Display detailed information on one or more docker volumes
+docker volume inspect "$@"

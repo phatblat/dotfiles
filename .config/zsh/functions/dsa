@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# dsa - Stop all running docker containers
+echo "Running command to: Stop all running containers"
+local running_containers
+running_containers=$(docker container ls --all --quiet)
+if [[ -n "$running_containers" ]]; then
+  docker container stop $running_containers
+else
+  echo "No containers found to stop"
+fi

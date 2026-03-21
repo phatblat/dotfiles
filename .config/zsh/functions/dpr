@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+# dpr - Restart services managed by docker compose
+dpd
+dpu

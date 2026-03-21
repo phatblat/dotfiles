@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dci - Display detailed information on one or more docker containers
+docker container inspect "$@"

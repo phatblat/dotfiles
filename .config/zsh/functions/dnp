@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dnp - Remove all unused docker networks, without confirmation
+docker network prune --force "$@"

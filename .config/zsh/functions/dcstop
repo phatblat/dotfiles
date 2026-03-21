@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dcstop - Stop one or more running docker containers
+docker container stop "$@"

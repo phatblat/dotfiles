@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dw - Git diff with word diff
+git diff --word-diff "$@"

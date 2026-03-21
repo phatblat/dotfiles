@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dsl - List docker services
+docker service ls "$@"

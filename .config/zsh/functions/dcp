@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dcp - Remove all stopped docker containers without confirmation
+docker container prune --force

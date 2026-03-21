@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 250 functions (primary shell)
+- Zsh: 291 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -17,10 +17,10 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Implemented in all 4 shells: 9
 - Implemented in 3 shells: 39
-- Implemented in 2 shells: 170
-- Implemented in 1 shell only: 496
+- Implemented in 2 shells: 211
+- Implemented in 1 shell only: 455
 
-**Functions Implemented in Multiple Shells:** 218
+**Functions Implemented in Multiple Shells:** 259
 
 ## Status Legend
 
@@ -192,18 +192,18 @@ This document tracks the implementation status of all shell functions and aliase
 | `c`                         | ✅  | ✅   | ✅  | ➖   | Performs git checkout                                |
 | `dash`                      | ➖  | ✅   | ✅  | ➖   | Dash shell integration                               |
 | `date_iso8601`              | ➖  | ✅   | ➖  | ➖   | Prints date in ISO-8601 format                       |
-| `dce`                       | ➖  | ✅   | ➖  | ➖   | Execute command in running container                 |
-| `dci`                       | ➖  | ✅   | ➖  | ➖   | Display detailed docker container info               |
-| `dck`                       | ➖  | ✅   | ➖  | ➖   | Alias for dcstop                                     |
-| `dcl`                       | ➖  | ✅   | ➖  | ➖   | List all docker containers                           |
-| `dcp`                       | ➖  | ✅   | ➖  | ➖   | Remove all stopped docker containers                 |
-| `dcr`                       | ➖  | ✅   | ➖  | ➖   | Remove running docker containers                     |
-| `dcstart`                   | ➖  | ✅   | ➖  | ➖   | Start stopped docker containers                      |
-| `dcstop`                    | ➖  | ✅   | ➖  | ➖   | Stop running docker containers                       |
-| `dct`                       | ➖  | ✅   | ➖  | ➖   | Display running processes of docker container        |
+| `dce`                       | ➖  | ✅   | ✅  | ➖   | Execute command in running container                 |
+| `dci`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker container info               |
+| `dck`                       | ➖  | ✅   | ✅  | ➖   | Alias for dcstop                                     |
+| `dcl`                       | ➖  | ✅   | ✅  | ➖   | List all docker containers                           |
+| `dcp`                       | ➖  | ✅   | ✅  | ➖   | Remove all stopped docker containers                 |
+| `dcr`                       | ➖  | ✅   | ✅  | ➖   | Remove running docker containers                     |
+| `dcstart`                   | ➖  | ✅   | ✅  | ➖   | Start stopped docker containers                      |
+| `dcstop`                    | ➖  | ✅   | ✅  | ➖   | Stop running docker containers                       |
+| `dct`                       | ➖  | ✅   | ✅  | ➖   | Display running processes of docker container        |
 | `dcw`                       | ➖  | ✅   | ✅  | ➖   | Diff the git staging area using word diff            |
 | `dc`                        | ➖  | ✅   | ✅  | ➖   | Diff the git staging area                            |
-| `ddc`                       | ➖  | ✅   | ➖  | ➖   | Docker deep clean                                    |
+| `ddc`                       | ➖  | ✅   | ✅  | ➖   | Docker deep clean                                    |
 | `ddd`                       | ➖  | ✅   | ✅  | ➖   | Delete Derived Data                                  |
 | `debug`                     | ➖  | ✅   | ✅  | ➖   | Prints args only when debug env var set              |
 | `defaults_set`              | ➖  | ✅   | ➖  | ➖   | --------------------------------------------------   |
@@ -216,52 +216,52 @@ This document tracks the implementation status of all shell functions and aliase
 | `derived_data`              | ➖  | ✅   | ✅  | ➖   | Spins up RAM disk for Xcode DerivedData              |
 | `developer_mode`            | ➖  | ✅   | ➖  | ➖   | Enables developer mode                               |
 | `devices`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `dib`                       | ➖  | ✅   | ➖  | ➖   | Build image from Dockerfile                          |
+| `dib`                       | ➖  | ✅   | ✅  | ➖   | Build image from Dockerfile                          |
 | `difftool`                  | ✅  | ✅   | ✅  | ➖   | Perform a git diff using the configured tool (Kale   |
 | `diff`                      | ➖  | ✅   | ✅  | ➖   | Perform a git diff                                   |
-| `dii`                       | ➖  | ✅   | ➖  | ➖   | Display detailed docker image info                   |
+| `dii`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker image info                   |
 | `dil`                       | ➖  | ✅   | ✅  | ➖   | List docker images                                   |
-| `din`                       | ➖  | ✅   | ➖  | ➖   | Remove all docker images                             |
-| `dip`                       | ➖  | ✅   | ➖  | ➖   | Remove unused docker images                          |
+| `din`                       | ➖  | ✅   | ✅  | ➖   | Remove all docker images                             |
+| `dip`                       | ➖  | ✅   | ✅  | ➖   | Remove unused docker images                          |
 | `dirty`                     | ➖  | ✅   | ✅  | ➖   | Show repo dirty files                                |
-| `dir`                       | ➖  | ✅   | ➖  | ➖   | Remove docker images forcefully                      |
+| `dir`                       | ➖  | ✅   | ✅  | ➖   | Remove docker images forcefully                      |
 | `displays`                  | ➖  | ✅   | ➖  | ➖   | Show info about connected displays                   |
 | `ditto_debug`               | ➖  | ✅   | ➖  | ➖   | Toggles DITTO_DEBUG flag                             |
 | `dit`                       | ➖  | ✅   | ✅  | ➖   | Create tag TARGET_IMAGE refers to SOURCE_IMAGE       |
-| `diw`                       | ➖  | ✅   | ➖  | ➖   | Remove all Ping Identity docker images               |
-| `dlf`                       | ➖  | ✅   | ➖  | ➖   | Alias of dlogs                                       |
+| `diw`                       | ➖  | ✅   | ✅  | ➖   | Remove all Ping Identity docker images               |
+| `dlf`                       | ➖  | ✅   | ✅  | ➖   | Alias of dlogs                                       |
 | `dlogs`                     | ➖  | ✅   | ✅  | ➖   | Fetch logs of docker container                       |
-| `dnc`                       | ➖  | ✅   | ➖  | ➖   | Create docker network                                |
-| `dni`                       | ➖  | ✅   | ➖  | ➖   | Display detailed docker network info                 |
-| `dnl`                       | ➖  | ✅   | ➖  | ➖   | List docker networks                                 |
-| `dnp`                       | ➖  | ✅   | ➖  | ➖   | Remove all unused docker networks                    |
+| `dnc`                       | ➖  | ✅   | ✅  | ➖   | Create docker network                                |
+| `dni`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker network info                 |
+| `dnl`                       | ➖  | ✅   | ✅  | ➖   | List docker networks                                 |
+| `dnp`                       | ➖  | ✅   | ✅  | ➖   | Remove all unused docker networks                    |
 | `dnr`                       | ➖  | ✅   | ✅  | ➖   | Remove docker networks                               |
-| `dnuke`                     | ➖  | ✅   | ➖  | ➖   | Remove unused docker images not just dangling        |
-| `doc`                       | ➖  | ✅   | ➖  | ➖   | Quickly launch docker containers in current dir      |
+| `dnuke`                     | ➖  | ✅   | ✅  | ➖   | Remove unused docker images not just dangling        |
+| `doc`                       | ➖  | ✅   | ✅  | ➖   | Quickly launch docker containers in current dir      |
 | `dotfiles`                  | ➖  | ✅   | ➖  | ➖   | Edit dotfiles                                        |
-| `dpd`                       | ➖  | ✅   | ➖  | ➖   | Stop containers and remove containers/networks       |
+| `dpd`                       | ➖  | ✅   | ✅  | ➖   | Stop containers and remove containers/networks       |
 | `dpl`                       | ➖  | ✅   | ✅  | ➖   | View output from docker containers                   |
-| `dpp`                       | ➖  | ✅   | ➖  | ➖   | List docker containers                               |
-| `dpr`                       | ➖  | ✅   | ➖  | ➖   | Restart services managed by docker compose           |
-| `dps`                       | ➖  | ✅   | ➖  | ➖   | List docker containers                               |
+| `dpp`                       | ➖  | ✅   | ✅  | ➖   | List docker containers                               |
+| `dpr`                       | ➖  | ✅   | ✅  | ➖   | Restart services managed by docker compose           |
+| `dps`                       | ➖  | ✅   | ✅  | ➖   | List docker containers                               |
 | `dpu`                       | ➖  | ✅   | ✅  | ➖   | Build/create/start/attach containers for service     |
-| `dra`                       | ➖  | ✅   | ➖  | ➖   | Remove all stopped docker containers                 |
+| `dra`                       | ➖  | ✅   | ✅  | ➖   | Remove all stopped docker containers                 |
 | `dreamhost`                 | ➖  | ✅   | ➖  | ➖   | Dreamhost account on hairofthedog                    |
 | `dropboxfinderreset`        | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `dsa`                       | ➖  | ✅   | ➖  | ➖   | Stop all running docker containers                   |
-| `dsl`                       | ➖  | ✅   | ➖  | ➖   | List docker services                                 |
-| `dsr`                       | ➖  | ✅   | ➖  | ➖   | Remove docker services                               |
+| `dsa`                       | ➖  | ✅   | ✅  | ➖   | Stop all running docker containers                   |
+| `dsl`                       | ➖  | ✅   | ✅  | ➖   | List docker services                                 |
+| `dsr`                       | ➖  | ✅   | ✅  | ➖   | Remove docker services                               |
 | `dss`                       | ➖  | ✅   | ✅  | ➖   | Scale replicated docker services                     |
 | `dsym_uuid`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `dsyminfo`                  | ➖  | ✅   | ➖  | ➖   | Displays information for a Dwarf symbol file         |
 | `dtc`                       | ➖  | ✅   | ✅  | ➖   | Git difftool on cached/staged changes                |
 | `dt`                        | ➖  | ✅   | ✅  | ➖   | Git difftool shorthand                               |
-| `dvc`                       | ➖  | ✅   | ➖  | ➖   | Create docker volume                                 |
-| `dvi`                       | ➖  | ✅   | ➖  | ➖   | Display detailed docker volume info                  |
+| `dvc`                       | ➖  | ✅   | ✅  | ➖   | Create docker volume                                 |
+| `dvi`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker volume info                  |
 | `dvl`                       | ➖  | ✅   | ✅  | ➖   | List docker volumes                                  |
-| `dvp`                       | ➖  | ✅   | ➖  | ➖   | Remove all unused local docker volumes               |
-| `dvr`                       | ➖  | ✅   | ➖  | ➖   | Remove docker volumes                                |
-| `dw`                        | ➖  | ✅   | ➖  | ➖   | Git diff with word diff                              |
+| `dvp`                       | ➖  | ✅   | ✅  | ➖   | Remove all unused local docker volumes               |
+| `dvr`                       | ➖  | ✅   | ✅  | ➖   | Remove docker volumes                                |
+| `dw`                        | ➖  | ✅   | ✅  | ➖   | Git diff with word diff                              |
 | `d`                         | ✅  | ✅   | ✅  | ✅   | Git diff                                             |
 | `ebw`                       | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `editorconfig`              | ➖  | ✅   | ✅  | ➖   | Generates an editorconfig                            |

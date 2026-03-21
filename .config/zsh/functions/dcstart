@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dcstart - Start one or more stopped docker containers
+docker container start "$@"
