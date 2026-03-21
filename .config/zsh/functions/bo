@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# bo - List outdated gems in the bundle
+bundle outdated "$@"

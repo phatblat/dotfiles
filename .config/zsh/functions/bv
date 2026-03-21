@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# bv - Display the version of bundler
+bundle --version

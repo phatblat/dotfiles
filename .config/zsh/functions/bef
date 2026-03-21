@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# bef - Short alias for executing Fastlane through Bundler
+bundle exec fastlane "$@"

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# binstall - Install Bundler with the proper bindir
+gem install bundler --bindir "$(brew --prefix)/bin" "$@"

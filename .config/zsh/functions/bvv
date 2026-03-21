@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# bvv - Display git branch with details
+git branch -vv "$@"

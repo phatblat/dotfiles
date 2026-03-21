@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# gem_update - Update a Ruby gem at the system level (requires sudo permissions)
+local gem_name="$1"
+
+if [[ -z "$gem_name" ]]; then
+    echo "Usage: gem_update gem_name ..."
+    return 1
+fi
+
+shift
+gem update --force "$gem_name" --bindir "$(brew --prefix)/bin" "$@"

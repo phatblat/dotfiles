@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+# git_bundle_create - Creates a git bundle containing any changes in the working copy and index
+# that haven't been committed
+local bundle_name="snapshot.bundle"
+local repo_path="$PWD"
+local current_branch
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Move into repo dir
+cd "$repo_path" || return 1
+pwd
+
+# Snapshot
+echo "current branch: $current_branch"
+local head_sha
+head_sha=$(git rev-parse HEAD)
+echo "HEAD: $head_sha"
+git stash list
+git stash save --include-untracked "snapshot: $(date)"
+
+# Returns only the SHA of the last stash
+local snapshot_sha
+snapshot_sha=$(git show --pretty=oneline 'refs/stash@{0}' | head -n 1 | awk '{print $1}')
+echo "snapshot: $snapshot_sha"
+
+# Create bundle
+git tag -d snapshot_end 2>/dev/null
+git tag snapshot_end "$snapshot_sha"
+
+# This requires the HEAD commit to be present in the local repo
+git bundle create "$bundle_name" HEAD..snapshot_end
+git bundle verify "$bundle_name"
+git tag -d snapshot_end || true

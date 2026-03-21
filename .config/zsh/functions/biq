@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# biq - Quiet bundle install
+bi --quiet "$@"

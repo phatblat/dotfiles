@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# bub - Update the locked version of bundler to the invoked bundler version
+bu --bundler

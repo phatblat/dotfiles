@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# bu - Update gems in the bundle
+bundle update "$@"
