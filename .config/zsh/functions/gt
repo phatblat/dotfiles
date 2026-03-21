@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
-# gt - Run gastown commands from ~/gt directory
+# gt - Run gastown commands via ~/.local/bin/gt
 # In Claude Code sessions, pass through to the binary on PATH
 [[ -n "$CLAUDE_CODE" ]] && {
     command gt "$@"
     return
 }
-(cd ~/gt && command gt "$@")
+(cd ~/gt && ~/.local/bin/gt "$@")

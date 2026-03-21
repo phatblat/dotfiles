@@ -6,11 +6,11 @@
       "id": "claude"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "id": "codex"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "id": "gemini"
     },
     {
