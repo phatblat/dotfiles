@@ -1,5 +1,6 @@
 {
   "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
