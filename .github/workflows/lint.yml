@@ -1,0 +1,64 @@
+name: lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".config/fish/**"
+      - ".config/nushell/**"
+      - ".config/zsh/functions/**"
+      - ".config/mise/config.toml"
+      - ".gitignore"
+      - "bin/**"
+      - "justfile"
+      - "scripts/**"
+      - ".github/workflows/lint.yml"
+  pull_request:
+    paths:
+      - ".config/fish/**"
+      - ".config/nushell/**"
+      - ".config/zsh/functions/**"
+      - ".config/mise/config.toml"
+      - ".gitignore"
+      - "bin/**"
+      - "justfile"
+      - "scripts/**"
+      - ".github/workflows/lint.yml"
+  schedule:
+    # Weekly Monday 06:00 UTC — catch drift from tool updates
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      # Repo root IS the home directory; remap HOME so ~ resolves to checkout
+      HOME: ${{ github.workspace }}
+      MISE_PIN: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install mise
+        uses: jdx/mise-action@v2
+        with:
+          install: false
+
+      - name: Install mise-managed tools
+        run: mise install just shellcheck ruff
+
+      - name: Install fish
+        run: sudo apt-get update && sudo apt-get install -y fish
+
+      - name: Install nushell
+        run: |
+          nu_version="0.104.0"
+          curl -sSL "https://github.com/nushell/nushell/releases/download/${nu_version}/nu-${nu_version}-x86_64-unknown-linux-gnu.tar.gz" \
+            | sudo tar -xz --strip-components=1 -C /usr/local/bin "nu-${nu_version}-x86_64-unknown-linux-gnu/nu"
+
+      - name: Lint
+        run: |
+          eval "$(mise activate bash)"
+          just lint
