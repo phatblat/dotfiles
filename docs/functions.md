@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 291 functions (primary shell)
+- Zsh: 297 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -123,11 +123,11 @@ This document tracks the implementation status of all shell functions and aliase
 | `b`                         | ✅  | ✅   | ➖  | ➖   | Manage git branch                                    |
 | `cargo_target`              | ➖  | ✅   | ✅  | ➖   | argparse 'h/help' 'n/name' -- $argv                  |
 | `carthage-clean`            | ➖  | ✅   | ➖  | ➖   | Clean the Carthage cache folder                      |
-| `cask_audit`                | ➖  | ✅   | ➖  | ➖   | Audits a Homebrew cask                               |
-| `cask_cache`                | ➖  | ✅   | ➖  | ➖   | Manage the Homebrew Cask cache. Without args the c   |
-| `cask_dir`                  | ➖  | ✅   | ➖  | ➖   | Quick nav to Homebrew Casks tap                      |
-| `cask_edit`                 | ➖  | ✅   | ➖  | ➖   | Manage Homebrew casks                                |
-| `cask_token`                | ➖  | ✅   | ➖  | ➖   | Generates a cask token for an app                    |
+| `cask_audit`                | ➖  | ✅   | ✅  | ➖   | Audits a Homebrew cask                               |
+| `cask_cache`                | ➖  | ✅   | ✅  | ➖   | Manage the Homebrew Cask cache. Without args the c   |
+| `cask_dir`                  | ➖  | ✅   | ✅  | ➖   | Quick nav to Homebrew Casks tap                      |
+| `cask_edit`                 | ➖  | ✅   | ✅  | ➖   | Manage Homebrew casks                                |
+| `cask_token`                | ➖  | ✅   | ✅  | ➖   | Generates a cask token for an app                    |
 | `cballv`                    | ➖  | ✅   | ➖  | ➖   | Build all platforms using Carthage with verbose ou   |
 | `cball`                     | ➖  | ✅   | ✅  | ➖   | Build all platforms using Carthage                   |
 | `cbiosv`                    | ➖  | ✅   | ➖  | ➖   | Build iOS platform using Carthage with verbose out   |
@@ -781,7 +781,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `🆚_vscode`                 | ➖  | ✅   | ➖  | ➖   | https://code.visualstudio.com/docs/editor/command-   |
 | `🌱_mint`                   | ➖  | ✅   | ➖  | ➖   | Sequencing                                           |
 | `🍺_brew`                   | ➖  | ✅   | ➖  | ➖   | Sequencing                                           |
-| `🍻_cask`                   | ➖  | ✅   | ➖  | ➖   | stderr often outputs several of the following mess   |
+| `🍻_cask`                   | ➖  | ✅   | ✅  | ➖   | stderr often outputs several of the following mess   |
 | `🐍_pip`                    | ➖  | ✅   | ➖  | ➖   | https://pip.pypa.io/en/stable/                       |
 | `🐠_omf`                    | ➖  | ✅   | ➖  | ➖   | Edit .config/omf/bundle to change packages           |
 | `💎_rubygems`               | ➖  | ✅   | ➖  | ➖   | Bundler is used to install most gems locally for t   |

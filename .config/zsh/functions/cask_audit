@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# cask_audit - Audits a Homebrew cask
+local token="$1"
+if [[ -z "$token" ]]; then
+  echo "Usage: cask_audit token"
+  return 1
+fi
+
+if brew info --cask "$token" >/dev/null 2>&1; then
+  brew audit --cask "$token" --download
+  brew style --cask "$token" --fix
+else
+  echo "Cask $token does not exist."
+  return 2
+fi

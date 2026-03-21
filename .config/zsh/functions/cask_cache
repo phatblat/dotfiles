@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+# cask_cache - Manage the Homebrew Cask cache. Without args the contents of the cache are displayed.
+local command="${1:-show}"
+
+case "$command" in
+  clean)
+    trash -v ~/Library/Caches/Homebrew/Cask
+    ;;
+  show)
+    echo "Homebrew Cask cache is user-specific"
+    ls -la -d ~/Library/Caches/Homebrew/Cask
+    ls -la ~/Library/Caches/Homebrew/Cask
+    ;;
+  *)
+    echo "Usage: cask_cache [clean|show]"
+    return 1
+    ;;
+esac
