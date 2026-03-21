@@ -30,6 +30,7 @@
 .anka/
 .ansible/
 .antigen/
+.antigravity/
 .anyconnect
 .asdf/
 .aspnet/
@@ -442,6 +443,7 @@ Library/Application Support/AYA/
 Library/Application Support/AddressBook/
 Library/Application Support/Alfred/
 Library/Application Support/Animoji/
+Library/Application Support/Antigravity/
 Library/Application Support/App Store/
 Library/Application Support/Arc/
 Library/Application Support/AskPermission/
