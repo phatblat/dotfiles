@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+# brew_home - Prints the Homebrew home dir or the location in the cellar where formula is installed
+local formula="$1"
+
+if [[ -z "$BREW_HOME" ]]; then
+    if (( $+commands[brew] )); then
+        export BREW_HOME="$(brew --prefix)"
+    else
+        if is_mac; then
+            if [[ "$(uname -m)" == "arm64" ]]; then
+                export BREW_HOME="/opt/homebrew"
+            else
+                export BREW_HOME="/usr/local"
+            fi
+        elif is_linux; then
+            export BREW_HOME="/home/linuxbrew/.linuxbrew"
+        fi
+    fi
+fi
+
+if [[ -n "$formula" ]]; then
+    echo "$BREW_HOME/opt/$formula"
+else
+    echo "$BREW_HOME"
+fi

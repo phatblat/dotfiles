@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# date_iso8601 - Prints date in ISO-8601 format
+local format="${1:-timezone}"
+
+case "$format" in
+  s|sh|short)
+    date "+%Y-%m-%d"
+    ;;
+  z|gmt)
+    date -u +"%Y-%m-%dT%H:%M:%SZ"
+    ;;
+  *)
+    date +%Y-%m-%dT%H:%M:%S%z
+    ;;
+esac

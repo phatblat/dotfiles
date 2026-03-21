@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xtest - Validate nginx config
+sudo nginx -t "$@"

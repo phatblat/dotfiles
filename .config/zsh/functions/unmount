@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# unmount - Unmounts a drive
+local drive_path="$1"
+
+if [[ -z "$drive_path" ]]; then
+    echo "Usage: unmount drive_path" >&2
+    return 1
+elif [[ ! -d "$drive_path" ]]; then
+    echo "Not found: $drive_path" >&2
+    return 2
+fi
+
+hdiutil unmount "$drive_path"

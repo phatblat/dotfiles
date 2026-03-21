@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# nixtest - Tests a Nix installation
+nix-instantiate '<nixpkgs>' -A hello

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xstop - Stops nginx
+sudo nginx -s stop "$@"

@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+# usage - Show disk usage for a directory
+local path="${1:-.}"
+du -hs "$path"

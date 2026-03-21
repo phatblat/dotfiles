@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# xtraffic - Display HTTP traffic stats using goaccess
+goaccess \
+    --time-format=%T \
+    --date-format=%d/%b/%Y \
+    --log-format='%h %^[%d:%t %^] "%r" %s %b "%R" "%u"' \
+    -f "$(brew_home)/var/log/nginx/access.log" "$@"

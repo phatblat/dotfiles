@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# cron_list - Prints cron file
+crontab -l

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# cron_edit - Opens cron file in an editor
+crontab -e

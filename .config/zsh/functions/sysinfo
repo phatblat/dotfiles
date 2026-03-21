@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# sysinfo - Print system info
+uname -a
+sw_vers -productVersion
+system_profiler SPSoftwareDataType

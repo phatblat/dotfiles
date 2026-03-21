@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# cron_reload - Reloads cron file
+crontab "$HOME/.dotfiles/cron/cron.file"
+
+[[ -o interactive ]] || return 0
+
+echo "Cron file reloaded:"
+cron_list

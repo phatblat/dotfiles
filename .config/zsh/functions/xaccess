@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xaccess - Read nginx access log
+less "$(brew_home)/var/log/nginx/access.log" "$@"

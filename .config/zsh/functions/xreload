@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xreload - Reload nginx configuration
+sudo nginx -s reload "$@"

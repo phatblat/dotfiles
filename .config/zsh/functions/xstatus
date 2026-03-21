@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xstatus - Displays nginx process information
+psgrep nginx

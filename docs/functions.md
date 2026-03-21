@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 329 functions (primary shell)
+- Zsh: 351 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -106,7 +106,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `brew_core`                 | ➖  | ✅   | ➖  | ➖   | Quick nav to homebrew-core dir                       |
 | `brew_deps`                 | ➖  | ✅   | ➖  | ➖   | Lists dependencies of brew packages                  |
 | `brew_edit`                 | ➖  | ✅   | ➖  | ➖   | Manages Homebrew formulae                            |
-| `brew_home`                 | ➖  | ✅   | ➖  | ➖   | Prints Homebrew home dir or cellar location          |
+| `brew_home`                 | ➖  | ✅   | ✅  | ➖   | Prints Homebrew home dir or cellar location          |
 | `brew_installed`            | ➖  | ✅   | ➖  | ➖   | Checks whether a formula is currently installed      |
 | `brew_logs`                 | ➖  | ✅   | ✅  | ➖   | Quick nav to Homebrew logs dir                       |
 | `brew_test`                 | ➖  | ✅   | ➖  | ➖   | Installs and tests Homebrew formula                  |
@@ -176,22 +176,22 @@ This document tracks the implementation status of all shell functions and aliase
 | `configg`                   | ➖  | ✅   | ✅  | ➖   | Manage global git configuration (~/.gitconfig)       |
 | `configxg`                  | ➖  | ✅   | ➖  | ➖   | Manage extended global git configuration ($XDG_CON   |
 | `config`                    | ➖  | ✅   | ➖  | ➖   | Manage git configuration                             |
-| `console_user`              | ➖  | ✅   | ➖  | ➖   | Prints username of console user                      |
+| `console_user`              | ➖  | ✅   | ✅  | ➖   | Prints username of console user                      |
 | `continue`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `cont`                      | ➖  | ✅   | ✅  | ➖   | Commit merge or continue rebase/cherry-pick          |
 | `co`                        | ✅  | ➖   | ➖  | ➖   | Git checkout operations                              |
 | `create_cert_localhost`     | ➖  | ✅   | ➖  | ➖   | https://stackoverflow.com/questions/8169999/how-ca   |
 | `createdirs`                | ➖  | ✅   | ✅  | ➖   | Creates set of directories if missing                |
-| `cron_edit`                 | ➖  | ✅   | ➖  | ➖   | Opens cron file in editor                            |
-| `cron_list`                 | ➖  | ✅   | ➖  | ➖   | Prints cron file                                     |
-| `cron_reload`               | ➖  | ✅   | ➖  | ➖   | Reloads cron file                                    |
+| `cron_edit`                 | ➖  | ✅   | ✅  | ➖   | Opens cron file in editor                            |
+| `cron_list`                 | ➖  | ✅   | ✅  | ➖   | Prints cron file                                     |
+| `cron_reload`               | ➖  | ✅   | ✅  | ➖   | Reloads cron file                                    |
 | `ctitle`                    | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `curl_download`             | ➖  | ✅   | ➖  | ➖   | Download a file using curl with the most common op   |
 | `current-branch`            | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `current_branch`            | ➖  | ✅   | ➖  | ➖   | Displays current branch name                         |
 | `c`                         | ✅  | ✅   | ✅  | ➖   | Performs git checkout                                |
 | `dash`                      | ➖  | ✅   | ✅  | ➖   | Dash shell integration                               |
-| `date_iso8601`              | ➖  | ✅   | ➖  | ➖   | Prints date in ISO-8601 format                       |
+| `date_iso8601`              | ➖  | ✅   | ✅  | ➖   | Prints date in ISO-8601 format                       |
 | `dce`                       | ➖  | ✅   | ✅  | ➖   | Execute command in running container                 |
 | `dci`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker container info               |
 | `dck`                       | ➖  | ✅   | ✅  | ➖   | Alias for dcstop                                     |
@@ -490,7 +490,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `nimble`                    | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `nix_install`               | ➖  | ➖   | ✅  | ➖   | Installs nix tools                                   |
 | `nixgc`                     | ➖  | ✅   | ➖  | ➖   | Runs nix garbage collection and optimisation         |
-| `nixtest`                   | ➖  | ✅   | ➖  | ➖   | Tests Nix installation                               |
+| `nixtest`                   | ➖  | ✅   | ✅  | ➖   | Tests Nix installation                               |
 | `nodef`                     | ➖  | ✅   | ➖  | ➖   | Removes default.profraw file                         |
 | `nv`                        | ➖  | ✅   | ➖  | ➖   | nv function                                          |
 | `objg`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to Objective-Git                           |
@@ -677,7 +677,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `swiftinfo`                 | ➖  | ✅   | ➖  | ➖   | Print information about the current Swift toolchai   |
 | `swiftpm`                   | ➖  | ✅   | ➖  | ➖   | Quick nav to SwiftPM-Plugin project                  |
 | `sync`                      | ➖  | ✅   | ✅  | ➖   | Synchronizes git rep                                 |
-| `sysinfo`                   | ➖  | ✅   | ➖  | ➖   | Print system info                                    |
+| `sysinfo`                   | ➖  | ✅   | ✅  | ➖   | Print system info                                    |
 | `s`                         | ✅  | ✅   | ✅  | ✅   | Display abbreviated git status                       |
 | `tag`                       | ✅  | ✅   | ✅  | ➖   | Manage git tags                                      |
 | `tarball`                   | ➖  | ✅   | ➖  | ➖   | Creates tarball                                      |
@@ -703,7 +703,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `uc`                        | ➖  | ✅   | ➖  | ➖   | Runs uncrustify on all Objective-C files under the   |
 | `unassume`                  | ➖  | ✅   | ➖  | ➖   | Stop ignoring changes to the given files             |
 | `ungate`                    | ➖  | ✅   | ➖  | ➖   | Defined in /var/folders/n8/\__3mw5v17hqfpf6ycpb6b7_  |
-| `unmount`                   | ➖  | ✅   | ➖  | ➖   | Unmounts drive                                       |
+| `unmount`                   | ➖  | ✅   | ✅  | ➖   | Unmounts drive                                       |
 | `unshallow`                 | ➖  | ✅   | ✅  | ➖   | Converts shallow git repo to full                    |
 | `unstage`                   | ➖  | ✅   | ➖  | ➖   | Restores files in git index from HEAD                |
 | `untar`                     | ➖  | ✅   | ✅  | ➖   | Extracts tarball                                     |
@@ -712,7 +712,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `upmodule`                  | ➖  | ➖   | ✅  | ➖   | Optionally invokes an upstall module                 |
 | `upstall`                   | ➖  | ✅   | ➖  | ➖   | Alias for ⏫_upstall                                 |
 | `upstreamify`               | ➖  | ✅   | ✅  | ➖   | Renames origin to upstream                           |
-| `usage`                     | ➖  | ✅   | ➖  | ➖   | Show disk usage for directory                        |
+| `usage`                     | ➖  | ✅   | ✅  | ➖   | Show disk usage for directory                        |
 | `user.email`                | ➖  | ✅   | ✅  | ➖   | Manages user.email git config setting                |
 | `user.name`                 | ➖  | ✅   | ✅  | ➖   | Manages user.name git config setting                 |
 | `user.signingkey`           | ➖  | ✅   | ✅  | ➖   | Manages user.signingkey git config setting           |
@@ -729,7 +729,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `warpify`                   | ➖  | ✅   | ➖  | ➖   | https://docs.warp.dev/features/subshells#automatic   |
 | `whichjdk`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `wip`                       | ➖  | ✅   | ➖  | ➖   | Commits WIP work                                     |
-| `xaccess`                   | ➖  | ✅   | ➖  | ➖   | Read nginx acess log                                 |
+| `xaccess`                   | ➖  | ✅   | ✅  | ➖   | Read nginx access log                                |
 | `xamarin_version`           | ➖  | ✅   | ➖  | ➖   | Determines current version Xamarin                   |
 | `xcblist`                   | ➖  | ✅   | ➖  | ➖   | Lists info about first Xcode project found           |
 | `xcbschemes`                | ➖  | ✅   | ✅  | ➖   | Displays schemes for Xcode project                   |
@@ -744,8 +744,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `xcode_plugin_update_uuid`  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `xcodeplugin`               | ➖  | ✅   | ➖  | ➖   | Quick nav to xcodePlugin project                     |
 | `xcodes`                    | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `xconfd`                    | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
-| `xconf`                     | ➖  | ✅   | ➖  | ➖   | Edit nginx configuration files                       |
+| `xconfd`                    | ➖  | ✅   | ✅  | ➖   | Quick dir navigation to nginx config dir             |
+| `xconf`                     | ➖  | ✅   | ✅  | ➖   | Edit nginx configuration files                       |
 | `xcsp`                      | ➖  | ✅   | ✅  | ➖   | Show the currently selected version of Xcode         |
 | `xcss`                      | ➖  | ✅   | ➖  | ➖   | Select a different version of Xcode                  |
 | `xcswitch`                  | ➖  | ✅   | ➖  | ➖   | Switch the active version of Xcode                   |
@@ -756,16 +756,16 @@ This document tracks the implementation status of all shell functions and aliase
 | `xcv`                       | ➖  | ✅   | ➖  | ➖   | Displays version of currently selected Xcode         |
 | `xc`                        | ➖  | ✅   | ✅  | ➖   | Xcode wrapper function                               |
 | `xcode`                     | ➖  | ➖   | ✅  | ➖   | Installs and updates Xcode                           |
-| `xerror`                    | ➖  | ✅   | ➖  | ➖   | Read nginx error log                                 |
+| `xerror`                    | ➖  | ✅   | ✅  | ➖   | Read nginx error log                                 |
 | `xlog`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to nginx log dir                           |
 | `xps`                       | ➖  | ✅   | ✅  | ➖   | Short alias for displaying nginx status              |
 | `xp`                        | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `xreload`                   | ➖  | ✅   | ➖  | ➖   | Reload nginx configuration                           |
-| `xstart`                    | ➖  | ✅   | ➖  | ➖   | Starts nginx                                         |
-| `xstatus`                   | ➖  | ✅   | ➖  | ➖   | Displays nginx process information                   |
-| `xstop`                     | ➖  | ✅   | ➖  | ➖   | Stops nginx                                          |
-| `xtest`                     | ➖  | ✅   | ➖  | ➖   | Validate nginx config                                |
-| `xtraffic`                  | ➖  | ✅   | ➖  | ➖   | Display HTTP traffic stats using goaccess            |
+| `xreload`                   | ➖  | ✅   | ✅  | ➖   | Reload nginx configuration                           |
+| `xstart`                    | ➖  | ✅   | ✅  | ➖   | Starts nginx                                         |
+| `xstatus`                   | ➖  | ✅   | ✅  | ➖   | Displays nginx process information                   |
+| `xstop`                     | ➖  | ✅   | ✅  | ➖   | Stops nginx                                          |
+| `xtest`                     | ➖  | ✅   | ✅  | ➖   | Validate nginx config                                |
+| `xtraffic`                  | ➖  | ✅   | ✅  | ➖   | Display HTTP traffic stats using goaccess            |
 | `xv`                        | ➖  | ✅   | ✅  | ➖   | Prints Xcode version information                     |
 | `yn`                        | ➖  | ✅   | ✅  | ➖   | Prompt the user for a yes/no response. Returns 0 (   |
 | `za`                        | ✅  | ➖   | ➖  | ➖   | Zoxide add                                           |

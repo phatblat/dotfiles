@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xerror - Read nginx error log
+less "$(brew_home)/var/log/nginx/error.log" "$@"

@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+# xstart - Starts nginx
+sudo nginx "$@"
+xstatus

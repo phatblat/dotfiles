@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# console_user - Prints the username of the user logged into the console (GUI)
+if is_mac; then
+    fileowner /dev/console
+elif is_linux; then
+    fileowner /tmp/.X11-unix/X0
+else
+    echo "Unknown kernel: $KERNEL" >&2
+    return 1
+fi
