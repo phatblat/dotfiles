@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+# search - Search for CLI tools through various package managers
+if is_linux; then
+  echo "Snap"
+  echo "-----------------------------------------------------------------"
+  snap find "$@"
+
+  echo "APT"
+  echo "-----------------------------------------------------------------"
+  apt search "$@"
+elif is_mac; then
+  echo "Mac App Store"
+  echo "-----------------------------------------------------------------"
+  mas search "$@"
+fi
+
+echo "Homebrew"
+echo "-----------------------------------------------------------------"
+brew search "$@"

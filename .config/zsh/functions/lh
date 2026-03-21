@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# lh - List files with human-readable sizes
+ll -h "$@"

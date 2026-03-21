@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+# emoji - Prints an emoji cheat sheet for commit comments
+# https://gist.github.com/pocotan001/68f96bf86891db316f20
+# https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
+if [[ -z "$1" ]]; then
+  emoji_map | jq --raw-output 'to_entries[] | "\(.value)  \(.key)"' | column -t
+  return
+fi
+
+local emoji_found=()
+local emoji_missing=()
+
+for arg in "$@"; do
+  local e
+  e=$(emoji_map "$arg" 2>/dev/null)
+  if [[ -n "$e" ]]; then
+    emoji_found+=("$e")
+  else
+    emoji_missing+=("$arg")
+  fi
+done
+
+echo "${emoji_found[@]}"
+printf "%s " "${emoji_found[@]}" | pbcopy
+
+if [[ ${#emoji_missing[@]} -gt 0 ]]; then
+  error "Unknown emoji: ${emoji_missing[*]}"
+  return 2
+fi

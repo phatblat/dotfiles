@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# is_coreutils - Tests whether coreutils is installed
+return 1

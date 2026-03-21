@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# error - Prints args to stderr
+echo "$@" >&2

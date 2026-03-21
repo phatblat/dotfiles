@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# psgrep - Wrapper for ps which isolates processes containing a given string
+if [[ -z "$1" ]]; then
+  echo "Usage: psgrep process_name"
+  return 1
+fi
+
+ps aux | grep --invert-match 'grep' | grep "$1"

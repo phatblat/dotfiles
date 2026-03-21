@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# yn - Prompt the user for a yes/no response. Returns 0 (success) for YES and 1 (error) for NO.
+local prompt="$1"
+local answer
+
+while true; do
+  read "answer?${prompt}> "
+  case "$answer" in
+    y|yes|Y|YES) echo YES; return 0 ;;
+    n|no|N|NO)   echo NO;  return 1 ;;
+    *) ;;
+  esac
+done

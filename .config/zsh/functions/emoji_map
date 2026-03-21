@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+# emoji_map - Dictionary/Map Data Structure for emoji
+# - No args: Prints a JSON-encoded dictionary/map of the contained keys and their mappings.
+# - One arg: Prints the value for the given key.
+# - Many args: Print the value found for each key.
+local data_file=~/.config/fish/data/emoji.json
+
+if [[ -z "$*" ]]; then
+  cat "$data_file"
+  return
+fi
+
+local missing_keys=()
+
+for key in "$@"; do
+  if jq --exit-status --raw-output ".$key" "$data_file" 2>/dev/null; then
+    : # key found, jq already printed it
+  else
+    missing_keys+=("$key")
+  fi
+done
+
+if [[ ${#missing_keys[@]} -eq 0 ]]; then
+  return 0
+else
+  error "No value found for keys: ${missing_keys[*]}"
+  return ${#missing_keys[@]}
+fi

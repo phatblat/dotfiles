@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# gpgshow - List GPG keys with short keyid format
+gpg --list-keys \
+    --keyid-format short \
+    "$@"

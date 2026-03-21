@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+# bid - Get bundle ID for app name
+# https://gist.github.com/ttscoff/86fe788beb8c586986de179e6d6515c7
+local shortname
+shortname=$(echo "$*" | sed -E 's/\.app$//' | sed 's/\///g')
+local location
+
+if [[ -d "/Applications/${shortname}.localized/${shortname}.app" ]]; then
+  location="/Applications/${shortname}.localized/${shortname}.app"
+elif [[ -d "/Applications/${shortname}.app" ]]; then
+  location="/Applications/${shortname}.app"
+else
+  location=$(mdfind -onlyin /Applications -onlyin /Applications/Setapp -onlyin /Applications/Utilities -onlyin ~/Applications -onlyin /Developer/Applications "kMDItemKind==Application && kMDItemDisplayName=='*${shortname}*'cdw" | head -n1)
+fi
+
+if [[ -z "$location" ]]; then
+  echo "$* not found, I quit"
+  return
+fi
+
+local bundleid
+bundleid=$(mdls -name kMDItemCFBundleIdentifier -r "$location")
+
+if [[ -z "$bundleid" ]]; then
+  echo "Error getting bundle ID for \"$*\""
+else
+  echo "${location}: ${bundleid}"
+fi

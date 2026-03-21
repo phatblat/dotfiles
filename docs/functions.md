@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 297 functions (primary shell)
+- Zsh: 319 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -85,7 +85,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `bD`                        | ✅  | ✅   | ✅  | ➖   | Forcefully delete a branch from git                  |
 | `bef`                       | ➖  | ✅   | ➖  | ➖   | Short alias for executing Fastlane through Bundler   |
 | `be`                        | ➖  | ✅   | ✅  | ➖   | Short alias for executing gems through Bundler       |
-| `bid`                       | ➖  | ✅   | ➖  | ➖   | https://gist.github.com/ttscoff/86fe788beb8c586986   |
+| `bid`                       | ➖  | ✅   | ✅  | ➖   | Get bundle ID for app name                           |
 | `bigfiles`                  | ➖  | ✅   | ✅  | ➖   | Lists the 10 biggest files in the current director   |
 | `big`                       | ➖  | ✅   | ✅  | ➖   | Install gem bundle using local Gemfile               |
 | `bindings`                  | ➖  | ✅   | ➖  | ➖   | bindings.fish                                        |
@@ -170,7 +170,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `cmtne`                     | ✅  | ✅   | ✅  | ➖   | Commit with default message                          |
 | `cmt`                       | ✅  | ✅   | ✅  | ➖   | Commit with message                                  |
 | `codesign_verify`           | ➖  | ✅   | ➖  | ➖   | Verify the codesign of a bundle                      |
-| `col1`                      | ➖  | ✅   | ➖  | ➖   | Prints the first column of input (first argument)    |
+| `col1`                      | ➖  | ✅   | ✅  | ➖   | Prints the first column of input (first argument)    |
 | `commit_count`              | ✅  | ✅   | ✅  | ➖   | Count commits by date for a branch                   |
 | `commit`                    | ✅  | ✅   | ✅  | ➖   | Perform a git commit                                 |
 | `configg`                   | ➖  | ✅   | ✅  | ➖   | Manage global git configuration (~/.gitconfig)       |
@@ -269,13 +269,13 @@ This document tracks the implementation status of all shell functions and aliase
 | `edit`                      | ➖  | ✅   | ✅  | ➖   | Edit using configured VISUAL editor                  |
 | `ej`                        | ➖  | ✅   | ➖  | ➖   | Alias for emoji                                      |
 | `email_url`                 | ➖  | ✅   | ✅  | ➖   | Determines appropriate contact for URL               |
-| `emoji_map`                 | ➖  | ✅   | ➖  | ➖   | Dictionary/Map Data Structure for emoji              |
-| `emoji`                     | ➖  | ✅   | ➖  | ➖   | Prints an emoji cheat sheet for commit comments      |
+| `emoji_map`                 | ➖  | ✅   | ✅  | ➖   | Dictionary/Map Data Structure for emoji              |
+| `emoji`                     | ➖  | ✅   | ✅  | ➖   | Prints an emoji cheat sheet for commit comments      |
 | `en1`                       | ➖  | ✅   | ➖  | ➖   | Shows en1 network interface                          |
 | `entitlements`              | ➖  | ✅   | ✅  | ➖   | Display entitlements in the codesign information o   |
 | `epoc_date`                 | ➖  | ✅   | ➖  | ➖   | Converts epoch timestamps to date                    |
 | `erase`                     | ➖  | ✅   | ✅  | ➖   | Erash fish functions                                 |
-| `error`                     | ➖  | ✅   | ➖  | ➖   | Prints args to stderr                                |
+| `error`                     | ➖  | ✅   | ✅  | ➖   | Prints args to stderr                                |
 | `explain`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `e`                         | ✅  | ✅   | ✅  | ➖   | Short alias for editing a file. Given no args, the   |
 | `faccess`                   | ➖  | ✅   | ➖  | ➖   | Tail the nginx access log                            |
@@ -351,7 +351,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `gpgcopypub`                | ➖  | ✅   | ✅  | ➖   | Copies the public key for any GPG key found          |
 | `gpgkeyid`                  | ➖  | ✅   | ✅  | ➖   | This will return multiple 8-char values if there a   |
 | `gpgrep`                    | ✅  | ✅   | ➖  | ➖   | Grep for gradle properties                           |
-| `gpgshow`                   | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `gpgshow`                   | ➖  | ✅   | ✅  | ➖   | List GPG keys with short keyid format                |
 | `gpgtest`                   | ➖  | ✅   | ✅  | ➖   | gpgtest                                              |
 | `gpv`                       | ➖  | ✅   | ➖  | ➖   | Quick nav to GooglePlatformVersions dir              |
 | `gp`                        | ✅  | ✅   | ➖  | ➖   | Edit current user Gradle properties                  |
@@ -394,7 +394,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `ignored`                   | ✅  | ✅   | ✅  | ➖   | Show files ignored by git                            |
 | `ignores`                   | ✅  | ✅   | ✅  | ✅   | Standard ignored files                               |
 | `ignore`                    | ✅  | ✅   | ✅  | ✅   | Adds lines to .gitignore                             |
-| `index`                     | ➖  | ✅   | ➖  | ➖   | Prints the index of a value in a list                |
+| `index`                     | ➖  | ✅   | ✅  | ➖   | Prints the index of a value in a list                |
 | `init`                      | ✅  | ✅   | ➖  | ➖   | Initialize new git repo in current/optional dir      |
 | `install_choices`           | ➖  | ✅   | ➖  | ➖   | Prints the choices available in the given installa   |
 | `install_powerline_prompt`  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -402,8 +402,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `ip`                        | ➖  | ✅   | ➖  | ➖   | Show the current IPv4 address                        |
 | `is_arm`                    | ➖  | ✅   | ✅  | ➖   | Tests whether current system is arm                  |
 | `is_bash_login`             | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `is_console_user`           | ➖  | ✅   | ➖  | ➖   | Tests whether current user logged into console       |
-| `is_coreutils`              | ➖  | ✅   | ➖  | ➖   | Tests whether coreutils is installed                 |
+| `is_console_user`           | ➖  | ✅   | ✅  | ➖   | Tests whether current user logged into console       |
+| `is_coreutils`              | ➖  | ✅   | ✅  | ➖   | Tests whether coreutils is installed                 |
 | `is_linux`                  | ➖  | ✅   | ✅  | ➖   | Tests whether current computer running Linux         |
 | `is_mac`                    | ➖  | ✅   | ✅  | ➖   | Tests whether current computer running macOS         |
 | `is_octodec`                | ➖  | ✅   | ✅  | ➖   | Tests whether current computer is octodec            |
@@ -417,7 +417,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `jdk_set`                   | ➖  | ➖   | ✅  | ➖   | Sets JAVA_HOME and adds to PATH                      |
 | `jenkins_restart`           | ➖  | ✅   | ➖  | ➖   | Connect to Jenkins Dev using SSH                     |
 | `jftemplate`                | ➖  | ✅   | ➖  | ➖   | Create new repo based on JenkinsfileTemplate         |
-| `jq`                        | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `jq`                        | ➖  | ✅   | ✅  | ➖   | Wrapper around jq with input preservation on failure |
 | `jv`                        | ➖  | ✅   | ➖  | ➖   | Example output (goes to stderr!):                    |
 | `j`                         | ✅  | ➖   | ➖  | ➖   | Just command runner                                  |
 | `killsim`                   | ➖  | ✅   | ➖  | ➖   | Displays CoreSimulatorService info before removing   |
@@ -435,8 +435,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `lggrep`                    | ➖  | ✅   | ✅  | ➖   | Grep through lightweight log `lg` for a regex patt   |
 | `lgg`                       | ➖  | ✅   | ✅  | ➖   | Pretty history graph                                 |
 | `lg`                        | ✅  | ✅   | ✅  | ✅   | Launch lazygit                                       |
-| `lh`                        | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `license`                   | ➖  | ✅   | ➖  | ➖   | Writes LICENSE.md, adds link to readme               |
+| `lh`                        | ➖  | ✅   | ✅  | ➖   | List files with human-readable sizes                 |
+| `license`                   | ➖  | ✅   | ✅  | ➖   | Writes LICENSE.md, adds link to readme               |
 | `line`                      | ➖  | ✅   | ➖  | ➖   | https://github.com/fish-shell/fish-shell/issues/20   |
 | `list-authors`              | ➖  | ✅   | ➖  | ➖   | Collect a list of all commit authors from the curr   |
 | `list_codesign_identities`  | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
@@ -518,7 +518,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `pdo`                       | ➖  | ✅   | ➖  | ➖   | Quick nav to Ping DevOps projects                    |
 | `phatmini`                  | ➖  | ✅   | ➖  | ➖   | SSH to phatmini                                      |
 | `pick`                      | ✅  | ✅   | ✅  | ➖   | Short alias for cherry-pick                          |
-| `pid`                       | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `pid`                       | ➖  | ✅   | ✅  | ➖   | Get PID for a process name                           |
 | `ping1`                     | ➖  | ✅   | ➖  | ➖   | Sends single ping to host                            |
 | `pingdownload`              | ➖  | ✅   | ➖  | ➖   | Downloads Ping DevOps tools                          |
 | `pingmini`                  | ➖  | ✅   | ➖  | ➖   | Check network status of mini                         |
@@ -537,11 +537,11 @@ This document tracks the implementation status of all shell functions and aliase
 | `pllint`                    | ➖  | ✅   | ➖  | ➖   | Runs powerline-lint on custom config only            |
 | `pls_edit`                  | ➖  | ✅   | ➖  | ➖   | Edits Powerline Shell configuration                  |
 | `pop`                       | ✅  | ✅   | ✅  | ➖   | Undo last commit but leave staging area              |
-| `ports`                     | ➖  | ✅   | ➖  | ➖   | https://apple.stackexchange.com/questions/117644/h   |
+| `ports`                     | ➖  | ✅   | ✅  | ➖   | Shows open TCP ports                                 |
 | `powerlinetest`             | ➖  | ✅   | ✅  | ➖   | Print special Powerline characters to test current   |
 | `pp`                        | ➖  | ✅   | ✅  | ➖   | Publish the phatblat branch                          |
 | `prefs`                     | ➖  | ✅   | ➖  | ➖   | Opens System Preferences to specific pane            |
-| `prettyjson`                | ➖  | ✅   | ➖  | ➖   | Prints a formatted version of a JSON file            |
+| `prettyjson`                | ➖  | ✅   | ✅  | ➖   | Prints a formatted version of a JSON file            |
 | `print_profile`             | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `profile_id`                | ➖  | ✅   | ➖  | ➖   | Extracts the UUID from a .mobileprovision profile    |
 | `provdir`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -552,7 +552,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `prunesvn`                  | ➖  | ✅   | ➖  | ➖   | Delete the .svn directories from a directory heira   |
 | `prune`                     | ✅  | ✅   | ✅  | ➖   | Prune obsolete remote branches on given remote       |
 | `prun`                      | ➖  | ✅   | ➖  | ➖   | Show what remote branches need to be pruned for th   |
-| `psgrep`                    | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `psgrep`                    | ➖  | ✅   | ✅  | ➖   | Wrapper for ps which isolates processes containing a given string |
 | `psl`                       | ➖  | ✅   | ➖  | ➖   | Displays process information with custom format      |
 | `psync`                     | ➖  | ✅   | ➖  | ➖   | Syncs files between two directories. Without a 3rd   |
 | `publish`                   | ➖  | ✅   | ✅  | ➖   | Publishes the current branch to the named remote     |
@@ -583,7 +583,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `remote`                    | ✅  | ✅   | ✅  | ➖   | Git remote                                           |
 | `renew_certificates`        | ➖  | ✅   | ➖  | ➖   | Renews certificates on servers                       |
 | `repeatchar`                | ➖  | ✅   | ➖  | ➖   | Repeats a character a fixed number of times          |
-| `repo_new`                  | ➖  | ✅   | ➖  | ➖   | Creates new GitHub repo using local dir as root      |
+| `repo_new`                  | ➖  | ✅   | ✅  | ➖   | Creates new GitHub repo using local dir as root      |
 | `reset`                     | ✅  | ✅   | ✅  | ➖   | Git reset                                            |
 | `restart`                   | ➖  | ✅   | ➖  | ➖   | Restarts the computer without prompt                 |
 | `restore`                   | ✅  | ✅   | ➖  | ➖   | Discards changes in working tree                     |
@@ -603,7 +603,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `savecerts`                 | ➖  | ✅   | ➖  | ➖   | Saves server certificates in binary (DER) format f   |
 | `sa`                        | ➖  | ✅   | ➖  | ➖   | Display git status                                   |
 | `scrub`                     | ➖  | ✅   | ✅  | ➖   | Deletes the given path and removes it from all git   |
-| `search`                    | ➖  | ✅   | ➖  | ➖   | Search for CLI tools through package managers        |
+| `search`                    | ➖  | ✅   | ✅  | ➖   | Search for CLI tools through package managers        |
 | `seed`                      | ➖  | ✅   | ➖  | ➖   | https://derflounder.wordpress.com/2018/01/06/setti   |
 | `servedraftd`               | ➖  | ✅   | ➖  | ➖   | Runs Jekyll server in background showing drafts      |
 | `servedraft`                | ➖  | ✅   | ➖  | ➖   | Runs Jekyll server showing drafts                    |
@@ -615,7 +615,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `sethostname`               | ➖  | ✅   | ➖  | ➖   | http://osxdaily.com/2012/10/24/set-the-hostname-co   |
 | `sg`                        | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `sha1`                      | ➖  | ✅   | ➖  | ➖   | Displays SHA1 hash of files                          |
-| `sha256`                    | ➖  | ✅   | ➖  | ➖   | sha256                                               |
+| `sha256`                    | ➖  | ✅   | ✅  | ➖   | Compute SHA-256 checksums of files                   |
 | `shacopy`                   | ➖  | ✅   | ✅  | ➖   | Copies the SHA1 hash of the HEAD commit to the gen   |
 | `sha`                       | ➖  | ✅   | ✅  | ➖   | Print the SHA1 of the HEAD commit                    |
 | `shell_add`                 | ➖  | ✅   | ➖  | ➖   | Register new shell in /etc/shells                    |
@@ -685,7 +685,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `testpro`                   | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `textmate`                  | ➖  | ➖   | ✅  | ➖   | Manage TextMate bundles                              |
 | `theirs`                    | ➖  | ✅   | ✅  | ➖   | When checking out paths from the index, check out    |
-| `title`                     | ➖  | ✅   | ➖  | ➖   | Sets window/tab title                                |
+| `title`                     | ➖  | ✅   | ✅  | ➖   | Sets window/tab title                                |
 | `tmbundleplist`             | ➖  | ✅   | ➖  | ➖   | Generates the XML contents for a minimal TextMate    |
 | `tmdelete`                  | ➖  | ✅   | ➖  | ➖   | https://appleinsider.com/articles/21/06/26/how-to-   |
 | `tminstall`                 | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -717,7 +717,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `user.name`                 | ➖  | ✅   | ✅  | ➖   | Manages user.name git config setting                 |
 | `user.signingkey`           | ➖  | ✅   | ✅  | ➖   | Manages user.signingkey git config setting           |
 | `user_is_admin`             | ➖  | ✅   | ✅  | ➖   | Tests whether USER is member of admin group          |
-| `user_present`              | ➖  | ✅   | ➖  | ➖   | Indicates whether a user is present                  |
+| `user_present`              | ➖  | ✅   | ✅  | ➖   | Indicates whether a user is present                  |
 | `user`                      | ➖  | ✅   | ✅  | ➖   | Displays info about current user                     |
 | `uuid_from_profile`         | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `version_build`             | ➖  | ✅   | ➖  | ➖   | Displays project version of current Xcode project    |
@@ -767,7 +767,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `xtest`                     | ➖  | ✅   | ➖  | ➖   | Validate nginx config                                |
 | `xtraffic`                  | ➖  | ✅   | ➖  | ➖   | Display HTTP traffic stats using goaccess            |
 | `xv`                        | ➖  | ✅   | ✅  | ➖   | Prints Xcode version information                     |
-| `yn`                        | ➖  | ✅   | ➖  | ➖   | Prompt the user for a yes/no response. Returns 0 (   |
+| `yn`                        | ➖  | ✅   | ✅  | ➖   | Prompt the user for a yes/no response. Returns 0 (   |
 | `za`                        | ✅  | ➖   | ➖  | ➖   | Zoxide add                                           |
 | `zi`                        | ✅  | ➖   | ➖  | ➖   | Zoxide interactive query                             |
 | `zq`                        | ✅  | ➖   | ➖  | ➖   | Zoxide query                                         |
