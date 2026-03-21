@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# rev-parse - Git rev-parse
+git rev-parse "$@"

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# mergetool - Perform a git merge using the configured tool (Kaleidoscope)
+git mergetool "$@"

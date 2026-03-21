@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dt - Git difftool shorthand
+git difftool "$@"

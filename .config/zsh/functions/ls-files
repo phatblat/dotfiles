@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ls-files - Git ls-files
+git ls-files "$@"

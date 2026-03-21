@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+# scrub - Deletes the given path and removes it from all git commits
+local delete_path=$1
+
+if [[ -z "$delete_path" ]]; then
+    echo "Usage: scrub <delete_path>"
+    return 1
+fi
+
+echo -n "Are you sure you want to delete $delete_path and scrub that path from git history? [y/N] "
+read should_delete
+
+case "$should_delete" in
+    y|yes|Y|YES)
+        echo "YES"
+        ;;
+    *)
+        echo "NO"
+        return 1
+        ;;
+esac
+
+git filter-branch --force --index-filter \
+    "git rm -r --force --cached --ignore-unmatch $delete_path" \
+    --prune-empty --tag-name-filter cat -- --all

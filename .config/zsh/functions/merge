@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# merge - Git merge
+git merge "$@"

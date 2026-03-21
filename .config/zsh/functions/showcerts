@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# showcerts - Shows server certificate information
+local host_name=$1
+local port=${2:-443}
+
+if [[ -z "$host_name" ]]; then
+    echo "Usage: showcerts host_name.com [443]"
+    return 1
+fi
+
+openssl s_client -connect "${host_name}:${port}" -showcerts </dev/null 2>/dev/null

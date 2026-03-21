@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+# abort - Aborts an in-progress git merge, rebase, cherry-pick or am (apply mail patch)
+git merge --abort 2>/dev/null \
+  || git rebase --abort 2>/dev/null \
+  || git cherry-pick --abort 2>/dev/null \
+  || git am --abort 2>/dev/null

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# revert - Git revert
+git revert "$@"

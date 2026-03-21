@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dtc - Git difftool on cached/staged changes
+git difftool --cached "$@"

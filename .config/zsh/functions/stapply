@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# stapply - Apply a git stash
+git stash apply "$@"

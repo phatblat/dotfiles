@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ls-remote - Git ls-remote
+git ls-remote "$@"

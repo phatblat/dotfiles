@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# cherry-pick - Perform a git cherry-pick
+git cherry-pick "$@"

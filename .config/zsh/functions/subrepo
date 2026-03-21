@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# subrepo - Wrapper for git-subrepo
+git subrepo "$@"

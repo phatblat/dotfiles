@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# pop - Undoes the last commit but leaves the staging area and working copy intact
+git reset --soft HEAD^ "$@"

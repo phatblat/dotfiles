@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# diff - Perform a git diff
+git diff --color "$@" | diff-so-fancy

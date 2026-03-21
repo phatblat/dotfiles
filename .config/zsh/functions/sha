@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# sha - Print the SHA1 of the HEAD commit
+git rev-parse HEAD "$@"

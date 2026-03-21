@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# stpop - Apply and remove the top git stash
+git stash pop "$@"

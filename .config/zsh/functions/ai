@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ai - Interactively add files to git staging area
+git add --interactive "$@"

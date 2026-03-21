@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# reset - Git reset
+git reset "$@"

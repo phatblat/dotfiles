@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# submodule - Git submodule
+git submodule "$@"

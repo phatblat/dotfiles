@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# showgit - Searches for .git repos recursively below the current dir
+find . -type d -name .git "$@"

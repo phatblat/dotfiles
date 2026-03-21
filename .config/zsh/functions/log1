@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# log1 - Show last git commit with full details
+git log -1 --pretty=fuller "$@"

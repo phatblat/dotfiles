@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# headsha - Print the full SHA1 hash of the current HEAD commit
+git rev-parse HEAD

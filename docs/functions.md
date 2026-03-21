@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 207 functions (primary shell)
+- Zsh: 250 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -45,11 +45,11 @@ This document tracks the implementation status of all shell functions and aliase
 | `__re_extension`            | ➖  | ✅   | ➖  | ➖   | Remove extension from word under/before cursor       |
 | `aa`                        | ✅  | ✅   | ✅  | ➖   | Add all modified tracked files to git staging        |
 | `abbreviations`             | ➖  | ✅   | ➖  | ➖   | Fish Shell Abbreviations                             |
-| `abort`                     | ✅  | ✅   | ➖  | ➖   | Abort git merge/rebase/cherry-pick/am                |
-| `add`                       | ✅  | ✅   | ➖  | ➖   | Add files to git staging area                        |
+| `abort`                     | ✅  | ✅   | ✅  | ➖   | Abort git merge/rebase/cherry-pick/am                |
+| `add`                       | ✅  | ✅   | ✅  | ➖   | Add files to git staging area                        |
 | `adev`                      | ➖  | ➖   | ➖  | ➖   | Android dev directory navigation                     |
-| `af`                        | ➖  | ✅   | ➖  | ➖   | Forced add files to git staging area                 |
-| `ai`                        | ➖  | ✅   | ➖  | ➖   | Interactively add files to git staging area          |
+| `af`                        | ➖  | ✅   | ✅  | ➖   | Forced add files to git staging area                 |
+| `ai`                        | ➖  | ✅   | ✅  | ➖   | Interactively add files to git staging area          |
 | `aks`                       | ➖  | ✅   | ➖  | ➖   | AKS related function                                 |
 | `alcatraz_clean`            | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `alcatraz_install`          | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -57,7 +57,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `alert`                     | ➖  | ➖   | ➖  | ✅   | Alert notification for long running commands         |
 | `allow_all_nginx`           | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `amendne`                   | ✅  | ✅   | ✅  | ➖   | Amend commit without editing message                 |
-| `amend`                     | ✅  | ✅   | ➖  | ➖   | Amend previous git commit                            |
+| `amend`                     | ✅  | ✅   | ✅  | ➖   | Amend previous git commit                            |
 | `ane`                       | ✅  | ✅   | ✅  | ➖   | Git amend without changing commit message            |
 | `appcast_url`               | ➖  | ✅   | ✅  | ➖   | Calculate appcast checkpoint                         |
 | `appicon`                   | ➖  | ✅   | ➖  | ➖   | Resizes AppIcon                                      |
@@ -68,7 +68,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `ard_restart`               | ➖  | ✅   | ➖  | ➖   | https://support.apple.com/en-us/HT201710             |
 | `arp-fix`                   | ➖  | ✅   | ✅  | ➖   | arp-fix                                              |
 | `arpstatus`                 | ➖  | ✅   | ✅  | ➖   | Shows current value of arp_unicast_lim               |
-| `assumed`                   | ➖  | ✅   | ➖  | ➖   | List files for which changes are ignored             |
+| `assumed`                   | ➖  | ✅   | ✅  | ➖   | List files for which changes are ignored             |
 | `assume`                    | ➖  | ✅   | ✅  | ➖   | Ignore changes to given files                        |
 | `asv`                       | ➖  | ✅   | ➖  | ➖   | Quick nav to ApplePlatformVersions dir               |
 | `as`                        | ➖  | ✅   | ➖  | ➖   | Open project in Android Studio                       |
@@ -81,12 +81,12 @@ This document tracks the implementation status of all shell functions and aliase
 | `bashman`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `battleapp`                 | ➖  | ✅   | ➖  | ➖   | Quick nav to BattleApp dir                           |
 | `bconfig`                   | ➖  | ✅   | ➖  | ➖   | Configures Bundler                                   |
-| `bdm`                       | ➖  | ✅   | ➖  | ➖   | Delete local branches which have been merged into    |
+| `bdm`                       | ➖  | ✅   | ✅  | ➖   | Delete local branches which have been merged into    |
 | `bD`                        | ✅  | ✅   | ✅  | ➖   | Forcefully delete a branch from git                  |
 | `bef`                       | ➖  | ✅   | ➖  | ➖   | Short alias for executing Fastlane through Bundler   |
 | `be`                        | ➖  | ✅   | ✅  | ➖   | Short alias for executing gems through Bundler       |
 | `bid`                       | ➖  | ✅   | ➖  | ➖   | https://gist.github.com/ttscoff/86fe788beb8c586986   |
-| `bigfiles`                  | ➖  | ✅   | ➖  | ➖   | Lists the 10 biggest files in the current director   |
+| `bigfiles`                  | ➖  | ✅   | ✅  | ➖   | Lists the 10 biggest files in the current director   |
 | `big`                       | ➖  | ✅   | ✅  | ➖   | Install gem bundle using local Gemfile               |
 | `bindings`                  | ➖  | ✅   | ➖  | ➖   | bindings.fish                                        |
 | `binstall`                  | ➖  | ✅   | ➖  | ➖   | Install Bundler with proper bindir                   |
@@ -158,7 +158,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `changelog`                 | ➖  | ✅   | ➖  | ➖   | Create changelog                                     |
 | `chat`                      | ➖  | ✅   | ➖  | ➖   | Chat function                                        |
 | `checkout`                  | ➖  | ✅   | ✅  | ➖   | Perform a git checkout                               |
-| `cherry-pick`               | ➖  | ✅   | ➖  | ➖   | Perform a git cherry-pick                            |
+| `cherry-pick`               | ➖  | ✅   | ✅  | ➖   | Perform a git cherry-pick                            |
 | `chexe`                     | ➖  | ✅   | ✅  | ➖   | Set executable permissions                           |
 | `chromei`                   | ➖  | ✅   | ➖  | ➖   | Launch Google Chrome in incognito mode               |
 | `chrome`                    | ➖  | ✅   | ➖  | ➖   | Launch Google Chrome                                 |
@@ -172,7 +172,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `codesign_verify`           | ➖  | ✅   | ➖  | ➖   | Verify the codesign of a bundle                      |
 | `col1`                      | ➖  | ✅   | ➖  | ➖   | Prints the first column of input (first argument)    |
 | `commit_count`              | ✅  | ✅   | ✅  | ➖   | Count commits by date for a branch                   |
-| `commit`                    | ✅  | ✅   | ➖  | ➖   | Perform a git commit                                 |
+| `commit`                    | ✅  | ✅   | ✅  | ➖   | Perform a git commit                                 |
 | `configg`                   | ➖  | ✅   | ✅  | ➖   | Manage global git configuration (~/.gitconfig)       |
 | `configxg`                  | ➖  | ✅   | ➖  | ➖   | Manage extended global git configuration ($XDG_CON   |
 | `config`                    | ➖  | ✅   | ➖  | ➖   | Manage git configuration                             |
@@ -217,13 +217,13 @@ This document tracks the implementation status of all shell functions and aliase
 | `developer_mode`            | ➖  | ✅   | ➖  | ➖   | Enables developer mode                               |
 | `devices`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `dib`                       | ➖  | ✅   | ➖  | ➖   | Build image from Dockerfile                          |
-| `difftool`                  | ✅  | ✅   | ➖  | ➖   | Perform a git diff using the configured tool (Kale   |
-| `diff`                      | ➖  | ✅   | ➖  | ➖   | Perform a git diff                                   |
+| `difftool`                  | ✅  | ✅   | ✅  | ➖   | Perform a git diff using the configured tool (Kale   |
+| `diff`                      | ➖  | ✅   | ✅  | ➖   | Perform a git diff                                   |
 | `dii`                       | ➖  | ✅   | ➖  | ➖   | Display detailed docker image info                   |
 | `dil`                       | ➖  | ✅   | ✅  | ➖   | List docker images                                   |
 | `din`                       | ➖  | ✅   | ➖  | ➖   | Remove all docker images                             |
 | `dip`                       | ➖  | ✅   | ➖  | ➖   | Remove unused docker images                          |
-| `dirty`                     | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `dirty`                     | ➖  | ✅   | ✅  | ➖   | Show repo dirty files                                |
 | `dir`                       | ➖  | ✅   | ➖  | ➖   | Remove docker images forcefully                      |
 | `displays`                  | ➖  | ✅   | ➖  | ➖   | Show info about connected displays                   |
 | `ditto_debug`               | ➖  | ✅   | ➖  | ➖   | Toggles DITTO_DEBUG flag                             |
@@ -254,8 +254,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `dss`                       | ➖  | ✅   | ✅  | ➖   | Scale replicated docker services                     |
 | `dsym_uuid`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `dsyminfo`                  | ➖  | ✅   | ➖  | ➖   | Displays information for a Dwarf symbol file         |
-| `dtc`                       | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `dt`                        | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `dtc`                       | ➖  | ✅   | ✅  | ➖   | Git difftool on cached/staged changes                |
+| `dt`                        | ➖  | ✅   | ✅  | ➖   | Git difftool shorthand                               |
 | `dvc`                       | ➖  | ✅   | ➖  | ➖   | Create docker volume                                 |
 | `dvi`                       | ➖  | ✅   | ➖  | ➖   | Display detailed docker volume info                  |
 | `dvl`                       | ➖  | ✅   | ✅  | ➖   | List docker volumes                                  |
@@ -373,7 +373,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `g`                         | ✅  | ✅   | ✅  | ➖   | Gradle alias                                         |
 | `has_space`                 | ➖  | ✅   | ✅  | ➖   | Fish function                                        |
 | `hcopy`                     | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `headsha`                   | ➖  | ✅   | ➖  | ➖   | Prints the full SHA1 hash of the current HEAD comm   |
+| `headsha`                   | ➖  | ✅   | ✅  | ➖   | Prints the full SHA1 hash of the current HEAD comm   |
 | `headshort`                 | ➖  | ✅   | ✅  | ➖   | Prints a 7-character abbreviated sha1 hash of the    |
 | `help`                      | ➖  | ➖   | ➖  | ➖   | Git help alias                                       |
 | `hgrep`                     | ➖  | ✅   | ✅  | ➖   | Grep command history                                 |
@@ -443,12 +443,12 @@ This document tracks the implementation status of all shell functions and aliase
 | `list`                      | ➖  | ✅   | ✅  | ✅   | Prints a list with each element on a separate line   |
 | `ll`                        | ✅  | ✅   | ✅  | ✅   | Long list                                            |
 | `log10`                     | ✅  | ✅   | ✅  | ➖   | Alias for git log                                    |
-| `log1`                      | ➖  | ✅   | ➖  | ➖   | Alias for git log                                    |
+| `log1`                      | ➖  | ✅   | ✅  | ➖   | Show last git commit with full details               |
 | `logo`                      | ➖  | ✅   | ➖  | ➖   | Prints the fish logo                                 |
 | `log`                       | ✅  | ✅   | ✅  | ➖   | Alias for `git log`                                  |
 | `lr`                        | ➖  | ✅   | ➖  | ➖   | sorted by date,recursive,show type,human readable    |
-| `ls-files`                  | ➖  | ✅   | ➖  | ➖   | Git ls-files                                         |
-| `ls-remote`                 | ➖  | ✅   | ➖  | ➖   | Git ls-remote                                        |
+| `ls-files`                  | ➖  | ✅   | ✅  | ➖   | Git ls-files                                         |
+| `ls-remote`                 | ➖  | ✅   | ✅  | ➖   | Git ls-remote                                        |
 | `ls-tree`                   | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `lscolors`                  | ➖  | ✅   | ➖  | ➖   | lscolors                                             |
 | `lsym`                      | ➖  | ✅   | ➖  | ➖   | List symbolic links in the current dir               |
@@ -467,8 +467,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `md`                        | ➖  | ✅   | ➖  | ➖   | Make dir and pushd into it                           |
 | `members`                   | ➖  | ✅   | ✅  | ➖   | List members of the given group                      |
 | `merge-base`                | ➖  | ✅   | ✅  | ➖   | Git merge-base wrapper                               |
-| `mergetool`                 | ✅  | ✅   | ➖  | ➖   | Perform a git merge using the configured tool (Kal   |
-| `merge`                     | ✅  | ✅   | ➖  | ➖   | Git merge                                            |
+| `mergetool`                 | ✅  | ✅   | ✅  | ➖   | Perform a git merge using the configured tool (Kal   |
+| `merge`                     | ✅  | ✅   | ✅  | ➖   | Git merge                                            |
 | `minecraft_server_port`     | ➖  | ✅   | ➖  | ➖   | Prints the port that a local Minecraft server is r   |
 | `minic`                     | ➖  | ✅   | ➖  | ➖   | SSH into mini as chatelain                           |
 | `mini`                      | ➖  | ✅   | ➖  | ➖   | Connect to mini using SSH                            |
@@ -536,7 +536,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `plformat`                  | ➖  | ✅   | ➖  | ➖   | Format plist files                                   |
 | `pllint`                    | ➖  | ✅   | ➖  | ➖   | Runs powerline-lint on custom config only            |
 | `pls_edit`                  | ➖  | ✅   | ➖  | ➖   | Edits Powerline Shell configuration                  |
-| `pop`                       | ✅  | ✅   | ➖  | ➖   | Undo last commit but leave staging area              |
+| `pop`                       | ✅  | ✅   | ✅  | ➖   | Undo last commit but leave staging area              |
 | `ports`                     | ➖  | ✅   | ➖  | ➖   | https://apple.stackexchange.com/questions/117644/h   |
 | `powerlinetest`             | ➖  | ✅   | ✅  | ➖   | Print special Powerline characters to test current   |
 | `pp`                        | ➖  | ✅   | ✅  | ➖   | Publish the phatblat branch                          |
@@ -571,7 +571,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `realmos`                   | ➖  | ✅   | ✅  | ➖   | Manage Realm Object Server                           |
 | `realm`                     | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `rebase`                    | ✅  | ✅   | ✅  | ➖   | Git rebase                                           |
-| `reflog`                    | ✅  | ✅   | ➖  | ➖   | Git reflog                                           |
+| `reflog`                    | ✅  | ✅   | ✅  | ➖   | Git reflog                                           |
 | `ref`                       | ➖  | ✅   | ➖  | ➖   | Prints the symbolic ref for the given treeish        |
 | `register_device`           | ➖  | ✅   | ➖  | ➖   | Runs the register_device.rb ruby script              |
 | `release`                   | ➖  | ✅   | ➖  | ➖   | Performs release steps on an Xcode project           |
@@ -584,12 +584,12 @@ This document tracks the implementation status of all shell functions and aliase
 | `renew_certificates`        | ➖  | ✅   | ➖  | ➖   | Renews certificates on servers                       |
 | `repeatchar`                | ➖  | ✅   | ➖  | ➖   | Repeats a character a fixed number of times          |
 | `repo_new`                  | ➖  | ✅   | ➖  | ➖   | Creates new GitHub repo using local dir as root      |
-| `reset`                     | ✅  | ✅   | ➖  | ➖   | Git reset                                            |
+| `reset`                     | ✅  | ✅   | ✅  | ➖   | Git reset                                            |
 | `restart`                   | ➖  | ✅   | ➖  | ➖   | Restarts the computer without prompt                 |
 | `restore`                   | ✅  | ✅   | ➖  | ➖   | Discards changes in working tree                     |
-| `rev-list`                  | ➖  | ✅   | ➖  | ➖   | Git rev-list                                         |
-| `rev-parse`                 | ➖  | ✅   | ➖  | ➖   | Git rev-parse                                        |
-| `revert`                    | ➖  | ✅   | ➖  | ➖   | Git revert                                           |
+| `rev-list`                  | ➖  | ✅   | ✅  | ➖   | Git rev-list                                         |
+| `rev-parse`                 | ➖  | ✅   | ✅  | ➖   | Git rev-parse                                        |
+| `revert`                    | ➖  | ✅   | ✅  | ➖   | Git revert                                           |
 | `review`                    | ✅  | ✅   | ✅  | ➖   | Review a given commit, default: HEAD                 |
 | `rewrite`                   | ➖  | ✅   | ✅  | ➖   | Rewrite commits changing author/committer info       |
 | `ri`                        | ✅  | ➖   | ➖  | ➖   | Interactive rebase for last N commits (default 10)   |
@@ -602,7 +602,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `r`                         | ✅  | ✅   | ✅  | ➖   | Interactive rebase for the last few commits, count   |
 | `savecerts`                 | ➖  | ✅   | ➖  | ➖   | Saves server certificates in binary (DER) format f   |
 | `sa`                        | ➖  | ✅   | ➖  | ➖   | Display git status                                   |
-| `scrub`                     | ➖  | ✅   | ➖  | ➖   | Deletes the given path and removes it from all git   |
+| `scrub`                     | ➖  | ✅   | ✅  | ➖   | Deletes the given path and removes it from all git   |
 | `search`                    | ➖  | ✅   | ➖  | ➖   | Search for CLI tools through package managers        |
 | `seed`                      | ➖  | ✅   | ➖  | ➖   | https://derflounder.wordpress.com/2018/01/06/setti   |
 | `servedraftd`               | ➖  | ✅   | ➖  | ➖   | Runs Jekyll server in background showing drafts      |
@@ -616,24 +616,24 @@ This document tracks the implementation status of all shell functions and aliase
 | `sg`                        | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `sha1`                      | ➖  | ✅   | ➖  | ➖   | Displays SHA1 hash of files                          |
 | `sha256`                    | ➖  | ✅   | ➖  | ➖   | sha256                                               |
-| `shacopy`                   | ➖  | ✅   | ➖  | ➖   | Copies the SHA1 hash of the HEAD commit to the gen   |
-| `sha`                       | ➖  | ✅   | ➖  | ➖   | Print the SHA1 of the HEAD commit                    |
+| `shacopy`                   | ➖  | ✅   | ✅  | ➖   | Copies the SHA1 hash of the HEAD commit to the gen   |
+| `sha`                       | ➖  | ✅   | ✅  | ➖   | Print the SHA1 of the HEAD commit                    |
 | `shell_add`                 | ➖  | ✅   | ➖  | ➖   | Register new shell in /etc/shells                    |
 | `shell_choose`              | ➖  | ✅   | ➖  | ➖   | Interactive prompting for choosing default shell     |
 | `shell_switch`              | ➖  | ✅   | ✅  | ➖   | Changes current $USER default shell                  |
 | `shellexec`                 | ➖  | ✅   | ➖  | ➖   | Quick nav to ShellExec project                       |
 | `shortlog`                  | ✅  | ✅   | ✅  | ➖   | Alias for shortlog                                   |
-| `shortsha`                  | ➖  | ✅   | ➖  | ➖   | Print the first 9 chars of the SHA1 of the HEAD co   |
-| `showcerts`                 | ➖  | ✅   | ➖  | ➖   | Shows server certificate information                 |
+| `shortsha`                  | ➖  | ✅   | ✅  | ➖   | Print the first 9 chars of the SHA1 of the HEAD co   |
+| `showcerts`                 | ➖  | ✅   | ✅  | ➖   | Shows server certificate information                 |
 | `showcert`                  | ➖  | ✅   | ✅  | ➖   | Prints server certificate file details               |
-| `showgit_remote`            | ➖  | ✅   | ➖  | ➖   | Searches for .git repos, printing remote URL         |
-| `showgit`                   | ➖  | ✅   | ➖  | ➖   | Searches for .git repos recursively below            |
+| `showgit_remote`            | ➖  | ✅   | ✅  | ➖   | Searches for .git repos, printing remote URL         |
+| `showgit`                   | ➖  | ✅   | ✅  | ➖   | Searches for .git repos recursively below            |
 | `showjdks`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `showsvn`                   | ➖  | ✅   | ✅  | ➖   | Show .svn directories in the current directory tre   |
-| `show`                      | ✅  | ✅   | ➖  | ➖   | Git show                                             |
+| `show`                      | ✅  | ✅   | ✅  | ➖   | Git show                                             |
 | `signing_cert_details`      | ➖  | ✅   | ➖  | ➖   | Prints signing certificate details                   |
 | `simclean`                  | ➖  | ✅   | ➖  | ➖   | Deletes all unavailable simulators                   |
-| `skip`                      | ➖  | ✅   | ➖  | ➖   | Skip current commit in git rebase/cherry-pick        |
+| `skip`                      | ➖  | ✅   | ✅  | ➖   | Skip current commit in git rebase/cherry-pick        |
 | `sortdiff`                  | ➖  | ✅   | ➖  | ➖   | Filter and sort a git diff showing only the change   |
 | `sort`                      | ➖  | ✅   | ➖  | ➖   | Wrapper for sort forcing byte ordering               |
 | `spmgenx`                   | ➖  | ✅   | ➖  | ➖   | Alias for Swift Package Manager generate-xcodeproj   |
@@ -649,7 +649,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `sshshowpub`                | ➖  | ✅   | ✅  | ➖   | Print SSH public key                                 |
 | `sshtest`                   | ➖  | ✅   | ✅  | ➖   | Tests SSH connection to GitHub                       |
 | `sshupload`                 | ➖  | ✅   | ✅  | ➖   | Uploads public RSA SSH key to GitHub profile         |
-| `stapply`                   | ✅  | ✅   | ➖  | ➖   | Apply a git stash                                    |
+| `stapply`                   | ✅  | ✅   | ✅  | ➖   | Apply a git stash                                    |
 | `starship_off`              | ✅  | ➖   | ➖  | ➖   | Remove starship prompt                               |
 | `starship_on`               | ✅  | ➖   | ➖  | ➖   | Regenerate and load starship prompt                  |
 | `stash`                     | ✅  | ✅   | ✅  | ➖   | Git stash                                            |
@@ -658,14 +658,14 @@ This document tracks the implementation status of all shell functions and aliase
 | `stat`                      | ➖  | ✅   | ➖  | ➖   | Disabled wrapper for stat                            |
 | `stdrop`                    | ✅  | ✅   | ✅  | ➖   | Remove a git stash                                   |
 | `stlist`                    | ✅  | ✅   | ✅  | ➖   | List git stashes                                     |
-| `stpop`                     | ✅  | ✅   | ➖  | ➖   | Apply and remove the top git stash                   |
+| `stpop`                     | ✅  | ✅   | ✅  | ➖   | Apply and remove the top git stash                   |
 | `strip_teams`               | ➖  | ✅   | ➖  | ➖   | Strip codesign from Teams app                        |
 | `stsave`                    | ✅  | ✅   | ✅  | ➖   | Save a git stash                                     |
 | `stshow`                    | ✅  | ✅   | ✅  | ➖   | Show a git stash                                     |
 | `stsnapshot`                | ➖  | ✅   | ➖  | ➖   | Saves a dirty working copy as a stash                |
 | `st`                        | ➖  | ✅   | ➖  | ➖   | Git stash                                            |
-| `submodule`                 | ✅  | ✅   | ➖  | ➖   | Git submodule                                        |
-| `subrepo`                   | ➖  | ✅   | ➖  | ➖   | Wrapper for git-subrepo                              |
+| `submodule`                 | ✅  | ✅   | ✅  | ➖   | Git submodule                                        |
+| `subrepo`                   | ➖  | ✅   | ✅  | ➖   | Wrapper for git-subrepo                              |
 | `subs`                      | ➖  | ✅   | ➖  | ➖   | Shows special submodule entries in index             |
 | `surf`                      | ➖  | ✅   | ➖  | ➖   | Opens Windsurf                                       |
 | `suri`                      | ➖  | ✅   | ✅  | ➖   | Init and update git submodules recursively           |
@@ -679,7 +679,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `sync`                      | ➖  | ✅   | ✅  | ➖   | Synchronizes git rep                                 |
 | `sysinfo`                   | ➖  | ✅   | ➖  | ➖   | Print system info                                    |
 | `s`                         | ✅  | ✅   | ✅  | ✅   | Display abbreviated git status                       |
-| `tag`                       | ✅  | ✅   | ➖  | ➖   | Manage git tags                                      |
+| `tag`                       | ✅  | ✅   | ✅  | ➖   | Manage git tags                                      |
 | `tarball`                   | ➖  | ✅   | ➖  | ➖   | Creates tarball                                      |
 | `tarls`                     | ➖  | ✅   | ➖  | ➖   | List contents of tarball                             |
 | `testpro`                   | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
@@ -694,8 +694,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `toggle_wait`               | ➖  | ✅   | ➖  | ➖   | Toggle wait                                          |
 | `touchbar_restart`          | ➖  | ✅   | ➖  | ➖   | Restarts TouchBar server                             |
 | `tower`                     | ✅  | ✅   | ✅  | ➖   | https://www.git-tower.com/help/mac/integration/cli   |
-| `tracked`                   | ➖  | ✅   | ➖  | ➖   | Displays files tracked in the current git repo       |
-| `tracking`                  | ➖  | ✅   | ➖  | ➖   | Display tracking info for current branch             |
+| `tracked`                   | ➖  | ✅   | ✅  | ➖   | Displays files tracked in the current git repo       |
+| `tracking`                  | ➖  | ✅   | ✅  | ➖   | Display tracking info for current branch             |
 | `track`                     | ✅  | ✅   | ✅  | ➖   | Creates local tracking branch                        |
 | `tredecim`                  | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `tube`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to Tube project                            |

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# tag - Manage git tags
+git tag "$@"

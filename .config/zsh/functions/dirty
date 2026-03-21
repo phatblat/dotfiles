@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# dirty - Show repo dirty files
+git clean -xd --force --dry-run

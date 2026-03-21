@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# shortsha - Print the short SHA1 of the HEAD commit
+git rev-parse --short HEAD "$@"

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# commit - Perform a git commit
+git commit --verbose "$@"

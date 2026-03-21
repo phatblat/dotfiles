@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# tracked - Displays files tracked in the current git repo
+git ls-tree -r --name-only HEAD "$@"

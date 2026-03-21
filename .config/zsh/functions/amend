@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# amend - Amend the previous git commit
+git commit --verbose --amend "$@"
