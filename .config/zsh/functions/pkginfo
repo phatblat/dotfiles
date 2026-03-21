@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# pkginfo - Shows metadata for the given installer package
+if [[ -z "$1" ]]; then
+  echo "Usage: pkginfo package_identifier"
+  return 1
+fi
+
+pkgutil --pkg-info "$1"

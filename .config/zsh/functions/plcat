@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# plcat - Display a property list file as XML using bat for syntax highlighting
+if [[ -z "$1" ]]; then
+  echo "Usage: plcat file"
+  return 1
+elif [[ ! -e "$1" ]]; then
+  echo "$1 does not exist"
+  return 2
+fi
+
+plutil -convert xml1 -o - -- "$1" | bat

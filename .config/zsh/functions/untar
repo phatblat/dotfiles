@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+
+# untar - Extracts a tarball into a directory named after the archive
+if [[ -z "$1" ]]; then
+  echo "Usage: untar file.tar.gz"
+  return 1
+elif [[ ! -f "$1" ]]; then
+  echo "File not found: $1"
+  return 2
+fi
+
+local file_name="$1"
+local dir_name="${file_name%%.*}"
+
+if [[ -d "$dir_name" ]]; then
+  echo "Extraction directory already exists: $dir_name"
+  return 3
+fi
+
+mkdir "$dir_name"
+tar --extract --gunzip --verbose \
+  --file "$file_name" \
+  --directory "$dir_name"

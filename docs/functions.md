@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 319 functions (primary shell)
+- Zsh: 329 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -17,8 +17,8 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Implemented in all 4 shells: 9
 - Implemented in 3 shells: 39
-- Implemented in 2 shells: 211
-- Implemented in 1 shell only: 455
+- Implemented in 2 shells: 221
+- Implemented in 1 shell only: 445
 
 **Functions Implemented in Multiple Shells:** 259
 
@@ -181,7 +181,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `cont`                      | ➖  | ✅   | ✅  | ➖   | Commit merge or continue rebase/cherry-pick          |
 | `co`                        | ✅  | ➖   | ➖  | ➖   | Git checkout operations                              |
 | `create_cert_localhost`     | ➖  | ✅   | ➖  | ➖   | https://stackoverflow.com/questions/8169999/how-ca   |
-| `createdirs`                | ➖  | ✅   | ➖  | ➖   | Creates set of directories if missing                |
+| `createdirs`                | ➖  | ✅   | ✅  | ➖   | Creates set of directories if missing                |
 | `cron_edit`                 | ➖  | ✅   | ➖  | ➖   | Opens cron file in editor                            |
 | `cron_list`                 | ➖  | ✅   | ➖  | ➖   | Prints cron file                                     |
 | `cron_reload`               | ➖  | ✅   | ➖  | ➖   | Reloads cron file                                    |
@@ -207,7 +207,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `ddd`                       | ➖  | ✅   | ✅  | ➖   | Delete Derived Data                                  |
 | `debug`                     | ➖  | ✅   | ✅  | ➖   | Prints args only when debug env var set              |
 | `defaults_set`              | ➖  | ✅   | ➖  | ➖   | --------------------------------------------------   |
-| `deflate`                   | ➖  | ✅   | ➖  | ➖   | Unzip git blobs                                      |
+| `deflate`                   | ➖  | ✅   | ✅  | ➖   | Unzip git blobs                                      |
 | `delete-tag`                | ➖  | ✅   | ✅  | ➖   | Deletes a git tag from both the local and remote r   |
 | `deleted`                   | ➖  | ✅   | ➖  | ➖   | Lists files deleted from git history                 |
 | `delivery`                  | ➖  | ✅   | ➖  | ➖   | Quick nav to shared library project                  |
@@ -525,14 +525,14 @@ This document tracks the implementation status of all shell functions and aliase
 | `pinkit`                    | ➖  | ✅   | ➖  | ➖   | Quick nav to PinKit dir                              |
 | `pipeline`                  | ➖  | ✅   | ➖  | ➖   | Quick nav to pipeline plugin project                 |
 | `pip`                       | ➖  | ✅   | ➖  | ➖   | https://stackoverflow.com/questions/58451650/pip-n   |
-| `pkgexpand`                 | ➖  | ✅   | ➖  | ➖   | Expands pkg file                                     |
-| `pkgfiles`                  | ➖  | ✅   | ➖  | ➖   | Shows files associated with the given installer pa   |
-| `pkgfind`                   | ➖  | ✅   | ➖  | ➖   | Scans through installer package identifiers for th   |
-| `pkginfo`                   | ➖  | ✅   | ➖  | ➖   | Shows metadata for the given installer package       |
+| `pkgexpand`                 | ➖  | ✅   | ✅  | ➖   | Expands pkg file                                     |
+| `pkgfiles`                  | ➖  | ✅   | ✅  | ➖   | Shows files associated with the given installer pa   |
+| `pkgfind`                   | ➖  | ✅   | ✅  | ➖   | Scans through installer package identifiers for th   |
+| `pkginfo`                   | ➖  | ✅   | ✅  | ➖   | Shows metadata for the given installer package       |
 | `pl_edit`                   | ➖  | ✅   | ✅  | ➖   | Edit Powerline config files                          |
 | `play`                      | ➖  | ✅   | ➖  | ➖   | Open Xcode playground                                |
-| `plcat`                     | ➖  | ✅   | ➖  | ➖   | Show Divvy plist                                     |
-| `pless`                     | ➖  | ✅   | ➖  | ➖   | Use less to view the XML of a property list file     |
+| `plcat`                     | ➖  | ✅   | ✅  | ➖   | Show Divvy plist                                     |
+| `pless`                     | ➖  | ✅   | ✅  | ➖   | Use less to view the XML of a property list file     |
 | `plformat`                  | ➖  | ✅   | ➖  | ➖   | Format plist files                                   |
 | `pllint`                    | ➖  | ✅   | ➖  | ➖   | Runs powerline-lint on custom config only            |
 | `pls_edit`                  | ➖  | ✅   | ➖  | ➖   | Edits Powerline Shell configuration                  |
@@ -681,7 +681,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `s`                         | ✅  | ✅   | ✅  | ✅   | Display abbreviated git status                       |
 | `tag`                       | ✅  | ✅   | ✅  | ➖   | Manage git tags                                      |
 | `tarball`                   | ➖  | ✅   | ➖  | ➖   | Creates tarball                                      |
-| `tarls`                     | ➖  | ✅   | ➖  | ➖   | List contents of tarball                             |
+| `tarls`                     | ➖  | ✅   | ✅  | ➖   | List contents of tarball                             |
 | `testpro`                   | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `textmate`                  | ➖  | ➖   | ✅  | ➖   | Manage TextMate bundles                              |
 | `theirs`                    | ➖  | ✅   | ✅  | ➖   | When checking out paths from the index, check out    |
@@ -706,7 +706,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `unmount`                   | ➖  | ✅   | ➖  | ➖   | Unmounts drive                                       |
 | `unshallow`                 | ➖  | ✅   | ✅  | ➖   | Converts shallow git repo to full                    |
 | `unstage`                   | ➖  | ✅   | ➖  | ➖   | Restores files in git index from HEAD                |
-| `untar`                     | ➖  | ✅   | ➖  | ➖   | Extracts tarball                                     |
+| `untar`                     | ➖  | ✅   | ✅  | ➖   | Extracts tarball                                     |
 | `untracked`                 | ➖  | ✅   | ✅  | ➖   | Displays files not tracked in the current git repo   |
 | `update_nvm`                | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `upmodule`                  | ➖  | ➖   | ✅  | ➖   | Optionally invokes an upstall module                 |

@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# pkgfind - Scans through installer package identifiers for the given name
+if [[ -z "$1" ]]; then
+  echo "Usage: pkgfind name"
+  return 1
+fi
+
+pkgutil --packages | grep -i "$1"

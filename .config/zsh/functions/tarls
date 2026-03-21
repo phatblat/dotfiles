@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# tarls - List contents of a tarball
+if [[ -z "$1" ]]; then
+  echo 'Usage: tarls [file_name]'
+  return 1
+fi
+
+tar -ztvf "$1"

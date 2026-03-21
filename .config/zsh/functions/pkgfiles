@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# pkgfiles - Shows files associated with the given installer package
+if [[ -z "$1" ]]; then
+  echo "Usage: pkgfiles package_identifier"
+  return 1
+fi
+
+pkgutil --files "$1"
