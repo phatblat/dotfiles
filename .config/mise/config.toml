@@ -39,7 +39,7 @@ dart = { version = "3.11.3", url = "https://storage.googleapis.com/dart-archive/
 delta = "0.19.0"
 direnv = "2.37.1"
 docker-cli = "29.3.0"
-docker-compose = "5.0.2"
+docker-compose = "5.1.1"
 dotnet = "10.0.201"
 fd = "10.4.2"
 fzf = "0.70.0"
