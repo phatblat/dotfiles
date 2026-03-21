@@ -1,9 +1,5 @@
 #!/usr/bin/env zsh
 
 # gt - Run gastown commands via ~/.local/bin/gt
-# In Claude Code sessions, pass through to the binary on PATH
-[[ -n "$CLAUDE_CODE" ]] && {
-    command gt "$@"
-    return
-}
+# Always invoke the binary directly; run from ~/gt for correct context
 (cd ~/gt && ~/.local/bin/gt "$@")
