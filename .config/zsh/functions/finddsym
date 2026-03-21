@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# finddsym - Locates a dSYM file with the given UUID
+local uuid=$1
+
+if [[ -z "$uuid" ]]; then
+    echo "Usage: finddsym uuid"
+    return 1
+fi
+
+mdfind "com_apple_xcode_dsym_uuids == <$uuid>"

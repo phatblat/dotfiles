@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# xcvall - Lists versions of all installed copies of Xcode
+mdfind kMDItemCFBundleIdentifier=com.apple.dt.Xcode
+
+echo
+echo "CLI tools"
+pkginfo com.apple.pkg.CLTools_Executables

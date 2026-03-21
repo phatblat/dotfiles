@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# version_current - Displays Xcode project version information
+echo "$(version_market) ($(version_build))"

@@ -8,7 +8,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 **Shell Statistics:**
 
-- Zsh: 365 functions (primary shell)
+- Zsh: 384 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -17,10 +17,10 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Implemented in all 4 shells: 9
 - Implemented in 3 shells: 39
-- Implemented in 2 shells: 235
-- Implemented in 1 shell only: 431
+- Implemented in 2 shells: 254
+- Implemented in 1 shell only: 412
 
-**Functions Implemented in Multiple Shells:** 273
+**Functions Implemented in Multiple Shells:** 292
 
 ## Status Legend
 
@@ -169,7 +169,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `clv`                       | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `cmtne`                     | ✅  | ✅   | ✅  | ➖   | Commit with default message                          |
 | `cmt`                       | ✅  | ✅   | ✅  | ➖   | Commit with message                                  |
-| `codesign_verify`           | ➖  | ✅   | ➖  | ➖   | Verify the codesign of a bundle                      |
+| `codesign_verify`           | ➖  | ✅   | ✅  | ➖   | Verify the codesign of a bundle                      |
 | `col1`                      | ➖  | ✅   | ✅  | ➖   | Prints the first column of input (first argument)    |
 | `commit_count`              | ✅  | ✅   | ✅  | ➖   | Count commits by date for a branch                   |
 | `commit`                    | ✅  | ✅   | ✅  | ➖   | Perform a git commit                                 |
@@ -253,7 +253,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `dsr`                       | ➖  | ✅   | ✅  | ➖   | Remove docker services                               |
 | `dss`                       | ➖  | ✅   | ✅  | ➖   | Scale replicated docker services                     |
 | `dsym_uuid`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `dsyminfo`                  | ➖  | ✅   | ➖  | ➖   | Displays information for a Dwarf symbol file         |
+| `dsyminfo`                  | ➖  | ✅   | ✅  | ➖   | Displays information for a Dwarf symbol file         |
 | `dtc`                       | ➖  | ✅   | ✅  | ➖   | Git difftool on cached/staged changes                |
 | `dt`                        | ➖  | ✅   | ✅  | ➖   | Git difftool shorthand                               |
 | `dvc`                       | ➖  | ✅   | ✅  | ➖   | Create docker volume                                 |
@@ -291,7 +291,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `find_appcast`              | ➖  | ✅   | ➖  | ➖   | Alias for Homebrew find_appcast script               |
 | `find_dotnet`               | ➖  | ✅   | ➖  | ➖   | Locates all copies of dotnet command                 |
 | `find_file`                 | ➖  | ✅   | ➖  | ➖   | Finds files under given base_dir                     |
-| `finddsym`                  | ➖  | ✅   | ➖  | ➖   | Locates a dSYM file with the given UUID              |
+| `finddsym`                  | ➖  | ✅   | ✅  | ➖   | Locates a dSYM file with the given UUID              |
 | `finds`                     | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `findup`                    | ➖  | ✅   | ➖  | ➖   | Recursively searches up directory tree               |
 | `firewall_allow_nginx`      | ➖  | ✅   | ➖  | ➖   | Configures the firewall to allow incoming connecti   |
@@ -398,7 +398,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `init`                      | ✅  | ✅   | ➖  | ➖   | Initialize new git repo in current/optional dir      |
 | `install_choices`           | ➖  | ✅   | ➖  | ➖   | Prints the choices available in the given installa   |
 | `install_powerline_prompt`  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `iphones`                   | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `iphones`                   | ➖  | ✅   | ✅  | ➖   | Show connected iOS devices                           |
 | `ip`                        | ➖  | ✅   | ➖  | ➖   | Show the current IPv4 address                        |
 | `is_arm`                    | ➖  | ✅   | ✅  | ➖   | Tests whether current system is arm                  |
 | `is_bash_login`             | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
@@ -543,11 +543,11 @@ This document tracks the implementation status of all shell functions and aliase
 | `prefs`                     | ➖  | ✅   | ➖  | ➖   | Opens System Preferences to specific pane            |
 | `prettyjson`                | ➖  | ✅   | ✅  | ➖   | Prints a formatted version of a JSON file            |
 | `print_profile`             | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `profile_id`                | ➖  | ✅   | ➖  | ➖   | Extracts the UUID from a .mobileprovision profile    |
+| `profile_id`                | ➖  | ✅   | ✅  | ➖   | Extracts the UUID from a .mobileprovision profile    |
 | `provdir`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `provisioning_dir`          | ➖  | ✅   | ➖  | ➖   | Open the Provisioning Profiles directory in Finder   |
 | `provisioning_print`        | ➖  | ✅   | ✅  | ➖   | Prints a text version of a provisioning profile      |
-| `provisioning_uuid`         | ➖  | ✅   | ➖  | ➖   | Prints the UUID                                      |
+| `provisioning_uuid`         | ➖  | ✅   | ✅  | ➖   | Prints the UUID from a provisioning profile          |
 | `prunep`                    | ➖  | ✅   | ➖  | ➖   | Prunes phatblat remote                               |
 | `prunesvn`                  | ➖  | ✅   | ➖  | ➖   | Delete the .svn directories from a directory heira   |
 | `prune`                     | ✅  | ✅   | ✅  | ➖   | Prune obsolete remote branches on given remote       |
@@ -631,8 +631,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `showjdks`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `showsvn`                   | ➖  | ✅   | ✅  | ➖   | Show .svn directories in the current directory tre   |
 | `show`                      | ✅  | ✅   | ✅  | ➖   | Git show                                             |
-| `signing_cert_details`      | ➖  | ✅   | ➖  | ➖   | Prints signing certificate details                   |
-| `simclean`                  | ➖  | ✅   | ➖  | ➖   | Deletes all unavailable simulators                   |
+| `signing_cert_details`      | ➖  | ✅   | ✅  | ➖   | Prints signing certificate details                   |
+| `simclean`                  | ➖  | ✅   | ✅  | ➖   | Deletes all unavailable simulators                   |
 | `skip`                      | ➖  | ✅   | ✅  | ➖   | Skip current commit in git rebase/cherry-pick        |
 | `sortdiff`                  | ➖  | ✅   | ➖  | ➖   | Filter and sort a git diff showing only the change   |
 | `sort`                      | ➖  | ✅   | ➖  | ➖   | Wrapper for sort forcing byte ordering               |
@@ -720,11 +720,11 @@ This document tracks the implementation status of all shell functions and aliase
 | `user_present`              | ➖  | ✅   | ✅  | ➖   | Indicates whether a user is present                  |
 | `user`                      | ➖  | ✅   | ✅  | ➖   | Displays info about current user                     |
 | `uuid_from_profile`         | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `version_build`             | ➖  | ✅   | ➖  | ➖   | Displays project version of current Xcode project    |
-| `version_current`           | ➖  | ✅   | ➖  | ➖   | Displays Xcode project version information           |
+| `version_build`             | ➖  | ✅   | ✅  | ➖   | Displays project version of current Xcode project    |
+| `version_current`           | ➖  | ✅   | ✅  | ➖   | Displays Xcode project version information           |
 | `version_enable`            | ➖  | ✅   | ➖  | ➖   | Runs enable-versioning.rb ruby script                |
-| `version_market`            | ➖  | ✅   | ➖  | ➖   | Displays marketing version of current Xcode project  |
-| `version`                   | ➖  | ✅   | ➖  | ➖   | Manage version numbers for Xcode project             |
+| `version_market`            | ➖  | ✅   | ✅  | ➖   | Displays marketing version of current Xcode project  |
+| `version`                   | ➖  | ✅   | ✅  | ➖   | Manage version numbers for Xcode project             |
 | `vimode`                    | ➖  | ✅   | ➖  | ➖   | Enable VI mode key bindings                          |
 | `warpify`                   | ➖  | ✅   | ➖  | ➖   | https://docs.warp.dev/features/subshells#automatic   |
 | `whichjdk`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -734,26 +734,26 @@ This document tracks the implementation status of all shell functions and aliase
 | `xcblist`                   | ➖  | ✅   | ➖  | ➖   | Lists info about first Xcode project found           |
 | `xcbschemes`                | ➖  | ✅   | ✅  | ➖   | Displays schemes for Xcode project                   |
 | `xcb`                       | ➖  | ✅   | ➖  | ➖   | Alias for xcodebuild                                 |
-| `xccheck`                   | ➖  | ✅   | ➖  | ➖   | Validates Xcode application binary integrity using   |
+| `xccheck`                   | ➖  | ✅   | ✅  | ➖   | Validates Xcode application binary integrity using   |
 | `xcdevices`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `xcdl`                      | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `xcfl`                      | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `xcinit`                    | ➖  | ✅   | ✅  | ➖   | Runs Xcode new_project.rb ruby script                |
-| `xclicense`                 | ➖  | ✅   | ➖  | ➖   | Agree to Xcode license                               |
-| `xclist`                    | ➖  | ✅   | ➖  | ➖   | Prints a clean list of paths for all installed ver   |
+| `xclicense`                 | ➖  | ✅   | ✅  | ➖   | Agree to Xcode license                               |
+| `xclist`                    | ➖  | ✅   | ✅  | ➖   | Prints a clean list of paths for all installed ver   |
 | `xcode_plugin_update_uuid`  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `xcodeplugin`               | ➖  | ✅   | ➖  | ➖   | Quick nav to xcodePlugin project                     |
 | `xcodes`                    | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `xconfd`                    | ➖  | ✅   | ✅  | ➖   | Quick dir navigation to nginx config dir             |
 | `xconf`                     | ➖  | ✅   | ✅  | ➖   | Edit nginx configuration files                       |
 | `xcsp`                      | ➖  | ✅   | ✅  | ➖   | Show the currently selected version of Xcode         |
-| `xcss`                      | ➖  | ✅   | ➖  | ➖   | Select a different version of Xcode                  |
-| `xcswitch`                  | ➖  | ✅   | ➖  | ➖   | Switch the active version of Xcode                   |
-| `xcvall`                    | ➖  | ✅   | ➖  | ➖   | Lists versions of all installed copies of Xcode      |
+| `xcss`                      | ➖  | ✅   | ✅  | ➖   | Select a different version of Xcode                  |
+| `xcswitch`                  | ➖  | ✅   | ✅  | ➖   | Switch the active version of Xcode                   |
+| `xcvall`                    | ➖  | ✅   | ✅  | ➖   | Lists versions of all installed copies of Xcode      |
 | `xcvmcache`                 | ➖  | ✅   | ➖  | ➖   | xcvmcache                                            |
 | `xcvmget`                   | ➖  | ✅   | ✅  | ➖   | xcvmget                                              |
 | `xcvmlist`                  | ➖  | ✅   | ➖  | ➖   | xcvmlist                                             |
-| `xcv`                       | ➖  | ✅   | ➖  | ➖   | Displays version of currently selected Xcode         |
+| `xcv`                       | ➖  | ✅   | ✅  | ➖   | Displays version of currently selected Xcode         |
 | `xc`                        | ➖  | ✅   | ✅  | ➖   | Xcode wrapper function                               |
 | `xcode`                     | ➖  | ➖   | ✅  | ➖   | Installs and updates Xcode                           |
 | `xerror`                    | ➖  | ✅   | ✅  | ➖   | Read nginx error log                                 |

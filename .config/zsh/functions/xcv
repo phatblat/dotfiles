@@ -1,0 +1,118 @@
+#!/usr/bin/env zsh
+
+# xcv - Displays the version of the currently selected Xcode
+local short_flag=$1
+
+local active_version
+active_version=$(xcode-select -p)
+
+if [[ "$active_version" == "/Library/Developer/CommandLineTools" ]]; then
+    printf '%s - ' "$active_version"
+    pkgutil --pkg-info=com.apple.pkg.DevSDK \
+        | grep version \
+        | awk '{print $2}'
+    return
+fi
+
+local version_plist="${active_version/Developer/}version.plist"
+
+if [[ ! -f "$version_plist" ]]; then
+    echo "Plist not found: $version_plist" >&2
+    return 1
+fi
+
+# Parse for marketing version
+local marketing_version
+marketing_version=$(
+    plutil -p "$version_plist" \
+        | grep CFBundleShortVersionString \
+        | sed 's/[^0-9\.]//g'
+)
+
+# Print only the marketing version if -s flag given
+if [[ "$short_flag" == "-s" ]]; then
+    echo "$marketing_version"
+    return
+fi
+
+# Parse for build version
+local build_version
+build_version=$(
+    plutil -p "$version_plist" \
+        | grep ProductBuildVersion \
+        | awk '{print $3}' \
+        | sed 's/"//g'
+)
+
+# Check if this is a beta build
+local beta_version=""
+case "$build_version" in
+    # 10.0
+    10L176w)  beta_version="beta 1 " ;;
+    10L177m)  beta_version="beta 2 " ;;
+    10L201y)  beta_version="beta 3 " ;;
+    10L213o)  beta_version="beta 4 " ;;
+    10L221o)  beta_version="beta 5 " ;;
+    10L232m)  beta_version="beta 6 " ;;
+    10A254a)  beta_version="GM seed " ;;
+    # 10.1
+    10O23ud)  beta_version="beta 1 " ;;
+    10O35n)   beta_version="beta 2 " ;;
+    10O45e)   beta_version="beta 3 " ;;
+    # 10.2
+    10P82s)   beta_version="beta 1 " ;;
+    10P91b)   beta_version="beta 2 " ;;
+    10P99q)   beta_version="beta 3 " ;;
+    10P107d)  beta_version="beta 4 " ;;
+    # 11.0
+    11M336w)  beta_version="beta 1 " ;;
+    11M337n)  beta_version="beta 2 " ;;
+    11M362v)  beta_version="beta 3 " ;;
+    11M374r)  beta_version="beta 4 " ;;
+    11M382q)  beta_version="beta 5 " ;;
+    11M392q)  beta_version="beta 6 " ;;
+    11M392r)  beta_version="beta 7 " ;;
+    11A419c)  beta_version="GM seed 1 " ;;
+    # 11.1
+    # 11A1027 - GM became GA
+    # 11.2
+    11B41)    beta_version="beta 1 " ;;
+    11B44)    beta_version="beta 2 " ;;
+    # 11.2.1
+    11B53)    beta_version="GM seed " ;;
+    # 11.3
+    11C24b)   beta_version="beta 1 " ;;
+    # 11.4
+    11N111s)  beta_version="beta 1 " ;;
+    11N123k)  beta_version="beta 2 " ;;
+    # 12.0
+    12A6159)  beta_version="beta 1 " ;;
+    12A6163b) beta_version="beta 2 " ;;
+    12A8169g) beta_version="beta 3 " ;;
+    12A8179i) beta_version="beta 4 " ;;
+    12A8189h) beta_version="beta 5 " ;;
+    12A8189n) beta_version="beta 6 " ;;
+    # 12.1.1
+    12A7605b) beta_version="RC " ;;
+    # 12.2
+    12B5044c) beta_version="RC " ;;
+    # 13.0
+    13A5154h) beta_version="beta 1 " ;;
+    13A5155e) beta_version="beta 2 " ;;
+    13A5192j) beta_version="beta 3 " ;;
+    13A5201i) beta_version="beta 4 " ;;
+    13A5212g) beta_version="beta 5 " ;;
+    # 13.3
+    13E5086k) beta_version="beta 1 " ;;
+    13E5095k) beta_version="beta 2 " ;;
+    13E5104i) beta_version="beta 3 " ;;
+    # 14.0
+    14A5228q) beta_version="beta 1 " ;;
+    14A5229c) beta_version="beta 2 " ;;
+    14A5270f) beta_version="beta 3 " ;;
+    14A5284g) beta_version="beta 4 " ;;
+    14A5294e) beta_version="beta 5 " ;;
+    14A5294g) beta_version="beta 6 " ;;
+esac
+
+echo "$marketing_version $beta_version($build_version)"

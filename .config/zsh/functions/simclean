@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# simclean - Deletes all unavailable simulators
+xcrun simctl delete unavailable

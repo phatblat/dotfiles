@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xcss - Select a different version of Xcode
+sudo xcode-select --switch "$@"

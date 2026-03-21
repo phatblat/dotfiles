@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+# version_build - Displays the project (aka build) version of the current Xcode project
+local plistbuddy=/usr/libexec/PlistBuddy
+local build_setting_name="CURRENT_PROJECT_VERSION"
+
+local project_file
+project_file=$(find . -maxdepth 2 -name "project.pbxproj" -path "*xcodeproj*" 2>/dev/null | head -1)
+if [[ -z "$project_file" ]]; then
+    echo "No xcodeproj found in current directory" >&2
+    return 1
+fi
+
+local root_object
+root_object=$("$plistbuddy" -c "Print :rootObject" "$project_file")
+
+local build_config_list
+build_config_list=$("$plistbuddy" -c "Print :objects:$root_object:buildConfigurationList" "$project_file")
+
+local project_versions=()
+local index
+for index in $(seq 0 10); do
+    local config
+    config=$("$plistbuddy" -c "Print :objects:$build_config_list:buildConfigurations:$index" "$project_file" 2>/dev/null) || break
+    local ver
+    ver=$("$plistbuddy" -c "Print :objects:$config:buildSettings:$build_setting_name" "$project_file" 2>/dev/null)
+    [[ -n "$ver" ]] && project_versions+=("$ver")
+done
+
+printf '%s\n' "${project_versions[@]}" | sort -u | head -1

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# xclicense - Agree to the Xcode license
+sudo xcodebuild -license accept

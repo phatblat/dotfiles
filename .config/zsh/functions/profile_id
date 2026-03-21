@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+# profile_id - Extracts the UUID from a .mobileprovision profile
+local profile=$1
+
+if [[ -z "$profile" ]]; then
+    echo "Usage: profile_id AppProfile.mobileprovision"
+    return 1
+fi
+
+grep -a -A 2 UUID "$profile" \
+    | grep string \
+    | sed -e 's/<string>//' -e 's/<\/string>//' -e 's/[ 	]//'

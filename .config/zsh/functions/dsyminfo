@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+# dsyminfo - Displays information for a Dwarf symbol file
+local file=$1
+
+if [[ -z "$file" ]]; then
+    echo "Usage: dsyminfo path/to/dsym"
+    return 1
+fi
+
+dwarfdump -u "$file" "${@:2}"
