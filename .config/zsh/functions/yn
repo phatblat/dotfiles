@@ -5,10 +5,16 @@ local prompt="$1"
 local answer
 
 while true; do
-  read "answer?${prompt}> "
-  case "$answer" in
-    y|yes|Y|YES) echo YES; return 0 ;;
-    n|no|N|NO)   echo NO;  return 1 ;;
+    read -r "answer?${prompt}> "
+    case "$answer" in
+    y | yes | Y | YES)
+        echo YES
+        return 0
+        ;;
+    n | no | N | NO)
+        echo NO
+        return 1
+        ;;
     *) ;;
-  esac
+    esac
 done

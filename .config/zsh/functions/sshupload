@@ -18,9 +18,10 @@ if [[ -z "$token" ]]; then
     return 2
 fi
 
-local github_user="phatblat"
-local key=$(cat "$keyfile")
-local title="${USER}@${HOST}_$(date +%Y%m%d%H%M%S)"
+local key
+key=$(cat "$keyfile")
+local title
+title="${USER}@${HOST}_$(date +%Y%m%d%H%M%S)"
 
 echo "Uploading SSH public key to GitHub [$keyfile]"
 

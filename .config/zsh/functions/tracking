@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
 
 # tracking - Display tracking information for the current branch
+# shellcheck disable=SC1083
 git rev-parse --abbrev-ref --symbolic-full-name @{u} "$@"

@@ -4,12 +4,12 @@
 local name="$1"
 
 if [[ -z "$name" ]]; then
-  echo "Usage: title Tab Name"
-  return 1
+    echo "Usage: title Tab Name"
+    return 1
 fi
 
 if [[ "$name" == "-" ]]; then
-  unset TAB_TITLE
+    unset TAB_TITLE
 else
-  export TAB_TITLE="$*"
+    export TAB_TITLE="$*"
 fi

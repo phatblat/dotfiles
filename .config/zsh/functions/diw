@@ -9,7 +9,7 @@ dip
 local images
 images=$(docker image ls --format '{{.Repository}} {{.ID}}' 'pingidentity/*')
 if [[ -n "$images" ]]; then
-  docker image rm --force $(docker image ls --format '{{.ID}}' 'pingidentity/*')
+    docker image rm --force "$(docker image ls --format '{{.ID}}' 'pingidentity/*')"
 else
-  echo "***No Ping Identity images present to remove***"
+    echo "***No Ping Identity images present to remove***"
 fi

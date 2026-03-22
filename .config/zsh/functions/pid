@@ -2,8 +2,8 @@
 
 # pid - Get PID for a process name
 if [[ -z "$1" ]]; then
-  echo "Usage: pid process_name"
-  return 1
+    echo "Usage: pid process_name"
+    return 1
 fi
 
 psgrep "$1" | awk '{print $2}'

@@ -2,8 +2,8 @@
 
 # sha256 - Compute SHA-256 checksums of files
 if [[ -z "$*" ]]; then
-  echo "Usage: sha256 file1 file2..."
-  return 1
+    echo "Usage: sha256 file1 file2..."
+    return 1
 fi
 
 shasum --algorithm 256 "$@"

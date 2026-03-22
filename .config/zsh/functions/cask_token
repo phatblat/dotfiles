@@ -3,11 +3,11 @@
 # cask_token - Generates a cask token for an app
 local path="$1"
 if [[ -z "$path" ]]; then
-  echo "Usage: cask_token path/to/software.app"
-  return 1
+    echo "Usage: cask_token path/to/software.app"
+    return 1
 elif [[ ! -e "$path" ]]; then
-  echo "$path does not exist"
-  return 2
+    echo "$path does not exist"
+    return 2
 fi
 
 "$(brew --repository)/Library/Taps/homebrew/homebrew-cask/developer/bin/generate_cask_token" "$path"

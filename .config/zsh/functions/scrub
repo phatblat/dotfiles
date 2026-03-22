@@ -9,16 +9,16 @@ if [[ -z "$delete_path" ]]; then
 fi
 
 echo -n "Are you sure you want to delete $delete_path and scrub that path from git history? [y/N] "
-read should_delete
+read -r should_delete
 
 case "$should_delete" in
-    y|yes|Y|YES)
-        echo "YES"
-        ;;
-    *)
-        echo "NO"
-        return 1
-        ;;
+y | yes | Y | YES)
+    echo "YES"
+    ;;
+*)
+    echo "NO"
+    return 1
+    ;;
 esac
 
 git filter-branch --force --index-filter \
