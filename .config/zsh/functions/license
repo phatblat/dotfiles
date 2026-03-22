@@ -4,7 +4,7 @@
 local year
 year=$(date "+%Y")
 
-cat > LICENSE.md <<EOF
+cat > LICENSE.md << EOF
 The MIT License (MIT)
 
 Copyright ©️ ${year} Ben Chatelain
@@ -28,7 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 EOF
 
-cat >> README.md <<'EOF'
+cat >> README.md << 'EOF'
 
 ## 📄 License
 

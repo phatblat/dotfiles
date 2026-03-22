@@ -5,143 +5,143 @@ echo "🍻  Homebrew Cask"
 echo
 
 local -a apps=(
-  1password
-  1password-cli
-  alfred
-  arc
-  brave-browser
-  charles
-  cheatsheet
-  cleanmymac
-  cmake
-  contexts
-  dash
-  deckset
-  docker
-  elgato-control-center
-  elgato-stream-deck
-  fig
-  firebase-admin
-  flutter
-  franz
-  ganache
-  geekbench
-  gitkraken
-  google-chrome
-  google-drive
-  gpg-suite
-  grammarly
-  hex-fiend
-  httpie
-  imageoptim
-  istat-menus
-  iterm2
-  jetbrains-toolbox
-  kaleidoscope
-  keyboard-maestro
-  keycastr
-  kobo
-  lapce
-  lastpass
-  latest
-  licecap
-  loom
-  macdown
-  meld
-  microblog
-  microsoft-edge
-  microsoft-teams
-  ngrok
-  nova
-  objectivesharpie
-  obsidian
-  oclint
-  paw
-  qt-creator
-  raspberry-pi-imager
-  remotion
-  rescuetime
-  rocket
-  safari-technology-preview
-  screens
-  simpholders
-  softraid
-  sublime-text
-  sublime-merge
-  teacode
-  temurin8
-  textmate
-  tg-pro
-  the-unarchiver
-  thingsmacsandboxhelper
-  tower
-  transmit
-  visual-studio
-  visual-studio-code
-  vivaldi
-  vmware-fusion
-  vysor
-  warp
-  witch
-  xcodes
-  zeplin
-  zoom
-  homebrew/cask-drivers/zsa-wally
+    1password
+    1password-cli
+    alfred
+    arc
+    brave-browser
+    charles
+    cheatsheet
+    cleanmymac
+    cmake
+    contexts
+    dash
+    deckset
+    docker
+    elgato-control-center
+    elgato-stream-deck
+    fig
+    firebase-admin
+    flutter
+    franz
+    ganache
+    geekbench
+    gitkraken
+    google-chrome
+    google-drive
+    gpg-suite
+    grammarly
+    hex-fiend
+    httpie
+    imageoptim
+    istat-menus
+    iterm2
+    jetbrains-toolbox
+    kaleidoscope
+    keyboard-maestro
+    keycastr
+    kobo
+    lapce
+    lastpass
+    latest
+    licecap
+    loom
+    macdown
+    meld
+    microblog
+    microsoft-edge
+    microsoft-teams
+    ngrok
+    nova
+    objectivesharpie
+    obsidian
+    oclint
+    paw
+    qt-creator
+    raspberry-pi-imager
+    remotion
+    rescuetime
+    rocket
+    safari-technology-preview
+    screens
+    simpholders
+    softraid
+    sublime-text
+    sublime-merge
+    teacode
+    temurin8
+    textmate
+    tg-pro
+    the-unarchiver
+    thingsmacsandboxhelper
+    tower
+    transmit
+    visual-studio
+    visual-studio-code
+    vivaldi
+    vmware-fusion
+    vysor
+    warp
+    witch
+    xcodes
+    zeplin
+    zoom
+    homebrew/cask-drivers/zsa-wally
 )
 
 local -a quicklook_plugins=(
-  provisionql
-  qlcolorcode
-  qlimagesize
-  qlmarkdown
-  qlprettypatch
-  qlstephen
-  quicklook-csv
-  quicklook-json
-  webpquicklook
+    provisionql
+    qlcolorcode
+    qlimagesize
+    qlmarkdown
+    qlprettypatch
+    qlstephen
+    quicklook-csv
+    quicklook-json
+    webpquicklook
 )
 
 local -a uninstall=(
-  homebrew/cask-versions/adoptopenjdk8
-  adoptopenjdk/openjdk/adoptopenjdk8
-  adoptopenjdk/openjdk/adoptopenjdk16
-  android-file-transfer
-  android-ndk
-  android-sdk
-  android-studio
-  anka-flow
-  anylist
-  appium
-  atom
-  battery-guardian
-  bee
-  beoplay-software-update
-  chef-workstation
-  cloudapp
-  cocoapods
-  cocoapods-app
-  dayone-cli
-  dbvisualizer
-  disk-inventory-x
-  docker-toolbox
-  duet
-  fauxpas
-  hipchat
-  hyper
-  ibm-cloud-cli
-  java9
-  mono-mdk
-  opera-gx
-  skype-for-business
-  sublime-text-dev
-  textexpander
-  things
-  timing
-  ultimate
-  virtualbox
-  xcproj
-  xmarks-safari
-  "${quicklook_plugins[@]}"
+    homebrew/cask-versions/adoptopenjdk8
+    adoptopenjdk/openjdk/adoptopenjdk8
+    adoptopenjdk/openjdk/adoptopenjdk16
+    android-file-transfer
+    android-ndk
+    android-sdk
+    android-studio
+    anka-flow
+    anylist
+    appium
+    atom
+    battery-guardian
+    bee
+    beoplay-software-update
+    chef-workstation
+    cloudapp
+    cocoapods
+    cocoapods-app
+    dayone-cli
+    dbvisualizer
+    disk-inventory-x
+    docker-toolbox
+    duet
+    fauxpas
+    hipchat
+    hyper
+    ibm-cloud-cli
+    java9
+    mono-mdk
+    opera-gx
+    skype-for-business
+    sublime-text-dev
+    textexpander
+    things
+    timing
+    ultimate
+    virtualbox
+    xcproj
+    xmarks-safari
+    "${quicklook_plugins[@]}"
 )
 
 local -a all_casks=("${apps[@]}")
@@ -151,9 +151,9 @@ local -a all_casks=("${apps[@]}")
 # --------------------------------------------------------------------------
 
 # Ensure Homebrew is installed.
-if ! type brew >/dev/null 2>&1; then
-  echo "Installing Homebrew"
-  /bin/bash -c "$(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh')"
+if ! type brew > /dev/null 2>&1; then
+    echo "Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh')"
 fi
 
 # --------------------------------------------------------------------------
@@ -163,7 +163,7 @@ fi
 echo "🚰  Updating formulae"
 brew update
 local -a installed
-installed=($(brew list --casks -1 2>/dev/null))
+installed=("$(brew list --casks -1 2> /dev/null)")
 echo
 echo "➡️  $(moj_host)  Installed: ${installed[*]}"
 
@@ -173,14 +173,14 @@ echo "➡️  $(moj_host)  Installed: ${installed[*]}"
 
 local -a to_uninstall=()
 for cask in "${uninstall[@]}"; do
-  if [[ " ${installed[*]} " == *" $cask "* ]]; then
-    to_uninstall+=("$cask")
-  fi
+    if [[ " ${installed[*]} " == *" $cask "* ]]; then
+        to_uninstall+=("$cask")
+    fi
 done
 if [[ ${#to_uninstall[@]} -gt 0 ]]; then
-  echo
-  echo "🗑  Uninstalling ${to_uninstall[*]}"
-  brew uninstall --cask --force "${to_uninstall[@]}"
+    echo
+    echo "🗑  Uninstalling ${to_uninstall[*]}"
+    brew uninstall --cask --force "${to_uninstall[@]}"
 fi
 
 # --------------------------------------------------------------------------
@@ -188,36 +188,36 @@ fi
 # --------------------------------------------------------------------------
 
 local -a outdated_casks
-outdated_casks=($(brew outdated --casks 2>/dev/null))
+outdated_casks=("$(brew outdated --casks 2> /dev/null)")
 if [[ ${#outdated_casks[@]} -gt 0 ]]; then
-  echo
-  echo "👵🏻  Outdated: ${outdated_casks[*]}"
-  for outdated in "${outdated_casks[@]}"; do
-    brew upgrade --cask "$outdated" --verbose --force
-  done
+    echo
+    echo "👵🏻  Outdated: ${outdated_casks[*]}"
+    for outdated in "${outdated_casks[@]}"; do
+        brew upgrade --cask "$outdated" --verbose --force
+    done
 fi
 
 # Install new casks
 local -a not_installed=()
 for full_cask in "${all_casks[@]}"; do
-  local cask="$full_cask"
-  # Strip off tap prefix (e.g. caskroom/versions/java8)
-  local tokens
-  IFS='/' read -ra tokens <<< "$cask"
-  if [[ ${#tokens[@]} -ge 3 ]]; then
-    cask="${tokens[2]}"
-  fi
+    local cask="$full_cask"
+    # Strip off tap prefix (e.g. caskroom/versions/java8)
+    local tokens
+    IFS='/' read -ra tokens <<< "$cask"
+    if [[ ${#tokens[@]} -ge 3 ]]; then
+        cask="${tokens[2]}"
+    fi
 
-  if [[ ! " ${installed[*]} " == *" $cask "* ]]; then
-    not_installed+=("$full_cask")
-  fi
+    if [[ ! " ${installed[*]} " == *" $cask "* ]]; then
+        not_installed+=("$full_cask")
+    fi
 done
 if [[ ${#not_installed[@]} -gt 0 ]]; then
-  echo
-  echo "🆕  Installing: ${not_installed[*]}"
-  for new_cask in "${not_installed[@]}"; do
-    brew install --cask --force "$new_cask"
-  done
+    echo
+    echo "🆕  Installing: ${not_installed[*]}"
+    for new_cask in "${not_installed[@]}"; do
+        brew install --cask --force "$new_cask"
+    done
 fi
 
 # --------------------------------------------------------------------------

@@ -4,6 +4,6 @@
 local image_name="$1"
 local image_version="${2:-latest}"
 docker run --rm --privileged --interactive --tty \
-  --volume "$PWD:/src" \
-  --workdir "/src" \
-  "$image_name:$image_version"
+    --volume "$PWD:/src" \
+    --workdir "/src" \
+    "$image_name:$image_version"

@@ -9,7 +9,7 @@ dip
 local images
 images=$(docker image ls --format '{{.ID}}')
 if [[ -n "$images" ]]; then
-  docker image rm $images
+    docker image rm "$images"
 else
-  echo "***No images present to remove***"
+    echo "***No images present to remove***"
 fi

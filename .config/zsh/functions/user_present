@@ -2,7 +2,7 @@
 
 # user_present - Indicates whether a user is present (login + interactive + job control)
 if [[ -o login ]] && [[ -o interactive ]] && [[ -o monitor ]]; then
-  return 0
+    return 0
 else
-  return 1
+    return 1
 fi

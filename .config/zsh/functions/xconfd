@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
 # xconfd - Quick dir navigation to nginx config dir
-pushd "$(brew_home)/etc/nginx"
+pushd "$(brew_home)/etc/nginx" || return

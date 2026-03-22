@@ -5,7 +5,7 @@ echo "Running command to: Stop all running containers"
 local running_containers
 running_containers=$(docker container ls --all --quiet)
 if [[ -n "$running_containers" ]]; then
-  docker container stop $running_containers
+    docker container stop "$running_containers"
 else
-  echo "No containers found to stop"
+    echo "No containers found to stop"
 fi

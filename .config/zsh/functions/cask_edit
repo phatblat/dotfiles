@@ -6,10 +6,10 @@ local cask_version="$2"
 local branch="$token"
 
 if [[ -z "$token" ]]; then
-  echo "Usage: cask_edit token [cask_version]"
-  return 1
+    echo "Usage: cask_edit token [cask_version]"
+    return 1
 elif [[ -n "$cask_version" ]]; then
-  branch="${token}-${cask_version}"
+    branch="${token}-${cask_version}"
 fi
 
 cask_dir
@@ -17,10 +17,10 @@ git checkout master
 git pull
 git checkout -b "$branch"
 
-if brew info --cask "$token" >/dev/null 2>&1; then
-  # If token exists, edit it
-  brew edit --cask "$token"
+if brew info --cask "$token" > /dev/null 2>&1; then
+    # If token exists, edit it
+    brew edit --cask "$token"
 else
-  # Otherwise, create
-  brew create --cask "$token"
+    # Otherwise, create
+    brew create --cask "$token"
 fi

@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
 # cask_dir - Quick nav to the Homebrew Casks tap
-pushd "$(brew --repository)/Library/Taps/homebrew/homebrew-cask/Casks"
+pushd "$(brew --repository)/Library/Taps/homebrew/homebrew-cask/Casks" || return

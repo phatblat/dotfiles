@@ -11,8 +11,8 @@ if [[ -z $remote_branch ]]; then
 fi
 
 if [[ -z $local_name ]]; then
-    c --track $remote_branch
+    c --track "$remote_branch"
     return 0
 fi
 
-c --track $remote_branch -b $local_name
+c --track "$remote_branch" -b "$local_name"

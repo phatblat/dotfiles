@@ -2,8 +2,9 @@
 
 # psgrep - Wrapper for ps which isolates processes containing a given string
 if [[ -z "$1" ]]; then
-  echo "Usage: psgrep process_name"
-  return 1
+    echo "Usage: psgrep process_name"
+    return 1
 fi
 
+# shellcheck disable=SC2009
 ps aux | grep --invert-match 'grep' | grep "$1"

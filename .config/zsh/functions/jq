@@ -5,12 +5,12 @@ local input
 input=$(cat)
 
 local output
-output=$(echo "$input" | command jq "$@" 2>/dev/null)
+output=$(echo "$input" | command jq "$@" 2> /dev/null)
 local jq_status=$?
 
 if [[ $jq_status -ne 0 ]]; then
-  printf "jq failed. Input was:\n%s\n" "$input" >&2
-  return 1
+    printf "jq failed. Input was:\n%s\n" "$input" >&2
+    return 1
 fi
 
 echo "$output"

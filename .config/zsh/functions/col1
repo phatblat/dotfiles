@@ -4,7 +4,7 @@
 # Multi-line content can be passed on stdin, assumed when given no arguments, or
 # a single dash.
 if [[ $# -eq 0 || "$1" == "-" ]]; then
-  awk '{print $1}'
+    awk '{print $1}'
 else
-  echo "$1" | awk '{print $1}'
+    echo "$1" | awk '{print $1}'
 fi

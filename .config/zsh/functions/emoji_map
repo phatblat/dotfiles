@@ -7,23 +7,23 @@
 local data_file=~/.config/fish/data/emoji.json
 
 if [[ -z "$*" ]]; then
-  cat "$data_file"
-  return
+    cat "$data_file"
+    return
 fi
 
 local missing_keys=()
 
 for key in "$@"; do
-  if jq --exit-status --raw-output ".$key" "$data_file" 2>/dev/null; then
-    : # key found, jq already printed it
-  else
-    missing_keys+=("$key")
-  fi
+    if jq --exit-status --raw-output ".$key" "$data_file" 2> /dev/null; then
+        : # key found, jq already printed it
+    else
+        missing_keys+=("$key")
+    fi
 done
 
 if [[ ${#missing_keys[@]} -eq 0 ]]; then
-  return 0
+    return 0
 else
-  error "No value found for keys: ${missing_keys[*]}"
-  return ${#missing_keys[@]}
+    error "No value found for keys: ${missing_keys[*]}"
+    return ${#missing_keys[@]}
 fi

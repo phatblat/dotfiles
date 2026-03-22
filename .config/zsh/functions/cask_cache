@@ -4,15 +4,15 @@
 local command="${1:-show}"
 
 case "$command" in
-  clean)
+clean)
     trash -v ~/Library/Caches/Homebrew/Cask
     ;;
-  show)
+show)
     echo "Homebrew Cask cache is user-specific"
     ls -la -d ~/Library/Caches/Homebrew/Cask
     ls -la ~/Library/Caches/Homebrew/Cask
     ;;
-  *)
+*)
     echo "Usage: cask_cache [clean|show]"
     return 1
     ;;
