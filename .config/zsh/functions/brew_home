@@ -4,8 +4,11 @@
 local formula="$1"
 
 if [[ -z "$BREW_HOME" ]]; then
+    # shellcheck disable=SC2154
     if (( $+commands[brew] )); then
-        export BREW_HOME="$(brew --prefix)"
+        local brew_prefix
+        brew_prefix="$(brew --prefix)"
+        export BREW_HOME="$brew_prefix"
     else
         if is_mac; then
             if [[ "$(uname -m)" == "arm64" ]]; then
