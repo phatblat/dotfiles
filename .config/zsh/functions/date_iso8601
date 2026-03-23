@@ -4,13 +4,13 @@
 local format="${1:-timezone}"
 
 case "$format" in
-  s|sh|short)
+s | sh | short)
     date "+%Y-%m-%d"
     ;;
-  z|gmt)
+z | gmt)
     date -u +"%Y-%m-%dT%H:%M:%SZ"
     ;;
-  *)
+*)
     date +%Y-%m-%dT%H:%M:%S%z
     ;;
 esac

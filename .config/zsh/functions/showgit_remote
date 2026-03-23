@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # showgit_remote - Searches for .git repos recursively below the current dir, printing remote URL
-for git_dir in $(showgit); do
+showgit | while read -r git_dir; do
     local dir
     dir=$(dirname "$git_dir")
     echo "$dir"

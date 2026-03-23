@@ -2,8 +2,8 @@
 
 # pless - Use less to view the XML of a property list file
 if [[ -z "$1" ]]; then
-  echo "Usage: pless file"
-  return 1
+    echo "Usage: pless file"
+    return 1
 fi
 
 plcat "$1" | less
