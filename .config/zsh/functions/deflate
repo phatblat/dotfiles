@@ -2,11 +2,11 @@
 
 # deflate - Unzip git blobs
 if [[ -z "$1" ]]; then
-  echo "Usage: deflate .git/objects/55/7db03de997c86a4a028e1ebd3a1ceb225be238"
-  return 1
+    echo "Usage: deflate .git/objects/55/7db03de997c86a4a028e1ebd3a1ceb225be238"
+    return 1
 elif [[ ! -f "$1" ]]; then
-  echo "$1 does not exist"
-  return 2
+    echo "$1 does not exist"
+    return 2
 fi
 
 perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)' "$1"

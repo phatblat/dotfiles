@@ -25,7 +25,7 @@ snapshot_sha=$(git show --pretty=oneline 'refs/stash@{0}' | head -n 1 | awk '{pr
 echo "snapshot: $snapshot_sha"
 
 # Create bundle
-git tag -d snapshot_end 2>/dev/null
+git tag -d snapshot_end 2> /dev/null
 git tag snapshot_end "$snapshot_sha"
 
 # This requires the HEAD commit to be present in the local repo

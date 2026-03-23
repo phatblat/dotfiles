@@ -2,8 +2,8 @@
 
 # pkgexpand - Expands a pkg file
 if [[ -z "$1" || -z "$2" ]]; then
-  echo 'Usage: pkgexpand package dest_dir'
-  return 1
+    echo 'Usage: pkgexpand package dest_dir'
+    return 1
 fi
 
 pkgutil --expand "$1" "$2"

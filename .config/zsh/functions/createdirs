@@ -2,12 +2,12 @@
 
 # createdirs - Creates a set of directories if they don't exist
 if [[ -z "$*" ]]; then
-  echo "Usage: createdirs dir1 dir2 ..."
-  return 1
+    echo "Usage: createdirs dir1 dir2 ..."
+    return 1
 fi
 
 for dir in "$@"; do
-  if [[ ! -e "$dir" ]]; then
-    mkdir -p "$dir"
-  fi
+    if [[ ! -e "$dir" ]]; then
+        mkdir -p "$dir"
+    fi
 done
