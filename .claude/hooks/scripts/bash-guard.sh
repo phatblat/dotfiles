@@ -63,7 +63,7 @@ fi
 #
 # Example:
 # obfuscation_patterns='eval .*\$|base64 -d.*\|.*(sh|bash)'
-obfuscation_patterns='eval\s+.*\$|base64\s+-d.*\|\s*(ba)?sh|sed\s+.*e\s|awk\s+.*system\s*\(|bash\s+<\('
+obfuscation_patterns='eval\s+.*\$|base64\s+-d.*\|\s*(ba)?sh|(^|[\s;|&])sed\s+.*e\s|awk\s+.*system\s*\(|bash\s+<\('
 
 if [ "$obfuscation_patterns" != "YOUR_PATTERNS_HERE" ]; then
     if echo "$command" | grep -qE "$obfuscation_patterns"; then
