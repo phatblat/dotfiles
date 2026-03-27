@@ -32,7 +32,7 @@ bats = "1.13.0"
 bazelisk = "1.28.1"
 bun = "1.3.11"
 caddy = "2.11.2"
-cmake = "4.3.0"
+cmake = "4.3.1"
 cocoapods = "1.16.2"
 codex = "0.117.0"
 dart = { version = "3.11.4", url = "https://storage.googleapis.com/dart-archive/channels/stable/release/{{ version }}/sdk/dartsdk-{{ os() }}-{{ arch() }}-release.zip", version_list_url = "https://storage.googleapis.com/storage/v1/b/dart-archive/o?prefix=channels/stable/release/&delimiter=/", version_regex = 'channels/stable/release/(\d+\.\d+\.\d+)/' }
