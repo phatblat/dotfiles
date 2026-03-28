@@ -31,6 +31,7 @@ If the user provides just a number (e.g., "696"), prepend "DEVX-" to form the fu
 
 <track_progress_with_todos>
 Use TaskCreate to track workflow phases. Create tasks for each major phase:
+
 1. Gather context
 2. Create branch
 3. Create plan
@@ -39,8 +40,8 @@ Use TaskCreate to track workflow phases. Create tasks for each major phase:
 6. Push & open draft PR
 7. Run tests
 8. Update Linear with results
-Use TaskUpdate to mark tasks complete as you proceed.
-</track_progress_with_todos>
+   Use TaskUpdate to mark tasks complete as you proceed.
+   </track_progress_with_todos>
 
 <continuous_execution>
 After plan approval, execute continuously until blocked or complete.
@@ -56,6 +57,7 @@ Start work on a Linear ticket end-to-end: gather context, plan, implement, test,
 `$ARGUMENTS`
 
 Parse arguments:
+
 - **Ticket ID** (required): Full identifier like `DEVX-696` or just a number (auto-prefixed with `DEVX-`).
 - **`--base <branch>`** (optional): Base branch to create the topic branch from. Defaults to `main`.
 
@@ -64,9 +66,10 @@ Parse arguments:
 ### 1.1 Fetch ticket details
 
 Use `mcp__linear__get_issue` to retrieve the ticket. Extract:
+
 - **Title**
 - **Description** (full markdown)
-- **Labels** (note K-*, A-*, S-*, P-* labels — these inform PR labeling later)
+- **Labels** (note K-\*, A-\*, S-\*, P-\* labels — these inform PR labeling later)
 - **Priority**
 - **Assignee**
 - **State**
@@ -78,6 +81,7 @@ Use `mcp__linear__list_comments` to read all comment threads on the ticket. Thes
 ### 1.3 Derive branch name
 
 From the ticket title, generate a descriptive kebab-case slug:
+
 - Strip special characters, lowercase everything
 - Keep it concise (3-5 words max)
 - Format: `ben/<ticket-id-lowercase>/<slug>`
@@ -86,6 +90,7 @@ From the ticket title, generate a descriptive kebab-case slug:
 ### 1.4 Assign ticket to me
 
 Use `mcp__linear__save_issue` to:
+
 - Set assignee to "me"
 - Set state to "In Progress"
 
@@ -105,55 +110,98 @@ If the base branch doesn't exist on remote, error and ask the user.
 ### 3.1 Analyze the codebase
 
 Based on the ticket description and comments, identify:
+
 - Which files/modules need changes
 - Existing patterns to follow
 - Dependencies and integration points
 
 Use `Glob`, `Grep`, and `Read` tools to explore the codebase. For complex exploration, use an `Agent` with `subagent_type=Explore`.
 
-### 3.2 Draft the plan
+### 3.2 Draft plans with diverse agents
 
-Create a structured plan with:
+Launch 2-3 `Agent` instances **in parallel**, each producing an independent plan that optimizes for a different concern. Every agent receives the same context (ticket details, comments, codebase findings from 3.1) but a different **optimization lens**.
+
+**Choosing lenses:** Pick 2-3 dimensions that create meaningful trade-offs for _this specific ticket_. Do not reuse the same set every time — select dimensions that surface real alternatives given the nature of the change.
+
+Example dimensions (pick what fits, invent others as needed):
+
+- Minimal diff / surgical change
+- Long-term maintainability / structural improvement
+- Performance / efficiency
+- Testability / observability
+- API ergonomics / developer experience
+- Backward compatibility / migration safety
+- Incremental delivery (shippable in stages)
+
+**Agent prompt structure:** Each agent should receive:
+
+- The ticket title, description, and comment context
+- The codebase analysis from 3.1 (relevant files, patterns, integration points)
+- Its assigned optimization lens and a one-sentence framing of what "good" means through that lens
+- The plan template below
+- Instructions to use `Read`, `Grep`, and `Glob` to verify assumptions about the codebase
+
+**Plan template** (each agent produces one):
 
 ```markdown
-## Plan: <TICKET-ID> — <Title>
+## Plan <LETTER>: <Short Label> — <TICKET-ID>
+
+**Optimizes for:** <lens in 3-5 words>
 
 ### Summary
-<1-2 sentence description of what needs to happen and why>
+
+<1-2 sentence description of the approach and why it makes the trade-offs it does>
 
 ### Changes
+
 1. <File/module> — <what changes and why>
 2. ...
 
 ### Test Plan
+
 - [ ] <Specific test step that can be validated>
-- [ ] <Another test step>
 - [ ] ...
 
+### Trade-offs
+
+- **Gains:** <what this approach does well>
+- **Costs:** <what it sacrifices or defers>
+
 ### Risks & Open Questions
+
 - <Any concerns or ambiguities>
 ```
 
 **Determining test plan steps:**
+
 - Check for `justfile` → use relevant `just build*`, `just test*`, `just lint*`, `just format*` recipes
 - Check for root `Makefile` (ditto monorepo) → use `make build-*`, `make test-*`, `make lint-*`, `make format-*` targets
 - Include compilation/type-check steps
 - Include any relevant integration or E2E tests
 - Include manual verification steps where automated tests don't cover
 
-### 3.3 Present plan to user
+### 3.3 Present plans and get selection
 
-Display the plan and **wait for explicit approval** before proceeding. Ask:
+Display all plans side-by-side with a brief **comparison summary** highlighting the key trade-off between them. Then ask:
 
-> Does this plan look good? Any changes before I post it to Linear and start implementation?
+> Here are the plans. You can:
+>
+> 1. Pick one as-is (e.g., "go with Plan B")
+> 2. Combine elements (e.g., "Plan A's approach but with Plan C's test strategy")
+> 3. Request a new angle if none fit
+>
+> Which direction?
 
-**STOP HERE and wait for user response. Do not proceed until the user approves.**
+**STOP HERE and wait for user response. Do not proceed until the user selects or synthesizes a plan.**
+
+If the user combines elements, synthesize a final plan that merges the requested pieces into a coherent whole before proceeding.
 
 ## Phase 4: Post Plan to Linear
 
-After approval, post the plan as a **new comment** on the Linear ticket using `mcp__linear__save_comment`:
+Post the **selected plan** (or synthesized hybrid) as a **new comment** on the Linear ticket using `mcp__linear__save_comment`:
+
 - `issueId`: the ticket identifier (e.g., `DEVX-696`)
-- `body`: the full plan in markdown
+- `body`: the final plan in markdown (include its label and optimization lens for traceability)
 
 Save the returned comment ID — all plan updates go to this thread using `parentId`.
 
@@ -161,12 +209,14 @@ Save the returned comment ID — all plan updates go to this thread using `paren
 
 ### 5.1 Determine implementation strategy
 
-Based on the plan complexity:
+Based on the selected plan's complexity:
+
 - **Simple (1-3 files, single concern)**: Implement directly
 - **Medium (4-8 files, related changes)**: Implement directly with logical commit grouping
 - **Complex (8+ files, multiple independent concerns)**: Spawn parallel `Agent` workers
 
 For parallel agents:
+
 1. Implement shared dependencies first (types, interfaces, core utilities)
 2. Spawn agents for independent work streams with clear boundaries
 3. Each agent gets: files to read for patterns, target files to modify, conventions to follow
@@ -174,6 +224,7 @@ For parallel agents:
 ### 5.2 Commit in logical groups
 
 Group related changes into cohesive commits using conventional commit format:
+
 - `feat(scope): description` for new features
 - `fix(scope): description` for bug fixes
 - `refactor(scope): description` for refactoring
@@ -196,11 +247,12 @@ This pushes the topic branch to the remote and sets up tracking between the loca
 ### 6.2 Determine PR labels
 
 Always include:
+
 - `D-skip-changelog`
 
 Select from the ticket's existing labels, plus infer from the changes:
 
-**Kind (K-*) — at least one required:**
+**Kind (K-\*) — at least one required:**
 | Label | When to use |
 |-------|------------|
 | `K-bug` | Fixing broken behavior |
@@ -213,18 +265,18 @@ Select from the ticket's existing labels, plus infer from the changes:
 | `K-removal` | Removing code/features |
 | `K-perf` | Performance work |
 
-**Area (A-*) — at least one required:**
+**Area (A-\*) — at least one required:**
 Infer from files changed. Common areas:
 `A-sdks`, `A-tools`, `A-ci-cd`, `A-tests`, `A-documentation`, `A-core-library`,
 `A-security`, `A-cloud-services`, `A-networking`, `A-replication`, `A-ffi`,
 `A-transports`, `A-observability`, `A-query`, `A-portal`, `A-operations`,
 `A-developer-experience`, `A-project-structure`, `A-auth`, `A-api`, `A-utilities`
 
-**SDK (S-*) — if SDK work:**
+**SDK (S-\*) — if SDK work:**
 `S-cocoa`, `S-kotlin`, `S-js`, `S-react-native`, `S-python`, `S-rust`,
 `S-wasm`, `S-go`, `S-java`, `S-flutter`, `S-dotnet`, `S-cpp`
 
-**Platform (P-*) — if platform-specific:**
+**Platform (P-\*) — if platform-specific:**
 `P-ios`, `P-android`, `P-macos`, `P-linux`, `P-windows`, `P-web`,
 `P-tvos`, `P-watchos`, `P-visionos`, `P-aaos`
 
@@ -269,6 +321,7 @@ Run each test step from the plan that can be validated locally:
 For each step, record: pass/fail, output summary, any issues found.
 
 If tests fail:
+
 1. Analyze the failure
 2. Fix if straightforward
 3. Commit the fix
@@ -284,13 +337,14 @@ Reply to the plan comment thread (using `parentId` from Phase 4) with test resul
 ```markdown
 ## Test Results
 
-| Step | Status | Notes |
-|------|--------|-------|
-| Build | ✅ Pass | ... |
-| Lint | ✅ Pass | ... |
+| Step  | Status  | Notes          |
+| ----- | ------- | -------------- |
+| Build | ✅ Pass | ...            |
+| Lint  | ✅ Pass | ...            |
 | Tests | ✅ Pass | X tests passed |
 
 ### PR
+
 <link to draft PR>
 ```
 
@@ -301,6 +355,7 @@ Check off completed test plan items in the PR description using `gh pr edit`.
 ### 8.3 Final status
 
 Report to user:
+
 - PR link
 - Test results summary
 - Any items needing manual review
