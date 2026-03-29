@@ -30,6 +30,9 @@
     "include_ignored": "smart"
   },
   "file_types": {
+    "Dockerfile": [
+      "*.Dockerfile"
+    ],
     "Shell Script": [
       ".config/fish/functions/*",
       ".config/zsh/functions/*",
