@@ -19,6 +19,12 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export CMAKE_PREFIX_PATH="/opt/homebrew/opt/llvm"
 
+# ICU4C (Homebrew keg-only, needed by go-icu-regex / beads)
+export CGO_CFLAGS="-I/opt/homebrew/opt/icu4c/include"
+export CGO_CXXFLAGS="-I/opt/homebrew/opt/icu4c/include"
+export CGO_LDFLAGS="-L/opt/homebrew/opt/icu4c/lib"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/icu4c/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/scripts:$HOME/.local/bin:/usr/local/bin:$PATH
 
