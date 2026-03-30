@@ -44,3 +44,6 @@ alias la='ls -la'
 if [[ -r "$HOME/.zshrc" ]]; then
   source "$HOME/.zshrc"
 fi
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
