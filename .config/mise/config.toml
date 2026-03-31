@@ -11,7 +11,7 @@
 "github:steveyegge/gastown" = "0.13.0"
 "go:github.com/steveyegge/beads/cmd/bd" = "0.63.3"
 "go:golang.org/x/tools/gopls" = "0.21.1"
-"npm:@googleworkspace/cli" = "0.22.3"
+"npm:@googleworkspace/cli" = "0.22.5"
 "npm:@linear/cli" = "0.0.5"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:ccusage" = "18.0.10"
