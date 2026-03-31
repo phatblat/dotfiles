@@ -139,13 +139,19 @@ unset _fn_file _fn_name
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+# Editor configuration
+export EDITOR_CLI='nvim'
+export EDITOR_GUI='zed'
+export WAIT_FLAG_CLI='--nofork'
+export WAIT_FLAG_GUI='--wait'
+
 # Preferred editor: zed locally, nvim over SSH
 if [[ -n "$SSH_CONNECTION" ]]; then
-  export EDITOR='nvim'
-  export VISUAL='nvim'
+  export EDITOR="$EDITOR_CLI"
+  export WAIT_FLAG="$WAIT_FLAG_CLI"
 else
-  export EDITOR='zed'
-  export VISUAL='zed'
+  export VISUAL="$EDITOR_GUI"
+  export WAIT_FLAG="$WAIT_FLAG_GUI"
 fi
 
 # Compilation flags
