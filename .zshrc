@@ -139,8 +139,14 @@ unset _fn_file _fn_name
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor
-export EDITOR='nvim'
+# Preferred editor: zed locally, nvim over SSH
+if [[ -n "$SSH_CONNECTION" ]]; then
+  export EDITOR='nvim'
+  export VISUAL='nvim'
+else
+  export EDITOR='zed'
+  export VISUAL='zed'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
