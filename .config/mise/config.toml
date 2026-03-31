@@ -81,7 +81,7 @@ zoxide = "0.9.9"
 
 [settings]
 experimental = true
-idiomatic_version_file_enable_tools = ["node", "node"]
+idiomatic_version_file_enable_tools = ["node"]
 
 [settings.aqua]
 github_attestations = false

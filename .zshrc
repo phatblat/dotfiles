@@ -188,7 +188,15 @@ fi
 # Initialize zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
 
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+# End of LM Studio CLI section
+
+# Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
+export PATH="/Users/phatblat/.git-ai/bin:$PATH"
+
 # Initialize mise - version manager for tools
+# NOTE: must be after other PATH modifications so mise paths take precedence
 eval "$(mise activate zsh)"
 
 # Initialize direnv - directory-based environment variables
@@ -200,13 +208,6 @@ fi
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
-# End of LM Studio CLI section
-
-# Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
-export PATH="/Users/phatblat/.git-ai/bin:$PATH"
 
 # PAI alias
 alias pai='bun /Users/phatblat/.claude/skills/PAI/Tools/pai.ts'
