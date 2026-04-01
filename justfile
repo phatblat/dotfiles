@@ -30,6 +30,10 @@ set unstable := true
 color_green := '\e[32m'
 color_reset := '\e[0m'
 
+# Zsh functions excluded from shfmt (space-separated, use unsupported zsh-specific syntax like ${=VAR})
+
+shfmt_exclude_functions := 'edit'
+
 #
 # aliases
 #
@@ -294,7 +298,7 @@ format: format-gitignore format-mise
     jq --sort-keys --indent 2 . ~/Library/Application\ Support/Claude/claude_desktop_config.json | sponge ~/Library/Application\ Support/Claude/claude_desktop_config.json
     jq --sort-keys --indent 2 . ~/.codexbar/config.json | sponge ~/.codexbar/config.json
     @echo "Formatting shell scripts..."
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shfmt -w -i 4 -sr {} +
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellharden --replace {} +
 
 #
