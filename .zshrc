@@ -43,23 +43,13 @@ fi
 autoload -Uz compinit
 compinit
 
-# Load custom functions
-# Source directly (instead of autoload) so Claude Code shell snapshots
-# capture full function bodies rather than unresolvable autoload stubs
+# Load custom functions via autoload (lazy-loaded on first call)
+fpath=(~/.config/zsh/functions $fpath)
 for _fn_file in ~/.config/zsh/functions/*(N); do
     [[ -f "$_fn_file" ]] || continue
     _fn_name="${_fn_file:t}"
-    # Skip non-function files (e.g. README.md)
     [[ "$_fn_name" == *.* ]] && continue
-    # Remove any alias that would shadow this function name
-    unalias "$_fn_name" 2>/dev/null
-    # Files that define their own function wrapper: source directly
-    # Autoload-style files (bare body): wrap via source from process substitution
-    if grep -qE "^(function ${_fn_name}[[:space:]{]|${_fn_name}[[:space:]]*\(\))" "$_fn_file" 2>/dev/null; then
-        source "$_fn_file"
-    else
-        source <(printf '%s() {\n' "$_fn_name"; cat "$_fn_file"; printf '\n}\n')
-    fi
+    autoload -Uz "$_fn_name"
 done
 unset _fn_file _fn_name
 
