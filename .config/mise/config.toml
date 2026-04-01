@@ -15,7 +15,7 @@
 "npm:@linear/cli" = "0.0.5"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:ccusage" = "18.0.10"
-"npm:claudekit" = "0.9.4"
+"npm:claudekit" = "0.9.5"
 "npm:gastown-gui" = "0.9.4"
 "npm:mint" = "4.2.462"
 "npm:prettier" = "3.8.1"
