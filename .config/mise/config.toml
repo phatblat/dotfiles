@@ -23,7 +23,7 @@
 "npm:yarn" = "1.22.22"
 "pipx:pyright" = "1.1.408"
 "pipx:python-lsp-server" = "1.14.0"
-"vfox:mise-plugins/vfox-gcloud" = "562.0.0"
+"vfox:mise-plugins/vfox-gcloud" = "563.0.0"
 act = "0.2.87"
 actionlint = "1.7.12"
 awscli = { version = "2.34.21", symlink_bins = "true" }
@@ -73,7 +73,7 @@ starship = "1.24.2"
 terraform = "1.14.8"
 tmux = "3.6a"
 uv = "0.11.2"
-xcbeautify = "3.1.4"
+xcbeautify = "3.1.5"
 xcodes = "1.6.2"
 yq = "4.52.5"
 zig = "0.15.2"
@@ -81,7 +81,7 @@ zoxide = "0.9.9"
 
 [settings]
 experimental = true
-idiomatic_version_file_enable_tools = ["node", "node"]
+idiomatic_version_file_enable_tools = ["node"]
 
 [settings.aqua]
 github_attestations = false

@@ -691,7 +691,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `tminstall`                 | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `tmsnapshots`               | ➖  | ✅   | ➖  | ➖   | List Time Machine Snapshots                          |
 | `todo`                      | ➖  | ✅   | ➖  | ➖   | Edit rebase todo file                                |
-| `toggle_wait`               | ➖  | ✅   | ➖  | ➖   | Toggle wait                                          |
+| `toggle_wait`               | ➖  | ✅   | ✅  | ➖   | Toggle the editor wait flag on VISUAL or EDITOR      |
 | `touchbar_restart`          | ➖  | ✅   | ➖  | ➖   | Restarts TouchBar server                             |
 | `tower`                     | ✅  | ✅   | ✅  | ➖   | https://www.git-tower.com/help/mac/integration/cli   |
 | `tracked`                   | ➖  | ✅   | ✅  | ➖   | Displays files tracked in the current git repo       |

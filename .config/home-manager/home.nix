@@ -35,7 +35,7 @@
     pkgs.kotlin-language-server
     pkgs.llvmPackages.llvm
     pkgs.gnumake
-    pkgs.mise
+    # pkgs.mise  # migrated to direct install via https://mise.run
     pkgs.nextdns
     pkgs.nushell
     pkgs.omnisharp-roslyn

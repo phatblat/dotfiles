@@ -25,137 +25,54 @@ export CGO_CXXFLAGS="-I/opt/homebrew/opt/icu4c/include"
 export CGO_LDFLAGS="-L/opt/homebrew/opt/icu4c/lib"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/icu4c/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
 
-# If you come from bash you might have to change your $PATH.
 export PATH=$HOME/scripts:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-export ZSH_THEME="clean" # set by `omz`
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew)
-
-# Install Oh My Zsh if missing
-if [[ ! -f "$ZSH/oh-my-zsh.sh" ]]; then
-  echo "Oh My Zsh not found. Installing..."
-  (
-    unset ZSH
-    RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-  )
+# Homebrew setup
+if (( ! $+commands[brew] )); then
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+fi
+if [[ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]]; then
+  fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
 fi
 
-source $ZSH/oh-my-zsh.sh
-unfunction d 2>/dev/null # Remove Oh My Zsh directory stack viewer
-unalias l 2>/dev/null    # Remove Oh My Zsh 'l' alias (conflicts with custom functions)
+# Initialize completion system
+autoload -Uz compinit
+compinit
 
-# Load custom functions
-# Source directly (instead of autoload) so Claude Code shell snapshots
-# capture full function bodies rather than unresolvable autoload stubs
+# Load custom functions via autoload (lazy-loaded on first call)
+fpath=(~/.config/zsh/functions $fpath)
 for _fn_file in ~/.config/zsh/functions/*(N); do
     [[ -f "$_fn_file" ]] || continue
     _fn_name="${_fn_file:t}"
-    # Skip non-function files (e.g. README.md)
     [[ "$_fn_name" == *.* ]] && continue
-    # Remove any alias that would shadow this function name
-    unalias "$_fn_name" 2>/dev/null
-    # Files that define their own function wrapper: source directly
-    # Autoload-style files (bare body): wrap via source from process substitution
-    if grep -qE "^(function ${_fn_name}[[:space:]{]|${_fn_name}[[:space:]]*\(\))" "$_fn_file" 2>/dev/null; then
-        source "$_fn_file"
-    else
-        source <(printf '%s() {\n' "$_fn_name"; cat "$_fn_file"; printf '\n}\n')
-    fi
+    autoload -Uz "$_fn_name"
 done
 unset _fn_file _fn_name
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Editor configuration
+export EDITOR_CLI='nvim'
+export EDITOR_GUI='zed'
+export WAIT_FLAG_CLI='--nofork'
+export WAIT_FLAG_GUI='--wait'
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor
-export EDITOR='nvim'
+# Preferred editor: zed locally, nvim over SSH
+if [[ -n "$SSH_CONNECTION" ]]; then
+  export EDITOR="$EDITOR_CLI"
+  export WAIT_FLAG="$WAIT_FLAG_CLI"
+else
+  export VISUAL="$EDITOR_GUI"
+  export WAIT_FLAG="$WAIT_FLAG_GUI"
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi="nvim"
 alias vim="nvim"
 
@@ -188,7 +105,15 @@ fi
 # Initialize zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
 
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+# End of LM Studio CLI section
+
+# Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
+export PATH="/Users/phatblat/.git-ai/bin:$PATH"
+
 # Initialize mise - version manager for tools
+# NOTE: must be after other PATH modifications so mise paths take precedence
 eval "$(mise activate zsh)"
 
 # Initialize direnv - directory-based environment variables
@@ -200,13 +125,6 @@ fi
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"
 fi
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
-# End of LM Studio CLI section
-
-# Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
-export PATH="/Users/phatblat/.git-ai/bin:$PATH"
 
 # PAI alias
 alias pai='bun /Users/phatblat/.claude/skills/PAI/Tools/pai.ts'

@@ -1,0 +1,43 @@
+#!/usr/bin/env zsh
+
+# toggle_wait - Toggle the editor wait flag on VISUAL or EDITOR
+# Given no arguments, switches the current state.
+# Otherwise sets it to the given state (on/off).
+local state="${1:-}"
+
+# Empty toggles the current state
+if [[ -z "$state" ]]; then
+  if [[ -z "$VISUAL" && "$EDITOR" == *"$WAIT_FLAG"* ]] \
+    || [[ -n "$VISUAL" && "$VISUAL" == *"$WAIT_FLAG"* ]]; then
+    echo -n "Wait mode enabled, disabling"
+    state=off
+  else
+    echo -n "Wait mode disabled, enabling"
+    state=on
+  fi
+fi
+
+case "${state:l}" in
+  on)
+    if [[ -z "$VISUAL" ]]; then
+      export EDITOR="$EDITOR_CLI $WAIT_FLAG_CLI"
+      echo " (EDITOR: $EDITOR)"
+    else
+      export VISUAL="$EDITOR_GUI $WAIT_FLAG_GUI"
+      echo " (VISUAL: $VISUAL)"
+    fi
+    ;;
+  off)
+    if [[ -z "$VISUAL" ]]; then
+      export EDITOR="$EDITOR_CLI"
+      echo " (EDITOR: $EDITOR)"
+    else
+      export VISUAL="$EDITOR_GUI"
+      echo " (VISUAL: $VISUAL)"
+    fi
+    ;;
+  *)
+    echo "Usage: toggle_wait [on|off]"
+    return 1
+    ;;
+esac
