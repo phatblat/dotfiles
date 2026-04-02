@@ -5,7 +5,7 @@
 
 # mise-managed tools, ordered alphabetically
 [tools]
-"github:dolthub/dolt" = "1.84.1"
+"github:dolthub/dolt" = "1.85.0"
 "github:harness/harness-cli" = "1.3.14"
 "github:schpet/linear-cli" = "1.11.1"
 "github:steveyegge/gastown" = "0.13.0"
@@ -17,7 +17,7 @@
 "npm:ccusage" = "18.0.10"
 "npm:claudekit" = "0.9.5"
 "npm:gastown-gui" = "0.9.4"
-"npm:mint" = "4.2.471"
+"npm:mint" = "4.2.473"
 "npm:prettier" = "3.8.1"
 "npm:vscode-langservers-extracted" = "4.10.0"
 "npm:yarn" = "1.22.22"
@@ -26,7 +26,7 @@
 "vfox:mise-plugins/vfox-gcloud" = "563.0.0"
 act = "0.2.87"
 actionlint = "1.7.12"
-awscli = { version = "2.34.21", symlink_bins = "true" }
+awscli = { version = "2.34.22", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.13.0"
 bazelisk = "1.28.1"
