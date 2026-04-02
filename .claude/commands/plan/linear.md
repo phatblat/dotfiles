@@ -1,6 +1,6 @@
 ---
 name: linear
-description: Start work on a Linear ticket — branch, plan, implement, test, PR
+description: Start work on a Linear ticket — plan, branch, implement, test, PR
 argument_hint: "<TICKET-ID> [--base <branch>] — e.g., DEVX-696, DEVX-42 --base release/4.15"
 allowed_tools:
   - Read
@@ -33,8 +33,8 @@ If the user provides just a number (e.g., "696"), prepend "DEVX-" to form the fu
 Use TaskCreate to track workflow phases. Create tasks for each major phase:
 
 1. Gather context
-2. Create branch
-3. Create plan
+2. Create plan
+3. Create branch (after plan approval)
 4. Post plan to Linear
 5. Implement changes
 6. Push & open draft PR
@@ -50,7 +50,7 @@ Stopping conditions: test failure needing user input, ambiguous requirement, ext
 
 # Linear Ticket Workflow
 
-Start work on a Linear ticket end-to-end: gather context, plan, implement, test, and open a draft PR.
+Start work on a Linear ticket end-to-end: gather context, plan, branch, implement, test, and open a draft PR.
 
 ## Arguments
 
@@ -94,20 +94,9 @@ Use `mcp__linear__save_issue` to:
 - Set assignee to "me"
 - Set state to "In Progress"
 
-## Phase 2: Create Branch
+## Phase 2: Create Plan
 
-```bash
-git fetch origin
-git checkout -b <branch-name> origin/<base-branch> --no-track
-```
-
-**IMPORTANT:** Use `--no-track` to avoid setting the topic branch to track the base branch (e.g., `main`). Tracking will be established between the local and remote copies of the topic branch when pushing in Phase 6.
-
-If the base branch doesn't exist on remote, error and ask the user.
-
-## Phase 3: Create Plan
-
-### 3.1 Analyze the codebase
+### 2.1 Analyze the codebase
 
 Based on the ticket description and comments, identify:
 
@@ -117,9 +106,9 @@ Based on the ticket description and comments, identify:
 
 Use `Glob`, `Grep`, and `Read` tools to explore the codebase. For complex exploration, use an `Agent` with `subagent_type=Explore`.
 
-### 3.2 Draft plans with diverse agents
+### 2.2 Draft plans with diverse agents
 
-Launch 2-3 `Agent` instances **in parallel**, each producing an independent plan that optimizes for a different concern. Every agent receives the same context (ticket details, comments, codebase findings from 3.1) but a different **optimization lens**.
+Launch 2-3 `Agent` instances **in parallel**, each producing an independent plan that optimizes for a different concern. Every agent receives the same context (ticket details, comments, codebase findings from 2.1) but a different **optimization lens**.
 
 **Choosing lenses:** Pick 2-3 dimensions that create meaningful trade-offs for _this specific ticket_. Do not reuse the same set every time — select dimensions that surface real alternatives given the nature of the change.
 
@@ -136,7 +125,7 @@ Example dimensions (pick what fits, invent others as needed):
 **Agent prompt structure:** Each agent should receive:
 
 - The ticket title, description, and comment context
-- The codebase analysis from 3.1 (relevant files, patterns, integration points)
+- The codebase analysis from 2.1 (relevant files, patterns, integration points)
 - Its assigned optimization lens and a one-sentence framing of what "good" means through that lens
 - The plan template below
 - Instructions to use `Read`, `Grep`, and `Glob` to verify assumptions about the codebase
@@ -180,7 +169,7 @@ Example dimensions (pick what fits, invent others as needed):
 - Include any relevant integration or E2E tests
 - Include manual verification steps where automated tests don't cover
 
-### 3.3 Present plans and get selection
+### 2.3 Present plans and get selection
 
 Display all plans side-by-side with a brief **comparison summary** highlighting the key trade-off between them. Then ask:
 
@@ -195,6 +184,19 @@ Display all plans side-by-side with a brief **comparison summary** highlighting 
 **STOP HERE and wait for user response. Do not proceed until the user selects or synthesizes a plan.**
 
 If the user combines elements, synthesize a final plan that merges the requested pieces into a coherent whole before proceeding.
+
+## Phase 3: Create Branch
+
+After the user approves a plan, create the topic branch before posting or implementing.
+
+```bash
+git fetch origin
+git checkout -b <branch-name> origin/<base-branch> --no-track
+```
+
+**IMPORTANT:** Use `--no-track` to avoid setting the topic branch to track the base branch (e.g., `main`). Tracking will be set up when pushing in Phase 6.
+
+If the base branch doesn't exist on remote, error and ask the user.
 
 ## Phase 4: Post Plan to Linear
 

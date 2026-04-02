@@ -6,10 +6,10 @@ local -a editor_cmd
 # Determine which editor to use
 if [[ -n "$VISUAL" ]]; then
     # shellcheck disable=SC2206  # Intentional zsh word splitting with ${=VAR}
-    editor_cmd=(${=VISUAL})
+    editor_cmd=("${=VISUAL}")
 elif [[ -n "$EDITOR" ]]; then
     # shellcheck disable=SC2206
-    editor_cmd=(${=EDITOR})
+    editor_cmd=("${=EDITOR}")
 else
     # Default to editors in order of preference: zed, void, windsurf, cursor, code, nvim, vim
     if command -v zed > /dev/null 2>&1; then
