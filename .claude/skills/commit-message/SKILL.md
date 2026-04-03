@@ -222,6 +222,9 @@ If user wants a PR:
 
 ```bash
 gh pr create --title "<title>" --body "$(cat <<'EOF'
+Resolves #[number] (if applicable)
+Related: #[PR-number] (if applicable)
+
 ## Summary
 - [bullet points of changes]
 
@@ -239,15 +242,18 @@ EOF
 - Use the body for details, not the title
 
 ### PR Body Template
+
+**IMPORTANT:** Ticket references and links to related PRs MUST appear above the first heading, on their own lines, so they are immediately visible.
+
 ```markdown
+Closes #[number] (if applicable)
+Related: #[PR-number] (if applicable)
+
 ## Summary
 [1-3 bullet points describing what changed and why]
 
 ## Test Plan
 - [ ] [Steps to verify the changes work]
-
-## Related Issues
-Closes #[number] (if applicable)
 ```
 
 **Always confirm PR title and body before creating.**

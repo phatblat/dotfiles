@@ -290,9 +290,9 @@ gh pr create --draft \
   --assignee phatblat \
   --label "D-skip-changelog,<K-label>,<A-label>,<additional-labels>" \
   --body "$(cat <<'EOF'
-## Summary
-
 Resolves [DEVX-NNN](https://linear.app/ditto/issue/DEVX-NNN)
+
+## Summary
 
 <1-3 bullet points describing the changes>
 

@@ -217,6 +217,7 @@ sg --pattern 'function_name' --lang fish
 - **Never force push** to main/master
 - **GPG commit signing** enabled
 - **No `--no-verify`** — Never bypass pre-commit hooks
+- **PR body format:** Ticket references (e.g., `Resolves DEVX-123`) and links to related PRs must appear above the first heading in the PR body, on their own lines, so they are immediately visible
 
 ### When Hooks Fail
 
