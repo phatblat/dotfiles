@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+
+# xclist - Prints a clean list of paths for all installed versions of Xcode
+#
+# Options:
+# -1 (The numeric digit 'one'.) Force output to be one entry per line.
+local option=$1
+local app_dirs=(/Applications ~/Applications)
+local xcodes=()
+
+local app_dir
+for app_dir in "${app_dirs[@]}"; do
+    local matches=("$app_dir"/Xcode*.app)
+    [[ -e "${matches[1]}" ]] && xcodes+=("${matches[@]}")
+done
+
+# One entry per line, no colors (non-interactive or -1 flag)
+if [[ ! -t 1 || "$option" == "-1" ]]; then
+    printf '%s\n' "${xcodes[@]}"
+    return
+fi
+
+# Colorized output showing symlink target
+local xcode_path
+for xcode_path in "${xcodes[@]}"; do
+    local link_target
+    link_target=$(readlink "$xcode_path")
+    if [[ -n "$link_target" ]]; then
+        # Symlinks in magenta
+        printf '\033[35m%s\033[0m -> %s\n' "$xcode_path" "$link_target"
+    else
+        # Directories in blue
+        printf '\033[34m%s\033[0m\n' "$xcode_path"
+    fi
+done

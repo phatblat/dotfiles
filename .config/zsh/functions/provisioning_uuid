@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# provisioning_uuid - Prints the UUID from a provisioning profile
+local profile_path=$1
+
+if [[ -z "$profile_path" ]]; then
+    echo "Usage: provisioning_uuid path/to/profile.mobileprovision"
+    return 1
+fi
+
+provisioning_print "$profile_path" \
+    | grep UUID -A 1 \
+    | tail -n 1 \
+    | cut -d ">" -f 2 \
+    | cut -d "<" -f 1

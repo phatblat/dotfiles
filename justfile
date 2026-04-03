@@ -163,6 +163,11 @@ install:
 upgrade *args:
     mise upgrade --bump {{ args }}
 
+# Upgrades mise itself
+[group('configuration')]
+upgrade-mise:
+    mise self-update
+
 # Upgrades each outdated tool and commits the version change individually
 [group('configuration')]
 upgrade-commits:

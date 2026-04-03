@@ -210,9 +210,14 @@ sg --pattern 'function_name' --lang fish
 
 - **Conventional commits:** `feat:`, `fix:`, `docs:`, `chore:`, etc. (imperative mood, present tense)
 - **Feature branches:** Topic-based naming (e.g., `ben/fix-authentication`)
+- **Branch tracking:** When pushing a new branch, always use an explicit refspec so remote tracking targets the same branch name — never the base branch. `main` is protected and cannot be pushed to.
+  ```bash
+  git push -u <remote> <branch>:<branch>
+  ```
 - **Never force push** to main/master
 - **GPG commit signing** enabled
 - **No `--no-verify`** — Never bypass pre-commit hooks
+- **PR body format:** Ticket references (e.g., `Resolves DEVX-123`) and links to related PRs must appear above the first heading in the PR body, on their own lines, so they are immediately visible
 
 ### When Hooks Fail
 

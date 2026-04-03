@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# signing_cert_details - Prints signing certificate details
+local cert_name=$1
+
+if [[ -z "$cert_name" ]]; then
+    echo "Usage: signing_cert_details \"iOS Dev: Me\"" >&2
+    echo "Use the list_codesign_identities function to find the certificate name." >&2
+    return 1
+fi
+
+security find-certificate \
+    -c "$cert_name" \
+    -p \
+    | openssl x509 -text

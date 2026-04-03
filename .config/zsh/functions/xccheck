@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# xccheck - Validates Xcode application binary integrity using spctl
+local xcode_version
+for xcode_version in $(xclist -1); do
+    echo "Checking integrity of $xcode_version"
+    spctl --assess --verbose "$xcode_version"
+done
