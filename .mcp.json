@@ -1,13 +1,5 @@
 {
   "mcpServers": {
-    "linear": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
-    },
-    "mintlify-ditto": {
-      "type": "http",
-      "url": "https://docs.ditto.live/mcp"
-    },
     "obsidian": {
       "command": "npx",
       "args": [
