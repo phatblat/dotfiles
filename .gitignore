@@ -69,6 +69,7 @@
 .claude.json.backup
 .claude.json.backup.*
 .claude.json.tmp.*
+.claude/security_warnings_state_*.json
 .claude_settings.json
 .clawdbot/
 .cmake-js/
