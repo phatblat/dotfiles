@@ -117,6 +117,16 @@
           }
         ],
         "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash ~/.claude/hooks/scripts/main-branch-guard.sh",
+            "timeout": 2,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
       }
     ],
     "SessionEnd": [
