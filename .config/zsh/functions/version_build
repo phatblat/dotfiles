@@ -19,7 +19,7 @@ build_config_list=$("$plistbuddy" -c "Print :objects:$root_object:buildConfigura
 
 local project_versions=()
 local index
-for index in "$(seq 0 10)"; do
+for index in $(seq 0 10); do
     local config
     config=$("$plistbuddy" -c "Print :objects:$build_config_list:buildConfigurations:$index" "$project_file" 2> /dev/null) || break
     local ver
