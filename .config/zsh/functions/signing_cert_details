@@ -11,5 +11,5 @@ fi
 
 security find-certificate \
     -c "$cert_name" \
-    -p \
-    | openssl x509 -text
+    -p |
+    openssl x509 -text

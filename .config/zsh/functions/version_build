@@ -5,7 +5,7 @@ local plistbuddy=/usr/libexec/PlistBuddy
 local build_setting_name="CURRENT_PROJECT_VERSION"
 
 local project_file
-project_file=$(find . -maxdepth 2 -name "project.pbxproj" -path "*xcodeproj*" 2>/dev/null | head -1)
+project_file=$(find . -maxdepth 2 -name "project.pbxproj" -path "*xcodeproj*" 2> /dev/null | head -1)
 if [[ -z "$project_file" ]]; then
     echo "No xcodeproj found in current directory" >&2
     return 1
@@ -21,9 +21,9 @@ local project_versions=()
 local index
 for index in $(seq 0 10); do
     local config
-    config=$("$plistbuddy" -c "Print :objects:$build_config_list:buildConfigurations:$index" "$project_file" 2>/dev/null) || break
+    config=$("$plistbuddy" -c "Print :objects:$build_config_list:buildConfigurations:$index" "$project_file" 2> /dev/null) || break
     local ver
-    ver=$("$plistbuddy" -c "Print :objects:$config:buildSettings:$build_setting_name" "$project_file" 2>/dev/null)
+    ver=$("$plistbuddy" -c "Print :objects:$config:buildSettings:$build_setting_name" "$project_file" 2> /dev/null)
     [[ -n "$ver" ]] && project_versions+=("$ver")
 done
 

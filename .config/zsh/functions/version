@@ -6,42 +6,42 @@ local market_version=$2
 local build_version=$3
 
 case "$action" in
-    build)
-        version_build
-        ;;
-    market)
-        version_market
-        ;;
-    set)
-        if [[ -z "$market_version" ]]; then
-            echo "Usage: version set 1.1 123456"
-            return 1
-        fi
+build)
+    version_build
+    ;;
+market)
+    version_market
+    ;;
+set)
+    if [[ -z "$market_version" ]]; then
+        echo "Usage: version set 1.1 123456"
+        return 1
+    fi
 
-        agvtool new-marketing-version "$market_version" > /dev/null
+    agvtool new-marketing-version "$market_version" > /dev/null
 
-        if [[ -n "$build_version" ]]; then
-            agvtool new-version -all "$build_version" > /dev/null
-        fi
+    if [[ -n "$build_version" ]]; then
+        agvtool new-version -all "$build_version" > /dev/null
+    fi
 
-        version_current
-        ;;
-    bump)
-        local current_build
-        current_build=$(version_build)
-        agvtool next-version -all > /dev/null
+    version_current
+    ;;
+bump)
+    local current_build
+    current_build=$(version_build)
+    agvtool next-version -all > /dev/null
 
-        # Workaround for agvtool dropping leading zeros (e.g. 010001)
-        local first_char="${current_build:0:1}"
-        if [[ "$first_char" == "0" ]]; then
-            local new_build
-            new_build=$(version_build)
-            agvtool new-version -all "0${new_build}" > /dev/null
-        fi
+    # Workaround for agvtool dropping leading zeros (e.g. 010001)
+    local first_char="${current_build:0:1}"
+    if [[ "$first_char" == "0" ]]; then
+        local new_build
+        new_build=$(version_build)
+        agvtool new-version -all "0${new_build}" > /dev/null
+    fi
 
-        version_current
-        ;;
-    *)
-        version_current
-        ;;
+    version_current
+    ;;
+*)
+    version_current
+    ;;
 esac

@@ -8,6 +8,6 @@ if [[ -z "$profile" ]]; then
     return 1
 fi
 
-grep -a -A 2 UUID "$profile" \
-    | grep string \
-    | sed -e 's/<string>//' -e 's/<\/string>//' -e 's/[ 	]//'
+grep -a -A 2 UUID "$profile" |
+    grep string |
+    sed -e 's/<string>//' -e 's/<\/string>//' -e 's/[ 	]//'

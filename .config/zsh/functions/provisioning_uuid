@@ -8,8 +8,8 @@ if [[ -z "$profile_path" ]]; then
     return 1
 fi
 
-provisioning_print "$profile_path" \
-    | grep UUID -A 1 \
-    | tail -n 1 \
-    | cut -d ">" -f 2 \
-    | cut -d "<" -f 1
+provisioning_print "$profile_path" |
+    grep UUID -A 1 |
+    tail -n 1 |
+    cut -d ">" -f 2 |
+    cut -d "<" -f 1

@@ -6,11 +6,11 @@
       "id": "claude"
     },
     {
-      "enabled": false,
+      "enabled": true,
       "id": "codex"
     },
     {
-      "enabled": false,
+      "enabled": true,
       "id": "gemini"
     },
     {
@@ -88,6 +88,10 @@
     {
       "enabled": false,
       "id": "openrouter"
+    },
+    {
+      "enabled": false,
+      "id": "alibaba"
     }
   ],
   "version": 1
