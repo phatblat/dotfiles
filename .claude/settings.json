@@ -1,5 +1,6 @@
 {
   "enabledPlugins": {
+    "caveman@caveman": true,
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
@@ -8,6 +9,7 @@
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
@@ -15,7 +17,6 @@
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
-    "linear@claude-plugins-official": true,
     "wasteland@gastownhall-marketplace": true
   },
   "env": {
@@ -24,6 +25,12 @@
     "MAX_MCP_OUTPUT_TOKENS": "25000"
   },
   "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "repo": "JuliusBrussee/caveman",
+        "source": "github"
+      }
+    },
     "gastownhall-marketplace": {
       "source": {
         "repo": "gastownhall/marketplace",
