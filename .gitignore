@@ -46,6 +46,8 @@
 .azurefunctions/
 .bash_history
 .bash_sessions/
+.beadboard/
+.beadbox/
 .beads/
 .bluemix/
 .build/
@@ -137,6 +139,7 @@
 .config/fish/h
 .config/fisherman/
 .config/flutter/tool_state
+.config/foolery/
 .config/gcloud/
 .config/gedit/
 .config/gh/hosts-ci.yml

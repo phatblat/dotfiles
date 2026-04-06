@@ -210,10 +210,11 @@ sg --pattern 'function_name' --lang fish
 
 - **Conventional commits:** `feat:`, `fix:`, `docs:`, `chore:`, etc. (imperative mood, present tense)
 - **Feature branches:** Topic-based naming (e.g., `ben/fix-authentication`)
-- **Branch tracking:** When pushing a new branch, always use an explicit refspec so remote tracking targets the same branch name — never the base branch. `main` is protected and cannot be pushed to.
+- **Branch tracking:** `push.autoSetupRemote` is enabled globally, so `git push` automatically sets up tracking on first push. When pushing explicitly, always use an explicit refspec so remote tracking targets the same branch name — never the base branch. `main` is protected and cannot be pushed to.
   ```bash
   git push -u <remote> <branch>:<branch>
   ```
+  After any branch creation + push, verify tracking is correct with `git branch -vv`.
 - **Never force push** to main/master
 - **GPG commit signing** enabled
 - **No `--no-verify`** — Never bypass pre-commit hooks

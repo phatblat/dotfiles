@@ -1,8 +1,11 @@
 {
   "preferences": {
     "ccdScheduledTasksEnabled": true,
+    "chicagoEnabled": true,
+    "coworkOnboardingResumeStep": null,
     "coworkScheduledTasksEnabled": true,
     "coworkWebSearchEnabled": true,
+    "keepAwakeEnabled": true,
     "menuBarEnabled": false,
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"

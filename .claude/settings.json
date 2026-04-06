@@ -15,6 +15,7 @@
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
     "wasteland@gastownhall-marketplace": true
   },
   "env": {
@@ -113,6 +114,16 @@
           {
             "command": "/Users/phatblat/.claude/hooks/rtk-rewrite.sh",
             "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash ~/.claude/hooks/scripts/main-branch-guard.sh",
+            "timeout": 2,
             "type": "command"
           }
         ],
