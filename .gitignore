@@ -139,6 +139,7 @@
 .config/fish/h
 .config/fisherman/
 .config/flutter/tool_state
+.config/foolery/
 .config/gcloud/
 .config/gedit/
 .config/gh/hosts-ci.yml
