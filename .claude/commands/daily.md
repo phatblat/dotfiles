@@ -77,19 +77,30 @@ Check if today's branch already exists:
 - **Exists only on remote** (check `git ls-remote --heads ${remote} ${today}`): `git checkout -b ${today} ${remote}/${today}`
 - **Does not exist**: `git checkout -b ${today}` — creates from the default branch
 
-### 6. Push and Create Draft PR (Idempotent)
+**Immediately after creating or switching to today's branch**, ensure remote tracking is set up:
 
-First, check for an existing PR:
+```bash
+git push -u ${remote} ${today}:${today}
+```
+
+Then verify tracking:
+
+```bash
+git branch -vv | grep "${today}"
+```
+
+This ensures tracking is established before any commits are made, not deferred to PR creation.
+
+### 6. Create Draft PR (Idempotent)
+
+Check for an existing PR:
 
 ```bash
 gh pr list --head "${today}" --state open --json number,url --jq '.[0] | "\(.number)|\(.url)"'
 ```
 
 - **PR exists**: Report the existing PR number and URL. Skip creation.
-- **No PR**: Push and create:
-  ```bash
-  git push -u ${remote} ${today}:${today}
-  ```
+- **No PR**: Create one (branch was already pushed in step 5):
   ```bash
   gh pr create --draft --title "chore: ${today} ${today_date}" --body "Daily dotfiles branch for ${today}, ${today_date}."
   ```
