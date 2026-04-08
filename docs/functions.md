@@ -120,7 +120,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `bu`                        | ➖  | ✅   | ✅  | ➖   | Update gems in bundle                                |
 | `bvv`                       | ➖  | ✅   | ✅  | ➖   | Display git branch with details                      |
 | `bv`                        | ➖  | ✅   | ✅  | ➖   | Display the version of bundler                       |
-| `b`                         | ✅  | ✅   | ➖  | ➖   | Manage git branch                                    |
+| `b`                         | ✅  | ✅   | ✅  | ➖   | Manage git branch                                    |
 | `cargo_target`              | ➖  | ✅   | ✅  | ➖   | argparse 'h/help' 'n/name' -- $argv                  |
 | `carthage-clean`            | ➖  | ✅   | ➖  | ➖   | Clean the Carthage cache folder                      |
 | `cask_audit`                | ➖  | ✅   | ✅  | ➖   | Audits a Homebrew cask                               |
