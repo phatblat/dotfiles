@@ -79,9 +79,16 @@ Check if today's branch already exists:
 
 **Immediately after creating or switching to today's branch**, ensure remote tracking is set up:
 
-```bash
-git push -u ${remote} ${today}:${today}
-```
+- **Branch is newly created (no remote)**: Push to establish tracking:
+  ```bash
+  git push -u ${remote} ${today}:${today}
+  ```
+- **Branch already exists on remote**: Fetch and fast-forward to avoid non-fast-forward rejections (e.g., when switching machines):
+  ```bash
+  git fetch ${remote} ${today}
+  git merge --ff-only ${remote}/${today}
+  ```
+  If the fast-forward fails (local has diverged), warn the user and ask how to proceed rather than force-pushing.
 
 Then verify tracking:
 
