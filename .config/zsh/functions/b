@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# b - Manage git branch
+git branch "$@"
