@@ -108,7 +108,7 @@
 	user = phatblat
 [gpg]
 	format = ssh
-	program = /opt/homebrew/bin/gpg
+	program = /usr/local/bin/gpg
 [hub]
 	protocol = ssh
 [init]
@@ -141,6 +141,6 @@
 [http]
 	postBuffer = 157286400
 [gpg "ssh"]
-	allowedSignersFile = ~/.git-allowed-signers
+	allowedsignersfile = ~/.git-allowed-signers
 [credential "https://dev.azure.com"]
 	useHttpPath = true

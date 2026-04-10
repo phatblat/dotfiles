@@ -25,7 +25,17 @@ echo "remote=${remote} today=${today} date=${today_date} default=${default_branc
 
 Record all values for use in subsequent steps.
 
-### 2. Check for Uncommitted Changes
+### 2. Prune Remote-Tracking Branches
+
+Remove stale remote-tracking references (e.g., `phatblat/wednesday` lingering after the remote branch was deleted via PR merge):
+
+```bash
+git fetch ${remote} --prune
+```
+
+Report any pruned refs from the output (lines starting with ` - [deleted]`). This keeps `git branch -r` accurate before subsequent branch operations.
+
+### 3. Check for Uncommitted Changes
 
 ```bash
 git status --porcelain=v1
@@ -37,7 +47,7 @@ If the working tree is dirty:
 - Do NOT silently stash or discard changes
 - Wait for user response before proceeding
 
-### 3. Clean Up Previous Daily Branches
+### 4. Clean Up Previous Daily Branches
 
 Check all seven weekday names: `monday tuesday wednesday thursday friday saturday sunday`
 
@@ -60,7 +70,7 @@ For each remaining weekday that exists as a local branch (`git branch --list <we
    - **PR closed but unmerged** (`state=CLOSED`): Leave it. Warn: "Branch `<weekday>` has closed-but-unmerged PR #N — leaving it."
    - **No PR found** (empty result): Leave it. Warn: "Branch `<weekday>` has no PR — leaving it."
 
-### 4. Switch to Default Branch and Pull Latest
+### 5. Switch to Default Branch and Pull Latest
 
 Only switch if not already on the default branch:
 
@@ -69,7 +79,7 @@ git checkout ${default_branch}
 git pull ${remote} ${default_branch}
 ```
 
-### 5. Create or Switch to Today's Branch
+### 6. Create or Switch to Today's Branch
 
 Check if today's branch already exists:
 
@@ -98,7 +108,7 @@ git branch -vv | grep "${today}"
 
 This ensures tracking is established before any commits are made, not deferred to PR creation.
 
-### 6. Create Draft PR (Idempotent)
+### 7. Create Draft PR (Idempotent)
 
 Check for an existing PR:
 
@@ -112,7 +122,7 @@ gh pr list --head "${today}" --state open --json number,url --jq '.[0] | "\(.num
   gh pr create --draft --title "chore: ${today} ${today_date}" --body "Daily dotfiles branch for ${today}, ${today_date}."
   ```
 
-### 7. Report Summary
+### 8. Report Summary
 
 Output a summary like:
 
@@ -122,6 +132,9 @@ Output a summary like:
 Branch: sunday
 PR: #278 (draft) — chore: sunday 2026-04-06
 
+Pruned remote-tracking refs:
+  - phatblat/tuesday
+
 Cleaned up:
   - saturday (#277, merged) — deleted local + remote
 
@@ -129,16 +142,19 @@ Still around:
   - friday (#275, open) — left alone
 ```
 
+If nothing was pruned, omit the "Pruned remote-tracking refs" section.
+
 If nothing was cleaned up, report "No previous daily branches to clean up."
 
 ## Edge Cases
 
 | Scenario | Handling |
 |----------|----------|
-| Run twice same day | Step 5 switches to existing branch; Step 6 reports existing PR |
-| Dirty working tree | Step 2 asks user before proceeding |
-| Previous PR unmerged | Step 3 leaves branch with warning |
+| Run twice same day | Step 6 switches to existing branch; Step 7 reports existing PR |
+| Dirty working tree | Step 3 asks user before proceeding |
+| Previous PR unmerged | Step 4 leaves branch with warning |
 | Multi-day gap | All 7 weekday names are checked, not just yesterday |
-| Remote branch already deleted | Step 3 checks `git ls-remote` before attempting delete |
-| Already on today's branch | Step 4 skips checkout to default; Step 5 is a no-op |
-| Already on default branch | Step 4 skips checkout, just pulls |
+| Remote branch already deleted | Step 4 checks `git ls-remote` before attempting delete |
+| Already on today's branch | Step 5 skips checkout to default; Step 6 is a no-op |
+| Already on default branch | Step 5 skips checkout, just pulls |
+| Stale remote-tracking refs | Step 2 prunes them via `git fetch --prune` |

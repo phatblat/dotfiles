@@ -380,6 +380,7 @@
 .tooling/
 .travis/
 .trunk/
+.tsh/
 .vagrant.d/
 .vault-token
 .vault_pass.txt
