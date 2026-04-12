@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+# _set_tab_title - Set Warp tab title to git repo name or current directory
+local repo_name
+repo_name=$(git rev-parse --show-toplevel 2>/dev/null)
+if [[ -n "$repo_name" ]]; then
+  print -Pn "\e]1;${repo_name:t}\e\\"
+else
+  print -Pn "\e]1;${PWD:t}\e\\"
+fi
