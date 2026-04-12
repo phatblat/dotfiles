@@ -53,6 +53,10 @@ for _fn_file in ~/.config/zsh/functions/*(N); do
 done
 unset _fn_file _fn_name
 
+# Set Warp tab title to git repo name on directory change
+WARP_DISABLE_AUTO_TITLE=true
+precmd_functions+=(_set_tab_title)
+
 # User configuration
 
 # Editor configuration
