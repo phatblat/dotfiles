@@ -54,9 +54,8 @@ done
 unset _fn_file _fn_name
 
 # Set Warp tab title to git repo name on directory change
-autoload -Uz add-zsh-hook
-add-zsh-hook chpwd _set_tab_title
-_set_tab_title
+WARP_DISABLE_AUTO_TITLE=true
+precmd_functions+=(_set_tab_title)
 
 # User configuration
 
