@@ -74,6 +74,7 @@ xcodes = "1.6.2"
 yq = "4.52.5"
 zig = "0.15.2"
 zoxide = "0.9.9"
+"cargo:foxguard" = "0.6.2"
 
 [settings]
 experimental = true
