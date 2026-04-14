@@ -132,7 +132,3 @@ fi
 
 # PAI alias
 alias pai='bun /Users/phatblat/.claude/skills/PAI/Tools/pai.ts'
-
-# --- Gas Town Integration (managed by gt) ---
-[[ -f "/Users/phatblat/.config/gastown/shell-hook.sh" ]] && source "/Users/phatblat/.config/gastown/shell-hook.sh"
-# --- End Gas Town ---

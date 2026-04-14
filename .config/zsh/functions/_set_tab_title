@@ -2,9 +2,9 @@
 
 # _set_tab_title - Set Warp tab title to git repo name or current directory
 local repo_name
-repo_name=$(git rev-parse --show-toplevel 2>/dev/null)
+repo_name=$(git rev-parse --show-toplevel 2> /dev/null)
 if [[ -n "$repo_name" ]]; then
-  echo -ne "\033]0;${repo_name:t}\007"
+    echo -ne "\033]0;${repo_name:t}\007"
 else
-  echo -ne "\033]0;${PWD:t}\007"
+    echo -ne "\033]0;${PWD:t}\007"
 fi

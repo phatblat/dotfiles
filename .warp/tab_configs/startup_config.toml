@@ -1,0 +1,8 @@
+name = "New tab: phatblat"
+
+[[panes]]
+id = "main"
+type = "terminal"
+directory = "/Users/phatblat"
+
+[params]

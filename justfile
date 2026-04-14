@@ -34,6 +34,10 @@ color_reset := '\e[0m'
 
 shfmt_exclude_functions := 'edit'
 
+# Zsh functions excluded from shellharden (space-separated, rely on intentional word-splitting)
+
+shellharden_exclude_functions := 'version_build version_market xccheck'
+
 #
 # aliases
 #
@@ -304,7 +308,7 @@ format: format-gitignore format-mise
     jq --sort-keys --indent 2 . ~/.codexbar/config.json | sponge ~/.codexbar/config.json
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellharden --replace {} +
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
 
 #
 # git group recipes
