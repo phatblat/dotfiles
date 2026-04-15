@@ -21,7 +21,7 @@
 "npm:yarn" = "1.22.22"
 "pipx:pyright" = "1.1.408"
 "pipx:python-lsp-server" = "1.14.0"
-"vfox:mise-plugins/vfox-gcloud" = "564.0.0"
+"vfox:mise-plugins/vfox-gcloud" = "565.0.0"
 act = "0.2.87"
 actionlint = "1.7.12"
 awscli = { version = "2.34.30", symlink_bins = "true" }
