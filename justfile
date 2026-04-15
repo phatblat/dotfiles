@@ -316,13 +316,17 @@ format-json:
         fi
     done
 
-# Formats mise config, justfile, JSON configs, and shell scripts
+# Formats and hardens Zsh shell scripts
 [group('configuration')]
-format: format-gitignore format-mise format-json
-    just --fmt
+format-shell:
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
+
+# Formats mise config, justfile, JSON configs, and shell scripts
+[group('configuration')]
+format: format-gitignore format-mise format-json format-shell
+    just --fmt
 
 #
 # git group recipes
