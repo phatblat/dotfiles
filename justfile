@@ -452,6 +452,11 @@ gt-sling-smart-dry-run bead target *args:
 install-nix:
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
+# Restarts the Determinate Nix daemon
+[group('nix')]
+restart-nix:
+    sudo launchctl kickstart -k system/systems.determinate.nix-daemon
+
 # Uninstalls Determinate Nix
 [group('nix')]
 uninstall-nix:
