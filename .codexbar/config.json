@@ -6,11 +6,11 @@
       "id": "claude"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "id": "codex"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "id": "gemini"
     },
     {
@@ -92,6 +92,14 @@
     {
       "enabled": false,
       "id": "alibaba"
+    },
+    {
+      "enabled": false,
+      "id": "opencodego"
+    },
+    {
+      "enabled": false,
+      "id": "perplexity"
     }
   ],
   "version": 1

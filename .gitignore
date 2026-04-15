@@ -267,6 +267,7 @@
 .jenkins-hpl-map
 .jenkins/
 .jenv/
+.junie/
 .junique/
 .jupyter/
 .keras/
@@ -637,6 +638,7 @@ Library/Application Support/dev.warp.Warp-Stable/
 Library/Application Support/discord/
 Library/Application Support/ditto/
 Library/Application Support/dk.shape.Tartelet/
+Library/Application Support/dotnet/
 Library/Application Support/drata-agent/
 Library/Application Support/draw.io/
 Library/Application Support/elgato/
