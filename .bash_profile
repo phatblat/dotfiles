@@ -59,3 +59,5 @@ source "$HOME/.orbstack/shell/init.bash" 2>/dev/null || :
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
+
+source /Users/phatblat/.config/broot/launcher/bash/br

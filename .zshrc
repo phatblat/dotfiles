@@ -132,3 +132,5 @@ fi
 
 # PAI alias
 alias pai='bun /Users/phatblat/.claude/skills/PAI/Tools/pai.ts'
+
+source /Users/phatblat/.config/broot/launcher/bash/br
