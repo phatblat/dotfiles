@@ -197,7 +197,7 @@ update-brew:
     brew update && brew outdated
 
 # Updates home-manager flake and rebuilds configuration
-[group('configuration')]
+[group('nix')]
 update-nix:
     sudo determinate-nixd upgrade
     determinate-nixd status
@@ -424,6 +424,20 @@ gt-sling-smart bead target *args:
 [group('gastown')]
 gt-sling-smart-dry-run bead target *args:
     ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }} --dry-run
+
+#
+# nix group recipes
+#
+
+# Installs Determinate Nix
+[group('nix')]
+install-nix:
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+# Uninstalls Determinate Nix
+[group('nix')]
+uninstall-nix:
+    /nix/nix-installer uninstall
 
 #
 # lm-studio group recipes
