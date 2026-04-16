@@ -394,6 +394,7 @@
 .vscode-insiders/
 .vscode-server/
 .vscode/
+.warp/worktrees/
 .wget-hsts
 .windsurf-server/
 .windsurf/
