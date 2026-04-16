@@ -1,7 +1,6 @@
 {
   "effortLevel": "xhigh",
   "enabledPlugins": {
-    "caveman@caveman": true,
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
@@ -26,12 +25,6 @@
     "MAX_MCP_OUTPUT_TOKENS": "25000"
   },
   "extraKnownMarketplaces": {
-    "caveman": {
-      "source": {
-        "repo": "JuliusBrussee/caveman",
-        "source": "github"
-      }
-    },
     "gastownhall-marketplace": {
       "source": {
         "repo": "gastownhall/marketplace",
