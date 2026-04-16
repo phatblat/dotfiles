@@ -1,4 +1,5 @@
 {
+  "effortLevel": "xhigh",
   "enabledPlugins": {
     "caveman@caveman": true,
     "clangd-lsp@claude-plugins-official": true,
