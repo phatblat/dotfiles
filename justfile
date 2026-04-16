@@ -197,7 +197,7 @@ update-brew:
     brew update && brew outdated
 
 # Updates home-manager flake and rebuilds configuration
-[group('configuration')]
+[group('nix')]
 update-nix:
     sudo determinate-nixd upgrade
     determinate-nixd status
@@ -298,17 +298,35 @@ format-mise:
     # Sort [tools] entries alphabetically while preserving the rest of the file
     python3 ~/scripts/sort-tools.py
 
-# Formats mise config, justfile, Claude settings.json and shell scripts
+# Formats JSON config files with sorted keys
 [group('configuration')]
-format: format-gitignore format-mise
-    just --fmt
-    jq --sort-keys --indent 2 . ~/.claude/settings.json | sponge ~/.claude/settings.json
-    jq --sort-keys --indent 2 . ~/.config/zed/settings.json | sponge ~/.config/zed/settings.json
-    jq --sort-keys --indent 2 . ~/Library/Application\ Support/Claude/claude_desktop_config.json | sponge ~/Library/Application\ Support/Claude/claude_desktop_config.json
-    jq --sort-keys --indent 2 . ~/.codexbar/config.json | sponge ~/.codexbar/config.json
+format-json:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    json_files=(
+        ~/.claude/settings.json
+        ~/.codexbar/config.json
+        ~/.config/zed/settings.json
+        ~/Library/Application\ Support/Claude/claude_desktop_config.json
+        ~/Library/Application\ Support/Claude-3p/claude_desktop_config.json
+    )
+    for f in "${json_files[@]}"; do
+        if [[ -f "$f" ]]; then
+            jq --sort-keys --indent 2 . "$f" | sponge "$f"
+        fi
+    done
+
+# Formats and hardens Zsh shell scripts
+[group('configuration')]
+format-shell:
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
+
+# Formats mise config, justfile, JSON configs, and shell scripts
+[group('configuration')]
+format: format-gitignore format-mise format-json format-shell
+    just --fmt
 
 #
 # git group recipes
@@ -424,6 +442,25 @@ gt-sling-smart bead target *args:
 [group('gastown')]
 gt-sling-smart-dry-run bead target *args:
     ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }} --dry-run
+
+#
+# nix group recipes
+#
+
+# Installs Determinate Nix
+[group('nix')]
+install-nix:
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+# Restarts the Determinate Nix daemon
+[group('nix')]
+restart-nix:
+    sudo launchctl kickstart -k system/systems.determinate.nix-daemon
+
+# Uninstalls Determinate Nix
+[group('nix')]
+uninstall-nix:
+    /nix/nix-installer uninstall
 
 #
 # lm-studio group recipes

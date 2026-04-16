@@ -5,7 +5,7 @@
 
 [build]
 # https://github.com/mozilla/sccache#usage
-rustc-wrapper = "/opt/homebrew/bin/sccache"
+rustc-wrapper = "/Users/phatblat/.local/share/mise/shims/sccache"
 
 [profile.dev]
 # https://endler.dev/2020/rust-compile-times/#xfaster-incremental-debug-builds-on-macos
