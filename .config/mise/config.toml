@@ -74,7 +74,7 @@ tmux = "3.6a"
 uv = "0.11.7"
 xcbeautify = "3.2.1"
 xcodes = "1.6.2"
-yq = "4.52.5"
+yq = "4.53.2"
 zig = "0.16.0"
 zoxide = "0.9.9"
 
