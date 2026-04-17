@@ -196,6 +196,11 @@ upgrade-commits:
 update-brew:
     brew update && brew outdated
 
+# Upgrades homebrew formulae/casks (pass args through to brew upgrade)
+[group('configuration')]
+upgrade-brew *args:
+    brew upgrade {{ args }}
+
 # Updates home-manager flake and rebuilds configuration
 [group('nix')]
 update-nix:
