@@ -5,6 +5,7 @@
 
 # mise-managed tools, ordered alphabetically
 [tools]
+"aqua:anordal/shellharden" = "4.3.1"
 "aqua:dalance/procs" = "0.14.11"
 "aqua:tcnksm/ghr" = "0.18.3"
 "cargo:foxguard" = "0.7.1"
