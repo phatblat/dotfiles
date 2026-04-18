@@ -6,6 +6,7 @@
 # mise-managed tools, ordered alphabetically
 [tools]
 "aqua:dalance/procs" = "0.14.11"
+"aqua:tcnksm/ghr" = "0.18.3"
 "cargo:foxguard" = "0.7.1"
 "cargo:sccache" = "0.14.0"
 "github:dolthub/dolt" = "1.86.3"
