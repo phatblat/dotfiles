@@ -219,6 +219,7 @@ clean:
     rm -f $HOME/*.hprof
     rm -f $HOME/.claude.json.backup.*
     rm -rf "$(brew --cache)"
+    nix store gc
 
 #
 # checks group recipes
