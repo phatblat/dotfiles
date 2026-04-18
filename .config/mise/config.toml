@@ -18,6 +18,7 @@
 "npm:ccusage" = "18.0.10"
 "npm:claudekit" = "0.9.5"
 "npm:gastown-gui" = "0.9.4"
+"npm:jsonlint" = "1.6.3"
 "npm:markdownlint-cli" = "0.48.0"
 "npm:markdownlint-cli2" = "0.22.0"
 "npm:prettier" = "3.8.3"
