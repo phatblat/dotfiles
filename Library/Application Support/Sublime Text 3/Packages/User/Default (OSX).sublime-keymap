@@ -1,3 +1,0 @@
-[
-	{ "keys": ["ctrl+option+backquote"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
-]
