@@ -173,6 +173,7 @@
 .config/mole/
 .config/nushell/history.txt
 .config/op/
+.config/orka-desktop/
 .config/packer/
 .config/pulse/
 .config/raycast/
