@@ -210,11 +210,31 @@ sg --pattern 'function_name' --lang fish
 
 - **Conventional commits:** `feat:`, `fix:`, `docs:`, `chore:`, etc. (imperative mood, present tense)
 - **Feature branches:** Topic-based naming (e.g., `ben/fix-authentication`)
+- **Always use git worktrees** for feature work — never switch branches in the main working tree:
+  ```bash
+  git worktree add <worktree-path> -b <branch-name>
+  ```
+- **Worktree directory:** `~/.worktrees/` is the global worktree location for all repositories. Namespace by clone location to avoid collisions between clones of the same repo:
+  ```
+  ~/.worktrees/<path-key>/<branch-name>
+  ```
+  Where `<path-key>` is the repo root relative to `~` with `/` replaced by `-`. The dotfiles repo (rooted at `~`) uses the special key `dotfiles`.
+
+  | Clone location | Path key | Example |
+  |---|---|---|
+  | `~` (dotfiles) | `dotfiles` | `~/.worktrees/dotfiles/thursday` |
+  | `~/dev/apple/foo` | `dev-apple-foo` | `~/.worktrees/dev-apple-foo/feature-auth` |
+  | `~/dev/_GETDITTO/bar` | `dev-_GETDITTO-bar` | `~/.worktrees/dev-_GETDITTO-bar/fix-crash` |
+
 - **Branch tracking:** Every new branch MUST have remote tracking set up **immediately after creation**, before any commits are made. Always use an explicit refspec so remote tracking targets the same branch name — never the base branch:
   ```bash
   git push -u <remote> <branch>:<branch>
   ```
   Verify tracking is correct with `git branch -vv` after pushing. `push.autoSetupRemote` is enabled globally as a safety net, but do not rely on it — always push with `-u` and an explicit refspec immediately after branch creation. `main` is protected and cannot be pushed to.
+- **Worktree cleanup:** After merging or closing a PR, remove the worktree:
+  ```bash
+  git worktree remove <worktree-path>
+  ```
 - **Never force push** to main/master
 - **GPG commit signing** enabled
 - **No `--no-verify`** — Never bypass pre-commit hooks

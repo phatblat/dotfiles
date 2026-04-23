@@ -185,16 +185,27 @@ Display all plans side-by-side with a brief **comparison summary** highlighting 
 
 If the user combines elements, synthesize a final plan that merges the requested pieces into a coherent whole before proceeding.
 
-## Phase 3: Create Branch
+## Phase 3: Create Worktree
 
-After the user approves a plan, create the topic branch before posting or implementing.
+After the user approves a plan, create a worktree for the topic branch before posting or implementing.
+
+Determine the worktree path key from the repo root:
+- If the repo root is `~`, the path key is `dotfiles`
+- Otherwise, take the repo root relative to `~` and replace `/` with `-` (e.g., `~/dev/apple/foo` → `dev-apple-foo`)
 
 ```bash
 git fetch origin
-git checkout -b <branch-name> origin/<base-branch> --no-track
+repo_root=$(git rev-parse --show-toplevel)
+if [ "$repo_root" = "$HOME" ]; then
+  path_key="dotfiles"
+else
+  path_key=$(echo "${repo_root#$HOME/}" | tr '/' '-')
+fi
+worktree_path="${HOME}/.worktrees/${path_key}/<branch-name>"
+git worktree add "${worktree_path}" -b <branch-name> origin/<base-branch>
 ```
 
-**IMPORTANT:** Use `--no-track` to avoid setting the topic branch to track the base branch (e.g., `main`). Tracking will be set up when pushing in Phase 6.
+All subsequent git and implementation commands must run from within the worktree (use `cd "${worktree_path}"` or `git -C "${worktree_path}"`).
 
 If the base branch doesn't exist on remote, error and ask the user.
 
