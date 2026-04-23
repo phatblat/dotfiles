@@ -76,7 +76,7 @@ jq = "1.8.1"
 jujutsu = "0.40.0"
 just = "1.50.0"
 k3d = "5.8.3"
-kotlin = "2.3.20"
+kotlin = { version = "2.3.21", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
 kscript = "4.2.3"
 ktlint = "1.8.0"
 kubectl = "1.35.4"
