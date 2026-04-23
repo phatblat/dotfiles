@@ -3,22 +3,22 @@
 #
 # export - Export all variables as environment variables.
 
-set export := true
+set export
 
 export MISE_PIN := "1"
 
 # ignore-comments - Ignore comments when formatting.
 
-set ignore-comments := true
+set ignore-comments
 
 # script-interpreter - Command used to invoke recipes with empty [script] attribute.
 
 set script-interpreter := ['bash', '-eu']
-set quiet := true
+set quiet
 
 # unstable - Enable unstable features. Required for --fmt.
 
-set unstable := true
+set unstable
 
 #
 # variables
@@ -312,13 +312,20 @@ format-json:
     json_files=(
         ~/.claude/settings.json
         ~/.codexbar/config.json
-        ~/.config/zed/settings.json
         ~/Library/Application\ Support/Claude/claude_desktop_config.json
         ~/Library/Application\ Support/Claude-3p/claude_desktop_config.json
+    )
+    jsonc_files=(
+        ~/.config/zed/settings.json
     )
     for f in "${json_files[@]}"; do
         if [[ -f "$f" ]]; then
             jq --sort-keys --indent 2 . "$f" | sponge "$f"
+        fi
+    done
+    for f in "${jsonc_files[@]}"; do
+        if [[ -f "$f" ]]; then
+            prettier --parser jsonc --write "$f"
         fi
     done
 
