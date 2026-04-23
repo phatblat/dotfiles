@@ -577,7 +577,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `register_device`           | ➖  | ✅   | ➖  | ➖   | Runs the register_device.rb ruby script              |
 | `release`                   | ➖  | ✅   | ➖  | ➖   | Performs release steps on an Xcode project           |
 | `reloadprofile`             | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `reload`                    | ➖  | ✅   | ✅  | ➖   | Reloads single function or entire fish shell         |
+| `reload`                    | ➖  | ✅   | ✅  | ➖   | Reload a zsh autoload function by name               |
 | `relo`                      | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `remote-for-current-branch` | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `remote_for_current_branch` | ➖  | ✅   | ➖  | ➖   | Displays name of remote for current branch           |
