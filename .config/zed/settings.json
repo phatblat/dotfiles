@@ -1,3 +1,4 @@
+// -*- mode: jsonc -*-
 {
   "bottom_dock_layout": "contained",
   "use_system_window_tabs": true,
