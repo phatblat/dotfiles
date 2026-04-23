@@ -3,22 +3,22 @@
 #
 # export - Export all variables as environment variables.
 
-set export := true
+set export
 
 export MISE_PIN := "1"
 
 # ignore-comments - Ignore comments when formatting.
 
-set ignore-comments := true
+set ignore-comments
 
 # script-interpreter - Command used to invoke recipes with empty [script] attribute.
 
 set script-interpreter := ['bash', '-eu']
-set quiet := true
+set quiet
 
 # unstable - Enable unstable features. Required for --fmt.
 
-set unstable := true
+set unstable
 
 #
 # variables
