@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# wt - Fuzzy-select a git worktree and jump to it with zoxide
+z "$(git worktree list | fzf | awk '{print $1}')"

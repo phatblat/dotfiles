@@ -4,11 +4,11 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 761 unique functions/aliases across 4 shells**
+**Total: 762 unique functions/aliases across 4 shells**
 
 **Shell Statistics:**
 
-- Zsh: 384 functions (primary shell)
+- Zsh: 385 functions (primary shell)
 - Fish: 684 functions (secondary shell, most comprehensive)
 - Nushell: 102 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
@@ -730,6 +730,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `warpify`                   | ➖  | ✅   | ➖  | ➖   | https://docs.warp.dev/features/subshells#automatic   |
 | `whichjdk`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `wip`                       | ➖  | ✅   | ➖  | ➖   | Commits WIP work                                     |
+| `wt`                        | ➖  | ➖   | ✅  | ➖   | Fuzzy-select a git worktree and jump to it           |
 | `xaccess`                   | ➖  | ✅   | ✅  | ➖   | Read nginx access log                                |
 | `xamarin_version`           | ➖  | ✅   | ➖  | ➖   | Determines current version Xamarin                   |
 | `xcblist`                   | ➖  | ✅   | ➖  | ➖   | Lists info about first Xcode project found           |
