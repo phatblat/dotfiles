@@ -1,67 +1,75 @@
 {
+  "project_panel": {
+    "dock": "right",
+  },
+  "outline_panel": {
+    "dock": "right",
+  },
+  "collaboration_panel": {
+    "dock": "right",
+  },
+  "git_panel": {
+    "dock": "right",
+  },
   "agent": {
+    "dock": "left",
     "default_model": {
       "model": "claude-3-5-haiku-latest",
-      "provider": "anthropic"
+      "provider": "anthropic",
     },
     "default_profile": "write",
     "inline_assistant_model": {
       "model": "qwen/qwen3-coder-30b",
-      "provider": "lmstudio"
+      "provider": "lmstudio",
     },
     "message_editor_min_lines": 5,
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": "always",
     "show_turn_stats": true,
     "single_file_review": true,
     "tool_permissions": {
-      "default": "allow"
-    }
+      "default": "allow",
+    },
   },
   "agent_servers": {
     "claude-acp": {
       "default_mode": "acceptEdits",
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "auto_update": true,
   "autosave": "on_focus_change",
-  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_family": ".ZedMono",
   "buffer_font_size": 16,
   "file_finder": {
-    "include_ignored": "smart"
+    "include_ignored": "smart",
   },
   "file_types": {
-    "Dockerfile": [
-      "*.Dockerfile"
-    ],
+    "Dockerfile": ["*.Dockerfile"],
     "Shell Script": [
       ".config/fish/functions/*",
       ".config/zsh/functions/*",
-      "*.zsh"
-    ]
+      "*.zsh",
+    ],
   },
   "format_on_save": "on",
   "hard_tabs": false,
   "icon_theme": "Zed (Default)",
   "languages": {
     "Shell Script": {
-      "preferred_line_length": 120
-    }
+      "preferred_line_length": 120,
+    },
   },
   "lsp": {
     "rust-analyzer": {
-      "env": {
-        "DITTOFFI_SEARCH_PATH": "/Users/phatblat/dev/ditto/ditto-sdks/target/aarch64-apple-darwin/debug"
-      },
       "initialization_options": {
-        "analyzerTargetDir": true
-      }
-    }
+        "analyzerTargetDir": true,
+      },
+    },
   },
   "redact_private_values": false,
   "relative_line_numbers": "disabled",
   "search": {
-    "include_ignored": false
+    "include_ignored": false,
   },
   "show_whitespaces": "all",
   "ssh_connections": [
@@ -70,28 +78,22 @@
       "host": "phathub.local",
       "projects": [
         {
-          "paths": [
-            "/Users/phatblat"
-          ]
+          "paths": ["/Users/phatblat"],
         },
         {
-          "paths": [
-            "/Users/phatblat/dev/claude/gastown"
-          ]
+          "paths": ["/Users/phatblat/dev/claude/gastown"],
         },
         {
-          "paths": [
-            "/Users/phatblat/dev/ldg/wave-rider"
-          ]
-        }
+          "paths": ["/Users/phatblat/dev/ldg/wave-rider"],
+        },
       ],
-      "username": "phatblat"
-    }
+      "username": "phatblat",
+    },
   ],
   "tab_size": 2,
   "terminal": {
-    "keep_selection_on_copy": false
+    "keep_selection_on_copy": false,
   },
   "theme": "Ayu Dark",
-  "ui_font_size": 16
+  "ui_font_size": 16,
 }
