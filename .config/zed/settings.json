@@ -1,6 +1,18 @@
 {
+  "bottom_dock_layout": "contained",
+  "use_system_window_tabs": true,
+  "tabs": {
+    "file_icons": true
+  },
+  "status_bar": {
+    "show_active_file": false
+  },
+  "title_bar": {
+    "show_menus": true,
+    "show_branch_status_icon": true
+  },
   "project_panel": {
-    "dock": "right",
+    "dock": "left",
   },
   "outline_panel": {
     "dock": "right",
@@ -94,6 +106,10 @@
   "terminal": {
     "keep_selection_on_copy": false,
   },
-  "theme": "Ayu Dark",
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
   "ui_font_size": 16,
 }
