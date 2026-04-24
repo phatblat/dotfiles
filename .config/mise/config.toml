@@ -115,6 +115,7 @@ xh = "0.25.3"
 yq = "4.53.2"
 zig = "0.16.0"
 zoxide = "0.9.9"
+chromedriver = "115.0.5763.0"
 
 [settings]
 experimental = true
