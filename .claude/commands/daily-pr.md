@@ -70,60 +70,43 @@ For each remaining weekday that exists as a local branch (`git branch --list <we
    - **PR closed but unmerged** (`state=CLOSED`): Leave it. Warn: "Branch `<weekday>` has closed-but-unmerged PR #N — leaving it."
    - **No PR found** (empty result): Leave it. Warn: "Branch `<weekday>` has no PR — leaving it."
 
-### 5. Pull Latest Default Branch
+### 5. Switch to Default Branch and Pull Latest
 
-Update the default branch without switching to it:
-
-```bash
-git fetch ${remote} ${default_branch}
-```
-
-### 6. Create or Switch to Today's Worktree
-
-Determine the worktree path using the dotfiles convention:
+Only switch if not already on the default branch:
 
 ```bash
-worktree_path="${HOME}/.worktrees/dotfiles/${today}"
+git checkout ${default_branch}
+git pull ${remote} ${default_branch}
 ```
 
-Check if today's branch/worktree already exists:
+### 6. Create or Switch to Today's Branch
 
-- **Worktree already exists** (check `git worktree list | grep "${worktree_path}"`): Report "Worktree for `${today}` already exists at `${worktree_path}`."
-- **Branch exists locally but no worktree**: Create worktree from existing branch:
-  ```bash
-  git worktree add "${worktree_path}" ${today}
-  ```
-- **Branch exists only on remote** (check `git ls-remote --heads ${remote} ${today}`): Create worktree tracking remote:
-  ```bash
-  git worktree add "${worktree_path}" -b ${today} ${remote}/${today}
-  ```
-  Then fast-forward to avoid non-fast-forward rejections (e.g., when switching machines):
-  ```bash
-  git -C "${worktree_path}" fetch ${remote} ${today}
-  git -C "${worktree_path}" merge --ff-only ${remote}/${today}
-  ```
-  If the fast-forward fails (local has diverged), warn the user and ask how to proceed rather than force-pushing.
-- **Does not exist**: Create new branch and worktree from default branch:
-  ```bash
-  git worktree add "${worktree_path}" -b ${today} ${remote}/${default_branch}
-  ```
+Check if today's branch already exists:
 
-**Immediately after creating the worktree**, ensure remote tracking is set up:
+- **Exists locally**: `git checkout ${today}` — report "Branch `${today}` already exists. Switched to it."
+- **Exists only on remote** (check `git ls-remote --heads ${remote} ${today}`): `git checkout -b ${today} ${remote}/${today}`
+- **Does not exist**: `git checkout -b ${today}` — creates from the default branch
+
+**Immediately after creating or switching to today's branch**, ensure remote tracking is set up:
 
 - **Branch is newly created (no remote)**: Push to establish tracking:
   ```bash
-  git -C "${worktree_path}" push -u ${remote} ${today}:${today}
+  git push -u ${remote} ${today}:${today}
   ```
+- **Branch already exists on remote**: Fetch and fast-forward to avoid non-fast-forward rejections (e.g., when switching machines):
+  ```bash
+  git fetch ${remote} ${today}
+  git merge --ff-only ${remote}/${today}
+  ```
+  If the fast-forward fails (local has diverged), warn the user and ask how to proceed rather than force-pushing.
 
 Then verify tracking:
 
 ```bash
-git -C "${worktree_path}" branch -vv | grep "${today}"
+git branch -vv | grep "${today}"
 ```
 
 This ensures tracking is established before any commits are made, not deferred to PR creation.
-
-**Note:** All subsequent git operations for today's work should be run from within the worktree at `${worktree_path}`, or use `git -C "${worktree_path}"`.
 
 ### 7. Create Draft PR (Idempotent)
 
@@ -172,6 +155,6 @@ If nothing was cleaned up, report "No previous daily branches to clean up."
 | Previous PR unmerged | Step 4 leaves branch with warning |
 | Multi-day gap | All 7 weekday names are checked, not just yesterday |
 | Remote branch already deleted | Step 4 checks `git ls-remote` before attempting delete |
-| Worktree already exists for today | Step 6 reports existing worktree path |
-| Already on default branch | Step 5 just fetches |
+| Already on today's branch | Step 5 skips checkout to default; Step 6 is a no-op |
+| Already on default branch | Step 5 skips checkout, just pulls |
 | Stale remote-tracking refs | Step 2 prunes them via `git fetch --prune` |

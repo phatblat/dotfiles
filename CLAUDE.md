@@ -210,19 +210,19 @@ sg --pattern 'function_name' --lang fish
 
 - **Conventional commits:** `feat:`, `fix:`, `docs:`, `chore:`, etc. (imperative mood, present tense)
 - **Feature branches:** Topic-based naming (e.g., `ben/fix-authentication`)
-- **Always use git worktrees** for feature work — never switch branches in the main working tree:
+- **Git worktrees** for feature work in non-dotfiles repos — never switch branches in the main working tree:
   ```bash
   git worktree add <worktree-path> -b <branch-name>
   ```
-- **Worktree directory:** `~/.worktrees/` is the global worktree location for all repositories. Namespace by clone location to avoid collisions between clones of the same repo:
+  **Exception:** The dotfiles repo (rooted at `~`) must NOT use worktrees — shell config, tool settings, and autoload functions are loaded from the main working tree, so changes in a worktree cannot be tested. Use regular branch switching for dotfiles.
+- **Worktree directory:** `~/.worktrees/` is the global worktree location for all non-dotfiles repositories. Namespace by clone location to avoid collisions between clones of the same repo:
   ```
   ~/.worktrees/<path-key>/<branch-name>
   ```
-  Where `<path-key>` is the repo root relative to `~` with `/` replaced by `-`. The dotfiles repo (rooted at `~`) uses the special key `dotfiles`.
+  Where `<path-key>` is the repo root relative to `~` with `/` replaced by `-`.
 
   | Clone location | Path key | Example |
   |---|---|---|
-  | `~` (dotfiles) | `dotfiles` | `~/.worktrees/dotfiles/thursday` |
   | `~/dev/apple/foo` | `dev-apple-foo` | `~/.worktrees/dev-apple-foo/feature-auth` |
   | `~/dev/_GETDITTO/bar` | `dev-_GETDITTO-bar` | `~/.worktrees/dev-_GETDITTO-bar/fix-crash` |
 
