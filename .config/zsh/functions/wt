@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# wt - Fuzzy-select a git worktree and jump to it with zoxide
+local dir
+dir=$(git worktree list | fzf | awk '{print $1}')
+[[ -n "$dir" ]] && z "$dir"

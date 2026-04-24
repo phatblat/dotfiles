@@ -55,10 +55,26 @@ Parse the branch specification and create/switch to the appropriate branch.
    - Ensure name follows git conventions
    - Warn if name is too long (>50 chars)
 
-3. **Create or switch branch**:
-   - If branch exists locally: `git checkout <branch>`
-   - If branch exists only on remote: `git checkout -b <branch> origin/<branch>`
-   - If new branch: `git checkout -b <branch>`
+3. **Create worktree or switch branch**:
+
+   Determine the worktree path key from the repo root:
+   - If the repo root is `~`, the path key is `dotfiles`
+   - Otherwise, take the repo root relative to `~` and replace `/` with `-` (e.g., `~/dev/apple/foo` → `dev-apple-foo`)
+
+   ```bash
+   repo_root=$(git rev-parse --show-toplevel)
+   if [ "$repo_root" = "$HOME" ]; then
+     path_key="dotfiles"
+   else
+     path_key=$(echo "${repo_root#$HOME/}" | tr '/' '-')
+   fi
+   worktree_path="${HOME}/.worktrees/${path_key}/<branch>"
+   ```
+
+   - If branch exists locally (no worktree yet): `git worktree add "${worktree_path}" <branch>`
+   - If branch exists only on remote: `git worktree add "${worktree_path}" -b <branch> origin/<branch>`
+   - If new branch: `git worktree add "${worktree_path}" -b <branch>`
+   - If worktree already exists: Report existing worktree path
 
 4. **Set up branch configuration**:
    - For hotfix branches: Base off main/master
@@ -66,9 +82,9 @@ Parse the branch specification and create/switch to the appropriate branch.
    - For release branches: Base off develop or main
 
 5. **Report status**:
-   - Confirm branch switch/creation
+   - Confirm worktree creation at path
    - Show upstream tracking status
-   - Suggest next steps (e.g., "Ready to start working. Use /git:push to set upstream when ready to push.")
+   - Suggest next steps (e.g., "Worktree ready at `<path>`. Use /git:push to set upstream when ready to push.")
 
 ### Examples
 

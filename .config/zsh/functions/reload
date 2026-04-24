@@ -1,23 +1,10 @@
 #!/usr/bin/env zsh
 
-# reload - Reloads a single function or the entire fish shell
-local function_name="$1"
-local file="$HOME/.config/fish/functions/$function_name.fish"
-
-if [[ -z "$function_name" ]]; then
-    # shellcheck disable=SC1090
-    source ~/.zshrc
-    return
-elif [[ -e "$file" ]]; then
-    # shellcheck disable=SC1090
-    source "$file"
-    local exit_code=$?
-    if [[ $exit_code -ne 0 ]]; then
-        return "$exit_code"
-    fi
-# TODO: Show diff of function (memory vs file system)
-# func $function_name
-else
-    echo "$function_name does not exist in function autoload dir."
-    return 1
+# reload - Reload a zsh autoload function by name
+if [[ -z "$1" ]]; then
+  echo "Usage: reload <function_name>" >&2
+  return 1
 fi
+
+unfunction "$1" 2>/dev/null
+autoload -Uz "$1"
