@@ -214,8 +214,8 @@ sg --pattern 'function_name' --lang fish
   ```bash
   git worktree add <worktree-path> -b <branch-name>
   ```
-  **Exception:** The dotfiles repo (rooted at `~`) must NOT use worktrees — shell config, tool settings, and autoload functions are loaded from the main working tree, so changes in a worktree cannot be tested. Use regular branch switching for dotfiles.
-- **Worktree directory:** `~/.worktrees/` is the global worktree location for all non-dotfiles repositories. Namespace by clone location to avoid collisions between clones of the same repo:
+  **CRITICAL — Dotfiles exception:** The dotfiles repo (rooted at `~`) must NOT use worktrees. Shell config, tool settings, and autoload functions are loaded from the main working tree, so changes in a worktree cannot be tested. Use regular branch switching for dotfiles.
+- **Worktree directory — MANDATORY:** `~/.worktrees/` is the ONLY allowed worktree location for ALL repositories. Never use project-local `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`. A custom skill at `~/.claude/skills/git-worktrees/` enforces this convention. Namespace by clone location to avoid collisions:
   ```
   ~/.worktrees/<path-key>/<branch-name>
   ```
