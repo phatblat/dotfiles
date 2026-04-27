@@ -1,5 +1,6 @@
 // -*- mode: jsonc -*-
 {
+  "cli_default_open_behavior": "existing_window",
   "bottom_dock_layout": "contained",
   "use_system_window_tabs": true,
   "tabs": {
