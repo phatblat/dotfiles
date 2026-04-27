@@ -198,19 +198,39 @@ Then stop — do not continue until the user resumes.
 
 ---
 
-### 8. Success Report
+### 8. Fix Remote Tracking & Push
+
+After rebase, the upstream tracking ref may point to the target branch instead of the subject branch. Always reset it explicitly:
+
+```bash
+git branch --set-upstream-to=origin/<subject> <subject>
+```
+
+Then force push with an explicit refspec to ensure tracking stays correct:
+
+```bash
+git push --force-with-lease -u origin <subject>:<subject>
+```
+
+Verify tracking is correct:
+
+```bash
+git branch -vv | grep '^\*'
+```
+
+The output must show `[origin/<subject> ...]` — if it shows the target branch name, tracking is wrong and must be fixed before proceeding.
+
+### 9. Success Report
 
 ```
 Rebase complete.
   Strategy used:   <strategy>
   Subject branch:  <subject>  (<N> commits on top of <target>)
+  Tracking:        origin/<subject>
   Backup branch:   <subject>.bak  (kept — delete when satisfied)
 
 To clean up backup:
   git branch -D <subject>.bak
-
-To push (force required since history was rewritten):
-  git push --force-with-lease origin <subject>
 ```
 
 Note: rerere is enabled, so conflict resolutions from previous runs may have been applied automatically during Step 7.
