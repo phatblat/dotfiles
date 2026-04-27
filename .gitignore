@@ -71,6 +71,7 @@
 .claude.json.backup
 .claude.json.backup.*
 .claude.json.tmp.*
+.claude/agent-flow/*.json
 .claude/security_warnings_state_*.json
 .claude_settings.json
 .clawdbot/
