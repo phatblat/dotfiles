@@ -2,9 +2,9 @@
 
 # reload - Reload a zsh autoload function by name
 if [[ -z "$1" ]]; then
-  echo "Usage: reload <function_name>" >&2
-  return 1
+    echo "Usage: reload <function_name>" >&2
+    return 1
 fi
 
-unfunction "$1" 2>/dev/null
+unfunction "$1" 2> /dev/null
 autoload -Uz "$1"
