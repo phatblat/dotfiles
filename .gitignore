@@ -280,6 +280,7 @@
 .kube/
 .lemminx/
 .lesshst
+.linear_api_token
 .linuxkit/
 .lldb/
 .lldb/module_cache/
