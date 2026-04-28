@@ -174,7 +174,7 @@ Use the `Monitor` tool with:
 
 ## Edge cases
 
-- **`gh run rerun` rate-limited or transient API failure**: the script logs `RERUN failed` and proceeds; the next poll will see `STATUS != pass` is still true (no new attempt was created) and re-attempt the rerun via the same path on the next pass-transition. Keep an eye on this — repeated `RERUN failed` means something is wrong with auth or the run state, not just rate limiting.
+- **`gh run rerun` rate-limited or transient API failure**: the script logs `RERUN api error — will retry on next poll` and proceeds; the next poll will see `STATUS != pass` is still true (no new attempt was created) and re-attempt the rerun via the same path on the next pass-transition. Keep an eye on this — repeated `RERUN api error — will retry on next poll` means something is wrong with auth or the run state, not just rate limiting.
 - **Run is stale / closed**: if the PR is closed or the run is unavailable, `gh run rerun` errors. Stop the loop and tell the user.
 - **Job pattern matches multiple rows**: tighten the pattern. The script uses `head -1` which silently picks one — that's wrong if there's ambiguity.
 - **Multiple flaky jobs on the same PR**: run one Monitor per job. Don't try to interleave them in one script.
