@@ -44,7 +44,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -87,7 +87,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -107,7 +107,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -169,7 +169,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -189,7 +189,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -209,7 +209,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -229,7 +229,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -240,7 +240,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -251,7 +251,7 @@
       {
         "hooks": [
           {
-            "command": "\"/Users/phatblat/.local/share/mise/installs/node/25.9.0/bin/node\" \"/Users/phatblat/.claude/agent-flow/hook.js\"",
+            "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
