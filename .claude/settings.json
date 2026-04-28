@@ -23,6 +23,7 @@
     "swift-lsp@claude-plugins-official": true,
     "terraform@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
+    "warp@claude-code-warp": true,
     "wasteland@gastownhall-marketplace": true
   },
   "env": {
@@ -32,6 +33,12 @@
     "MAX_MCP_OUTPUT_TOKENS": "25000"
   },
   "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
     "gastownhall-marketplace": {
       "source": {
         "repo": "gastownhall/marketplace",
