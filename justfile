@@ -162,9 +162,13 @@ remove tool:
 install:
     mise install
 
+# Common upgrades
+[group('configuration')]
+upgrade: upgrade-mise update-brew upgrade-brew
+
 # Upgrades tools using mise
 [group('configuration')]
-upgrade *args:
+upgrade-mise-tools *args:
     mise upgrade --bump {{ args }}
 
 # Upgrades mise itself

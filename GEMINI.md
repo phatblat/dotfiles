@@ -25,7 +25,7 @@ The `justfile` in the root directory provides a wide range of utility recipes:
 
 ### Configuration & Maintenance
 - `just install`: Install tools defined in the `mise` configuration.
-- `just upgrade`: Upgrade all `mise` tools and Nix `home-manager` configuration.
+- `just upgrade`: Upgrade mise itself, update and upgrade Homebrew.
 - `just clean`: Clean up caches (mise, brew) and temporary files.
 - `just format`: Format configuration files (Zed, Claude) and shell scripts.
 

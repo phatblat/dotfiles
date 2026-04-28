@@ -71,6 +71,7 @@
 .claude.json.backup
 .claude.json.backup.*
 .claude.json.tmp.*
+.claude/agent-flow/*.json
 .claude/security_warnings_state_*.json
 .claude_settings.json
 .clawdbot/
@@ -279,6 +280,7 @@
 .kube/
 .lemminx/
 .lesshst
+.linear_api_token
 .linuxkit/
 .lldb/
 .lldb/module_cache/
@@ -527,6 +529,7 @@ Library/Application Support/Figma/
 Library/Application Support/FileProvider/
 Library/Application Support/Final Cut Pro/
 Library/Application Support/Firefox/
+Library/Application Support/Fork/
 Library/Application Support/Google/
 Library/Application Support/Goose/
 Library/Application Support/HelloGames/

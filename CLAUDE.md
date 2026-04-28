@@ -115,7 +115,7 @@ Functions are organized by purpose (see `functions.md` for complete list):
 
 - `just` or `just --list` — List all available recipes
 - `just install` (alias: `just i`) — Install all mise-managed tools globally
-- `just upgrade [args]` (alias: `just up`) — Update Nix home-manager, then upgrade mise-managed tools
+- `just upgrade` (alias: `just up`) — Upgrade mise itself, update and upgrade Homebrew
 - `just update-nix` — Update home-manager flake and rebuild configuration
 - `just add <tool>` — Add and install latest version of a tool via mise
 - `just remove <tool>` — Remove and uninstall a tool from mise
