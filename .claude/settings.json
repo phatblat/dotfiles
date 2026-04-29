@@ -7,7 +7,6 @@
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "csharp-lsp@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
@@ -21,8 +20,8 @@
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
-    "terraform@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
+    "warp@claude-code-warp": true,
     "wasteland@gastownhall-marketplace": true
   },
   "env": {
@@ -32,6 +31,12 @@
     "MAX_MCP_OUTPUT_TOKENS": "25000"
   },
   "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
     "gastownhall-marketplace": {
       "source": {
         "repo": "gastownhall/marketplace",
@@ -149,16 +154,6 @@
       {
         "hooks": [
           {
-            "command": "/Users/phatblat/.claude/hooks/rtk-rewrite.sh",
-            "timeout": 5,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
             "command": "bash ~/.claude/hooks/scripts/main-branch-guard.sh",
             "timeout": 2,
             "type": "command"
@@ -174,6 +169,15 @@
             "type": "command"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "rtk hook claude",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
       }
     ],
     "SessionEnd": [
