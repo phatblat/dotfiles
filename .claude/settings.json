@@ -7,7 +7,6 @@
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "csharp-lsp@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
@@ -21,7 +20,6 @@
     "skill-creator@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
-    "terraform@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "warp@claude-code-warp": true,
     "wasteland@gastownhall-marketplace": true
