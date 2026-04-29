@@ -156,16 +156,6 @@
       {
         "hooks": [
           {
-            "command": "/Users/phatblat/.claude/hooks/rtk-rewrite.sh",
-            "timeout": 5,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
             "command": "bash ~/.claude/hooks/scripts/main-branch-guard.sh",
             "timeout": 2,
             "type": "command"
@@ -181,6 +171,15 @@
             "type": "command"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "rtk hook claude",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
       }
     ],
     "SessionEnd": [
