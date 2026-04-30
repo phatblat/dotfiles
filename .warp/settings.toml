@@ -101,7 +101,7 @@ vim_mode_enabled = false
 startup_shell_override = "zsh"
 
 [session.new_session_shell_override ]
-executable = "/opt/homebrew/Cellar/zsh/5.9/bin/zsh"
+executable = "/opt/homebrew/bin/zsh"
 
 [session.working_directory_config]
 advanced_mode = true
