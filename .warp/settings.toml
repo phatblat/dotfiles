@@ -98,8 +98,10 @@ vim_status_bar = false
 vim_mode_enabled = false
 
 [session]
-new_session_shell_override = "system_default"
 startup_shell_override = "zsh"
+
+[session.new_session_shell_override ]
+executable = "/opt/homebrew/bin/zsh"
 
 [session.working_directory_config]
 advanced_mode = true
@@ -181,3 +183,6 @@ is_password_prompt_enabled = true
 long_running_threshold = 30
 mode = "enabled"
 play_notification_sound = true
+
+[warp_drive]
+enabled = false

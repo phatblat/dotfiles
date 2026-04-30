@@ -78,8 +78,13 @@ list-missing:
 
 # Lists available upgrades
 [group('info')]
-outdated:
+outdated: outdated-uv
     mise outdated --bump
+
+# Lists outdated uv tools
+[group('info')]
+outdated-uv:
+    uv tool list --outdated
 
 # Lists installed Nix packages
 [group('info')]
@@ -164,7 +169,7 @@ install:
 
 # Common upgrades
 [group('configuration')]
-upgrade: upgrade-mise update-brew upgrade-brew
+upgrade: upgrade-mise update-brew upgrade-brew upgrade-uv-tools
 
 # Upgrades tools using mise
 [group('configuration')]
@@ -204,6 +209,11 @@ update-brew:
 [group('configuration')]
 upgrade-brew *args:
     brew upgrade {{ args }}
+
+# Upgrades all uv-managed tools
+[group('configuration')]
+upgrade-uv-tools:
+    uv tool upgrade --all
 
 # Updates home-manager flake and rebuilds configuration
 [group('nix')]
