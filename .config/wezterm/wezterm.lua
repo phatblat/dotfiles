@@ -27,7 +27,7 @@ config.font_size = 15
 config.font = wezterm.font 'JetBrains Mono'
 config.color_scheme = 'AdventureTime'
 
-config.default_prog = { '/Users/phatblat/.nix-profile/bin/zsh' }
+config.default_prog = { '/opt/homebrew/bin/zsh' }
 
 -- Quake-style dropdown: no title bar, no padding
 config.window_decorations = 'RESIZE'
