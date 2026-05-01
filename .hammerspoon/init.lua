@@ -1,5 +1,5 @@
 -- Quake-style WezTerm toggle
-hs.hotkey.bind({}, "F12", function()
+hs.hotkey.bind({"ctrl"}, "`", function()
   local app = hs.application.find("wezterm")
   if app then
     if app:isFrontmost() then
