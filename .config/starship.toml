@@ -39,8 +39,17 @@ disabled = false
 [package]
 disabled = false
 
+[python]
+disabled = true
+
 [shell]
 disabled = false
+
+[java]
+disabled = true
+
+[kotlin]
+disabled = true
 
 [status]
 disabled = true
