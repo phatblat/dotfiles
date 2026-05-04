@@ -101,7 +101,7 @@
       {
         "hooks": [
           {
-            "command": "code-review-graph update --skip-flows",
+            "command": "command -v code-review-graph >/dev/null && code-review-graph update --skip-flows || true",
             "timeout": 30,
             "type": "command"
           }
@@ -232,7 +232,7 @@
       {
         "hooks": [
           {
-            "command": "code-review-graph status",
+            "command": "command -v code-review-graph >/dev/null && code-review-graph status || true",
             "timeout": 10,
             "type": "command"
           }
