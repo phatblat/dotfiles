@@ -7,6 +7,14 @@
         "@mauricio.wolff/mcp-obsidian@latest",
         "/Users/phatblat/2ndBrain"
       ]
+    },
+    "code-review-graph": {
+      "command": "uvx",
+      "args": [
+        "code-review-graph",
+        "serve"
+      ],
+      "type": "stdio"
     }
   }
 }

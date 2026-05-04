@@ -106,9 +106,6 @@ if [[ -d "$ANDROID_HOME" ]]; then
   fi
 fi
 
-# Initialize zoxide - a smarter cd command
-eval "$(zoxide init zsh)"
-
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
@@ -119,6 +116,9 @@ export PATH="/Users/phatblat/.git-ai/bin:$PATH"
 # Initialize mise - version manager for tools
 # NOTE: must be after other PATH modifications so mise paths take precedence
 eval "$(mise activate zsh)"
+
+# Initialize zoxide - a smarter cd command (after mise, since zoxide is mise-managed)
+eval "$(zoxide init zsh)"
 
 # Initialize direnv - directory-based environment variables
 if command -v direnv &>/dev/null; then

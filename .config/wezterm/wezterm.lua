@@ -27,11 +27,15 @@ config.font_size = 15
 config.font = wezterm.font 'JetBrains Mono'
 config.color_scheme = 'AdventureTime'
 
-config.default_prog = { '/Users/phatblat/.nix-profile/bin/zsh' }
+config.default_prog = { '/opt/homebrew/bin/zsh' }
 
 -- Quake-style dropdown: no title bar, no padding
 config.window_decorations = 'RESIZE'
-config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+config.window_padding = { left = 16, right = 0, top = 0, bottom = 0 }
+config.pane_focus_follows_mouse = false
+config.colors = {
+  split = '#444444',
+}
 
 -- Position window at top of screen, full width, half height
 wezterm.on('gui-startup', function(cmd)

@@ -730,7 +730,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `warpify`                   | ➖  | ✅   | ➖  | ➖   | https://docs.warp.dev/features/subshells#automatic   |
 | `whichjdk`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `wip`                       | ➖  | ✅   | ➖  | ➖   | Commits WIP work                                     |
-| `wt`                        | ➖  | ➖   | ✅  | ➖   | Fuzzy-select a git worktree and jump to it           |
+| `wt`                        | ➖  | ➖   | ✅  | ➖   | Navigate to or create git worktrees (fzf/branch)     |
 | `xaccess`                   | ➖  | ✅   | ✅  | ➖   | Read nginx access log                                |
 | `xamarin_version`           | ➖  | ✅   | ➖  | ➖   | Determines current version Xamarin                   |
 | `xcblist`                   | ➖  | ✅   | ➖  | ➖   | Lists info about first Xcode project found           |

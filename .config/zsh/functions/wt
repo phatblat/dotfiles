@@ -1,6 +1,47 @@
 #!/usr/bin/env zsh
 
-# wt - Fuzzy-select a git worktree and jump to it with zoxide
-local dir
-dir=$(git worktree list | fzf | awk '{print $1}')
-[[ -n "$dir" ]] && z "$dir"
+# wt - Navigate to or create git worktrees
+#   no args: fzf-select existing worktree
+#   <branch>: navigate to existing worktree for branch, or create one
+
+if [[ $# -eq 0 ]]; then
+    local dir
+    dir=$(git worktree list | fzf | awk '{print $1}')
+    [[ -n "$dir" ]] && z "$dir"
+    return
+fi
+
+local branch="$1"
+
+# Check if branch already has a worktree
+local existing
+existing=$(git worktree list --porcelain | awk -v b="$branch" '
+  /^worktree /{ wt=$2 }
+  /^branch refs\/heads\//{ if ($2 == "refs/heads/" b) print wt }
+')
+
+if [[ -n "$existing" ]]; then
+    z "$existing"
+    return
+fi
+
+# Dotfiles repo guard
+local repo_root
+repo_root=$(git rev-parse --show-toplevel)
+if [[ "$repo_root" == "$HOME" ]]; then
+    echo "Error: dotfiles repo must not use worktrees" >&2
+    return 1
+fi
+
+# Build worktree path: ~/.worktrees/<path-key>/<branch>
+local path_key=${repo_root#"$HOME"/}
+path_key=${path_key//\//-}
+local wt_path="$HOME/.worktrees/${path_key}/${branch}"
+
+if git show-ref --quiet "refs/heads/$branch"; then
+    git worktree add "$wt_path" "$branch"
+elif git show-ref --quiet "refs/remotes/origin/$branch"; then
+    git worktree add --track -b "$branch" "$wt_path" "origin/$branch"
+else
+    git worktree add -b "$branch" "$wt_path"
+fi && z "$wt_path"

@@ -75,6 +75,34 @@ Uncertainty → State immediately
 - Never hardcode credentials
 - Flag security risks proactively
 - Warn before: rm -rf, DROP, force push, chmod 777
+- **Non-interactive flags** — Always use `-f` to prevent agent hangs on aliased commands:
+  ```
+  cp -f, mv -f, rm -f, rm -rf, cp -rf
+  scp -o BatchMode=yes, ssh -o BatchMode=yes
+  apt-get -y, HOMEBREW_NO_AUTO_UPDATE=1
+  ```
+
+---
+
+## Session Completion
+
+When ending a work session, complete ALL steps:
+
+1. **File issues for remaining work** — Create issues for anything needing follow-up
+2. **Run quality gates** (if code changed) — Tests, linters, builds
+3. **Push to remote** — MANDATORY before stopping:
+   ```bash
+   git pull --rebase
+   git push
+   git status  # Must show "up to date with origin"
+   ```
+4. **Update issue tracker** — Move issues to appropriate status
+5. **Hand off** — Provide context for next session
+
+**Rules:**
+- Work is NOT complete until `git push` succeeds
+- Never stop before pushing — that leaves work stranded locally
+- If push fails, resolve and retry until it succeeds
 
 ---
 
