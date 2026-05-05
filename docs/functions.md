@@ -314,6 +314,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `flushdns`                  | ➖  | ✅   | ✅  | ➖   | Flush macOS DNS cache                                |
 | `fl`                        | ➖  | ✅   | ➖  | ➖   | List functions                                       |
 | `fn`                        | ➖  | ✅   | ➖  | ➖   | Create a new function                                |
+| `fork`                      | ➖  | ➖   | ✅  | ➖   | Launch Fork.app (inherits mise PATH)                 |
 | `format-patch`              | ➖  | ✅   | ✅  | ➖   | Git format-patch wrapper                             |
 | `format`                    | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `fq`                        | ➖  | ✅   | ✅  | ➖   | Check for existence of a function                    |
