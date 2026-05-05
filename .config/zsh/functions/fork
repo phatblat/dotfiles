@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# fork - Launch Fork.app from the terminal (inherits mise PATH)
+open -a Fork "$@"
