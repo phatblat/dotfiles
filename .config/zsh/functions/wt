@@ -26,8 +26,10 @@ if [[ -n "$existing" ]]; then
 fi
 
 # Dotfiles repo guard
+# Use git-common-dir to resolve the main repo root, not a worktree's toplevel
 local repo_root
-repo_root=$(git rev-parse --show-toplevel)
+repo_root=$(git rev-parse --path-format=absolute --git-common-dir)
+repo_root=${repo_root%/.git}
 if [[ "$repo_root" == "$HOME" ]]; then
     echo "Error: dotfiles repo must not use worktrees" >&2
     return 1
