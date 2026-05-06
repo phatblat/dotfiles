@@ -118,6 +118,7 @@ zig = "0.16.0"
 zoxide = "0.9.9"
 
 [settings]
+disable_tools = ["rust"]
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
 
