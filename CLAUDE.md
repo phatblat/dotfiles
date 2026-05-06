@@ -1,331 +1,50 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Dotfiles repository — cross-machine config sync. Home directory (`~`) is the git repo root.
 
-## Repository Overview
+## Key Directories
 
-This is a personal dotfiles repository that serves as a cross-machine configuration sync system. The home directory (`/Users/phatblat`) is the git repository root, containing shell configurations, custom scripts, and development tools alongside standard macOS user directories.
+- `.config/` — Shell configs (zsh, fish, nushell), tool configs (zed, mise, home-manager)
+- `bin/` — Custom utility scripts
+- `dev/` — Development workspace organized by language/framework/org
+- `docs/functions.md` — Complete inventory of shell functions/aliases
 
-### Key Directories
+## Shell Architecture
 
-- **`.config/`** — Configuration for multiple shells and tools
-  - `zsh/` — Zsh shell config (primary shell)
-  - `fish/` — Fish shell config (secondary shell)
-  - `nushell/` — Nushell config (actively being expanded)
-  - `zed/` — Zed editor settings
-  - `mise/config.toml` — Tool version manager configuration
-  - `home-manager/` — Nix home-manager flake configuration
-
-- **`bin/`** — Custom utility scripts (bash, shell, python, go)
-  - Build helpers, git utilities, IDE wrappers
-
-- **`dev/`** — Development workspace organized by language/framework
-  - Projects grouped by topic: `_GETDITTO/`, `android/`, `apple/`, `flutter/`, `go/`, `terraform/`, `vim/`, etc.
-  - Each contains subdirectories for specific projects
-
-- **`docs/`** — Documentation
-  - `functions.md` — Complete inventory of shell functions/aliases across all shells
-
-## Shell Configuration Architecture
-
-### Shell Priority & Maintenance
-
-1. **Zsh (Primary)** — `~/.zshrc`
-   - Functions in `~/.config/zsh/functions/*` (standalone autoload files)
-   - Main shell for daily use, actively maintained
-   - **ALWAYS use standalone autoload functions** — never define functions directly in `.zshrc`
-   - All new functions target Zsh first
-   - Uses Oh My Zsh with "clean" theme
-
+1. **Zsh (Primary)** — `~/.zshrc`, functions in `~/.config/zsh/functions/*`
 2. **Fish (Secondary)** — `~/.config/fish/config.fish`
-   - Functions in `~/.config/fish/functions/*.fish`
-   - Modern syntax, incompatible with Bash/Zsh by design
-   - Still maintained but no longer primary
-   - Integrated with starship prompt, zoxide, fzf
-
-3. **Nushell (Active Development)** — `~/.config/nushell/config.nu`
-   - Actively being expanded
-   - Provides modern, structured output
-   - Functions defined in `~/.config/nushell/autoload/*.nu`
-
+3. **Nushell (Active)** — `~/.config/nushell/config.nu`
 4. **Bash (Minimal)** — `~/.bashrc`
-   - Basic aliases only, not a focus
 
-### Shell Function Categories
-
-Functions are organized by purpose (see `functions.md` for complete list):
-
-- **Git workflows** — 100+ functions (short aliases: `a*`, `c*`, `d*`, `g*`, `l*`, `s*`, `t*`)
-- **Docker/Container** — 40+ functions
-- **Build systems** — Gradle, Xcode, Carthage, general build tooling
-- **System utilities** — Brew, macOS system management, file operations
-- **Development** — iOS, Android, Xcode, language-specific tooling
-
-### Managing Shell Functions
-
-**CRITICAL:** When creating, modifying, or deleting shell functions:
-
-1. Update the function file in the appropriate shell directory (prioritize Zsh as primary shell)
-   - **Zsh (PRIMARY):** ALWAYS create standalone files in `~/.config/zsh/functions/` (never define in `.zshrc`)
-     - Start every file with `#!/usr/bin/env zsh` shebang
-     - Add a comment describing the function (e.g., `# function_name - Description`)
-     - **CRITICAL:** File content must be the function body directly, NOT wrapped in `function name() { }`
-     - Zsh autoload expects the file content to BE the function body
-     - Autoload files do NOT need execute permissions
-     - Example:
-       ```zsh
-       #!/usr/bin/env zsh
-
-       # aa - Add all modified tracked files to git staging area
-       git add --update "$@"
-       ```
-   - **Fish:** Create standalone files in `~/.config/fish/functions/`
-   - **Nushell:** Create standalone files in `~/.config/nushell/autoload/`
-   - **Bash:** Define in `~/.bashrc`
-
-2. **ALWAYS update `~/docs/functions.md`:**
-   - Add/remove/update the row in the alphabetically-sorted table
-   - Update checkmarks for which shells implement it (nu, fish, zsh, bash)
-   - Update the Summary statistics if shell counts change
-
-3. Test the function in the target shell
-
-
-## Development Tools & Versions
-
-**Tool Management:**
-- **`mise`** — Primary tool version manager (modern replacement for nvm, rbenv, pyenv, etc.)
-- **Nix/home-manager** — System package management via flake at `~/.config/home-manager`
-
-**Key Global Tools** (see `~/.config/mise/config.toml`):
-
-- **Languages:** Node 25.4.0, Python 3.14.2, Ruby 4.0.1, Go 1.25.6, .NET 10.0.102
-- **Build Systems:** Gradle 9.3.0, Just 1.46.0
-- **Containers:** Docker CLI 29.1.5, Docker Compose 5.0.2
-- **Infrastructure:** Terraform 1.14.3, Packer 1.14.3, gcloud 553.0.0
-- **Specialized Tools:** ripgrep 15.1.0, fd 10.3.0, yq 4.50.1, actionlint 1.7.10, shellcheck 0.11.0, shfmt 3.12.0
-
-**Version Locking:** Set `MISE_PIN=1` in all shells to lock tool versions (already configured in Fish and justfile).
-
-## Common Commands
-
-### Just Recipes
-
-**Build & Management** (`~/justfile`):
-
-- `just` or `just --list` — List all available recipes
-- `just install` (alias: `just i`) — Install all mise-managed tools globally
-- `just upgrade` (alias: `just up`) — Upgrade mise itself, update and upgrade Homebrew
-- `just update-nix` — Update home-manager flake and rebuild configuration
-- `just add <tool>` — Add and install latest version of a tool via mise
-- `just remove <tool>` — Remove and uninstall a tool from mise
-- `just search <tool>` — Search for a tool in mise or homebrew
-
-**Info & Status:**
-
-- `just list` (alias: `just ls`) — List installed mise tools
-- `just list-missing` (alias: `just lsm`) — List missing mise tools
-- `just list-nix` — List installed Nix packages
-- `just outdated` (alias: `just od`) — List available tool upgrades
-- `just free` (alias: `just f`) — Display free disk space on root drive
-
-**Formatting & Linting:**
-
-- `just format` (alias: `just fmt`) — Format mise config, justfile, Claude/Zed settings, and zsh shell scripts
-- `just lint` — Check justfile, mise config, and shell scripts with shellcheck
-- `just doctor` — Run mise and homebrew diagnostics
-
-**Claude Code:**
-
-- `just usage` — Show Claude usage statistics
-- `just usage-board` (alias: `just ub`) — Show live Claude usage dashboard
-- `just usage-web` — Open Claude usage in browser
-- `just install-claude` — Install Claude Code native binary
-- `just upgrade-claude` — Upgrade Claude Code
-
-**LM Studio:**
-
-- `just lms-start` — Start LM Studio server
-- `just lms-stop` — Stop LM Studio server
-- `just lms-reload` — Reload model
-
-**Cleanup:**
-
-- `just clean` — Remove default.store files, *.hprof files, and homebrew cache
-
-### Code Search
-
-Use **`ast-grep` (sg)** for code search and modification, NOT grep/ripgrep/sed:
-
-```bash
-sg --pattern 'function_name' --lang fish
-```
-
-## Git Configuration
-
-**Commit Signing:** GPG signing enabled globally.
-
-**Config Structure:**
-- Global config: `~/.gitconfig` (tracked in repo)
-- Local overrides: `~/.config/git/config` (not tracked, machine-specific user.email)
-- Per-repo overrides: Can set `user.email` in individual repos as needed
-
-**Git Aliases:** Defined as Fish functions in `~/.config/fish/functions/`, not in `.gitconfig`.
-
-**Rerere:** Enabled for conflict resolution assistance.
-
-**Hooks & Pre-commit:** Never bypass hooks with `--no-verify`. When hooks fail:
-1. Read complete error output
-2. Identify which tool failed and why
-3. Fix the issue systematically
-4. Only commit after all hooks pass
-
-### Multi-Machine Sync Challenges
-
-- Many git repos in subdirectories confuse some git apps (e.g., Tower)
-- Local-only git config in `~/.config/git/config` overrides `.gitconfig` user email per machine
-- Bootstrap script exists but outdated (not updated since Bash era)
-
-## Editor Configuration
-
-**Primary Editor:** Zed
-
-**EditorConfig** (`~/.editorconfig`):
-
-- **Default:** UTF-8, LF line endings, 2-space indent, trim trailing whitespace
-- **Java/Gradle/Kotlin:** 4-space indent
-- **Makefiles/plist/gitconfig:** Tab indentation
-- **Markdown:** Trailing whitespace preserved (has meaning)
-- **JSON:** Final newline ignored (inconsistent across tools)
-
-**Zed Settings** (`~/.config/zed/settings.json`):
-
-- Rust analyzer with custom `CARGO_TARGET_DIR`
-- analyzerTargetDir enabled
-- Tab size: 2 spaces (hard tabs disabled)
-
-## Code Quality Standards
-
-### Git Workflow
-
-- **Conventional commits:** `feat:`, `fix:`, `docs:`, `chore:`, etc. (imperative mood, present tense)
-- **Feature branches:** Topic-based naming (e.g., `ben/fix-authentication`)
-- **Git worktrees** for feature work in non-dotfiles repos — never switch branches in the main working tree:
-  ```bash
-  git worktree add <worktree-path> -b <branch-name>
-  ```
-  **CRITICAL — Dotfiles exception:** The dotfiles repo (rooted at `~`) must NOT use worktrees. Shell config, tool settings, and autoload functions are loaded from the main working tree, so changes in a worktree cannot be tested. Use regular branch switching for dotfiles.
-- **Worktree directory — MANDATORY:** `~/.worktrees/` is the ONLY allowed worktree location for ALL repositories. Never use project-local `.worktrees/`, `worktrees/`, or `~/.config/superpowers/worktrees/`. A custom skill at `~/.claude/skills/git-worktrees/` enforces this convention. Namespace by clone location to avoid collisions:
-  ```
-  ~/.worktrees/<path-key>/<branch-name>
-  ```
-  Where `<path-key>` is the repo root relative to `~` with `/` replaced by `-`.
-
-  | Clone location | Path key | Example |
-  |---|---|---|
-  | `~/dev/apple/foo` | `dev-apple-foo` | `~/.worktrees/dev-apple-foo/feature-auth` |
-  | `~/dev/_GETDITTO/bar` | `dev-_GETDITTO-bar` | `~/.worktrees/dev-_GETDITTO-bar/fix-crash` |
-
-- **Branch tracking:** Every new branch MUST have remote tracking set up **immediately after creation**, before any commits are made. Always use an explicit refspec so remote tracking targets the same branch name — never the base branch:
-  ```bash
-  git push -u <remote> <branch>:<branch>
-  ```
-  Verify tracking is correct with `git branch -vv` after pushing. `push.autoSetupRemote` is enabled globally as a safety net, but do not rely on it — always push with `-u` and an explicit refspec immediately after branch creation. `main` is protected and cannot be pushed to.
-- **Worktree cleanup:** After merging or closing a PR, remove the worktree:
-  ```bash
-  git worktree remove <worktree-path>
-  ```
-- **Never force push** to main/master
-- **GPG commit signing** enabled
-- **No `--no-verify`** — Never bypass pre-commit hooks
-- **PR body format:** Ticket references (e.g., `Resolves DEVX-123`) and links to related PRs must appear above the first heading in the PR body, on their own lines, so they are immediately visible
-
-### When Hooks Fail
-
-1. Read complete error output
-2. Identify which tool failed and why
-3. Explain the fix and work through systematically
-4. Only commit after all hooks pass (never bypass)
+Shell function conventions are in the `shell-functions` rule (loads when editing shell config files).
 
 ## Project Context
 
-**Language Focus:** Primarily shell scripting (Zsh), with supporting tooling in Go, Ruby, Python, Swift, and other languages.
+Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languages. Git workflow conventions are in the `git-workflow` rule.
 
-**Primary Use Cases:**
+## Code Search
 
-- Cross-machine dotfile synchronization
-- Git workflow automation (100+ git-related functions)
-- macOS system management
-- Development environment orchestration
-- iOS/Android development tooling
-- Container and infrastructure management
-
-## Development Workspace Organization
-
-The `~/dev/` directory organizes projects by language, framework, or organization:
-
-- `_GETDITTO/` — Work projects (Ditto)
-- Language-specific: `go/`, `android/`, `apple/`, `flutter/`, `dotnet/`, `c/`
-- Frameworks: `fastlane/`, `bazel/`, `ansible/`, `terraform/`
-- Tools: `vim/`, `github/`, `buildkite/`
-- Each contains subdirectories for specific projects
+Use **ast-grep** (`sg`) for code search, not grep/ripgrep/sed.
 
 ## Special Notes
 
-- **timeout/gtimeout** not installed (use alternative timing methods)
-- **ast-grep (sg)** is the primary code search/modification tool
 - **bat** replaces cat in Zsh (syntax highlighting, git integration)
-- **No trailing spaces** unless meaningful (e.g., Markdown line breaks)
+- **timeout/gtimeout** not installed
 - **Tool installation priority:**
   1. `mise search`/`mise use` for mise-managed tools
   2. `nix profile install nixpkgs#<package>` for Nix packages
   3. `brew search`/`brew install` as fallback
-- **mise config location:** `~/.config/mise/config.toml`
-- **Nix flake location:** `~/.config/home-manager`
+- Tool versions: run `mise ls` (never hardcode versions — they go stale)
+- Just recipes: run `just --list`
 
-## Communication Notes
-
-- Address user as "phatblat"
-- Teammates: both fallible, push back with evidence
-- Prefer simple, maintainable solutions
-- Match surrounding code style over style guides
-- Only change code directly related to current task
-
-<!-- code-review-graph MCP tools -->
 ## MCP Tools: code-review-graph
 
-**IMPORTANT: This project has a knowledge graph. ALWAYS use the
-code-review-graph MCP tools BEFORE using Grep/Glob/Read to explore
-the codebase.** The graph is faster, cheaper (fewer tokens), and gives
-you structural context (callers, dependents, test coverage) that file
-scanning cannot.
+**IMPORTANT: This project has a knowledge graph. Use code-review-graph MCP tools BEFORE Grep/Glob/Read to explore the codebase.** The graph gives structural context (callers, dependents, test coverage) that file scanning cannot.
 
-### When to use graph tools FIRST
+- `detect_changes` — risk-scored change analysis
+- `get_review_context` — token-efficient source snippets
+- `get_impact_radius` / `get_affected_flows` — blast radius and execution paths
+- `query_graph` — trace callers, callees, imports, tests
+- `semantic_search_nodes` — find functions/classes by keyword
 
-- **Exploring code**: `semantic_search_nodes` or `query_graph` instead of Grep
-- **Understanding impact**: `get_impact_radius` instead of manually tracing imports
-- **Code review**: `detect_changes` + `get_review_context` instead of reading entire files
-- **Finding relationships**: `query_graph` with callers_of/callees_of/imports_of/tests_for
-- **Architecture questions**: `get_architecture_overview` + `list_communities`
-
-Fall back to Grep/Glob/Read **only** when the graph doesn't cover what you need.
-
-### Key Tools
-
-| Tool | Use when |
-|------|----------|
-| `detect_changes` | Reviewing code changes — gives risk-scored analysis |
-| `get_review_context` | Need source snippets for review — token-efficient |
-| `get_impact_radius` | Understanding blast radius of a change |
-| `get_affected_flows` | Finding which execution paths are impacted |
-| `query_graph` | Tracing callers, callees, imports, tests, dependencies |
-| `semantic_search_nodes` | Finding functions/classes by name or keyword |
-| `get_architecture_overview` | Understanding high-level codebase structure |
-| `refactor_tool` | Planning renames, finding dead code |
-
-### Workflow
-
-1. The graph auto-updates on file changes (via hooks).
-2. Use `detect_changes` for code review.
-3. Use `get_affected_flows` to understand impact.
-4. Use `query_graph` pattern="tests_for" to check coverage.
+Fall back to Grep/Glob/Read only when the graph doesn't cover what you need.
