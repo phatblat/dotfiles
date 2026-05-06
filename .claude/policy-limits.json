@@ -6,5 +6,6 @@
     "enforce_web_search_mcp_isolation": {
       "allowed": false
     }
-  }
+  },
+  "compliance_taints": []
 }
