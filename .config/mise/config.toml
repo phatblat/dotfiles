@@ -38,7 +38,7 @@
 "pipx:python-lsp-server" = "1.14.0"
 "pipx:yamllint" = "1.38.0"
 "vfox:mise-plugins/vfox-gcloud" = "565.0.0"
-act = "0.2.87"
+act = "0.2.88"
 actionlint = "1.7.12"
 awscli = { version = "2.34.37", symlink_bins = "true" }
 bat = "0.26.1"
