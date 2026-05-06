@@ -100,6 +100,7 @@ python = "3.14.4"
 ripgrep = "15.1.0"
 ruby = "4.0.3"
 ruff = "0.15.12"
+rust = "1.95.0"
 sd = "1.1.0"
 shellcheck = "0.11.0"
 shfmt = "3.13.1"
@@ -119,7 +120,6 @@ zig = "0.16.0"
 zoxide = "0.9.9"
 
 [settings]
-disable_tools = ["rust"]
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
 
