@@ -25,7 +25,7 @@ Three-pronged cleanup: slim both CLAUDE.md files, move behavioral instructions i
 
 ### Move to rules
 
-- **Toolchain** (`Python: uv/ruff/pytest`, `JS/TS: prettier/vitest/eslint`, `Rust: cargo`) → New rule `toolchain.md` scoped to `**/*.py`, `**/*.ts`, `**/*.tsx`, `**/*.rs`, `**/*.js`, `**/*.jsx`
+- **Toolchain** — Already covered by existing `python.md`, `typescript.md`, and new `rust.md` rules. No separate `toolchain.md` needed.
 - **Non-interactive flags list** → New rule `non-interactive.md` scoped to all files (or merge into existing bash-guard hook)
 
 ### Remove (redundant)
@@ -117,7 +117,7 @@ Note: Python and TypeScript toolchain info is already in their respective rules.
 
 ## 4. Command Prune
 
-### Keep (7 commands)
+### Keep (8 commands)
 
 | Command | Path |
 |---|---|

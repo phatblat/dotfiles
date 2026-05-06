@@ -35,7 +35,7 @@ git add --update "$@"
 
 ## Required Bookkeeping
 
-After any function change, ALWAYS update `~/docs/functions.md`:
+After any function change, ALWAYS update `docs/functions.md`:
 - Add/remove/update the row in the alphabetically-sorted table
 - Update checkmarks for which shells implement it (nu, fish, zsh, bash)
 - Update Summary statistics if shell counts change
