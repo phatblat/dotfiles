@@ -46,5 +46,10 @@ wezterm.on('gui-startup', function(cmd)
   gui:set_inner_size(screen.width, screen.height / 2)
 end)
 
--- Finally, return the configuration to wezterm:
+local act = wezterm.action
+config.keys = {
+  { key = '{', mods = 'SHIFT|ALT', action = act.MoveTabRelative(-1) },
+  { key = '}', mods = 'SHIFT|ALT', action = act.MoveTabRelative(1) },
+}
+
 return config
