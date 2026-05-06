@@ -169,7 +169,7 @@ install:
 
 # Common upgrades
 [group('configuration')]
-upgrade: upgrade-mise update-brew upgrade-brew upgrade-uv-tools
+upgrade: upgrade-mise upgrade-commits update-brew upgrade-brew upgrade-uv-tools
 
 # Upgrades tools using mise
 [group('configuration')]
