@@ -75,7 +75,7 @@ hexyl = "0.17.0"
 hk = "1.45.0"
 hyperfine = "1.20.0"
 jq = "1.8.1"
-jujutsu = "0.40.0"
+jujutsu = "0.41.0"
 just = "1.50.0"
 k3d = "5.8.3"
 kotlin = { version = "2.3.21", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
