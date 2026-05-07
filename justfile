@@ -169,7 +169,7 @@ install:
 
 # Common upgrades
 [group('configuration')]
-upgrade: upgrade-mise update-brew upgrade-brew upgrade-uv-tools
+upgrade: upgrade-mise upgrade-commits update-brew upgrade-brew upgrade-uv-tools
 
 # Upgrades tools using mise
 [group('configuration')]
@@ -209,6 +209,26 @@ update-brew:
 [group('configuration')]
 upgrade-brew *args:
     brew upgrade {{ args }}
+
+# Shows outdated uv-managed tools by comparing against PyPI
+[group('configuration')]
+outdated-uv-tools:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    found=0
+    while IFS= read -r line; do
+        [[ "$line" =~ ^[a-zA-Z] ]] || continue
+        pkg=$(echo "$line" | awk '{print $1}')
+        installed=$(echo "$line" | awk '{print $2}' | sed 's/^v//')
+        latest=$(curl -sf "https://pypi.org/pypi/$pkg/json" | jq -r '.info.version' 2>/dev/null) || continue
+        if [ "$installed" != "$latest" ]; then
+            echo "$pkg $installed → $latest"
+            found=1
+        fi
+    done < <(uv tool list)
+    if [ "$found" -eq 0 ]; then
+        echo "All uv tools are up to date"
+    fi
 
 # Upgrades all uv-managed tools
 [group('configuration')]

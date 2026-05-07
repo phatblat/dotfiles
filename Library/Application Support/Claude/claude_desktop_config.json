@@ -5,11 +5,21 @@
     "coworkOnboardingResumeStep": null,
     "coworkScheduledTasksEnabled": true,
     "coworkWebSearchEnabled": true,
+    "epitaxyPrefs": {
+      "dframe-local-slice": {
+        "customGroupAssignments": {},
+        "customGroupOrder": {},
+        "pinnedOrder": []
+      },
+      "starred-cowork-spaces": [],
+      "starred-local-code-sessions": [],
+      "starred-session-groups": []
+    },
     "keepAwakeEnabled": true,
     "menuBarEnabled": false,
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
-    "sidebarMode": "chat"
+    "sidebarMode": "epitaxy"
   }
 }
