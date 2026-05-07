@@ -219,7 +219,7 @@ outdated-uv-tools:
     while IFS= read -r line; do
         [[ "$line" =~ ^[a-zA-Z] ]] || continue
         pkg=$(echo "$line" | awk '{print $1}')
-        installed=$(echo "$line" | awk '{print $2}' | tr -d 'v')
+        installed=$(echo "$line" | awk '{print $2}' | sed 's/^v//')
         latest=$(curl -sf "https://pypi.org/pypi/$pkg/json" | jq -r '.info.version' 2>/dev/null) || continue
         if [ "$installed" != "$latest" ]; then
             echo "$pkg $installed → $latest"
