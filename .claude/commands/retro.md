@@ -1,5 +1,5 @@
 ---
-name: retrospective
+name: retro
 description: Perform autonomous agent configuration improvement.
 argument_hint: <friction points from recent sessions>
 model: sonnet
@@ -32,6 +32,7 @@ Analyze recent session friction and apply targeted fixes to `~/.claude/` config 
 ## Input
 
 The user provides friction points from recent sessions via `$ARGUMENTS`. These describe problems like:
+
 - Sub-agents failing due to missing `allowed_tools`
 - Mandatory delegation being skipped
 - Commands not enforcing tool usage
@@ -43,11 +44,15 @@ If no arguments are provided, ask the user to describe 2-5 friction points from 
 ## Workflow
 
 ### 1. Load Reference Context
+
 Read these files once for baseline rules:
+
 - `~/.claude/CLAUDE.md` — master rules to check against
 
 ### 2. Analyze Friction Points
+
 For each friction point from `$ARGUMENTS`:
+
 1. Identify the root cause (missing tool, wrong rule, stale reference, etc.)
 2. Map it to the specific config file(s) that need changes
 3. Categorize:
@@ -59,25 +64,32 @@ For each friction point from `$ARGUMENTS`:
    - **Missing instruction** — a rule that should exist but doesn't
 
 ### 3. Create Fix Plan
+
 Use TaskCreate to build a checklist of fixes. Each task should specify:
+
 - The file to modify
 - What to change
 - What friction it prevents
 
 ### 4. Apply Fixes
+
 For each planned fix:
+
 1. Read the target file
 2. Apply the edit
 3. Mark the task complete
 
 Guard rails:
+
 - Only modify files under `~/.claude/` (agents, commands, skills, CLAUDE.md)
 - Preserve existing functionality — add/fix, don't remove working config
 - Validate YAML frontmatter after editing (starts with `---`, has `name:`, single `description:`, no duplicate keys)
 - Use snake_case for all YAML keys
 
 ### 5. Validate
+
 After all edits, verify each modified file:
+
 - Frontmatter parses correctly (check `---` delimiters, required fields)
 - No broken references introduced
 - Changes align with CLAUDE.md rules
