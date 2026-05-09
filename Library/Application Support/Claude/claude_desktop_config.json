@@ -20,6 +20,6 @@
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
-    "sidebarMode": "epitaxy"
+    "sidebarMode": "chat"
   }
 }
