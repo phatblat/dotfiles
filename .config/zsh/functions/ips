@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ips - Show IP addresses
+ifconfig | rg 'inet\s'
