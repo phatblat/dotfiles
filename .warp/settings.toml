@@ -60,6 +60,7 @@ agent_mode_query_suggestions_enabled = false
 intelligent_autosuggestions_enabled = false
 enabled = false
 code_suggestions_enabled = false
+shared_block_title_generation_enabled = false
 
 [agents.warp_agent.other]
 should_show_oz_updates_in_zero_state = false
@@ -70,6 +71,9 @@ voice_input_enabled = false
 [agents.knowledge]
 warp_drive_context_enabled = false
 rules_enabled = false
+
+[agents.profiles]
+agent_mode_coding_permissions = "always_allow_reading"
 
 [general]
 show_warning_before_quitting = false
@@ -168,6 +172,9 @@ custom_secret_regex_list = [
 
 [warpify.subshells]
 subshell_commands_denylist = []
+
+[warpify.ssh]
+use_ssh_tmux_wrapper = true
 
 [workflows]
 show_global_workflows_in_universal_search = true
