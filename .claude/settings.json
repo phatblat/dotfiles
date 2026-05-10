@@ -83,6 +83,16 @@
       {
         "hooks": [
           {
+            "command": "bash ~/.claude/hooks/scripts/dotfiles-format.sh",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit"
+      },
+      {
+        "hooks": [
+          {
             "command": "bash ~/.claude/hooks/scripts/bash-vuln.sh",
             "timeout": 3,
             "type": "command"
