@@ -14,6 +14,8 @@
     "kotlin-lsp@claude-plugins-official": true,
     "linear@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
     "ruby-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
