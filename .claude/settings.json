@@ -307,5 +307,6 @@
     ],
     "deny": []
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto"
 }
