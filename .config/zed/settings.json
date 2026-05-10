@@ -70,7 +70,7 @@
   "icon_theme": {
     "mode": "light",
     "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+    "dark": "Zed (Default)",
   },
   "languages": {
     "Shell Script": {
