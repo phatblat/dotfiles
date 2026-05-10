@@ -1,4 +1,5 @@
 {
+  "agentPushNotifEnabled": true,
   "effortLevel": "xhigh",
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
