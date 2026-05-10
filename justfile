@@ -252,6 +252,7 @@ update-nix:
 [group('configuration')]
 clean:
     trash $(mise cache)
+    mise cache clear
     mise prune
     brew cleanup
     rm -f "$HOME/Library/Application Support/default.store"*
