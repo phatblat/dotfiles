@@ -248,7 +248,7 @@ update-nix:
     nix flake update --flake ~/.config/home-manager
     home-manager switch --flake ~/.config/home-manager
 
-# Removes default.store files, *.hprof files, and homebrew cache from home directory
+# Removes default.store files, *.hprof files, zcompdump clutter, and homebrew cache from home directory
 [group('configuration')]
 clean:
     trash $(mise cache)
@@ -258,6 +258,7 @@ clean:
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f $HOME/*.hprof
     rm -f $HOME/.claude.json.backup.*
+    rm -f $HOME/.zcompdump.DTO-*
     rm -rf "$(brew --cache)"
     if command -v nix >/dev/null 2>&1; then nix store gc; fi
 
