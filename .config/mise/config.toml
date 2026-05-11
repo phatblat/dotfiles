@@ -11,7 +11,7 @@
 "cargo:cargo-about" = "0.9.0"
 "cargo:cargo-binstall" = "1.19.1"
 "cargo:cargo-expand" = "1.0.121"
-"cargo:foxguard" = "0.7.1"
+"cargo:foxguard" = "0.8.0"
 "cargo:sccache" = "0.15.0"
 "cargo:wasm-bindgen-cli" = "0.2.100"
 "cargo:wasm-pack" = "0.12.1"
