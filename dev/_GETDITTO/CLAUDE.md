@@ -2,10 +2,7 @@
 
 ## Issue Tracking
 
-This project uses **Linear** for all issue tracking.
-
-- In `forge` the team is **FORGE**.
-- In `cloud-services` the team is **PORT**.
+The projects stored in this directory use **Linear** for all issue tracking.
 
 Use the **`lncli`** CLI for all Linear operations (reading issues, updating status, creating issues, adding comments, etc.). Do NOT use Linear MCP tools — use `lncli` instead.
 
@@ -15,11 +12,11 @@ Common commands:
 
 ```bash
 # Read an issue
-lncli issues read FORGE-xxx
+lncli issues read DEVX-xxx
 
 # Create an issue
-lncli issues create --team FORGE -d "Description in **markdown**" -p 3 "My issue title"
+lncli issues create --team DEVX -d "Description in **markdown**" -p 3 "My issue title"
 
 # Update an issue status
-lncli issues update FORGE-123 -s "In Progress"
+lncli issues update DEVX-123 -s "In Progress"
 ```
