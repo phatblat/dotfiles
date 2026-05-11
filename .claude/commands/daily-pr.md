@@ -16,11 +16,12 @@ Run a single combined command to gather all context:
 
 ```bash
 remote=$(git remote | head -1)
-today=$(date +%A | tr '[:upper:]' '[:lower:]')
+dow=$(date +%A | tr '[:upper:]' '[:lower:]')
+if [ "$dow" = "saturday" ] || [ "$dow" = "sunday" ]; then today="weekend"; else today="$dow"; fi
 today_date=$(date +%Y-%m-%d)
 default_branch=$(git symbolic-ref refs/remotes/${remote}/HEAD 2>/dev/null | sed "s|refs/remotes/${remote}/||" || echo "main")
 current_branch=$(git branch --show-current)
-echo "remote=${remote} today=${today} date=${today_date} default=${default_branch} current=${current_branch}"
+echo "remote=${remote} dow=${dow} today=${today} date=${today_date} default=${default_branch} current=${current_branch}"
 ```
 
 Record all values for use in subsequent steps.
@@ -49,9 +50,9 @@ If the working tree is dirty:
 
 ### 4. Clean Up Previous Daily Branches
 
-Check all seven weekday names: `monday tuesday wednesday thursday friday saturday sunday`
+Check all branch names: `monday tuesday wednesday thursday friday weekend`
 
-**Skip today's weekday name** — do not clean up today's branch.
+**Skip today's branch name** (`${today}`) — do not clean up today's branch.
 
 For each remaining weekday that exists as a local branch (`git branch --list <weekday>`):
 
@@ -129,17 +130,17 @@ Output a summary like:
 ```
 ## Daily Setup Complete
 
-Branch: sunday
-PR: #278 (draft) — chore: sunday 2026-04-06
+Branch: weekend
+PR: #278 (draft) — chore: weekend 2026-04-05
 
 Pruned remote-tracking refs:
   - phatblat/tuesday
 
 Cleaned up:
-  - saturday (#277, merged) — deleted local + remote
+  - friday (#277, merged) — deleted local + remote
 
 Still around:
-  - friday (#275, open) — left alone
+  - thursday (#275, open) — left alone
 ```
 
 If nothing was pruned, omit the "Pruned remote-tracking refs" section.
@@ -153,7 +154,7 @@ If nothing was cleaned up, report "No previous daily branches to clean up."
 | Run twice same day | Step 6 switches to existing branch; Step 7 reports existing PR |
 | Dirty working tree | Step 3 asks user before proceeding |
 | Previous PR unmerged | Step 4 leaves branch with warning |
-| Multi-day gap | All 7 weekday names are checked, not just yesterday |
+| Multi-day gap | All 6 branch names are checked (mon-fri + weekend), not just yesterday |
 | Remote branch already deleted | Step 4 checks `git ls-remote` before attempting delete |
 | Already on today's branch | Step 5 skips checkout to default; Step 6 is a no-op |
 | Already on default branch | Step 5 skips checkout, just pulls |

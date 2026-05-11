@@ -162,9 +162,14 @@ remove tool:
     echo "Removing {{ tool }} from mise config..."
     mise rm "{{ tool }}"
 
+# Installs Homebrew packages from Brewfile
+[group('configuration')]
+install-brew:
+    brew bundle install
+
 # Installs tools using mise
 [group('configuration')]
-install:
+install: install-brew
     mise install
 
 # Common upgrades
@@ -247,6 +252,7 @@ update-nix:
 [group('configuration')]
 clean:
     trash $(mise cache)
+    mise cache clear
     mise prune
     brew cleanup
     rm -f "$HOME/Library/Application Support/default.store"*

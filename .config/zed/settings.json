@@ -67,7 +67,11 @@
   },
   "format_on_save": "on",
   "hard_tabs": false,
-  "icon_theme": "Zed (Default)",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
   "languages": {
     "Shell Script": {
       "preferred_line_length": 120,
