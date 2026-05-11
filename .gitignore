@@ -48,6 +48,7 @@
 .beadbox/
 .beads/
 .bluemix/
+.buck/
 .build/
 .buildkite/config.json
 .bun/
