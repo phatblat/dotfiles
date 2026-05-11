@@ -9,7 +9,7 @@
 "aqua:dalance/procs" = "0.14.11"
 "aqua:tcnksm/ghr" = "0.18.3"
 "cargo:apple_releases" = "0.2.1"
-"cargo:cargo-about" = "0.6.4"
+"cargo:cargo-about" = "0.9.0"
 "cargo:cargo-binstall" = "1.19.1"
 "cargo:cargo-expand" = "1.0.121"
 "cargo:ditto-xtask" = "0.1.0"
