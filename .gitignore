@@ -821,7 +821,10 @@ cali_core4/
 cmake-build-debug/
 conductor/
 data/
-dev/
+dev/*
+dev/_GETDITTO/*
+!dev/_GETDITTO/CLAUDE.md
+!dev/_GETDITTO/
 ditto-cache/
 examples.desktop
 fvm/
