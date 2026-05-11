@@ -184,7 +184,7 @@ upgrade-mise-tools *args:
 # Upgrades mise itself
 [group('configuration')]
 upgrade-mise:
-    mise self-update
+    mise self-update --yes
 
 # Upgrades each outdated tool and commits the version change individually
 [group('configuration')]
