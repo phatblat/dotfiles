@@ -37,7 +37,7 @@
 "npm:typescript" = "6.0.3"
 "npm:typescript-language-server" = "5.2.0"
 "npm:vscode-langservers-extracted" = "4.10.0"
-"npm:yaml-language-server" = "1.22.0"
+"npm:yaml-language-server" = "1.23.0"
 "npm:yarn" = "1.22.22"
 "pipx:pyright" = "1.1.409"
 "pipx:python-lsp-server" = "1.14.0"
