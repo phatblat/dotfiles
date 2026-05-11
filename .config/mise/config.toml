@@ -81,6 +81,7 @@ helm = "4.1.4"
 hexyl = "0.17.0"
 hk = "1.45.0"
 hyperfine = "1.20.0"
+java = "26.0.1"
 jq = "1.8.1"
 jujutsu = "0.41.0"
 just = "1.50.0"
@@ -127,7 +128,6 @@ xh = "0.25.3"
 yq = "4.53.2"
 zig = "0.16.0"
 zoxide = "0.9.9"
-java = "26.0.1"
 
 [settings]
 experimental = true
