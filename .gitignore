@@ -821,7 +821,7 @@ cali_core4/
 cmake-build-debug/
 conductor/
 data/
-dev
+dev/
 ditto-cache/
 examples.desktop
 fvm/
