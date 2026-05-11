@@ -82,7 +82,7 @@ hyperfine = "1.20.0"
 java = "26.0.1"
 jq = "1.8.1"
 jujutsu = "0.41.0"
-just = "1.50.0"
+just = "1.51.0"
 k3d = "5.8.3"
 kotlin = { version = "2.3.21", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
 kscript = "4.2.3"
