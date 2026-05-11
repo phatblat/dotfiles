@@ -84,7 +84,7 @@ outdated: outdated-uv
 # Lists outdated uv tools
 [group('info')]
 outdated-uv:
-    uv tool list --outdated
+    mise exec -- uv tool list --outdated
 
 # Lists installed Nix packages
 [group('info')]
@@ -230,7 +230,7 @@ outdated-uv-tools:
             echo "$pkg $installed → $latest"
             found=1
         fi
-    done < <(uv tool list)
+    done < <(mise exec -- uv tool list)
     if [ "$found" -eq 0 ]; then
         echo "All uv tools are up to date"
     fi
@@ -238,7 +238,7 @@ outdated-uv-tools:
 # Upgrades all uv-managed tools
 [group('configuration')]
 upgrade-uv-tools:
-    uv tool upgrade --all
+    mise exec -- uv tool upgrade --all
 
 # Updates home-manager flake and rebuilds configuration
 [group('nix')]
