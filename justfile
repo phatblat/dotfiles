@@ -252,8 +252,8 @@ update-nix:
 [group('configuration')]
 clean:
     trash $(mise cache)
-    mise cache clear
-    mise prune
+    mise cache clear --yes
+    mise prune --yes
     brew cleanup
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f $HOME/*.hprof
