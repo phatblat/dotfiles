@@ -44,7 +44,7 @@ fpath=(~/.config/zsh/functions $fpath)
 
 # Initialize completion system (after all fpath modifications)
 autoload -Uz compinit
-compinit -C
+compinit -d "${XDG_CONFIG_HOME}/zsh/.zcompdump"
 for _fn_file in ~/.config/zsh/functions/*(N); do
     [[ -f "$_fn_file" ]] || continue
     _fn_name="${_fn_file:t}"
