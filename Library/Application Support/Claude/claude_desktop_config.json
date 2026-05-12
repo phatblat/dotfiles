@@ -20,6 +20,7 @@
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
+    "remoteToolsDeviceName": "dto-a165-chatelain",
     "sidebarMode": "chat"
   }
 }
