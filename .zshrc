@@ -39,12 +39,12 @@ if [[ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]]; then
   fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
 fi
 
-# Initialize completion system
-autoload -Uz compinit
-compinit
-
 # Load custom functions via autoload (lazy-loaded on first call)
 fpath=(~/.config/zsh/functions $fpath)
+
+# Initialize completion system (after all fpath modifications)
+autoload -Uz compinit
+compinit -d "${XDG_CONFIG_HOME}/zsh/.zcompdump"
 for _fn_file in ~/.config/zsh/functions/*(N); do
     [[ -f "$_fn_file" ]] || continue
     _fn_name="${_fn_file:t}"

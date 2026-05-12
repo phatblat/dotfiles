@@ -84,7 +84,7 @@ outdated: outdated-uv
 # Lists outdated uv tools
 [group('info')]
 outdated-uv:
-    uv tool list --outdated
+    mise exec -- uv tool list --outdated
 
 # Lists installed Nix packages
 [group('info')]
@@ -184,7 +184,7 @@ upgrade-mise-tools *args:
 # Upgrades mise itself
 [group('configuration')]
 upgrade-mise:
-    mise self-update
+    mise self-update --yes
 
 # Upgrades each outdated tool and commits the version change individually
 [group('configuration')]
@@ -230,7 +230,7 @@ outdated-uv-tools:
             echo "$pkg $installed → $latest"
             found=1
         fi
-    done < <(uv tool list)
+    done < <(mise exec -- uv tool list)
     if [ "$found" -eq 0 ]; then
         echo "All uv tools are up to date"
     fi
@@ -238,7 +238,7 @@ outdated-uv-tools:
 # Upgrades all uv-managed tools
 [group('configuration')]
 upgrade-uv-tools:
-    uv tool upgrade --all
+    mise exec -- uv tool upgrade --all
 
 # Updates home-manager flake and rebuilds configuration
 [group('nix')]
@@ -248,16 +248,17 @@ update-nix:
     nix flake update --flake ~/.config/home-manager
     home-manager switch --flake ~/.config/home-manager
 
-# Removes default.store files, *.hprof files, and homebrew cache from home directory
+# Removes default.store files, *.hprof files, zcompdump clutter, and homebrew cache from home directory
 [group('configuration')]
 clean:
     trash $(mise cache)
-    mise cache clear
-    mise prune
+    mise cache clear --yes
+    mise prune --yes
     brew cleanup
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f $HOME/*.hprof
     rm -f $HOME/.claude.json.backup.*
+    rm -f $HOME/.zcompdump.DTO-*
     rm -rf "$(brew --cache)"
     if command -v nix >/dev/null 2>&1; then nix store gc; fi
 

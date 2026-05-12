@@ -48,6 +48,7 @@
 .beadbox/
 .beads/
 .bluemix/
+.buck/
 .build/
 .buildkite/config.json
 .bun/
@@ -397,6 +398,7 @@
 .vscode-cpptools/
 .vscode-insiders/
 .vscode-server/
+.vscode-shared/sharedStorage
 .vscode/
 .warp/worktrees/
 .wget-hsts
@@ -820,7 +822,10 @@ cali_core4/
 cmake-build-debug/
 conductor/
 data/
-dev
+dev/*
+dev/_GETDITTO/*
+!dev/_GETDITTO/CLAUDE.md
+!dev/_GETDITTO/
 ditto-cache/
 examples.desktop
 fvm/
