@@ -351,6 +351,7 @@ format-json:
     #!/usr/bin/env bash
     set -euo pipefail
     json_files=(
+        ~/.claude/policy-limits.json
         ~/.claude/settings.json
         ~/.codexbar/config.json
         ~/Library/Application\ Support/Claude/claude_desktop_config.json

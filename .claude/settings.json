@@ -14,6 +14,7 @@
     "kotlin-lsp@claude-plugins-official": true,
     "linear@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
+    "obsidian@obsidian-skills": true,
     "plugin-dev@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
@@ -43,6 +44,12 @@
     "gastownhall-marketplace": {
       "source": {
         "repo": "gastownhall/marketplace",
+        "source": "github"
+      }
+    },
+    "obsidian-skills": {
+      "source": {
+        "repo": "kepano/obsidian-skills",
         "source": "github"
       }
     }
@@ -115,6 +122,16 @@
         "hooks": [
           {
             "command": "command -v code-review-graph >/dev/null && code-review-graph update --skip-flows || true",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": "Edit|Write|Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "git rev-parse --git-dir >/dev/null 2>&1 && code-review-graph update --skip-flows --repo \"/Users/phatblat\" || true",
             "timeout": 30,
             "type": "command"
           }
@@ -246,6 +263,16 @@
         "hooks": [
           {
             "command": "command -v code-review-graph >/dev/null && code-review-graph status || true",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      },
+      {
+        "hooks": [
+          {
+            "command": "git rev-parse --git-dir >/dev/null 2>&1 && code-review-graph status --repo \"/Users/phatblat\" || echo 'Not a git repo, skipping'",
             "timeout": 10,
             "type": "command"
           }
