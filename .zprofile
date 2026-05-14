@@ -28,7 +28,7 @@ export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # Java (mise-managed)
-export JAVA_HOME="$(mise where java)"
+export JAVA_HOME="$($HOME/.local/bin/mise where java)"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # Expose CLI paths to GUI apps (e.g. CodexBar)
