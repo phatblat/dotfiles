@@ -162,6 +162,11 @@ remove tool:
     echo "Removing {{ tool }} from mise config..."
     mise rm "{{ tool }}"
 
+# Installs mise
+[group('configuration')]
+install-mise:
+    curl https://mise.run | sh
+
 # Installs Homebrew packages from Brewfile
 [group('configuration')]
 install-brew:
