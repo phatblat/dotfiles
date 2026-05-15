@@ -1,0 +1,45 @@
+#!/usr/bin/env zsh
+
+# wt-env - Symlink env files from main worktree into current worktree
+
+local -a files
+if [[ $# -gt 0 ]]; then
+    files=("$@")
+else
+    files=(.env)
+fi
+
+local main_wt
+main_wt=$(git worktree list --porcelain | awk '/^worktree /{ print $2; exit }')
+
+if [[ -z "$main_wt" ]]; then
+    echo "Error: not in a git repository" >&2
+    return 1
+fi
+
+local current_wt
+current_wt=$(git rev-parse --show-toplevel)
+
+if [[ "$current_wt" == "$main_wt" ]]; then
+    echo "Error: already in the main worktree" >&2
+    return 1
+fi
+
+local file src
+for file in "${files[@]}"; do
+    src="$main_wt/$file"
+    if [[ ! -e "$src" ]]; then
+        echo "skip: $file not found in main worktree" >&2
+        continue
+    fi
+    if [[ -L "$current_wt/$file" ]]; then
+        echo "skip: $file already symlinked"
+        continue
+    fi
+    if [[ -e "$current_wt/$file" ]]; then
+        echo "skip: $file already exists (not a symlink)" >&2
+        continue
+    fi
+    ln -s "$src" "$current_wt/$file"
+    echo "linked: $file → $src"
+done
