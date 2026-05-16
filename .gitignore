@@ -280,6 +280,7 @@
 .krew/
 .kscript/
 .kube/
+.lanes/
 .lemminx/
 .lesshst
 .linear_api_token
