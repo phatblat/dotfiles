@@ -96,7 +96,23 @@ Ask the user:
 > - **no** — abort, keep everything
 > - **pick** — let user specify which categories or individual branches to delete
 
-### 8. Delete Confirmed Branches
+### 8. Remove Worktrees for Confirmed Branches
+
+Before deleting branches, check for associated worktrees:
+
+```bash
+git worktree list --porcelain
+```
+
+For each confirmed branch, check if a worktree references it (the `branch refs/heads/<branch>` line in porcelain output). If so, remove the worktree first:
+
+```bash
+git worktree remove <worktree-path>
+```
+
+If removal fails (dirty worktree), warn the user and skip that branch — do not force-remove without explicit approval.
+
+### 9. Delete Confirmed Branches (skip any whose worktree removal was declined)
 
 ```bash
 git branch -D <branch1> <branch2> ...
@@ -104,7 +120,7 @@ git branch -D <branch1> <branch2> ...
 
 Delete in a single command for efficiency. Do NOT use `-d` (lowercase) since squash-merged branches won't be detected as merged by git.
 
-### 9. Report Results
+### 10. Report Results
 
 List deleted branches and remaining local branches:
 

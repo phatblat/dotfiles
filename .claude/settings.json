@@ -16,6 +16,7 @@
     "lua-lsp@claude-plugins-official": true,
     "obsidian@obsidian-skills": true,
     "plugin-dev@claude-plugins-official": true,
+    "pup@datadog-pup": true,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
     "ruby-lsp@claude-plugins-official": false,
@@ -38,6 +39,12 @@
     "claude-code-warp": {
       "source": {
         "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
+    "datadog-pup": {
+      "source": {
+        "repo": "DataDog/pup",
         "source": "github"
       }
     },
