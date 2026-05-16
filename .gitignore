@@ -255,6 +255,7 @@
 .gt/
 .harness/
 .hawtjni/
+.hermes/
 .heroku/
 .hyper_plugins/
 .idapro/
