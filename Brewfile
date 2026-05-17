@@ -286,23 +286,9 @@ cask "witch"
 cask "xcodes-app"
 cask "zed"
 cask "zen"
-cask "zeplin"
-mas "Dark Reader for Safari", id: 1438243180
-mas "Developer", id: 640199958
-mas "Event Speaker Timer", id: 6467181917
-mas "Fantastical", id: 975937182
-mas "Interactful", id: 1528095640
 mas "Mactracker", id: 430255202
 mas "NextDNS", id: 1464122853
-mas "Notion Web Clipper", id: 1559269364
-mas "Okta Verify", id: 490179405
-mas "OneDrive", id: 823766827
-mas "reMarkable", id: 1276493162
-mas "Remote Desktop", id: 409907375
 mas "Screens 5", id: 1663047912
-mas "Slack", id: 803453959
-mas "TestFlight", id: 899247664
-mas "Things", id: 904280696
 mas "Windows App", id: 1295203466
 vscode "4ops.packer"
 vscode "aaronyoung.dark-synthwave-vscode"
@@ -499,4 +485,5 @@ vscode "zeithaste.cursorcharcode"
 vscode "zhouronghui.propertylist"
 vscode "zhuangtongfa.material-theme"
 vscode "ziyasal.vscode-open-in-github"
+
 uv "code-review-graph"
