@@ -707,7 +707,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `ungate`                    | ➖  | ✅   | ➖  | ➖   | Defined in /var/folders/n8/\__3mw5v17hqfpf6ycpb6b7_  |
 | `unmount`                   | ➖  | ✅   | ✅  | ➖   | Unmounts drive                                       |
 | `unshallow`                 | ➖  | ✅   | ✅  | ➖   | Converts shallow git repo to full                    |
-| `unstage`                   | ➖  | ✅   | ➖  | ➖   | Restores files in git index from HEAD                |
+| `unstage`                   | ➖  | ✅   | ✅  | ➖   | Restores files in git index from HEAD                |
 | `untar`                     | ➖  | ✅   | ✅  | ➖   | Extracts tarball                                     |
 | `untracked`                 | ➖  | ✅   | ✅  | ➖   | Displays files not tracked in the current git repo   |
 | `update_nvm`                | ➖  | ✅   | ➖  | ➖   | Fish function                                        |

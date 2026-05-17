@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# unstage - Restores files in the git index from HEAD
+if [[ $# -eq 0 ]]; then
+    git restore --staged .
+else
+    git restore --staged "$@"
+fi
