@@ -37,30 +37,35 @@
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
+      "autoUpdate": true,
       "source": {
         "repo": "warpdotdev/claude-code-warp",
         "source": "github"
       }
     },
     "datadog-pup": {
+      "autoUpdate": true,
       "source": {
         "repo": "DataDog/pup",
         "source": "github"
       }
     },
     "ditto-plugins": {
+      "autoUpdate": true,
       "source": {
         "repo": "getditto/claude-code-plugins",
         "source": "github"
       }
     },
     "gastownhall-marketplace": {
+      "autoUpdate": true,
       "source": {
         "repo": "gastownhall/marketplace",
         "source": "github"
       }
     },
     "obsidian-skills": {
+      "autoUpdate": true,
       "source": {
         "repo": "kepano/obsidian-skills",
         "source": "github"
