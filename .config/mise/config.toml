@@ -13,6 +13,7 @@
 "cargo:cargo-expand" = "1.0.122"
 "cargo:foxguard" = "0.8.1"
 "cargo:sccache" = "0.15.0"
+"cargo:tauri-cli" = "2.11.2"
 "cargo:wasm-bindgen-cli" = "0.2.121"
 "cargo:wasm-pack" = "0.15.0"
 "github:dolthub/dolt" = "2.0.3"
