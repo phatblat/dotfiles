@@ -175,6 +175,7 @@ subshell_commands_denylist = []
 
 [warpify.ssh]
 use_ssh_tmux_wrapper = true
+ssh_hosts_denylist = []
 
 [workflows]
 show_global_workflows_in_universal_search = true

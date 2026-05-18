@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Installs LaunchDaemons from dotfiles into /Library/LaunchDaemons
+DOTFILES_DAEMONS="$HOME/Library/LaunchDaemons"
+
+for plist in "$DOTFILES_DAEMONS"/*.plist; do
+    [ -f "$plist" ] || continue
+    name=$(basename "$plist")
+    echo "Installing $name..."
+    sudo cp "$plist" "/Library/LaunchDaemons/$name"
+    sudo chown root:wheel "/Library/LaunchDaemons/$name"
+    sudo chmod 644 "/Library/LaunchDaemons/$name"
+    sudo launchctl bootout system/"${name%.plist}" 2>/dev/null || true
+    sudo launchctl bootstrap system "/Library/LaunchDaemons/$name"
+done
+
+echo "Done."

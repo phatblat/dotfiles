@@ -255,6 +255,7 @@
 .gt/
 .harness/
 .hawtjni/
+.hermes/
 .heroku/
 .hyper_plugins/
 .idapro/
@@ -280,6 +281,7 @@
 .krew/
 .kscript/
 .kube/
+.lanes/
 .lemminx/
 .lesshst
 .linear_api_token
