@@ -118,9 +118,18 @@ gh pr list --head "${today}" --state open --json number,url --jq '.[0] | "\(.num
 ```
 
 - **PR exists**: Report the existing PR number and URL. Skip creation.
-- **No PR**: Create one (branch was already pushed in step 5):
+- **No PR**: Check if the branch has commits ahead of the default branch:
   ```bash
-  gh pr create --draft --title "chore: ${today} ${today_date}" --body "Daily dotfiles branch for ${today}, ${today_date}."
+  git rev-list --count ${default_branch}..${today}
+  ```
+  If the count is `0`, create an empty commit so GitHub can diff the branches:
+  ```bash
+  git commit --allow-empty -m "chore: start ${today} ${today_date}"
+  git push ${remote} ${today}:${today}
+  ```
+  Then create the PR:
+  ```bash
+  gh pr create --draft --assignee @me --title "chore: ${today} ${today_date}" --body "Daily dotfiles branch for ${today}, ${today_date}."
   ```
 
 ### 8. Report Summary
@@ -159,3 +168,4 @@ If nothing was cleaned up, report "No previous daily branches to clean up."
 | Already on today's branch | Step 5 skips checkout to default; Step 6 is a no-op |
 | Already on default branch | Step 5 skips checkout, just pulls |
 | Stale remote-tracking refs | Step 2 prunes them via `git fetch --prune` |
+| No commits ahead of default | Step 7 creates an empty commit before PR creation |
