@@ -359,6 +359,7 @@
 .rustup/
 .rvm/
 .security-key
+.sem/
 .serverless/
 .serverlessrc
 .settings

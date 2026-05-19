@@ -4,19 +4,22 @@
 
 The projects stored in this directory use **Linear** for all issue tracking.
 
-Use the **`lncli`** CLI for all Linear operations (reading issues, updating status, creating issues, adding comments, etc.). Do NOT use Linear MCP tools — use `lncli` instead.
+Use the **`linear`** CLI (`schpet/linear-cli`) for all Linear operations (reading issues, updating status, creating issues, adding comments, etc.). Also available as the `/linear-cli` skill.
 
-Run `lncli` or `lncli usage` to see all available commands and usage details.
+Run `linear --help` or `linear issue --help` to see all available commands and usage details.
 
 Common commands:
 
 ```bash
-# Read an issue
-lncli issues read DEVX-xxx
+# View an issue
+linear issue view DEVX-xxx
+
+# List my issues
+linear issue mine --state started
 
 # Create an issue
-lncli issues create --team DEVX -d "Description in **markdown**" -p 3 "My issue title"
+linear issue create --team DEVX -d "Description in **markdown**" -p 3 "My issue title"
 
 # Update an issue status
-lncli issues update DEVX-123 -s "In Progress"
+linear issue update DEVX-123 -s started
 ```
