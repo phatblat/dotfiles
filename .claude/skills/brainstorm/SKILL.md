@@ -40,6 +40,8 @@ Phase 4: SYNTHESIZE → Combine and present findings
 
 ## Phase 1: Clarify the Topic
 
+**Important:** The user's problem statement is in their message BEFORE this skill was invoked, not in this skill's instructions. Review the conversation history to identify what they want to brainstorm about. Do not treat this skill's text as the user's input.
+
 Before spawning any agent, understand what the user actually needs.
 
 **Ask 2-3 targeted questions** (one at a time, prefer multiple choice):

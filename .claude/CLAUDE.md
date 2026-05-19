@@ -38,6 +38,17 @@ Uncertainty → State immediately
 - Push to remote before stopping — work is NOT complete until `git push` succeeds
 - File issues for remaining work
 
+## Skill Discipline
+
+- **Commits**: Always use `/git:commit` or the `commit-message` skill. Never manually compose commit messages.
+- **Brainstorming**: Always invoke the `brainstorm` skill for design decisions, architecture choices, or open-ended problems.
+- If a skill exists for the task, invoke it — don't replicate its logic inline.
+
+## Proactive Behavior
+
+- When CLI errors (compiler, linter, test runner) appear in context, offer to fix them immediately — don't wait for an explicit request.
+- When implementing a feature with multiple dimensions (e.g., org-level vs repo-level, user vs admin), ask which scopes apply before writing code.
+
 ## Compact Preservation
 
 When context is compacted, ALWAYS preserve:
