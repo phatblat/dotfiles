@@ -40,6 +40,12 @@ local path_key=${repo_root#"$HOME"/}
 path_key=${path_key//\//-}
 local wt_path="$HOME/.worktrees/${path_key}/${branch}"
 
+if [[ -d "$wt_path" ]]; then
+    echo "Worktree directory already exists at $wt_path — reusing it"
+    z "$wt_path"
+    return
+fi
+
 if git show-ref --quiet "refs/heads/$branch"; then
     git worktree add "$wt_path" "$branch"
 elif git show-ref --quiet "refs/remotes/origin/$branch"; then

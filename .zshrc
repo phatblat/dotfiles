@@ -102,7 +102,7 @@ if [[ -d "$ANDROID_HOME" ]]; then
   export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/$NDK_VERSION"
 
   if [[ -n "$BUILD_TOOLS_VERSION" ]]; then
-    export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH"
+    export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/$BUILD_TOOLS_VERSION:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME"
   fi
 fi
 
