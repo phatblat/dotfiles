@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
 dotenv .env           # load .env into shell too
-layout node           # set up node_modules/.bin in PATH

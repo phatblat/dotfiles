@@ -218,6 +218,7 @@
 .dev-data/
 .did_show_opt_info
 .diffusionbee/
+.ditto-agent/
 .docker/
 .dolt/
 .dotfiles/cron/cronenv

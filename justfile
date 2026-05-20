@@ -141,6 +141,7 @@ add tool:
 
     echo "Installing {{ tool }}@$version..."
     mise use "{{ tool }}@$version"
+    just format
 
 # Removes a tool from mise config and uninstalls it
 [group('configuration')]
