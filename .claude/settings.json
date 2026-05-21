@@ -38,7 +38,6 @@
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
-      "autoUpdate": true,
       "source": {
         "repo": "warpdotdev/claude-code-warp",
         "source": "github"
@@ -382,6 +381,7 @@
     ],
     "deny": []
   },
+  "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto"
 }
