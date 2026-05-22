@@ -14,6 +14,7 @@ allowed-tools:
   - mcp__git__git_diff_unstaged
   - Read
   - AskUserQuestion
+  - Skill
 ---
 
 # Ship Workflow
@@ -218,43 +219,7 @@ git push -u origin HEAD
 
 ## Phase 4: Create PR (Optional)
 
-If user wants a PR:
-
-```bash
-gh pr create --title "<title>" --body "$(cat <<'EOF'
-Resolves #[number] (if applicable)
-Related: #[PR-number] (if applicable)
-
-## Summary
-- [bullet points of changes]
-
-## Test Plan
-- [how to verify changes]
-
-Generated with [Claude Code](https://claude.com/claude-code)
-EOF
-)"
-```
-
-### PR Title Rules
-- Max 70 characters
-- Same format as commit subject: `type(scope): description`
-- Use the body for details, not the title
-
-### PR Body Template
-
-**IMPORTANT:** Ticket references and links to related PRs MUST appear above the first heading, on their own lines, so they are immediately visible.
-
-```markdown
-Closes #[number] (if applicable)
-Related: #[PR-number] (if applicable)
-
-## Summary
-[1-3 bullet points describing what changed and why]
-
-## Test Plan
-- [ ] [Steps to verify the changes work]
-```
+If user wants a PR, invoke the `pr-style` skill for title format, body template, labels, assignment, and draft policy. Follow its rules for PR creation.
 
 **Always confirm PR title and body before creating.**
 Return the PR URL when done.

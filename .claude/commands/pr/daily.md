@@ -1,6 +1,6 @@
 ---
 description: Start the daily dotfiles workflow — clean up old branches, create today's branch, open draft PR
-allowed-tools: Bash(git:*), Bash(gh:*), Bash(date:*), AskUserQuestion
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(date:*), AskUserQuestion, Skill
 category: workflow
 ---
 
@@ -127,10 +127,11 @@ gh pr list --head "${today}" --state open --json number,url --jq '.[0] | "\(.num
   git commit --allow-empty -m "chore: start ${today} ${today_date}"
   git push ${remote} ${today}:${today}
   ```
-  Then create the PR:
+  Then create the PR using `--draft` and `--assignee @me` per the `pr-style` skill:
   ```bash
   gh pr create --draft --assignee @me --title "chore: ${today} ${today_date}" --body "Daily dotfiles branch for ${today}, ${today_date}."
   ```
+  Note: Daily PRs use a fixed title/body format, not the full `pr-style` body template. Labels are skipped for daily branches.
 
 ### 8. Report Summary
 
