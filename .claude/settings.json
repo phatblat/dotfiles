@@ -17,7 +17,7 @@
     "lua-lsp@claude-plugins-official": true,
     "obsidian@obsidian-skills": true,
     "plugin-dev@claude-plugins-official": true,
-    "pup@datadog-pup": true,
+    "pup@datadog-pup": false,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
     "ruby-lsp@claude-plugins-official": false,
