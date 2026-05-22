@@ -13,7 +13,7 @@
     "jdtls-lsp@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
-    "linear@claude-plugins-official": true,
+    "linear@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": true,
     "obsidian@obsidian-skills": true,
     "plugin-dev@claude-plugins-official": true,
