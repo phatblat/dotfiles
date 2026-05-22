@@ -337,7 +337,17 @@
       "mcp__acp__Write",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.basedpyright.com)",
-      "Bash(claude mcp list)"
+      "Bash(claude mcp list)",
+      "Bash(git fetch *)",
+      "Bash(gh search *)",
+      "Bash(sg *)",
+      "Bash(just --list)",
+      "Bash(just lint)",
+      "Bash(mise ls *)",
+      "Bash(mise search *)",
+      "Bash(rtk gain *)",
+      "Bash(rtk discover)",
+      "Bash(rtk --version)"
     ],
     "deny": []
   },
