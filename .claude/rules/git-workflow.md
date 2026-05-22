@@ -33,7 +33,7 @@ paths:
 
 ## PRs
 
-- PR body: ticket references (e.g., `Resolves DEVX-123`) above the first heading
+- Follow the `pr-style` skill for title, body, labels, assignment, and draft policy
 
 ## Git Config Structure
 
