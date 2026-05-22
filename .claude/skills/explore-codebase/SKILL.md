@@ -1,13 +1,36 @@
 ---
 name: Explore Codebase
-description: Navigate and understand codebase structure using the knowledge graph
+description: Navigate and understand codebase structure using the knowledge graph. Use code-review-graph MCP tools BEFORE Grep/Glob/Read for exploring code, understanding impact, code review, finding relationships, and architecture questions.
 ---
 
 ## Explore Codebase
 
-Use the code-review-graph MCP tools to explore and understand the codebase.
+Use the code-review-graph MCP tools to explore and understand the codebase. The graph is faster, cheaper (fewer tokens), and gives structural context (callers, dependents, test coverage) that file scanning cannot.
 
-### Steps
+### When to use graph tools FIRST
+
+- **Exploring code**: `semantic_search_nodes` or `query_graph` instead of Grep
+- **Understanding impact**: `get_impact_radius` instead of manually tracing imports
+- **Code review**: `detect_changes` + `get_review_context` instead of reading entire files
+- **Finding relationships**: `query_graph` with callers_of/callees_of/imports_of/tests_for
+- **Architecture questions**: `get_architecture_overview` + `list_communities`
+
+Fall back to Grep/Glob/Read **only** when the graph doesn't cover what you need.
+
+### Key Tools
+
+| Tool | Use when |
+| ------ | ---------- |
+| `detect_changes` | Reviewing code changes — gives risk-scored analysis |
+| `get_review_context` | Need source snippets for review — token-efficient |
+| `get_impact_radius` | Understanding blast radius of a change |
+| `get_affected_flows` | Finding which execution paths are impacted |
+| `query_graph` | Tracing callers, callees, imports, tests, dependencies |
+| `semantic_search_nodes` | Finding functions/classes by name or keyword |
+| `get_architecture_overview` | Understanding high-level codebase structure |
+| `refactor_tool` | Planning renames, finding dead code |
+
+### Exploration Steps
 
 1. Run `list_graph_stats` to see overall codebase metrics.
 2. Run `get_architecture_overview` for high-level community structure.
@@ -15,6 +38,13 @@ Use the code-review-graph MCP tools to explore and understand the codebase.
 4. Use `semantic_search_nodes` to find specific functions or classes.
 5. Use `query_graph` with patterns like `callers_of`, `callees_of`, `imports_of` to trace relationships.
 6. Use `list_flows` and `get_flow` to understand execution paths.
+
+### Workflow
+
+1. The graph auto-updates on file changes (via hooks).
+2. Use `detect_changes` for code review.
+3. Use `get_affected_flows` to understand impact.
+4. Use `query_graph` pattern="tests_for" to check coverage.
 
 ### Tips
 
