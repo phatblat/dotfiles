@@ -10,6 +10,10 @@ Create a GitHub PR for the current branch. If a PR already exists, delegate to `
 
 ## Instructions
 
+### 0. Load PR Style
+
+Invoke the `pr-style` skill to load formatting conventions (title, body, labels, assignment, draft policy). Follow its rules for all subsequent steps.
+
 ### 1. Gather Context
 
 Run a single combined command:
@@ -68,44 +72,37 @@ git diff --stat ${default_branch}...HEAD
 
 ### 5. Generate PR Title and Description
 
-**Title**: Derive from the branch purpose. Use conventional commit style matching the project (e.g., `feat:`, `fix:`, `chore:`). Keep under 70 characters.
+Follow the `pr-style` skill for title format, body template, and guidelines.
 
-**Description**: Analyze the commits and diff stat to produce:
+### 6. Detect Labels
 
-```markdown
-## Summary
-<1-3 sentence overview of what this branch accomplishes>
+Scan the commit log from step 4 for conventional commit prefixes. Map them to GitHub labels per the `pr-style` skill label table. Collect all unique labels.
 
-## Changes
-<bulleted list of meaningful changes, grouped logically — not a 1:1 commit echo>
+Present the proposed labels and ask the user to confirm or edit:
 
-## Files Changed
-<bulleted list of key files/areas touched, with brief context>
+```
+Proposed labels: enhancement, documentation
+Confirm? [Y/n/edit]
 ```
 
-Guidelines:
-- Collapse trivial/chore commits into the broader change they support
-- Group related commits into a single bullet
-- Use imperative mood ("Add X", "Fix Y", "Update Z")
-- Keep it concise — scannable in under 30 seconds
-- Do not include commit hashes
-
-### 6. Create the PR
+### 7. Create the PR
 
 ```bash
-gh pr create --draft --title "<title>" --body "$(cat <<'EOF'
+gh pr create --draft --assignee @me --label "<confirmed labels>" --title "<title>" --body "$(cat <<'EOF'
 <generated description>
 EOF
 )"
 ```
 
-Always create as draft. The user will mark it ready when appropriate.
+If no labels were confirmed, omit the `--label` flag.
 
-### 7. Report Result
+### 8. Report Result
 
 Output:
 
 ```
-✅ Created PR #<number> (draft)
+Created PR #<number> (draft)
 <pr_url>
+Labels: <applied labels>
+Assigned: @me
 ```
