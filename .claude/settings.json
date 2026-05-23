@@ -13,18 +13,18 @@
     "jdtls-lsp@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
-    "linear@claude-plugins-official": true,
+    "linear@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": true,
     "obsidian@obsidian-skills": true,
     "plugin-dev@claude-plugins-official": true,
-    "pup@datadog-pup": true,
+    "pup@datadog-pup": false,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
     "ruby-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "warp@claude-code-warp": true,
@@ -106,32 +106,12 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/hooks/scripts/write-format.sh",
-            "timeout": 15,
-            "type": "command"
-          }
-        ],
-        "matcher": "Write|Edit"
-      },
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/hooks/scripts/dotfiles-format.sh",
+            "command": "bash ~/.claude/hooks/scripts/auto-format.sh",
             "timeout": 30,
             "type": "command"
           }
         ],
         "matcher": "Write|Edit"
-      },
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/hooks/scripts/bash-vuln.sh",
-            "timeout": 3,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
       },
       {
         "hooks": [
@@ -146,16 +126,6 @@
         "hooks": [
           {
             "command": "command -v code-review-graph >/dev/null && code-review-graph update --skip-flows || true",
-            "timeout": 30,
-            "type": "command"
-          }
-        ],
-        "matcher": "Edit|Write|Bash"
-      },
-      {
-        "hooks": [
-          {
-            "command": "git rev-parse --git-dir >/dev/null 2>&1 && code-review-graph update --skip-flows --repo \"/Users/phatblat\" || true",
             "timeout": 30,
             "type": "command"
           }
@@ -303,16 +273,6 @@
           }
         ],
         "matcher": ""
-      },
-      {
-        "hooks": [
-          {
-            "command": "git rev-parse --git-dir >/dev/null 2>&1 && code-review-graph status --repo \"/Users/phatblat\" || echo 'Not a git repo, skipping'",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": ""
       }
     ],
     "Stop": [
@@ -377,7 +337,17 @@
       "mcp__acp__Write",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.basedpyright.com)",
-      "Bash(claude mcp list)"
+      "Bash(claude mcp list)",
+      "Bash(git fetch *)",
+      "Bash(gh search *)",
+      "Bash(sg *)",
+      "Bash(just --list)",
+      "Bash(just lint)",
+      "Bash(mise ls *)",
+      "Bash(mise search *)",
+      "Bash(rtk gain *)",
+      "Bash(rtk discover)",
+      "Bash(rtk --version)"
     ],
     "deny": []
   },

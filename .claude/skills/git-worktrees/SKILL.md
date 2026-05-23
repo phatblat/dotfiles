@@ -40,21 +40,34 @@ if [ "$repo_root" = "$HOME" ]; then
 fi
 ```
 
-### 2. Derive Path Key
+### 2. Guard Against Submodule False Positive
+
+Git submodules also have `GIT_DIR != GIT_COMMON_DIR`, which looks identical to a worktree.
+Before concluding you're already in a worktree, rule out submodules:
+
+```bash
+# If this returns a path, you're in a submodule, not a worktree — treat as normal repo
+superproject=$(git rev-parse --show-superproject-working-tree 2>/dev/null)
+if [ -n "$superproject" ]; then
+  echo "NOTE: Inside a git submodule (superproject: $superproject). Proceeding as normal repo."
+fi
+```
+
+### 3. Derive Path Key
 
 ```bash
 repo_root=$(git rev-parse --show-toplevel)
 path_key=$(echo "$repo_root" | sed "s|^$HOME/||" | tr '/' '-')
 ```
 
-### 3. Create Worktree
+### 4. Create Worktree
 
 ```bash
 worktree_path="$HOME/.worktrees/$path_key/$BRANCH_NAME"
 git worktree add "$worktree_path" -b "$BRANCH_NAME"
 ```
 
-### 4. Set Up Remote Tracking Immediately
+### 5. Set Up Remote Tracking Immediately
 
 Every new branch MUST have remote tracking before any commits:
 
@@ -65,7 +78,7 @@ git push -u origin "$BRANCH_NAME:$BRANCH_NAME"
 
 Verify with `git branch -vv`.
 
-### 5. Run Project Setup
+### 6. Run Project Setup
 
 Auto-detect and run appropriate setup:
 
@@ -77,11 +90,11 @@ Auto-detect and run appropriate setup:
 [ -f go.mod ] && go mod download
 ```
 
-### 6. Verify Clean Baseline
+### 7. Verify Clean Baseline
 
 Run project-appropriate tests. If tests fail, report failures and ask whether to proceed.
 
-### 7. Report
+### 8. Report
 
 ```
 Worktree ready at ~/.worktrees/<path-key>/<branch>
@@ -118,4 +131,4 @@ git worktree remove ~/.worktrees/<path-key>/<branch>
 ## Integration
 
 **Called by:** Any skill or workflow needing an isolated workspace
-**Pairs with:** finishing-a-development-branch for cleanup after work is complete
+**Pairs with:** branch-finish for cleanup after work is complete

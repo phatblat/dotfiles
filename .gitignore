@@ -70,6 +70,7 @@
 .claude.json.backup
 .claude.json.backup.*
 .claude.json.tmp.*
+.claude/.credentials.json
 .claude/.last-cleanup
 .claude/agent-flow/*.json
 .claude/security_warnings_state_*.json

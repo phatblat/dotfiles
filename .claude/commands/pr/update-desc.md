@@ -1,6 +1,6 @@
 ---
 description: Update the PR description for the current branch
-allowed-tools: Bash(git:*), Bash(gh:*), Bash(date:*)
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(date:*), Skill
 category: workflow
 ---
 
@@ -9,6 +9,10 @@ category: workflow
 Regenerate and update the GitHub PR description for the current branch based on all commits in the PR.
 
 ## Instructions
+
+### 0. Load PR Style
+
+Invoke the `pr-style` skill to load formatting conventions for the PR body.
 
 ### 1. Gather Context
 
@@ -45,25 +49,7 @@ git diff --stat ${default_branch}...HEAD
 
 ### 4. Generate PR Description
 
-Analyze the commits and diff stat to produce a description with this structure:
-
-```markdown
-## Summary
-<1-3 sentence overview of what this branch accomplishes>
-
-## Changes
-<bulleted list of meaningful changes, grouped logically — not a 1:1 commit echo>
-
-## Files Changed
-<bulleted list of key files/areas touched, with brief context>
-```
-
-Guidelines:
-- Collapse trivial/chore commits (typo fixes, formatting) into the broader change they support
-- Group related commits into a single bullet rather than listing each commit separately
-- Use imperative mood ("Add X", "Fix Y", "Update Z")
-- Keep it concise — the description should be scannable in under 30 seconds
-- Do not include commit hashes in the description
+Follow the `pr-style` skill for body template and guidelines.
 
 ### 5. Update the PR
 
