@@ -1,5 +1,5 @@
 ---
-name: Explore Codebase
+name: explore-codebase
 description: Navigate and understand codebase structure using the knowledge graph. Use code-review-graph MCP tools BEFORE Grep/Glob/Read for exploring code, understanding impact, code review, finding relationships, and architecture questions.
 ---
 
