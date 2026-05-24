@@ -73,7 +73,7 @@ Select recipes from the table below based on the detected project type. Only inc
 
 | Recipe    | Group             | Rust                        | Node.js                          | Python                       | Go                          | Swift/Apple              | JVM                           |
 |-----------|-------------------|-----------------------------|----------------------------------|------------------------------|-----------------------------|--------------------------|-------------------------------|
-| `install` | `configuration`   | —                           | `pnpm install` / `npm install`   | `uv sync`                   | `go mod download`           | —                        | —                             |
+| `deps`    | `configuration`   | —                           | `pnpm install` / `npm install`   | `uv sync`                   | `go mod download`           | —                        | —                             |
 | `build`   | `build`           | `cargo build`               | per-project                      | —                            | `go build ./...`            | `swift build`            | `./gradlew build`             |
 | `test`    | `tests`           | `cargo test`                | `pnpm test` / `npm test`         | `uv run pytest`             | `go test ./...`             | `swift test`             | `./gradlew test`              |
 | `lint`    | `checks`          | `cargo clippy`              | `pnpm lint` / `eslint .`         | `uv run ruff check .`       | `golangci-lint run`         | `swiftlint`              | `./gradlew lint`              |

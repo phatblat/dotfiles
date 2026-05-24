@@ -45,7 +45,7 @@ shellharden_exclude_functions := 'version_build version_market xccheck'
 alias dashboard := gt-dashboard-open
 alias f := free
 alias fmt := format
-alias i := install
+alias i := deps
 alias ls := list
 alias lsm := list-missing
 alias od := outdated
@@ -175,7 +175,7 @@ install-brew:
 
 # Installs tools using mise
 [group('configuration')]
-install: install-brew
+deps: install-brew
     mise install
 
 # Common upgrades
