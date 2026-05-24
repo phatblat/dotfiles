@@ -34,7 +34,9 @@ _default:
 
 ## Recipe Organization
 
-Group recipes using `[group('name')]` attributes. Use comment blocks to visually separate groups:
+Only add groups when the justfile has **10 or more recipes** (excluding `_default`). Smaller justfiles stay flat — no `[group()]` attributes, no comment blocks.
+
+When grouping, use `[group('name')]` attributes and comment blocks to visually separate groups:
 
 ```just
 #

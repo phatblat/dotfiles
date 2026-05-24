@@ -83,13 +83,19 @@ Select recipes from the table below based on the detected project type. Only inc
 
 Use `[script]` attribute for multi-line recipes. Add `set -euo pipefail` at the top of script bodies.
 
-#### 3d. Format Recipe with just --fmt
+#### 3d. Grouping Threshold
+
+- **< 10 recipes**: Do NOT add `[group()]` attributes or group comment blocks. Keep the justfile flat and simple.
+- **>= 10 recipes**: Organize with `[group('name')]` attributes and comment blocks between groups, per the `justfile` rule.
+
+When updating an existing justfile, count total recipes (excluding `_default`) to decide whether to add or remove groups.
+
+#### 3e. Format Recipe with just --fmt
 
 Always include a `format` recipe that also runs `just --fmt`:
 
 ```just
 # Auto-format code and justfile
-[group('configuration')]
 [script]
 format:
     set -euo pipefail
@@ -108,8 +114,8 @@ format:
 
 All conventions from the `justfile` rule apply:
 - Kebab-case recipe names
-- `[group('name')]` attributes for organization
-- Comment blocks between groups
+- `[group('name')]` attributes only when >= 10 recipes; omit for smaller justfiles
+- Comment blocks between groups (only when using groups)
 - `[script]` attribute for multi-line recipes
 - Aliases for common shortcuts (`alias t := test`)
 
