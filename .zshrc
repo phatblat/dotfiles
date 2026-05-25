@@ -134,3 +134,6 @@ fi
 alias pai="bun $HOME/.claude/skills/PAI/Tools/pai.ts"
 
 source $HOME/.config/broot/launcher/bash/br
+
+# Added by Antigravity IDE
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
