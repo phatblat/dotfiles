@@ -362,6 +362,7 @@
 .runtime/
 .rustup/
 .rvm/
+.securecoder/
 .security-key
 .sem/
 .serverless/
