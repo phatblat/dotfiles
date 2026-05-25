@@ -29,6 +29,7 @@
 .ansible/
 .antigen/
 .antigravity/
+.antigravitycli/
 .anyconnect
 .asdf/
 .aspnet/
