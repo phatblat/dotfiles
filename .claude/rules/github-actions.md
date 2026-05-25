@@ -69,16 +69,25 @@ git ls-remote https://github.com/{owner}/{repo}.git refs/tags/{tag}
 
 ### `~` is NOT expanded in `with:` blocks
 
-Action inputs (`with:`) are passed as plain strings — the shell never interprets them, so `~` stays literal and causes "binary not found" or "path not found" errors.
+Action inputs (`with:`) are passed as plain strings — the shell never interprets them, so both `~` and `$HOME` stay literal and cause "binary not found" or "path not found" errors.
 
 **Broken:**
 ```yaml
 - uses: some/action@v1
   with:
-    path: ~/.my-tool/bin
+    path: ~/.my-tool/bin    # ~ stays literal
+    path: $HOME/.my-tool/bin  # $HOME also stays literal
 ```
 
-**Fix:** Resolve the path in a prior `run:` step using `$HOME`, then pass via outputs:
+**Simple fix:** Use `${{ env.HOME }}` (GitHub Actions expression syntax) — this is evaluated by the runner, not the shell:
+
+```yaml
+- uses: some/action@v1
+  with:
+    path: ${{ env.HOME }}/.my-tool/bin
+```
+
+**Multi-step fix:** When the path is complex or reused across several steps, resolve it once via outputs:
 
 ```yaml
 - id: resolve-path
@@ -89,7 +98,7 @@ Action inputs (`with:`) are passed as plain strings — the shell never interpre
     path: ${{ steps.resolve-path.outputs.dir }}
 ```
 
-This also applies to `actions/cache` `path:`, `path_to_*` inputs, and any `with:` value that expects a filesystem path.
+This applies to `actions/cache` `path:`, `path_to_*` inputs, and any `with:` value that expects a filesystem path.
 
 ## Workflow Best Practices
 
