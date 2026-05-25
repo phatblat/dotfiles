@@ -65,6 +65,32 @@ Or use `git ls-remote`:
 git ls-remote https://github.com/{owner}/{repo}.git refs/tags/{tag}
 ```
 
+## Common Gotchas
+
+### `~` is NOT expanded in `with:` blocks
+
+Action inputs (`with:`) are passed as plain strings — the shell never interprets them, so `~` stays literal and causes "binary not found" or "path not found" errors.
+
+**Broken:**
+```yaml
+- uses: some/action@v1
+  with:
+    path: ~/.my-tool/bin
+```
+
+**Fix:** Resolve the path in a prior `run:` step using `$HOME`, then pass via outputs:
+
+```yaml
+- id: resolve-path
+  run: echo "dir=$HOME/.my-tool/bin" >> "$GITHUB_OUTPUT"
+
+- uses: some/action@v1
+  with:
+    path: ${{ steps.resolve-path.outputs.dir }}
+```
+
+This also applies to `actions/cache` `path:`, `path_to_*` inputs, and any `with:` value that expects a filesystem path.
+
 ## Workflow Best Practices
 
 - Use `permissions:` at the workflow level to restrict token scope (principle of least privilege)

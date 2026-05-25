@@ -111,6 +111,13 @@ uses: my-org/shared-action@feature-branch  # gha-pin-allow: linked-branch
 
 Remind the user to pin it to a SHA once the linked work is merged.
 
+## Common Gotchas
+
+When generating or reviewing workflows, watch for:
+
+- **`~` in `with:` blocks** — Action inputs are plain strings, not shell-expanded. `~` stays literal and causes "not found" errors. Use `$HOME` in a `run:` step and pass via `$GITHUB_OUTPUT`. See the `github-actions` rule for the pattern.
+- **`${{ }}` in `run:` blocks** — Prefer environment variables over inline expressions to avoid script injection via crafted PR titles/branch names.
+
 ## Do NOT
 
 - Pin local/composite actions (`uses: ./path`) — they're in the same repo
