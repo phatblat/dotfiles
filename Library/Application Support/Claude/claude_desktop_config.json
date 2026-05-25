@@ -1,5 +1,8 @@
 {
   "preferences": {
+    "bypassPermissionsGateByAccount": {
+      "193b5ba3-3754-4e2a-953b-4adcc4457018": false
+    },
     "ccdScheduledTasksEnabled": true,
     "chicagoEnabled": true,
     "coworkOnboardingResumeStep": null,
