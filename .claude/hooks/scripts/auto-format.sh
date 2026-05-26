@@ -50,5 +50,5 @@ case "$file_path" in
         ;;
 esac
 
-just format 2>/dev/null || true
+just -f "$home/justfile" format 2>/dev/null || true
 exit 0

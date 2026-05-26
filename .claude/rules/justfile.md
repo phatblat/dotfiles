@@ -34,7 +34,9 @@ _default:
 
 ## Recipe Organization
 
-Group recipes using `[group('name')]` attributes. Use comment blocks to visually separate groups:
+Only add groups when the justfile has **10 or more recipes** (excluding `_default`). Smaller justfiles stay flat — no `[group()]` attributes, no comment blocks.
+
+When grouping, use `[group('name')]` attributes and comment blocks to visually separate groups:
 
 ```just
 #
@@ -57,9 +59,19 @@ Include these standard recipes as applicable to the project. Use conventional na
 | `build`   | `build`         | Compile/build the project      |
 | `test`    | `tests`         | Run test suite                 |
 | `run`     | `build`         | Run the project                |
-| `install` | `configuration` | Install dependencies/tools     |
+| `deps`    | `configuration` | Install dependencies/tools     |
 | `format`  | `configuration` | Auto-format code and configs   |
 | `deploy`  | `deploy`        | Deploy to target environment   |
+
+## Rename Suggestions
+
+When editing an existing justfile, check for and suggest renaming:
+
+| Old Name   | New Name | Reason                                       |
+|------------|----------|----------------------------------------------|
+| `install`  | `deps`   | Clearer intent — installs deps, not the app  |
+
+Only suggest during active edits to the file. Don't open PRs or make changes solely to rename.
 
 ## Recipe Style
 

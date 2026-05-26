@@ -28,7 +28,9 @@
 .anka/
 .ansible/
 .antigen/
+.antigravity-ide/
 .antigravity/
+.antigravitycli/
 .anyconnect
 .asdf/
 .aspnet/
@@ -73,6 +75,11 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/agent-flow/*.json
+.claude/daemon.lock
+.claude/daemon.status.json
+.claude/daemon/
+.claude/gh-pr-status-cache.json
+.claude/jobs/
 .claude/security_warnings_state_*.json
 .claude_settings.json
 .clawdbot/
@@ -360,6 +367,7 @@
 .runtime/
 .rustup/
 .rvm/
+.securecoder/
 .security-key
 .sem/
 .serverless/
@@ -461,6 +469,7 @@ Library/Application Support/AYA/
 Library/Application Support/AddressBook/
 Library/Application Support/Alfred/
 Library/Application Support/Animoji/
+Library/Application Support/Antigravity IDE/
 Library/Application Support/Antigravity/
 Library/Application Support/App Store/
 Library/Application Support/Arc/
@@ -518,6 +527,7 @@ Library/Application Support/Code/databases/
 Library/Application Support/Code/languagepacks.json
 Library/Application Support/Code/machineid
 Library/Application Support/Codex/
+Library/Application Support/CodexBar/
 Library/Application Support/CrashReporter/
 Library/Application Support/Cron/
 Library/Application Support/Cursor/

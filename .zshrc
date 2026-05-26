@@ -84,7 +84,7 @@ alias vim="nvim"
 [[ "$-" == *i* ]] && printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh", "uname": "Darwin" }}�'
 
 # Added by Windsurf
-export PATH="/Users/phatblat/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
 # System kernel detection
 export KERNEL=$(uname)
@@ -107,11 +107,11 @@ if [[ -d "$ANDROID_HOME" ]]; then
 fi
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
+export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
 # Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
-export PATH="/Users/phatblat/.git-ai/bin:$PATH"
+export PATH="$HOME/.git-ai/bin:$PATH"
 
 # Initialize mise - version manager for tools
 # NOTE: must be after other PATH modifications so mise paths take precedence
@@ -131,6 +131,9 @@ if command -v starship &>/dev/null; then
 fi
 
 # PAI alias
-alias pai='bun /Users/phatblat/.claude/skills/PAI/Tools/pai.ts'
+alias pai="bun $HOME/.claude/skills/PAI/Tools/pai.ts"
 
-source /Users/phatblat/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
+
+# Added by Antigravity IDE
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"

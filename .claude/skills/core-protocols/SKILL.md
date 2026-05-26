@@ -8,6 +8,9 @@ description: |-
   "broken", "not working", "unexpected behavior", "regression", "failing", "exception",
   "traceback", "stack trace", "debug this", "why does this fail", "help me fix".
   Also enforces confidence levels and output templates. Prevents guessing solutions without research.
+allowed-tools:
+  - WebSearch
+  - WebFetch
 ---
 
 # Systematic Debugging
