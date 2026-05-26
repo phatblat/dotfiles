@@ -77,6 +77,7 @@
 .claude/agent-flow/*.json
 .claude/daemon.lock
 .claude/daemon.status.json
+.claude/daemon/
 .claude/gh-pr-status-cache.json
 .claude/jobs/
 .claude/security_warnings_state_*.json
