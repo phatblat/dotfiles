@@ -75,6 +75,10 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/agent-flow/*.json
+.claude/daemon.lock
+.claude/daemon.status.json
+.claude/gh-pr-status-cache.json
+.claude/jobs/
 .claude/security_warnings_state_*.json
 .claude_settings.json
 .clawdbot/
