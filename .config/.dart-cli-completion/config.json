@@ -1,1 +1,4 @@
-{"uninstalls":"{}","installs":"{\"SystemShell.bash\":[\"fvm\"]}"}
+{
+  "installs": "{\"SystemShell.bash\":[\"fvm\"]}",
+  "uninstalls": "{}"
+}

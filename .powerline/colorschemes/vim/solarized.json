@@ -1,115 +1,387 @@
 {
-	"name": "Solarized dark for vim",
-	"groups": {
-		"information:additional":   { "fg": "lightyellow", "bg": "darkgreencopper", "attr": [] },
-		"information:unimportant":  { "fg": "oldlace", "bg": "darkgreencopper", "attr": [] },
-		"background":               { "fg": "oldlace", "bg": "royalblue5", "attr": [] },
-		"background:divider":       { "fg": "lightskyblue4", "bg": "royalblue5", "attr": [] },
-		"mode":                     { "fg": "oldlace", "bg": "green", "attr": ["bold"] },
-		"visual_range":             { "fg": "green", "bg": "oldlace", "attr": ["bold"] },
-		"modified_indicator":       { "fg": "yellow", "bg": "darkgreencopper", "attr": ["bold"] },
-		"paste_indicator":          { "fg": "oldlace", "bg": "orange", "attr": ["bold"] },
-		"readonly_indicator":       { "fg": "red", "bg": "darkgreencopper", "attr": [] },
-		"branch_dirty":             { "fg": "yellow", "bg": "darkgreencopper", "attr": [] },
-		"branch:divider":           { "fg": "gray61", "bg": "darkgreencopper", "attr": [] },
-		"file_name":                { "fg": "oldlace", "bg": "darkgreencopper", "attr": ["bold"] },
-		"window_title":             { "fg": "oldlace", "bg": "darkgreencopper", "attr": [] },
-		"file_name_no_file":        { "fg": "oldlace", "bg": "darkgreencopper", "attr": ["bold"] },
-		"file_format":              { "fg": "gray61", "bg": "royalblue5", "attr": [] },
-		"file_vcs_status":          { "fg": "red", "bg": "darkgreencopper", "attr": [] },
-		"file_vcs_status_M":        { "fg": "yellow", "bg": "darkgreencopper", "attr": [] },
-		"file_vcs_status_A":        { "fg": "green", "bg": "darkgreencopper", "attr": [] },
-		"line_percent":             { "fg": "oldlace", "bg": "lightskyblue4", "attr": [] },
-		"line_percent_gradient":    { "fg": "green_yellow_orange_red", "bg": "lightskyblue4", "attr": [] },
-		"position":                 { "fg": "oldlace", "bg": "lightskyblue4", "attr": [] },
-		"position_gradient":        { "fg": "green_yellow_orange_red", "bg": "lightskyblue4", "attr": [] },
-		"line_current":             { "fg": "gray13", "bg": "lightyellow", "attr": ["bold"] },
-		"line_current_symbol":      { "fg": "gray13", "bg": "lightyellow", "attr": [] },
-		"virtcol_current_gradient": { "fg": "GREEN_Orange_red", "bg": "lightyellow", "attr": [] },
-		"col_current":              { "fg": "azure4", "bg": "lightyellow", "attr": [] },
-		"environment":              { "fg": "gray61", "bg": "royalblue5", "attr": [] },
-		"error":                    { "fg": "oldlace", "bg": "red", "attr": ["bold"] },
-		"warning":                  { "fg": "oldlace", "bg": "orange", "attr": ["bold"] },
-		"current_tag":              { "fg": "oldlace", "bg": "royalblue5", "attr": ["bold"] }
-	},
-	"mode_translations": {
-		"nc": {
-			"colors": {
-				"darkgreencopper": "royalblue5",
-				"lightskyblue4": "royalblue5",
-				"azure4": "darkgreencopper",
-				"gray61": "lightskyblue4",
-				"lightyellow": "azure4",
-				"oldlace": "gray61"
-			}
-		},
-		"tab_nc": {
-			"colors": {
-				"darkgreencopper": "royalblue5",
-				"lightskyblue4": "royalblue5",
-				"azure4": "darkgreencopper",
-				"gray61": "lightskyblue4",
-				"lightyellow": "azure4",
-				"oldlace": "gray61"
-			}
-		},
-		"buf_nc": {
-			"colors": {
-				"darkgreencopper": "royalblue5",
-				"lightskyblue4": "royalblue5",
-				"azure4": "darkgreencopper",
-				"gray61": "lightskyblue4",
-				"lightyellow": "azure4",
-				"oldlace": "gray61"
-			}
-		},
-		"i": {
-			"groups": {
-				"background":             { "fg": "oldlace", "bg": "darkgreencopper", "attr": [] },
-				"background:divider":     { "fg": "lightyellow", "bg": "darkgreencopper", "attr": [] },
-				"mode":                   { "fg": "oldlace", "bg": "blue", "attr": ["bold"] },
-				"modified_indicator":     { "fg": "yellow", "bg": "lightyellow", "attr": ["bold"] },
-				"paste_indicator":        { "fg": "oldlace", "bg": "orange", "attr": ["bold"] },
-				"readonly_indicator":     { "fg": "red", "bg": "lightyellow", "attr": [] },
-				"branch":                 { "fg": "darkgreencopper", "bg": "lightyellow", "attr": [] },
-				"branch:divider":         { "fg": "lightskyblue4", "bg": "lightyellow", "attr": [] },
-				"file_directory":         { "fg": "darkgreencopper", "bg": "lightyellow", "attr": [] },
-				"file_name":              { "fg": "royalblue5", "bg": "lightyellow", "attr": ["bold"] },
-				"file_size":              { "fg": "royalblue5", "bg": "lightyellow", "attr": [] },
-				"file_name_no_file":      { "fg": "royalblue5", "bg": "lightyellow", "attr": ["bold"] },
-				"file_name_empty":        { "fg": "royalblue5", "bg": "lightyellow", "attr": [] },
-				"file_format":            { "fg": "lightyellow", "bg": "darkgreencopper", "attr": [] },
-				"file_vcs_status":        { "fg": "red", "bg": "lightyellow", "attr": [] },
-				"file_vcs_status_M":      { "fg": "yellow", "bg": "lightyellow", "attr": [] },
-				"file_vcs_status_A":      { "fg": "green", "bg": "lightyellow", "attr": [] },
-				"line_percent":           { "fg": "oldlace", "bg": "gray61", "attr": [] },
-				"line_percent_gradient":  { "fg": "oldlace", "bg": "gray61", "attr": [] },
-				"position":               { "fg": "oldlace", "bg": "gray61", "attr": [] },
-				"position_gradient":      { "fg": "oldlace", "bg": "gray61", "attr": [] },
-				"line_current":           { "fg": "gray13", "bg": "oldlace", "attr": ["bold"] },
-				"line_current_symbol":    { "fg": "gray13", "bg": "oldlace", "attr": [] },
-				"col_current":            { "fg": "azure4", "bg": "oldlace", "attr": [] }
-			}
-		},
-		"v": {
-			"groups": {
-				"mode": { "fg": "oldlace", "bg": "orange", "attr": ["bold"] }
-			}
-		},
-		"V": {
-			"groups": {
-				"mode": { "fg": "oldlace", "bg": "orange", "attr": ["bold"] }
-			}
-		},
-		"^V": {
-			"groups": {
-				"mode": { "fg": "oldlace", "bg": "orange", "attr": ["bold"] }
-			}
-		},
-		"R": {
-			"groups": {
-				"mode": { "fg": "oldlace", "bg": "red", "attr": ["bold"] }
-			}
-		}
-	}
+  "groups": {
+    "background": {
+      "attr": [],
+      "bg": "royalblue5",
+      "fg": "oldlace"
+    },
+    "background:divider": {
+      "attr": [],
+      "bg": "royalblue5",
+      "fg": "lightskyblue4"
+    },
+    "branch:divider": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "gray61"
+    },
+    "branch_dirty": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "yellow"
+    },
+    "col_current": {
+      "attr": [],
+      "bg": "lightyellow",
+      "fg": "azure4"
+    },
+    "current_tag": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "royalblue5",
+      "fg": "oldlace"
+    },
+    "environment": {
+      "attr": [],
+      "bg": "royalblue5",
+      "fg": "gray61"
+    },
+    "error": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "red",
+      "fg": "oldlace"
+    },
+    "file_format": {
+      "attr": [],
+      "bg": "royalblue5",
+      "fg": "gray61"
+    },
+    "file_name": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "darkgreencopper",
+      "fg": "oldlace"
+    },
+    "file_name_no_file": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "darkgreencopper",
+      "fg": "oldlace"
+    },
+    "file_vcs_status": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "red"
+    },
+    "file_vcs_status_A": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "green"
+    },
+    "file_vcs_status_M": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "yellow"
+    },
+    "information:additional": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "lightyellow"
+    },
+    "information:unimportant": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "oldlace"
+    },
+    "line_current": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "lightyellow",
+      "fg": "gray13"
+    },
+    "line_current_symbol": {
+      "attr": [],
+      "bg": "lightyellow",
+      "fg": "gray13"
+    },
+    "line_percent": {
+      "attr": [],
+      "bg": "lightskyblue4",
+      "fg": "oldlace"
+    },
+    "line_percent_gradient": {
+      "attr": [],
+      "bg": "lightskyblue4",
+      "fg": "green_yellow_orange_red"
+    },
+    "mode": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "green",
+      "fg": "oldlace"
+    },
+    "modified_indicator": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "darkgreencopper",
+      "fg": "yellow"
+    },
+    "paste_indicator": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "orange",
+      "fg": "oldlace"
+    },
+    "position": {
+      "attr": [],
+      "bg": "lightskyblue4",
+      "fg": "oldlace"
+    },
+    "position_gradient": {
+      "attr": [],
+      "bg": "lightskyblue4",
+      "fg": "green_yellow_orange_red"
+    },
+    "readonly_indicator": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "red"
+    },
+    "virtcol_current_gradient": {
+      "attr": [],
+      "bg": "lightyellow",
+      "fg": "GREEN_Orange_red"
+    },
+    "visual_range": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "oldlace",
+      "fg": "green"
+    },
+    "warning": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "orange",
+      "fg": "oldlace"
+    },
+    "window_title": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "oldlace"
+    }
+  },
+  "mode_translations": {
+    "R": {
+      "groups": {
+        "mode": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "red",
+          "fg": "oldlace"
+        }
+      }
+    },
+    "V": {
+      "groups": {
+        "mode": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "orange",
+          "fg": "oldlace"
+        }
+      }
+    },
+    "^V": {
+      "groups": {
+        "mode": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "orange",
+          "fg": "oldlace"
+        }
+      }
+    },
+    "buf_nc": {
+      "colors": {
+        "azure4": "darkgreencopper",
+        "darkgreencopper": "royalblue5",
+        "gray61": "lightskyblue4",
+        "lightskyblue4": "royalblue5",
+        "lightyellow": "azure4",
+        "oldlace": "gray61"
+      }
+    },
+    "i": {
+      "groups": {
+        "background": {
+          "attr": [],
+          "bg": "darkgreencopper",
+          "fg": "oldlace"
+        },
+        "background:divider": {
+          "attr": [],
+          "bg": "darkgreencopper",
+          "fg": "lightyellow"
+        },
+        "branch": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "darkgreencopper"
+        },
+        "branch:divider": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "lightskyblue4"
+        },
+        "col_current": {
+          "attr": [],
+          "bg": "oldlace",
+          "fg": "azure4"
+        },
+        "file_directory": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "darkgreencopper"
+        },
+        "file_format": {
+          "attr": [],
+          "bg": "darkgreencopper",
+          "fg": "lightyellow"
+        },
+        "file_name": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "lightyellow",
+          "fg": "royalblue5"
+        },
+        "file_name_empty": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "royalblue5"
+        },
+        "file_name_no_file": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "lightyellow",
+          "fg": "royalblue5"
+        },
+        "file_size": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "royalblue5"
+        },
+        "file_vcs_status": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "red"
+        },
+        "file_vcs_status_A": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "green"
+        },
+        "file_vcs_status_M": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "yellow"
+        },
+        "line_current": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "oldlace",
+          "fg": "gray13"
+        },
+        "line_current_symbol": {
+          "attr": [],
+          "bg": "oldlace",
+          "fg": "gray13"
+        },
+        "line_percent": {
+          "attr": [],
+          "bg": "gray61",
+          "fg": "oldlace"
+        },
+        "line_percent_gradient": {
+          "attr": [],
+          "bg": "gray61",
+          "fg": "oldlace"
+        },
+        "mode": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "blue",
+          "fg": "oldlace"
+        },
+        "modified_indicator": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "lightyellow",
+          "fg": "yellow"
+        },
+        "paste_indicator": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "orange",
+          "fg": "oldlace"
+        },
+        "position": {
+          "attr": [],
+          "bg": "gray61",
+          "fg": "oldlace"
+        },
+        "position_gradient": {
+          "attr": [],
+          "bg": "gray61",
+          "fg": "oldlace"
+        },
+        "readonly_indicator": {
+          "attr": [],
+          "bg": "lightyellow",
+          "fg": "red"
+        }
+      }
+    },
+    "nc": {
+      "colors": {
+        "azure4": "darkgreencopper",
+        "darkgreencopper": "royalblue5",
+        "gray61": "lightskyblue4",
+        "lightskyblue4": "royalblue5",
+        "lightyellow": "azure4",
+        "oldlace": "gray61"
+      }
+    },
+    "tab_nc": {
+      "colors": {
+        "azure4": "darkgreencopper",
+        "darkgreencopper": "royalblue5",
+        "gray61": "lightskyblue4",
+        "lightskyblue4": "royalblue5",
+        "lightyellow": "azure4",
+        "oldlace": "gray61"
+      }
+    },
+    "v": {
+      "groups": {
+        "mode": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "orange",
+          "fg": "oldlace"
+        }
+      }
+    }
+  },
+  "name": "Solarized dark for vim"
 }

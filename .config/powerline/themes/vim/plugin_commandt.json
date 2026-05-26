@@ -1,26 +1,29 @@
 {
-    "segments": {
-        "left": [
-            {
-                "type": "string",
-                "contents": "Command-T",
-                "highlight_groups": ["commandt:label"]
-            },
-            {
-                "function": "powerline.segments.vim.plugin.commandt.finder"
-            },
-            {
-                "function": "powerline.segments.vim.plugin.commandt.path"
-            },
-            {
-                "type": "string",
-                "highlight_groups": ["commandt:background"],
-                "draw_soft_divider": false,
-                "draw_hard_divider": false,
-                "width": "auto"
-            }
+  "segments": {
+    "left": [
+      {
+        "contents": "Command-T",
+        "highlight_groups": [
+          "commandt:label"
         ],
-        "right": [
-        ]
-    }
+        "type": "string"
+      },
+      {
+        "function": "powerline.segments.vim.plugin.commandt.finder"
+      },
+      {
+        "function": "powerline.segments.vim.plugin.commandt.path"
+      },
+      {
+        "draw_hard_divider": false,
+        "draw_soft_divider": false,
+        "highlight_groups": [
+          "commandt:background"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ],
+    "right": []
+  }
 }

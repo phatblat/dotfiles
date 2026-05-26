@@ -1,9 +1,9 @@
 {
+  "externals": [],
   "theme": null,
   "themes": {
-    "mode": "light",
+    "dark": null,
     "light": null,
-    "dark": null
-  },
-  "externals": []
+    "mode": "light"
+  }
 }

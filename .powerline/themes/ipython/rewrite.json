@@ -1,23 +1,27 @@
 {
-	"segments": {
-		"left": [
-			{
-				"type": "string",
-				"contents": "",
-				"draw_soft_divider": false,
-				"width": "auto",
-				"highlight_group": ["prompt"]
-			},
-			{
-				"name": "prompt_count",
-				"module": "powerline.segments.ipython",
-				"draw_soft_divider": false
-			},
-			{
-				"type": "string",
-				"contents": ">",
-				"highlight_group": ["prompt"]
-			}
-		]
-	}
+  "segments": {
+    "left": [
+      {
+        "contents": "",
+        "draw_soft_divider": false,
+        "highlight_group": [
+          "prompt"
+        ],
+        "type": "string",
+        "width": "auto"
+      },
+      {
+        "draw_soft_divider": false,
+        "module": "powerline.segments.ipython",
+        "name": "prompt_count"
+      },
+      {
+        "contents": ">",
+        "highlight_group": [
+          "prompt"
+        ],
+        "type": "string"
+      }
+    ]
+  }
 }

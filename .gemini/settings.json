@@ -1,18 +1,18 @@
 {
-  "security": {
-    "auth": {
-      "selectedType": "oauth-personal"
+  "general": {
+    "previewFeatures": true,
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "warningAcknowledged": true
     }
   },
   "model": {
     "name": "auto-gemini-3"
   },
-  "general": {
-    "previewFeatures": true,
-    "sessionRetention": {
-      "warningAcknowledged": true,
-      "enabled": true,
-      "maxAge": "30d"
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
     }
   },
   "ui": {

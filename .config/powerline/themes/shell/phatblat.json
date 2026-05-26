@@ -1,47 +1,49 @@
 {
-    "segments": {
-        "left": [
-            {
-                "function": "powerline.segments.shell.mode",
-                "priority": 90
-            },
-            {
-                "function": "powerline.segments.common.env.user",
-                "priority": 70
-            },
-            {
-                "function": "powerline.segments.common.net.hostname",
-                "priority": 80,
-                "args": {
-                    "only_if_ssh": true,
-                    "exclude_domain": true
-                }
-            },
-            {
-                "function": "powerline.segments.shell.cwd",
-                "priority": 50,
-                "args": {
-                    "dir_limit_depth": 3,
-                    "use_path_separator": true,
-                    "shorten_home": true
-                }
-            },
-            {
-                "function": "powerline_gitstatus.gitstatus",
-                "draw_hard_divider": true,
-                "draw_soft_divider": true,
-                "draw_inner_divider": false,
-                "priority": 30
-            },
-            {
-                "type":"string",
-                "highlight_groups": ["information:regular"],
-                "contents": "↝"
-            },
-            {
-                "function": "powerline.segments.shell.last_status",
-                "priority": 10
-            }
-        ]
-    }
+  "segments": {
+    "left": [
+      {
+        "function": "powerline.segments.shell.mode",
+        "priority": 90
+      },
+      {
+        "function": "powerline.segments.common.env.user",
+        "priority": 70
+      },
+      {
+        "args": {
+          "exclude_domain": true,
+          "only_if_ssh": true
+        },
+        "function": "powerline.segments.common.net.hostname",
+        "priority": 80
+      },
+      {
+        "args": {
+          "dir_limit_depth": 3,
+          "shorten_home": true,
+          "use_path_separator": true
+        },
+        "function": "powerline.segments.shell.cwd",
+        "priority": 50
+      },
+      {
+        "draw_hard_divider": true,
+        "draw_inner_divider": false,
+        "draw_soft_divider": true,
+        "function": "powerline_gitstatus.gitstatus",
+        "priority": 30
+      },
+      {
+        "contents": "↝",
+        "highlight_groups": [
+          "information:regular"
+        ],
+        "type": "string"
+      },
+      {
+        "function": "powerline.segments.shell.last_status",
+        "priority": 10
+      }
+    ]
+  }
 }

@@ -1,16 +1,40 @@
 {
-	"name": "Solarized dark for shell",
-	"groups": {
-		"jobnum":             { "fg": "oldlace", "bg": "darkgreencopper", "attr": [] },
-		"exit_fail":          { "fg": "oldlace", "bg": "red", "attr": [] },
-		"exit_success":       { "fg": "oldlace", "bg": "green", "attr": [] },
-		"mode":               { "fg": "oldlace", "bg": "green", "attr": ["bold"] }
-	},
-	"mode_translations": {
-		"vicmd": {
-			"groups": {
-				"mode": { "fg": "oldlace", "bg": "blue", "attr": ["bold"] }
-			}
-		}
-	}
+  "groups": {
+    "exit_fail": {
+      "attr": [],
+      "bg": "red",
+      "fg": "oldlace"
+    },
+    "exit_success": {
+      "attr": [],
+      "bg": "green",
+      "fg": "oldlace"
+    },
+    "jobnum": {
+      "attr": [],
+      "bg": "darkgreencopper",
+      "fg": "oldlace"
+    },
+    "mode": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "green",
+      "fg": "oldlace"
+    }
+  },
+  "mode_translations": {
+    "vicmd": {
+      "groups": {
+        "mode": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "blue",
+          "fg": "oldlace"
+        }
+      }
+    }
+  },
+  "name": "Solarized dark for shell"
 }

@@ -1,18 +1,24 @@
 {
-	"segments": {
-		"left": [
-			{
-				"type": "string",
-				"highlight_group": ["gundo.name", "file_name"],
-				"contents": "Undo tree"
-			},
-			{
-				"type": "string",
-				"highlight_group": ["gundo.background", "background"],
-				"draw_soft_divider": false,
-				"draw_hard_divider": false,
-				"width": "auto"
-			}
-		]
-	}
+  "segments": {
+    "left": [
+      {
+        "contents": "Undo tree",
+        "highlight_group": [
+          "gundo.name",
+          "file_name"
+        ],
+        "type": "string"
+      },
+      {
+        "draw_hard_divider": false,
+        "draw_soft_divider": false,
+        "highlight_group": [
+          "gundo.background",
+          "background"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ]
+  }
 }

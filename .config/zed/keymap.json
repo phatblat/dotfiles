@@ -5,47 +5,47 @@
     }
   },
   {
-    "context": "Workspace",
     "bindings": {
       "cmd-1": "workspace::ToggleLeftDock"
-    }
+    },
+    "context": "Workspace"
   },
   {
-    "context": "Workspace",
     "bindings": {
       "cmd-2": "terminal_panel::Toggle"
-    }
+    },
+    "context": "Workspace"
   },
   {
-    "context": "Pane",
     "bindings": {
       "ctrl-cmd-left": "pane::GoBack"
-    }
+    },
+    "context": "Pane"
   },
   {
-    "context": "Pane",
     "bindings": {
       "ctrl-cmd-right": "pane::GoForward"
-    }
+    },
+    "context": "Pane"
   },
   {
-    "context": "Editor",
     "bindings": {
       "cmd-'": [
         "editor::GoToPreviousDiagnostic",
         {
           "severity": {
-            "min": "hint",
-            "max": "error"
+            "max": "error",
+            "min": "hint"
           }
         }
       ]
-    }
+    },
+    "context": "Editor"
   },
   {
-    "context": "Workspace",
     "bindings": {
       "alt-cmd-n": "workspace::NewWindow"
-    }
+    },
+    "context": "Workspace"
   }
 ]

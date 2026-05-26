@@ -1,128 +1,164 @@
 {
-    "segments": {
-        "left": [
-            {
-                "function": "mode",
-                "exclude_modes": ["nc"]
-            },
-            {
-                "function": "visual_range",
-                "include_modes": ["v", "V", "^V", "s", "S", "^S"],
-                "priority": 10
-            },
-            {
-                "function": "paste_indicator",
-                "exclude_modes": ["nc"],
-                "priority": 10
-            },
-            {
-                "function": "powerline.segments.vim.plugin.capslock.capslock_indicator",
-                "include_modes": ["i", "R", "Rv"],
-                "priority": 10
-            },
-            {
-                "function": "branch",
-                "exclude_modes": ["nc"],
-                "priority": 30
-            },
-            {
-                "function": "readonly_indicator",
-                "draw_soft_divider": false,
-                "after": " "
-            },
-            {
-                "function": "file_scheme",
-                "priority": 20
-            },
-            {
-                "function": "file_directory",
-                "priority": 40,
-                "draw_soft_divider": false
-            },
-            {
-                "function": "file_name",
-                "draw_soft_divider": false
-            },
-            {
-                "function": "file_vcs_status",
-                "before": " ",
-                "draw_soft_divider": false
-            },
-            {
-                "function": "modified_indicator",
-                "before": " "
-            },
-            {
-                "exclude_modes": ["i", "R", "Rv"],
-                "function": "trailing_whitespace",
-                "display": false,
-                "priority": 60
-            },
-            {
-                "exclude_modes": ["nc"],
-                "function": "powerline.segments.vim.plugin.syntastic.syntastic",
-                "priority": 50
-            },
-            {
-                "exclude_modes": ["nc"],
-                "function": "powerline.segments.vim.plugin.tagbar.current_tag",
-                "draw_soft_divider": false,
-                "priority": 50
-            },
-            {
-                "type": "string",
-                "highlight_groups": ["background"],
-                "draw_soft_divider": false,
-                "draw_hard_divider": false,
-                "width": "auto"
-            }
+  "segments": {
+    "left": [
+      {
+        "exclude_modes": [
+          "nc"
         ],
-        "right": [
-            {
-                "function": "file_format",
-                "draw_soft_divider": false,
-                "exclude_modes": ["nc"],
-                "priority": 60
-            },
-            {
-                "function": "file_encoding",
-                "exclude_modes": ["nc"],
-                "priority": 60
-            },
-            {
-                "function": "file_type",
-                "exclude_modes": ["nc"],
-                "priority": 60
-            },
-            {
-                "function": "line_percent",
-                "priority": 50,
-                "width": 4,
-                "align": "r"
-            },
-            {
-                "function": "csv_col_current",
-                "priority": 30
-            },
-            {
-                "type": "string",
-                "name": "line_current_symbol",
-                "highlight_groups": ["line_current_symbol", "line_current"]
-            },
-            {
-                "function": "line_current",
-                "draw_soft_divider": false,
-                "width": 3,
-                "align": "r"
-            },
-            {
-                "function": "virtcol_current",
-                "draw_soft_divider": false,
-                "priority": 20,
-                "before": ":",
-                "width": 3,
-                "align": "l"
-            }
-        ]
-    }
+        "function": "mode"
+      },
+      {
+        "function": "visual_range",
+        "include_modes": [
+          "v",
+          "V",
+          "^V",
+          "s",
+          "S",
+          "^S"
+        ],
+        "priority": 10
+      },
+      {
+        "exclude_modes": [
+          "nc"
+        ],
+        "function": "paste_indicator",
+        "priority": 10
+      },
+      {
+        "function": "powerline.segments.vim.plugin.capslock.capslock_indicator",
+        "include_modes": [
+          "i",
+          "R",
+          "Rv"
+        ],
+        "priority": 10
+      },
+      {
+        "exclude_modes": [
+          "nc"
+        ],
+        "function": "branch",
+        "priority": 30
+      },
+      {
+        "after": " ",
+        "draw_soft_divider": false,
+        "function": "readonly_indicator"
+      },
+      {
+        "function": "file_scheme",
+        "priority": 20
+      },
+      {
+        "draw_soft_divider": false,
+        "function": "file_directory",
+        "priority": 40
+      },
+      {
+        "draw_soft_divider": false,
+        "function": "file_name"
+      },
+      {
+        "before": " ",
+        "draw_soft_divider": false,
+        "function": "file_vcs_status"
+      },
+      {
+        "before": " ",
+        "function": "modified_indicator"
+      },
+      {
+        "display": false,
+        "exclude_modes": [
+          "i",
+          "R",
+          "Rv"
+        ],
+        "function": "trailing_whitespace",
+        "priority": 60
+      },
+      {
+        "exclude_modes": [
+          "nc"
+        ],
+        "function": "powerline.segments.vim.plugin.syntastic.syntastic",
+        "priority": 50
+      },
+      {
+        "draw_soft_divider": false,
+        "exclude_modes": [
+          "nc"
+        ],
+        "function": "powerline.segments.vim.plugin.tagbar.current_tag",
+        "priority": 50
+      },
+      {
+        "draw_hard_divider": false,
+        "draw_soft_divider": false,
+        "highlight_groups": [
+          "background"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ],
+    "right": [
+      {
+        "draw_soft_divider": false,
+        "exclude_modes": [
+          "nc"
+        ],
+        "function": "file_format",
+        "priority": 60
+      },
+      {
+        "exclude_modes": [
+          "nc"
+        ],
+        "function": "file_encoding",
+        "priority": 60
+      },
+      {
+        "exclude_modes": [
+          "nc"
+        ],
+        "function": "file_type",
+        "priority": 60
+      },
+      {
+        "align": "r",
+        "function": "line_percent",
+        "priority": 50,
+        "width": 4
+      },
+      {
+        "function": "csv_col_current",
+        "priority": 30
+      },
+      {
+        "highlight_groups": [
+          "line_current_symbol",
+          "line_current"
+        ],
+        "name": "line_current_symbol",
+        "type": "string"
+      },
+      {
+        "align": "r",
+        "draw_soft_divider": false,
+        "function": "line_current",
+        "width": 3
+      },
+      {
+        "align": "l",
+        "before": ":",
+        "draw_soft_divider": false,
+        "function": "virtcol_current",
+        "priority": 20,
+        "width": 3
+      }
+    ]
+  }
 }
