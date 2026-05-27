@@ -1,6 +1,6 @@
 {
-    "theme": "dark_purple",
-    "editor.fontSize": 14.0,
-    "editor.renderWhitespace": "All",
-    "keymap": "vscode"
+  "editor.fontSize": 14.0,
+  "editor.renderWhitespace": "All",
+  "keymap": "vscode",
+  "theme": "dark_purple"
 }

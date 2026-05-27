@@ -1,93 +1,99 @@
 {
-    "default_module": "powerline.segments.vim",
-    "segments": {
-        "left": [
-            {
-                "type": "segment_list",
-                "function": "powerline.listers.vim.tablister",
-                "exclude_function": "single_tab",
-                "segments": [
-                    {
-                        "function": "tab"
-                    },
-                    {
-                        "function": "tabnr",
-                        "after": " ",
-                        "priority": 5
-                    },
-                    {
-                        "function": "file_directory",
-                        "priority": 40
-                    },
-                    {
-                        "function": "file_name",
-                        "args": {
-                            "display_no_file": true
-                        },
-                        "priority": 10
-                    },
-                    {
-                        "function": "tab_modified_indicator",
-                        "priority": 5
-                    }
-                ]
+  "default_module": "powerline.segments.vim",
+  "segments": {
+    "left": [
+      {
+        "exclude_function": "single_tab",
+        "function": "powerline.listers.vim.tablister",
+        "segments": [
+          {
+            "function": "tab"
+          },
+          {
+            "after": " ",
+            "function": "tabnr",
+            "priority": 5
+          },
+          {
+            "function": "file_directory",
+            "priority": 40
+          },
+          {
+            "args": {
+              "display_no_file": true
             },
-            {
-                "function": "tab",
-                "args": {
-                    "end": true
-                }
-            },
-            {
-                "type": "segment_list",
-                "function": "powerline.listers.vim.bufferlister",
-                "include_function": "single_tab",
-                "segments": [
-                    {
-                        "function": "bufnr",
-                        "after": " ",
-                        "priority": 5
-                    },
-                    {
-                        "function": "file_directory",
-                        "priority": 40
-                    },
-                    {
-                        "function": "file_name",
-                        "args": {
-                            "display_no_file": true
-                        },
-                        "priority": 10
-                    },
-                    {
-                        "function": "modified_indicator",
-                        "priority": 5
-                    }
-                ]
-            },
-            {
-                "type": "string",
-                "highlight_groups": ["tab:background"],
-                "draw_soft_divider": false,
-                "draw_hard_divider": false,
-                "width": "auto"
-            }
+            "function": "file_name",
+            "priority": 10
+          },
+          {
+            "function": "tab_modified_indicator",
+            "priority": 5
+          }
         ],
-        "right": [
-            {
-                "type": "string",
-                "contents": "Bufs",
-                "name": "single_tab",
-                "highlight_groups": ["single_tab"],
-                "include_function": "single_tab"
+        "type": "segment_list"
+      },
+      {
+        "args": {
+          "end": true
+        },
+        "function": "tab"
+      },
+      {
+        "function": "powerline.listers.vim.bufferlister",
+        "include_function": "single_tab",
+        "segments": [
+          {
+            "after": " ",
+            "function": "bufnr",
+            "priority": 5
+          },
+          {
+            "function": "file_directory",
+            "priority": 40
+          },
+          {
+            "args": {
+              "display_no_file": true
             },
-            {
-                "type": "string",
-                "contents": "Tabs",
-                "name": "many_tabs",
-                "highlight_groups": ["many_tabs"],
-                "exclude_function": "single_tab"
-            }
-        ]
-    }
+            "function": "file_name",
+            "priority": 10
+          },
+          {
+            "function": "modified_indicator",
+            "priority": 5
+          }
+        ],
+        "type": "segment_list"
+      },
+      {
+        "draw_hard_divider": false,
+        "draw_soft_divider": false,
+        "highlight_groups": [
+          "tab:background"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ],
+    "right": [
+      {
+        "contents": "Bufs",
+        "highlight_groups": [
+          "single_tab"
+        ],
+        "include_function": "single_tab",
+        "name": "single_tab",
+        "type": "string"
+      },
+      {
+        "contents": "Tabs",
+        "exclude_function": "single_tab",
+        "highlight_groups": [
+          "many_tabs"
+        ],
+        "name": "many_tabs",
+        "type": "string"
+      }
+    ]
+  }
 }

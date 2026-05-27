@@ -2,7 +2,9 @@
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.rulers": [80],
+    "editor.rulers": [
+      80
+    ],
     "editor.selectionHighlight": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
@@ -24,6 +26,10 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "ansible.ansible.path": "uvx ansible",
+  "ansible.ansibleNavigator.path": "uvx ansible-navigator",
+  "ansible.validation.lint.path": "uvx ansible-lint",
+  "chat.commandCenter.enabled": false,
   "clang-format.fallbackStyle": "Chromium",
   "cmake.buildDirectory": "/Users/phatblat/tmp/cmake/build",
   "cmake.configureOnOpen": false,
@@ -32,6 +38,9 @@
     "workbench.action.tasks.runTask"
   ],
   "cmake.showOptionsMovedNotification": false,
+  "continue.enableConsole": true,
+  "continue.enableQuickActions": true,
+  "continue.telemetryEnabled": false,
   "dart.flutterCreateOrganization": null,
   "dart.flutterSdkPath": "/opt/homebrew/Caskroom/flutter/3.22.0/flutter",
   "dart.projectSearchDepth": 0,
@@ -58,7 +67,10 @@
   "editor.minimap.enabled": false,
   "editor.multiCursorMergeOverlapping": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.suggestSelection": "first",
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
@@ -149,12 +161,16 @@
   "rust-analyzer.cargo.autoreload": false,
   "rust-analyzer.cargo.buildScripts.enable": false,
   "rust-analyzer.cargo.sysroot": "/Users/phatblat/.rustup/toolchains/1.74.1-aarch64-apple-darwin",
-  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+  "rust-analyzer.rustfmt.extraArgs": [
+    "+nightly"
+  ],
   "search.exclude": {
     "**/.git": true
   },
   "security.workspace.trust.untrustedFiles": "open",
-  "shellcheck.customArgs": ["-x"],
+  "shellcheck.customArgs": [
+    "-x"
+  ],
   "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
   "solargraph.bundlerPath": "/usr/local/opt/ruby/bin/bundle",
   "sync.anonymousGist": false,
@@ -168,7 +184,11 @@
   "sync.lastUpload": "2017-10-20T02:29:24.353Z",
   "sync.pathPrefix": "",
   "sync.quietSync": false,
+  "telemetry.feedback.enabled": false,
   "terminal.integrated.defaultProfile": "/usr/local/bin/fish",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
   "trunk.trunkGrayOutNonBlockingIssues": true,
   "update.showReleaseNotes": false,
   "vim.disableAnnoyingNeovimMessage": true,
@@ -188,18 +208,7 @@
   "workbench.colorTheme": "Purple Night",
   "workbench.iconTheme": "vs-seti",
   "workbench.productIconTheme": "materialiconic-product-icons",
+  "workbench.secondarySideBar.showLabels": false,
   "workbench.startupEditor": "none",
-  "xml.java.home": "",
-  "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1"
-  },
-  "ansible.validation.lint.path": "uvx ansible-lint",
-  "ansible.ansible.path": "uvx ansible",
-  "ansible.ansibleNavigator.path": "uvx ansible-navigator",
-  "continue.enableConsole": true,
-  "continue.enableQuickActions": true,
-  "continue.telemetryEnabled": false,
-  "telemetry.feedback.enabled": false,
-  "chat.commandCenter.enabled": false,
-  "workbench.secondarySideBar.showLabels": false
+  "xml.java.home": ""
 }

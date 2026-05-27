@@ -1,13 +1,15 @@
 {
-	"segments": {
-		"left": [
-			{
-				"type": "string",
-				"contents": "Select variant",
-				"width": "auto",
-				"align": "r",
-				"highlight_group": ["continuation:current"]
-			}
-		]
-	}
+  "segments": {
+    "left": [
+      {
+        "align": "r",
+        "contents": "Select variant",
+        "highlight_group": [
+          "continuation:current"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ]
+  }
 }

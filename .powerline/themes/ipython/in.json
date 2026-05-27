@@ -1,27 +1,31 @@
 {
-	"default_module": "powerline.segments.common",
-	"segments": {
-		"left": [
-			{
-				"name": "virtualenv",
-				"priority": 10
-			},
-			{
-				"type": "string",
-				"contents": "In [",
-				"draw_soft_divider": false,
-				"highlight_group": ["prompt"]
-			},
-			{
-				"name": "prompt_count",
-				"module": "powerline.segments.ipython",
-				"draw_soft_divider": false
-			},
-			{
-				"type": "string",
-				"contents": "]",
-				"highlight_group": ["prompt"]
-			}
-		]
-	}
+  "default_module": "powerline.segments.common",
+  "segments": {
+    "left": [
+      {
+        "name": "virtualenv",
+        "priority": 10
+      },
+      {
+        "contents": "In [",
+        "draw_soft_divider": false,
+        "highlight_group": [
+          "prompt"
+        ],
+        "type": "string"
+      },
+      {
+        "draw_soft_divider": false,
+        "module": "powerline.segments.ipython",
+        "name": "prompt_count"
+      },
+      {
+        "contents": "]",
+        "highlight_group": [
+          "prompt"
+        ],
+        "type": "string"
+      }
+    ]
+  }
 }

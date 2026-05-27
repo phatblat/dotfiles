@@ -1,44 +1,44 @@
 {
-    "segment_data": {
-        "mode": {
-            "args": {
-                "override": {
-                    "default": "CMD",
-                    "insert": "INS",
-                    "visual": "VIS"
-                }
-            }
+  "segment_data": {
+    "cwd": {
+      "args": {
+        "dir_limit_depth": 3
+      }
+    },
+    "gitstatus": {
+      "args": {
+        "formats": {
+          "ahead": " ↑ {}",
+          "behind": " ↓ {}",
+          "branch": " {}",
+          "changed": " ✚ {}",
+          "staged": " ● {}",
+          "stashed": " ⚑ {}",
+          "tag": " ★ {}",
+          "unmerged": " ✖ {}",
+          "untracked": " … {}"
         },
-        "hostname": {
-            "args": {
-                "only_if_ssh": true
-            }
-        },
-        "cwd": {
-            "args": {
-                "dir_limit_depth": 3
-            }
-        },
-        "gitstatus": {
-            "args": {
-                "show_tag": "exact",
-                "formats": {
-                    "branch": "\ue0a0 {}",
-                    "tag": " ★ {}",
-                    "behind": " ↓ {}",
-                    "ahead": " ↑ {}",
-                    "staged": " ● {}",
-                    "unmerged": " ✖ {}",
-                    "changed": " ✚ {}",
-                    "untracked": " … {}",
-                    "stashed": " ⚑ {}"
-                }
-            }
-        },
-        "xcodeversion": {
-            "args": {
-                "format": "🛠  {}"
-            }
+        "show_tag": "exact"
+      }
+    },
+    "hostname": {
+      "args": {
+        "only_if_ssh": true
+      }
+    },
+    "mode": {
+      "args": {
+        "override": {
+          "default": "CMD",
+          "insert": "INS",
+          "visual": "VIS"
         }
+      }
+    },
+    "xcodeversion": {
+      "args": {
+        "format": "🛠  {}"
+      }
     }
+  }
 }

@@ -1,36 +1,41 @@
 {
-	"segments": {
-		"left": [
-			{
-				"name": "file_name",
-				"draw_soft_divider": false
-			},
-			{
-				"type": "string",
-				"highlight_group": ["background"],
-				"draw_soft_divider": false,
-				"draw_hard_divider": false,
-				"width": "auto"
-			}
-		],
-		"right": [
-			{
-				"name": "line_percent",
-				"priority": 30,
-				"width": 4,
-				"align": "r"
-			},
-			{
-				"type": "string",
-				"name": "line_current_symbol",
-				"highlight_group": ["line_current_symbol", "line_current"]
-			},
-			{
-				"name": "line_current",
-				"draw_soft_divider": false,
-				"width": 3,
-				"align": "r"
-			}
-		]
-	}
+  "segments": {
+    "left": [
+      {
+        "draw_soft_divider": false,
+        "name": "file_name"
+      },
+      {
+        "draw_hard_divider": false,
+        "draw_soft_divider": false,
+        "highlight_group": [
+          "background"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ],
+    "right": [
+      {
+        "align": "r",
+        "name": "line_percent",
+        "priority": 30,
+        "width": 4
+      },
+      {
+        "highlight_group": [
+          "line_current_symbol",
+          "line_current"
+        ],
+        "name": "line_current_symbol",
+        "type": "string"
+      },
+      {
+        "align": "r",
+        "draw_soft_divider": false,
+        "name": "line_current",
+        "width": 3
+      }
+    ]
+  }
 }

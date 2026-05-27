@@ -1,34 +1,53 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "minimumReleaseAge": "7 days",
   "assignAutomerge": true,
-  "assignees": ["phatblat"],
-  "labels": ["dependencies"],
-  "platformAutomerge": true,
+  "assignees": [
+    "phatblat"
+  ],
+  "extends": [
+    "config:recommended"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "minimumReleaseAge": "7 days",
   "mise": {
     "enabled": true,
-    "fileMatch": ["\\.config/mise/config\\.toml$"]
+    "fileMatch": [
+      "\\.config/mise/config\\.toml$"
+    ]
   },
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchCurrentVersion": "!/^0/",
       "automerge": true,
       "automergeStrategy": "rebase",
-      "automergeType": "pr"
+      "automergeType": "pr",
+      "matchCurrentVersion": "!/^0/",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
     },
     {
       "description": "Group all mise tool updates",
-      "matchManagers": ["mise"],
-      "groupName": "mise tools"
+      "groupName": "mise tools",
+      "matchManagers": [
+        "mise"
+      ]
     },
     {
       "description": "Group all npm tool updates",
-      "matchManagers": ["mise"],
-      "matchDepPatterns": ["^npm:"],
-      "groupName": "mise npm tools"
+      "groupName": "mise npm tools",
+      "matchDepPatterns": [
+        "^npm:"
+      ],
+      "matchManagers": [
+        "mise"
+      ]
     }
   ],
-  "schedule": ["before 9am on monday"]
+  "platformAutomerge": true,
+  "schedule": [
+    "before 9am on monday"
+  ]
 }

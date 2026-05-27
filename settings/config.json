@@ -1,36 +1,36 @@
 {
-  "type": "town-settings",
-  "version": 1,
-  "default_agent": "claude",
   "agents": {
     "claude-haiku": {
-      "command": "claude",
       "args": [
         "--model",
         "haiku",
         "--dangerously-skip-permissions"
-      ]
+      ],
+      "command": "claude"
     },
     "claude-opus": {
-      "command": "claude",
       "args": [
         "--model",
         "opus"
-      ]
+      ],
+      "command": "claude"
     },
     "claude-sonnet": {
-      "command": "claude",
       "args": [
         "--model",
         "sonnet"
-      ]
+      ],
+      "command": "claude"
     },
     "codex-low": {
-      "command": "codex",
       "args": [
         "--thinking",
         "low"
-      ]
+      ],
+      "command": "codex"
     }
-  }
+  },
+  "default_agent": "claude",
+  "type": "town-settings",
+  "version": 1
 }

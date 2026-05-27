@@ -80,6 +80,7 @@
 .claude/daemon/
 .claude/gh-pr-status-cache.json
 .claude/jobs/
+.claude/security/
 .claude/security_warnings_state_*.json
 .claude_settings.json
 .clawdbot/

@@ -351,30 +351,22 @@ format-mise:
     # Sort [tools] entries alphabetically while preserving the rest of the file
     python3 ~/scripts/sort-tools.py
 
-# Formats JSON config files with sorted keys
+# Formats all tracked JSON/JSONC config files with sorted keys
 [group('configuration')]
 format-json:
     #!/usr/bin/env bash
     set -euo pipefail
-    json_files=(
-        ~/.claude/policy-limits.json
-        ~/.claude/settings.json
-        ~/.codexbar/config.json
-        ~/Library/Application\ Support/Claude/claude_desktop_config.json
-        ~/Library/Application\ Support/Claude-3p/claude_desktop_config.json
-    )
-    jsonc_files=(
-        ~/.config/zed/settings.json
-    )
-    for f in "${json_files[@]}"; do
-        if [[ -f "$f" ]]; then
-            jq --sort-keys --indent 2 . "$f" | sponge "$f"
-        fi
+    cd ~
+    git ls-files --cached '*.json' | while read -r f; do
+        [[ "$f" == *.jsonc.json ]] && continue
+        # Files that are actually JSONC despite .json extension
+        case "$f" in
+            .config/zed/settings.json) continue ;;
+        esac
+        jq --sort-keys --indent 2 . "$f" | sponge "$f"
     done
-    for f in "${jsonc_files[@]}"; do
-        if [[ -f "$f" ]]; then
-            prettier --parser jsonc --write "$f"
-        fi
+    git ls-files --cached '*.jsonc' '.config/zed/settings.json' | while read -r f; do
+        prettier --parser jsonc --write "$f"
     done
 
 # Formats and hardens Zsh shell scripts

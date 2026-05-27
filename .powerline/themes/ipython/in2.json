@@ -1,13 +1,15 @@
 {
-	"default_module": "powerline.segments.common",
-	"segments": {
-		"left": [
-			{
-				"type": "string",
-				"contents": "",
-				"width": "auto",
-				"highlight_group": ["prompt"]
-			}
-		]
-	}
+  "default_module": "powerline.segments.common",
+  "segments": {
+    "left": [
+      {
+        "contents": "",
+        "highlight_group": [
+          "prompt"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ]
+  }
 }

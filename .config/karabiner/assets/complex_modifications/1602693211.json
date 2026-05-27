@@ -1,11 +1,9 @@
 {
-  "title": "Exchange single and double quote",
   "rules": [
     {
       "description": "Exchange single and double quote",
       "manipulators": [
         {
-          "type": "basic",
           "from": {
             "key_code": "quote",
             "modifiers": {
@@ -21,10 +19,10 @@
                 "left_shift"
               ]
             }
-          ]
+          ],
+          "type": "basic"
         },
         {
-          "type": "basic",
           "from": {
             "key_code": "quote",
             "modifiers": {
@@ -40,9 +38,11 @@
             {
               "key_code": "quote"
             }
-          ]
+          ],
+          "type": "basic"
         }
       ]
     }
-  ]
+  ],
+  "title": "Exchange single and double quote"
 }

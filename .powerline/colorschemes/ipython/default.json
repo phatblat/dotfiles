@@ -1,7 +1,15 @@
 {
-	"name": "Default color scheme for IPython prompt",
-	"groups": {
-		"prompt":         { "fg": "gray9", "bg": "gray4", "attr": [] },
-		"prompt_count":   { "fg": "white", "bg": "gray4", "attr": [] }
-	}
+  "groups": {
+    "prompt": {
+      "attr": [],
+      "bg": "gray4",
+      "fg": "gray9"
+    },
+    "prompt_count": {
+      "attr": [],
+      "bg": "gray4",
+      "fg": "white"
+    }
+  },
+  "name": "Default color scheme for IPython prompt"
 }

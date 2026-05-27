@@ -1,29 +1,29 @@
 {
-	"default_module": "powerline.segments.common",
-	"segments": {
-		"right": [
-			{
-				"name": "uptime",
-				"priority": 50
-			},
-			{
-				"name": "system_load",
-				"priority": 50
-			},
-			{
-				"name": "date",
-				"before": ""
-			},
-			{
-				"name": "date",
-				"args": {
-					"format": "%H:%M",
-					"istime": true
-				}
-			},
-			{
-				"name": "hostname"
-			}
-		]
-	}
+  "default_module": "powerline.segments.common",
+  "segments": {
+    "right": [
+      {
+        "name": "uptime",
+        "priority": 50
+      },
+      {
+        "name": "system_load",
+        "priority": 50
+      },
+      {
+        "before": "",
+        "name": "date"
+      },
+      {
+        "args": {
+          "format": "%H:%M",
+          "istime": true
+        },
+        "name": "date"
+      },
+      {
+        "name": "hostname"
+      }
+    ]
+  }
 }

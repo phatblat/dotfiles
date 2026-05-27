@@ -1,18 +1,50 @@
 {
-	"name": "Default color scheme for shell prompts",
-	"groups": {
-		"hostname":       { "fg": "brightyellow", "bg": "mediumorange", "attr": [] },
-		"jobnum":         { "fg": "brightyellow", "bg": "mediumorange", "attr": [] },
-		"exit_fail":      { "fg": "white", "bg": "darkestred", "attr": [] },
-		"exit_success":   { "fg": "white", "bg": "darkestgreen", "attr": [] },
-		"environment":    { "fg": "white", "bg": "darkestgreen", "attr": [] },
-		"mode":           { "fg": "darkestgreen", "bg": "brightgreen", "attr": ["bold"] }
-	},
-	"mode_translations": {
-		"vicmd": {
-			"groups": {
-				"mode": {"fg": "darkestcyan", "bg": "white", "attr": ["bold"]}
-			}
-		}
-	}
+  "groups": {
+    "environment": {
+      "attr": [],
+      "bg": "darkestgreen",
+      "fg": "white"
+    },
+    "exit_fail": {
+      "attr": [],
+      "bg": "darkestred",
+      "fg": "white"
+    },
+    "exit_success": {
+      "attr": [],
+      "bg": "darkestgreen",
+      "fg": "white"
+    },
+    "hostname": {
+      "attr": [],
+      "bg": "mediumorange",
+      "fg": "brightyellow"
+    },
+    "jobnum": {
+      "attr": [],
+      "bg": "mediumorange",
+      "fg": "brightyellow"
+    },
+    "mode": {
+      "attr": [
+        "bold"
+      ],
+      "bg": "brightgreen",
+      "fg": "darkestgreen"
+    }
+  },
+  "mode_translations": {
+    "vicmd": {
+      "groups": {
+        "mode": {
+          "attr": [
+            "bold"
+          ],
+          "bg": "white",
+          "fg": "darkestcyan"
+        }
+      }
+    }
+  },
+  "name": "Default color scheme for shell prompts"
 }

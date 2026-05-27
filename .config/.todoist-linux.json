@@ -1,6 +1,6 @@
 {
-    "quick-add": "CommandOrControl+Alt+a",
-    "show-hide": "CommandOrControl+Alt+Q",
-    "refresh": "CommandOrControl+Alt+r",
-    "quit": "Alt+F4"
+  "quick-add": "CommandOrControl+Alt+a",
+  "quit": "Alt+F4",
+  "refresh": "CommandOrControl+Alt+r",
+  "show-hide": "CommandOrControl+Alt+Q"
 }

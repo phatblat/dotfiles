@@ -1,18 +1,24 @@
 {
-    "segments": {
-        "left": [
-            {
-                "type": "string",
-                "highlight_groups": ["gundo:name", "file_name"],
-                "contents": "Undo diff"
-            },
-            {
-                "type": "string",
-                "highlight_groups": ["gundo:background", "background"],
-                "draw_soft_divider": false,
-                "draw_hard_divider": false,
-                "width": "auto"
-            }
-        ]
-    }
+  "segments": {
+    "left": [
+      {
+        "contents": "Undo diff",
+        "highlight_groups": [
+          "gundo:name",
+          "file_name"
+        ],
+        "type": "string"
+      },
+      {
+        "draw_hard_divider": false,
+        "draw_soft_divider": false,
+        "highlight_groups": [
+          "gundo:background",
+          "background"
+        ],
+        "type": "string",
+        "width": "auto"
+      }
+    ]
+  }
 }
