@@ -4,6 +4,9 @@
     "allow_quick_web_setup": {
       "allowed": false
     },
+    "allow_workflows": {
+      "allowed": false
+    },
     "enforce_web_search_mcp_isolation": {
       "allowed": false
     }
