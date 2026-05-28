@@ -364,6 +364,7 @@ format-json:
         [[ "$f" == *.jsonc.json ]] && continue
         # Files that are actually JSONC despite .json extension
         case "$f" in
+            .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
         esac
         jq --sort-keys --indent 2 . "$f" | sponge "$f"
