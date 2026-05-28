@@ -278,7 +278,6 @@ doctor:
     mise doctor
     brew doctor
     claude doctor
-    claudekit doctor
 
 # Checks .gitignore is correctly sorted with negation overrides intact
 [group('checks')]
