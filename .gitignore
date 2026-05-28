@@ -82,6 +82,7 @@
 .claude/jobs/
 .claude/security/
 .claude/security_warnings_state_*.json
+.claude/teams/
 .claude_settings.json
 .clawdbot/
 .cmake-js/
