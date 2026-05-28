@@ -31,3 +31,10 @@ source_zsh_function() {
 command_exists() {
   command -v "$1" &>/dev/null
 }
+
+# Run a zsh autoload function as a subprocess (preferred over source_zsh_function)
+run_zsh_function() {
+  local func_name="$1"
+  shift
+  zsh --no-rcs "${HOME}/.config/zsh/functions/${func_name}" "$@"
+}

@@ -329,6 +329,10 @@ lint: lint-gitignore lint-python lint-all
     just --fmt --check
     mise fmt --check
 
+# Runs lint and test
+[group('checks')]
+check: lint test
+
 # Runs bats tests
 [group('tests')]
 [script]

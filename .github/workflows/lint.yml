@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".config/fish/**"
+      - ".config/home-manager/**"
       - ".config/nushell/**"
       - ".config/zsh/functions/**"
       - ".config/mise/config.toml"
@@ -12,10 +13,12 @@ on:
       - "bin/**"
       - "justfile"
       - "scripts/**"
+      - "tests/**"
       - ".github/workflows/lint.yml"
   pull_request:
     paths:
       - ".config/fish/**"
+      - ".config/home-manager/**"
       - ".config/nushell/**"
       - ".config/zsh/functions/**"
       - ".config/mise/config.toml"
@@ -23,6 +26,7 @@ on:
       - "bin/**"
       - "justfile"
       - "scripts/**"
+      - "tests/**"
       - ".github/workflows/lint.yml"
   schedule:
     # Weekly Monday 06:00 UTC — catch drift from tool updates
@@ -47,7 +51,7 @@ jobs:
           install: false
 
       - name: Install mise-managed tools
-        run: mise install just shellcheck ruff
+        run: mise install just shellcheck ruff bats
 
       - name: Install fish
         run: sudo apt-get update && sudo apt-get install -y fish
@@ -62,3 +66,15 @@ jobs:
         run: |
           eval "$(mise activate bash)"
           just lint
+
+      - name: mise doctor
+        run: mise doctor
+
+      - name: Validate nix flake
+        run: nix flake show --json "$HOME/.config/home-manager" 2>&1 | head -20
+        continue-on-error: true
+
+      - name: Test
+        run: |
+          eval "$(mise activate bash)"
+          just test
