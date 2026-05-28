@@ -238,7 +238,6 @@
 .emulator_console_auth_token
 .entire/
 .env
-.envrc
 .externalNativeBuild/
 .fastlane/
 .fastlane_crash_reporting
