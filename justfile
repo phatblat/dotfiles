@@ -317,6 +317,11 @@ lint-bin:
     @echo "Linting bin scripts..."
     @find ~/bin -name '*.sh' ! -name 'dotnet-install.sh' -exec shellcheck {} +
 
+# Checks spelling with typos
+[group('checks')]
+check-spelling:
+    mise exec -- typos
+
 # Runs all linting checks
 [group('checks')]
 lint-all: lint-zsh lint-fish lint-nushell lint-bin
@@ -330,7 +335,7 @@ lint: lint-gitignore lint-python lint-all
 
 # Runs lint and test
 [group('checks')]
-check: lint test
+check: lint check-spelling test
 
 # Runs bats tests
 [group('tests')]
