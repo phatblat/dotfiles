@@ -74,6 +74,7 @@
 .claude.json.tmp.*
 .claude/.credentials.json
 .claude/.last-cleanup
+.claude/.last-update-result.json
 .claude/agent-flow/*.json
 .claude/daemon.lock
 .claude/daemon.status.json
@@ -82,6 +83,7 @@
 .claude/jobs/
 .claude/security/
 .claude/security_warnings_state_*.json
+.claude/teams/
 .claude_settings.json
 .clawdbot/
 .cmake-js/
@@ -237,7 +239,6 @@
 .emulator_console_auth_token
 .entire/
 .env
-.envrc
 .externalNativeBuild/
 .fastlane/
 .fastlane_crash_reporting

@@ -113,6 +113,9 @@ export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 # Added by git-ai installer on Thu Oct 23 12:10:36 MDT 2025
 export PATH="$HOME/.git-ai/bin:$PATH"
 
+# Added by Antigravity IDE
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+
 # Initialize mise - version manager for tools
 # NOTE: must be after other PATH modifications so mise paths take precedence
 eval "$(mise activate zsh)"
@@ -134,6 +137,3 @@ fi
 alias pai="bun $HOME/.claude/skills/PAI/Tools/pai.ts"
 
 source $HOME/.config/broot/launcher/bash/br
-
-# Added by Antigravity IDE
-export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"

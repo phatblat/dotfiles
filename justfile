@@ -278,7 +278,6 @@ doctor:
     mise doctor
     brew doctor
     claude doctor
-    claudekit doctor
 
 # Checks .gitignore is correctly sorted with negation overrides intact
 [group('checks')]
@@ -329,6 +328,10 @@ lint: lint-gitignore lint-python lint-all
     just --fmt --check
     mise fmt --check
 
+# Runs lint and test
+[group('checks')]
+check: lint test
+
 # Runs bats tests
 [group('tests')]
 [script]
@@ -361,6 +364,7 @@ format-json:
         [[ "$f" == *.jsonc.json ]] && continue
         # Files that are actually JSONC despite .json extension
         case "$f" in
+            .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
         esac
         jq --sort-keys --indent 2 . "$f" | sponge "$f"

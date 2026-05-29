@@ -14,7 +14,7 @@ globs:
 All external actions MUST be pinned to a full commit SHA with the semantic version tag in a trailing comment:
 
 ```yaml
-- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 ```
 
 **Why:** Tag-only pinning (e.g., `@v4`) is vulnerable to supply chain attacks — tags are mutable and can be force-pushed to point at malicious commits. SHA pinning guarantees reproducibility and integrity.
@@ -64,6 +64,22 @@ Or use `git ls-remote`:
 ```bash
 git ls-remote https://github.com/{owner}/{repo}.git refs/tags/{tag}
 ```
+
+## Node.js Runtime Requirements
+
+GitHub Actions is deprecating Node.js 20 runners. As of June 2, 2026, actions are forced to run on Node.js 24. **Only use action versions that declare `using: node24` (or higher) in their action.yml.**
+
+Minimum versions for common actions (Node.js 24 compatible):
+
+| Action                     | Minimum | Current | SHA |
+|----------------------------|---------|---------|-----|
+| `actions/checkout`         | v6      | v6.0.2  | `de0fac2e4500dabe0009e67214ff5f5447ce83dd` |
+| `actions/setup-node`       | v6      | v6.4.0  | `48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e` |
+| `actions/cache`            | v5      | v5.0.5  | `27d5ce7f107fe9357f9df03efb73ab90386fccae` |
+| `actions/upload-artifact`  | v7      | v7.0.1  | `043fb46d1a93c77aae656e7c1c64a875d1fc6a0a` |
+| `actions/download-artifact`| v8      | v8.0.1  | `3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c` |
+
+When encountering an action pinned to a version below these minimums, update it. When adding a new third-party action, verify its `action.yml` declares `using: node24` or higher.
 
 ## Common Gotchas
 
