@@ -94,6 +94,7 @@ Build a new H2 section block:
 ## <TICKET-ID> <title-slug>
 ticket:: [<TICKET-ID>](<linear-url>)
 pr:: [#<number>](<github-pr-url>)
+branch:: `<headRefName>`
 status:: <current-state-lowercase>
 commented:: false
 
@@ -103,6 +104,7 @@ commented:: false
 **Field rules:**
 - `ticket::` — Always present for Linear tickets. Omit if PR-only with no linked ticket.
 - `pr::` — Present if a PR exists. Omit if ticket-only (no PR yet). Format: `[#number](url)` or `[repo#number](url)` for non-primary repos.
+- `branch::` — The PR's head branch name in backticks. Extract from `headRefName` when fetching PR details. Omit if no PR exists.
 - `status::` — Lowercase Linear state: `in-progress`, `in-review`, `done`, `blocked`, `todo`, `backlog`, `triage`
 - `commented::` — Always starts as `false`. Updated by `/work:eod`.
 
@@ -127,6 +129,7 @@ A fully populated item section:
 ## DXO-71 fix(sdk-release): replace unreliable !failure()
 ticket:: [DXO-71](https://linear.app/ditto/issue/DXO-71)
 pr:: [#23274](https://github.com/getditto/ditto/pull/23274)
+branch:: `ben/dxo-71/fix-sdk-release-if-conditions`
 status:: in-progress
 commented:: false
 

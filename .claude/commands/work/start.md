@@ -204,7 +204,7 @@ Post using `mcp__linear__save_comment`:
 
 ### 6c: Update Daily Note
 
-For each ticket that received a comment, create a Work Items section in today's note (same format as `/work:track`) with `commented:: true`. This pre-populates the Work Items section so `/work:track` updates existing sections later in the day rather than creating new ones.
+For each ticket that received a comment, create a Work Items section in today's note (same format as `/work:track`) with `commented:: true`. Include the `branch::` field if the ticket has an associated PR — extract the branch name from `headRefName` via `gh pr view`. This pre-populates the Work Items section so `/work:track` updates existing sections later in the day rather than creating new ones.
 
 ## Step 7: Populate Meetings Section
 
