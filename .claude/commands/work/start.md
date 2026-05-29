@@ -69,7 +69,42 @@ Extract the filename (without path and `.md` extension) to get the wikilink targ
 
 Use `Edit` to replace the self-referencing link with the correct previous note link.
 
-## Step 4: Build Yesterday Summary
+## Step 4: Automated Startup Checks
+
+Run these checks and update the Startup section in today's note, replacing the manual checkboxes with results.
+
+### 4a: macOS GHA Runners
+
+```bash
+gh api orgs/getditto/actions/runner-groups/8/runners --jq '{
+  total: .total_count,
+  online: [.runners[] | select(.status == "online")] | length,
+  offline: [.runners[] | select(.status == "offline")] | length,
+  offline_names: [.runners[] | select(.status == "offline") | .name]
+}'
+```
+
+Update the runner line in the Startup section:
+- All online: `- [x] check GHA runner status — ✓ 34/34 macOS runners online`
+- Some offline: `- [x] check GHA runner status — ⚠ 32/34 online, offline: mac-ami14, mac-ami22`
+
+### 4b: Slack #ci Channel
+
+**Note:** No Slack MCP is configured. This check cannot be automated yet. Leave the checkbox unchecked:
+`- [ ] check [#ci](https://dittolive.slack.com/archives/CPVKDQGHM) channel`
+
+To automate in the future, configure a Slack MCP server and add `mcp__slack__search_messages` or similar to this command's allowed tools.
+
+### 4c: Buildkite Agent Status
+
+**Note:** No Buildkite API integration. Leave as manual:
+`- [ ] check [Buildkite agent](https://buildkite.com/organizations/dittolive-incorporated/unclustered/agents) status`
+
+### 4d: Update Startup Section
+
+Use `Edit` to update the Startup section in today's note. Replace the GHA runner checkbox line with the result from 4a. Keep unchecked items for Slack and Buildkite.
+
+## Step 5: Build Yesterday Summary
 
 Using the previous note's date, gather what happened on the previous work day.
 
@@ -116,7 +151,7 @@ Format the summary as concise bullet points under `## Yesterday`. Example:
 
 Use `Edit` to replace the `<!-- auto-populated by /work:start -->` comment with the summary content. Keep the comment on the line after the content for re-runs.
 
-## Step 5: Build Today's Agenda
+## Step 6: Build Today's Agenda
 
 ### 5a: Calendar Events
 
@@ -171,7 +206,7 @@ The "In Progress (needs daily comment)" section reminds the user which tickets n
 
 Use `Edit` to replace the `<!-- auto-populated by /work:start with meetings + todo tickets -->` comment with the agenda. Keep the comment on the line after for re-runs.
 
-## Step 6: Post Daily Status Comments to In-Progress Tickets
+## Step 7: Post Daily Status Comments to In-Progress Tickets
 
 For each ticket listed under "## In Progress (needs daily comment)" in the Agenda, post a brief status comment to Linear.
 
@@ -205,7 +240,7 @@ Post using `mcp__linear__save_comment`:
 
 For each ticket that received a comment, create a Work Items section in today's note (same format as `/work:track`) with `commented:: true`. Include the `branch::` field if the ticket has an associated PR — extract the branch name from `headRefName` via `gh pr view`. This pre-populates the Work Items section so `/work:track` updates existing sections later in the day rather than creating new ones.
 
-## Step 7: Populate Meetings Section
+## Step 8: Populate Meetings Section
 
 For each meeting from the calendar, create an H2 heading in the `# Meetings` section with the time and title. Only populate if the section is empty (just the HTML comment):
 
@@ -221,7 +256,7 @@ For each meeting from the calendar, create an H2 heading in the `# Meetings` sec
 
 This gives the user pre-created sections to take notes in during each meeting.
 
-## Step 8: Invoke /pr:daily
+## Step 9: Invoke /pr:daily
 
 Run the daily branch setup workflow:
 
@@ -231,7 +266,7 @@ Skill(pr:daily)
 
 This creates today's branch, cleans up old branches, and opens a draft PR.
 
-## Step 9: Report Summary
+## Step 10: Report Summary
 
 Output a summary:
 
