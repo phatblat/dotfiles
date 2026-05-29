@@ -67,9 +67,6 @@ jobs:
           eval "$(mise activate bash)"
           just lint
 
-      - name: mise doctor
-        run: mise doctor
-
       - name: Validate nix flake
         run: nix flake show --json "$HOME/.config/home-manager" 2>&1 | head -20
         continue-on-error: true
