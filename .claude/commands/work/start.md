@@ -1,0 +1,236 @@
+---
+description: Morning startup — create daily note, populate yesterday summary, agenda, meetings, then invoke /pr:daily
+allowed-tools:
+  - Bash(linear:*)
+  - Bash(gh:*)
+  - Bash(date:*)
+  - Bash(find:*)
+  - Bash(ls:*)
+  - Bash(sort:*)
+  - Bash(head:*)
+  - Bash(tail:*)
+  - Bash(grep:*)
+  - Bash(wc:*)
+  - Read
+  - Edit
+  - Write
+  - Skill
+  - AskUserQuestion
+  - mcp__claude_ai_Google_Calendar__list_events
+  - mcp__claude_ai_Google_Calendar__list_calendars
+  - mcp__linear__get_issue
+category: workflow
+---
+
+# Morning Startup
+
+Create today's daily note, populate it with yesterday's summary and today's agenda, then set up the daily branch.
+
+## Step 1: Determine Dates
+
+```bash
+today_date=$(date +%Y-%m-%d)
+today_day=$(date +%A)
+today_file="${today_date} ${today_day}"
+vault="$HOME/2ndBrain"
+notes_dir="${vault}/daily-notes/2026"
+echo "today=${today_file} dir=${notes_dir}"
+```
+
+## Step 2: Create Today's Note (Idempotent)
+
+Check if today's note exists:
+
+```bash
+ls "${notes_dir}/${today_file}.md" 2>/dev/null && echo "EXISTS" || echo "MISSING"
+```
+
+- **EXISTS**: Read the note. If it already has populated content in the `## Yesterday` section (more than just the HTML comment), skip to Step 5 (agenda refresh). Report "Today's note already exists and has content."
+- **MISSING**: Read the template at `${vault}/templates/daily-note.md` and create the note at `${notes_dir}/${today_file}.md`. Replace Obsidian template variables:
+  - `{{date:dddd}}` → today's day name (e.g., `Friday`)
+  - `{{date:YYYY-MM-DD dddd}}` → today's full date with day (e.g., `2026-05-29 Friday`)
+
+**Important**: The template's yesterday link `[[{{date:YYYY-MM-DD dddd}}]]` will resolve to TODAY (self-reference). Step 3 fixes this.
+
+## Step 3: Fix Yesterday Link
+
+Find the most recent daily note BEFORE today:
+
+```bash
+ls "${notes_dir}"/*.md | sort | grep -v "${today_file}" | tail -1
+```
+
+Extract the filename (without path and `.md` extension) to get the wikilink target. Update the yesterday line in today's note:
+
+```
+- yesterday: [[<previous-note-filename-without-extension>]]
+```
+
+Use `Edit` to replace the self-referencing link with the correct previous note link.
+
+## Step 4: Build Yesterday Summary
+
+Using the previous note's date, gather what happened on the previous work day.
+
+### 4a: Linear Activity
+
+Query Linear for the user's tickets that were active on the previous work day. Run these in parallel:
+
+```bash
+linear issue mine --team DEVX --state started --sort priority --no-pager 2>/dev/null
+linear issue mine --team DXO --state started --sort priority --no-pager 2>/dev/null
+```
+
+Note: The `--sort priority` flag is required. Valid `--state` values are: `triage`, `backlog`, `unstarted`, `started`, `completed`, `canceled`. There is no "in review" or "blocked" state in the CLI — these are custom workflow states visible in the UI but mapped to `started` in the CLI.
+
+### 4b: GitHub PRs Created/Pushed
+
+```bash
+gh search prs --author=@me --owner=getditto --updated=">=${prev_date}" --json number,title,repository,state,url --limit 20
+```
+
+Where `${prev_date}` is the previous work day's date in `YYYY-MM-DD` format.
+
+### 4c: GitHub PRs Reviewed
+
+```bash
+gh search prs --reviewed-by=@me --owner=getditto --updated=">=${prev_date}" --json number,title,repository,url --limit 20
+```
+
+### 4d: Read Previous Day's Note
+
+Read the previous daily note to extract any work items, meeting notes, or context that should be summarized.
+
+### 4e: Compose Yesterday Section
+
+Format the summary as concise bullet points under `## Yesterday`. Example:
+
+```markdown
+## Yesterday
+- Worked on [DXO-71](https://linear.app/ditto/issue/DXO-71) — sdk-release gate check (in review)
+- Reviewed [#23284](https://github.com/getditto/ditto/pull/23284) — Node.js 24 upgrade
+- Meeting: DevX Build System Emulation Plan — decided on QEMU over Rosetta
+- [DEVX-943](https://linear.app/ditto/issue/DEVX-943) decommission runners (in progress)
+```
+
+Use `Edit` to replace the `<!-- auto-populated by /work:start -->` comment with the summary content. Keep the comment on the line after the content for re-runs.
+
+## Step 5: Build Today's Agenda
+
+### 5a: Calendar Events
+
+Query both calendars for today's events. Run in parallel:
+
+- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "ben@ditto.com"`, today's date range, `orderBy: "startTime"`, `timeZone: "America/Denver"`
+- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "benchatelain@gmail.com"`, today's date range, `orderBy: "startTime"`, `timeZone: "America/Denver"`
+
+Also query the Engineering Shared calendar:
+- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "c_99c6308de217f9bcae7bb2e6e838fa5b4f5eb376b88225af367b8ece07687c7f@group.calendar.google.com"`
+
+Merge events from all calendars, sorted by start time. For each event, format as:
+
+```
+- **HH:MM** — Event Title (duration)
+```
+
+Skip all-day events and events where `status` is `cancelled`. For private events (no title visible), show as `- **HH:MM** — (personal)`.
+
+### 5b: Linear Todo Tickets
+
+Query tickets assigned to me in the current cycle that need attention:
+
+```bash
+linear issue mine --team DEVX --state triage --state backlog --state unstarted --sort priority --cycle active --no-pager 2>/dev/null
+linear issue mine --team DXO --state triage --state backlog --state unstarted --sort priority --cycle active --no-pager 2>/dev/null
+```
+
+Note: `--state` can be repeated to filter multiple states in one call. `--sort priority` is always required.
+
+### 5c: Compose Agenda Section
+
+Format under `# Agenda`:
+
+```markdown
+# Agenda
+
+## Meetings
+- **09:00** — SDK Team Standup (30m)
+- **10:00** — DevX Stand (1h)
+- **12:00** — System Design Interview (1h)
+
+## Tickets to Pick Up
+- [DXO-88](https://linear.app/ditto/issue/DXO-88) — Title here (todo)
+- [DEVX-950](https://linear.app/ditto/issue/DEVX-950) — Title here (backlog)
+
+## In Progress (needs daily comment)
+- [DXO-71](https://linear.app/ditto/issue/DXO-71) — Title here
+- [DEVX-943](https://linear.app/ditto/issue/DEVX-943) — Title here
+```
+
+The "In Progress (needs daily comment)" section reminds the user which tickets need a comment today.
+
+Use `Edit` to replace the `<!-- auto-populated by /work:start with meetings + todo tickets -->` comment with the agenda. Keep the comment on the line after for re-runs.
+
+## Step 6: Populate Meetings Section
+
+For each meeting from the calendar, create an H2 heading in the `# Meetings` section with the time and title. Only populate if the section is empty (just the HTML comment):
+
+```markdown
+# Meetings
+
+## 09:00 SDK Team Standup
+
+## 10:00 DevX Stand
+
+## 12:00 System Design Interview
+```
+
+This gives the user pre-created sections to take notes in during each meeting.
+
+## Step 7: Invoke /pr:daily
+
+Run the daily branch setup workflow:
+
+```
+Skill(pr:daily)
+```
+
+This creates today's branch, cleans up old branches, and opens a draft PR.
+
+## Step 8: Report Summary
+
+Output a summary:
+
+```
+## Morning Startup Complete
+
+Daily note: [[2026-05-29 Friday]]
+Yesterday: linked to [[2026-05-28 Thursday]]
+
+Meetings today: 3
+  09:00 SDK Team Standup
+  10:00 DevX Stand
+  12:00 System Design Interview
+
+Tickets needing daily comment: 2
+  DXO-71, DEVX-943
+
+Tickets to pick up: 1
+  DXO-88
+
+Branch: friday
+PR: #280 (draft)
+```
+
+## Edge Cases
+
+| Scenario | Handling |
+|----------|----------|
+| Run twice same day | Step 2 detects existing note; Step 5 refreshes agenda (calendar may have changed) |
+| Monday morning | Previous note is Friday (or earlier); weekend gap is normal |
+| No Linear tickets | Show "No tickets in current cycle" under Agenda |
+| Calendar API fails | Report error, continue with other sections |
+| linear CLI not authenticated | Report error, continue with other sections |
+| Previous note doesn't exist | Skip yesterday summary; set yesterday link to empty `[[]]` |
+| Gmail events are private | Show as "(personal)" with time only |
+| Note already has content | Don't overwrite Yesterday section; do refresh Agenda |
