@@ -53,8 +53,8 @@ jobs:
       - name: Install mise-managed tools
         run: mise install just shellcheck ruff bats
 
-      - name: Install fish
-        run: sudo apt-get update && sudo apt-get install -y fish
+      - name: Install fish and zsh
+        run: sudo apt-get update && sudo apt-get install -y fish zsh
 
       - name: Install nushell
         run: |
