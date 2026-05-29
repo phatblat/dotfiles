@@ -1,9 +1,9 @@
 {
   "restrictions": {
-    "allow_quick_web_setup": {
+    "allow_workflows": {
       "allowed": false
     },
-    "allow_workflows": {
+    "allow_quick_web_setup": {
       "allowed": false
     },
     "enforce_web_search_mcp_isolation": {
