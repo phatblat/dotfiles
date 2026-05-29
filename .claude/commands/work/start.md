@@ -19,6 +19,7 @@ allowed-tools:
   - mcp__claude_ai_Google_Calendar__list_events
   - mcp__claude_ai_Google_Calendar__list_calendars
   - mcp__linear__get_issue
+  - mcp__linear__save_comment
 category: workflow
 ---
 
@@ -171,7 +172,41 @@ The "In Progress (needs daily comment)" section reminds the user which tickets n
 
 Use `Edit` to replace the `<!-- auto-populated by /work:start with meetings + todo tickets -->` comment with the agenda. Keep the comment on the line after for re-runs.
 
-## Step 6: Populate Meetings Section
+## Step 6: Post Daily Status Comments to In-Progress Tickets
+
+For each ticket listed under "## In Progress (needs daily comment)" in the Agenda, post a brief status comment to Linear.
+
+### 6a: Gather Current State
+
+For each in-progress ticket, use `linear issue view <TICKET-ID> --no-pager` to get:
+- Current state
+- PR status (from attachments)
+- Last comment date (to verify no comment was already posted today)
+
+If the most recent comment on the ticket is already from today (by @benchatelain), **skip** that ticket — it already has today's comment.
+
+### 6b: Compose and Post Comments
+
+For each ticket needing a comment, compose a brief daily status update:
+
+```markdown
+**Daily status — YYYY-MM-DD**
+
+Status: <current state>
+PR: <PR link and status if applicable>
+
+<1-2 sentence summary of where things stand>
+```
+
+Post using `mcp__linear__save_comment`:
+- `issueId`: the ticket identifier
+- `body`: the status comment
+
+### 6c: Update Daily Note
+
+For each ticket that received a comment, create a Work Items section in today's note (same format as `/work:track`) with `commented:: true`. This pre-populates the Work Items section so `/work:track` updates existing sections later in the day rather than creating new ones.
+
+## Step 7: Populate Meetings Section
 
 For each meeting from the calendar, create an H2 heading in the `# Meetings` section with the time and title. Only populate if the section is empty (just the HTML comment):
 
@@ -187,7 +222,7 @@ For each meeting from the calendar, create an H2 heading in the `# Meetings` sec
 
 This gives the user pre-created sections to take notes in during each meeting.
 
-## Step 7: Invoke /pr:daily
+## Step 8: Invoke /pr:daily
 
 Run the daily branch setup workflow:
 
@@ -197,7 +232,7 @@ Skill(pr:daily)
 
 This creates today's branch, cleans up old branches, and opens a draft PR.
 
-## Step 8: Report Summary
+## Step 9: Report Summary
 
 Output a summary:
 
