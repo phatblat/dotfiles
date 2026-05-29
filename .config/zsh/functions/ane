@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# ane - Git amend, without changing the commit message
-git commit --amend --no-edit

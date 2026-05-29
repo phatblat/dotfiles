@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# cmtne - Commit with default message
-git commit --no-edit "$@"
