@@ -47,7 +47,7 @@
 "vfox:mise-plugins/vfox-gcloud" = "570.0.0"
 act = "0.2.88"
 actionlint = "1.7.12"
-awscli = { version = "2.34.55", symlink_bins = "true" }
+awscli = { version = "2.34.56", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.13.0"
 bazelisk = "1.29.0"
