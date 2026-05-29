@@ -120,21 +120,20 @@ Use `Edit` to replace the `<!-- auto-populated by /work:start -->` comment with 
 
 ### 5a: Calendar Events
 
-Query both calendars for today's events. Run in parallel:
+Query work calendars for today's events. Run in parallel:
 
 - `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "ben@ditto.com"`, today's date range, `orderBy: "startTime"`, `timeZone: "America/Denver"`
-- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "benchatelain@gmail.com"`, today's date range, `orderBy: "startTime"`, `timeZone: "America/Denver"`
+- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "c_99c6308de217f9bcae7bb2e6e838fa5b4f5eb376b88225af367b8ece07687c7f@group.calendar.google.com"` (Engineering Shared)
 
-Also query the Engineering Shared calendar:
-- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "c_99c6308de217f9bcae7bb2e6e838fa5b4f5eb376b88225af367b8ece07687c7f@group.calendar.google.com"`
+**Do NOT query `benchatelain@gmail.com`** — that calendar only returns free/busy data (no event titles) and is not useful for the agenda.
 
-Merge events from all calendars, sorted by start time. For each event, format as:
+Merge events from both calendars, sorted by start time. For each event, format as:
 
 ```
 - **HH:MM** — Event Title (duration)
 ```
 
-Skip all-day events and events where `status` is `cancelled`. For private events (no title visible), show as `- **HH:MM** — (personal)`.
+Skip all-day events and events where `status` is `cancelled`.
 
 ### 5b: Linear Todo Tickets
 
@@ -267,5 +266,4 @@ PR: #280 (draft)
 | Calendar API fails | Report error, continue with other sections |
 | linear CLI not authenticated | Report error, continue with other sections |
 | Previous note doesn't exist | Skip yesterday summary; set yesterday link to empty `[[]]` |
-| Gmail events are private | Show as "(personal)" with time only |
 | Note already has content | Don't overwrite Yesterday section; do refresh Agenda |
