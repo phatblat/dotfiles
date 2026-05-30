@@ -11,7 +11,7 @@ show_block_dividers = false
 app_icon = "glitch"
 
 [appearance.window]
-zoom_level = 100
+zoom_level = 125
 
 [appearance.themes]
 selected_system_themes = { dark = "dark", light = "light" }

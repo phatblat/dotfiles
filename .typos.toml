@@ -1,0 +1,7 @@
+[files]
+extend-exclude = [
+    "Library/Logs/",
+]
+
+[default.extend-words]
+certifi = "certifi"

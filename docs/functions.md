@@ -51,15 +51,12 @@ This document tracks the implementation status of all shell functions and aliase
 | `adev`                      | ➖  | ➖   | ➖  | ➖   | Android dev directory navigation                     |
 | `af`                        | ➖  | ✅   | ✅  | ➖   | Forced add files to git staging area                 |
 | `ai`                        | ➖  | ✅   | ✅  | ➖   | Interactively add files to git staging area          |
-| `aks`                       | ➖  | ✅   | ➖  | ➖   | AKS related function                                 |
 | `alcatraz_clean`            | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `alcatraz_install`          | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `alcatraz_uninstall`        | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `alert`                     | ➖  | ➖   | ➖  | ✅   | Alert notification for long running commands         |
 | `allow_all_nginx`           | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `amendne`                   | ✅  | ✅   | ✅  | ➖   | Amend commit without editing message                 |
 | `amend`                     | ✅  | ✅   | ✅  | ➖   | Amend previous git commit                            |
-| `ane`                       | ✅  | ✅   | ✅  | ➖   | Git amend without changing commit message            |
 | `appcast_url`               | ➖  | ✅   | ✅  | ➖   | Calculate appcast checkpoint                         |
 | `appicon`                   | ➖  | ✅   | ➖  | ➖   | Resizes AppIcon                                      |
 | `apps`                      | ➖  | ✅   | ➖  | ➖   | Lists macOS apps currently installed                 |
@@ -144,9 +141,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `ccov`                      | ➖  | ✅   | ➖  | ➖   | Checkout source of dependencies using Carthage wit   |
 | `cco`                       | ➖  | ✅   | ➖  | ➖   | Checkout source of dependencies using Carthage       |
 | `ccuss`                     | ➖  | ✅   | ➖  | ➖   | Update in submodules without build Carthage SSH      |
-| `ccus`                      | ➖  | ✅   | ➖  | ➖   | Update depencencies without building using Carthag   |
-| `ccuv`                      | ➖  | ✅   | ➖  | ➖   | Update depencencies without building using Carthag   |
-| `ccu`                       | ➖  | ✅   | ✅  | ➖   | Update depencencies without building using Carthag   |
+| `ccus`                      | ➖  | ✅   | ➖  | ➖   | Update dependencies without building via Carthage  |
+| `ccuv`                      | ➖  | ✅   | ➖  | ➖   | Update dependencies without building via Carthage  |
+| `ccu`                       | ➖  | ✅   | ✅  | ➖   | Update dependencies without building via Carthage  |
 | `cd......`                  | ➖  | ✅   | ➖  | ➖   | Navigate up six directories                          |
 | `cd.....`                   | ➖  | ✅   | ➖  | ➖   | Navigate up five directories                         |
 | `cd....`                    | ➖  | ✅   | ➖  | ➖   | Navigate up four directories                         |
@@ -168,7 +165,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `clone_or_pull`             | ➖  | ✅   | ✅  | ➖   | Clone fresh or pull existing git repo                |
 | `clone`                     | ✅  | ✅   | ✅  | ➖   | Git clone, then configure repo user                  |
 | `clv`                       | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
-| `cmtne`                     | ✅  | ✅   | ✅  | ➖   | Commit with default message                          |
 | `cmt`                       | ✅  | ✅   | ✅  | ➖   | Commit with message                                  |
 | `codesign_verify`           | ➖  | ✅   | ✅  | ➖   | Verify the codesign of a bundle                      |
 | `col1`                      | ➖  | ✅   | ✅  | ➖   | Prints the first column of input (first argument)    |
@@ -335,7 +331,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `gem_update`                | ➖  | ✅   | ✅  | ➖   | Binstubs are installed to /usr/local/bin alongside   |
 | `gemdir`                    | ➖  | ✅   | ✅  | ➖   | Prints path to system gem dir                        |
 | `genv`                      | ✅  | ✅   | ✅  | ➖   | Grep environment                                     |
-| `getudid`                   | ➖  | ✅   | ✅  | ➖   | Prints and copies UDID of connected iOS device       |
 | `gh_token_test`             | ➖  | ✅   | ➖  | ➖   | Tests GitHub personal access token                   |
 | `github-pat-refresh`        | ✅  | ➖   | ➖  | ➖   | Extend fine-grained GitHub PAT expiration by N days  |
 | `ginit`                     | ➖  | ✅   | ➖  | ➖   | Git init                                             |
@@ -383,7 +378,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `htdelete`                  | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the DELETE method using   |
 | `htget`                     | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the GET method using bu   |
 | `hthead`                    | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the HEAD method using b   |
-| `htoptions`                 | ➖  | ✅   | ✅  | ➖   | Send an HTTP request using the OPTIONS method usin   |
+| `htoptions`                 | ➖  | ✅   | ✅  | ➖   | Send HTTP OPTIONS request using builtin socket     |
 | `htpatch`                   | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the PATCH method using    |
 | `htpost`                    | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the POST method using b   |
 | `htput`                     | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the PUT method using bu   |
@@ -631,7 +626,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `showgit_remote`            | ➖  | ✅   | ✅  | ➖   | Searches for .git repos, printing remote URL         |
 | `showgit`                   | ➖  | ✅   | ✅  | ➖   | Searches for .git repos recursively below            |
 | `showjdks`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `showsvn`                   | ➖  | ✅   | ✅  | ➖   | Show .svn directories in the current directory tre   |
+| `showsvn`                   | ➖  | ✅   | ✅  | ➖   | Show .svn directories in current directory tree    |
 | `show`                      | ✅  | ✅   | ✅  | ➖   | Git show                                             |
 | `signing_cert_details`      | ➖  | ✅   | ✅  | ➖   | Prints signing certificate details                   |
 | `simclean`                  | ➖  | ✅   | ✅  | ➖   | Deletes all unavailable simulators                   |
@@ -671,7 +666,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `subs`                      | ➖  | ✅   | ➖  | ➖   | Shows special submodule entries in index             |
 | `surf`                      | ➖  | ✅   | ➖  | ➖   | Opens Windsurf                                       |
 | `suri`                      | ➖  | ✅   | ✅  | ➖   | Init and update git submodules recursively           |
-| `sur`                       | ➖  | ✅   | ➖  | ➖   | Update git submodules recursively                    |
 | `swift_make`                | ➖  | ✅   | ➖  | ➖   | Adds template Makefile for Swift projects            |
 | `swift_pgp_key_import`      | ➖  | ✅   | ✅  | ➖   | https://swift.org/download/#installation-1           |
 | `swift_releases`            | ➖  | ✅   | ➖  | ➖   | Check for Swift releases                             |

@@ -7,6 +7,7 @@
     "claude-md-management@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": false,
+    "compound-engineering@compound-engineering-plugin": true,
     "csharp-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
@@ -40,6 +41,12 @@
     "claude-code-warp": {
       "source": {
         "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
+    "compound-engineering-plugin": {
+      "source": {
+        "repo": "EveryInc/compound-engineering-plugin",
         "source": "github"
       }
     },
@@ -353,5 +360,5 @@
   },
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "auto"
+  "theme": "light"
 }
