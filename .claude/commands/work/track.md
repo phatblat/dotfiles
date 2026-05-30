@@ -33,7 +33,8 @@ If just a number is provided, assume it's a DXO ticket (prepend `DXO-`).
 ```bash
 today_date=$(date +%Y-%m-%d)
 today_day=$(date +%A)
-note_path="$HOME/2ndBrain/daily-notes/2026/${today_date} ${today_day}.md"
+today_year=$(date +%Y)
+note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"
 ```
 
 If the note doesn't exist, tell the user to run `/work:start` first.

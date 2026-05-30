@@ -21,7 +21,8 @@ Review today's tracked work items, draft Linear comments for tickets that haven'
 ```bash
 today_date=$(date +%Y-%m-%d)
 today_day=$(date +%A)
-note_path="$HOME/2ndBrain/daily-notes/2026/${today_date} ${today_day}.md"
+today_year=$(date +%Y)
+note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"
 ```
 
 Read the full note content.
