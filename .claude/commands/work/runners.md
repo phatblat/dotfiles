@@ -11,6 +11,8 @@ Query the getditto org's macOS runner group and report status.
 
 ## Step 1: Fetch Runner Data
 
+Runner group ID 8 is the "macOS" group in the getditto org.
+
 ```bash
 gh api orgs/getditto/actions/runner-groups/8/runners --jq '{
   total: .total_count,

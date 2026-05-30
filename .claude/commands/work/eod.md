@@ -14,7 +14,7 @@ category: workflow
 
 # End-of-Day Comments
 
-Review today's tracked work items, draft Linear comments for tickets that haven't been commented on today, present for approval, and post.
+Review today's tracked work items, draft Linear comments for tickets that haven't been commented on today, present for approval, and post. Takes no arguments.
 
 ## Step 1: Read Today's Note
 

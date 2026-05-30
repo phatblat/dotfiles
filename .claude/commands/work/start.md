@@ -109,7 +109,7 @@ Use `Edit` to update the Startup section in today's note. Replace the GHA runner
 
 Using the previous note's date, gather what happened on the previous work day.
 
-### 4a: Linear Activity
+### 5a: Linear Activity
 
 Query Linear for the user's tickets that were active on the previous work day. Run these in parallel:
 
@@ -120,7 +120,7 @@ linear issue mine --team DXO --state started --sort priority --no-pager 2>/dev/n
 
 Note: The `--sort priority` flag is required. Valid `--state` values are: `triage`, `backlog`, `unstarted`, `started`, `completed`, `canceled`. There is no "in review" or "blocked" state in the CLI — these are custom workflow states visible in the UI but mapped to `started` in the CLI.
 
-### 4b: GitHub PRs Created/Pushed
+### 5b: GitHub PRs Created/Pushed
 
 ```bash
 gh search prs --author=@me --owner=getditto --updated=">=${prev_date}" --json number,title,repository,state,url --limit 20
@@ -128,17 +128,17 @@ gh search prs --author=@me --owner=getditto --updated=">=${prev_date}" --json nu
 
 Where `${prev_date}` is the previous work day's date in `YYYY-MM-DD` format.
 
-### 4c: GitHub PRs Reviewed
+### 5c: GitHub PRs Reviewed
 
 ```bash
 gh search prs --reviewed-by=@me --owner=getditto --updated=">=${prev_date}" --json number,title,repository,url --limit 20
 ```
 
-### 4d: Read Previous Day's Note
+### 5d: Read Previous Day's Note
 
 Read the previous daily note to extract any work items, meeting notes, or context that should be summarized.
 
-### 4e: Compose Yesterday Section
+### 5e: Compose Yesterday Section
 
 Format the summary as concise bullet points under `## Yesterday`. Example:
 
@@ -154,7 +154,7 @@ Use `Edit` to replace the `<!-- auto-populated by /work:start -->` comment with 
 
 ## Step 6: Build Today's Agenda
 
-### 5a: Calendar Events
+### 6a: Calendar Events
 
 Query work calendars for today's events. Run in parallel:
 
@@ -171,7 +171,7 @@ Merge events from both calendars, sorted by start time. For each event, format a
 
 Skip all-day events and events where `status` is `cancelled`.
 
-### 5b: Linear Todo Tickets
+### 6b: Linear Todo Tickets
 
 Query tickets assigned to me in the current cycle that need attention:
 
@@ -182,7 +182,7 @@ linear issue mine --team DXO --state triage --state backlog --state unstarted --
 
 Note: `--state` can be repeated to filter multiple states in one call. `--sort priority` is always required.
 
-### 5c: Compose Agenda Section
+### 6c: Compose Agenda Section
 
 Format under `# Agenda`:
 
@@ -211,7 +211,7 @@ Use `Edit` to replace the `<!-- auto-populated by /work:start with meetings + to
 
 For each ticket listed under "## In Progress (needs daily comment)" in the Agenda, post a brief status comment to Linear.
 
-### 6a: Gather Current State
+### 7a: Gather Current State
 
 For each in-progress ticket, use `linear issue view <TICKET-ID> --no-pager` to get:
 - Current state
@@ -220,7 +220,7 @@ For each in-progress ticket, use `linear issue view <TICKET-ID> --no-pager` to g
 
 If the most recent comment on the ticket is already from today (by @benchatelain), **skip** that ticket — it already has today's comment.
 
-### 6b: Compose and Post Comments
+### 7b: Compose and Post Comments
 
 For each ticket needing a comment, compose a brief daily status update:
 
@@ -237,7 +237,7 @@ Post using `mcp__linear__save_comment`:
 - `issueId`: the ticket identifier
 - `body`: the status comment
 
-### 6c: Update Daily Note
+### 7c: Update Daily Note
 
 For each ticket that received a comment, create a Work Items section in today's note (same format as `/work:track`) with `commented:: true`. Include the `branch::` field if the ticket has an associated PR — extract the branch name from `headRefName` via `gh pr view`. This pre-populates the Work Items section so `/work:track` updates existing sections later in the day rather than creating new ones.
 
