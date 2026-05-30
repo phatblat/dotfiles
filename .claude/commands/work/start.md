@@ -32,9 +32,10 @@ Create today's daily note, populate it with yesterday's summary and today's agen
 ```bash
 today_date=$(date +%Y-%m-%d)
 today_day=$(date +%A)
+today_year=$(date +%Y)
 today_file="${today_date} ${today_day}"
 vault="$HOME/2ndBrain"
-notes_dir="${vault}/daily-notes/2026"
+notes_dir="${vault}/daily-notes/${today_year}"
 echo "today=${today_file} dir=${notes_dir}"
 ```
 
