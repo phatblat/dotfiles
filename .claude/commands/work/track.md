@@ -67,13 +67,13 @@ If a linked Linear ticket is found, also fetch its details to populate the `tick
 Read today's note and search for an existing section for this item:
 
 ```bash
-grep -n "^## .*${TICKET_ID}\b" "${note_path}"
+grep -nE "^## .*${TICKET_ID}( |$)" "${note_path}"
 ```
 
 Or for PR-only items:
 
 ```bash
-grep -n "^## .*#${PR_NUMBER}\b" "${note_path}"
+grep -nE "^## .*#${PR_NUMBER}( |$)" "${note_path}"
 ```
 
 ### If Section EXISTS → Update
