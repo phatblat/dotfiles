@@ -1,6 +1,7 @@
 ---
 description: Create a git commit following the project's established style
 category: workflow
+model: sonnet
 allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*), Bash([:[*), Bash(grep:*), Read, Edit, Task
 ---
 
@@ -49,36 +50,7 @@ All git commands are combined into a single bash call for maximum speed.
 10. Check if any post-commit hooks need to be considered (e.g., pushing to remote, creating PR)
 
 ## Documentation Updates:
-Consider updating relevant documentation when committing changes:
-- README.md: New features, API changes, installation steps, usage examples
-- CHANGELOG.md: Notable changes, bug fixes, new features
-- API documentation: New endpoints, changed parameters, deprecated features
-- User guides: New workflows, updated procedures
-- Configuration docs: New settings, changed defaults
+If changes warrant doc updates (new features, API changes), update relevant docs in the same commit group.
 
 ## Commit Convention Documentation:
-Only when conventions are NOT already documented: Analyze the commit history and document the observed conventions in CLAUDE.md under a "Git Commit Conventions" section. Once documented, use them without verbose explanation.
-
-The documentation should capture whatever style the project uses, for example:
-- Simple descriptive messages: "Fix navigation bug"
-- Conventional commits: "feat(auth): add OAuth support"
-- Prefixed style: "[BUGFIX] Resolve memory leak in parser"
-- Task/ticket codes: "PROJ-123: Add user authentication"
-- JIRA integration: "ABC-456 Fix memory leak in parser"
-- GitHub issues: "#42 Update documentation"
-- Imperative mood: "Add user authentication"
-- Past tense: "Added user authentication"
-- Or any other project-specific convention
-
-Example CLAUDE.md section:
-```markdown
-## Git Commit Conventions
-Based on analysis of this project's git history:
-- Format: [observed format pattern]
-- Tense: [imperative/past/present]
-- Length: [typical subject line length]
-- Ticket codes: [if used, note the pattern like "PROJ-123:" or "ABC-456 "]
-- Other patterns: [any other observed conventions]
-
-Note: If ticket/task codes are used, always ask the user for the specific code rather than inventing one.
-```
+Only when conventions are NOT already documented in CLAUDE.md: analyze `git log --oneline -20` and document the observed pattern in CLAUDE.md under "Git Commit Conventions". Once documented, use directly without explanation.
