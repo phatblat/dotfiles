@@ -3,7 +3,8 @@
     {
       "cookieSource": "auto",
       "enabled": true,
-      "id": "claude"
+      "id": "claude",
+      "source": "oauth"
     },
     {
       "enabled": false,
@@ -100,6 +101,98 @@
     {
       "enabled": false,
       "id": "perplexity"
+    },
+    {
+      "enabled": false,
+      "id": "openai"
+    },
+    {
+      "enabled": false,
+      "id": "azureopenai"
+    },
+    {
+      "enabled": false,
+      "id": "alibabatokenplan"
+    },
+    {
+      "enabled": false,
+      "id": "manus"
+    },
+    {
+      "enabled": false,
+      "id": "moonshot"
+    },
+    {
+      "enabled": false,
+      "id": "t3chat"
+    },
+    {
+      "enabled": false,
+      "id": "elevenlabs"
+    },
+    {
+      "enabled": false,
+      "id": "windsurf"
+    },
+    {
+      "enabled": false,
+      "id": "mimo"
+    },
+    {
+      "enabled": false,
+      "id": "doubao"
+    },
+    {
+      "enabled": false,
+      "id": "abacus"
+    },
+    {
+      "enabled": false,
+      "id": "mistral"
+    },
+    {
+      "enabled": false,
+      "id": "deepseek"
+    },
+    {
+      "enabled": false,
+      "id": "codebuff"
+    },
+    {
+      "enabled": false,
+      "id": "crof"
+    },
+    {
+      "enabled": false,
+      "id": "venice"
+    },
+    {
+      "enabled": false,
+      "id": "commandcode"
+    },
+    {
+      "enabled": false,
+      "id": "stepfun"
+    },
+    {
+      "enabled": false,
+      "id": "bedrock"
+    },
+    {
+      "enabled": false,
+      "id": "grok"
+    },
+    {
+      "enabled": false,
+      "id": "groq"
+    },
+    {
+      "enabled": false,
+      "id": "llmproxy"
+    },
+    {
+      "enabled": false,
+      "id": "deepgram"
     }
   ],
   "version": 1
