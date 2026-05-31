@@ -30,6 +30,27 @@ Audit the Claude Code configuration for performance bottlenecks, redundant work,
 
 ## Audit Dimensions
 
+### 0. Usage Data Collection
+
+Gather empirical data on what commands and tools consume the most resources:
+
+```bash
+rtk gain --history
+```
+
+This shows command frequency and token savings. Use it to identify:
+- **Heavy hitters**: Commands called most often that could use cheaper models (`model: sonnet` in frontmatter)
+- **Unproxied commands**: Frequently-used CLI tools not yet routed through RTK
+- **Permission prompt tax**: Commands that appear often but aren't in the allowlist
+
+Also run the built-in `/status` command output if available in context to cross-reference skill/plugin usage percentages.
+
+For any command or skill consuming >10% of usage:
+1. Check if it has `model:` frontmatter — if missing, it runs on the session model (Opus)
+2. Assess whether the work is mechanical (classify, format, template) vs. requires reasoning
+3. Mechanical work should use `model: sonnet`; only keep Opus for complex analysis
+4. Check the skill/command body size — can it be condensed without losing spec fidelity?
+
 ### 1. Hook Overhead Analysis
 
 Read `~/.claude/settings.json` hooks section. For each hook registration:
