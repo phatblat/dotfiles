@@ -26,11 +26,9 @@ Uncertainty → State immediately
 
 ## Security
 
-- No destructive commands without explicit warning
 - Secrets → environment variables, `.env` gitignored
 - Never hardcode credentials
 - Flag security risks proactively
-- Warn before: rm -rf, DROP, force push, chmod 777
 
 ## Session Completion
 

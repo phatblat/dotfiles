@@ -43,27 +43,6 @@
         "source": "github"
       }
     },
-    "datadog-pup": {
-      "autoUpdate": true,
-      "source": {
-        "repo": "DataDog/pup",
-        "source": "github"
-      }
-    },
-    "ditto-plugins": {
-      "autoUpdate": true,
-      "source": {
-        "repo": "getditto/claude-code-plugins",
-        "source": "github"
-      }
-    },
-    "gastownhall-marketplace": {
-      "autoUpdate": true,
-      "source": {
-        "repo": "gastownhall/marketplace",
-        "source": "github"
-      }
-    },
     "linear-cli": {
       "source": {
         "repo": "schpet/linear-cli",
@@ -88,18 +67,6 @@
             "type": "command"
           }
         ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/hooks/scripts/permission-git.sh",
-            "timeout": 2,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
       }
     ],
     "PostToolUse": [
@@ -276,15 +243,6 @@
       }
     ],
     "Stop": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/hooks/scripts/stop.sh",
-            "timeout": 5,
-            "type": "command"
-          }
-        ]
-      },
       {
         "hooks": [
           {
