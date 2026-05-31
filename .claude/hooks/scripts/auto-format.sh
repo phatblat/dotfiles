@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # PostToolUse hook: auto-format files after Write/Edit
-# Dotfiles paths → just format; other projects → prettier/ruff/black
+# Dotfiles paths → targeted format recipe; other projects → prettier/ruff/black
 set -euo pipefail
 
 input=$(cat)
@@ -11,23 +11,20 @@ file_path=$(echo "$input" | jq -r '.tool_input.file_path // empty' 2>/dev/null |
 
 home="$HOME"
 
-# Dotfiles-managed paths: use `just format` (authoritative for this repo)
+# Dotfiles-managed paths: run only the relevant format sub-recipe
 case "$file_path" in
-    "$home"/.gitignore)                            ;; # format-gitignore
-    "$home"/.config/mise/config.toml)              ;; # format-mise
-    "$home"/.claude/settings.json)                 ;; # format-json
-    "$home"/.codexbar/config.json)                 ;; # format-json
-    "$home"/Library/Application\ Support/Claude/*) ;; # format-json
-    "$home"/Library/Application\ Support/Claude-3p/*) ;; # format-json
-    "$home"/.config/zed/settings.json)             ;; # format-json
-    "$home"/.config/zsh/functions/*)               ;; # format-shell, lint-zsh
-    "$home"/.config/fish/config.fish)              ;; # lint-fish
-    "$home"/.config/fish/functions/*.fish)         ;; # lint-fish
-    "$home"/.config/fish/conf.d/*.fish)            ;; # lint-fish
-    "$home"/.config/nushell/*.nu)                  ;; # lint-nushell
-    "$home"/bin/*.sh)                              ;; # lint-bin
-    "$home"/scripts/*.py)                          ;; # lint-python
-    "$home"/justfile)                              ;; # just --fmt
+    "$home"/.gitignore)
+        just -f "$home/justfile" format-gitignore 2>/dev/null || true ;;
+    "$home"/.config/mise/config.toml)
+        just -f "$home/justfile" format-mise 2>/dev/null || true ;;
+    "$home"/.claude/settings.json|"$home"/.codexbar/config.json|"$home"/.config/zed/settings.json)
+        just -f "$home/justfile" format-json 2>/dev/null || true ;;
+    "$home"/Library/Application\ Support/Claude/*|"$home"/Library/Application\ Support/Claude-3p/*)
+        just -f "$home/justfile" format-json 2>/dev/null || true ;;
+    "$home"/.config/zsh/functions/*|"$home"/.config/fish/config.fish|"$home"/.config/fish/functions/*.fish|"$home"/.config/fish/conf.d/*.fish|"$home"/.config/nushell/*.nu|"$home"/bin/*.sh|"$home"/scripts/*.py)
+        just -f "$home/justfile" format-shell 2>/dev/null || true ;;
+    "$home"/justfile)
+        just -f "$home/justfile" --fmt 2>/dev/null || true ;;
     *)
         # Not a dotfiles path — use generic formatters
         case "$file_path" in
@@ -46,9 +43,7 @@ case "$file_path" in
                 fi
                 ;;
         esac
-        exit 0
         ;;
 esac
 
-just -f "$home/justfile" format 2>/dev/null || true
 exit 0
