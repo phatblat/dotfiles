@@ -1,8 +1,8 @@
 ---
 description: Create a git commit following the project's established style
 category: workflow
-model: sonnet
-allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*), Bash([:[*), Bash(grep:*), Read, Edit, Task
+model: haiku
+allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*), Bash([:[*), Bash(grep:*), Read, Edit, Agent, Task
 ---
 
 Create a git commit following the project's established style
@@ -20,6 +20,28 @@ When git conventions are already documented in CLAUDE.md/AGENTS.md, use them dir
 
 All git commands are combined into a single bash call for maximum speed.
 
+## Model Routing
+
+This skill runs on haiku by default for speed/cost. After gathering the diff, evaluate complexity to decide whether to escalate:
+
+**Simple (handle directly with haiku):**
+- ≤ 3 files changed
+- Single logical concern (all changes are clearly related)
+- < 50 diff lines
+- No ambiguous grouping decisions needed
+
+**Complex (spawn an opus agent):**
+- > 3 files changed with multiple logical concerns
+- Ambiguous grouping — unclear how to split commits
+- Large refactors touching many modules
+- Merge conflicts or unusual git state
+
+When escalating, spawn an Agent with `model: "opus"` and pass it:
+- The full diff output (or stat summary if too large)
+- The recent commit log (for convention matching)
+- The CLAUDE.md commit conventions (if any)
+- Instructions to follow the Steps below and return the commit commands to execute
+
 ## Steps:
 1. Check if the previous message contains git:status results:
    - Look for patterns like "Git Status Analysis", "Modified Files:", "Uncommitted Changes:"
@@ -28,26 +50,27 @@ All git commands are combined into a single bash call for maximum speed.
    !git --no-pager status --porcelain=v1 && echo "---STAT---" && git --no-pager diff --stat 2>/dev/null && echo "---DIFF---" && git --no-pager diff 2>/dev/null | head -2000 && echo "---LOG---" && git --no-pager log --oneline -5
    - Note: Only skip git status if you're confident the working directory hasn't changed
    - Note: Full diff is capped at 2000 lines to prevent context flooding. The stat summary above shows all changed files
-2. Review the diff output to verify:
+2. **Evaluate complexity** — apply the Model Routing heuristics above. If complex, delegate to opus agent and execute its recommendations. Otherwise continue.
+3. Review the diff output to verify:
    - No sensitive information (passwords, API keys, tokens) in the changes
    - No debugging code or console.log statements left in production code
    - No temporary debugging scripts (test-*.js, debug-*.py, etc.) created by Claude Code
    - No temporary files or outputs in inappropriate locations (move to project's temp directory or delete)
    - All TODO/FIXME comments are addressed or intentionally left
-3. **Group changes logically** — analyze all changed files and determine if they should be split into multiple commits:
+4. **Group changes logically** — analyze all changed files and determine if they should be split into multiple commits:
    - Each commit should represent one coherent change (a bug fix, a config update, a new feature, a refactor)
    - Unrelated changes MUST be committed separately (e.g., a tool version bump + a shell function fix = 2 commits)
    - Related changes belong together (e.g., a function change + its doc update = 1 commit)
    - If the grouping is ambiguous, present the proposed groups to the user and ask for confirmation before committing
    - If all changes are logically related, a single commit is fine
-4. Use documented git commit conventions from CLAUDE.md/AGENTS.md
+5. Use documented git commit conventions from CLAUDE.md/AGENTS.md
    - If conventions are not documented, analyze recent commits and document them
-5. If the project uses ticket/task codes, ask the user for the relevant code if not clear from context
-6. Check if README.md or other documentation needs updating to reflect the changes (see "Documentation Updates" section below)
-7. Run tests and lint commands to ensure code quality (unless just ran before this command)
-8. For each logical group: stage the relevant files, create a commit with an appropriate message
-9. Verify all commits succeeded - Report with ✅ success indicator
-10. Check if any post-commit hooks need to be considered (e.g., pushing to remote, creating PR)
+6. If the project uses ticket/task codes, ask the user for the relevant code if not clear from context
+7. Check if README.md or other documentation needs updating to reflect the changes (see "Documentation Updates" section below)
+8. Run tests and lint commands to ensure code quality (unless just ran before this command)
+9. For each logical group: stage the relevant files, create a commit with an appropriate message
+10. Verify all commits succeeded - Report with ✅ success indicator
+11. Check if any post-commit hooks need to be considered (e.g., pushing to remote, creating PR)
 
 ## Documentation Updates:
 If changes warrant doc updates (new features, API changes), update relevant docs in the same commit group.
