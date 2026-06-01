@@ -21,8 +21,21 @@ case "$file_path" in
         just -f "$home/justfile" format-json 2>/dev/null || true ;;
     "$home"/Library/Application\ Support/Claude/*|"$home"/Library/Application\ Support/Claude-3p/*)
         just -f "$home/justfile" format-json 2>/dev/null || true ;;
-    "$home"/.config/zsh/functions/*|"$home"/.config/fish/config.fish|"$home"/.config/fish/functions/*.fish|"$home"/.config/fish/conf.d/*.fish|"$home"/.config/nushell/*.nu|"$home"/bin/*.sh|"$home"/scripts/*.py)
+    "$home"/.config/zsh/functions/*)
         just -f "$home/justfile" format-shell 2>/dev/null || true ;;
+    "$home"/.config/fish/config.fish|"$home"/.config/fish/functions/*.fish|"$home"/.config/fish/conf.d/*.fish)
+        fish_indent --write "$file_path" 2>/dev/null || true ;;
+    "$home"/.config/nushell/*.nu)
+        ;; # no formatter; lint-nushell is syntax-check only
+    "$home"/bin/*.sh)
+        shfmt -ln bash -w -i 4 -sr "$file_path" 2>/dev/null || true ;;
+    "$home"/scripts/*.py)
+        if command -v ruff >/dev/null 2>&1; then
+            ruff format --quiet "$file_path" 2>/dev/null || true
+        elif command -v black >/dev/null 2>&1; then
+            black --quiet "$file_path" 2>/dev/null || true
+        fi
+        ;;
     "$home"/justfile)
         just -f "$home/justfile" --fmt 2>/dev/null || true ;;
     *)
