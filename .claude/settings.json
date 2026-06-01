@@ -6,7 +6,6 @@
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": false,
     "compound-engineering@compound-engineering-plugin": true,
     "csharp-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
@@ -14,22 +13,16 @@
     "jdtls-lsp@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
-    "linear@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": true,
     "obsidian@obsidian-skills": true,
     "plugin-dev@claude-plugins-official": true,
-    "pup@datadog-pup": false,
     "pyright-lsp@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": false,
-    "ruby-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": true,
-    "wasteland@gastownhall-marketplace": false
+    "warp@claude-code-warp": true
   },
   "env": {
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-6",
@@ -47,27 +40,6 @@
     "compound-engineering-plugin": {
       "source": {
         "repo": "EveryInc/compound-engineering-plugin",
-        "source": "github"
-      }
-    },
-    "datadog-pup": {
-      "autoUpdate": true,
-      "source": {
-        "repo": "DataDog/pup",
-        "source": "github"
-      }
-    },
-    "ditto-plugins": {
-      "autoUpdate": true,
-      "source": {
-        "repo": "getditto/claude-code-plugins",
-        "source": "github"
-      }
-    },
-    "gastownhall-marketplace": {
-      "autoUpdate": true,
-      "source": {
-        "repo": "gastownhall/marketplace",
         "source": "github"
       }
     },
@@ -95,18 +67,6 @@
             "type": "command"
           }
         ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/hooks/scripts/permission-git.sh",
-            "timeout": 2,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
       }
     ],
     "PostToolUse": [
@@ -137,7 +97,7 @@
             "type": "command"
           }
         ],
-        "matcher": "Edit|Write|Bash"
+        "matcher": "Edit|Write"
       }
     ],
     "PostToolUseFailure": [
@@ -286,15 +246,6 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/hooks/scripts/stop.sh",
-            "timeout": 5,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
             "command": "node ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
@@ -345,16 +296,41 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.basedpyright.com)",
       "Bash(claude mcp list)",
+      "Bash(git status *)",
+      "Bash(git branch *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
       "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git rev-list *)",
+      "Bash(git ls-remote *)",
+      "Bash(git rev-parse *)",
+      "Bash(git show *)",
+      "Bash(git remote *)",
+      "Bash(git symbolic-ref *)",
+      "Bash(git merge --ff-only *)",
+      "Bash(git push *)",
+      "Bash(git commit *)",
+      "Bash(git pull *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr view *)",
+      "Bash(gh api *)",
       "Bash(gh search *)",
       "Bash(sg *)",
-      "Bash(just --list)",
-      "Bash(just lint)",
+      "Bash(just *)",
       "Bash(mise ls *)",
       "Bash(mise search *)",
       "Bash(rtk gain *)",
       "Bash(rtk discover)",
-      "Bash(rtk --version)"
+      "Bash(rtk --version)",
+      "Bash(date *)",
+      "Bash(wc *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(python3 *)",
+      "Bash(jq *)"
     ],
     "deny": []
   },

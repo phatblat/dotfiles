@@ -178,6 +178,17 @@ install-brew:
 deps: install-brew
     mise install
 
+# Update tools within current versions
+[group('configuration')]
+update: update-rust
+
+# Update Rust toolchains
+[group('configuration')]
+[script]
+update-rust:
+    set -euo pipefail
+    rustup update
+
 # Common upgrades
 [group('configuration')]
 upgrade: upgrade-mise upgrade-commits update-brew upgrade-brew upgrade-uv-tools
@@ -253,6 +264,32 @@ update-nix:
     determinate-nixd status
     nix flake update --flake ~/.config/home-manager
     home-manager switch --flake ~/.config/home-manager
+
+# Remove non-default Rust toolchains except stable and unpinned nightly
+[group('configuration')]
+[script]
+clean-rust:
+    set -euo pipefail
+    in_section=false
+    rustup show | while IFS= read -r line; do
+        if [[ "$line" == "installed toolchains" ]]; then
+            in_section=true
+            continue
+        fi
+        if [[ "$line" == "active toolchain" ]]; then
+            break
+        fi
+        if ! $in_section || [[ "$line" == -* ]] || [[ -z "$line" ]]; then
+            continue
+        fi
+        toolchain="${line%% *}"
+        if [[ "$line" == *"(default)"* ]] || [[ "$toolchain" == stable-* ]] || { [[ "$toolchain" == nightly-* ]] && [[ ! "$toolchain" =~ ^nightly-[0-9] ]]; }; then
+            echo "keeping: $toolchain"
+            continue
+        fi
+        echo "removing: $toolchain"
+        rustup toolchain uninstall "$toolchain"
+    done
 
 # Removes default.store files, *.hprof files, zcompdump clutter, and homebrew cache from home directory
 [group('configuration')]

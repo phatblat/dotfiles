@@ -1,5 +1,6 @@
 ---
 description: Update the PR description for the current branch
+model: sonnet
 allowed-tools: Bash(git:*), Bash(gh:*), Bash(date:*), Skill
 category: workflow
 ---

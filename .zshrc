@@ -137,3 +137,4 @@ fi
 alias pai="bun $HOME/.claude/skills/PAI/Tools/pai.ts"
 
 source $HOME/.config/broot/launcher/bash/br
+

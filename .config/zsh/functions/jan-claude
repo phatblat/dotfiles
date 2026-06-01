@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# jan-claude - Launch Claude Code against Jan's local API server
+ANTHROPIC_BASE_URL='http://127.0.0.1:1337' \
+    ANTHROPIC_AUTH_TOKEN='jan' \
+    ANTHROPIC_DEFAULT_OPUS_MODEL='Jan-v3.5-4B-Q4_K_XL' \
+    ANTHROPIC_DEFAULT_SONNET_MODEL='Jan-v3.5-4B-Q4_K_XL' \
+    ANTHROPIC_DEFAULT_HAIKU_MODEL='Jan-v3.5-4B-Q4_K_XL' \
+    claude "$@"
