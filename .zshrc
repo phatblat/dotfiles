@@ -138,7 +138,3 @@ alias pai="bun $HOME/.claude/skills/PAI/Tools/pai.ts"
 
 source $HOME/.config/broot/launcher/bash/br
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
-# End of LM Studio CLI section
-
