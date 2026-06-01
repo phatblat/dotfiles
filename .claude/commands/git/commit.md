@@ -1,7 +1,7 @@
 ---
 description: Create a git commit following the project's established style
 category: workflow
-model: haiku
+model: sonnet
 allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*), Bash([:[*), Bash(grep:*), Read, Edit, Agent, Task
 ---
 
