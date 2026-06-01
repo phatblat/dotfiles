@@ -265,7 +265,7 @@ update-nix:
     nix flake update --flake ~/.config/home-manager
     home-manager switch --flake ~/.config/home-manager
 
-# Remove unused Rust toolchains (keeps stable, nightly, and default)
+# Remove non-default Rust toolchains except stable and unpinned nightly
 [group('configuration')]
 [script]
 clean-rust:
