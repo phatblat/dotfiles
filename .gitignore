@@ -81,6 +81,7 @@
 .claude/daemon/
 .claude/gh-pr-status-cache.json
 .claude/jobs/
+.claude/policy-limits.json
 .claude/security/
 .claude/security_warnings_state_*.json
 .claude/teams/
