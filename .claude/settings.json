@@ -62,7 +62,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -83,7 +83,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -113,7 +113,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -165,7 +165,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -205,7 +205,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -225,7 +225,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -246,7 +246,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -257,7 +257,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -268,7 +268,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
