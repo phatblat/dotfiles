@@ -5,6 +5,9 @@ allowed-tools:
   - Bash(hostname:*)
   - Bash(pwd:*)
   - Bash(ls:*)
+  - Bash(sed:*)
+  - Bash(head:*)
+  - Bash(echo:*)
   - Bash(mkdir:*)
   - Bash(python3:*)
   - Read
@@ -52,19 +55,14 @@ Run this Python script to extract all session data:
 
 ```bash
 python3 << 'PYEOF'
-import json, sys, os
+import json, sys, os, subprocess, glob
 
-session_file = os.environ.get('SESSION_FILE', '')
-if not session_file:
-    # Re-determine from cwd
-    import subprocess
-    cwd = subprocess.check_output(['pwd']).decode().strip()
-    encoded = cwd.replace('/', '-')
-    home = os.path.expanduser('~')
-    project_dir = f"{home}/.claude/projects/{encoded}"
-    import glob
-    files = sorted(glob.glob(f"{project_dir}/*.jsonl"), key=os.path.getmtime, reverse=True)
-    session_file = files[0] if files else ''
+cwd = subprocess.check_output(['pwd']).decode().strip()
+encoded = cwd.replace('/', '-')
+home = os.path.expanduser('~')
+project_dir = f"{home}/.claude/projects/{encoded}"
+files = sorted(glob.glob(f"{project_dir}/*.jsonl"), key=os.path.getmtime, reverse=True)
+session_file = files[0] if files else ''
 
 if not session_file:
     print(json.dumps({'error': 'No session file found'}))
