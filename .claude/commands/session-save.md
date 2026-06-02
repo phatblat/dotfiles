@@ -17,7 +17,7 @@ category: workflow
 
 # Save Session to 2ndBrain
 
-Saves the current Claude Code session as an Obsidian note in `~/2ndBrain/claude-sessions/<year>/`.
+Saves the current Claude Code session as a note in `~/2ndBrain/claude-sessions/<year>/`.
 
 The note structure:
 1. YAML frontmatter — date, hostname, session name, cwd, git branch, token counts
