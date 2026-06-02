@@ -390,6 +390,7 @@
 .sqlite_history
 .ssh/
 .standard-v14-cache/
+.steampipe/
 .subversion/
 .sudo_as_admin_successful
 .swiftenv/
