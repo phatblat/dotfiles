@@ -25,7 +25,7 @@
     "warp@claude-code-warp": true
   },
   "env": {
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-6",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "opus",
     "BASH_DEFAULT_TIMEOUT_MS": "300000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "MAX_MCP_OUTPUT_TOKENS": "25000"
@@ -62,7 +62,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -83,7 +83,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -113,7 +113,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -165,7 +165,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -205,7 +205,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -225,7 +225,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -246,7 +246,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -257,7 +257,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -268,7 +268,7 @@
       {
         "hooks": [
           {
-            "command": "node ~/.claude/agent-flow/hook.js",
+            "command": "bun ~/.claude/agent-flow/hook.js",
             "timeout": 2,
             "type": "command"
           }
@@ -287,7 +287,7 @@
       }
     ]
   },
-  "model": "opus[1m]",
+  "model": "sonnet[1m]",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
@@ -310,31 +310,46 @@
       "Bash(git remote *)",
       "Bash(git symbolic-ref *)",
       "Bash(git merge --ff-only *)",
+      "Bash(git add *)",
       "Bash(git push *)",
       "Bash(git commit *)",
       "Bash(git pull *)",
+      "Bash(git stash *)",
       "Bash(gh pr list *)",
       "Bash(gh pr create *)",
       "Bash(gh pr view *)",
+      "Bash(gh pr edit *)",
       "Bash(gh api *)",
+      "Bash(gh run *)",
       "Bash(gh search *)",
+      "Bash(linear *)",
       "Bash(sg *)",
       "Bash(just *)",
       "Bash(mise ls *)",
       "Bash(mise search *)",
-      "Bash(rtk gain *)",
-      "Bash(rtk discover)",
-      "Bash(rtk --version)",
+      "Bash(rtk *)",
       "Bash(date *)",
       "Bash(wc *)",
       "Bash(find *)",
       "Bash(ls *)",
       "Bash(python3 *)",
-      "Bash(jq *)"
+      "Bash(jq *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(tr *)",
+      "Bash(cut *)",
+      "Bash(basename *)",
+      "Bash(dirname *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(file *)",
+      "Bash(stat *)"
     ],
     "deny": []
   },
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "light"
+  "theme": "dark"
 }
