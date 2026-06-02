@@ -351,5 +351,5 @@
   },
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "light"
+  "theme": "dark"
 }
