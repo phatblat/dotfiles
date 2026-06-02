@@ -188,6 +188,8 @@
 .config/nix/netrc
 .config/nushell/history.txt
 .config/op/
+.config/opencode/*
+!.config/opencode/opencode.jsonc
 .config/orka-desktop/
 .config/packer/
 .config/pulse/
