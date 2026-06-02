@@ -294,6 +294,7 @@
 .kscript/
 .kube/
 .lanes/
+.laputa/
 .lemminx/
 .lesshst
 .linear_api_token
