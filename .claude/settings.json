@@ -24,7 +24,6 @@
     "warp@claude-code-warp": true
   },
   "env": {
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "opus",
     "BASH_DEFAULT_TIMEOUT_MS": "300000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "MAX_MCP_OUTPUT_TOKENS": "25000"
@@ -286,7 +285,7 @@
       }
     ]
   },
-  "model": "sonnet[1m]",
+  "model": "opus[1m]",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
@@ -350,5 +349,8 @@
   },
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme": "dark",
+  "worktree": {
+    "baseRef": "fresh"
+  }
 }
