@@ -14,7 +14,6 @@
     "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
     "lua-lsp@claude-plugins-official": true,
-    "obsidian@obsidian-skills": true,
     "plugin-dev@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
