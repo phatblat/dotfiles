@@ -1,6 +1,7 @@
 [files]
 extend-exclude = [
     "Library/Logs/",
+    "Library/Application Support/minecraft/",
 ]
 
 [default.extend-words]
