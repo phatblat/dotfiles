@@ -350,7 +350,7 @@
   "remoteControlAtStartup": true,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark",
+  "theme": "auto",
   "worktree": {
     "baseRef": "fresh"
   }
