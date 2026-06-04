@@ -3,7 +3,8 @@
 # Claude Code Hook: PreToolUse - Bash Guard (unified)
 # =============================================================================
 # Blocks dangerous bash commands (fail-closed) AND warns on commits to the
-# protected main/master branch (does not block). Parses stdin once.
+# protected main/master branch (does not block; skipped for the dotfiles repo
+# and repos with <100 commits). Parses stdin once.
 # Replaces the former bash-guard.sh + main-branch-guard.sh pair.
 #
 # Input: JSON via stdin with tool_input.command
@@ -55,12 +56,17 @@ fi
 
 # === 4. Main-branch commit warning (does NOT block) ===
 # Only inspect git commit commands; warn so Claude self-corrects.
+# Exceptions (no warning): the dotfiles repo (root == $HOME) and young repos
+# (<100 commits), where branch ceremony adds no value. Mirrors /git:commit.
 if echo "$command" | grep -qE '^\s*(git\s+commit|git\s+-C\s+\S+\s+commit)'; then
     current_branch=$(git branch --show-current 2>/dev/null || echo "")
     if [ "$current_branch" = "main" ] || [ "$current_branch" = "master" ]; then
-        today=$(date +%A | tr '[:upper:]' '[:lower:]')
-        printf '{"systemMessage":"WARNING: You are on the '\''%s'\'' branch, which is protected. Commits will be rejected on push. Switch to today'\''s daily branch with: git checkout %s — or run /daily to set up the daily workflow."}\n' \
-            "$current_branch" "$today"
+        repo_root=$(git rev-parse --show-toplevel 2>/dev/null || echo "")
+        commit_count=$(git rev-list --count HEAD 2>/dev/null || echo 0)
+        if [ "$repo_root" != "${HOME:-}" ] && [ "$commit_count" -ge 100 ]; then
+            printf '{"systemMessage":"WARNING: You are on the protected '\''%s'\'' branch. Commits will be rejected on push. Create a feature branch first: git checkout -b <type>/<short-description>."}\n' \
+                "$current_branch"
+        fi
         exit 0
     fi
 fi

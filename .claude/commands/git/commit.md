@@ -2,7 +2,7 @@
 description: Create a git commit following the project's established style
 category: workflow
 model: sonnet
-allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*), Bash([:[*), Bash(grep:*), Read, Edit, Agent, Task
+allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*), Bash([:[*), Bash(grep:*), Read, Edit, Agent, Task, AskUserQuestion
 ---
 
 Create a git commit following the project's established style
@@ -41,6 +41,29 @@ When escalating, spawn an Agent with `model: "opus"` and pass it:
 - The recent commit log (for convention matching)
 - The CLAUDE.md commit conventions (if any)
 - Instructions to follow the Steps below and return the commit commands to execute
+
+## Branch Safety Guard (run BEFORE Step 1)
+
+Before gathering status or committing, check the current branch and repo:
+
+```bash
+echo "branch=$(git rev-parse --abbrev-ref HEAD) root=$(git rev-parse --show-toplevel) home=$HOME commits=$(git rev-list --count HEAD 2>/dev/null || echo 0)"
+```
+
+If `branch` is **`main`** or **`master`**, the guard applies — UNLESS an exception holds.
+
+**Exceptions (skip the guard, commit normally without asking):**
+- `root` equals `$HOME` — the dotfiles repo, OR
+- `commits` < 100 — a young repo where branch ceremony adds no value.
+
+**When the guard applies** (protected `main`/`master`, neither exception met):
+1. STOP — do not stage or commit yet.
+2. Warn the user they are about to commit directly to the protected `<branch>` branch.
+3. Offer to create a branch and require confirmation (use `AskUserQuestion`). Propose a branch name derived from the pending change, e.g. `<type>/<short-slug>` matching the commit type you'd use.
+4. On confirmation: `git checkout -b <branch>`, then continue to Step 1.
+5. If the user explicitly declines branching and insists on `main`, proceed only after that explicit confirmation.
+
+For any other (non-protected) branch, proceed straight to Step 1.
 
 ## Steps:
 1. Check if the previous message contains git:status results:
