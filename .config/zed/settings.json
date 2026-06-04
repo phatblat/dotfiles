@@ -46,6 +46,9 @@
     },
   },
   "agent_servers": {
+    "opencode": {
+      "type": "registry",
+    },
     "claude-acp": {
       "default_mode": "acceptEdits",
       "type": "registry",
