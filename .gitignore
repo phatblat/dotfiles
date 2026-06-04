@@ -404,6 +404,7 @@
 .terraform.d/
 .thunderbird/
 .tldrc/
+.tokview/
 .tooling/
 .travis/
 .trunk/
