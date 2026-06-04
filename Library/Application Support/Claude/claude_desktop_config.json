@@ -7,6 +7,9 @@
     },
     "ccdScheduledTasksEnabled": true,
     "chicagoEnabled": true,
+    "coworkModelAutoFallbackByAccount": {
+      "193b5ba3-3754-4e2a-953b-4adcc4457018": true
+    },
     "coworkOnboardingResumeStep": null,
     "coworkScheduledTasksEnabled": true,
     "coworkWebSearchEnabled": true,
