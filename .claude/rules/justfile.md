@@ -1,6 +1,6 @@
 ---
 description: Conventions for creating and editing justfiles
-globs:
+paths:
   - "**/justfile"
   - "**/*.just"
 ---
