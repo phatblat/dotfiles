@@ -109,6 +109,8 @@ commented:: false
 - `status::` — Lowercase Linear state: `in-progress`, `in-review`, `done`, `blocked`, `todo`, `backlog`, `triage`
 - `commented::` — Always starts as `false`. Updated by `/work:eod`.
 
+**Formatting:** Write each property on its own line with NO trailing backslash and NO blank lines between properties. Tolaria's linter converts a trailing `\` (markdown hard break) into a blank line, which breaks the consecutive inline-field block. Each `key:: value` line is parsed as a separate property regardless of soft line breaks — do not add `\` or blank `\` separator lines. If you find existing sections with trailing backslashes, clean them while you're there.
+
 **Insertion point:** Find the `<!-- track-work:items -->` comment and insert the new section after the next blank line. If the comment doesn't exist, insert before the `---` that precedes `# Meetings`.
 
 ## Step 4: Report
