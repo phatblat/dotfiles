@@ -46,13 +46,6 @@
         "repo": "schpet/linear-cli",
         "source": "github"
       }
-    },
-    "obsidian-skills": {
-      "autoUpdate": true,
-      "source": {
-        "repo": "kepano/obsidian-skills",
-        "source": "github"
-      }
     }
   },
   "hooks": {
@@ -60,7 +53,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -81,7 +74,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -111,7 +104,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -153,17 +146,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/hooks/scripts/main-branch-guard.sh",
-            "timeout": 2,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -203,7 +186,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -223,7 +206,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -244,7 +227,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -255,7 +238,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -266,7 +249,7 @@
       {
         "hooks": [
           {
-            "command": "bun ~/.claude/agent-flow/hook.js",
+            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
             "timeout": 2,
             "type": "command"
           }
@@ -313,6 +296,9 @@
       "Bash(git commit *)",
       "Bash(git pull *)",
       "Bash(git stash *)",
+      "Bash(git worktree *)",
+      "Bash(git rebase *)",
+      "Bash(git tag *)",
       "Bash(gh pr list *)",
       "Bash(gh pr create *)",
       "Bash(gh pr view *)",
@@ -320,12 +306,17 @@
       "Bash(gh api *)",
       "Bash(gh run *)",
       "Bash(gh search *)",
+      "Bash(gh issue *)",
       "Bash(linear *)",
       "Bash(sg *)",
       "Bash(just *)",
       "Bash(mise ls *)",
       "Bash(mise search *)",
+      "Bash(mise use *)",
+      "Bash(mise install *)",
+      "Bash(mise current *)",
       "Bash(rtk *)",
+      "Bash(code-review-graph *)",
       "Bash(date *)",
       "Bash(wc *)",
       "Bash(find *)",
