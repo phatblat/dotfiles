@@ -92,7 +92,7 @@ kotlin = { version = "2.4.0", bin_path = "kotlinc/bin", asset_pattern = "kotlin-
 kscript = "4.2.3"
 ktlint = "1.8.0"
 kubectl = "1.36.1"
-lazygit = "0.62.1"
+lazygit = "0.62.2"
 lsd = "1.2.0"
 lua-language-server = "3.18.2"
 maven = "3.9.16"
