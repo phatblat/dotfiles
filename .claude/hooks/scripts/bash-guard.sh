@@ -45,9 +45,12 @@ if echo "$command" | grep -qE "$dangerous_patterns"; then
 fi
 
 # === 3. Indirect execution / obfuscation ===
-# eval with vars, base64 decode piped to shell, sed execute flag,
-# awk system() calls, bash process substitution.
-obfuscation_patterns='eval\s+.*\$|base64\s+-d.*\|\s*(ba)?sh|(^|[\s;|&])sed\s+.*e\s|awk\s+.*system\s*\(|bash\s+<\('
+# eval with vars, base64 decode piped to shell, awk system() calls,
+# bash process substitution.
+# Note: sed execute-flag detection was removed — the pattern cannot
+# reliably distinguish `sed 's/x/y/e'` from sed references in commit
+# message text, causing false positives on `git commit -m "...sed..."`.
+obfuscation_patterns='eval\s+.*\$|base64\s+-d.*\|\s*(ba)?sh|awk\s+.*system\s*\(|bash\s+<\('
 
 if echo "$command" | grep -qE "$obfuscation_patterns"; then
     echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Obfuscated execution pattern detected"}}'
