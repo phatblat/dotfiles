@@ -11,7 +11,15 @@ paths:
 
 ## Action Version Pinning
 
-All external actions MUST be pinned to a full commit SHA with the semantic version tag in a trailing comment:
+Pinning rules differ by action origin:
+
+| Origin | Rule | Example |
+|--------|------|---------|
+| **External** (outside the consuming repo's org) | Pin to full commit SHA with tag comment | `actions/checkout@de0fac2e...dd # v6.0.2` |
+| **Same-org** (same GitHub org as the consuming repo) | Floating major tag is fine | `my-org/action@v1` |
+| **Local** (same repo, `./path/`) | No pinning needed | `./path/to/action` |
+
+### External Actions — SHA Pinning
 
 ```yaml
 - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -19,8 +27,7 @@ All external actions MUST be pinned to a full commit SHA with the semantic versi
 
 **Why:** Tag-only pinning (e.g., `@v4`) is vulnerable to supply chain attacks — tags are mutable and can be force-pushed to point at malicious commits. SHA pinning guarantees reproducibility and integrity.
 
-### Format
-
+Format:
 ```
 uses: <owner>/<repo>@<full-40-char-sha> # <tag>
 ```
@@ -29,9 +36,19 @@ uses: <owner>/<repo>@<full-40-char-sha> # <tag>
 - The trailing comment is the human-readable tag (for update tracking)
 - Tools like Dependabot and Renovate understand this format and will update both
 
+### Same-Org Actions — Floating Tags
+
+Actions published within the same GitHub org as the consuming repo may use floating major tags:
+
+```yaml
+- uses: my-org/action@v1
+```
+
+This is intentional — the org controls both repos and can coordinate releases. SHA pinning same-org actions provides little security benefit while breaking the normal floating-tag release model.
+
 ### Pin Exceptions
 
-Certain uses may be exempt from SHA pinning. Mark them with an inline comment:
+For cases that don't fit the table above, mark with an inline comment:
 
 ```yaml
 uses: my-org/action@main  # gha-pin-allow: linked-branch
@@ -39,13 +56,11 @@ uses: my-org/action@main  # gha-pin-allow: linked-branch
 
 Valid exception reasons:
 
-| Reason           | When to use                                                  |
-|------------------|--------------------------------------------------------------|
-| `linked-branch`  | Cross-repo development where repos are branched in tandem    |
-| `local`          | Composite actions in the same repo (`./path/to/action`)      |
-| `reusable`       | Reusable workflows in the same org during active development |
+| Reason          | When to use                                               |
+|-----------------|-----------------------------------------------------------|
+| `linked-branch` | Cross-repo development where repos are branched in tandem |
 
-Lines without `# gha-pin-allow:` that use a branch or tag instead of a SHA should be flagged.
+Lines using a branch ref (e.g., `@main`) without `# gha-pin-allow:` should be flagged, regardless of origin.
 
 ### How to Find the SHA
 
