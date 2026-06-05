@@ -76,6 +76,11 @@ list:
 list-missing:
     mise list --global --missing
 
+# Lists installed tools managed by uv
+[group('info')]
+list-uv:
+    mise exec -- uv tool list
+
 # Lists available upgrades
 [group('info')]
 outdated: outdated-uv

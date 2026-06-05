@@ -1,6 +1,6 @@
 ---
 description: Conventions for GitHub Actions workflows and action definitions
-globs:
+paths:
   - ".github/workflows/*.yml"
   - ".github/workflows/*.yaml"
   - ".github/actions/**/action.yml"
