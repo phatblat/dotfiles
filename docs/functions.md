@@ -4,23 +4,23 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 762 unique functions/aliases across 4 shells**
+**Total: 763 unique functions/aliases across 4 shells**
 
 **Shell Statistics:**
 
-- Zsh: 385 functions (primary shell)
-- Fish: 684 functions (secondary shell, most comprehensive)
-- Nushell: 102 aliases/functions (actively being configured)
+- Zsh: 386 functions (primary shell)
+- Fish: 685 functions (secondary shell, most comprehensive)
+- Nushell: 103 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 9
-- Implemented in 3 shells: 39
+- Implemented in 3 shells: 40
 - Implemented in 2 shells: 254
 - Implemented in 1 shell only: 412
 
-**Functions Implemented in Multiple Shells:** 292
+**Functions Implemented in Multiple Shells:** 293
 
 ## Status Legend
 
@@ -493,6 +493,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `objg`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to Objective-Git                           |
 | `octodec`                   | ➖  | ✅   | ✅  | ➖   | SSH to octodec                                       |
 | `octopad`                   | ➖  | ✅   | ➖  | ➖   | Quick nav to Octopad project                         |
+| `oc`                        | ✅  | ✅   | ✅  | ➖   | Launch opencode                                      |
 | `og`                        | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `ol`                        | ➖  | ✅   | ✅  | ➖   | Quick dir navigation                                 |
 | `omf_update`                | ➖  | ➖   | ✅  | ➖   | Updates oh-my-fish and bundled packages              |
