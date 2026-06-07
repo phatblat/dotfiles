@@ -96,14 +96,9 @@ Update the runner line in the Startup section:
 
 To automate in the future, configure a Slack MCP server and add `mcp__slack__search_messages` or similar to this command's allowed tools.
 
-### 4c: Buildkite Agent Status
+### 4c: Update Startup Section
 
-**Note:** No Buildkite API integration. Leave as manual:
-`- [ ] check [Buildkite agent](https://buildkite.com/organizations/dittolive-incorporated/unclustered/agents) status`
-
-### 4d: Update Startup Section
-
-Use `Edit` to update the Startup section in today's note. Replace the GHA runner checkbox line with the result from 4a. Keep unchecked items for Slack and Buildkite.
+Use `Edit` to update the Startup section in today's note. Replace the GHA runner checkbox line with the result from 4a. Keep the unchecked Slack item. Do NOT add a Buildkite checkbox.
 
 ## Step 5: Build Yesterday Summary
 
