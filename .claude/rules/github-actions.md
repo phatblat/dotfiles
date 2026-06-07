@@ -15,7 +15,7 @@ Pinning rules differ by action origin:
 
 | Origin | Rule | Example |
 |--------|------|---------|
-| **External** (outside the consuming repo's org) | Pin to full commit SHA with tag comment | `actions/checkout@de0fac2e...dd # v6.0.2` |
+| **External** (outside the consuming repo's org) | Pin to full commit SHA with tag comment | `actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2` |
 | **Same-org** (same GitHub org as the consuming repo) | Floating major tag is fine | `my-org/action@v1` |
 | **Local** (same repo, `./path/`) | No pinning needed | `./path/to/action` |
 
