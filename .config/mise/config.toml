@@ -9,7 +9,7 @@
 "aqua:dalance/procs" = "0.14.11"
 "aqua:tcnksm/ghr" = "0.18.3"
 "cargo:cargo-about" = "0.9.0"
-"cargo:cargo-binstall" = "1.19.1"
+"cargo:cargo-binstall" = "1.20.0"
 "cargo:cargo-expand" = "1.0.122"
 "cargo:foxguard" = "0.8.1"
 "cargo:sccache" = "0.15.0"
