@@ -7,12 +7,22 @@ DOTFILES_DAEMONS="$HOME/Library/LaunchDaemons"
 for plist in "$DOTFILES_DAEMONS"/*.plist; do
     [ -f "$plist" ] || continue
     name=$(basename "$plist")
+    label="${name%.plist}"
     echo "Installing $name..."
     sudo cp "$plist" "/Library/LaunchDaemons/$name"
     sudo chown root:wheel "/Library/LaunchDaemons/$name"
     sudo chmod 644 "/Library/LaunchDaemons/$name"
-    sudo launchctl bootout system/"${name%.plist}" 2>/dev/null || true
+    sudo launchctl bootout system/"$label" 2>/dev/null || true
     sudo launchctl bootstrap system "/Library/LaunchDaemons/$name"
+    # Clear any prior disabled override so the daemon runs at boot
+    sudo launchctl enable system/"$label"
+    # Verify the daemon registered in the system domain
+    if sudo launchctl print system/"$label" >/dev/null 2>&1; then
+        echo "  ✓ $label loaded"
+    else
+        echo "  ✗ $label failed to load" >&2
+        exit 1
+    fi
 done
 
 echo "Done."
