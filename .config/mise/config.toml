@@ -41,6 +41,7 @@
 "npm:vscode-langservers-extracted" = "4.10.0"
 "npm:yaml-language-server" = "1.23.0"
 "npm:yarn" = "1.22.22"
+"pipx:code-review-graph" = "2.3.5"
 "pipx:pyright" = "1.1.410"
 "pipx:python-lsp-server" = "1.14.0"
 "pipx:token-viewer" = "0.0.7"
