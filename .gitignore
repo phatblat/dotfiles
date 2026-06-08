@@ -167,7 +167,8 @@
 .config/gnome-initial-setup-done
 .config/goa-1.0/
 .config/gtk-2.0/
-.config/homebrew/
+.config/homebrew/*
+!.config/homebrew/trust.json
 .config/hub
 .config/ibus/
 .config/jgit
