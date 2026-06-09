@@ -8,6 +8,7 @@
     "cirruslabs/cli/sshpass",
     "cirruslabs/cli/tart",
     "datadog-labs/pack/pup",
+    "getsentry/tools/sentry",
     "jetbrains/utils/kotlin-lsp"
   ],
   "trustedtaps": [
