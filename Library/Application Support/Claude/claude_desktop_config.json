@@ -7,6 +7,7 @@
     },
     "ccdScheduledTasksEnabled": true,
     "chicagoEnabled": true,
+    "coworkHipaaRestricted": false,
     "coworkModelAutoFallbackByAccount": {
       "193b5ba3-3754-4e2a-953b-4adcc4457018": true,
       "5093aaa7-aa7d-4b88-b0ab-be76abbb9ba5": true
