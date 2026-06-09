@@ -83,7 +83,7 @@
       {
         "hooks": [
           {
-            "command": "command -v code-review-graph >/dev/null && code-review-graph update --skip-flows || true",
+            "command": "command -v code-review-graph >/dev/null && code-review-graph update || true",
             "timeout": 30,
             "type": "command"
           }
@@ -215,7 +215,7 @@
       {
         "hooks": [
           {
-            "command": "command -v code-review-graph >/dev/null && code-review-graph status || true",
+            "command": "command -v code-review-graph >/dev/null && root=$(git rev-parse --show-toplevel 2>/dev/null) && [ -e \"$root/.code-review-graph/graph.db\" ] && { code-review-graph update >/dev/null 2>&1; code-review-graph status; } || true",
             "timeout": 10,
             "type": "command"
           }
