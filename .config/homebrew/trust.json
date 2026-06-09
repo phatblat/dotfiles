@@ -1,0 +1,19 @@
+{
+  "trustedcasks": [
+    "lanes-sh/lanes/lanes"
+  ],
+  "trustedformulae": [
+    "cirruslabs/cli/cirrus",
+    "cirruslabs/cli/softnet",
+    "cirruslabs/cli/sshpass",
+    "cirruslabs/cli/tart",
+    "datadog-labs/pack/pup",
+    "jetbrains/utils/kotlin-lsp"
+  ],
+  "trustedtaps": [
+    "jetbrains/utils",
+    "messense/macos-cross-toolchains",
+    "schpet/tap",
+    "tw93/tap"
+  ]
+}

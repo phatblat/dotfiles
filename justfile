@@ -178,6 +178,11 @@ install-mise:
 install-brew:
     brew bundle install
 
+# Installs LaunchDaemons into /Library/LaunchDaemons (prompts for sudo)
+[group('configuration')]
+install-launchdaemons:
+    ./scripts/install-launchdaemons
+
 # Installs tools using mise
 [group('configuration')]
 deps: install-brew

@@ -8,7 +8,7 @@
     <array>
         <string>/usr/sbin/sysctl</string>
         <string>-w</string>
-        <string>iogpu.wired_limit_mb=458752</string>
+        <string>iogpu.wired_limit_mb=114688</string>
     </array>
     <key>RunAtLoad</key>
     <true/>

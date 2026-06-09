@@ -7,12 +7,23 @@ DOTFILES_DAEMONS="$HOME/Library/LaunchDaemons"
 for plist in "$DOTFILES_DAEMONS"/*.plist; do
     [ -f "$plist" ] || continue
     name=$(basename "$plist")
+    # launchctl keys services by the plist's Label, not the filename
+    label=$(/usr/libexec/PlistBuddy -c 'Print :Label' "$plist" 2>/dev/null || echo "${name%.plist}")
     echo "Installing $name..."
     sudo cp "$plist" "/Library/LaunchDaemons/$name"
     sudo chown root:wheel "/Library/LaunchDaemons/$name"
     sudo chmod 644 "/Library/LaunchDaemons/$name"
-    sudo launchctl bootout system/"${name%.plist}" 2>/dev/null || true
+    sudo launchctl bootout system/"$label" 2>/dev/null || true
+    # Clear any prior disabled override before bootstrap so the daemon runs at boot
+    sudo launchctl enable system/"$label"
     sudo launchctl bootstrap system "/Library/LaunchDaemons/$name"
+    # Verify the daemon registered in the system domain
+    if sudo launchctl print system/"$label" >/dev/null 2>&1; then
+        echo "  ✓ $label loaded"
+    else
+        echo "  ✗ $label failed to load" >&2
+        exit 1
+    fi
 done
 
 echo "Done."
