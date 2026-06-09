@@ -123,7 +123,7 @@ starship = "1.25.1"
 swiftformat = { version = "0.61.1", no_app = "true", rename_exe = "swiftformat" }
 swiftlint = "0.63.3"
 terraform = "1.15.5"
-terraform-ls = "0.38.6"
+terraform-ls = "0.38.7"
 tmux = "3.6a"
 tree-sitter = "0.26.9"
 typos = "1.47.2"
