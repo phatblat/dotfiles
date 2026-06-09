@@ -13,9 +13,9 @@ for plist in "$DOTFILES_DAEMONS"/*.plist; do
     sudo chown root:wheel "/Library/LaunchDaemons/$name"
     sudo chmod 644 "/Library/LaunchDaemons/$name"
     sudo launchctl bootout system/"$label" 2>/dev/null || true
-    sudo launchctl bootstrap system "/Library/LaunchDaemons/$name"
-    # Clear any prior disabled override so the daemon runs at boot
+    # Clear any prior disabled override before bootstrap so the daemon runs at boot
     sudo launchctl enable system/"$label"
+    sudo launchctl bootstrap system "/Library/LaunchDaemons/$name"
     # Verify the daemon registered in the system domain
     if sudo launchctl print system/"$label" >/dev/null 2>&1; then
         echo "  ✓ $label loaded"
