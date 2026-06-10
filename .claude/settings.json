@@ -1,6 +1,6 @@
 {
   "agentPushNotifEnabled": true,
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
@@ -180,7 +180,7 @@
       }
     ]
   },
-  "model": "claude-fable-5[1m]",
+  "model": "claude-fable-5",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
