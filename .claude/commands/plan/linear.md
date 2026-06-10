@@ -1,6 +1,7 @@
 ---
 name: linear
 description: Start work on a Linear ticket — plan, branch, implement, test, PR
+model: sonnet
 argument_hint: "<TICKET-ID> [--base <branch>] — e.g., DEVX-696, DEVX-42 --base release/4.15"
 allowed_tools:
   - Read
@@ -108,9 +109,9 @@ Use `Glob`, `Grep`, and `Read` tools to explore the codebase. For complex explor
 
 ### 2.2 Draft plans with diverse agents
 
-Launch 2-3 `Agent` instances **in parallel**, each producing an independent plan that optimizes for a different concern. Every agent receives the same context (ticket details, comments, codebase findings from 2.1) but a different **optimization lens**.
+Launch exactly **2** `Agent` instances **in parallel** with `model: "opus"`, each producing an independent plan that optimizes for a different concern. Every agent receives the same context (ticket details, comments, codebase findings from 2.1) but a different **optimization lens**.
 
-**Choosing lenses:** Pick 2-3 dimensions that create meaningful trade-offs for _this specific ticket_. Do not reuse the same set every time — select dimensions that surface real alternatives given the nature of the change.
+**Choosing lenses:** Pick the 2 dimensions that create the most meaningful trade-off for _this specific ticket_. Do not reuse the same set every time — select dimensions that surface real alternatives given the nature of the change.
 
 Example dimensions (pick what fits, invent others as needed):
 
@@ -122,13 +123,13 @@ Example dimensions (pick what fits, invent others as needed):
 - Backward compatibility / migration safety
 - Incremental delivery (shippable in stages)
 
-**Agent prompt structure:** Each agent should receive:
+**Agent prompt structure:** Paste the full context inline — agents must NOT re-fetch anything from Linear or re-explore ground already covered. Each agent prompt includes:
 
-- The ticket title, description, and comment context
-- The codebase analysis from 2.1 (relevant files, patterns, integration points)
+- The ticket title, full description, and a condensed summary of comment threads (verbatim from Phase 1 — do not make agents call Linear MCP tools)
+- The codebase analysis from 2.1, including relevant file paths with line references, patterns found, and integration points
 - Its assigned optimization lens and a one-sentence framing of what "good" means through that lens
 - The plan template below
-- Instructions to use `Read`, `Grep`, and `Glob` to verify assumptions about the codebase
+- Instructions to use `Read`, `Grep`, and `Glob` only to verify assumptions not already covered by the 2.1 findings
 
 **Plan template** (each agent produces one):
 
@@ -226,7 +227,7 @@ Based on the selected plan's complexity:
 
 - **Simple (1-3 files, single concern)**: Implement directly
 - **Medium (4-8 files, related changes)**: Implement directly with logical commit grouping
-- **Complex (8+ files, multiple independent concerns)**: Spawn parallel `Agent` workers
+- **Complex (8+ files, multiple independent concerns)**: Spawn parallel `Agent` workers with `model: "sonnet"`
 
 For parallel agents:
 
