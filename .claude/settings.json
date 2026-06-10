@@ -251,7 +251,7 @@
     ],
     "deny": []
   },
-  "remoteControlAtStartup": true,
+  "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
