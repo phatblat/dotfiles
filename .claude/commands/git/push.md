@@ -1,5 +1,6 @@
 ---
 description: Intelligently push commits to remote with safety checks and insights
+model: haiku
 category: workflow
 allowed-tools: Bash(git:*), Task
 ---

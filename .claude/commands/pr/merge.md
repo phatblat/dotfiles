@@ -1,5 +1,6 @@
 ---
 description: Merge the current branch's PR after confirmation
+model: sonnet
 allowed-tools: Bash(git:*), Bash(gh:*), AskUserQuestion
 category: workflow
 ---

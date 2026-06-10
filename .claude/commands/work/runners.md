@@ -1,5 +1,6 @@
 ---
 description: Check macOS GHA runner status for the getditto org
+model: sonnet
 allowed-tools:
   - Bash(gh:*)
 category: workflow

@@ -1,5 +1,6 @@
 ---
 description: Rebase current branch onto a target branch using the optimal strategy
+model: sonnet
 allowed-tools: Bash(git:*), AskUserQuestion
 category: workflow
 argument-hint: "[target-branch]"

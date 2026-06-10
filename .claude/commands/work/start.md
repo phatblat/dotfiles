@@ -1,5 +1,6 @@
 ---
 description: Morning startup — create daily note, populate yesterday summary, agenda, meetings, then invoke /pr:daily
+model: sonnet
 allowed-tools:
   - Bash(linear:*)
   - Bash(gh:*)
