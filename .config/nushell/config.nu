@@ -6,7 +6,7 @@
 #   config nu --doc | nu-highlight | less -R
 
 # print $"CURRENT_FILE ($env.CURRENT_FILE)"
-# print $"nu.home-path: ($nu.home-path)"
+# print $"nu.home-dir: ($nu.home-dir)"
 # print $"XDG_DATA_DIRS ($env.XDG_DATA_DIRS)"
 # print $"XDG_DATA_HOME ($env.XDG_DATA_HOME)"
 # print $"nu.data-dir: ($nu.data-dir)"
@@ -661,5 +661,17 @@ $env.PROMPT_INDICATOR = ""
 $env.PROMPT_INDICATOR_VI_INSERT = ": "
 $env.PROMPT_INDICATOR_VI_NORMAL = "〉"
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
+
+# Load direnv on directory change (https://www.nushell.sh/cookbook/direnv.html)
+use std/config env-conversions
+$env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
+$env.config.hooks.env_change.PWD ++= [{||
+    if (which direnv | is-empty) {
+        return
+    }
+    direnv export json | from json | default {} | load-env
+    # direnv outputs PATH as a string; convert back to a list
+    $env.PATH = do (env-conversions).path.from_string $env.PATH
+}]
 
 # All custom aliases and functions are now autoloaded from ~/.config/nushell/autoload/
