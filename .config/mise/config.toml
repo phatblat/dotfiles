@@ -143,3 +143,6 @@ idiomatic_version_file_enable_tools = ["node"]
 
 [settings.aqua]
 github_attestations = false
+
+[settings.github]
+credential_command = "gh auth token"
