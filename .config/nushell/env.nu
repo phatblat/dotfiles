@@ -5,8 +5,6 @@
 $env.ENABLE_LSP_TOOL = 1
 $env.FORCE_COLOR = 3
 $env.XDG_CONFIG_HOME = $nu.home-dir | path join '.config'
-$env.XDG_DATA_DIRS = $env.XDG_CONFIG_HOME
-$env.XDG_DATA_HOME = $env.XDG_CONFIG_HOME
 
 # Use nushell functions to define your right and left prompt
 $env.PROMPT_COMMAND = {|| create_left_prompt }
