@@ -34,7 +34,7 @@
 "npm:jsonlint" = "1.6.3"
 "npm:markdownlint-cli" = "0.48.0"
 "npm:markdownlint-cli2" = "0.22.1"
-"npm:pnpm" = "11.5.2"
+"npm:pnpm" = "11.5.3"
 "npm:prettier" = "3.8.4"
 "npm:renovate" = "43.217.0"
 "npm:typescript" = "6.0.3"
