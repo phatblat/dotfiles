@@ -2,7 +2,7 @@
 
 ## Before stating API signatures, library methods, or version-specific behavior
 
-1. Verify with Context7 (`mcp__context7__resolve-library-id` → `mcp__context7__get-library-docs`) or WebSearch
+1. Verify with the `find-docs` skill (`ctx7` CLI) or WebSearch
 2. State the version explicitly
 3. Cite the source
 

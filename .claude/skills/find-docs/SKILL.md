@@ -21,17 +21,13 @@ description: >-
 
 Retrieve current documentation and code examples for any library using the Context7 CLI.
 
-Make sure the CLI is up to date before running commands:
+The `ctx7` CLI is mise-managed (`npm:ctx7` in `~/.config/mise/config.toml`) and on PATH in fresh sessions. If `ctx7` is not found (e.g., the session started before it was installed), invoke it via:
 
 ```bash
-npm install -g ctx7@latest
+mise exec npm:ctx7 -- ctx7 <command>
 ```
 
-Or run directly without installing:
-
-```bash
-npx ctx7@latest <command>
-```
+Do not install it with `npm install -g` or run it via `npx ctx7@latest` — version pinning is handled by mise.
 
 ## Workflow
 
