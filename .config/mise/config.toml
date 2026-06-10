@@ -140,6 +140,7 @@ zoxide = "0.9.9"
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
+use_versions_host = false
 
 [settings.aqua]
 github_attestations = false
