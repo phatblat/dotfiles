@@ -156,6 +156,7 @@
         "hooks": [
           {
             "command": "rtk hook claude",
+            "timeout": 10,
             "type": "command"
           }
         ],
