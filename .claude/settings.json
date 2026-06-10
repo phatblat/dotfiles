@@ -49,17 +49,6 @@
     }
   },
   "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "hooks": [
@@ -74,16 +63,7 @@
       {
         "hooks": [
           {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "command": "command -v code-review-graph >/dev/null && code-review-graph update --skip-flows || true",
+            "command": "command -v code-review-graph >/dev/null && code-review-graph update || true",
             "timeout": 30,
             "type": "command"
           }
@@ -97,15 +77,6 @@
           {
             "command": "bash ~/.claude/hooks/scripts/posttooluse-failure.sh",
             "timeout": 3,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
             "type": "command"
           }
         ]
@@ -146,16 +117,8 @@
       {
         "hooks": [
           {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
             "command": "rtk hook claude",
+            "timeout": 10,
             "type": "command"
           }
         ],
@@ -182,15 +145,6 @@
             "type": "command"
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
       }
     ],
     "SessionStart": [
@@ -206,54 +160,12 @@
       {
         "hooks": [
           {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "command": "command -v code-review-graph >/dev/null && code-review-graph status || true",
+            "command": "command -v code-review-graph >/dev/null && root=$(git rev-parse --show-toplevel 2>/dev/null) && [ -e \"$root/.code-review-graph/graph.db\" ] && { code-review-graph update >/dev/null 2>&1; code-review-graph status; } || true",
             "timeout": 10,
             "type": "command"
           }
         ],
         "matcher": ""
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "command": "ls ~/.claude/agent-flow/*.json >/dev/null 2>&1 && bun ~/.claude/agent-flow/hook.js || true",
-            "timeout": 2,
-            "type": "command"
-          }
-        ]
       }
     ],
     "UserPromptSubmit": [
@@ -268,7 +180,7 @@
       }
     ]
   },
-  "model": "opus[1m]",
+  "model": "claude-fable-5[1m]",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
@@ -317,6 +229,7 @@
       "Bash(mise current *)",
       "Bash(rtk *)",
       "Bash(code-review-graph *)",
+      "Bash(ctx7 *)",
       "Bash(date *)",
       "Bash(wc *)",
       "Bash(find *)",

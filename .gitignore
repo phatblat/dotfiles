@@ -82,12 +82,14 @@
 .claude/gh-pr-status-cache.json
 .claude/jobs/
 .claude/policy-limits.json
+.claude/remote-settings.json
 .claude/security/
 .claude/security_warnings_state_*.json
 .claude/teams/
 .claude_settings.json
 .clawdbot/
 .cmake-js/
+.cmuxterm/
 .cocoapods/
 .code-review-graph/
 .codeium/
@@ -219,6 +221,7 @@
 .config/zed/embeddings/
 .config/zed/prompts/
 .config/zed/settings_backup.json
+.context7/
 .continue/
 .copilot/
 .cpan/
@@ -638,6 +641,7 @@ Library/Application Support/auto-claude-ui/
 Library/Application Support/balena-etcher/
 Library/Application Support/balenaEtcher/
 Library/Application Support/claudia.asterisk.so/
+Library/Application Support/cmux/
 Library/Application Support/co.podzim.BoltGPT/
 Library/Application Support/codepilot/
 Library/Application Support/coing.ClockifyDesktop/
@@ -865,6 +869,7 @@ fvm/
 games/
 go/
 gradlew.bat
+graphify-out/
 gt/
 gt/*
 gt/settings/*

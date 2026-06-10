@@ -418,10 +418,11 @@ format-json:
         case "$f" in
             .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
+            .config/cmux/cmux.json) continue ;;
         esac
         jq --sort-keys --indent 2 . "$f" | sponge "$f"
     done
-    git ls-files --cached '*.jsonc' '.config/zed/settings.json' | while read -r f; do
+    git ls-files --cached '*.jsonc' '.config/zed/settings.json' '.config/cmux/cmux.json' | while read -r f; do
         prettier --parser jsonc --write "$f"
     done
 
