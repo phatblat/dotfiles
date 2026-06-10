@@ -4,7 +4,7 @@
 
 $env.ENABLE_LSP_TOOL = 1
 $env.FORCE_COLOR = 3
-$env.XDG_CONFIG_HOME = $nu.home-path | path join '.config'
+$env.XDG_CONFIG_HOME = $nu.home-dir | path join '.config'
 $env.XDG_DATA_DIRS = $env.XDG_CONFIG_HOME
 $env.XDG_DATA_HOME = $env.XDG_CONFIG_HOME
 
@@ -55,7 +55,7 @@ $env.VISUAL = "zed"
 
 # Starship prompt
 if (which starship | is-not-empty) {
-    let starship_cache = ($nu.home-path | path join '.cache' 'starship')
+    let starship_cache = ($nu.home-dir | path join '.cache' 'starship')
     mkdir $starship_cache
     starship init nu | save -f ($starship_cache | path join 'init.nu')
 }
@@ -64,7 +64,7 @@ def create_left_prompt [] {
     if (which starship | is-not-empty) {
         starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
     } else {
-        let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
+        let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-dir }) {
             null => $env.PWD
             '' => '~'
             $relative_pwd => ([~ $relative_pwd] | path join)
@@ -96,18 +96,12 @@ def create_right_prompt [] {
     ([$last_exit_code, (char space), $time_segment] | str join)
 }
 
-# Initialize direnv if available
-# NOTE: Commented out until direnv adds support for Nushell
-# if (which direnv | is-not-empty) {
-#     let direnv_cache = ($nu.home-path | path join '.cache' 'direnv')
-#     mkdir $direnv_cache
-#     direnv hook nu | save -f ($direnv_cache | path join 'init.nu')
-# }
+# direnv is hooked via env_change.PWD in config.nu
 
 # Add common paths
 $env.PATH = ($env.PATH | split row (char esep) | prepend [
-    ($nu.home-path | path join 'scripts')
-    ($nu.home-path | path join 'bin')
-    ($nu.home-path | path join '.local' 'bin')
-    ($nu.home-path | path join '.cargo' 'bin')
+    ($nu.home-dir | path join 'scripts')
+    ($nu.home-dir | path join 'bin')
+    ($nu.home-dir | path join '.local' 'bin')
+    ($nu.home-dir | path join '.cargo' 'bin')
 ] | uniq)
