@@ -221,6 +221,7 @@
 .config/zed/embeddings/
 .config/zed/prompts/
 .config/zed/settings_backup.json
+.context7/
 .continue/
 .copilot/
 .cpan/
