@@ -84,7 +84,7 @@ list-uv:
 
 # Lists available upgrades
 [group('info')]
-outdated: outdated-uv
+outdated:
     mise outdated --bump
 
 # Lists outdated uv tools
