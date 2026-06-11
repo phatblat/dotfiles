@@ -10,17 +10,17 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Zsh: 386 functions (primary shell)
 - Fish: 685 functions (secondary shell, most comprehensive)
-- Nushell: 105 aliases/functions (actively being configured)
+- Nushell: 106 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 4 shells: 9
 - Implemented in 3 shells: 40
-- Implemented in 2 shells: 254
-- Implemented in 1 shell only: 414
+- Implemented in 2 shells: 255
+- Implemented in 1 shell only: 413
 
-**Functions Implemented in Multiple Shells:** 293
+**Functions Implemented in Multiple Shells:** 294
 
 ## Status Legend
 
@@ -728,7 +728,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `warpify`                   | ➖  | ✅   | ➖  | ➖   | https://docs.warp.dev/features/subshells#automatic   |
 | `whichjdk`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `wip`                       | ➖  | ✅   | ➖  | ➖   | Commits WIP work                                     |
-| `wt`                        | ➖  | ➖   | ✅  | ➖   | Navigate to or create git worktrees (fzf/branch)     |
+| `wt`                        | ✅  | ➖   | ✅  | ➖   | Navigate to or create git worktrees (fzf/branch)     |
 | `wt-env`                    | ➖  | ➖   | ✅  | ➖   | Symlink env files from main worktree into current     |
 | `xaccess`                   | ➖  | ✅   | ✅  | ➖   | Read nginx access log                                |
 | `xamarin_version`           | ➖  | ✅   | ➖  | ➖   | Determines current version Xamarin                   |
