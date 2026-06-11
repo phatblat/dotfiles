@@ -9,7 +9,8 @@
     "cirruslabs/cli/tart",
     "datadog-labs/pack/pup",
     "getsentry/tools/sentry",
-    "jetbrains/utils/kotlin-lsp"
+    "jetbrains/utils/kotlin-lsp",
+    "teamookla/speedtest/speedtest"
   ],
   "trustedtaps": [
     "jetbrains/utils",
