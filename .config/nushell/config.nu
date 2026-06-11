@@ -20,12 +20,6 @@
 use std/config dark-theme
 use std/config light-theme
 
-# Load mise if available
-const mise_init = "~/.config/nushell/mise.nu"
-if ($mise_init | path expand | path exists) {
-    source $mise_init
-}
-
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
     show_banner: false # true or false to enable or disable the welcome banner at startup
@@ -673,5 +667,12 @@ $env.config.hooks.env_change.PWD ++= [{||
     # direnv outputs PATH as a string; convert back to a list
     $env.PATH = do (env-conversions).path.from_string $env.PATH
 }]
+
+# Load mise if available. Must stay after every `$env.config = {...}` assignment —
+# mise registers pre_prompt/PWD hooks in $env.config, and a wholesale assignment wipes them.
+const mise_init = "~/.config/nushell/mise.nu"
+if ($mise_init | path expand | path exists) {
+    source $mise_init
+}
 
 # All custom aliases and functions are now autoloaded from ~/.config/nushell/autoload/
