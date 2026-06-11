@@ -59,6 +59,12 @@ precmd_functions+=(_set_tab_title)
 
 # User configuration
 
+# History configuration
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+setopt INC_APPEND_HISTORY EXTENDED_HISTORY HIST_IGNORE_ALL_DUPS
+
 # Editor configuration
 export EDITOR_CLI='nvim'
 export EDITOR_GUI='zed'
