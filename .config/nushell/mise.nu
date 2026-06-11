@@ -17,19 +17,7 @@ def --env "update-env" [] {
 }
 export-env {
   
-  'hide,CARGO_HOME,
-hide,CLOUDSDK_ROOT_DIR,
-hide,DOTNET_MULTILEVEL_LOOKUP,
-hide,DOTNET_ROOT,
-hide,GOBIN,
-hide,GOROOT,
-hide,JAVA_HOME,
-hide,RUSTUP_HOME,
-hide,RUSTUP_TOOLCHAIN,
-set,PATH,/Applications/cmux.app/Contents/Resources/bin:/Users/phatblat/.antigravity-ide/antigravity-ide/bin:/Users/phatblat/.git-ai/bin:/Users/phatblat/.codeium/windsurf/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/phatblat/scripts:/Users/phatblat/.local/bin:/usr/local/bin:/opt/homebrew/opt/llvm/bin:/Users/phatblat/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/phatblat/.local/share/mise/shims:/Users/phatblat/.puro/bin:/Users/phatblat/.puro/shared/pub_cache/bin:/Users/phatblat/.puro/envs/default/flutter/bin:/Users/phatblat/Library/Android/sdk/cmdline-tools/latest/bin:/Users/phatblat/Library/Android/sdk/emulator:/Users/phatblat/Library/Android/sdk/tools:/Users/phatblat/Library/Android/sdk/tools/bin:/Users/phatblat/Library/Android/sdk/build-tools/37.0.0:/Users/phatblat/Library/Android/sdk/platform-tools:/Users/phatblat/Library/Android/sdk/ndk/30.0.14904198:/Users/phatblat/.cache/lm-studio/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/claude-code-setup/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/claude-md-management/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/code-review/f1fe79394b04/bin:/Users/phatblat/.claude/plugins/cache/compound-engineering-plugin/compound-engineering/3.9.3/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/csharp-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/hookify/f1fe79394b04/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/jdtls-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/kotlin-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/linear-cli/linear-cli/2.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/lua-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/plugin-dev/f1fe79394b04/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/pyright-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/security-guidance/2.0.3/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/skill-creator/f1fe79394b04/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/swift-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0/bin:/Users/phatblat/.claude/plugins/cache/claude-code-warp/warp/2.1.0/bin
-hide,MISE_SHELL,
-hide,__MISE_DIFF,
-hide,__MISE_DIFF,' | parse vars | update-env
+  '' | parse vars | update-env
   $env.MISE_SHELL = "nu"
   let mise_hook = {
     condition: { "MISE_SHELL" in $env }
