@@ -1,3 +1,9 @@
+# Dependencies:
+#   functions: none
+#   builtins:  lines split column split row uniq-by
+#   externals: git
+
+# List git remote details
 export def rv [] {
     let remotes = ^git remote -v | lines
 
@@ -6,16 +12,8 @@ export def rv [] {
         return
     }
 
-    # Parse ^git remote -v output and get unique remotes
-    let parsed_remotes = $remotes | each {|line|
-        let parts = $line | split column -c '\t'
-        if ($parts | length) > 0 {
-            $parts | get column1
-        }
-    } | uniq
-
-    # Display remotes in a table
-    $parsed_remotes | each {|remote|
-        {remote: $remote}
-    }
+    $remotes
+    | split column "\t" remote rest
+    | each {|row| {remote: $row.remote, url: ($row.rest | split row " " | first)} }
+    | uniq-by remote
 }
