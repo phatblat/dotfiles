@@ -45,6 +45,10 @@ Only two names collide with nu builtins; everything else verified clean.
 - `mkdir` → **`mkcd`** — nu's `mkdir` already creates intermediate dirs; the custom
   value is the trailing `cd`, which as a shadow would surprise every script.
   `mkcd` keeps the builtin intact.
+- `error` → **`error-msg`** (found during wave 0) — `error` is a nu parser
+  keyword (`error make`); a custom `def error` is ambiguous at call sites and
+  fails to resolve in live sessions. Wave 2 callers (`maslink`, `sethostname`,
+  `masrm`, `wip`) must call `error-msg`.
 
 Record both renames in `docs/functions.md` notes.
 
@@ -112,6 +116,24 @@ Function lists live in [nushell-migration.json](nushell-migration.json)
   `docs/functions.md` statuses from the workers' structured results.
 - **Gate per wave**: `just check` must pass; commit per wave via `/git:commit`
   (logical grouping), push to remote.
+
+### Dependency documentation (required in every ported file)
+
+Every ported `.nu` file starts with a dependency comment block, then a blank
+line, then the normal description docstring above the `def` (so nu help text
+stays clean):
+
+```nu
+# Dependencies:
+#   functions: error nav      <- custom functions/aliases called (or "none")
+#   builtins:  glob input     <- nu builtins doing real work, or shadowed (or "none")
+#   externals: git fzf        <- external binaries invoked (or "none")
+
+# Short description of what the command does
+export def foo [] { ... }
+```
+
+Reviewers verify the block exists and matches the actual body.
 
 ### Porting recipe (worker decision tree)
 

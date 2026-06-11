@@ -1880,6 +1880,7 @@
     }
   ],
   "renames": {
+    "error": "error-msg",
     "mkdir": "mkcd",
     "skip": "gskip"
   },
