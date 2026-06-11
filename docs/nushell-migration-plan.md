@@ -163,6 +163,16 @@ workers must read them.
 4. Independent semantic review: separate agent diffs nu behavior vs zsh source
 5. Wave gate: `just check` green before commit
 
+## Follow-ups (wave 3 session)
+
+- `pp.nu` inlines push logic (ported before `publish` existed) — refactor to
+  call `publish` and update its dependency block.
+- `cc.nu` (pre-migration port) uses plain rest params; make it `--wrapped` so
+  `ccc`/`ccr` can call `cc --continue`/`cc --resume` like the zsh originals.
+- `bq` API changed: nu parses `--` itself, so the zsh `bq <formula> -- <filter>`
+  became `bq <formula> --filter <expr>` (default `.`).
+- `upstreamify`'s bats test stubs `rv` — unstub now that `rv.nu` is fixed.
+
 ## Deferred / dropped detail
 
 - **Dropped**: `as` (Android Studio opener, obsolete), `fc`+`fl` (obsolete,

@@ -72,9 +72,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `as`                        | ➖  | ✅   | ➖  | ➖   | Open project in Android Studio (not ported to nu — obsolete) |
 | `auth`                      | ➖  | ✅   | ➖  | ➖   | Quick nav to KPAuth                                  |
 | `aws_id`                    | ➖  | ✅   | ➖  | ➖   | AWS ID related function                              |
-| `aws_test`                  | ➖  | ✅   | ➖  | ➖   | Test AWS credentials                                 |
+| `aws_test`                  | ✅  | ✅   | ➖  | ➖   | Test AWS credentials                                 |
 | `a`                         | ✅  | ✅   | ✅  | ➖   | Add files to git staging area                        |
-| `bak`                       | ➖  | ✅   | ✅  | ➖   | Backs up file by appending .bak extension            |
+| `bak`                       | ✅  | ✅   | ✅  | ➖   | Backs up file by appending .bak extension            |
 | `bashman`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `battleapp`                 | ➖  | ✅   | ➖  | ➖   | Quick nav to BattleApp dir                           |
 | `bconfig`                   | ✅  | ✅   | ✅  | ➖   | Configures Bundler                                   |
@@ -83,10 +83,10 @@ This document tracks the implementation status of all shell functions and aliase
 | `bef`                       | ➖  | ✅   | ✅  | ➖   | Short alias for executing Fastlane through Bundler   |
 | `be`                        | ✅  | ✅   | ✅  | ➖   | Short alias for executing gems through Bundler       |
 | `bid`                       | ➖  | ✅   | ✅  | ➖   | Get bundle ID for app name                           |
-| `bigfiles`                  | ➖  | ✅   | ✅  | ➖   | Lists the 10 biggest files in the current director   |
+| `bigfiles`                  | ✅  | ✅   | ✅  | ➖   | Lists the 10 biggest files in the current director   |
 | `big`                       | ➖  | ✅   | ✅  | ➖   | Install gem bundle using local Gemfile               |
 | `bindings`                  | ➖  | ✅   | ➖  | ➖   | bindings.fish                                        |
-| `binstall`                  | ➖  | ✅   | ✅  | ➖   | Install Bundler with proper bindir                   |
+| `binstall`                  | ✅  | ✅   | ✅  | ➖   | Install Bundler with proper bindir                   |
 | `biq`                       | ➖  | ✅   | ✅  | ➖   | Quiet bundle install                                 |
 | `bisect`                    | ✅  | ✅   | ✅  | ➖   | Git bisect                                           |
 | `bi`                        | ✅  | ✅   | ✅  | ➖   | Short alias for installing gems using Bundler        |
@@ -95,10 +95,10 @@ This document tracks the implementation status of all shell functions and aliase
 | `bootcamp`                  | ➖  | ✅   | ➖  | ➖   | Restarts to Windows bootcamp                         |
 | `bo`                        | ✅  | ✅   | ✅  | ➖   | List outdated gems in the bundle                     |
 | `bpx`                       | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `bq`                        | ➖  | ✅   | ✅  | ➖   | Query brew information                               |
+| `bq`                        | ✅  | ✅   | ✅  | ➖   | Query brew information                               |
 | `branch`                    | ➖  | ✅   | ✅  | ➖   | Manage git branches                                  |
 | `bra`                       | ✅  | ✅   | ✅  | ➖   | List all git branches                                |
-| `brew_active_version`       | ➖  | ✅   | ➖  | ➖   | brew_active_version                                  |
+| `brew_active_version`       | ✅  | ✅   | ➖  | ➖   | brew_active_version                                  |
 | `brew_cache_purge`          | ➖  | ✅   | ✅  | ➖   | Purges Homebrew cache                                |
 | `brew_core`                 | ➖  | ✅   | ➖  | ➖   | Quick nav to homebrew-core dir                       |
 | `brew_deps`                 | ➖  | ✅   | ➖  | ➖   | Lists dependencies of brew packages                  |
@@ -106,7 +106,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `brew_home`                 | ➖  | ✅   | ✅  | ➖   | Prints Homebrew home dir or cellar location          |
 | `brew_installed`            | ➖  | ✅   | ➖  | ➖   | Checks whether a formula is currently installed      |
 | `brew_logs`                 | ➖  | ✅   | ✅  | ➖   | Quick nav to Homebrew logs dir                       |
-| `brew_test`                 | ➖  | ✅   | ➖  | ➖   | Installs and tests Homebrew formula                  |
+| `brew_test`                 | ✅  | ✅   | ➖  | ➖   | Installs and tests Homebrew formula                  |
 | `brew_versions`             | ➖  | ✅   | ✅  | ➖   | Lists installed versions of a formula                |
 | `br`                        | ➖  | ✅   | ➖  | ➖   | This script was automatically generated by the bro   |
 | `bub`                       | ➖  | ✅   | ✅  | ➖   | Update locked version of bundler                     |
@@ -156,7 +156,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `chat`                      | ➖  | ✅   | ➖  | ➖   | Chat function                                        |
 | `checkout`                  | ➖  | ✅   | ✅  | ➖   | Perform a git checkout                               |
 | `cherry-pick`               | ➖  | ✅   | ✅  | ➖   | Perform a git cherry-pick                            |
-| `chexe`                     | ➖  | ✅   | ✅  | ➖   | Set executable permissions                           |
+| `chexe`                     | ✅  | ✅   | ✅  | ➖   | Set executable permissions                           |
 | `chromei`                   | ➖  | ✅   | ➖  | ➖   | Launch Google Chrome in incognito mode               |
 | `chrome`                    | ➖  | ✅   | ➖  | ➖   | Launch Google Chrome                                 |
 | `clamp`                     | ➖  | ✅   | ➖  | ➖   | Quick nav to Clamp project dir                       |
@@ -174,7 +174,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `config`                    | ➖  | ✅   | ➖  | ➖   | Manage git configuration                             |
 | `console_user`              | ➖  | ✅   | ✅  | ➖   | Prints username of console user                      |
 | `continue`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `cont`                      | ➖  | ✅   | ✅  | ➖   | Commit merge or continue rebase/cherry-pick          |
+| `cont`                      | ✅  | ✅   | ✅  | ➖   | Commit merge or continue rebase/cherry-pick          |
 | `co`                        | ✅  | ➖   | ➖  | ➖   | Git checkout operations                              |
 | `create_cert_localhost`     | ➖  | ✅   | ➖  | ➖   | https://stackoverflow.com/questions/8169999/how-ca   |
 | `createdirs`                | ➖  | ✅   | ✅  | ➖   | Creates set of directories if missing                |
@@ -192,24 +192,24 @@ This document tracks the implementation status of all shell functions and aliase
 | `dci`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker container info               |
 | `dck`                       | ➖  | ✅   | ✅  | ➖   | Alias for dcstop                                     |
 | `dcl`                       | ➖  | ✅   | ✅  | ➖   | List all docker containers                           |
-| `dcp`                       | ➖  | ✅   | ✅  | ➖   | Remove all stopped docker containers                 |
+| `dcp`                       | ✅  | ✅   | ✅  | ➖   | Remove all stopped docker containers                 |
 | `dcr`                       | ➖  | ✅   | ✅  | ➖   | Remove running docker containers                     |
 | `dcstart`                   | ➖  | ✅   | ✅  | ➖   | Start stopped docker containers                      |
 | `dcstop`                    | ➖  | ✅   | ✅  | ➖   | Stop running docker containers                       |
 | `dct`                       | ➖  | ✅   | ✅  | ➖   | Display running processes of docker container        |
 | `dcw`                       | ➖  | ✅   | ✅  | ➖   | Diff the git staging area using word diff            |
 | `dc`                        | ✅  | ✅   | ✅  | ➖   | Diff the git staging area                            |
-| `ddc`                       | ➖  | ✅   | ✅  | ➖   | Docker deep clean                                    |
-| `ddd`                       | ➖  | ✅   | ✅  | ➖   | Delete Derived Data                                  |
+| `ddc`                       | ✅  | ✅   | ✅  | ➖   | Docker deep clean                                    |
+| `ddd`                       | ✅  | ✅   | ✅  | ➖   | Delete Derived Data                                  |
 | `debug`                     | ➖  | ✅   | ✅  | ➖   | Prints args only when debug env var set              |
-| `defaults_set`              | ➖  | ✅   | ➖  | ➖   | --------------------------------------------------   |
+| `defaults_set`              | ✅  | ✅   | ➖  | ➖   | --------------------------------------------------   |
 | `deflate`                   | ➖  | ✅   | ✅  | ➖   | Unzip git blobs                                      |
 | `delete-tag`                | ➖  | ✅   | ✅  | ➖   | Deletes a git tag from both the local and remote r   |
 | `deleted`                   | ➖  | ✅   | ➖  | ➖   | Lists files deleted from git history                 |
 | `delivery`                  | ➖  | ✅   | ➖  | ➖   | Quick nav to shared library project                  |
 | `demangle`                  | ➖  | ✅   | ➖  | ➖   | Run swift-demangle                                   |
 | `deploy`                    | ➖  | ✅   | ➖  | ➖   | Builds and deploys static content                    |
-| `derived_data`              | ➖  | ✅   | ✅  | ➖   | Spins up RAM disk for Xcode DerivedData              |
+| `derived_data`              | ✅  | ✅   | ✅  | ➖   | Spins up RAM disk for Xcode DerivedData              |
 | `developer_mode`            | ➖  | ✅   | ➖  | ➖   | Enables developer mode                               |
 | `devices`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `dib`                       | ➖  | ✅   | ✅  | ➖   | Build image from Dockerfile                          |
@@ -218,7 +218,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `dii`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker image info                   |
 | `dil`                       | ➖  | ✅   | ✅  | ➖   | List docker images                                   |
 | `din`                       | ➖  | ✅   | ✅  | ➖   | Remove all docker images                             |
-| `dip`                       | ➖  | ✅   | ✅  | ➖   | Remove unused docker images                          |
+| `dip`                       | ✅  | ✅   | ✅  | ➖   | Remove unused docker images                          |
 | `dirty`                     | ➖  | ✅   | ✅  | ➖   | Show repo dirty files                                |
 | `dir`                       | ✅  | ✅   | ✅  | ➖   | Remove docker images forcefully                      |
 | `displays`                  | ➖  | ✅   | ➖  | ➖   | Show info about connected displays                   |
@@ -230,11 +230,11 @@ This document tracks the implementation status of all shell functions and aliase
 | `dnc`                       | ➖  | ✅   | ✅  | ➖   | Create docker network                                |
 | `dni`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker network info                 |
 | `dnl`                       | ➖  | ✅   | ✅  | ➖   | List docker networks                                 |
-| `dnp`                       | ➖  | ✅   | ✅  | ➖   | Remove all unused docker networks                    |
+| `dnp`                       | ✅  | ✅   | ✅  | ➖   | Remove all unused docker networks                    |
 | `dnr`                       | ➖  | ✅   | ✅  | ➖   | Remove docker networks                               |
 | `dnuke`                     | ➖  | ✅   | ✅  | ➖   | Remove unused docker images not just dangling        |
 | `doc`                       | ➖  | ✅   | ✅  | ➖   | Quickly launch docker containers in current dir      |
-| `dotfiles`                  | ➖  | ✅   | ➖  | ➖   | Edit dotfiles                                        |
+| `dotfiles`                  | ✅  | ✅   | ➖  | ➖   | Edit dotfiles                                        |
 | `dpd`                       | ➖  | ✅   | ✅  | ➖   | Stop containers and remove containers/networks       |
 | `dpl`                       | ➖  | ✅   | ✅  | ➖   | View output from docker containers                   |
 | `dpp`                       | ➖  | ✅   | ✅  | ➖   | List docker containers                               |
@@ -255,7 +255,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `dvc`                       | ➖  | ✅   | ✅  | ➖   | Create docker volume                                 |
 | `dvi`                       | ➖  | ✅   | ✅  | ➖   | Display detailed docker volume info                  |
 | `dvl`                       | ➖  | ✅   | ✅  | ➖   | List docker volumes                                  |
-| `dvp`                       | ➖  | ✅   | ✅  | ➖   | Remove all unused local docker volumes               |
+| `dvp`                       | ✅  | ✅   | ✅  | ➖   | Remove all unused local docker volumes               |
 | `dvr`                       | ➖  | ✅   | ✅  | ➖   | Remove docker volumes                                |
 | `dw`                        | ➖  | ✅   | ✅  | ➖   | Git diff with word diff                              |
 | `d`                         | ✅  | ✅   | ✅  | ✅   | Git diff                                             |
@@ -267,7 +267,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `email_url`                 | ➖  | ✅   | ✅  | ➖   | Determines appropriate contact for URL               |
 | `emoji_map`                 | ➖  | ✅   | ✅  | ➖   | Dictionary/Map Data Structure for emoji              |
 | `emoji`                     | ➖  | ✅   | ✅  | ➖   | Prints an emoji cheat sheet for commit comments      |
-| `en1`                       | ➖  | ✅   | ➖  | ➖   | Shows en1 network interface                          |
+| `en1`                       | ✅  | ✅   | ➖  | ➖   | Shows en1 network interface                          |
 | `entitlements`              | ➖  | ✅   | ✅  | ➖   | Display entitlements in the codesign information o   |
 | `epoc_date`                 | ➖  | ✅   | ➖  | ➖   | Converts epoch timestamps to date                    |
 | `erase`                     | ➖  | ✅   | ✅  | ➖   | Erash fish functions                                 |
@@ -281,13 +281,13 @@ This document tracks the implementation status of all shell functions and aliase
 | `fe`                        | ➖  | ✅   | ✅  | ➖   | Edit a function                                      |
 | `ff`                        | ✅  | ✅   | ➖  | ➖   | Edit fish dotfiles                                   |
 | `fg`                        | ✅  | ➖   | ➖  | ➖   | Resume a frozen job in the foreground (job unfreeze) |
-| `file_base`                 | ➖  | ✅   | ➖  | ➖   | Prints base name after dropping extension            |
-| `fileowner`                 | ➖  | ✅   | ✅  | ➖   | Displays owner of file                               |
+| `file_base`                 | ✅  | ✅   | ➖  | ➖   | Prints base name after dropping extension            |
+| `fileowner`                 | ✅  | ✅   | ✅  | ➖   | Displays owner of file                               |
 | `files_changed`             | ➖  | ✅   | ➖  | ➖   | Shows files changed since treeish                    |
 | `filesize`                  | ➖  | ✅   | ✅  | ➖   | Prints size of file in bytes                         |
 | `find_appcast`              | ➖  | ✅   | ➖  | ➖   | Alias for Homebrew find_appcast script               |
 | `find_dotnet`               | ➖  | ✅   | ➖  | ➖   | Locates all copies of dotnet command                 |
-| `find_file`                 | ➖  | ✅   | ➖  | ➖   | Finds files under given base_dir                     |
+| `find_file`                 | ✅  | ✅   | ➖  | ➖   | Finds files under given base_dir                     |
 | `finddsym`                  | ➖  | ✅   | ✅  | ➖   | Locates a dSYM file with the given UUID              |
 | `finds`                     | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `findup`                    | ➖  | ✅   | ➖  | ➖   | Recursively searches up directory tree               |
@@ -296,7 +296,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `firewalladd`               | ➖  | ✅   | ➖  | ➖   | Manage applications that can receive connections t   |
 | `firewall`                  | ➖  | ✅   | ➖  | ➖   | Firewall function                                    |
 | `fish_format`               | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `fish_logo`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `fish_logo`                 | ✅  | ✅   | ➖  | ➖   | Fish function                                        |
 | `fish_prompt`               | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `fish_right_prompt`         | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `fish_user_key_bindings`    | ➖  | ✅   | ➖  | ➖   | Enables VI-style key bindings. Updates $fish_key_b   |
@@ -307,7 +307,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `fixopenwith`               | ➖  | ✅   | ➖  | ➖   | Forces a refresh of the "Open With" list of applic   |
 | `fixperms`                  | ➖  | ✅   | ➖  | ➖   | Sets all file and directory permissions to 644 and   |
 | `fk`                        | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
-| `flushdns`                  | ➖  | ✅   | ✅  | ➖   | Flush macOS DNS cache                                |
+| `flushdns`                  | ✅  | ✅   | ✅  | ➖   | Flush macOS DNS cache                                |
 | `fl`                        | ➖  | ✅   | ➖  | ➖   | List functions (not ported to nu — obsolete)         |
 | `fn`                        | ➖  | ✅   | ➖  | ➖   | Create a new function                                |
 | `fork`                      | ✅  | ➖   | ✅  | ➖   | Launch Fork.app (inherits mise PATH)                 |
@@ -326,7 +326,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `gc`                        | ✅  | ✅   | ✅  | ➖   | Run git garbage collection                           |
 | `gd`                        | ✅  | ✅   | ➖  | ➖   | Launch gradle in debug mode                          |
 | `gem-userdir`               | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
-| `gem_install`               | ➖  | ✅   | ✅  | ➖   | Binstubs are installed to /usr/local/bin alongside   |
+| `gem_install`               | ✅  | ✅   | ✅  | ➖   | Binstubs are installed to /usr/local/bin alongside   |
 | `gem_pristine`              | ➖  | ✅   | ✅  | ➖   | Runs pristine command for all gems                   |
 | `gem_update`                | ➖  | ✅   | ✅  | ➖   | Binstubs are installed to /usr/local/bin alongside   |
 | `gemdir`                    | ➖  | ✅   | ✅  | ➖   | Prints path to system gem dir                        |
@@ -339,7 +339,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `git_bundle_create`         | ➖  | ✅   | ✅  | ➖   | Creates a git bundle containing any changes in the   |
 | `git_clean`                 | ✅  | ✅   | ✅  | ➖   | Clean non-tracked files from working tree            |
 | `git_inside_repo`           | ➖  | ✅   | ✅  | ➖   | Detects whether $PWD is inside git repo              |
-| `git_repo_clean`            | ➖  | ✅   | ➖  | ➖   | Detects clean work tree                              |
+| `git_repo_clean`            | ✅  | ✅   | ➖  | ➖   | Detects clean work tree                              |
 | `git_repo_dirty`            | ➖  | ✅   | ➖  | ➖   | Detects dirty work tree                              |
 | `gitconfig_setup`           | ➖  | ➖   | ✅  | ➖   | Sets git user.name and user.email in XDG_CONFIG_HOME |
 | `gitalias`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -374,7 +374,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `headsha`                   | ➖  | ✅   | ✅  | ➖   | Prints the full SHA1 hash of the current HEAD comm   |
 | `headshort`                 | ➖  | ✅   | ✅  | ➖   | Prints a 7-character abbreviated sha1 hash of the    |
 | `help`                      | ➖  | ➖   | ➖  | ➖   | Git help alias                                       |
-| `hgrep`                     | ➖  | ✅   | ✅  | ➖   | Grep command history                                 |
+| `hgrep`                     | ✅  | ✅   | ✅  | ➖   | Grep command history                                 |
 | `home`                      | ➖  | ✅   | ➖  | ➖   | Go home                                              |
 | `htdelete`                  | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the DELETE method using   |
 | `htget`                     | ➖  | ✅   | ➖  | ➖   | Send an HTTP request using the GET method using bu   |
@@ -397,7 +397,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `install_choices`           | ➖  | ✅   | ➖  | ➖   | Prints the choices available in the given installa   |
 | `install_powerline_prompt`  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `iphones`                   | ➖  | ✅   | ✅  | ➖   | Show connected iOS devices                           |
-| `ip`                        | ➖  | ✅   | ➖  | ➖   | Show the current IPv4 address                        |
+| `ip`                        | ✅  | ✅   | ➖  | ➖   | Show the current IPv4 address                        |
 | `is_arm`                    | ➖  | ✅   | ✅  | ➖   | Tests whether current system is arm                  |
 | `is_bash_login`             | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `is_console_user`           | ➖  | ✅   | ✅  | ➖   | Tests whether current user logged into console       |
@@ -416,8 +416,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `jenkins_restart`           | ➖  | ✅   | ➖  | ➖   | Connect to Jenkins Dev using SSH                     |
 | `jftemplate`                | ➖  | ✅   | ➖  | ➖   | Create new repo based on JenkinsfileTemplate         |
 | `jobs`                      | ✅  | ➖   | ➖  | ➖   | List background jobs (job list)                      |
-| `jq`                        | ➖  | ✅   | ✅  | ➖   | Wrapper around jq with input preservation on failure |
-| `jv`                        | ➖  | ✅   | ➖  | ➖   | Example output (goes to stderr!):                    |
+| `jq`                        | ✅  | ✅   | ✅  | ➖   | Wrapper around jq with input preservation on failure |
+| `jv`                        | ✅  | ✅   | ➖  | ➖   | Example output (goes to stderr!):                    |
 | `j`                         | ✅  | ➖   | ➖  | ➖   | Just command runner                                  |
 | `killsim`                   | ➖  | ✅   | ➖  | ➖   | Displays CoreSimulatorService info before removing   |
 | `kpm`                       | ➖  | ✅   | ➖  | ➖   | Quick dir navigation to kpmobile                     |
@@ -435,11 +435,11 @@ This document tracks the implementation status of all shell functions and aliase
 | `lgg`                       | ➖  | ✅   | ✅  | ➖   | Pretty history graph                                 |
 | `lg`                        | ✅  | ✅   | ✅  | ✅   | Launch lazygit                                       |
 | `lh`                        | ➖  | ✅   | ✅  | ➖   | List files with human-readable sizes                 |
-| `license`                   | ➖  | ✅   | ✅  | ➖   | Writes LICENSE.md, adds link to readme               |
+| `license`                   | ✅  | ✅   | ✅  | ➖   | Writes LICENSE.md, adds link to readme               |
 | `line`                      | ➖  | ✅   | ➖  | ➖   | https://github.com/fish-shell/fish-shell/issues/20   |
 | `list-authors`              | ➖  | ✅   | ➖  | ➖   | Collect a list of all commit authors from the curr   |
 | `list_codesign_identities`  | ✅  | ✅   | ➖  | ➖   | Fish function                                        |
-| `list`                      | ➖  | ✅   | ✅  | ✅   | Prints a list with each element on a separate line   |
+| `list`                      | ✅  | ✅   | ✅  | ✅   | Prints a list with each element on a separate line   |
 | `ll`                        | ✅  | ✅   | ✅  | ✅   | Long list                                            |
 | `log10`                     | ✅  | ✅   | ✅  | ➖   | Alias for git log                                    |
 | `log1`                      | ➖  | ✅   | ✅  | ➖   | Show last git commit with full details               |
@@ -458,9 +458,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `mas_tap`                   | ➖  | ✅   | ➖  | ➖   | Prints path to installed mas tap                     |
 | `macos`                     | ➖  | ➖   | ✅  | ➖   | Manage macOS system updates                          |
 | `masd`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to mas dir                                 |
-| `maslink`                   | ➖  | ✅   | ➖  | ➖   | Links debug build of mas into path                   |
-| `masrm`                     | ➖  | ✅   | ➖  | ➖   | Uninstall mas package                                |
-| `masshow`                   | ➖  | ✅   | ➖  | ➖   | Show which copy of mas is active                     |
+| `maslink`                   | ✅  | ✅   | ➖  | ➖   | Links debug build of mas into path                   |
+| `masrm`                     | ✅  | ✅   | ➖  | ➖   | Uninstall mas package                                |
+| `masshow`                   | ✅  | ✅   | ➖  | ➖   | Show which copy of mas is active                     |
 | `mdk`                       | ➖  | ✅   | ✅  | ➖   | Quick nav to MDK                                     |
 | `mdp`                       | ➖  | ✅   | ➖  | ➖   | Quick nav to mdp dir                                 |
 | `md`                        | ➖  | ✅   | ➖  | ➖   | Make dir and pushd into it                           |
@@ -474,7 +474,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `mirror`                    | ➖  | ✅   | ➖  | ➖   | Reset the git staging area and working copy to mir   |
 | `mise_activate`             | ✅  | ➖   | ➖  | ➖   | Nushell function                                     |
 | `mkdir`                     | ➖  | ✅   | ➖  | ➖   | Create directory and set CWD                         |
-| `moj_host`                  | ➖  | ✅   | ➖  | ➖   | Prints emoji for current host                        |
+| `moj_host`                  | ✅  | ✅   | ➖  | ➖   | Prints emoji for current host                        |
 | `moj_user`                  | ➖  | ✅   | ✅  | ➖   | Prints emoji for current user                        |
 | `moj`                       | ➖  | ✅   | ➖  | ➖   | Alias for emoji                                      |
 | `mpv`                       | ➖  | ✅   | ✅  | ➖   | Quick nav to MicrosoftPlatformVersions dir           |
@@ -485,7 +485,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `m`                         | ✅  | ✅   | ➖  | ➖   | Git merge                                            |
 | `nav`                       | ✅  | ✅   | ➖  | ➖   | Quick nav to dir. Creates if not present             |
 | `new_project`               | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `new`                       | ➖  | ✅   | ➖  | ➖   | List all new commits have been created with the pr   |
+| `new`                       | ✅  | ✅   | ➖  | ➖   | List all new commits have been created with the pr   |
 | `nimble`                    | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `nix_install`               | ➖  | ➖   | ✅  | ➖   | Installs nix tools                                   |
 | `nixgc`                     | ✅  | ✅   | ➖  | ➖   | Runs nix garbage collection and optimisation         |
@@ -500,19 +500,19 @@ This document tracks the implementation status of all shell functions and aliase
 | `ol`                        | ➖  | ✅   | ✅  | ➖   | Quick dir navigation                                 |
 | `omf_update`                | ➖  | ➖   | ✅  | ➖   | Updates oh-my-fish and bundled packages              |
 | `onyx`                      | ➖  | ✅   | ➖  | ➖   | Opens Onyx Icons folder in Finder                    |
-| `openports`                 | ➖  | ✅   | ✅  | ➖   | Lists open ports for the current user                |
+| `openports`                 | ✅  | ✅   | ✅  | ➖   | Lists open ports for the current user                |
 | `osversion`                 | ✅  | ✅   | ➖  | ➖   | Prints macOS version number                          |
 | `ours`                      | ➖  | ✅   | ➖  | ➖   | When checking out paths from the index, check out    |
 | `ow`                        | ➖  | ✅   | ➖  | ➖   | Opens Xcode workspace in current or subdir           |
-| `ox`                        | ➖  | ✅   | ➖  | ➖   | Open Xcode project in current dir                    |
+| `ox`                        | ✅  | ✅   | ➖  | ➖   | Open Xcode project in current dir                    |
 | `o`                         | ✅  | ✅   | ✅  | ➖   | Short alias for open                                 |
 | `pai`                       | ➖  | ➖   | ➖  | ➖   | PAI skill wrapper (Skipped: ~/.claude/skills/PAI/Tools/pai.ts not on disk; port deferred) |
 | `path_add`                  | ➖  | ✅   | ✅  | ➖   | Fish function                                        |
-| `path_show`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `path_show`                 | ✅  | ✅   | ➖  | ➖   | Fish function                                        |
 | `pbjup`                     | ➖  | ✅   | ✅  | ➖   | Upgrade personal jenkins formula and restart         |
-| `pborigin`                  | ➖  | ✅   | ➖  | ➖   | Rename the 'origin' remote to 'phatblat'             |
+| `pborigin`                  | ✅  | ✅   | ➖  | ➖   | Rename the 'origin' remote to 'phatblat'             |
 | `pbsync`                    | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `pcopy`                     | ➖  | ✅   | ✅  | ➖   | Copy the current dir path into the pasteboard        |
+| `pcopy`                     | ✅  | ✅   | ✅  | ➖   | Copy the current dir path into the pasteboard        |
 | `pdob`                      | ➖  | ✅   | ➖  | ➖   | Quick nav to pingidentity-docker-builds              |
 | `pdog`                      | ➖  | ✅   | ➖  | ➖   | Quick nav to pingidentity-devops-getting-started     |
 | `pdos`                      | ➖  | ✅   | ➖  | ➖   | Quick nav to pingidentity-server-profiles            |
@@ -525,14 +525,14 @@ This document tracks the implementation status of all shell functions and aliase
 | `pingmini`                  | ➖  | ✅   | ➖  | ➖   | Check network status of mini                         |
 | `pinkit`                    | ➖  | ✅   | ➖  | ➖   | Quick nav to PinKit dir                              |
 | `pipeline`                  | ➖  | ✅   | ➖  | ➖   | Quick nav to pipeline plugin project                 |
-| `pip`                       | ➖  | ✅   | ➖  | ➖   | https://stackoverflow.com/questions/58451650/pip-n   |
+| `pip`                       | ✅  | ✅   | ➖  | ➖   | https://stackoverflow.com/questions/58451650/pip-n   |
 | `pkgexpand`                 | ➖  | ✅   | ✅  | ➖   | Expands pkg file                                     |
 | `pkgfiles`                  | ➖  | ✅   | ✅  | ➖   | Shows files associated with the given installer pa   |
 | `pkgfind`                   | ➖  | ✅   | ✅  | ➖   | Scans through installer package identifiers for th   |
-| `pkginfo`                   | ➖  | ✅   | ✅  | ➖   | Shows metadata for the given installer package       |
+| `pkginfo`                   | ✅  | ✅   | ✅  | ➖   | Shows metadata for the given installer package       |
 | `pl_edit`                   | ➖  | ✅   | ✅  | ➖   | Edit Powerline config files                          |
 | `play`                      | ➖  | ✅   | ➖  | ➖   | Open Xcode playground                                |
-| `plcat`                     | ➖  | ✅   | ✅  | ➖   | Show Divvy plist                                     |
+| `plcat`                     | ✅  | ✅   | ✅  | ➖   | Show Divvy plist                                     |
 | `pless`                     | ➖  | ✅   | ✅  | ➖   | Use less to view the XML of a property list file     |
 | `plformat`                  | ➖  | ✅   | ➖  | ➖   | Format plist files                                   |
 | `pllint`                    | ➖  | ✅   | ➖  | ➖   | Runs powerline-lint on custom config only            |
@@ -547,17 +547,17 @@ This document tracks the implementation status of all shell functions and aliase
 | `profile_id`                | ➖  | ✅   | ✅  | ➖   | Extracts the UUID from a .mobileprovision profile    |
 | `provdir`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `provisioning_dir`          | ➖  | ✅   | ➖  | ➖   | Open the Provisioning Profiles directory in Finder   |
-| `provisioning_print`        | ➖  | ✅   | ✅  | ➖   | Prints a text version of a provisioning profile      |
+| `provisioning_print`        | ✅  | ✅   | ✅  | ➖   | Prints a text version of a provisioning profile      |
 | `provisioning_uuid`         | ➖  | ✅   | ✅  | ➖   | Prints the UUID from a provisioning profile          |
 | `prunep`                    | ➖  | ✅   | ➖  | ➖   | Prunes phatblat remote                               |
 | `prunesvn`                  | ➖  | ✅   | ➖  | ➖   | Delete the .svn directories from a directory heira   |
 | `prune`                     | ✅  | ✅   | ✅  | ➖   | Prune obsolete remote branches on given remote       |
 | `prun`                      | ➖  | ✅   | ➖  | ➖   | Show what remote branches need to be pruned for th   |
-| `psgrep`                    | ➖  | ✅   | ✅  | ➖   | Wrapper for ps which isolates processes containing a given string |
+| `psgrep`                    | ✅  | ✅   | ✅  | ➖   | Wrapper for ps which isolates processes containing a given string |
 | `psl`                       | ➖  | ✅   | ➖  | ➖   | Displays process information with custom format      |
 | `psync`                     | ➖  | ✅   | ➖  | ➖   | Syncs files between two directories. Without a 3rd   |
-| `publish`                   | ➖  | ✅   | ✅  | ➖   | Publishes the current branch to the named remote     |
-| `pull_ssh_config`           | ➖  | ✅   | ➖  | ➖   | Copies SSH config to local                           |
+| `publish`                   | ✅  | ✅   | ✅  | ➖   | Publishes the current branch to the named remote     |
+| `pull_ssh_config`           | ✅  | ✅   | ➖  | ➖   | Copies SSH config to local                           |
 | `pull`                      | ✅  | ✅   | ✅  | ➖   | Git pull                                             |
 | `pushf`                     | ✅  | ✅   | ✅  | ➖   | Force git push                                       |
 | `pushtags`                  | ➖  | ✅   | ➖  | ➖   | Push tags to remote                                  |
@@ -567,8 +567,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `qlreload`                  | ➖  | ✅   | ➖  | ➖   | Reload QuickLook plugins                             |
 | `quick`                     | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `radars`                    | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
-| `ramdisk`                   | ➖  | ✅   | ➖  | ➖   | https://blog.macsales.com/46348-how-to-create-and-   |
-| `ra`                        | ➖  | ✅   | ✅  | ➖   | Adds git remote                                      |
+| `ramdisk`                   | ✅  | ✅   | ➖  | ➖   | https://blog.macsales.com/46348-how-to-create-and-   |
+| `ra`                        | ✅  | ✅   | ✅  | ➖   | Adds git remote                                      |
 | `realmos`                   | ➖  | ✅   | ✅  | ➖   | Manage Realm Object Server                           |
 | `realm`                     | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `rebase`                    | ✅  | ✅   | ✅  | ➖   | Git rebase                                           |
@@ -592,7 +592,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `rev-parse`                 | ✅  | ✅   | ✅  | ➖   | Git rev-parse                                        |
 | `revert`                    | ➖  | ✅   | ✅  | ➖   | Git revert                                           |
 | `review`                    | ✅  | ✅   | ✅  | ➖   | Review a given commit, default: HEAD                 |
-| `rewrite`                   | ➖  | ✅   | ✅  | ➖   | Rewrite commits changing author/committer info       |
+| `rewrite`                   | ✅  | ✅   | ✅  | ➖   | Rewrite commits changing author/committer info       |
 | `ri`                        | ✅  | ➖   | ➖  | ➖   | Interactive rebase for last N commits (default 10)   |
 | `rl`                        | ➖  | ✅   | ✅  | ➖   | Quick dir navigation                                 |
 | `root`                      | ✅  | ✅   | ✅  | ✅   | Display path to root of current git repo             |
@@ -613,7 +613,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `setJdk6`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `setJdk7`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `setJdk8`                   | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `sethostname`               | ➖  | ✅   | ➖  | ➖   | http://osxdaily.com/2012/10/24/set-the-hostname-co   |
+| `sethostname`               | ✅  | ✅   | ➖  | ➖   | http://osxdaily.com/2012/10/24/set-the-hostname-co   |
 | `sg`                        | ➖  | ✅   | ➖  | ➖   | Quick dir navigation                                 |
 | `sha1`                      | ➖  | ✅   | ➖  | ➖   | Displays SHA1 hash of files                          |
 | `sha256`                    | ✅  | ✅   | ✅  | ➖   | Compute SHA-256 checksums of files                   |
@@ -632,9 +632,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `showjdks`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `showsvn`                   | ➖  | ✅   | ✅  | ➖   | Show .svn directories in current directory tree    |
 | `show`                      | ✅  | ✅   | ✅  | ➖   | Git show                                             |
-| `signing_cert_details`      | ➖  | ✅   | ✅  | ➖   | Prints signing certificate details                   |
+| `signing_cert_details`      | ✅  | ✅   | ✅  | ➖   | Prints signing certificate details                   |
 | `simclean`                  | ✅  | ✅   | ✅  | ➖   | Deletes all unavailable simulators                   |
-| `skip`                      | ➖  | ✅   | ✅  | ➖   | Skip current commit in git rebase/cherry-pick        |
+| `skip`                      | ✅  | ✅   | ✅  | ➖   | Skip current commit in git rebase/cherry-pick (nu: `gskip` — builtin collision) |
 | `sortdiff`                  | ➖  | ✅   | ➖  | ➖   | Filter and sort a git diff showing only the change   |
 | `sort`                      | ➖  | ✅   | ➖  | ➖   | Wrapper for sort forcing byte ordering (n/a in nu — subsumed by structured pipelines) |
 | `spmgenx`                   | ➖  | ✅   | ➖  | ➖   | Alias for Swift Package Manager generate-xcodeproj   |
@@ -643,9 +643,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `spotlight_enable`          | ➖  | ✅   | ➖  | ➖   | Enables Spotlight indexing                           |
 | `spotlight_reload`          | ➖  | ✅   | ✅  | ➖   | Reloads Spotlight triggering re-index                |
 | `sshcopypub`                | ✅  | ✅   | ✅  | ➖   | Copy SSH public key to pasteboard/clipboard          |
-| `sshkeyfingerprint`         | ➖  | ✅   | ✅  | ➖   | Show fingerprint of optional public key file, defa   |
-| `sshkey`                    | ➖  | ✅   | ✅  | ➖   | Find the public key file                             |
-| `sshnewkey`                 | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
+| `sshkeyfingerprint`         | ✅  | ✅   | ✅  | ➖   | Show fingerprint of optional public key file, defa   |
+| `sshkey`                    | ✅  | ✅   | ✅  | ➖   | Find the public key file                             |
+| `sshnewkey`                 | ✅  | ✅   | ➖  | ➖   | Fish function                                        |
 | `sshserverfingerprint`      | ➖  | ✅   | ✅  | ➖   | Print fingerprint of server SSH key                  |
 | `sshshowpub`                | ➖  | ✅   | ✅  | ➖   | Print SSH public key                                 |
 | `sshtest`                   | ✅  | ✅   | ✅  | ➖   | Tests SSH connection to GitHub                       |
@@ -705,18 +705,18 @@ This document tracks the implementation status of all shell functions and aliase
 | `ungate`                    | ➖  | ✅   | ➖  | ➖   | Defined in /var/folders/n8/\__3mw5v17hqfpf6ycpb6b7_  |
 | `unmount`                   | ➖  | ✅   | ✅  | ➖   | Unmounts drive                                       |
 | `unshallow`                 | ➖  | ✅   | ✅  | ➖   | Converts shallow git repo to full                    |
-| `unstage`                   | ➖  | ✅   | ✅  | ➖   | Restores files in git index from HEAD                |
-| `untar`                     | ➖  | ✅   | ✅  | ➖   | Extracts tarball                                     |
+| `unstage`                   | ✅  | ✅   | ✅  | ➖   | Restores files in git index from HEAD                |
+| `untar`                     | ✅  | ✅   | ✅  | ➖   | Extracts tarball                                     |
 | `untracked`                 | ✅  | ✅   | ✅  | ➖   | Displays files not tracked in the current git repo   |
 | `update_nvm`                | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `upmodule`                  | ➖  | ➖   | ✅  | ➖   | Optionally invokes an upstall module                 |
-| `upstall`                   | ➖  | ✅   | ➖  | ➖   | Alias for ⏫_upstall                                 |
-| `upstreamify`               | ➖  | ✅   | ✅  | ➖   | Renames origin to upstream                           |
+| `upstall`                   | ✅  | ✅   | ➖  | ➖   | Alias for ⏫_upstall                                 |
+| `upstreamify`               | ✅  | ✅   | ✅  | ➖   | Renames origin to upstream                           |
 | `usage`                     | ✅  | ✅   | ✅  | ➖   | Show disk usage for directory                        |
 | `user.email`                | ✅  | ✅   | ✅  | ➖   | Manages user.email git config setting                |
-| `user.name`                 | ➖  | ✅   | ✅  | ➖   | Manages user.name git config setting                 |
+| `user.name`                 | ✅  | ✅   | ✅  | ➖   | Manages user.name git config setting                 |
 | `user.signingkey`           | ➖  | ✅   | ✅  | ➖   | Manages user.signingkey git config setting           |
-| `user_is_admin`             | ➖  | ✅   | ✅  | ➖   | Tests whether USER is member of admin group          |
+| `user_is_admin`             | ✅  | ✅   | ✅  | ➖   | Tests whether USER is member of admin group          |
 | `user_present`              | ➖  | ✅   | ✅  | ➖   | Indicates whether a user is present                  |
 | `user`                      | ➖  | ✅   | ✅  | ➖   | Displays info about current user                     |
 | `uuid_from_profile`         | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
@@ -730,7 +730,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `vimode`                    | ➖  | ✅   | ➖  | ➖   | Enable VI mode key bindings                          |
 | `warpify`                   | ✅  | ✅   | ➖  | ➖   | https://docs.warp.dev/features/subshells#automatic   |
 | `whichjdk`                  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
-| `wip`                       | ➖  | ✅   | ➖  | ➖   | Commits WIP work                                     |
+| `wip`                       | ✅  | ✅   | ➖  | ➖   | Commits WIP work                                     |
 | `wt`                        | ✅  | ➖   | ✅  | ➖   | Navigate to or create git worktrees (fzf/branch)     |
 | `wt-env`                    | ✅  | ➖   | ✅  | ➖   | Symlink env files from main worktree into current     |
 | `xaccess`                   | ➖  | ✅   | ✅  | ➖   | Read nginx access log                                |
@@ -744,21 +744,21 @@ This document tracks the implementation status of all shell functions and aliase
 | `xcfl`                      | ➖  | ✅   | ➖  | ➖   | Fish function                                        |
 | `xcinit`                    | ➖  | ✅   | ✅  | ➖   | Runs Xcode new_project.rb ruby script                |
 | `xclicense`                 | ➖  | ✅   | ✅  | ➖   | Agree to Xcode license                               |
-| `xclist`                    | ➖  | ✅   | ✅  | ➖   | Prints a clean list of paths for all installed ver   |
+| `xclist`                    | ✅  | ✅   | ✅  | ➖   | Prints a clean list of paths for all installed ver   |
 | `xcode_plugin_update_uuid`  | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `xcodeplugin`               | ➖  | ✅   | ➖  | ➖   | Quick nav to xcodePlugin project                     |
 | `xcodes`                    | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `xconfd`                    | ➖  | ✅   | ✅  | ➖   | Quick dir navigation to nginx config dir             |
 | `xconf`                     | ➖  | ✅   | ✅  | ➖   | Edit nginx configuration files                       |
 | `xcsp`                      | ✅  | ✅   | ✅  | ➖   | Show the currently selected version of Xcode         |
-| `xcss`                      | ➖  | ✅   | ✅  | ➖   | Select a different version of Xcode                  |
-| `xcswitch`                  | ➖  | ✅   | ✅  | ➖   | Switch the active version of Xcode                   |
-| `xcvall`                    | ➖  | ✅   | ✅  | ➖   | Lists versions of all installed copies of Xcode      |
+| `xcss`                      | ✅  | ✅   | ✅  | ➖   | Select a different version of Xcode                  |
+| `xcswitch`                  | ✅  | ✅   | ✅  | ➖   | Switch the active version of Xcode                   |
+| `xcvall`                    | ✅  | ✅   | ✅  | ➖   | Lists versions of all installed copies of Xcode      |
 | `xcvmcache`                 | ➖  | ✅   | ➖  | ➖   | xcvmcache                                            |
 | `xcvmget`                   | ➖  | ✅   | ✅  | ➖   | xcvmget                                              |
 | `xcvmlist`                  | ➖  | ✅   | ➖  | ➖   | xcvmlist                                             |
 | `xcv`                       | ➖  | ✅   | ✅  | ➖   | Displays version of currently selected Xcode         |
-| `xc`                        | ➖  | ✅   | ✅  | ➖   | Xcode wrapper function                               |
+| `xc`                        | ✅  | ✅   | ✅  | ➖   | Xcode wrapper function                               |
 | `xcode`                     | ➖  | ➖   | ✅  | ➖   | Installs and updates Xcode                           |
 | `xerror`                    | ➖  | ✅   | ✅  | ➖   | Read nginx error log                                 |
 | `xlog`                      | ➖  | ✅   | ✅  | ➖   | Quick nav to nginx log dir                           |
@@ -777,7 +777,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `zq`                        | ✅  | ➖   | ➖  | ➖   | Zoxide query                                         |
 | `zr`                        | ✅  | ➖   | ➖  | ➖   | Zoxide remove                                        |
 | `z`                         | ✅  | ➖   | ➖  | ➖   | Nushell function                                     |
-| `⏫_upstall`                | ➖  | ✅   | ➖  | ➖   | Updates/installs system and shell dependencies       |
+| `⏫_upstall`                | ➖  | ✅   | ➖  | ➖   | Updates/installs system and shell dependencies (merged into nu `upstall`) |
 | `▶️_powerline`              | ➖  | ✅   | ➖  | ➖   | Powerline for Vim and terminal prompt. Powerline i   |
 | `⚛️_apm`                    | ➖  | ✅   | ➖  | ➖   | https://atom.io/packages                             |
 | `❄️_nix`                    | ➖  | ✅   | ➖  | ➖   | Installs rust tools                                  |
