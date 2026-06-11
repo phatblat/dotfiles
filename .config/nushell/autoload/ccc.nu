@@ -1,9 +1,9 @@
 # Dependencies:
-#   functions: none
+#   functions: cc
 #   builtins:  none
-#   externals: claude
+#   externals: none
 
 # Continue a Claude Code session (claude --dangerously-skip-permissions --continue)
 export def --wrapped ccc [...rest] {
-    ^claude --dangerously-skip-permissions --continue ...$rest
+    cc --continue ...$rest
 }

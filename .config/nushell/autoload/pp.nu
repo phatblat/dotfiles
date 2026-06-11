@@ -1,10 +1,9 @@
 # Dependencies:
-#   functions: none
+#   functions: publish
 #   builtins:  none
-#   externals: git
+#   externals: none
 
 # Publish the current branch to the phatblat remote
 export def pp [] {
-    let branch = (^git rev-parse --abbrev-ref HEAD | str trim)
-    ^git push -u phatblat $branch
+    publish phatblat
 }

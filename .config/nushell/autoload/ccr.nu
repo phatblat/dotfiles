@@ -1,9 +1,9 @@
 # Dependencies:
-#   functions: none
+#   functions: cc
 #   builtins:  none
-#   externals: claude
+#   externals: none
 
 # Resume a Claude Code session (claude --dangerously-skip-permissions --resume)
 export def --wrapped ccr [...rest] {
-    ^claude --dangerously-skip-permissions --resume ...$rest
+    cc --resume ...$rest
 }

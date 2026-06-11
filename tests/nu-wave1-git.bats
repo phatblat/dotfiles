@@ -11,7 +11,10 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 
 @test "ccc: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ccc.nu'"
+    run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/cc.nu'
+        source '$NU_AUTOLOAD/ccc.nu'
+    "
     [ "$status" -eq 0 ]
 }
 
@@ -20,7 +23,10 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 
 @test "ccr: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ccr.nu'"
+    run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/cc.nu'
+        source '$NU_AUTOLOAD/ccr.nu'
+    "
     [ "$status" -eq 0 ]
 }
 
@@ -106,7 +112,10 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 
 @test "pp: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/pp.nu'"
+    run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/publish.nu'
+        source '$NU_AUTOLOAD/pp.nu'
+    "
     [ "$status" -eq 0 ]
 }
 

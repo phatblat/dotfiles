@@ -286,9 +286,8 @@ setup_git_repo() {
     remotedir="$(mktemp -d)"
     git -C "$remotedir" init --bare -q
     git -C "$tmpdir" remote add origin "$remotedir"
-    # rv.nu has a known column-index bug; stub rv to avoid it in this test
     run nu --no-config-file -c "
-        def rv [] { ^git remote -v }
+        source '$NU_AUTOLOAD/rv.nu'
         source '$NU_AUTOLOAD/upstreamify.nu'
         cd '$tmpdir'
         upstreamify
