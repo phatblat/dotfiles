@@ -4,13 +4,13 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 763 unique functions/aliases across 4 shells**
+**Total: 765 unique functions/aliases across 4 shells**
 
 **Shell Statistics:**
 
 - Zsh: 386 functions (primary shell)
 - Fish: 685 functions (secondary shell, most comprehensive)
-- Nushell: 103 aliases/functions (actively being configured)
+- Nushell: 105 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
 
 **Shell Coverage:**
@@ -18,7 +18,7 @@ This document tracks the implementation status of all shell functions and aliase
 - Implemented in all 4 shells: 9
 - Implemented in 3 shells: 40
 - Implemented in 2 shells: 254
-- Implemented in 1 shell only: 412
+- Implemented in 1 shell only: 414
 
 **Functions Implemented in Multiple Shells:** 293
 
@@ -281,6 +281,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `fetch`                     | ✅  | ✅   | ✅  | ✅   | Fetch branch from default git remote                 |
 | `fe`                        | ➖  | ✅   | ✅  | ➖   | Edit a function                                      |
 | `ff`                        | ➖  | ✅   | ➖  | ➖   | Edit fish dotfiles                                   |
+| `fg`                        | ✅  | ➖   | ➖  | ➖   | Resume a frozen job in the foreground (job unfreeze) |
 | `file_base`                 | ➖  | ✅   | ➖  | ➖   | Prints base name after dropping extension            |
 | `fileowner`                 | ➖  | ✅   | ✅  | ➖   | Displays owner of file                               |
 | `files_changed`             | ➖  | ✅   | ➖  | ➖   | Shows files changed since treeish                    |
@@ -414,6 +415,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `jdk_set`                   | ➖  | ➖   | ✅  | ➖   | Sets JAVA_HOME and adds to PATH                      |
 | `jenkins_restart`           | ➖  | ✅   | ➖  | ➖   | Connect to Jenkins Dev using SSH                     |
 | `jftemplate`                | ➖  | ✅   | ➖  | ➖   | Create new repo based on JenkinsfileTemplate         |
+| `jobs`                      | ✅  | ➖   | ➖  | ➖   | List background jobs (job list)                      |
 | `jq`                        | ➖  | ✅   | ✅  | ➖   | Wrapper around jq with input preservation on failure |
 | `jv`                        | ➖  | ✅   | ➖  | ➖   | Example output (goes to stderr!):                    |
 | `j`                         | ✅  | ➖   | ➖  | ➖   | Just command runner                                  |

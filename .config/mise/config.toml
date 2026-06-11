@@ -26,7 +26,7 @@
 "npm:@sentry/wizard" = "6.12.0"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.6.0"
-"npm:ccusage" = "20.0.9"
+"npm:ccusage" = "20.0.10"
 "npm:claudekit" = "0.9.5"
 "npm:ctx7" = "0.5.1"
 "npm:gastown-gui" = "0.9.4"
@@ -34,16 +34,16 @@
 "npm:jsonlint" = "1.6.3"
 "npm:markdownlint-cli" = "0.48.0"
 "npm:markdownlint-cli2" = "0.22.1"
-"npm:pnpm" = "11.5.2"
+"npm:pnpm" = "11.5.3"
 "npm:prettier" = "3.8.4"
-"npm:renovate" = "43.217.0"
+"npm:renovate" = "43.220.0"
 "npm:typescript" = "6.0.3"
 "npm:typescript-language-server" = "5.3.0"
 "npm:vscode-langservers-extracted" = "4.10.0"
 "npm:yaml-language-server" = "1.23.0"
 "npm:yarn" = "1.22.22"
-"pipx:code-review-graph" = { version = "2.3.5", uvx_args = "--with igraph==1.0.0" }
-"pipx:graphifyy" = "0.8.36"
+"pipx:code-review-graph" = { version = "2.3.6", uvx_args = "--with igraph==1.0.0" }
+"pipx:graphifyy" = "0.8.37"
 "pipx:pyright" = "1.1.410"
 "pipx:python-lsp-server" = "1.14.0"
 "pipx:token-viewer" = "0.0.7"
@@ -51,7 +51,7 @@
 "vfox:mise-plugins/vfox-gcloud" = "572.0.0"
 act = "0.2.89"
 actionlint = "1.7.12"
-awscli = { version = "2.35.1", symlink_bins = "true" }
+awscli = { version = "2.35.2", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.13.0"
 bazelisk = "1.29.0"
@@ -102,16 +102,16 @@ lua-language-server = "3.18.2"
 maven = "3.9.16"
 mirrord = "3.216.0"
 mkcert = "1.4.4"
-neovim = "0.12.2"
+neovim = "0.12.3"
 ninja = "1.13.2"
 node = "26.3.0"
-opencode = "1.16.2"
+opencode = "1.17.3"
 packer = "1.15.4"
 pi = "0.79.1"
 pipx = "1.14.0"
 powershell = "7.6.2"
 protobuf = "35.0"
-python = "3.14.5"
+python = "3.14.6"
 ripgrep = "15.1.0"
 rtk = "0.42.3"
 ruby = "4.0.5"
@@ -124,12 +124,12 @@ shfmt = "3.13.1"
 starship = "1.25.1"
 swiftformat = { version = "0.61.1", no_app = "true", rename_exe = "swiftformat" }
 swiftlint = "0.63.3"
-terraform = "1.15.5"
+terraform = "1.15.6"
 terraform-ls = "0.38.7"
 tmux = "3.6a"
 tree-sitter = "0.26.9"
 typos = "1.47.2"
-uv = "0.11.19"
+uv = "0.11.20"
 xcbeautify = "3.2.1"
 xcodes = "2.0.1"
 xh = "0.25.3"
@@ -140,6 +140,10 @@ zoxide = "0.9.9"
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
+use_versions_host = false
 
 [settings.aqua]
 github_attestations = false
+
+[settings.github]
+credential_command = "gh auth token"

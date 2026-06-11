@@ -1,5 +1,6 @@
 ---
 description: Address GitHub PR review comments — fetch, evaluate, fix, commit, and resolve
+model: sonnet
 argument_hint: "<PR-URL or comment-URL>"
 allowed-tools:
   - Bash(gh:*)

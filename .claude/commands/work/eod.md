@@ -1,5 +1,6 @@
 ---
 description: End-of-day — draft and post daily comments for tracked tickets missing a comment
+model: sonnet
 allowed-tools:
   - Read
   - Edit

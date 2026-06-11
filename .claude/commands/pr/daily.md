@@ -1,5 +1,6 @@
 ---
 description: Start the daily dotfiles workflow — clean up old branches, create today's branch, open draft PR
+model: sonnet
 allowed-tools: Bash(git:*), Bash(gh:*), Bash(date:*), AskUserQuestion, Skill
 category: workflow
 ---

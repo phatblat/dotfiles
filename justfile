@@ -6,6 +6,7 @@
 set export
 
 export MISE_PIN := "1"
+export PATH := env_var("HOME") / ".local" / "bin" + ":" + env_var("PATH")
 
 # ignore-comments - Ignore comments when formatting.
 
@@ -83,7 +84,7 @@ list-uv:
 
 # Lists available upgrades
 [group('info')]
-outdated: outdated-uv
+outdated:
     mise outdated --bump
 
 # Lists outdated uv tools

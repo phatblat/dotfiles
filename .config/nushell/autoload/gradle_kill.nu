@@ -7,7 +7,7 @@ export def gradle_kill [] {
         kill -9 $proc.pid
     }
 
-    let lockfile = ($nu.home-path | path join ".gradle" "caches" "journal-1" "journal-1.lock")
+    let lockfile = ($nu.home-dir | path join ".gradle" "caches" "journal-1" "journal-1.lock")
     if ($lockfile | path exists) {
         rm -v $lockfile
     }

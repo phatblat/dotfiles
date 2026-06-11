@@ -1,5 +1,6 @@
 ---
 description: Mark the current branch's draft PR as ready for review
+model: sonnet
 allowed-tools: Bash(git:*), Bash(gh:*)
 category: workflow
 ---

@@ -1,5 +1,6 @@
 ---
 description: Delete local branches that have been merged or whose PRs are closed/stale
+model: sonnet
 allowed-tools: Bash(git:*), Bash(gh:*), AskUserQuestion
 category: workflow
 ---

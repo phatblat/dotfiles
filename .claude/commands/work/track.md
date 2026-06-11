@@ -1,5 +1,6 @@
 ---
 description: Track a Linear ticket or GitHub PR in today's daily note
+model: sonnet
 argument_hint: "<TICKET-ID or PR-URL> [notes]"
 allowed-tools:
   - Bash(linear:*)
