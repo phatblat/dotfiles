@@ -95,8 +95,13 @@ jobs:
       - name: Install mise-managed tools
         run: mise install just shellcheck ruff bats
 
-      - name: Install fish
-        run: brew install fish
+      - name: Install fish and test-exercised tools
+        run: brew install fish diff-so-fancy git-subrepo
+
+      - name: Generate SSH key for sshkey tests
+        run: |
+          mkdir -p "$HOME/.ssh"
+          ssh-keygen -q -t ed25519 -N "" -f "$HOME/.ssh/id_ed25519"
 
       - name: Install nushell
         run: |
