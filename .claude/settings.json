@@ -180,7 +180,7 @@
       }
     ]
   },
-  "model": "claude-fable-5",
+  "model": "opus[1m]",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",

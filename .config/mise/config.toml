@@ -51,7 +51,7 @@
 "vfox:mise-plugins/vfox-gcloud" = "572.0.0"
 act = "0.2.89"
 actionlint = "1.7.12"
-awscli = { version = "2.35.2", symlink_bins = "true" }
+awscli = { version = "2.35.3", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.13.0"
 bazelisk = "1.29.0"
@@ -129,7 +129,7 @@ terraform-ls = "0.38.7"
 tmux = "3.6a"
 tree-sitter = "0.26.9"
 typos = "1.47.2"
-uv = "0.11.20"
+uv = "0.11.21"
 xcbeautify = "3.2.1"
 xcodes = "2.0.1"
 xh = "0.25.3"
