@@ -7,8 +7,8 @@
 export def shell_add [
     new_shell: string   # Shell name (e.g. bash, zsh, fish)
 ] {
-    source /Users/phatblat/.config/nushell/autoload/error-msg.nu
-    source /Users/phatblat/.config/nushell/autoload/brew_home.nu
+    source error-msg.nu
+    source brew_home.nu
 
     let system_shells_file = "/etc/shells"
     let brew_bin = (brew_home) | str trim

@@ -9,10 +9,10 @@ export def --env jdk [
     jdk_path?: string  # Path for 'set' subcommand
     quiet?: string     # Non-empty suppresses confirmation output
 ] {
-    source /Users/phatblat/.config/nushell/autoload/is_linux.nu
-    source /Users/phatblat/.config/nushell/autoload/jdk_set.nu
-    source /Users/phatblat/.config/nushell/autoload/path_add.nu
-    source /Users/phatblat/.config/nushell/autoload/jdk_current.nu
+    source is_linux.nu
+    source jdk_set.nu
+    source path_add.nu
+    source jdk_current.nu
 
     if (is_linux) {
         ^which java

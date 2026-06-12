@@ -5,12 +5,12 @@
 
 # Copies a dirty working copy from one host to another via git bundle
 export def "bundle-pull" []: nothing -> nothing {
-    source /Users/phatblat/.config/nushell/autoload/git_inside_repo.nu
-    source /Users/phatblat/.config/nushell/autoload/git_repo_dirty.nu
-    source /Users/phatblat/.config/nushell/autoload/git_repo_clean.nu
-    source /Users/phatblat/.config/nushell/autoload/repeatchar.nu
-    source /Users/phatblat/.config/nushell/autoload/current_branch.nu
-    source /Users/phatblat/.config/nushell/autoload/git_bundle_create.nu
+    source git_inside_repo.nu
+    source git_repo_dirty.nu
+    source git_repo_clean.nu
+    source repeatchar.nu
+    source current_branch.nu
+    source git_bundle_create.nu
 
     # Ensure current dir is in a clean git repo
     if not (git_inside_repo) {

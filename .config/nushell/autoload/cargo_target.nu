@@ -7,7 +7,7 @@
 export def --env cargo_target [
     --quiet (-q)   # Suppress output
 ] {
-    source /Users/phatblat/.config/nushell/autoload/ramdisk.nu
+    source ramdisk.nu
 
     let drive_name = "CargoTarget"
     let target_path = $"/Volumes/($drive_name)"

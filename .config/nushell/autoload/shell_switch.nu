@@ -7,9 +7,9 @@
 export def shell_switch [
     new_shell: string   # Shell name (e.g. bash, zsh, fish)
 ] {
-    source /Users/phatblat/.config/nushell/autoload/is_mac.nu
-    source /Users/phatblat/.config/nushell/autoload/is_linux.nu
-    source /Users/phatblat/.config/nushell/autoload/user_is_admin.nu
+    source is_mac.nu
+    source is_linux.nu
+    source user_is_admin.nu
 
     if ($new_shell | is-empty) {
         error make { msg: "Usage: shell_switch bash|zsh|fish" }

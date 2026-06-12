@@ -8,7 +8,7 @@ export def --env jdk_set [
     jdk_path: string   # Path to JDK home, or "-" to skip validation
     quiet?: string     # Any non-empty value suppresses confirmation output
 ] {
-    source /Users/phatblat/.config/nushell/autoload/path_add.nu
+    source path_add.nu
 
     if $jdk_path == "-" {
         print "Skipping jdk_path check"
