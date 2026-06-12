@@ -17,6 +17,12 @@ export def rewrite [
         }
     }
 
+    if $field not-in ["email", "name"] {
+        print --stderr $"error: Unsupported field '($field)'. Supported fields: email, name"
+        print --stderr "error: Usage: rewrite <email|name> old_value new_value [limit]"
+        return
+    }
+
     if (which git-filter-repo | is-empty) {
         print --stderr "error: git-filter-repo is not installed"
         return
@@ -35,9 +41,5 @@ export def rewrite [
         "name" => {
             ^git filter-repo --force ...$refs_arg --name-callback $"return name.replace\(b\"($old_value)\", b\"($new_value)\"\)"
         },
-        _ => {
-            print --stderr $"error: Unsupported field '($field)'. Supported fields: email, name"
-            print --stderr "error: Usage: rewrite <email|name> old_value new_value [limit]"
-        }
     }
 }
