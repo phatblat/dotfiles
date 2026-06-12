@@ -128,12 +128,15 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 @test "clone_or_pull: pulls existing repo" {
-    # Use the dotfiles repo itself as a safe local test target
+    # Hermetic origin repo on a real branch — cloning $HOME breaks in CI,
+    # where actions/checkout leaves HEAD detached and `git pull` then fails
     local tmpdir
     tmpdir="$(mktemp -d)"
-    # Clone a local copy first
-    git clone -q "$HOME" "$tmpdir/dotfiles-copy"
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/clone_or_pull.nu'; clone_or_pull '$tmpdir/dotfiles-copy' 'file://$HOME'" 2>&1
+    git init -q -b main "$tmpdir/origin"
+    git -C "$tmpdir/origin" -c user.email=test@test -c user.name=test \
+        commit -q --allow-empty -m init
+    git clone -q "$tmpdir/origin" "$tmpdir/copy"
+    run nu --no-config-file -c "source '$NU_AUTOLOAD/clone_or_pull.nu'; clone_or_pull '$tmpdir/copy' 'file://$tmpdir/origin'" 2>&1
     [ "$status" -eq 0 ]
     rm -rf "$tmpdir"
 }
