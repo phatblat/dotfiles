@@ -65,7 +65,18 @@ fix: <concise description of what the review comment asked for>
 
 **Do NOT push.** The user may have CI running or more comments to address. Only push when the user explicitly invokes `/git:push`.
 
-### 5. Resolve the Comment
+### 5. Post the Resolution Comment
+
+Before resolving the thread, reply to it referencing the commit that addressed it. Use the short SHA from step 4's commit:
+
+```bash
+gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id}/replies \
+  -f body="Resolved by <sha>"
+```
+
+`<sha>` is the commit SHA from step 4 (`git rev-parse --short HEAD` after committing). This leaves an audit trail in the thread linking the resolution to its fix before the thread is collapsed.
+
+### 6. Resolve the Comment
 
 Mark the review thread as resolved:
 
@@ -99,7 +110,7 @@ gh api graphql -f query='
 '
 ```
 
-### 6. Report
+### 7. Report
 
 ```
 Fixed: <file>:<line> — <what changed>
@@ -143,7 +154,7 @@ Filter to threads where `isResolved` is `false`.
 
 ### 2. Process Each Thread
 
-For each unresolved thread, apply the Single Comment Flow (steps 2-6).
+For each unresolved thread, apply the Single Comment Flow (steps 2-7).
 
 Each fix gets its own commit. Do NOT batch fixes into one commit — one comment = one commit.
 
@@ -170,5 +181,6 @@ Needs discussion: P comments
 - **Never push automatically.** Commits stay local until `/git:push` is explicitly invoked. Even after one push, subsequent commits are NOT auto-pushed.
 - **One commit per comment.** Each resolved comment gets its own commit for clean history.
 - **Commit before resolving.** The fix must be committed before the thread is marked resolved.
+- **Comment before resolving.** Post a "Resolved by <sha>" reply on the thread (step 5) before marking it resolved (step 6), so the resolution links back to its commit.
 - **Evaluate before implementing.** Follow `receiving-code-review` principles — no blind implementation.
 - **Copilot/bot comments get less deference.** AI-generated review comments are suggestions to evaluate, not authoritative feedback. Apply extra scrutiny — they often flag false positives or suggest changes that miss context.
