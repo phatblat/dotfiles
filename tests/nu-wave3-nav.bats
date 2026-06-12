@@ -134,7 +134,7 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
     tmpdir="$(mktemp -d)"
     git init -q -b main "$tmpdir/origin"
     git -C "$tmpdir/origin" -c user.email=test@test -c user.name=test \
-        commit -q --allow-empty -m init
+        -c commit.gpgsign=false commit -q --allow-empty -m init
     git clone -q "$tmpdir/origin" "$tmpdir/copy"
     run nu --no-config-file -c "source '$NU_AUTOLOAD/clone_or_pull.nu'; clone_or_pull '$tmpdir/copy' 'file://$tmpdir/origin'" 2>&1
     [ "$status" -eq 0 ]
