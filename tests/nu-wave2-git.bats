@@ -310,11 +310,15 @@ setup_git_repo() {
 }
 
 @test "user.name: returns the configured git user name" {
+    # Hermetic repo: user.name is machine-local config, absent in CI
+    local tmpdir
+    tmpdir="$(setup_git_repo)"
     run nu --no-config-file -c "
         source '$NU_AUTOLOAD/user.name.nu'
-        cd '$HOME'
+        cd '$tmpdir'
         user.name
     "
+    rm -rf "$tmpdir"
     [ "$status" -eq 0 ]
-    [ -n "$output" ]
+    [[ "$output" == *"Test"* ]]
 }

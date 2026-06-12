@@ -143,6 +143,7 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 @test "nixtest: smoke — runs nix-instantiate and exits 0" {
+    command -v nix-instantiate >/dev/null || skip "nix not installed"
     run nu --no-config-file -c "
         source '$AUTOLOAD/nixtest.nu'
         nixtest

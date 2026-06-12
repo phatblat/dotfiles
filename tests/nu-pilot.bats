@@ -105,14 +105,20 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
     [ "$status" -eq 0 ]
 }
 
-@test "bra: smoke — lists branches in dotfiles repo" {
+@test "bra: smoke — lists branches in a temp git repo" {
+    local tmpdir
+    tmpdir="$(mktemp -d)"
+    git -C "$tmpdir" init -q -b bra-test-branch
+    git -C "$tmpdir" -c user.email=test@test.com -c user.name=Test \
+        -c commit.gpgsign=false commit -q --allow-empty -m init
     run nu --no-config-file -c "
         source '$NU_AUTOLOAD/bra.nu'
-        cd '$HOME'
+        cd '$tmpdir'
         bra
     "
+    rm -rf "$tmpdir"
     [ "$status" -eq 0 ]
-    [[ "$output" == *"nushell-migration"* ]]
+    [[ "$output" == *"bra-test-branch"* ]]
 }
 
 # ---------------------------------------------------------------------------

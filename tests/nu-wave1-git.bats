@@ -39,12 +39,25 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
     [ "$status" -eq 0 ]
 }
 
-@test "diff: smoke — runs in dotfiles repo without error" {
+@test "diff: smoke — diffs two commits in a temp git repo" {
+    # Hermetic repo: the CI checkout is shallow, so HEAD~1 doesn't exist there
+    local tmpdir
+    tmpdir="$(mktemp -d)"
+    git -C "$tmpdir" init -q
+    git -C "$tmpdir" config user.email test@test.com
+    git -C "$tmpdir" config user.name Test
+    git -C "$tmpdir" config commit.gpgsign false
+    echo one > "$tmpdir/file.txt"
+    git -C "$tmpdir" add file.txt
+    git -C "$tmpdir" commit -qm one
+    echo two > "$tmpdir/file.txt"
+    git -C "$tmpdir" commit -qam two
     run nu --no-config-file -c "
         source '$NU_AUTOLOAD/diff.nu'
-        cd '$HOME'
+        cd '$tmpdir'
         diff HEAD~1 HEAD --stat
     "
+    rm -rf "$tmpdir"
     [ "$status" -eq 0 ]
 }
 
@@ -180,12 +193,18 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
     [ "$status" -eq 0 ]
 }
 
-@test "user.email: smoke — returns current git user email" {
+@test "user.email: smoke — returns configured git user email" {
+    # Hermetic repo: user.email is machine-local config, absent in CI
+    local tmpdir
+    tmpdir="$(mktemp -d)"
+    git -C "$tmpdir" init -q
+    git -C "$tmpdir" config user.email test@test.com
     run nu --no-config-file -c "
         source '$NU_AUTOLOAD/user.email.nu'
-        cd '$HOME'
+        cd '$tmpdir'
         user.email
     "
+    rm -rf "$tmpdir"
     [ "$status" -eq 0 ]
-    [[ "$output" == *"@"* ]]
+    [[ "$output" == *"test@test.com"* ]]
 }
