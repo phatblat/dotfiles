@@ -184,9 +184,54 @@ install-brew:
 install-launchdaemons:
     ./scripts/install-launchdaemons
 
+# Verifies GitHub auth/rate-limit before mise installs, so a silent 403 wall surfaces as a clear error
+[group('configuration')]
+[script]
+_check-github-token:
+    set -euo pipefail
+    token="${MISE_GITHUB_TOKEN:-${GITHUB_TOKEN:-}}"
+    auth=()
+    [[ -n "$token" ]] && auth=(-H "Authorization: Bearer $token")
+    json=$(curl -sS --max-time 10 "${auth[@]}" -H "X-GitHub-Api-Version: 2022-11-28" \
+        https://api.github.com/rate_limit 2>/dev/null || true)
+    # Offline / unreachable, or no python3 to parse: don't block local work.
+    [[ -z "$json" ]] && exit 0
+    command -v python3 >/dev/null 2>&1 || exit 0
+    read -r limit remaining reset_at <<<"$(printf '%s' "$json" | python3 -c 'import sys,json; c=json.load(sys.stdin).get("resources",{}).get("core",{}); print(c.get("limit",0), c.get("remaining",0), c.get("reset",0))' 2>/dev/null || echo "0 0 0")"
+    red=$'\033[31m'; yellow=$'\033[33m'; rc=$'\033[0m'
+    when=$(date -r "$reset_at" '+%H:%M:%S' 2>/dev/null || echo '?')
+    fix() {
+        echo "  Re-authenticate, then sync the fresh token into ~/.env:" >&2
+        echo "    gh auth refresh -h github.com -s repo,read:org" >&2
+        echo "    TOKEN=\$(GITHUB_TOKEN= GITHUB_API_TOKEN= gh auth token)" >&2
+        echo "    sed -i '' -E \"s|^(export (GITHUB_TOKEN|GITHUB_PERSONAL_ACCESS_TOKEN|MISE_GITHUB_TOKEN))=.*|\\1=\$TOKEN|\" ~/.env" >&2
+        echo "    direnv reload" >&2
+    }
+    # limit <= 60 means GitHub is treating us as anonymous (no token, or token rejected).
+    if (( limit <= 60 )); then
+        if [[ -n "$token" ]]; then
+            echo "${red}✗ GITHUB_TOKEN is set but GitHub is treating requests as unauthenticated (limit ${limit}/hr) — the token is being rejected.${rc}" >&2
+            echo "${red}  mise will hit the ${limit} req/hr cap during install.${rc}" >&2
+            echo "" >&2
+            fix
+            exit 1
+        fi
+        echo "${yellow}⚠ No GITHUB_TOKEN set — unauthenticated GitHub limit is ${limit}/hr. Set one in ~/.env to avoid install failures.${rc}" >&2
+        exit 0
+    fi
+    # Authenticated tier, but the bucket is spent — mise install will 403 mid-run.
+    if (( remaining == 0 )); then
+        echo "${red}✗ GitHub API rate limit exhausted: 0/${limit} remaining (resets ${when}).${rc}" >&2
+        echo "${red}  Wait for the reset, or mise install will fail with 403.${rc}" >&2
+        exit 1
+    fi
+    if (( remaining < 100 )); then
+        echo "${yellow}⚠ GitHub API rate limit low: ${remaining}/${limit} remaining (resets ${when}).${rc}" >&2
+    fi
+
 # Installs tools using mise
 [group('configuration')]
-deps: install-brew
+deps: _check-github-token install-brew
     mise install
 
 # Update tools within current versions
