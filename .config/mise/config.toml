@@ -80,7 +80,7 @@ gemini = { version = "0.47.0", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "2.95.0"
 git-lfs = "3.7.1"
 go = "1.26.4"
-gping = "1.20.1"
+gping = "1.20.2"
 gradle = "9.6.0"
 helm = "4.2.1"
 hexyl = "0.17.0"
