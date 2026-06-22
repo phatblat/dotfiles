@@ -249,11 +249,13 @@
       "Bash(file *)",
       "Bash(stat *)"
     ],
+    "defaultMode": "bypassPermissions",
     "deny": []
   },
   "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
+  "teammateMode": "in-process",
   "theme": "auto",
   "worktree": {
     "baseRef": "fresh"
