@@ -14,9 +14,9 @@ allowed-tools:
 category: workflow
 ---
 
-# PR Feedback
+# Resolve PR Feedback
 
-Address GitHub PR review comments. Invoke the `pr-feedback` skill, then apply it to:
+Address GitHub PR review comments. Invoke the `resolve-feedback` skill, then apply it to:
 
 `$ARGUMENTS`
 

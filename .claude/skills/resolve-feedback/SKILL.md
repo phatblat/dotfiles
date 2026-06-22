@@ -1,5 +1,5 @@
 ---
-name: pr-feedback
+name: resolve-feedback
 description: >-
   Address GitHub PR review comments — fetch, evaluate, fix, commit, and resolve.
   Use when given a PR comment URL or PR URL to process review feedback.
@@ -7,7 +7,7 @@ description: >-
   "resolve PR comments", PR URLs with #discussion_ fragments.
 ---
 
-# PR Feedback
+# Resolve PR Feedback
 
 Address GitHub PR review comments: fetch the comment, evaluate the fix, apply it, commit, and resolve.
 
