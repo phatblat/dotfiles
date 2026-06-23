@@ -43,7 +43,6 @@ shellharden_exclude_functions := 'version_build version_market xccheck'
 # aliases
 #
 
-alias dashboard := gt-dashboard-open
 alias f := free
 alias fmt := format
 alias i := deps
@@ -531,80 +530,6 @@ usage-board:
     ccusage blocks --live
 
 #
-# gastown group recipes
-#
-
-# Start the Gastown dashboard web server
-[group('gastown')]
-gt-dashboard-start:
-    #!/usr/bin/env bash
-    if lsof -iTCP:8080 -sTCP:LISTEN -t &>/dev/null; then
-        echo "Dashboard already running on port 8080"
-    else
-        cd ~/gt && gt dashboard --port 8080 &
-    fi
-
-# Stop the Gastown dashboard web server
-[group('gastown')]
-gt-dashboard-stop:
-    -pkill -f 'gt dashboard'
-
-# Open the Gastown dashboard in browser
-[group('gastown')]
-gt-dashboard-open: gt-dashboard-start
-    open http://localhost:8080
-
-# Start and attach to the Mayor session
-[group('gastown')]
-gt-mayor:
-    cd ~/gt && gt mayor status 2>&1 | grep -q "is running" || gt mayor start --agent codex
-    cd ~/gt && gt mayor attach
-
-# Open the Gastown feed TUI
-[group('gastown')]
-gt-feed:
-    cd ~/gt && gt feed
-
-# Create and sling one polecat per outdated mise tool bump
-[group('gastown')]
-gt-mise-bump-polecats rig='dotfiles':
-    ~/scripts/gt-mise-bump-polecats --all --rig {{ rig }}
-
-# Dry-run preview of all outdated mise tool bump dispatches
-[group('gastown')]
-gt-mise-bump-polecats-dry-run rig='dotfiles':
-    ~/scripts/gt-mise-bump-polecats --all --rig {{ rig }} --dry-run
-
-# Create and sling a single tool bump to one polecat
-[group('gastown')]
-gt-mise-bump-polecat tool current bump rig='dotfiles':
-    ~/scripts/gt-mise-bump-polecats \
-        --tool {{ tool }} \
-        --current {{ current }} \
-        --bump {{ bump }} \
-        --rig {{ rig }}
-
-# Apply low-risk rig role-agent policy (witness/refinery -> gemini)
-[group('gastown')]
-gt-agent-policy-apply:
-    ~/scripts/gt-agent-policy-apply apply
-
-# Show current low-risk rig role-agent policy
-[group('gastown')]
-gt-agent-policy-show:
-    ~/scripts/gt-agent-policy-apply show
-
-# Smart sling wrapper: auto-route low-risk work to gemini, high-risk to codex
-[group('gastown')]
-gt-sling-smart bead target *args:
-    ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }}
-
-# Preview smart sling routing decision without dispatching
-[group('gastown')]
-gt-sling-smart-dry-run bead target *args:
-    ~/scripts/gt-sling-smart {{ bead }} {{ target }} {{ args }} --dry-run
-
-#
 # nix group recipes
 #
 
@@ -646,10 +571,3 @@ lms-reload:
     lms ls
     lms ps
     lms server status
-
-# gastown group recipes
-
-# Attach to the Gas Town mayor tmux session
-[group('gastown')]
-mayor:
-    cd ~/gt && gt mayor attach
