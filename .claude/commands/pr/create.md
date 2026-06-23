@@ -79,23 +79,18 @@ Follow the `pr-style` skill for title format, body template, and guidelines.
 
 Scan the commit log from step 4 for conventional commit prefixes. Map them to GitHub labels per the `pr-style` skill label table. Collect all unique labels.
 
-Present the proposed labels and ask the user to confirm or edit:
-
-```
-Proposed labels: enhancement, documentation
-Confirm? [Y/n/edit]
-```
+Auto-apply detected labels (no confirmation needed). Validate labels exist via `gh label list` and drop any that don't.
 
 ### 7. Create the PR
 
 ```bash
-gh pr create --draft --assignee @me --label "<confirmed labels>" --title "<title>" --body "$(cat <<'EOF'
+gh pr create --draft --assignee @me --label "<auto-detected labels>" --title "<title>" --body "$(cat <<'EOF'
 <generated description>
 EOF
 )"
 ```
 
-If no labels were confirmed, omit the `--label` flag.
+If no valid labels exist, omit the `--label` flag.
 
 ### 8. Report Result
 

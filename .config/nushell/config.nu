@@ -675,4 +675,16 @@ if ($mise_init | path expand | path exists) {
     source $mise_init
 }
 
+# Tab title: show git repo name or current directory (mirrors zsh _set_tab_title precmd hook)
+$env.config.hooks.pre_prompt = $env.config.hooks.pre_prompt? | default []
+$env.config.hooks.pre_prompt ++= [{||
+    let repo = (run-external "git" "rev-parse" "--show-toplevel" | complete)
+    let title = if $repo.exit_code == 0 {
+        $repo.stdout | str trim | path basename
+    } else {
+        $env.PWD | path basename
+    }
+    print --no-newline $"\e]0;($title)\a"
+}]
+
 # All custom aliases and functions are now autoloaded from ~/.config/nushell/autoload/

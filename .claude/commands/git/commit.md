@@ -1,7 +1,7 @@
 ---
 description: Create a git commit following the project's established style
 category: workflow
-model: sonnet
+model: haiku
 allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*), Bash([:[*), Bash(grep:*), Read, Edit, Agent, Task, AskUserQuestion
 ---
 
@@ -22,9 +22,9 @@ All git commands are combined into a single bash call for maximum speed.
 
 ## Model Routing
 
-This skill runs on sonnet by default. After gathering the diff, evaluate complexity to decide whether to escalate:
+This skill runs on haiku by default. After gathering the diff, evaluate complexity to decide whether to escalate:
 
-**Simple (handle directly with sonnet):**
+**Simple (handle directly with haiku):**
 - ≤ 3 files changed
 - Single logical concern (all changes are clearly related)
 - < 50 diff lines
