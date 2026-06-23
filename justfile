@@ -6,7 +6,7 @@
 set export
 
 export MISE_PIN := "1"
-export PATH := env_var("HOME") / ".local" / "bin" + ":" + env_var("PATH")
+export PATH := env("HOME") / ".local" / "bin" + ":" + env("PATH")
 
 # ignore-comments - Ignore comments when formatting.
 
