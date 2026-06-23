@@ -9,11 +9,6 @@ export def --env jdk [
     jdk_path?: string  # Path for 'set' subcommand
     quiet?: string     # Non-empty suppresses confirmation output
 ] {
-    source is_linux.nu
-    source jdk_set.nu
-    source path_add.nu
-    source jdk_current.nu
-
     if (is_linux) {
         ^which java
         ^java -version
