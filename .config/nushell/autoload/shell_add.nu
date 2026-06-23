@@ -7,9 +7,6 @@
 export def shell_add [
     new_shell: string   # Shell name (e.g. bash, zsh, fish)
 ] {
-    source error-msg.nu
-    source brew_home.nu
-
     let system_shells_file = "/etc/shells"
     let brew_bin = (brew_home) | str trim
     let new_shell_path = $"($brew_bin)/($new_shell)"
