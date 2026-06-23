@@ -7,9 +7,6 @@
 export def --env brew_home [
     formula?: string   # Optional formula name; prints prefix/opt/<formula> when given
 ] {
-    source is_mac.nu
-    source is_linux.nu
-
     # Populate $env.BREW_HOME only when not already set
     if ($env.BREW_HOME? | is-empty) {
         let brew_prefix = (
