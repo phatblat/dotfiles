@@ -7,8 +7,6 @@
 export def --env cargo_target [
     --quiet (-q)   # Suppress output
 ] {
-    source ramdisk.nu
-
     let drive_name = "CargoTarget"
     let target_path = $"/Volumes/($drive_name)"
     let icon_file = $"($env.HOME)/Pictures/Icons/rustacean-flat-happy.webp"
