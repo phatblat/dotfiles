@@ -5,11 +5,6 @@
 
 # Interactively prompt the user to change their default login shell
 export def shell_choose [] {
-    source error-msg.nu
-    source brew_home.nu
-    source shell_add.nu
-    source shell_switch.nu
-
     let shells = ["bash" "zsh" "fish"]
     let current_shell = ($env.SHELL | path basename)
 
