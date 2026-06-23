@@ -180,7 +180,7 @@
       }
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",

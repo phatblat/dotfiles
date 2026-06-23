@@ -7,10 +7,9 @@
 export def ra [name: string, url?: string] {
     let remote_url = if ($url == null or ($url | is-empty)) {
         # Derive fork URL from the current upstream remote URL
-        let current_branch = (^git symbolic-ref --short HEAD | str trim)
-        # Strip leading path components (everything up to last /)
-        let upstream_name = ($current_branch | split row "/" | last)
-        let raw_url = (^git remote get-url $upstream_name | str trim)
+        let upstream_branch = (try { ^git rev-parse --abbrev-ref HEAD@{u} | str trim } catch { "" })
+        let upstream_remote = if ($upstream_branch | is-empty) { "origin" } else { $upstream_branch | split row "/" | first }
+        let raw_url = (^git remote get-url $upstream_remote | str trim)
         # Drop scheme+host (everything up to and including the last ':')
         let path = ($raw_url | split row ":" | last)
         # Drop .git suffix
