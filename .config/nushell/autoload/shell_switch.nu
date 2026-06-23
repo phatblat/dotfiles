@@ -7,10 +7,6 @@
 export def shell_switch [
     new_shell: string   # Shell name (e.g. bash, zsh, fish)
 ] {
-    source is_mac.nu
-    source is_linux.nu
-    source user_is_admin.nu
-
     if ($new_shell | is-empty) {
         error make { msg: "Usage: shell_switch bash|zsh|fish" }
     }
