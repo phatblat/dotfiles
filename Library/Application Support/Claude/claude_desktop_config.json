@@ -17,6 +17,12 @@
     "coworkScheduledTasksEnabled": true,
     "coworkWebSearchEnabled": true,
     "epitaxyPrefs": {
+      "ccd-sessions-filter": {
+        "state": {
+          "selectedProjects": []
+        },
+        "version": 0
+      },
       "dframe-local-slice": {
         "customGroupAssignments": {},
         "customGroupOrder": {},

@@ -29,8 +29,8 @@ Collapse trivial commits. Scannable in under 30 seconds.
 
 Auto-detect from commit prefixes: feat→enhancement, fix→bug, docs→documentation, chore/ci/build→maintenance, refactor→refactoring, test→testing, perf→performance.
 
-Validate with `gh label list --json name --jq '.[].name'` — drop labels that don't exist in the repo. Present proposed labels and confirm with user before applying.
+Validate with `gh label list --json name --jq '.[].name'` — drop labels that don't exist in the repo. Auto-apply without confirmation.
 
 ## Flags
 
-Always: `--draft --assignee @me`. Add `--label` only after user confirms labels.
+Always: `--draft --assignee @me`. Add `--label` with all validated labels.

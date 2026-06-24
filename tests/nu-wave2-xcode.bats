@@ -196,18 +196,20 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 @test "xc: opens Package.swift when present (smoke with open suppressed)" {
-    local tmpdir
+    local tmpdir fakebindir
     tmpdir="$(mktemp -d)"
+    fakebindir="$(mktemp -d)"
     touch "$tmpdir/Package.swift"
-    # We can't actually open in CI, so just verify the parse + logic path
-    # by checking that we don't get "No Xcode projects found"
-    run nu --no-config-file -c "
+    # Stub out 'open' so Xcode doesn't actually launch
+    printf '#!/bin/sh\nexit 0\n' > "$fakebindir/open"
+    chmod +x "$fakebindir/open"
+    run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
         source '$AUTOLOAD/xc.nu'
         cd '$tmpdir'
         xc
     " 2>&1
-    rm -rf "$tmpdir"
-    # open Package.swift exits 0 on macOS
+    rm -rf "$tmpdir" "$fakebindir"
+    # Verify logic ran (not "No Xcode projects found")
     [ "$status" -eq 0 ] || [[ "$output" == *"Package.swift"* ]]
 }
 
