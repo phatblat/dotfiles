@@ -7,9 +7,9 @@ allowed-tools:
   - Bash(linear:*)
   - Bash(date:*)
   - Bash(grep:*)
+  - Bash(cat:*)
+  - Bash(mkdir:*)
   - AskUserQuestion
-  - mcp__linear__save_comment
-  - mcp__linear__get_issue
 category: workflow
 ---
 
@@ -111,10 +111,19 @@ For each draft, ask:
 
 ## Step 5: Post Comments
 
-For each approved comment, use `mcp__linear__save_comment`:
+First invoke the `linear-cli:linear-cli` skill to load the correct CLI syntax.
 
-- `issueId`: the ticket identifier (e.g., `DXO-71`)
-- `body`: the draft comment text (or user-edited version)
+For each approved comment, write the body to a temp file then post using the CLI:
+
+```bash
+# Write comment body to a temp file (required for markdown content)
+cat > /tmp/linear-comment-<TICKET-ID>.md << 'EOF'
+<comment body>
+EOF
+
+# Post the comment
+linear issue comment add <TICKET-ID> --body-file /tmp/linear-comment-<TICKET-ID>.md
+```
 
 After successful post, update the daily note:
 
