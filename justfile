@@ -435,7 +435,7 @@ check: lint check-spelling test
 test:
     echo "Running tests..."
     eval "$(mise activate bash)"
-    [[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="/nix/var/nix/profiles/default/bin:${HOME}/.nix-profile/bin:$PATH" || true
+    [[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="$PATH:/nix/var/nix/profiles/default/bin:${HOME}/.nix-profile/bin" || true
     bats ~/tests/
 
 # Sorts .gitignore with negation-aware ordering
