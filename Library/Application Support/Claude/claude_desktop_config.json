@@ -23,6 +23,15 @@
         },
         "version": 0
       },
+      "desktop-frame.paneStore.v1": {
+        "state": {
+          "colWeightsByMode": {},
+          "draftNonce": 0,
+          "extraPanesByMode": {},
+          "rowSplit": 0.5
+        },
+        "version": 4
+      },
       "dframe-local-slice": {
         "customGroupAssignments": {},
         "customGroupOrder": {},
