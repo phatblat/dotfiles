@@ -211,7 +211,7 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
     rm -rf "$tmpdir" "$fakebindir"
     # open is stubbed to exit 0, so xc should succeed without error
     [ "$status" -eq 0 ]
-    [[ "$output" != *"No Xcode projects found"* ]]
+    [[ "$output" == *"Opening swift package"* ]]
 }
 
 # ---------------------------------------------------------------------------
