@@ -33,4 +33,4 @@ Validate with `gh label list --json name --jq '.[].name'` — drop labels that d
 
 ## Flags
 
-Always: `--draft --assignee @me`. Add `--label` with all validated labels.
+Always: `--draft --assignee @me`. Add `--add-label` with all validated labels.
