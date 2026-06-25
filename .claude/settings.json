@@ -74,8 +74,8 @@
       {
         "hooks": [
           {
-            "command": "command -v code-review-graph >/dev/null && code-review-graph update || true",
-            "timeout": 30,
+            "command": "bash -c 'command -v code-review-graph >/dev/null 2>&1 && code-review-graph update >/dev/null 2>&1 &'",
+            "timeout": 3,
             "type": "command"
           }
         ],
