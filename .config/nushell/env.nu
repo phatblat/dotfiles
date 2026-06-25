@@ -105,4 +105,5 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend [
     ($nu.home-dir | path join 'bin')
     ($nu.home-dir | path join '.local' 'bin')
     ($nu.home-dir | path join '.cargo' 'bin')
+    ($nu.home-dir | path join '.orbstack' 'bin')
 ] | uniq)
