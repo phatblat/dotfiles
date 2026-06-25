@@ -346,6 +346,7 @@
   "skipDangerousModePermissionPrompt": true,
   "teammateMode": "in-process",
   "theme": "auto",
+  "tui": "fullscreen",
   "worktree": {
     "baseRef": "fresh"
   }
