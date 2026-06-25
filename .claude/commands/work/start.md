@@ -19,8 +19,6 @@ allowed-tools:
   - AskUserQuestion
   - mcp__claude_ai_Google_Calendar__list_events
   - mcp__claude_ai_Google_Calendar__list_calendars
-  - mcp__linear__get_issue
-  - mcp__linear__save_comment
 category: workflow
 ---
 
@@ -154,8 +152,8 @@ Use `Edit` to replace the `<!-- auto-populated by /work:start -->` comment with 
 
 Query work calendars for today's events. Run in parallel:
 
-- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "ben@ditto.com"`, today's date range, `orderBy: "startTime"`, `timeZone: "America/Denver"`
-- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "c_99c6308de217f9bcae7bb2e6e838fa5b4f5eb376b88225af367b8ece07687c7f@group.calendar.google.com"` (Engineering Shared)
+- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "ben@ditto.com"`, today's date range, `orderBy: "startTime"`, `timeZone: "America/New_York"`
+- `mcp__claude_ai_Google_Calendar__list_events` with `calendarId: "c_99c6308de217f9bcae7bb2e6e838fa5b4f5eb376b88225af367b8ece07687c7f@group.calendar.google.com"` (Engineering Shared), `timeZone: "America/New_York"`
 
 **Do NOT query `benchatelain@gmail.com`** — that calendar only returns free/busy data (no event titles) and is not useful for the agenda.
 
@@ -218,20 +216,22 @@ If the most recent comment on the ticket is already from today (by @benchatelain
 
 ### 7b: Compose and Post Comments
 
-For each ticket needing a comment, compose a brief daily status update:
+First invoke the `linear-cli:linear-cli` skill to load the correct CLI syntax.
 
-```markdown
+For each ticket needing a comment, compose a brief daily status update and post it using a temp file:
+
+```bash
+cat > /tmp/linear-status-<TICKET-ID>.md << 'EOF'
 **Daily status — YYYY-MM-DD**
 
 Status: <current state>
 PR: <PR link and status if applicable>
 
 <1-2 sentence summary of where things stand>
-```
+EOF
 
-Post using `mcp__linear__save_comment`:
-- `issueId`: the ticket identifier
-- `body`: the status comment
+linear issue comment add <TICKET-ID> --body-file /tmp/linear-status-<TICKET-ID>.md
+```
 
 ### 7c: Update Daily Note
 

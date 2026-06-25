@@ -47,6 +47,9 @@ $env.NU_VENDOR_AUTOLOAD_DIRS = [
 # Add homebrew to PATH
 $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 
+# Android SDK
+$env.ANDROID_HOME = ($nu.home-dir | path join 'Library' 'Android' 'sdk')
+
 # Editor configuration
 $env.EDITOR = "zed"
 $env.VISUAL = "zed"
@@ -102,4 +105,5 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend [
     ($nu.home-dir | path join 'bin')
     ($nu.home-dir | path join '.local' 'bin')
     ($nu.home-dir | path join '.cargo' 'bin')
+    ($nu.home-dir | path join '.orbstack' 'bin')
 ] | uniq)

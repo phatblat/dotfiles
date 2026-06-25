@@ -63,8 +63,6 @@ Stage only the changed file(s) and commit using `/git:commit` conventions:
 fix: <concise description of what the review comment asked for>
 ```
 
-**Do NOT push.** The user may have CI running or more comments to address. Only push when the user explicitly invokes `/git:push`.
-
 ### 5. Post the Resolution Comment
 
 Before resolving the thread, reply to it referencing the commit that addressed it. Use the short SHA from step 4's commit:
@@ -158,7 +156,15 @@ For each unresolved thread, apply the Single Comment Flow (steps 2-7).
 
 Each fix gets its own commit. Do NOT batch fixes into one commit — one comment = one commit.
 
-### 3. Summary Report
+### 3. Push All Commits
+
+After all threads are processed, push the branch:
+
+```bash
+git push
+```
+
+### 4. Summary Report
 
 After processing all threads:
 
@@ -178,7 +184,7 @@ Needs discussion: P comments
 
 ## Rules
 
-- **Never push automatically.** Commits stay local until `/git:push` is explicitly invoked. Even after one push, subsequent commits are NOT auto-pushed.
+- **Push after all comments are resolved.** After the All-Comments Flow completes, push automatically. For single-comment flow, push after the one fix is committed and resolved.
 - **One commit per comment.** Each resolved comment gets its own commit for clean history.
 - **Commit before resolving.** The fix must be committed before the thread is marked resolved.
 - **Comment before resolving.** Post a "Resolved by <sha>" reply on the thread (step 5) before marking it resolved (step 6), so the resolution links back to its commit.

@@ -16,13 +16,7 @@ allowed_tools:
   - TaskUpdate
   - TaskGet
   - TaskList
-  - mcp__linear__get_issue
-  - mcp__linear__list_comments
-  - mcp__linear__save_comment
-  - mcp__linear__save_issue
-  - mcp__linear__list_issue_labels
-  - mcp__linear__list_issue_statuses
-  - mcp__linear__get_team
+  - Skill
 ---
 
 <default_to_action>
@@ -64,9 +58,15 @@ Parse arguments:
 
 ## Phase 1: Gather Context
 
+First invoke the `linear-cli:linear-cli` skill to load the correct CLI syntax.
+
 ### 1.1 Fetch ticket details
 
-Use `mcp__linear__get_issue` to retrieve the ticket. Extract:
+```bash
+linear issue view <TICKET-ID> --no-pager
+```
+
+Extract:
 
 - **Title**
 - **Description** (full markdown)
@@ -77,7 +77,11 @@ Use `mcp__linear__get_issue` to retrieve the ticket. Extract:
 
 ### 1.2 Fetch conversation threads
 
-Use `mcp__linear__list_comments` to read all comment threads on the ticket. These often contain clarifying context, decisions, and requirements not in the description.
+```bash
+linear issue comment list <TICKET-ID> --json
+```
+
+Read all comment threads. These often contain clarifying context, decisions, and requirements not in the description.
 
 ### 1.3 Derive branch name
 
@@ -90,10 +94,9 @@ From the ticket title, generate a descriptive kebab-case slug:
 
 ### 1.4 Assign ticket to me
 
-Use `mcp__linear__save_issue` to:
-
-- Set assignee to "me"
-- Set state to "In Progress"
+```bash
+linear issue update <TICKET-ID> --assignee self --state "In Progress"
+```
 
 ## Phase 2: Create Plan
 
@@ -212,12 +215,18 @@ If the base branch doesn't exist on remote, error and ask the user.
 
 ## Phase 4: Post Plan to Linear
 
-Post the **selected plan** (or synthesized hybrid) as a **new comment** on the Linear ticket using `mcp__linear__save_comment`:
+Write the selected plan (or synthesized hybrid) to a temp file then post it as a new comment:
 
-- `issueId`: the ticket identifier (e.g., `DEVX-696`)
-- `body`: the final plan in markdown (include its label and optimization lens for traceability)
+```bash
+cat > /tmp/linear-plan-<TICKET-ID>.md << 'EOF'
+<plan content — include label and optimization lens for traceability>
+EOF
 
-Save the returned comment ID — all plan updates go to this thread using `parentId`.
+plan_url=$(linear issue comment add <TICKET-ID> --body-file /tmp/linear-plan-<TICKET-ID>.md | grep "https://")
+plan_comment_id=$(echo "$plan_url" | sed 's/.*#comment-//')
+```
+
+Save `$plan_comment_id` — all subsequent updates (test results) reply to this thread using `--parent $plan_comment_id`.
 
 ## Phase 5: Implement Changes
 
@@ -346,9 +355,10 @@ If tests fail:
 
 ### 8.1 Post test results
 
-Reply to the plan comment thread (using `parentId` from Phase 4) with test results:
+Reply to the plan comment thread (captured in Phase 4) with test results:
 
-```markdown
+```bash
+cat > /tmp/linear-results-<TICKET-ID>.md << 'EOF'
 ## Test Results
 
 | Step  | Status  | Notes          |
@@ -360,6 +370,9 @@ Reply to the plan comment thread (using `parentId` from Phase 4) with test resul
 ### PR
 
 <link to draft PR>
+EOF
+
+linear issue comment add <TICKET-ID> --body-file /tmp/linear-results-<TICKET-ID>.md --parent "$plan_comment_id"
 ```
 
 ### 8.2 Update PR description
