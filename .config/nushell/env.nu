@@ -49,6 +49,7 @@ $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 
 # Android SDK
 $env.ANDROID_HOME = ($nu.home-dir | path join 'Library' 'Android' 'sdk')
+$env.ANDROID_NDK_HOME = ($nu.home-dir | path join 'Library' 'Android' 'sdk' 'ndk' '30.0.14904198')
 
 # Editor configuration
 $env.EDITOR = "zed"
