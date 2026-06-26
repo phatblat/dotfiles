@@ -62,13 +62,18 @@ Extract from the finding's GitHub URL:
 Post via:
 
 ```bash
+body="<description>"
 gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
   --method POST \
-  -f body="<description>" \
-  -f commit_id="<commit_sha>" \
-  -f path="<path>" \
-  -F line=<line> \
-  -f side="RIGHT"
+  --input - <<EOF
+{
+  "body": $(echo "$body" | jq -Rs '.'),
+  "commit_id": "<commit_sha>",
+  "path": "<path>",
+  "line": <line>,
+  "side": "RIGHT"
+}
+EOF
 ```
 
 If the `gh api` call returns an error (e.g. line not in diff), fall back to a general PR comment:
