@@ -17,7 +17,7 @@ Types: feat, fix, docs, style, refactor, perf, test, chore, ci, build. Scope opt
 <stacked note — "Stacked on #42". Omit if not stacked.>
 
 ## Summary
-<1-3 sentences>
+<1-3 sentences — plain language, no jargon. Write as if explaining to someone outside the team: what problem does this solve, and what did you do about it? Avoid acronyms, internal tool names, and implementation details. Save those for the Changes section.>
 
 ## Changes
 <bulleted list, grouped logically, imperative mood, no commit hashes>
