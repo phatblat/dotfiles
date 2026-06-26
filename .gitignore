@@ -60,6 +60,7 @@
 .cargo/*
 !.cargo/config.toml
 !.cargo/env*
+.cc-worktrees/
 .cf/
 .chef/
 .cisco/

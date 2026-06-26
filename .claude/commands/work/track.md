@@ -87,6 +87,7 @@ grep -nE "^## .*#${PR_NUMBER}( |$)" "${note_path}"
    - `HH:MM` <notes or generated description>
    ```
 4. If the user provided notes, use those. Otherwise generate a brief note like "Picked up ticket" or "Checking PR status"
+5. **When the input was a PR URL/number**: append a markdown link to the PR at the end of the note text, e.g. `- \`HH:MM\` PR open: feat(justfile): add gen-env recipes [forge#873](https://github.com/getditto/forge/pull/873)`
 
 ### If Section DOES NOT EXIST → Create
 
@@ -100,8 +101,13 @@ branch:: `<headRefName>`
 status:: <current-state-lowercase>
 commented:: false
 
-- `HH:MM` <notes or "Picked up ticket">
+- `HH:MM` <notes or "Picked up ticket [repo#number](url)">
 ```
+
+**Log entry rules:**
+- When input was a PR: include a markdown link to the PR at the end of the generated note, e.g. `Picked up PR [forge#873](https://github.com/getditto/forge/pull/873)`
+- When input was a ticket that has a linked PR: include the PR link the same way
+- When input was a ticket with no PR: no PR link needed
 
 **Field rules:**
 - `ticket::` — Always present for Linear tickets. Omit if PR-only with no linked ticket.

@@ -1,0 +1,95 @@
+---
+description: Post code review findings from /review as inline PR comments
+model: sonnet
+argument_hint: "[finding numbers, e.g. 1,2,4] — omit to post all"
+allowed-tools: Bash(gh:*), Bash(git:*)
+category: workflow
+---
+
+# Post Review Findings as PR Comments
+
+Post findings from the most recent `/review` output as inline line-level comments on the current PR.
+
+`$ARGUMENTS` — optional comma-separated finding numbers to post (e.g. `1,2,4`). Omit to post all findings.
+
+## Steps
+
+### 1. Parse Findings from Conversation
+
+Look back at the most recent `/review` (or `/code-review`) output in this conversation. Extract each numbered finding in this format:
+
+```
+N. <description>
+<github blob URL with sha and line range>
+```
+
+The GitHub URL format is:
+`https://github.com/<owner>/<repo>/blob/<full-sha>/<path>#L<start>-L<end>`
+
+Build a list of findings: `[{number, description, url, path, sha, line_start, line_end}]`.
+
+If no review output is found in the conversation, stop and report: "No review findings found in this conversation. Run `/review` first."
+
+### 2. Filter by Arguments
+
+If `$ARGUMENTS` is non-empty, parse it as a comma-separated list of integers (e.g. `1,2,4`). Keep only findings whose number matches.
+
+If a specified number doesn't exist in the findings, warn: "Finding #N not found — skipping."
+
+If `$ARGUMENTS` is empty, keep all findings.
+
+If after filtering there are zero findings to post, stop and report which numbers were requested vs. what was available.
+
+### 3. Get PR Context
+
+```bash
+gh pr view --json number,headRefOid,url \
+  --jq '"\(.number)|\(.headRefOid)|\(.url)"'
+```
+
+Parse: `pr_number`, `commit_sha`, `pr_url`.
+
+If no open PR exists for the current branch, stop and report: "No open PR found. Run `/pr:create` first."
+
+### 4. Post Inline Comments
+
+For each finding to post:
+
+Extract from the finding's GitHub URL:
+- `path` — the file path (e.g. `src/foo.ts`)
+- `line` — use `line_end` (the last line of the linked range) as the comment anchor
+
+Post via:
+
+```bash
+body="<description>"
+gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
+  --method POST \
+  --input - <<EOF
+{
+  "body": $(echo "$body" | jq -Rs '.'),
+  "commit_id": "<commit_sha>",
+  "path": "<path>",
+  "line": <line>,
+  "side": "RIGHT"
+}
+EOF
+```
+
+If the `gh api` call returns an error (e.g. line not in diff), fall back to a general PR comment:
+
+```bash
+gh pr comment <pr_number> --body "<description>\n\n_Originally at: <url>_"
+```
+
+Report success or fallback for each finding.
+
+### 5. Report Results
+
+```
+Posted N finding(s) to PR #<pr_number>:
+  ✅ #1 — <brief description> (inline at <path>:<line>)
+  ✅ #2 — <brief description> (inline at <path>:<line>)
+  ⚠️  #3 — <brief description> (posted as general comment — line not in diff)
+<pr_url>
+```
