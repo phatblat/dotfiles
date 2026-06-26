@@ -285,7 +285,7 @@ update-brew:
 # Upgrades homebrew formulae/casks (pass args through to brew upgrade)
 [group('configuration')]
 upgrade-brew *args:
-    brew upgrade {{ args }}
+    NONINTERACTIVE=1 brew upgrade {{ args }}
 
 # Shows outdated uv-managed tools by comparing against PyPI
 [group('configuration')]
