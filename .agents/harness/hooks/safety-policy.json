@@ -1,0 +1,29 @@
+{
+  "blocked_command_categories": [
+    "privilege-escalation",
+    "destructive-filesystem",
+    "device-writes",
+    "pipe-to-shell",
+    "obfuscated-execution"
+  ],
+  "protected_paths": [
+    ".env*",
+    ".ssh/*",
+    "*.pem",
+    "*.key",
+    ".aws/credentials",
+    ".docker/config.json",
+    ".claude/.credentials.json",
+    ".codex/auth.json",
+    ".pi/agent/auth.json"
+  ],
+  "secret_categories": [
+    "ai-provider-key",
+    "cloud-access-key",
+    "vcs-token",
+    "chat-token",
+    "private-key",
+    "password-assignment"
+  ],
+  "version": 1
+}

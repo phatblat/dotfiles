@@ -1,86 +1,66 @@
 #!/usr/bin/env bash
-# =============================================================================
-# Codex Hook: PreToolUse - apply_patch Guard
-# =============================================================================
-# Blocks writes to protected files AND detects secrets in written content.
-# SANITIZED: Exact secret regex patterns replaced with categories.
-# Adapt the patterns below to your threat model.
+# Thin PreToolUse adapter for the shared harness write/edit safety policy.
 #
-# Input: JSON via stdin with the patch in tool_input.command
-# Output: JSON with permissionDecision deny if dangerous
-#
-# Copyright: Delanoe Pirard / Aedelon. Apache 2.0
-# =============================================================================
+# Copyright: Ben Chatelain. Apache 2.0.
 
 set -euo pipefail
 
-script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-# shellcheck source=apply-patch-input.sh
-source "$script_dir/apply-patch-input.sh"
-
-# Fail-closed: if anything errors, deny by default
 trap 'echo "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Hook error - fail-closed\"}}"; exit 0' ERR
 
-# Ensure jq is available; if not, warn and allow (disables write-guard checks)
-if ! command -v jq >/dev/null 2>&1; then
-    echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"allow","permissionDecisionReason":"jq not available - write/edit guard checks skipped"}}'
-    exit 0
-fi
+script_dir=$(cd "$(dirname "$0")" && pwd)
+# shellcheck source=apply-patch-input.sh
+# shellcheck disable=SC1091
+source "$script_dir/apply-patch-input.sh"
 
-# Read stdin JSON
 input=$(cat)
 
-# === 1. Protected file paths ===
-# Block writes to sensitive files (credentials, keys, configs)
-# Categories to protect (add your own patterns):
-# - Environment files (.env, .env.production, .env.local)
-# - SSH keys (id_rsa, id_ed25519)
-# - TLS certificates (.pem, .key, .p12, .pfx, .jks)
-# - Cloud credentials (.aws/, .docker/config.json, kubeconfig)
-# - Package registry auth (.npmrc, .pypirc, .netrc)
-# - Database credentials (.pgpass)
-# - HTTP auth (.htpasswd)
-# - Git credentials (.git-credentials)
-protected_patterns='\.env($|\.)|\.ssh/|id_(rsa|ed25519|ecdsa)|\.pem$|\.key$|\.p12$|\.pfx$|\.jks$|\.aws/credentials|\.docker/config\.json|kubeconfig|\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials'
+harness="claude"
+case "$0" in
+    *".codex/"*) harness="codex" ;;
+esac
 
-while IFS= read -r file_path; do
-    if [ -n "$file_path" ] && echo "$file_path" | grep -qiE "$protected_patterns"; then
-        jq -nc --arg reason "Cannot write to protected file: $file_path" '{
-            hookSpecificOutput: {
-                hookEventName: "PreToolUse",
-                permissionDecision: "deny",
-                permissionDecisionReason: $reason
-            }
-        }'
-        exit 0
+deny() {
+    local reason="$1"
+    jq -n --arg reason "$reason" '{
+      hookSpecificOutput: {
+        hookEventName: "PreToolUse",
+        permissionDecision: "deny",
+        permissionDecisionReason: $reason
+      }
+    }'
+    exit 0
+}
+
+evaluate_write() {
+    local file_path="$1"
+    local content="$2"
+    local result
+    local decision
+    local reason
+
+    result=$(python3 "$HOME/scripts/agent-harnesses.py" guard --harness "$harness" --tool write --path "$file_path" --content "$content" 2>/dev/null || true)
+    decision=$(printf '%s' "$result" | jq -r '.decision // "deny"')
+    reason=$(printf '%s' "$result" | jq -r '.reason // "Shared guard failed closed"')
+
+    if [ "$decision" = "deny" ]; then
+        deny "$reason"
     fi
-done < <(printf '%s' "$input" | apply_patch_all_paths)
+}
 
-# === 2. Secret detection in content ===
-# Scan only added patch lines for hardcoded secrets.
-content=$(printf '%s' "$input" | apply_patch_added_content)
+tool_name=$(printf '%s' "$input" | jq -r '.tool_name // empty' 2>/dev/null || echo "")
+command=$(printf '%s' "$input" | jq -r '.tool_input.command // empty' 2>/dev/null || echo "")
 
-if [ -n "$content" ]; then
-    # Categories of secrets to detect (add regex for each):
-    # - AI provider API keys (OpenAI, Anthropic, etc.)
-    # - Cloud provider access keys (AWS, GCP, Azure)
-    # - VCS tokens (GitHub, GitLab)
-    # - Chat platform tokens (Slack, Discord)
-    # - Private keys (PEM-encoded)
-    # - OAuth tokens
-    # - JWT tokens
-    # - Payment processor keys (Stripe, etc.)
-    # - Email service keys (SendGrid, etc.)
-    # - Package registry tokens (npm, PyPI)
-    # - Cloud storage keys (Azure, S3)
-    # - Database connection strings with embedded passwords
-    #
-    secret_patterns='AKIA[0-9A-Z]{16}|sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{36}|gho_[a-zA-Z0-9]{36}|glpat-[a-zA-Z0-9_-]{20}|xox[bpoas]-[a-zA-Z0-9-]+|-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----|password\s*[:=]\s*["\x27][^"\x27]{8,}'
+if [ "$tool_name" = "apply_patch" ] || [[ "$command" == "*** Begin Patch"* ]]; then
+    while IFS= read -r path; do
+        [ -n "$path" ] && evaluate_write "$path" ""
+    done < <(printf '%s' "$input" | apply_patch_all_paths)
 
-    if echo "$content" | grep -qE "$secret_patterns"; then
-        echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Potential secret/API key detected in content"}}'
-        exit 0
-    fi
+    added_content=$(printf '%s' "$input" | apply_patch_added_content)
+    evaluate_write "" "$added_content"
+else
+    file_path=$(printf '%s' "$input" | jq -r '.tool_input.file_path // .tool_input.path // empty' 2>/dev/null || echo "")
+    content=$(printf '%s' "$input" | jq -r '(.tool_input.content // "") + (.tool_input.new_string // "")' 2>/dev/null || echo "")
+    evaluate_write "$file_path" "$content"
 fi
 
 exit 0

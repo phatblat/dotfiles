@@ -200,7 +200,14 @@
 .config/nushell/history.txt
 .config/op/
 .config/opencode/*
+!.config/opencode/.gitignore
+!.config/opencode/agents/**
+!.config/opencode/agents/
+!.config/opencode/commands/**
+!.config/opencode/commands/
 !.config/opencode/opencode.jsonc
+!.config/opencode/plugins/**
+!.config/opencode/plugins/
 .config/orka-desktop/
 .config/packer/
 .config/pulse/

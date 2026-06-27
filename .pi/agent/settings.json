@@ -1,0 +1,34 @@
+{
+  "compaction": {
+    "enabled": true,
+    "keepRecentTokens": 20000,
+    "reserveTokens": 16384
+  },
+  "defaultModel": "claude-opus-4-8",
+  "defaultProjectTrust": "ask",
+  "defaultProvider": "anthropic",
+  "defaultThinkingLevel": "medium",
+  "enableSkillCommands": true,
+  "extensions": [
+    "~/.pi/agent/extensions/harness.ts"
+  ],
+  "lastChangelogVersion": "0.80.2",
+  "prompts": [
+    "~/.pi/agent/prompts"
+  ],
+  "retry": {
+    "baseDelayMs": 2000,
+    "enabled": true,
+    "maxRetries": 3,
+    "provider": {
+      "maxRetries": 0,
+      "maxRetryDelayMs": 60000
+    }
+  },
+  "sessionDir": "~/.pi/agent/sessions",
+  "shellCommandPrefix": "",
+  "skills": [
+    "~/.agents/skills"
+  ],
+  "theme": "dark"
+}

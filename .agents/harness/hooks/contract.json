@@ -1,0 +1,58 @@
+{
+  "decisions": [
+    "allow",
+    "warn",
+    "deny"
+  ],
+  "events": {
+    "compaction": {
+      "fields": [
+        "session_id",
+        "reason",
+        "harness"
+      ]
+    },
+    "failure": {
+      "fields": [
+        "tool",
+        "error",
+        "session_id",
+        "harness"
+      ]
+    },
+    "session_start": {
+      "fields": [
+        "cwd",
+        "session_id",
+        "harness"
+      ]
+    },
+    "tool_call": {
+      "fields": [
+        "tool",
+        "command",
+        "path",
+        "content",
+        "session_id",
+        "harness"
+      ]
+    },
+    "tool_result": {
+      "fields": [
+        "tool",
+        "status",
+        "output",
+        "session_id",
+        "harness"
+      ]
+    },
+    "user_prompt": {
+      "fields": [
+        "prompt",
+        "session_id",
+        "harness"
+      ]
+    }
+  },
+  "version": 1
+}

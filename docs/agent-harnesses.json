@@ -1,0 +1,548 @@
+{
+  "features": [
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/instructions.md"
+      ],
+      "category": "instructions",
+      "desired_behavior": "Global harness instructions load for every session.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "instructions.global",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py validate"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/skills"
+      ],
+      "category": "skills",
+      "desired_behavior": "Shared skills load from ~/.agents/skills.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "skills.shared",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/commands"
+      ],
+      "category": "commands",
+      "desired_behavior": "The 22 active commands are available through generated native prompts.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "source commands",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.claude/commands"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "Codex consumes commands as skills/config, not Claude slash files",
+          "mode": "adapter",
+          "next_action": "Add native Codex command generation if/when file format stabilizes",
+          "paths": [
+            "~/.agents/harness/commands"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "generated command templates",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/commands",
+            "~/.config/opencode/opencode.jsonc"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "generated prompt templates",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.pi/agent/prompts"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "commands.active",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/agents"
+      ],
+      "category": "agents",
+      "desired_behavior": "Six specialist agents are represented for delegation.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "native Claude agents include these plus additional specialists",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.claude/agents"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "native Codex TOML agents",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.codex/agents"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "generated agent config",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/agents",
+            "~/.config/opencode/opencode.jsonc"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "Pi uses an extension-backed registry rather than static native agent files",
+          "mode": "emulated",
+          "next_action": "Wire full subprocess delegation after choosing model/session policy",
+          "paths": [
+            "~/.pi/agent/agents.json",
+            "~/.pi/agent/extensions/harness.ts"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "agents.specialists",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/hooks/safety.py"
+      ],
+      "category": "hooks",
+      "desired_behavior": "Dangerous commands, protected writes, and secret-like content are blocked consistently.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "hooks.safety",
+      "priority": "p0",
+      "verification_command": "bats tests/agent-harnesses.bats"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.codex/config.toml",
+        "~/.config/opencode/opencode.jsonc"
+      ],
+      "category": "mcp/tools",
+      "desired_behavior": "code-review-graph is exposed as a tool capability.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "Claude has hook-based graph updates but no tracked MCP entry in this slice",
+          "mode": "native",
+          "next_action": "Add/verify native Claude MCP registration",
+          "paths": [
+            "~/.claude/settings.json"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "native MCP server configured",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.codex/config.toml"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "native MCP local server configured",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/opencode.jsonc"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "generic MCP transport is not configured; extension tools track capability",
+          "mode": "emulated",
+          "next_action": "Implement direct MCP bridge if Pi exposes stable transport",
+          "paths": [
+            "~/.pi/agent/extensions/harness.ts"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "mcp.code_review_graph",
+      "priority": "p1",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/hooks/contract.json"
+      ],
+      "category": "sessions/compaction",
+      "desired_behavior": "Compaction preserves modified files, branch, pending work, and test state.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "native PreCompact hook",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.claude/settings.json"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "native PreCompact hook",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.codex/hooks.json"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "plugin compaction hook",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/plugins/harness.ts"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "native compaction settings plus extension status",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.pi/agent/settings.json"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "sessions.compaction",
+      "priority": "p1",
+      "verification_command": "python3 scripts/agent-harnesses.py validate"
+    },
+    {
+      "canonical_artifacts": [
+        "~/scripts/agent-harnesses.py",
+        "~/docs/agent-harnesses.json"
+      ],
+      "category": "maintenance",
+      "desired_behavior": "Parity can be generated, checked, and audited deterministically.",
+      "harnesses": {
+        "claude": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "maintenance.audit",
+      "priority": "p1",
+      "verification_command": "just harness-check"
+    }
+  ],
+  "harnesses": {
+    "claude": {
+      "role": "supported peer"
+    },
+    "codex": {
+      "role": "supported peer"
+    },
+    "opencode": {
+      "role": "new port"
+    },
+    "pi": {
+      "role": "new port"
+    }
+  },
+  "schema": 1,
+  "summary": {
+    "agents": 6,
+    "capabilities": [
+      "shared-skills",
+      "code-review-graph",
+      "opencode-plugin",
+      "pi-extension"
+    ],
+    "commands": 22,
+    "skills": 50
+  },
+  "verified_date": "2026-06-27"
+}
