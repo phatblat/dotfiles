@@ -49,6 +49,23 @@ $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 
 # Android SDK
 $env.ANDROID_HOME = ($nu.home-dir | path join 'Library' 'Android' 'sdk')
+let _ndk_dir = ($env.ANDROID_HOME | path join 'ndk')
+if ($_ndk_dir | path exists) {
+    let _ndks = (ls $_ndk_dir | where type == dir | get name | path basename)
+    if not ($_ndks | is-empty) {
+        let _latest_ndk = (
+            $_ndks
+            | each {|v|
+                let parts = ($v | split row '.')
+                {name: $v, major: ($parts | get 0 | into int), minor: ($parts | get 1 | into int), patch: ($parts | get 2 | into int)}
+            }
+            | sort-by major minor patch
+            | last
+            | get name
+        )
+        $env.ANDROID_NDK_HOME = ($_ndk_dir | path join $_latest_ndk)
+    }
+}
 
 # Editor configuration
 $env.EDITOR = "zed"
