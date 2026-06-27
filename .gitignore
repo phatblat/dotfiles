@@ -96,7 +96,11 @@
 .codeium/
 .codepilot/
 .codex/*
+!.codex/AGENTS.md
+!.codex/agents/
 !.codex/config.toml
+!.codex/hooks.json
+!.codex/hooks/
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/
