@@ -7,6 +7,7 @@ notify = [
     "turn-ended",
 ]
 plan_mode_reasoning_effort = "xhigh"
+approvals_reviewer = "auto_review"
 
 [features]
 apps = false
