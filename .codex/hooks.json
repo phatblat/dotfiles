@@ -26,7 +26,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }
@@ -83,7 +83,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }
@@ -116,7 +116,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }
@@ -128,7 +128,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }
@@ -140,7 +140,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }
@@ -152,7 +152,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }

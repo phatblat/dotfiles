@@ -5,7 +5,9 @@ load helpers/setup
 
 WRITE_GUARD="$HOME/.codex/hooks/scripts/write-guard.sh"
 AUTO_FORMAT="$HOME/.codex/hooks/scripts/auto-format.sh"
+AGENT_FLOW_GUARD="$HOME/.codex/hooks/scripts/agent-flow-guard.sh"
 CODEX_CONFIG="$HOME/.codex/config.toml"
+CODEX_HOOKS="$HOME/.codex/hooks.json"
 
 hook_input() {
     local command="$1"
@@ -95,4 +97,46 @@ PY
     [ "$(wc -l < "$log" | tr -d ' ')" -eq 2 ]
     grep -Fx "$workdir/one.json" "$log"
     grep -Fx "$workdir/two.json" "$log"
+}
+
+@test "agent flow: hooks use codex-native guard" {
+    run python3 - "$CODEX_HOOKS" << 'PY'
+import json
+import sys
+
+hooks = json.load(open(sys.argv[1]))["hooks"]
+expected = "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'"
+agent_flow_commands = []
+
+for groups in hooks.values():
+    for group in groups:
+        if group.get("name") != "Agent Flow Guard":
+            continue
+        for hook in group.get("hooks", []):
+            agent_flow_commands.append(hook.get("command"))
+
+if not agent_flow_commands:
+    raise SystemExit("no Agent Flow Guard hooks found")
+if any(command != expected for command in agent_flow_commands):
+    raise SystemExit(f"non-codex agent flow commands: {agent_flow_commands}")
+PY
+
+    [ "$status" -eq 0 ]
+}
+
+@test "agent flow: guard uses CODEX_HOME agent-flow state" {
+    codex_home="$BATS_TEST_TMPDIR/codex"
+    bindir="$BATS_TEST_TMPDIR/bin"
+    log="$BATS_TEST_TMPDIR/mise.log"
+    mkdir -p "$codex_home/agent-flow" "$bindir"
+    printf '{}\n' > "$codex_home/agent-flow/session.json"
+    printf 'console.log("agent-flow hook")\n' > "$codex_home/agent-flow/hook.js"
+    printf '#!/usr/bin/env bash\nprintf "%%s\\n" "$*" >"$MISE_LOG"\n' > "$bindir/mise"
+    chmod +x "$bindir/mise"
+
+    run env CODEX_HOME="$codex_home" PATH="$bindir:$PATH" MISE_LOG="$log" AGENT_FLOW_HOOK_JS="$codex_home/agent-flow/hook.js" bash "$AGENT_FLOW_GUARD"
+
+    [ "$status" -eq 0 ]
+    [ -z "$output" ]
+    grep -F "$codex_home/agent-flow/hook.js" "$log"
 }

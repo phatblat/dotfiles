@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Claude Code Hook: SessionStart
+# Codex Hook: SessionStart
 # =============================================================================
-# Injecte les informations du projet dans le contexte de Claude.
+# Injects project information into the Codex session context.
 # Input: JSON via stdin avec session_id, cwd, source, etc.
 # Output: JSON avec additionalContext
 #
@@ -11,17 +11,17 @@
 
 set -euo pipefail
 
-# Lire stdin JSON (obligatoire pour Claude Code)
+# Read stdin JSON.
 input=$(cat)
 
-# Extraire le répertoire de travail depuis stdin ou utiliser le cwd actuel
+# Extract cwd from stdin or use the current directory.
 cwd=$(echo "$input" | jq -r '.cwd // empty' 2>/dev/null || pwd)
 cd "$cwd" 2>/dev/null || true
 
 # Build context message
 context="🚀 Session started $(date '+%Y-%m-%d %H:%M:%S')"
 
-# Détection du type de projet
+# Detect project type.
 if [ -f package.json ]; then
     name=$(jq -r '.name // "project"' package.json 2>/dev/null || echo "project")
     if jq -e '.dependencies.next // .devDependencies.next' package.json >/dev/null 2>&1; then
@@ -41,7 +41,7 @@ elif [ -f go.mod ]; then
     context="$context | 🐹 Go project"
 fi
 
-# Informations Git
+# Git information.
 if git rev-parse --git-dir >/dev/null 2>&1; then
     branch=$(git branch --show-current 2>/dev/null || echo 'detached')
     changes=$(git status --short 2>/dev/null | wc -l | tr -d ' ')
@@ -52,17 +52,9 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
     fi
 fi
 
-# Liste des commandes disponibles
-if [ -d "$HOME/.claude/commands" ]; then
-    cmds=$(ls "$HOME/.claude/commands/"*.md 2>/dev/null | xargs -I {} basename {} .md | sort | tr '\n' ' ' || echo "")
-    if [ -n "$cmds" ]; then
-        context="$context | 📋 Commands: $cmds"
-    fi
-fi
+context="$context | 💡 Codex skills and hooks available"
 
-context="$context | 💡 Skills and agents available"
-
-# Output JSON valide
+# Output valid JSON.
 # Use jq for safe JSON string encoding to prevent shell injection via project metadata
 printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":%s}}\n' \
   "$(printf '%s' "$context" | jq -Rs '.')"

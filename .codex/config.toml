@@ -43,12 +43,6 @@ last_updated = "2026-06-27T02:08:25Z"
 source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
-[marketplaces.claude-code-warp]
-last_updated = "2026-06-27T02:24:13Z"
-last_revision = "58c823da195346a7e6645fd2d9484d0e38db6bc2"
-source_type = "git"
-source = "https://github.com/warpdotdev/claude-code-warp.git"
-
 [marketplaces.claude-plugins-official]
 last_updated = "2026-06-27T02:24:19Z"
 last_revision = "f42c6edab38a90e56b7120a45525c541dee86ecc"
@@ -83,9 +77,6 @@ enabled = true
 enabled = true
 
 [plugins."template-creator@openai-primary-runtime"]
-enabled = true
-
-[plugins."warp@claude-code-warp"]
 enabled = true
 
 [plugins."clangd-lsp@claude-plugins-official"]
@@ -188,7 +179,6 @@ followUpQueueMode = "queue"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
 trusted_hash = "sha256:bafdecf1573c5e47e07756cab6ce31225c07267215d8c5fa7321ed5009772231"
-enabled = false
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:1:0"]
 trusted_hash = "sha256:806672e096e3690a8da673ff8024d8da1fb0bff91c9ff120699340576eed84a6"
@@ -234,15 +224,19 @@ trusted_hash = "sha256:c783cd3ba6c39b771dc9e01f0fb94a2949c8ade28f5d0e61521f1fb57
 
 [hooks.state."hookify@claude-plugins-official:hooks/hooks.json:pre_tool_use:0:0"]
 trusted_hash = "sha256:2763d5b04659d5af7b607ed8ae8524d45987b047509ae969db296c1163793e98"
+enabled = false
 
 [hooks.state."hookify@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:33cab461db694142d691bc1267d6b4694a32402af2301bd1cc1becfbe5888a81"
+enabled = false
 
 [hooks.state."hookify@claude-plugins-official:hooks/hooks.json:user_prompt_submit:0:0"]
 trusted_hash = "sha256:cbc990263a4b369738f970a9273caec2a5b55213795a57494ebb581240631a33"
+enabled = false
 
 [hooks.state."hookify@claude-plugins-official:hooks/hooks.json:stop:0:0"]
 trusted_hash = "sha256:81df2b0427162d1d2fe4b84733748a11f5bcb7b10dae9af3bced6c8b0709b6ca"
+enabled = false
 
 [hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:e1f574c07fd492df4de2ceb615c3b0a2a3eca27329bf0929ff9095650c7174bf"
@@ -278,24 +272,4 @@ enabled = false
 
 [hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:stop:0:0"]
 trusted_hash = "sha256:5d8880157e747997146b5eb0443a43909e23fb0203e64ae4895eff5a1b0282fa"
-enabled = false
-
-[hooks.state."warp@claude-code-warp:hooks/hooks.json:permission_request:0:0"]
-trusted_hash = "sha256:b8a12698a4cb64d767edd82090f55ad4d6ffaae0e829a5ad6c0b13d1e1d749a0"
-enabled = false
-
-[hooks.state."warp@claude-code-warp:hooks/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:645f5c88fe5517fb11be9028aba060bb4651ddde18cc4a702bca0593d9231435"
-enabled = false
-
-[hooks.state."warp@claude-code-warp:hooks/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:6c0b0fe34d02f93b3bc6c122a2f10fd46f17a6a4664061a47532ed548122cfb9"
-enabled = false
-
-[hooks.state."warp@claude-code-warp:hooks/hooks.json:user_prompt_submit:0:0"]
-trusted_hash = "sha256:61fd2273d74dce7604b6bb4e18bfa8da89ec59d4bde8ae4f90442bc3421b796b"
-enabled = false
-
-[hooks.state."warp@claude-code-warp:hooks/hooks.json:stop:0:0"]
-trusted_hash = "sha256:092e9cb1a2e5c816e80f255ce10d61df5f02ee838626dd7e5cf344c219661fef"
 enabled = false
