@@ -171,6 +171,7 @@ args = [
     "code-review-graph",
     "serve",
 ]
+default_tools_approval_mode = "auto"
 
 [shell_environment_policy]
 inherit = "core"
