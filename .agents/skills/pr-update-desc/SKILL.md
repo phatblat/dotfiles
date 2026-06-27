@@ -1,11 +1,11 @@
 ---
-name: "source-command-pr-update-desc"
+name: "pr-update-desc"
 description: "Update the PR description for the current branch"
 ---
 
-# source-command-pr-update-desc
+# pr-update-desc
 
-Use this skill when the user asks to run the migrated source command `pr-update-desc`.
+Use this skill when the user asks to run the migrated command `pr-update-desc` or invokes `$pr-update-desc`.
 
 ## Command Template
 

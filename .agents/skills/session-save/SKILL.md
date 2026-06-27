@@ -1,11 +1,11 @@
 ---
-name: "source-command-session-save"
+name: "session-save"
 description: "Save current Codex session to 2ndBrain vault with frontmatter, executive brief, and full transcript"
 ---
 
-# source-command-session-save
+# session-save
 
-Use this skill when the user asks to run the migrated source command `session-save`.
+Use this skill when the user asks to run the migrated command `session-save` or invokes `$session-save`.
 
 ## Command Template
 

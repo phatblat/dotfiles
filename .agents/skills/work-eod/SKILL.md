@@ -1,11 +1,11 @@
 ---
-name: "source-command-work-eod"
+name: "work-eod"
 description: "End-of-day — draft and post daily comments for tracked tickets missing a comment"
 ---
 
-# source-command-work-eod
+# work-eod
 
-Use this skill when the user asks to run the migrated source command `work-eod`.
+Use this skill when the user asks to run the migrated command `work-eod` or invokes `$work-eod`.
 
 ## Command Template
 

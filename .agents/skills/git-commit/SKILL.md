@@ -1,11 +1,11 @@
 ---
-name: "source-command-git-commit"
+name: "git-commit"
 description: "Create a git commit following the project's established style"
 ---
 
-# source-command-git-commit
+# git-commit
 
-Use this skill when the user asks to run the migrated source command `git-commit`.
+Use this skill when the user asks to run the migrated command `git-commit` or invokes `$git-commit`.
 
 ## Command Template
 

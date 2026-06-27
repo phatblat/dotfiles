@@ -1,11 +1,11 @@
 ---
-name: "source-command-git-status"
+name: "git-status"
 description: "Intelligently analyze git status and provide insights about current project state"
 ---
 
-# source-command-git-status
+# git-status
 
-Use this skill when the user asks to run the migrated source command `git-status`.
+Use this skill when the user asks to run the migrated command `git-status` or invokes `$git-status`.
 
 ## Command Template
 

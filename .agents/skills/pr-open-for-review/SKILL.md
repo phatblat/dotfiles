@@ -1,11 +1,11 @@
 ---
-name: "source-command-pr-open-for-review"
+name: "pr-open-for-review"
 description: "Mark the current branch's draft PR as ready for review"
 ---
 
-# source-command-pr-open-for-review
+# pr-open-for-review
 
-Use this skill when the user asks to run the migrated source command `pr-open-for-review`.
+Use this skill when the user asks to run the migrated command `pr-open-for-review` or invokes `$pr-open-for-review`.
 
 ## Command Template
 

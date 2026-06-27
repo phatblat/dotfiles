@@ -1,11 +1,11 @@
 ---
-name: "source-command-git-cleanup"
+name: "git-cleanup"
 description: "Delete local branches that have been merged or whose PRs are closed/stale"
 ---
 
-# source-command-git-cleanup
+# git-cleanup
 
-Use this skill when the user asks to run the migrated source command `git-cleanup`.
+Use this skill when the user asks to run the migrated command `git-cleanup` or invokes `$git-cleanup`.
 
 ## Command Template
 

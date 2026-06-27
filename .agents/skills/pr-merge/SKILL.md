@@ -1,11 +1,11 @@
 ---
-name: "source-command-pr-merge"
+name: "pr-merge"
 description: "Merge the current branch's PR after confirmation"
 ---
 
-# source-command-pr-merge
+# pr-merge
 
-Use this skill when the user asks to run the migrated source command `pr-merge`.
+Use this skill when the user asks to run the migrated command `pr-merge` or invokes `$pr-merge`.
 
 ## Command Template
 

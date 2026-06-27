@@ -1,11 +1,11 @@
 ---
-name: "source-command-work-runners"
+name: "work-runners"
 description: "Check macOS GHA runner status for the getditto org"
 ---
 
-# source-command-work-runners
+# work-runners
 
-Use this skill when the user asks to run the migrated source command `work-runners`.
+Use this skill when the user asks to run the migrated command `work-runners` or invokes `$work-runners`.
 
 ## Command Template
 
