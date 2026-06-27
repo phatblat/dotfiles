@@ -54,8 +54,8 @@ source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-06-27T02:24:23Z"
-last_revision = "7ef752aa422b6f860101f0794856f19c9c65eff2"
+last_updated = "2026-06-27T11:44:24Z"
+last_revision = "b0d3928d58acac2d143cd517e8e31c9a0d203436"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
@@ -144,34 +144,30 @@ enabled = true
 enabled = true
 
 [mcp_servers.node_repl]
-args = []
 command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
-startup_timeout_sec = 120
+startup_timeout_sec = 120.0
 
 [mcp_servers.node_repl.env]
-NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
-CODEX_HOME = "/Users/phatblat/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "85aecd42bf7542da8fd962aa9551d7ccfca3e4e8b41d6fa095d7d4e96d44c22f"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
 BROWSER_USE_CODEX_APP_VERSION = "26.623.41415"
 CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+CODEX_HOME = "/Users/phatblat/.codex"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "85aecd42bf7542da8fd962aa9551d7ccfca3e4e8b41d6fa095d7d4e96d44c22f"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 
 [mcp_servers.code-review-graph]
 command = "mise"
-args = [
-    "exec",
-    "pipx:code-review-graph",
-    "--",
-    "code-review-graph",
-    "serve",
-]
+args = ["exec", "pipx:code-review-graph", "--", "code-review-graph", "serve"]
 default_tools_approval_mode = "auto"
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
 
 [shell_environment_policy]
 inherit = "core"
