@@ -31,7 +31,7 @@ trust_level = "trusted"
 "gpt-5.3-codex-spark" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-27T02:07:15Z"
+last_updated = "2026-06-27T02:24:20Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -41,22 +41,26 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-code-warp]
-last_updated = "2026-06-27T02:12:35Z"
+last_updated = "2026-06-27T02:24:13Z"
+last_revision = "58c823da195346a7e6645fd2d9484d0e38db6bc2"
 source_type = "git"
 source = "https://github.com/warpdotdev/claude-code-warp.git"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-06-27T02:12:35Z"
+last_updated = "2026-06-27T02:24:19Z"
+last_revision = "f42c6edab38a90e56b7120a45525c541dee86ecc"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-06-27T02:12:35Z"
+last_updated = "2026-06-27T02:24:23Z"
+last_revision = "7ef752aa422b6f860101f0794856f19c9c65eff2"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
 [marketplaces.linear-cli]
-last_updated = "2026-06-27T02:12:38Z"
+last_updated = "2026-06-27T02:24:25Z"
+last_revision = "fc85b919cdb62a668eecea6ea5484aad9da8f655"
 source_type = "git"
 source = "https://github.com/schpet/linear-cli.git"
 
@@ -149,12 +153,12 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_nod
 NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 CODEX_HOME = "/Users/phatblat/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "d1a8040310e3ed270b3d17f6f3d41f4cdbad9096fa1a4f7c425fbb37afe949d3"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "85aecd42bf7542da8fd962aa9551d7ccfca3e4e8b41d6fa095d7d4e96d44c22f"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.623.31921"
+BROWSER_USE_CODEX_APP_VERSION = "26.623.41415"
 CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
 
 [mcp_servers.code-review-graph]
@@ -178,3 +182,4 @@ MAX_MCP_OUTPUT_TOKENS = "25000"
 [desktop]
 conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = true
+followUpQueueMode = "queue"
