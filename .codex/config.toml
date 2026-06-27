@@ -9,6 +9,7 @@ notify = [
 plan_mode_reasoning_effort = "xhigh"
 approvals_reviewer = "auto_review"
 
+tool_output_token_limit = 25000
 [features]
 apps = false
 collaboration_modes = true
@@ -272,4 +273,10 @@ enabled = false
 
 [hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:stop:0:0"]
 trusted_hash = "sha256:5d8880157e747997146b5eb0443a43909e23fb0203e64ae4895eff5a1b0282fa"
+enabled = false
+
+[mcp_servers.RepoPrompt]
+command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
+args = []
+tool_timeout_sec = 10000
 enabled = false
