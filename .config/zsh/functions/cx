@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# cx - Launch Codex without alternate screen mode
+codex --no-alt-screen "$@"
