@@ -8,14 +8,14 @@
       "desired_behavior": "Global harness instructions load for every session.",
       "harnesses": {
         "antigravity": {
-          "gap_reason": "Antigravity has no generated shared-harness plugin/context registered",
+          "gap_reason": "generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading",
           "mode": "adapter",
-          "next_action": "Generate and validate an Antigravity plugin that loads shared harness instructions",
+          "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
           "paths": [
             "~/.agents/harness/adapters/antigravity/plugin.json",
             "~/.gemini/antigravity-cli/settings.json"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -48,13 +48,14 @@
           }
         },
         "cursor": {
-          "gap_reason": "Cursor has no generated shared-harness plugin/rule registered",
+          "gap_reason": "generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified",
           "mode": "adapter",
-          "next_action": "Generate a Cursor plugin with a shared-harness rule that loads repository instructions",
+          "next_action": "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
           "paths": [
-            "~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json"
+            "~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json",
+            "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -99,13 +100,13 @@
       "desired_behavior": "Shared skills load from ~/.agents/skills.",
       "harnesses": {
         "antigravity": {
-          "gap_reason": "Antigravity plugin import can consume plugin skills, but no shared skills adapter is generated",
-          "mode": "emulated",
-          "next_action": "Map ~/.agents/skills into the Antigravity plugin skills surface",
+          "gap_reason": "generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified",
+          "mode": "adapter",
+          "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
           "paths": [
             "~/.agents/harness/adapters/antigravity/skills"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -138,13 +139,13 @@
           }
         },
         "cursor": {
-          "gap_reason": "Cursor plugins support skills, but shared skills are not bundled or linked yet",
+          "gap_reason": "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
           "mode": "native",
-          "next_action": "Generate Cursor plugin skill entries or links from ~/.agents/skills",
+          "next_action": "Verify Cursor discovers and activates generated shared skill wrappers",
           "paths": [
             "~/.agents/harness/adapters/cursor/skills"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -189,13 +190,13 @@
       "desired_behavior": "The 22 active commands are available through generated native prompts.",
       "harnesses": {
         "antigravity": {
-          "gap_reason": "Antigravity plugin commands have not been generated from shared prompts",
+          "gap_reason": "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
           "mode": "adapter",
-          "next_action": "Generate Antigravity plugin commands for the 22 active shared commands",
+          "next_action": "Verify Antigravity command schema or flatten command wrappers so all 22 commands are discovered",
           "paths": [
             "~/.agents/harness/adapters/antigravity/commands"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -228,13 +229,13 @@
           }
         },
         "cursor": {
-          "gap_reason": "Cursor plugin commands have not been generated from shared prompts",
+          "gap_reason": "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
           "mode": "native",
-          "next_action": "Generate Cursor plugin commands for the 22 active shared commands",
+          "next_action": "Verify Cursor discovers all 22 generated command wrappers",
           "paths": [
             "~/.agents/harness/adapters/cursor/commands"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -280,13 +281,13 @@
       "desired_behavior": "Six specialist agents are represented for delegation.",
       "harnesses": {
         "antigravity": {
-          "gap_reason": "Antigravity plugin agents have not been generated from the six shared specialists",
+          "gap_reason": "generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified",
           "mode": "emulated",
-          "next_action": "Represent specialist agents through Antigravity plugin agents or subagent imports",
+          "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
           "paths": [
             "~/.agents/harness/adapters/antigravity/agents"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -319,13 +320,13 @@
           }
         },
         "cursor": {
-          "gap_reason": "Cursor plugin agents have not been generated from the six shared specialists",
+          "gap_reason": "generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified",
           "mode": "native",
-          "next_action": "Generate Cursor plugin agent definitions from shared specialist definitions",
+          "next_action": "Verify Cursor discovers generated specialist agent wrappers",
           "paths": [
             "~/.agents/harness/adapters/cursor/agents"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -372,13 +373,14 @@
       "desired_behavior": "Dangerous commands, protected writes, and secret-like content are blocked consistently.",
       "harnesses": {
         "antigravity": {
-          "gap_reason": "The shared guard evaluates Antigravity calls, but no native Antigravity plugin hook is generated",
+          "gap_reason": "generated Antigravity hook wrapper calls the shared guard, but native pre-tool blocking has not been verified",
           "mode": "adapter",
-          "next_action": "Implement Antigravity plugin hook wrappers around the shared safety policy",
+          "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
           "paths": [
-            "~/.agents/harness/adapters/antigravity/hooks"
+            "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
+            "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -411,13 +413,14 @@
           }
         },
         "cursor": {
-          "gap_reason": "The shared guard evaluates Cursor calls, but no native Cursor plugin hook is generated",
+          "gap_reason": "Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified",
           "mode": "adapter",
-          "next_action": "Implement Cursor plugin hooks around the shared safety policy",
+          "next_action": "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
           "paths": [
-            "~/.agents/harness/adapters/cursor/hooks"
+            "~/.agents/harness/adapters/cursor/hooks/hooks.json",
+            "~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -463,13 +466,13 @@
       "desired_behavior": "code-review-graph is exposed as a tool capability.",
       "harnesses": {
         "antigravity": {
-          "gap_reason": "Antigravity plugin MCP registration has not been generated",
+          "gap_reason": "generated Antigravity MCP registration includes code-review-graph, but runtime inventory has not confirmed it loads",
           "mode": "adapter",
-          "next_action": "Register code-review-graph and shared harness guard through the Antigravity plugin",
+          "next_action": "Verify agy discovers the code-review-graph MCP server from the plugin",
           "paths": [
             "~/.agents/harness/adapters/antigravity/mcp.json"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -502,13 +505,13 @@
           }
         },
         "cursor": {
-          "gap_reason": "Cursor plugin MCP registration has not been generated",
+          "gap_reason": "Cursor MCP registration is generated, but runtime inventory has not confirmed it loads",
           "mode": "native",
-          "next_action": "Register code-review-graph and shared harness guard through Cursor plugin MCP",
+          "next_action": "Verify Cursor discovers the code-review-graph MCP server from the plugin",
           "paths": [
             "~/.agents/harness/adapters/cursor/mcp.json"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -553,13 +556,14 @@
       "desired_behavior": "Compaction preserves modified files, branch, pending work, and test state.",
       "harnesses": {
         "antigravity": {
-          "gap_reason": "Antigravity conversation/artifact preservation has not been mapped to the shared compaction contract",
+          "gap_reason": "generated Antigravity compaction guidance records preservation requirements, but conversation/artifact behavior has not been verified",
           "mode": "native",
           "next_action": "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
           "paths": [
+            "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
             "~/.gemini/antigravity-cli/settings.json"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -592,13 +596,13 @@
           }
         },
         "cursor": {
-          "gap_reason": "Cursor session persistence has not been mapped to the shared compaction contract",
+          "gap_reason": "Cursor preservation instructions are generated, but resume/history behavior has not been verified",
           "mode": "native",
-          "next_action": "Document Cursor resume/history behavior and add preservation instructions to plugin rules",
+          "next_action": "Verify Cursor resume and history behavior against compact-preservation requirements",
           "paths": [
             "~/.agents/harness/adapters/cursor/rules"
           ],
-          "state": "missing",
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -729,7 +733,7 @@
   ],
   "harnesses": {
     "antigravity": {
-      "role": "planned port"
+      "role": "tracked port"
     },
     "claude": {
       "role": "supported peer"
@@ -738,7 +742,7 @@
       "role": "supported peer"
     },
     "cursor": {
-      "role": "planned port"
+      "role": "tracked port"
     },
     "opencode": {
       "role": "new port"
@@ -757,7 +761,7 @@
       "pi-extension"
     ],
     "commands": 22,
-    "skills": 50
+    "skills": 63
   },
   "verified_date": "2026-06-27"
 }

@@ -29,8 +29,11 @@ OPEN_CODE = ROOT / ".config" / "opencode"
 PI_AGENT = ROOT / ".pi" / "agent"
 ANTIGRAVITY = ROOT / ".gemini" / "antigravity-cli"
 ANTIGRAVITY_HARNESS = SHARED / "adapters" / "antigravity"
+ANTIGRAVITY_COMMANDS = ANTIGRAVITY_HARNESS / "commands"
 CURSOR = ROOT / ".cursor"
 CURSOR_HARNESS = SHARED / "adapters" / "cursor"
+CURSOR_PLUGIN = CURSOR_HARNESS / ".cursor-plugin"
+CURSOR_RULES = CURSOR_HARNESS / "rules"
 HARNESSES = ["claude", "codex", "opencode", "pi", "antigravity", "cursor"]
 VERIFIED_DATE = "2026-06-27"
 MANAGED_HEADER = (
@@ -149,6 +152,12 @@ def command_validate() -> int:
         OPEN_CODE / "opencode.jsonc",
         PI_AGENT / "settings.json",
         ROOT / "docs" / "agent-harnesses.json",
+        ANTIGRAVITY_HARNESS / "plugin.json",
+        ANTIGRAVITY_HARNESS / "hooks" / "hooks.json",
+        ANTIGRAVITY_HARNESS / "mcp.json",
+        CURSOR_PLUGIN / "plugin.json",
+        CURSOR_HARNESS / "hooks" / "hooks.json",
+        CURSOR_HARNESS / "mcp.json",
     ):
         try:
             json.loads(config.read_text())
@@ -348,6 +357,17 @@ def render_all() -> dict[Path, str]:
             {"agents": slim_agents(agents)}, indent=2, sort_keys=True
         )
         + "\n",
+        ANTIGRAVITY_HARNESS / "plugin.json": render_antigravity_plugin_manifest(),
+        ANTIGRAVITY_HARNESS / "hooks" / "hooks.json": render_antigravity_hooks(),
+        ANTIGRAVITY_HARNESS
+        / "scripts"
+        / "harness-guard.py": render_antigravity_guard(),
+        ANTIGRAVITY_HARNESS / "mcp.json": render_antigravity_mcp(),
+        CURSOR_PLUGIN / "plugin.json": render_cursor_plugin_manifest(),
+        CURSOR_RULES / "shared-harness.mdc": render_cursor_rule(),
+        CURSOR_HARNESS / "hooks" / "hooks.json": render_cursor_hooks(),
+        CURSOR_HARNESS / "scripts" / "harness-guard.py": render_cursor_guard(),
+        CURSOR_HARNESS / "mcp.json": render_cursor_mcp(),
     }
 
     for command in commands:
@@ -360,6 +380,8 @@ def render_all() -> dict[Path, str]:
         rendered[PI_AGENT / "prompts" / f"{command['native']}.md"] = render_pi_prompt(
             command
         )
+        rendered[ANTIGRAVITY_COMMANDS / rel] = render_antigravity_command(command)
+        rendered[CURSOR_HARNESS / "commands" / rel] = render_cursor_command(command)
 
     for agent in agents:
         source = ROOT / agent["source"].replace("~/", "")
@@ -370,6 +392,20 @@ def render_all() -> dict[Path, str]:
             agent
         )
         rendered[PI_AGENT / "agents" / f"{agent['id']}.md"] = render_pi_agent(agent)
+        rendered[ANTIGRAVITY_HARNESS / "agents" / f"{agent['id']}.md"] = (
+            render_antigravity_agent(agent)
+        )
+        rendered[CURSOR_HARNESS / "agents" / f"{agent['id']}.md"] = render_cursor_agent(
+            agent
+        )
+
+    for skill_name in inventory["skills"]["paths"]:
+        rendered[ANTIGRAVITY_HARNESS / "skills" / skill_name / "SKILL.md"] = (
+            render_antigravity_skill(skill_name)
+        )
+        rendered[CURSOR_HARNESS / "skills" / skill_name / "SKILL.md"] = (
+            render_cursor_skill(skill_name)
+        )
 
     return rendered
 
@@ -532,6 +568,298 @@ description: {json.dumps(agent["description"])[1:-1]}
 
 Load the shared specialist definition from `{agent["shared"]}`.
 """
+
+
+def render_antigravity_plugin_manifest() -> str:
+    manifest = {
+        "name": "shared-agent-harness",
+        "version": "1.0.0",
+        "description": "Shared agent harness adapter for Antigravity.",
+        "author": {"name": "Ben Chatelain"},
+        "license": "Apache-2.0",
+        "keywords": ["agents", "harness", "antigravity"],
+    }
+    return json.dumps(manifest, indent=2, sort_keys=True) + "\n"
+
+
+def render_antigravity_command(command: dict[str, Any]) -> str:
+    return render_native_command(command)
+
+
+def render_antigravity_agent(agent: dict[str, Any]) -> str:
+    return f"""---
+name: {agent["id"]}
+description: {json.dumps(agent["description"])[1:-1]}
+---
+
+{MANAGED_HEADER}
+
+Load the shared specialist definition from `{agent["shared"]}`.
+"""
+
+
+def render_antigravity_skill(skill_name: str) -> str:
+    return f"""---
+name: {skill_name}
+description: Load the shared skill from ~/.agents/skills/{skill_name}/SKILL.md.
+---
+
+{MANAGED_HEADER}
+
+Load and follow the shared skill at `~/.agents/skills/{skill_name}/SKILL.md`.
+"""
+
+
+def render_antigravity_hooks() -> str:
+    hooks = {
+        "version": 1,
+        "hooks": {
+            "tool_call": [
+                {
+                    "command": "python3 scripts/harness-guard.py",
+                    "description": "Evaluate shell, write, and edit calls with the shared harness guard.",
+                }
+            ],
+            "compaction": [
+                {
+                    "append": "Preserve modified files, current branch, pending tasks, test results, and harness parity gaps."
+                }
+            ],
+        },
+    }
+    return json.dumps(hooks, indent=2, sort_keys=True) + "\n"
+
+
+def render_antigravity_guard() -> str:
+    return """#!/usr/bin/env python3
+\"\"\"Antigravity wrapper for the shared agent harness guard.
+
+Copyright: Ben Chatelain. Apache 2.0.
+\"\"\"
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+
+def main() -> int:
+    payload = json.load(sys.stdin)
+    tool = str(payload.get("tool", ""))
+    command = str(payload.get("command", ""))
+    path = str(payload.get("path", ""))
+    content = str(payload.get("content", ""))
+    cwd = str(payload.get("cwd", ""))
+    script = Path.home() / "scripts" / "agent-harnesses.py"
+    args = [
+        "python3",
+        str(script),
+        "guard",
+        "--harness",
+        "antigravity",
+        "--tool",
+        tool,
+        "--command",
+        command,
+        "--path",
+        path,
+        "--content",
+        content,
+    ]
+    if cwd:
+        args.extend(["--cwd", cwd])
+    result = subprocess.run(
+        args,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    print(result.stdout, end="")
+    if result.stdout:
+        return result.returncode
+    print(
+        json.dumps(
+            {
+                "harness": "antigravity",
+                "tool": tool,
+                "decision": "deny",
+                "reason": "Shared guard failed closed",
+            },
+            sort_keys=True,
+        )
+    )
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+"""
+
+
+def render_antigravity_mcp() -> str:
+    mcp = {
+        "mcpServers": {
+            "code-review-graph": {
+                "command": "mise",
+                "args": [
+                    "exec",
+                    "pipx:code-review-graph",
+                    "--",
+                    "code-review-graph",
+                    "serve",
+                ],
+            }
+        }
+    }
+    return json.dumps(mcp, indent=2, sort_keys=True) + "\n"
+
+
+def render_cursor_plugin_manifest() -> str:
+    manifest = {
+        "name": "shared-agent-harness",
+        "version": "1.0.0",
+        "description": "Shared agent harness adapter for Cursor.",
+    }
+    return json.dumps(manifest, indent=2, sort_keys=True) + "\n"
+
+
+def render_cursor_rule() -> str:
+    return f"""---
+description: Load the shared agent harness for every Cursor session.
+alwaysApply: true
+---
+
+{MANAGED_HEADER}
+
+Load repository instructions first, then follow `~/.agents/harness/instructions.md`.
+Use shared skills from `~/.agents/skills` when a task matches a skill description.
+Preserve modified files, current branch, pending tasks, test results, and harness parity gaps during compaction or handoff.
+"""
+
+
+def render_cursor_command(command: dict[str, Any]) -> str:
+    return render_native_command(command)
+
+
+def render_cursor_agent(agent: dict[str, Any]) -> str:
+    return f"""---
+name: {agent["id"]}
+description: {json.dumps(agent["description"])[1:-1]}
+---
+
+{MANAGED_HEADER}
+
+Load the shared specialist definition from `{agent["shared"]}` before acting.
+"""
+
+
+def render_cursor_skill(skill_name: str) -> str:
+    return f"""---
+name: {skill_name}
+description: Load the shared skill from ~/.agents/skills/{skill_name}/SKILL.md.
+---
+
+{MANAGED_HEADER}
+
+Load and follow the shared skill at `~/.agents/skills/{skill_name}/SKILL.md`.
+"""
+
+
+def render_cursor_hooks() -> str:
+    hooks = {
+        "version": 1,
+        "hooks": {
+            "tool_call": [
+                {
+                    "command": "python3 scripts/harness-guard.py",
+                    "description": "Evaluate shell, write, and edit calls with the shared harness guard.",
+                }
+            ],
+            "compaction": [
+                {
+                    "append": "Preserve modified files, current branch, pending tasks, test results, and harness parity gaps."
+                }
+            ],
+        },
+    }
+    return json.dumps(hooks, indent=2, sort_keys=True) + "\n"
+
+
+def render_cursor_guard() -> str:
+    return """#!/usr/bin/env python3
+\"\"\"Cursor wrapper for the shared agent harness guard.
+
+Copyright: Ben Chatelain. Apache 2.0.
+\"\"\"
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+
+def main() -> int:
+    payload = json.load(sys.stdin)
+    tool = str(payload.get("tool", ""))
+    command = str(payload.get("command", ""))
+    path = str(payload.get("path", ""))
+    content = str(payload.get("content", ""))
+    cwd = str(payload.get("cwd", ""))
+    script = Path.home() / "scripts" / "agent-harnesses.py"
+    args = [
+        "python3",
+        str(script),
+        "guard",
+        "--harness",
+        "cursor",
+        "--tool",
+        tool,
+        "--command",
+        command,
+        "--path",
+        path,
+        "--content",
+        content,
+    ]
+    if cwd:
+        args.extend(["--cwd", cwd])
+    result = subprocess.run(
+        args,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    print(result.stdout, end="")
+    return result.returncode
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+"""
+
+
+def render_cursor_mcp() -> str:
+    mcp = {
+        "mcpServers": {
+            "code-review-graph": {
+                "command": "mise",
+                "args": [
+                    "exec",
+                    "pipx:code-review-graph",
+                    "--",
+                    "code-review-graph",
+                    "serve",
+                ],
+            }
+        }
+    }
+    return json.dumps(mcp, indent=2, sort_keys=True) + "\n"
 
 
 def render_pi_agent(agent: dict[str, Any]) -> str:
@@ -796,21 +1124,24 @@ def build_manifest() -> dict[str, Any]:
             {
                 **complete_shared(["claude", "codex", "opencode", "pi"]),
                 "antigravity": state(
-                    "missing",
+                    "partial",
                     "adapter",
                     [
                         display_path(ANTIGRAVITY_HARNESS / "plugin.json"),
                         display_path(ANTIGRAVITY / "settings.json"),
                     ],
-                    "Antigravity has no generated shared-harness plugin/context registered",
-                    "Generate and validate an Antigravity plugin that loads shared harness instructions",
+                    "generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading",
+                    "Install or import the Antigravity plugin and verify it loads shared harness instructions",
                 ),
                 "cursor": state(
-                    "missing",
+                    "partial",
                     "adapter",
-                    [display_path(CURSOR_HARNESS / ".cursor-plugin" / "plugin.json")],
-                    "Cursor has no generated shared-harness plugin/rule registered",
-                    "Generate a Cursor plugin with a shared-harness rule that loads repository instructions",
+                    [
+                        display_path(CURSOR_HARNESS / ".cursor-plugin" / "plugin.json"),
+                        display_path(CURSOR_HARNESS / "rules" / "shared-harness.mdc"),
+                    ],
+                    "generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified",
+                    "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
                 ),
             },
         ),
@@ -824,18 +1155,18 @@ def build_manifest() -> dict[str, Any]:
             {
                 **complete_shared(["claude", "codex", "opencode", "pi"]),
                 "antigravity": state(
-                    "missing",
-                    "emulated",
+                    "partial",
+                    "adapter",
                     [display_path(ANTIGRAVITY_HARNESS / "skills")],
-                    "Antigravity plugin import can consume plugin skills, but no shared skills adapter is generated",
-                    "Map ~/.agents/skills into the Antigravity plugin skills surface",
+                    "generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified",
+                    "Verify agy imports and activates shared skill wrappers from the plugin",
                 ),
                 "cursor": state(
-                    "missing",
+                    "partial",
                     "native",
                     [display_path(CURSOR_HARNESS / "skills")],
-                    "Cursor plugins support skills, but shared skills are not bundled or linked yet",
-                    "Generate Cursor plugin skill entries or links from ~/.agents/skills",
+                    "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
+                    "Verify Cursor discovers and activates generated shared skill wrappers",
                 ),
             },
         ),
@@ -876,18 +1207,18 @@ def build_manifest() -> dict[str, Any]:
                     "generated prompt templates",
                 ),
                 "antigravity": state(
-                    "missing",
+                    "partial",
                     "adapter",
                     [display_path(ANTIGRAVITY_HARNESS / "commands")],
-                    "Antigravity plugin commands have not been generated from shared prompts",
-                    "Generate Antigravity plugin commands for the 22 active shared commands",
+                    "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
+                    "Verify Antigravity command schema or flatten command wrappers so all 22 commands are discovered",
                 ),
                 "cursor": state(
-                    "missing",
+                    "partial",
                     "native",
                     [display_path(CURSOR_HARNESS / "commands")],
-                    "Cursor plugin commands have not been generated from shared prompts",
-                    "Generate Cursor plugin commands for the 22 active shared commands",
+                    "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
+                    "Verify Cursor discovers all 22 generated command wrappers",
                 ),
             },
         ),
@@ -931,18 +1262,18 @@ def build_manifest() -> dict[str, Any]:
                     "Wire full subprocess delegation after choosing model/session policy",
                 ),
                 "antigravity": state(
-                    "missing",
+                    "partial",
                     "emulated",
                     [display_path(ANTIGRAVITY_HARNESS / "agents")],
-                    "Antigravity plugin agents have not been generated from the six shared specialists",
-                    "Represent specialist agents through Antigravity plugin agents or subagent imports",
+                    "generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified",
+                    "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
                 ),
                 "cursor": state(
-                    "missing",
+                    "partial",
                     "native",
                     [display_path(CURSOR_HARNESS / "agents")],
-                    "Cursor plugin agents have not been generated from the six shared specialists",
-                    "Generate Cursor plugin agent definitions from shared specialist definitions",
+                    "generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified",
+                    "Verify Cursor discovers generated specialist agent wrappers",
                 ),
             },
         ),
@@ -956,18 +1287,26 @@ def build_manifest() -> dict[str, Any]:
             {
                 **complete_adapter(["claude", "codex", "opencode", "pi"]),
                 "antigravity": state(
-                    "missing",
+                    "partial",
                     "adapter",
-                    [display_path(ANTIGRAVITY_HARNESS / "hooks")],
-                    "The shared guard evaluates Antigravity calls, but no native Antigravity plugin hook is generated",
-                    "Implement Antigravity plugin hook wrappers around the shared safety policy",
+                    [
+                        display_path(ANTIGRAVITY_HARNESS / "hooks" / "hooks.json"),
+                        display_path(
+                            ANTIGRAVITY_HARNESS / "scripts" / "harness-guard.py"
+                        ),
+                    ],
+                    "generated Antigravity hook wrapper calls the shared guard, but native pre-tool blocking has not been verified",
+                    "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
                 ),
                 "cursor": state(
-                    "missing",
+                    "partial",
                     "adapter",
-                    [display_path(CURSOR_HARNESS / "hooks")],
-                    "The shared guard evaluates Cursor calls, but no native Cursor plugin hook is generated",
-                    "Implement Cursor plugin hooks around the shared safety policy",
+                    [
+                        display_path(CURSOR_HARNESS / "hooks" / "hooks.json"),
+                        display_path(CURSOR_HARNESS / "scripts" / "harness-guard.py"),
+                    ],
+                    "Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified",
+                    "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
                 ),
             },
         ),
@@ -1009,18 +1348,18 @@ def build_manifest() -> dict[str, Any]:
                     "Implement direct MCP bridge if Pi exposes stable transport",
                 ),
                 "antigravity": state(
-                    "missing",
+                    "partial",
                     "adapter",
                     [display_path(ANTIGRAVITY_HARNESS / "mcp.json")],
-                    "Antigravity plugin MCP registration has not been generated",
-                    "Register code-review-graph and shared harness guard through the Antigravity plugin",
+                    "generated Antigravity MCP registration includes code-review-graph, but runtime inventory has not confirmed it loads",
+                    "Verify agy discovers the code-review-graph MCP server from the plugin",
                 ),
                 "cursor": state(
-                    "missing",
+                    "partial",
                     "native",
                     [display_path(CURSOR_HARNESS / "mcp.json")],
-                    "Cursor plugin MCP registration has not been generated",
-                    "Register code-review-graph and shared harness guard through Cursor plugin MCP",
+                    "Cursor MCP registration is generated, but runtime inventory has not confirmed it loads",
+                    "Verify Cursor discovers the code-review-graph MCP server from the plugin",
                 ),
             },
         ),
@@ -1057,18 +1396,21 @@ def build_manifest() -> dict[str, Any]:
                     "native compaction settings plus extension status",
                 ),
                 "antigravity": state(
-                    "missing",
+                    "partial",
                     "native",
-                    [display_path(ANTIGRAVITY / "settings.json")],
-                    "Antigravity conversation/artifact preservation has not been mapped to the shared compaction contract",
+                    [
+                        display_path(ANTIGRAVITY_HARNESS / "hooks" / "hooks.json"),
+                        display_path(ANTIGRAVITY / "settings.json"),
+                    ],
+                    "generated Antigravity compaction guidance records preservation requirements, but conversation/artifact behavior has not been verified",
                     "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
                 ),
                 "cursor": state(
-                    "missing",
+                    "partial",
                     "native",
                     [display_path(CURSOR_HARNESS / "rules")],
-                    "Cursor session persistence has not been mapped to the shared compaction contract",
-                    "Document Cursor resume/history behavior and add preservation instructions to plugin rules",
+                    "Cursor preservation instructions are generated, but resume/history behavior has not been verified",
+                    "Verify Cursor resume and history behavior against compact-preservation requirements",
                 ),
             },
         ),
@@ -1100,8 +1442,8 @@ def build_manifest() -> dict[str, Any]:
             "codex": {"role": "supported peer"},
             "opencode": {"role": "new port"},
             "pi": {"role": "new port"},
-            "antigravity": {"role": "planned port"},
-            "cursor": {"role": "planned port"},
+            "antigravity": {"role": "tracked port"},
+            "cursor": {"role": "tracked port"},
         },
         "features": features,
     }

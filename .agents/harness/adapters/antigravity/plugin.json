@@ -1,0 +1,14 @@
+{
+  "author": {
+    "name": "Ben Chatelain"
+  },
+  "description": "Shared agent harness adapter for Antigravity.",
+  "keywords": [
+    "agents",
+    "harness",
+    "antigravity"
+  ],
+  "license": "Apache-2.0",
+  "name": "shared-agent-harness",
+  "version": "1.0.0"
+}
