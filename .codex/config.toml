@@ -1,11 +1,12 @@
 model = "gpt-5.5"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "xhigh"
 personality = "pragmatic"
 suppress_unstable_features_warning = true
 notify = [
     "/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
     "turn-ended",
 ]
+plan_mode_reasoning_effort = "xhigh"
 
 [features]
 apps = false
