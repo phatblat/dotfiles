@@ -31,7 +31,7 @@ trust_level = "trusted"
 "gpt-5.3-codex-spark" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-27T02:24:20Z"
+last_updated = "2026-06-27T02:33:27Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -183,3 +183,105 @@ MAX_MCP_OUTPUT_TOKENS = "25000"
 conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = true
 followUpQueueMode = "queue"
+
+[hooks.state]
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:bafdecf1573c5e47e07756cab6ce31225c07267215d8c5fa7321ed5009772231"
+enabled = false
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:1:0"]
+trusted_hash = "sha256:806672e096e3690a8da673ff8024d8da1fb0bff91c9ff120699340576eed84a6"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:2:0"]
+trusted_hash = "sha256:9e5b1a7b90d816a9764e9be8d7bb2e7628cf5fcb6113eabff48c82041a763864"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:3:0"]
+trusted_hash = "sha256:784676296d5462ec86fccf6b65d3aed4c15d58aff437a756aad6ba9f3c2f31af"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:01315dc2afd11db52383e696c0fd63641769944cdef7c7bd557533548a28d9ba"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:1:0"]
+trusted_hash = "sha256:83c89056c44b5df8882435ad7cab46fc263490bc17aa74671ee30348eb5f3f4f"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:2:0"]
+trusted_hash = "sha256:436983fee76ff7e4ebbac9560b4c021b121560318e522005a350b9127a138145"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_compact:0:0"]
+trusted_hash = "sha256:a360fea4f42a9775089dcf08945d8a7f41f1e41a36380590866c2d760ddcce4b"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:83dc2c6bce28bb064d45f7af56f285d70b6662e0473d53b93e9b596bd39a57b9"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:5936ef4a9d4836641c1500e3f9a38e95505d0d6b8433c505a2086a4f9f5167d1"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:2:0"]
+trusted_hash = "sha256:9d5cb638e5c70a1249f09b547b9deed72b237b91f6c6ac7e3f888916cf43fa6c"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:8dde0bab68ea6f75fcf20f6a99c1b14df462596baa51c49c024e8de2d1e91389"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:78c962bed144b4825105efd4caaad3e6ff49dc6310809f148d061e3f6c478238"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_stop:0:0"]
+trusted_hash = "sha256:ba6c4990eaf9ac2a2bdb0cc4cd3ebffe03357bc096b342acd3fbcc0928798fa2"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:c783cd3ba6c39b771dc9e01f0fb94a2949c8ade28f5d0e61521f1fb570742c92"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:2763d5b04659d5af7b607ed8ae8524d45987b047509ae969db296c1163793e98"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:33cab461db694142d691bc1267d6b4694a32402af2301bd1cc1becfbe5888a81"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:cbc990263a4b369738f970a9273caec2a5b55213795a57494ebb581240631a33"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:stop:0:0"]
+trusted_hash = "sha256:81df2b0427162d1d2fe4b84733748a11f5bcb7b10dae9af3bced6c8b0709b6ca"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:e1f574c07fd492df4de2ceb615c3b0a2a3eca27329bf0929ff9095650c7174bf"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:0"]
+trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:1"]
+trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:2"]
+trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:3"]
+trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:4"]
+trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:3def3be0b299c29f829ea4b057509c24f3c6f8eede7b8c719bbd4167866d6cf6"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:c22701bf949e9ffd219867faec1158e0124874e94f3668dab6209fa3acc92dd6"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:stop:0:0"]
+trusted_hash = "sha256:5d8880157e747997146b5eb0443a43909e23fb0203e64ae4895eff5a1b0282fa"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:b8a12698a4cb64d767edd82090f55ad4d6ffaae0e829a5ad6c0b13d1e1d749a0"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:645f5c88fe5517fb11be9028aba060bb4651ddde18cc4a702bca0593d9231435"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:6c0b0fe34d02f93b3bc6c122a2f10fd46f17a6a4664061a47532ed548122cfb9"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:61fd2273d74dce7604b6bb4e18bfa8da89ec59d4bde8ae4f90442bc3421b796b"
+
+[hooks.state."warp@claude-code-warp:hooks/hooks.json:stop:0:0"]
+trusted_hash = "sha256:092e9cb1a2e5c816e80f255ce10d61df5f02ee838626dd7e5cf344c219661fef"
