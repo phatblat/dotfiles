@@ -13,6 +13,7 @@
     "teamookla/speedtest/speedtest"
   ],
   "trustedtaps": [
+    "https://github.com/jundot/omlx",
     "jetbrains/utils",
     "messense/macos-cross-toolchains",
     "schpet/tap",
