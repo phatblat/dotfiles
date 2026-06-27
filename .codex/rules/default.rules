@@ -1,0 +1,1 @@
+prefix_rule(pattern=["node", "/Users/phatblat/.codex/skills/.system/openai-docs/scripts/fetch-codex-manual.mjs"], decision="allow")

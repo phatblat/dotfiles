@@ -101,6 +101,7 @@
 !.codex/config.toml
 !.codex/hooks.json
 !.codex/hooks/
+!.codex/rules/
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/

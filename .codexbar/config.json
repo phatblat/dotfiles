@@ -7,7 +7,7 @@
       "source": "auto"
     },
     {
-      "enabled": false,
+      "enabled": true,
       "id": "codex"
     },
     {
@@ -193,6 +193,26 @@
     {
       "enabled": false,
       "id": "deepgram"
+    },
+    {
+      "enabled": false,
+      "id": "devin"
+    },
+    {
+      "enabled": false,
+      "id": "zed"
+    },
+    {
+      "enabled": false,
+      "id": "litellm"
+    },
+    {
+      "enabled": false,
+      "id": "poe"
+    },
+    {
+      "enabled": false,
+      "id": "chutes"
     }
   ],
   "version": 1
