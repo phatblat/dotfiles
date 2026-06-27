@@ -1,2 +1,12 @@
-prefix_rule(pattern=["node", "/Users/phatblat/.codex/skills/.system/openai-docs/scripts/"], decision="allow")
-prefix_rule(pattern=["rtk", "git", "push"], decision="allow")
+home = "/Users/phatblat"
+
+# Node scripts bundled with Codex skills
+prefix_rule(pattern=["node", home + "/.codex/skills/.system/openai-docs/scripts/"], decision="allow")
+
+# Read-only git introspection (used in compound status checks)
+prefix_rule(pattern=["git", "status"], decision="allow")
+prefix_rule(pattern=["git", "log"], decision="allow")
+prefix_rule(pattern=["git", "diff"], decision="allow")
+
+# All rtk git subcommands (rtk proxies git with token-optimized output)
+prefix_rule(pattern=["rtk", "git"], decision="allow")
