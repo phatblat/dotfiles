@@ -15,7 +15,12 @@
     ".docker/config.json",
     ".claude/.credentials.json",
     ".codex/auth.json",
-    ".pi/agent/auth.json"
+    ".pi/agent/auth.json",
+    ".gemini/google_accounts.json",
+    ".gemini/oauth_creds.json",
+    ".gemini/antigravity-cli/installation_id",
+    ".gemini/antigravity-cli/conversations/*",
+    ".cursor/ai-tracking/*"
   ],
   "secret_categories": [
     "ai-provider-key",

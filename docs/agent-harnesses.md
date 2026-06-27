@@ -4,13 +4,13 @@
 
 Verified date: 2026-06-27
 
-| Feature | Category | Priority | Claude | Codex | OpenCode | Pi | Next action |
-|---|---|---|---|---|---|---|---|
-| instructions.global | instructions | p0 | complete / shared | complete / shared | complete / shared | complete / shared | - |
-| skills.shared | skills | p0 | complete / shared | complete / shared | complete / shared | complete / shared | - |
-| commands.active | commands | p0 | complete / native | partial / adapter | complete / adapter | complete / adapter | Add native Codex command generation if/when file format stabilizes |
-| agents.specialists | agents | p0 | complete / native | complete / native | complete / adapter | partial / emulated | Wire full subprocess delegation after choosing model/session policy |
-| hooks.safety | hooks | p0 | complete / adapter | complete / adapter | complete / adapter | complete / adapter | - |
-| mcp.code_review_graph | mcp/tools | p1 | partial / native | complete / native | complete / native | partial / emulated | Add/verify native Claude MCP registration; Implement direct MCP bridge if Pi exposes stable transport |
-| sessions.compaction | sessions/compaction | p1 | complete / native | complete / native | complete / adapter | complete / native | - |
-| maintenance.audit | maintenance | p1 | complete / shared | complete / shared | complete / shared | complete / shared | - |
+| Feature | Category | Priority | Claude | Codex | OpenCode | Pi | Antigravity | Cursor | Next action |
+|---|---|---|---|---|---|---|---|---|---|
+| instructions.global | instructions | p0 | complete / shared | complete / shared | complete / shared | complete / shared | missing / adapter | missing / adapter | Generate a Cursor plugin with a shared-harness rule that loads repository instructions; Generate and validate an Antigravity plugin that loads shared harness instructions |
+| skills.shared | skills | p0 | complete / shared | complete / shared | complete / shared | complete / shared | missing / emulated | missing / native | Generate Cursor plugin skill entries or links from ~/.agents/skills; Map ~/.agents/skills into the Antigravity plugin skills surface |
+| commands.active | commands | p0 | complete / native | partial / adapter | complete / adapter | complete / adapter | missing / adapter | missing / native | Add native Codex command generation if/when file format stabilizes; Generate Antigravity plugin commands for the 22 active shared commands; Generate Cursor plugin commands for the 22 active shared commands |
+| agents.specialists | agents | p0 | complete / native | complete / native | complete / adapter | partial / emulated | missing / emulated | missing / native | Generate Cursor plugin agent definitions from shared specialist definitions; Represent specialist agents through Antigravity plugin agents or subagent imports; Wire full subprocess delegation after choosing model/session policy |
+| hooks.safety | hooks | p0 | complete / adapter | complete / adapter | complete / adapter | complete / adapter | missing / adapter | missing / adapter | Implement Antigravity plugin hook wrappers around the shared safety policy; Implement Cursor plugin hooks around the shared safety policy |
+| mcp.code_review_graph | mcp/tools | p1 | partial / native | complete / native | complete / native | partial / emulated | missing / adapter | missing / native | Add/verify native Claude MCP registration; Implement direct MCP bridge if Pi exposes stable transport; Register code-review-graph and shared harness guard through Cursor plugin MCP; Register code-review-graph and shared harness guard through the Antigravity plugin |
+| sessions.compaction | sessions/compaction | p1 | complete / native | complete / native | complete / adapter | complete / native | missing / native | missing / native | Document Cursor resume/history behavior and add preservation instructions to plugin rules; Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements |
+| maintenance.audit | maintenance | p1 | complete / shared | complete / shared | complete / shared | complete / shared | complete / shared | complete / shared | - |

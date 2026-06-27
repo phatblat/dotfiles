@@ -27,7 +27,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: safe shell commands pass every adapter guard" {
-  for harness in claude codex opencode pi; do
+  for harness in claude codex opencode pi antigravity cursor; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "git status --short"
     [ "$status" -eq 0 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -36,7 +36,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: dangerous shell commands are denied consistently" {
-  for harness in claude codex opencode pi; do
+  for harness in claude codex opencode pi antigravity cursor; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "rm -rf /"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -47,7 +47,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: protected writes are denied consistently" {
-  for harness in claude codex opencode pi; do
+  for harness in claude codex opencode pi antigravity cursor; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/.ssh/id_ed25519" --content "not a key"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -58,7 +58,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: secret-like content is denied consistently" {
-  for harness in claude codex opencode pi; do
+  for harness in claude codex opencode pi antigravity cursor; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/tmp/example.txt" --content "token = sk-example12345678901234567890"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
