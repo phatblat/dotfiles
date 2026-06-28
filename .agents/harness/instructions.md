@@ -11,3 +11,13 @@ Safety-sensitive lifecycle events must be normalized through
 `~/.agents/harness/hooks/contract.json` and evaluated by the shared safety policy.
 Adapters may add stricter native permissions, but they must not weaken a shared
 deny decision.
+
+## Answer Beacon
+
+When directly answering a user question, especially inside a longer status update
+or mixed task output, prefix the answer with:
+
+💬 Answer:
+
+Use this marker only for actual answers to user questions, not every progress
+update.
