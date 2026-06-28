@@ -27,13 +27,16 @@ trust_level = "trusted"
 [projects."/"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/sandcastle"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
 
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
-"gpt-5.5" = 1
+"gpt-5.5" = 2
 
 [marketplaces.openai-bundled]
 last_updated = "2026-06-27T02:33:27Z"
