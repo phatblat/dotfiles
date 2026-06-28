@@ -1,6 +1,6 @@
 ---
 name: optimize
-description: Audit Codex and agent harness configuration for efficiency, redundant work, permission friction, hook overhead, plugin cost, and dead config. Use when invoked as `$optimize` or when the user asks to optimize the agent harness.
+description: Audit Codex and shared agent harness configuration for efficiency, redundant work, permission friction, hook overhead, plugin cost, skill metadata portability, and dead config. Use when invoked as `$optimize`, when the user asks to optimize the agent harness, or when porting shared skills, commands, agents, hooks, or MCP config between agent tools.
 ---
 
 # optimize
@@ -16,10 +16,12 @@ Prefer active Codex paths:
 - `.codex/hooks/scripts/`
 - `.agents/skills/`
 - `.agents/skills/*/agents/openai.yaml`
+- `.agents/skills/optimize/references/agent-harness-portability.md`
 - `.agents/harness/`
 - `~/.codex/` plugin and skill metadata when relevant
 
 Read `.claude/` only for migration parity or when the user explicitly asks about legacy Claude Code behavior.
+For cross-agent porting or metadata questions, read `references/agent-harness-portability.md`.
 
 ## Audit dimensions
 
@@ -67,6 +69,19 @@ Check enabled plugins and active skills for:
 
 - Do not describe `allow_implicit_invocation: false` as removing the skill from context. It only prevents implicit invocation; enabled skill metadata can still appear in Codex's initial skill list. If a rarely used procedural skill should not appear in context at all, recommend disabling it via `[[skills.config]] enabled = false` or moving it out of scanned skill paths.
 - Do not recommend creating a separate `classify-skill` skill unless the rubric is reused by multiple workflows. If it is created for model use, treat it as an ability; if it is only a command the user runs, treat it as procedural.
+
+### Harness portability
+
+When optimizing shared skills or porting harness features between Claude, Codex, OpenCode, Pi, Antigravity, and Cursor:
+
+1. Classify each skill as **procedural** or **ability** before mapping metadata.
+2. Keep portable `SKILL.md` frontmatter minimal: `name` and `description` first. Treat fields such as `allowed-tools`, `disable-model-invocation`, `paths`, model hints, and UI metadata as harness-specific unless the target's primary docs confirm support.
+3. Put Codex-specific behavior in `agents/openai.yaml`, especially `policy.allow_implicit_invocation` and `dependencies.tools`.
+4. Front-load skill descriptions with the trigger and boundary so shortened skill lists still classify correctly.
+5. Move long details into `references/`, deterministic repeat work into `scripts/`, and output resources into `assets/`.
+6. Record unsupported or unverified harness metadata as an adapter gap instead of copying stale keys across tools.
+
+Use `references/agent-harness-portability.md` for the current attribute mapping and source notes.
 
 ### MCP servers
 

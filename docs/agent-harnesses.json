@@ -1,4 +1,102 @@
 {
+  "attribute_mappings": [
+    {
+      "antigravity": "Generated wrapper skill",
+      "claude": "`name`, `description` in `SKILL.md`",
+      "codex": "`name`, `description` in `SKILL.md`",
+      "cursor": "`name`, `description` in `SKILL.md`",
+      "feature": "Skill identity and trigger",
+      "id": "skill.identity",
+      "notes": "Most portable part of a skill.",
+      "opencode": "`name`, `description` in `SKILL.md`",
+      "pi": "Local `skills` path adapter",
+      "portable_guidance": "Keep `SKILL.md` to standard `name` and `description` first."
+    },
+    {
+      "antigravity": "Local adapter or command wrapper",
+      "claude": "`disable-model-invocation: true`",
+      "codex": "`agents/openai.yaml` `policy.allow_implicit_invocation: false`",
+      "cursor": "`disable-model-invocation: true`",
+      "feature": "Manual-only procedural skills",
+      "id": "skill.manual_only",
+      "notes": "Codex policy blocks implicit invocation but does not hide enabled skill metadata.",
+      "opencode": "No direct equivalent; use skill permissions or command wrappers",
+      "pi": "Local adapter or command wrapper",
+      "portable_guidance": "Represent intent per harness; do not copy one vendor key everywhere."
+    },
+    {
+      "antigravity": "Local adapter only",
+      "claude": "`paths` frontmatter",
+      "codex": "Prefer nested repo skills or concise descriptions",
+      "cursor": "`paths`; `globs` legacy fallback",
+      "feature": "File/path-scoped guidance",
+      "id": "skill.path_scope",
+      "notes": "Not part of the shared Agent Skills core.",
+      "opencode": "Directory discovery plus permissions",
+      "pi": "Local adapter only",
+      "portable_guidance": "Use only where the target harness documents path scoping."
+    },
+    {
+      "antigravity": "Hook/adapter guard",
+      "claude": "`allowed-tools` and `disallowed-tools`",
+      "codex": "Use permissions, hooks, or dependency metadata; no skill-level allowlist",
+      "cursor": "No documented skill-level equivalent",
+      "feature": "Skill-level tool preapproval",
+      "id": "tool.preapproval",
+      "notes": "The Agent Skills spec marks `allowed-tools` experimental.",
+      "opencode": "`permission.skill` controls skill loading, not tool preapproval",
+      "pi": "Extension or settings adapter",
+      "portable_guidance": "Treat `allowed-tools` as nonportable and client-specific."
+    },
+    {
+      "antigravity": "Plugin manifest or adapter metadata",
+      "claude": "Skill frontmatter or marketplace/plugin metadata",
+      "codex": "`agents/openai.yaml` `interface` fields",
+      "cursor": "`metadata` map for skills; `.mdc` frontmatter for rules",
+      "feature": "Skill UI metadata",
+      "id": "skill.ui_metadata",
+      "notes": "Do not put Codex `interface` fields in portable `SKILL.md`.",
+      "opencode": "`metadata` map only; unknown fields ignored",
+      "pi": "Local settings/extension only",
+      "portable_guidance": "Keep presentation metadata in harness-specific sidecars."
+    },
+    {
+      "antigravity": "Not verified in adapter",
+      "claude": "Skill/agent `model`, `effort`",
+      "codex": "Agent TOML `model`, `model_reasoning_effort`",
+      "cursor": "No shared skill metadata equivalent",
+      "feature": "Model and effort overrides",
+      "id": "model.effort",
+      "notes": "Never assume model aliases mean the same provider/model.",
+      "opencode": "Global or agent `model`; `small_model`",
+      "pi": "`defaultModel`, `defaultThinkingLevel`",
+      "portable_guidance": "Map separately for skills, agents, and global config."
+    },
+    {
+      "antigravity": "Generated hook/guard adapter",
+      "claude": "Agent `tools`, `disallowedTools`, `permissionMode`",
+      "codex": "Agent TOML permissions/sandbox and inherited MCP config",
+      "cursor": "Rules/plugin adapter; native behavior unverified",
+      "feature": "Subagent tool restrictions",
+      "id": "agent.tools",
+      "notes": "Shared harness guard covers only normalized shell/write/edit safety.",
+      "opencode": "Agent `permission` and `tools`",
+      "pi": "Extension-enforced guard",
+      "portable_guidance": "Prefer native agent configuration; use shared hooks for cross-harness safety."
+    },
+    {
+      "antigravity": "Generated `mcp.json`, unverified",
+      "claude": "`.mcp.json`, settings, or agent `mcpServers`",
+      "codex": "`agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP",
+      "cursor": "Generated `mcp.json`, unverified",
+      "feature": "MCP/tool dependencies",
+      "id": "mcp.dependencies",
+      "notes": "Dependency metadata is advisory unless the harness enforces it.",
+      "opencode": "`mcp` config",
+      "pi": "Extension or future MCP bridge",
+      "portable_guidance": "Declare dependencies near the harness that can enforce or install them."
+    }
+  ],
   "features": [
     {
       "canonical_artifacts": [

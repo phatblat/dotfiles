@@ -1,5 +1,5 @@
 ---
-description: Review Claude Code configuration and propose efficiency optimizations.
+description: Review Claude Code and shared agent harness configuration and propose efficiency or portability optimizations.
 argument-hint: "[focus area: hooks, permissions, plugins, all]"
 ---
 

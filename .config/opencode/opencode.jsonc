@@ -99,7 +99,7 @@
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/status.md with arguments: $ARGUMENTS"
     },
     "optimize": {
-      "description": "Review Claude Code configuration and propose efficiency optimizations.",
+      "description": "Review Claude Code and shared agent harness configuration and propose efficiency or portability optimizations.",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/optimize.md with arguments: $ARGUMENTS"
     },
     "plan:linear": {

@@ -14,3 +14,28 @@ Verified date: 2026-06-27
 | mcp.code_review_graph | mcp/tools | p1 | partial / native | complete / native | complete / native | partial / emulated | partial / adapter | partial / native | Add/verify native Claude MCP registration; Implement direct MCP bridge if Pi exposes stable transport; Verify Cursor discovers the code-review-graph MCP server from the plugin; Verify agy discovers the code-review-graph MCP server from the plugin |
 | sessions.compaction | sessions/compaction | p1 | complete / native | complete / native | complete / adapter | complete / native | partial / native | partial / native | Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements; Verify Cursor resume and history behavior against compact-preservation requirements |
 | maintenance.audit | maintenance | p1 | complete / shared | complete / shared | complete / shared | complete / shared | complete / shared | complete / shared | - |
+
+## Configuration Attribute Mapping
+
+Use this table when porting shared skills, commands, agents, and safety rules between harnesses. Only the `SKILL.md` core `name` and `description` fields should be treated as broadly portable. Other metadata is harness-specific unless the target documentation says otherwise.
+
+| Feature | Portable guidance | Claude | Codex | OpenCode | Pi | Antigravity | Cursor | Notes |
+|---|---|---|---|---|---|---|---|---|
+| Skill identity and trigger | Keep `SKILL.md` to standard `name` and `description` first. | `name`, `description` in `SKILL.md` | `name`, `description` in `SKILL.md` | `name`, `description` in `SKILL.md` | Local `skills` path adapter | Generated wrapper skill | `name`, `description` in `SKILL.md` | Most portable part of a skill. |
+| Manual-only procedural skills | Represent intent per harness; do not copy one vendor key everywhere. | `disable-model-invocation: true` | `agents/openai.yaml` `policy.allow_implicit_invocation: false` | No direct equivalent; use skill permissions or command wrappers | Local adapter or command wrapper | Local adapter or command wrapper | `disable-model-invocation: true` | Codex policy blocks implicit invocation but does not hide enabled skill metadata. |
+| File/path-scoped guidance | Use only where the target harness documents path scoping. | `paths` frontmatter | Prefer nested repo skills or concise descriptions | Directory discovery plus permissions | Local adapter only | Local adapter only | `paths`; `globs` legacy fallback | Not part of the shared Agent Skills core. |
+| Skill-level tool preapproval | Treat `allowed-tools` as nonportable and client-specific. | `allowed-tools` and `disallowed-tools` | Use permissions, hooks, or dependency metadata; no skill-level allowlist | `permission.skill` controls skill loading, not tool preapproval | Extension or settings adapter | Hook/adapter guard | No documented skill-level equivalent | The Agent Skills spec marks `allowed-tools` experimental. |
+| Skill UI metadata | Keep presentation metadata in harness-specific sidecars. | Skill frontmatter or marketplace/plugin metadata | `agents/openai.yaml` `interface` fields | `metadata` map only; unknown fields ignored | Local settings/extension only | Plugin manifest or adapter metadata | `metadata` map for skills; `.mdc` frontmatter for rules | Do not put Codex `interface` fields in portable `SKILL.md`. |
+| Model and effort overrides | Map separately for skills, agents, and global config. | Skill/agent `model`, `effort` | Agent TOML `model`, `model_reasoning_effort` | Global or agent `model`; `small_model` | `defaultModel`, `defaultThinkingLevel` | Not verified in adapter | No shared skill metadata equivalent | Never assume model aliases mean the same provider/model. |
+| Subagent tool restrictions | Prefer native agent configuration; use shared hooks for cross-harness safety. | Agent `tools`, `disallowedTools`, `permissionMode` | Agent TOML permissions/sandbox and inherited MCP config | Agent `permission` and `tools` | Extension-enforced guard | Generated hook/guard adapter | Rules/plugin adapter; native behavior unverified | Shared harness guard covers only normalized shell/write/edit safety. |
+| MCP/tool dependencies | Declare dependencies near the harness that can enforce or install them. | `.mcp.json`, settings, or agent `mcpServers` | `agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP | `mcp` config | Extension or future MCP bridge | Generated `mcp.json`, unverified | Generated `mcp.json`, unverified | Dependency metadata is advisory unless the harness enforces it. |
+
+### Mapping Sources
+
+- Open Agent Skills spec: https://agentskills.io/specification
+- Claude Code slash commands and subagents: https://docs.anthropic.com/en/docs/claude-code/slash-commands and https://code.claude.com/docs/en/sub-agents
+- Codex skills and subagents: https://developers.openai.com/codex/skills and https://developers.openai.com/codex/subagents
+- OpenCode config and skills: https://opencode.ai/docs/config/ and https://opencode.ai/docs/skills/
+- Cursor rules and skills: https://cursor.com/docs/rules and https://cursor.com/docs/skills
+- Pi and Antigravity rows reflect local generated adapters in this repository until primary docs are verified.
+

@@ -1,6 +1,6 @@
 ---
 name: optimize
-description: Review Claude Code configuration and propose efficiency optimizations.
+description: Review Claude Code and shared agent harness configuration and propose efficiency or portability optimizations.
 argument_hint: [focus area: hooks, permissions, plugins, all]
 allowed_tools:
   - Read
@@ -112,6 +112,19 @@ policy:
 Flag procedural skills without that policy. Do not claim this removes the skill from context; it only blocks implicit invocation. If a rarely used procedural skill should not appear in Codex's initial skill list at all, recommend disabling it with `[[skills.config]] enabled = false` in `~/.codex/config.toml` or moving it out of scanned skill paths.
 
 Do not recommend creating a separate `classify-skill` skill unless the rubric is reused by multiple workflows. If created for model use, it is an ability; if exposed only as a user-run command, it is procedural.
+
+### 3b. Harness Portability Audit
+
+When optimizing shared skills or porting harness features between Claude, Codex, OpenCode, Pi, Antigravity, and Cursor, read `~/.agents/skills/optimize/references/agent-harness-portability.md`.
+
+Audit these points:
+
+1. Classify each skill as **procedural** or **ability** before mapping metadata.
+2. Keep portable `SKILL.md` frontmatter minimal: `name` and `description` first. Treat fields such as `allowed-tools`, `disable-model-invocation`, `paths`, model hints, and UI metadata as harness-specific unless the target's primary docs confirm support.
+3. Put Codex-specific behavior in `agents/openai.yaml`, especially `policy.allow_implicit_invocation` and `dependencies.tools`.
+4. Front-load skill descriptions with the trigger and boundary so shortened skill lists still classify correctly.
+5. Move long details into `references/`, deterministic repeat work into `scripts/`, and output resources into `assets/`.
+6. Record unsupported or unverified harness metadata as an adapter gap instead of copying stale keys across tools.
 
 ### 4. MCP Server Efficiency
 
