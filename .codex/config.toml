@@ -36,7 +36,7 @@ trust_level = "trusted"
 
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
-"gpt-5.5" = 2
+"gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
 last_updated = "2026-06-27T02:33:27Z"
