@@ -96,6 +96,25 @@ From `enabledPlugins` in settings.json:
 - Look for plugins that overlap in functionality
 - Verify marketplace sources are still valid
 
+### 3a. Skill Invocation Policy Audit
+
+Audit `~/.agents/skills/*/SKILL.md` and any adjacent `agents/openai.yaml` files.
+Classify each active skill as one of:
+
+- **Procedural**: user-run workflows, interactive interviews, migrated slash commands, or procedures that should run only when explicitly invoked (for example, `git-commit`, `optimize`, `grilling`).
+- **Ability**: model-invoked capabilities or domain rules the agent should automatically apply when the task matches (for example, code review standards, docs lookup, platform-specific implementation guidance).
+
+For procedural skills, check for Codex metadata:
+
+```yaml
+policy:
+  allow_implicit_invocation: false
+```
+
+Flag procedural skills without that policy. Do not claim this removes the skill from context; it only blocks implicit invocation. If a rarely used procedural skill should not appear in Codex's initial skill list at all, recommend disabling it with `[[skills.config]] enabled = false` in `~/.codex/config.toml` or moving it out of scanned skill paths.
+
+Do not recommend creating a separate `classify-skill` skill unless the rubric is reused by multiple workflows. If created for model use, it is an ability; if exposed only as a user-run command, it is procedural.
+
 ### 4. MCP Server Efficiency
 
 Check `.mcp.json` files for:

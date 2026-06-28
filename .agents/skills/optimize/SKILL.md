@@ -15,6 +15,7 @@ Prefer active Codex paths:
 - `.codex/hooks.json`
 - `.codex/hooks/scripts/`
 - `.agents/skills/`
+- `.agents/skills/*/agents/openai.yaml`
 - `.agents/harness/`
 - `~/.codex/` plugin and skill metadata when relevant
 
@@ -54,6 +55,18 @@ Check enabled plugins and active skills for:
 - Large always-loaded instructions.
 - Legacy slash-command names that should be skill names.
 - Broken references to removed Claude commands or paths.
+- Skills that should be classified as **procedural** or **ability**:
+  - **Procedural** skills are user-run workflows, interactive interviews, migrated commands, or procedures that should run only when explicitly invoked (for example, `$git-commit`, `$optimize`, `$grilling`).
+  - **Ability** skills are reusable model-invoked capabilities or domain rules Codex should apply automatically when the task matches (for example, code review standards, docs lookup, platform-specific implementation guidance).
+- For procedural skills, check for `agents/openai.yaml` with:
+
+  ```yaml
+  policy:
+    allow_implicit_invocation: false
+  ```
+
+- Do not describe `allow_implicit_invocation: false` as removing the skill from context. It only prevents implicit invocation; enabled skill metadata can still appear in Codex's initial skill list. If a rarely used procedural skill should not appear in context at all, recommend disabling it via `[[skills.config]] enabled = false` or moving it out of scanned skill paths.
+- Do not recommend creating a separate `classify-skill` skill unless the rubric is reused by multiple workflows. If it is created for model use, treat it as an ability; if it is only a command the user runs, treat it as procedural.
 
 ### MCP servers
 
