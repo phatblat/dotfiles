@@ -70,27 +70,21 @@ source = "https://github.com/schpet/linear-cli.git"
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
-enabled = true
+enabled = false
 
 [plugins."pdf@openai-primary-runtime"]
-enabled = true
+enabled = false
 
 [plugins."spreadsheets@openai-primary-runtime"]
-enabled = true
+enabled = false
 
 [plugins."presentations@openai-primary-runtime"]
-enabled = true
+enabled = false
 
 [plugins."template-creator@openai-primary-runtime"]
-enabled = true
+enabled = false
 
 [plugins."clangd-lsp@claude-plugins-official"]
-enabled = true
-
-[plugins."claude-code-setup@claude-plugins-official"]
-enabled = true
-
-[plugins."claude-md-management@claude-plugins-official"]
 enabled = true
 
 [plugins."code-review@claude-plugins-official"]
@@ -114,9 +108,6 @@ enabled = true
 [plugins."lua-lsp@claude-plugins-official"]
 enabled = true
 
-[plugins."plugin-dev@claude-plugins-official"]
-enabled = true
-
 [plugins."pyright-lsp@claude-plugins-official"]
 enabled = true
 
@@ -126,9 +117,6 @@ enabled = true
 [plugins."security-guidance@claude-plugins-official"]
 enabled = false
 
-[plugins."skill-creator@claude-plugins-official"]
-enabled = true
-
 [plugins."swift-lsp@claude-plugins-official"]
 enabled = true
 
@@ -136,7 +124,7 @@ enabled = true
 enabled = true
 
 [plugins."compound-engineering@compound-engineering-plugin"]
-enabled = true
+enabled = false
 
 [plugins."linear-cli@linear-cli"]
 enabled = true
