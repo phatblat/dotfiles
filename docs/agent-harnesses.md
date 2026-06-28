@@ -17,7 +17,7 @@ Verified date: 2026-06-27
 
 ## Configuration Attribute Mapping
 
-Use this table when porting shared skills, commands, agents, and safety rules between harnesses. Only the `SKILL.md` core `name` and `description` fields should be treated as broadly portable. Other metadata is harness-specific unless the target documentation says otherwise.
+Use this table when porting shared skills, commands, agents, and safety rules between harnesses. Only the `SKILL.md` core `name` and `description` fields should be treated as broadly portable. Other metadata is harness-specific unless the target documentation says otherwise. When porting research changes current agent configuration facts, update `ATTRIBUTE_MAPPINGS` in `scripts/agent-harnesses.py` and regenerate this document.
 
 | Feature | Portable guidance | Claude | Codex | OpenCode | Pi | Antigravity | Cursor | Notes |
 |---|---|---|---|---|---|---|---|---|

@@ -17,6 +17,7 @@ Use this reference when optimizing or porting shared skills, commands, agents, h
 4. Use progressive disclosure. Keep `SKILL.md` short; put detailed mapping tables in references, deterministic repeated work in scripts, and output assets in assets.
 5. Declare tool dependencies where the target can use them. Codex supports `agents/openai.yaml` `dependencies.tools`; other harnesses need native MCP/config entries or adapter checks.
 6. Record unsupported behavior as a parity gap instead of copying unknown metadata across tools.
+7. When new research changes current agent configuration facts, update `ATTRIBUTE_MAPPINGS` in `scripts/agent-harnesses.py`, regenerate `docs/agent-harnesses.json` and `docs/agent-harnesses.md`, and keep this reference aligned.
 
 ## Metadata Portability
 

@@ -125,6 +125,7 @@ Audit these points:
 4. Front-load skill descriptions with the trigger and boundary so shortened skill lists still classify correctly.
 5. Move long details into `references/`, deterministic repeat work into `scripts/`, and output resources into `assets/`.
 6. Record unsupported or unverified harness metadata as an adapter gap instead of copying stale keys across tools.
+7. When porting research changes current agent configuration facts, update `ATTRIBUTE_MAPPINGS` in `scripts/agent-harnesses.py`, regenerate `docs/agent-harnesses.*`, and update `~/.agents/skills/optimize/references/agent-harness-portability.md` in the same change.
 
 ### 4. MCP Server Efficiency
 
