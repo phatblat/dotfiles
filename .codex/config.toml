@@ -33,6 +33,7 @@ trust_level = "trusted"
 
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
+"gpt-5.5" = 1
 
 [marketplaces.openai-bundled]
 last_updated = "2026-06-27T02:33:27Z"
@@ -45,14 +46,14 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-06-27T02:24:19Z"
-last_revision = "f42c6edab38a90e56b7120a45525c541dee86ecc"
+last_updated = "2026-06-28T13:48:59Z"
+last_revision = "30a213f9b39e3c40b0073bb5b41081da9f2b6634"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-06-27T11:44:24Z"
-last_revision = "b0d3928d58acac2d143cd517e8e31c9a0d203436"
+last_updated = "2026-06-28T13:49:02Z"
+last_revision = "afc5e010e69a135e726ae9713781db5af11203cc"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
@@ -188,7 +189,7 @@ trusted_hash = "sha256:806672e096e3690a8da673ff8024d8da1fb0bff91c9ff120699340576
 trusted_hash = "sha256:9e5b1a7b90d816a9764e9be8d7bb2e7628cf5fcb6113eabff48c82041a763864"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:3:0"]
-trusted_hash = "sha256:784676296d5462ec86fccf6b65d3aed4c15d58aff437a756aad6ba9f3c2f31af"
+trusted_hash = "sha256:0387d39c23586cad4b37f9fdaef4a754c79bb43611a7d3ba75e194ead3ef6e54"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:01315dc2afd11db52383e696c0fd63641769944cdef7c7bd557533548a28d9ba"
@@ -197,7 +198,7 @@ trusted_hash = "sha256:01315dc2afd11db52383e696c0fd63641769944cdef7c7bd557533548
 trusted_hash = "sha256:83c89056c44b5df8882435ad7cab46fc263490bc17aa74671ee30348eb5f3f4f"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:2:0"]
-trusted_hash = "sha256:436983fee76ff7e4ebbac9560b4c021b121560318e522005a350b9127a138145"
+trusted_hash = "sha256:7fb8d09e5884c311ac3f7fd6d8197844d9a4718d0961296748397d12f4dd75d0"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_compact:0:0"]
 trusted_hash = "sha256:a360fea4f42a9775089dcf08945d8a7f41f1e41a36380590866c2d760ddcce4b"
@@ -209,19 +210,19 @@ trusted_hash = "sha256:83dc2c6bce28bb064d45f7af56f285d70b6662e0473d53b93e9b596bd
 trusted_hash = "sha256:5936ef4a9d4836641c1500e3f9a38e95505d0d6b8433c505a2086a4f9f5167d1"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:session_start:2:0"]
-trusted_hash = "sha256:9d5cb638e5c70a1249f09b547b9deed72b237b91f6c6ac7e3f888916cf43fa6c"
+trusted_hash = "sha256:237215a70f00d698122508e041703698b717994dc01f64b0acea3323ef2a151d"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:user_prompt_submit:0:0"]
 trusted_hash = "sha256:8dde0bab68ea6f75fcf20f6a99c1b14df462596baa51c49c024e8de2d1e91389"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:subagent_start:0:0"]
-trusted_hash = "sha256:78c962bed144b4825105efd4caaad3e6ff49dc6310809f148d061e3f6c478238"
+trusted_hash = "sha256:4391e7f80c3d4a33fe86e463ba05df389adacc669428e0b2037759c92fb5773a"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:subagent_stop:0:0"]
-trusted_hash = "sha256:ba6c4990eaf9ac2a2bdb0cc4cd3ebffe03357bc096b342acd3fbcc0928798fa2"
+trusted_hash = "sha256:3804ba5bb0b74f5fb18acfaa416c1c356c296b05f3d0ef940897282aa035783f"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:stop:0:0"]
-trusted_hash = "sha256:c783cd3ba6c39b771dc9e01f0fb94a2949c8ade28f5d0e61521f1fb570742c92"
+trusted_hash = "sha256:dcabd601207c846ea5e542c2b01e39dc73eb7d724f07905180d4df62f0e02682"
 
 [hooks.state."hookify@claude-plugins-official:hooks/hooks.json:pre_tool_use:0:0"]
 trusted_hash = "sha256:2763d5b04659d5af7b607ed8ae8524d45987b047509ae969db296c1163793e98"
