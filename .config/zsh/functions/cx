@@ -2,3 +2,18 @@
 
 # cx - Launch Codex without alternate screen mode
 codex --no-alt-screen "$@"
+local cx_status=$?
+
+# Codex inline mode can leave enhanced keyboard reporting active in some
+# terminals, which makes zle insert fragments like "9;5u" at the next prompt.
+if [[ -t 1 ]]; then
+    printf '\033[<u\033[=0u\033[>4;0m'
+fi
+
+if [[ -t 0 ]]; then
+    while read -r -s -k 1 -t 0 _; do
+        :
+    done
+fi
+
+return "$cx_status"
