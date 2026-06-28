@@ -46,6 +46,41 @@ PY
     [ "$status" -eq 0 ]
 }
 
+@test "codex hooks: plugins with incompatible hook schemas are disabled" {
+    run python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
+import json
+from pathlib import Path
+import sys
+import tomllib
+
+with open(sys.argv[1], "rb") as config_file:
+    config = tomllib.load(config_file)
+
+home = Path(sys.argv[2])
+plugins = config.get("plugins", {})
+known_hook_configs = {
+    "hookify@claude-plugins-official": home
+    / ".codex/plugins/cache/claude-plugins-official/hookify/local/hooks/hooks.json",
+    "security-guidance@claude-plugins-official": home
+    / ".codex/plugins/cache/claude-plugins-official/security-guidance/2.0.6/hooks/hooks.json",
+}
+
+enabled_incompatible = {}
+for plugin, hooks_path in known_hook_configs.items():
+    if not hooks_path.exists():
+        continue
+    hook_config = json.loads(hooks_path.read_text())
+    unknown_top_level = sorted(set(hook_config) - {"hooks"})
+    if unknown_top_level and plugins.get(plugin, {}).get("enabled", True):
+        enabled_incompatible[plugin] = unknown_top_level
+
+if enabled_incompatible:
+    raise SystemExit(f"enabled plugins with Codex-incompatible hook schemas: {enabled_incompatible}")
+PY
+
+    [ "$status" -eq 0 ]
+}
+
 @test "write guard: denies protected paths in apply_patch commands" {
     patch=$'*** Begin Patch\n*** Update File: /Users/phatblat/.ssh/id_ed25519\n@@\n-old\n+new\n*** End Patch'
     input=$(hook_input "$patch")

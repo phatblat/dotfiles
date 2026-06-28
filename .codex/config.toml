@@ -103,7 +103,7 @@ enabled = true
 enabled = true
 
 [plugins."hookify@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."jdtls-lsp@claude-plugins-official"]
 enabled = true
@@ -124,7 +124,7 @@ enabled = true
 enabled = true
 
 [plugins."security-guidance@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."skill-creator@claude-plugins-official"]
 enabled = true
