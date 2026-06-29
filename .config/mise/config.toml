@@ -43,7 +43,7 @@
 "npm:yaml-language-server" = "1.23.0"
 "npm:yarn" = "1.22.22"
 "pipx:code-review-graph" = { version = "2.3.6", uvx_args = "--with igraph==1.0.0" }
-"pipx:graphifyy" = "0.8.47"
+"pipx:graphifyy" = "0.8.50"
 "pipx:pyright" = "1.1.410"
 "pipx:python-lsp-server" = "1.14.0"
 "pipx:token-viewer" = "0.0.7"
