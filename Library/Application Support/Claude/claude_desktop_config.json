@@ -32,10 +32,10 @@
       },
       "desktop-frame.paneStore.v1": {
         "state": {
-          "colWeightsByMode": {},
-          "draftNonce": 0,
           "extraPanesByMode": {},
-          "rowSplit": 0.5
+          "colWeightsByMode": {},
+          "rowSplit": 0.5,
+          "draftNonce": 0
         },
         "version": 4
       },
