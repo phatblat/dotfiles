@@ -272,7 +272,7 @@ upgrade-commits:
         current=$(echo "$json" | jq -r --arg t "$tool" '.[$t].current')
         bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
         echo "Upgrading $tool: $current → $bump"
-        mise upgrade --bump "$tool"
+        mise upgrade --bump --yes "$tool"
         git add ~/.config/mise/config.toml
         git commit -m "chore: bump $tool $current → $bump"
     done
