@@ -465,6 +465,7 @@ format-json:
             .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
             .config/cmux/cmux.json) continue ;;
+            "Library/Application Support/Claude/claude_desktop_config.json") continue ;;
         esac
         jq --sort-keys --indent 2 . "$f" | sponge "$f"
     done
