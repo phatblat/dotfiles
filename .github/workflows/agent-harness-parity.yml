@@ -1,0 +1,56 @@
+name: Agent Harness Parity
+
+on:
+  pull_request:
+    paths:
+      - ".agents/harness/**"
+      - ".claude/commands/**"
+      - ".codex/agents/**"
+      - ".config/opencode/**"
+      - ".pi/agent/**"
+      - "docs/agent-harnesses.*"
+      - "scripts/agent-harnesses.py"
+      - "tests/agent-harnesses.bats"
+      - "justfile"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 14 * * 1"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    env:
+      HOME: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: extractions/setup-just@v2
+
+      - name: Check generated harness parity
+        run: python3 scripts/agent-harnesses.py validate
+
+      - name: Build parity report
+        run: python3 scripts/agent-harnesses.py audit > agent-harness-parity-report.md
+
+      - name: Upload parity report
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-harness-parity-report
+          path: agent-harness-parity-report.md
+
+      - name: Refresh parity issue
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Agent harness parity report"
+          issue="$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$issue" ]; then
+            gh issue edit "$issue" --body-file agent-harness-parity-report.md
+          else
+            gh issue create --title "$title" --body-file agent-harness-parity-report.md
+          fi

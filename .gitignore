@@ -96,7 +96,12 @@
 .codeium/
 .codepilot/
 .codex/*
+!.codex/AGENTS.md
+!.codex/agents/
 !.codex/config.toml
+!.codex/hooks.json
+!.codex/hooks/
+!.codex/rules/
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/
@@ -195,7 +200,14 @@
 .config/nushell/history.txt
 .config/op/
 .config/opencode/*
+!.config/opencode/.gitignore
+!.config/opencode/agents/**
+!.config/opencode/agents/
+!.config/opencode/commands/**
+!.config/opencode/commands/
 !.config/opencode/opencode.jsonc
+!.config/opencode/plugins/**
+!.config/opencode/plugins/
 .config/orka-desktop/
 .config/packer/
 .config/pulse/
@@ -599,8 +611,10 @@ Library/Application Support/Notion Mail/
 Library/Application Support/Notion/
 Library/Application Support/Nova/
 Library/Application Support/Ollama/
+Library/Application Support/OpenAI/
 Library/Application Support/Orange/
 Library/Application Support/Remotion/
+Library/Application Support/RepoPrompt/
 Library/Application Support/Rocket/
 Library/Application Support/SESStorage/
 Library/Application Support/Sentry/
@@ -845,6 +859,7 @@ Pictures/
 Pods/
 Public/
 Recovered Files – */
+RepoPrompt/
 Samsung/
 Ultimate/
 VMs

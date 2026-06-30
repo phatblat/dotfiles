@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "compaction": [
+      {
+        "append": "Preserve modified files, current branch, pending tasks, test results, and harness parity gaps."
+      }
+    ],
+    "tool_call": [
+      {
+        "command": "python3 scripts/harness-guard.py",
+        "description": "Evaluate shell, write, and edit calls with the shared harness guard."
+      }
+    ]
+  },
+  "version": 1
+}

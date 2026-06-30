@@ -1,0 +1,865 @@
+{
+  "attribute_mappings": [
+    {
+      "antigravity": "Generated wrapper skill",
+      "claude": "`name`, `description` in `SKILL.md`",
+      "codex": "`name`, `description` in `SKILL.md`",
+      "cursor": "`name`, `description` in `SKILL.md`",
+      "feature": "Skill identity and trigger",
+      "id": "skill.identity",
+      "notes": "Most portable part of a skill.",
+      "opencode": "`name`, `description` in `SKILL.md`",
+      "pi": "Local `skills` path adapter",
+      "portable_guidance": "Keep `SKILL.md` to standard `name` and `description` first."
+    },
+    {
+      "antigravity": "Local adapter or command wrapper",
+      "claude": "`disable-model-invocation: true`",
+      "codex": "`agents/openai.yaml` `policy.allow_implicit_invocation: false`",
+      "cursor": "`disable-model-invocation: true`",
+      "feature": "Manual-only procedural skills",
+      "id": "skill.manual_only",
+      "notes": "Codex policy blocks implicit invocation but does not hide enabled skill metadata.",
+      "opencode": "No direct equivalent; use skill permissions or command wrappers",
+      "pi": "Local adapter or command wrapper",
+      "portable_guidance": "Represent intent per harness; do not copy one vendor key everywhere."
+    },
+    {
+      "antigravity": "Local adapter only",
+      "claude": "`paths` frontmatter",
+      "codex": "Prefer nested repo skills or concise descriptions",
+      "cursor": "`paths`; `globs` legacy fallback",
+      "feature": "File/path-scoped guidance",
+      "id": "skill.path_scope",
+      "notes": "Not part of the shared Agent Skills core.",
+      "opencode": "Directory discovery plus permissions",
+      "pi": "Local adapter only",
+      "portable_guidance": "Use only where the target harness documents path scoping."
+    },
+    {
+      "antigravity": "Hook/adapter guard",
+      "claude": "`allowed-tools` and `disallowed-tools`",
+      "codex": "Use permissions, hooks, or dependency metadata; no skill-level allowlist",
+      "cursor": "No documented skill-level equivalent",
+      "feature": "Skill-level tool preapproval",
+      "id": "tool.preapproval",
+      "notes": "The Agent Skills spec marks `allowed-tools` experimental.",
+      "opencode": "`permission.skill` controls skill loading, not tool preapproval",
+      "pi": "Extension or settings adapter",
+      "portable_guidance": "Treat `allowed-tools` as nonportable and client-specific."
+    },
+    {
+      "antigravity": "Plugin manifest or adapter metadata",
+      "claude": "Skill frontmatter or marketplace/plugin metadata",
+      "codex": "`agents/openai.yaml` `interface` fields",
+      "cursor": "`metadata` map for skills; `.mdc` frontmatter for rules",
+      "feature": "Skill UI metadata",
+      "id": "skill.ui_metadata",
+      "notes": "Do not put Codex `interface` fields in portable `SKILL.md`.",
+      "opencode": "`metadata` map only; unknown fields ignored",
+      "pi": "Local settings/extension only",
+      "portable_guidance": "Keep presentation metadata in harness-specific sidecars."
+    },
+    {
+      "antigravity": "Not verified in adapter",
+      "claude": "Skill/agent `model`, `effort`",
+      "codex": "Agent TOML `model`, `model_reasoning_effort`",
+      "cursor": "No shared skill metadata equivalent",
+      "feature": "Model and effort overrides",
+      "id": "model.effort",
+      "notes": "Never assume model aliases mean the same provider/model.",
+      "opencode": "Global or agent `model`; `small_model`",
+      "pi": "`defaultModel`, `defaultThinkingLevel`",
+      "portable_guidance": "Map separately for skills, agents, and global config."
+    },
+    {
+      "antigravity": "Generated hook/guard adapter",
+      "claude": "Agent `tools`, `disallowedTools`, `permissionMode`",
+      "codex": "Agent TOML permissions/sandbox and inherited MCP config",
+      "cursor": "Rules/plugin adapter; native behavior unverified",
+      "feature": "Subagent tool restrictions",
+      "id": "agent.tools",
+      "notes": "Shared harness guard covers only normalized shell/write/edit safety.",
+      "opencode": "Agent `permission` and `tools`",
+      "pi": "Extension-enforced guard",
+      "portable_guidance": "Prefer native agent configuration; use shared hooks for cross-harness safety."
+    },
+    {
+      "antigravity": "Generated `mcp.json`, unverified",
+      "claude": "`.mcp.json`, settings, or agent `mcpServers`",
+      "codex": "`agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP",
+      "cursor": "Generated `mcp.json`, unverified",
+      "feature": "MCP/tool dependencies",
+      "id": "mcp.dependencies",
+      "notes": "Dependency metadata is advisory unless the harness enforces it.",
+      "opencode": "`mcp` config",
+      "pi": "Extension or future MCP bridge",
+      "portable_guidance": "Declare dependencies near the harness that can enforce or install them."
+    }
+  ],
+  "features": [
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/instructions.md"
+      ],
+      "category": "instructions",
+      "desired_behavior": "Global harness instructions load for every session.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading",
+          "mode": "adapter",
+          "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
+          "paths": [
+            "~/.agents/harness/adapters/antigravity/plugin.json",
+            "~/.gemini/antigravity-cli/settings.json"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified",
+          "mode": "adapter",
+          "next_action": "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
+          "paths": [
+            "~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json",
+            "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "instructions.global",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py validate"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/skills"
+      ],
+      "category": "skills",
+      "desired_behavior": "Shared skills load from ~/.agents/skills.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified",
+          "mode": "adapter",
+          "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
+          "paths": [
+            "~/.agents/harness/adapters/antigravity/skills"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
+          "mode": "native",
+          "next_action": "Verify Cursor discovers and activates generated shared skill wrappers",
+          "paths": [
+            "~/.agents/harness/adapters/cursor/skills"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "skills.shared",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/commands"
+      ],
+      "category": "commands",
+      "desired_behavior": "The 22 active commands are available through generated native prompts.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
+          "mode": "adapter",
+          "next_action": "Verify Antigravity command schema or flatten command wrappers so all 22 commands are discovered",
+          "paths": [
+            "~/.agents/harness/adapters/antigravity/commands"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "source commands",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.claude/commands"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "Codex consumes commands as skills/config, not Claude slash files",
+          "mode": "adapter",
+          "next_action": "Add native Codex command generation if/when file format stabilizes",
+          "paths": [
+            "~/.agents/harness/commands"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
+          "mode": "native",
+          "next_action": "Verify Cursor discovers all 22 generated command wrappers",
+          "paths": [
+            "~/.agents/harness/adapters/cursor/commands"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "generated command templates",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/commands",
+            "~/.config/opencode/opencode.jsonc"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "generated prompt templates",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.pi/agent/prompts"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "commands.active",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/agents"
+      ],
+      "category": "agents",
+      "desired_behavior": "Six specialist agents are represented for delegation.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified",
+          "mode": "emulated",
+          "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
+          "paths": [
+            "~/.agents/harness/adapters/antigravity/agents"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "native Claude agents include these plus additional specialists",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.claude/agents"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "native Codex TOML agents",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.codex/agents"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified",
+          "mode": "native",
+          "next_action": "Verify Cursor discovers generated specialist agent wrappers",
+          "paths": [
+            "~/.agents/harness/adapters/cursor/agents"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "generated agent config",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/agents",
+            "~/.config/opencode/opencode.jsonc"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "Pi uses an extension-backed registry rather than static native agent files",
+          "mode": "emulated",
+          "next_action": "Wire full subprocess delegation after choosing model/session policy",
+          "paths": [
+            "~/.pi/agent/agents.json",
+            "~/.pi/agent/extensions/harness.ts"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "agents.specialists",
+      "priority": "p0",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/hooks/safety.py"
+      ],
+      "category": "hooks",
+      "desired_behavior": "Dangerous commands, protected writes, and secret-like content are blocked consistently.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "generated Antigravity hook wrapper calls the shared guard, but native pre-tool blocking has not been verified",
+          "mode": "adapter",
+          "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
+          "paths": [
+            "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
+            "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified",
+          "mode": "adapter",
+          "next_action": "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
+          "paths": [
+            "~/.agents/harness/adapters/cursor/hooks/hooks.json",
+            "~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness/hooks/safety.py"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "hooks.safety",
+      "priority": "p0",
+      "verification_command": "bats tests/agent-harnesses.bats"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.codex/config.toml",
+        "~/.config/opencode/opencode.jsonc"
+      ],
+      "category": "mcp/tools",
+      "desired_behavior": "code-review-graph is exposed as a tool capability.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "generated Antigravity MCP registration includes code-review-graph, but runtime inventory has not confirmed it loads",
+          "mode": "adapter",
+          "next_action": "Verify agy discovers the code-review-graph MCP server from the plugin",
+          "paths": [
+            "~/.agents/harness/adapters/antigravity/mcp.json"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "Claude has hook-based graph updates but no tracked MCP entry in this slice",
+          "mode": "native",
+          "next_action": "Add/verify native Claude MCP registration",
+          "paths": [
+            "~/.claude/settings.json"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "native MCP server configured",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.codex/config.toml"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "Cursor MCP registration is generated, but runtime inventory has not confirmed it loads",
+          "mode": "native",
+          "next_action": "Verify Cursor discovers the code-review-graph MCP server from the plugin",
+          "paths": [
+            "~/.agents/harness/adapters/cursor/mcp.json"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "native MCP local server configured",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/opencode.jsonc"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "generic MCP transport is not configured; extension tools track capability",
+          "mode": "emulated",
+          "next_action": "Implement direct MCP bridge if Pi exposes stable transport",
+          "paths": [
+            "~/.pi/agent/extensions/harness.ts"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "mcp.code_review_graph",
+      "priority": "p1",
+      "verification_command": "python3 scripts/agent-harnesses.py inventory --json"
+    },
+    {
+      "canonical_artifacts": [
+        "~/.agents/harness/hooks/contract.json"
+      ],
+      "category": "sessions/compaction",
+      "desired_behavior": "Compaction preserves modified files, branch, pending work, and test state.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "generated Antigravity compaction guidance records preservation requirements, but conversation/artifact behavior has not been verified",
+          "mode": "native",
+          "next_action": "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
+          "paths": [
+            "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
+            "~/.gemini/antigravity-cli/settings.json"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "native PreCompact hook",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.claude/settings.json"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "native PreCompact hook",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.codex/hooks.json"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "Cursor preservation instructions are generated, but resume/history behavior has not been verified",
+          "mode": "native",
+          "next_action": "Verify Cursor resume and history behavior against compact-preservation requirements",
+          "paths": [
+            "~/.agents/harness/adapters/cursor/rules"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "plugin compaction hook",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.config/opencode/plugins/harness.ts"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "native compaction settings plus extension status",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.pi/agent/settings.json"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "sessions.compaction",
+      "priority": "p1",
+      "verification_command": "python3 scripts/agent-harnesses.py validate"
+    },
+    {
+      "canonical_artifacts": [
+        "~/scripts/agent-harnesses.py",
+        "~/docs/agent-harnesses.json"
+      ],
+      "category": "maintenance",
+      "desired_behavior": "Parity can be generated, checked, and audited deterministically.",
+      "harnesses": {
+        "antigravity": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "claude": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "codex": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "cursor": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "opencode": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "pi": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        }
+      },
+      "id": "maintenance.audit",
+      "priority": "p1",
+      "verification_command": "just harness-check"
+    }
+  ],
+  "harnesses": {
+    "antigravity": {
+      "role": "tracked port"
+    },
+    "claude": {
+      "role": "supported peer"
+    },
+    "codex": {
+      "role": "supported peer"
+    },
+    "cursor": {
+      "role": "tracked port"
+    },
+    "opencode": {
+      "role": "new port"
+    },
+    "pi": {
+      "role": "new port"
+    }
+  },
+  "schema": 1,
+  "summary": {
+    "agents": 6,
+    "capabilities": [
+      "shared-skills",
+      "code-review-graph",
+      "opencode-plugin",
+      "pi-extension"
+    ],
+    "commands": 22,
+    "skills": 63
+  },
+  "verified_date": "2026-06-27"
+}

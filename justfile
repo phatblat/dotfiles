@@ -425,9 +425,24 @@ lint: lint-gitignore lint-python lint-all
     just --fmt --check
     mise fmt --check
 
-# Runs lint and test
+# Runs lint, harness parity checks, and test
 [group('checks')]
-check: lint check-spelling test
+check: lint check-spelling harness-check test
+
+# Generates shared/native agent harness parity artifacts
+[group('checks')]
+harness-generate:
+    python3 ~/scripts/agent-harnesses.py generate
+
+# Validates shared/native agent harness parity artifacts
+[group('checks')]
+harness-check:
+    python3 ~/scripts/agent-harnesses.py validate
+
+# Audits installed harness versions and parity gaps
+[group('checks')]
+harness-audit:
+    python3 ~/scripts/agent-harnesses.py audit
 
 # Runs bats tests
 [group('tests')]

@@ -1,0 +1,34 @@
+{
+  "agents": [
+    {
+      "description": "Expert in Vercel AI SDK v5 handling streaming, model integration, tool calling, hooks, state management, edge runtime, prompt engineering, and production patterns. Use PROACTIVELY for any AI SDK implementation, streaming issues, provider integration, or AI application architecture. Detects project setup and adapts approach.",
+      "id": "ai-sdk-expert",
+      "shared": "~/.agents/harness/agents/ai-sdk-expert.toml"
+    },
+    {
+      "description": "Expert in building npm package CLIs with Unix philosophy, automatic project root detection, argument parsing, interactive/non-interactive modes, and CLI library ecosystems. Use PROACTIVELY for CLI tool development, npm package creation, command-line interface design, and Unix-style tool implementation.",
+      "id": "cli-expert",
+      "shared": "~/.agents/harness/agents/cli-expert.toml"
+    },
+    {
+      "description": "Comprehensive code review specialist covering 6 focused aspects - architecture & design, code quality, security & dependencies, performance & scalability, testing coverage, and documentation & API design. Provides deep analysis with actionable feedback. Use PROACTIVELY after significant code changes.",
+      "id": "code-review-expert",
+      "shared": "~/.agents/harness/agents/code-review-expert.toml"
+    },
+    {
+      "description": "Nest.js framework expert specializing in module architecture, dependency injection, middleware, guards, interceptors, testing with Jest/Supertest, TypeORM/Mongoose integration, and Passport.js authentication. Use PROACTIVELY for any Nest.js application issues including architecture decisions, testing strategies, performance optimization, or debugging complex dependency injection problems. If a specialized expert is a better fit, I will recommend switching and stop.",
+      "id": "nestjs-expert",
+      "shared": "~/.agents/harness/agents/nestjs-expert.toml"
+    },
+    {
+      "description": "Specialized research expert for parallel information gathering. Use for focused research tasks with clear objectives and structured output requirements.",
+      "id": "research-expert",
+      "shared": "~/.agents/harness/agents/research-expert.toml"
+    },
+    {
+      "description": "Context gathering and initial problem diagnosis specialist. Use PROACTIVELY when encountering errors, performance issues, or unexpected behavior before engaging specialized experts.",
+      "id": "triage-expert",
+      "shared": "~/.agents/harness/agents/triage-expert.toml"
+    }
+  ]
+}

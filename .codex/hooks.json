@@ -1,0 +1,176 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/auto-format.sh'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit",
+        "name": "Auto Format"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash -c 'command -v code-review-graph >/dev/null 2>&1 && code-review-graph update >/dev/null 2>&1 &'",
+            "timeout": 3,
+            "type": "command"
+          }
+        ],
+        "matcher": "Edit|Write",
+        "name": "Knowledge Graph Update"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "timeout": 4,
+            "type": "command"
+          }
+        ],
+        "name": "Agent Flow Guard"
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/pre-compact.sh'",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "name": "Pre-Compact Snapshot"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/write-guard.sh'",
+            "timeout": 3,
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit",
+        "name": "Write Guard"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/bash-guard.sh'",
+            "timeout": 3,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash",
+        "name": "Bash Guard"
+      },
+      {
+        "hooks": [
+          {
+            "command": "rtk hook claude",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash",
+        "name": "RTK Token Optimizer"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "timeout": 4,
+            "type": "command"
+          }
+        ],
+        "name": "Agent Flow Guard"
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/session-start.sh'",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "name": "Session Init"
+      },
+      {
+        "hooks": [
+          {
+            "command": "command -v code-review-graph >/dev/null && root=$(git rev-parse --show-toplevel 2>/dev/null) && [ -e \"$root/.code-review-graph/graph.db\" ] && { code-review-graph update >/dev/null 2>&1; code-review-graph status; } || true",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "",
+        "name": "Knowledge Graph Init"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "timeout": 4,
+            "type": "command"
+          }
+        ],
+        "name": "Agent Flow Guard"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "timeout": 4,
+            "type": "command"
+          }
+        ],
+        "name": "Agent Flow Guard"
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "timeout": 4,
+            "type": "command"
+          }
+        ],
+        "name": "Agent Flow Guard"
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "timeout": 4,
+            "type": "command"
+          }
+        ],
+        "name": "Agent Flow Guard"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/user-prompt-secrets.sh'",
+            "timeout": 2,
+            "type": "command"
+          }
+        ],
+        "name": "Secrets Scanner"
+      }
+    ]
+  }
+}

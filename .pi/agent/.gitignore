@@ -1,0 +1,6 @@
+auth.json
+sessions/
+cache/
+npm/
+trust.json
+*.log

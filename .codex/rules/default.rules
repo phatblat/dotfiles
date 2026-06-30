@@ -1,0 +1,16 @@
+home = "/Users/phatblat"
+
+# Node scripts bundled with Codex skills
+prefix_rule(pattern=["node", home + "/.codex/skills/.system/openai-docs/scripts/fetch-codex-manual.mjs"], decision="allow")
+
+# Read-only git introspection (used in compound status checks)
+prefix_rule(pattern=["git", "status"], decision="allow")
+prefix_rule(pattern=["git", "log"], decision="allow")
+prefix_rule(pattern=["git", "diff"], decision="allow")
+
+# All rtk git subcommands (rtk proxies git with token-optimized output)
+prefix_rule(pattern=["rtk", "git"], decision="allow")
+prefix_rule(pattern=["node", ".codex/skills/.system/openai-docs/scripts/fetch-codex-manual.mjs"], decision="allow")
+prefix_rule(pattern=["codex", "exec"], decision="allow")
+prefix_rule(pattern=["cargo", "test"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "RUSTC_WRAPPER= cargo test --workspace"], decision="allow")

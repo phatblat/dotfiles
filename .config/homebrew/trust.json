@@ -9,10 +9,12 @@
     "cirruslabs/cli/tart",
     "datadog-labs/pack/pup",
     "getsentry/tools/sentry",
+    "https://github.com/jundot/omlx/omlx",
     "jetbrains/utils/kotlin-lsp",
     "teamookla/speedtest/speedtest"
   ],
   "trustedtaps": [
+    "https://github.com/jundot/omlx",
     "jetbrains/utils",
     "messense/macos-cross-toolchains",
     "schpet/tap",
