@@ -251,7 +251,7 @@ upgrade: upgrade-mise upgrade-commits update-brew upgrade-brew upgrade-uv-tools
 # Upgrades tools using mise
 [group('configuration')]
 upgrade-mise-tools *args:
-    mise upgrade --bump {{ args }}
+    mise upgrade --bump --yes {{ args }}
 
 # Upgrades mise itself
 [group('configuration')]
