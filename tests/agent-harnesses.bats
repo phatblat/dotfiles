@@ -100,6 +100,25 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   done
 }
 
+@test "agent-harnesses: privilege escalation after shell separators is denied consistently" {
+  privileged_commands=(
+    "echo x | sudo tee /etc/hosts"
+    "printf x | su - root"
+    $'echo ok\nsudo whoami'
+  )
+
+  for harness in claude codex opencode pi antigravity cursor; do
+    for privileged_command in "${privileged_commands[@]}"; do
+      run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "$privileged_command"
+      [ "$status" -eq 2 ]
+      decision=$(printf '%s' "$output" | jq -r '.decision')
+      reason=$(printf '%s' "$output" | jq -r '.reason')
+      [ "$decision" = "deny" ]
+      [[ "$reason" == *"Privilege escalation"* ]]
+    done
+  done
+}
+
 @test "agent-harnesses: protected writes are denied consistently" {
   for harness in claude codex opencode pi antigravity cursor; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/.ssh/id_ed25519" --content "not a key"

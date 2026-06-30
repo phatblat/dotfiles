@@ -24,7 +24,7 @@ class GuardDecision:
 
 
 PRIVILEGE_ESCALATION = re.compile(
-    r"(^|;|&&|\|\||\$\(|`)\s*(sudo|su|doas|pkexec)\b",
+    r"(^|;|&&|\|\||\||\n|\r|\$\(|`)\s*(sudo|su|doas|pkexec)\b",
     re.IGNORECASE,
 )
 
