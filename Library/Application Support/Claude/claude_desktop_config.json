@@ -1,21 +1,28 @@
 {
   "coworkUserFilesPath": "/Users/phatblat/Claude",
   "preferences": {
+    "menuBarEnabled": false,
+    "quickEntryShortcut": {
+      "accelerator": "Alt+Space"
+    },
+    "coworkScheduledTasksEnabled": true,
+    "coworkHipaaRestricted": false,
+    "ccdScheduledTasksEnabled": true,
+    "sidebarMode": "chat",
     "bypassPermissionsGateByAccount": {
       "193b5ba3-3754-4e2a-953b-4adcc4457018": false,
       "5093aaa7-aa7d-4b88-b0ab-be76abbb9ba5": true
     },
-    "ccAutoArchiveOnPrClose": true,
-    "ccdScheduledTasksEnabled": true,
-    "chicagoEnabled": true,
-    "coworkHipaaRestricted": false,
+    "coworkWebSearchEnabled": true,
     "coworkModelAutoFallbackByAccount": {
       "193b5ba3-3754-4e2a-953b-4adcc4457018": true,
       "5093aaa7-aa7d-4b88-b0ab-be76abbb9ba5": true
     },
+    "keepAwakeEnabled": true,
     "coworkOnboardingResumeStep": null,
-    "coworkScheduledTasksEnabled": true,
-    "coworkWebSearchEnabled": true,
+    "chicagoEnabled": true,
+    "remoteToolsDeviceName": "phathub",
+    "ccAutoArchiveOnPrClose": true,
     "epitaxyPrefs": {
       "ccd-sessions-filter": {
         "state": {
@@ -25,28 +32,21 @@
       },
       "desktop-frame.paneStore.v1": {
         "state": {
-          "colWeightsByMode": {},
-          "draftNonce": 0,
           "extraPanesByMode": {},
-          "rowSplit": 0.5
+          "colWeightsByMode": {},
+          "rowSplit": 0.5,
+          "draftNonce": 0
         },
         "version": 4
       },
       "dframe-local-slice": {
+        "pinnedOrder": [],
         "customGroupAssignments": {},
-        "customGroupOrder": {},
-        "pinnedOrder": []
+        "customGroupOrder": {}
       },
       "starred-cowork-spaces": [],
       "starred-local-code-sessions": [],
       "starred-session-groups": []
-    },
-    "keepAwakeEnabled": true,
-    "menuBarEnabled": false,
-    "quickEntryShortcut": {
-      "accelerator": "Alt+Space"
-    },
-    "remoteToolsDeviceName": "phathub",
-    "sidebarMode": "chat"
+    }
   }
 }

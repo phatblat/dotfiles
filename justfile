@@ -251,7 +251,7 @@ upgrade: upgrade-mise upgrade-commits update-brew upgrade-brew upgrade-uv-tools
 # Upgrades tools using mise
 [group('configuration')]
 upgrade-mise-tools *args:
-    mise upgrade --bump {{ args }}
+    mise upgrade --bump --yes {{ args }}
 
 # Upgrades mise itself
 [group('configuration')]
@@ -272,7 +272,7 @@ upgrade-commits:
         current=$(echo "$json" | jq -r --arg t "$tool" '.[$t].current')
         bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
         echo "Upgrading $tool: $current → $bump"
-        mise upgrade --bump "$tool"
+        mise upgrade --bump --yes "$tool"
         git add ~/.config/mise/config.toml
         git commit -m "chore: bump $tool $current → $bump"
     done
@@ -465,6 +465,7 @@ format-json:
             .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
             .config/cmux/cmux.json) continue ;;
+            "Library/Application Support/Claude/claude_desktop_config.json") continue ;;
         esac
         jq --sort-keys --indent 2 . "$f" | sponge "$f"
     done

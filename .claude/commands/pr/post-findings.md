@@ -26,7 +26,12 @@ N. <description>
 The GitHub URL format is:
 `https://github.com/<owner>/<repo>/blob/<full-sha>/<path>#L<start>-L<end>`
 
-Build a list of findings: `[{number, description, url, path, sha, line_start, line_end}]`.
+For each finding, also inspect the surrounding text for code blocks:
+- **Single suggestion**: one code block, no language tag or a non-diff tag, representing the complete replacement for the anchored lines. Mark as `suggestion_type: "single"` and capture the code as `suggestion_code`.
+- **Multiple approaches**: two or more distinct code blocks, or the text uses hedging language ("alternatively", "option A/B", "you could either"). Mark as `suggestion_type: "multi"` and capture code blocks as `code_snippets: []`.
+- **No code**: no code block present. Mark as `suggestion_type: "none"`.
+
+Build a list of findings: `[{number, description, url, path, sha, line_start, line_end, suggestion_type, suggestion_code, code_snippets}]`.
 
 If no review output is found in the conversation, stop and report: "No review findings found in this conversation. Run `/review` first."
 
@@ -59,10 +64,42 @@ Extract from the finding's GitHub URL:
 - `path` — the file path (e.g. `src/foo.ts`)
 - `line` — use `line_end` (the last line of the linked range) as the comment anchor
 
-Post via:
+#### Build the comment body
+
+The body format depends on `suggestion_type`:
+
+**`single` — one clear fix path**: Use GitHub's suggestion syntax so the reviewer can apply it with one click. The suggestion block replaces exactly the lines from `line_start` to `line_end`.
+
+````
+<description>
+
+```suggestion
+<suggestion_code>
+```
+````
+
+**`multi` — substantially different approaches**: Use regular prose with code blocks. Do NOT use suggestion syntax — it can only represent one outcome and would be misleading.
+
+````
+<description>
+
+**Option A:**
+```<lang>
+<code_snippets[0]>
+```
+
+**Option B:**
+```<lang>
+<code_snippets[1]>
+```
+````
+
+**`none` — no code change needed**: Plain description text only.
+
+#### Post the comment
 
 ```bash
-body="<description>"
+body="<body from above>"
 gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
   --method POST \
   --input - <<EOF
@@ -88,8 +125,10 @@ Report success or fallback for each finding.
 
 ```
 Posted N finding(s) to PR #<pr_number>:
-  ✅ #1 — <brief description> (inline at <path>:<line>)
+  ✅ #1 — <brief description> (suggestion at <path>:<line>)
   ✅ #2 — <brief description> (inline at <path>:<line>)
   ⚠️  #3 — <brief description> (posted as general comment — line not in diff)
 <pr_url>
 ```
+
+Label each as `suggestion`, `inline`, or `general comment` so it's clear which are actionable.
