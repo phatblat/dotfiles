@@ -9,6 +9,7 @@
     "cirruslabs/cli/tart",
     "datadog-labs/pack/pup",
     "getsentry/tools/sentry",
+    "https://github.com/jundot/omlx/omlx",
     "jetbrains/utils/kotlin-lsp",
     "teamookla/speedtest/speedtest"
   ],
