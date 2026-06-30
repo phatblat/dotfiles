@@ -70,17 +70,17 @@ The body format depends on `suggestion_type`:
 
 **`single` — one clear fix path**: Use GitHub's suggestion syntax so the reviewer can apply it with one click. The suggestion block replaces exactly the lines from `line_start` to `line_end`.
 
-```
+````
 <description>
 
 ```suggestion
 <suggestion_code>
 ```
-```
+````
 
 **`multi` — substantially different approaches**: Use regular prose with code blocks. Do NOT use suggestion syntax — it can only represent one outcome and would be misleading.
 
-```
+````
 <description>
 
 **Option A:**
@@ -92,7 +92,7 @@ The body format depends on `suggestion_type`:
 ```<lang>
 <code_snippets[1]>
 ```
-```
+````
 
 **`none` — no code change needed**: Plain description text only.
 
