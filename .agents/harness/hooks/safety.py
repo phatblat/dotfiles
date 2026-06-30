@@ -62,7 +62,12 @@ PROTECTED_PATHS = re.compile(
     r"\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials|"
     r"\.claude/\.credentials\.json|"
     r"\.codex/auth\.json|"
-    r"\.pi/agent/auth\.json"
+    r"\.pi/agent/auth\.json|"
+    r"\.gemini/google_accounts\.json|"
+    r"\.gemini/oauth_creds\.json|"
+    r"\.gemini/antigravity-cli/installation_id|"
+    r"\.gemini/antigravity-cli/conversations/|"
+    r"\.cursor/ai-tracking/"
     r")",
     re.IGNORECASE,
 )
