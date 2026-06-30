@@ -380,9 +380,9 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
     codex_config = ROOT / ".codex" / "config.toml"
     if codex_config.exists() and "code-review-graph" in codex_config.read_text():
         capabilities.append("code-review-graph")
-    if (OPEN_CODE / "package.json").exists():
+    if (OPEN_CODE / "plugins" / "harness.ts").exists():
         capabilities.append("opencode-plugin")
-    if shutil.which("pi"):
+    if (PI_AGENT / "extensions" / "harness.ts").exists():
         capabilities.append("pi-extension")
 
     return {
