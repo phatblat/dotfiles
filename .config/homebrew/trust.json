@@ -14,10 +14,24 @@
     "teamookla/speedtest/speedtest"
   ],
   "trustedtaps": [
+    "buildkite/buildkite",
+    "danger/tap",
+    "earthbuild/earthbuild",
+    "getditto/build-infra",
+    "gofireflyio/aiac",
+    "holgerbrandl/tap",
     "https://github.com/jundot/omlx",
     "jetbrains/utils",
+    "kylef/formulae",
+    "leoafarias/fvm",
+    "manaflow-ai/cmux",
     "messense/macos-cross-toolchains",
+    "microsoft/git",
+    "pantsbuild/tap",
+    "peripheryapp/periphery",
     "schpet/tap",
-    "tw93/tap"
+    "turbot/tap",
+    "tw93/tap",
+    "xcodesorg/made"
   ]
 }

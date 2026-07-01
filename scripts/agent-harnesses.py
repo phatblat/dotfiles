@@ -235,9 +235,9 @@ def command_generate(*, check: bool) -> int:
 def command_validate() -> int:
     errors: list[str] = []
     inventory = build_inventory()
-    if len(inventory["commands"]) != 22:
+    if len(inventory["commands"]) != 23:
         errors.append(
-            f"expected 22 active commands, found {len(inventory['commands'])}"
+            f"expected 23 active commands, found {len(inventory['commands'])}"
         )
     if len(inventory["agents"]) != 6:
         errors.append(f"expected 6 specialist agents, found {len(inventory['agents'])}")
@@ -1285,7 +1285,7 @@ def build_manifest() -> dict[str, Any]:
             "commands.active",
             "commands",
             "p0",
-            "The 22 active commands are available through generated native prompts.",
+            "The 23 active commands are available through generated native prompts.",
             [display_path(SHARED / "commands")],
             "python3 scripts/agent-harnesses.py inventory --json",
             {
@@ -1322,14 +1322,14 @@ def build_manifest() -> dict[str, Any]:
                     "adapter",
                     [display_path(ANTIGRAVITY_HARNESS / "commands")],
                     "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
-                    "Verify Antigravity command schema or flatten command wrappers so all 22 commands are discovered",
+                    "Verify Antigravity command schema or flatten command wrappers so all 23 commands are discovered",
                 ),
                 "cursor": state(
                     "partial",
                     "native",
                     [display_path(CURSOR_HARNESS / "commands")],
                     "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
-                    "Verify Cursor discovers all 22 generated command wrappers",
+                    "Verify Cursor discovers all 23 generated command wrappers",
                 ),
             },
         ),

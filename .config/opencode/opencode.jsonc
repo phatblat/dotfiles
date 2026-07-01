@@ -98,6 +98,10 @@
       "description": "Intelligently analyze git status and provide insights about current project state",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/status.md with arguments: $ARGUMENTS"
     },
+    "linear:progress": {
+      "description": "Post a short progress update comment to a Linear ticket",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/progress.md with arguments: $ARGUMENTS"
+    },
     "optimize": {
       "description": "Review Claude Code and shared agent harness configuration and propose efficiency or portability optimizations.",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/optimize.md with arguments: $ARGUMENTS"
@@ -150,13 +154,13 @@
       "description": "Check macOS GHA runner status for the getditto org",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/work/runners.md with arguments: $ARGUMENTS"
     },
-    "work:start": {
+    "work:start-day": {
       "description": "Morning startup \u2014 create daily note, populate yesterday summary, agenda, meetings, then invoke /pr:daily",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/start.md with arguments: $ARGUMENTS"
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/start-day.md with arguments: $ARGUMENTS"
     },
-    "work:track": {
+    "work:track-item": {
       "description": "Track a Linear ticket or GitHub PR in today's daily note",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/track.md with arguments: $ARGUMENTS"
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/track-item.md with arguments: $ARGUMENTS"
     }
   },
   "instructions": [
