@@ -246,7 +246,7 @@ update-rust:
 
 # Common upgrades
 [group('configuration')]
-upgrade: upgrade-mise upgrade-commits update-brew upgrade-brew upgrade-uv-tools
+upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools
 
 # Upgrades tools using mise
 [group('configuration')]
@@ -260,7 +260,7 @@ upgrade-mise:
 
 # Upgrades each outdated tool and commits the version change individually
 [group('configuration')]
-upgrade-commits:
+upgrade-mise-tools-commit:
     #!/usr/bin/env bash
     set -euo pipefail
     json=$(mise outdated --bump --json)
@@ -485,6 +485,9 @@ format-json:
         jq --sort-keys --indent 2 . "$f" | sponge "$f"
     done
     git ls-files --cached '*.jsonc' '.config/zed/settings.json' '.config/cmux/cmux.json' | while read -r f; do
+        # opencode.jsonc is a generated artifact validated with strict json.loads
+        # (no trailing commas) — prettier's jsonc parser adds them, so skip it.
+        [[ "$f" == .config/opencode/opencode.jsonc ]] && continue
         prettier --parser jsonc --write "$f"
     done
 

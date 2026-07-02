@@ -1,0 +1,16 @@
+#!/bin/sh
+# nu-login - Stable login-shell wrapper for mise-managed Nushell.
+
+set -eu
+
+MISE=$HOME/.local/bin/mise
+FALLBACK=/bin/zsh
+
+NU_DIR="$("$MISE" where github:nushell/nushell 2>/dev/null || true)"
+NU_BIN="$NU_DIR/nu"
+
+if [ -x "$NU_BIN" ]; then
+  exec "$NU_BIN" --login "$@"
+fi
+
+exec "$FALLBACK" -l

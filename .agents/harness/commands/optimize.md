@@ -71,6 +71,11 @@ Flag:
 - Scripts with side effects that never get read (log files, temp files)
 - Hooks with timeouts longer than necessary for their actual work
 
+**Known-good exceptions (investigated — do not re-flag):**
+- `agent-flow-guard.sh` registered on all 9 hook events (Notification, PostToolUse, PostToolUseFailure, PreToolUse, SessionEnd, SessionStart, Stop, SubagentStart, SubagentStop). This is **not** redundant duplication — it's required by DittoAgentOrchestrator's visualizer contract (`~/dev/agents/claude/DittoAgentOrchestrator/src/ditto_agent/orchestrator/hooks.py`, `HOOK_EVENTS` tuple + docstring: "configure `~/.claude/settings.json` for all 9 Claude Code hook events"). Dropping any event creates a gap in the live trace view (e.g. no `SubagentStop` means the visualizer never sees a subagent's timeline close). The guard script's `find | grep -q` pre-check (dotfiles commits `adf7d`, `4bc1`) already skips spawning `mise exec bun` entirely when no live Agent Flow instance is registered — this is *already better* than the tool's own default installer, which spawns `node` unconditionally with no pre-check. Re-verify only if DittoAgentOrchestrator's `HOOK_EVENTS` contract changes, or if `git log -- .claude/agent-flow/agent-flow-guard.sh` shows it was reverted to the unguarded form.
+
+Before flagging any hook as redundant/overly-broad in general, check `git log --oneline -- <hook script path>` in the dotfiles repo for prior `optimize:`/`fix:` commits — a hook that looks like duplicated overhead may already be a deliberately-tuned guard around an external tool's fixed event contract.
+
 ### 2. Permission Allowlist Gaps
 
 Read the `permissions.allow` array from `~/.claude/settings.json`.

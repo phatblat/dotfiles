@@ -53,6 +53,14 @@ for _fn_file in ~/.config/zsh/functions/*(N); do
 done
 unset _fn_file _fn_name
 
+# Force-load functions that shadow real binaries (aa, bq, cc, dash, dc, diff, fork,
+# genv, gt, jq, log, pkginfo, pp, reset, sha256, sync). Claude Code's shell-snapshot
+# mechanism serializes never-yet-called autoload functions as inert stubs, which
+# permanently breaks them for tool calls run against that snapshot. Eagerly resolving
+# this small, curated set (not all ~390 functions, to keep lazy-loading cheap) avoids
+# the trap for names an agent or script is likely to invoke directly.
+autoload -Uz +X aa bq cc dash dc diff fork genv gt jq log pkginfo pp reset sha256 sync 2>/dev/null
+
 # Set Warp tab title to git repo name on directory change
 WARP_DISABLE_AUTO_TITLE=true
 precmd_functions+=(_set_tab_title)
