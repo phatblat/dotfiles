@@ -37,7 +37,6 @@
     pkgs.gnumake
     # pkgs.mise  # migrated to direct install via https://mise.run
     pkgs.nextdns
-    pkgs.nushell
     pkgs.omnisharp-roslyn
     pkgs.shellharden
     pkgs.solargraph
