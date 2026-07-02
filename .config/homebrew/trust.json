@@ -16,7 +16,6 @@
   "trustedtaps": [
     "buildkite/buildkite",
     "danger/tap",
-    "earthbuild/earthbuild",
     "getditto/build-infra",
     "gofireflyio/aiac",
     "holgerbrandl/tap",
