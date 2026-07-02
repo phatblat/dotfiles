@@ -549,6 +549,18 @@ Safety-sensitive lifecycle events must be normalized through
 Adapters may add stricter native permissions, but they must not weaken a shared
 deny decision.
 
+## Operating Discipline
+
+- Think before coding. Do not assume intent or constraints; ask when a choice
+  materially changes scope, behavior, or risk. Surface confusion instead of
+  running with a guess.
+- Simplicity first. Write the minimum code that solves the problem. Do not add
+  speculative abstractions.
+- Surgical changes. Touch only what the user asked you to touch. Do not refactor
+  adjacent code unless it is required for the requested change.
+- Goal-driven execution. Define what done looks like before implementation. Use
+  tests or explicit checks as success criteria, not vibes.
+
 ## Answer Beacon
 
 When directly answering a user question, especially inside a longer status update
