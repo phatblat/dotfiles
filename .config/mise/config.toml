@@ -138,6 +138,13 @@ yq = "4.53.3"
 zig = "0.16.0"
 zoxide = "0.9.9"
 
+[tools."http:cursor-cli"]
+version = "2026.07.01-777f564"
+url = "https://downloads.cursor.com/lab/2026.07.01-777f564/darwin/arm64/agent-cli-package.tar.gz"
+checksum = "sha256:853979acec109c887623013623ad4dbe1f44d4cbe598ebefaa0e55145d9c993d"
+bin_path = "dist-package"
+bin = "cursor-agent"
+
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
