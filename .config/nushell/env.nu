@@ -46,6 +46,7 @@ $env.NU_VENDOR_AUTOLOAD_DIRS = [
 
 # Add homebrew to PATH
 $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
+$env.HOMEBREW_NO_ASK = "1"
 
 # Android SDK
 $env.ANDROID_HOME = ($nu.home-dir | path join 'Library' 'Android' 'sdk')

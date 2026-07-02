@@ -4,6 +4,7 @@
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
+    "claude-hud@claude-hud": true,
     "claude-md-management@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "compound-engineering@compound-engineering-plugin": true,
@@ -32,6 +33,12 @@
     "claude-code-warp": {
       "source": {
         "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
+    "claude-hud": {
+      "source": {
+        "repo": "jarrodwatts/claude-hud",
         "source": "github"
       }
     },
@@ -350,6 +357,10 @@
   "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "command": "bash -c 'cols=${COLUMNS:-}; case \"$cols\" in \"\"|*[!0-9]*) cols=$(stty size </dev/tty 2>/dev/null | awk '\"'\"'{print $2}'\"'\"');; esac; case \"$cols\" in \"\"|*[!0-9]*) cols=120;; esac; export COLUMNS=$(( cols > 4 ? cols - 4 : 1 )); plugin_dir=$(ls -1d \"${CLAUDE_CONFIG_DIR:-$HOME/.claude}\"/plugins/cache/*/claude-hud/*/ 2>/dev/null | sort -V | tail -1); exec \"/Users/phatblat/.local/share/mise/installs/bun/1.3.14/bin/bun\" --env-file /dev/null \"${plugin_dir}src/index.ts\"'",
+    "type": "command"
+  },
   "teammateMode": "in-process",
   "theme": "auto",
   "tui": "fullscreen",
