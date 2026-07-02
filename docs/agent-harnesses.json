@@ -285,12 +285,12 @@
         "~/.agents/harness/commands"
       ],
       "category": "commands",
-      "desired_behavior": "The 23 active commands are available through generated native prompts.",
+      "desired_behavior": "The 24 active commands are available through generated native prompts.",
       "harnesses": {
         "antigravity": {
           "gap_reason": "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
           "mode": "adapter",
-          "next_action": "Verify Antigravity command schema or flatten command wrappers so all 23 commands are discovered",
+          "next_action": "Verify Antigravity command schema or flatten command wrappers so all 24 commands are discovered",
           "paths": [
             "~/.agents/harness/adapters/antigravity/commands"
           ],
@@ -329,7 +329,7 @@
         "cursor": {
           "gap_reason": "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
           "mode": "native",
-          "next_action": "Verify Cursor discovers all 23 generated command wrappers",
+          "next_action": "Verify Cursor discovers all 24 generated command wrappers",
           "paths": [
             "~/.agents/harness/adapters/cursor/commands"
           ],
@@ -858,8 +858,8 @@
       "opencode-plugin",
       "pi-extension"
     ],
-    "commands": 23,
-    "skills": 63
+    "commands": 24,
+    "skills": 64
   },
   "verified_date": "2026-06-27"
 }

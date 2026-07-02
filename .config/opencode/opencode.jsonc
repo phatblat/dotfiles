@@ -110,6 +110,10 @@
       "description": "Start work on a Linear ticket \u2014 plan, branch, implement, test, PR",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/plan/linear.md with arguments: $ARGUMENTS"
     },
+    "pr:approve": {
+      "description": "Approve a GitHub PR, inferring the target from context when not given",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/approve.md with arguments: $ARGUMENTS"
+    },
     "pr:create": {
       "description": "Create a PR for the current branch, or update the description if one already exists",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/create.md with arguments: $ARGUMENTS"
