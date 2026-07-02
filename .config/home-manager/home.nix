@@ -44,7 +44,6 @@
     pkgs.todoist
     pkgs.tree # no mise backend available
     pkgs.zsh
-    pkgs.tart
 
     # Libraries and runtimes (migrated from Homebrew)
     pkgs.bash
