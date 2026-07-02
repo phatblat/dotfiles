@@ -3,8 +3,8 @@
 # ghostty +show-config --default --docs | bat --language sh
 
 # Shell
-initial-command = /opt/homebrew/bin/nu
-command = /opt/homebrew/bin/nu
+initial-command = nu
+command = nu
 
 # Style
 # ghostty +list-themes
