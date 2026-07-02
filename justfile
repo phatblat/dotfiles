@@ -380,7 +380,7 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/sort-tools.py
+    ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py
 
 # Lints Zsh functions with shellcheck
 
@@ -444,6 +444,11 @@ harness-check:
 [group('checks')]
 harness-audit:
     python3 ~/scripts/agent-harnesses.py audit
+
+# Flags CLI tools installed via both mise and Homebrew
+[group('checks')]
+package-audit:
+    python3 ~/scripts/audit-package-managers.py
 
 # Runs bats tests
 [group('tests')]
