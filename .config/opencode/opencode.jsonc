@@ -8,9 +8,9 @@
         "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
-        "webfetch": "ask",
+        "webfetch": "ask"
       },
-      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/ai-sdk-expert.toml before acting.",
+      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/ai-sdk-expert.toml before acting."
     },
     "cli-expert": {
       "description": "Expert in building npm package CLIs with Unix philosophy, automatic project root detection, argument parsing, interactive/non-interactive modes, and CLI library ecosystems. Use PROACTIVELY for CLI tool development, npm package creation, command-line interface design, and Unix-style tool implementation.",
@@ -19,9 +19,9 @@
         "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
-        "webfetch": "ask",
+        "webfetch": "ask"
       },
-      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/cli-expert.toml before acting.",
+      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/cli-expert.toml before acting."
     },
     "code-review-expert": {
       "description": "Comprehensive code review specialist covering 6 focused aspects - architecture & design, code quality, security & dependencies, performance & scalability, testing coverage, and documentation & API design. Provides deep analysis with actionable feedback. Use PROACTIVELY after significant code changes.",
@@ -30,9 +30,9 @@
         "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
-        "webfetch": "ask",
+        "webfetch": "ask"
       },
-      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/code-review-expert.toml before acting.",
+      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/code-review-expert.toml before acting."
     },
     "nestjs-expert": {
       "description": "Nest.js framework expert specializing in module architecture, dependency injection, middleware, guards, interceptors, testing with Jest/Supertest, TypeORM/Mongoose integration, and Passport.js authentication. Use PROACTIVELY for any Nest.js application issues including architecture decisions, testing strategies, performance optimization, or debugging complex dependency injection problems. If a specialized expert is a better fit, I will recommend switching and stop.",
@@ -41,9 +41,9 @@
         "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
-        "webfetch": "ask",
+        "webfetch": "ask"
       },
-      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/nestjs-expert.toml before acting.",
+      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/nestjs-expert.toml before acting."
     },
     "research-expert": {
       "description": "Specialized research expert for parallel information gathering. Use for focused research tasks with clear objectives and structured output requirements.",
@@ -52,9 +52,9 @@
         "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
-        "webfetch": "ask",
+        "webfetch": "ask"
       },
-      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/research-expert.toml before acting.",
+      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/research-expert.toml before acting."
     },
     "triage-expert": {
       "description": "Context gathering and initial problem diagnosis specialist. Use PROACTIVELY when encountering errors, performance issues, or unexpected behavior before engaging specialized experts.",
@@ -63,107 +63,109 @@
         "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
-        "webfetch": "ask",
+        "webfetch": "ask"
       },
-      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/triage-expert.toml before acting.",
-    },
+      "prompt": "Load and follow the shared specialist agent definition at ~/.agents/harness/agents/triage-expert.toml before acting."
+    }
   },
   "autoupdate": "notify",
   "command": {
     "dupe": {
       "description": "Ignore this command. I duplicated the chat into a new tab.",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/dupe.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/dupe.md with arguments: $ARGUMENTS"
     },
     "git:cleanup": {
       "description": "Delete local branches that have been merged or whose PRs are closed/stale",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/cleanup.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/cleanup.md with arguments: $ARGUMENTS"
     },
     "git:commit": {
       "description": "Create a git commit following the project's established style",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/commit.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/commit.md with arguments: $ARGUMENTS"
     },
     "git:push": {
       "description": "Intelligently push commits to remote with safety checks and insights",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/push.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/push.md with arguments: $ARGUMENTS"
     },
     "git:rebase": {
       "description": "Rebase current branch onto a target branch using the optimal strategy",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/rebase.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/rebase.md with arguments: $ARGUMENTS"
     },
     "git:split": {
       "description": "Split the most recent commit (or a specified commit) into two or more logical commits",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/split.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/split.md with arguments: $ARGUMENTS"
     },
     "git:status": {
       "description": "Intelligently analyze git status and provide insights about current project state",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/status.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/status.md with arguments: $ARGUMENTS"
     },
     "linear:progress": {
       "description": "Post a short progress update comment to a Linear ticket",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/progress.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/progress.md with arguments: $ARGUMENTS"
     },
     "optimize": {
       "description": "Review Claude Code and shared agent harness configuration and propose efficiency or portability optimizations.",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/optimize.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/optimize.md with arguments: $ARGUMENTS"
     },
     "plan:linear": {
       "description": "Start work on a Linear ticket \u2014 plan, branch, implement, test, PR",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/plan/linear.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/plan/linear.md with arguments: $ARGUMENTS"
     },
     "pr:create": {
       "description": "Create a PR for the current branch, or update the description if one already exists",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/create.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/create.md with arguments: $ARGUMENTS"
     },
     "pr:daily": {
       "description": "Start the daily dotfiles workflow \u2014 clean up old branches, create today's branch, open draft PR",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/daily.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/daily.md with arguments: $ARGUMENTS"
     },
     "pr:merge": {
       "description": "Merge the current branch's PR after confirmation",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/merge.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/merge.md with arguments: $ARGUMENTS"
     },
     "pr:open-for-review": {
       "description": "Mark the current branch's draft PR as ready for review",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/open-for-review.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/open-for-review.md with arguments: $ARGUMENTS"
     },
     "pr:post-findings": {
       "description": "Post code review findings from /review as inline PR comments",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/post-findings.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/post-findings.md with arguments: $ARGUMENTS"
     },
     "pr:resolve-feedback": {
       "description": "Address GitHub PR review comments \u2014 fetch, evaluate, fix, commit, and resolve",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/resolve-feedback.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/resolve-feedback.md with arguments: $ARGUMENTS"
     },
     "pr:update-desc": {
       "description": "Update the PR description for the current branch",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/update-desc.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/update-desc.md with arguments: $ARGUMENTS"
     },
     "retro": {
       "description": "Perform autonomous agent configuration improvement.",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/retro.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/retro.md with arguments: $ARGUMENTS"
     },
     "session-save": {
       "description": "Save current Claude session to 2ndBrain vault with frontmatter, executive brief, and full transcript",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/session-save.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/session-save.md with arguments: $ARGUMENTS"
     },
     "work:eod": {
       "description": "End-of-day \u2014 draft and post daily comments for tracked tickets missing a comment",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/eod.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/eod.md with arguments: $ARGUMENTS"
     },
     "work:runners": {
       "description": "Check macOS GHA runner status for the getditto org",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/runners.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/runners.md with arguments: $ARGUMENTS"
     },
     "work:start-day": {
       "description": "Morning startup \u2014 create daily note, populate yesterday summary, agenda, meetings, then invoke /pr:daily",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/start-day.md with arguments: $ARGUMENTS",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/start-day.md with arguments: $ARGUMENTS"
     },
     "work:track-item": {
       "description": "Track a Linear ticket or GitHub PR in today's daily note",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/track-item.md with arguments: $ARGUMENTS",
-    },
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/track-item.md with arguments: $ARGUMENTS"
+    }
   },
-  "instructions": ["~/.agents/harness/instructions.md"],
+  "instructions": [
+    "~/.agents/harness/instructions.md"
+  ],
   "mcp": {
     "code-review-graph": {
       "command": [
@@ -172,12 +174,12 @@
         "pipx:code-review-graph",
         "--",
         "code-review-graph",
-        "serve",
+        "serve"
       ],
       "enabled": true,
       "timeout": 10000,
-      "type": "local",
-    },
+      "type": "local"
+    }
   },
   "model": "anthropic/claude-sonnet-4-20250514",
   "permission": {
@@ -191,12 +193,12 @@
       "ls *": "allow",
       "rg *": "allow",
       "rm *": "ask",
-      "sudo *": "deny",
+      "sudo *": "deny"
     },
     "edit": "ask",
     "external_directory": "ask",
-    "webfetch": "ask",
+    "webfetch": "ask"
   },
   "share": "manual",
-  "small_model": "anthropic/claude-haiku-3-5-20241022",
+  "small_model": "anthropic/claude-haiku-3-5-20241022"
 }
