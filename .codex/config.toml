@@ -1,5 +1,5 @@
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.4-mini"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 suppress_unstable_features_warning = true
 service_tier = "default"
@@ -59,14 +59,14 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-06-30T12:58:32Z"
-last_revision = "cd3ca5bd4a4b62bf006b59b68848b59e95f95439"
+last_updated = "2026-07-02T01:01:32Z"
+last_revision = "c4d29764e820015ef913a00d1b8d7058aae11dce"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-06-30T12:58:34Z"
-last_revision = "cc816ef14ae44b1ca36d084e01792ff33cd2ce90"
+last_updated = "2026-07-02T01:01:34Z"
+last_revision = "db21ba21eff9cc216537cd75c6e44dd49e1a4200"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
