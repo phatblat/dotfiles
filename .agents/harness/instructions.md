@@ -24,6 +24,21 @@ deny decision.
 - Goal-driven execution. Define what done looks like before implementation. Use
   tests or explicit checks as success criteria, not vibes.
 
+## Token Efficiency
+
+- Be thorough in reasoning and concise in output.
+- Start with the result. Skip preambles, pleasantries, and closing filler.
+- Do not narrate tool use unless the user needs status or the task is long
+  running.
+- Return the minimum viable output that satisfies the task.
+- Do not explain code, commands, or diffs unless asked or needed to clarify risk.
+- Avoid re-reading files unless they changed or prior context is insufficient.
+- Skip files over 100KB unless they are required for the task.
+- Never invent file paths, APIs, flags, versions, package names, fields, commit
+  SHAs, or resource contents. Verify before asserting.
+- If a value is unknown, say so directly instead of guessing.
+- Cap parallel subagents at 3 unless explicitly instructed otherwise.
+
 ## Answer Beacon
 
 When directly answering a user question, especially inside a longer status update
