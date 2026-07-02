@@ -40,6 +40,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/agents/ground-control"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/ldg/wave-rider"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
@@ -59,8 +62,8 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-02T01:01:32Z"
-last_revision = "c4d29764e820015ef913a00d1b8d7058aae11dce"
+last_updated = "2026-07-02T22:42:24Z"
+last_revision = "36cfea46b6b1d46111eb8d93ff595162a1a6cb56"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
