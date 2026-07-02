@@ -379,6 +379,7 @@ lint-gitignore:
 # Lints Python scripts with ruff
 [group('checks')]
 lint-python:
+    @echo "Linting Python scripts..."
     ruff check ~/scripts/sort-tools.py
 
 # Lints Zsh functions with shellcheck
