@@ -281,4 +281,6 @@ for p in $PHASES; do
 done
 
 head1 "Done"
-info "Current backup size now: $(sizeof "$BACKUP_ROOT")"
+# NOTE: intentionally not du-ing the whole backup here — on a multi-TB tree that
+# takes minutes and would make every run look like it hung. Check size on demand:
+info "Tip: check reclaimed space with:  du -sh $BACKUP_ROOT"
