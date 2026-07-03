@@ -47,6 +47,10 @@ trust_level = "trusted"
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
 
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "model", "reasoning", "project-name", "git-branch"]
+status_line_use_colors = true
+
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
 "gpt-5.5" = 4
@@ -62,8 +66,8 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-02T22:42:24Z"
-last_revision = "36cfea46b6b1d46111eb8d93ff595162a1a6cb56"
+last_updated = "2026-07-03T00:21:53Z"
+last_revision = "358ee646f45b39424320d47abbb15554d4eb31e3"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
