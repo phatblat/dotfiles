@@ -66,8 +66,8 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-03T00:21:53Z"
-last_revision = "358ee646f45b39424320d47abbb15554d4eb31e3"
+last_updated = "2026-07-03T16:31:28Z"
+last_revision = "6bcab95114854eb9265c6c22724c0d3057822a11"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
