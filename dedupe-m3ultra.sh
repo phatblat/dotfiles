@@ -96,6 +96,17 @@ confirm() {
   case "$ans" in y|Y|yes|YES) return 0 ;; *) info "  skipped."; return 1 ;; esac
 }
 
+# Precondition guard. In --execute mode a failed precondition is fatal (die).
+# In dry-run it only warns and signals the caller to skip the rest of the phase
+# (use as: <test> || guard "message" || return 0), so the whole plan can be
+# previewed end-to-end before any earlier phase has actually run.
+guard() {
+  if [ "$EXECUTE" = 1 ]; then die "$1"; fi
+  warn "$1"
+  warn "  (preview only — this phase needs an earlier phase to have actually run)"
+  return 1
+}
+
 # ------------------------------------------------------------------ phases
 phase0_preserve_config() {
   head1 "Phase 0 — preserve backup-only config for review"
@@ -143,7 +154,7 @@ phase2_relocate_library() {
 phase3_delete_zip() {
   head1 "Phase 3 — delete redundant .zip (495G, instant reclaim)"
   [ -e "$ZIP" ] || { warn "Zip already gone. Skipping."; return 0; }
-  [ -d "$HOME_DIR/Pictures/Photos Library.photoslibrary" ] || die "Keeper library not yet in ~/Pictures — run phase2 first."
+  [ -d "$HOME_DIR/Pictures/Photos Library.photoslibrary" ] || guard "Keeper library not yet in ~/Pictures — run phase2 first." || return 0
   info "Redundant: $ZIP ($(sizeof "$ZIP"))  — it is a zip of the library you just relocated."
   if confirm "Confirm you have OPENED the relocated library in Photos.app and it works, and delete the .zip?"; then
     safe_rm "$ZIP"
@@ -154,15 +165,16 @@ phase3_delete_zip() {
 phase4_archive_export() {
   head1 "Phase 4 — archive export/ to external, verify, then delete (461G)"
   [ -e "$EXPORT" ] || { warn "export/ already gone. Skipping."; return 0; }
-  [ -d "$HOME_DIR/Pictures/Photos Library.photoslibrary" ] || die "Keeper library not yet in ~/Pictures — run phase2 first."
-  [ -n "$ARCHIVE_DEST" ] || die "Pass --archive-dest /Volumes/YourDrive (external drive) for this phase."
-  [ -d "$ARCHIVE_DEST" ] || die "Archive dest not found: $ARCHIVE_DEST"
+  info "export/ size: $(sizeof "$EXPORT")"
+  [ -d "$HOME_DIR/Pictures/Photos Library.photoslibrary" ] || guard "Keeper library not yet in ~/Pictures — run phase2 first." || return 0
+  [ -n "$ARCHIVE_DEST" ] || guard "Pass --archive-dest /Volumes/YourDrive (external drive) for this phase." || return 0
+  [ -d "$ARCHIVE_DEST" ] || guard "Archive dest not found: $ARCHIVE_DEST" || return 0
 
   local need free dest
   need=$(du -sk "$EXPORT" | awk '{print $1*1024}')
   free=$(df -k "$ARCHIVE_DEST" | awk 'NR==2{print $4*1024}')
-  info "export/ size: $(sizeof "$EXPORT")   dest free: $(awk -v b="$free" 'BEGIN{printf "%.0fG", b/1073741824}')"
-  [ "$free" -gt "$need" ] || die "Not enough free space on $ARCHIVE_DEST (need ~$(awk -v b="$need" 'BEGIN{printf "%.0fG",b/1073741824}'))."
+  info "dest free: $(awk -v b="$free" 'BEGIN{printf "%.0fG", b/1073741824}')"
+  [ "$free" -gt "$need" ] || guard "Not enough free space on $ARCHIVE_DEST (need ~$(awk -v b="$need" 'BEGIN{printf "%.0fG",b/1073741824}'))." || return 0
 
   dest="$ARCHIVE_DEST/m3ultra-photos-export"
   info "Archiving to: $dest"
@@ -213,7 +225,7 @@ phase5_delete_reinstallable() {
 
 phase6_sweep_and_remove() {
   head1 "Phase 6 — stage remaining small files, then remove backup root"
-  [ ! -d "$LIB" ] || die "Keeper library STILL inside backup — run phase2 before removing the root!"
+  [ ! -d "$LIB" ] || guard "Keeper library STILL inside backup — run phase2 before removing the root!" || return 0
   info "What remains in the backup:"
   du -sh "$BACKUP"/* "$BACKUP"/.[!.]* 2>/dev/null | sort -rh | head -40 || true
   info ""
