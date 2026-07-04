@@ -3,8 +3,10 @@
 # ghostty +show-config --default --docs | bat --language sh
 
 # Shell
-initial-command = /opt/homebrew/bin/nu
-command = /opt/homebrew/bin/nu
+# Use the stable mise shim, not a version-pinned install path or a
+# nonexistent /opt/homebrew/bin/nu — survives `mise upgrade nu` bumps.
+initial-command = /Users/phatblat/.local/share/mise/shims/nu
+command = /Users/phatblat/.local/share/mise/shims/nu
 
 # Style
 # ghostty +list-themes
