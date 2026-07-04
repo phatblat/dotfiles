@@ -38,7 +38,7 @@
 "npm:markdownlint-cli2" = "0.23.0"
 "npm:pnpm" = "11.9.0"
 "npm:prettier" = "3.9.4"
-"npm:renovate" = "43.251.0"
+"npm:renovate" = "43.251.3"
 "npm:typescript" = "6.0.3"
 "npm:typescript-language-server" = "5.3.0"
 "npm:vscode-langservers-extracted" = "4.10.0"
