@@ -56,7 +56,7 @@ status_line_use_colors = true
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-03T12:26:51Z"
+last_updated = "2026-07-04T00:42:26Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -66,14 +66,14 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-03T16:31:28Z"
-last_revision = "6bcab95114854eb9265c6c22724c0d3057822a11"
+last_updated = "2026-07-04T00:49:06Z"
+last_revision = "8326199c6ec61fdcece33199b61bdaa4f9ae1570"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-03T12:26:45Z"
-last_revision = "be8054c1d17b8a18114d563feb28461e565f72dc"
+last_updated = "2026-07-04T00:49:12Z"
+last_revision = "d3f35297adccea3ad8735e988253966ffa8cf74c"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
