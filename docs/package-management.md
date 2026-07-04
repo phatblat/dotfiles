@@ -2,158 +2,65 @@
 
 This document describes the package management strategy for this dotfiles repository.
 
-## Overview
+## Strategy
 
-Package management uses a hybrid approach:
-- **Nix home-manager** for CLI tools and cross-platform GUI apps
-- **Homebrew** for macOS-specific GUI apps (casks)
+Three package managers are in play, with distinct roles rather than equal footing:
 
-## Nix Home-Manager
+1. **mise (primary)** — the default for installing and version-pinning CLI tools. Prefer
+   `mise search`/`mise use` for anything mise can provide, including via its `aqua:`,
+   `cargo:`, `github:`, `npm:`, and `pipx:` generic backends when a tool isn't in the
+   curated registry.
+2. **Homebrew (fallback)** — used when mise genuinely can't provide a tool: macOS GUI
+   apps (casks), formulae with no mise backend and no usable upstream release artifact
+   (e.g. shell-script tools like `git-subrepo`), and licensed/signed software.
+3. **Nix / home-manager (experiment)** — a separate, self-contained package set. It does
+   **not** need to mirror mise or Homebrew, and drift between Nix and the other two is
+   expected and fine. Treat it as an ongoing experiment, not a tier to keep in sync.
 
-Configuration files:
-- `~/.config/home-manager/flake.nix` - Flake configuration with nixpkgs input
-- `~/.config/home-manager/home.nix` - Package list and home-manager settings
+See `~/CLAUDE.md` ("Tool installation priority") for the concrete install-order checklist
+used when adding a new tool.
 
-### Applying Changes
+## Keeping mise and Homebrew from drifting
+
+The common failure mode is a tool ending up installed via both mise and Homebrew — usually
+because a brew formula was installed standalone, or pulled in transitively as another
+formula's dependency, and never removed after the same tool was added to mise.
+
+Run the audit script to find these:
+
+```bash
+just package-audit
+```
+
+This compares mise's declared `[tools]` against Homebrew's *installed* formulae/casks
+(not just `~/Brewfile`), so it also catches untracked stray installs. It's a basic,
+name-based check — see the script's docstring (`scripts/audit-package-managers.py`) for
+its known limitations (e.g. it won't catch a mise tool whose binary name differs from
+the package name, like `jujutsu` providing `jj`).
+
+`just package-audit` is informational only (not part of `just check`) since it depends on
+live, machine-specific Homebrew/mise state rather than repo-tracked files.
+
+## Homebrew
+
+`~/Brewfile` tracks explicitly-declared taps, formulae, and casks. Manage it with:
+
+```bash
+brew bundle install       # or: just deps
+brew bundle dump --force  # regenerate Brewfile from current installs (review the diff!)
+```
+
+Casks remain the primary use case — proprietary or code-signed macOS GUI apps that mise
+and Nix can't install.
+
+## Nix / home-manager
+
+Configuration lives in `~/.config/home-manager/` (`flake.nix`, `home.nix`). Apply changes
+with:
 
 ```bash
 home-manager switch --flake ~/.config/home-manager#phatblat
 ```
 
-### CLI Tools (54 packages)
-
-All CLI tools are managed via home-manager:
-
-| Package | Description |
-|---------|-------------|
-| act | Run GitHub Actions locally |
-| apktool | Android APK reverse engineering |
-| aria2 | Download utility |
-| awscli2 | AWS CLI |
-| bat | Cat clone with syntax highlighting |
-| bazelisk | Bazel version manager |
-| btop | Resource monitor |
-| caddy | Web server |
-| cmake | Build system |
-| cocoapods | iOS dependency manager |
-| delta | Git diff viewer |
-| direnv | Directory-specific env vars |
-| fish | Fish shell |
-| fswatch | File change monitor |
-| fzf | Fuzzy finder |
-| gh | GitHub CLI |
-| git | Version control |
-| git-lfs | Git Large File Storage |
-| git-subrepo | Git subrepo support |
-| gnumake | Make build tool |
-| gnupg | GPG encryption |
-| imagemagick | Image manipulation |
-| jdt-language-server | Java language server |
-| jujutsu | Git-compatible VCS |
-| just | Command runner |
-| kotlin-language-server | Kotlin language server |
-| lazygit | Git TUI |
-| llvmPackages.llvm | LLVM toolchain |
-| mas | Mac App Store CLI |
-| mise | Tool version manager |
-| mkcert | Local TLS certificates |
-| neovim | Text editor |
-| nextdns | DNS privacy |
-| nushell | Nu shell |
-| omnisharp-roslyn | C# language server |
-| openjdk17 | Java 17 |
-| pnpm | Node package manager |
-| protobuf | Protocol buffers |
-| ripgrep | Fast grep |
-| solargraph | Ruby language server |
-| speedtest-cli | Network speed test |
-| starship | Shell prompt |
-| swig | Interface generator |
-| tart | macOS VMs |
-| todoist | Task manager CLI |
-| tree | Directory tree |
-| xcbeautify | Xcode log formatter |
-| xcodes | Xcode version manager |
-| zig | Zig compiler |
-| zoxide | Smart cd |
-| zsh | Zsh shell |
-
-### GUI Apps (3 packages)
-
-Developer tools that build from source and work well on macOS:
-
-| Package | Location |
-|---------|----------|
-| wezterm | `~/Applications/Home Manager Apps/WezTerm.app` |
-| zed-editor | `~/Applications/Home Manager Apps/Zed.app` |
-| tart | `~/Applications/Home Manager Apps/tart.app` |
-
-### Broken Packages
-
-Some packages are marked as broken in nixpkgs:
-- `calibre` - Use Homebrew cask instead
-
-## Homebrew
-
-Homebrew manages macOS GUI applications that require:
-- Code signing
-- Licensing/activation
-- Deep macOS integration
-- Proprietary distribution
-
-### Casks (37 packages)
-
-```
-1password          jetbrains-toolbox  onedrive
-arc                kaleidoscope       parallels
-calibre            keycastr           rapidapi
-chatgpt            kobo               readdle-spark
-claude             linear-linear      slack
-docker-desktop     lm-studio          steam
-google-drive       logi-options+      tailscale-app
-istat-menus        logitech-options   todoist-app
-                   loom               tower
-                   microsoft-teams    vysor
-                   moom               warp
-                   notion             whatsapp
-                   notion-calendar    windows-app
-                   obsidian           xcodes-app
-                                      zoom
-```
-
-### Managing Casks
-
-```bash
-# List installed casks
-brew list --cask
-
-# Install a cask
-brew install --cask <name>
-
-# Update casks
-brew upgrade --cask
-
-# Uninstall a cask
-brew uninstall --cask <name>
-```
-
-## Migration History
-
-On 2026-01-03, packages were migrated from Homebrew to Nix:
-- 54 CLI formulae moved to home-manager
-- 3 GUI apps (wezterm, zed, tart) moved to home-manager
-- 60 Homebrew dependencies auto-removed
-- ~3.5GB disk space freed from Homebrew
-
-## Decision Criteria
-
-**Use Nix home-manager for:**
-- CLI tools
-- Cross-platform developer tools
-- Open source apps that build from source
-
-**Use Homebrew for:**
-- Proprietary macOS apps
-- Apps requiring code signing
-- Apps with licensing/activation
-- Apps not available or broken in nixpkgs
+Since this tier is intentionally not kept in sync with mise/Homebrew, there's no audit
+tooling for it — check `home.nix` directly for its current package list.

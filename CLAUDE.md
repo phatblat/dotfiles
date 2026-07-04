@@ -23,6 +23,8 @@ Dotfiles repository — cross-machine config sync. Home directory (`~`) is the g
 - `tests/` — Bats test suite
 - `dev/` — Development workspace organized by language/framework/org (separate repos, not part of dotfiles)
 - `docs/functions.md` — Complete inventory of shell functions/aliases
+- `docs/tooling-dimensions.md` — How package managers, shells, and agent harnesses each stay in sync (or intentionally don't)
+- `docs/package-management.md` — mise/Homebrew/Nix roles and drift-checking
 
 ## Shell Architecture
 
@@ -50,6 +52,7 @@ Use **ast-grep** (`sg`) for code search, not grep/ripgrep/sed.
   2. `nix profile install nixpkgs#<package>` for Nix packages
   3. `brew search`/`brew install` as fallback
 - Tool versions: run `mise ls` (never hardcode versions — they go stale)
+- Check for tools installed via both mise and Homebrew with `just package-audit` (see `docs/package-management.md`)
 - Just recipes: run `just --list`
 - `.gitignore` uses negation-aware sorted ordering — after editing, run `just format-gitignore` (checked by `just lint-gitignore`)
 - Some `.json` files are actually JSONC and must not be jq-formatted: `.config/zed/settings.json`, `.config/cmux/cmux.json`, `.claude/policy-limits.json` (see `format-json` recipe)

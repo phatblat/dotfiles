@@ -14,7 +14,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   skill_count=$(printf '%s' "$output" | jq '.skills.count')
   has_graph=$(printf '%s' "$output" | jq -r '.capabilities | index("code-review-graph") != null')
 
-  [ "$command_count" -eq 23 ]
+  [ "$command_count" -eq 24 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "true" ]
@@ -63,7 +63,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
 
-  [ "$command_count" -eq 23 ]
+  [ "$command_count" -eq 24 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$inventory_skill_count" ]
 

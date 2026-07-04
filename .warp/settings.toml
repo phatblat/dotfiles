@@ -174,7 +174,7 @@ custom_secret_regex_list = [
 subshell_commands_denylist = []
 
 [warpify.ssh]
-use_ssh_tmux_wrapper = true
+use_ssh_tmux_wrapper = false
 ssh_hosts_denylist = []
 ssh_tmux_deprecation_notice_pending = true
 

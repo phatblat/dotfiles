@@ -1,6 +1,6 @@
 {
   "agentPushNotifEnabled": true,
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
@@ -269,7 +269,7 @@
       }
     ]
   },
-  "model": "sonnet",
+  "model": "opus[1m]",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",

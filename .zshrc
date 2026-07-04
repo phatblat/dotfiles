@@ -35,6 +35,7 @@ if (( ! $+commands[brew] )); then
     eval "$(/usr/local/bin/brew shellenv)"
   fi
 fi
+export HOMEBREW_NO_ASK=1
 if [[ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]]; then
   fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
 fi
