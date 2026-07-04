@@ -33,7 +33,7 @@
 #   ./dedupe-m3ultra.sh --execute                # run all phases in order, with prompts
 #
 # Phases:
-#   phase0  Preserve backup-only config (.aws .kube .claude-accounts .npmrc .cagent)
+#   phase0  Preserve backup-only config (.aws .kube .claude-accounts .npmrc .cagent .claude.bak .claude/projects)
 #   phase1  Verify keeper library (DB integrity)  — then open it in Photos.app yourself
 #   phase2  Relocate keeper library -> ~/Pictures  (mv, instant, same volume)
 #   phase3  Delete redundant .zip  (495G, instant)  [requires library verified+relocated]
@@ -113,10 +113,10 @@ phase0_preserve_config() {
   info "These exist ONLY in the backup. Copying to $CONFIG_REVIEW for you to merge by hand (never auto-merged)."
   run mkdir -p "$CONFIG_REVIEW"
   local d
-  for d in .aws .kube .claude-accounts .npmrc .cagent; do
+  for d in .aws .kube .claude-accounts .npmrc .cagent .claude.bak .claude/projects; do
     if [ -e "$BACKUP/$d" ]; then
       info "  - $d ($(sizeof "$BACKUP/$d"))"
-      run rsync -a "$BACKUP/$d" "$CONFIG_REVIEW/"
+      run rsync -aR "$BACKUP/./$d" "$CONFIG_REVIEW/"
     fi
   done
   ok "Config staged. Review $CONFIG_REVIEW, then these originals get removed with the backup in phase6."
