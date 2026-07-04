@@ -15,21 +15,23 @@
 #     - Backup/Cyberpunk 2077 (80G), Applications (17G), 2ndBrain (4.8G, current is superset),
 #       Calibre Library, caches, .zcompdump-*, empty dirs, etc.
 #
-# Decisions baked in: keeper -> STANDALONE library in ~/Pictures (no iCloud);
-#                     export -> ARCHIVE to external drive, THEN delete.
+# Decisions baked in: keeper -> STANDALONE library in ~/Pictures (no iCloud, moved via Finder);
+#                     export/ -> relocated by user to ~/Pictures/_toImport/export_backup, then
+#                     DELETE after confirming the library opens (it duplicates the library's originals).
+# NOTE: the backup's remaining ~1T is almost entirely regenerable dev caches (.cache, .tart VMs,
+#       .rustup, .gradle, mise, etc.) + reinstallable apps — phase6 wipes the whole root.
 #
 # SAFETY:
 #   * Dry-run by default. Pass --execute to actually do anything.
 #   * Every destructive step asks y/N (unless --yes).
-#   * rm only ever runs on paths under the backup root (asserted).
-#   * Redundant photo copies are NOT deleted until the keeper library is
-#     verified (valid DB) AND relocated into ~/Pictures.
-#   * export/ is verified-copied to the archive dest before it is deleted.
+#   * rm only ever runs under the backup root (asserted), except phase4's export_backup
+#     which is path-pinned to the exact ~/Pictures/_toImport/export_backup.
+#   * Redundant photo copies are NOT deleted until the keeper library is confirmed to open.
 #
 # Usage:
 #   ./dedupe-m3ultra.sh                         # dry-run: print the whole plan
 #   ./dedupe-m3ultra.sh --execute phase0 phase1 phase2 phase3
-#   ./dedupe-m3ultra.sh --execute --archive-dest /Volumes/Archive phase4
+#   ./dedupe-m3ultra.sh --execute phase4         # delete the redundant export_backup
 #   ./dedupe-m3ultra.sh --execute                # run all phases in order, with prompts
 #
 # Phases:
@@ -37,7 +39,7 @@
 #   phase1  Verify keeper library (DB integrity)  — then open it in Photos.app yourself
 #   phase2  Relocate keeper library -> ~/Pictures  (mv, instant, same volume)
 #   phase3  Delete redundant .zip  (495G, instant)  [requires library verified+relocated]
-#   phase4  Archive export/ -> --archive-dest, verify, then delete  (461G)
+#   phase4  Delete export_backup (461G) after library verified — it's a redundant copy
 #   phase5  Delete reinstallable/superseded (Cyberpunk, Applications, 2ndBrain, junk)
 #   phase6  Stage remaining small files for review, then remove the backup root
 
@@ -51,6 +53,7 @@ PICS_BK="$BACKUP/Pictures"
 LIB="$PICS_BK/Photos Library.photoslibrary"
 ZIP="$PICS_BK/Photos Library.photoslibrary.zip"
 EXPORT="$PICS_BK/export"
+EXPORT_BACKUP="$HOME_DIR/Pictures/_toImport/export_backup"   # export/, relocated here by user
 CONFIG_REVIEW="$HOME_DIR/m3ultra-config-review"
 LEFTOVERS="$HOME_DIR/m3ultra-leftovers"
 
@@ -162,39 +165,21 @@ phase3_delete_zip() {
   fi
 }
 
-phase4_archive_export() {
-  head1 "Phase 4 — archive export/ to external, verify, then delete (461G)"
-  [ -e "$EXPORT" ] || { warn "export/ already gone. Skipping."; return 0; }
-  info "export/ size: $(sizeof "$EXPORT")"
-  [ -d "$HOME_DIR/Pictures/Photos Library.photoslibrary" ] || guard "Keeper library not yet in ~/Pictures — run phase2 first." || return 0
-  [ -n "$ARCHIVE_DEST" ] || guard "Pass --archive-dest /Volumes/YourDrive (external drive) for this phase." || return 0
-  [ -d "$ARCHIVE_DEST" ] || guard "Archive dest not found: $ARCHIVE_DEST" || return 0
-
-  local need free dest
-  need=$(du -sk "$EXPORT" | awk '{print $1*1024}')
-  free=$(df -k "$ARCHIVE_DEST" | awk 'NR==2{print $4*1024}')
-  info "dest free: $(awk -v b="$free" 'BEGIN{printf "%.0fG", b/1073741824}')"
-  [ "$free" -gt "$need" ] || guard "Not enough free space on $ARCHIVE_DEST (need ~$(awk -v b="$need" 'BEGIN{printf "%.0fG",b/1073741824}'))." || return 0
-
-  dest="$ARCHIVE_DEST/m3ultra-photos-export"
-  info "Archiving to: $dest"
-  if confirm "Copy export/ (461G) to $dest? (long — hours over USB)"; then
-    run mkdir -p "$dest"
-    run rsync -aH --info=progress2 "$EXPORT/" "$dest/"
-    if [ "$EXECUTE" = 1 ]; then
-      info "Verifying copy (dry-run rsync — should report no differences)..."
-      local diff; diff="$(rsync -aHni "$EXPORT/" "$dest/" | grep -v '^\.d\.\.t' | grep -v 'DS_Store' || true)"
-      if [ -z "$diff" ]; then
-        ok "Archive verified complete."
-        if confirm "Delete the original export/ from the backup now?"; then
-          safe_rm "$EXPORT"; ok "Deleted export/ (~461G freed; archived copy at $dest)."
-        fi
-      else
-        warn "Verification found differences — NOT deleting original:"; printf '%s\n' "$diff" | head -20
-      fi
-    else
-      info "  [dry-run] would verify with 'rsync -aHni' then delete original on match."
-    fi
+phase4_delete_export() {
+  head1 "Phase 4 — delete export_backup (461G, redundant with the library)"
+  # export/ was relocated by the user to ~/Pictures/_toImport/export_backup.
+  # Decision: delete after the library is confirmed working (no external archive).
+  [ -e "$EXPORT_BACKUP" ] || { warn "export_backup already gone: $EXPORT_BACKUP. Skipping."; return 0; }
+  [ -d "$HOME_DIR/Pictures/Photos Library.photoslibrary" ] || guard "Keeper library not in ~/Pictures — verify it first." || return 0
+  info "Redundant copy: $EXPORT_BACKUP ($(sizeof "$EXPORT_BACKUP"))"
+  info "These 84k files are the library's own originals — already inside the relocated library."
+  if confirm "Confirm the library OPENS in Photos.app, and delete export_backup (461G)?"; then
+    # This path is under ~/Pictures (not the backup root, so safe_rm won't touch it).
+    # Assert the exact expected path before removing.
+    [ "$EXPORT_BACKUP" = "$HOME_DIR/Pictures/_toImport/export_backup" ] || die "Refusing: unexpected export_backup path: $EXPORT_BACKUP"
+    run rm -rf -- "$EXPORT_BACKUP"
+    ok "Deleted export_backup (~461G freed)."
+    warn "Note: if your terminal is TCC-blocked from ~/Pictures, this rm may fail — say so and I'll remove it."
   fi
 }
 
@@ -274,7 +259,7 @@ for p in $PHASES; do
     phase1) phase1_verify_library ;;
     phase2) phase2_relocate_library ;;
     phase3) phase3_delete_zip ;;
-    phase4) phase4_archive_export ;;
+    phase4) phase4_delete_export ;;
     phase5) phase5_delete_reinstallable ;;
     phase6) phase6_sweep_and_remove ;;
   esac
