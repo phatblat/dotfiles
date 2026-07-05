@@ -38,6 +38,8 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 @test "pcopy: smoke — copies pwd to clipboard" {
+    pbpaste &>/dev/null || skip "clipboard is not available"
+
     run nu --no-config-file -c "
         source '$AUTOLOAD/pcopy.nu'
         cd '$HOME'

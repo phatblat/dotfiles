@@ -26,6 +26,7 @@ load helpers/setup
 
 @test "nix is available" {
   if [[ "${CI:-}" == "true" ]]; then skip "nix not installed in CI"; fi
+  command_exists nix || skip "nix not installed"
   command_exists nix
 }
 

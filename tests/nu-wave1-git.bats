@@ -111,6 +111,8 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 @test "ls-remote: smoke — lists remote refs from origin" {
+    git -C "$HOME" ls-remote --heads origin &>/dev/null || skip "origin remote is not reachable"
+
     run nu --no-config-file -c "
         source '$NU_AUTOLOAD/ls-remote.nu'
         cd '$HOME'
