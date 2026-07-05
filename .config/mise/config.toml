@@ -137,7 +137,7 @@ xcodes = "2.0.2"
 xh = "0.26.1"
 yq = "4.53.3"
 zig = "0.16.0"
-zoxide = "0.9.9"
+zoxide = "0.10.0"
 
 [tools."http:cursor-cli"]
 version = "2026.07.01-777f564"
