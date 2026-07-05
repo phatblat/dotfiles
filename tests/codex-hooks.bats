@@ -175,3 +175,24 @@ PY
     [ -z "$output" ]
     grep -F "$codex_home/agent-flow/hook.js" "$log"
 }
+
+@test "agent flow: caches empty state scans for a short TTL" {
+    codex_home="$BATS_TEST_TMPDIR/codex"
+    bindir="$BATS_TEST_TMPDIR/bin"
+    log="$BATS_TEST_TMPDIR/find.log"
+    mkdir -p "$codex_home/agent-flow" "$bindir"
+    cat > "$bindir/find" <<'SH'
+#!/usr/bin/env bash
+printf "%s\n" "$*" >>"$FIND_LOG"
+exit 0
+SH
+    chmod +x "$bindir/find"
+
+    run env CODEX_HOME="$codex_home" PATH="$bindir:$PATH" FIND_LOG="$log" LEGACY_AGENT_FLOW_DIR="$BATS_TEST_TMPDIR/no-legacy" AGENT_FLOW_NO_ACTIVE_TTL_SECONDS=60 bash "$AGENT_FLOW_GUARD"
+    [ "$status" -eq 0 ]
+
+    run env CODEX_HOME="$codex_home" PATH="$bindir:$PATH" FIND_LOG="$log" LEGACY_AGENT_FLOW_DIR="$BATS_TEST_TMPDIR/no-legacy" AGENT_FLOW_NO_ACTIVE_TTL_SECONDS=60 bash "$AGENT_FLOW_GUARD"
+    [ "$status" -eq 0 ]
+
+    [ "$(wc -l < "$log" | tr -d ' ')" -eq 1 ]
+}
