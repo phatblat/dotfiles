@@ -25,7 +25,7 @@ export def --env toggle_wait [
             "on"
         }
     } else {
-        $state | str downcase
+        $state | str lowercase
     }
 
     match $s {
