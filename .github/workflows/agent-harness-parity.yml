@@ -37,7 +37,7 @@ jobs:
         run: python3 scripts/agent-harnesses.py audit > agent-harness-parity-report.md
 
       - name: Upload parity report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: agent-harness-parity-report
           path: agent-harness-parity-report.md
