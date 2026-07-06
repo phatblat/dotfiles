@@ -26,6 +26,46 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$status" -eq 0 ]
 }
 
+@test "agent-harnesses: procedural Codex skills require explicit invocation" {
+  procedural_skills=(
+    branch-finish
+    dupe
+    git-cleanup
+    git-commit
+    git-push
+    git-rebase
+    git-split
+    git-status
+    git-worktrees
+    gh-stack
+    gha-checks
+    gha-log-reader
+    optimize
+    plan-linear
+    pr-create
+    pr-daily
+    pr-merge
+    pr-open-for-review
+    pr-post-findings
+    pr-resolve-feedback
+    pr-update-desc
+    resolve-feedback
+    retro
+    session-save
+    work-eod
+    work-runners
+    work-start
+    work-track
+  )
+
+  for skill in "${procedural_skills[@]}"; do
+    sidecar="$HOME/.agents/skills/$skill/agents/openai.yaml"
+    [ -f "$sidecar" ]
+    grep -Fx "policy:" "$sidecar"
+    grep -Fx "  allow_implicit_invocation: false" "$sidecar"
+  done
+}
+
 @test "agent-harnesses: cursor plugin artifacts exist" {
   [ -f "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/rules/shared-harness.mdc" ]

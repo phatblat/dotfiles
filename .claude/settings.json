@@ -350,6 +350,10 @@
   "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "command": "bash ~/.claude/statusline-command.sh",
+    "type": "command"
+  },
   "teammateMode": "in-process",
   "theme": "auto",
   "tui": "fullscreen",
