@@ -6,3 +6,8 @@ extend-exclude = [
 
 [default.extend-words]
 certifi = "certifi"
+
+[default]
+extend-ignore-re = [
+    "2ndBrain",
+]
