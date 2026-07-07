@@ -4,7 +4,7 @@
       "cookieSource": "auto",
       "enabled": true,
       "id": "claude",
-      "source": "auto"
+      "source": "oauth"
     },
     {
       "enabled": true,
@@ -213,6 +213,22 @@
     {
       "enabled": false,
       "id": "chutes"
+    },
+    {
+      "enabled": false,
+      "id": "sakana"
+    },
+    {
+      "enabled": false,
+      "id": "qoder"
+    },
+    {
+      "enabled": false,
+      "id": "crossmodel"
+    },
+    {
+      "enabled": false,
+      "id": "clawrouter"
     }
   ],
   "version": 1
