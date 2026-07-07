@@ -43,6 +43,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/ldg/wave-rider"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/_GETDITTO/forge"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
@@ -78,7 +81,7 @@ source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
 [marketplaces.linear-cli]
-last_updated = "2026-06-27T02:24:25Z"
+last_updated = "2026-07-06T20:49:39Z"
 last_revision = "fc85b919cdb62a668eecea6ea5484aad9da8f655"
 source_type = "git"
 source = "https://github.com/schpet/linear-cli.git"
