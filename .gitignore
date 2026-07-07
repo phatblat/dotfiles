@@ -86,6 +86,8 @@
 .claude/remote-settings.json
 .claude/security/
 .claude/security_warnings_state_*.json
+.claude/skills/gstack/**/*.icns
+.claude/skills/gstack/**/test/
 .claude/skills/gstack/node_modules/
 .claude/teams/
 .claude_settings.json

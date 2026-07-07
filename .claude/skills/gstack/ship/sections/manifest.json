@@ -1,0 +1,56 @@
+{
+  "$schema": "https://gstack.dev/schemas/section-manifest.json",
+  "note": "PASSIVE registry (v2 plan T9 / CM2). Fields are IDs, file paths, human titles, and human-readable trigger text ONLY. The skeleton's decision-tree prose is the ONLY place that decides WHEN to read a section; required-reads live in the E2E fixtures. No machine predicate here — see docs/designs/v2_PLAN.md:663.",
+  "sections": [
+    {
+      "file": "tests.md",
+      "id": "tests",
+      "title": "Test bootstrap, run, triage + eval suites",
+      "trigger": "running the test suites and (if prompt files changed) the eval suites (Steps 4-6)"
+    },
+    {
+      "file": "test-coverage.md",
+      "id": "test-coverage",
+      "title": "Test coverage audit (subagent)",
+      "trigger": "auditing test coverage of the diff (Step 7)"
+    },
+    {
+      "file": "plan-completion.md",
+      "id": "plan-completion",
+      "title": "Plan completion + verification audit (subagent)",
+      "trigger": "auditing plan completion, verification, and scope drift (Step 8)"
+    },
+    {
+      "file": "review-army.md",
+      "id": "review-army",
+      "title": "Pre-landing review + specialist army",
+      "trigger": "the pre-landing review and specialist dispatch (Step 9)"
+    },
+    {
+      "file": "greptile.md",
+      "id": "greptile",
+      "title": "Address Greptile review comments",
+      "trigger": "addressing Greptile review comments when a PR exists (Step 10)"
+    },
+    {
+      "file": "adversarial.md",
+      "id": "adversarial",
+      "title": "Adversarial review + learnings refresh",
+      "trigger": "the adversarial review and learnings capture (Step 11)"
+    },
+    {
+      "file": "changelog.md",
+      "id": "changelog",
+      "title": "CHANGELOG entry (release-summary + itemized)",
+      "trigger": "writing the CHANGELOG entry (Step 13)"
+    },
+    {
+      "file": "pr-body.md",
+      "id": "pr-body",
+      "title": "Documentation sync + PR/MR creation",
+      "trigger": "syncing docs and creating or updating the PR/MR (Steps 18-19)"
+    }
+  ],
+  "skill": "ship",
+  "version": 1
+}
