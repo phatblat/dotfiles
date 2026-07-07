@@ -46,6 +46,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/_GETDITTO/forge"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/agents/agentic-code-review"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
@@ -69,7 +72,7 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-07T00:32:23Z"
+last_updated = "2026-07-07T11:04:27Z"
 last_revision = "6d5f79446b996d64c87f1bedf0e13eb4dda542d2"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
