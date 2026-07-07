@@ -62,7 +62,7 @@ status_line_use_colors = true
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-07T11:12:21Z"
+last_updated = "2026-07-07T15:15:33Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -156,6 +156,9 @@ enabled = true
 enabled = false
 
 [plugins."linear-cli@linear-cli"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
 enabled = true
 
 [mcp_servers.node_repl]
