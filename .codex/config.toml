@@ -72,13 +72,13 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-07T15:00:35Z"
-last_revision = "7406dea99f3e6902a4b11ed57e698b7b5142de17"
+last_updated = "2026-07-07T20:05:11Z"
+last_revision = "6ec4b4020230e4c600407a1c46d76bc4f28a0d48"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-07T02:22:42Z"
+last_updated = "2026-07-07T20:05:13Z"
 last_revision = "1287b0985ce6a6a2a0b35e2302df5658b171cc6d"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
