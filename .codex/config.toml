@@ -207,6 +207,8 @@ codeFontSize = 14
 usePointerCursors = true
 composerEnterBehavior = "cmdIfMultiline"
 selected-avatar-id = "null-signal"
+dock-icon-preference = "codex-dark"
+git-pull-request-merge-method = "squash"
 
 [desktop.open-in-target-preferences]
 global = "zed"
