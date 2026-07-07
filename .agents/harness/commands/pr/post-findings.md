@@ -127,7 +127,7 @@ comment_url=$(gh pr comment <pr_number> --body "<description>
 _Originally at: <url>_")
 ```
 
-Record `{number, description, comment_url, kind}` for each finding (`kind` = `suggestion` | `inline` | `general`) — Step 5 uses these. Report success or fallback for each finding.
+Record `{number, description, path, line, comment_url, kind}` for each finding (`kind` = `suggestion` | `inline` | `general`) — Step 5 uses these. Report success or fallback for each finding.
 
 ### 5. Record in Today's Daily Note
 
@@ -162,12 +162,12 @@ gh pr view <pr_number> --json title,author --jq '"\(.title)|@\(.author.login)"'
 
 ```markdown
 - [<owner>/<repo>#<pr_number>](<pr_url>) — <PR title> — @<author>
-  - [comment](<comment_url>) — <brief finding description>
-  - [comment](<comment_url>) — <brief finding description>
+  - [<file>:<line>](<comment_url>) — <brief finding description>
+  - [<file>:<line>](<comment_url>) — <brief finding description>
 ```
 
-- Link text is `<owner>/<repo>#<pr_number>` (e.g. `getditto/forge#887`), linked to `<pr_url>`.
-- One sub-bullet per finding posted in Step 4, using that finding's captured `comment_url`. For a finding that fell back to a general comment, append ` (general)` to its sub-bullet.
+- The PR line's link text is `<owner>/<repo>#<pr_number>` (e.g. `getditto/forge#887`), linked to `<pr_url>`.
+- One sub-bullet per finding posted in Step 4. Its link text is `<file>:<line>` — the **basename** of the finding's `path` (filename only, not the full path) and its anchor `line`, e.g. `CalendarComponent.swift:209` — linked to that finding's captured `comment_url`. For a finding that fell back to a general comment, append ` (general)` to its sub-bullet.
 
 **Append rules:**
 - **PR already listed** (a `- [<owner>/<repo>#<pr_number>](` line exists under `# Reviews`): append the new comment sub-bullets under that existing item — do not repeat the PR line.
