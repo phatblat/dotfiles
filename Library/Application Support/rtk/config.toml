@@ -34,7 +34,7 @@ consent_given = false
 consent_date = "2026-04-29T17:26:25.095828+00:00"
 
 [hooks]
-exclude_commands = []
+exclude_commands = ["find"]
 
 [limits]
 grep_max_results = 200
