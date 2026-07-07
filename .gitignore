@@ -285,6 +285,7 @@
 .google-cloud-sdk/
 .gradle/
 .groovy/
+.gstack/
 .gt/
 .harness/
 .hawtjni/
