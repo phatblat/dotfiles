@@ -72,8 +72,8 @@ source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-04T15:01:44Z"
-last_revision = "d3f35297adccea3ad8735e988253966ffa8cf74c"
+last_updated = "2026-07-07T02:22:42Z"
+last_revision = "1287b0985ce6a6a2a0b35e2302df5658b171cc6d"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
