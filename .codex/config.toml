@@ -62,12 +62,12 @@ status_line_use_colors = true
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-07T02:55:49Z"
+last_updated = "2026-07-07T11:12:21Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-06-27T02:08:25Z"
+last_updated = "2026-07-07T11:13:02Z"
 source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -99,19 +99,19 @@ enabled = true
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."pdf@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."spreadsheets@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."presentations@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."template-creator@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."clangd-lsp@claude-plugins-official"]
 enabled = true
@@ -200,6 +200,9 @@ followUpQueueMode = "queue"
 localeOverride = "en-US"
 preventSleepWhileRunning = true
 keepRemoteControlAwakeWhilePluggedIn = true
+codeFontSize = 14
+usePointerCursors = true
+composerEnterBehavior = "cmdIfMultiline"
 
 [desktop.open-in-target-preferences]
 global = "zed"
