@@ -1,0 +1,1 @@
+/Users/phatblat/.claude/skills/gstack/pair-agent/SKILL.md
