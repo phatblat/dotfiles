@@ -206,6 +206,7 @@ keepRemoteControlAwakeWhilePluggedIn = true
 codeFontSize = 14
 usePointerCursors = true
 composerEnterBehavior = "cmdIfMultiline"
+selected-avatar-id = "null-signal"
 
 [desktop.open-in-target-preferences]
 global = "zed"
