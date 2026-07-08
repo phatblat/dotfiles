@@ -146,6 +146,17 @@ checksum = "sha256:853979acec109c887623013623ad4dbe1f44d4cbe598ebefaa0e55145d9c9
 bin_path = "dist-package"
 bin = "cursor-agent"
 
+[env]
+# Android build + CLI tools on PATH (adb, sdkmanager, emulator, aapt/apksigner).
+# mise emits these on every hook, so they survive in nushell where mise owns PATH.
+# build-tools is pinned to the latest installed version — bump when SDK updates.
+_.path = [
+  "{{env.HOME}}/Library/Android/sdk/platform-tools",
+  "{{env.HOME}}/Library/Android/sdk/cmdline-tools/latest/bin",
+  "{{env.HOME}}/Library/Android/sdk/emulator",
+  "{{env.HOME}}/Library/Android/sdk/build-tools/37.0.0",
+]
+
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
