@@ -62,7 +62,7 @@ status_line_use_colors = true
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-07T11:12:21Z"
+last_updated = "2026-07-07T15:15:33Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -72,13 +72,13 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-07T15:00:35Z"
-last_revision = "7406dea99f3e6902a4b11ed57e698b7b5142de17"
+last_updated = "2026-07-07T20:05:11Z"
+last_revision = "6ec4b4020230e4c600407a1c46d76bc4f28a0d48"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-07T02:22:42Z"
+last_updated = "2026-07-07T20:05:13Z"
 last_revision = "1287b0985ce6a6a2a0b35e2302df5658b171cc6d"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
@@ -158,6 +158,9 @@ enabled = false
 [plugins."linear-cli@linear-cli"]
 enabled = true
 
+[plugins."sites@openai-bundled"]
+enabled = true
+
 [mcp_servers.node_repl]
 args = []
 command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
@@ -203,6 +206,9 @@ keepRemoteControlAwakeWhilePluggedIn = true
 codeFontSize = 14
 usePointerCursors = true
 composerEnterBehavior = "cmdIfMultiline"
+selected-avatar-id = "null-signal"
+dock-icon-preference = "codex-dark"
+git-pull-request-merge-method = "squash"
 
 [desktop.open-in-target-preferences]
 global = "zed"

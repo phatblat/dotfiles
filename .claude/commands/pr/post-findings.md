@@ -2,7 +2,7 @@
 description: Post code review findings from /review as inline PR comments
 model: sonnet
 argument_hint: "[finding numbers, e.g. 1,2,4] — omit to post all"
-allowed-tools: Bash(gh:*), Bash(git:*)
+allowed-tools: Bash(gh:*), Bash(git:*), Bash(date:*), Bash(grep:*), Read, Edit
 category: workflow
 ---
 
@@ -98,9 +98,11 @@ The body format depends on `suggestion_type`:
 
 #### Post the comment
 
+Capture the created comment's URL — Step 5 links to it from the daily note.
+
 ```bash
 body="<body from above>"
-gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
+resp=$(gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
   --method POST \
   --input - <<EOF
 {
@@ -111,17 +113,67 @@ gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
   "side": "RIGHT"
 }
 EOF
+)
+comment_url=$(printf '%s' "$resp" | jq -r '.html_url')
 ```
 
-If the `gh api` call returns an error (e.g. line not in diff), fall back to a general PR comment:
+If the `gh api` call returns an error (e.g. line not in diff), fall back to a general PR comment and capture its URL instead:
 
 ```bash
-gh pr comment <pr_number> --body "<description>\n\n_Originally at: <url>_"
+comment_url=$(gh pr comment <pr_number> --body "<description>
+
+_Originally at: <url>_")
 ```
 
-Report success or fallback for each finding.
+Record `{number, description, path, line, comment_url, kind}` for each finding (`kind` = `suggestion` | `inline` | `general`) — Step 5 uses these. Report success or fallback for each finding.
 
-### 5. Report Results
+### 5. Record in Today's Daily Note
+
+Append this review to the `# Reviews` section of today's daily note (seeded by `work:start-day`) so the worklog captures which PRs you reviewed and every comment you left.
+
+```bash
+today_date=$(date +%Y-%m-%d)
+today_day=$(date +%A)
+today_year=$(date +%Y)
+note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"
+```
+
+If the note doesn't exist, **skip this step** — do not fail (the comments were already posted). Note the skip in the final report.
+
+If the note exists but has no `# Reviews` section (created from an older template), insert one after the `# Work Items` block:
+
+```markdown
+# Reviews
+
+<!-- pr:post-findings appends reviewed PRs here -->
+
+***
+```
+
+Fetch the PR title and author:
+
+```bash
+gh pr view <pr_number> --json title,author --jq '"\(.title)|@\(.author.login)"'
+```
+
+**Entry format** — each reviewed PR is one top-level list item under `# Reviews`; the comments posted in this run are an indented sub-list beneath it:
+
+```markdown
+- [<owner>/<repo>#<pr_number>](<pr_url>) — <PR title> — @<author>
+  - [<file>:<line>](<comment_url>) — <brief finding description>
+  - [<file>:<line>](<comment_url>) — <brief finding description>
+```
+
+- The PR line's link text is `<owner>/<repo>#<pr_number>` (e.g. `getditto/forge#887`), linked to `<pr_url>`.
+- One sub-bullet per finding posted in Step 4. Its link text is `<file>:<line>` — the **basename** of the finding's `path` (filename only, not the full path) and its anchor `line`, e.g. `CalendarComponent.swift:209` — linked to that finding's captured `comment_url`. For a finding that fell back to a general comment, append ` (general)` to its sub-bullet.
+
+**Append rules:**
+- **PR already listed** (a `- [<owner>/<repo>#<pr_number>](` line exists under `# Reviews`): append the new comment sub-bullets under that existing item — do not repeat the PR line.
+- **PR not listed:** insert a new PR item after the `<!-- pr:post-findings appends reviewed PRs here -->` comment (following the next blank line); if that comment is absent, append at the end of the `# Reviews` section, before its `---`.
+
+Use `Edit` to make the change.
+
+### 6. Report Results
 
 ```
 Posted N finding(s) to PR #<pr_number>:
@@ -129,6 +181,8 @@ Posted N finding(s) to PR #<pr_number>:
   ✅ #2 — <brief description> (inline at <path>:<line>)
   ⚠️  #3 — <brief description> (posted as general comment — line not in diff)
 <pr_url>
+
+Daily note: added <N> comment(s) under <owner>/<repo>#<pr_number> in # Reviews (or "new PR entry" / "skipped — run /work:start first")
 ```
 
-Label each as `suggestion`, `inline`, or `general comment` so it's clear which are actionable.
+Label each finding as `suggestion`, `inline`, or `general comment` so it's clear which are actionable.

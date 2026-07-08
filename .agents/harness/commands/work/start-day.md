@@ -53,6 +53,8 @@ ls "${notes_dir}/${today_file}.md" 2>/dev/null && echo "EXISTS" || echo "MISSING
   - `{{date:dddd}}` → today's day name (e.g., `Friday`)
   - `{{date:YYYY-MM-DD dddd}}` → today's full date with day (e.g., `2026-05-29 Friday`)
 
+The template includes a `# Reviews` section seeded with a `<!-- pr:post-findings appends reviewed PRs here -->` placeholder — this is where `/pr:post-findings` records reviewed PRs and the comments left on them. Leave it empty at startup. If today's note already **EXISTS** but predates this section (no `# Reviews` heading), insert one after the `# Work Items` block before continuing.
+
 **Important**: The template's yesterday link `[[{{date:YYYY-MM-DD dddd}}]]` will resolve to TODAY (self-reference). Step 3 fixes this.
 
 ## Step 3: Fix Yesterday Link

@@ -68,6 +68,9 @@ if ($_ndk_dir | path exists) {
     }
 }
 
+# Xcode DerivedData (consumed by the `ddd` command)
+$env.DERIVED_DATA = ($nu.home-dir | path join 'Library' 'Developer' 'Xcode' 'DerivedData')
+
 # Editor configuration
 $env.EDITOR = "zed"
 $env.VISUAL = "zed"
