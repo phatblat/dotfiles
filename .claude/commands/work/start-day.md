@@ -110,6 +110,7 @@ Query Linear for the user's tickets that were active on the previous work day. R
 ```bash
 linear issue mine --team DEVX --state started --sort priority --no-pager 2>/dev/null
 linear issue mine --team DXO --state started --sort priority --no-pager 2>/dev/null
+linear issue mine --team FORGE --state started --sort priority --no-pager 2>/dev/null
 ```
 
 Note: The `--sort priority` flag is required. Valid `--state` values are: `triage`, `backlog`, `unstarted`, `started`, `completed`, `canceled`. There is no "in review" or "blocked" state in the CLI — these are custom workflow states visible in the UI but mapped to `started` in the CLI.
@@ -172,6 +173,7 @@ Query tickets assigned to me in the current cycle that need attention:
 ```bash
 linear issue mine --team DEVX --state triage --state backlog --state unstarted --sort priority --cycle active --no-pager 2>/dev/null
 linear issue mine --team DXO --state triage --state backlog --state unstarted --sort priority --cycle active --no-pager 2>/dev/null
+linear issue mine --team FORGE --state triage --state backlog --state unstarted --sort priority --cycle active --no-pager 2>/dev/null
 ```
 
 Note: `--state` can be repeated to filter multiple states in one call. `--sort priority` is always required.

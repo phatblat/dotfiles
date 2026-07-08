@@ -43,6 +43,12 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/ldg/wave-rider"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/_GETDITTO/forge"]
+trust_level = "trusted"
+
+[projects."/Users/phatblat/dev/agents/agentic-code-review"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
@@ -56,29 +62,29 @@ status_line_use_colors = true
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-04T00:42:26Z"
+last_updated = "2026-07-07T11:12:21Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-06-27T02:08:25Z"
+last_updated = "2026-07-07T11:13:02Z"
 source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-05T23:33:13Z"
-last_revision = "82fff17ff88fc45f3606be7547c3c7a550f55acd"
+last_updated = "2026-07-07T15:00:35Z"
+last_revision = "7406dea99f3e6902a4b11ed57e698b7b5142de17"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-04T15:01:44Z"
-last_revision = "d3f35297adccea3ad8735e988253966ffa8cf74c"
+last_updated = "2026-07-07T02:22:42Z"
+last_revision = "1287b0985ce6a6a2a0b35e2302df5658b171cc6d"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
 [marketplaces.linear-cli]
-last_updated = "2026-06-27T02:24:25Z"
+last_updated = "2026-07-06T20:49:39Z"
 last_revision = "fc85b919cdb62a668eecea6ea5484aad9da8f655"
 source_type = "git"
 source = "https://github.com/schpet/linear-cli.git"
@@ -93,19 +99,19 @@ enabled = true
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."pdf@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."spreadsheets@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."presentations@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."template-creator@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."clangd-lsp@claude-plugins-official"]
 enabled = true
@@ -163,12 +169,12 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_nod
 NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 CODEX_HOME = "/Users/phatblat/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "60e4902788f207f88fd09344dfeafe07769488bdb2924bbb12b322c3b9d2b999"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "97669f77b3ca7114a2df05d55646416ea34b28100c07213ef9f643803449ef2f"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.623.101652"
+BROWSER_USE_CODEX_APP_VERSION = "26.623.141536"
 CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
 
 [mcp_servers.code-review-graph]
@@ -194,6 +200,9 @@ followUpQueueMode = "queue"
 localeOverride = "en-US"
 preventSleepWhileRunning = true
 keepRemoteControlAwakeWhilePluggedIn = true
+codeFontSize = 14
+usePointerCursors = true
+composerEnterBehavior = "cmdIfMultiline"
 
 [desktop.open-in-target-preferences]
 global = "zed"
