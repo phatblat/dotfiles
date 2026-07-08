@@ -49,6 +49,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/agents/agentic-code-review"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/_GETDITTO/ditto-devx"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
@@ -114,52 +117,55 @@ enabled = true
 enabled = true
 
 [plugins."clangd-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."code-review@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."csharp-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."gopls-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."hookify@claude-plugins-official"]
 enabled = false
 
 [plugins."jdtls-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."kotlin-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."lua-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."pyright-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."rust-analyzer-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."security-guidance@claude-plugins-official"]
 enabled = false
 
 [plugins."swift-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."typescript-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."compound-engineering@compound-engineering-plugin"]
-enabled = false
+enabled = true
 
 [plugins."linear-cli@linear-cli"]
 enabled = true
 
 [plugins."sites@openai-bundled"]
 enabled = true
+
+[plugins."pr-review-toolkit@claude-plugins-official"]
+enabled = false
 
 [mcp_servers.node_repl]
 args = []
