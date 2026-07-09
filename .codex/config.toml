@@ -57,6 +57,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/_GETDITTO/build-infra"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
