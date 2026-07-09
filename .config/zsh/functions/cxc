@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# cxc - Continue the last Codex session (delegates to cx for --no-alt-screen + terminal cleanup)
+cx resume --last "$@"
