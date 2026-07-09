@@ -11,16 +11,18 @@ plan_mode_reasoning_effort = "xhigh"
 approvals_reviewer = "auto_review"
 
 tool_output_token_limit = 25000
+
 [features]
 apps = false
 collaboration_modes = true
+disable_paste_burst = true
+js_repl = false
 multi_agent = true
 personality = true
 runtime_metrics = true
 shell_tool = true
-unified_exec = true
 steer = true
-js_repl = false
+unified_exec = true
 
 [projects."/Users/phatblat"]
 trust_level = "trusted"
@@ -62,6 +64,7 @@ trust_level = "trusted"
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "model", "reasoning", "project-name", "git-branch"]
 status_line_use_colors = true
+terminal_title = ["project"]
 
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
@@ -78,8 +81,8 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-09T12:59:50Z"
-last_revision = "8d9e142e4ec5665f6561efef0ec10b3955e747dd"
+last_updated = "2026-07-09T14:07:54Z"
+last_revision = "c78da81119b6295856638784432e4f85902123d6"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
