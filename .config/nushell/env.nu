@@ -5,6 +5,8 @@
 $env.ENABLE_LSP_TOOL = 1
 $env.FORCE_COLOR = 3
 $env.XDG_CONFIG_HOME = $nu.home-dir | path join '.config'
+$env.STARSHIP_SHELL = "nu"
+$env.MISE_SHELL = "nu"
 
 # Use nushell functions to define your right and left prompt
 $env.PROMPT_COMMAND = {|| create_left_prompt }
@@ -68,6 +70,9 @@ if ($_ndk_dir | path exists) {
     }
 }
 
+# Android build + CLI tools are added to PATH via mise ([env]._.path in
+# ~/.config/mise/config.toml) so they survive mise's PATH reconstruction.
+
 # Xcode DerivedData (consumed by the `ddd` command)
 $env.DERIVED_DATA = ($nu.home-dir | path join 'Library' 'Developer' 'Xcode' 'DerivedData')
 
@@ -84,7 +89,9 @@ if (which starship | is-not-empty) {
 
 def create_left_prompt [] {
     if (which starship | is-not-empty) {
-        starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
+        with-env {STARSHIP_SHELL: "nu", MISE_SHELL: "nu"} {
+            starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
+        }
     } else {
         let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-dir }) {
             null => $env.PWD

@@ -1,6 +1,6 @@
 # Dependencies:
 #   functions: none
-#   builtins:  match str downcase str contains str trim print is-not-empty is-empty error
+#   builtins:  match str contains str trim print is-not-empty is-empty error
 #   externals: none
 
 # Toggle or set the wait flag on VISUAL or EDITOR environment variables
@@ -24,8 +24,12 @@ export def --env toggle_wait [
             print -n "Wait mode disabled, enabling"
             "on"
         }
+    } else if $state =~ '(?i)^on$' {
+        "on"
+    } else if $state =~ '(?i)^off$' {
+        "off"
     } else {
-        $state | str lowercase
+        $state
     }
 
     match $s {
