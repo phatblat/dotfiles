@@ -5,7 +5,7 @@ def "parse vars" [] {
 def --env "update-env" [] {
   for $var in $in {
     if $var.op == "set" {
-      if ($var.name | str uppercase) == 'PATH' {
+      if $var.name == 'PATH' {
         $env.PATH = ($var.value | split row (char esep))
       } else {
         load-env {($var.name): $var.value}
@@ -55,4 +55,3 @@ def --env mise_hook [] {
     | parse vars
     | update-env
 }
-
