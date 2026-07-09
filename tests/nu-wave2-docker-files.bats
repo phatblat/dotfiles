@@ -67,7 +67,7 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 @test "ddd: exits non-zero when DERIVED_DATA is unset" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ddd.nu'; ddd" 2>&1
+    run env -u DERIVED_DATA nu --no-config-file -c "source '$NU_AUTOLOAD/ddd.nu'; ddd" 2>&1
     [ "$status" -ne 0 ]
     [[ "$output" == *"DERIVED_DATA is not set"* ]]
 }
