@@ -255,15 +255,6 @@ global = "zed"
 [desktop.open-in-target-preferences.perPath]
 "/Users/phatblat" = "zed"
 
-[[hooks.Stop]]
-
-[[hooks.Stop.hooks]]
-type = "command"
-command = """
-echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) CODEX_SESSION task_complete repo=$(git rev-parse --show-toplevel) commit=$(git rev-parse --short HEAD 2>/dev/null || echo 'no-commit')" >> ~/.codex/audit.log
-printf '{}'
-"""
-
 [hooks.state]
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
@@ -362,6 +353,9 @@ enabled = false
 [hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:stop:0:0"]
 trusted_hash = "sha256:5d8880157e747997146b5eb0443a43909e23fb0203e64ae4895eff5a1b0282fa"
 enabled = false
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:925ce5ac1e065c6982177582b0f0ccbfa405ca441a329b65f77b709cd6b13acb"
 
 [mcp_servers.RepoPrompt]
 command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
