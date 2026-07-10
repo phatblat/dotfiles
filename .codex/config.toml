@@ -22,6 +22,7 @@ exporter = { otlp-http = {
 
 [features]
 apps = false
+codex_git_commit = true
 collaboration_modes = true
 disable_paste_burst = true
 js_repl = false
