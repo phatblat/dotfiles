@@ -254,6 +254,15 @@ global = "zed"
 [desktop.open-in-target-preferences.perPath]
 "/Users/phatblat" = "zed"
 
+[[hooks.Stop]]
+
+[[hooks.Stop.hooks]]
+type = "command"
+command = """
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) CODEX_SESSION task_complete repo=$(git rev-parse --show-toplevel) commit=$(git rev-parse --short HEAD 2>/dev/null || echo 'no-commit')" >> ~/.codex/audit.log
+printf '{}'
+"""
+
 [hooks.state]
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
