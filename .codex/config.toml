@@ -84,8 +84,8 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-10T02:31:58Z"
-last_revision = "a5c7fb5d86a4cd34c4f47819658654c3d8f08dda"
+last_updated = "2026-07-10T15:05:03Z"
+last_revision = "f8fe53a2f911ce16977d4d39ef0d7e2d3ca3d431"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
@@ -237,6 +237,7 @@ composerEnterBehavior = "cmdIfMultiline"
 selected-avatar-id = "null-signal"
 dock-icon-preference = "codex-system"
 git-pull-request-merge-method = "squash"
+avatar-overlay-mascot-width-px = 133
 
 [desktop.open-in-target-preferences]
 global = "zed"
