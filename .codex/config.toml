@@ -12,6 +12,13 @@ approvals_reviewer = "auto_review"
 
 tool_output_token_limit = 25000
 
+[otel]
+exporter = { otlp-http = {
+    endpoint = "https://otlp.datadoghq.com/v1/logs",
+    protocol = "binary",
+    headers = { "DD-API-KEY" = "${DD_API_KEY}" },
+} }
+
 [features]
 apps = false
 collaboration_modes = true
@@ -72,10 +79,10 @@ terminal_title = ["project"]
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
 "gpt-5.5" = 4
-"gpt-5.6-sol" = 1
+"gpt-5.6-sol" = 2
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-10T18:21:17Z"
+last_updated = "2026-07-10T18:28:06Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -85,8 +92,8 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-10T18:21:15Z"
-last_revision = "6f75fa01e415b0078968fc3665b4080efe51ddfa"
+last_updated = "2026-07-10T18:44:33Z"
+last_revision = "9f7b9f8d512843ca7d6ee0fe552212f46b28a8d8"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
