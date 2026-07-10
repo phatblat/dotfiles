@@ -3,8 +3,8 @@
 # ghostty +show-config --default --docs | bat --language sh
 
 # Shell
-initial-command = nu
-command = nu
+initial-command = /Users/phatblat/bin/nu-login
+command = /Users/phatblat/bin/nu-login
 
 # Style
 # ghostty +list-themes

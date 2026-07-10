@@ -6,7 +6,8 @@
 # Delete the Xcode DerivedData directory pointed to by $DERIVED_DATA
 export def ddd [] {
     if ($env.DERIVED_DATA? == null or ($env.DERIVED_DATA? | is-empty)) {
-        error make { msg: "DERIVED_DATA is not set" }
+        print --stderr "DERIVED_DATA is not set"
+        exit 1
     }
 
     let dir = $env.DERIVED_DATA

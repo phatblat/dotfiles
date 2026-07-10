@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 # nu-wave1-git.bats — Nushell port tests for wave-1 git/claude wrappers
-# Functions: ccc, ccr, diff, fork, ginit, git_clean, ls-remote, pp, root, untracked, user.email
+# Functions: ccc, ccr, cxc, diff, fork, ginit, git_clean, ls-remote, pp, root, untracked, user.email
 
 load helpers/setup
 
@@ -26,6 +26,18 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
     run nu --no-config-file -c "
         source '$NU_AUTOLOAD/cc.nu'
         source '$NU_AUTOLOAD/ccr.nu'
+    "
+    [ "$status" -eq 0 ]
+}
+
+# ---------------------------------------------------------------------------
+# cxc — codex resume --last (mutating/interactive: parse check only)
+# ---------------------------------------------------------------------------
+
+@test "cxc: file parses without error" {
+    run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/cx.nu'
+        source '$NU_AUTOLOAD/cxc.nu'
     "
     [ "$status" -eq 0 ]
 }
