@@ -75,7 +75,7 @@ terminal_title = ["project"]
 "gpt-5.6-sol" = 1
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-10T14:36:48Z"
+last_updated = "2026-07-10T18:21:17Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -85,14 +85,14 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-10T14:36:41Z"
-last_revision = "f8fe53a2f911ce16977d4d39ef0d7e2d3ca3d431"
+last_updated = "2026-07-10T18:21:15Z"
+last_revision = "6f75fa01e415b0078968fc3665b4080efe51ddfa"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-10T14:36:46Z"
-last_revision = "72c2d16337b253d33b86b20972cbe7372de6dd25"
+last_updated = "2026-07-10T18:11:11Z"
+last_revision = "3519336ecdf204e418a325d961a834abd8507d89"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
@@ -183,6 +183,9 @@ enabled = false
 enabled = true
 
 [plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
 enabled = true
 
 [mcp_servers.node_repl]
