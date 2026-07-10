@@ -80,7 +80,7 @@ terminal_title = ["project"]
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
 "gpt-5.5" = 4
-"gpt-5.6-sol" = 2
+"gpt-5.6-sol" = 3
 
 [marketplaces.openai-bundled]
 last_updated = "2026-07-10T18:28:06Z"
@@ -93,8 +93,8 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-10T18:44:33Z"
-last_revision = "9f7b9f8d512843ca7d6ee0fe552212f46b28a8d8"
+last_updated = "2026-07-10T19:06:31Z"
+last_revision = "119f4ebf21f6b932627e26824a7cae073c441fea"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
