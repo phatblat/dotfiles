@@ -74,7 +74,7 @@ terminal_title = ["project"]
 "gpt-5.5" = 4
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-07T15:15:33Z"
+last_updated = "2026-07-10T14:06:06Z"
 source_type = "local"
 source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
@@ -84,14 +84,14 @@ source_type = "local"
 source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-09T14:07:54Z"
-last_revision = "c78da81119b6295856638784432e4f85902123d6"
+last_updated = "2026-07-10T02:31:58Z"
+last_revision = "a5c7fb5d86a4cd34c4f47819658654c3d8f08dda"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-09T12:59:53Z"
-last_revision = "b498e7a8d1df0294a7353bcf4b9f47bd6ef206ef"
+last_updated = "2026-07-10T14:05:21Z"
+last_revision = "72c2d16337b253d33b86b20972cbe7372de6dd25"
 source_type = "git"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
@@ -105,9 +105,6 @@ source = "https://github.com/schpet/linear-cli.git"
 last_updated = "2026-07-09T13:10:13Z"
 source_type = "local"
 source = "/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"
-
-[plugins."browser@openai-bundled"]
-enabled = true
 
 [plugins."computer-use@openai-bundled"]
 enabled = true
@@ -184,24 +181,32 @@ enabled = false
 [plugins."pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal"]
 enabled = true
 
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
 [mcp_servers.node_repl]
 args = []
-command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
-NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 CODEX_HOME = "/Users/phatblat/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "97669f77b3ca7114a2df05d55646416ea34b28100c07213ef9f643803449ef2f"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,c8b7e809d7cf9e20a57123b2530d476ccec9a01a6230a7b2b924fea7d94d7f4a"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.623.141536"
-CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+BROWSER_USE_CODEX_APP_VERSION = "26.707.31428"
+SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000366/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.code-review-graph]
 command = "mise"
@@ -230,7 +235,7 @@ codeFontSize = 14
 usePointerCursors = true
 composerEnterBehavior = "cmdIfMultiline"
 selected-avatar-id = "null-signal"
-dock-icon-preference = "codex-dark"
+dock-icon-preference = "codex-system"
 git-pull-request-merge-method = "squash"
 
 [desktop.open-in-target-preferences]
@@ -342,4 +347,10 @@ enabled = false
 command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
 args = []
 tool_timeout_sec = 10000
+enabled = false
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
 enabled = false
