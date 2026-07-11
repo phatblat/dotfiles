@@ -230,7 +230,7 @@ _check-github-token:
 
 # Installs tools using mise
 [group('configuration')]
-deps: _check-github-token install-brew
+deps: _check-github-token install-brew git-filters
     mise install
 
 # Update tools within current versions
@@ -521,6 +521,14 @@ format: format-gitignore format-mise format-json format-shell
 git-hooks:
     git config --local core.hooksPath .config/git/hooks
     @echo "Git hooks installed from .config/git/hooks/"
+
+# Installs git clean filter that masks Codex config.toml churn (see .gitattributes)
+[group('git')]
+git-filters:
+    git config --local filter.codex-config.clean ~/scripts/mask-codex-state.sh
+    git config --local filter.codex-config.smudge cat
+    git config --local filter.codex-config.required true
+    @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
 
 #
 # claude group recipes
