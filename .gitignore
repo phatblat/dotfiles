@@ -104,6 +104,7 @@
 !.codex/config.toml
 !.codex/hooks.json
 !.codex/hooks/
+!.codex/main.config.toml
 !.codex/rules/
 .conche/
 .config/.todoist-linux.json

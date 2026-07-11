@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-# cx - Launch Codex without alternate screen mode
-codex --no-alt-screen "$@"
+# cx - Launch Codex without alternate screen mode (main profile)
+codex --no-alt-screen --profile main "$@"
 local cx_status=$?
 
 # Codex inline mode can leave enhanced keyboard reporting active in some
