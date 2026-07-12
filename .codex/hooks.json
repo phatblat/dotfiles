@@ -134,6 +134,16 @@
           }
         ],
         "name": "Agent Flow Guard"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/phatblat/.codex/hooks/scripts/audit-task-complete.sh'",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "name": "Task Complete Audit"
       }
     ],
     "SubagentStart": [

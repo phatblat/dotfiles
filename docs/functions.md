@@ -4,13 +4,13 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 765 unique functions/aliases across 4 shells**
+**Total: 768 unique functions/aliases across 4 shells**
 
 **Shell Statistics:**
 
-- Zsh: 386 functions (primary shell)
+- Zsh: 389 functions (primary shell)
 - Fish: 685 functions (secondary shell, most comprehensive)
-- Nushell: 107 aliases/functions (actively being configured)
+- Nushell: 110 aliases/functions (actively being configured)
 - Bash: 12 functions (minimal usage)
 
 **Shell Coverage:**
@@ -185,6 +185,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `curl_download`             | ✅  | ✅   | ➖  | ➖   | Download a file using curl with the most common op   |
 | `current-branch`            | ➖  | ➖   | ➖  | ➖   | Zsh function                                         |
 | `current_branch`            | ✅  | ✅   | ➖  | ➖   | Displays current branch name                         |
+| `cx`                        | ✅  | ➖   | ✅  | ➖   | Launch Codex (main profile, no alt-screen)           |
+| `cxc`                       | ✅  | ➖   | ✅  | ➖   | Continue the last Codex session                      |
+| `cxr`                       | ✅  | ➖   | ✅  | ➖   | Resume a Codex session                                |
 | `c`                         | ✅  | ✅   | ✅  | ➖   | Performs git checkout                                |
 | `dash`                      | ➖  | ✅   | ✅  | ➖   | Dash shell integration                               |
 | `date_iso8601`              | ➖  | ✅   | ✅  | ➖   | Prints date in ISO-8601 format                       |

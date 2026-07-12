@@ -6,15 +6,25 @@ Copyright: Ben Chatelain. Apache 2.0.
 
 from __future__ import annotations
 
-import argparse
 import json
 import os
 from pathlib import Path
-import shutil
-import subprocess
 import sys
-import tomllib
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+# The `guard` subcommand runs on every Bash/Write/Edit hook call and needs only
+# json/os/sys/pathlib plus the safety policy. Defer the heavier imports that
+# only the other subcommands use so the hot path stays minimal (~0.06s faster
+# per call). Non-guard invocations import everything eagerly, exactly as before;
+# the `TYPE_CHECKING or` prefix keeps the names bound for static analysis while
+# staying conditional at runtime.
+if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] == "guard"):
+    import argparse
+    import shutil
+    import subprocess
+    import tomllib
+
+_IS_GUARD = len(sys.argv) >= 2 and sys.argv[1] == "guard"
 
 
 sys.dont_write_bytecode = True
@@ -152,6 +162,8 @@ else:
 
 
 def main() -> int:
+    import argparse
+
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="action", required=True)
 
@@ -1796,5 +1808,48 @@ def display_path(path: Path) -> str:
     return "~/" + rel.as_posix()
 
 
+def parse_guard_args(argv: list[str]) -> Any:
+    """Hand-parse the `guard` args to skip argparse on the hot hook path.
+
+    Mirrors the guard subparser exactly (`--command` maps to `shell_command`,
+    same defaults, `--harness`/`--tool` required). Returns a namespace, or None
+    to fall back to the full argparse dispatcher for anything it cannot parse
+    confidently (unknown flag, dangling value, invalid harness, missing tool) so
+    error handling stays identical to argparse.
+    """
+    from types import SimpleNamespace
+
+    flag_map = {
+        "--harness": "harness",
+        "--tool": "tool",
+        "--command": "shell_command",
+        "--path": "path",
+        "--content": "content",
+        "--cwd": "cwd",
+    }
+    opts: dict[str, str | None] = {
+        "harness": None,
+        "tool": None,
+        "shell_command": "",
+        "path": "",
+        "content": "",
+        "cwd": str(ROOT),
+    }
+    index = 0
+    while index < len(argv):
+        key = flag_map.get(argv[index])
+        if key is None or index + 1 >= len(argv):
+            return None
+        opts[key] = argv[index + 1]
+        index += 2
+    if opts["harness"] not in HARNESSES or not opts["tool"]:
+        return None
+    return SimpleNamespace(**opts)
+
+
 if __name__ == "__main__":
+    if _IS_GUARD:
+        _guard_ns = parse_guard_args(sys.argv[2:])
+        if _guard_ns is not None:
+            raise SystemExit(command_guard(_guard_ns))
     raise SystemExit(main())

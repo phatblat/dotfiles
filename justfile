@@ -230,7 +230,7 @@ _check-github-token:
 
 # Installs tools using mise
 [group('configuration')]
-deps: _check-github-token install-brew
+deps: _check-github-token install-brew git-filters
     mise install
 
 # Update tools within current versions
@@ -380,7 +380,12 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py
+    ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/sort-codex-config.py
+
+# Checks the Codex config.toml is sorted (sections/keys alphabetized, state clustered)
+[group('checks')]
+lint-toml:
+    python3 ~/scripts/sort-codex-config.py --check ~/.codex/config.toml
 
 # Lints Zsh functions with shellcheck
 
@@ -422,7 +427,7 @@ lint-all: lint-zsh lint-fish lint-nushell lint-bin
 
 # Checks justfile and mise config formatting, gitignore, python, and shell scripts
 [group('checks')]
-lint: lint-gitignore lint-python lint-all
+lint: lint-gitignore lint-python lint-toml lint-all
     just --fmt --check
     mise fmt --check
 
@@ -463,6 +468,11 @@ test:
 [group('configuration')]
 format-gitignore:
     ~/scripts/sort-gitignore < ~/.gitignore | sponge ~/.gitignore
+
+# Sorts the Codex config.toml (sections/keys alphabetized, machine state clustered)
+[group('configuration')]
+format-toml:
+    python3 ~/scripts/sort-codex-config.py ~/.codex/config.toml
 
 # Formats and sorts mise config
 [group('configuration')]
@@ -507,9 +517,9 @@ format-shell:
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
 
-# Formats mise config, justfile, JSON configs, and shell scripts
+# Formats mise config, justfile, JSON/TOML configs, and shell scripts
 [group('configuration')]
-format: format-gitignore format-mise format-json format-shell
+format: format-gitignore format-mise format-toml format-json format-shell
     just --fmt
 
 #
@@ -521,6 +531,14 @@ format: format-gitignore format-mise format-json format-shell
 git-hooks:
     git config --local core.hooksPath .config/git/hooks
     @echo "Git hooks installed from .config/git/hooks/"
+
+# Installs git clean filter that masks Codex config.toml churn (see .gitattributes)
+[group('git')]
+git-filters:
+    git config --local filter.codex-config.clean ~/scripts/mask-codex-state.sh
+    git config --local filter.codex-config.smudge cat
+    git config --local filter.codex-config.required true
+    @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
 
 #
 # claude group recipes

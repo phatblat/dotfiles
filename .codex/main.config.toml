@@ -1,0 +1,15 @@
+# main.config.toml — Codex profile, activated with `codex --profile main`.
+#
+# The cx / cxc / cxr shell functions pass `--profile main` automatically.
+# Codex loads ~/.codex/config.toml (base) first, then layers this file on top;
+# only the keys set here override the base, everything else falls through.
+#
+# This starts as a pure pass-through (no active overrides) so behavior is
+# identical to base until you opt in. Uncomment a key below to experiment —
+# base stays untouched, so it's a safe scratch space for per-context tweaks.
+
+# model = "gpt-5.6-sol"
+# model_reasoning_effort = "xhigh"      # minimal | low | medium | high | xhigh
+# plan_mode_reasoning_effort = "xhigh"
+# service_tier = "fast"                 # fast mode
+# personality = "pragmatic"

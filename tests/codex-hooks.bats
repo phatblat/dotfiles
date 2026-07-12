@@ -6,6 +6,7 @@ load helpers/setup
 WRITE_GUARD="$HOME/.codex/hooks/scripts/write-guard.sh"
 AUTO_FORMAT="$HOME/.codex/hooks/scripts/auto-format.sh"
 AGENT_FLOW_GUARD="$HOME/.codex/hooks/scripts/agent-flow-guard.sh"
+AUDIT_TASK_COMPLETE="$HOME/.codex/hooks/scripts/audit-task-complete.sh"
 CODEX_CONFIG="$HOME/.codex/config.toml"
 CODEX_HOOKS="$HOME/.codex/hooks.json"
 
@@ -21,13 +22,51 @@ hook_input() {
   }'
 }
 
-@test "codex hooks: security-guidance and warp handlers are disabled" {
-    run python3 - "$CODEX_CONFIG" << 'PY'
-import sys
-import tomllib
+@test "audit hook: is registered only in hooks.json" {
+    run jq -e '
+    .hooks.Stop[]
+    | select(.name == "Task Complete Audit")
+    | .hooks[]
+    | select(.command == "bash '\''/Users/phatblat/.codex/hooks/scripts/audit-task-complete.sh'\''")
+  ' "$CODEX_HOOKS"
+    [ "$status" -eq 0 ]
 
-with open(sys.argv[1], "rb") as config_file:
-    config = tomllib.load(config_file)
+    run grep -nE '^\[\[hooks\.' "$CODEX_CONFIG"
+    [ "$status" -eq 1 ]
+}
+
+@test "audit hook: records the repository and current commit" {
+    home="$BATS_TEST_TMPDIR/home"
+    repo="$BATS_TEST_TMPDIR/repo"
+    mkdir -p "$home/.codex" "$repo"
+    git -C "$repo" init -q
+    git -C "$repo" config user.email "test@example.com"
+    git -C "$repo" config user.name "Test User"
+    printf 'tracked\n' > "$repo/tracked.txt"
+    git -C "$repo" add tracked.txt
+    git -C "$repo" commit -qm "Initial commit"
+    repo_root=$(/usr/bin/git -C "$repo" rev-parse --show-toplevel)
+    commit=$(/usr/bin/git -C "$repo" rev-parse HEAD)
+
+    run env HOME="$home" bash -c 'cd "$1" && "$2"' bash "$repo" "$AUDIT_TASK_COMPLETE"
+
+    [ "$status" -eq 0 ]
+    [ "$output" = "{}" ]
+    line=$(<"$home/.codex/audit.log")
+    timestamp=${line%% *}
+    recorded_commit=${line##* commit=}
+    [[ "$timestamp" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$ ]]
+    [[ "$line" == "$timestamp CODEX_SESSION task_complete repo=$repo_root commit="* ]]
+    [[ "$commit" == "$recorded_commit"* ]]
+}
+
+@test "codex hooks: security-guidance and warp handlers are disabled" {
+    run env PYTHONPATH="$BATS_TEST_DIRNAME/helpers" python3 - "$CODEX_CONFIG" << 'PY'
+import sys
+
+from codex_config import load
+
+config = load(sys.argv[1])
 
 states = config["hooks"]["state"]
 prefixes = (
@@ -47,14 +86,14 @@ PY
 }
 
 @test "codex hooks: plugins with incompatible hook schemas are disabled" {
-    run python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
+    run env PYTHONPATH="$BATS_TEST_DIRNAME/helpers" python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
 import json
 from pathlib import Path
 import sys
-import tomllib
 
-with open(sys.argv[1], "rb") as config_file:
-    config = tomllib.load(config_file)
+from codex_config import load
+
+config = load(sys.argv[1])
 
 home = Path(sys.argv[2])
 plugins = config.get("plugins", {})

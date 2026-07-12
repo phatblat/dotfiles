@@ -1,19 +1,45 @@
+# Codex config.toml — hand-authored settings first, machine-managed state last.
+# Sections/keys are alphabetized by `just format-toml` (~/scripts/sort-codex-config.py).
+# Volatile churn (timestamps/revisions/hashes) is masked out of git by ~/scripts/mask-codex-state.sh (clean filter; see .gitattributes).
+
+approvals_reviewer = "auto_review"
+commit_attribution = "Co-Authored-By: Codex <noreply@openai.com>"
 model = "gpt-5.5"
-model_reasoning_effort = "medium"
-personality = "pragmatic"
-suppress_unstable_features_warning = true
-service_tier = "fast"
+model_reasoning_effort = "high"
 notify = [
     "/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
     "turn-ended",
 ]
+personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
-approvals_reviewer = "auto_review"
-
+service_tier = "fast"
+suppress_unstable_features_warning = true
 tool_output_token_limit = 25000
+
+[desktop]
+ambient-suggestions-enabled = true
+avatar-overlay-mascot-width-px = 133
+codeFontSize = 14
+composerEnterBehavior = "cmdIfMultiline"
+conversationDetailMode = "STEPS_COMMANDS"
+dock-icon-preference = "codex-system"
+followUpQueueMode = "queue"
+git-pull-request-merge-method = "squash"
+keepRemoteControlAwakeWhilePluggedIn = true
+localeOverride = "en-US"
+preventSleepWhileRunning = true
+selected-avatar-id = "null-signal"
+usePointerCursors = true
+
+[desktop.open-in-target-preferences]
+global = "zed"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/phatblat" = "zed"
 
 [features]
 apps = false
+codex_git_commit = true
 collaboration_modes = true
 disable_paste_burst = true
 js_repl = false
@@ -24,45 +50,61 @@ shell_tool = true
 steer = true
 unified_exec = true
 
-[projects."/Users/phatblat"]
-trust_level = "trusted"
+[mcp_servers.code-review-graph]
+args = ["exec", "pipx:code-review-graph", "--", "code-review-graph", "serve"]
+command = "mise"
+default_tools_approval_mode = "auto"
 
-[projects."/"]
-trust_level = "trusted"
+[mcp_servers.computer-use]
+args = ["mcp"]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+cwd = "."
+enabled = false
 
-[projects."/Users/phatblat/dev/sandcastle"]
-trust_level = "trusted"
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
 
-[projects."/Users/phatblat/dev/claude/ground-control"]
-trust_level = "trusted"
+[mcp_servers.node_repl.env]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.707.31428"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+CODEX_HOME = "/Users/phatblat/.codex"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,c8b7e809d7cf9e20a57123b2530d476ccec9a01a6230a7b2b924fea7d94d7f4a"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
+SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000366/Codex Computer Use.app"
 
-[projects."/Users/phatblat/dev/agents/sandcastle-agent-lab"]
-trust_level = "trusted"
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
 
-[projects."/Users/phatblat/dev/agents/ground-control"]
-trust_level = "trusted"
+[mcp_servers.RepoPrompt]
+args = []
+command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
+enabled = false
+tool_timeout_sec = 10000
 
-[projects."/Users/phatblat/dev/ldg/wave-rider"]
-trust_level = "trusted"
+[otel]
+exporter = { otlp-http = {
+    endpoint = "https://otlp.datadoghq.com/v1/logs",
+    protocol = "binary",
+    headers = { "DD-API-KEY" = "${DD_API_KEY}" },
+} }
 
-[projects."/Users/phatblat/dev/_GETDITTO/forge"]
-trust_level = "trusted"
+[shell_environment_policy]
+inherit = "core"
 
-[projects."/Users/phatblat/dev/agents/agentic-code-review"]
-trust_level = "trusted"
-
-[projects."/Users/phatblat/dev/_GETDITTO/ditto-devx"]
-trust_level = "trusted"
-
-[projects."/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"]
-trust_level = "trusted"
-
-[projects."/Users/phatblat/dev/_GETDITTO/build-infra"]
-trust_level = "trusted"
-
-[notice.model_migrations]
-"gpt-5.3-codex" = "gpt-5.4"
-"gpt-5.4" = "gpt-5.5"
+[shell_environment_policy.set]
+BASH_DEFAULT_TIMEOUT_MS = "300000"
+CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
+MAX_MCP_OUTPUT_TOKENS = "25000"
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "model", "reasoning", "project-name", "git-branch"]
@@ -72,59 +114,156 @@ terminal_title = ["project"]
 [tui.model_availability_nux]
 "gpt-5.3-codex-spark" = 4
 "gpt-5.5" = 4
+"gpt-5.6-sol" = 4
 
-[marketplaces.openai-bundled]
-last_updated = "2026-07-10T14:06:06Z"
-source_type = "local"
-source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
+# ──────────────────────────────────────────────────────────────────────────
+# machine-managed state — written by Codex, not hand-edited.
+# Left tracked for cross-machine parity; Codex regenerates it if removed.
+# ──────────────────────────────────────────────────────────────────────────
 
-[marketplaces.openai-primary-runtime]
-last_updated = "2026-07-07T11:13:02Z"
-source_type = "local"
-source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+[hooks.state]
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:2:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_compact:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:2:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:3:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:2:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_stop:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:pre_tool_use:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:stop:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:user_prompt_submit:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:1"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:2"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:3"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:4"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:session_start:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:stop:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:user_prompt_submit:0:0"]
+enabled = false
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-07-10T02:31:58Z"
-last_revision = "a5c7fb5d86a4cd34c4f47819658654c3d8f08dda"
-source_type = "git"
+last_revision = "0000000000000000000000000000000000000000"
+last_updated = "1970-01-01T00:00:00Z"
 source = "https://github.com/anthropics/claude-plugins-official.git"
+source_type = "git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "2026-07-10T14:05:21Z"
-last_revision = "72c2d16337b253d33b86b20972cbe7372de6dd25"
-source_type = "git"
+last_revision = "0000000000000000000000000000000000000000"
+last_updated = "1970-01-01T00:00:00Z"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
-
-[marketplaces.linear-cli]
-last_updated = "2026-07-06T20:49:39Z"
-last_revision = "fc85b919cdb62a668eecea6ea5484aad9da8f655"
 source_type = "git"
-source = "https://github.com/schpet/linear-cli.git"
 
 [marketplaces.kyto64-codex-pr-review-toolkit-minimal]
-last_updated = "2026-07-09T13:10:13Z"
-source_type = "local"
+last_updated = "1970-01-01T00:00:00Z"
 source = "/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"
+source_type = "local"
 
-[plugins."computer-use@openai-bundled"]
+[marketplaces.linear-cli]
+last_revision = "0000000000000000000000000000000000000000"
+last_updated = "1970-01-01T00:00:00Z"
+source = "https://github.com/schpet/linear-cli.git"
+source_type = "git"
+
+[marketplaces.openai-bundled]
+last_updated = "1970-01-01T00:00:00Z"
+source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
+source_type = "local"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "1970-01-01T00:00:00Z"
+source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+source_type = "local"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.4" = "gpt-5.5"
+
+[plugins."browser@openai-bundled"]
 enabled = true
 
 [plugins."chrome@openai-bundled"]
-enabled = true
-
-[plugins."documents@openai-primary-runtime"]
-enabled = true
-
-[plugins."pdf@openai-primary-runtime"]
-enabled = true
-
-[plugins."spreadsheets@openai-primary-runtime"]
-enabled = true
-
-[plugins."presentations@openai-primary-runtime"]
-enabled = true
-
-[plugins."template-creator@openai-primary-runtime"]
 enabled = true
 
 [plugins."clangd-lsp@claude-plugins-official"]
@@ -133,8 +272,17 @@ enabled = false
 [plugins."code-review@claude-plugins-official"]
 enabled = false
 
+[plugins."compound-engineering@compound-engineering-plugin"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
 [plugins."csharp-lsp@claude-plugins-official"]
 enabled = false
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
 
 [plugins."gopls-lsp@claude-plugins-official"]
 enabled = false
@@ -148,8 +296,23 @@ enabled = false
 [plugins."kotlin-lsp@claude-plugins-official"]
 enabled = false
 
+[plugins."linear-cli@linear-cli"]
+enabled = true
+
 [plugins."lua-lsp@claude-plugins-official"]
 enabled = false
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."pr-review-toolkit@claude-plugins-official"]
+enabled = false
+
+[plugins."pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
 
 [plugins."pyright-lsp@claude-plugins-official"]
 enabled = false
@@ -160,197 +323,56 @@ enabled = false
 [plugins."security-guidance@claude-plugins-official"]
 enabled = false
 
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
 [plugins."swift-lsp@claude-plugins-official"]
 enabled = false
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
 
 [plugins."typescript-lsp@claude-plugins-official"]
 enabled = false
 
-[plugins."compound-engineering@compound-engineering-plugin"]
-enabled = true
-
-[plugins."linear-cli@linear-cli"]
-enabled = true
-
-[plugins."sites@openai-bundled"]
-enabled = true
-
-[plugins."pr-review-toolkit@claude-plugins-official"]
-enabled = false
-
-[plugins."pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal"]
-enabled = true
-
 [plugins."visualize@openai-bundled"]
 enabled = true
 
-[plugins."browser@openai-bundled"]
-enabled = true
+[projects."/"]
+trust_level = "trusted"
 
-[mcp_servers.node_repl]
-args = []
-command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
-startup_timeout_sec = 120
+[projects."/Users/phatblat"]
+trust_level = "trusted"
 
-[mcp_servers.node_repl.env]
-NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
-NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
-CODEX_HOME = "/Users/phatblat/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,c8b7e809d7cf9e20a57123b2530d476ccec9a01a6230a7b2b924fea7d94d7f4a"
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
-BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.707.31428"
-SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000366/Codex Computer Use.app"
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+[projects."/Users/phatblat/dev/_GETDITTO/build-infra"]
+trust_level = "trusted"
 
-[mcp_servers.code-review-graph]
-command = "mise"
-args = ["exec", "pipx:code-review-graph", "--", "code-review-graph", "serve"]
-default_tools_approval_mode = "auto"
+[projects."/Users/phatblat/dev/_GETDITTO/ditto-devx"]
+trust_level = "trusted"
 
-[mcp_servers.openaiDeveloperDocs]
-url = "https://developers.openai.com/mcp"
+[projects."/Users/phatblat/dev/_GETDITTO/forge"]
+trust_level = "trusted"
 
-[shell_environment_policy]
-inherit = "core"
+[projects."/Users/phatblat/dev/agents/agentic-code-review"]
+trust_level = "trusted"
 
-[shell_environment_policy.set]
-BASH_DEFAULT_TIMEOUT_MS = "300000"
-CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
-MAX_MCP_OUTPUT_TOKENS = "25000"
+[projects."/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"]
+trust_level = "trusted"
 
-[desktop]
-conversationDetailMode = "STEPS_COMMANDS"
-ambient-suggestions-enabled = true
-followUpQueueMode = "queue"
-localeOverride = "en-US"
-preventSleepWhileRunning = true
-keepRemoteControlAwakeWhilePluggedIn = true
-codeFontSize = 14
-usePointerCursors = true
-composerEnterBehavior = "cmdIfMultiline"
-selected-avatar-id = "null-signal"
-dock-icon-preference = "codex-system"
-git-pull-request-merge-method = "squash"
+[projects."/Users/phatblat/dev/agents/ground-control"]
+trust_level = "trusted"
 
-[desktop.open-in-target-preferences]
-global = "zed"
+[projects."/Users/phatblat/dev/agents/sandcastle-agent-lab"]
+trust_level = "trusted"
 
-[desktop.open-in-target-preferences.perPath]
-"/Users/phatblat" = "zed"
+[projects."/Users/phatblat/dev/claude/ground-control"]
+trust_level = "trusted"
 
-[hooks.state]
+[projects."/Users/phatblat/dev/ldg/wave-rider"]
+trust_level = "trusted"
 
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
-trusted_hash = "sha256:bafdecf1573c5e47e07756cab6ce31225c07267215d8c5fa7321ed5009772231"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:1:0"]
-trusted_hash = "sha256:806672e096e3690a8da673ff8024d8da1fb0bff91c9ff120699340576eed84a6"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:2:0"]
-trusted_hash = "sha256:9e5b1a7b90d816a9764e9be8d7bb2e7628cf5fcb6113eabff48c82041a763864"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:3:0"]
-trusted_hash = "sha256:0387d39c23586cad4b37f9fdaef4a754c79bb43611a7d3ba75e194ead3ef6e54"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:01315dc2afd11db52383e696c0fd63641769944cdef7c7bd557533548a28d9ba"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:1:0"]
-trusted_hash = "sha256:83c89056c44b5df8882435ad7cab46fc263490bc17aa74671ee30348eb5f3f4f"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:2:0"]
-trusted_hash = "sha256:7fb8d09e5884c311ac3f7fd6d8197844d9a4718d0961296748397d12f4dd75d0"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_compact:0:0"]
-trusted_hash = "sha256:a360fea4f42a9775089dcf08945d8a7f41f1e41a36380590866c2d760ddcce4b"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:83dc2c6bce28bb064d45f7af56f285d70b6662e0473d53b93e9b596bd39a57b9"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:1:0"]
-trusted_hash = "sha256:5936ef4a9d4836641c1500e3f9a38e95505d0d6b8433c505a2086a4f9f5167d1"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:2:0"]
-trusted_hash = "sha256:237215a70f00d698122508e041703698b717994dc01f64b0acea3323ef2a151d"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:user_prompt_submit:0:0"]
-trusted_hash = "sha256:8dde0bab68ea6f75fcf20f6a99c1b14df462596baa51c49c024e8de2d1e91389"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_start:0:0"]
-trusted_hash = "sha256:4391e7f80c3d4a33fe86e463ba05df389adacc669428e0b2037759c92fb5773a"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_stop:0:0"]
-trusted_hash = "sha256:3804ba5bb0b74f5fb18acfaa416c1c356c296b05f3d0ef940897282aa035783f"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:stop:0:0"]
-trusted_hash = "sha256:dcabd601207c846ea5e542c2b01e39dc73eb7d724f07905180d4df62f0e02682"
-
-[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:pre_tool_use:0:0"]
-trusted_hash = "sha256:2763d5b04659d5af7b607ed8ae8524d45987b047509ae969db296c1163793e98"
-enabled = false
-
-[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:33cab461db694142d691bc1267d6b4694a32402af2301bd1cc1becfbe5888a81"
-enabled = false
-
-[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:user_prompt_submit:0:0"]
-trusted_hash = "sha256:cbc990263a4b369738f970a9273caec2a5b55213795a57494ebb581240631a33"
-enabled = false
-
-[hooks.state."hookify@claude-plugins-official:hooks/hooks.json:stop:0:0"]
-trusted_hash = "sha256:81df2b0427162d1d2fe4b84733748a11f5bcb7b10dae9af3bced6c8b0709b6ca"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:e1f574c07fd492df4de2ceb615c3b0a2a3eca27329bf0929ff9095650c7174bf"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:0"]
-trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:1"]
-trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:2"]
-trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:3"]
-trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:post_tool_use:1:4"]
-trusted_hash = "sha256:ff051adf363232a355758bbc96941b87ab8b38bd47e6c5940b1232827a68b6d6"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:3def3be0b299c29f829ea4b057509c24f3c6f8eede7b8c719bbd4167866d6cf6"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:user_prompt_submit:0:0"]
-trusted_hash = "sha256:c22701bf949e9ffd219867faec1158e0124874e94f3668dab6209fa3acc92dd6"
-enabled = false
-
-[hooks.state."security-guidance@claude-plugins-official:hooks/hooks.json:stop:0:0"]
-trusted_hash = "sha256:5d8880157e747997146b5eb0443a43909e23fb0203e64ae4895eff5a1b0282fa"
-enabled = false
-
-[mcp_servers.RepoPrompt]
-command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
-args = []
-tool_timeout_sec = 10000
-enabled = false
-
-[mcp_servers.computer-use]
-command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
-args = ["mcp"]
-cwd = "."
-enabled = false
+[projects."/Users/phatblat/dev/sandcastle"]
+trust_level = "trusted"
