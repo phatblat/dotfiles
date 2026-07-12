@@ -61,12 +61,12 @@ hook_input() {
 }
 
 @test "codex hooks: security-guidance and warp handlers are disabled" {
-    run python3 - "$CODEX_CONFIG" << 'PY'
+    run env PYTHONPATH="$BATS_TEST_DIRNAME/helpers" python3 - "$CODEX_CONFIG" << 'PY'
 import sys
-import tomllib
 
-with open(sys.argv[1], "rb") as config_file:
-    config = tomllib.load(config_file)
+from codex_config import load
+
+config = load(sys.argv[1])
 
 states = config["hooks"]["state"]
 prefixes = (
@@ -86,14 +86,14 @@ PY
 }
 
 @test "codex hooks: plugins with incompatible hook schemas are disabled" {
-    run python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
+    run env PYTHONPATH="$BATS_TEST_DIRNAME/helpers" python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
 import json
 from pathlib import Path
 import sys
-import tomllib
 
-with open(sys.argv[1], "rb") as config_file:
-    config = tomllib.load(config_file)
+from codex_config import load
+
+config = load(sys.argv[1])
 
 home = Path(sys.argv[2])
 plugins = config.get("plugins", {})
