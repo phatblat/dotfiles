@@ -20,7 +20,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Copy lockfile + package.json into Docker build context
       - run: cp package.json bun.lock .github/docker/
