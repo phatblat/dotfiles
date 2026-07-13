@@ -106,6 +106,7 @@
 !.codex/hooks/
 !.codex/main.config.toml
 !.codex/rules/
+.codexbar/claude-oauth-cache.lock
 .conche/
 .config/.todoist-linux.json
 .config/BraveSoftware/
