@@ -79,6 +79,9 @@ NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbf
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000387/Codex Computer Use.app"
 
+[mcp_servers.notion]
+url = "https://mcp.notion.com/mcp"
+
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
 
