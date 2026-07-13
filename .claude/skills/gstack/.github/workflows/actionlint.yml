@@ -5,4 +5,4 @@ jobs:
     runs-on: ubicloud-standard-8
     steps:
       - uses: actions/checkout@v4
-      - uses: rhysd/actionlint@v1.7.11
+      - uses: rhysd/actionlint@v1.7.12
