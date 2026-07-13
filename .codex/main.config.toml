@@ -1,3 +1,5 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "max"
 [hooks.state]
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
@@ -46,6 +48,9 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/_GETDITTO/ditto-devx/.codex/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 # main.config.toml — Codex profile, activated with `codex --profile main`.
 #
