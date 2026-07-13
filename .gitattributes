@@ -1,7 +1,8 @@
 # Codex rewrites machine-managed state (marketplace timestamps/revisions, hook
-# trust hashes) into this file on nearly every launch. The `codex-config` clean
-# filter normalizes that churn out of the committed blob so the file stays stable
+# trust hashes) into these files on nearly every launch. The `codex-config` clean
+# filter normalizes that churn out of the committed blob so they stay stable
 # across launches and machines. Install the filter with `just git-filters`
-# (it is local git config, not carried by this attribute alone).
+# (it is local git config, not carried by these attributes alone).
 # Filter script: ~/scripts/mask-codex-state.sh
 .codex/config.toml filter=codex-config
+.codex/*.config.toml filter=codex-config

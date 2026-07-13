@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 #
-# mask-codex-state.sh — git "clean" filter for ~/.codex/config.toml
+# mask-codex-state.sh — git "clean" filter for ~/.codex/*.toml config files
 #
-# Codex rewrites machine-managed state into config.toml on nearly every launch
-# (marketplace sync timestamps/revisions, hook trust hashes). Tracking that file
-# verbatim produces constant diff churn and cross-machine merge conflicts.
+# Codex rewrites machine-managed state into config.toml and the per-profile
+# *.config.toml files on nearly every launch (marketplace sync timestamps/revisions,
+# hook trust hashes). Tracking those files verbatim produces constant diff churn
+# and cross-machine merge conflicts.
 #
 # This filter runs when git reads the working tree into a blob (add/status/diff)
 # and normalizes the volatile VALUES to fixed sentinels, so the committed content
@@ -13,6 +14,7 @@
 #
 # Wiring (installed by `just git-filters`, not committed to .git/config):
 #   .gitattributes:  .codex/config.toml filter=codex-config
+#                    .codex/*.config.toml filter=codex-config
 #   git config filter.codex-config.clean  ~/scripts/mask-codex-state.sh
 #   git config filter.codex-config.smudge cat
 #   git config filter.codex-config.required true
