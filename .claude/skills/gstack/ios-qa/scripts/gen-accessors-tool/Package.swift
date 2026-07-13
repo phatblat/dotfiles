@@ -20,7 +20,7 @@ let package = Package(
         .executable(name: "gen-accessors", targets: ["GenAccessors"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "510.0.3"),
+        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "603.0.2"),
     ],
     targets: [
         .executableTarget(
