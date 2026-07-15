@@ -41,6 +41,16 @@ Uncertainty → State immediately
 - Always use `/git:commit` or the `commit-message` skill. Never manually compose commit messages.
 - **Logical grouping**: When multiple files are changed, group them into separate commits by logical concern. Do not lump unrelated changes into a single commit. Each commit should represent one coherent change (e.g., a bug fix, a config update, a new feature). Ask the user to confirm grouping when the split is ambiguous.
 
+### Git commit attribution
+
+Whenever you create a Git commit, append this trailer after a blank line:
+
+```text
+Co-Authored-By: Codex <noreply@openai.com>
+```
+
+Include it exactly once.
+
 ## Skill Discipline
 - **Brainstorming**: Always invoke the `brainstorm` skill for design decisions, architecture choices, or open-ended problems.
 - If a skill exists for the task, invoke it — don't replicate its logic inline.
