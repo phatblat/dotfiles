@@ -51,7 +51,7 @@
 "pipx:python-lsp-server" = "1.14.0"
 "pipx:token-viewer" = "0.0.7"
 "pipx:yamllint" = "1.38.0"
-"vfox:mise-plugins/vfox-gcloud" = "575.0.1"
+"vfox:mise-plugins/vfox-gcloud" = "576.0.0"
 act = "0.2.89"
 actionlint = "1.7.12"
 awscli = { version = "2.35.23", symlink_bins = "true" }
