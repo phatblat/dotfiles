@@ -380,7 +380,7 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/sort-codex-config.py
+    ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py
 
 # Checks the Codex config.toml is sorted (sections/keys alphabetized, state clustered)
 [group('checks')]
