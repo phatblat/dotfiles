@@ -66,6 +66,15 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   done
 }
 
+@test "agent-harnesses: Claude and Codex know Obsidian daily-note location" {
+  for instructions in "$HOME/.claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"; do
+    [ -f "$instructions" ]
+    grep -F "Obsidian" "$instructions"
+    grep -F "~/2ndBrain/daily-notes/<YYYY>/<YYYY-MM-DD dddd>.md" "$instructions"
+    grep -F "Only use Notion when explicitly requested" "$instructions"
+  done
+}
+
 @test "agent-harnesses: cursor plugin artifacts exist" {
   [ -f "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/rules/shared-harness.mdc" ]
