@@ -109,6 +109,7 @@
 .codexbar/claude-oauth-cache.lock
 .conche/
 .config/.todoist-linux.json
+.config/1Password/
 .config/BraveSoftware/
 .config/Code/
 .config/Code/Backups/
