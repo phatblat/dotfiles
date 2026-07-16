@@ -50,6 +50,15 @@ Uncertainty → State immediately
 - When CLI errors (compiler, linter, test runner) appear in context, offer to fix them immediately — don't wait for an explicit request.
 - When implementing a feature with multiple dimensions (e.g., org-level vs repo-level, user vs admin), ask which scopes apply before writing code.
 
+## Daily Notes
+
+- Daily notes live in Obsidian, not Notion.
+- Vault: `~/2ndBrain`
+- Daily note path: `~/2ndBrain/daily-notes/<YYYY>/<YYYY-MM-DD dddd>.md`
+- Template: `~/2ndBrain/templates/daily-note.md`
+- If asked for today's daily note, read or update that local Markdown file first.
+- Only use Notion when explicitly requested.
+
 ## Compact Preservation
 
 When context is compacted, ALWAYS preserve:

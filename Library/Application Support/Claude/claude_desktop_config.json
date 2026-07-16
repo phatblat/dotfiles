@@ -5,13 +5,15 @@
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
+    "launchPreviewPersistedWorkspaces": [],
+    "launchPreviewSessionScopedSessions": [],
     "coworkScheduledTasksEnabled": true,
     "coworkHipaaRestricted": false,
     "ccdScheduledTasksEnabled": true,
     "sidebarMode": "chat",
     "bypassPermissionsGateByAccount": {
       "193b5ba3-3754-4e2a-953b-4adcc4457018": false,
-      "5093aaa7-aa7d-4b88-b0ab-be76abbb9ba5": true
+      "5093aaa7-aa7d-4b88-b0ab-be76abbb9ba5": false
     },
     "coworkWebSearchEnabled": true,
     "coworkModelAutoFallbackByAccount": {
@@ -47,8 +49,6 @@
       "starred-cowork-spaces": [],
       "starred-local-code-sessions": [],
       "starred-session-groups": []
-    },
-    "launchPreviewPersistedWorkspaces": [],
-    "launchPreviewSessionScopedSessions": []
+    }
   }
 }
