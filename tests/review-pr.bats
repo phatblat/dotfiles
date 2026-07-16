@@ -5,6 +5,7 @@ load helpers/setup
 
 SCRIPT="$HOME/scripts/review-pr.py"
 FISH_FUNCTION="$HOME/.config/fish/functions/review-pr.fish"
+NU_FUNCTION="$HOME/.config/nushell/autoload/review-pr.nu"
 
 setup() {
   export REVIEW_PR_GETDITTO_ROOT="$BATS_TEST_TMPDIR/getditto"
@@ -37,6 +38,13 @@ EOF
   run fish --no-config -c "source '$FISH_FUNCTION'; review-pr"
 
   [ "$status" -eq 1 ]
+  [[ "$output" == *"Usage: review-pr"* ]]
+}
+
+@test "review-pr nushell function: no args prints usage" {
+  run nu --no-config-file -c "source '$NU_FUNCTION'; review-pr"
+
+  [ "$status" -eq 2 ]
   [[ "$output" == *"Usage: review-pr"* ]]
 }
 
