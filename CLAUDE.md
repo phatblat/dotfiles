@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Dotfiles repository — cross-machine config sync. Home directory (`~`) is the git repo root.
 
-**Nested repo warning:** Many subdirectories (especially `dev/`) are separate git repos. Run git commands from `~` (or with `-C ~`) when operating on the dotfiles repo, and confirm which repo you're in before committing.
+**Nested repo warning:** Many subdirectories (especially `dev/`) are separate git repos. cwd is already `~`; use bare git or `git -C ~`, never `cd ~ &&`. Confirm which repo you're in before committing.
 
 ## Commands
 
