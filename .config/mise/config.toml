@@ -35,7 +35,7 @@
 "npm:gastown-gui" = "0.9.4"
 "npm:gtop" = "1.1.5"
 "npm:jsonlint" = "1.6.3"
-"npm:markdownlint-cli" = "0.49.0"
+"npm:markdownlint-cli" = "0.49.1"
 "npm:markdownlint-cli2" = "0.23.0"
 "npm:pnpm" = "11.13.0"
 "npm:prettier" = "3.9.5"
