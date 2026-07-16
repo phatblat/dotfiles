@@ -16,6 +16,8 @@ from pathlib import Path
 
 GETDITTO_OWNER = "getditto"
 DEFAULT_THREAD_WINDOW = 5
+USAGE = "Usage: review-pr [--continue] <github-pr-url|repo#number|getditto/repo#number>"
+CODEX_TERMINAL_RESET = "\033[<u\033[=0u\033[>4;0m"
 
 
 @dataclass(frozen=True)
@@ -43,16 +45,16 @@ class Finding:
     end_line: int | None
 
 
-def main(argv: list[str]) -> int:
-    if len(argv) != 2:
-        print(
-            "Usage: review-pr <github-pr-url|repo#number|getditto/repo#number>",
-            file=sys.stderr,
-        )
-        return 2
+@dataclass(frozen=True)
+class CodexReview:
+    output: str
+    session_id: str | None
 
+
+def main(argv: list[str]) -> int:
     try:
-        pr = parse_pr(argv[1])
+        pr_value, continue_session = parse_arguments(argv)
+        pr = parse_pr(pr_value)
         if pr.owner != GETDITTO_OWNER:
             print("Only getditto PRs are supported for now.", file=sys.stderr)
             return 2
@@ -71,12 +73,37 @@ def main(argv: list[str]) -> int:
         )
 
         worktree_dir = create_worktree(repo_dir, pr, ref)
+        preserve_worktree = False
+        session_id: str | None = None
         try:
             threads = fetch_open_review_threads(pr)
-            review_output = run_codex_review(worktree_dir, pr)
-            print(filter_findings(review_output, threads, thread_window()))
+            review = run_codex_review(
+                worktree_dir, pr, capture_session=continue_session
+            )
+            session_id = review.session_id
+            if continue_session:
+                preserve_worktree = True
+                if not review.output.strip():
+                    raise ReviewPrError("Codex review did not produce final output.")
+
+            findings = filter_findings(review.output, threads, thread_window())
+            print(findings, flush=True)
+
+            if continue_session:
+                if session_id is None:
+                    raise ReviewPrError("Codex review did not report a session ID.")
+                initial_head = worktree_head(worktree_dir)
+                resume_codex_session(worktree_dir, session_id, findings)
+                preserve_worktree = worktree_changed(worktree_dir, initial_head)
         finally:
-            remove_worktree(repo_dir, worktree_dir)
+            if not preserve_worktree:
+                preserve_worktree = not remove_worktree(
+                    repo_dir, worktree_dir, force=not continue_session
+                )
+            if preserve_worktree:
+                print(f"Worktree retained: {worktree_dir}", file=sys.stderr)
+                if session_id:
+                    print(f"Codex session: {session_id}", file=sys.stderr)
     except ReviewPrError as error:
         print(str(error), file=sys.stderr)
         return error.exit_code
@@ -86,6 +113,9 @@ def main(argv: list[str]) -> int:
             file=sys.stderr,
         )
         return error.returncode
+    except KeyboardInterrupt:
+        print("Review interrupted.", file=sys.stderr)
+        return 130
 
     return 0
 
@@ -94,6 +124,20 @@ class ReviewPrError(Exception):
     def __init__(self, message: str, exit_code: int = 1) -> None:
         super().__init__(message)
         self.exit_code = exit_code
+
+
+def parse_arguments(argv: list[str]) -> tuple[str, bool]:
+    arguments = argv[1:]
+    continue_count = arguments.count("--continue")
+    if continue_count > 1:
+        raise ReviewPrError(USAGE, 2)
+
+    continue_session = continue_count == 1
+    pr_values = [argument for argument in arguments if argument != "--continue"]
+    if len(pr_values) != 1:
+        raise ReviewPrError(USAGE, 2)
+
+    return pr_values[0], continue_session
 
 
 def parse_pr(value: str) -> PullRequest:
@@ -158,21 +202,26 @@ def create_worktree(repo_dir: Path, pr: PullRequest, ref: str) -> Path:
     return worktree_dir
 
 
-def remove_worktree(repo_dir: Path, worktree_dir: Path) -> None:
+def remove_worktree(repo_dir: Path, worktree_dir: Path, *, force: bool = True) -> bool:
+    command = [
+        "git",
+        "-C",
+        str(repo_dir),
+        "worktree",
+        "remove",
+    ]
+    if force:
+        command.append("--force")
+    command.append(str(worktree_dir))
+
     try:
-        run(
-            [
-                "git",
-                "-C",
-                str(repo_dir),
-                "worktree",
-                "remove",
-                "--force",
-                str(worktree_dir),
-            ]
-        )
+        run(command)
+        return True
     except subprocess.CalledProcessError:
+        if not force:
+            return False
         shutil.rmtree(worktree_dir, ignore_errors=True)
+        return True
 
 
 def fetch_open_review_threads(pr: PullRequest) -> list[ReviewThread]:
@@ -245,7 +294,9 @@ query($owner: String!, $name: String!, $number: Int!, $after: String) {
         cursor = page_info["endCursor"]
 
 
-def run_codex_review(worktree_dir: Path, pr: PullRequest) -> str:
+def run_codex_review(
+    worktree_dir: Path, pr: PullRequest, *, capture_session: bool = False
+) -> CodexReview:
     with tempfile.NamedTemporaryFile("r", delete=False) as output_file:
         output_path = Path(output_file.name)
 
@@ -253,34 +304,110 @@ def run_codex_review(worktree_dir: Path, pr: PullRequest) -> str:
         f"$pr-review Review {pr.url}. "
         "Return only the final PR Review markdown in the documented toolkit format."
     )
-    command = [
-        "codex",
-        "exec",
-        "--profile",
-        "main",
-        "--cd",
-        str(worktree_dir),
-        "--output-last-message",
-        str(output_path),
-        prompt,
-    ]
-    result = run(command, capture=True, check=False)
-    if result.returncode != 0:
-        if result.stdout:
-            print(result.stdout, file=sys.stderr)
-        if result.stderr:
-            print(result.stderr, file=sys.stderr)
-        raise ReviewPrError(
-            f"Codex review failed with exit code {result.returncode}", result.returncode
-        )
+    command = ["codex", "exec"]
+    if capture_session:
+        command.append("--json")
+    command.extend(
+        [
+            "--profile",
+            "main",
+            "--cd",
+            str(worktree_dir),
+            "--output-last-message",
+            str(output_path),
+            prompt,
+        ]
+    )
+    try:
+        result = run(command, capture=True, check=False)
+        if result.returncode != 0:
+            if result.stdout:
+                print(result.stdout, file=sys.stderr)
+            if result.stderr:
+                print(result.stderr, file=sys.stderr)
+            raise ReviewPrError(
+                f"Codex review failed with exit code {result.returncode}",
+                result.returncode,
+            )
 
-    if output_path.exists():
-        output = output_path.read_text()
-        output_path.unlink()
+        session_id = parse_codex_session_id(result.stdout) if capture_session else None
+        try:
+            output = output_path.read_text()
+        except FileNotFoundError:
+            output = ""
         if output.strip():
-            return output
+            return CodexReview(output, session_id)
 
-    return result.stdout
+        if capture_session:
+            return CodexReview("", session_id)
+
+        return CodexReview(result.stdout, session_id)
+    finally:
+        output_path.unlink(missing_ok=True)
+
+
+def parse_codex_session_id(output: str) -> str | None:
+    for line in output.splitlines():
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if event.get("type") != "thread.started":
+            continue
+        session_id = event.get("thread_id")
+        if isinstance(session_id, str) and session_id:
+            return session_id
+    return None
+
+
+def resume_codex_session(worktree_dir: Path, session_id: str, findings: str) -> None:
+    handoff_prompt = (
+        "The review-pr helper filtered the review output against existing "
+        "unresolved GitHub threads. Treat the following as the current actionable "
+        "findings. Do not modify files until the user gives the next instruction."
+        f"\n\n{findings}"
+    )
+    try:
+        run(
+            [
+                "codex",
+                "resume",
+                "--profile",
+                "main",
+                "--cd",
+                str(worktree_dir),
+                "--no-alt-screen",
+                session_id,
+                handoff_prompt,
+            ]
+        )
+    finally:
+        reset_codex_terminal()
+
+
+def reset_codex_terminal() -> None:
+    if sys.stdout.isatty():
+        print(CODEX_TERMINAL_RESET, end="", flush=True)
+
+
+def worktree_head(worktree_dir: Path) -> str:
+    result = run(["git", "-C", str(worktree_dir), "rev-parse", "HEAD"], capture=True)
+    return result.stdout.strip()
+
+
+def worktree_changed(worktree_dir: Path, initial_head: str) -> bool:
+    status = run(
+        [
+            "git",
+            "-C",
+            str(worktree_dir),
+            "status",
+            "--porcelain",
+            "--ignored=matching",
+        ],
+        capture=True,
+    )
+    return bool(status.stdout.strip()) or worktree_head(worktree_dir) != initial_head
 
 
 def filter_findings(output: str, threads: list[ReviewThread], window: int) -> str:
