@@ -87,7 +87,7 @@
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/push.md with arguments: $ARGUMENTS"
     },
     "git:rebase": {
-      "description": "Rebase current branch onto a target branch using the optimal strategy",
+      "description": "Rebase current branch onto a target branch using the optimal strategy, auto-resolving conflicts where safe",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/rebase.md with arguments: $ARGUMENTS"
     },
     "git:split": {
