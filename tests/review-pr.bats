@@ -34,7 +34,7 @@ EOF
 }
 
 @test "review-pr fish function: no args prints usage" {
-  run fish -c "source '$FISH_FUNCTION'; review-pr"
+  run fish --no-config -c "source '$FISH_FUNCTION'; review-pr"
 
   [ "$status" -eq 1 ]
   [[ "$output" == *"Usage: review-pr"* ]]
