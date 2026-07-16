@@ -229,6 +229,14 @@
     {
       "enabled": false,
       "id": "clawrouter"
+    },
+    {
+      "enabled": false,
+      "id": "sub2api"
+    },
+    {
+      "enabled": false,
+      "id": "wayfinder"
     }
   ],
   "version": 1
