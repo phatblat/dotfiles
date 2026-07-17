@@ -37,6 +37,7 @@
 "npm:jsonlint" = "1.6.3"
 "npm:markdownlint-cli" = "0.49.1"
 "npm:markdownlint-cli2" = "0.23.0"
+"npm:oh-my-claude-sisyphus" = "4.15.5"
 "npm:pnpm" = "11.13.1"
 "npm:prettier" = "3.9.5"
 "npm:renovate" = "43.265.1"
