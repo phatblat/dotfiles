@@ -59,13 +59,14 @@ cwd = "."
 enabled = false
 
 [mcp_servers.node_repl]
+args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
-startup_timeout_sec = 120.0
+startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.707.91948"
+BROWSER_USE_CODEX_APP_VERSION = "26.715.21425"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 CODEX_HOME = "/Users/phatblat/.codex"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
@@ -74,9 +75,9 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS th
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,7abc8b22abade944bcd80135500416c7aee60c0e94290c7d644b54428a0013ab"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "5b74180ac40ca4cf726cad15c5ff886f159224f1c0306ea364ad9eea6a7e7ac2,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
-SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000387/Codex Computer Use.app"
+SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000451/Codex Computer Use.app"
 
 [mcp_servers.notion]
 url = "https://mcp.notion.com/mcp"
@@ -105,8 +106,11 @@ inherit = "core"
 
 [shell_environment_policy.set]
 BASH_DEFAULT_TIMEOUT_MS = "300000"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
 MAX_MCP_OUTPUT_TOKENS = "25000"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "5b74180ac40ca4cf726cad15c5ff886f159224f1c0306ea364ad9eea6a7e7ac2,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "model", "reasoning", "project-name", "git-branch"]
