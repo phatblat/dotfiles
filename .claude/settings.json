@@ -359,7 +359,7 @@
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
   "statusLine": {
-    "command": "bash ~/.claude/statusline-command.sh",
+    "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs",
     "type": "command"
   },
   "teammateMode": "in-process",
