@@ -109,6 +109,22 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   done
 }
 
+@test "agent-harnesses: pr-post-findings preserves the Obsidian worklog contract" {
+  claude_workflow="$HOME/.claude/commands/pr/post-findings.md"
+  codex_workflow="$HOME/.agents/skills/pr-post-findings/SKILL.md"
+
+  for workflow in "$claude_workflow" "$codex_workflow"; do
+    grep -Fq 'so the worklog captures which PRs you reviewed and every comment you left' "$workflow"
+    grep -Fq 'note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"' "$workflow"
+    grep -Fq '<!-- pr:post-findings appends reviewed PRs here -->' "$workflow"
+    grep -Fq 'PR already listed' "$workflow"
+    grep -Fq 'PR not listed' "$workflow"
+  done
+
+  grep -Fq 'Make the daily-note update before reporting success.' "$codex_workflow"
+  grep -Fq 'Verify that every captured `comment_url` appears in the updated entry.' "$codex_workflow"
+}
+
 @test "agent-harnesses: cursor plugin artifacts exist" {
   [ -f "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/rules/shared-harness.mdc" ]

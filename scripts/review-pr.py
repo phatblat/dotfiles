@@ -18,6 +18,7 @@ GETDITTO_OWNER = "getditto"
 DEFAULT_THREAD_WINDOW = 5
 USAGE = "Usage: review-pr [--continue] <github-pr-url|repo#number|getditto/repo#number>"
 CODEX_TERMINAL_RESET = "\033[<u\033[=0u\033[>4;0m"
+DAILY_NOTES_DIR = Path.home() / "2ndBrain" / "daily-notes"
 
 
 @dataclass(frozen=True)
@@ -313,6 +314,8 @@ def run_codex_review(
             "main",
             "--cd",
             str(worktree_dir),
+            "--add-dir",
+            str(DAILY_NOTES_DIR),
             "--output-last-message",
             str(output_path),
             prompt,
@@ -376,6 +379,8 @@ def resume_codex_session(worktree_dir: Path, session_id: str, findings: str) -> 
                 "main",
                 "--cd",
                 str(worktree_dir),
+                "--add-dir",
+                str(DAILY_NOTES_DIR),
                 "--no-alt-screen",
                 session_id,
                 handoff_prompt,

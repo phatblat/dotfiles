@@ -74,9 +74,9 @@ elif [[ "$3" == "worktree" && "$4" == "remove" && "$REVIEW_PR_REMOVE_FAIL" -eq 1
 fi'
   write_stub codex 'echo "codex $*" >> "$REVIEW_PR_COMMAND_LOG"
 if [[ "$1" == "resume" ]]; then
-  [[ "$#" -eq 8 ]]
-  [[ "$7" == "$REVIEW_PR_THREAD_ID" ]]
-  printf "resume-prompt:%s\n" "$8" >> "$REVIEW_PR_COMMAND_LOG"
+  [[ "$#" -eq 10 ]]
+  [[ "$9" == "$REVIEW_PR_THREAD_ID" ]]
+  printf "resume-prompt:%s\n" "${10}" >> "$REVIEW_PR_COMMAND_LOG"
   if [[ "$REVIEW_PR_RESUME_INTERRUPT" -eq 1 ]]; then
     kill -INT "$PPID"
     exit 0
@@ -219,7 +219,8 @@ MARKDOWN'
   [[ "$output" == *"No findings."* ]]
   [[ "$output" == *"Worktree retained:"* ]]
   grep -q "codex exec --json --profile main --cd $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "codex resume --profile main --cd $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-.* --no-alt-screen $REVIEW_PR_THREAD_ID" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "codex exec .*--add-dir $HOME/2ndBrain/daily-notes" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "codex resume --profile main --cd $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-.* --add-dir $HOME/2ndBrain/daily-notes --no-alt-screen $REVIEW_PR_THREAD_ID" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "worktree remove --force" "$REVIEW_PR_COMMAND_LOG"
 }
 
