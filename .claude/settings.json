@@ -277,7 +277,7 @@
       }
     ]
   },
-  "model": "opus[1m]",
+  "model": "claude-fable-5[1m]",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
