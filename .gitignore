@@ -76,6 +76,7 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/.last-update-result.json
+.claude/.session-stats.json
 .claude/agent-flow/*.json
 .claude/daemon.lock
 .claude/daemon.status.json
