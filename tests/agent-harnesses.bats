@@ -26,6 +26,40 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$status" -eq 0 ]
 }
 
+@test "agent-harnesses: pr-daily layers new branches on the current daily branch" {
+  for workflow in \
+    "$HOME/.claude/commands/pr/daily.md" \
+    "$HOME/.agents/skills/pr-daily/SKILL.md"; do
+    grep -Fq 'source_branch=${current_branch}' "$workflow"
+    grep -Fq 'git checkout -b "${today}" "${source_branch}"' "$workflow"
+    grep -Fq 'comparison_branch=${default_branch}' "$workflow"
+    grep -Fq 'if [ "${source_branch}" != "${today}" ]; then' "$workflow"
+    grep -Fq 'comparison_branch=${source_branch}' "$workflow"
+    grep -Fq 'git rev-list --count "${comparison_branch}..${today}"' "$workflow"
+    grep -Fq 'git commit --allow-empty -m "chore: start ${today} ${today_date}"' "$workflow"
+    grep -Fq 'gh pr create --draft --base "${default_branch}"' "$workflow"
+    ! grep -Eq 'git checkout "?\$\{default_branch\}"?' "$workflow"
+
+    default_comparison_line="$(grep -nF 'comparison_branch=${default_branch}' "$workflow" | head -1 | cut -d: -f1)"
+    source_guard_line="$(grep -nF 'if [ "${source_branch}" != "${today}" ]; then' "$workflow" | head -1 | cut -d: -f1)"
+    source_comparison_line="$(grep -nF 'comparison_branch=${source_branch}' "$workflow" | head -1 | cut -d: -f1)"
+    rev_list_line="$(grep -nF 'git rev-list --count "${comparison_branch}..${today}"' "$workflow" | head -1 | cut -d: -f1)"
+    marker_commit_line="$(grep -nF 'git commit --allow-empty -m "chore: start ${today} ${today_date}"' "$workflow" | head -1 | cut -d: -f1)"
+    [ "$default_comparison_line" -lt "$source_guard_line" ]
+    [ "$source_guard_line" -lt "$source_comparison_line" ]
+    [ "$source_comparison_line" -lt "$rev_list_line" ]
+    [ "$rev_list_line" -lt "$marker_commit_line" ]
+
+    grep -Eiq 'skip(ping)? .*source.*\$\{source_branch\}|skip(ping)?.*\$\{source_branch\}.*source' "$workflow"
+    grep -Eiq 'any other branch.*ask whether to use.*or abort' "$workflow"
+    grep -Eiq 'diverg(ed|ence).*ask how to proceed' "$workflow"
+    grep -Eiq 'status[^[:alnum:]]*0.*(fetch|fast-forward|sync)' "$workflow"
+    grep -Eiq 'status[^[:alnum:]]*2.*(absent|missing|not found|does not exist|local)' "$workflow"
+    grep -Eiq '((any|all) other|other non-?zero).*status.*(stop|abort|report)|status.*(other|otherwise).*(stop|abort|report)' "$workflow"
+    grep -Fq 'git merge --ff-only "${remote}/${source_branch}"' "$workflow"
+  done
+}
+
 @test "agent-harnesses: procedural Codex skills require explicit invocation" {
   procedural_skills=(
     branch-finish
@@ -73,6 +107,22 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     grep -F "~/2ndBrain/daily-notes/<YYYY>/<YYYY-MM-DD dddd>.md" "$instructions"
     grep -F "Only use Notion when explicitly requested" "$instructions"
   done
+}
+
+@test "agent-harnesses: pr-post-findings preserves the Obsidian worklog contract" {
+  claude_workflow="$HOME/.claude/commands/pr/post-findings.md"
+  codex_workflow="$HOME/.agents/skills/pr-post-findings/SKILL.md"
+
+  for workflow in "$claude_workflow" "$codex_workflow"; do
+    grep -Fq 'so the worklog captures which PRs you reviewed and every comment you left' "$workflow"
+    grep -Fq 'note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"' "$workflow"
+    grep -Fq '<!-- pr:post-findings appends reviewed PRs here -->' "$workflow"
+    grep -Fq 'PR already listed' "$workflow"
+    grep -Fq 'PR not listed' "$workflow"
+  done
+
+  grep -Fq 'Make the daily-note update before reporting success.' "$codex_workflow"
+  grep -Fq 'Verify that every captured `comment_url` appears in the updated entry.' "$codex_workflow"
 }
 
 @test "agent-harnesses: cursor plugin artifacts exist" {

@@ -76,6 +76,7 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/.last-update-result.json
+.claude/.session-stats.json
 .claude/agent-flow/*.json
 .claude/daemon.lock
 .claude/daemon.status.json
@@ -109,6 +110,7 @@
 .codexbar/claude-oauth-cache.lock
 .conche/
 .config/.todoist-linux.json
+.config/1Password/
 .config/BraveSoftware/
 .config/Code/
 .config/Code/Backups/
@@ -368,6 +370,7 @@
 .oh-my-zsh/themes/*
 !.oh-my-zsh/themes/*
 .ollama/
+.omc/
 .op/
 .openpeon/
 .oracle_jre_usage/

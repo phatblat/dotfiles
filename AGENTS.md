@@ -13,6 +13,8 @@ This repository is rooted at `~/` and tracks personal dotfiles plus automation.
 
 Most contribution work happens in hidden config directories and shell function files under `.config/*`.
 
+**Nested repositories:** Some subdirectories (especially `dev/`) are separate git repos. The working directory is already `~`; run git directly or use `git -C ~` (avoid a redundant `cd ~`), and confirm which repo you are in before committing.
+
 ## Build, Test, and Development Commands
 Use `just` recipes from the repo root:
 

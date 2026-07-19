@@ -66,7 +66,7 @@ Post findings from the most recent review or code-review output in the conversat
 
 6. Record in today's daily note.
 
-   Append this review to the `# Reviews` section of today's daily note, matching the Claude Code `/pr:post-findings` command behavior.
+   Append this review to the `# Reviews` section of today's daily note (seeded by `$work-start`) so the worklog captures which PRs you reviewed and every comment you left.
 
    Resolve the note path:
 
@@ -77,7 +77,7 @@ Post findings from the most recent review or code-review output in the conversat
    note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"
    ```
 
-   If the note does not exist, skip the daily-note update without failing the already-posted PR comments. Mention the skip in the final report.
+   If the note does not exist, **skip this step** — do not fail because the comments were already posted. Mention the skip in the final report.
 
    If the note exists but has no `# Reviews` section, insert one after the `# Work Items` block:
 
@@ -95,21 +95,23 @@ Post findings from the most recent review or code-review output in the conversat
    gh pr view <pr_number> --json title,author --jq '"\(.title)|@\(.author.login)"'
    ```
 
-   Add entries using this format:
+   **Entry format** — each reviewed PR is one top-level list item under `# Reviews`; the comments posted in this run are an indented sub-list beneath it:
 
    ```markdown
    - [<owner>/<repo>#<pr_number>](<pr_url>) — <PR title> — @<author>
      - [<file>:<line>](<comment_url>) — <brief finding description>
-     - [<file>:<line>](<comment_url>) — <brief finding description> (general)
+     - [<file>:<line>](<comment_url>) — <brief finding description>
    ```
 
-   Rules:
+   - The PR line's link text is `<owner>/<repo>#<pr_number>` (e.g. `getditto/forge#887`), linked to `<pr_url>`.
+   - Add one sub-bullet per posted finding. Its link text is `<file>:<line>` — the basename of the finding's `path` and its anchor `line`, e.g. `CalendarComponent.swift:209` — linked to that finding's captured `comment_url`. For a fallback/general comment, append ` (general)` to its sub-bullet.
 
-   - The PR line's link text is `<owner>/<repo>#<pr_number>`, linked to `<pr_url>`.
-   - Each sub-bullet link text is the basename of the finding path plus its anchor line, e.g. `CalendarComponent.swift:209`.
-   - For fallback/general comments, append ` (general)` to that sub-bullet.
-   - If the PR already has a top-level entry under `# Reviews`, append new sub-bullets under that existing item instead of repeating the PR line.
-   - If the PR is not listed, insert the new PR item after `<!-- pr:post-findings appends reviewed PRs here -->`. If that marker is absent, append before the end of the `# Reviews` section.
+   **Append rules:**
+
+   - **PR already listed** (a `- [<owner>/<repo>#<pr_number>](` line exists under `# Reviews`): append new comment sub-bullets under that existing item instead of repeating the PR line.
+   - **PR not listed:** insert the new PR item after `<!-- pr:post-findings appends reviewed PRs here -->`, following the next blank line. If that marker is absent, append at the end of the `# Reviews` section before its `***` separator.
+
+   Make the daily-note update before reporting success. Use `apply_patch` to make the change. If the note is outside the active Codex workspace, request narrowly scoped write access to that note and retry; do not silently skip a note that exists. Re-read the `# Reviews` entry after editing. Verify that every captured `comment_url` appears in the updated entry.
 
 7. Report posted and fallback comments with PR URL, plus daily-note status:
 

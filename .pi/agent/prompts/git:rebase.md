@@ -1,5 +1,5 @@
 ---
-description: Rebase current branch onto a target branch using the optimal strategy
+description: Rebase current branch onto a target branch using the optimal strategy, auto-resolving conflicts where safe
 argument-hint: "[target-branch]"
 ---
 

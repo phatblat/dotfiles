@@ -87,7 +87,7 @@
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/push.md with arguments: $ARGUMENTS"
     },
     "git:rebase": {
-      "description": "Rebase current branch onto a target branch using the optimal strategy",
+      "description": "Rebase current branch onto a target branch using the optimal strategy, auto-resolving conflicts where safe",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/rebase.md with arguments: $ARGUMENTS"
     },
     "git:split": {
@@ -119,7 +119,7 @@
       "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/create.md with arguments: $ARGUMENTS"
     },
     "pr:daily": {
-      "description": "Start the daily dotfiles workflow \u2014 clean up old branches, create today's branch, open draft PR",
+      "description": "Start the daily dotfiles workflow \u2014 layer today's branch on the current daily branch, clean up old branches, open a draft PR",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/daily.md with arguments: $ARGUMENTS"
     },
     "pr:merge": {
