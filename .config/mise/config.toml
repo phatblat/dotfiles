@@ -27,6 +27,7 @@
 "go:golang.org/x/tools/gopls" = "0.23.0"
 "npm:@babel/cli" = "8.0.4"
 "npm:@googleworkspace/cli" = "0.22.5"
+"npm:@openai/codex" = "0.144.6"
 "npm:@sentry/wizard" = "6.13.0"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.6.0"
