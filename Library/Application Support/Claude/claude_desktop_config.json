@@ -43,12 +43,12 @@
       },
       "dframe-local-slice": {
         "pinnedOrder": [],
-        "customGroupAssignments": {},
-        "customGroupOrder": {}
+        "homeProjectsPinnedOrder": []
       },
       "starred-cowork-spaces": [],
       "starred-local-code-sessions": [],
-      "starred-session-groups": []
+      "starred-session-groups": [],
+      "dframe-group-scopes": {}
     }
   }
 }
