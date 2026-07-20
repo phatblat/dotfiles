@@ -230,16 +230,16 @@ enabled = false
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
 [marketplaces.claude-plugins-official]
-last_updated = "1970-01-01T00:00:00Z"
 last_revision = "0000000000000000000000000000000000000000"
-source_type = "git"
+last_updated = "1970-01-01T00:00:00Z"
 source = "https://github.com/anthropics/claude-plugins-official.git"
+source_type = "git"
 
 [marketplaces.compound-engineering-plugin]
-last_updated = "1970-01-01T00:00:00Z"
 last_revision = "0000000000000000000000000000000000000000"
-source_type = "git"
+last_updated = "1970-01-01T00:00:00Z"
 source = "https://github.com/EveryInc/compound-engineering-plugin.git"
+source_type = "git"
 
 [marketplaces.kyto64-codex-pr-review-toolkit-minimal]
 last_updated = "1970-01-01T00:00:00Z"
