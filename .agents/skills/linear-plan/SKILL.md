@@ -1,9 +1,9 @@
 ---
-name: plan-linear
-description: Start work on a Linear ticket by gathering context, planning, creating a branch/worktree, implementing, testing, opening a draft PR, and updating Linear. Use when invoked as `$plan-linear` or when the user asks to start a Linear ticket.
+name: linear-plan
+description: Start work on a Linear ticket by gathering context, planning, creating a branch/worktree, implementing, testing, opening a draft PR, and updating Linear. Use when invoked as `$linear-plan` or when the user asks to start a Linear ticket.
 ---
 
-# plan-linear
+# linear-plan
 
 Run an end-to-end Linear ticket workflow. If no ticket ID is provided, ask for one. If the user provides only a number, prefix it with `DEVX-`. Optional argument: `--base <branch>`; default is `main`.
 

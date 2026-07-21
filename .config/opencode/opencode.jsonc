@@ -98,6 +98,10 @@
       "description": "Intelligently analyze git status and provide insights about current project state",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/status.md with arguments: $ARGUMENTS"
     },
+    "linear:plan": {
+      "description": "Start work on a Linear ticket \u2014 plan, branch, implement, test, PR",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/plan.md with arguments: $ARGUMENTS"
+    },
     "linear:progress": {
       "description": "Post a short progress update comment to a Linear ticket",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/progress.md with arguments: $ARGUMENTS"
@@ -105,10 +109,6 @@
     "optimize": {
       "description": "Review Claude Code and shared agent harness configuration and propose efficiency or portability optimizations.",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/optimize.md with arguments: $ARGUMENTS"
-    },
-    "plan:linear": {
-      "description": "Start work on a Linear ticket \u2014 plan, branch, implement, test, PR",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/plan/linear.md with arguments: $ARGUMENTS"
     },
     "pr:approve": {
       "description": "Approve a GitHub PR, inferring the target from context when not given",
