@@ -1,0 +1,6 @@
+interface:
+  display_name: "PR Approve"
+  short_description: "Approve a GitHub pull request, inferring the target from context."
+  default_prompt: "Approve the GitHub pull request for the current branch or context."
+policy:
+  allow_implicit_invocation: false
