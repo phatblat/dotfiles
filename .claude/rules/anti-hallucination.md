@@ -2,7 +2,7 @@
 
 ## Before stating API signatures, library methods, or version-specific behavior
 
-1. Verify with the `find-docs` skill (`ctx7` CLI) or WebSearch
+1. Verify with the `find-docs` skill (`ctx7` CLI) or WebSearch — even for well-known libraries; training data on API details is frequently outdated
 2. State the version explicitly
 3. Cite the source
 

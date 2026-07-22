@@ -1,5 +1,5 @@
 ---
-name: linear
+name: plan
 description: Start work on a Linear ticket — plan, branch, implement, test, PR
 model: sonnet
 argument_hint: "<TICKET-ID> [--base <branch>] — e.g., DEVX-696, DEVX-42 --base release/4.15"

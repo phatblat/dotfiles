@@ -8,11 +8,11 @@
 "aqua:anordal/shellharden" = "4.3.2"
 "aqua:cirruslabs/tart" = "2.33.0"
 "aqua:dalance/procs" = "0.14.12"
-"aqua:openai/codex" = "0.144.5"
+"aqua:openai/codex" = "0.144.6"
 "aqua:tcnksm/ghr" = "0.18.3"
 "cargo:cargo-about" = "0.9.1"
 "cargo:cargo-binstall" = "1.21.0"
-"cargo:cargo-expand" = "1.0.123"
+"cargo:cargo-expand" = "1.0.124"
 "cargo:foxguard" = "0.12.0"
 "cargo:https://github.com/nkotval-ditto/wookie" = { version = "rev:8a2eab6de09e7b381e3b83ff0dac7979bc88cf8b", crate = "wookie" }
 "cargo:sccache" = "0.16.0"
@@ -27,6 +27,7 @@
 "go:golang.org/x/tools/gopls" = "0.23.0"
 "npm:@babel/cli" = "8.0.4"
 "npm:@googleworkspace/cli" = "0.22.5"
+"npm:@openai/codex" = "0.144.6"
 "npm:@sentry/wizard" = "6.13.0"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.6.0"
@@ -56,7 +57,7 @@
 "vfox:mise-plugins/vfox-gcloud" = "576.0.0"
 act = "0.2.89"
 actionlint = "1.7.12"
-awscli = { version = "2.36.2", symlink_bins = "true" }
+awscli = { version = "2.36.4", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.13.0"
 bazelisk = "1.29.0"

@@ -551,6 +551,10 @@ def render_instructions() -> str:
 
 {MANAGED_HEADER}
 
+## Licensing
+
+- Copyright: Ben Chatelain. MIT
+
 Always load repository instructions first, then use shared skills from
 `~/.agents/skills` when a task matches a skill description. Prefer the canonical
 command prompts under `~/.agents/harness/commands` and specialist agent

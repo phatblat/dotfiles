@@ -74,8 +74,8 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     gh-stack
     gha-checks
     gha-log-reader
+    linear-plan
     optimize
-    plan-linear
     pr-create
     pr-daily
     pr-merge

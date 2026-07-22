@@ -54,7 +54,7 @@ class CodexReview:
 
 def main(argv: list[str]) -> int:
     try:
-        pr_value, continue_session = parse_arguments(argv)
+        pr_value, _continue_session = parse_arguments(argv)
         pr = parse_pr(pr_value)
         if pr.owner != GETDITTO_OWNER:
             print("Only getditto PRs are supported for now.", file=sys.stderr)
@@ -78,28 +78,24 @@ def main(argv: list[str]) -> int:
         session_id: str | None = None
         try:
             threads = fetch_open_review_threads(pr)
-            review = run_codex_review(
-                worktree_dir, pr, capture_session=continue_session
-            )
+            review = run_codex_review(worktree_dir, pr, capture_session=True)
             session_id = review.session_id
-            if continue_session:
-                preserve_worktree = True
-                if not review.output.strip():
-                    raise ReviewPrError("Codex review did not produce final output.")
+            preserve_worktree = True
+            if not review.output.strip():
+                raise ReviewPrError("Codex review did not produce final output.")
 
             findings = filter_findings(review.output, threads, thread_window())
             print(findings, flush=True)
 
-            if continue_session:
-                if session_id is None:
-                    raise ReviewPrError("Codex review did not report a session ID.")
-                initial_head = worktree_head(worktree_dir)
-                resume_codex_session(worktree_dir, session_id, findings)
-                preserve_worktree = worktree_changed(worktree_dir, initial_head)
+            if session_id is None:
+                raise ReviewPrError("Codex review did not report a session ID.")
+            initial_head = worktree_head(worktree_dir)
+            resume_codex_session(worktree_dir, session_id, findings)
+            preserve_worktree = worktree_changed(worktree_dir, initial_head)
         finally:
             if not preserve_worktree:
                 preserve_worktree = not remove_worktree(
-                    repo_dir, worktree_dir, force=not continue_session
+                    repo_dir, worktree_dir, force=False
                 )
             if preserve_worktree:
                 print(f"Worktree retained: {worktree_dir}", file=sys.stderr)

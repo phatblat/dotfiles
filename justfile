@@ -500,15 +500,22 @@ format-json:
             .config/cmux/cmux.json) continue ;;
             "Library/Application Support/Claude/claude_desktop_config.json") continue ;;
         esac
-        jq --sort-keys --indent 2 . "$f" | sponge "$f"
-    done
-    git ls-files --cached '*.jsonc' '.config/zed/settings.json' '.config/cmux/cmux.json' | while read -r f; do
+        printf '%s\0' "$f"
+    # single process for all files — per-file jq|sponge spawns cost ~100ms each
+    # under SentinelOne exec inspection, turning this loop into ~30s of waiting
+    done | python3 ~/scripts/format-json.py
+    jsonc_files=()
+    while read -r f; do
         [[ "$f" == .claude/skills/gstack/* ]] && continue
         # opencode.jsonc is a generated artifact validated with strict json.loads
         # (no trailing commas) — prettier's jsonc parser adds them, so skip it.
         [[ "$f" == .config/opencode/opencode.jsonc ]] && continue
-        prettier --parser jsonc --write "$f"
-    done
+        jsonc_files+=("$f")
+    done < <(git ls-files --cached '*.jsonc' '.config/zed/settings.json' '.config/cmux/cmux.json')
+    # one prettier invocation — node startup pays the same per-exec toll
+    if ((${#jsonc_files[@]})); then
+        prettier --parser jsonc --write "${jsonc_files[@]}"
+    fi
 
 # Formats and hardens Zsh shell scripts
 [group('configuration')]

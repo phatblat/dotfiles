@@ -7,12 +7,8 @@
     "claude-hud@claude-hud": true,
     "claude-md-management@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "compound-engineering@compound-engineering-plugin": true,
-    "csharp-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true,
-    "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
     "lua-lsp@claude-plugins-official": true,
     "oh-my-claudecode@omc": true,
@@ -34,12 +30,6 @@
     "claude-code-warp": {
       "source": {
         "repo": "warpdotdev/claude-code-warp",
-        "source": "github"
-      }
-    },
-    "compound-engineering-plugin": {
-      "source": {
-        "repo": "EveryInc/compound-engineering-plugin",
         "source": "github"
       }
     },
