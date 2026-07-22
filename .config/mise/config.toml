@@ -40,7 +40,7 @@
 "npm:markdownlint-cli" = "0.49.1"
 "npm:markdownlint-cli2" = "0.23.1"
 "npm:oh-my-claude-sisyphus" = "4.15.6"
-"npm:pnpm" = "11.13.1"
+"npm:pnpm" = "11.15.1"
 "npm:prettier" = "3.9.5"
 "npm:renovate" = "43.265.1"
 "npm:typescript" = "7.0.2"
