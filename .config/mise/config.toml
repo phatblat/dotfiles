@@ -95,7 +95,7 @@ java = "26.0.1"
 jjui = "0.10.8"
 jq = "1.8.2"
 jujutsu = "0.43.0"
-just = "1.56.0"
+just = "1.57.0"
 k3d = "5.9.0"
 kotlin = { version = "2.4.10", bin_path = "kotlinc/bin", asset_pattern = "kotlin-compiler-*.zip" }
 kscript = "4.2.3"
