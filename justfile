@@ -382,7 +382,7 @@ lint-python:
     @echo "Linting Python scripts..."
     ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py
 
-# Checks the Codex config.toml is sorted (sections/keys alphabetized, state clustered)
+# Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
 lint-toml:
     python3 ~/scripts/sort-codex-config.py --check ~/.codex/config.toml
@@ -469,7 +469,7 @@ test:
 format-gitignore:
     ~/scripts/sort-gitignore < ~/.gitignore | sponge ~/.gitignore
 
-# Sorts the Codex config.toml (sections/keys alphabetized, machine state clustered)
+# Formats the Codex config.toml (native marketplace state order, state clustered)
 [group('configuration')]
 format-toml:
     python3 ~/scripts/sort-codex-config.py ~/.codex/config.toml
