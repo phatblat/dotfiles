@@ -46,6 +46,11 @@ if [[ -d "$wt_path" ]]; then
     return
 fi
 
+# Refresh origin so a branch pushed after the last fetch is discoverable.
+if git remote get-url origin &> /dev/null; then
+    git fetch --prune origin || return
+fi
+
 if git show-ref --quiet "refs/heads/$branch"; then
     git worktree add "$wt_path" "$branch"
 elif git show-ref --quiet "refs/remotes/origin/$branch"; then
