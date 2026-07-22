@@ -42,7 +42,7 @@
 "npm:oh-my-claude-sisyphus" = "4.15.6"
 "npm:pnpm" = "11.15.1"
 "npm:prettier" = "3.9.6"
-"npm:renovate" = "43.265.1"
+"npm:renovate" = "43.272.9"
 "npm:typescript" = "7.0.2"
 "npm:typescript-language-server" = "5.3.0"
 "npm:vscode-langservers-extracted" = "4.10.0"
