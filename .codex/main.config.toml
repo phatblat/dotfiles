@@ -52,6 +52,9 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 
 [hooks.state."/Users/phatblat/dev/_GETDITTO/ditto-devx/.codex/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[projects."/Users/phatblat/dev/_GETDITTO/cloud-infra"]
+trust_level = "trusted"
 # main.config.toml — Codex profile, activated with `codex --profile main`.
 #
 # The cx / cxc / cxr shell functions pass `--profile main` automatically.
