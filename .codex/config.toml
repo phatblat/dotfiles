@@ -278,9 +278,6 @@ enabled = false
 [plugins."code-review@claude-plugins-official"]
 enabled = false
 
-[plugins."compound-engineering@compound-engineering-plugin"]
-enabled = true
-
 [plugins."computer-use@openai-bundled"]
 enabled = true
 
