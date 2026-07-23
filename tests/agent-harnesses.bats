@@ -20,6 +20,29 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$has_graph" = "true" ]
 }
 
+@test "agent-harnesses: Linear CLI workflows preserve macOS keychain access" {
+  linear_workflows=(
+    "$HOME/.agents/skills/linear-plan/SKILL.md"
+    "$HOME/.agents/skills/work-eod/SKILL.md"
+    "$HOME/.agents/skills/work-start/SKILL.md"
+    "$HOME/.agents/skills/work-track/SKILL.md"
+    "$HOME/.claude/commands/linear/plan.md"
+    "$HOME/.claude/commands/linear/progress.md"
+    "$HOME/.claude/commands/work/eod.md"
+    "$HOME/.claude/commands/work/start-day.md"
+    "$HOME/.claude/commands/work/track-item.md"
+  )
+
+  for workflow in "${linear_workflows[@]}"; do
+    grep -Fq 'run every `linear ...` command outside the sandbox' "$workflow"
+    grep -Fq 'prefix_rule: ["linear"]' "$workflow"
+    grep -Fq 'No keyring entry' "$workflow"
+    grep -Fq 'No API key configured' "$workflow"
+    grep -Fq 'before asking the user to authenticate' "$workflow"
+    grep -Fq 'Never print, log, or expose' "$workflow"
+  done
+}
+
 @test "agent-harnesses: generated artifacts are current" {
   run python3 "$SCRIPT" generate --check
 

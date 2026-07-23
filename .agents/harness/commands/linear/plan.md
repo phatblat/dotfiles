@@ -62,6 +62,13 @@ Parse arguments:
 
 First invoke the `linear-cli:linear-cli` skill to load the correct CLI syntax.
 
+On macOS, run every `linear ...` command outside the sandbox on the first
+attempt so the CLI can access credentials stored in the system keychain. Use
+scoped escalation with `prefix_rule: ["linear"]`. If a sandboxed command
+reports `No keyring entry` or `No API key configured`, retry outside the
+sandbox before asking the user to authenticate. Never print, log, or expose
+`linear auth token` or an API key.
+
 ### 1.1 Fetch ticket details
 
 ```bash

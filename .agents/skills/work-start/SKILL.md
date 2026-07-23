@@ -7,6 +7,13 @@ description: Morning startup workflow for daily notes, yesterday summary, agenda
 
 Create or refresh today's daily note, populate yesterday summary and agenda, post daily status comments when appropriate, create meeting sections, and run `$pr-daily`.
 
+On macOS, run every `linear ...` command outside the sandbox on the first
+attempt so the CLI can access credentials stored in the system keychain. Use
+scoped escalation with `prefix_rule: ["linear"]`. If a sandboxed command
+reports `No keyring entry` or `No API key configured`, retry outside the
+sandbox before asking the user to authenticate. Never print, log, or expose
+`linear auth token` or an API key.
+
 ## Workflow
 
 1. Determine paths:
