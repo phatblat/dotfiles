@@ -14,7 +14,8 @@
 - Do not remove Homebrew Pup until the mise-managed binary reports `pup 1.6.6`.
 - Preserve Pup configuration, OAuth sessions, macOS Keychain items, and the existing Claude Pup installation.
 - Re-enable Claude Pup without reinstalling or upgrading its observed `0.25.0` plugin.
-- Install all nine Pup skills in both harnesses: `dd-apm`, `dd-code-generation`, `dd-debugger`, `dd-docs`, `dd-file-issue`, `dd-logs`, `dd-monitors`, `dd-pup`, and `dd-symdb`.
+- Preserve the nine shared Pup skills in both harnesses: `dd-apm`, `dd-code-generation`, `dd-debugger`, `dd-docs`, `dd-file-issue`, `dd-logs`, `dd-monitors`, `dd-pup`, and `dd-symdb`.
+- Install the complete Codex plugin from marketplace tag `v1.6.6`, including its additional `dd-triage-flaky-test` and `dd-unblock-pr` skills; its native manifest version is `0.62.0`.
 - Keep `datadog@openai-curated` uninstalled and Codex `features.apps = false`.
 - Generated docs must depend only on tracked configuration; live CLI failures appear as unavailable audit state.
 - Version differences are visible but are not parity errors.
@@ -893,6 +894,8 @@ Run `git push`. Expected: commit and push succeed.
 - Consumes: the mise-managed Pup 1.6.6 binary from Task 1
 - Consumes: deterministic inventory and live audit from Tasks 2–3
 - Produces: enabled `pup@datadog-pup` native plugins in Claude and Codex
+- Produces: Claude manifest version `0.25.0` with nine shared skills and Codex
+  manifest version `0.62.0` with eleven skills from marketplace tag `v1.6.6`
 
 - [ ] **Step 1: Capture current plugin state**
 
@@ -990,7 +993,7 @@ codex plugin marketplace remove datadog-pup
 
 Leave Claude enabled and mise Pup installed.
 
-- [ ] **Step 5: Verify the nine skills in both caches**
+- [ ] **Step 5: Verify the full skill sets in both caches**
 
 Run:
 
@@ -1003,7 +1006,7 @@ find "$claude_root/skills" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 
 find "$codex_root/skills" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort
 ```
 
-Expected for both:
+Expected for Claude:
 
 ```text
 dd-apm
@@ -1015,6 +1018,22 @@ dd-logs
 dd-monitors
 dd-pup
 dd-symdb
+```
+
+Expected for Codex:
+
+```text
+dd-apm
+dd-code-generation
+dd-debugger
+dd-docs
+dd-file-issue
+dd-logs
+dd-monitors
+dd-pup
+dd-symdb
+dd-triage-flaky-test
+dd-unblock-pr
 ```
 
 If Codex JSON does not expose an install path, derive `codex_root` from the

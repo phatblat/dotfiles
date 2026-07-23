@@ -41,6 +41,7 @@ Verified date: 2026-06-27
 | pr-review-toolkit@claude-plugins-official | missing | disabled |
 | pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal | missing | enabled |
 | presentations@openai-primary-runtime | missing | enabled |
+| pup@datadog-pup | enabled | enabled |
 | pyright-lsp@claude-plugins-official | enabled | disabled |
 | rust-analyzer-lsp@claude-plugins-official | enabled | disabled |
 | security-guidance@claude-plugins-official | enabled | disabled |

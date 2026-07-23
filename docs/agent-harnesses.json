@@ -919,6 +919,12 @@
       },
       {
         "enabled": true,
+        "id": "pup@datadog-pup",
+        "marketplace": "datadog-pup",
+        "marketplace_source": "github:DataDog/pup"
+      },
+      {
+        "enabled": true,
         "id": "pyright-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -1062,6 +1068,12 @@
         "id": "presentations@openai-primary-runtime",
         "marketplace": "openai-primary-runtime",
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+      },
+      {
+        "enabled": true,
+        "id": "pup@datadog-pup",
+        "marketplace": "datadog-pup",
+        "marketplace_source": "https://github.com/DataDog/pup.git"
       },
       {
         "enabled": false,

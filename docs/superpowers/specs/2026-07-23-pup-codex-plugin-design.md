@@ -45,7 +45,7 @@ plugin tied to a reproducible upstream release.
 
 ## Installed Capabilities
 
-Both harnesses must expose all nine upstream skills:
+Both harnesses expose these nine shared skills:
 
 - `dd-apm`
 - `dd-code-generation`
@@ -56,6 +56,15 @@ Both harnesses must expose all nine upstream skills:
 - `dd-monitors`
 - `dd-pup`
 - `dd-symdb`
+
+The full Codex plugin at marketplace tag `v1.6.6` additionally exposes:
+
+- `dd-triage-flaky-test`
+- `dd-unblock-pr`
+
+Claude's existing plugin reports manifest version `0.25.0`; the Codex plugin
+reports manifest version `0.62.0`. These manifest versions are independent of
+the verified Codex marketplace checkout tag `v1.6.6`.
 
 The separate `datadog@openai-curated` app remains uninstalled. Codex's
 `features.apps` setting remains disabled because the Pup plugin is skill-based
@@ -110,7 +119,8 @@ codex plugin list --json
 The audit normalizes `id`, `version`, `installed`, `enabled`, and `scope`, then
 compares observed state with the tracked configuration. It explicitly reports
 configured/observed mismatches and makes the current Claude `0.25.0` versus
-Codex `1.6.6` version difference visible without declaring it an error.
+Codex `0.62.0` manifest-version difference visible without declaring it an
+error.
 
 Inventory and audit are visibility-only:
 
@@ -162,7 +172,9 @@ scope.
 - `claude plugin list --json` reports `pup@datadog-pup` enabled.
 - `codex plugin marketplace list` includes `datadog-pup`.
 - `codex plugin list --json` reports `pup@datadog-pup` installed and enabled.
-- Each installed plugin exposes exactly the nine expected `dd-*` skills.
+- Claude exposes the nine shared `dd-*` skills.
+- Codex exposes those nine plus `dd-triage-flaky-test` and `dd-unblock-pr`
+  from the full upstream `v1.6.6` plugin.
 - `python3 scripts/agent-harnesses.py inventory --json` reports Pup enabled in
   both tracked configurations.
 - `python3 scripts/agent-harnesses.py audit --json` reports both observed Pup
