@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -142,6 +143,113 @@ class LivePluginTests(unittest.TestCase):
 
         self.assertFalse(result["observed"]["claude"]["available"])
         self.assertFalse(result["observed"]["codex"]["available"])
+        self.assertEqual(result["drift"], [])
+
+    @patch("agent_plugins.shutil.which", return_value="/usr/bin/harness")
+    @patch("agent_plugins.subprocess.run")
+    def test_audit_marks_nonzero_commands_unavailable(
+        self, run: object, _which: object
+    ) -> None:
+        run.return_value = subprocess.CompletedProcess(
+            args=[],
+            returncode=2,
+            stdout="",
+            stderr="permission denied",
+        )
+
+        result = audit_plugins({"claude": [], "codex": []})
+
+        for harness in ("claude", "codex"):
+            self.assertEqual(
+                result["observed"][harness],
+                {
+                    "available": False,
+                    "plugins": [],
+                    "error": "permission denied",
+                },
+            )
+        self.assertEqual(result["drift"], [])
+
+    @patch("agent_plugins.shutil.which", return_value="/usr/bin/harness")
+    @patch("agent_plugins.subprocess.run")
+    def test_audit_marks_malformed_json_unavailable(
+        self, run: object, _which: object
+    ) -> None:
+        run.return_value = subprocess.CompletedProcess(
+            args=[],
+            returncode=0,
+            stdout="not JSON",
+            stderr="",
+        )
+
+        result = audit_plugins({"claude": [], "codex": []})
+
+        for harness in ("claude", "codex"):
+            observed = result["observed"][harness]
+            self.assertFalse(observed["available"])
+            self.assertEqual(observed["plugins"], [])
+            self.assertIn(f"invalid {harness} plugin JSON:", observed["error"])
+        self.assertEqual(result["drift"], [])
+
+    @patch("agent_plugins.shutil.which", return_value="/usr/bin/harness")
+    @patch("agent_plugins.subprocess.run")
+    def test_audit_marks_invalid_decoded_schemas_unavailable(
+        self, run: object, _which: object
+    ) -> None:
+        run.side_effect = [
+            subprocess.CompletedProcess(
+                args=[],
+                returncode=0,
+                stdout="{}",
+                stderr="",
+            ),
+            subprocess.CompletedProcess(
+                args=[],
+                returncode=0,
+                stdout='{"installed": null}',
+                stderr="",
+            ),
+        ]
+
+        result = audit_plugins({"claude": [], "codex": []})
+
+        self.assertEqual(
+            result["observed"]["claude"],
+            {
+                "available": False,
+                "plugins": [],
+                "error": "invalid claude plugin schema: expected a JSON array",
+            },
+        )
+        self.assertEqual(
+            result["observed"]["codex"],
+            {
+                "available": False,
+                "plugins": [],
+                "error": (
+                    "invalid codex plugin schema: expected an object with an "
+                    "'installed' array"
+                ),
+            },
+        )
+        self.assertEqual(result["drift"], [])
+
+    @patch("agent_plugins.shutil.which", return_value="/usr/bin/harness")
+    @patch("agent_plugins.subprocess.run", side_effect=OSError("launch failed"))
+    def test_audit_marks_launch_exceptions_unavailable(
+        self, _run: object, _which: object
+    ) -> None:
+        result = audit_plugins({"claude": [], "codex": []})
+
+        for harness in ("claude", "codex"):
+            self.assertEqual(
+                result["observed"][harness],
+                {
+                    "available": False,
+                    "plugins": [],
+                    "error": f"{harness} plugin list failed: launch failed",
+                },
+            )
         self.assertEqual(result["drift"], [])
 
 

@@ -88,7 +88,9 @@ def _read_toml(path: Path) -> dict[str, Any]:
 
 def normalize_live_plugins(harness: str, payload: Any) -> list[dict[str, Any]]:
     if harness == "claude":
-        entries = payload if isinstance(payload, list) else []
+        if not isinstance(payload, list):
+            raise ValueError("expected a JSON array")
+        entries = payload
         normalized = [
             {
                 "id": str(entry.get("id", "")),
@@ -101,7 +103,11 @@ def normalize_live_plugins(harness: str, payload: Any) -> list[dict[str, Any]]:
             if isinstance(entry, dict) and entry.get("id")
         ]
     elif harness == "codex":
-        installed = payload.get("installed", []) if isinstance(payload, dict) else []
+        if not isinstance(payload, dict) or not isinstance(
+            payload.get("installed"), list
+        ):
+            raise ValueError("expected an object with an 'installed' array")
+        installed = payload["installed"]
         normalized = [
             {
                 "id": str(entry.get("pluginId", "")),
@@ -162,13 +168,20 @@ def _load_live_plugins(harness: str) -> dict[str, Any]:
             "plugins": [],
             "error": f"{harness} command not found",
         }
-    result = subprocess.run(
-        [harness, "plugin", "list", "--json"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
-    )
+    try:
+        result = subprocess.run(
+            [harness, "plugin", "list", "--json"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+    except OSError as exc:
+        return {
+            "available": False,
+            "plugins": [],
+            "error": f"{harness} plugin list failed: {exc}",
+        }
     if result.returncode != 0:
         return {
             "available": False,
@@ -183,8 +196,16 @@ def _load_live_plugins(harness: str) -> dict[str, Any]:
             "plugins": [],
             "error": f"invalid {harness} plugin JSON: {exc}",
         }
+    try:
+        plugins = normalize_live_plugins(harness, payload)
+    except ValueError as exc:
+        return {
+            "available": False,
+            "plugins": [],
+            "error": f"invalid {harness} plugin schema: {exc}",
+        }
     return {
         "available": True,
-        "plugins": normalize_live_plugins(harness, payload),
+        "plugins": plugins,
         "error": "",
     }
