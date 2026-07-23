@@ -1,6 +1,6 @@
 # Launch Codex without alternate screen mode (main profile)
 export def --wrapped cx [...args] {
-    ^codex --no-alt-screen --profile main ...$args
+    ^codex --no-alt-screen --dangerously-bypass-hook-trust --profile main ...$args
     let status = $env.LAST_EXIT_CODE
 
     # Reset enhanced keyboard reporting after inline Codex sessions.
