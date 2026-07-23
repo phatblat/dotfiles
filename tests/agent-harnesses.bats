@@ -5,6 +5,12 @@ load helpers/setup
 
 SCRIPT="$HOME/scripts/agent-harnesses.py"
 
+@test "agent-harnesses: plugin normalizers pass unit tests" {
+  run python3 "$HOME/tests/test_agent_plugins.py"
+
+  [ "$status" -eq 0 ]
+}
+
 @test "agent-harnesses: inventories active commands, agents, skills, and graph capability" {
   run python3 "$SCRIPT" inventory --json
 

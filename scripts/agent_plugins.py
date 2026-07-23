@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""Normalize configured and observed plugins across agent harnesses.
+
+Copyright: Ben Chatelain. MIT.
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import tomllib
+from typing import Any
+
+HARNESSES = ("claude", "codex")
+
+
+def configured_plugins(root: Path) -> dict[str, list[dict[str, Any]]]:
+    claude_settings = _read_json(root / ".claude" / "settings.json")
+    codex_config = _read_toml(root / ".codex" / "config.toml")
+
+    claude_marketplaces = {
+        name: _claude_marketplace_source(value)
+        for name, value in claude_settings.get("extraKnownMarketplaces", {}).items()
+    }
+    codex_marketplaces = {
+        name: _codex_marketplace_source(value)
+        for name, value in codex_config.get("marketplaces", {}).items()
+    }
+
+    return {
+        "claude": _configured_entries(
+            claude_settings.get("enabledPlugins", {}),
+            claude_marketplaces,
+        ),
+        "codex": _configured_entries(
+            {
+                plugin_id: value.get("enabled", False)
+                for plugin_id, value in codex_config.get("plugins", {}).items()
+            },
+            codex_marketplaces,
+        ),
+    }
+
+
+def _configured_entries(
+    enabled_plugins: dict[str, Any],
+    marketplaces: dict[str, str | None],
+) -> list[dict[str, Any]]:
+    return [
+        {
+            "id": plugin_id,
+            "enabled": bool(enabled),
+            "marketplace": _marketplace_name(plugin_id),
+            "marketplace_source": marketplaces.get(_marketplace_name(plugin_id)),
+        }
+        for plugin_id, enabled in sorted(enabled_plugins.items())
+    ]
+
+
+def _marketplace_name(plugin_id: str) -> str:
+    return plugin_id.rpartition("@")[2] or ""
+
+
+def _claude_marketplace_source(value: Any) -> str | None:
+    if not isinstance(value, dict):
+        return None
+    source = value.get("source", {})
+    if not isinstance(source, dict):
+        return None
+    if source.get("source") == "github" and source.get("repo"):
+        return f"github:{source['repo']}"
+    return source.get("url")
+
+
+def _codex_marketplace_source(value: Any) -> str | None:
+    return value.get("source") if isinstance(value, dict) else None
+
+
+def _read_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def _read_toml(path: Path) -> dict[str, Any]:
+    return tomllib.loads(path.read_text()) if path.exists() else {}
+
+
+def normalize_live_plugins(harness: str, payload: Any) -> list[dict[str, Any]]:
+    if harness == "claude":
+        entries = payload if isinstance(payload, list) else []
+        normalized = [
+            {
+                "id": str(entry.get("id", "")),
+                "version": str(entry.get("version", "")),
+                "installed": True,
+                "enabled": bool(entry.get("enabled", False)),
+                "scope": entry.get("scope"),
+            }
+            for entry in entries
+            if isinstance(entry, dict) and entry.get("id")
+        ]
+    elif harness == "codex":
+        installed = payload.get("installed", []) if isinstance(payload, dict) else []
+        normalized = [
+            {
+                "id": str(entry.get("pluginId", "")),
+                "version": str(entry.get("version", "")),
+                "installed": bool(entry.get("installed", True)),
+                "enabled": bool(entry.get("enabled", False)),
+                "scope": None,
+            }
+            for entry in installed
+            if isinstance(entry, dict) and entry.get("pluginId")
+        ]
+    else:
+        raise ValueError(f"unsupported harness: {harness}")
+    return sorted(normalized, key=lambda entry: entry["id"])
+
+
+def audit_plugins(
+    configured: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any]:
+    observed = {harness: _load_live_plugins(harness) for harness in HARNESSES}
+    drift: list[dict[str, Any]] = []
+
+    for harness in HARNESSES:
+        if not observed[harness]["available"]:
+            continue
+        actual = {entry["id"]: entry for entry in observed[harness]["plugins"]}
+        for expected in configured.get(harness, []):
+            plugin_id = expected["id"]
+            current = actual.get(plugin_id)
+            if current is None:
+                drift.append(
+                    {
+                        "harness": harness,
+                        "id": plugin_id,
+                        "field": "installed",
+                        "configured": True,
+                        "observed": False,
+                    }
+                )
+            elif current["enabled"] != expected["enabled"]:
+                drift.append(
+                    {
+                        "harness": harness,
+                        "id": plugin_id,
+                        "field": "enabled",
+                        "configured": expected["enabled"],
+                        "observed": current["enabled"],
+                    }
+                )
+
+    return {"observed": observed, "drift": drift}
+
+
+def _load_live_plugins(harness: str) -> dict[str, Any]:
+    if shutil.which(harness) is None:
+        return {
+            "available": False,
+            "plugins": [],
+            "error": f"{harness} command not found",
+        }
+    result = subprocess.run(
+        [harness, "plugin", "list", "--json"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return {
+            "available": False,
+            "plugins": [],
+            "error": result.stderr.strip() or f"{harness} plugin list failed",
+        }
+    try:
+        payload = json.loads(result.stdout)
+    except json.JSONDecodeError as exc:
+        return {
+            "available": False,
+            "plugins": [],
+            "error": f"invalid {harness} plugin JSON: {exc}",
+        }
+    return {
+        "available": True,
+        "plugins": normalize_live_plugins(harness, payload),
+        "error": "",
+    }
