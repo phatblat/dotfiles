@@ -21,6 +21,28 @@ from agent_plugins import (  # noqa: E402
 
 
 class ConfiguredPluginTests(unittest.TestCase):
+    def test_reads_codex_multiline_inline_table_dialect(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".codex").mkdir()
+            (root / ".codex" / "config.toml").write_text(
+                """
+[otel]
+exporter = { otlp-http = {
+    endpoint = "https://otlp.example.test/v1/logs",
+    protocol = "binary",
+} }
+
+[plugins."pup@datadog-pup"]
+enabled = true
+""".lstrip()
+            )
+
+            result = configured_plugins(root)
+
+        self.assertEqual(result["codex"][0]["id"], "pup@datadog-pup")
+        self.assertTrue(result["codex"][0]["enabled"])
+
     def test_normalizes_tracked_claude_and_codex_plugins(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

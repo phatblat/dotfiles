@@ -19,17 +19,39 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   agent_count=$(printf '%s' "$output" | jq '.agents | length')
   skill_count=$(printf '%s' "$output" | jq '.skills.count')
   has_graph=$(printf '%s' "$output" | jq -r '.capabilities | index("code-review-graph") != null')
+  claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
+  codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
   [ "$command_count" -eq 24 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "true" ]
+  [ "$claude_plugins" = '"array"' ]
+  [ "$codex_plugins" = '"array"' ]
 }
 
 @test "agent-harnesses: generated artifacts are current" {
   run python3 "$SCRIPT" generate --check
 
   [ "$status" -eq 0 ]
+}
+
+@test "agent-harnesses: generated manifest contains native plugin matrix" {
+  run python3 "$SCRIPT" generate
+  [ "$status" -eq 0 ]
+
+  jq -e '.plugins.claude and .plugins.codex' \
+    "$HOME/docs/agent-harnesses.json" >/dev/null
+  grep -Fq '## Native Plugins' "$HOME/docs/agent-harnesses.md"
+  grep -Fq '| Plugin | Claude | Codex |' "$HOME/docs/agent-harnesses.md"
+}
+
+@test "agent-harnesses: audit reports observed plugins and drift" {
+  run python3 "$SCRIPT" audit --json
+
+  [ "$status" -eq 0 ]
+  [ "$(printf '%s' "$output" | jq '.plugins.observed | type')" = '"object"' ]
+  [ "$(printf '%s' "$output" | jq '.plugins.drift | type')" = '"array"' ]
 }
 
 @test "agent-harnesses: pr-daily layers new branches on the current daily branch" {

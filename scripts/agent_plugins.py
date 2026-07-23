@@ -10,15 +10,19 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
-import tomllib
 from typing import Any
+
+from codex_config import load as load_codex_config
 
 HARNESSES = ("claude", "codex")
 
 
 def configured_plugins(root: Path) -> dict[str, list[dict[str, Any]]]:
     claude_settings = _read_json(root / ".claude" / "settings.json")
-    codex_config = _read_toml(root / ".codex" / "config.toml")
+    codex_config_path = root / ".codex" / "config.toml"
+    codex_config = (
+        load_codex_config(codex_config_path) if codex_config_path.exists() else {}
+    )
 
     claude_marketplaces = {
         name: _claude_marketplace_source(value)
@@ -80,10 +84,6 @@ def _codex_marketplace_source(value: Any) -> str | None:
 
 def _read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text()) if path.exists() else {}
-
-
-def _read_toml(path: Path) -> dict[str, Any]:
-    return tomllib.loads(path.read_text()) if path.exists() else {}
 
 
 def normalize_live_plugins(harness: str, payload: Any) -> list[dict[str, Any]]:
