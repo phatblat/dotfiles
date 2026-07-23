@@ -1,5 +1,5 @@
 # Codex config.toml — hand-authored settings first, machine-managed state last.
-# Sections/keys are alphabetized by `just format-toml` (~/scripts/sort-codex-config.py).
+# Sections/keys are alphabetized by `just format-toml` (~/scripts/sort-codex-config.py), except native marketplace state order.
 # Volatile churn (timestamps/revisions/hashes) is masked out of git by ~/scripts/mask-codex-state.sh (clean filter; see .gitattributes).
 
 approvals_reviewer = "auto_review"
@@ -66,7 +66,7 @@ startup_timeout_sec = 120
 [mcp_servers.node_repl.env]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.715.52143"
+BROWSER_USE_CODEX_APP_VERSION = "26.715.72359"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 CODEX_HOME = "/Users/phatblat/.codex"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
@@ -75,7 +75,7 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS th
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "583bf903a6cfb9b00a01e1583381ce921c71d7585085c6fa6b805baa0f60230b,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,d0b55a8f9e8e7e9c88421416ea4ce9542c302abf43aa7fc871be4553ea70dd26"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000451/Codex Computer Use.app"
 
@@ -109,7 +109,7 @@ BASH_DEFAULT_TIMEOUT_MS = "300000"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
 MAX_MCP_OUTPUT_TOKENS = "25000"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "583bf903a6cfb9b00a01e1583381ce921c71d7585085c6fa6b805baa0f60230b,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,d0b55a8f9e8e7e9c88421416ea4ce9542c302abf43aa7fc871be4553ea70dd26"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 
 [tui]
@@ -230,37 +230,37 @@ enabled = false
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
 [marketplaces.claude-plugins-official]
-last_revision = "0000000000000000000000000000000000000000"
 last_updated = "1970-01-01T00:00:00Z"
-source = "https://github.com/anthropics/claude-plugins-official.git"
+last_revision = "0000000000000000000000000000000000000000"
 source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.compound-engineering-plugin]
-last_revision = "0000000000000000000000000000000000000000"
 last_updated = "1970-01-01T00:00:00Z"
-source = "https://github.com/EveryInc/compound-engineering-plugin.git"
+last_revision = "0000000000000000000000000000000000000000"
 source_type = "git"
+source = "https://github.com/EveryInc/compound-engineering-plugin.git"
 
 [marketplaces.kyto64-codex-pr-review-toolkit-minimal]
 last_updated = "1970-01-01T00:00:00Z"
-source = "/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"
 source_type = "local"
+source = "/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"
 
 [marketplaces.linear-cli]
-last_revision = "0000000000000000000000000000000000000000"
 last_updated = "1970-01-01T00:00:00Z"
-source = "https://github.com/schpet/linear-cli.git"
+last_revision = "0000000000000000000000000000000000000000"
 source_type = "git"
+source = "https://github.com/schpet/linear-cli.git"
 
 [marketplaces.openai-bundled]
 last_updated = "1970-01-01T00:00:00Z"
-source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 source_type = "local"
+source = "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
 last_updated = "1970-01-01T00:00:00Z"
-source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 source_type = "local"
+source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"

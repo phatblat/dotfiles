@@ -15,7 +15,8 @@ Policy
     1. hand-authored config (everything else)
     2. machine-managed state, clustered at the bottom under a banner
        (``projects``, ``notice``, ``marketplaces``, ``plugins``, ``hooks``).
-* Keys inside every table/section are sorted alphabetically.
+* Keys inside every table/section are sorted alphabetically, except marketplace
+  state where Codex's native order is preserved.
 
 Comments
 --------
@@ -43,6 +44,15 @@ STATE_TABLES: frozenset[str] = frozenset(
     {"projects", "notice", "marketplaces", "plugins", "hooks"}
 )
 
+# Codex writes marketplace records in this order. Keeping its native state
+# layout makes `just format` idempotent with subsequent Codex launches.
+MARKETPLACE_KEY_ORDER: dict[str, int] = {
+    "last_updated": 0,
+    "last_revision": 1,
+    "source_type": 2,
+    "source": 3,
+}
+
 # A table header line, e.g. `[tui.model_availability_nux]`. Headers live at
 # column 0; multi-line value continuations (`]`, `} }`, indented lines) do not.
 HEADER_RE = re.compile(r"^\[(?P<path>.+)\]\s*$")
@@ -53,7 +63,7 @@ KEY_RE = re.compile(r"^(?P<key>[^\s#=\[][^=]*?)\s*=")
 _TOP_BANNER: tuple[str, ...] = (
     "Codex config.toml — hand-authored settings first, machine-managed state last.",
     "Sections/keys are alphabetized by `just format-toml`"
-    " (~/scripts/sort-codex-config.py).",
+    " (~/scripts/sort-codex-config.py), except native marketplace state order.",
     "Volatile churn (timestamps/revisions/hashes) is masked out of git by"
     " ~/scripts/mask-codex-state.sh (clean filter; see .gitattributes).",
 )
@@ -87,8 +97,10 @@ def _split_dotted(path: str) -> tuple[str, ...]:
     return tuple(parts)
 
 
-def _sort_records(body: list[str]) -> list[str]:
-    """Sort ``key = value`` records within a section body, keys ascending.
+def _sort_records(
+    body: list[str], key_order: dict[str, int] | None = None
+) -> list[str]:
+    """Sort ``key = value`` records within a section body.
 
     A record is a key line plus any following continuation lines (multi-line
     arrays/inline tables). Blank lines and standalone comments are discarded
@@ -111,7 +123,12 @@ def _sort_records(body: list[str]) -> list[str]:
         match = KEY_RE.match(record[0])
         return match.group("key").strip().lower() if match else ""
 
-    records.sort(key=record_key)
+    records.sort(
+        key=lambda record: (
+            key_order.get(record_key(record), len(key_order)) if key_order else 0,
+            record_key(record),
+        )
+    )
 
     out: list[str] = []
     for record in records:
@@ -151,7 +168,11 @@ def sort_document(text: str) -> str:
     state: list[tuple[tuple[str, ...], str, list[str]]] = []
     for head, raw_body in blocks:
         path = _split_dotted(HEADER_RE.match(head).group("path"))
-        entry = (tuple(p.lower() for p in path), head, _sort_records(raw_body))
+        normalized_path = tuple(p.lower() for p in path)
+        key_order = (
+            MARKETPLACE_KEY_ORDER if normalized_path[0] == "marketplaces" else None
+        )
+        entry = (normalized_path, head, _sort_records(raw_body, key_order))
         (state if path[0] in STATE_TABLES else config).append(entry)
 
     config.sort(key=lambda e: e[0])

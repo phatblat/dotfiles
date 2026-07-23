@@ -263,7 +263,7 @@ upgrade-mise:
 upgrade-mise-tools-commit:
     #!/usr/bin/env bash
     set -euo pipefail
-    json=$(mise outdated --bump --json)
+    json=$(mise outdated --bump --json | jq 'with_entries(select(.value.bump | type == "string"))')
     if echo "$json" | jq -e 'type == "object" and (keys | length) == 0' >/dev/null 2>&1; then
         echo "All tools are up to date"
         exit 0
@@ -382,7 +382,7 @@ lint-python:
     @echo "Linting Python scripts..."
     ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py
 
-# Checks the Codex config.toml is sorted (sections/keys alphabetized, state clustered)
+# Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
 lint-toml:
     python3 ~/scripts/sort-codex-config.py --check ~/.codex/config.toml
@@ -469,7 +469,7 @@ test:
 format-gitignore:
     ~/scripts/sort-gitignore < ~/.gitignore | sponge ~/.gitignore
 
-# Sorts the Codex config.toml (sections/keys alphabetized, machine state clustered)
+# Formats the Codex config.toml (native marketplace state order, state clustered)
 [group('configuration')]
 format-toml:
     python3 ~/scripts/sort-codex-config.py ~/.codex/config.toml

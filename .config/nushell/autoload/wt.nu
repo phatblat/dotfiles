@@ -53,6 +53,14 @@ def --env wt [branch?: string] {
         return
     }
 
+    # Refresh origin so a branch pushed after the last fetch is discoverable.
+    if (^git remote get-url origin | complete).exit_code == 0 {
+        let fetch_result = (^git fetch --prune origin | complete)
+        if $fetch_result.exit_code != 0 {
+            error make --unspanned { msg: $fetch_result.stderr }
+        }
+    }
+
     if (^git show-ref --quiet $"refs/heads/($branch)" | complete).exit_code == 0 {
         ^git worktree add $wt_path $branch
     } else if (^git show-ref --quiet $"refs/remotes/origin/($branch)" | complete).exit_code == 0 {

@@ -11,6 +11,13 @@ Run an end-to-end Linear ticket workflow. If no ticket ID is provided, ask for o
 
 Use the `linear-cli:linear-cli` skill before running Linear CLI commands.
 
+On macOS, run every `linear ...` command outside the sandbox on the first
+attempt so the CLI can access credentials stored in the system keychain. Use
+scoped escalation with `prefix_rule: ["linear"]`. If a sandboxed command
+reports `No keyring entry` or `No API key configured`, retry outside the
+sandbox before asking the user to authenticate. Never print, log, or expose
+`linear auth token` or an API key.
+
 Fetch:
 
 ```bash

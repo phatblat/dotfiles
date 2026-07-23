@@ -15,6 +15,13 @@ category: workflow
 
 Post a concise progress update comment to a Linear ticket. Summarizes what's been done, what's in flight, and what's next.
 
+On macOS, run every `linear ...` command outside the sandbox on the first
+attempt so the CLI can access credentials stored in the system keychain. Use
+scoped escalation with `prefix_rule: ["linear"]`. If a sandboxed command
+reports `No keyring entry` or `No API key configured`, retry outside the
+sandbox before asking the user to authenticate. Never print, log, or expose
+`linear auth token` or an API key.
+
 ## Arguments
 
 `$ARGUMENTS` — a Linear ticket ID (e.g., `DEVX-927`, `FORGE-1101`).
