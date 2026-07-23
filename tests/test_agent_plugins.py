@@ -159,6 +159,95 @@ class LivePluginTests(unittest.TestCase):
             ],
         )
 
+    @patch("agent_plugins.shutil.which", return_value="/usr/bin/harness")
+    @patch("agent_plugins.subprocess.run")
+    def test_audit_reports_all_plugin_drift_in_deterministic_order(
+        self, run: object, _which: object
+    ) -> None:
+        run.side_effect = [
+            subprocess.CompletedProcess(
+                args=[],
+                returncode=0,
+                stdout=json.dumps(
+                    [
+                        {
+                            "id": "b-enabled@example",
+                            "version": "1.0.0",
+                            "enabled": False,
+                        },
+                        {
+                            "id": "a-untracked@example",
+                            "version": "1.0.0",
+                            "enabled": True,
+                        },
+                    ]
+                ),
+                stderr="",
+            ),
+            subprocess.CompletedProcess(
+                args=[],
+                returncode=0,
+                stdout=json.dumps(
+                    {
+                        "installed": [
+                            {
+                                "pluginId": "installed-false@example",
+                                "version": "1.0.0",
+                                "installed": False,
+                                "enabled": False,
+                            }
+                        ]
+                    }
+                ),
+                stderr="",
+            ),
+        ]
+        configured = {
+            "claude": [
+                {"id": "z-missing@example", "enabled": True},
+                {"id": "b-enabled@example", "enabled": True},
+            ],
+            "codex": [
+                {"id": "installed-false@example", "enabled": False},
+            ],
+        }
+
+        result = audit_plugins(configured)
+
+        self.assertEqual(
+            result["drift"],
+            [
+                {
+                    "harness": "claude",
+                    "id": "a-untracked@example",
+                    "field": "configured",
+                    "configured": False,
+                    "observed": True,
+                },
+                {
+                    "harness": "claude",
+                    "id": "b-enabled@example",
+                    "field": "enabled",
+                    "configured": True,
+                    "observed": False,
+                },
+                {
+                    "harness": "claude",
+                    "id": "z-missing@example",
+                    "field": "installed",
+                    "configured": True,
+                    "observed": False,
+                },
+                {
+                    "harness": "codex",
+                    "id": "installed-false@example",
+                    "field": "installed",
+                    "configured": True,
+                    "observed": False,
+                },
+            ],
+        )
+
     @patch("agent_plugins.shutil.which", return_value=None)
     def test_audit_marks_missing_commands_unavailable(self, _which: object) -> None:
         result = audit_plugins({"claude": [], "codex": []})

@@ -134,8 +134,8 @@ def audit_plugins(
         if not observed[harness]["available"]:
             continue
         actual = {entry["id"]: entry for entry in observed[harness]["plugins"]}
-        for expected in configured.get(harness, []):
-            plugin_id = expected["id"]
+        expected_plugins = {entry["id"]: entry for entry in configured.get(harness, [])}
+        for plugin_id, expected in sorted(expected_plugins.items()):
             current = actual.get(plugin_id)
             if current is None:
                 drift.append(
@@ -147,7 +147,18 @@ def audit_plugins(
                         "observed": False,
                     }
                 )
-            elif current["enabled"] != expected["enabled"]:
+                continue
+            if not current["installed"]:
+                drift.append(
+                    {
+                        "harness": harness,
+                        "id": plugin_id,
+                        "field": "installed",
+                        "configured": True,
+                        "observed": False,
+                    }
+                )
+            if current["enabled"] != expected["enabled"]:
                 drift.append(
                     {
                         "harness": harness,
@@ -157,7 +168,26 @@ def audit_plugins(
                         "observed": current["enabled"],
                     }
                 )
+        for plugin_id in sorted(actual.keys() - expected_plugins.keys()):
+            drift.append(
+                {
+                    "harness": harness,
+                    "id": plugin_id,
+                    "field": "configured",
+                    "configured": False,
+                    "observed": True,
+                }
+            )
 
+    harness_order = {harness: index for index, harness in enumerate(HARNESSES)}
+    field_order = {"installed": 0, "enabled": 1, "configured": 2}
+    drift.sort(
+        key=lambda item: (
+            harness_order[item["harness"]],
+            item["id"],
+            field_order[item["field"]],
+        )
+    )
     return {"observed": observed, "drift": drift}
 
 

@@ -37,13 +37,15 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: generated manifest contains native plugin matrix" {
-  run python3 "$SCRIPT" generate
+  run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
   jq -e '.plugins.claude and .plugins.codex' \
     "$HOME/docs/agent-harnesses.json" >/dev/null
   grep -Fq '## Native Plugins' "$HOME/docs/agent-harnesses.md"
   grep -Fq '| Plugin | Claude | Codex |' "$HOME/docs/agent-harnesses.md"
+  grep -Fq '| pup@datadog-pup | enabled | enabled |' \
+    "$HOME/docs/agent-harnesses.md"
 }
 
 @test "agent-harnesses: audit reports observed plugins and drift" {
