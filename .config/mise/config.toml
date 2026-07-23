@@ -59,7 +59,7 @@ act = "0.2.89"
 actionlint = "1.7.12"
 awscli = { version = "2.36.6", symlink_bins = "true" }
 bat = "0.26.1"
-bats = "1.13.0"
+bats = "1.14.0"
 bazelisk = "1.29.0"
 bottom = "0.14.6"
 buildifier = "8.5.1"
