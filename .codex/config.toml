@@ -66,7 +66,7 @@ startup_timeout_sec = 120
 [mcp_servers.node_repl.env]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.715.72359"
+BROWSER_USE_CODEX_APP_VERSION = "26.721.31836"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 CODEX_HOME = "/Users/phatblat/.codex"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
@@ -75,9 +75,9 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS th
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,d0b55a8f9e8e7e9c88421416ea4ce9542c302abf43aa7fc871be4553ea70dd26"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "3fdfe9a7ad39456da69c5e8fa7bbf7229ec2fe9de5f4cf2e476166bf30a08a7e,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
-SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/plugins/cache/openai-bundled/computer-use/1.0.1000451/Codex Computer Use.app"
+SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/computer-use/Codex Computer Use.app"
 
 [mcp_servers.notion]
 url = "https://mcp.notion.com/mcp"
@@ -109,7 +109,7 @@ BASH_DEFAULT_TIMEOUT_MS = "300000"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
 MAX_MCP_OUTPUT_TOKENS = "25000"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,d0b55a8f9e8e7e9c88421416ea4ce9542c302abf43aa7fc871be4553ea70dd26"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "3fdfe9a7ad39456da69c5e8fa7bbf7229ec2fe9de5f4cf2e476166bf30a08a7e,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex"
 
 [tui]
@@ -358,6 +358,9 @@ enabled = true
 trust_level = "trusted"
 
 [projects."/Users/phatblat"]
+trust_level = "trusted"
+
+[projects."/Users/phatblat/dev/_GETDITTO/agentic-code-review"]
 trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/build-infra"]
