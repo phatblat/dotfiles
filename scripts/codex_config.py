@@ -9,6 +9,8 @@ that dialect byte-for-byte, so tests must parse the config the same way.
 brace/bracket regions onto a single line and drops trailing commas before a
 close token, then re-parses. The scan is string-aware, so braces inside quoted
 values (e.g. ``"${DD_API_KEY}"``) never affect nesting depth.
+
+Copyright: Ben Chatelain. MIT.
 """
 
 from __future__ import annotations
