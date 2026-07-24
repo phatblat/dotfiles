@@ -24,6 +24,10 @@ load helpers/setup
   command_exists mise
 }
 
+@test "mise uses npm for npm-backed tools" {
+  [ "$(mise settings get npm.package_manager)" = "npm" ]
+}
+
 @test "nix is available" {
   if [[ "${CI:-}" == "true" ]]; then skip "nix not installed in CI"; fi
   command_exists nix || skip "nix not installed"
