@@ -422,6 +422,7 @@
 .steampipe/
 .subversion/
 .sudo_as_admin_successful
+.superpowers/
 .swiftenv/
 .swiftpm/
 .synx/

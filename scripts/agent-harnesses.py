@@ -24,6 +24,8 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] == "guard"):
     import subprocess
     import tomllib
 
+    from agent_plugins import audit_plugins, configured_plugins
+
 _IS_GUARD = len(sys.argv) >= 2 and sys.argv[1] == "guard"
 
 
@@ -219,12 +221,20 @@ def command_inventory(*, json_output: bool) -> int:
         print(f"agents: {len(inventory['agents'])}")
         print(f"skills: {inventory['skills']['count']}")
         print("capabilities: " + ", ".join(inventory["capabilities"]))
+        print(
+            "plugins: "
+            + ", ".join(
+                f"{harness}={len(plugins)}"
+                for harness, plugins in inventory["plugins"].items()
+            )
+        )
     return 0
 
 
 def command_generate(*, check: bool) -> int:
     expected = render_all()
     stale: list[Path] = []
+    obsolete = find_obsolete_skill_wrappers(expected)
 
     for path, content in expected.items():
         if path.exists() and path.read_text() == content:
@@ -232,16 +242,49 @@ def command_generate(*, check: bool) -> int:
         stale.append(path)
 
     if check:
-        if stale:
+        if stale or obsolete:
             for path in stale:
                 print(f"stale: {display_path(path)}", file=sys.stderr)
+            for path in obsolete:
+                print(f"obsolete: {display_path(path)}", file=sys.stderr)
             return 1
         return 0
 
     for path, content in expected.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content)
+    for path in obsolete:
+        path.unlink()
+        try:
+            path.parent.rmdir()
+        except OSError:
+            pass
     return 0
+
+
+def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
+    expected_paths = set(expected)
+    obsolete: list[Path] = []
+    adapters = [
+        (ANTIGRAVITY_HARNESS / "skills", render_antigravity_skill),
+        (CURSOR_HARNESS / "skills", render_cursor_skill),
+    ]
+
+    for root, render in adapters:
+        if not root.is_dir() or root.is_symlink():
+            continue
+        for path in root.glob("*/SKILL.md"):
+            if (
+                path in expected_paths
+                or path.is_symlink()
+                or path.parent.is_symlink()
+                or not path.is_file()
+            ):
+                continue
+            if path.read_text() == render(path.parent.name):
+                obsolete.append(path)
+
+    return sorted(obsolete)
 
 
 def command_validate() -> int:
@@ -310,6 +353,7 @@ def command_validate() -> int:
 
 
 def command_audit(*, json_output: bool) -> int:
+    inventory = build_inventory()
     manifest_path = ROOT / "docs" / "agent-harnesses.json"
     manifest = (
         json.loads(manifest_path.read_text())
@@ -337,6 +381,7 @@ def command_audit(*, json_output: bool) -> int:
             for harness, state in feature["harnesses"].items()
             if state["state"] in {"partial", "missing", "blocked"}
         ],
+        "plugins": audit_plugins(inventory["plugins"]),
     }
     if json_output:
         print(json.dumps(audit, indent=2, sort_keys=True))
@@ -345,6 +390,19 @@ def command_audit(*, json_output: bool) -> int:
         print()
         for harness, version in audit["versions"].items():
             print(f"- {harness}: {version or 'not installed'}")
+        print()
+        print("## Native Plugins")
+        print()
+        for harness, state_data in audit["plugins"]["observed"].items():
+            if state_data["available"]:
+                print(f"- {harness}: {len(state_data['plugins'])} observed")
+            else:
+                print(f"- {harness}: unavailable ({state_data['error']})")
+        for item in audit["plugins"]["drift"]:
+            print(
+                "- {harness} {id}: {field} configured={configured} "
+                "observed={observed}".format(**item)
+            )
         print()
         print("## Open Items")
         for item in audit["partial"]:
@@ -402,6 +460,7 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
         "agents": agents,
         "skills": {"count": len(skills), "paths": skills},
         "capabilities": capabilities,
+        "plugins": configured_plugins(ROOT),
     }
 
 
@@ -1599,6 +1658,7 @@ def build_manifest() -> dict[str, Any]:
             "antigravity": {"role": "tracked port"},
             "cursor": {"role": "tracked port"},
         },
+        "plugins": inventory["plugins"],
         "attribute_mappings": ATTRIBUTE_MAPPINGS,
         "features": features,
     }
@@ -1693,6 +1753,39 @@ def render_manifest_markdown(manifest: dict[str, Any]) -> str:
                 next_action=next_actions or "-",
             )
         )
+    plugins = manifest["plugins"]
+    plugin_ids = sorted(
+        {
+            entry["id"]
+            for harness_entries in plugins.values()
+            for entry in harness_entries
+        }
+    )
+    configured_by_harness = {
+        harness: {entry["id"]: entry for entry in entries}
+        for harness, entries in plugins.items()
+    }
+    lines.extend(
+        [
+            "",
+            "## Native Plugins",
+            "",
+            "| Plugin | Claude | Codex |",
+            "|---|---|---|",
+        ]
+    )
+    for plugin_id in plugin_ids:
+        lines.append(
+            "| {plugin} | {claude} | {codex} |".format(
+                plugin=escape_markdown_cell(plugin_id),
+                claude=format_plugin_state(
+                    configured_by_harness["claude"].get(plugin_id)
+                ),
+                codex=format_plugin_state(
+                    configured_by_harness["codex"].get(plugin_id)
+                ),
+            )
+        )
     lines.extend(
         [
             "",
@@ -1738,6 +1831,12 @@ def render_manifest_markdown(manifest: dict[str, Any]) -> str:
 
 def format_state(value: dict[str, Any]) -> str:
     return f"{value['state']} / {value['mode']}"
+
+
+def format_plugin_state(value: dict[str, Any] | None) -> str:
+    if value is None:
+        return "missing"
+    return "enabled" if value["enabled"] else "disabled"
 
 
 def escape_markdown_cell(value: str) -> str:
