@@ -8,6 +8,7 @@
     "getsentry/tools/sentry",
     "https://github.com/jundot/omlx/omlx",
     "jetbrains/utils/kotlin-lsp",
+    "omnigent-ai/tap/omnigent",
     "teamookla/speedtest/speedtest"
   ],
   "trustedtaps": [
