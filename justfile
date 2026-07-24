@@ -274,7 +274,7 @@ upgrade-mise-tools-commit:
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump --yes "$tool"
         git add ~/.config/mise/config.toml
-        git commit -m "chore: bump $tool $current → $bump"
+        git commit -m "chore: bump $tool $current → $bump" -m "Co-Authored-By: Codex <noreply@openai.com>"
     done
 
 # Updates homebrew and lists outdated formulae/casks
