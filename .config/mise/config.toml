@@ -101,7 +101,7 @@ k3d = "5.9.0"
 kotlin = { version = "2.4.10", bin_path = "kotlinc/bin", asset_pattern = "kotlin-compiler-*.zip" }
 kscript = "4.2.3"
 ktlint = "1.8.0"
-kubectl = "1.36.2"
+kubectl = "1.36.3"
 lazygit = "0.63.1"
 lsd = "1.2.0"
 lua-language-server = "3.18.2"
