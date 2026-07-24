@@ -171,3 +171,6 @@ github_attestations = false
 
 [settings.github]
 credential_command = "gh auth token"
+
+[settings.npm]
+package_manager = "npm"
