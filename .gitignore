@@ -372,6 +372,7 @@
 !.oh-my-zsh/themes/*
 .ollama/
 .omc/
+.omnigent/
 .op/
 .openpeon/
 .oracle_jre_usage/
