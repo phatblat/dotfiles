@@ -234,6 +234,7 @@ def command_inventory(*, json_output: bool) -> int:
 def command_generate(*, check: bool) -> int:
     expected = render_all()
     stale: list[Path] = []
+    obsolete = find_obsolete_skill_wrappers(expected)
 
     for path, content in expected.items():
         if path.exists() and path.read_text() == content:
@@ -241,16 +242,49 @@ def command_generate(*, check: bool) -> int:
         stale.append(path)
 
     if check:
-        if stale:
+        if stale or obsolete:
             for path in stale:
                 print(f"stale: {display_path(path)}", file=sys.stderr)
+            for path in obsolete:
+                print(f"obsolete: {display_path(path)}", file=sys.stderr)
             return 1
         return 0
 
     for path, content in expected.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content)
+    for path in obsolete:
+        path.unlink()
+        try:
+            path.parent.rmdir()
+        except OSError:
+            pass
     return 0
+
+
+def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
+    expected_paths = set(expected)
+    obsolete: list[Path] = []
+    adapters = [
+        (ANTIGRAVITY_HARNESS / "skills", render_antigravity_skill),
+        (CURSOR_HARNESS / "skills", render_cursor_skill),
+    ]
+
+    for root, render in adapters:
+        if not root.is_dir() or root.is_symlink():
+            continue
+        for path in root.glob("*/SKILL.md"):
+            if (
+                path in expected_paths
+                or path.is_symlink()
+                or path.parent.is_symlink()
+                or not path.is_file()
+            ):
+                continue
+            if path.read_text() == render(path.parent.name):
+                obsolete.append(path)
+
+    return sorted(obsolete)
 
 
 def command_validate() -> int:

@@ -36,6 +36,81 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$status" -eq 0 ]
 }
 
+@test "agent-harnesses: generation removes obsolete skill wrappers" {
+  stale_skill="obsolete-generated-skill"
+  antigravity_dir="$HOME/.agents/harness/adapters/antigravity/skills/$stale_skill"
+  cursor_dir="$HOME/.agents/harness/adapters/cursor/skills/$stale_skill"
+  modified_skill="modified-generated-skill"
+  modified_dir="$HOME/.agents/harness/adapters/antigravity/skills/$modified_skill"
+  symlink_skill="symlink-generated-skill"
+  symlink_dir="$HOME/.agents/harness/adapters/antigravity/skills/$symlink_skill"
+  symlink_target="$BATS_TEST_TMPDIR/$symlink_skill"
+
+  mkdir -p "$antigravity_dir" "$cursor_dir" "$modified_dir" "$symlink_target"
+  sed "s|boris|$stale_skill|g" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
+    >"$antigravity_dir/SKILL.md"
+  sed "s|boris|$stale_skill|g" \
+    "$HOME/.agents/harness/adapters/cursor/skills/boris/SKILL.md" \
+    >"$cursor_dir/SKILL.md"
+  printf '%s\n' "preserve this sidecar" >"$cursor_dir/notes.md"
+  sed "s|boris|$modified_skill|g" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
+    >"$modified_dir/SKILL.md"
+  printf '%s\n' "<!-- manually modified -->" >>"$modified_dir/SKILL.md"
+  sed "s|boris|$symlink_skill|g" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
+    >"$symlink_target/SKILL.md"
+  ln -s "$symlink_target" "$symlink_dir"
+
+  antigravity_hash="$(shasum -a 256 "$antigravity_dir/SKILL.md")"
+  cursor_hash="$(shasum -a 256 "$cursor_dir/SKILL.md")"
+
+  run python3 "$SCRIPT" generate --check
+  check_status="$status"
+  check_output="$output"
+  antigravity_hash_after_check="$(shasum -a 256 "$antigravity_dir/SKILL.md")"
+  cursor_hash_after_check="$(shasum -a 256 "$cursor_dir/SKILL.md")"
+
+  run python3 "$SCRIPT" generate
+  generate_status="$status"
+  antigravity_exists="$([ -e "$antigravity_dir" ] && echo true || echo false)"
+  cursor_skill_exists="$([ -e "$cursor_dir/SKILL.md" ] && echo true || echo false)"
+  cursor_sidecar_exists="$([ -e "$cursor_dir/notes.md" ] && echo true || echo false)"
+  modified_exists="$([ -e "$modified_dir/SKILL.md" ] && echo true || echo false)"
+  symlink_exists="$([ -L "$symlink_dir" ] && echo true || echo false)"
+  symlink_target_exists="$([ -e "$symlink_target/SKILL.md" ] && echo true || echo false)"
+
+  run python3 "$SCRIPT" generate
+  second_generate_status="$status"
+  run python3 "$SCRIPT" generate --check
+  idempotent_check_status="$status"
+
+  rm -f \
+    "$cursor_dir/SKILL.md" \
+    "$cursor_dir/notes.md" \
+    "$modified_dir/SKILL.md" \
+    "$symlink_dir"
+  rmdir "$cursor_dir" "$modified_dir" 2>/dev/null || true
+
+  [ "$check_status" -eq 1 ]
+  [[ "$check_output" == *"obsolete: ~/.agents/harness/adapters/antigravity/skills/$stale_skill/SKILL.md"* ]]
+  [[ "$check_output" == *"obsolete: ~/.agents/harness/adapters/cursor/skills/$stale_skill/SKILL.md"* ]]
+  [[ "$check_output" != *"$modified_skill"* ]]
+  [[ "$check_output" != *"$symlink_skill"* ]]
+  [ "$antigravity_hash_after_check" = "$antigravity_hash" ]
+  [ "$cursor_hash_after_check" = "$cursor_hash" ]
+  [ "$generate_status" -eq 0 ]
+  [ "$antigravity_exists" = false ]
+  [ "$cursor_skill_exists" = false ]
+  [ "$cursor_sidecar_exists" = true ]
+  [ "$modified_exists" = true ]
+  [ "$symlink_exists" = true ]
+  [ "$symlink_target_exists" = true ]
+  [ "$second_generate_status" -eq 0 ]
+  [ "$idempotent_check_status" -eq 0 ]
+}
+
 @test "agent-harnesses: generated manifest contains native plugin matrix" {
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
