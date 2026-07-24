@@ -82,7 +82,7 @@ dust = "1.2.4"
 fastfetch = "2.66.0"
 fd = "10.4.2"
 fzf = "0.74.1"
-gemini = { version = "0.51.0", allow_builds = ["@github/keytar", "node-pty"] }
+gemini = { version = "0.52.0", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "2.96.0"
 git-lfs = "3.7.1"
 go = "1.26.5"
