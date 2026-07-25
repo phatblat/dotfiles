@@ -274,7 +274,7 @@
       }
     ]
   },
-  "model": "haiku",
+  "model": "opus[1m]",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
