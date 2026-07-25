@@ -3,15 +3,15 @@
 # Regenerate: just update-models
 # generated: 2026-07-25
 #
-# id                           state            ctx  max_out  retires
-  claude-fable-5               Active       1000000   128000  Not sooner than June 9, 2027
-  claude-haiku-4-5-20251001    Active        200000    64000  Not sooner than October 15, 2026
-  claude-opus-4-1-20250805     Deprecated    200000    32000  August 5, 2026
-  claude-opus-4-5-20251101     Active        200000    64000  Not sooner than November 24, 2026
-  claude-opus-4-6              Active       1000000   128000  Not sooner than February 5, 2027
-  claude-opus-4-7              Active       1000000   128000  Not sooner than April 16, 2027
-  claude-opus-4-8              Active       1000000   128000  Not sooner than May 28, 2027
-  claude-opus-5                Active       1000000   128000  Not sooner than July 24, 2027
-  claude-sonnet-4-5-20250929   Active       1000000    64000  Not sooner than September 29, 2026
-  claude-sonnet-4-6            Active       1000000   128000  Not sooner than February 17, 2027
-  claude-sonnet-5              Active       1000000   128000  Not sooner than June 30, 2027
+# id                           alias                state            ctx  max_out  retires
+  claude-fable-5               -                    Active       1000000   128000  Not sooner than June 9, 2027
+  claude-haiku-4-5-20251001    claude-haiku-4-5     Active        200000    64000  Not sooner than October 15, 2026
+  claude-opus-4-1-20250805     claude-opus-4-1      Deprecated    200000    32000  August 5, 2026
+  claude-opus-4-5-20251101     claude-opus-4-5      Active        200000    64000  Not sooner than November 24, 2026
+  claude-opus-4-6              -                    Active       1000000   128000  Not sooner than February 5, 2027
+  claude-opus-4-7              -                    Active       1000000   128000  Not sooner than April 16, 2027
+  claude-opus-4-8              -                    Active       1000000   128000  Not sooner than May 28, 2027
+  claude-opus-5                -                    Active       1000000   128000  Not sooner than July 24, 2027
+  claude-sonnet-4-5-20250929   claude-sonnet-4-5    Active       1000000    64000  Not sooner than September 29, 2026
+  claude-sonnet-4-6            -                    Active       1000000   128000  Not sooner than February 17, 2027
+  claude-sonnet-5              -                    Active       1000000   128000  Not sooner than June 30, 2027
