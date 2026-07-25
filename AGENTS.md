@@ -39,6 +39,29 @@ Use `just` recipes from the repo root:
 - Validate lint + tests together with `just lint && just test`.
 - CI (`.harness/ci.yaml`) runs lint, tests, then a Nix build stage.
 
+## Web & Documentation Search (Exa)
+
+Use `~/.claude/skills/exa-search/scripts/exa.sh` to verify API signatures, look
+up library usage, or check a config format — including when you think you
+already know the answer, since library APIs drift. `EXA_API_KEY` is read from
+`~/.env`; never pass the key on a command line.
+
+```bash
+exa.sh context "expose a Rust struct to Node via napi-rs threadsafe function"
+exa.sh search  "napi-rs breaking changes" --domains github.com --since 2026-01-25
+```
+
+`context` is the default — it returns one budget-capped string and is the
+token-efficient path for anything code-shaped. Fall through to `search` only for
+recency (`context` has no date filter), provenance control (`--domains` /
+`--exclude`), or when `context` comes back empty. Narrate that fallback, and do
+it at most once; if `search` is also thin, say so and stop rather than
+escalating to `--type deep-reasoning`.
+
+Defaults (`--type auto`, `--results 10`, highlights capped at 600 chars) are
+right for nearly every coding question. Full parameter tables and API footguns
+are in `~/.claude/skills/exa-search/references/search-tuning.md`.
+
 ## Commit & Pull Request Guidelines
 - Use Conventional Commit prefixes seen in history (`feat:`, `fix:`, `chore:`, `deps:`, `style:`, `test:`, `ci:`), optionally scoped (`feat(justfile): ...`).
 - Follow `.gitmessage`: imperative subject, capitalized, no trailing period, <= 50 chars; wrap body at 72 chars and explain what/why.
