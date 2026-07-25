@@ -372,6 +372,7 @@
 !.oh-my-zsh/themes/*
 .ollama/
 .omc/
+.omnigent/
 .op/
 .openpeon/
 .oracle_jre_usage/
@@ -617,6 +618,7 @@ Library/Application Support/Motion/
 Library/Application Support/Mozilla/
 Library/Application Support/Msty/
 Library/Application Support/Mullvad VPN/
+Library/Application Support/NVIDIA/
 Library/Application Support/Notion Calendar/
 Library/Application Support/Notion Mail/
 Library/Application Support/Notion/

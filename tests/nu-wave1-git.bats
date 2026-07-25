@@ -42,6 +42,22 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
     [ "$status" -eq 0 ]
 }
 
+@test "cx: forwards one safe set of Codex launch arguments" {
+    local fakebindir
+    fakebindir="$(mktemp -d)"
+    printf '#!/bin/sh\nprintf "%%s\\n" "$@"\n' >"$fakebindir/codex"
+    chmod +x "$fakebindir/codex"
+
+    run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/cx.nu'
+        cx --version
+    "
+    rm -rf "$fakebindir"
+
+    [ "$status" -eq 0 ]
+    [ "$output" = $'--no-alt-screen\n--profile\nmain\n--version' ]
+}
+
 # ---------------------------------------------------------------------------
 # diff — git diff | diff-so-fancy (read-only display)
 # ---------------------------------------------------------------------------

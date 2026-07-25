@@ -283,7 +283,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `fetch`                     | ✅  | ✅   | ✅  | ✅   | Fetch branch from default git remote                 |
 | `fe`                        | ➖  | ✅   | ✅  | ➖   | Edit a function                                      |
 | `ff`                        | ✅  | ✅   | ➖  | ➖   | Edit fish dotfiles                                   |
-| `fg`                        | ✅  | ➖   | ➖  | ➖   | Resume a frozen job in the foreground (job unfreeze) |
+| `fg`                        | ✅  | ➖   | ➖  | ➖   | Resume a frozen job in the foreground; resolves id from job list to work around nushell#16561 |
 | `file_base`                 | ✅  | ✅   | ➖  | ➖   | Prints base name after dropping extension            |
 | `fileowner`                 | ✅  | ✅   | ✅  | ➖   | Displays owner of file                               |
 | `files_changed`             | ➖  | ✅   | ➖  | ➖   | Shows files changed since treeish                    |
