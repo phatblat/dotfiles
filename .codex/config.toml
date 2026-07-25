@@ -24,6 +24,7 @@ followUpQueueMode = "queue"
 git-pull-request-merge-method = "squash"
 keepRemoteControlAwakeWhilePluggedIn = true
 localeOverride = "en-US"
+mac-menu-bar-enabled = false
 preventSleepWhileRunning = true
 selected-avatar-id = "null-signal"
 usePointerCursors = true
