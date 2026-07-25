@@ -1,4 +1,4 @@
-model = "gpt-5.4-mini"
+model = "gpt-5.6-luna"
 model_reasoning_effort = "medium"
 [hooks.state]
 
@@ -62,6 +62,9 @@ trust_level = "trusted"
 [tui]
 status_line = ["model-with-reasoning", "project-name", "git-branch", "pull-request-number", "branch-changes", "run-state", "context-used", "used-tokens", "total-input-tokens", "total-output-tokens", "task-progress"]
 status_line_use_colors = true
+
+[notice.model_migrations]
+"gpt-5.4-mini" = "gpt-5.6-luna"
 # main.config.toml — Codex profile, activated with `codex --profile main`.
 #
 # The cx / cxc / cxr shell functions pass `--profile main` automatically.
