@@ -231,6 +231,35 @@ def command_inventory(*, json_output: bool) -> int:
     return 0
 
 
+# Directories that hold one generated file per command/agent/skill; files here
+# that render_all() no longer produces are orphans and must be pruned.
+GENERATED_ITEM_ROOTS = [
+    (SHARED / "commands", "*.md"),
+    (SHARED / "agents", "*.toml"),
+    (OPEN_CODE / "commands", "*.md"),
+    (OPEN_CODE / "agents", "*.md"),
+    (PI_AGENT / "prompts", "*.md"),
+    (PI_AGENT / "agents", "*.md"),
+    (ANTIGRAVITY_COMMANDS, "*.md"),
+    (ANTIGRAVITY_HARNESS / "agents", "*.md"),
+    (ANTIGRAVITY_HARNESS / "skills", "SKILL.md"),
+    (CURSOR_HARNESS / "commands", "*.md"),
+    (CURSOR_HARNESS / "agents", "*.md"),
+    (CURSOR_HARNESS / "skills", "SKILL.md"),
+]
+
+
+def find_orphans(expected: dict[Path, str]) -> list[Path]:
+    orphans: list[Path] = []
+    for root, pattern in GENERATED_ITEM_ROOTS:
+        if not root.is_dir():
+            continue
+        for path in sorted(root.rglob(pattern)):
+            if path not in expected:
+                orphans.append(path)
+    return orphans
+
+
 def command_generate(*, check: bool) -> int:
     expected = render_all()
     stale: list[Path] = []
@@ -240,16 +269,26 @@ def command_generate(*, check: bool) -> int:
             continue
         stale.append(path)
 
+    orphans = find_orphans(expected)
+
     if check:
-        if stale:
-            for path in stale:
-                print(f"stale: {display_path(path)}", file=sys.stderr)
-            return 1
-        return 0
+        for path in stale:
+            print(f"stale: {display_path(path)}", file=sys.stderr)
+        for path in orphans:
+            print(f"orphan: {display_path(path)}", file=sys.stderr)
+        return 1 if stale or orphans else 0
 
     for path, content in expected.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content)
+
+    roots = {root for root, _ in GENERATED_ITEM_ROOTS}
+    for path in orphans:
+        path.unlink()
+        parent = path.parent
+        while parent not in roots and not any(parent.iterdir()):
+            parent.rmdir()
+            parent = parent.parent
     return 0
 
 
