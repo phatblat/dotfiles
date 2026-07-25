@@ -13,6 +13,7 @@
     "lua-lsp@claude-plugins-official": true,
     "oh-my-claudecode@omc": true,
     "plugin-dev@claude-plugins-official": true,
+    "pup@datadog-pup": true,
     "pyright-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
@@ -30,6 +31,12 @@
     "claude-code-warp": {
       "source": {
         "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
+    "datadog-pup": {
+      "source": {
+        "repo": "DataDog/pup",
         "source": "github"
       }
     },

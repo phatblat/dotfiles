@@ -61,7 +61,7 @@ hook_input() {
 }
 
 @test "codex hooks: security-guidance and warp handlers are disabled" {
-    run env PYTHONPATH="$BATS_TEST_DIRNAME/helpers" python3 - "$CODEX_CONFIG" << 'PY'
+    run env PYTHONPATH="$HOME/scripts" python3 - "$CODEX_CONFIG" << 'PY'
 import sys
 
 from codex_config import load
@@ -86,7 +86,7 @@ PY
 }
 
 @test "codex hooks: plugins with incompatible hook schemas are disabled" {
-    run env PYTHONPATH="$BATS_TEST_DIRNAME/helpers" python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
+    run env PYTHONPATH="$HOME/scripts" python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
 import json
 from pathlib import Path
 import sys

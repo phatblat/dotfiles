@@ -5,7 +5,6 @@
   "trustedformulae": [
     "cirruslabs/cli/cirrus",
     "cirruslabs/cli/sshpass",
-    "datadog-labs/pack/pup",
     "getsentry/tools/sentry",
     "https://github.com/jundot/omlx/omlx",
     "jetbrains/utils/kotlin-lsp",

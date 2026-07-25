@@ -15,6 +15,45 @@ Verified date: 2026-06-27
 | sessions.compaction | sessions/compaction | p1 | complete / native | complete / native | complete / adapter | complete / native | partial / native | partial / native | Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements; Verify Cursor resume and history behavior against compact-preservation requirements |
 | maintenance.audit | maintenance | p1 | complete / shared | complete / shared | complete / shared | complete / shared | complete / shared | complete / shared | - |
 
+## Native Plugins
+
+| Plugin | Claude | Codex |
+|---|---|---|
+| browser@openai-bundled | missing | enabled |
+| chrome@openai-bundled | missing | enabled |
+| clangd-lsp@claude-plugins-official | enabled | disabled |
+| claude-code-setup@claude-plugins-official | enabled | missing |
+| claude-hud@claude-hud | enabled | missing |
+| claude-md-management@claude-plugins-official | enabled | missing |
+| code-review@claude-plugins-official | enabled | disabled |
+| computer-use@openai-bundled | missing | enabled |
+| csharp-lsp@claude-plugins-official | missing | disabled |
+| documents@openai-primary-runtime | missing | enabled |
+| gopls-lsp@claude-plugins-official | enabled | disabled |
+| hookify@claude-plugins-official | enabled | disabled |
+| jdtls-lsp@claude-plugins-official | missing | disabled |
+| kotlin-lsp@claude-plugins-official | missing | disabled |
+| linear-cli@linear-cli | enabled | enabled |
+| lua-lsp@claude-plugins-official | enabled | disabled |
+| oh-my-claudecode@omc | enabled | missing |
+| pdf@openai-primary-runtime | missing | enabled |
+| plugin-dev@claude-plugins-official | enabled | missing |
+| pr-review-toolkit@claude-plugins-official | missing | disabled |
+| pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal | missing | enabled |
+| presentations@openai-primary-runtime | missing | enabled |
+| pup@datadog-pup | enabled | enabled |
+| pyright-lsp@claude-plugins-official | enabled | disabled |
+| rust-analyzer-lsp@claude-plugins-official | enabled | disabled |
+| security-guidance@claude-plugins-official | enabled | disabled |
+| sites@openai-bundled | missing | enabled |
+| skill-creator@claude-plugins-official | enabled | missing |
+| spreadsheets@openai-primary-runtime | missing | enabled |
+| swift-lsp@claude-plugins-official | enabled | disabled |
+| template-creator@openai-primary-runtime | missing | enabled |
+| typescript-lsp@claude-plugins-official | enabled | disabled |
+| visualize@openai-bundled | missing | enabled |
+| warp@claude-code-warp | enabled | missing |
+
 ## Configuration Attribute Mapping
 
 Use this table when porting shared skills, commands, agents, and safety rules between harnesses. Only the `SKILL.md` core `name` and `description` fields should be treated as broadly portable. Other metadata is harness-specific unless the target documentation says otherwise. When porting research changes current agent configuration facts, update `ATTRIBUTE_MAPPINGS` in `scripts/agent-harnesses.py` and regenerate this document.
