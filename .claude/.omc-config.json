@@ -1,8 +1,8 @@
 {
   "configuredAt": "2026-07-25T13:16:07Z",
   "defaultExecutionMode": "ultrawork",
-  "setupCompleted": "2026-07-17T13:00:44-04:00",
-  "setupVersion": "4.15.5",
+  "setupCompleted": "2026-07-25T10:02:56-04:00",
+  "setupVersion": "4.15.7",
   "taskTool": "beads-rust",
   "taskToolConfig": {
     "injectInstructions": true,
@@ -11,7 +11,7 @@
   "team": {
     "ops": {
       "defaultAgentType": "claude",
-      "maxAgents": 3,
+      "maxAgents": 2,
       "monitorIntervalMs": 30000,
       "shutdownTimeoutMs": 15000
     }
