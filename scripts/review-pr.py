@@ -13,7 +13,6 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
-
 GETDITTO_OWNER = "getditto"
 DEFAULT_THREAD_WINDOW = 5
 USAGE = "Usage: review-pr [--continue] <github-pr-url|repo#number|getditto/repo#number>"
@@ -436,11 +435,9 @@ def filter_findings(output: str, threads: list[ReviewThread], window: int) -> st
     if kept_blocks:
         rendered = "\n\n".join([prefix, *kept_blocks]).strip()
     else:
-        rendered = "\n\n".join(
-            [
-                prefix,
-                "No new actionable findings after filtering existing open review threads.",
-            ]
+        rendered = (
+            f"{prefix}\n\n"
+            "No new actionable findings after filtering existing open review threads."
         ).strip()
 
     if suppressed:
