@@ -242,10 +242,8 @@ GENERATED_ITEM_ROOTS = [
     (PI_AGENT / "agents", "*.md"),
     (ANTIGRAVITY_COMMANDS, "*.md"),
     (ANTIGRAVITY_HARNESS / "agents", "*.md"),
-    (ANTIGRAVITY_HARNESS / "skills", "SKILL.md"),
     (CURSOR_HARNESS / "commands", "*.md"),
     (CURSOR_HARNESS / "agents", "*.md"),
-    (CURSOR_HARNESS / "skills", "SKILL.md"),
 ]
 
 
