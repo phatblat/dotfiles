@@ -13,6 +13,12 @@ This repository is rooted at `~/` and tracks personal dotfiles plus automation.
 
 Most contribution work happens in hidden config directories and shell function files under `.config/*`.
 
+## Agent Response Language
+
+- Respond in the language used by the user's latest message.
+- If the user's language is unclear, use English.
+- Keep code, code comments, and command output unchanged unless translation is explicitly requested.
+
 **Nested repositories:** Some subdirectories (especially `dev/`) are separate git repos. The working directory is already `~`; run git directly or use `git -C ~` (avoid a redundant `cd ~`), and confirm which repo you are in before committing.
 
 ## Build, Test, and Development Commands
@@ -38,6 +44,29 @@ Use `just` recipes from the repo root:
 - Run locally with `just test` before opening a PR.
 - Validate lint + tests together with `just lint && just test`.
 - CI (`.harness/ci.yaml`) runs lint, tests, then a Nix build stage.
+
+## Web & Documentation Search (Exa)
+
+Use `~/.claude/skills/exa-search/scripts/exa.sh` to verify API signatures, look
+up library usage, or check a config format — including when you think you
+already know the answer, since library APIs drift. `EXA_API_KEY` is read from
+`~/.env`; never pass the key on a command line.
+
+```bash
+exa.sh context "expose a Rust struct to Node via napi-rs threadsafe function"
+exa.sh search  "napi-rs breaking changes" --domains github.com --since 2026-01-25
+```
+
+`context` is the default — it returns one budget-capped string and is the
+token-efficient path for anything code-shaped. Fall through to `search` only for
+recency (`context` has no date filter), provenance control (`--domains` /
+`--exclude`), or when `context` comes back empty. Narrate that fallback, and do
+it at most once; if `search` is also thin, say so and stop rather than
+escalating to `--type deep-reasoning`.
+
+Defaults (`--type auto`, `--results 10`, highlights capped at 600 chars) are
+right for nearly every coding question. Full parameter tables and API footguns
+are in `~/.claude/skills/exa-search/references/search-tuning.md`.
 
 ## Commit & Pull Request Guidelines
 - Use Conventional Commit prefixes seen in history (`feat:`, `fix:`, `chore:`, `deps:`, `style:`, `test:`, `ci:`), optionally scoped (`feat(justfile): ...`).

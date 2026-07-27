@@ -1,4 +1,6 @@
 # Adds lines to .gitignore
+source ~/.config/nushell/autoload/ignores.nu
+
 export def ignore [...patterns: string] {
     let root = (^git rev-parse --show-toplevel | str trim)
     let gitignore = ($root | path join '.gitignore')

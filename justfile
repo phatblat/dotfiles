@@ -83,13 +83,18 @@ list-uv:
 
 # Lists available upgrades
 [group('info')]
-outdated:
+outdated: outdated-models
     mise outdated --bump
 
 # Lists outdated uv tools
 [group('info')]
 outdated-uv:
     mise exec -- uv tool list --outdated
+
+# Lists deprecated/retired Claude models and drift from .claude/models.lock
+[group('info')]
+outdated-models:
+    scripts/claude-models.sh check
 
 # Lists installed Nix packages
 [group('info')]
@@ -235,7 +240,24 @@ deps: _check-github-token install-brew git-filters
 
 # Update tools within current versions
 [group('configuration')]
-update: update-rust
+update: update-rust update-models
+
+# Refreshes .claude/models.lock from the Claude API, committing any change
+[group('configuration')]
+[script]
+update-models:
+    set -euo pipefail
+    scripts/claude-models.sh lock
+    if [ -z "$(git status --porcelain -- .claude/models.lock)" ]; then
+        echo "Model catalog unchanged"
+        exit 0
+    fi
+    # Summarize what moved so the commit body documents the generation change.
+    body=$(git diff -- .claude/models.lock | grep -E '^[+-]  claude-' | sed 's/^/  /' || true)
+    git add .claude/models.lock
+    git commit -m "chore(claude): Refresh model catalog lockfile" \
+        -m "${body:-Initial model catalog lockfile.}" \
+        -m "Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>"
 
 # Update Rust toolchains
 [group('configuration')]
@@ -246,7 +268,7 @@ update-rust:
 
 # Common upgrades
 [group('configuration')]
-upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools
+upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools update-models outdated-models
 
 # Upgrades tools using mise
 [group('configuration')]

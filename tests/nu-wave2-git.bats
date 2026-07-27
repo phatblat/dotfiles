@@ -22,6 +22,23 @@ setup_git_repo() {
 }
 
 # ---------------------------------------------------------------------------
+# ignore
+# ---------------------------------------------------------------------------
+
+@test "ignore: seeds standard ignores when sourced without autoload context" {
+    local tmpdir
+    tmpdir="$(setup_git_repo)"
+    run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ignore.nu'
+        cd '$tmpdir'
+        ignore .DS_Store
+    "
+    [ "$status" -eq 0 ]
+    grep -q '^\.DS_Store$' "$tmpdir/.gitignore"
+    rm -rf "$tmpdir"
+}
+
+# ---------------------------------------------------------------------------
 # git_repo_clean
 # ---------------------------------------------------------------------------
 

@@ -23,11 +23,11 @@ Copyright: Ben Chatelain. Apache 2.0.
 from __future__ import annotations
 
 import os
-from pathlib import Path
 import subprocess
 import sys
-import tomllib
+from pathlib import Path
 
+import tomllib
 
 sys.dont_write_bytecode = True
 
@@ -69,7 +69,7 @@ def brewfile_declared() -> set[str]:
     names: set[str] = set()
     for line in brewfile.read_text().splitlines():
         line = line.strip()
-        if line.startswith('brew "') or line.startswith('cask "'):
+        if line.startswith(('brew "', 'cask "')):
             name = line.split('"', 2)[1]
             names.add(name.lower())
     return names

@@ -62,10 +62,14 @@ KEY_RE = re.compile(r"^(?P<key>[^\s#=\[][^=]*?)\s*=")
 
 _TOP_BANNER: tuple[str, ...] = (
     "Codex config.toml — hand-authored settings first, machine-managed state last.",
-    "Sections/keys are alphabetized by `just format-toml`"
-    " (~/scripts/sort-codex-config.py), except native marketplace state order.",
-    "Volatile churn (timestamps/revisions/hashes) is masked out of git by"
-    " ~/scripts/mask-codex-state.sh (clean filter; see .gitattributes).",
+    (
+        "Sections/keys are alphabetized by `just format-toml`"
+        " (~/scripts/sort-codex-config.py), except native marketplace state order."
+    ),
+    (
+        "Volatile churn (timestamps/revisions/hashes) is masked out of git by"
+        " ~/scripts/mask-codex-state.sh (clean filter; see .gitattributes)."
+    ),
 )
 _STATE_BANNER: tuple[str, ...] = (
     "─" * 74,

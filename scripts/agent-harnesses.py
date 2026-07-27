@@ -242,10 +242,8 @@ GENERATED_ITEM_ROOTS = [
     (PI_AGENT / "agents", "*.md"),
     (ANTIGRAVITY_COMMANDS, "*.md"),
     (ANTIGRAVITY_HARNESS / "agents", "*.md"),
-    (ANTIGRAVITY_HARNESS / "skills", "SKILL.md"),
     (CURSOR_HARNESS / "commands", "*.md"),
     (CURSOR_HARNESS / "agents", "*.md"),
-    (CURSOR_HARNESS / "skills", "SKILL.md"),
 ]
 
 
@@ -263,6 +261,7 @@ def find_orphans(expected: dict[Path, str]) -> list[Path]:
 def command_generate(*, check: bool) -> int:
     expected = render_all()
     stale: list[Path] = []
+    obsolete = find_obsolete_skill_wrappers(expected)
 
     for path, content in expected.items():
         if path.exists() and path.read_text() == content:
@@ -276,7 +275,9 @@ def command_generate(*, check: bool) -> int:
             print(f"stale: {display_path(path)}", file=sys.stderr)
         for path in orphans:
             print(f"orphan: {display_path(path)}", file=sys.stderr)
-        return 1 if stale or orphans else 0
+        for path in obsolete:
+            print(f"obsolete: {display_path(path)}", file=sys.stderr)
+        return 1 if stale or orphans or obsolete else 0
 
     for path, content in expected.items():
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -289,7 +290,39 @@ def command_generate(*, check: bool) -> int:
         while parent not in roots and not any(parent.iterdir()):
             parent.rmdir()
             parent = parent.parent
+
+    for path in obsolete:
+        path.unlink()
+        try:
+            path.parent.rmdir()
+        except OSError:
+            pass
     return 0
+
+
+def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
+    expected_paths = set(expected)
+    obsolete: list[Path] = []
+    adapters = [
+        (ANTIGRAVITY_HARNESS / "skills", render_antigravity_skill),
+        (CURSOR_HARNESS / "skills", render_cursor_skill),
+    ]
+
+    for root, render in adapters:
+        if not root.is_dir() or root.is_symlink():
+            continue
+        for path in root.glob("*/SKILL.md"):
+            if (
+                path in expected_paths
+                or path.is_symlink()
+                or path.parent.is_symlink()
+                or not path.is_file()
+            ):
+                continue
+            if path.read_text() == render(path.parent.name):
+                obsolete.append(path)
+
+    return sorted(obsolete)
 
 
 def command_validate() -> int:
