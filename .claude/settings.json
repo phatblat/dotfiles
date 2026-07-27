@@ -274,7 +274,7 @@
       }
     ]
   },
-  "model": "opus[1m]",
+  "model": "sonnet",
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
