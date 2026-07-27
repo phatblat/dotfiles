@@ -50,15 +50,9 @@ resolve_auth() {
 
   [ -f "$CREDS" ] || die "no credentials — set ANTHROPIC_API_KEY in ~/.env, or log in to Claude Code"
 
-  local token expires now
+  local token
   token=$(jq -r '.claudeAiOauth.accessToken // empty' "$CREDS" 2>/dev/null || true)
   [ -n "$token" ] || die "could not read an OAuth token from $CREDS"
-
-  expires=$(jq -r '.claudeAiOauth.expiresAt // 0' "$CREDS")
-  now=$(($(date +%s) * 1000))
-  if [ "$expires" -le "$now" ]; then
-    die "Claude Code OAuth token expired — reopen Claude Code to refresh, or set ANTHROPIC_API_KEY"
-  fi
 
   AUTH_HEADER="Authorization: Bearer $token"
   BETA_HEADER="anthropic-beta: oauth-2025-04-20"
