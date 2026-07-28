@@ -27,6 +27,7 @@
     "dock": "right",
   },
   "agent": {
+    "sidebar_side": "right",
     "dock": "left",
     "default_model": {
       "model": "claude-3-5-haiku-latest",
