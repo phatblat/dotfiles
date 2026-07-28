@@ -28,6 +28,9 @@ paths:
 - Location: `~/.worktrees/<path-key>/<branch>` ONLY
 - `<path-key>` = repo root relative to `~` with `/` replaced by `-`
 - **Dotfiles exception:** The dotfiles repo (rooted at `~`) must NOT use worktrees
+- Before moving a local branch ref, check `git worktree list --porcelain` if that branch may be checked out elsewhere
+- Never run `git fetch <remote> <branch>:<branch>` for a branch that could be active in another worktree
+- Fetch remote-tracking refs only (`git fetch origin --prune`) and rebase/merge against `origin/<branch>`
 - After merging/closing a PR: `git worktree remove <worktree-path>`
 - Never force push to main/master
 

@@ -22,14 +22,14 @@ Rebase the current branch onto a target branch. If the user provides an argument
    - `subject` equals `target`.
    - The working tree is dirty. Tell the user to commit or stash first.
 
-3. Fetch and update target:
+3. Fetch remote-tracking refs without touching the local target branch:
 
    ```bash
-   git fetch origin
-   git fetch origin "${target}:${target}"
+   git fetch origin --prune
+   target_ref="origin/${target}"
    ```
 
-   If the local target cannot fast-forward, stop and report.
+   Never use `git fetch origin "${target}:${target}"` for a branch that may be checked out in another worktree. If a local target branch must be updated, do that only in the worktree that currently has it checked out.
 
 4. Create a backup branch:
 
@@ -42,12 +42,12 @@ Rebase the current branch onto a target branch. If the user provides an argument
 5. Analyze divergence:
 
    ```bash
-   merge_base=$(git merge-base HEAD "${target}")
+   merge_base=$(git merge-base HEAD "${target_ref}")
    git log --oneline "${merge_base}..HEAD"
-   git log --oneline "${merge_base}..${target}"
+   git log --oneline "${merge_base}..${target_ref}"
    git diff --name-only "${merge_base}" HEAD
-   git diff --name-only "${merge_base}" "${target}"
-   git merge-base --is-ancestor "${merge_base}" "${target}" && echo base_on_target=yes || echo base_on_target=no
+   git diff --name-only "${merge_base}" "${target_ref}"
+   git merge-base --is-ancestor "${merge_base}" "${target_ref}" && echo base_on_target=yes || echo base_on_target=no
    ```
 
 6. Choose strategy:
@@ -62,9 +62,9 @@ Rebase the current branch onto a target branch. If the user provides an argument
 
 7. Execute:
 
-   - Simple: `git rebase "${target}"`
-   - Onto: `git rebase --onto "${target}" "${merge_base}" HEAD`
-   - Cherry-pick: create `<subject>__cherrypick__` from target and cherry-pick subject commits oldest-first.
+   - Simple: `git rebase "${target_ref}"`
+   - Onto: `git rebase --onto "${target_ref}" "${merge_base}" HEAD`
+   - Cherry-pick: create `<subject>__cherrypick__` from `target_ref` and cherry-pick subject commits oldest-first.
 
 8. On conflicts, resolve automatically and continue; the Step 4 backup and `rerere` make this recoverable:
 

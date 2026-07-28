@@ -37,7 +37,7 @@ Shell function conventions are in the `shell-functions` rule (loads when editing
 
 ## Project Context
 
-Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languages. Git workflow conventions are in the `git-workflow` rule.
+Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languages. Git workflow conventions are in the `git-workflow` rule. Before updating a local branch ref, verify it is not checked out in another worktree with `git worktree list --porcelain`; otherwise operate on `origin/<branch>`.
 
 ## Code Search
 
