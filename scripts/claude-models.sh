@@ -25,15 +25,17 @@ set -euo pipefail
 readonly API="https://api.anthropic.com/v1/models"
 readonly DEPRECATIONS_URL="https://platform.claude.com/docs/en/about-claude/model-deprecations.md"
 readonly LOCKFILE="${CLAUDE_MODELS_LOCK:-$HOME/.claude/models.lock}"
-readonly CREDS="$HOME/.claude/.credentials.json"
 
 die() {
   printf 'claude-models: %s\n' "$*" >&2
   exit 1
 }
 
-# Resolve credentials: explicit API key wins, else Claude Code's OAuth token.
-# Sets AUTH_HEADER and BETA_HEADER; never echoes the secret.
+# Resolve API credentials. Prefer explicit API keys, then exported OAuth tokens,
+# then Claude Code's current macOS Keychain entry. Do not inspect the stale
+# ~/.claude/.credentials.json file.
+# Return 1 when Claude Code is logged in but no reusable token is available to
+# shell scripts; callers may treat that as a non-fatal skip.
 resolve_auth() {
   if [ -z "${ANTHROPIC_API_KEY:-}" ] && [ -f "$HOME/.env" ]; then
     set -a
@@ -45,23 +47,32 @@ resolve_auth() {
   if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
     AUTH_HEADER="x-api-key: $ANTHROPIC_API_KEY"
     BETA_HEADER="anthropic-version: 2023-06-01"
-    return
+    return 0
   fi
 
-  [ -f "$CREDS" ] || die "no credentials — set ANTHROPIC_API_KEY in ~/.env, or log in to Claude Code"
-
-  local token expires now
-  token=$(jq -r '.claudeAiOauth.accessToken // empty' "$CREDS" 2>/dev/null || true)
-  [ -n "$token" ] || die "could not read an OAuth token from $CREDS"
-
-  expires=$(jq -r '.claudeAiOauth.expiresAt // 0' "$CREDS")
-  now=$(($(date +%s) * 1000))
-  if [ "$expires" -le "$now" ]; then
-    die "Claude Code OAuth token expired — reopen Claude Code to refresh, or set ANTHROPIC_API_KEY"
+  local token
+  token="${ANTHROPIC_AUTH_TOKEN:-${CLAUDE_CODE_OAUTH_TOKEN:-}}"
+  if [ -n "$token" ]; then
+    AUTH_HEADER="Authorization: Bearer $token"
+    BETA_HEADER="anthropic-beta: oauth-2025-04-20"
+    return 0
   fi
 
-  AUTH_HEADER="Authorization: Bearer $token"
-  BETA_HEADER="anthropic-beta: oauth-2025-04-20"
+  if command -v security >/dev/null 2>&1; then
+    token=$(security find-generic-password -s "Claude Code-credentials" -a "${USER:-$(id -un)}" -w 2>/dev/null |
+      jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null || true)
+    if [ -n "$token" ]; then
+      AUTH_HEADER="Authorization: Bearer $token"
+      BETA_HEADER="anthropic-beta: oauth-2025-04-20"
+      return 0
+    fi
+  fi
+
+  if command -v claude >/dev/null 2>&1 && claude auth status --json 2>/dev/null | jq -e '.loggedIn == true' >/dev/null; then
+    return 1
+  fi
+
+  die "no direct API credentials — set ANTHROPIC_API_KEY in ~/.env, export ANTHROPIC_AUTH_TOKEN, or log in to Claude Code"
 }
 
 # Fetch every model, following the after_id cursor. Emits the merged .data array.
@@ -147,7 +158,9 @@ render_lock() {
 }
 
 cmd_lock() {
-  resolve_auth
+  if ! resolve_auth; then
+    die "Claude Code is logged in, but no direct API token is available to refresh $LOCKFILE — run claude setup-token or set ANTHROPIC_API_KEY"
+  fi
   local models deprecations aliases generated
   models=$(fetch_models)
   deprecations=$(fetch_deprecations)
@@ -190,7 +203,11 @@ model_is_live() {
 }
 
 cmd_check() {
-  resolve_auth
+  if ! resolve_auth; then
+    printf '  - Claude Code is logged in, but no direct API token is available; skipping live model check\n'
+    printf '    Run `claude setup-token` or set ANTHROPIC_API_KEY to enable this check outside Claude Code.\n'
+    return 0
+  fi
   local models deprecations aliases live today rc=0
   models=$(fetch_models)
   deprecations=$(fetch_deprecations)
