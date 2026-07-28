@@ -28,6 +28,9 @@ mac-menu-bar-enabled = false
 preventSleepWhileRunning = true
 selected-avatar-id = "null-signal"
 usePointerCursors = true
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
+dictationDictionary = []
+hotkey-window-projectless-default-enabled = true
 
 [desktop.open-in-target-preferences]
 global = "zed"
