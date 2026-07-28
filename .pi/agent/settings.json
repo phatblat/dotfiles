@@ -9,6 +9,12 @@
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "medium",
   "enableSkillCommands": true,
+  "enabledModels": [
+    "openai-codex/gpt-5.4-mini",
+    "openai-codex/gpt-5.6-luna",
+    "openai-codex/gpt-5.6-terra",
+    "openai-codex/gpt-5.6-sol"
+  ],
   "extensions": [
     "~/.pi/agent/extensions/harness.ts"
   ],
@@ -30,11 +36,5 @@
   "skills": [
     "~/.agents/skills"
   ],
-  "theme": "dark",
-  "enabledModels": [
-    "openai-codex/gpt-5.4-mini",
-    "openai-codex/gpt-5.6-luna",
-    "openai-codex/gpt-5.6-terra",
-    "openai-codex/gpt-5.6-sol"
-  ]
+  "theme": "dark"
 }
