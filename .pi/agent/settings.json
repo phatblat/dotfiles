@@ -4,9 +4,9 @@
     "keepRecentTokens": 20000,
     "reserveTokens": 16384
   },
-  "defaultModel": "claude-opus-4-8",
+  "defaultModel": "gpt-5.6-luna",
   "defaultProjectTrust": "ask",
-  "defaultProvider": "anthropic",
+  "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "medium",
   "enableSkillCommands": true,
   "extensions": [
