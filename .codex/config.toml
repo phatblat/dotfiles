@@ -376,6 +376,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/_GETDITTO/forge"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/_GETDITTO/image-bakery"]
+trust_level = "trusted"
+
 [projects."/Users/phatblat/dev/_GETDITTO/inteview_modules/2026-internship-agentic-coding"]
 trust_level = "trusted"
 
