@@ -91,6 +91,11 @@ outdated: outdated-models
 outdated-uv:
     mise exec -- uv tool list --outdated
 
+# Lists Claude model IDs recorded in .claude/models.lock
+[group('info')]
+list-claude-models:
+    awk '/^  claude-/{print $1}' ~/.claude/models.lock
+
 # Lists deprecated/retired Claude models and drift from .claude/models.lock
 [group('info')]
 outdated-models:

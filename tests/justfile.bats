@@ -33,6 +33,21 @@ EOF
   [ ! -e "$log" ]
 }
 
+@test "list-claude-models prints lockfile model IDs" {
+  local home="$BATS_TEST_TMPDIR/home"
+  mkdir -p "$home/.claude"
+  cat >"$home/.claude/models.lock" <<'EOF'
+# Claude model catalog
+  claude-opus-5                 - Active
+  claude-sonnet-5               - Active
+EOF
+
+  run env HOME="$home" just --justfile "$BATS_TEST_DIRNAME/../justfile" list-claude-models
+
+  [ "$status" -eq 0 ]
+  [ "$output" = $'claude-opus-5\nclaude-sonnet-5' ]
+}
+
 @test "upgrade-mise-tools-commit attributes generated commits" {
   local bindir="$BATS_TEST_TMPDIR/bin"
   local home="$BATS_TEST_TMPDIR/home"
