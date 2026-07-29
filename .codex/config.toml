@@ -19,18 +19,18 @@ avatar-overlay-mascot-width-px = 133
 codeFontSize = 14
 composerEnterBehavior = "cmdIfMultiline"
 conversationDetailMode = "STEPS_COMMANDS"
+dictationDictionary = []
 dock-icon-preference = "codex-system"
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
 followUpQueueMode = "queue"
 git-pull-request-merge-method = "squash"
+hotkey-window-projectless-default-enabled = true
 keepRemoteControlAwakeWhilePluggedIn = true
 localeOverride = "en-US"
 mac-menu-bar-enabled = false
 preventSleepWhileRunning = true
 selected-avatar-id = "null-signal"
 usePointerCursors = true
-enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
-dictationDictionary = []
-hotkey-window-projectless-default-enabled = true
 
 [desktop.open-in-target-preferences]
 global = "zed"

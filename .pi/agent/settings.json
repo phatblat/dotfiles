@@ -4,7 +4,7 @@
     "keepRecentTokens": 20000,
     "reserveTokens": 16384
   },
-  "defaultModel": "gpt-5.6-luna",
+  "defaultModel": "gpt-5.6-terra",
   "defaultProjectTrust": "ask",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "medium",

@@ -49,10 +49,10 @@
     "context": "Workspace"
   },
   {
-    "context": "Workspace",
     "bindings": {
       "cmd-;": "multi_workspace::ToggleWorkspaceSidebar"
-    }
+    },
+    "context": "Workspace"
   },
   {
     "context": "Workspace",
