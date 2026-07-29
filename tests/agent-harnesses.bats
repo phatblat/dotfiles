@@ -30,6 +30,13 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$codex_plugins" = '"array"' ]
 }
 
+@test "agent harnesses do not inject session-start context" {
+  ! jq -e '[.hooks.SessionStart[]?.hooks[]?.command | test("session-start\\.sh")] | any' \
+    "$HOME/.codex/hooks.json"
+  ! jq -e '[.hooks.SessionStart[]?.hooks[]?.command | test("session-start\\.sh")] | any' \
+    "$HOME/.claude/settings.json"
+}
+
 @test "agent-harnesses: Linear CLI workflows preserve macOS keychain access" {
   linear_workflows=(
     "$HOME/.agents/skills/linear-plan/SKILL.md"

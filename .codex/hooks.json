@@ -84,16 +84,6 @@
       {
         "hooks": [
           {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/session-start.sh'",
-            "timeout": 5,
-            "type": "command"
-          }
-        ],
-        "name": "Session Init"
-      },
-      {
-        "hooks": [
-          {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"

@@ -193,15 +193,6 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/hooks/scripts/session-start.sh",
-            "timeout": 5,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
             "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
             "timeout": 4,
             "type": "command"
