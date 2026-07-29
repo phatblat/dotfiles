@@ -63,6 +63,10 @@ trust_level = "trusted"
 status_line = ["model-with-reasoning", "project-name", "git-branch", "pull-request-number", "branch-changes", "run-state", "context-used", "used-tokens", "total-input-tokens", "total-output-tokens", "task-progress"]
 status_line_use_colors = true
 
+[tui.keymap.composer]
+submit = 'ctrl-\'
+queue = "enter"
+
 [notice.model_migrations]
 "gpt-5.4-mini" = "gpt-5.6-luna"
 # main.config.toml — Codex profile, activated with `codex --profile main`.
