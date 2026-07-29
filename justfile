@@ -573,11 +573,6 @@ git-filters:
 # claude group recipes
 #
 
-# Builds the code-review-graph knowledge graph for the current repo
-[group('claude')]
-build-graph:
-    code-review-graph build
-
 # Installs Claude Code native binary
 [group('claude')]
 install-claude:

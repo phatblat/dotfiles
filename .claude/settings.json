@@ -79,16 +79,6 @@
       {
         "hooks": [
           {
-            "command": "bash -c 'command -v code-review-graph >/dev/null 2>&1 && code-review-graph update >/dev/null 2>&1 &'",
-            "timeout": 3,
-            "type": "command"
-          }
-        ],
-        "matcher": "Edit|Write"
-      },
-      {
-        "hooks": [
-          {
             "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
             "timeout": 4,
             "type": "command"
@@ -212,16 +202,6 @@
       {
         "hooks": [
           {
-            "command": "command -v code-review-graph >/dev/null && root=$(git rev-parse --show-toplevel 2>/dev/null) && [ -e \"$root/.code-review-graph/graph.db\" ] && { code-review-graph update >/dev/null 2>&1; code-review-graph status; } || true",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      },
-      {
-        "hooks": [
-          {
             "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
             "timeout": 4,
             "type": "command"
@@ -328,7 +308,6 @@
       "Bash(brew upgrade*)",
       "Bash(uv tool upgrade*)",
       "Bash(rtk *)",
-      "Bash(code-review-graph *)",
       "Bash(ctx7 *)",
       "Bash(date *)",
       "Bash(wc *)",

@@ -63,7 +63,3 @@ Available gstack skills: `/office-hours`, `/plan-ceo-review`, `/plan-eng-review`
 - `.gitignore` uses negation-aware sorted ordering — after editing, run `just format-gitignore` (checked by `just lint-gitignore`)
 - Some `.json` files are actually JSONC and must not be jq-formatted: `.config/zed/settings.json`, `.config/cmux/cmux.json`, `.claude/policy-limits.json` (see `format-json` recipe)
 - Zsh functions are auto-formatted by shfmt/shellharden via `just format-shell`; files using zsh-only syntax are excluded via Justfile variables
-
-## MCP Tools: code-review-graph
-
-**This project has a knowledge graph. Use code-review-graph MCP tools BEFORE Grep/Glob/Read.** Full tool reference is in the `explore-codebase` skill.

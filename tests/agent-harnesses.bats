@@ -11,7 +11,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$status" -eq 0 ]
 }
 
-@test "agent-harnesses: inventories active commands, agents, skills, and graph capability" {
+@test "agent-harnesses: inventories active commands, agents, and skills without a graph capability" {
   run python3 "$SCRIPT" inventory --json
 
   [ "$status" -eq 0 ]
@@ -25,7 +25,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$command_count" -eq 24 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
-  [ "$has_graph" = "true" ]
+  [ "$has_graph" = "false" ]
   [ "$claude_plugins" = '"array"' ]
   [ "$codex_plugins" = '"array"' ]
 }

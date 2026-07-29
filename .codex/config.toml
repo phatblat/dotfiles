@@ -51,11 +51,6 @@ shell_tool = true
 steer = true
 unified_exec = true
 
-[mcp_servers.code-review-graph]
-args = ["exec", "pipx:code-review-graph", "--", "code-review-graph", "serve"]
-command = "mise"
-default_tools_approval_mode = "auto"
-
 [mcp_servers.computer-use]
 args = ["mcp"]
 command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
