@@ -25,7 +25,7 @@ export CGO_CXXFLAGS="-I/opt/homebrew/opt/icu4c/include"
 export CGO_LDFLAGS="-L/opt/homebrew/opt/icu4c/lib"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/icu4c/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
 
-export PATH=$HOME/scripts:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH="$HOME/scripts:/usr/local/bin:$PATH"
 
 # Homebrew setup
 if (( ! $+commands[brew] )); then
@@ -134,6 +134,9 @@ export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 # Initialize mise - version manager for tools
 # NOTE: must be after other PATH modifications so mise paths take precedence
 eval "$(mise activate zsh)"
+
+# Keep user-managed binaries behind Homebrew and mise tools.
+export PATH="$PATH:$HOME/.local/bin"
 
 # Initialize zoxide - a smarter cd command (after mise, since zoxide is mise-managed)
 eval "$(zoxide init zsh)"
