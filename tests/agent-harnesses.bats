@@ -208,6 +208,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     git-worktrees
     gh-stack
     gha-checks
+    handoff
     gha-log-reader
     linear-plan
     optimize
@@ -233,6 +234,20 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     grep -Fx "policy:" "$sidecar"
     grep -Fx "  allow_implicit_invocation: false" "$sidecar"
   done
+}
+
+@test "handoff skill records a complete, manual-only continuation brief" {
+  skill="$HOME/.agents/skills/handoff/SKILL.md"
+  sidecar="$HOME/.agents/skills/handoff/agents/openai.yaml"
+
+  grep -Fq 'Do **not** ask the user clarifying questions.' "$skill"
+  grep -Fq 'docs/handoffs/YYYY-MM-DD-<topic>.md' "$skill"
+  grep -Fq '## Open Questions' "$skill"
+  grep -Fq '## Confidence' "$skill"
+  grep -Fq '## Estimate' "$skill"
+  grep -Fq '## Suggested Agent Structure' "$skill"
+  grep -Fq 'git add -- "docs/handoffs/YYYY-MM-DD-<topic>.md"' "$skill"
+  grep -Fx '  allow_implicit_invocation: false' "$sidecar"
 }
 
 @test "agent-harnesses: Claude and Codex know Obsidian daily-note location" {
