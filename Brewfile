@@ -295,4 +295,3 @@ mas "Mactracker", id: 430255202
 mas "NextDNS", id: 1464122853
 mas "Screens 5", id: 1663047912
 mas "Windows App", id: 1295203466
-uv "code-review-graph"

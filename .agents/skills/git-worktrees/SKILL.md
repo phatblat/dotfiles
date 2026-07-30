@@ -127,6 +127,7 @@ git worktree remove ~/.worktrees/<path-key>/<branch>
 - Create a worktree for the dotfiles repo
 - Skip remote tracking setup after branch creation
 - Let `push.autoSetupRemote` be the only tracking mechanism
+- Update a local branch ref from a different worktree if that branch is checked out elsewhere; use `origin/<branch>` until the owning worktree is free
 
 ## Integration
 

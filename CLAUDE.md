@@ -37,7 +37,7 @@ Shell function conventions are in the `shell-functions` rule (loads when editing
 
 ## Project Context
 
-Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languages. Git workflow conventions are in the `git-workflow` rule.
+Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languages. Git workflow conventions are in the `git-workflow` rule. Before updating a local branch ref, verify it is not checked out in another worktree with `git worktree list --porcelain`; otherwise operate on `origin/<branch>`.
 
 ## Code Search
 
@@ -63,7 +63,3 @@ Available gstack skills: `/office-hours`, `/plan-ceo-review`, `/plan-eng-review`
 - `.gitignore` uses negation-aware sorted ordering — after editing, run `just format-gitignore` (checked by `just lint-gitignore`)
 - Some `.json` files are actually JSONC and must not be jq-formatted: `.config/zed/settings.json`, `.config/cmux/cmux.json`, `.claude/policy-limits.json` (see `format-json` recipe)
 - Zsh functions are auto-formatted by shfmt/shellharden via `just format-shell`; files using zsh-only syntax are excluded via Justfile variables
-
-## MCP Tools: code-review-graph
-
-**This project has a knowledge graph. Use code-review-graph MCP tools BEFORE Grep/Glob/Read.** Full tool reference is in the `explore-codebase` skill.

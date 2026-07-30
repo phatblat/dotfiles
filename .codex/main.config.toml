@@ -1,5 +1,5 @@
-model = "gpt-5.6-sol"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 [hooks.state]
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
@@ -62,6 +62,10 @@ trust_level = "trusted"
 [tui]
 status_line = ["model-with-reasoning", "project-name", "git-branch", "pull-request-number", "branch-changes", "run-state", "context-used", "used-tokens", "total-input-tokens", "total-output-tokens", "task-progress"]
 status_line_use_colors = true
+
+[tui.keymap.composer]
+submit = 'ctrl-\'
+queue = "enter"
 
 [notice.model_migrations]
 "gpt-5.4-mini" = "gpt-5.6-luna"

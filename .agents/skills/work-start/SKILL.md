@@ -32,7 +32,7 @@ sandbox before asking the user to authenticate. Never print, log, or expose
 3. Update startup checks:
 
    - Query macOS GitHub Actions runner status with `gh api orgs/getditto/actions/runner-groups/8/runners`.
-   - Leave Slack `#ci` unchecked unless a Slack integration is available.
+   - Leave [#team-devx](https://dittolive.slack.com/archives/C085N9FK79B) unchecked unless a Slack integration is available.
 
 4. Build the `## Yesterday` section from:
 

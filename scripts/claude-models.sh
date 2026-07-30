@@ -132,6 +132,14 @@ resolve_aliases() {
   done
 }
 
+filter_active_models() {
+  local models=$1 deprecations=$2
+  printf '%s' "$models" | jq --arg deprecations "$deprecations" '
+    ($deprecations | split("\n") | map(select(length > 0) | split("\t") | select(.[1] == "Deprecated") | .[0])) as $deprecated |
+    map(select(.id as $id | $deprecated | index($id) | not))
+  '
+}
+
 render_lock() {
   local models=$1 deprecations=$2 aliases=$3 generated=$4 out=$5
   {
@@ -164,6 +172,7 @@ cmd_lock() {
   local models deprecations aliases generated
   models=$(fetch_models)
   deprecations=$(fetch_deprecations)
+  models=$(filter_active_models "$models" "$deprecations")
   aliases=$(resolve_aliases "$models")
   generated=$(date -u +%Y-%m-%d)
 
@@ -211,6 +220,7 @@ cmd_check() {
   local models deprecations aliases live today rc=0
   models=$(fetch_models)
   deprecations=$(fetch_deprecations)
+  models=$(filter_active_models "$models" "$deprecations")
   aliases=$(resolve_aliases "$models")
   live=$(printf '%s' "$models" | jq -r '.[].id' | sort)
   today=$(date -u +%s)

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# pir - Browse and resume a Pi session
+pi --resume "$@"

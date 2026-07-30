@@ -170,21 +170,6 @@
   "instructions": [
     "~/.agents/harness/instructions.md"
   ],
-  "mcp": {
-    "code-review-graph": {
-      "command": [
-        "mise",
-        "exec",
-        "pipx:code-review-graph",
-        "--",
-        "code-review-graph",
-        "serve"
-      ],
-      "enabled": true,
-      "timeout": 10000,
-      "type": "local"
-    }
-  },
   "model": "anthropic/claude-sonnet-4-20250514",
   "permission": {
     "bash": {

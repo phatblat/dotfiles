@@ -336,9 +336,6 @@ def command_validate() -> int:
         errors.append(f"expected 6 specialist agents, found {len(inventory['agents'])}")
     if inventory["skills"]["count"] < 1:
         errors.append("expected shared skills in .agents/skills")
-    if "code-review-graph" not in inventory["capabilities"]:
-        errors.append("code-review-graph capability missing")
-
     if command_generate(check=True) != 0:
         errors.append("generated artifacts are stale")
 
@@ -485,9 +482,6 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
         for path in SKILL_SOURCE.glob("*/SKILL.md")
     )
     capabilities = ["shared-skills"]
-    codex_config = ROOT / ".codex" / "config.toml"
-    if codex_config.exists() and "code-review-graph" in codex_config.read_text():
-        capabilities.append("code-review-graph")
     if (OPEN_CODE / "plugins" / "harness.ts").exists():
         capabilities.append("opencode-plugin")
     if (PI_AGENT / "extensions" / "harness.ts").exists():
@@ -951,20 +945,7 @@ if __name__ == "__main__":
 
 
 def render_antigravity_mcp() -> str:
-    mcp = {
-        "mcpServers": {
-            "code-review-graph": {
-                "command": "mise",
-                "args": [
-                    "exec",
-                    "pipx:code-review-graph",
-                    "--",
-                    "code-review-graph",
-                    "serve",
-                ],
-            }
-        }
-    }
+    mcp = {"mcpServers": {}}
     return json.dumps(mcp, indent=2, sort_keys=True) + "\n"
 
 
@@ -1096,20 +1077,7 @@ if __name__ == "__main__":
 
 
 def render_cursor_mcp() -> str:
-    mcp = {
-        "mcpServers": {
-            "code-review-graph": {
-                "command": "mise",
-                "args": [
-                    "exec",
-                    "pipx:code-review-graph",
-                    "--",
-                    "code-review-graph",
-                    "serve",
-                ],
-            }
-        }
-    }
+    mcp = {"mcpServers": {}}
     return json.dumps(mcp, indent=2, sort_keys=True) + "\n"
 
 
@@ -1151,21 +1119,6 @@ def render_opencode_config(
             },
             "external_directory": "ask",
             "webfetch": "ask",
-        },
-        "mcp": {
-            "code-review-graph": {
-                "type": "local",
-                "command": [
-                    "mise",
-                    "exec",
-                    "pipx:code-review-graph",
-                    "--",
-                    "code-review-graph",
-                    "serve",
-                ],
-                "enabled": True,
-                "timeout": 10000,
-            }
         },
         "command": {
             command["native"]: {
@@ -1558,59 +1511,6 @@ def build_manifest() -> dict[str, Any]:
                     ],
                     "Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified",
                     "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
-                ),
-            },
-        ),
-        feature(
-            "mcp.code_review_graph",
-            "mcp/tools",
-            "p1",
-            "code-review-graph is exposed as a tool capability.",
-            [
-                display_path(ROOT / ".codex" / "config.toml"),
-                display_path(OPEN_CODE / "opencode.jsonc"),
-            ],
-            "python3 scripts/agent-harnesses.py inventory --json",
-            {
-                "claude": state(
-                    "partial",
-                    "native",
-                    [display_path(ROOT / ".claude" / "settings.json")],
-                    "Claude has hook-based graph updates but no tracked MCP entry in this slice",
-                    "Add/verify native Claude MCP registration",
-                ),
-                "codex": state(
-                    "complete",
-                    "native",
-                    [display_path(ROOT / ".codex" / "config.toml")],
-                    "native MCP server configured",
-                ),
-                "opencode": state(
-                    "complete",
-                    "native",
-                    [display_path(OPEN_CODE / "opencode.jsonc")],
-                    "native MCP local server configured",
-                ),
-                "pi": state(
-                    "partial",
-                    "emulated",
-                    [display_path(PI_AGENT / "extensions" / "harness.ts")],
-                    "generic MCP transport is not configured; extension tools track capability",
-                    "Implement direct MCP bridge if Pi exposes stable transport",
-                ),
-                "antigravity": state(
-                    "partial",
-                    "adapter",
-                    [display_path(ANTIGRAVITY_HARNESS / "mcp.json")],
-                    "generated Antigravity MCP registration includes code-review-graph, but runtime inventory has not confirmed it loads",
-                    "Verify agy discovers the code-review-graph MCP server from the plugin",
-                ),
-                "cursor": state(
-                    "partial",
-                    "native",
-                    [display_path(CURSOR_HARNESS / "mcp.json")],
-                    "Cursor MCP registration is generated, but runtime inventory has not confirmed it loads",
-                    "Verify Cursor discovers the code-review-graph MCP server from the plugin",
                 ),
             },
         ),

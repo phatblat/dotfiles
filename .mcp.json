@@ -1,15 +1,3 @@
 {
-  "mcpServers": {
-    "code-review-graph": {
-      "args": [
-        "exec",
-        "pipx:code-review-graph",
-        "--",
-        "code-review-graph",
-        "serve"
-      ],
-      "command": "mise",
-      "type": "stdio"
-    }
-  }
+  "mcpServers": {}
 }

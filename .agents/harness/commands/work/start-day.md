@@ -99,10 +99,10 @@ Update the runner line in the Startup section:
 - All online: `- [x] check GHA runner status — ✓ 34/34 macOS runners online`
 - Some offline: `- [x] check GHA runner status — ⚠ 32/34 online, offline: mac-ami14, mac-ami22`
 
-### 4b: Slack #ci Channel
+### 4b: Slack #team-devx Channel
 
 **Note:** No Slack MCP is configured. This check cannot be automated yet. Leave the checkbox unchecked:
-`- [ ] check [#ci](https://dittolive.slack.com/archives/CPVKDQGHM) channel`
+`- [ ] check [#team-devx](https://dittolive.slack.com/archives/C085N9FK79B) channel`
 
 To automate in the future, configure a Slack MCP server and add `mcp__slack__search_messages` or similar to this command's allowed tools.
 

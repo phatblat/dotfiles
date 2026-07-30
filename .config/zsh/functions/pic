@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# pic - Continue the most recent Pi session
+pi --continue "$@"

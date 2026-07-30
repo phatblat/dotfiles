@@ -15,17 +15,6 @@
       {
         "hooks": [
           {
-            "command": "bash -c 'command -v code-review-graph >/dev/null 2>&1 && code-review-graph update >/dev/null 2>&1 &'",
-            "timeout": 3,
-            "type": "command"
-          }
-        ],
-        "matcher": "Edit|Write",
-        "name": "Knowledge Graph Update"
-      },
-      {
-        "hooks": [
-          {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
@@ -92,27 +81,6 @@
       }
     ],
     "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/session-start.sh'",
-            "timeout": 5,
-            "type": "command"
-          }
-        ],
-        "name": "Session Init"
-      },
-      {
-        "hooks": [
-          {
-            "command": "command -v code-review-graph >/dev/null && root=$(git rev-parse --show-toplevel 2>/dev/null) && [ -e \"$root/.code-review-graph/graph.db\" ] && { code-review-graph update >/dev/null 2>&1; code-review-graph status; } || true",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "",
-        "name": "Knowledge Graph Init"
-      },
       {
         "hooks": [
           {
