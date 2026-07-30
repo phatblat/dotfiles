@@ -1,22 +1,29 @@
 {
   "providers": {
     "spark": {
-      "baseUrl": "http://127.0.0.1:8001/v1",
       "api": "openai-completions",
       "apiKey": "$SPARK_API_KEY",
+      "baseUrl": "http://127.0.0.1:8001/v1",
       "compat": {
         "supportsDeveloperRole": false,
         "supportsReasoningEffort": false
       },
       "models": [
         {
-          "id": "nvidia/Qwen3.6-35B-A3B-NVFP4",
-          "name": "Qwen3.6-35B-A3B (spark1, NVFP4)",
-          "reasoning": true,
-          "input": ["text"],
           "contextWindow": 131072,
+          "cost": {
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "input": 0,
+            "output": 0
+          },
+          "id": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+          "input": [
+            "text"
+          ],
           "maxTokens": 8192,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+          "name": "Qwen3.6-35B-A3B (spark1, NVFP4)",
+          "reasoning": true
         }
       ]
     }
