@@ -64,10 +64,6 @@
     },
     {
       "enabled": false,
-      "id": "kimik2"
-    },
-    {
-      "enabled": false,
       "id": "amp"
     },
     {
@@ -224,10 +220,6 @@
     },
     {
       "enabled": false,
-      "id": "crossmodel"
-    },
-    {
-      "enabled": false,
       "id": "clawrouter"
     },
     {
@@ -237,6 +229,38 @@
     {
       "enabled": false,
       "id": "wayfinder"
+    },
+    {
+      "enabled": false,
+      "id": "clinepass"
+    },
+    {
+      "enabled": false,
+      "id": "qwencloud"
+    },
+    {
+      "enabled": false,
+      "id": "deepinfra"
+    },
+    {
+      "enabled": false,
+      "id": "neuralwatt"
+    },
+    {
+      "enabled": false,
+      "id": "longcat"
+    },
+    {
+      "enabled": false,
+      "id": "zenmux"
+    },
+    {
+      "enabled": false,
+      "id": "aiand"
+    },
+    {
+      "enabled": false,
+      "id": "zoommate"
     }
   ],
   "version": 1
