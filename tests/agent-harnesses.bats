@@ -250,6 +250,23 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   grep -Fx '  allow_implicit_invocation: false' "$sidecar"
 }
 
+@test "handoff skill has generated native adapters" {
+  run python3 "$SCRIPT" generate --check
+  [ "$status" -eq 0 ]
+
+  for skill in \
+    "$HOME/.claude/skills/handoff/SKILL.md" \
+    "$HOME/.codex/skills/handoff/SKILL.md" \
+    "$HOME/.config/opencode/skills/handoff/SKILL.md"; do
+    [ -f "$skill" ]
+    grep -Fq 'Load and follow the shared skill at `~/.agents/skills/handoff/SKILL.md`.' "$skill"
+  done
+
+  grep -Fx 'disable-model-invocation: true' "$HOME/.claude/skills/handoff/SKILL.md"
+  grep -Fx '  allow_implicit_invocation: false' \
+    "$HOME/.codex/skills/handoff/agents/openai.yaml"
+}
+
 @test "agent-harnesses: Claude and Codex know Obsidian daily-note location" {
   for instructions in "$HOME/.claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"; do
     [ -f "$instructions" ]
