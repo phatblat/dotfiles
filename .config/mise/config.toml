@@ -53,7 +53,7 @@
 "npm:yarn" = "1.22.22"
 "pipx:graphifyy" = "0.9.29"
 "pipx:pyright" = "1.1.411"
-"pipx:python-lsp-server" = "1.14.0"
+"pipx:python-lsp-server" = "1.15.0"
 "pipx:token-viewer" = "0.0.7"
 "pipx:yamllint" = "1.38.0"
 "vfox:mise-plugins/vfox-gcloud" = "578.0.0"
