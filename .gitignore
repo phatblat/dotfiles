@@ -893,6 +893,7 @@ dev/*
 dev/_GETDITTO/*
 !dev/_GETDITTO/CLAUDE.md
 !dev/_GETDITTO/
+ditto-agent/
 ditto-cache/
 examples.desktop
 fvm/
