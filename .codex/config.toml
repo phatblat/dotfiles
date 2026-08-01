@@ -4,7 +4,7 @@
 
 approvals_reviewer = "auto_review"
 commit_attribution = "Co-Authored-By: Codex <noreply@openai.com>"
-model = "gpt-5.6-sol"
+model = "gpt-5.6-luna"
 model_reasoning_effort = "xhigh"
 notify = ["/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 personality = "pragmatic"
@@ -33,6 +33,7 @@ localeOverride = "en-US"
 mac-menu-bar-enabled = false
 preventSleepWhileRunning = true
 selected-avatar-id = "null-signal"
+show-context-window-usage = true
 usePointerCursors = true
 
 [desktop.open-in-target-preferences]
