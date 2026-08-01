@@ -79,3 +79,34 @@ teardown() {
   [ "$status" -eq 0 ]
   [ "$output" = $'--resume\n--name\nresume session' ]
 }
+
+@test "zsh pi-spark runs Pi with the Spark Qwen model" {
+  run env PATH="$fakebindir:$PATH" zsh -c '
+    fpath=("$HOME/.config/zsh/functions" $fpath)
+    autoload -Uz pi-spark
+    pi-spark
+  '
+
+  [ "$status" -eq 0 ]
+  [ "$output" = $'--provider\nspark\n--model\nnvidia/Qwen3.6-35B-A3B-NVFP4' ]
+}
+
+@test "fish pi-spark runs Pi with the Spark Qwen model" {
+  run env PATH="$fakebindir:$PATH" fish --no-config -c '
+    source "$HOME/.config/fish/functions/pi-spark.fish"
+    pi-spark
+  '
+
+  [ "$status" -eq 0 ]
+  [ "$output" = $'--provider\nspark\n--model\nnvidia/Qwen3.6-35B-A3B-NVFP4' ]
+}
+
+@test "nushell pi-spark runs Pi with the Spark Qwen model" {
+  run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+    source '$HOME/.config/nushell/autoload/pi-spark.nu'
+    pi-spark
+  "
+
+  [ "$status" -eq 0 ]
+  [ "$output" = $'--provider\nspark\n--model\nnvidia/Qwen3.6-35B-A3B-NVFP4' ]
+}
