@@ -18,7 +18,7 @@
   "extensions": [
     "~/.pi/agent/extensions/harness.ts"
   ],
-  "lastChangelogVersion": "0.82.1",
+  "lastChangelogVersion": "0.83.0",
   "prompts": [
     "~/.pi/agent/prompts"
   ],
