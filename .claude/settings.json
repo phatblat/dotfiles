@@ -305,6 +305,7 @@
       "Bash(timeout *)",
       "Bash(wc *)",
       "Bash(find *)",
+      "Bash(xargs *)",
       "Bash(ls *)",
       "Bash(python3 *)",
       "Bash(jq *)",
@@ -318,6 +319,7 @@
       "Bash(rg *)",
       "Bash(head *)",
       "Bash(tail *)",
+      "Bash(tee *)",
       "Bash(file *)",
       "Bash(stat *)"
     ],
