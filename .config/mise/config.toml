@@ -144,6 +144,7 @@ xh = "0.26.2"
 yq = "4.53.3"
 zig = "0.16.0"
 zoxide = "0.10.0"
+"github:can1357/oh-my-pi" = "latest"
 
 [tools."http:cursor-cli"]
 version = "2026.07.01-777f564"
