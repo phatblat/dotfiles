@@ -61,9 +61,8 @@ cwd = "."
 enabled = false
 
 [mcp_servers.node_repl]
-args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
-startup_timeout_sec = 120
+startup_timeout_sec = 120.0
 
 [mcp_servers.node_repl.env]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
@@ -89,7 +88,7 @@ url = "https://developers.openai.com/mcp"
 
 [mcp_servers.orch]
 args = ["mcp", "serve"]
-command = "/Users/phatblat/.worktrees/dev-agents-claude-DittoAgentOrchestrator/v1/first-run-onboarding/.venv/bin/orch"
+command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
 
 [mcp_servers.RepoPrompt]
 command = "/Users/phatblat/RepoPrompt/repoprompt_cli"

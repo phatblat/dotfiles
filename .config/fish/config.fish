@@ -63,7 +63,7 @@ if status is-interactive
 end
 
 # Add .local/bin and scripts to PATH
-fish_add_path --prepend ~/.local/bin ~/scripts
+fish_add_path --prepend ~/scripts
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f ~/dev/google-cloud-sdk/path.fish.inc ]
@@ -81,6 +81,9 @@ set -gx PATH $PATH /Users/phatblat/.cache/lm-studio/bin
 
 # mise activation for Go and other tools
 mise activate fish | source
+
+# Keep user-managed binaries behind Homebrew and mise tools.
+fish_add_path --append --path ~/.local/bin
 
 # Set mkcert CA root for Node.js if mkcert is available
 if command --query mkcert

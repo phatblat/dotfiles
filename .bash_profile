@@ -60,4 +60,8 @@ source "$HOME/.orbstack/shell/init.bash" 2>/dev/null || :
 export PATH="$PATH:/Users/phatblat/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
+# Initialize mise before appending user-managed binaries.
+eval "$(mise activate bash)"
+export PATH="$PATH:$HOME/.local/bin"
+
 source /Users/phatblat/.config/broot/launcher/bash/br

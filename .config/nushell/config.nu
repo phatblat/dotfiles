@@ -678,6 +678,9 @@ if ($mise_init | path expand | path exists) {
     source $mise_init
 }
 
+# Keep user-managed binaries behind Homebrew and mise tools.
+$env.PATH ++= [($nu.home-dir | path join '.local' 'bin')]
+
 # Tab title: show git repo name or current directory (mirrors zsh _set_tab_title precmd hook)
 $env.config.hooks.pre_prompt = $env.config.hooks.pre_prompt? | default []
 $env.config.hooks.pre_prompt ++= [{||
