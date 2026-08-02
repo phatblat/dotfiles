@@ -92,6 +92,50 @@ Check configured MCP servers for high timeouts, disabled-but-stale entries, miss
 
 Review global/project instructions, session-start output, and skill descriptions for verbosity or stale references.
 
+### Tracked configuration coverage
+
+Harness config roots in the dotfiles repo are allowlist-governed: `.gitignore`
+denies `<root>/*` and re-includes named paths with `!`. That fails safe — a new
+credential file is ignored by default — but it also means a genuinely new
+config file never appears in `git status`. Nothing prompts you to track it.
+
+Close that blind spot with:
+
+```bash
+just audit-ignored-config           # all curated harness roots
+just audit-ignored-config .omp .pi  # narrow to specific roots
+```
+
+The script classifies every ignored, untracked file under those roots as
+secret, runtime state, vendored package content, or config candidate, and
+reports only the candidates plus two hazards: config-shaped files carrying
+credential material, and already-tracked files that look like credentials.
+
+Triage each candidate:
+
+- **Track it** — hand-authored and portable across machines. Add a `!` rule to
+  `~/.gitignore` in sorted position, then re-run `~/scripts/sort-gitignore`.
+- **Dismiss it** — installed, bundled, or machine-generated. Vendored skill
+  bundles and a harness's own bundled system skills are the common case; they
+  reinstall on any new machine and tracking them just forks upstream.
+- **Extend the classifier** — if a whole directory of runtime state keeps
+  surfacing, add its name to `STATE_DIRS` in `~/scripts/audit-ignored-config.py`
+  rather than dismissing it by hand every audit.
+
+Never propose tracking these, whatever the report says:
+
+| Class | Examples | Why |
+|---|---|---|
+| Credential stores | `.omp/agent/agent.db`, `.pi/agent/auth.json`, `*.env` | OAuth tokens and API keys |
+| Secret definitions | `.omp/agent/secrets.yml`, `secret-placeholder.key` | Plaintext secrets and their HMAC key |
+| Trust grants | `.pi/agent/trust.json`, `.config/homebrew/trust.json` | A per-machine security decision. Replicating it auto-approves on a fresh host a directory you only vetted on one machine — a privilege escalation dressed as config. |
+| Machine identity | `.omp/install-id` | Per-install UUID; copying it merges telemetry identities |
+| Transcripts | `sessions/`, `history.db`, `blobs/` | May contain anything typed or read |
+
+Flag any hit in the "tracked files that look like credentials" section as
+**Critical** in the report, even if it turns out to be a false positive from a
+test fixture or an `.env.example`.
+
 ## Output
 
 Return a prioritized report:
