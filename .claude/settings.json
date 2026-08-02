@@ -301,6 +301,8 @@
       "Bash(rtk *)",
       "Bash(ctx7 *)",
       "Bash(date *)",
+      "Bash(echo *)",
+      "Bash(timeout *)",
       "Bash(wc *)",
       "Bash(find *)",
       "Bash(ls *)",
