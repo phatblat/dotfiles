@@ -20,6 +20,7 @@
 "cargo:tauri-cli" = "2.11.4"
 "cargo:wasm-bindgen-cli" = "0.2.126"
 "cargo:wasm-pack" = "0.15.0"
+"github:can1357/oh-my-pi" = "17.2.4"
 "github:cirruslabs/softnet" = "0.21.1"
 "github:DataDog/pup" = "1.10.1"
 "github:Dicklesworthstone/beads_rust" = { version = "0.2.19", matching = "darwin_arm64" }
@@ -144,7 +145,6 @@ xh = "0.26.2"
 yq = "4.53.3"
 zig = "0.16.0"
 zoxide = "0.10.0"
-"github:can1357/oh-my-pi" = "17.2.4"
 
 [tools."http:cursor-cli"]
 version = "2026.07.01-777f564"
