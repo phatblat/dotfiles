@@ -6,6 +6,12 @@ Dotfiles repository — cross-machine config sync. Home directory (`~`) is the g
 
 **Nested repo warning:** Many subdirectories (especially `dev/`) are separate git repos. cwd is already `~`; use bare git or `git -C ~`, never `cd ~ &&`. Confirm which repo you're in before committing.
 
+## Path Scope
+
+- Treat `.` as this repository's root. For repo-local shell operations, use `.` or `./relative/path` instead of absolute paths such as `/Users/phatblat/...`.
+- Never start filesystem searches at `/` when the repository contains the intended search scope; use commands such as `find . ...` to remain within Claude's working-directory boundary and avoid permission prompts.
+- Access paths outside this repository only when the task explicitly requires it.
+
 ## Commands
 
 - `just check` — full quality gate: lint, spelling (typos), tests

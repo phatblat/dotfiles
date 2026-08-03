@@ -407,7 +407,7 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py
+    ruff check ~/scripts/agent-harnesses.py ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py
 
 # Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
@@ -471,6 +471,11 @@ harness-generate:
 [group('checks')]
 harness-check:
     python3 ~/scripts/agent-harnesses.py validate
+
+# Reports gitignored harness config worth tracking (allowlist blind spots)
+[group('checks')]
+audit-ignored-config *ROOTS:
+    python3 ~/scripts/audit-ignored-config.py {{ ROOTS }}
 
 # Audits installed harness versions and parity gaps
 [group('checks')]

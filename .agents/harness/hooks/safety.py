@@ -62,6 +62,8 @@ PROTECTED_PATHS = re.compile(
     r"\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials|"
     r"\.claude/\.credentials\.json|"
     r"\.codex/auth\.json|"
+    r"\.omp/agent/agent\.db|"
+    r"\.omp/agent/secrets\.yml|"
     r"\.pi/agent/auth\.json|"
     r"\.gemini/google_accounts\.json|"
     r"\.gemini/oauth_creds\.json|"
