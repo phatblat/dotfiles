@@ -273,9 +273,6 @@ source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/op
 [plugins."browser@openai-bundled"]
 enabled = true
 
-[plugins."chrome@openai-bundled"]
-enabled = true
-
 [plugins."clangd-lsp@claude-plugins-official"]
 enabled = false
 
@@ -358,6 +355,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/agentic-code-review"]
+trust_level = "trusted"
+
+[projects."/Users/phatblat/dev/_GETDITTO/agentic-coding-interview-module"]
 trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/build-infra"]
