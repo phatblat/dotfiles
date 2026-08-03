@@ -11,6 +11,6 @@ defaultThinkingLevel: auto
 dev: 
   autoqaConsent: granted
 tools: 
-  approvalMode: write
+  approvalMode: yolo
   approval: 
     bash: prompt
