@@ -90,7 +90,7 @@ For any other (non-protected) branch, proceed straight to Step 1.
    - If conventions are not documented, analyze recent commits and document them
 6. If the project uses ticket/task codes, ask the user for the relevant code if not clear from context
 7. Check if README.md or other documentation needs updating to reflect the changes (see "Documentation Updates" section below)
-8. Run tests and lint commands to ensure code quality (unless just ran before this command)
+8. Run the project's lint command and only tests directly relevant to changed files. Run a repository-wide test suite only when the user explicitly requests it.
 9. For each logical group: stage the relevant files, create a commit with an appropriate message
 10. Verify all commits succeeded - Report with ✅ success indicator
 11. Check if any post-commit hooks need to be considered (e.g., pushing to remote, creating PR)

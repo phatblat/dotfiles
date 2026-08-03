@@ -28,7 +28,7 @@ Use `just` recipes from the repo root:
 - `just install`: install pinned tooling via `mise`.
 - `just format`: format `justfile`, `mise` config, JSON settings, and shell scripts.
 - `just lint`: run full lint/format checks (includes `just --fmt --check`, `mise fmt --check`, shell checks).
-- `just test`: run Bats tests in `~/tests`.
+- `bats tests/<name>.bats`: run only the Bats file relevant to the changed behavior.
 - `just doctor`: run local environment diagnostics (`mise`, Homebrew, Claude tooling).
 
 ## Coding Style & Naming Conventions
@@ -41,8 +41,8 @@ Use `just` recipes from the repo root:
 ## Testing Guidelines
 - Framework: `bats-core`.
 - Location: `tests/*.bats`, helpers in `tests/helpers/`.
-- Run locally with `just test` before opening a PR.
-- Validate lint + tests together with `just lint && just test`.
+- Run `just lint` and only the Bats files relevant to the changed behavior.
+- Run a repository-wide test suite only when the user explicitly requests it.
 - CI (`.harness/ci.yaml`) runs lint, tests, then a Nix build stage.
 
 ## Web & Documentation Search (Exa)

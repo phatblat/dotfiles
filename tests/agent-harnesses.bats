@@ -66,6 +66,24 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$status" -eq 0 ]
 }
 
+@test "agent-harnesses: commit guidance favors targeted checks" {
+  commit_workflows=(
+    "$HOME/.claude/commands/git/commit.md"
+    "$HOME/.agents/harness/commands/git/commit.md"
+    "$HOME/.agents/skills/git-commit/SKILL.md"
+  )
+
+  for workflow in "${commit_workflows[@]}"; do
+    grep -Fq "Run the project's lint command and only tests directly relevant to changed files" "$workflow"
+    grep -Fq "Run a repository-wide test suite only when the user explicitly requests it" "$workflow"
+    ! grep -Fq "Run tests and lint commands to ensure code quality" "$workflow"
+  done
+
+  grep -Fq 'Run `just lint` and only the Bats files relevant to the changed behavior' "$HOME/AGENTS.md"
+  ! grep -Fq 'Run locally with `just test`' "$HOME/AGENTS.md"
+  ! grep -Fq 'just lint && just test' "$HOME/AGENTS.md"
+}
+
 @test "agent-harnesses: generation removes obsolete skill wrappers" {
   stale_skill="obsolete-generated-skill"
   antigravity_dir="$HOME/.agents/harness/adapters/antigravity/skills/$stale_skill"
