@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import json
 import os
-from pathlib import Path
 import sys
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 # The `guard` subcommand runs on every Bash/Write/Edit hook call and needs only
@@ -22,8 +22,8 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] == "guard"):
     import argparse
     import shutil
     import subprocess
-    import tomllib
 
+    import tomllib
     from agent_plugins import audit_plugins, configured_plugins
 
 _IS_GUARD = len(sys.argv) >= 2 and sys.argv[1] == "guard"
@@ -367,9 +367,9 @@ def command_validate() -> int:
         result = subprocess.run(
             ["opencode", "debug", "config", "--pure"],
             cwd=ROOT,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            capture_output=True,
             text=True,
+            check=False,
         )
         if result.returncode != 0:
             errors.append("opencode debug config --pure failed")
@@ -378,9 +378,9 @@ def command_validate() -> int:
         result = subprocess.run(
             ["pi", "list", "--no-approve"],
             cwd=ROOT,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            capture_output=True,
             text=True,
+            check=False,
         )
         if result.returncode != 0:
             errors.append("pi list --no-approve failed")
