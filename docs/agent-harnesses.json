@@ -159,6 +159,19 @@
             "version": "local"
           }
         },
+        "omp": {
+          "gap_reason": "omp inherits the Claude user instructions; the shared harness instructions are wired to no omp loader",
+          "mode": "native",
+          "next_action": "Add ~/.agents/AGENTS.md sourcing the shared harness instructions",
+          "paths": [
+            "~/.claude/CLAUDE.md"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "opencode": {
           "gap_reason": "",
           "mode": "shared",
@@ -244,6 +257,19 @@
             "~/.agents/harness/adapters/cursor/skills"
           ],
           "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "omp": {
+          "gap_reason": "",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.agents/skills"
+          ],
+          "state": "complete",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -339,6 +365,19 @@
             "version": "local"
           }
         },
+        "omp": {
+          "gap_reason": "",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.claude/commands"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "opencode": {
           "gap_reason": "generated command templates",
           "mode": "adapter",
@@ -425,6 +464,19 @@
             "~/.agents/harness/adapters/cursor/agents"
           ],
           "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "omp": {
+          "gap_reason": "omp task-agent discovery loads only native .omp agent roots, so ~/.codex/agents/*.toml is never seen",
+          "mode": "none",
+          "next_action": "Hand-write ~/.omp/agent/agents/*.md wrappers for the shared specialists",
+          "paths": [
+            "~/.omp/agent/agents"
+          ],
+          "state": "missing",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -524,6 +576,19 @@
             "version": "local"
           }
         },
+        "omp": {
+          "gap_reason": "",
+          "mode": "adapter",
+          "next_action": "",
+          "paths": [
+            "~/.omp/agent/hooks/pre/harness-guard.ts"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "opencode": {
           "gap_reason": "",
           "mode": "adapter",
@@ -608,6 +673,19 @@
           "next_action": "Verify Cursor resume and history behavior against compact-preservation requirements",
           "paths": [
             "~/.agents/harness/adapters/cursor/rules"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "omp": {
+          "gap_reason": "omp has native compaction, but the shared preservation contract is encoded for it nowhere",
+          "mode": "native",
+          "next_action": "Encode the compaction preservation contract in ~/.omp/agent/APPEND_SYSTEM.md",
+          "paths": [
+            "~/.agents/harness/hooks/contract.json"
           ],
           "state": "partial",
           "verified": {
@@ -706,6 +784,19 @@
             "version": "local"
           }
         },
+        "omp": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "opencode": {
           "gap_reason": "",
           "mode": "shared",
@@ -740,21 +831,31 @@
   ],
   "harnesses": {
     "antigravity": {
+      "maintenance": "generated",
       "role": "tracked port"
     },
     "claude": {
+      "maintenance": "generated",
       "role": "supported peer"
     },
     "codex": {
+      "maintenance": "generated",
       "role": "supported peer"
     },
     "cursor": {
+      "maintenance": "generated",
+      "role": "tracked port"
+    },
+    "omp": {
+      "maintenance": "manual",
       "role": "tracked port"
     },
     "opencode": {
+      "maintenance": "generated",
       "role": "new port"
     },
     "pi": {
+      "maintenance": "generated",
       "role": "new port"
     }
   },

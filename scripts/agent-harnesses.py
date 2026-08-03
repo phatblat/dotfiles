@@ -42,6 +42,7 @@ CODEX_SKILLS = ROOT / ".codex" / "skills"
 OPEN_CODE = ROOT / ".config" / "opencode"
 OPEN_CODE_SKILLS = OPEN_CODE / "skills"
 PI_AGENT = ROOT / ".pi" / "agent"
+OMP_AGENT = ROOT / ".omp" / "agent"
 ANTIGRAVITY = ROOT / ".gemini" / "antigravity-cli"
 ANTIGRAVITY_HARNESS = SHARED / "adapters" / "antigravity"
 ANTIGRAVITY_COMMANDS = ANTIGRAVITY_HARNESS / "commands"
@@ -49,7 +50,18 @@ CURSOR = ROOT / ".cursor"
 CURSOR_HARNESS = SHARED / "adapters" / "cursor"
 CURSOR_PLUGIN = CURSOR_HARNESS / ".cursor-plugin"
 CURSOR_RULES = CURSOR_HARNESS / "rules"
-HARNESSES = ["claude", "codex", "opencode", "pi", "antigravity", "cursor"]
+HARNESSES = ["claude", "codex", "opencode", "pi", "omp", "antigravity", "cursor"]
+# Column headings for the parity matrix. Every HARNESSES entry needs one; the
+# renderer iterates HARNESSES so a harness can never be half-added.
+HARNESS_LABELS = {
+    "claude": "Claude",
+    "codex": "Codex",
+    "opencode": "OpenCode",
+    "pi": "Pi",
+    "omp": "OMP",
+    "antigravity": "Antigravity",
+    "cursor": "Cursor",
+}
 # These shared skills are safe to expose through native adapters without
 # overwriting independently managed native skills with the same name.
 NATIVE_SKILL_ADAPTERS = {"handoff"}
@@ -408,6 +420,7 @@ def command_audit(*, json_output: bool) -> int:
             "codex": command_version(["codex", "--version"]),
             "opencode": command_version(["opencode", "--version"]),
             "pi": command_version(["pi", "--version"]),
+            "omp": command_version(["omp", "--version"]),
             "antigravity": command_version(["agy", "--version"]),
             "cursor": command_version(["cursor-agent", "--version"]),
         },
@@ -753,6 +766,8 @@ def render_safety_policy() -> str:
             ".docker/config.json",
             ".claude/.credentials.json",
             ".codex/auth.json",
+            ".omp/agent/agent.db",
+            ".omp/agent/secrets.yml",
             ".pi/agent/auth.json",
             ".gemini/google_accounts.json",
             ".gemini/oauth_creds.json",
@@ -1397,6 +1412,13 @@ def build_manifest() -> dict[str, Any]:
                     "generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified",
                     "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
                 ),
+                "omp": state(
+                    "partial",
+                    "native",
+                    [display_path(ROOT / ".claude" / "CLAUDE.md")],
+                    "omp inherits the Claude user instructions; the shared harness instructions are wired to no omp loader",
+                    "Add ~/.agents/AGENTS.md sourcing the shared harness instructions",
+                ),
             },
         ),
         feature(
@@ -1421,6 +1443,11 @@ def build_manifest() -> dict[str, Any]:
                     [display_path(CURSOR_HARNESS / "skills")],
                     "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
                     "Verify Cursor discovers and activates generated shared skill wrappers",
+                ),
+                "omp": state(
+                    "complete",
+                    "native",
+                    [display_path(SKILL_SOURCE)],
                 ),
             },
         ),
@@ -1473,6 +1500,11 @@ def build_manifest() -> dict[str, Any]:
                     [display_path(CURSOR_HARNESS / "commands")],
                     "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
                     "Verify Cursor discovers all 24 generated command wrappers",
+                ),
+                "omp": state(
+                    "complete",
+                    "native",
+                    [display_path(COMMAND_SOURCE)],
                 ),
             },
         ),
@@ -1529,6 +1561,13 @@ def build_manifest() -> dict[str, Any]:
                     "generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified",
                     "Verify Cursor discovers generated specialist agent wrappers",
                 ),
+                "omp": state(
+                    "missing",
+                    "none",
+                    [display_path(OMP_AGENT / "agents")],
+                    "omp task-agent discovery loads only native .omp agent roots, so ~/.codex/agents/*.toml is never seen",
+                    "Hand-write ~/.omp/agent/agents/*.md wrappers for the shared specialists",
+                ),
             },
         ),
         feature(
@@ -1561,6 +1600,11 @@ def build_manifest() -> dict[str, Any]:
                     ],
                     "Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified",
                     "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
+                ),
+                "omp": state(
+                    "complete",
+                    "adapter",
+                    [display_path(OMP_AGENT / "hooks" / "pre" / "harness-guard.ts")],
                 ),
             },
         ),
@@ -1613,6 +1657,13 @@ def build_manifest() -> dict[str, Any]:
                     "Cursor preservation instructions are generated, but resume/history behavior has not been verified",
                     "Verify Cursor resume and history behavior against compact-preservation requirements",
                 ),
+                "omp": state(
+                    "partial",
+                    "native",
+                    [display_path(SHARED / "hooks" / "contract.json")],
+                    "omp has native compaction, but the shared preservation contract is encoded for it nowhere",
+                    "Encode the compaction preservation contract in ~/.omp/agent/APPEND_SYSTEM.md",
+                ),
             },
         ),
         feature(
@@ -1639,12 +1690,13 @@ def build_manifest() -> dict[str, Any]:
             "capabilities": inventory["capabilities"],
         },
         "harnesses": {
-            "claude": {"role": "supported peer"},
-            "codex": {"role": "supported peer"},
-            "opencode": {"role": "new port"},
-            "pi": {"role": "new port"},
-            "antigravity": {"role": "tracked port"},
-            "cursor": {"role": "tracked port"},
+            "claude": {"role": "supported peer", "maintenance": "generated"},
+            "codex": {"role": "supported peer", "maintenance": "generated"},
+            "opencode": {"role": "new port", "maintenance": "generated"},
+            "pi": {"role": "new port", "maintenance": "generated"},
+            "omp": {"role": "tracked port", "maintenance": "manual"},
+            "antigravity": {"role": "tracked port", "maintenance": "generated"},
+            "cursor": {"role": "tracked port", "maintenance": "generated"},
         },
         "plugins": inventory["plugins"],
         "attribute_mappings": ATTRIBUTE_MAPPINGS,
@@ -1713,8 +1765,10 @@ def render_manifest_markdown(manifest: dict[str, Any]) -> str:
         "",
         f"Verified date: {manifest['verified_date']}",
         "",
-        "| Feature | Category | Priority | Claude | Codex | OpenCode | Pi | Antigravity | Cursor | Next action |",
-        "|---|---|---|---|---|---|---|---|---|---|",
+        "| Feature | Category | Priority | "
+        + " | ".join(HARNESS_LABELS[h] for h in HARNESSES)
+        + " | Next action |",
+        "|---|---|---|" + "---|" * len(HARNESSES) + "---|",
     ]
     for item in manifest["features"]:
         states = item["harnesses"]
@@ -1727,19 +1781,10 @@ def render_manifest_markdown(manifest: dict[str, Any]) -> str:
                 }
             )
         )
+        cells = " | ".join(format_state(states[h]) for h in HARNESSES)
         lines.append(
-            "| {id} | {category} | {priority} | {claude} | {codex} | {opencode} | {pi} | {antigravity} | {cursor} | {next_action} |".format(
-                id=item["id"],
-                category=item["category"],
-                priority=item["priority"],
-                claude=format_state(states["claude"]),
-                codex=format_state(states["codex"]),
-                opencode=format_state(states["opencode"]),
-                pi=format_state(states["pi"]),
-                antigravity=format_state(states["antigravity"]),
-                cursor=format_state(states["cursor"]),
-                next_action=next_actions or "-",
-            )
+            f"| {item['id']} | {item['category']} | {item['priority']} "
+            f"| {cells} | {next_actions or '-'} |"
         )
     plugins = manifest["plugins"]
     plugin_ids = sorted(

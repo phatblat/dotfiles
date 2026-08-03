@@ -15,6 +15,8 @@
     ".docker/config.json",
     ".claude/.credentials.json",
     ".codex/auth.json",
+    ".omp/agent/agent.db",
+    ".omp/agent/secrets.yml",
     ".pi/agent/auth.json",
     ".gemini/google_accounts.json",
     ".gemini/oauth_creds.json",
