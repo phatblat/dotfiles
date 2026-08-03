@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ompr - Browse and resume an OMP session
+omp --allow-home --resume "$@"
