@@ -396,6 +396,8 @@
 .omp/agent/*/**/*token*
 .omp/agent/*/**/.env
 .omp/agent/*/**/auth.json
+.omp/agent/*/**/cache/**
+.omp/agent/*/**/npm/**
 .omp/agent/*/**/secrets.yaml
 .omp/agent/*/**/secrets.yml
 .omp/agent/*/**/sessions/**
@@ -445,6 +447,8 @@
 .pi/agent/*/**/*token*
 .pi/agent/*/**/.env
 .pi/agent/*/**/auth.json
+.pi/agent/*/**/cache/**
+.pi/agent/*/**/npm/**
 .pi/agent/*/**/sessions/**
 .pi/agent/*/**/trust.json
 !.pi/agent/*/**/

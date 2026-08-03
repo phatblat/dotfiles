@@ -560,7 +560,6 @@ def render_all() -> dict[Path, str]:
         ),
         OPEN_CODE / "opencode.jsonc": render_opencode_config(commands, agents),
         OPEN_CODE / "plugins" / "harness.ts": render_opencode_plugin(),
-        PI_AGENT / ".gitignore": render_pi_gitignore(),
         PI_AGENT / "settings.json": render_pi_settings(),
         PI_AGENT / "extensions" / "harness.ts": render_pi_extension(),
         PI_AGENT / "agents.json": json.dumps(
@@ -1294,16 +1293,6 @@ def render_pi_settings() -> str:
         "sessionDir": existing.get("sessionDir", "~/.pi/agent/sessions"),
     }
     return json.dumps(merged, indent=2, sort_keys=True) + "\n"
-
-
-def render_pi_gitignore() -> str:
-    return """auth.json
-sessions/
-cache/
-npm/
-trust.json
-*.log
-"""
 
 
 def render_pi_extension() -> str:
