@@ -43,3 +43,5 @@ quick-terminal-screen = main
 #keybind = global:ctrl+`=toggle_quick_terminal
 keybind = super+d=new_split:right
 keybind = shift+enter=text:\n
+keybind = page_up=scroll_page_up
+keybind = page_down=scroll_page_down
