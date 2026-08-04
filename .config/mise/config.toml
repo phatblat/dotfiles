@@ -20,7 +20,7 @@
 "cargo:tauri-cli" = "2.11.4"
 "cargo:wasm-bindgen-cli" = "0.2.126"
 "cargo:wasm-pack" = "0.15.0"
-"github:can1357/oh-my-pi" = "17.2.4"
+"github:can1357/oh-my-pi" = "17.2.5"
 "github:cirruslabs/softnet" = "0.21.1"
 "github:DataDog/pup" = "1.10.2"
 "github:Dicklesworthstone/beads_rust" = { version = "0.2.19", matching = "darwin_arm64" }
