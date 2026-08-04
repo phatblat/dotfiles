@@ -77,7 +77,7 @@ cocoapods = { version = "1.17.0", install_env = { PATH = "/Users/phatblat/.local
 dart = "3.12.2"
 delta = "0.19.2"
 direnv = "2.37.1"
-docker-compose = "5.3.1"
+docker-compose = "5.4.0"
 dotnet = "10.0.302"
 duckdb = "1.5.5"
 duf = "0.9.1"
