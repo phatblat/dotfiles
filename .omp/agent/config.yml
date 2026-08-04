@@ -1,18 +1,18 @@
-providers: 
-  webSearchOrder: 
-    []
+providers:
+  webSearchOrder: []
 setupVersion: 1
-modelRoles: 
+modelRoles:
   plan: openai-codex/gpt-5.6-sol:xhigh
-  slow: openai-codex/gpt-5.6-sol:max
-  advisor: anthropic/claude-fable-5:xhigh
+  slow: anthropic/claude-fable-5:max
+  advisor: openai-codex/gpt-5.6-terra:high
   default: openai-codex/gpt-5.6-terra:high
+  designer: anthropic/claude-fable-5:high
 defaultThinkingLevel: auto
-dev: 
+dev:
   autoqaConsent: granted
-tools: 
+tools:
   approvalMode: yolo
-  approval: 
+  approval:
     bash: allow
 display:
   showTokenUsage: true
@@ -27,3 +27,6 @@ features:
   unexpectedStopDetection: true
 branchSummary:
   enabled: true
+secrets:
+  enabled: true
+personality: pragmatic
