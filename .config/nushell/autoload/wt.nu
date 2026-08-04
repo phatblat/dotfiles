@@ -2,6 +2,10 @@
 #   no args: fzf-select existing worktree
 #   <branch>: navigate to existing worktree for branch, or create one
 def --env wt [branch?: string] {
+
+    # Remove administrative entries for worktrees whose directories were deleted.
+    ^git worktree prune
+
     if $branch == null {
         let result = (^git worktree list | ^fzf | complete)
         if $result.exit_code != 0 {
@@ -14,7 +18,6 @@ def --env wt [branch?: string] {
         return
     }
 
-    # Check if branch already has a worktree
     let existing = (
         ^git worktree list --porcelain
         | lines
