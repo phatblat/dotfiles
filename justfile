@@ -83,7 +83,7 @@ list-uv:
 
 # Lists available upgrades
 [group('info')]
-outdated: outdated-models
+outdated:
     mise outdated --bump
 
 # Lists outdated uv tools
@@ -245,7 +245,7 @@ deps: _check-github-token install-brew git-filters
 
 # Update tools within current versions
 [group('configuration')]
-update: update-rust update-models
+update: update-rust
 
 # Refreshes .claude/models.lock from the Claude API, committing any change
 [group('configuration')]
@@ -273,7 +273,7 @@ update-rust:
 
 # Common upgrades
 [group('configuration')]
-upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools update-models outdated-models
+upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools
 
 # Upgrades tools using mise
 [group('configuration')]
