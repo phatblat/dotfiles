@@ -57,7 +57,7 @@ The normal default layout is:
 ~/.omp/agent/sessions/<scope>-<project-basename>-<cwd-digest>/<timestamp>_<session-id>.jsonl
 ```
 
-OMP orchestration may also persist nested subagent or advisor JSONL beneath a session-specific directory. Recursively scan only `*.jsonl`, and classify each file as top-level, subagent, advisor, or unknown from its location and lifecycle metadata. Do not count adjacent `*.log` tool artifacts.
+If a local installation contains nested subagent or advisor JSONL beneath a session-specific directory, include those files only when their location or lifecycle metadata identifies the role; do not assume that layout exists. Recursively scan only confirmed session `*.jsonl` roots, classify unknown files as unknown, and do not count adjacent `*.log` tool artifacts.
 
 ## Evidence rules
 
