@@ -22,6 +22,7 @@ Prefer active Codex paths:
 
 Read `.claude/` only for migration parity or when the user explicitly asks about legacy Claude Code behavior.
 For cross-agent porting or metadata questions, read `references/agent-harness-portability.md`.
+For historical Pi/OMP skill, plugin, extension, and MCP usage evidence, read `references/session-usage-evidence.md` before making rarity or disable recommendations. It defines version-bounded session-root precedence, privacy-safe structural signals, deduplication, nested-session accounting, and confidence wording.
 
 ## Audit dimensions
 

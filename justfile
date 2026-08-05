@@ -65,6 +65,42 @@ _default:
 [group('info')]
 free:
     @df -h / | awk 'NR==2 {print "Free space on /: " $4 " (" $5 " used)"}'
+# Lists running sessions for the requested agent
+[group('info')]
+[script]
+status agent:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    invocation_dir="{{ invocation_directory() }}"
+
+    if [[ "{{ agent }}" != "omp" ]]; then
+        echo "error: status currently supports only 'omp'" >&2
+        exit 1
+    fi
+
+    found=0
+    while read -r pid state etime command; do
+        found=1
+        version=$(sed -nE 's#.*oh-my-pi/([^/]+)/omp.*#\1#p' <<< "$command")
+        args=$(sed -E 's#^.*oh-my-pi/[^ ]+/omp ?##' <<< "$command")
+        cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p')
+        marker=
+        [[ "$cwd" == "$invocation_dir" ]] && marker=", current"
+        if [[ -n "$args" ]]; then
+            printf '%s — OMP %s, %s, %s%s\n' \
+                "$pid" "$version" "$args" "$cwd" "$marker"
+        else
+            printf '%s — OMP %s, %s%s\n' \
+                "$pid" "$version" "$cwd" "$marker"
+        fi
+    done < <(
+        ps -axo pid=,state=,etime=,command= |
+            awk '$0 ~ /oh-my-pi\/[^ ]+\/omp( |$)/ && $0 !~ /__omp_worker_/'
+    )
+
+    if (( ! found )); then
+        echo "No running OMP sessions."
+    fi
 
 # Lists installed tools managed by mise
 [group('info')]
@@ -83,7 +119,7 @@ list-uv:
 
 # Lists available upgrades
 [group('info')]
-outdated: outdated-models
+outdated:
     mise outdated --bump
 
 # Lists outdated uv tools
@@ -245,7 +281,7 @@ deps: _check-github-token install-brew git-filters
 
 # Update tools within current versions
 [group('configuration')]
-update: update-rust update-models
+update: update-rust
 
 # Refreshes .claude/models.lock from the Claude API, committing any change
 [group('configuration')]
@@ -273,7 +309,7 @@ update-rust:
 
 # Common upgrades
 [group('configuration')]
-upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools update-models outdated-models
+upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools
 
 # Upgrades tools using mise
 [group('configuration')]

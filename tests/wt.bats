@@ -60,3 +60,78 @@ setup() {
   [ "$(git -C "$worktree" rev-parse HEAD)" = "$remote_head" ]
   [ "$(git -C "$worktree" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}')" = "origin/$branch" ]
 }
+
+@test "nushell wt prunes stale worktree metadata before creating a worktree" {
+  stale="$BATS_TEST_TMPDIR/stale"
+  git -C "$clone" fetch -q origin "$branch"
+  git -C "$clone" worktree add -q -b "$branch" "$stale" "origin/$branch"
+  rm -rf "$stale"
+
+  run env HOME="$fake_home" nu -c "source '$NU_WT'; cd '$clone'; wt '$branch'"
+
+  [ "$status" -eq 0 ]
+  worktree=$(git -C "$clone" worktree list --porcelain | awk -v b="$branch" '
+    /^worktree / { path = $2 }
+    $0 == "branch refs/heads/" b { print path }
+  ')
+  [ "$(git -C "$worktree" rev-parse HEAD)" = "$remote_head" ]
+}
+
+@test "zsh wt prunes stale worktree metadata before creating a worktree" {
+  stale="$BATS_TEST_TMPDIR/stale"
+  git -C "$clone" fetch -q origin "$branch"
+  git -C "$clone" worktree add -q -b "$branch" "$stale" "origin/$branch"
+  rm -rf "$stale"
+
+  run env HOME="$fake_home" zsh -c '
+    fpath=("${1:h}" $fpath)
+    autoload -Uz wt
+    z() { builtin cd "$1"; }
+    cd "$2"
+    wt "$3"
+  ' zsh "$ZSH_WT" "$clone" "$branch"
+
+  [ "$status" -eq 0 ]
+  worktree=$(git -C "$clone" worktree list --porcelain | awk -v b="$branch" '
+    /^worktree / { path = $2 }
+    $0 == "branch refs/heads/" b { print path }
+  ')
+  [ "$(git -C "$worktree" rev-parse HEAD)" = "$remote_head" ]
+}
+
+@test "nushell wt prunes stale entries before browsing worktrees" {
+  stale="$BATS_TEST_TMPDIR/stale"
+  fake_bin="$BATS_TEST_TMPDIR/bin"
+  mkdir -p "$fake_bin"
+  printf '#!/bin/sh\nawk '\''END { print }'\''\n' > "$fake_bin/fzf"
+  chmod +x "$fake_bin/fzf"
+  git -C "$clone" fetch -q origin "$branch"
+  git -C "$clone" worktree add -q -b "$branch" "$stale" "origin/$branch"
+  rm -rf "$stale"
+
+  run env HOME="$fake_home" PATH="$fake_bin:$PATH" nu -c "source '$NU_WT'; cd '$clone'; wt"
+
+  [ "$status" -eq 0 ]
+}
+
+@test "zsh wt prunes stale entries before browsing worktrees" {
+  stale="$BATS_TEST_TMPDIR/stale"
+  fake_bin="$BATS_TEST_TMPDIR/bin"
+  mkdir -p "$fake_bin"
+  printf '#!/bin/sh\nawk '\''END { print }'\''\n' > "$fake_bin/fzf"
+  chmod +x "$fake_bin/fzf"
+  git -C "$clone" fetch -q origin "$branch"
+  git -C "$clone" worktree add -q -b "$branch" "$stale" "origin/$branch"
+  rm -rf "$stale"
+
+  run env HOME="$fake_home" PATH="$fake_bin:$PATH" zsh -c '
+    fpath=("${1:h}" $fpath)
+    autoload -Uz wt
+    z() { builtin cd "$1"; }
+    cd "$2"
+    wt
+  ' zsh "$ZSH_WT" "$clone"
+
+  [ "$status" -eq 0 ]
+
+}

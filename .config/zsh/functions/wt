@@ -4,6 +4,9 @@
 #   no args: fzf-select existing worktree
 #   <branch>: navigate to existing worktree for branch, or create one
 
+# Remove administrative entries for worktrees whose directories were deleted.
+git worktree prune
+
 if [[ $# -eq 0 ]]; then
     local dir
     dir=$(git worktree list | fzf | awk '{print $1}')
@@ -13,7 +16,6 @@ fi
 
 local branch="$1"
 
-# Check if branch already has a worktree
 local existing
 existing=$(git worktree list --porcelain | awk -v b="$branch" '
   /^worktree /{ wt=$2 }

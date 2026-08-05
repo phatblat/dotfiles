@@ -336,6 +336,11 @@
     "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs",
     "type": "command"
   },
+  "omcHud": {
+    "elements": {
+      "showTokens": true
+    }
+  },
   "teammateMode": "in-process",
   "theme": "auto",
   "tui": "fullscreen",
