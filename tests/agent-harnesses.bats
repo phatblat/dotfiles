@@ -314,6 +314,14 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   done
 }
 
+@test "aven native adapters are tracked" {
+  run git -C "$HOME" ls-files --error-unmatch .codex/skills/aven/SKILL.md
+  [ "$status" -eq 0 ]
+
+  run git -C "$HOME" ls-files --error-unmatch .config/opencode/skills/aven/SKILL.md
+  [ "$status" -eq 0 ]
+}
+
 @test "agent-harnesses: Claude and Codex know Obsidian daily-note location" {
   for instructions in "$HOME/.claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"; do
     [ -f "$instructions" ]

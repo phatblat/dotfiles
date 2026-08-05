@@ -108,6 +108,8 @@
 !.codex/main.config.toml
 !.codex/rules/
 .codex/skills/*
+!.codex/skills/aven/SKILL.md
+!.codex/skills/aven/
 !.codex/skills/handoff/
 !.codex/skills/
 .codexbar/claude-oauth-cache.lock
@@ -220,6 +222,8 @@
 !.config/opencode/plugins/**
 !.config/opencode/plugins/
 .config/opencode/skills/*
+!.config/opencode/skills/aven/SKILL.md
+!.config/opencode/skills/aven/
 !.config/opencode/skills/handoff/
 !.config/opencode/skills/
 .config/orka-desktop/
