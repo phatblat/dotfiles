@@ -246,6 +246,11 @@
     ]
   },
   "model": "sonnet",
+  "omcHud": {
+    "elements": {
+      "showTokens": true
+    }
+  },
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
@@ -335,11 +340,6 @@
   "statusLine": {
     "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs",
     "type": "command"
-  },
-  "omcHud": {
-    "elements": {
-      "showTokens": true
-    }
   },
   "teammateMode": "in-process",
   "theme": "auto",
