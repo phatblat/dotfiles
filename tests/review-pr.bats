@@ -13,19 +13,14 @@ setup() {
   export REVIEW_PR_THREAD_WINDOW=5
   export PATH="$BATS_TEST_TMPDIR/bin:$PATH"
   export REVIEW_PR_COMMAND_LOG="$BATS_TEST_TMPDIR/commands.log"
-  export REVIEW_PR_THREAD_ID="019f6ce4-73da-7212-bffa-b3edfc1346d8"
-  export REVIEW_PR_GRAPHQL_RESPONSE='{"data":{"repository":{"pullRequest":{"reviewThreads":{"pageInfo":{"hasNextPage":false,"endCursor":null},"nodes":[]}}}}}'
+  export REVIEW_PR_GRAPHQL_RESPONSE='{"data":{"repository":{"pullRequest":{"baseRefName":"release/4.0","reviewThreads":{"pageInfo":{"hasNextPage":false,"endCursor":null},"nodes":[]}}}}}'
+  export REVIEW_PR_GRAPHQL_RESPONSE_2=""
   export REVIEW_PR_INITIAL_HEAD="pr-head"
   export REVIEW_PR_FINAL_HEAD="pr-head"
   export REVIEW_PR_STATUS_OUTPUT=""
   export REVIEW_PR_IGNORED_OUTPUT=""
-  export REVIEW_PR_RESUME_STATUS=0
-  export REVIEW_PR_RESUME_INTERRUPT=0
-  export REVIEW_PR_EXEC_STATUS=0
-  export REVIEW_PR_EXEC_INTERRUPT=0
-  export REVIEW_PR_EMIT_THREAD=1
-  export REVIEW_PR_WRITE_OUTPUT=1
-  export REVIEW_PR_FINAL_OUTPUT=$'## Findings\n\nNo findings.'
+  export REVIEW_PR_OMP_STATUS=0
+  export REVIEW_PR_OMP_INTERRUPT=0
   export REVIEW_PR_REMOVE_FAIL=0
   export REVIEW_PR_HEAD_READS="$BATS_TEST_TMPDIR/head-reads"
   mkdir -p "$BATS_TEST_TMPDIR/bin"
@@ -42,12 +37,16 @@ EOF
   chmod +x "$BATS_TEST_TMPDIR/bin/$name"
 }
 
-write_continue_stubs() {
+write_review_stubs() {
   write_stub gh 'echo "gh $*" >> "$REVIEW_PR_COMMAND_LOG"
 if [[ "$1 $2 $3" == "repo clone getditto/widgets" ]]; then
   mkdir -p "$4/.git"
 elif [[ "$1 $2" == "api graphql" ]]; then
-  printf "%s\n" "$REVIEW_PR_GRAPHQL_RESPONSE"
+  if [[ " $* " == *" after="* && -n "$REVIEW_PR_GRAPHQL_RESPONSE_2" ]]; then
+    printf "%s\n" "$REVIEW_PR_GRAPHQL_RESPONSE_2"
+  else
+    printf "%s\n" "$REVIEW_PR_GRAPHQL_RESPONSE"
+  fi
 fi'
   write_stub git 'echo "git $*" >> "$REVIEW_PR_COMMAND_LOG"
 if [[ "$3" == "worktree" && "$4" == "add" ]]; then
@@ -72,39 +71,12 @@ elif [[ "$3" == "status" && "$4" == "--porcelain" ]]; then
 elif [[ "$3" == "worktree" && "$4" == "remove" && "$REVIEW_PR_REMOVE_FAIL" -eq 1 ]]; then
   exit 1
 fi'
-  write_stub codex 'echo "codex $*" >> "$REVIEW_PR_COMMAND_LOG"
-if [[ "$1" == "resume" ]]; then
-  [[ "$#" -eq 10 ]]
-  [[ "$9" == "$REVIEW_PR_THREAD_ID" ]]
-  printf "resume-prompt:%s\n" "${10}" >> "$REVIEW_PR_COMMAND_LOG"
-  if [[ "$REVIEW_PR_RESUME_INTERRUPT" -eq 1 ]]; then
-    kill -INT "$PPID"
-    exit 0
-  fi
-  exit "$REVIEW_PR_RESUME_STATUS"
-fi
-if [[ "$REVIEW_PR_EXEC_INTERRUPT" -eq 1 ]]; then
+  write_stub omp 'printf "omp-arg:<%s>\n" "$@" >> "$REVIEW_PR_COMMAND_LOG"
+if [[ "$REVIEW_PR_OMP_INTERRUPT" -eq 1 ]]; then
   kill -INT "$PPID"
   exit 0
 fi
-if [[ "$REVIEW_PR_EXEC_STATUS" -ne 0 ]]; then
-  exit "$REVIEW_PR_EXEC_STATUS"
-fi
-out=""
-while [[ $# -gt 0 ]]; do
-  if [[ "$1" == "--output-last-message" ]]; then
-    out="$2"
-    shift 2
-  else
-    shift
-  fi
-done
-if [[ "$REVIEW_PR_EMIT_THREAD" -eq 1 ]]; then
-  printf "%s\n" "{\"type\":\"thread.started\",\"thread_id\":\"$REVIEW_PR_THREAD_ID\"}"
-fi
-if [[ "$REVIEW_PR_WRITE_OUTPUT" -eq 1 ]]; then
-  printf "%s\n" "$REVIEW_PR_FINAL_OUTPUT" > "$out"
-fi'
+exit "$REVIEW_PR_OMP_STATUS"'
 }
 
 @test "review-pr: rejects non-GetDitto pull request URLs" {
@@ -119,36 +91,37 @@ fi'
 
   [ "$status" -eq 1 ]
   [[ "$output" == *"Usage: review-pr"* ]]
+  [[ "$output" != *"--continue"* ]]
 }
 
-@test "review-pr fish function: forwards continue arguments" {
+@test "review-pr fish function: forwards the PR reference" {
   local fake_home="$BATS_TEST_TMPDIR/home"
   mkdir -p "$fake_home/scripts"
-  cat > "$fake_home/scripts/review-pr.py" <<'EOF'
+  cat >"$fake_home/scripts/review-pr.py" <<'EOF'
 #!/usr/bin/env bash
 printf '<%s>\n' "$@"
 EOF
   chmod +x "$fake_home/scripts/review-pr.py"
 
-  run env HOME="$fake_home" fish --no-config -c "source '$FISH_FUNCTION'; review-pr --continue widgets#123"
+  run env HOME="$fake_home" fish --no-config -c "source '$FISH_FUNCTION'; review-pr widgets#123"
 
   [ "$status" -eq 0 ]
-  [ "$output" = $'<--continue>\n<widgets#123>' ]
+  [ "$output" = "<widgets#123>" ]
 }
 
-@test "review-pr nushell function: forwards continue arguments" {
+@test "review-pr nushell function: forwards the PR reference" {
   local fake_home="$BATS_TEST_TMPDIR/home"
   mkdir -p "$fake_home/scripts"
-  cat > "$fake_home/scripts/review-pr.py" <<'EOF'
+  cat >"$fake_home/scripts/review-pr.py" <<'EOF'
 #!/usr/bin/env bash
 printf '<%s>\n' "$@"
 EOF
   chmod +x "$fake_home/scripts/review-pr.py"
 
-  run env HOME="$fake_home" nu --no-config-file -c "source '$NU_FUNCTION'; review-pr --continue widgets#123"
+  run env HOME="$fake_home" nu --no-config-file -c "source '$NU_FUNCTION'; review-pr widgets#123"
 
   [ "$status" -eq 0 ]
-  [ "$output" = $'<--continue>\n<widgets#123>' ]
+  [ "$output" = "<widgets#123>" ]
 }
 
 @test "review-pr nushell function: no args prints usage" {
@@ -156,64 +129,70 @@ EOF
 
   [ "$status" -eq 2 ]
   [[ "$output" == *"Usage: review-pr"* ]]
+  [[ "$output" != *"--continue"* ]]
 }
 
-@test "review-pr: rejects duplicate continue flags" {
-  run "$SCRIPT" --continue "widgets#123" --continue
+@test "review-pr: rejects the removed continue option" {
+  run "$SCRIPT" --continue "widgets#123"
 
   [ "$status" -eq 2 ]
   [[ "$output" == *"Usage: review-pr"* ]]
+  [[ "$output" != *"[--continue]"* ]]
 }
 
-@test "review-pr: clones missing GetDitto repo and resumes the review session" {
-  write_continue_stubs
+@test "review-pr: clones, fetches both refs, and starts foreground OMP" {
+  write_review_stubs
 
   run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 0 ]
-  [[ "$output" == *"No findings."* ]]
   grep -q "gh repo clone getditto/widgets $REVIEW_PR_GETDITTO_ROOT/widgets" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "git -C $REVIEW_PR_GETDITTO_ROOT/widgets fetch origin pull/123/head:refs/remotes/origin/pr/123" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "codex exec --json --profile main --cd" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "codex resume --profile main --cd $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-.* --add-dir $HOME/2ndBrain/daily-notes --no-alt-screen $REVIEW_PR_THREAD_ID" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "worktree remove $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "worktree remove --force" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "git -C $REVIEW_PR_GETDITTO_ROOT/widgets fetch origin pull/123/head:refs/remotes/origin/pr/123 release/4.0:refs/remotes/origin/release/4.0" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--cwd>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--add-dir>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<$HOME/2ndBrain/daily-notes>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--model>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<openai-codex/gpt-5.6-terra>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--thinking>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<high>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--no-prewalk>" "$REVIEW_PR_COMMAND_LOG"
+  ! grep -q "omp-arg:<-p>" "$REVIEW_PR_COMMAND_LOG"
+  ! grep -q "omp-arg:<--print>" "$REVIEW_PR_COMMAND_LOG"
+  ! grep -q '^codex ' "$REVIEW_PR_COMMAND_LOG"
 }
 
-@test "review-pr: continues exact Codex session and retains changed worktree" {
-  export REVIEW_PR_STATUS_OUTPUT=" M src/widget.ts"
-  write_continue_stubs
+@test "review-pr: supplies explicit PR, base, and review-only startup prompt" {
+  export REVIEW_PR_GRAPHQL_RESPONSE='{"data":{"repository":{"pullRequest":{"baseRefName":"release/4.0","reviewThreads":{"pageInfo":{"hasNextPage":false,"endCursor":null},"nodes":[{"isResolved":false,"path":"src/quote file.ts","line":40,"originalLine":40,"startLine":7,"originalStartLine":11}]}}}}}'
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "https://github.com/getditto/widgets/pull/123?ignored=true"
 
   [ "$status" -eq 0 ]
-  [[ "$output" == *"No findings."* ]]
-  [[ "$output" == *"Worktree retained:"* ]]
-  grep -q "codex exec --json --profile main --cd $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "codex exec .*--add-dir $HOME/2ndBrain/daily-notes" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "codex resume --profile main --cd $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-.* --add-dir $HOME/2ndBrain/daily-notes --no-alt-screen $REVIEW_PR_THREAD_ID" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "worktree remove --force" "$REVIEW_PR_COMMAND_LOG"
+  grep -q '^omp-arg:</skill:review Review https://github.com/getditto/widgets/pull/123 against origin/release/4.0\.' "$REVIEW_PR_COMMAND_LOG"
+  grep -q 'review-only: do not edit files, commit, push, or post GitHub comments' "$REVIEW_PR_COMMAND_LOG"
+  grep -Fq '"path":"src/quote file.ts","lines":[7,11,40]' "$REVIEW_PR_COMMAND_LOG"
+  grep -Fq 'within ±5 lines' "$REVIEW_PR_COMMAND_LOG"
+  grep -q 'remain interactive for follow-up' "$REVIEW_PR_COMMAND_LOG"
 }
 
-@test "review-pr: hands filtered findings to the resumed session" {
-  export REVIEW_PR_GRAPHQL_RESPONSE='{"data":{"repository":{"pullRequest":{"reviewThreads":{"pageInfo":{"hasNextPage":false,"endCursor":null},"nodes":[{"isResolved":false,"path":"src/widget.ts","line":40,"originalLine":40,"startLine":null,"originalStartLine":null}]}}}}}'
-  export REVIEW_PR_FINAL_OUTPUT=$'## Findings\n\n### P1: Existing thread\n- File: `src/widget.ts`\n- Lines: 42-45\n- Problem: Already discussed\n\n### P2: New issue\n- File: `src/other.ts`\n- Lines: 20-21\n- Problem: Missing test'
-  export REVIEW_PR_STATUS_OUTPUT=" M src/widget.ts"
-  write_continue_stubs
+@test "review-pr: paginates unresolved threads into the startup prompt" {
+  export REVIEW_PR_GRAPHQL_RESPONSE='{"data":{"repository":{"pullRequest":{"baseRefName":"main","reviewThreads":{"pageInfo":{"hasNextPage":true,"endCursor":"next-page"},"nodes":[{"isResolved":false,"path":"src/first.ts","line":12}]}}}}}'
+  export REVIEW_PR_GRAPHQL_RESPONSE_2='{"data":{"repository":{"pullRequest":{"baseRefName":"main","reviewThreads":{"pageInfo":{"hasNextPage":false,"endCursor":null},"nodes":[{"isResolved":false,"path":"src/second.ts","originalLine":27},{"isResolved":true,"path":"src/resolved.ts","line":9}]}}}}}'
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 0 ]
-  [[ "$output" != *"### P1: Existing thread"* ]]
-  [[ "$output" == *"### P2: New issue"* ]]
-  grep -q "### P2: New issue" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "### P1: Existing thread" "$REVIEW_PR_COMMAND_LOG"
+  [ "$(grep -c 'gh api graphql' "$REVIEW_PR_COMMAND_LOG")" -eq 2 ]
+  grep -Fq '"path":"src/first.ts","lines":[12]' "$REVIEW_PR_COMMAND_LOG"
+  grep -Fq '"path":"src/second.ts","lines":[27]' "$REVIEW_PR_COMMAND_LOG"
+  ! grep -Fq 'src/resolved.ts' "$REVIEW_PR_COMMAND_LOG"
 }
 
-@test "review-pr: removes an unchanged continued worktree without force" {
-  write_continue_stubs
+@test "review-pr: removes an unchanged worktree without force" {
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 0 ]
   [[ "$output" != *"Worktree retained:"* ]]
@@ -221,22 +200,33 @@ EOF
   ! grep -q "worktree remove --force" "$REVIEW_PR_COMMAND_LOG"
 }
 
-@test "review-pr: retains committed changes after continuation" {
-  export REVIEW_PR_FINAL_HEAD="new-head"
-  write_continue_stubs
+@test "review-pr: retains an interactively edited worktree" {
+  export REVIEW_PR_STATUS_OUTPUT=" M src/widget.ts"
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 0 ]
   [[ "$output" == *"Worktree retained:"* ]]
   ! grep -q "worktree remove" "$REVIEW_PR_COMMAND_LOG"
 }
 
-@test "review-pr: retains ignored files created during continuation" {
-  export REVIEW_PR_IGNORED_OUTPUT="!! .env"
-  write_continue_stubs
+@test "review-pr: retains commits made during follow-up" {
+  export REVIEW_PR_FINAL_HEAD="new-head"
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "widgets#123"
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"Worktree retained:"* ]]
+  ! grep -q "worktree remove" "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr: retains ignored files made during follow-up" {
+  export REVIEW_PR_IGNORED_OUTPUT="!! .env"
+  write_review_stubs
+
+  run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 0 ]
   [[ "$output" == *"Worktree retained:"* ]]
@@ -244,155 +234,39 @@ EOF
   ! grep -q "worktree remove" "$REVIEW_PR_COMMAND_LOG"
 }
 
-@test "review-pr: retains the worktree when resume fails" {
-  export REVIEW_PR_RESUME_STATUS=23
-  write_continue_stubs
+@test "review-pr: retains the worktree when OMP fails" {
+  export REVIEW_PR_OMP_STATUS=23
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 23 ]
+  [[ "$output" == *"Command failed (23): omp"* ]]
   [[ "$output" == *"Worktree retained:"* ]]
-  [[ "$output" == *"Codex session: $REVIEW_PR_THREAD_ID"* ]]
   ! grep -q "worktree remove" "$REVIEW_PR_COMMAND_LOG"
 }
 
-@test "review-pr: retains the worktree when resume is interrupted" {
-  export REVIEW_PR_RESUME_INTERRUPT=1
-  write_continue_stubs
+@test "review-pr: retains the worktree when OMP is interrupted" {
+  export REVIEW_PR_OMP_INTERRUPT=1
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 130 ]
   [[ "$output" == *"Review interrupted"* ]]
   [[ "$output" == *"Worktree retained:"* ]]
-  ! grep -q "worktree remove" "$REVIEW_PR_COMMAND_LOG"
-}
-
-@test "review-pr: safely removes the worktree when initial review fails" {
-  export REVIEW_PR_EXEC_STATUS=17
-  write_continue_stubs
-
-  run "$SCRIPT" --continue "widgets#123"
-
-  [ "$status" -eq 17 ]
-  [[ "$output" == *"Codex review failed with exit code 17"* ]]
-  [[ "$output" != *"Worktree retained:"* ]]
-  grep -q "worktree remove $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "worktree remove --force" "$REVIEW_PR_COMMAND_LOG"
-}
-
-@test "review-pr: safely removes the worktree when initial review is interrupted" {
-  export REVIEW_PR_EXEC_INTERRUPT=1
-  write_continue_stubs
-
-  run "$SCRIPT" --continue "widgets#123"
-
-  [ "$status" -eq 130 ]
-  [[ "$output" == *"Review interrupted"* ]]
-  [[ "$output" != *"Worktree retained:"* ]]
-  grep -q "worktree remove $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "worktree remove --force" "$REVIEW_PR_COMMAND_LOG"
-}
-
-@test "review-pr: retains the worktree when the session ID is missing" {
-  export REVIEW_PR_EMIT_THREAD=0
-  write_continue_stubs
-
-  run "$SCRIPT" --continue "widgets#123"
-
-  [ "$status" -eq 1 ]
-  [[ "$output" == *"Codex review did not report a session ID"* ]]
-  [[ "$output" == *"Worktree retained:"* ]]
-  ! grep -q "codex resume" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "worktree remove" "$REVIEW_PR_COMMAND_LOG"
-}
-
-@test "review-pr: rejects missing final output and retains its session" {
-  export REVIEW_PR_WRITE_OUTPUT=0
-  write_continue_stubs
-
-  run "$SCRIPT" --continue "widgets#123"
-
-  [ "$status" -eq 1 ]
-  [[ "$output" == *"Codex review did not produce final output"* ]]
-  [[ "$output" == *"Worktree retained:"* ]]
-  [[ "$output" == *"Codex session: $REVIEW_PR_THREAD_ID"* ]]
-  ! grep -q "codex resume" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "worktree remove" "$REVIEW_PR_COMMAND_LOG"
 }
 
 @test "review-pr: retains a worktree when safe cleanup refuses" {
   export REVIEW_PR_REMOVE_FAIL=1
-  write_continue_stubs
+  write_review_stubs
 
-  run "$SCRIPT" --continue "widgets#123"
+  run "$SCRIPT" "widgets#123"
 
   [ "$status" -eq 0 ]
   [[ "$output" == *"Worktree retained:"* ]]
   grep -q "worktree remove $REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "worktree remove --force" "$REVIEW_PR_COMMAND_LOG"
   compgen -G "$REVIEW_PR_WORKTREE_ROOT/review-pr-widgets-123-*" >/dev/null
-}
-
-@test "review-pr: resets the inline Codex terminal after resume errors" {
-  run python3 - "$SCRIPT" <<'PY'
-import importlib.util
-import subprocess
-import sys
-from pathlib import Path
-
-spec = importlib.util.spec_from_file_location("review_pr", sys.argv[1])
-module = importlib.util.module_from_spec(spec)
-sys.modules[spec.name] = module
-spec.loader.exec_module(module)
-
-
-class FakeOutput:
-    def __init__(self):
-        self.value = ""
-
-    def isatty(self):
-        return True
-
-    def write(self, value):
-        self.value += value
-
-    def flush(self):
-        pass
-
-
-def fail(command, **_kwargs):
-    raise subprocess.CalledProcessError(23, command)
-
-
-output = FakeOutput()
-original_stdout = module.sys.stdout
-module.sys.stdout = output
-module.run = fail
-try:
-    module.resume_codex_session(Path("/tmp/review-pr"), "thread-id", "findings")
-except subprocess.CalledProcessError as error:
-    assert error.returncode == 23
-else:
-    raise AssertionError("resume error did not propagate")
-finally:
-    module.sys.stdout = original_stdout
-
-assert output.value == module.CODEX_TERMINAL_RESET
-PY
-
-  [ "$status" -eq 0 ]
-}
-
-@test "review-pr: filters findings near unresolved review threads" {
-  export REVIEW_PR_GRAPHQL_RESPONSE='{"data":{"repository":{"pullRequest":{"reviewThreads":{"pageInfo":{"hasNextPage":false,"endCursor":null},"nodes":[{"isResolved":false,"path":"src/widget.ts","line":40,"originalLine":40,"startLine":null,"originalStartLine":null},{"isResolved":true,"path":"src/other.ts","line":7,"originalLine":7,"startLine":null,"originalStartLine":null}]}}}}}'
-  export REVIEW_PR_FINAL_OUTPUT=$'## Findings\n\n### P1: Existing thread\n- File: `src/widget.ts`\n- Lines: 42-45\n- Category: correctness\n- Problem: Already discussed\n- Impact: Noise\n- Suggested fix: Already covered\n\n### P2: New issue\n- File: `src/other.ts`\n- Lines: 20-21\n- Category: test-coverage\n- Problem: Missing test\n- Impact: Regression risk\n- Suggested test: Add one'
-  write_continue_stubs
-
-  run "$SCRIPT" "https://github.com/getditto/widgets/pull/123"
-
-  [ "$status" -eq 0 ]
-  [[ "$output" != *"Existing thread"* ]]
-  [[ "$output" == *"### P2: New issue"* ]]
-  [[ "$output" == *"Suppressed 1 finding"* ]]
 }

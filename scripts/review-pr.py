@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Review a GetDitto pull request with Codex and filter existing threads."""
+"""Review a GetDitto pull request with OMP and preserve interactive follow-up."""
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ from pathlib import Path
 
 GETDITTO_OWNER = "getditto"
 DEFAULT_THREAD_WINDOW = 5
-USAGE = "Usage: review-pr [--continue] <github-pr-url|repo#number|getditto/repo#number>"
-CODEX_TERMINAL_RESET = "\033[<u\033[=0u\033[>4;0m"
+USAGE = "Usage: review-pr <github-pr-url|repo#number|getditto/repo#number>"
+OMP_MODEL = "openai-codex/gpt-5.6-terra"
 DAILY_NOTES_DIR = Path.home() / "2ndBrain" / "daily-notes"
 
 
@@ -37,23 +37,9 @@ class ReviewThread:
     lines: tuple[int, ...]
 
 
-@dataclass(frozen=True)
-class Finding:
-    block: str
-    path: str | None
-    start_line: int | None
-    end_line: int | None
-
-
-@dataclass(frozen=True)
-class CodexReview:
-    output: str
-    session_id: str | None
-
-
 def main(argv: list[str]) -> int:
     try:
-        pr_value, _continue_session = parse_arguments(argv)
+        pr_value = parse_arguments(argv)
         pr = parse_pr(pr_value)
         if pr.owner != GETDITTO_OWNER:
             print("Only getditto PRs are supported for now.", file=sys.stderr)
@@ -61,6 +47,7 @@ def main(argv: list[str]) -> int:
 
         repo_dir = ensure_repo(pr)
         ref = f"refs/remotes/origin/pr/{pr.number}"
+        base_ref, threads = fetch_pr_context(pr)
         run(
             [
                 "git",
@@ -69,27 +56,15 @@ def main(argv: list[str]) -> int:
                 "fetch",
                 "origin",
                 f"pull/{pr.number}/head:{ref}",
+                f"{base_ref}:refs/remotes/origin/{base_ref}",
             ]
         )
 
         worktree_dir = create_worktree(repo_dir, pr, ref)
-        preserve_worktree = False
-        session_id: str | None = None
+        preserve_worktree = True
         try:
-            threads = fetch_open_review_threads(pr)
-            review = run_codex_review(worktree_dir, pr, capture_session=True)
-            session_id = review.session_id
-            preserve_worktree = True
-            if not review.output.strip():
-                raise ReviewPrError("Codex review did not produce final output.")
-
-            findings = filter_findings(review.output, threads, thread_window())
-            print(findings, flush=True)
-
-            if session_id is None:
-                raise ReviewPrError("Codex review did not report a session ID.")
             initial_head = worktree_head(worktree_dir)
-            resume_codex_session(worktree_dir, session_id, findings)
+            run_omp_review(worktree_dir, pr, base_ref, threads)
             preserve_worktree = worktree_changed(worktree_dir, initial_head)
         finally:
             if not preserve_worktree:
@@ -98,8 +73,6 @@ def main(argv: list[str]) -> int:
                 )
             if preserve_worktree:
                 print(f"Worktree retained: {worktree_dir}", file=sys.stderr)
-                if session_id:
-                    print(f"Codex session: {session_id}", file=sys.stderr)
     except ReviewPrError as error:
         print(str(error), file=sys.stderr)
         return error.exit_code
@@ -122,18 +95,11 @@ class ReviewPrError(Exception):
         self.exit_code = exit_code
 
 
-def parse_arguments(argv: list[str]) -> tuple[str, bool]:
+def parse_arguments(argv: list[str]) -> str:
     arguments = argv[1:]
-    continue_count = arguments.count("--continue")
-    if continue_count > 1:
+    if len(arguments) != 1:
         raise ReviewPrError(USAGE, 2)
-
-    continue_session = continue_count == 1
-    pr_values = [argument for argument in arguments if argument != "--continue"]
-    if len(pr_values) != 1:
-        raise ReviewPrError(USAGE, 2)
-
-    return pr_values[0], continue_session
+    return arguments[0]
 
 
 def parse_pr(value: str) -> PullRequest:
@@ -220,11 +186,14 @@ def remove_worktree(repo_dir: Path, worktree_dir: Path, *, force: bool = True) -
         return True
 
 
-def fetch_open_review_threads(pr: PullRequest) -> list[ReviewThread]:
+def fetch_pr_context(
+    pr: PullRequest,
+) -> tuple[str, list[ReviewThread]]:
     query = """
 query($owner: String!, $name: String!, $number: Int!, $after: String) {
   repository(owner: $owner, name: $name) {
     pullRequest(number: $number) {
+      baseRefName
       reviewThreads(first: 100, after: $after) {
         pageInfo { hasNextPage endCursor }
         nodes {
@@ -242,6 +211,7 @@ query($owner: String!, $name: String!, $number: Int!, $after: String) {
 """
     threads: list[ReviewThread] = []
     cursor: str | None = None
+    base_ref: str | None = None
 
     while True:
         command = [
@@ -262,7 +232,9 @@ query($owner: String!, $name: String!, $number: Int!, $after: String) {
 
         result = run(command, capture=True)
         payload = json.loads(result.stdout)
-        review_threads = payload["data"]["repository"]["pullRequest"]["reviewThreads"]
+        pull_request = payload["data"]["repository"]["pullRequest"]
+        base_ref = base_ref or pull_request["baseRefName"]
+        review_threads = pull_request["reviewThreads"]
 
         for node in review_threads["nodes"]:
             if node["isResolved"]:
@@ -286,108 +258,44 @@ query($owner: String!, $name: String!, $number: Int!, $after: String) {
 
         page_info = review_threads["pageInfo"]
         if not page_info["hasNextPage"]:
-            return threads
+            if not isinstance(base_ref, str) or not base_ref:
+                raise ReviewPrError("GitHub PR did not provide a base branch.")
+            return base_ref, threads
         cursor = page_info["endCursor"]
 
 
-def run_codex_review(
-    worktree_dir: Path, pr: PullRequest, *, capture_session: bool = False
-) -> CodexReview:
-    with tempfile.NamedTemporaryFile("r", delete=False) as output_file:
-        output_path = Path(output_file.name)
-
+def run_omp_review(
+    worktree_dir: Path,
+    pr: PullRequest,
+    base_ref: str,
+    threads: list[ReviewThread],
+) -> None:
+    thread_payload = [
+        {"path": thread.path, "lines": list(thread.lines)} for thread in threads
+    ]
     prompt = (
-        f"$pr-review Review {pr.url}. "
-        "Return only the final PR Review markdown in the documented toolkit format."
+        f"/skill:review Review {pr.url} against origin/{base_ref}. "
+        "review-only: do not edit files, commit, push, or post GitHub comments. "
+        "Suppress findings overlapping the supplied unresolved threads within "
+        f"±{thread_window()} lines. Existing unresolved threads: "
+        f"{json.dumps(thread_payload, separators=(',', ':'))}. "
+        "Present the report, then remain interactive for follow-up."
     )
-    command = ["codex", "exec"]
-    if capture_session:
-        command.append("--json")
-    command.extend(
+    run(
         [
-            "--profile",
-            "main",
-            "--cd",
+            "omp",
+            "--cwd",
             str(worktree_dir),
             "--add-dir",
             str(DAILY_NOTES_DIR),
-            "--output-last-message",
-            str(output_path),
+            "--model",
+            OMP_MODEL,
+            "--thinking",
+            "high",
+            "--no-prewalk",
             prompt,
         ]
     )
-    try:
-        result = run(command, capture=True, check=False)
-        if result.returncode != 0:
-            if result.stdout:
-                print(result.stdout, file=sys.stderr)
-            if result.stderr:
-                print(result.stderr, file=sys.stderr)
-            raise ReviewPrError(
-                f"Codex review failed with exit code {result.returncode}",
-                result.returncode,
-            )
-
-        session_id = parse_codex_session_id(result.stdout) if capture_session else None
-        try:
-            output = output_path.read_text()
-        except FileNotFoundError:
-            output = ""
-        if output.strip():
-            return CodexReview(output, session_id)
-
-        if capture_session:
-            return CodexReview("", session_id)
-
-        return CodexReview(result.stdout, session_id)
-    finally:
-        output_path.unlink(missing_ok=True)
-
-
-def parse_codex_session_id(output: str) -> str | None:
-    for line in output.splitlines():
-        try:
-            event = json.loads(line)
-        except json.JSONDecodeError:
-            continue
-        if event.get("type") != "thread.started":
-            continue
-        session_id = event.get("thread_id")
-        if isinstance(session_id, str) and session_id:
-            return session_id
-    return None
-
-
-def resume_codex_session(worktree_dir: Path, session_id: str, findings: str) -> None:
-    handoff_prompt = (
-        "The review-pr helper filtered the review output against existing "
-        "unresolved GitHub threads. Treat the following as the current actionable "
-        "findings. Do not modify files until the user gives the next instruction."
-        f"\n\n{findings}"
-    )
-    try:
-        run(
-            [
-                "codex",
-                "resume",
-                "--profile",
-                "main",
-                "--cd",
-                str(worktree_dir),
-                "--add-dir",
-                str(DAILY_NOTES_DIR),
-                "--no-alt-screen",
-                session_id,
-                handoff_prompt,
-            ]
-        )
-    finally:
-        reset_codex_terminal()
-
-
-def reset_codex_terminal() -> None:
-    if sys.stdout.isatty():
-        print(CODEX_TERMINAL_RESET, end="", flush=True)
 
 
 def worktree_head(worktree_dir: Path) -> str:
@@ -408,80 +316,6 @@ def worktree_changed(worktree_dir: Path, initial_head: str) -> bool:
         capture=True,
     )
     return bool(status.stdout.strip()) or worktree_head(worktree_dir) != initial_head
-
-
-def filter_findings(output: str, threads: list[ReviewThread], window: int) -> str:
-    finding_matches = list(re.finditer(r"(?m)^### P[0-3]: .*$", output))
-    if not finding_matches or not threads:
-        return output.rstrip()
-
-    prefix = output[: finding_matches[0].start()].rstrip()
-    kept_blocks: list[str] = []
-    suppressed = 0
-
-    for index, match in enumerate(finding_matches):
-        end = (
-            finding_matches[index + 1].start()
-            if index + 1 < len(finding_matches)
-            else len(output)
-        )
-        block = output[match.start() : end].strip()
-        finding = parse_finding(block)
-        if overlaps_thread(finding, threads, window):
-            suppressed += 1
-        else:
-            kept_blocks.append(block)
-
-    if kept_blocks:
-        rendered = "\n\n".join([prefix, *kept_blocks]).strip()
-    else:
-        rendered = (
-            f"{prefix}\n\n"
-            "No new actionable findings after filtering existing open review threads."
-        ).strip()
-
-    if suppressed:
-        plural = "s" if suppressed != 1 else ""
-        rendered = "\n\n".join(
-            [
-                rendered,
-                "## Existing Threads",
-                f"Suppressed {suppressed} finding{plural} near existing unresolved review thread(s).",
-            ]
-        )
-
-    return rendered
-
-
-def parse_finding(block: str) -> Finding:
-    file_match = re.search(r"(?im)^-\s*File:\s*`?([^`\n]+)`?\s*$", block)
-    line_match = re.search(
-        r"(?im)^-\s*Lines?:\s*([0-9]+)(?:\s*[-,]\s*([0-9]+))?", block
-    )
-    start_line = int(line_match.group(1)) if line_match else None
-    end_line = (
-        int(line_match.group(2)) if line_match and line_match.group(2) else start_line
-    )
-    return Finding(
-        block=block,
-        path=file_match.group(1).strip() if file_match else None,
-        start_line=start_line,
-        end_line=end_line,
-    )
-
-
-def overlaps_thread(finding: Finding, threads: list[ReviewThread], window: int) -> bool:
-    if finding.path is None or finding.start_line is None or finding.end_line is None:
-        return False
-
-    for thread in threads:
-        if thread.path != finding.path:
-            continue
-        for line in thread.lines:
-            if finding.start_line - window <= line <= finding.end_line + window:
-                return True
-
-    return False
 
 
 def thread_window() -> int:
