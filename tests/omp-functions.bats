@@ -80,6 +80,38 @@ teardown() {
   [ "$output" = $'--allow-home\n--resume\n--name\nresume session' ]
 }
 
+@test "zsh cmt opens OMP commit workflow with no arguments" {
+  run env PATH="$fakebindir:$PATH" zsh -c '
+    rehash
+    fpath=("$HOME/.config/zsh/functions" $fpath)
+    autoload -Uz cmt
+    cmt
+  '
+
+  [ "$status" -eq 0 ]
+  [ "$output" = "/git:commit" ]
+}
+
+@test "fish cmt opens OMP commit workflow with no arguments" {
+  run env PATH="$fakebindir:$PATH" fish --no-config -c '
+    source "$HOME/.config/fish/functions/cmt.fish"
+    cmt
+  '
+
+  [ "$status" -eq 0 ]
+  [ "$output" = "/git:commit" ]
+}
+
+@test "nushell cmt opens OMP commit workflow with no arguments" {
+  run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+    source '$HOME/.config/nushell/autoload/cmt.nu'
+    cmt
+  "
+
+  [ "$status" -eq 0 ]
+  [ "$output" = "/git:commit" ]
+}
+
 @test "omp wrappers pass --allow-home so home-rooted sessions are not relocated" {
   # omp auto-switches to a temp dir when started in ~ unless --allow-home is
   # set, which would silently continue the wrong session in this repo.
