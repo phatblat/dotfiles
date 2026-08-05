@@ -984,12 +984,6 @@
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
       },
       {
-        "enabled": true,
-        "id": "chrome@openai-bundled",
-        "marketplace": "openai-bundled",
-        "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
-      },
-      {
         "enabled": false,
         "id": "clangd-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",

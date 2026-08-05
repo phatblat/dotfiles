@@ -54,7 +54,10 @@ jobs:
         run: mise install just shellcheck ruff bats "github:nushell/nushell"
 
       - name: Install fish and zsh
-        run: sudo apt-get update && sudo apt-get install -y fish zsh
+        run: |
+          # Runner-provided Microsoft repositories intermittently return 403.
+          sudo rm -f /etc/apt/sources.list.d/azure-cli.list /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt-get update && sudo apt-get install -y fish zsh
 
       - name: Lint
         run: |

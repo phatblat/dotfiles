@@ -19,7 +19,6 @@ Verified date: 2026-06-27
 | Plugin | Claude | Codex |
 |---|---|---|
 | browser@openai-bundled | missing | enabled |
-| chrome@openai-bundled | missing | enabled |
 | clangd-lsp@claude-plugins-official | enabled | disabled |
 | claude-code-setup@claude-plugins-official | enabled | missing |
 | claude-hud@claude-hud | enabled | missing |

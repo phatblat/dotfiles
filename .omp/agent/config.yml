@@ -11,6 +11,19 @@ defaultThinkingLevel: auto
 dev: 
   autoqaConsent: granted
 tools: 
-  approvalMode: write
+  approvalMode: yolo
   approval: 
-    bash: prompt
+    bash: allow
+display:
+  showTokenUsage: true
+  cacheMissMarker: true
+advisor:
+  enabled: true
+  subagents: true
+  syncBacklog: "off"
+prewalk:
+  enabled: true
+features:
+  unexpectedStopDetection: true
+branchSummary:
+  enabled: true

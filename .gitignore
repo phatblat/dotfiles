@@ -147,6 +147,7 @@
 .config/chessx/
 .config/chromium/
 .config/claude/versions
+.config/com.tolaria.app/
 .config/configstore
 .config/context7/credentials.json
 .config/dconf/
