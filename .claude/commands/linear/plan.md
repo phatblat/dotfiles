@@ -213,10 +213,19 @@ else
   path_key=$(echo "${repo_root#$HOME/}" | tr '/' '-')
 fi
 worktree_path="${HOME}/.worktrees/${path_key}/<branch-name>"
-git worktree add "${worktree_path}" -b <branch-name> origin/<base-branch>
+git worktree add "${worktree_path}" -b <branch-name> --no-track origin/<base-branch>
+cd "${worktree_path}"
+git branch --show-current
+git branch -vv
 ```
 
-All subsequent git and implementation commands must run from within the worktree (use `cd "${worktree_path}"` or `git -C "${worktree_path}"`).
+Immediately after implementation is ready to publish, set same-name upstream tracking:
+```bash
+git push -u origin <branch-name>:<branch-name>
+git branch -vv
+```
+
+The feature branch must show `[origin/<branch-name>]`, never `[origin/<base-branch>]`.
 
 If the base branch doesn't exist on remote, error and ask the user.
 
