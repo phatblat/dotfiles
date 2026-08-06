@@ -285,6 +285,43 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     "$HOME/.codex/skills/handoff/agents/openai.yaml"
 }
 
+@test "aven skill has generated ability adapters" {
+  run python3 "$SCRIPT" generate --check
+  [ "$status" -eq 0 ]
+
+  canonical="$HOME/.agents/skills/aven/SKILL.md"
+  [ -f "$canonical" ]
+  grep -Fq "name: aven" "$canonical"
+  grep -Fq "Use aven to find tasks" "$canonical"
+
+  for skill in \
+    "$HOME/.claude/skills/aven/SKILL.md" \
+    "$HOME/.codex/skills/aven/SKILL.md" \
+    "$HOME/.config/opencode/skills/aven/SKILL.md"; do
+    [ -f "$skill" ]
+    grep -Fq 'Load and follow the shared skill at `~/.agents/skills/aven/SKILL.md`.' "$skill"
+  done
+
+  ! grep -Fq "disable-model-invocation: true" \
+    "$HOME/.claude/skills/aven/SKILL.md"
+  [ ! -e "$HOME/.codex/skills/aven/agents/openai.yaml" ]
+
+  for skill in \
+    "$HOME/.agents/harness/adapters/antigravity/skills/aven/SKILL.md" \
+    "$HOME/.agents/harness/adapters/cursor/skills/aven/SKILL.md"; do
+    [ -f "$skill" ]
+    grep -Fq 'Load and follow the shared skill at `~/.agents/skills/aven/SKILL.md`.' "$skill"
+  done
+}
+
+@test "aven native adapters are tracked" {
+  run git -C "$HOME" ls-files --error-unmatch .codex/skills/aven/SKILL.md
+  [ "$status" -eq 0 ]
+
+  run git -C "$HOME" ls-files --error-unmatch .config/opencode/skills/aven/SKILL.md
+  [ "$status" -eq 0 ]
+}
+
 @test "agent-harnesses: Claude and Codex know Obsidian daily-note location" {
   for instructions in "$HOME/.claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"; do
     [ -f "$instructions" ]

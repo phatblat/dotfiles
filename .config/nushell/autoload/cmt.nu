@@ -1,6 +1,10 @@
 export def cmt [
-    message: string  # commit message
-    ...args          # additional git commit flags
+    message?: string  # commit message
+    ...args           # additional git commit flags
 ] {
-    ^git commit --verbose -m $message ...$args
+    if ($message | is-empty) {
+        ^omp "/git:commit"
+    } else {
+        ^git commit --verbose -m $message ...$args
+    }
 }

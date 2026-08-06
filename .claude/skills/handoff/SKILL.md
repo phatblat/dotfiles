@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Load the shared skill from ~/.agents/skills/handoff/SKILL.md.
+description: Load the shared skill from ~/.agents/skills/handoff/SKILL.md
 disable-model-invocation: true
 ---
 
