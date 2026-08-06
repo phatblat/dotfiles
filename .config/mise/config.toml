@@ -182,3 +182,6 @@ credential_command = "gh auth token"
 
 [settings.npm]
 package_manager = "npm"
+
+[bootstrap.packages]
+"brew-cask:openusage" = "v0.7.6"
