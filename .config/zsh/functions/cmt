@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 # cmt - Commit with message, or open the OMP commit workflow
-if (( $# == 0 )); then
-  omp "/git:commit"
+if (($# == 0)); then
+    omp "/git:commit"
 else
-  git commit -m "$@"
+    git commit -m "$@"
 fi
