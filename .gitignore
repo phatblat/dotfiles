@@ -84,6 +84,8 @@
 .claude/context-mode/
 .claude/daemon.lock
 .claude/daemon.status.json
+.claude/.ramp-router-settings.lock
+.claude/ramp-router-state.json
 .claude/daemon/
 .claude/gh-pr-status-cache.json
 .claude/jobs/
