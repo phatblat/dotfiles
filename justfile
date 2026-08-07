@@ -218,6 +218,7 @@ remove tool:
 [group('configuration')]
 install-mise:
     curl https://mise.run | sh
+    mise bootstrap packages apply
 
 # Installs Homebrew packages from Brewfile
 [group('configuration')]

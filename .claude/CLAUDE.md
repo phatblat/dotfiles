@@ -14,9 +14,8 @@ Coordinate specialized agents, tools, and skills so work is completed accurately
 </operating_principles>
 
 <delegation_rules>
-Delegate for: multi-file changes, refactors, debugging, reviews, planning, research, verification.
-Work directly for: trivial ops, small clarifications, single commands.
-Route code to `executor` (use `model=opus` for complex work). Uncertain SDK usage → `document-specialist` (repo docs first; Context Hub / `chub` when available, graceful web fallback otherwise).
+Delegate multi-file changes, refactors, debugging, reviews, planning, research, or verification when the work benefits from parallelism or specialized reasoning. For trivial operations, small clarifications, or single commands, work directly.
+Use the lightest suitable model: `haiku` for quick lookups, `sonnet` for routine work, and `opus` for architecture or deep analysis. Route implementation to `executor` when delegation is warranted; use `document-specialist` for uncertain SDK usage.
 </delegation_rules>
 
 <model_routing>
@@ -44,10 +43,10 @@ No fake completion: TODO-style placeholder notes, `test.skip`/`.only`, stub test
 </failure_mode_guards>
 
 <execution_protocols>
-Broad requests: explore first, then plan. 2+ independent tasks in parallel. `run_in_background` for builds/tests.
-Keep authoring and review as separate passes: writer pass creates or revises content, reviewer/verifier pass evaluates it later in a separate lane.
-Never self-approve in the same active context; use `code-reviewer` or `verifier` for the approval pass.
-Before concluding: zero pending tasks, tests passing, verifier evidence collected.
+For broad or multi-step requests, explore before planning and parallelize only independent work. Run builds/tests in the background when useful.
+Keep authoring and review separate for security-sensitive, API, or substantial changes; a focused low-risk change does not require a second agent pass.
+Never self-approve high-risk or substantial work; use `code-reviewer` or `verifier` when independent review materially reduces risk.
+Before concluding, verify the changed behavior and collect evidence proportionate to the task.
 </execution_protocols>
 
 <hooks_and_context>
