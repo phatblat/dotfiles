@@ -1,0 +1,284 @@
+#!/usr/bin/env python3
+"""Claude Code status line: actual session cost vs. Opus 5, served by the router.
+
+Claude Code prices unknown router-served model aliases at a $5/M input / $25/M
+output fallback, so its own estimate (`cost.total_cost_usd`) can be badly wrong
+for router traffic. This script ignores that estimate and asks the router's
+API-key-authenticated session usage endpoint for the session's real cost
+(server-computed `spend_usd`) and a like-for-like reference cost at the Opus 5
+base rates in the served requests' inference geography
+(`reference_cost_usd`), then renders the comparison as cost bars.
+
+This script ships with the Router dashboard: it is served at
+<dashboard origin>/claude-code-statusline (for Ramp, https://router.ramp.com).
+
+Install:
+  1. Download it from your deployment's dashboard origin and make it executable:
+       mkdir -p ~/.claude && \
+         curl -fsSL <dashboard origin>/claude-code-statusline \
+           -o ~/.claude/claude-code-statusline && \
+         chmod +x ~/.claude/claude-code-statusline
+  2. Point Claude Code at it in ~/.claude/settings.json:
+       { "statusLine": { "type": "command", "command": "~/.claude/claude-code-statusline" } }
+  3. Set ROUTER_API_KEY to a Router LLM API key and ROUTER_BASE_URL to the
+     same dashboard origin, for example in the settings.json "env" block.
+
+Configuration:
+  ROUTER_API_KEY        Router LLM API key. Falls back to ANTHROPIC_AUTH_TOKEN,
+                        then ANTHROPIC_API_KEY. Required for cost figures;
+                        without it the line shows only the model name.
+  ROUTER_BASE_URL       Router control-plane base URL. Falls back to
+                        ANTHROPIC_BASE_URL. With neither set the line shows
+                        only the model name.
+  ROUTER_STATUSLINE_TTL_SECONDS  Per-session cache TTL. Default 5.
+
+The script must stay cheap: Claude Code re-runs it on every status refresh
+(~300ms while typing), so the router response is cached per session under
+${TMPDIR:-/tmp} for a short TTL and only re-fetched after it expires. Any
+failure degrades to a plain model-name line. The API key is never written to
+disk or logged.
+"""
+
+import json
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+from decimal import Decimal
+from pathlib import Path
+
+_CACHE_TTL_SECONDS = int(os.environ.get("ROUTER_STATUSLINE_TTL_SECONDS", "5") or 5)
+
+
+def _api_key() -> str:
+    """The Router LLM API key, never logged or persisted."""
+    return (
+        os.environ.get("ROUTER_API_KEY")
+        or os.environ.get("ANTHROPIC_AUTH_TOKEN")
+        or os.environ.get("ANTHROPIC_API_KEY")
+        or ""
+    ).strip()
+
+
+def _base_url() -> str:
+    """Router base URL with no path (the endpoint path is appended).
+
+    ROUTER_BASE_URL takes precedence; ANTHROPIC_BASE_URL is the fallback so a
+    single-origin deployment needs no extra configuration. There is no default
+    host: with neither set the status line degrades to the model name rather
+    than guess a destination for the caller's credential.
+    """
+    url = (os.environ.get("ROUTER_BASE_URL") or os.environ.get("ANTHROPIC_BASE_URL") or "").strip()
+    url = url.rstrip("/")
+    # A base URL pointing at the data plane (…/v1) shares its origin with the
+    # control-plane route on single-origin deployments, so drop the /v1 path
+    # before appending the endpoint path.
+    if url.endswith("/v1"):
+        url = url[: -len("/v1")]
+    return url
+
+
+def _cache_file(session_id: str) -> Path:
+    import hashlib
+
+    digest = hashlib.sha256(session_id.encode()).hexdigest()
+    return Path(os.environ.get("TMPDIR", "/tmp")) / "router-statusline" / digest
+
+
+def _read_cache(path: Path) -> dict | None:
+    """Return the cached response if it is fresh, else None."""
+    try:
+        saved = json.loads(path.read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+    if time.time() - float(saved.get("fetched_at", 0)) > _CACHE_TTL_SECONDS:
+        return None
+    return saved.get("response")
+
+
+def _write_cache(path: Path, response: dict) -> None:
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({"fetched_at": time.time(), "response": response}))
+    except OSError:
+        pass
+
+
+def _fetch_session_usage(base_url: str, api_key: str, session_id: str) -> dict | None:
+    """Fetch the session's router cost and Opus 5 reference cost.
+
+    Returns the parsed ``session`` object, or None on any failure (the caller
+    degrades to the plain model line). Never raises; never logs the key.
+    """
+    from urllib.parse import urlencode
+
+    query = urlencode({"client_session_id": session_id})
+    request = urllib.request.Request(
+        f"{base_url}/session-usage/usage/session?{query}",
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Accept": "application/json",
+            # urllib's default UA is blocked by the edge WAF (Cloudflare 1010).
+            "User-Agent": "router-statusline/1.0",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=3) as response:
+            payload = json.loads(response.read())
+    except (urllib.error.URLError, OSError, json.JSONDecodeError, TimeoutError):
+        return None
+    session = payload.get("session") if isinstance(payload, dict) else None
+    if not isinstance(session, dict):
+        return None
+    return session
+
+
+# ANSI styling for the cost bars. These are only emitted when output is a
+# color-capable terminal; otherwise the bars render as plain text. Bar colors
+# use 24-bit truecolor for the exact brand hex values.
+_RESET = "\033[0m"
+_BOLD = "\033[1m"
+_GRAY = "\033[90m"
+# Brand colors: Ramp yellow (#e4f222) and Anthropic terracotta (#d97757).
+_RAMP = "\033[38;2;228;242;34m"
+_ANTHROPIC = "\033[38;2;217;119;87m"
+_LABEL = "\033[37m"  # readable label/total text on dark and light themes
+
+_BAR_WIDTH = 24
+_BAR_FULL = "█"
+_BAR_EMPTY = "░"
+
+
+def _color_enabled() -> bool:
+    if os.environ.get("NO_COLOR") is not None:
+        return False
+    if os.environ.get("ROUTER_STATUSLINE_NO_COLOR") is not None:
+        return False
+    term = os.environ.get("TERM", "")
+    return term not in ("", "dumb")
+
+
+def _bar(fraction: float, color: str, width: int = _BAR_WIDTH) -> str:
+    fraction = max(0.0, min(1.0, fraction))
+    filled = round(fraction * width)
+    return f"{color}{_BAR_FULL * filled}{_GRAY}{_BAR_EMPTY * (width - filled)}{_RESET}"
+
+
+def _render(
+    model: str,
+    actual: Decimal,
+    reference: Decimal,
+    ref_label: str,
+    *,
+    color: bool,
+    bar_width: int = _BAR_WIDTH,
+) -> str:
+    def c(code: str, text: str) -> str:
+        return f"{code}{text}{_RESET}" if color else text
+
+    peak = max(actual, reference)
+    actual_frac = float(actual / peak) if peak > 0 else 0.0
+    reference_frac = float(reference / peak) if peak > 0 else 0.0
+    # Ramp cost in Ramp yellow; the Opus reference in Anthropic terracotta.
+    actual_bar = (
+        _bar(actual_frac, _RAMP, bar_width)
+        if color
+        else (_BAR_FULL * round(actual_frac * bar_width)).ljust(bar_width, _BAR_EMPTY)
+    )
+    reference_bar = (
+        _bar(reference_frac, _ANTHROPIC, bar_width)
+        if color
+        else (_BAR_FULL * round(reference_frac * bar_width)).ljust(bar_width, _BAR_EMPTY)
+    )
+
+    header = c(_BOLD, model)
+    # Pad labels to a shared column so both bars start at the same x. The pad
+    # width is computed on the visible (uncolored) label text.
+    label_width = max(len("Ramp"), len(ref_label))
+    ramp_label = c(_LABEL, "Ramp".ljust(label_width))
+    opus_label = c(_LABEL, ref_label.ljust(label_width))
+    ramp_total = c(_LABEL, f"${actual:.2f}")
+    opus_total = c(_LABEL, f"${reference:.2f}")
+    ramp_row = f"{ramp_label} {actual_bar} {ramp_total}"
+    opus_row = f"{opus_label} {reference_bar} {opus_total}"
+
+    if reference > 0:
+        pct = (reference - actual) / reference * 100
+        if pct >= 0:
+            delta = c(_RAMP, f"-{abs(int(pct))}% vs {ref_label}")
+        else:
+            delta = c(_RAMP, f"+{abs(int(pct))}% vs {ref_label}")
+        header = f"{header}  {delta}"
+    return f"{header}\n{ramp_row}\n{opus_row}"
+
+
+def _bar_width_for_terminal() -> int:
+    try:
+        columns = int(os.environ.get("COLUMNS", "0") or 0)
+    except ValueError:
+        columns = 0
+    if columns <= 0:
+        return _BAR_WIDTH
+    # Leave room for the label column, spaces, and the "$X.XX" total.
+    return max(10, min(_BAR_WIDTH, columns - 30))
+
+
+def _reference_label(reference_model: str) -> str:
+    """Human label for the reference model id (claude-opus-5 -> Claude Opus 5)."""
+    words = reference_model.replace("-", " ").split()
+    return " ".join(word.capitalize() for word in words)
+
+
+def main() -> None:
+    try:
+        payload = json.load(sys.stdin)
+    except json.JSONDecodeError:
+        payload = {}
+    model = (payload.get("model") or {}).get("display_name") or "claude"
+    session_id = payload.get("session_id") or ""
+    api_key = _api_key()
+    base_url = _base_url()
+    if not session_id or not api_key or not base_url:
+        print(model, end="")
+        return
+
+    cache_path = _cache_file(session_id)
+    session = _read_cache(cache_path)
+    if session is None:
+        session = _fetch_session_usage(base_url, api_key, session_id)
+        if session is None:
+            print(model, end="")
+            return
+        _write_cache(cache_path, session)
+
+    try:
+        actual = Decimal(str(session["spend_usd"]))
+        reference = Decimal(str(session["reference_cost_usd"]))
+        reference_model = str(session["reference_model"])
+    except (KeyError, TypeError, ValueError):
+        print(model, end="")
+        return
+
+    print(
+        _render(
+            model,
+            actual,
+            reference,
+            _reference_label(reference_model),
+            color=_color_enabled(),
+            bar_width=_bar_width_for_terminal(),
+        ),
+        end="",
+    )
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception:  # never break the status line
+        try:
+            payload = json.loads(sys.stdin.read()) if not sys.stdin.closed else {}
+            print((payload.get("model") or {}).get("display_name") or "claude", end="")
+        except Exception:
+            print("claude", end="")
