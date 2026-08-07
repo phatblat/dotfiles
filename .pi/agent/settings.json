@@ -6,7 +6,7 @@
   },
   "defaultModel": "gpt-5.6-sol",
   "defaultProjectTrust": "ask",
-  "defaultProvider": "openai-codex",
+  "defaultProvider": "ramp-router",
   "defaultThinkingLevel": "high",
   "enableSkillCommands": true,
   "enabledModels": [
@@ -39,5 +39,8 @@
   "skills": [
     "~/.agents/skills"
   ],
-  "theme": "dark"
+  "theme": "dark",
+  "packages": [
+    "/Users/phatblat/.local/lib/ramp-cli/ramp_cli/router_integrations/packages/pi-provider"
+  ]
 }
