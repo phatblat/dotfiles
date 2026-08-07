@@ -23,9 +23,9 @@
     "warp@claude-code-warp": true
   },
   "env": {
-    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "BASH_DEFAULT_TIMEOUT_MS": "90000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "MAX_MCP_OUTPUT_TOKENS": "25000"
+    "MAX_MCP_OUTPUT_TOKENS": "12000"
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {

@@ -12,7 +12,7 @@ plan_mode_reasoning_effort = "xhigh"
 sandbox_mode = "read-only"
 service_tier = "fast"
 suppress_unstable_features_warning = true
-tool_output_token_limit = 25000
+tool_output_token_limit = 12000
 
 [desktop]
 ambient-suggestions-enabled = true
@@ -108,10 +108,10 @@ exporter = { otlp-http = {
 inherit = "core"
 
 [shell_environment_policy.set]
-BASH_DEFAULT_TIMEOUT_MS = "300000"
+BASH_DEFAULT_TIMEOUT_MS = "90000"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
-MAX_MCP_OUTPUT_TOKENS = "25000"
+MAX_MCP_OUTPUT_TOKENS = "12000"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "939555af59361e95b1f064181829c9dfc4ac99599d1b9949596900443ac15787"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 
@@ -276,44 +276,17 @@ source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/op
 [plugins."browser@openai-bundled"]
 enabled = true
 
-[plugins."clangd-lsp@claude-plugins-official"]
-enabled = false
-
-[plugins."code-review@claude-plugins-official"]
-enabled = false
-
 [plugins."computer-use@openai-bundled"]
 enabled = true
-
-[plugins."csharp-lsp@claude-plugins-official"]
-enabled = false
 
 [plugins."documents@openai-primary-runtime"]
 enabled = true
 
-[plugins."gopls-lsp@claude-plugins-official"]
-enabled = false
-
-[plugins."hookify@claude-plugins-official"]
-enabled = false
-
-[plugins."jdtls-lsp@claude-plugins-official"]
-enabled = false
-
-[plugins."kotlin-lsp@claude-plugins-official"]
-enabled = false
-
 [plugins."linear-cli@linear-cli"]
 enabled = true
 
-[plugins."lua-lsp@claude-plugins-official"]
-enabled = false
-
 [plugins."pdf@openai-primary-runtime"]
 enabled = true
-
-[plugins."pr-review-toolkit@claude-plugins-official"]
-enabled = false
 
 [plugins."pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal"]
 enabled = true
@@ -324,29 +297,14 @@ enabled = true
 [plugins."pup@datadog-pup"]
 enabled = true
 
-[plugins."pyright-lsp@claude-plugins-official"]
-enabled = false
-
-[plugins."rust-analyzer-lsp@claude-plugins-official"]
-enabled = false
-
-[plugins."security-guidance@claude-plugins-official"]
-enabled = false
-
 [plugins."sites@openai-bundled"]
 enabled = true
 
 [plugins."spreadsheets@openai-primary-runtime"]
 enabled = true
 
-[plugins."swift-lsp@claude-plugins-official"]
-enabled = false
-
 [plugins."template-creator@openai-primary-runtime"]
 enabled = true
-
-[plugins."typescript-lsp@claude-plugins-official"]
-enabled = false
 
 [plugins."visualize@openai-bundled"]
 enabled = true
