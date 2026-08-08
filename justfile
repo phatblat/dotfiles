@@ -586,6 +586,7 @@ format-json:
         prettier --parser jsonc --write "${jsonc_files[@]}"
     fi
 
+
 # Formats and hardens Zsh shell scripts
 [group('configuration')]
 format-shell:
