@@ -282,6 +282,9 @@ enabled = true
 [plugins."documents@openai-primary-runtime"]
 enabled = true
 
+[plugins."hookify@claude-plugins-official"]
+enabled = false
+
 [plugins."linear-cli@linear-cli"]
 enabled = true
 
@@ -296,6 +299,9 @@ enabled = true
 
 [plugins."pup@datadog-pup"]
 enabled = true
+
+[plugins."security-guidance@claude-plugins-official"]
+enabled = false
 
 [plugins."sites@openai-bundled"]
 enabled = true
