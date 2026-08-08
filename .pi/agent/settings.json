@@ -18,9 +18,9 @@
   "extensions": [
     "~/.pi/agent/extensions/harness.ts"
   ],
-  "lastChangelogVersion": "0.84.1",
+  "lastChangelogVersion": "0.83.0",
   "packages": [
-    "npm:context-mode"
+    "/Users/phatblat/.local/lib/ramp-cli/ramp_cli/router_integrations/packages/pi-provider"
   ],
   "prompts": [
     "~/.pi/agent/prompts"
@@ -39,8 +39,5 @@
   "skills": [
     "~/.agents/skills"
   ],
-  "theme": "dark",
-  "packages": [
-    "/Users/phatblat/.local/lib/ramp-cli/ramp_cli/router_integrations/packages/pi-provider"
-  ]
+  "theme": "dark"
 }

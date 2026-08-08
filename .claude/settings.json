@@ -26,24 +26,9 @@
   },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "90000",
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "MAX_MCP_OUTPUT_TOKENS": "12000",
-    "ANTHROPIC_BASE_URL": "https://router-api.ramp.com",
-    "ANTHROPIC_CUSTOM_HEADERS": "X-Gateway-Client: claude-code",
     "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
-    "ROUTER_BASE_URL": "https://router.ramp.com",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-router-gpt-5-6-terra-deda3d[1m]",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME": "GPT-5.6 Terra",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL_DESCRIPTION": "GPT-5.6 Terra is designed for workloads that balance intelligence and cost. It roughly corresponds to the mini model tier used in earlier GPT-5 families.",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-router-gpt-5-6-sol-419255[1m]",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME": "GPT-5.6 Sol",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION": "GPT-5.6 Sol is the frontier model in the GPT-5.6 family. It roughly corresponds to the unsuffixed model tier used in earlier GPT-5 families. The gpt-5.6 alias routes requests to GPT-5.6 Sol.",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-router-gpt-5-6-luna-e33230[1m]",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME": "GPT-5.6 Luna",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION": "GPT-5.6 Luna is designed for cost-sensitive, high-volume workloads. It roughly corresponds to the nano model tier used in earlier GPT-5 families.",
-    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-router-gpt-5-6-sol-419255[1m]",
-    "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME": "GPT-5.6 Sol",
-    "ANTHROPIC_DEFAULT_FABLE_MODEL_DESCRIPTION": "GPT-5.6 Sol is the frontier model in the GPT-5.6 family. It roughly corresponds to the unsuffixed model tier used in earlier GPT-5 families. The gpt-5.6 alias routes requests to GPT-5.6 Sol."
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "MAX_MCP_OUTPUT_TOKENS": "12000"
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
