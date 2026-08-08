@@ -536,12 +536,12 @@ test mode="parallel":
         # Tests within a file share fixtures (generated docs, SIGINT timing),
         # so parallelize across files only -- within-file parallelism races.
         jobs=$(nproc 2>/dev/null || sysctl -n hw.ncpu)
-        bats --jobs "$jobs" --no-parallelize-within-files --parallel-binary-name rush ~/tests/
+        bats --print-output-on-failure --jobs "$jobs" --no-parallelize-within-files --parallel-binary-name rush ~/tests/
         ;;
     abort)
         # --abort makes bats pass --halt to the parallel runner, which rush
         # does not support, so fail-fast has to run serially.
-        bats --abort ~/tests/
+        bats --print-output-on-failure --abort ~/tests/
         ;;
     *)
         echo "Unknown mode '{{ mode }}' (expected: parallel, abort)" >&2
