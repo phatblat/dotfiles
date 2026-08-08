@@ -90,7 +90,7 @@ jobs:
           install: false
 
       - name: Install mise-managed tools
-        run: mise install just shellcheck ruff bats bat "aqua:shenwei356/rush" "github:nushell/nushell"
+        run: mise install just shellcheck ruff bats bat starship "aqua:shenwei356/rush" "github:nushell/nushell"
 
       - name: Install fish and test-exercised tools
         run: brew install fish diff-so-fancy git-subrepo
