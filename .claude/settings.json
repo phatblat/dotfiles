@@ -1,5 +1,6 @@
 {
   "agentPushNotifEnabled": true,
+  "disableClaudeAiConnectors": true,
   "effortLevel": "xhigh",
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
@@ -276,7 +277,7 @@
       }
     ]
   },
-  "model": "claude-router-gpt-5-6-sol-419255[1m]",
+  "model": "claude-router-gpt-5-6-terra-deda3d[1m]",
   "omcHud": {
     "elements": {
       "showTokens": true
@@ -387,6 +388,5 @@
   "tui": "fullscreen",
   "worktree": {
     "baseRef": "fresh"
-  },
-  "disableClaudeAiConnectors": true
+  }
 }
