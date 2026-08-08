@@ -524,14 +524,14 @@ harness-audit:
 package-audit:
     python3 ~/scripts/audit-package-managers.py
 
-# Runs bats tests
+# Runs bats tests, stopping at the first failure
 [group('tests')]
 [script]
 test:
     echo "Running tests..."
     eval "$(mise activate bash)"
     [[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="$PATH:/nix/var/nix/profiles/default/bin:${HOME}/.nix-profile/bin" || true
-    bats ~/tests/
+    bats --abort ~/tests/
 
 # Sorts .gitignore with negation-aware ordering
 [group('configuration')]
