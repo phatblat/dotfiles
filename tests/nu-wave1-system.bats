@@ -173,6 +173,8 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 @test "tmsnapshots: smoke — runs without error and produces output" {
     run nu --no-config-file -c "source '$AUTOLOAD/tmsnapshots.nu'; tmsnapshots"
     [ "$status" -eq 0 ]
-    # Output always starts with this header line
-    [[ "$output" == *"Snapshots for disk /"* ]]
+    # tmutil's header wording is macOS-version dependent: older releases say
+    # "Snapshots for disk /:", newer ones "Snapshots for volume group
+    # containing disk /:". Match the parts that are stable across both.
+    [[ "$output" == *"Snapshots for"*"disk /"* ]]
 }

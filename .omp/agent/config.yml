@@ -1,34 +1,43 @@
-providers: 
-  webSearchOrder: 
-    []
+providers:
+  webSearchOrder: []
 setupVersion: 1
-modelRoles: 
+modelRoles:
   plan: anthropic/claude-opus-5:xhigh
-  slow: openai-codex/gpt-5.6-sol:max
-  designer: anthropic/claude-fable-5:high
-  default: openai-codex/gpt-5.6-terra:high
-  smol: openai-codex/gpt-5.6-luna:medium
-  advisor: openai-codex/gpt-5.4-mini:high
+  slow: anthropic/claude-fable-5
+  designer: anthropic/claude-fable-5
+  default: anthropic/claude-sonnet-5
+  smol: anthropic/claude-haiku-4-5
+  advisor: anthropic/claude-sonnet-4-6
+  tiny: anthropic/claude-haiku-4-5
 defaultThinkingLevel: auto
-dev: 
+dev:
   autoqaConsent: granted
-tools: 
+tools:
   approvalMode: yolo
-  approval: 
+  approval:
     bash: allow
-display: 
+display:
   showTokenUsage: true
   cacheMissMarker: true
-advisor: 
+advisor:
   enabled: true
   subagents: true
   syncBacklog: "off"
-prewalk: 
+prewalk:
   enabled: true
-features: 
+features:
   unexpectedStopDetection: true
-branchSummary: 
+branchSummary:
   enabled: true
-secrets: 
+secrets:
   enabled: true
 personality: pragmatic
+cycleOrder:
+  - smol
+  - default
+  - slow
+  - plan
+  - designer
+  - advisor
+  - tiny
+steeringMode: one-at-a-time

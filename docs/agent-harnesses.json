@@ -996,6 +996,12 @@
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
       },
       {
+        "enabled": false,
+        "id": "hookify@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
         "enabled": true,
         "id": "linear-cli@linear-cli",
         "marketplace": "linear-cli",
@@ -1024,6 +1030,12 @@
         "id": "pup@datadog-pup",
         "marketplace": "datadog-pup",
         "marketplace_source": "https://github.com/DataDog/pup.git"
+      },
+      {
+        "enabled": false,
+        "id": "security-guidance@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
       },
       {
         "enabled": true,

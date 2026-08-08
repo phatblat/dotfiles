@@ -86,6 +86,10 @@ PY
 }
 
 @test "codex hooks: plugins with incompatible hook schemas are disabled" {
+    # The plugin cache is gitignored, so it is absent on fresh checkouts and in
+    # CI. Skip visibly there rather than passing on a scan of nothing.
+    [ -d "$HOME/.codex/plugins/cache" ] || skip "no Codex plugin cache on this machine"
+
     run env PYTHONPATH="$HOME/scripts" python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
 import json
 from pathlib import Path
@@ -97,19 +101,19 @@ config = load(sys.argv[1])
 
 home = Path(sys.argv[2])
 plugins = config.get("plugins", {})
-known_hook_configs = {
-    "hookify@claude-plugins-official": home
-    / ".codex/plugins/cache/claude-plugins-official/hookify/local/hooks/hooks.json",
-    "security-guidance@claude-plugins-official": home
-    / ".codex/plugins/cache/claude-plugins-official/security-guidance/2.0.6/hooks/hooks.json",
-}
+# Discover every cached plugin hook config instead of pinning versioned
+# paths. A pinned path (e.g. security-guidance/2.0.6) stops existing on the
+# next plugin upgrade, which would silently skip the check rather than fail.
+# Layout: cache/<marketplace>/<plugin>/<version>/hooks/hooks.json
+cache = home / ".codex/plugins/cache"
+hook_configs = sorted(cache.glob("*/*/*/hooks/hooks.json"))
+if not hook_configs:
+    raise SystemExit(f"plugin cache at {cache} holds no hook configs; layout may have changed")
 
 enabled_incompatible = {}
-for plugin, hooks_path in known_hook_configs.items():
-    if not hooks_path.exists():
-        continue
-    hook_config = json.loads(hooks_path.read_text())
-    unknown_top_level = sorted(set(hook_config) - {"hooks"})
+for hooks_path in hook_configs:
+    plugin = f"{hooks_path.parents[2].name}@{hooks_path.parents[3].name}"
+    unknown_top_level = sorted(set(json.loads(hooks_path.read_text())) - {"hooks"})
     if unknown_top_level and plugins.get(plugin, {}).get("enabled", True):
         enabled_incompatible[plugin] = unknown_top_level
 
