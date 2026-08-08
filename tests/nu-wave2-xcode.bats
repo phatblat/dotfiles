@@ -66,16 +66,24 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 @test "plcat: smoke — converts and displays a plist file with bat" {
-    local plist_file="$HOME/Library/Preferences/APMAnalyticsSuiteName.plist"
-    if [ ! -f "$plist_file" ]; then
-        skip "test plist file not found"
-    fi
+    # Build the fixture rather than reaching for an incidental file under
+    # ~/Library/Preferences, which is absent in CI and on other machines.
+    local plist_file="$BATS_TEST_TMPDIR/sample.plist"
+    printf '%s\n' \
+        '<?xml version="1.0" encoding="UTF-8"?>' \
+        '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' \
+        '<plist version="1.0"><dict><key>Sample</key><string>value</string></dict></plist>' \
+        > "$plist_file"
+
     run nu --no-config-file -c "
         source '$AUTOLOAD/plcat.nu'
         plcat '$plist_file'
     "
     [ "$status" -eq 0 ]
     [[ "$output" == *"plist"* ]]
+    # Owning the fixture means the conversion itself can be asserted.
+    [[ "$output" == *"Sample"* ]]
+    [[ "$output" == *"value"* ]]
 }
 
 @test "plcat: error on missing file" {
