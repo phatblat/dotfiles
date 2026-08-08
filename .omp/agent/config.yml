@@ -4,6 +4,7 @@ setupVersion: 1
 modelRoles:
   plan: anthropic/claude-opus-5:xhigh
   slow: anthropic/claude-fable-5
+  designer: anthropic/claude-fable-5
   default: anthropic/claude-sonnet-5
   smol: anthropic/claude-haiku-4-5
   advisor: anthropic/claude-sonnet-4-6
