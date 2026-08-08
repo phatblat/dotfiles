@@ -86,6 +86,10 @@ PY
 }
 
 @test "codex hooks: plugins with incompatible hook schemas are disabled" {
+    # The plugin cache is gitignored, so it is absent on fresh checkouts and in
+    # CI. Skip visibly there rather than passing on a scan of nothing.
+    [ -d "$HOME/.codex/plugins/cache" ] || skip "no Codex plugin cache on this machine"
+
     run env PYTHONPATH="$HOME/scripts" python3 - "$CODEX_CONFIG" "$HOME" << 'PY'
 import json
 from pathlib import Path
@@ -104,7 +108,7 @@ plugins = config.get("plugins", {})
 cache = home / ".codex/plugins/cache"
 hook_configs = sorted(cache.glob("*/*/*/hooks/hooks.json"))
 if not hook_configs:
-    raise SystemExit(f"no cached plugin hook configs found under {cache}")
+    raise SystemExit(f"plugin cache at {cache} holds no hook configs; layout may have changed")
 
 enabled_incompatible = {}
 for hooks_path in hook_configs:
