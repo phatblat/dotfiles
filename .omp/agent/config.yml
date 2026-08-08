@@ -4,11 +4,11 @@ providers:
 setupVersion: 1
 modelRoles: 
   plan: anthropic/claude-opus-5:xhigh
-  slow: openai-codex/gpt-5.6-sol:max
-  designer: anthropic/claude-fable-5:high
-  default: openai-codex/gpt-5.6-terra:high
-  smol: openai-codex/gpt-5.6-luna:medium
-  advisor: openai-codex/gpt-5.4-mini:high
+  slow: anthropic/claude-fable-5
+  default: anthropic/claude-sonnet-5
+  smol: anthropic/claude-haiku-4-5
+  advisor: anthropic/claude-sonnet-4-6
+  tiny: anthropic/claude-haiku-4-5
 defaultThinkingLevel: auto
 dev: 
   autoqaConsent: granted
@@ -32,3 +32,10 @@ branchSummary:
 secrets: 
   enabled: true
 personality: pragmatic
+cycleOrder: 
+  - smol
+  - default
+  - slow
+  - plan
+  - advisor
+  - tiny
