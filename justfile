@@ -524,14 +524,30 @@ harness-audit:
 package-audit:
     python3 ~/scripts/audit-package-managers.py
 
-# Runs bats tests, stopping at the first failure
+# Runs bats tests in parallel; `just test abort` stops at the first failure
 [group('tests')]
 [script]
-test:
+test mode="parallel":
     echo "Running tests..."
     eval "$(mise activate bash)"
     [[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="$PATH:/nix/var/nix/profiles/default/bin:${HOME}/.nix-profile/bin" || true
-    bats --abort ~/tests/
+    case "{{ mode }}" in
+    parallel)
+        # Tests within a file share fixtures (generated docs, SIGINT timing),
+        # so parallelize across files only -- within-file parallelism races.
+        jobs=$(nproc 2>/dev/null || sysctl -n hw.ncpu)
+        bats --jobs "$jobs" --no-parallelize-within-files --parallel-binary-name rush ~/tests/
+        ;;
+    abort)
+        # --abort makes bats pass --halt to the parallel runner, which rush
+        # does not support, so fail-fast has to run serially.
+        bats --abort ~/tests/
+        ;;
+    *)
+        echo "Unknown mode '{{ mode }}' (expected: parallel, abort)" >&2
+        exit 2
+        ;;
+    esac
 
 # Sorts .gitignore with negation-aware ordering
 [group('configuration')]
