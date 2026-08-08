@@ -11,6 +11,11 @@ load helpers/setup
   run env TERM=xterm-256color nu --no-config-file -c "
     \$env.STARSHIP_SHELL = 'zsh'
     \$env.MISE_SHELL = 'zsh'
+    # nushell populates these for a real prompt; `nu -c` does not. Without
+    # them env.nu errors on a missing column, and the test would only pass
+    # where a nushell login shell had leaked them into the environment.
+    \$env.CMD_DURATION_MS = '0'
+    \$env.LAST_EXIT_CODE = 0
     source '$HOME/.config/nushell/env.nu'
     do \$env.PROMPT_COMMAND
   "
