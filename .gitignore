@@ -84,8 +84,6 @@
 .claude/context-mode/
 .claude/daemon.lock
 .claude/daemon.status.json
-.claude/.ramp-router-settings.lock
-.claude/ramp-router-state.json
 .claude/daemon/
 .claude/gh-pr-status-cache.json
 .claude/jobs/
@@ -224,6 +222,7 @@
 .config/packer/
 .config/pulse/
 .config/ramp/
+.config/ramp/agent-tool-production.json.*
 .config/raycast/
 .config/realm-cli/
 .config/realm/
