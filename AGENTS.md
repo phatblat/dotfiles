@@ -45,7 +45,8 @@ Use `just` recipes from the repo root:
 - Location: `tests/*.bats`, helpers in `tests/helpers/`.
 - Run `just lint` and only the Bats files relevant to the changed behavior.
 - Run a repository-wide test suite only when the user explicitly requests it.
-- CI: GitHub Actions runs on every push — `lint.yml` (lint job, plus a test job that runs `just test`) and `agent-harness-parity.yml`. `.harness/ci.yaml` describes an older pipeline (lint, tests, Nix build) untouched since 2026-01.
+- CI: GitHub Actions runs on every push — `lint.yml` (lint job, plus a test job that runs `just test`) and `agent-harness-parity.yml`.
+- `.harness/` describes an older pipeline (lint, tests, Nix build) but is inert: it triggers on GitHub webhooks and the repo has none configured, so it cannot run. Do not treat it as a gate or spend time maintaining it.
 
 ## Web & Documentation Search (Exa)
 
