@@ -25,10 +25,12 @@ Most contribution work happens in hidden config directories and shell function f
 Use `just` recipes from the repo root:
 
 - `just --list`: show all available workflows.
-- `just install`: install pinned tooling via `mise`.
+- `just deps` (alias `i`): install pinned tooling via `mise`.
 - `just format`: format `justfile`, `mise` config, JSON settings, and shell scripts.
 - `just lint`: run full lint/format checks (includes `just --fmt --check`, `mise fmt --check`, shell checks).
 - `bats tests/<name>.bats`: run only the Bats file relevant to the changed behavior.
+- `just test`: run the whole Bats suite in parallel (~35s; needs `rush`, installed by `just deps`).
+- `just test abort`: run the suite serially and stop at the first failure.
 - `just doctor`: run local environment diagnostics (`mise`, Homebrew, Claude tooling).
 
 ## Coding Style & Naming Conventions
@@ -43,7 +45,7 @@ Use `just` recipes from the repo root:
 - Location: `tests/*.bats`, helpers in `tests/helpers/`.
 - Run `just lint` and only the Bats files relevant to the changed behavior.
 - Run a repository-wide test suite only when the user explicitly requests it.
-- CI (`.harness/ci.yaml`) runs lint, tests, then a Nix build stage.
+- CI: GitHub Actions runs on every push — `lint.yml` (lint job, plus a test job that runs `just test`) and `agent-harness-parity.yml`. `.harness/ci.yaml` describes an older pipeline (lint, tests, Nix build) untouched since 2026-01.
 
 ## Web & Documentation Search (Exa)
 
