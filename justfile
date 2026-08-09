@@ -328,8 +328,7 @@ update-models:
     body=$(git diff -- .claude/models.lock | grep -E '^[+-]  claude-' | sed 's/^/  /' || true)
     git add .claude/models.lock
     git commit -m "chore(claude): Refresh model catalog lockfile" \
-        -m "${body:-Initial model catalog lockfile.}" \
-        -m "Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>"
+        -m "${body:-Initial model catalog lockfile.}"
 
 # Update Rust toolchains
 [group('configuration')]
