@@ -19,7 +19,7 @@
 "cargo:https://github.com/nkotval-ditto/wookie" = { version = "rev:8a2eab6de09e7b381e3b83ff0dac7979bc88cf8b", crate = "wookie" }
 "cargo:sccache" = "0.17.0"
 "cargo:tauri-cli" = "2.11.4"
-"cargo:wasm-bindgen-cli" = "0.2.126"
+"cargo:wasm-bindgen-cli" = "0.2.127"
 "cargo:wasm-pack" = "0.15.0"
 "github:can1357/oh-my-pi" = "17.2.9"
 "github:cirruslabs/softnet" = "0.22.0"
