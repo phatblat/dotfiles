@@ -25,6 +25,7 @@
 "github:cirruslabs/softnet" = "0.22.0"
 "github:DataDog/pup" = "1.10.5"
 "github:Dicklesworthstone/beads_rust" = { version = "0.2.22", matching = "darwin_arm64" }
+"github:diggerhq/opencomputer" = "0.6.0.39"
 "github:dolthub/dolt" = "2.2.3"
 "github:harness/harness-cli" = "1.3.41"
 "github:nushell/nushell" = { version = "0.114.1", version_prefix = "" }
