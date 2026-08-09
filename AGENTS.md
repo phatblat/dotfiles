@@ -4,7 +4,8 @@
 
 Read `~/.agents/harness/instructions.md` (symlinked as `~/.agents/AGENTS.md`)
 alongside this file. It carries the operating discipline, token, and safety
-rules shared across every agent harness. It is generated from
+rules intended for every agent harness, though some adapters do not load it
+yet -- `just harness-audit` tracks which. It is generated from
 `scripts/agent-harnesses.py`; edit the generator, never the output.
 
 ## Project Structure & Module Organization
