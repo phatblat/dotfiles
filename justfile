@@ -39,6 +39,10 @@ shfmt_exclude_functions := 'edit'
 
 shellharden_exclude_functions := 'version_build version_market xccheck'
 
+# GitHub CLI extensions manifest file (one OWNER/REPO per line, read by install-gh-extensions)
+
+gh_extensions_manifest := '.config/gh/extensions.txt'
+
 #
 # aliases
 #
@@ -225,6 +229,32 @@ install-mise:
 install-brew:
     brew bundle install
 
+# Installs GitHub CLI extensions from manifest file
+[group('configuration')]
+[script]
+install-gh-extensions:
+    set -euo pipefail
+    manifest="{{ gh_extensions_manifest }}"
+    # A missing manifest is a no-op, not a failure
+    if [[ ! -f "$manifest" ]]; then
+        exit 0
+    fi
+    # Installed repos: `gh extension list` is tab-separated with no header row
+    installed=$(gh extension list 2>/dev/null | awk -F'\t' '{print $2}' || echo "")
+    # Read manifest and install missing extensions
+    while IFS= read -r line; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^# ]] && continue
+        repo="$line"
+        # Check if already installed
+        if grep -qxF "$repo" <<<"$installed"; then
+            echo "✓ $repo already installed"
+        else
+            echo "Installing $repo..."
+            gh extension install "$repo"
+        fi
+    done < "$manifest"
+
 # Installs LaunchDaemons into /Library/LaunchDaemons (prompts for sudo)
 [group('configuration')]
 install-launchdaemons:
@@ -277,7 +307,7 @@ _check-github-token:
 
 # Installs tools using mise
 [group('configuration')]
-deps: _check-github-token install-brew git-filters
+deps: _check-github-token install-brew install-gh-extensions git-filters
     mise install
 
 # Update tools within current versions

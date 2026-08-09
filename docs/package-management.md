@@ -53,6 +53,23 @@ brew bundle dump --force  # regenerate Brewfile from current installs (review th
 Casks remain the primary use case — proprietary or code-signed macOS GUI apps that mise
 and Nix can't install.
 
+## GitHub CLI extensions
+
+`gh` records installed extensions as directories under
+`~/.local/share/gh/extensions/`, each with its own `manifest.yml`. That is machine
+state, not config — nothing under `~/.config/gh/` declares what *should* be
+installed, so there is nothing to commit. `.config/gh/extensions.txt` fills the gap,
+listing one `OWNER/REPO` per line (`#` comments and blank lines are ignored):
+
+```bash
+just install-gh-extensions  # also runs as part of just deps
+```
+
+The recipe is idempotent: it installs only the repos missing from `gh extension list`
+and reports the rest as already present. Syncing is manual in one direction — after
+`gh extension install OWNER/REPO`, add the repo to the manifest by hand, or the next
+machine won't get it.
+
 ## Nix / home-manager
 
 Configuration lives in `~/.config/home-manager/` (`flake.nix`, `home.nix`). Apply changes
