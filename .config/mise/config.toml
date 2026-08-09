@@ -24,7 +24,7 @@
 "github:can1357/oh-my-pi" = "17.2.9"
 "github:cirruslabs/softnet" = "0.22.0"
 "github:DataDog/pup" = "1.10.5"
-"github:Dicklesworthstone/beads_rust" = { version = "0.2.20", matching = "darwin_arm64" }
+"github:Dicklesworthstone/beads_rust" = { version = "0.2.22", matching = "darwin_arm64" }
 "github:dolthub/dolt" = "2.2.3"
 "github:harness/harness-cli" = "1.3.40"
 "github:nushell/nushell" = { version = "0.114.1", version_prefix = "" }
