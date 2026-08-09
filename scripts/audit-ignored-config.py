@@ -162,8 +162,10 @@ STATE_NAMES = frozenset(
         ".DS_Store",
         ".crates.toml",
         ".crates2.json",
+        "external_agent_session_imports.json",
         "gpu_cache.json",
         "last-changelog-version",
+        "version.json",
     }
 )
 
