@@ -1422,9 +1422,12 @@ def build_manifest() -> dict[str, Any]:
                 "omp": state(
                     "partial",
                     "native",
-                    [display_path(ROOT / ".claude" / "CLAUDE.md")],
-                    "omp inherits the Claude user instructions; the shared harness instructions are wired to no omp loader",
-                    "Add ~/.agents/AGENTS.md sourcing the shared harness instructions",
+                    [
+                        display_path(ROOT / "AGENTS.md"),
+                        display_path(ROOT / ".claude" / "CLAUDE.md"),
+                    ],
+                    "omp loads the repo AGENTS.md and the Claude user instructions; AGENTS.md now points at the shared harness instructions, but omp does not inject them automatically",
+                    "Confirm omp reads the pointer in AGENTS.md, or give omp a loader that injects ~/.agents/harness/instructions.md directly",
                 ),
             },
         ),

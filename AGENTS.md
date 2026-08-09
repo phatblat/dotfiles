@@ -1,5 +1,12 @@
 # Repository Guidelines
 
+## Shared Harness Instructions
+
+Read `~/.agents/harness/instructions.md` (symlinked as `~/.agents/AGENTS.md`)
+alongside this file. It carries the operating discipline, token, and safety
+rules shared across every agent harness. It is generated from
+`scripts/agent-harnesses.py`; edit the generator, never the output.
+
 ## Project Structure & Module Organization
 This repository is rooted at `~/` and tracks personal dotfiles plus automation.
 
