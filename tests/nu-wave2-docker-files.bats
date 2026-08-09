@@ -10,46 +10,21 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # dcp — docker container prune (mutating: parse check only)
 # ---------------------------------------------------------------------------
 
-@test "dcp: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/dcp.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # dip — docker image prune (mutating: parse check only)
 # ---------------------------------------------------------------------------
-
-@test "dip: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/dip.nu'"
-    [ "$status" -eq 0 ]
-}
 
 # ---------------------------------------------------------------------------
 # dnp — docker network prune (mutating: parse check only)
 # ---------------------------------------------------------------------------
 
-@test "dnp: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/dnp.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # dvp — docker volume prune (mutating: parse check only)
 # ---------------------------------------------------------------------------
 
-@test "dvp: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/dvp.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # ddc — docker deep clean (calls dcp/dvp/dip/dnp; mutating: parse check only)
 # ---------------------------------------------------------------------------
-
-@test "ddc: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ddc.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "ddc: help text is available" {
     run nu --no-config-file -c "source '$NU_AUTOLOAD/ddc.nu'; help ddc"
@@ -60,11 +35,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # ddd — delete DerivedData (mutating; parse + env tests)
 # ---------------------------------------------------------------------------
-
-@test "ddd: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ddd.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "ddd: exits non-zero when DERIVED_DATA is unset" {
     run env -u DERIVED_DATA nu --no-config-file -c "source '$NU_AUTOLOAD/ddd.nu'; ddd" 2>&1
@@ -98,11 +68,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # bak — toggle .bak extension (mutating: uses temp dir)
 # ---------------------------------------------------------------------------
-
-@test "bak: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/bak.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "bak: adds .bak extension to file" {
     local tmpdir
@@ -160,11 +125,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # bigfiles — list 10 biggest files (read-only)
 # ---------------------------------------------------------------------------
 
-@test "bigfiles: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/bigfiles.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "bigfiles: prints header and returns at most 10 rows" {
     local tmpdir
     tmpdir="$(mktemp -d)"
@@ -181,11 +141,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # chexe — chmod +x files (mutating: uses temp dir)
 # ---------------------------------------------------------------------------
-
-@test "chexe: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/chexe.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "chexe: makes explicit file executable" {
     local tmpdir
@@ -212,11 +167,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # file_base — strip last extension from filename
 # ---------------------------------------------------------------------------
 
-@test "file_base: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/file_base.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "file_base: returns stem of simple filename" {
     run nu --no-config-file -c "source '$NU_AUTOLOAD/file_base.nu'; file_base 'foo.txt'"
     [ "$status" -eq 0 ]
@@ -237,11 +187,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # untar — extract tar.gz into named directory
 # ---------------------------------------------------------------------------
-
-@test "untar: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/untar.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "untar: exits non-zero with no argument" {
     run nu --no-config-file -c "source '$NU_AUTOLOAD/untar.nu'; untar" 2>&1

@@ -10,11 +10,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # curl_download — mutating (downloads a file): parse test only
 # ---------------------------------------------------------------------------
 
-@test "curl_download: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/curl_download.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "curl_download: help text available" {
     run nu --no-config-file -c "source '$AUTOLOAD/curl_download.nu'; help curl_download"
     [ "$status" -eq 0 ]
@@ -24,11 +19,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # cdown — mutating (downloads a file): parse test only
 # ---------------------------------------------------------------------------
-
-@test "cdown: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/cdown.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "cdown: help text available" {
     run nu --no-config-file -c "
@@ -43,11 +33,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # dc — git diff --cached (read-only)
 # ---------------------------------------------------------------------------
-
-@test "dc: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/dc.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "dc: smoke — runs in dotfiles repo without error" {
     run nu --no-config-file -c "
@@ -68,11 +53,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # dir — docker image rm --force (mutating): parse test only
 # ---------------------------------------------------------------------------
 
-@test "dir: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/dir.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "dir: help text mentions docker" {
     run nu --no-config-file -c "source '$AUTOLOAD/dir.nu'; help dir"
     [ "$status" -eq 0 ]
@@ -82,11 +62,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # fishfiles — opens fish dotfiles in editor (interactive): parse test only
 # ---------------------------------------------------------------------------
-
-@test "fishfiles: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/fishfiles.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "fishfiles: help text available" {
     run nu --no-config-file -c "
@@ -101,11 +76,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # ff — alias for fishfiles (interactive): parse test only
 # ---------------------------------------------------------------------------
-
-@test "ff: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/ff.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "ff: help text available" {
     run nu --no-config-file -c "
@@ -122,11 +92,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # nixgc — nix garbage collection (mutating): parse test only
 # ---------------------------------------------------------------------------
 
-@test "nixgc: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/nixgc.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "nixgc: help text mentions nix" {
     run nu --no-config-file -c "source '$AUTOLOAD/nixgc.nu'; help nixgc"
     [ "$status" -eq 0 ]
@@ -136,11 +101,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # nixtest — tests nix installation (read-only)
 # ---------------------------------------------------------------------------
-
-@test "nixtest: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/nixtest.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "nixtest: smoke — runs nix-instantiate and exits 0" {
     command -v nix-instantiate >/dev/null || skip "nix not installed"
@@ -154,11 +114,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # usage — disk usage (read-only)
 # ---------------------------------------------------------------------------
-
-@test "usage: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/usage.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "usage: smoke — shows disk usage for /tmp" {
     run nu --no-config-file -c "
@@ -185,11 +140,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # warpify — Warp terminal escape sequence (read-only)
 # ---------------------------------------------------------------------------
-
-@test "warpify: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/warpify.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "warpify: smoke — outputs DCS escape sequence starting with ESC P" {
     run nu --no-config-file -c "

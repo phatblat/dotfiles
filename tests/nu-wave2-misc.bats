@@ -10,11 +10,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # aws_test
 # ---------------------------------------------------------------------------
 
-@test "aws_test: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/aws_test.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "aws_test: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/aws_test.nu'; help aws_test"
     [ "$status" -eq 0 ]
@@ -62,11 +57,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # find_file
 # ---------------------------------------------------------------------------
 
-@test "find_file: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/find_file.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "find_file: empty file_name prints usage" {
     run nu --no-config-file -c "source '$AUTOLOAD/find_file.nu'; find_file ''" 2>&1
     [ "$status" -eq 0 ]
@@ -92,11 +82,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # fileowner
 # ---------------------------------------------------------------------------
-
-@test "fileowner: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/fileowner.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "fileowner: returns owner of /etc/hosts" {
     run nu --no-config-file -c "source '$AUTOLOAD/fileowner.nu'; fileowner '/etc/hosts'"
@@ -195,11 +180,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ox (mutating for xcodeproj dirs; parse + help test)
 # ---------------------------------------------------------------------------
 
-@test "ox: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/ox.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "ox: no xcodeproj prints message" {
     local tmpdir
     tmpdir="$(mktemp -d)"
@@ -216,11 +196,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # gskip (mutating git op: parse test only)
 # ---------------------------------------------------------------------------
-
-@test "gskip: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/gskip.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "gskip: help text available" {
     run nu --no-config-file -c "source '$AUTOLOAD/gskip.nu'; help gskip"

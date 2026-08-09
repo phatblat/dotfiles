@@ -10,11 +10,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # path_add
 # ---------------------------------------------------------------------------
 
-@test "path_add: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/path_add.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "path_add: prepends a new directory to PATH" {
     # Use a dir that exists but is not already in the default --no-config PATH
     run nu --no-config-file -c "
@@ -131,11 +126,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # jdk_current
 # ---------------------------------------------------------------------------
-
-@test "jdk_current: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/jdk_current.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "jdk_current: prints JAVA_HOME label" {
     run nu --no-config-file -c "
@@ -302,11 +292,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # mkcd
 # ---------------------------------------------------------------------------
-
-@test "mkcd: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/mkcd.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "mkcd: creates a directory and cds into it" {
     TMPDIR_PATH="$(mktemp -d)"

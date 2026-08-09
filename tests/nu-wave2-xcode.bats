@@ -12,11 +12,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # gskip (renamed from skip to avoid nu builtin collision)
 # ---------------------------------------------------------------------------
 
-@test "gskip: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/gskip.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "gskip: smoke — exits non-zero when no rebase/cherry-pick/am in progress" {
     # All three git commands fail when nothing is in progress; gskip propagates
     # the last non-zero exit. This confirms the logic runs without parse errors.
@@ -32,11 +27,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # pkginfo
 # ---------------------------------------------------------------------------
-
-@test "pkginfo: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/pkginfo.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "pkginfo: smoke — returns info for CLTools package" {
     run nu --no-config-file -c "
@@ -59,11 +49,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # plcat
 # ---------------------------------------------------------------------------
-
-@test "plcat: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/plcat.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "plcat: smoke — converts and displays a plist file with bat" {
     # Build the fixture rather than reaching for an incidental file under
@@ -108,11 +93,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # provisioning_print
 # ---------------------------------------------------------------------------
 
-@test "provisioning_print: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/provisioning_print.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "provisioning_print: error on missing file" {
     run nu --no-config-file -c "
         source '$AUTOLOAD/provisioning_print.nu'
@@ -126,11 +106,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # signing_cert_details
 # ---------------------------------------------------------------------------
 
-@test "signing_cert_details: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/signing_cert_details.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "signing_cert_details: error on empty cert_name" {
     run nu --no-config-file -c "
         source '$AUTOLOAD/signing_cert_details.nu'
@@ -143,11 +118,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # xclist
 # ---------------------------------------------------------------------------
-
-@test "xclist: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/xclist.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "xclist: smoke — lists installed Xcode versions" {
     run nu --no-config-file -c "source '$AUTOLOAD/xclist.nu'; xclist"
@@ -170,11 +140,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # xcss (mutating: calls sudo xcode-select — parse test only)
 # ---------------------------------------------------------------------------
 
-@test "xcss: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/xcss.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "xcss: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/xcss.nu'; help xcss"
     [ "$status" -eq 0 ]
@@ -184,11 +149,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # xc
 # ---------------------------------------------------------------------------
-
-@test "xc: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/xc.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "xc: error when no Xcode project found in empty temp dir" {
     local tmpdir
@@ -281,11 +241,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # derived_data (mutating: mounts RAM disk — parse test only)
 # ---------------------------------------------------------------------------
 
-@test "derived_data: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/derived_data.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "derived_data: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/derived_data.nu'; help derived_data"
     [ "$status" -eq 0 ]
@@ -295,11 +250,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # defaults_set (mutating: changes system prefs — parse test only)
 # ---------------------------------------------------------------------------
-
-@test "defaults_set: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/defaults_set.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "defaults_set: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/defaults_set.nu'; help defaults_set"

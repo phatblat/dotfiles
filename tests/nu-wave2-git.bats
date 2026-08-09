@@ -42,11 +42,6 @@ setup_git_repo() {
 # git_repo_clean
 # ---------------------------------------------------------------------------
 
-@test "git_repo_clean: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/git_repo_clean.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "git_repo_clean: returns true in a clean repo" {
     local tmpdir
     tmpdir="$(setup_git_repo)"
@@ -77,11 +72,6 @@ setup_git_repo() {
 # ---------------------------------------------------------------------------
 # wip
 # ---------------------------------------------------------------------------
-
-@test "wip: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/wip.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "wip: commits dirty changes as WIP" {
     local tmpdir
@@ -122,11 +112,6 @@ setup_git_repo() {
 # unstage
 # ---------------------------------------------------------------------------
 
-@test "unstage: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/unstage.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "unstage: unstages all files when called with no args" {
     local tmpdir
     tmpdir="$(setup_git_repo)"
@@ -166,11 +151,6 @@ setup_git_repo() {
 # cont
 # ---------------------------------------------------------------------------
 
-@test "cont: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/cont.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "cont: smoke — mutating (parse only)" {
     # cont triggers git operations; parse check sufficient
     run nu --no-config-file -c "source '$NU_AUTOLOAD/cont.nu'"
@@ -180,11 +160,6 @@ setup_git_repo() {
 # ---------------------------------------------------------------------------
 # gskip
 # ---------------------------------------------------------------------------
-
-@test "gskip: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/gskip.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "gskip: smoke — mutating (parse only)" {
     # gskip only makes sense mid-rebase/am/cherry-pick; parse check is sufficient
@@ -196,11 +171,6 @@ setup_git_repo() {
 # publish
 # ---------------------------------------------------------------------------
 
-@test "publish: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/publish.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "publish: smoke — mutating (parse only)" {
     # publish pushes to a remote; parse check is sufficient
     run nu --no-config-file -c "source '$NU_AUTOLOAD/publish.nu'"
@@ -211,11 +181,6 @@ setup_git_repo() {
 # new
 # ---------------------------------------------------------------------------
 
-@test "new: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/new.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "new: smoke — reads new commits in dotfiles repo after a pull (parse + help)" {
     run nu --no-config-file -c "source '$NU_AUTOLOAD/new.nu'; help new"
     [ "$status" -eq 0 ]
@@ -225,11 +190,6 @@ setup_git_repo() {
 # ---------------------------------------------------------------------------
 # ra
 # ---------------------------------------------------------------------------
-
-@test "ra: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ra.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "ra: adds a remote with explicit URL (local bare repo)" {
     local tmpdir remotedir
@@ -251,11 +211,6 @@ setup_git_repo() {
 # ---------------------------------------------------------------------------
 # rewrite
 # ---------------------------------------------------------------------------
-
-@test "rewrite: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/rewrite.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "rewrite: smoke — mutating (parse only)" {
     # rewrite modifies git history; parse check is sufficient
@@ -292,11 +247,6 @@ setup_git_repo() {
 # upstreamify
 # ---------------------------------------------------------------------------
 
-@test "upstreamify: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/upstreamify.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "upstreamify: renames origin to upstream" {
     local tmpdir remotedir
     tmpdir="$(setup_git_repo)"
@@ -320,11 +270,6 @@ setup_git_repo() {
 # ---------------------------------------------------------------------------
 # user.name
 # ---------------------------------------------------------------------------
-
-@test "user.name: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/user.name.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "user.name: returns the configured git user name" {
     # Hermetic repo: user.name is machine-local config, absent in CI
