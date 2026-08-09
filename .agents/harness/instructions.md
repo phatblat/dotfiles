@@ -27,6 +27,11 @@ deny decision.
   adjacent code unless it is required for the requested change.
 - Goal-driven execution. Define what done looks like before implementation. Use
   tests or explicit checks as success criteria, not vibes.
+- Explicit configuration. When configuring a CLI tool, state every setting
+  rather than leaning on its defaults. An omitted setting is an invisible
+  dependency on behavior that can differ by version, platform, or machine, and
+  it fails silently when the default changes. Prefer configuration that breaks
+  loudly over configuration that is merely absent.
 
 ## Token Efficiency
 
