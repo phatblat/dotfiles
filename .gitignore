@@ -377,6 +377,7 @@
 .nuget/packages/
 .nvm/
 .nyantray
+.oc/
 .oh-my-zsh/*
 .oh-my-zsh/themes/*
 !.oh-my-zsh/themes/*
