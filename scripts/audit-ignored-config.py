@@ -218,6 +218,16 @@ SECRET_CONTENT = (
             r"\b\s*[:=]\s*[\"']?[A-Za-z0-9_\-./+]{16,}"
         ),
     ),
+    # Not a credential, but the same never-track class: a trust grant records a
+    # directory vetted on one machine. Copying it auto-approves that path on a
+    # fresh host. Caught by name as trust.json; this catches it as a key.
+    (
+        "trust grant",
+        re.compile(
+            r"(?i)\"(trusted[_-]?(workspaces|folders|paths|dirs|roots)"
+            r"|workspace[_-]?trust)\"\s*:\s*\[\s*[^\]\s]"
+        ),
+    ),
 )
 
 CONTENT_SCAN_LIMIT = 1 << 20  # 1 MiB
