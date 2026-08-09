@@ -48,7 +48,7 @@ EOF
   [ "$output" = $'claude-opus-5\nclaude-sonnet-5' ]
 }
 
-@test "upgrade-mise-tools-commit attributes generated commits" {
+@test "upgrade-mise-tools-commit commits the version bump without hardcoded attribution" {
   local bindir="$BATS_TEST_TMPDIR/bin"
   local home="$BATS_TEST_TMPDIR/home"
   local log="$BATS_TEST_TMPDIR/commands.log"
@@ -76,7 +76,8 @@ EOF
     just --justfile "$BATS_TEST_DIRNAME/../justfile" upgrade-mise-tools-commit
 
   [ "$status" -eq 0 ]
-  grep -Fq "git commit --only $home/.config/mise/config.toml -m chore: bump npm:example 1.0.0 → 1.1.0 -m Co-Authored-By: Codex <noreply@openai.com>" "$log"
+  grep -Fq "git commit --only $home/.config/mise/config.toml -m chore: bump npm:example 1.0.0 → 1.1.0" "$log"
+  ! grep -Fq "Co-Authored-By" "$log"
 }
 
 

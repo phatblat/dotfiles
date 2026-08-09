@@ -371,8 +371,7 @@ upgrade-mise-tools-commit:
         # anything else staged, so concurrent work is never swept into a
         # version-bump commit.
         git commit --only ~/.config/mise/config.toml \
-            -m "chore: bump $tool $current → $bump" \
-            -m "Co-Authored-By: Codex <noreply@openai.com>"
+            -m "chore: bump $tool $current → $bump"
     done
 
 # Updates homebrew and lists outdated formulae/casks
