@@ -9,7 +9,7 @@
 "aqua:cirruslabs/tart" = "2.35.0"
 "aqua:dalance/procs" = "0.14.12"
 "aqua:dlvhdr/gh-dash" = "4.25.2"
-"aqua:openai/codex" = "0.146.1"
+"aqua:openai/codex" = "0.147.0"
 "aqua:shenwei356/rush" = "0.9.0"
 "aqua:tcnksm/ghr" = "0.18.3"
 "cargo:cargo-about" = "0.9.1"
