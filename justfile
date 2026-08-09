@@ -472,6 +472,10 @@ lint-fish:
 lint-nushell:
     @echo "Validating Nushell scripts..."
     @nu --commands 'source ~/.config/nushell/config.nu'
+    # config.nu does not source autoload/, and nu -c never loads it, so the
+    # 267 autoload files had no syntax check at all. nu-check covers them all
+    # in one process (~0.3s); a broken autoload file otherwise exits 0.
+    @nu --commands 'let bad = (ls ~/.config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'
 
 # Lints bin scripts with shellcheck (excludes vendor scripts)
 [group('checks')]
