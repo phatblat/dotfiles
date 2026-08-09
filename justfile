@@ -661,13 +661,17 @@ git-hooks:
     git config --local core.hooksPath .config/git/hooks
     @echo "Git hooks installed from .config/git/hooks/"
 
-# Installs git clean filter that masks Codex config.toml churn (see .gitattributes)
+# Installs git clean filters that strip churn/secrets before staging (see .gitattributes)
 [group('git')]
 git-filters:
     git config --local filter.codex-config.clean ~/scripts/mask-codex-state.sh
     git config --local filter.codex-config.smudge cat
     git config --local filter.codex-config.required true
+    git config --local filter.oc-config.clean ~/scripts/mask-oc-config.sh
+    git config --local filter.oc-config.smudge cat
+    git config --local filter.oc-config.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
+    @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
 
 #
 # claude group recipes
