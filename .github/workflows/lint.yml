@@ -45,13 +45,13 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Install mise
+      # Let the action run the install: it only caches tools it installed
+      # itself, so `install: false` plus a separate `mise install` step meant
+      # the cache was never written. install_args keeps the tool set scoped.
+      - name: Install mise and tools
         uses: jdx/mise-action@7e36c90d9ab29c415a2384db3006f3ec8a8cc654 # v4.2.4
         with:
-          install: false
-
-      - name: Install mise-managed tools
-        run: mise install just shellcheck ruff bats "github:nushell/nushell"
+          install_args: "just shellcheck ruff bats github:nushell/nushell"
 
       - name: Install fish and zsh
         run: |
@@ -84,13 +84,10 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Install mise
+      - name: Install mise and tools
         uses: jdx/mise-action@7e36c90d9ab29c415a2384db3006f3ec8a8cc654 # v4.2.4
         with:
-          install: false
-
-      - name: Install mise-managed tools
-        run: mise install just shellcheck ruff bats bat starship "aqua:shenwei356/rush" "github:nushell/nushell"
+          install_args: "just shellcheck ruff bats bat starship aqua:shenwei356/rush github:nushell/nushell"
 
       - name: Install fish and test-exercised tools
         run: brew install fish diff-so-fancy git-subrepo
