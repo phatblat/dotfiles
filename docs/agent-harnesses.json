@@ -985,9 +985,27 @@
       },
       {
         "enabled": true,
+        "id": "clangd-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
+        "id": "code-review@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
         "id": "computer-use@openai-bundled",
         "marketplace": "openai-bundled",
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
+      },
+      {
+        "enabled": true,
+        "id": "csharp-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
       },
       {
         "enabled": true,
@@ -996,8 +1014,26 @@
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
       },
       {
+        "enabled": true,
+        "id": "gopls-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
         "enabled": false,
         "id": "hookify@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
+        "id": "jdtls-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
+        "id": "kotlin-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
       },
@@ -1009,9 +1045,21 @@
       },
       {
         "enabled": true,
+        "id": "lua-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
         "id": "pdf@openai-primary-runtime",
         "marketplace": "openai-primary-runtime",
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+      },
+      {
+        "enabled": true,
+        "id": "pr-review-toolkit@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
       },
       {
         "enabled": true,
@@ -1030,6 +1078,18 @@
         "id": "pup@datadog-pup",
         "marketplace": "datadog-pup",
         "marketplace_source": "https://github.com/DataDog/pup.git"
+      },
+      {
+        "enabled": true,
+        "id": "pyright-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
+        "id": "rust-analyzer-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
       },
       {
         "enabled": false,
@@ -1051,9 +1111,21 @@
       },
       {
         "enabled": true,
+        "id": "swift-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
         "id": "template-creator@openai-primary-runtime",
         "marketplace": "openai-primary-runtime",
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+      },
+      {
+        "enabled": true,
+        "id": "typescript-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
       },
       {
         "enabled": true,

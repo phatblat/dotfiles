@@ -276,19 +276,43 @@ source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/op
 [plugins."browser@openai-bundled"]
 enabled = true
 
+[plugins."clangd-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."code-review@claude-plugins-official"]
+enabled = true
+
 [plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."csharp-lsp@claude-plugins-official"]
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
 enabled = true
 
+[plugins."gopls-lsp@claude-plugins-official"]
+enabled = true
+
 [plugins."hookify@claude-plugins-official"]
 enabled = false
+
+[plugins."jdtls-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."kotlin-lsp@claude-plugins-official"]
+enabled = true
 
 [plugins."linear-cli@linear-cli"]
 enabled = true
 
+[plugins."lua-lsp@claude-plugins-official"]
+enabled = true
+
 [plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."pr-review-toolkit@claude-plugins-official"]
 enabled = true
 
 [plugins."pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal"]
@@ -300,6 +324,12 @@ enabled = true
 [plugins."pup@datadog-pup"]
 enabled = true
 
+[plugins."pyright-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."rust-analyzer-lsp@claude-plugins-official"]
+enabled = true
+
 [plugins."security-guidance@claude-plugins-official"]
 enabled = false
 
@@ -309,7 +339,13 @@ enabled = true
 [plugins."spreadsheets@openai-primary-runtime"]
 enabled = true
 
+[plugins."swift-lsp@claude-plugins-official"]
+enabled = true
+
 [plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."typescript-lsp@claude-plugins-official"]
 enabled = true
 
 [plugins."visualize@openai-bundled"]
