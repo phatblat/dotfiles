@@ -61,6 +61,15 @@ VENDOR_MARKERS = (
     "pyproject.toml",
 )
 
+# Native harness skill directories are generated from `.agents/skills/<name>`.
+# One with no shared counterpart was installed by the harness itself or by a
+# marketplace, so it reinstalls on a new machine and tracking it forks upstream.
+NATIVE_SKILL_ROOTS = (
+    ".claude/skills",
+    ".codex/skills",
+    ".config/opencode/skills",
+)
+
 # Never propose tracking these. Credential material or machine identity.
 SECRET_NAMES = frozenset(
     {
@@ -268,6 +277,16 @@ def is_vendored(repo, relpath, memo):
     return False
 
 
+def is_unshared_skill(repo, relpath):
+    """True if relpath is a native skill with no `.agents/skills` counterpart."""
+    for root in NATIVE_SKILL_ROOTS:
+        prefix = f"{root}/"
+        if relpath.startswith(prefix):
+            name = relpath[len(prefix) :].split("/", 1)[0]
+            return not (repo / ".agents" / "skills" / name).is_dir()
+    return False
+
+
 def git_lines(repo, args):
     """Run a git command in repo and return its NUL-separated output as a list."""
     result = subprocess.run(
@@ -289,7 +308,9 @@ def scan_ignored(repo, roots):
         kind = classify(entry)
         if kind not in ("config", "state"):
             continue
-        if kind == "config" and is_vendored(repo, entry, vendored):
+        if kind == "config" and (
+            is_vendored(repo, entry, vendored) or is_unshared_skill(repo, entry)
+        ):
             kind = "state"
         record = {"path": entry, "kind": kind, "warnings": []}
         if kind == "config":
