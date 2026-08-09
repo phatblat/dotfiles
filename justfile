@@ -367,8 +367,12 @@ upgrade-mise-tools-commit:
         bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump --yes "$tool"
-        git add ~/.config/mise/config.toml
-        git commit -m "chore: bump $tool $current → $bump" -m "Co-Authored-By: Codex <noreply@openai.com>"
+        # --only commits this path from the working tree and disregards
+        # anything else staged, so concurrent work is never swept into a
+        # version-bump commit.
+        git commit --only ~/.config/mise/config.toml \
+            -m "chore: bump $tool $current → $bump" \
+            -m "Co-Authored-By: Codex <noreply@openai.com>"
     done
 
 # Updates homebrew and lists outdated formulae/casks

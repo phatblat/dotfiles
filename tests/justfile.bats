@@ -76,7 +76,7 @@ EOF
     just --justfile "$BATS_TEST_DIRNAME/../justfile" upgrade-mise-tools-commit
 
   [ "$status" -eq 0 ]
-  grep -Fq "git commit -m chore: bump npm:example 1.0.0 → 1.1.0 -m Co-Authored-By: Codex <noreply@openai.com>" "$log"
+  grep -Fq "git commit --only $home/.config/mise/config.toml -m chore: bump npm:example 1.0.0 → 1.1.0 -m Co-Authored-By: Codex <noreply@openai.com>" "$log"
 }
 
 
@@ -179,4 +179,51 @@ EOF
 
   [ "$status" -eq 0 ]
   [ ! -e "$log" ]
+}
+
+@test "upgrade-mise-tools-commit leaves unrelated staged work uncommitted" {
+  local bindir="$BATS_TEST_TMPDIR/bin"
+  local repo="$BATS_TEST_TMPDIR/repo"
+
+  mkdir -p "$bindir" "$repo/.config/mise" "$BATS_TEST_TMPDIR/nohooks"
+
+  # A real git in a throwaway repo: only `mise` is faked, so this exercises
+  # actual commit semantics rather than a logged command string.
+  git -C "$repo" init -q
+  git -C "$repo" config user.email test@example.test
+  git -C "$repo" config user.name Test
+  git -C "$repo" config commit.gpgsign false
+  git -C "$repo" config core.hooksPath "$BATS_TEST_TMPDIR/nohooks"
+  printf 'version = "1.0.0"\n' >"$repo/.config/mise/config.toml"
+  printf 'original\n' >"$repo/unrelated.txt"
+  git -C "$repo" add .
+  git -C "$repo" commit -qm seed
+
+  cat >"$bindir/mise" <<'EOF'
+#!/usr/bin/env bash
+if [[ "$*" == "outdated --bump --json" ]]; then
+  printf '%s\n' '{"npm:example":{"current":"1.0.0","bump":"1.1.0"}}'
+  exit 0
+fi
+printf 'version = "1.1.0"\n' >"$HOME/.config/mise/config.toml"
+EOF
+  chmod +x "$bindir/mise"
+
+  # Unrelated work staged before the recipe runs -- the race that once swept
+  # feature files into a version-bump commit.
+  printf 'staged edit\n' >"$repo/unrelated.txt"
+  git -C "$repo" add unrelated.txt
+
+  # `just` runs recipes from the justfile's own directory, so the throwaway
+  # repo has to be selected explicitly or the recipe commits against ~.
+  run env HOME="$repo" PATH="$bindir:$PATH" \
+    just --working-directory "$repo" \
+    --justfile "$BATS_TEST_DIRNAME/../justfile" upgrade-mise-tools-commit
+
+  [ "$status" -eq 0 ]
+  # The bump commit carries the mise config and nothing else.
+  [ "$(git -C "$repo" show --pretty='' --name-only HEAD)" = ".config/mise/config.toml" ]
+  # The unrelated edit is still staged, and its committed content is untouched.
+  git -C "$repo" diff --cached --name-only | grep -Fqx unrelated.txt
+  [ "$(git -C "$repo" show HEAD:unrelated.txt)" = original ]
 }
