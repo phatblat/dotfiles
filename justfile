@@ -535,7 +535,8 @@ test mode="parallel":
     parallel)
         # Tests within a file share fixtures (generated docs, SIGINT timing),
         # so parallelize across files only -- within-file parallelism races.
-        jobs=$(nproc 2>/dev/null || sysctl -n hw.ncpu)
+        # Fall back to a literal count: an empty --jobs makes bats run 0 tests.
+        jobs=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
         bats --print-output-on-failure --jobs "$jobs" --no-parallelize-within-files --parallel-binary-name rush ~/tests/
         ;;
     abort)
