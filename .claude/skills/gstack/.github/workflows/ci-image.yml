@@ -25,7 +25,7 @@ jobs:
       # Copy lockfile + package.json into Docker build context
       - run: cp package.json bun.lock .github/docker/
 
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
