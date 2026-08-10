@@ -366,6 +366,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/_GETDITTO/build-infra"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/_GETDITTO/cloud-infra"]
+trust_level = "trusted"
+
 [projects."/Users/phatblat/dev/_GETDITTO/cloud-infra-apps"]
 trust_level = "trusted"
 
