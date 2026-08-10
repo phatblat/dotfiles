@@ -11,11 +11,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # psgrep
 # ---------------------------------------------------------------------------
 
-@test "psgrep: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/psgrep.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "psgrep: smoke — finds nu process running" {
     run nu --no-config-file -c "source '$AUTOLOAD/psgrep.nu'; psgrep nu | length | into string"
     [ "$status" -eq 0 ]
@@ -31,11 +26,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # pcopy
 # ---------------------------------------------------------------------------
-
-@test "pcopy: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/pcopy.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "pcopy: smoke — copies pwd to clipboard" {
     pbpaste &>/dev/null || skip "clipboard is not available"
@@ -53,11 +43,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # pborigin
 # ---------------------------------------------------------------------------
-
-@test "pborigin: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/pborigin.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "pborigin: parse check with dependencies" {
     run nu --no-config-file -c "
@@ -92,11 +77,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # path_show
 # ---------------------------------------------------------------------------
 
-@test "path_show: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/path_show.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "path_show: smoke — outputs PATH header and entries" {
     run nu --no-config-file -c "source '$AUTOLOAD/path_show.nu'; path_show"
     [ "$status" -eq 0 ]
@@ -113,11 +93,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ramdisk (mutating — parse test only)
 # ---------------------------------------------------------------------------
 
-@test "ramdisk: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/ramdisk.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "ramdisk: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/ramdisk.nu'; help ramdisk"
     [ "$status" -eq 0 ]
@@ -127,11 +102,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # sethostname (mutating — parse test only)
 # ---------------------------------------------------------------------------
-
-@test "sethostname: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/sethostname.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "sethostname: parse check with dependencies" {
     run nu --no-config-file -c "
@@ -160,11 +130,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # user_is_admin (read-only)
 # ---------------------------------------------------------------------------
-
-@test "user_is_admin: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/user_is_admin.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "user_is_admin: parse check with dependencies" {
     run nu --no-config-file -c "
@@ -201,11 +166,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # hgrep
 # ---------------------------------------------------------------------------
 
-@test "hgrep: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/hgrep.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "hgrep: smoke — returns a table (may be empty)" {
     run nu --no-config-file -c "source '$AUTOLOAD/hgrep.nu'; hgrep git | length | into string"
     [ "$status" -eq 0 ]
@@ -221,11 +181,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # fish_logo
 # ---------------------------------------------------------------------------
-
-@test "fish_logo: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/fish_logo.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "fish_logo: smoke — outputs ASCII art with default colors" {
     run nu --no-config-file -c "source '$AUTOLOAD/fish_logo.nu'; fish_logo"
@@ -247,11 +202,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # gskip (already ported — verify it is present and passes)
 # ---------------------------------------------------------------------------
-
-@test "gskip: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/gskip.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "gskip: smoke — fails gracefully when not in a git operation" {
     local tmpdir

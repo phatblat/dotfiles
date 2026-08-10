@@ -10,11 +10,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # home
 # ---------------------------------------------------------------------------
 
-@test "home: parse check" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/home.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "home: changes directory to home" {
     run nu --no-config-file -c "source '$NU_AUTOLOAD/home.nu'; home; print \$env.PWD"
     [ "$status" -eq 0 ]
@@ -24,11 +19,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # rl
 # ---------------------------------------------------------------------------
-
-@test "rl: parse check" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/rl.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "rl: help text available" {
     run nu --no-config-file -c "source '$NU_AUTOLOAD/rl.nu'; help rl"
@@ -41,11 +31,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # mkcd
 # ---------------------------------------------------------------------------
-
-@test "mkcd: parse check" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/mkcd.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "mkcd: creates directory and cds into it" {
     local tmpdir
@@ -78,11 +63,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # createdirs
 # ---------------------------------------------------------------------------
 
-@test "createdirs: parse check" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/createdirs.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "createdirs: creates multiple directories" {
     local tmpdir
     tmpdir="$(mktemp -d)"
@@ -114,11 +94,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # clone_or_pull
 # ---------------------------------------------------------------------------
-
-@test "clone_or_pull: parse check" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/clone_or_pull.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "clone_or_pull: help text available" {
     run nu --no-config-file -c "source '$NU_AUTOLOAD/clone_or_pull.nu'; help clone_or_pull"

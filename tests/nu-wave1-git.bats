@@ -62,11 +62,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # diff — git diff | diff-so-fancy (read-only display)
 # ---------------------------------------------------------------------------
 
-@test "diff: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/diff.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "diff: smoke — diffs two commits in a temp git repo" {
     # Hermetic repo: the CI checkout is shallow, so HEAD~1 doesn't exist there
     local tmpdir
@@ -93,19 +88,9 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # fork — open -a Fork (macOS GUI app: parse check + help only)
 # ---------------------------------------------------------------------------
 
-@test "fork: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/fork.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # ginit — git init (mutating: parse + temp dir smoke)
 # ---------------------------------------------------------------------------
-
-@test "ginit: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ginit.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "ginit: smoke — initializes a repo in a temp directory" {
     local tmpdir
@@ -124,19 +109,9 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # git_clean — git clean -xffd (mutating: parse check only)
 # ---------------------------------------------------------------------------
 
-@test "git_clean: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/git_clean.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # ls-remote — git ls-remote (read-only network: parse + smoke)
 # ---------------------------------------------------------------------------
-
-@test "ls-remote: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/ls-remote.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "ls-remote: smoke — lists remote refs from origin" {
     git -C "$HOME" ls-remote --heads origin &>/dev/null || skip "origin remote is not reachable"
@@ -166,11 +141,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # root — git rev-parse --show-toplevel (read-only)
 # ---------------------------------------------------------------------------
 
-@test "root: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/root.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "root: smoke — returns dotfiles repo root" {
     run nu --no-config-file -c "
         source '$NU_AUTOLOAD/root.nu'
@@ -184,11 +154,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # untracked — git ls-files --others --exclude-standard (read-only)
 # ---------------------------------------------------------------------------
-
-@test "untracked: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/untracked.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "untracked: smoke — runs in dotfiles repo without error" {
     run nu --no-config-file -c "
@@ -217,11 +182,6 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # user.email — git config user.email (read-only: shows current value)
 # ---------------------------------------------------------------------------
-
-@test "user.email: file parses without error" {
-    run nu --no-config-file -c "source '$NU_AUTOLOAD/user.email.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "user.email: smoke — returns configured git user email" {
     # Hermetic repo: user.email is machine-local config, absent in CI

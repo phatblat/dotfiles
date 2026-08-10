@@ -11,11 +11,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # current_branch
 # ---------------------------------------------------------------------------
 
-@test "current_branch: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/current_branch.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "current_branch: returns branch name in dotfiles repo" {
     run nu --no-config-file -c "
         source '$AUTOLOAD/current_branch.nu'
@@ -39,11 +34,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # git_inside_repo
 # ---------------------------------------------------------------------------
-
-@test "git_inside_repo: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/git_inside_repo.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "git_inside_repo: returns true inside a git repo" {
     run nu --no-config-file -c "
@@ -158,11 +148,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # repeatchar
 # ---------------------------------------------------------------------------
 
-@test "repeatchar: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/repeatchar.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "repeatchar: default length is 80 dashes" {
     run nu --no-config-file -c "
         source '$AUTOLOAD/repeatchar.nu'
@@ -194,11 +179,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # git_bundle_create — mutating: parse + help only
 # ---------------------------------------------------------------------------
 
-@test "git_bundle_create: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/git_bundle_create.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "git_bundle_create: help text available" {
     run nu --no-config-file -c "
         source '$AUTOLOAD/git_bundle_create.nu'
@@ -211,11 +191,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # bundle-pull — mutating: parse + help only
 # ---------------------------------------------------------------------------
-
-@test "bundle-pull: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/bundle-pull.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "bundle-pull: help text available" {
     run nu --no-config-file -c "

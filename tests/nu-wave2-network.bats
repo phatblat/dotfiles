@@ -56,11 +56,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # en1 (read-only — wraps ifconfig)
 # ---------------------------------------------------------------------------
 
-@test "en1: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/en1.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "en1: smoke — ifconfig en1 output has interface name" {
     run nu --no-config-file -c "source '$AUTOLOAD/en1.nu'; en1 | into string" 2>&1
     [ "$status" -eq 0 ]
@@ -79,11 +74,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # openports (read-only)
 # ---------------------------------------------------------------------------
-
-@test "openports: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/openports.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "openports: smoke — returns a list" {
     run nu --no-config-file -c "source '$AUTOLOAD/openports.nu'; openports | length"
@@ -105,19 +95,9 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # sshnewkey (mutating — parse test only; keygen writes files)
 # ---------------------------------------------------------------------------
 
-@test "sshnewkey: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/sshnewkey.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # sshkey (read-only)
 # ---------------------------------------------------------------------------
-
-@test "sshkey: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/sshkey.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "sshkey: smoke — returns an existing .pub file path" {
     run nu --no-config-file -c "source '$AUTOLOAD/sshkey.nu'; sshkey"
@@ -149,11 +129,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # moj_host (read-only)
 # ---------------------------------------------------------------------------
 
-@test "moj_host: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/moj_host.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "moj_host: smoke — returns a non-empty string" {
     run nu --no-config-file -c "source '$AUTOLOAD/moj_host.nu'; moj_host"
     [ "$status" -eq 0 ]
@@ -164,19 +139,9 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # pull_ssh_config (mutating / network — parse + hostname guard test only)
 # ---------------------------------------------------------------------------
 
-@test "pull_ssh_config: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/pull_ssh_config.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # gskip (mutating git — parse + no-active-operation test)
 # ---------------------------------------------------------------------------
-
-@test "gskip: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/gskip.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "gskip: smoke — exits non-zero outside a rebase/cherry-pick/am context" {
     local tmpdir

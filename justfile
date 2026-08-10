@@ -39,6 +39,10 @@ shfmt_exclude_functions := 'edit'
 
 shellharden_exclude_functions := 'version_build version_market xccheck'
 
+# GitHub CLI extensions manifest file (one OWNER/REPO per line, read by install-gh-extensions)
+
+gh_extensions_manifest := '.config/gh/extensions.txt'
+
 #
 # aliases
 #
@@ -225,6 +229,32 @@ install-mise:
 install-brew:
     brew bundle install
 
+# Installs GitHub CLI extensions from manifest file
+[group('configuration')]
+[script]
+install-gh-extensions:
+    set -euo pipefail
+    manifest="{{ gh_extensions_manifest }}"
+    # A missing manifest is a no-op, not a failure
+    if [[ ! -f "$manifest" ]]; then
+        exit 0
+    fi
+    # Installed repos: `gh extension list` is tab-separated with no header row
+    installed=$(gh extension list 2>/dev/null | awk -F'\t' '{print $2}' || echo "")
+    # Read manifest and install missing extensions
+    while IFS= read -r line; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^# ]] && continue
+        repo="$line"
+        # Check if already installed
+        if grep -qxF "$repo" <<<"$installed"; then
+            echo "✓ $repo already installed"
+        else
+            echo "Installing $repo..."
+            gh extension install "$repo"
+        fi
+    done < "$manifest"
+
 # Installs LaunchDaemons into /Library/LaunchDaemons (prompts for sudo)
 [group('configuration')]
 install-launchdaemons:
@@ -277,7 +307,7 @@ _check-github-token:
 
 # Installs tools using mise
 [group('configuration')]
-deps: _check-github-token install-brew git-filters
+deps: _check-github-token install-brew install-gh-extensions git-filters
     mise install
 
 # Update tools within current versions
@@ -298,8 +328,7 @@ update-models:
     body=$(git diff -- .claude/models.lock | grep -E '^[+-]  claude-' | sed 's/^/  /' || true)
     git add .claude/models.lock
     git commit -m "chore(claude): Refresh model catalog lockfile" \
-        -m "${body:-Initial model catalog lockfile.}" \
-        -m "Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>"
+        -m "${body:-Initial model catalog lockfile.}"
 
 # Update Rust toolchains
 [group('configuration')]
@@ -337,8 +366,11 @@ upgrade-mise-tools-commit:
         bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump --yes "$tool"
-        git add ~/.config/mise/config.toml
-        git commit -m "chore: bump $tool $current → $bump" -m "Co-Authored-By: Codex <noreply@openai.com>"
+        # --only commits this path from the working tree and disregards
+        # anything else staged, so concurrent work is never swept into a
+        # version-bump commit.
+        git commit --only ~/.config/mise/config.toml \
+            -m "chore: bump $tool $current → $bump"
     done
 
 # Updates homebrew and lists outdated formulae/casks
@@ -472,6 +504,10 @@ lint-fish:
 lint-nushell:
     @echo "Validating Nushell scripts..."
     @nu --commands 'source ~/.config/nushell/config.nu'
+    # config.nu does not source autoload/, and nu -c never loads it, so the
+    # 267 autoload files had no syntax check at all. nu-check covers them all
+    # in one process (~0.3s); a broken autoload file otherwise exits 0.
+    @nu --commands 'let bad = (ls ~/.config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'
 
 # Lints bin scripts with shellcheck (excludes vendor scripts)
 [group('checks')]
@@ -524,14 +560,31 @@ harness-audit:
 package-audit:
     python3 ~/scripts/audit-package-managers.py
 
-# Runs bats tests
+# Runs bats tests in parallel; `just test abort` stops at the first failure
 [group('tests')]
 [script]
-test:
+test mode="parallel":
     echo "Running tests..."
     eval "$(mise activate bash)"
     [[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="$PATH:/nix/var/nix/profiles/default/bin:${HOME}/.nix-profile/bin" || true
-    bats ~/tests/
+    case "{{ mode }}" in
+    parallel)
+        # Tests within a file share fixtures (generated docs, SIGINT timing),
+        # so parallelize across files only -- within-file parallelism races.
+        # Fall back to a literal count: an empty --jobs makes bats run 0 tests.
+        jobs=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
+        bats --print-output-on-failure --jobs "$jobs" --no-parallelize-within-files --parallel-binary-name rush ~/tests/
+        ;;
+    abort)
+        # --abort makes bats pass --halt to the parallel runner, which rush
+        # does not support, so fail-fast has to run serially.
+        bats --print-output-on-failure --abort ~/tests/
+        ;;
+    *)
+        echo "Unknown mode '{{ mode }}' (expected: parallel, abort)" >&2
+        exit 2
+        ;;
+    esac
 
 # Sorts .gitignore with negation-aware ordering
 [group('configuration')]
@@ -608,13 +661,17 @@ git-hooks:
     git config --local core.hooksPath .config/git/hooks
     @echo "Git hooks installed from .config/git/hooks/"
 
-# Installs git clean filter that masks Codex config.toml churn (see .gitattributes)
+# Installs git clean filters that strip churn/secrets before staging (see .gitattributes)
 [group('git')]
 git-filters:
     git config --local filter.codex-config.clean ~/scripts/mask-codex-state.sh
     git config --local filter.codex-config.smudge cat
     git config --local filter.codex-config.required true
+    git config --local filter.oc-config.clean ~/scripts/mask-oc-config.sh
+    git config --local filter.oc-config.smudge cat
+    git config --local filter.oc-config.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
+    @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
 
 #
 # claude group recipes

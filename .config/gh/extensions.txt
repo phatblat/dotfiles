@@ -1,0 +1,4 @@
+# gh CLI extensions, one OWNER/REPO per line.
+# Installed automatically by `just install-gh-extensions` (part of `just deps`).
+# Sync: after running `gh extension install OWNER/REPO`, add the repo here too.
+github/gh-aw

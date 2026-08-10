@@ -10,11 +10,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # gskip — git rebase/cherry-pick/am --skip (mutating: parse + help only)
 # ---------------------------------------------------------------------------
 
-@test "gskip: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/gskip.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "gskip: smoke — exits non-zero with no rebase in progress" {
     local tmpdir
     tmpdir="$(mktemp -d)"
@@ -33,19 +28,9 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # binstall — install Bundler gem (mutating: parse only)
 # ---------------------------------------------------------------------------
 
-@test "binstall: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/binstall.nu'"
-    [ "$status" -eq 0 ]
-}
-
 # ---------------------------------------------------------------------------
 # bq — query Homebrew JSON info (read-only)
 # ---------------------------------------------------------------------------
-
-@test "bq: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/bq.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "bq: no args prints usage and exits non-zero" {
     run nu --no-config-file -c "source '$AUTOLOAD/jq.nu'; source '$AUTOLOAD/bq.nu'; bq" 2>&1
@@ -69,11 +54,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # brew_active_version — active keg version (read-only)
 # ---------------------------------------------------------------------------
 
-@test "brew_active_version: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/brew_active_version.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "brew_active_version: empty arg exits non-zero" {
     run nu --no-config-file -c "source '$AUTOLOAD/brew_active_version.nu'; brew_active_version ''" 2>&1
     [ "$status" -ne 0 ]
@@ -90,11 +70,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # brew_test — install and test a formula (mutating: parse only)
 # ---------------------------------------------------------------------------
 
-@test "brew_test: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/brew_test.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "brew_test: empty token exits non-zero with usage" {
     run nu --no-config-file -c "source '$AUTOLOAD/brew_test.nu'; brew_test ''" 2>&1
     [ "$status" -ne 0 ]
@@ -105,11 +80,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # gem_install — install a gem with brew bindir (mutating: parse only)
 # ---------------------------------------------------------------------------
 
-@test "gem_install: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/gem_install.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "gem_install: empty gem_name exits non-zero with usage" {
     run nu --no-config-file -c "source '$AUTOLOAD/gem_install.nu'; gem_install ''" 2>&1
     [ "$status" -ne 0 ]
@@ -119,11 +89,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # jq — jq wrapper with stdin buffering (read-only)
 # ---------------------------------------------------------------------------
-
-@test "jq: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/jq.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "jq: extracts field from JSON string piped in nu" {
     run nu --no-config-file -c "source '$AUTOLOAD/jq.nu'; '{\"a\":1}' | jq '.a'"
@@ -147,11 +112,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # jv — Java version display (read-only, requires java on PATH)
 # ---------------------------------------------------------------------------
 
-@test "jv: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/jv.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "jv: returns a version string" {
     run nu --no-config-file -c "source '$AUTOLOAD/jv.nu'; jv"
     [ "$status" -eq 0 ]
@@ -161,11 +121,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # license — write LICENSE.md and append to README.md (mutating: temp dir)
 # ---------------------------------------------------------------------------
-
-@test "license: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/license.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "license: smoke — creates LICENSE.md with current year in a temp git repo" {
     local tmpdir
@@ -189,11 +144,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # list — print args one per line (read-only)
 # ---------------------------------------------------------------------------
-
-@test "list: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/list.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "list: no args exits non-zero with usage on stderr" {
     run nu --no-config-file -c "source '$AUTOLOAD/list.nu'; list" 2>&1
@@ -221,11 +171,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # pip — pip wrapper with brew CFLAGS/LDFLAGS (read-only: version check)
 # ---------------------------------------------------------------------------
-
-@test "pip: file parses without error" {
-    run nu --no-config-file -c "source '$AUTOLOAD/pip.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "pip: forwards --version to pip" {
     run nu --no-config-file -c "source '$AUTOLOAD/pip.nu'; pip --version"

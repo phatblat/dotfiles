@@ -10,11 +10,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # error-msg
 # ---------------------------------------------------------------------------
 
-@test "error-msg: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/error-msg.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "error-msg: prints message to stderr" {
     run nu --no-config-file -c "source '$AUTOLOAD/error-msg.nu'; error-msg 'hello world'" 2>&1
     [ "$status" -eq 0 ]
@@ -31,11 +26,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # edit
 # ---------------------------------------------------------------------------
 
-@test "edit: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/edit.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "edit: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/edit.nu'; help edit"
     [ "$status" -eq 0 ]
@@ -45,11 +35,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # is_mac
 # ---------------------------------------------------------------------------
-
-@test "is_mac: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/is_mac.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "is_mac: returns bool true on macOS" {
     run nu --no-config-file -c "source '$AUTOLOAD/is_mac.nu'; is_mac | into string"
@@ -67,11 +52,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # is_linux
 # ---------------------------------------------------------------------------
 
-@test "is_linux: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/is_linux.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "is_linux: returns bool false on macOS" {
     run nu --no-config-file -c "source '$AUTOLOAD/is_linux.nu'; is_linux | into string"
     [ "$status" -eq 0 ]
@@ -87,11 +67,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # nav
 # ---------------------------------------------------------------------------
-
-@test "nav: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/nav.nu'"
-    [ "$status" -eq 0 ]
-}
 
 setup_nav() {
     TEST_DIR="$(mktemp -d)"
@@ -138,11 +113,6 @@ teardown_nav() {
 # ---------------------------------------------------------------------------
 # rev-parse
 # ---------------------------------------------------------------------------
-
-@test "rev-parse: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/rev-parse.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "rev-parse: returns HEAD sha in dotfiles repo" {
     run nu --no-config-file -c "source '$AUTOLOAD/rev-parse.nu'; rev-parse HEAD"

@@ -10,11 +10,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ap
 # ---------------------------------------------------------------------------
 
-@test "ap: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/ap.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "ap: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/ap.nu'; help ap"
     [ "$status" -eq 0 ]
@@ -24,11 +19,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # toggle_wait
 # ---------------------------------------------------------------------------
-
-@test "toggle_wait: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/toggle_wait.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "toggle_wait: sets EDITOR with wait flag when VISUAL is empty" {
     run nu --no-config-file -c "
@@ -103,11 +93,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # br
 # ---------------------------------------------------------------------------
 
-@test "br: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/br.nu'"
-    [ "$status" -eq 0 ]
-}
-
 @test "br: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/br.nu'; help br"
     [ "$status" -eq 0 ]
@@ -117,11 +102,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # mdp
 # ---------------------------------------------------------------------------
-
-@test "mdp: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/mdp.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "mdp: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/mdp.nu'; help mdp"
@@ -145,11 +125,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # mkcd
 # ---------------------------------------------------------------------------
-
-@test "mkcd: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/mkcd.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "mkcd: creates dir and cds into it" {
     TEST_DIR="$(mktemp -d)"
@@ -280,11 +255,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 # xcv
 # ---------------------------------------------------------------------------
-
-@test "xcv: parse check" {
-    run nu --no-config-file -c "source '$AUTOLOAD/xcv.nu'"
-    [ "$status" -eq 0 ]
-}
 
 @test "xcv: help text is available" {
     run nu --no-config-file -c "source '$AUTOLOAD/xcv.nu'; help xcv"

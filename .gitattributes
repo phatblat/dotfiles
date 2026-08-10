@@ -6,3 +6,10 @@
 # Filter script: ~/scripts/mask-codex-state.sh
 .codex/config.toml filter=codex-config
 .codex/*.config.toml filter=codex-config
+
+# `oc login` writes a live OpenComputer API key into ~/.oc/config.json
+# alongside non-secret metadata. The `oc-config` clean filter strips the
+# api_key field from the committed blob so the secret never enters git
+# history; the on-disk file oc reads is never touched. Install the filter
+# with `just git-filters`. Filter script: ~/scripts/mask-oc-config.sh
+.oc/config.json filter=oc-config

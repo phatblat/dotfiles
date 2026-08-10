@@ -6,7 +6,7 @@ Verified date: 2026-06-27
 
 | Feature | Category | Priority | Claude | Codex | OpenCode | Pi | OMP | Antigravity | Cursor | Next action |
 |---|---|---|---|---|---|---|---|---|---|---|
-| instructions.global | instructions | p0 | complete / shared | complete / shared | complete / shared | complete / shared | partial / native | partial / adapter | partial / adapter | Add ~/.agents/AGENTS.md sourcing the shared harness instructions; Install or import the Antigravity plugin and verify it loads shared harness instructions; Link or install the Cursor plugin and verify Cursor loads the shared-harness rule |
+| instructions.global | instructions | p0 | complete / shared | complete / shared | complete / shared | complete / shared | partial / native | partial / adapter | partial / adapter | Confirm omp reads the pointer in AGENTS.md, or give omp a loader that injects ~/.agents/harness/instructions.md directly; Install or import the Antigravity plugin and verify it loads shared harness instructions; Link or install the Cursor plugin and verify Cursor loads the shared-harness rule |
 | skills.shared | skills | p0 | complete / shared | complete / shared | complete / shared | complete / shared | complete / native | partial / adapter | partial / native | Verify Cursor discovers and activates generated shared skill wrappers; Verify agy imports and activates shared skill wrappers from the plugin |
 | commands.active | commands | p0 | complete / native | partial / adapter | complete / adapter | complete / adapter | complete / native | partial / adapter | partial / native | Add native Codex command generation if/when file format stabilizes; Verify Antigravity command schema or flatten command wrappers so all 24 commands are discovered; Verify Cursor discovers all 24 generated command wrappers |
 | agents.specialists | agents | p0 | complete / native | complete / native | complete / adapter | partial / emulated | missing / none | partial / emulated | partial / native | Hand-write ~/.omp/agent/agents/*.md wrappers for the shared specialists; Verify Antigravity can delegate to generated specialist wrappers with isolated context; Verify Cursor discovers generated specialist agent wrappers; Wire full subprocess delegation after choosing model/session policy |
@@ -19,32 +19,36 @@ Verified date: 2026-06-27
 | Plugin | Claude | Codex |
 |---|---|---|
 | browser@openai-bundled | missing | enabled |
-| clangd-lsp@claude-plugins-official | enabled | missing |
+| clangd-lsp@claude-plugins-official | enabled | enabled |
 | claude-code-setup@claude-plugins-official | enabled | missing |
 | claude-hud@claude-hud | enabled | missing |
 | claude-md-management@claude-plugins-official | enabled | missing |
-| code-review@claude-plugins-official | enabled | missing |
+| code-review@claude-plugins-official | enabled | enabled |
 | computer-use@openai-bundled | missing | enabled |
+| csharp-lsp@claude-plugins-official | missing | enabled |
 | documents@openai-primary-runtime | missing | enabled |
-| gopls-lsp@claude-plugins-official | enabled | missing |
-| hookify@claude-plugins-official | enabled | missing |
+| gopls-lsp@claude-plugins-official | enabled | enabled |
+| hookify@claude-plugins-official | enabled | disabled |
+| jdtls-lsp@claude-plugins-official | missing | enabled |
+| kotlin-lsp@claude-plugins-official | missing | enabled |
 | linear-cli@linear-cli | enabled | enabled |
-| lua-lsp@claude-plugins-official | enabled | missing |
+| lua-lsp@claude-plugins-official | enabled | enabled |
 | oh-my-claudecode@omc | enabled | missing |
 | pdf@openai-primary-runtime | missing | enabled |
 | plugin-dev@claude-plugins-official | enabled | missing |
+| pr-review-toolkit@claude-plugins-official | missing | enabled |
 | pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal | missing | enabled |
 | presentations@openai-primary-runtime | missing | enabled |
 | pup@datadog-pup | enabled | enabled |
-| pyright-lsp@claude-plugins-official | enabled | missing |
-| rust-analyzer-lsp@claude-plugins-official | enabled | missing |
-| security-guidance@claude-plugins-official | enabled | missing |
+| pyright-lsp@claude-plugins-official | enabled | enabled |
+| rust-analyzer-lsp@claude-plugins-official | enabled | enabled |
+| security-guidance@claude-plugins-official | enabled | disabled |
 | sites@openai-bundled | missing | enabled |
 | skill-creator@claude-plugins-official | enabled | missing |
 | spreadsheets@openai-primary-runtime | missing | enabled |
-| swift-lsp@claude-plugins-official | enabled | missing |
+| swift-lsp@claude-plugins-official | enabled | enabled |
 | template-creator@openai-primary-runtime | missing | enabled |
-| typescript-lsp@claude-plugins-official | enabled | missing |
+| typescript-lsp@claude-plugins-official | enabled | enabled |
 | visualize@openai-bundled | missing | enabled |
 | warp@claude-code-warp | enabled | missing |
 
