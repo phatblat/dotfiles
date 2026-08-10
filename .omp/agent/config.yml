@@ -8,6 +8,7 @@ modelRoles:
   smol: anthropic/claude-haiku-4-5
   advisor: anthropic/claude-sonnet-4-6
   tiny: anthropic/claude-haiku-4-5
+  default: anthropic/claude-sonnet-5
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
