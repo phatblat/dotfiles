@@ -55,7 +55,7 @@
 "npm:vscode-langservers-extracted" = "4.10.0"
 "npm:yaml-language-server" = "1.24.0"
 "npm:yarn" = "1.22.22"
-"pipx:graphifyy" = "0.9.36"
+"pipx:graphifyy" = "0.9.37"
 "pipx:pyright" = "1.1.411"
 "pipx:python-lsp-server" = "1.15.0"
 "pipx:token-viewer" = "0.0.7"
@@ -157,6 +157,7 @@ bin = "cursor-agent"
 
 [env]
 NODE_USE_SYSTEM_CA = "1"
+UV_SYSTEM_CERTS = "1"
 
 # Android build + CLI tools on PATH (adb, sdkmanager, emulator, aapt/apksigner).
 # mise emits these on every hook, so they survive in nushell where mise owns PATH.
