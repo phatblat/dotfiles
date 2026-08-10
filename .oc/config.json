@@ -1,9 +1,9 @@
 {
   "api_url": "https://app.opencomputer.dev",
   "login": {
+    "api_url": "https://app.opencomputer.dev",
     "credential_id": "4c29f873-281e-44bf-860e-095ef89ed2af",
     "key_prefix": "osb_d7a6",
-    "name": "oc CLI on phatstudio",
-    "api_url": "https://app.opencomputer.dev"
+    "name": "oc CLI on phatstudio"
   }
 }
