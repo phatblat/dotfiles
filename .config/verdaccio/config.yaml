@@ -29,13 +29,13 @@ uplinks:
     url: https://registry.npmjs.org/
 
 packages:
-  '@*/*':
+  "@*/*":
     # scoped packages
     access: $all
     publish: $authenticated
     proxy: npmjs
 
-  '**':
+  "**":
     # allow all users (including non-authenticated users) to read and
     # publish all packages
     #
@@ -57,15 +57,13 @@ middlewares:
 
 # log settings
 logs:
-  - {type: stdout, format: pretty, level: http}
+  - { type: stdout, format: pretty, level: http }
   #- {type: file, path: verdaccio.log, level: info}
-
 
 #####################################################################
 # Advanced settings
 #####################################################################
 # https://github.com/verdaccio/verdaccio/blob/master/conf/full.yaml
-
 
 # if you use nginx with custom path, use this to override links
 url_prefix: https://rundmg.co.kp.org/npm/

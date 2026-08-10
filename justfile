@@ -483,6 +483,22 @@ lint-python:
 lint-toml:
     python3 ~/scripts/sort-codex-config.py --check ~/.codex/config.toml
 
+# Lints all tracked YAML config files with yamllint
+[group('checks')]
+[script]
+lint-yaml:
+    set -euo pipefail
+    echo "Linting YAML config files..."
+    files=()
+    while read -r f; do
+        # vendored third-party gstack workflows — never lint
+        [[ "$f" == .claude/skills/gstack/* ]] && continue
+        files+=("$f")
+    done < <(git ls-files --cached '*.yml' '*.yaml')
+    if ((${#files[@]})); then
+        mise exec -- yamllint "${files[@]}"
+    fi
+
 # Lints Zsh functions with shellcheck
 
 # Uses ksh dialect and excludes SC2168 (local in function body) since these are zsh autoload files
@@ -527,7 +543,7 @@ lint-all: lint-zsh lint-fish lint-nushell lint-bin
 
 # Checks justfile and mise config formatting, gitignore, python, and shell scripts
 [group('checks')]
-lint: lint-gitignore lint-python lint-toml lint-all
+lint: lint-gitignore lint-python lint-toml lint-yaml lint-all
     just --fmt --check
     mise fmt --check
 
@@ -639,6 +655,22 @@ format-json:
         prettier --parser jsonc --write "${jsonc_files[@]}"
     fi
 
+# Formats all tracked YAML config files with prettier
+[group('configuration')]
+format-yaml:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd ~
+    files=()
+    while read -r f; do
+        # vendored third-party gstack workflows — never reformat
+        [[ "$f" == .claude/skills/gstack/* ]] && continue
+        files+=("$f")
+    done < <(git ls-files --cached '*.yml' '*.yaml')
+    if ((${#files[@]})); then
+        prettier --write "${files[@]}"
+    fi
+
 # Formats and hardens Zsh shell scripts
 [group('configuration')]
 format-shell:
@@ -648,7 +680,7 @@ format-shell:
 
 # Formats mise config, justfile, JSON/TOML configs, and shell scripts
 [group('configuration')]
-format: format-gitignore format-mise format-toml format-json format-shell
+format: format-gitignore format-mise format-toml format-json format-yaml format-shell
     just --fmt
 
 #
