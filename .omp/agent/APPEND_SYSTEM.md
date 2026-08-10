@@ -9,3 +9,9 @@ When compacting or resuming a session, preserve and carry forward:
 - Key architectural decisions and constraints made during the session.
 
 Do not claim work is complete until the preserved task state confirms that all actionable work is finished and verification evidence is available.
+
+# Git Commit Attribution
+
+When creating any Git commit, append this trailer exactly once after a blank line:
+
+Co-Authored-By: oh-my-pi <omp@can.ac>
