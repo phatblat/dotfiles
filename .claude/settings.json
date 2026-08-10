@@ -7,6 +7,7 @@
     "claude-hud@claude-hud": true,
     "claude-md-management@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
+    "context-mode@context-mode": true,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
@@ -31,6 +32,12 @@
     "claude-code-warp": {
       "source": {
         "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
+    "context-mode": {
+      "source": {
+        "repo": "mksglu/context-mode",
         "source": "github"
       }
     },
@@ -195,6 +202,14 @@
           {
             "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
             "timeout": 4,
+            "type": "command"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/context-mode-cache-heal.mjs",
             "type": "command"
           }
         ]

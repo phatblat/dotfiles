@@ -19,6 +19,9 @@
     "~/.pi/agent/extensions/harness.ts"
   ],
   "lastChangelogVersion": "0.83.0",
+  "packages": [
+    "npm:context-mode"
+  ],
   "prompts": [
     "~/.pi/agent/prompts"
   ],
