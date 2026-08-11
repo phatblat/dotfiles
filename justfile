@@ -141,6 +141,23 @@ list-claude-models:
 outdated-models:
     scripts/claude-models.sh check
 
+# Lists omp plugins whose installed version is behind the npm registry
+[group('info')]
+omp-plugins-outdated:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    found=0
+    while IFS=$'\t' read -r pkg installed; do
+        latest=$(npm view "$pkg" version 2>/dev/null) || continue
+        if [ "$installed" != "$latest" ]; then
+            echo "$pkg $installed → $latest"
+            found=1
+        fi
+    done < <(omp plugin list --json | jq -r '.npm[] | [.name, .version] | @tsv')
+    if [ "$found" -eq 0 ]; then
+        echo "All omp plugins are up to date"
+    fi
+
 # Lists installed Nix packages
 [group('info')]
 list-nix:
@@ -455,6 +472,20 @@ clean: clean-rust
     rm -f $HOME/.zcompdump.DTO-*
     rm -rf "$(brew --cache)"
     if command -v nix >/dev/null 2>&1; then nix store gc; fi
+
+# Opens the omp plugin manifest in the configured editor
+[group('configuration')]
+omp-plugins-edit:
+    ${VISUAL:-${EDITOR:-vi}} ~/.omp/plugins/package.json
+
+# Reinstalls omp plugins from the manifest, discarding node_modules
+[group('configuration')]
+omp-plugins-reinstall:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd ~/.omp/plugins
+    rm -rf node_modules
+    bun install
 
 #
 # checks group recipes
