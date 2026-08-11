@@ -41,3 +41,5 @@ cycleOrder:
   - advisor
   - tiny
 steeringMode: one-at-a-time
+followUpMode: one-at-a-time
+interruptMode: wait
