@@ -25,6 +25,7 @@ Verified date: 2026-06-27
 | claude-md-management@claude-plugins-official | enabled | missing |
 | code-review@claude-plugins-official | enabled | enabled |
 | computer-use@openai-bundled | missing | enabled |
+| context-mode@context-mode | enabled | missing |
 | csharp-lsp@claude-plugins-official | missing | enabled |
 | documents@openai-primary-runtime | missing | enabled |
 | gopls-lsp@claude-plugins-official | enabled | enabled |
