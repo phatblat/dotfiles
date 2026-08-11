@@ -444,7 +444,7 @@ clean-rust:
 
 # Removes default.store files, *.hprof files, zcompdump clutter, and homebrew cache from home directory
 [group('configuration')]
-clean:
+clean: clean-rust
     trash $(mise cache)
     mise cache clear --yes
     mise prune --yes
