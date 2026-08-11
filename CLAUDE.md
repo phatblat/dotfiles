@@ -12,15 +12,6 @@ Dotfiles repository — cross-machine config sync. Home directory (`~`) is the g
 - Never start filesystem searches at `/` when the repository contains the intended search scope; use commands such as `find . ...` to remain within Claude's working-directory boundary and avoid permission prompts.
 - Access paths outside this repository only when the task explicitly requires it.
 
-## Commands
-
-- `just check` — full quality gate: lint, spelling (typos), tests
-- `just lint` — gitignore sort check, ruff, all shell linters, justfile/mise fmt check
-- `just test` — bats tests in `~/tests/`; single file: `bats ~/tests/<name>.bats`
-- `just format` — formats .gitignore, mise config, JSON/JSONC configs, and zsh functions (shfmt + shellharden)
-- `just lint-zsh` / `lint-fish` / `lint-nushell` / `lint-bin` — per-shell linting
-- `just add <tool>` / `just remove <tool>` / `just upgrade` — mise tool management
-
 ## Key Directories
 
 - `.config/` — Shell configs (zsh, fish, nushell), tool configs (zed, mise, home-manager)
@@ -51,9 +42,7 @@ Use **ast-grep** (`sg`) for code search, not grep/ripgrep/sed.
 
 ## gstack
 
-Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude-in-chrome__*` tools.
-
-Available gstack skills: `/office-hours`, `/plan-ceo-review`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-shotgun`, `/design-html`, `/review`, `/ship`, `/land-and-deploy`, `/canary`, `/benchmark`, `/browse`, `/connect-chrome`, `/qa`, `/qa-only`, `/design-review`, `/setup-browser-cookies`, `/setup-deploy`, `/setup-gbrain`, `/retro`, `/investigate`, `/document-release`, `/document-generate`, `/codex`, `/cso`, `/autoplan`, `/plan-devex-review`, `/devex-review`, `/careful`, `/freeze`, `/guard`, `/unfreeze`, `/gstack-upgrade`, `/learn`.
+Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude-in-chrome__*` tools. gstack skills are auto-discovered each session — invoke by name as needed.
 
 ## Special Notes
 
