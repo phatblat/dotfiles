@@ -42,6 +42,9 @@ jobs:
       # Repo root IS the home directory; remap HOME so ~ resolves to checkout
       HOME: ${{ github.workspace }}
       MISE_PIN: "1"
+      # On Linux CI, don't auto-install tools from full config (many are macOS-only).
+      # Use only tools already available from install_args step above.
+      MISE_INSTALL_MISSING_TOOLS: "false"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
