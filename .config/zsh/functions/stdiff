@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# stdiff - Show diff of a git stash
+ref="${1:-stash@{0}}"
+shift 2>/dev/null
+git diff "$ref^..$ref" "$@"
