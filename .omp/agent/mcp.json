@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "context-mode": {
+      "args": [
+        "${HOME}/${PI_CONFIG_DIR:-.omp}/plugins/node_modules/context-mode/server.bundle.mjs"
+      ],
+      "command": "bun",
+      "type": "stdio"
+    }
+  }
+}
