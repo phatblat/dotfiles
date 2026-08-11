@@ -34,7 +34,7 @@ Shell function conventions are in the `shell-functions` rule (loads when editing
 
 ## Project Context
 
-Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languages. Git workflow conventions are in the `git-workflow` rule. Before updating a local branch ref, verify it is not checked out in another worktree with `git worktree list --porcelain`; otherwise operate on `origin/<branch>`.
+Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languages. Git workflow conventions are in the `git-workflow` rule.
 
 ## Code Search
 
@@ -47,7 +47,6 @@ Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude
 ## Special Notes
 
 - **bat** replaces cat in Zsh (syntax highlighting, git integration)
-- **timeout/gtimeout** not installed
 - **Tool installation priority:**
   1. `mise search`/`mise use` for mise-managed tools
   2. `nix profile install nixpkgs#<package>` for Nix packages
@@ -55,6 +54,3 @@ Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude
 - Tool versions: run `mise ls` (never hardcode versions — they go stale)
 - Check for tools installed via both mise and Homebrew with `just package-audit` (see `docs/package-management.md`)
 - Just recipes: run `just --list`
-- `.gitignore` uses negation-aware sorted ordering — after editing, run `just format-gitignore` (checked by `just lint-gitignore`)
-- Some `.json` files are actually JSONC and must not be jq-formatted: `.config/zed/settings.json`, `.config/cmux/cmux.json`, `.claude/policy-limits.json` (see `format-json` recipe)
-- Zsh functions are auto-formatted by shfmt/shellharden via `just format-shell`; files using zsh-only syntax are excluded via Justfile variables
