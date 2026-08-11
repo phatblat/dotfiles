@@ -79,6 +79,7 @@
 .claude/.session-stats.json
 .claude/.session-stats.json.tmp.*
 .claude/agent-flow/*.json
+.claude/context-mode/
 .claude/daemon.lock
 .claude/daemon.status.json
 .claude/daemon/
