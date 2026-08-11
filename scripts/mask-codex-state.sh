@@ -4,8 +4,9 @@
 #
 # Codex rewrites machine-managed state into config.toml and the per-profile
 # *.config.toml files on nearly every launch (marketplace sync timestamps/revisions,
-# hook trust hashes). Tracking those files verbatim produces constant diff churn
-# and cross-machine merge conflicts.
+# hook trust hashes, and the bundled browser plugin's pinned app version/client
+# hash). Tracking those files verbatim produces constant diff churn and
+# cross-machine merge conflicts.
 #
 # This filter runs when git reads the working tree into a blob (add/status/diff)
 # and normalizes the volatile VALUES to fixed sentinels, so the committed content
@@ -27,4 +28,6 @@ set -euo pipefail
 sed -E \
     -e 's|^(last_updated = )".*"|\1"1970-01-01T00:00:00Z"|' \
     -e 's|^(last_revision = )".*"|\1"0000000000000000000000000000000000000000"|' \
-    -e 's|^(trusted_hash = )".*"|\1"sha256:0000000000000000000000000000000000000000000000000000000000000000"|'
+    -e 's|^(trusted_hash = )".*"|\1"sha256:0000000000000000000000000000000000000000000000000000000000000000"|' \
+    -e 's|^(BROWSER_USE_CODEX_APP_VERSION = )".*"|\1"0.0.0"|' \
+    -e 's|^(NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = )".*"|\1"0000000000000000000000000000000000000000000000000000000000000000"|'
