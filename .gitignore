@@ -236,6 +236,7 @@
 .config/stetic/
 .config/sublime-text-3/
 .config/swiftpm/
+.config/temporalio/
 .config/terminus/
 .config/thefuck
 .config/thefuck/rules/chmod.pyc
