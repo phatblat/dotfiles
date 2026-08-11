@@ -4,8 +4,8 @@
 
 approvals_reviewer = "auto_review"
 commit_attribution = "Co-Authored-By: Codex <noreply@openai.com>"
-model = "gpt-5.6-luna"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
 notify = ["/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
@@ -19,7 +19,7 @@ ambient-suggestions-enabled = true
 avatar-overlay-mascot-width-px = 133
 codeFontSize = 14
 composerEnterBehavior = "cmdIfMultiline"
-conversationDetailMode = "STEPS_COMMANDS"
+conversationDetailMode = "STEPS_PROSE"
 dictationDictionary = []
 dock-icon-preference = "codex-system"
 enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
@@ -99,12 +99,12 @@ command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
 enabled = false
 tool_timeout_sec = 10000.0
 
-[otel]
-exporter = { otlp-http = {
-    endpoint = "https://otlp.datadoghq.com/v1/logs",
-    protocol = "binary",
-    headers = { "DD-API-KEY" = "${DD_API_KEY}" },
-} }
+[otel.exporter."otlp-http"]
+endpoint = "https://otlp.datadoghq.com/v1/logs"
+protocol = "binary"
+
+[otel.exporter."otlp-http".headers]
+"DD-API-KEY" = "${DD_API_KEY}"
 
 [shell_environment_policy]
 inherit = "core"
