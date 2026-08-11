@@ -43,3 +43,7 @@ cycleOrder:
 steeringMode: one-at-a-time
 followUpMode: one-at-a-time
 interruptMode: wait
+memory:
+  backend: mnemopi
+autolearn:
+  enabled: true
