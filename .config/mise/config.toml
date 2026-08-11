@@ -156,7 +156,11 @@ checksum = "sha256:853979acec109c887623013623ad4dbe1f44d4cbe598ebefaa0e55145d9c9
 bin_path = "dist-package"
 bin = "cursor-agent"
 
+# Trust the OS keychain instead of each runtime's bundled root store, so
+# corporate TLS-inspecting proxies (invalid peer certificate: UnknownIssuer)
+# don't break tools like linear-cli (Deno), node, and uv/python.
 [env]
+DENO_TLS_CA_STORE = "system"
 NODE_USE_SYSTEM_CA = "1"
 UV_SYSTEM_CERTS = "1"
 
