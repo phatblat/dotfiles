@@ -441,7 +441,8 @@
 !.omp/agent/
 !.omp/marketplaces.json
 .omp/plugins/*
-!.omp/plugins/installed_plugins.json
+!.omp/plugins/omp-plugins.lock.json
+!.omp/plugins/package.json
 !.omp/plugins/
 .op/
 .openpeon/
