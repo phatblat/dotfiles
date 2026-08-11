@@ -6,6 +6,17 @@
       ],
       "command": "bun",
       "type": "stdio"
+    },
+    "google-calendar": {
+      "args": [
+        "-y",
+        "@cocal/google-calendar-mcp"
+      ],
+      "command": "npx",
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "${HOME}/.config/google-calendar-mcp/gcp-oauth.keys.json"
+      },
+      "type": "stdio"
     }
   }
 }
