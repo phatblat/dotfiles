@@ -177,8 +177,13 @@ _.path = [
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
-# oh-my-pi ships fixes frequently; skip the 24h minimum_release_age default for it.
-minimum_release_age_excludes = ["github:can1357/oh-my-pi"]
+# oh-my-pi, claude-code, and codex ship fixes frequently; skip the 24h
+# minimum_release_age default for them.
+minimum_release_age_excludes = [
+  "github:can1357/oh-my-pi",
+  "claude-code",
+  "codex",
+]
 use_versions_host = false
 
 [settings.python]
