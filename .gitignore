@@ -212,6 +212,7 @@
 .config/nix/netrc
 .config/nushell/history.txt
 .config/op/
+.config/temporalio/
 .config/opencode/*
 !.config/opencode/.gitignore
 !.config/opencode/agents/**
