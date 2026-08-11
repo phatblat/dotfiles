@@ -3,8 +3,8 @@ OPENAI_BASE_PATH: v1/chat/completions
 extensions:
   Puppeteer:
     args:
-    - -y
-    - '@modelcontextprotocol/server-puppeteer'
+      - -y
+      - "@modelcontextprotocol/server-puppeteer"
     cmd: npx
     enabled: true
     envs: {}

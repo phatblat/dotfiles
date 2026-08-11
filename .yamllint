@@ -1,0 +1,22 @@
+# yamllint config — calibrated to existing tracked YAML (GitHub Actions
+# workflows, harness pipelines, app configs), not an arbitrary strict default.
+extends: default
+
+rules:
+  # `on:` is idiomatic YAML-1.1 truthy syntax required by GitHub Actions.
+  truthy: disable
+  # Most files here are hand-edited configs, not documents; a `---` marker
+  # adds no value.
+  document-start: disable
+  # Workflow YAML and command aliases routinely exceed 80 chars; wrapping
+  # them would hurt readability more than it helps.
+  line-length: disable
+  # Comment spacing nits in vendored/generated CI YAML aren't worth chasing.
+  comments: disable
+
+  # prettier writes `{ key: value }` with inner spacing (its bracket-spacing
+  # convention); match that instead of fighting the formatter.
+  braces:
+    max-spaces-inside: 1
+  brackets:
+    max-spaces-inside: 1

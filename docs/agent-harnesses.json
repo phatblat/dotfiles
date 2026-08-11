@@ -894,6 +894,12 @@
       },
       {
         "enabled": true,
+        "id": "context-mode@context-mode",
+        "marketplace": "context-mode",
+        "marketplace_source": "github:mksglu/context-mode"
+      },
+      {
+        "enabled": true,
         "id": "gopls-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
