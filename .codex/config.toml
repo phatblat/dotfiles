@@ -10,7 +10,7 @@ notify = ["/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/S
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 sandbox_mode = "read-only"
-service_tier = "fast"
+service_tier = "default"
 suppress_unstable_features_warning = true
 tool_output_token_limit = 12000
 
