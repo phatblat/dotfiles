@@ -4,11 +4,11 @@ name: human-approval
 #
 # A review count cannot serve here: GitHub disables self-approval, and this is a
 # solo repository, so `required_approving_review_count: 1` would deadlock every
-# pull request. Instead an agent labels its own work `loop-authored`, and this
+# pull request. Instead an agent labels its own work `agent-authored`, and this
 # check fails until a human adds `human-approved`. Applying a label is the human
 # act; the ruleset makes the check non-bypassable.
 #
-# Human-authored pull requests carry no `loop-authored` label and pass straight
+# Human-authored pull requests carry no `agent-authored` label and pass straight
 # through, so this costs nothing on ordinary work.
 
 on:
@@ -37,13 +37,13 @@ jobs:
           LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
         run: |
           set -euo pipefail
-          if ! printf '%s' "$LABELS" | grep -q '"loop-authored"'; then
-            echo "No loop-authored label — human-authored pull request, gate not applicable."
+          if ! printf '%s' "$LABELS" | grep -q '"agent-authored"'; then
+            echo "No agent-authored label — human-authored pull request, gate not applicable."
             exit 0
           fi
           if printf '%s' "$LABELS" | grep -q '"human-approved"'; then
             echo "human-approved label present — sign-off recorded."
             exit 0
           fi
-          echo "::error::This pull request is labeled loop-authored. Read the diff, then add the 'human-approved' label to merge."
+          echo "::error::This pull request is labeled agent-authored. Read the diff, then add the 'human-approved' label to merge."
           exit 1

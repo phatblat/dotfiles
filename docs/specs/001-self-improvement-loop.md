@@ -100,8 +100,8 @@ item stands on its own if the loop is never built.
    joins the parity filter — it is a generator input (`SKILL_SOURCE`) that today
    triggers no parity signal.
 
-6. **A `human-approval` check.** Loop-authored pull requests carry a
-   `loop-authored` label; the check fails until a human adds `human-approved`.
+6. **A `human-approval` check.** Agent-authored pull requests carry an
+   `agent-authored` label; the check fails until a human adds `human-approved`.
    Applying a label is the human gate, and the ruleset makes it non-bypassable.
    A review count of 1 does not work here — GitHub disables self-approval, and a
    solo maintainer would deadlock.
