@@ -5,7 +5,7 @@
   "bottom_dock_layout": "contained",
   "use_system_window_tabs": true,
   "tabs": {
-    "close_position": "left",
+    "close_position": "right",
     "git_status": true,
     "file_icons": true,
   },
