@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 # stdiff - Show diff of a git stash
-ref="${1:-stash@{0}}"
+# Usage: stdiff [n]  (defaults to 0, the most recent stash)
+local n="${1:-0}"
+local ref="stash@{${n}}"
 shift 2> /dev/null
 git diff "$ref^..$ref" "$@"
