@@ -14,7 +14,12 @@ on:
       - "justfile"
       - "scripts/**"
       - "tests/**"
-      - ".github/workflows/lint.yml"
+      - ".codex/config.toml"
+      - "**.yml"
+      - "**.yaml"
+      # changed.sh decides whether the pull_request run does any work, so a
+      # main-branch commit touching only it still needs a post-merge lint.
+      - ".github/scripts/**"
   # No paths filter on pull_request, deliberately. `lint` and `test` are required
   # status checks, and a required check that never runs leaves the pull request
   # stuck on "Expected" forever. The jobs always start and decide for themselves

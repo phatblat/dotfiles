@@ -5,8 +5,20 @@ name: human-approval
 # A review count cannot serve here: GitHub disables self-approval, and this is a
 # solo repository, so `required_approving_review_count: 1` would deadlock every
 # pull request. Instead an agent labels its own work `agent-authored`, and this
-# check fails until a human adds `human-approved`. Applying a label is the human
-# act; the ruleset makes the check non-bypassable.
+# check fails until a human adds `human-approved`. Applying the label is the
+# human act.
+#
+# ADVISORY UNTIL THE RULESET LANDS. This check reports, but nothing yet stops a
+# merge without it: ruleset 13542903 has no required_status_checks rule and its
+# bypass_actors still grants repository admins `always`. Both are manual,
+# post-merge steps (spec 001, Out of scope), and until they are applied this
+# file documents an intent rather than enforcing one. Do not treat an
+# agent-authored pull request as gated before then.
+#
+# Nor does anything here prove a *human* applied the label — an agent with a
+# repo token can add it via the API. A guard rule against `gh label` would not
+# change that, only the route. Sign-off is trustworthy to the degree the token
+# handed to the agent is scoped, which is a separate piece of work.
 #
 # Human-authored pull requests carry no `agent-authored` label and pass straight
 # through, so this costs nothing on ordinary work.
@@ -37,11 +49,13 @@ jobs:
           LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
         run: |
           set -euo pipefail
-          if ! printf '%s' "$LABELS" | grep -q '"agent-authored"'; then
+          # jq, not grep: a substring match on the JSON text also accepts a
+          # label crafted to embed the name, e.g. `x"human-approved`.
+          if ! jq -e 'index("agent-authored")' <<<"$LABELS" >/dev/null; then
             echo "No agent-authored label — human-authored pull request, gate not applicable."
             exit 0
           fi
-          if printf '%s' "$LABELS" | grep -q '"human-approved"'; then
+          if jq -e 'index("human-approved")' <<<"$LABELS" >/dev/null; then
             echo "human-approved label present — sign-off recorded."
             exit 0
           fi

@@ -16,7 +16,11 @@ profile="${1:?usage: changed.sh <lint|parity>}"
 
 case "$profile" in
 lint)
-	pattern='^(\.config/(fish|home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows/lint\.yml|scripts/changed\.sh)$)'
+	# Mirrors what `just lint` actually reads: lint-yaml covers every tracked
+	# *.yml/*.yaml, lint-toml validates .codex/config.toml, and lint-python
+	# covers scripts/*.py. Narrower than this and a lint failure surfaces on
+	# some later unrelated pull request instead of the one that caused it.
+	pattern='^(\.config/(fish|home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
 	;;
 parity)
 	# .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:
@@ -46,7 +50,18 @@ if [[ -z $base ]] || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
 	exit 0
 fi
 
-if git diff --name-only "$base" HEAD | grep -qE "$pattern"; then
+# Captured rather than piped into grep. Under `set -o pipefail`, `grep -q` exits
+# on its first match and the still-writing `git diff` takes SIGPIPE, which makes
+# the pipeline report failure — so a *matching* diff would have taken the else
+# branch and reported relevant=false, skipping a required check on exactly the
+# large pull requests that most need it.
+if ! changed_files="$(git diff --name-only "$base" HEAD)"; then
+	echo "diff failed; running everything" >&2
+	emit true
+	exit 0
+fi
+
+if grep -qE "$pattern" <<<"$changed_files"; then
 	emit true
 else
 	emit false
