@@ -568,6 +568,19 @@
 .zsh_history*
 .zsh_sessions/
 /Library/pnpm
+/bin/*
+!/bin/appinst.sh
+!/bin/dotnet-install.sh
+!/bin/git-plist-filter.sh
+!/bin/gtimeout
+!/bin/nu-login
+!/bin/pbzx.py
+!/bin/rustrover
+!/bin/studio1
+!/bin/studio2
+!/bin/studio
+!/bin/timeout
+!/bin/
 2nd Brain/
 2ndBrain*/
 Android
@@ -981,18 +994,7 @@ Virtual Machines.localized/
 VirtualBox VMs/
 __pycache__/
 __z_clean.fish
-bin/*
-!bin/appinst.sh
-!bin/dotnet-install.sh
-!bin/git-plist-filter.sh
-!bin/gtimeout
-!bin/nu-login
-!bin/pbzx.py
-!bin/rustrover
-!bin/studio1
-!bin/studio2
-!bin/studio
-!bin/timeout
+bin/
 build/
 caches/
 cali_core4/
