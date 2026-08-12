@@ -65,10 +65,10 @@ alias up := upgrade
 _default:
     just --list
 
-# Display free space on root drive
+# Display free space on the Data volume (~ resolves to it; / is the sealed, near-empty System volume)
 [group('info')]
 free:
-    @df -h / | awk 'NR==2 {print "Free space on /: " $4 " (" $5 " used)"}'
+    @avail=$(df -h ~ | awk 'NR==2 {print $4}'); df -Pk ~ | awk -v avail="$avail" 'NR==2 {printf "Free space: %s (%.0f%% available)\n", avail, 100 * $4 / ($3 + $4)}'
 # Lists running sessions for the requested agent
 [group('info')]
 [script]
