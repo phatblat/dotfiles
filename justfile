@@ -752,8 +752,12 @@ git-filters:
     git config --local filter.oc-config.clean ~/scripts/mask-oc-config.sh
     git config --local filter.oc-config.smudge cat
     git config --local filter.oc-config.required true
+    git config --local filter.pi-models-store.clean ~/scripts/mask-pi-models-store.sh
+    git config --local filter.pi-models-store.smudge cat
+    git config --local filter.pi-models-store.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
+    @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
 
 #
 # claude group recipes
