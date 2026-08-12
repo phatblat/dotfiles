@@ -370,7 +370,7 @@ upgrade-mise:
 
 # Upgrades the installed omp version from the upstream GitHub repository
 [group('configuration')]
-upgrade-omp:
+upgrade-pi:
     mise upgrade --bump github:can1357/oh-my-pi
 
 # Upgrades each outdated tool and commits the version change individually
