@@ -233,6 +233,9 @@
   "~/.agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
+    "source": "~/.agents/skills/wayfinder/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/work-eod/SKILL.md": {
     "source": "~/.agents/skills/work-eod/SKILL.md"
   },
@@ -481,6 +484,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/wayfinder/SKILL.md": {
+    "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/work-eod/SKILL.md": {
     "source": "~/.agents/skills/work-eod/SKILL.md"
