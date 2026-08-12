@@ -1,7 +1,10 @@
 ---
 id: 001
 title: Self-improving harness loop — safety substrate first
-category: harness-config
+# safety-policy, not harness-config: this spec edits CONTROL_PLANE_PATHS and
+# creates the autonomy policy, both `never` tier. auto_implement: false already
+# follows from that, but the category should not understate it.
+category: safety-policy
 status: approved
 approved_by: phatblat
 approved_at: 2026-08-12
@@ -19,12 +22,17 @@ evidence:
 targets:
   sources:
     - ".agents/harness/hooks/safety.py"
+    - ".agents/harness/self-improve-policy.json"
     - "scripts/agent-harnesses.py"
+    - ".github/scripts/changed.sh"
     - ".github/workflows/lint.yml"
     - ".github/workflows/agent-harness-parity.yml"
     - ".github/workflows/human-approval.yml"
     - "tests/agent-harnesses.bats"
-  generated: []
+  # generated-paths.json is emitted by render_all(), so it is listed here rather
+  # than under sources even though the spec causes it to exist.
+  generated:
+    - ".agents/harness/generated-paths.json"
 verification: "HOME=$PWD just check"
 rollback: "git revert <sha>"
 ---
