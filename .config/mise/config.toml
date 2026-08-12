@@ -12,6 +12,7 @@
 "aqua:openai/codex" = "0.147.0"
 "aqua:shenwei356/rush" = "0.9.0"
 "aqua:tcnksm/ghr" = "0.18.3"
+"aqua:uutils/coreutils" = "0.10.0"
 "cargo:cargo-about" = "0.9.1"
 "cargo:cargo-binstall" = "1.21.1"
 "cargo:cargo-expand" = "1.0.124"
