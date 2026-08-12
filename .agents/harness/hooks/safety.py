@@ -6,10 +6,10 @@ Copyright: Ben Chatelain. Apache 2.0.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import os
 import re
 import subprocess
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -82,15 +82,24 @@ PROTECTED_PATHS = re.compile(
 # Deliberately narrow. Broad entries like `config\.yml$` or `\.gitignore$` would
 # block routine agent work across every repository, and the cost of that lands
 # on every session, not just on a self-improvement loop.
+#
+# Fragments end with a non-path lookahead rather than `$` so the same pattern
+# matches both a bare path and a path embedded in a shell command.
+_CONTROL_PLANE_FRAGMENTS = (
+    r"/\.agents/harness/hooks/",
+    r"/\.agents/harness/self-improve-policy\.json(?![\w.-])",
+    # The generated-path manifest is the whole basis of the generated-file deny
+    # rule, and load_generated_manifest() fails open. Blanking this file would
+    # silently unlock all 274 generated artifacts, so it is control plane too.
+    r"/\.agents/harness/generated-paths\.json(?![\w.-])",
+    r"/scripts/agent-harnesses\.py(?![\w.-])",
+    r"/scripts/agent_plugins\.py(?![\w.-])",
+    r"/harness-guard\.(?:ts|py)(?![\w.-])",
+    r"/(?:write|bash)-guard\.sh(?![\w.-])",
+)
+
 CONTROL_PLANE_PATHS = re.compile(
-    r"("
-    r"/\.agents/harness/hooks/|"
-    r"/\.agents/harness/self-improve-policy\.json$|"
-    r"/scripts/agent-harnesses\.py$|"
-    r"/scripts/agent_plugins\.py$|"
-    r"/harness-guard\.(ts|py)$|"
-    r"/(write|bash)-guard\.sh$"
-    r")",
+    "(?:" + "|".join(_CONTROL_PLANE_FRAGMENTS) + ")",
     re.IGNORECASE,
 )
 
@@ -140,6 +149,21 @@ def evaluate_command(command: str, *, cwd: str | None = None) -> GuardDecision:
     if any(pattern.search(command) for pattern in OBFUSCATED_EXECUTION):
         return GuardDecision("deny", "Obfuscated execution pattern detected")
 
+    # Path rules have to apply here too, not just in evaluate_write: `echo x >>
+    # safety.py` reaches the same file as a write tool, and until this existed
+    # one line of shell switched off every path rule in this module.
+    target = writes_to(command, PROTECTED_PATHS)
+    if target:
+        return GuardDecision("deny", f"protected file blocked: {target}")
+
+    target = writes_to(command, CONTROL_PLANE_PATHS)
+    if target:
+        return GuardDecision(
+            "deny",
+            f"control-plane file is human-only: {target}. It decides what the "
+            "guard permits, so edit it directly rather than through an agent.",
+        )
+
     warning = main_branch_commit_warning(command, cwd=cwd)
     if warning:
         return GuardDecision("warn", warning)
@@ -163,6 +187,47 @@ def evaluate_write(*, path: str = "", content: str = "") -> GuardDecision:
         return GuardDecision("deny", "secret-like content detected")
 
     return GuardDecision("allow")
+
+
+# Shell constructs that name a file the command writes to. Each captures the
+# span in which a target may appear; path-like tokens are pulled out of it and
+# matched against the ordinary path rules.
+_REDIRECT_TARGET = re.compile(r">>?\s*(?P<span>[^\s;|&<>]+)")
+_MUTATING_ARGV = re.compile(
+    r"\b(?:rm|mv|cp|tee|ln|install|truncate|shred|unlink|touch|chmod|chown)\b"
+    r"(?P<span>[^;|&]*)",
+    re.IGNORECASE,
+)
+_SED_INPLACE = re.compile(r"\bsed\b(?P<span>[^;|&]*?-i(?:\S*)?[^;|&]*)", re.IGNORECASE)
+_DD_TARGET = re.compile(r"\bdd\b[^;|&]*?\bof=(?P<span>[^\s;|&]+)", re.IGNORECASE)
+
+_PATH_TOKEN = re.compile(r"[^\s;|&<>'\"]*[/~][^\s;|&<>'\"]*")
+
+
+def candidate_write_targets(command: str) -> list[str]:
+    """Path-like tokens that a shell command appears to write to.
+
+    Regex, not a shell parser. It recognizes redirection, the common mutating
+    commands, `sed -i`, and `dd of=`. A here-doc, a `python3 -c` one-liner, or
+    an alias will get past it, and that is understood: the job here is to stop
+    the guard being switched off by an ordinary one-line edit, not to sandbox
+    the shell. The merge gate is what actually holds.
+    """
+
+    targets: list[str] = []
+    for pattern in (_REDIRECT_TARGET, _MUTATING_ARGV, _SED_INPLACE, _DD_TARGET):
+        for match in pattern.finditer(command):
+            targets.extend(_PATH_TOKEN.findall(match.group("span")))
+    return [token.strip("'\"") for token in targets if token.strip("'\"")]
+
+
+def writes_to(command: str, pattern: re.Pattern[str]) -> str:
+    """The first write target in `command` matching `pattern`, else ""."""
+
+    for target in candidate_write_targets(command):
+        if pattern.search(normalize_path_for_matching(target)):
+            return target
+    return ""
 
 
 def normalize_path_for_matching(path: str) -> str:

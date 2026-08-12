@@ -571,12 +571,49 @@ if missing:
   for target in \
     ".agents/harness/hooks/safety.py" \
     "scripts/agent-harnesses.py" \
-    ".agents/harness/self-improve-policy.json"; do
+    ".agents/harness/self-improve-policy.json" \
+    ".agents/harness/generated-paths.json"; do
     run python3 "$SCRIPT" guard --harness omp --tool write \
       --path "$HOME/$target" --content "x"
 
     [ "$status" -eq 2 ]
     [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
+  done
+}
+
+# The path rules were write-tool-only, so `echo x >> safety.py` reached the
+# guard's own source and one redirect could blank the generated-path manifest,
+# taking every generated artifact unprotected with it.
+@test "agent-harnesses: guard denies shell writes to protected and control-plane paths" {
+  for command in \
+    "echo x >> $HOME/.agents/harness/hooks/safety.py" \
+    "echo '{}' > $HOME/.agents/harness/generated-paths.json" \
+    "rm $HOME/.agents/harness/generated-paths.json" \
+    "mv /tmp/x $HOME/.agents/harness/self-improve-policy.json" \
+    "sed -i '' s/deny/allow/ $HOME/scripts/agent-harnesses.py" \
+    "cp /tmp/evil $HOME/.claude/.credentials.json" \
+    "echo x >> $HOME/.ssh/id_rsa"; do
+    run python3 "$SCRIPT" guard --harness omp --tool bash --command "$command"
+
+    [ "$status" -eq 2 ]
+    [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
+  done
+}
+
+# The guard shells out to the generator, so denying every command that merely
+# names a control-plane path would deadlock the harness against itself.
+@test "agent-harnesses: guard allows reads and unrelated writes near the control plane" {
+  for command in \
+    "python3 $HOME/scripts/agent-harnesses.py generate" \
+    "python3 $HOME/scripts/agent-harnesses.py validate 2>/dev/null" \
+    "cat $HOME/.agents/harness/hooks/safety.py" \
+    "grep -n deny $HOME/scripts/agent-harnesses.py" \
+    "echo hi > /tmp/unrelated.txt" \
+    "rm -f build/out.txt"; do
+    run python3 "$SCRIPT" guard --harness omp --tool bash --command "$command"
+
+    [ "$status" -eq 0 ]
+    [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
   done
 }
 
