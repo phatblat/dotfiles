@@ -92,13 +92,13 @@ item stands on its own if the loop is never built.
    source to edit instead. This runs on the existing hot path and is therefore
    already wired into all seven harnesses.
 
-5. **Workflow checks always report.** `lint`, `test`, and `parity` are currently
-   filtered at the `on:` trigger, so a pull request touching none of their paths
-   produces no check at all. Making them required in that state would deadlock
-   every such pull request. The filter moves into the jobs: the workflow always
-   runs, and the expensive step is skipped when irrelevant. `.agents/skills/**`
-   joins the parity filter — it is a generator input (`SKILL_SOURCE`) that today
-   triggers no parity signal.
+5. **Workflow checks always report.** `lint`, `test`, and `harness-parity` are
+   currently filtered at the `on:` trigger, so a pull request touching none of
+   their paths produces no check at all. Making them required in that state
+   would deadlock every such pull request. The filter moves into the jobs: the
+   workflow always runs, and the expensive step is skipped when irrelevant.
+   `.agents/skills/**` joins the parity filter — it is a generator input
+   (`SKILL_SOURCE`) that today triggers no parity signal.
 
 6. **A `human-approval` check.** Agent-authored pull requests carry an
    `agent-authored` label; the check fails until a human adds `human-approved`.
@@ -137,5 +137,5 @@ The ruleset changes are verified separately, after merge:
 
 ```
 gh api repos/phatblat/dotfiles/rulesets/13542903 --jq '.bypass_actors'   # → []
-gh pr checks <pr>                                                        # → lint, test, parity, human-approval
+gh pr checks <pr>                                          # → lint, test, harness-parity, human-approval
 ```

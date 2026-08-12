@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Decide whether a workflow's expensive steps need to run for this event.
 #
-# `lint`, `test`, and `parity` are required status checks. A required check that
+# `lint`, `test`, and `harness-parity` are required status checks. A check that
 # never runs leaves a pull request stuck on "Expected", so the workflows can no
 # longer filter at the `on:` trigger — they always start, and this script tells
 # them whether there is anything to do. Path lists live here only.

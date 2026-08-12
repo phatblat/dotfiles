@@ -1,10 +1,11 @@
-name: Agent Harness Parity
+name: agent-harness
 
 on:
-  # No paths filter, deliberately: `parity` is a required status check, and a
-  # required check that never runs blocks the pull request permanently. The job
-  # always starts and decides for itself — see .github/scripts/changed.sh, which
-  # also covers .agents/skills/**, a generator input this filter used to miss.
+  # No paths filter, deliberately: `harness-parity` is a required status check,
+  # and a required check that never runs blocks the pull request permanently. The
+  # job always starts and decides for itself — see .github/scripts/changed.sh,
+  # which also covers .agents/skills/**, a generator input this filter used to
+  # miss.
   pull_request:
   workflow_dispatch:
   schedule:
@@ -15,7 +16,7 @@ permissions:
   issues: write
 
 jobs:
-  parity:
+  harness-parity:
     runs-on: ubuntu-latest
     env:
       HOME: ${{ github.workspace }}
