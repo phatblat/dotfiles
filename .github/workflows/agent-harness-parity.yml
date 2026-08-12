@@ -1,17 +1,12 @@
-name: Agent Harness Parity
+name: agent-harness
 
 on:
+  # No paths filter, deliberately: `harness-parity` is a required status check,
+  # and a required check that never runs blocks the pull request permanently. The
+  # job always starts and decides for itself — see .github/scripts/changed.sh,
+  # which also covers .agents/skills/**, a generator input this filter used to
+  # miss.
   pull_request:
-    paths:
-      - ".agents/harness/**"
-      - ".claude/commands/**"
-      - ".codex/agents/**"
-      - ".config/opencode/**"
-      - ".pi/agent/**"
-      - "docs/agent-harnesses.*"
-      - "scripts/agent-harnesses.py"
-      - "tests/agent-harnesses.bats"
-      - "justfile"
   workflow_dispatch:
   schedule:
     - cron: "17 14 * * 1"
@@ -21,29 +16,41 @@ permissions:
   issues: write
 
 jobs:
-  parity:
+  harness-parity:
     runs-on: ubuntu-latest
     env:
       HOME: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Detect relevant changes
+        id: changed
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: ./.github/scripts/changed.sh parity
 
       - uses: extractions/setup-just@v4
+        if: steps.changed.outputs.relevant == 'true'
 
       - name: Check generated harness parity
+        if: steps.changed.outputs.relevant == 'true'
         run: python3 scripts/agent-harnesses.py validate
 
       - name: Build parity report
+        if: steps.changed.outputs.relevant == 'true'
         run: python3 scripts/agent-harnesses.py audit > agent-harness-parity-report.md
 
       - name: Upload parity report
+        if: steps.changed.outputs.relevant == 'true'
         uses: actions/upload-artifact@v7
         with:
           name: agent-harness-parity-report
           path: agent-harness-parity-report.md
 
       - name: Refresh parity issue
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && steps.changed.outputs.relevant == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

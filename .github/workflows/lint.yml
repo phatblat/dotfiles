@@ -14,20 +14,17 @@ on:
       - "justfile"
       - "scripts/**"
       - "tests/**"
-      - ".github/workflows/lint.yml"
+      - ".codex/config.toml"
+      - "**.yml"
+      - "**.yaml"
+      # changed.sh decides whether the pull_request run does any work, so a
+      # main-branch commit touching only it still needs a post-merge lint.
+      - ".github/scripts/**"
+  # No paths filter on pull_request, deliberately. `lint` and `test` are required
+  # status checks, and a required check that never runs leaves the pull request
+  # stuck on "Expected" forever. The jobs always start and decide for themselves
+  # whether there is work to do — see the "Detect relevant changes" step.
   pull_request:
-    paths:
-      - ".config/fish/**"
-      - ".config/home-manager/**"
-      - ".config/nushell/**"
-      - ".config/zsh/functions/**"
-      - ".config/mise/config.toml"
-      - ".gitignore"
-      - "bin/**"
-      - "justfile"
-      - "scripts/**"
-      - "tests/**"
-      - ".github/workflows/lint.yml"
   schedule:
     # Weekly Monday 06:00 UTC — catch drift from tool updates
     - cron: "0 6 * * 1"
@@ -47,27 +44,39 @@ jobs:
       MISE_ENABLE_TOOLS: "just,shellcheck,ruff,bats,github:nushell/nushell,python,pipx:yamllint"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Detect relevant changes
+        id: changed
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: ./.github/scripts/changed.sh lint
 
       # Let the action run the install: it only caches tools it installed
       # itself, so `install: false` plus a separate `mise install` step meant
       # the cache was never written. install_args keeps the tool set scoped.
       - name: Install mise and tools
+        if: steps.changed.outputs.relevant == 'true'
         uses: jdx/mise-action@7e36c90d9ab29c415a2384db3006f3ec8a8cc654 # v4.2.4
         with:
           install_args: "just shellcheck ruff bats github:nushell/nushell python pipx:yamllint"
 
       - name: Install fish and zsh
+        if: steps.changed.outputs.relevant == 'true'
         run: |
           # Runner-provided Microsoft repositories intermittently return 403.
           sudo rm -f /etc/apt/sources.list.d/azure-cli.list /etc/apt/sources.list.d/microsoft-prod.list
           sudo apt-get update && sudo apt-get install -y fish zsh
 
       - name: Lint
+        if: steps.changed.outputs.relevant == 'true'
         run: |
           eval "$(mise activate bash)"
           just lint
 
       - name: Validate nix flake
+        if: steps.changed.outputs.relevant == 'true'
         run: nix flake show --json "$HOME/.config/home-manager" 2>&1 | head -20
         continue-on-error: true
 
@@ -86,21 +95,33 @@ jobs:
       GIT_CONFIG_VALUE_0: "false"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Detect relevant changes
+        id: changed
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: ./.github/scripts/changed.sh lint
 
       - name: Install mise and tools
+        if: steps.changed.outputs.relevant == 'true'
         uses: jdx/mise-action@7e36c90d9ab29c415a2384db3006f3ec8a8cc654 # v4.2.4
         with:
           install_args: "just shellcheck ruff bats bat starship aqua:shenwei356/rush github:nushell/nushell"
 
       - name: Install fish and test-exercised tools
+        if: steps.changed.outputs.relevant == 'true'
         run: brew install fish diff-so-fancy git-subrepo
 
       - name: Generate SSH key for sshkey tests
+        if: steps.changed.outputs.relevant == 'true'
         run: |
           mkdir -p "$HOME/.ssh"
           ssh-keygen -q -t ed25519 -N "" -f "$HOME/.ssh/id_ed25519"
 
       - name: Test
+        if: steps.changed.outputs.relevant == 'true'
         run: |
           eval "$(mise activate bash)"
           just test

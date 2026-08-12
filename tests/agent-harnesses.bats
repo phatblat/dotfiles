@@ -524,3 +524,109 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     [[ "$reason" == *"protected 'main' branch"* ]]
   done
 }
+
+@test "agent-harnesses: generated-paths manifest resolves and covers header-less artifacts" {
+  manifest="$HOME/.agents/harness/generated-paths.json"
+  [ -f "$manifest" ]
+
+  # Every key must name a file that exists, or the guard denies writes to paths
+  # that are gone while missing the ones that are not.
+  run python3 -c 'import json, sys
+from pathlib import Path
+home = Path(sys.argv[2])
+manifest = json.loads(Path(sys.argv[1]).read_text())
+missing = [k for k in manifest if not (home / k[2:]).exists()]
+if missing:
+    print("missing:", missing[:5])
+    raise SystemExit(1)
+' "$manifest" "$HOME"
+  [ "$status" -eq 0 ]
+
+  # These artifacts are JSON and cannot carry MANAGED_HEADER, so the manifest is
+  # the only way the guard can recognize them as generated.
+  run jq -e '."~/.pi/agent/agents.json"' "$manifest"
+  [ "$status" -eq 0 ]
+  run jq -e '."~/.agents/harness/generated-paths.json"' "$manifest"
+  [ "$status" -eq 0 ]
+}
+
+@test "agent-harnesses: guard denies writes to generated artifacts and names the source" {
+  run python3 "$SCRIPT" guard --harness omp --tool write \
+    --path "$HOME/.agents/harness/commands/git/commit.md" --content "x"
+
+  [ "$status" -eq 2 ]
+  [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
+  [[ "$(printf '%s' "$output" | jq -r '.reason')" == *".claude/commands/git/commit.md"* ]]
+}
+
+@test "agent-harnesses: guard allows writes to hand-written sources" {
+  run python3 "$SCRIPT" guard --harness omp --tool write \
+    --path "$HOME/.claude/commands/git/commit.md" --content "x"
+
+  [ "$status" -eq 0 ]
+  [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
+}
+
+@test "agent-harnesses: guard denies writes to the control plane" {
+  for target in \
+    ".agents/harness/hooks/safety.py" \
+    "scripts/agent-harnesses.py" \
+    ".agents/harness/self-improve-policy.json" \
+    ".agents/harness/generated-paths.json"; do
+    run python3 "$SCRIPT" guard --harness omp --tool write \
+      --path "$HOME/$target" --content "x"
+
+    [ "$status" -eq 2 ]
+    [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
+  done
+}
+
+# The path rules were write-tool-only, so `echo x >> safety.py` reached the
+# guard's own source and one redirect could blank the generated-path manifest,
+# taking every generated artifact unprotected with it.
+@test "agent-harnesses: guard denies shell writes to protected and control-plane paths" {
+  for command in \
+    "echo x >> $HOME/.agents/harness/hooks/safety.py" \
+    "echo '{}' > $HOME/.agents/harness/generated-paths.json" \
+    "rm $HOME/.agents/harness/generated-paths.json" \
+    "mv /tmp/x $HOME/.agents/harness/self-improve-policy.json" \
+    "sed -i '' s/deny/allow/ $HOME/scripts/agent-harnesses.py" \
+    "cp /tmp/evil $HOME/.claude/.credentials.json" \
+    "echo x >> $HOME/.ssh/id_rsa"; do
+    run python3 "$SCRIPT" guard --harness omp --tool bash --command "$command"
+
+    [ "$status" -eq 2 ]
+    [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
+  done
+}
+
+# The guard shells out to the generator, so denying every command that merely
+# names a control-plane path would deadlock the harness against itself.
+@test "agent-harnesses: guard allows reads and unrelated writes near the control plane" {
+  for command in \
+    "python3 $HOME/scripts/agent-harnesses.py generate" \
+    "python3 $HOME/scripts/agent-harnesses.py validate 2>/dev/null" \
+    "cat $HOME/.agents/harness/hooks/safety.py" \
+    "grep -n deny $HOME/scripts/agent-harnesses.py" \
+    "echo hi > /tmp/unrelated.txt" \
+    "rm -f build/out.txt"; do
+    run python3 "$SCRIPT" guard --harness omp --tool bash --command "$command"
+
+    [ "$status" -eq 0 ]
+    [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
+  done
+}
+
+@test "agent-harnesses: provenance classifies generated, source, and generator paths" {
+  run python3 "$SCRIPT" provenance --json --path "$HOME/.pi/agent/agents.json"
+  [ "$status" -eq 0 ]
+  [ "$(printf '%s' "$output" | jq -r '.kind')" = "generated" ]
+
+  run python3 "$SCRIPT" provenance --json --path "$HOME/.claude/commands/git/commit.md"
+  [ "$status" -eq 0 ]
+  [ "$(printf '%s' "$output" | jq -r '.kind')" = "source" ]
+
+  run python3 "$SCRIPT" provenance --json --path "$SCRIPT"
+  [ "$status" -eq 0 ]
+  [ "$(printf '%s' "$output" | jq -r '.kind')" = "generator" ]
+}

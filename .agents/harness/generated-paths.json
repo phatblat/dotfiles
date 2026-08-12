@@ -1,0 +1,824 @@
+{
+  "~/.agents/harness/README.md": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/antigravity/agents/ai-sdk-expert.md": {
+    "source": "~/.codex/agents/ai-sdk-expert.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/cli-expert.md": {
+    "source": "~/.codex/agents/cli-expert.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/code-review-expert.md": {
+    "source": "~/.codex/agents/code-review-expert.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/nestjs-expert.md": {
+    "source": "~/.codex/agents/nestjs-expert.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/research-expert.md": {
+    "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/triage-expert.md": {
+    "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/dupe.md": {
+    "source": "~/.claude/commands/dupe.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/git/cleanup.md": {
+    "source": "~/.claude/commands/git/cleanup.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/git/commit.md": {
+    "source": "~/.claude/commands/git/commit.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/git/push.md": {
+    "source": "~/.claude/commands/git/push.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/git/rebase.md": {
+    "source": "~/.claude/commands/git/rebase.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/git/split.md": {
+    "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/git/status.md": {
+    "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/linear/plan.md": {
+    "source": "~/.claude/commands/linear/plan.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/linear/progress.md": {
+    "source": "~/.claude/commands/linear/progress.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/optimize.md": {
+    "source": "~/.claude/commands/optimize.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/approve.md": {
+    "source": "~/.claude/commands/pr/approve.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/create.md": {
+    "source": "~/.claude/commands/pr/create.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/daily.md": {
+    "source": "~/.claude/commands/pr/daily.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/merge.md": {
+    "source": "~/.claude/commands/pr/merge.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/open-for-review.md": {
+    "source": "~/.claude/commands/pr/open-for-review.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/post-findings.md": {
+    "source": "~/.claude/commands/pr/post-findings.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/resolve-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/pr/update-desc.md": {
+    "source": "~/.claude/commands/pr/update-desc.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/retro.md": {
+    "source": "~/.claude/commands/retro.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/session-save.md": {
+    "source": "~/.claude/commands/session-save.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/work/eod.md": {
+    "source": "~/.claude/commands/work/eod.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/work/runners.md": {
+    "source": "~/.claude/commands/work/runners.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/work/start-day.md": {
+    "source": "~/.claude/commands/work/start-day.md"
+  },
+  "~/.agents/harness/adapters/antigravity/commands/work/track-item.md": {
+    "source": "~/.claude/commands/work/track-item.md"
+  },
+  "~/.agents/harness/adapters/antigravity/hooks/hooks.json": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/antigravity/mcp.json": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/antigravity/plugin.json": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/antigravity/skills/aven/SKILL.md": {
+    "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/boris/SKILL.md": {
+    "source": "~/.agents/skills/boris/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/dupe/SKILL.md": {
+    "source": "~/.agents/skills/dupe/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/find-skills/SKILL.md": {
+    "source": "~/.agents/skills/find-skills/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md": {
+    "source": "~/.agents/skills/gh-stack/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-cleanup/SKILL.md": {
+    "source": "~/.agents/skills/git-cleanup/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md": {
+    "source": "~/.agents/skills/git-commit/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-push/SKILL.md": {
+    "source": "~/.agents/skills/git-push/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-rebase/SKILL.md": {
+    "source": "~/.agents/skills/git-rebase/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-split/SKILL.md": {
+    "source": "~/.agents/skills/git-split/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
+    "source": "~/.agents/skills/git-status/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/handoff/SKILL.md": {
+    "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/linear-plan/SKILL.md": {
+    "source": "~/.agents/skills/linear-plan/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/optimize/SKILL.md": {
+    "source": "~/.agents/skills/optimize/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-approve/SKILL.md": {
+    "source": "~/.agents/skills/pr-approve/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-create/SKILL.md": {
+    "source": "~/.agents/skills/pr-create/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-daily/SKILL.md": {
+    "source": "~/.agents/skills/pr-daily/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-merge/SKILL.md": {
+    "source": "~/.agents/skills/pr-merge/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-open-for-review/SKILL.md": {
+    "source": "~/.agents/skills/pr-open-for-review/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-post-findings/SKILL.md": {
+    "source": "~/.agents/skills/pr-post-findings/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/pr-resolve-feedback/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/pr-update-desc/SKILL.md": {
+    "source": "~/.agents/skills/pr-update-desc/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/retro/SKILL.md": {
+    "source": "~/.agents/skills/retro/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/session-save/SKILL.md": {
+    "source": "~/.agents/skills/session-save/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/work-eod/SKILL.md": {
+    "source": "~/.agents/skills/work-eod/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/work-runners/SKILL.md": {
+    "source": "~/.agents/skills/work-runners/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/work-start/SKILL.md": {
+    "source": "~/.agents/skills/work-start/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/work-track/SKILL.md": {
+    "source": "~/.agents/skills/work-track/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/cursor/agents/ai-sdk-expert.md": {
+    "source": "~/.codex/agents/ai-sdk-expert.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/cli-expert.md": {
+    "source": "~/.codex/agents/cli-expert.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/code-review-expert.md": {
+    "source": "~/.codex/agents/code-review-expert.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/nestjs-expert.md": {
+    "source": "~/.codex/agents/nestjs-expert.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/research-expert.md": {
+    "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/triage-expert.md": {
+    "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.agents/harness/adapters/cursor/commands/dupe.md": {
+    "source": "~/.claude/commands/dupe.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/git/cleanup.md": {
+    "source": "~/.claude/commands/git/cleanup.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/git/commit.md": {
+    "source": "~/.claude/commands/git/commit.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/git/push.md": {
+    "source": "~/.claude/commands/git/push.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/git/rebase.md": {
+    "source": "~/.claude/commands/git/rebase.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/git/split.md": {
+    "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/git/status.md": {
+    "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/linear/plan.md": {
+    "source": "~/.claude/commands/linear/plan.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/linear/progress.md": {
+    "source": "~/.claude/commands/linear/progress.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/optimize.md": {
+    "source": "~/.claude/commands/optimize.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/approve.md": {
+    "source": "~/.claude/commands/pr/approve.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/create.md": {
+    "source": "~/.claude/commands/pr/create.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/daily.md": {
+    "source": "~/.claude/commands/pr/daily.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/merge.md": {
+    "source": "~/.claude/commands/pr/merge.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/open-for-review.md": {
+    "source": "~/.claude/commands/pr/open-for-review.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/post-findings.md": {
+    "source": "~/.claude/commands/pr/post-findings.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/resolve-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/pr/update-desc.md": {
+    "source": "~/.claude/commands/pr/update-desc.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/retro.md": {
+    "source": "~/.claude/commands/retro.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/session-save.md": {
+    "source": "~/.claude/commands/session-save.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/work/eod.md": {
+    "source": "~/.claude/commands/work/eod.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/work/runners.md": {
+    "source": "~/.claude/commands/work/runners.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/work/start-day.md": {
+    "source": "~/.claude/commands/work/start-day.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/work/track-item.md": {
+    "source": "~/.claude/commands/work/track-item.md"
+  },
+  "~/.agents/harness/adapters/cursor/hooks/hooks.json": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/cursor/mcp.json": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/cursor/scripts/harness-guard.py": {
+    "source": ""
+  },
+  "~/.agents/harness/adapters/cursor/skills/aven/SKILL.md": {
+    "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/boris/SKILL.md": {
+    "source": "~/.agents/skills/boris/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/dupe/SKILL.md": {
+    "source": "~/.agents/skills/dupe/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/find-skills/SKILL.md": {
+    "source": "~/.agents/skills/find-skills/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/gh-stack/SKILL.md": {
+    "source": "~/.agents/skills/gh-stack/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-cleanup/SKILL.md": {
+    "source": "~/.agents/skills/git-cleanup/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-commit/SKILL.md": {
+    "source": "~/.agents/skills/git-commit/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-push/SKILL.md": {
+    "source": "~/.agents/skills/git-push/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-rebase/SKILL.md": {
+    "source": "~/.agents/skills/git-rebase/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-split/SKILL.md": {
+    "source": "~/.agents/skills/git-split/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-status/SKILL.md": {
+    "source": "~/.agents/skills/git-status/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/handoff/SKILL.md": {
+    "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/linear-plan/SKILL.md": {
+    "source": "~/.agents/skills/linear-plan/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/optimize/SKILL.md": {
+    "source": "~/.agents/skills/optimize/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-approve/SKILL.md": {
+    "source": "~/.agents/skills/pr-approve/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-create/SKILL.md": {
+    "source": "~/.agents/skills/pr-create/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-daily/SKILL.md": {
+    "source": "~/.agents/skills/pr-daily/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-merge/SKILL.md": {
+    "source": "~/.agents/skills/pr-merge/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-open-for-review/SKILL.md": {
+    "source": "~/.agents/skills/pr-open-for-review/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-post-findings/SKILL.md": {
+    "source": "~/.agents/skills/pr-post-findings/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/pr-resolve-feedback/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/pr-update-desc/SKILL.md": {
+    "source": "~/.agents/skills/pr-update-desc/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/retro/SKILL.md": {
+    "source": "~/.agents/skills/retro/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/session-save/SKILL.md": {
+    "source": "~/.agents/skills/session-save/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/work-eod/SKILL.md": {
+    "source": "~/.agents/skills/work-eod/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/work-runners/SKILL.md": {
+    "source": "~/.agents/skills/work-runners/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/work-start/SKILL.md": {
+    "source": "~/.agents/skills/work-start/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/work-track/SKILL.md": {
+    "source": "~/.agents/skills/work-track/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
+  },
+  "~/.agents/harness/agents/ai-sdk-expert.toml": {
+    "source": "~/.codex/agents/ai-sdk-expert.toml"
+  },
+  "~/.agents/harness/agents/cli-expert.toml": {
+    "source": "~/.codex/agents/cli-expert.toml"
+  },
+  "~/.agents/harness/agents/code-review-expert.toml": {
+    "source": "~/.codex/agents/code-review-expert.toml"
+  },
+  "~/.agents/harness/agents/nestjs-expert.toml": {
+    "source": "~/.codex/agents/nestjs-expert.toml"
+  },
+  "~/.agents/harness/agents/research-expert.toml": {
+    "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.agents/harness/agents/triage-expert.toml": {
+    "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.agents/harness/commands/dupe.md": {
+    "source": "~/.claude/commands/dupe.md"
+  },
+  "~/.agents/harness/commands/git/cleanup.md": {
+    "source": "~/.claude/commands/git/cleanup.md"
+  },
+  "~/.agents/harness/commands/git/commit.md": {
+    "source": "~/.claude/commands/git/commit.md"
+  },
+  "~/.agents/harness/commands/git/push.md": {
+    "source": "~/.claude/commands/git/push.md"
+  },
+  "~/.agents/harness/commands/git/rebase.md": {
+    "source": "~/.claude/commands/git/rebase.md"
+  },
+  "~/.agents/harness/commands/git/split.md": {
+    "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.agents/harness/commands/git/status.md": {
+    "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.agents/harness/commands/linear/plan.md": {
+    "source": "~/.claude/commands/linear/plan.md"
+  },
+  "~/.agents/harness/commands/linear/progress.md": {
+    "source": "~/.claude/commands/linear/progress.md"
+  },
+  "~/.agents/harness/commands/optimize.md": {
+    "source": "~/.claude/commands/optimize.md"
+  },
+  "~/.agents/harness/commands/pr/approve.md": {
+    "source": "~/.claude/commands/pr/approve.md"
+  },
+  "~/.agents/harness/commands/pr/create.md": {
+    "source": "~/.claude/commands/pr/create.md"
+  },
+  "~/.agents/harness/commands/pr/daily.md": {
+    "source": "~/.claude/commands/pr/daily.md"
+  },
+  "~/.agents/harness/commands/pr/merge.md": {
+    "source": "~/.claude/commands/pr/merge.md"
+  },
+  "~/.agents/harness/commands/pr/open-for-review.md": {
+    "source": "~/.claude/commands/pr/open-for-review.md"
+  },
+  "~/.agents/harness/commands/pr/post-findings.md": {
+    "source": "~/.claude/commands/pr/post-findings.md"
+  },
+  "~/.agents/harness/commands/pr/resolve-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  },
+  "~/.agents/harness/commands/pr/update-desc.md": {
+    "source": "~/.claude/commands/pr/update-desc.md"
+  },
+  "~/.agents/harness/commands/retro.md": {
+    "source": "~/.claude/commands/retro.md"
+  },
+  "~/.agents/harness/commands/session-save.md": {
+    "source": "~/.claude/commands/session-save.md"
+  },
+  "~/.agents/harness/commands/work/eod.md": {
+    "source": "~/.claude/commands/work/eod.md"
+  },
+  "~/.agents/harness/commands/work/runners.md": {
+    "source": "~/.claude/commands/work/runners.md"
+  },
+  "~/.agents/harness/commands/work/start-day.md": {
+    "source": "~/.claude/commands/work/start-day.md"
+  },
+  "~/.agents/harness/commands/work/track-item.md": {
+    "source": "~/.claude/commands/work/track-item.md"
+  },
+  "~/.agents/harness/generated-paths.json": {
+    "source": ""
+  },
+  "~/.agents/harness/hooks/contract.json": {
+    "source": ""
+  },
+  "~/.agents/harness/hooks/safety-policy.json": {
+    "source": ""
+  },
+  "~/.agents/harness/instructions.md": {
+    "source": ""
+  },
+  "~/.claude/skills/aven/SKILL.md": {
+    "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.claude/skills/handoff/SKILL.md": {
+    "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.codex/skills/aven/SKILL.md": {
+    "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.codex/skills/handoff/SKILL.md": {
+    "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.codex/skills/handoff/agents/openai.yaml": {
+    "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.config/opencode/agents/ai-sdk-expert.md": {
+    "source": "~/.codex/agents/ai-sdk-expert.toml"
+  },
+  "~/.config/opencode/agents/cli-expert.md": {
+    "source": "~/.codex/agents/cli-expert.toml"
+  },
+  "~/.config/opencode/agents/code-review-expert.md": {
+    "source": "~/.codex/agents/code-review-expert.toml"
+  },
+  "~/.config/opencode/agents/nestjs-expert.md": {
+    "source": "~/.codex/agents/nestjs-expert.toml"
+  },
+  "~/.config/opencode/agents/research-expert.md": {
+    "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.config/opencode/agents/triage-expert.md": {
+    "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.config/opencode/commands/dupe.md": {
+    "source": "~/.claude/commands/dupe.md"
+  },
+  "~/.config/opencode/commands/git:cleanup.md": {
+    "source": "~/.claude/commands/git/cleanup.md"
+  },
+  "~/.config/opencode/commands/git:commit.md": {
+    "source": "~/.claude/commands/git/commit.md"
+  },
+  "~/.config/opencode/commands/git:push.md": {
+    "source": "~/.claude/commands/git/push.md"
+  },
+  "~/.config/opencode/commands/git:rebase.md": {
+    "source": "~/.claude/commands/git/rebase.md"
+  },
+  "~/.config/opencode/commands/git:split.md": {
+    "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.config/opencode/commands/git:status.md": {
+    "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.config/opencode/commands/linear:plan.md": {
+    "source": "~/.claude/commands/linear/plan.md"
+  },
+  "~/.config/opencode/commands/linear:progress.md": {
+    "source": "~/.claude/commands/linear/progress.md"
+  },
+  "~/.config/opencode/commands/optimize.md": {
+    "source": "~/.claude/commands/optimize.md"
+  },
+  "~/.config/opencode/commands/pr:approve.md": {
+    "source": "~/.claude/commands/pr/approve.md"
+  },
+  "~/.config/opencode/commands/pr:create.md": {
+    "source": "~/.claude/commands/pr/create.md"
+  },
+  "~/.config/opencode/commands/pr:daily.md": {
+    "source": "~/.claude/commands/pr/daily.md"
+  },
+  "~/.config/opencode/commands/pr:merge.md": {
+    "source": "~/.claude/commands/pr/merge.md"
+  },
+  "~/.config/opencode/commands/pr:open-for-review.md": {
+    "source": "~/.claude/commands/pr/open-for-review.md"
+  },
+  "~/.config/opencode/commands/pr:post-findings.md": {
+    "source": "~/.claude/commands/pr/post-findings.md"
+  },
+  "~/.config/opencode/commands/pr:resolve-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  },
+  "~/.config/opencode/commands/pr:update-desc.md": {
+    "source": "~/.claude/commands/pr/update-desc.md"
+  },
+  "~/.config/opencode/commands/retro.md": {
+    "source": "~/.claude/commands/retro.md"
+  },
+  "~/.config/opencode/commands/session-save.md": {
+    "source": "~/.claude/commands/session-save.md"
+  },
+  "~/.config/opencode/commands/work:eod.md": {
+    "source": "~/.claude/commands/work/eod.md"
+  },
+  "~/.config/opencode/commands/work:runners.md": {
+    "source": "~/.claude/commands/work/runners.md"
+  },
+  "~/.config/opencode/commands/work:start-day.md": {
+    "source": "~/.claude/commands/work/start-day.md"
+  },
+  "~/.config/opencode/commands/work:track-item.md": {
+    "source": "~/.claude/commands/work/track-item.md"
+  },
+  "~/.config/opencode/opencode.jsonc": {
+    "source": ""
+  },
+  "~/.config/opencode/plugins/harness.ts": {
+    "source": ""
+  },
+  "~/.config/opencode/skills/aven/SKILL.md": {
+    "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.config/opencode/skills/handoff/SKILL.md": {
+    "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.pi/agent/agents.json": {
+    "source": ""
+  },
+  "~/.pi/agent/agents/ai-sdk-expert.md": {
+    "source": "~/.codex/agents/ai-sdk-expert.toml"
+  },
+  "~/.pi/agent/agents/cli-expert.md": {
+    "source": "~/.codex/agents/cli-expert.toml"
+  },
+  "~/.pi/agent/agents/code-review-expert.md": {
+    "source": "~/.codex/agents/code-review-expert.toml"
+  },
+  "~/.pi/agent/agents/nestjs-expert.md": {
+    "source": "~/.codex/agents/nestjs-expert.toml"
+  },
+  "~/.pi/agent/agents/research-expert.md": {
+    "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.pi/agent/agents/triage-expert.md": {
+    "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.pi/agent/extensions/harness.ts": {
+    "source": ""
+  },
+  "~/.pi/agent/prompts/dupe.md": {
+    "source": "~/.claude/commands/dupe.md"
+  },
+  "~/.pi/agent/prompts/git:cleanup.md": {
+    "source": "~/.claude/commands/git/cleanup.md"
+  },
+  "~/.pi/agent/prompts/git:commit.md": {
+    "source": "~/.claude/commands/git/commit.md"
+  },
+  "~/.pi/agent/prompts/git:push.md": {
+    "source": "~/.claude/commands/git/push.md"
+  },
+  "~/.pi/agent/prompts/git:rebase.md": {
+    "source": "~/.claude/commands/git/rebase.md"
+  },
+  "~/.pi/agent/prompts/git:split.md": {
+    "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.pi/agent/prompts/git:status.md": {
+    "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.pi/agent/prompts/linear:plan.md": {
+    "source": "~/.claude/commands/linear/plan.md"
+  },
+  "~/.pi/agent/prompts/linear:progress.md": {
+    "source": "~/.claude/commands/linear/progress.md"
+  },
+  "~/.pi/agent/prompts/optimize.md": {
+    "source": "~/.claude/commands/optimize.md"
+  },
+  "~/.pi/agent/prompts/pr:approve.md": {
+    "source": "~/.claude/commands/pr/approve.md"
+  },
+  "~/.pi/agent/prompts/pr:create.md": {
+    "source": "~/.claude/commands/pr/create.md"
+  },
+  "~/.pi/agent/prompts/pr:daily.md": {
+    "source": "~/.claude/commands/pr/daily.md"
+  },
+  "~/.pi/agent/prompts/pr:merge.md": {
+    "source": "~/.claude/commands/pr/merge.md"
+  },
+  "~/.pi/agent/prompts/pr:open-for-review.md": {
+    "source": "~/.claude/commands/pr/open-for-review.md"
+  },
+  "~/.pi/agent/prompts/pr:post-findings.md": {
+    "source": "~/.claude/commands/pr/post-findings.md"
+  },
+  "~/.pi/agent/prompts/pr:resolve-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  },
+  "~/.pi/agent/prompts/pr:update-desc.md": {
+    "source": "~/.claude/commands/pr/update-desc.md"
+  },
+  "~/.pi/agent/prompts/retro.md": {
+    "source": "~/.claude/commands/retro.md"
+  },
+  "~/.pi/agent/prompts/session-save.md": {
+    "source": "~/.claude/commands/session-save.md"
+  },
+  "~/.pi/agent/prompts/work:eod.md": {
+    "source": "~/.claude/commands/work/eod.md"
+  },
+  "~/.pi/agent/prompts/work:runners.md": {
+    "source": "~/.claude/commands/work/runners.md"
+  },
+  "~/.pi/agent/prompts/work:start-day.md": {
+    "source": "~/.claude/commands/work/start-day.md"
+  },
+  "~/.pi/agent/prompts/work:track-item.md": {
+    "source": "~/.claude/commands/work/track-item.md"
+  },
+  "~/.pi/agent/settings.json": {
+    "source": ""
+  },
+  "~/docs/agent-harnesses.json": {
+    "source": ""
+  },
+  "~/docs/agent-harnesses.md": {
+    "source": ""
+  }
+}
