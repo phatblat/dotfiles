@@ -368,7 +368,7 @@ upgrade-mise-tools *args:
 upgrade-mise:
     mise self-update --yes
 
-# Upgrades the installed omp version from the upstream GitHub repository
+# Upgrades the installed pi version from the upstream GitHub repository
 [group('configuration')]
 upgrade-pi:
     mise upgrade --bump github:can1357/oh-my-pi
