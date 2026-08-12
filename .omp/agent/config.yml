@@ -5,10 +5,11 @@ modelRoles:
   plan: anthropic/claude-opus-5:xhigh
   slow: anthropic/claude-fable-5
   designer: anthropic/claude-fable-5
-  smol: anthropic/claude-haiku-4-5
+  smol: openai-codex/gpt-5.6-luna
   advisor: anthropic/claude-sonnet-4-6
   tiny: anthropic/claude-haiku-4-5
   default: anthropic/claude-sonnet-5
+  vision: openai-codex/gpt-5.6-sol
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
