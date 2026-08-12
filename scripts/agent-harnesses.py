@@ -18,7 +18,13 @@ from typing import TYPE_CHECKING, Any
 # per call). Non-guard invocations import everything eagerly, exactly as before;
 # the `TYPE_CHECKING or` prefix keeps the names bound for static analysis while
 # staying conditional at runtime.
-if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] == "guard"):
+#
+# `provenance` shares the fast path for a second reason: `tomllib` needs Python
+# 3.11+, and the interpreter on PATH under launchd and other non-login contexts
+# is the system 3.9. Anything a scheduled job or a hook may call has to load
+# without it.
+FAST_PATH_ACTIONS = {"guard", "provenance"}
+if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS):
     import argparse
     import shutil
     import subprocess
@@ -34,6 +40,11 @@ sys.dont_write_bytecode = True
 HOME = Path(os.environ.get("HOME", str(Path.home()))).resolve()
 ROOT = HOME
 SHARED = ROOT / ".agents" / "harness"
+# Every path render_all() writes, mapped to the hand-written file behind it. The
+# `guard` hot path reads this instead of calling render_all(), which would render
+# every artifact on every tool call.
+GENERATED_MANIFEST = SHARED / "generated-paths.json"
+GENERATOR_PATH = ROOT / "scripts" / "agent-harnesses.py"
 COMMAND_SOURCE = ROOT / ".claude" / "commands"
 AGENT_SOURCE = ROOT / ".codex" / "agents"
 SKILL_SOURCE = ROOT / ".agents" / "skills"
@@ -174,8 +185,9 @@ ATTRIBUTE_MAPPINGS = [
 
 sys.path.insert(0, str(SHARED / "hooks"))
 try:
-    from safety import evaluate  # type: ignore
+    from safety import GuardDecision, evaluate  # type: ignore
 except ImportError as exc:  # pragma: no cover - only hit before installation
+    GuardDecision = None  # type: ignore
     evaluate = None  # type: ignore
     SAFETY_IMPORT_ERROR = exc
 else:
@@ -217,6 +229,12 @@ def main() -> int:
     guard_parser.add_argument("--content", default="")
     guard_parser.add_argument("--cwd", default=str(ROOT))
 
+    provenance_parser = subparsers.add_parser(
+        "provenance", help="Report whether a path is generated, source, or neither"
+    )
+    provenance_parser.add_argument("--path", required=True)
+    provenance_parser.add_argument("--json", action="store_true", help="Emit JSON")
+
     args = parser.parse_args()
     if args.action == "inventory":
         return command_inventory(json_output=args.json)
@@ -228,6 +246,8 @@ def main() -> int:
         return command_audit(json_output=args.json)
     if args.action == "guard":
         return command_guard(args)
+    if args.action == "provenance":
+        return command_provenance(args)
     raise AssertionError(args.action)
 
 
@@ -484,6 +504,10 @@ def command_guard(args: argparse.Namespace) -> int:
         content=args.content,
         cwd=args.cwd,
     )
+    if decision.allowed and args.path:
+        generated = generated_path_warning(args.tool, args.path)
+        if generated:
+            decision = GuardDecision("deny", generated)
     payload = {
         "harness": args.harness,
         "tool": args.tool,
@@ -492,6 +516,102 @@ def command_guard(args: argparse.Namespace) -> int:
     }
     print(json.dumps(payload, sort_keys=True))
     return 0 if decision.allowed else 2
+
+
+def load_generated_manifest() -> dict[str, dict[str, str]]:
+    """Read GENERATED_MANIFEST, or return {} when it is missing or unreadable.
+
+    Fails open on purpose: a missing manifest must not wedge every write in every
+    harness. `just harness-check` is what catches the manifest going stale.
+    """
+
+    try:
+        data = json.loads(GENERATED_MANIFEST.read_text())
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def generated_relpath(path: str) -> str | None:
+    """Return the manifest key for `path`, or None when it is not generated.
+
+    Matches on the tail of the path rather than on equality so that a copy of the
+    repository checked out as a worktree — where the same artifact lives under a
+    different prefix — is still recognized as generated.
+    """
+
+    manifest = load_generated_manifest()
+    if not manifest:
+        return None
+    candidate = Path(os.path.expanduser(path))
+    try:
+        candidate = candidate.resolve()
+    except OSError:
+        pass
+    posix = candidate.as_posix()
+    for key in manifest:
+        rel = key.removeprefix("~/")
+        if posix == rel or posix.endswith("/" + rel):
+            return key
+    return None
+
+
+def generated_path_warning(tool: str, path: str) -> str:
+    """Explain why `path` must not be written, when it is a generated artifact."""
+
+    if tool.lower().strip() not in {
+        "write",
+        "edit",
+        "multiedit",
+        "file_write",
+        "file_edit",
+    }:
+        return ""
+    key = generated_relpath(path)
+    if key is None:
+        return ""
+    source = load_generated_manifest().get(key, {}).get("source") or ""
+    target = f"Edit {source} instead" if source else "Edit its source instead"
+    return (
+        f"{key} is generated by scripts/agent-harnesses.py and will be "
+        f"overwritten by the next `just harness-generate`. {target}, then "
+        "regenerate."
+    )
+
+
+def command_provenance(args: argparse.Namespace) -> int:
+    key = generated_relpath(args.path)
+    resolved = display_path(Path(os.path.expanduser(args.path)))
+    if key is not None:
+        kind = "generated"
+        source = load_generated_manifest().get(key, {}).get("source") or ""
+    elif resolved in {
+        display_path(GENERATOR_PATH),
+        display_path(SHARED / "hooks" / "safety.py"),
+    }:
+        kind, source = "generator", ""
+    elif any(
+        _is_within(args.path, root)
+        for root in (COMMAND_SOURCE, AGENT_SOURCE, SKILL_SOURCE)
+    ):
+        kind, source = "source", ""
+    else:
+        kind, source = "other", ""
+
+    payload = {"path": resolved, "kind": kind, "source": source}
+    if args.json:
+        print(json.dumps(payload, sort_keys=True))
+    else:
+        print(f"{kind}\t{resolved}" + (f"\t{source}" if source else ""))
+    return 0
+
+
+def _is_within(path: str, root: Path) -> bool:
+    try:
+        Path(os.path.expanduser(path)).resolve().relative_to(root.resolve())
+    except (OSError, ValueError):
+        return False
+    return True
 
 
 def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
@@ -560,6 +680,11 @@ def render_all() -> dict[Path, str]:
     inventory = build_inventory(include_prompts=True)
     commands = inventory["commands"]
     agents = inventory["agents"]
+    # Reverse map from each generated artifact to the hand-written file it came
+    # from. Populated by diffing the keys of `rendered` after each loop iteration
+    # rather than by restating the target paths, so a new adapter cannot be added
+    # without its provenance following. Serialized as GENERATED_MANIFEST below.
+    provenance: dict[Path, str] = {}
     rendered: dict[Path, str] = {
         SHARED / "README.md": render_shared_readme(commands, agents),
         SHARED / "instructions.md": render_instructions(),
@@ -595,6 +720,7 @@ def render_all() -> dict[Path, str]:
 
     for command in commands:
         source = ROOT / command["source"].replace("~/", "")
+        emitted = set(rendered)
         rel = Path(command["id"] + ".md")
         rendered[SHARED / "commands" / rel] = render_shared_command(source.read_text())
         rendered[OPEN_CODE / "commands" / f"{command['native']}.md"] = (
@@ -605,9 +731,11 @@ def render_all() -> dict[Path, str]:
         )
         rendered[ANTIGRAVITY_COMMANDS / rel] = render_antigravity_command(command)
         rendered[CURSOR_HARNESS / "commands" / rel] = render_cursor_command(command)
+        record_provenance(provenance, rendered, emitted, source)
 
     for agent in agents:
         source = ROOT / agent["source"].replace("~/", "")
+        emitted = set(rendered)
         rendered[SHARED / "agents" / f"{agent['id']}.toml"] = render_shared_agent(
             source.read_text()
         )
@@ -621,15 +749,21 @@ def render_all() -> dict[Path, str]:
         rendered[CURSOR_HARNESS / "agents" / f"{agent['id']}.md"] = render_cursor_agent(
             agent
         )
+        record_provenance(provenance, rendered, emitted, source)
 
     for skill_name in inventory["skills"]["paths"]:
+        source = SKILL_SOURCE / skill_name / "SKILL.md"
+        emitted = set(rendered)
         rendered[ANTIGRAVITY_HARNESS / "skills" / skill_name / "SKILL.md"] = (
             render_antigravity_skill(skill_name)
         )
         rendered[CURSOR_HARNESS / "skills" / skill_name / "SKILL.md"] = (
             render_cursor_skill(skill_name)
         )
+        record_provenance(provenance, rendered, emitted, source)
     for skill_name in sorted(NATIVE_SKILL_ADAPTERS & set(inventory["skills"]["paths"])):
+        source = SKILL_SOURCE / skill_name / "SKILL.md"
+        emitted = set(rendered)
         manual_only = skill_name in MANUAL_SKILL_ADAPTERS
         rendered[CLAUDE_SKILLS / skill_name / "SKILL.md"] = render_claude_skill(
             skill_name, manual_only=manual_only
@@ -644,8 +778,40 @@ def render_all() -> dict[Path, str]:
         rendered[OPEN_CODE_SKILLS / skill_name / "SKILL.md"] = render_opencode_skill(
             skill_name
         )
+        record_provenance(provenance, rendered, emitted, source)
+
+    # The manifest describes itself too, so `provenance` never reports a
+    # generated file as untracked merely because it is the manifest.
+    provenance.setdefault(GENERATED_MANIFEST, "")
+    for target in rendered:
+        provenance.setdefault(target, "")
+    rendered[GENERATED_MANIFEST] = (
+        json.dumps(
+            {
+                display_path(target): {"source": source}
+                for target, source in sorted(
+                    provenance.items(), key=lambda item: display_path(item[0])
+                )
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n"
+    )
 
     return rendered
+
+
+def record_provenance(
+    provenance: dict[Path, str],
+    rendered: dict[Path, str],
+    emitted: set[Path],
+    source: Path,
+) -> None:
+    """Attribute every artifact added since `emitted` was captured to `source`."""
+
+    for target in rendered.keys() - emitted:
+        provenance[target] = display_path(source)
 
 
 def render_shared_readme(
