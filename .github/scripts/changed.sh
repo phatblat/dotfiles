@@ -16,38 +16,40 @@ profile="${1:?usage: changed.sh <lint|parity>}"
 
 case "$profile" in
 lint)
-	# Mirrors what `just lint` actually reads: lint-yaml covers every tracked
-	# *.yml/*.yaml, lint-toml validates .codex/config.toml, and lint-python
-	# covers scripts/*.py. Narrower than this and a lint failure surfaces on
-	# some later unrelated pull request instead of the one that caused it.
-	pattern='^(\.config/(fish|home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
-	;;
+    # Mirrors what `just lint` actually reads: lint-yaml covers every tracked
+    # *.yml/*.yaml, lint-toml validates .codex/config.toml, lint-python
+    # covers the explicitly listed Python files, and lint-github-scripts
+    # covers .github/scripts/*.sh. Narrower than this and a lint failure
+    # surfaces on some later unrelated pull request instead of the one that
+    # caused it.
+    pattern='^(\.agents/harness/hooks/safety\.py$|\.config/(fish|home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
+    ;;
 parity)
-	# .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:
-	# editing a shared skill can leave generated adapters stale.
-	pattern='^(\.agents/|\.claude/(commands|skills)/|\.codex/(agents|skills)/|\.config/opencode/|\.cursor/|\.gemini/|\.pi/|\.omp/|scripts/agent-harnesses\.py$|scripts/agent_plugins\.py$|docs/agent-harnesses\.|\.github/(workflows/agent-harness-parity\.yml|scripts/changed\.sh)$)'
-	;;
+    # .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:
+    # editing a shared skill can leave generated adapters stale.
+    pattern='^(\.agents/|\.claude/(commands|skills)/|\.codex/(agents|skills)/|\.config/opencode/|\.cursor/|\.gemini/|\.pi/|\.omp/|scripts/agent-harnesses\.py$|scripts/agent_plugins\.py$|docs/agent-harnesses\.|\.github/(workflows/agent-harness-parity\.yml|scripts/changed\.sh)$)'
+    ;;
 *)
-	echo "unknown profile: $profile" >&2
-	exit 64
-	;;
+    echo "unknown profile: $profile" >&2
+    exit 64
+    ;;
 esac
 
 emit() {
-	echo "relevant=$1" >>"${GITHUB_OUTPUT:-/dev/stdout}"
-	echo "relevant=$1 (profile: $profile)" >&2
+    echo "relevant=$1" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+    echo "relevant=$1 (profile: $profile)" >&2
 }
 
 if [[ ${GITHUB_EVENT_NAME:-} != "pull_request" ]]; then
-	emit true
-	exit 0
+    emit true
+    exit 0
 fi
 
 base="${BASE_SHA:-}"
-if [[ -z $base ]] || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
-	echo "base commit unavailable; running everything" >&2
-	emit true
-	exit 0
+if [[ -z $base ]] || ! git cat-file -e "${base}^{commit}" 2> /dev/null; then
+    echo "base commit unavailable; running everything" >&2
+    emit true
+    exit 0
 fi
 
 # Captured rather than piped into grep. Under `set -o pipefail`, `grep -q` exits
@@ -56,13 +58,13 @@ fi
 # branch and reported relevant=false, skipping a required check on exactly the
 # large pull requests that most need it.
 if ! changed_files="$(git diff --name-only "$base" HEAD)"; then
-	echo "diff failed; running everything" >&2
-	emit true
-	exit 0
+    echo "diff failed; running everything" >&2
+    emit true
+    exit 0
 fi
 
-if grep -qE "$pattern" <<<"$changed_files"; then
-	emit true
+if grep -qE "$pattern" <<< "$changed_files"; then
+    emit true
 else
-	emit false
+    emit false
 fi

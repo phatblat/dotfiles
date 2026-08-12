@@ -513,6 +513,7 @@ lint-gitignore:
 lint-python:
     @echo "Linting Python scripts..."
     ruff check ~/scripts/agent-harnesses.py ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/.agents/harness/hooks/safety.py
+    ruff format --check ~/.agents/harness/hooks/safety.py
 
 # Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
@@ -561,6 +562,12 @@ lint-nushell:
     # in one process (~0.3s); a broken autoload file otherwise exits 0.
     @nu --commands 'let bad = (ls ~/.config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'
 
+# Lints GitHub Actions shell scripts with shellcheck
+[group('checks')]
+lint-github-scripts:
+    @echo "Linting GitHub Actions scripts..."
+    @find ~/.github/scripts -name '*.sh' -exec shellcheck {} +
+
 # Lints bin scripts with shellcheck (excludes vendor scripts)
 [group('checks')]
 lint-bin:
@@ -574,7 +581,7 @@ check-spelling:
 
 # Runs all linting checks
 [group('checks')]
-lint-all: lint-zsh lint-fish lint-nushell lint-bin
+lint-all: lint-zsh lint-fish lint-nushell lint-github-scripts lint-bin
     @echo "All linting complete"
 
 # Checks justfile and mise config formatting, gitignore, python, and shell scripts
@@ -707,16 +714,23 @@ format-yaml:
         prettier --write "${files[@]}"
     fi
 
-# Formats and hardens Zsh shell scripts
+# Formats Python policy modules with ruff
+[group('configuration')]
+format-python:
+    @ruff format ~/.agents/harness/hooks/safety.py
+
+# Formats and hardens shell scripts
 [group('configuration')]
 format-shell:
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
+    @find ~/.github/scripts -name '*.sh' -exec shfmt -ln bash -w -i 4 -sr {} +
+    @find ~/.github/scripts -name '*.sh' -exec shellharden --replace {} +
 
-# Formats mise config, justfile, JSON/TOML configs, and shell scripts
+# Formats mise config, justfile, Python, JSON/TOML configs, and shell scripts
 [group('configuration')]
-format: format-gitignore format-mise format-toml format-json format-yaml format-shell
+format: format-gitignore format-mise format-toml format-json format-yaml format-python format-shell
     just --fmt
 
 #
