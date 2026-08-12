@@ -368,6 +368,11 @@ upgrade-mise-tools *args:
 upgrade-mise:
     mise self-update --yes
 
+# Upgrades the installed omp version from the upstream GitHub repository
+[group('configuration')]
+upgrade-omp:
+    mise upgrade --bump github:can1357/oh-my-pi
+
 # Upgrades each outdated tool and commits the version change individually
 [group('configuration')]
 upgrade-mise-tools-commit:
