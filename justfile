@@ -669,7 +669,7 @@ format-mise:
 format-json:
     #!/usr/bin/env bash
     set -euo pipefail
-    cd ~
+    cd "$(git rev-parse --show-toplevel)"
     git ls-files --cached '*.json' | while read -r f; do
         # vendored third-party gstack JSON — never reformat (churn / JSONC-truncation via jq|sponge)
         [[ "$f" == .claude/skills/gstack/* ]] && continue
@@ -703,7 +703,7 @@ format-json:
 format-yaml:
     #!/usr/bin/env bash
     set -euo pipefail
-    cd ~
+    cd "$(git rev-parse --show-toplevel)"
     files=()
     while read -r f; do
         # vendored third-party gstack workflows — never reformat
