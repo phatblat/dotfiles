@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# rp - Alias for review-pr
+review-pr.py "$@"
