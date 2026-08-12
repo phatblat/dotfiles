@@ -141,6 +141,23 @@ list-claude-models:
 outdated-models:
     scripts/claude-models.sh check
 
+# Lists omp plugins whose installed version is behind the npm registry
+[group('info')]
+omp-plugins-outdated:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    found=0
+    while IFS=$'\t' read -r pkg installed; do
+        latest=$(npm view "$pkg" version 2>/dev/null) || continue
+        if [ "$installed" != "$latest" ]; then
+            echo "$pkg $installed → $latest"
+            found=1
+        fi
+    done < <(omp plugin list --json | jq -r '.npm[] | [.name, .version] | @tsv')
+    if [ "$found" -eq 0 ]; then
+        echo "All omp plugins are up to date"
+    fi
+
 # Lists installed Nix packages
 [group('info')]
 list-nix:
@@ -351,6 +368,11 @@ upgrade-mise-tools *args:
 upgrade-mise:
     mise self-update --yes
 
+# Upgrades the installed pi version from the upstream GitHub repository
+[group('configuration')]
+upgrade-pi:
+    mise upgrade --bump github:can1357/oh-my-pi
+
 # Upgrades each outdated tool and commits the version change individually
 [group('configuration')]
 upgrade-mise-tools-commit:
@@ -444,7 +466,7 @@ clean-rust:
 
 # Removes default.store files, *.hprof files, zcompdump clutter, and homebrew cache from home directory
 [group('configuration')]
-clean:
+clean: clean-rust
     trash $(mise cache)
     mise cache clear --yes
     mise prune --yes
@@ -455,6 +477,20 @@ clean:
     rm -f $HOME/.zcompdump.DTO-*
     rm -rf "$(brew --cache)"
     if command -v nix >/dev/null 2>&1; then nix store gc; fi
+
+# Opens the omp plugin manifest in the configured editor
+[group('configuration')]
+omp-plugins-edit:
+    ${VISUAL:-${EDITOR:-vi}} ~/.omp/plugins/package.json
+
+# Reinstalls omp plugins from the manifest, discarding node_modules
+[group('configuration')]
+omp-plugins-reinstall:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd ~/.omp/plugins
+    rm -rf node_modules
+    bun install
 
 #
 # checks group recipes
@@ -476,7 +512,8 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/agent-harnesses.py ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py
+    ruff check ~/scripts/agent-harnesses.py ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/.agents/harness/hooks/safety.py
+    ruff format --check ~/.agents/harness/hooks/safety.py
 
 # Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
@@ -525,6 +562,12 @@ lint-nushell:
     # in one process (~0.3s); a broken autoload file otherwise exits 0.
     @nu --commands 'let bad = (ls ~/.config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'
 
+# Lints GitHub Actions shell scripts with shellcheck
+[group('checks')]
+lint-github-scripts:
+    @echo "Linting GitHub Actions scripts..."
+    @find ~/.github/scripts -name '*.sh' -exec shellcheck {} +
+
 # Lints bin scripts with shellcheck (excludes vendor scripts)
 [group('checks')]
 lint-bin:
@@ -538,7 +581,7 @@ check-spelling:
 
 # Runs all linting checks
 [group('checks')]
-lint-all: lint-zsh lint-fish lint-nushell lint-bin
+lint-all: lint-zsh lint-fish lint-nushell lint-github-scripts lint-bin
     @echo "All linting complete"
 
 # Checks justfile and mise config formatting, gitignore, python, and shell scripts
@@ -671,16 +714,23 @@ format-yaml:
         prettier --write "${files[@]}"
     fi
 
-# Formats and hardens Zsh shell scripts
+# Formats Python policy modules with ruff
+[group('configuration')]
+format-python:
+    @ruff format ~/.agents/harness/hooks/safety.py
+
+# Formats and hardens shell scripts
 [group('configuration')]
 format-shell:
     @echo "Formatting shell scripts..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
+    @find ~/.github/scripts -name '*.sh' -exec shfmt -ln bash -w -i 4 -sr {} +
+    @find ~/.github/scripts -name '*.sh' -exec shellharden --replace {} +
 
-# Formats mise config, justfile, JSON/TOML configs, and shell scripts
+# Formats mise config, justfile, Python, JSON/TOML configs, and shell scripts
 [group('configuration')]
-format: format-gitignore format-mise format-toml format-json format-yaml format-shell
+format: format-gitignore format-mise format-toml format-json format-yaml format-python format-shell
     just --fmt
 
 #

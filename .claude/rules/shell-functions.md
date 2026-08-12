@@ -33,6 +33,10 @@ Example:
 git add --update "$@"
 ```
 
+## Auto-formatting
+
+Zsh functions are auto-formatted by shfmt/shellharden via `just format-shell`; files using zsh-only syntax are excluded via Justfile variables.
+
 ## Required Bookkeeping
 
 After any function change, ALWAYS update `docs/functions.md`:

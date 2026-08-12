@@ -4,7 +4,7 @@
       "cookieSource": "auto",
       "enabled": true,
       "id": "claude",
-      "source": "oauth"
+      "source": "auto"
     },
     {
       "enabled": true,
@@ -261,6 +261,22 @@
     {
       "enabled": false,
       "id": "zoommate"
+    },
+    {
+      "enabled": false,
+      "id": "fireworks"
+    },
+    {
+      "enabled": false,
+      "id": "xai"
+    },
+    {
+      "enabled": false,
+      "id": "notion"
+    },
+    {
+      "enabled": false,
+      "id": "ibmbob"
     }
   ],
   "version": 1

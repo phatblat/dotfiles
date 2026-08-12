@@ -346,7 +346,7 @@
       "Bash(file *)",
       "Bash(stat *)"
     ],
-    "defaultMode": "bypassPermissions",
+    "defaultMode": "auto",
     "deny": []
   },
   "remoteControlAtStartup": false,

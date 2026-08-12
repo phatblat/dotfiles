@@ -4,8 +4,8 @@
 
 approvals_reviewer = "auto_review"
 commit_attribution = "Co-Authored-By: Codex <noreply@openai.com>"
-model = "gpt-5.6-luna"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
 notify = ["/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
@@ -19,7 +19,7 @@ ambient-suggestions-enabled = true
 avatar-overlay-mascot-width-px = 133
 codeFontSize = 14
 composerEnterBehavior = "cmdIfMultiline"
-conversationDetailMode = "STEPS_COMMANDS"
+conversationDetailMode = "STEPS_PROSE"
 dictationDictionary = []
 dock-icon-preference = "codex-system"
 enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
@@ -71,7 +71,7 @@ startup_timeout_sec = 120
 [mcp_servers.node_repl.env]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.803.61601"
+BROWSER_USE_CODEX_APP_VERSION = "0.0.0"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 CODEX_HOME = "/Users/phatblat/.codex"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
@@ -80,7 +80,7 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS th
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "0000000000000000000000000000000000000000000000000000000000000000"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/computer-use/Codex Computer Use.app"
 
@@ -99,12 +99,12 @@ command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
 enabled = false
 tool_timeout_sec = 10000.0
 
-[otel]
-exporter = { otlp-http = {
-    endpoint = "https://otlp.datadoghq.com/v1/logs",
-    protocol = "binary",
-    headers = { "DD-API-KEY" = "${DD_API_KEY}" },
-} }
+[otel.exporter."otlp-http"]
+endpoint = "https://otlp.datadoghq.com/v1/logs"
+protocol = "binary"
+
+[otel.exporter."otlp-http".headers]
+"DD-API-KEY" = "${DD_API_KEY}"
 
 [shell_environment_policy]
 inherit = "core"
@@ -114,7 +114,7 @@ BASH_DEFAULT_TIMEOUT_MS = "90000"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1"
 MAX_MCP_OUTPUT_TOKENS = "12000"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "0000000000000000000000000000000000000000000000000000000000000000"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 
 [tui]

@@ -1,0 +1,7 @@
+#!/bin/sh
+# Dispatches to the mise-managed aqua:uutils/coreutils tool, which ships as a
+# single `coreutils` multi-call binary with per-utility applets rather than
+# individual binaries (see .config/mise/config.toml). Uses `mise exec` (not a
+# hardcoded install path) so this keeps working across machines/architectures
+# and across coreutils version bumps.
+exec "$HOME/.local/bin/mise" exec aqua:uutils/coreutils -- coreutils timeout "$@"

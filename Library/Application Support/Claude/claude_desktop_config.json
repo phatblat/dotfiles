@@ -48,7 +48,18 @@
       "starred-cowork-spaces": [],
       "starred-local-code-sessions": [],
       "starred-session-groups": [],
-      "dframe-group-scopes": {}
+      "dframe-group-scopes": {},
+      "code-sessions-selected-environments": [],
+      "code-sessions-status-filter": "all",
+      "cc-landing-worktree-enabled": true,
+      "epitaxy-perm-mode-acks.193b5ba3-3754-4e2a-953b-4adcc4457018": [
+        "/Users/phatblat:auto"
+      ],
+      "epitaxy-folder-permission-mode.193b5ba3-3754-4e2a-953b-4adcc4457018": {
+        "/Users/phatblat": "auto"
+      },
+      "epitaxy-transcript-links-in-preview": false,
+      "epitaxy-transcript-links-chooser-seen": true
     }
   }
 }

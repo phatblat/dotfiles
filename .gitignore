@@ -66,6 +66,7 @@
 .cisco/
 .classpath
 .claude-accounts/
+.claude-code-profiles/
 .claude-code-router/.claude-code-router.pid
 .claude-server-commander/
 .claude-worktrees/
@@ -76,15 +77,18 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/.last-update-result.json
+.claude/.ramp-router-settings.lock
 .claude/.session-stats.json
 .claude/.session-stats.json.tmp.*
 .claude/agent-flow/*.json
+.claude/context-mode/
 .claude/daemon.lock
 .claude/daemon.status.json
 .claude/daemon/
 .claude/gh-pr-status-cache.json
 .claude/jobs/
 .claude/policy-limits.json
+.claude/ramp-router-state.json
 .claude/remote-settings.json
 .claude/security/
 .claude/security_warnings_state_*.json
@@ -148,6 +152,7 @@
 .config/cagent/
 .config/chessx/
 .config/chromium/
+.config/claude-profiles/
 .config/claude/versions
 .config/com.tolaria.app/
 .config/configstore
@@ -229,6 +234,7 @@
 .config/orka-desktop/
 .config/packer/
 .config/pulse/
+.config/ramp/
 .config/raycast/
 .config/realm-cli/
 .config/realm/
@@ -435,7 +441,8 @@
 !.omp/agent/
 !.omp/marketplaces.json
 .omp/plugins/*
-!.omp/plugins/installed_plugins.json
+!.omp/plugins/omp-plugins.lock.json
+!.omp/plugins/package.json
 !.omp/plugins/
 .op/
 .openpeon/
@@ -561,6 +568,19 @@
 .zsh_history*
 .zsh_sessions/
 /Library/pnpm
+/bin/*
+!/bin/appinst.sh
+!/bin/dotnet-install.sh
+!/bin/git-plist-filter.sh
+!/bin/gtimeout
+!/bin/nu-login
+!/bin/pbzx.py
+!/bin/rustrover
+!/bin/studio1
+!/bin/studio2
+!/bin/studio
+!/bin/timeout
+!/bin/
 2nd Brain/
 2ndBrain*/
 Android

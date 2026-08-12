@@ -117,7 +117,7 @@ Uncertainty → State immediately
 
 ### Git commit attribution
 
-Whenever you create a Git commit, append this trailer after a blank line:
+When operating as Claude Code (not OMP or another agent harness), append this trailer after a blank line:
 
 ```text
 Co-Authored-By: Claude <noreply@anthropic.com>

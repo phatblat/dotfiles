@@ -43,3 +43,7 @@ paths:
 - Global: `~/.gitconfig` (tracked)
 - Local overrides: `~/.config/git/config` (not tracked, machine-specific email)
 - Rerere enabled
+
+## .gitignore
+
+- Uses negation-aware sorted ordering — after editing, run `just format-gitignore` (checked by `just lint-gitignore`)
