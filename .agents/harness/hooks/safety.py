@@ -74,6 +74,26 @@ PROTECTED_PATHS = re.compile(
     re.IGNORECASE,
 )
 
+# The control plane: the files that decide what this policy permits. An agent
+# able to edit these can switch off every other rule here — including the
+# protected-path list above — and the first time the guard blocks something it
+# will have a plausible reason to try. Keep them human-only: edit by hand.
+#
+# Deliberately narrow. Broad entries like `config\.yml$` or `\.gitignore$` would
+# block routine agent work across every repository, and the cost of that lands
+# on every session, not just on a self-improvement loop.
+CONTROL_PLANE_PATHS = re.compile(
+    r"("
+    r"/\.agents/harness/hooks/|"
+    r"/\.agents/harness/self-improve-policy\.json$|"
+    r"/scripts/agent-harnesses\.py$|"
+    r"/scripts/agent_plugins\.py$|"
+    r"/harness-guard\.(ts|py)$|"
+    r"/(write|bash)-guard\.sh$"
+    r")",
+    re.IGNORECASE,
+)
+
 SECRET_CONTENT = re.compile(
     r"("
     r"AKIA[0-9A-Z]{16}|"
@@ -132,6 +152,12 @@ def evaluate_write(*, path: str = "", content: str = "") -> GuardDecision:
         display_path = normalize_path_for_matching(path)
         if PROTECTED_PATHS.search(display_path):
             return GuardDecision("deny", f"protected file blocked: {path}")
+        if CONTROL_PLANE_PATHS.search(display_path):
+            return GuardDecision(
+                "deny",
+                f"control-plane file is human-only: {path}. It decides what the "
+                "guard permits, so edit it directly rather than through an agent.",
+            )
 
     if content and SECRET_CONTENT.search(content):
         return GuardDecision("deny", "secret-like content detected")

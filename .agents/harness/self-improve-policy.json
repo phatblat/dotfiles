@@ -1,0 +1,21 @@
+{
+  "_comment": "Autonomy tiers for harness self-improvement work. Hand-maintained: this file decides what an agent may change, so an agent must not be able to change it. It is covered by CONTROL_PLANE_PATHS in .agents/harness/hooks/safety.py.",
+  "auto_implement": [
+    "docs",
+    "ci-path-filter",
+    "tool-version-bump"
+  ],
+  "never": [
+    "generator-change",
+    "safety-policy",
+    "gitignore",
+    "git-filters",
+    "rulesets"
+  ],
+  "propose_only": [
+    "harness-config",
+    "build-script",
+    "tool-install"
+  ],
+  "version": 1
+}
