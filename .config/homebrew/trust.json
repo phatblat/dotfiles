@@ -1,6 +1,7 @@
 {
   "trustedcasks": [
-    "lanes-sh/lanes/lanes"
+    "lanes-sh/lanes/lanes",
+    "yoanwai/tap/agent-manager"
   ],
   "trustedformulae": [
     "cirruslabs/cli/cirrus",
