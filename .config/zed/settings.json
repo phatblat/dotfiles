@@ -67,10 +67,7 @@
   },
   "file_types": {
     "Dockerfile": ["*.Dockerfile"],
-    "Shell Script": [
-      ".config/zsh/functions/*",
-      "*.zsh",
-    ],
+    "Shell Script": [".config/zsh/functions/*", "*.zsh"],
   },
   "format_on_save": "on",
   "hard_tabs": false,
