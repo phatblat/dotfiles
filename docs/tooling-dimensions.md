@@ -10,7 +10,7 @@ the details.
 | Dimension | Members | Strategy | Automated gap-check |
 |---|---|---|---|
 | Package managers | mise, Homebrew, Nix/home-manager | mise primary, Homebrew fallback, Nix is an untracked experiment | `just package-audit` (basic, name-based, mise vs. installed brew) |
-| Shells | Zsh, Fish, Nushell, Bash | Mirror functions across shells, using each shell's native idioms | `docs/functions.md` (manual coverage table) + `just lint-zsh`/`lint-fish`/`lint-nushell`/`lint-bin` (parse-only, not coverage) |
+| Shells | Zsh, Nushell, Bash | Mirror functions across shells, using each shell's native idioms | `docs/functions.md` (manual coverage table) + `just lint-zsh`/`lint-nushell`/`lint-bin` (parse-only, not coverage) |
 | Agent harnesses | Claude Code, Codex, OpenCode, Pi, Antigravity, Cursor | Shared source of truth under `.agents/harness/`, generated/adapted per harness | `just harness-check` (validates generated parity artifacts) + `just harness-audit` (installed versions, parity gaps) |
 
 Harness parity is the deepest of the three: it has a generator, a schema-validated parity
@@ -19,7 +19,7 @@ config between harnesses. See `scripts/agent-harnesses.py` and `docs/agent-harne
 
 Shell parity is checked for correctness (each function file parses/lints in its shell)
 but not for completeness — nothing currently fails a build if a function exists in Zsh
-and Fish but is missing from Nushell. `docs/functions.md`'s coverage table is maintained
+but is missing from Nushell. `docs/functions.md`'s coverage table is maintained
 by hand today.
 
 Package manager overlap is checked for correctness of a narrow slice (name-based

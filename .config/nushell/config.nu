@@ -678,6 +678,12 @@ if ($mise_init | path expand | path exists) {
     source $mise_init
 }
 
+# Editor: set from mise-provided EDITOR_GUI (GUI editor in interactive sessions)
+# Use optional access in case mise values are not yet available during config parsing.
+let _editor_gui = ($env.EDITOR_GUI? | default "zed")
+$env.EDITOR = $_editor_gui
+$env.VISUAL = $_editor_gui
+
 # Keep user-managed binaries behind Homebrew and mise tools.
 $env.PATH ++= [($nu.home-dir | path join '.local' 'bin')]
 

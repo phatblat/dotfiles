@@ -8,9 +8,6 @@ load helpers/setup
   command_exists shellcheck
 }
 
-@test "fish is available" {
-  command_exists fish
-}
 
 @test "nu (nushell) is available" {
   command_exists nu
@@ -38,9 +35,6 @@ load helpers/setup
   [[ -d "${HOME}/.config/zsh/functions" ]]
 }
 
-@test "fish functions directory exists" {
-  [[ -d "${HOME}/.config/fish/functions" ]]
-}
 
 @test "nushell autoload directory exists" {
   [[ -d "${HOME}/.config/nushell/autoload" ]]

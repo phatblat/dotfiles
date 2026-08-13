@@ -3,7 +3,7 @@
 # textmate - Manage TextMate bundles (converted from 📝_textmate)
 echo "📝 TextMate - https://github.com/textmate/textmate"
 echo
-local bundles=(blackpearl dashmate editorconfig fish gradle kotlin tomorrow-theme ublime)
+local bundles=(blackpearl dashmate editorconfig gradle kotlin tomorrow-theme ublime)
 local bundle_dev="$HOME/dev/textmate"
 local bundle_dir="$HOME/Library/Application Support/TextMate/Bundles"
 
@@ -34,9 +34,6 @@ for bundle in "${bundles[@]}"; do
             rm -f "$newest_file"
             [[ $(status is-login) ]] && open "editorconfig-textmate.tmplugin"
             touch "$bundle.tmbundle"
-            ;;
-        fish)
-            clone_or_pull "$bundle.tmbundle" "git@github.com:l15n/fish-tmbundle.git"
             ;;
         gradle)
             clone_or_pull "$bundle.tmbundle" "git@github.com:alkemist/gradle.tmbundle.git"

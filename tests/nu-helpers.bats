@@ -105,7 +105,7 @@ teardown_nav() {
 
 @test "nav: no arg (optional param absent) exits non-zero and prints usage" {
     run nu --no-config-file -c "source '$AUTOLOAD/nav.nu'; nav"  2>&1
-    # matches original fish contract: return 1 on missing dir
+    # missing directory returns a non-zero status
     [ "$status" -ne 0 ]
     [[ "$output" == *"Usage: nav dir"* ]]
 }

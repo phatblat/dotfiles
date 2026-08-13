@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - ".config/fish/**"
       - ".config/home-manager/**"
       - ".config/nushell/**"
       - ".config/zsh/functions/**"
@@ -38,7 +37,6 @@ jobs:
     env:
       # Repo root IS the home directory; remap HOME so ~ resolves to checkout
       HOME: ${{ github.workspace }}
-      MISE_PIN: "1"
       # Allowlist only tools needed for linting to prevent mise from attempting
       # to install macOS-only tools (tart, cargo-based tools, etc.) on Linux CI.
       MISE_ENABLE_TOOLS: "just,shellcheck,ruff,bats,github:nushell/nushell,python,pipx:yamllint"
@@ -62,12 +60,12 @@ jobs:
         with:
           install_args: "just shellcheck ruff bats github:nushell/nushell python pipx:yamllint"
 
-      - name: Install fish and zsh
+      - name: Install zsh
         if: steps.changed.outputs.relevant == 'true'
         run: |
           # Runner-provided Microsoft repositories intermittently return 403.
           sudo rm -f /etc/apt/sources.list.d/azure-cli.list /etc/apt/sources.list.d/microsoft-prod.list
-          sudo apt-get update && sudo apt-get install -y fish zsh
+          sudo apt-get update && sudo apt-get install -y zsh
 
       - name: Lint
         if: steps.changed.outputs.relevant == 'true'
@@ -86,7 +84,6 @@ jobs:
     env:
       # Repo root IS the home directory; remap HOME so ~ resolves to checkout
       HOME: ${{ github.workspace }}
-      MISE_PIN: "1"
       # Under the remapped HOME the repo's .gitconfig becomes the global git
       # config, and its commit.gpgsign points at an SSH key that only exists
       # on real machines — override so test fixture commits don't fail
@@ -110,9 +107,9 @@ jobs:
         with:
           install_args: "just shellcheck ruff bats bat starship aqua:shenwei356/rush github:nushell/nushell"
 
-      - name: Install fish and test-exercised tools
+      - name: Install test-exercised tools
         if: steps.changed.outputs.relevant == 'true'
-        run: brew install fish diff-so-fancy git-subrepo
+        run: brew install diff-so-fancy git-subrepo
 
       - name: Generate SSH key for sshkey tests
         if: steps.changed.outputs.relevant == 'true'

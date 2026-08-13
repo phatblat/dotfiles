@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# fishlog - View fish daemon log
-less "/tmp/fishd.log.$USER"

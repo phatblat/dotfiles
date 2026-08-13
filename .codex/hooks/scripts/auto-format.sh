@@ -31,8 +31,6 @@ format_file() {
             just -f "$home/justfile" format-json >/dev/null 2>&1 || true ;;
         "$home"/.config/zsh/functions/*)
             just -f "$home/justfile" format-shell >/dev/null 2>&1 || true ;;
-        "$home"/.config/fish/config.fish|"$home"/.config/fish/functions/*.fish|"$home"/.config/fish/conf.d/*.fish)
-            fish_indent --write "$file_path" >/dev/null 2>&1 || true ;;
         "$home"/.config/nushell/*.nu)
             ;; # no formatter; lint-nushell is syntax-check only
         "$home"/bin/*.sh)

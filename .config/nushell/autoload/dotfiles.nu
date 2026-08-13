@@ -9,7 +9,7 @@ export def dotfiles [type?: string] {
     let cronfiles_dir = ($env.HOME | path join ".dotfiles" "cron")
 
     if ($type == null or ($type | is-empty)) {
-        print "Usage: dotfiles [.|cron|fish|git|powerline]"
+        print "Usage: dotfiles [.|cron|git|nushell|zsh]"
         return
     }
 
@@ -21,7 +21,7 @@ export def dotfiles [type?: string] {
             if ($config_dir | path exists) {
                 edit $config_dir
             } else {
-                print "Usage: dotfiles [.|cron|fish|git|powerline]"
+                print "Usage: dotfiles [.|cron|git|nushell|zsh]"
             }
         }
     }

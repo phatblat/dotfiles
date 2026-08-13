@@ -42,13 +42,6 @@ pipeline:
                         command: just lint-zsh
                   - step:
                       type: Run
-                      name: Lint Fish
-                      identifier: lint_fish
-                      spec:
-                        shell: Bash
-                        command: just lint-fish
-                  - step:
-                      type: Run
                       name: Lint Nushell
                       identifier: lint_nushell
                       spec:

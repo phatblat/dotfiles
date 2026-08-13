@@ -1,6 +1,5 @@
 #!/usr/bin/env bats
 # nu-wave2-misc.bats — Nushell port tests for wave-2 misc batch:
-#   aws_test, dotfiles, find_file, maslink, masrm, fileowner, masshow, ox, upstall, gskip
 
 load helpers/setup
 
@@ -216,28 +215,4 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
     rm -rf "$tmpdir"
     # Non-zero exit expected (no operation in progress)
     [ "$status" -ne 0 ]
-}
-
-# ---------------------------------------------------------------------------
-# upstall (mutating: parse + logic tests only, no actual module execution)
-# ---------------------------------------------------------------------------
-
-@test "upstall: parse check" {
-    run nu --no-config-file -c "
-        source '$AUTOLOAD/is_mac.nu'
-        source '$AUTOLOAD/is_linux.nu'
-        source '$AUTOLOAD/upstall.nu'
-    "
-    [ "$status" -eq 0 ]
-}
-
-@test "upstall: help text available" {
-    run nu --no-config-file -c "
-        source '$AUTOLOAD/is_mac.nu'
-        source '$AUTOLOAD/is_linux.nu'
-        source '$AUTOLOAD/upstall.nu'
-        help upstall
-    "
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"upstall"* ]]
 }

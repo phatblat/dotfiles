@@ -5,8 +5,8 @@ This repository manages the shell environment, system configurations, and tool v
 ## Project Overview
 
 - **Purpose:** Synchronize terminal and GUI app configurations, manage tool versions, and provide a productive development environment.
-- **Primary Shell:** [Fish shell](https://fishshell.com) (configured in `~/.config/fish/`).
-- **Secondary Shells:** Zsh (`~/.config/zsh/`) and Nushell (`~/.config/nushell/`).
+- **Primary Shell:** [Nushell](https://www.nushell.sh) (configured in `~/.config/nushell/`).
+- **Secondary Shell:** Zsh (`~/.config/zsh/`).
 - **Orchestration:** [just](https://github.com/casey/just) is used as the primary task runner for maintenance, installation, and information gathering.
 - **Tool Management:**
     - **[mise](https://mise.jdx.dev/):** Manages versions for Go, Node.js, Python, Ruby, and many other CLI tools (configured in `~/.config/mise/config.toml`).
@@ -30,12 +30,12 @@ The `justfile` in the root directory provides a wide range of utility recipes:
 - `just format`: Format configuration files (Zed, Claude) and shell scripts.
 
 ### Verification
-- `just lint`: Run all linting checks (Python, Zsh, Fish, Nushell, bin scripts, and `.gitignore`).
+- `just lint`: Run all linting checks (Python, Zsh, Nushell, bin scripts, and `.gitignore`).
 - `just test`: Run automated tests using [bats](https://github.com/bats-core/bats-core) located in `~/tests/`.
 
 ## Directory Structure
 
-- `~/.config/`: Configuration files for most tools (Fish, Zsh, Zed, mise, home-manager, etc.).
+- `~/.config/`: Configuration files for most tools (Zsh, Nushell, Zed, mise, home-manager, etc.).
 - `~/scripts/`: Custom maintenance scripts (e.g., `sort-gitignore`, `sort-tools.py`).
 - `~/bin/`: User-defined executable binaries.
 - `~/tests/`: [bats](https://github.com/bats-core/bats-core) test suites for verifying shell functionality.
