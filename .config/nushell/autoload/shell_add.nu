@@ -5,7 +5,7 @@
 
 # Register a new shell in /etc/shells (Homebrew-managed shells only)
 export def shell_add [
-    new_shell: string   # Shell name (e.g. bash, zsh, fish)
+    new_shell: string   # Shell name (e.g. bash, zsh, nu)
 ] {
     let system_shells_file = "/etc/shells"
     let brew_bin = (brew_home) | str trim

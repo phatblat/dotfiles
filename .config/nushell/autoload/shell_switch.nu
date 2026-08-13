@@ -5,10 +5,10 @@
 
 # Change the current user's login shell using dscl (macOS) or chsh (Linux)
 export def shell_switch [
-    new_shell: string   # Shell name (e.g. bash, zsh, fish)
+    new_shell: string   # Shell name (e.g. bash, zsh, nu)
 ] {
     if ($new_shell | is-empty) {
-        error make { msg: "Usage: shell_switch bash|zsh|fish" }
+        error make { msg: "Usage: shell_switch bash|zsh|nu" }
     }
 
     let brew_bin = (^brew --prefix | str trim) + "/bin"

@@ -8,9 +8,9 @@ This repo lives at the root of `$HOME`, not in its own directory.
 
 ## Shells
 
-I started tracking these dotfiles when I was still using Bash, moved to [Z shell](http://zsh.sourceforge.net), then added [Fish](https://fishshell.com) for its friendlier syntax. These days I'm migrating toward [Nushell](https://www.nushell.sh) for its structured data pipelines, while keeping Zsh, Fish, and Bash working.
+I started tracking these dotfiles when I was still using Bash, moved to [Z shell](http://zsh.sourceforge.net), then migrated to [Nushell](https://www.nushell.sh) for its structured data pipelines, with Zsh as the daily fallback.
 
-Functions are mirrored across shells (using each shell's own idioms rather than a literal translation) rather than kept in just one. For the current state of each shell's role and the full function inventory, see `docs/functions.md`. Shell config lives under `.config/zsh/`, `.config/fish/`, `.config/nushell/`, and `.bashrc`.
+Functions are mirrored across shells (using each shell's own idioms rather than a literal translation) rather than kept in just one. For the current state of each shell's role and the full function inventory, see `docs/functions.md`. Shell config lives under `.config/zsh/`, `.config/nushell/`, and `.bashrc`.
 
 ## Everyday commands
 

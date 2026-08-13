@@ -26,7 +26,6 @@
     #       mas, neovim, pnpm, starship, xcodes, zig, zoxide → managed by mise
     pkgs.apktool
     pkgs.aria2
-    pkgs.fish
     pkgs.fswatch # no mise backend available
     pkgs.git
     pkgs.git-subrepo
@@ -122,7 +121,6 @@
       bbenoist.nix
       bencoleman.armview
       bierner.markdown-preview-github-styles
-      bmalehorn.vscode-fish
       christian-kohler.npm-intellisense
       christian-kohler.path-intellisense
       cmstead.js-codeformer
@@ -193,7 +191,6 @@
       kumar-harsh.graphql-for-vscode
       leizongmin.node-module-intellisense
       lfm.vscode-makefile-term
-      lunaryorn.fish-ide
       makashi.dark-purple
       mariomatheu.syntax-project-pbxproj
       mark-wiemer.vscode-autohotkey-plus-plus
@@ -272,7 +269,6 @@
       shopify.ruby-lsp
       sidneys1.gitconfig
       skellock.just
-      skyapps.fish-vscode
       sohibe.java-generate-setters-getters
       surajbarkale.ninja
       sysoev.language-stylus

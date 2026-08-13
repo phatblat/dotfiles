@@ -3,7 +3,7 @@
 # shell_switch - Changes the current $USER's shell using dscl
 local new_shell="$1"
 if [[ -z "$new_shell" ]]; then
-    echo "Usage: shell_switch bash|zsh|fish"
+    echo "Usage: shell_switch bash|zsh|nu"
     return 1
 fi
 

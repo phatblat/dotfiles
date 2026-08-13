@@ -40,25 +40,6 @@ teardown() {
   [ "$output" = $'--resume\n--name\nresume session' ]
 }
 
-@test "fish pic forwards arguments to pi --continue" {
-  run env PATH="$fakebindir:$PATH" fish --no-config -c '
-    source "$HOME/.config/fish/functions/pic.fish"
-    pic --name "continue session"
-  '
-
-  [ "$status" -eq 0 ]
-  [ "$output" = $'--continue\n--name\ncontinue session' ]
-}
-
-@test "fish pir forwards arguments to pi --resume" {
-  run env PATH="$fakebindir:$PATH" fish --no-config -c '
-    source "$HOME/.config/fish/functions/pir.fish"
-    pir --name "resume session"
-  '
-
-  [ "$status" -eq 0 ]
-  [ "$output" = $'--resume\n--name\nresume session' ]
-}
 
 @test "nushell pic forwards arguments to pi --continue" {
   run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
@@ -91,15 +72,6 @@ teardown() {
   [ "$output" = $'--provider\nspark\n--model\nnvidia/Qwen3.6-35B-A3B-NVFP4' ]
 }
 
-@test "fish pi-spark runs Pi with the Spark Qwen model" {
-  run env PATH="$fakebindir:$PATH" fish --no-config -c '
-    source "$HOME/.config/fish/functions/pi-spark.fish"
-    pi-spark
-  '
-
-  [ "$status" -eq 0 ]
-  [ "$output" = $'--provider\nspark\n--model\nnvidia/Qwen3.6-35B-A3B-NVFP4' ]
-}
 
 @test "nushell pi-spark runs Pi with the Spark Qwen model" {
   run env PATH="$fakebindir:$PATH" nu --no-config-file -c "

@@ -14,7 +14,7 @@ Dotfiles repository — cross-machine config sync. Home directory (`~`) is the g
 
 ## Key Directories
 
-- `.config/` — Shell configs (zsh, fish, nushell), tool configs (zed, mise, home-manager)
+- `.config/` — Shell configs (zsh, nushell), tool configs (zed, mise, home-manager)
 - `bin/` — Custom utility scripts
 - `scripts/` — Repo maintenance scripts (sort-gitignore, sort-tools.py, gastown helpers)
 - `tests/` — Bats test suite
@@ -25,10 +25,9 @@ Dotfiles repository — cross-machine config sync. Home directory (`~`) is the g
 
 ## Shell Architecture
 
-1. **Zsh (Primary)** — `~/.zshrc`, functions in `~/.config/zsh/functions/*`
-2. **Fish (Secondary)** — `~/.config/fish/config.fish`
-3. **Nushell (Active)** — `~/.config/nushell/config.nu`
-4. **Bash (Minimal)** — `~/.bashrc`
+1. **Nushell (Primary)** — `~/.config/nushell/config.nu`
+2. **Zsh (Fallback)** — `~/.zshrc`, functions in `~/.config/zsh/functions/*`
+3. **Bash (Minimal)** — `~/.bashrc`
 
 Shell function conventions are in the `shell-functions` rule (loads when editing shell config files).
 

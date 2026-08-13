@@ -11,7 +11,6 @@ home = Path(sys.argv[1])
 checks = {
     '.zshrc': ('eval "$(mise activate zsh)"', 'export PATH="$PATH:$HOME/.local/bin"'),
     '.bashrc': ('eval "$(mise activate bash)"', 'export PATH="$PATH:$HOME/.local/bin"'),
-    '.config/fish/config.fish': ('mise activate fish | source', 'fish_add_path --append --path ~/.local/bin'),
     '.config/nushell/config.nu': ('source $mise_init', '$env.PATH ++= [($nu.home-dir | path join \'.local\' \'bin\')]'),
 }
 

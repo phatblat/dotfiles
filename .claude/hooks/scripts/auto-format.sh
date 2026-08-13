@@ -53,8 +53,6 @@ case "$file_path" in
         format_json_file "$file_path" ;;
     "$home"/.config/zsh/functions/*)
         format_zsh_function "$file_path" ;;
-    "$home"/.config/fish/config.fish|"$home"/.config/fish/functions/*.fish|"$home"/.config/fish/conf.d/*.fish)
-        fish_indent --write "$file_path" 2>/dev/null || true ;;
     "$home"/.config/nushell/*.nu)
         ;; # no formatter; lint-nushell is syntax-check only
     "$home"/bin/*.sh)

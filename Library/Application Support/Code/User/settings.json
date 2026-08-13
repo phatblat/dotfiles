@@ -185,7 +185,7 @@
   "sync.pathPrefix": "",
   "sync.quietSync": false,
   "telemetry.feedback.enabled": false,
-  "terminal.integrated.defaultProfile": "/usr/local/bin/fish",
+  "terminal.integrated.defaultProfile": "/Users/phatblat/bin/nu-login",
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
   },

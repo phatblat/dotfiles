@@ -3,7 +3,7 @@
 #   builtins:  path exists path type path basename split row first mkdir is-empty
 #   externals: tar
 # Note: zsh uses ${file_name%%.*} (greedy, strips all extensions). Since
-# file_base (fish) only strips the last extension, the greedy logic is inlined
+# The filename helper strips only the last extension; the greedy logic is inlined
 # here via `path basename | split row '.' | first`.
 
 # Extract a .tar.gz archive into a new directory named after the archive (all extensions stripped)

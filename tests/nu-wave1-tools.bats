@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 # nu-wave1-tools.bats — Nushell port tests for wave-1 tools batch
-# Functions: curl_download, cdown, dc, dir, ff, fishfiles, nixgc, nixtest, usage, warpify
+# Functions: curl_download, cdown, dc, dir, nixgc, nixtest, usage, warpify
 
 load helpers/setup
 
@@ -59,34 +59,6 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
     [[ "$output" == *"docker"* ]]
 }
 
-# ---------------------------------------------------------------------------
-# fishfiles — opens fish dotfiles in editor (interactive): parse test only
-# ---------------------------------------------------------------------------
-
-@test "fishfiles: help text available" {
-    run nu --no-config-file -c "
-        source '$AUTOLOAD/edit.nu'
-        source '$AUTOLOAD/fishfiles.nu'
-        help fishfiles
-    "
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"fish"* ]]
-}
-
-# ---------------------------------------------------------------------------
-# ff — alias for fishfiles (interactive): parse test only
-# ---------------------------------------------------------------------------
-
-@test "ff: help text available" {
-    run nu --no-config-file -c "
-        source '$AUTOLOAD/edit.nu'
-        source '$AUTOLOAD/fishfiles.nu'
-        source '$AUTOLOAD/ff.nu'
-        help ff
-    "
-    [ "$status" -eq 0 ]
-    [[ "$output" == *"fish"* ]]
-}
 
 # ---------------------------------------------------------------------------
 # nixgc — nix garbage collection (mutating): parse test only

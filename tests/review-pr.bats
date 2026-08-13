@@ -4,7 +4,6 @@
 load helpers/setup
 
 SCRIPT="$HOME/scripts/review-pr.py"
-FISH_FUNCTION="$HOME/.config/fish/functions/review-pr.fish"
 NU_FUNCTION="$HOME/.config/nushell/autoload/review-pr.nu"
 
 setup() {
@@ -86,28 +85,6 @@ exit "$REVIEW_PR_OMP_STATUS"'
   [[ "$output" == *"Only getditto PRs are supported"* ]]
 }
 
-@test "review-pr fish function: no args prints usage" {
-  run fish --no-config -c "source '$FISH_FUNCTION'; review-pr"
-
-  [ "$status" -eq 1 ]
-  [[ "$output" == *"Usage: review-pr"* ]]
-  [[ "$output" != *"--continue"* ]]
-}
-
-@test "review-pr fish function: forwards the PR reference" {
-  local fake_home="$BATS_TEST_TMPDIR/home"
-  mkdir -p "$fake_home/scripts"
-  cat >"$fake_home/scripts/review-pr.py" <<'EOF'
-#!/usr/bin/env bash
-printf '<%s>\n' "$@"
-EOF
-  chmod +x "$fake_home/scripts/review-pr.py"
-
-  run env HOME="$fake_home" fish --no-config -c "source '$FISH_FUNCTION'; review-pr widgets#123"
-
-  [ "$status" -eq 0 ]
-  [ "$output" = "<widgets#123>" ]
-}
 
 @test "review-pr nushell function: forwards the PR reference" {
   local fake_home="$BATS_TEST_TMPDIR/home"
