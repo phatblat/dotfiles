@@ -16,7 +16,6 @@ from pathlib import Path
 GETDITTO_OWNER = "getditto"
 DEFAULT_THREAD_WINDOW = 5
 USAGE = "Usage: review-pr <github-pr-url|repo#number|getditto/repo#number>"
-OMP_MODEL = "openai-codex/gpt-5.6-terra"
 DAILY_NOTES_DIR = Path.home() / "2ndBrain" / "daily-notes"
 
 
@@ -288,8 +287,6 @@ def run_omp_review(
             str(worktree_dir),
             "--add-dir",
             str(DAILY_NOTES_DIR),
-            "--model",
-            OMP_MODEL,
             "--thinking",
             "high",
             "--no-prewalk",
