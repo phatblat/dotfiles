@@ -161,6 +161,9 @@
   "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md": {
+    "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/git-worktrees/SKILL.md"
   },
@@ -232,6 +235,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
+    "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/work-eod/SKILL.md": {
     "source": "~/.agents/skills/work-eod/SKILL.md"
@@ -410,6 +416,9 @@
   "~/.agents/harness/adapters/cursor/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/git-value-scrubbing/SKILL.md": {
+    "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/git-worktrees/SKILL.md"
   },
@@ -481,6 +490,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/wayfinder/SKILL.md": {
+    "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/work-eod/SKILL.md": {
     "source": "~/.agents/skills/work-eod/SKILL.md"

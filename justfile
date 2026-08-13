@@ -64,10 +64,10 @@ alias up := upgrade
 _default:
     just --list
 
-# Display free space on root drive
+# Display free space on the Data volume (~ resolves to it; / is the sealed, near-empty System volume)
 [group('info')]
 free:
-    @df -h / | awk 'NR==2 {print "Free space on /: " $4 " (" $5 " used)"}'
+    @avail=$(df -h ~ | awk 'NR==2 {print $4}'); df -Pk ~ | awk -v avail="$avail" 'NR==2 {printf "Free space: %s (%.0f%% available)\n", avail, 100 * $4 / ($3 + $4)}'
 # Lists running sessions for the requested agent
 [group('info')]
 [script]
@@ -660,7 +660,7 @@ format-mise:
 format-json:
     #!/usr/bin/env bash
     set -euo pipefail
-    cd ~
+    cd "$(git rev-parse --show-toplevel)"
     git ls-files --cached '*.json' | while read -r f; do
         # vendored third-party gstack JSON — never reformat (churn / JSONC-truncation via jq|sponge)
         [[ "$f" == .claude/skills/gstack/* ]] && continue
@@ -694,7 +694,7 @@ format-json:
 format-yaml:
     #!/usr/bin/env bash
     set -euo pipefail
-    cd ~
+    cd "$(git rev-parse --show-toplevel)"
     files=()
     while read -r f; do
         # vendored third-party gstack workflows — never reformat
@@ -743,8 +743,12 @@ git-filters:
     git config --local filter.oc-config.clean ~/scripts/mask-oc-config.sh
     git config --local filter.oc-config.smudge cat
     git config --local filter.oc-config.required true
+    git config --local filter.pi-models-store.clean ~/scripts/mask-pi-models-store.sh
+    git config --local filter.pi-models-store.smudge cat
+    git config --local filter.pi-models-store.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
+    @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
 
 #
 # claude group recipes

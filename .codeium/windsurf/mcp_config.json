@@ -9,15 +9,6 @@
       "command": "npx",
       "env": {}
     },
-    "git": {
-      "args": [
-        "tool",
-        "run",
-        "mcp-server-git"
-      ],
-      "command": "/Users/phatblat/.local/share/mise/installs/uv/0.7.16/uv-aarch64-apple-darwin/uv",
-      "env": {}
-    },
     "memory": {
       "args": [
         "-y",

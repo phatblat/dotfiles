@@ -1,10 +1,12 @@
 // -*- mode: jsonc -*-
 {
+  "markdown_preview_font_size": 18.0,
   "cli_default_open_behavior": "existing_window",
   "bottom_dock_layout": "contained",
   "use_system_window_tabs": true,
   "tabs": {
-    "close_position": "left",
+    "close_position": "right",
+    "git_status": true,
     "file_icons": true,
   },
   "status_bar": {
@@ -16,6 +18,7 @@
   },
   "project_panel": {
     "dock": "left",
+    "indent_size": 16,
   },
   "outline_panel": {
     "dock": "right",
@@ -77,6 +80,10 @@
     "dark": "Zed (Default)",
   },
   "languages": {
+    "Markdown": {
+      "soft_wrap": "editor_width",
+      "remove_trailing_whitespace_on_save": false,
+    },
     "Shell Script": {
       "preferred_line_length": 120,
     },
@@ -106,6 +113,10 @@
       ],
     },
   ],
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+  },
   "tab_size": 2,
   "terminal": {
     "keep_selection_on_copy": false,

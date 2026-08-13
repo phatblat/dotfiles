@@ -1,8 +1,8 @@
 {
   "openai-codex": {
-    "checkedAt": 1785617155918,
-    "etag": "W/\"400cac2d73673d9fff4c7d0ed22691b0\"",
-    "lastModified": 1785502727000,
+    "checkedAt": 0,
+    "etag": "",
+    "lastModified": 0,
     "models": [
       {
         "api": "openai-codex-responses",
@@ -136,6 +136,7 @@
         "api": "openai-codex-responses",
         "baseUrl": "https://chatgpt.com/backend-api",
         "compat": {
+          "supportsAdditionalTools": true,
           "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         },
@@ -174,6 +175,7 @@
         "api": "openai-codex-responses",
         "baseUrl": "https://chatgpt.com/backend-api",
         "compat": {
+          "supportsAdditionalTools": true,
           "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         },
@@ -212,6 +214,7 @@
         "api": "openai-codex-responses",
         "baseUrl": "https://chatgpt.com/backend-api",
         "compat": {
+          "supportsAdditionalTools": true,
           "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         },

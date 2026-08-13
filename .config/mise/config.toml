@@ -41,7 +41,7 @@
 "npm:bash-language-server" = "5.6.0"
 "npm:ccusage" = "20.0.19"
 "npm:claudekit" = "0.9.5"
-"npm:ctx7" = "0.5.7"
+"npm:ctx7" = "0.5.8"
 "npm:gastown-gui" = "0.9.4"
 "npm:gtop" = "1.1.5"
 "npm:jsonlint" = "1.6.3"
@@ -50,13 +50,13 @@
 "npm:oh-my-claude-sisyphus" = "4.15.10"
 "npm:pnpm" = "11.21.0"
 "npm:prettier" = "3.9.6"
-"npm:renovate" = "44.24.0"
+"npm:renovate" = "44.24.1"
 "npm:typescript" = "7.0.2"
 "npm:typescript-language-server" = "5.3.0"
 "npm:vscode-langservers-extracted" = "4.10.0"
 "npm:yaml-language-server" = "1.24.0"
 "npm:yarn" = "1.22.22"
-"pipx:graphifyy" = "0.9.39"
+"pipx:graphifyy" = "0.9.40"
 "pipx:pyright" = "1.1.411"
 "pipx:python-lsp-server" = "1.15.0"
 "pipx:token-viewer" = "0.0.7"
@@ -242,9 +242,6 @@ uv_venv_auto = "source"
 
 [settings.aqua]
 github_attestations = false
-
-[settings.github]
-credential_command = "gh auth token"
 
 [settings.npm]
 package_manager = "npm"

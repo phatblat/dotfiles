@@ -13,3 +13,11 @@
 # history; the on-disk file oc reads is never touched. Install the filter
 # with `just git-filters`. Filter script: ~/scripts/mask-oc-config.sh
 .oc/config.json filter=oc-config
+
+# Pi rewrites cache-validator fields (checkedAt, etag, lastModified) into every
+# provider object in ~/.pi/agent/models-store.json on nearly every model-list
+# refresh. The `pi-models-store` clean filter normalizes those three fields out
+# of the committed blob so real model data stays stable across refreshes and
+# machines. Install the filter with `just git-filters`.
+# Filter script: ~/scripts/mask-pi-models-store.sh
+.pi/agent/models-store.json filter=pi-models-store

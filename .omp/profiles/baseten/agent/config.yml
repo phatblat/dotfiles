@@ -1,0 +1,13 @@
+modelRoles:
+  default: baseten/moonshotai/Kimi-K2.7-Code:medium
+  tiny: baseten/openai/gpt-oss-120b
+  smol: baseten/deepseek-ai/DeepSeek-V4-Flash-0731
+  slow: baseten/moonshotai/Kimi-K3
+  plan: baseten/zai-org/GLM-5.2:high
+  designer: baseten/zai-org/GLM-5.2-Fast:high
+  advisor: baseten/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B:medium
+symbolPreset: unicode
+theme:
+  dark: titanium
+setupVersion: 1
+defaultThinkingLevel: auto
