@@ -1,8 +1,6 @@
 ---
-paths:
-  - ".gitconfig"
-  - ".config/git/**"
-  - ".gitignore"
+alwaysApply: false
+paths: .gitconfig, .config/git/**, .gitignore
 ---
 
 # Git Workflow Conventions

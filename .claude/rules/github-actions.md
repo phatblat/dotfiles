@@ -1,10 +1,7 @@
 ---
 description: Conventions for GitHub Actions workflows and action definitions
-paths:
-  - ".github/workflows/*.yml"
-  - ".github/workflows/*.yaml"
-  - ".github/actions/**/action.yml"
-  - ".github/actions/**/action.yaml"
+alwaysApply: false
+paths: .github/workflows/*.yml, .github/workflows/*.yaml, .github/actions/**/action.yml, .github/actions/**/action.yaml
 ---
 
 # GitHub Actions Conventions

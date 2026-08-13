@@ -1,10 +1,6 @@
 ---
-paths:
-  - "**/*.ts"
-  - "**/*.tsx"
-  - "**/*.mts"
-  - "tsconfig.json"
-  - "package.json"
+alwaysApply: false
+paths: **/*.ts, **/*.tsx, **/*.mts, tsconfig.json, package.json
 ---
 
 # TypeScript Conventions
