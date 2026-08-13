@@ -344,7 +344,17 @@
       "Bash(tail *)",
       "Bash(tee *)",
       "Bash(file *)",
-      "Bash(stat *)"
+      "Bash(stat *)",
+      "Bash(cargo check*)",
+      "Bash(cargo clippy*)",
+      "Bash(cargo fmt*)",
+      "Bash(cargo test*)",
+      "Bash(go build*)",
+      "Bash(go test*)",
+      "Bash(go vet*)",
+      "Bash(npm run*)",
+      "Bash(npm test*)",
+      "Bash(npx tsc*)"
     ],
     "defaultMode": "auto",
     "deny": []
