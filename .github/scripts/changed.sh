@@ -22,7 +22,7 @@ lint)
     # covers .github/scripts/*.sh. Narrower than this and a lint failure
     # surfaces on some later unrelated pull request instead of the one that
     # caused it.
-    pattern='^(\.agents/harness/hooks/safety\.py$|\.config/(fish|home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
+    pattern='^(\.agents/harness/hooks/safety\.py$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
     ;;
 parity)
     # .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:

@@ -40,25 +40,6 @@ teardown() {
   [ "$output" = $'--allow-home\n--resume\n--name\nresume session' ]
 }
 
-@test "fish ompc forwards arguments to omp --continue" {
-  run env PATH="$fakebindir:$PATH" fish --no-config -c '
-    source "$HOME/.config/fish/functions/ompc.fish"
-    ompc --name "continue session"
-  '
-
-  [ "$status" -eq 0 ]
-  [ "$output" = $'--allow-home\n--continue\n--name\ncontinue session' ]
-}
-
-@test "fish ompr forwards arguments to omp --resume" {
-  run env PATH="$fakebindir:$PATH" fish --no-config -c '
-    source "$HOME/.config/fish/functions/ompr.fish"
-    ompr --name "resume session"
-  '
-
-  [ "$status" -eq 0 ]
-  [ "$output" = $'--allow-home\n--resume\n--name\nresume session' ]
-}
 
 @test "nushell ompc forwards arguments to omp --continue" {
   run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
@@ -92,15 +73,6 @@ teardown() {
   [ "$output" = "/git:commit" ]
 }
 
-@test "fish cmt opens OMP commit workflow with no arguments" {
-  run env PATH="$fakebindir:$PATH" fish --no-config -c '
-    source "$HOME/.config/fish/functions/cmt.fish"
-    cmt
-  '
-
-  [ "$status" -eq 0 ]
-  [ "$output" = "/git:commit" ]
-}
 
 @test "nushell cmt opens OMP commit workflow with no arguments" {
   run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
@@ -117,7 +89,6 @@ teardown() {
   # set, which would silently continue the wrong session in this repo.
   for wrapper in ompc ompr; do
     grep -q -- '--allow-home' "$HOME/.config/zsh/functions/$wrapper"
-    grep -q -- '--allow-home' "$HOME/.config/fish/functions/$wrapper.fish"
     grep -q -- '--allow-home' "$HOME/.config/nushell/autoload/$wrapper.nu"
   done
 }

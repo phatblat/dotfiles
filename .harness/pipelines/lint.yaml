@@ -11,7 +11,7 @@ pipeline:
     - stage:
         name: Lint
         identifier: lint
-        description: Lint all shell scripts (Zsh, Fish, Nushell, bin)
+        description: Lint all shell scripts (Zsh, Nushell, bin)
         type: CI
         spec:
           cloneCodebase: true
@@ -33,17 +33,6 @@ pipeline:
                       echo "Linting Zsh functions..."
                       find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s bash {} +
 
-              - step:
-                  type: Run
-                  name: Validate Fish Functions
-                  identifier: lint_fish
-                  spec:
-                    shell: Bash
-                    command: |
-                      echo "Validating Fish functions..."
-                      fish -n ~/.config/fish/config.fish
-                      find ~/.config/fish/functions -name '*.fish' -exec fish -n {} +
-                      find ~/.config/fish/conf.d -name '*.fish' -exec fish -n {} +
 
               - step:
                   type: Run

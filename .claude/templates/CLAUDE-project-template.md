@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Environment
 
-**Primary Shell**: Fish Shell
+**Primary Shell**: Nushell
 **Tool Management**: mise
 **Build System**: <!-- Specify: just/make/gradle/cargo/etc -->
 

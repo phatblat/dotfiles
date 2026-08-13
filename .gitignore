@@ -163,22 +163,6 @@
 .config/enchant/
 .config/entire/
 .config/evolution/
-.config/fish/fish_history
-.config/fish/fish_variables
-.config/fish/fishd.*
-.config/fish/functions/__z.fish
-.config/fish/functions/__z_add.fish
-.config/fish/functions/__z_complete.fish
-.config/fish/functions/__zo.fish
-.config/fish/functions/fish_logo.fish
-.config/fish/functions/get.fish
-.config/fish/functions/getopts.fish
-.config/fish/functions/humanize_duration.fish
-.config/fish/functions/mock.fish
-.config/fish/functions/z.awk
-.config/fish/functions/zadd.awk
-.config/fish/h
-.config/fisherman/
 .config/flutter/tool_state
 .config/foolery/
 .config/gcloud/
@@ -249,7 +233,6 @@
 .config/thefuck/settings.pyc
 .config/tool_state
 .config/truffle/
-.config/upstall/last_run.*
 .config/verdaccio/htpasswd
 .config/wtf/log.txt
 .config/xbuild/
@@ -899,7 +882,6 @@ Library/Application Support/obs-studio/
 Library/Application Support/obsidian/
 Library/Application Support/opcode.asterisk.so/
 Library/Application Support/opencode/
-Library/Application Support/org.dystroy.broot/launcher/fish/
 Library/Application Support/pai-installer/
 Library/Application Support/pipx/
 Library/Application Support/pup/
@@ -1043,7 +1025,6 @@ Videos/
 Virtual Machines.localized/
 VirtualBox VMs/
 __pycache__/
-__z_clean.fish
 bin/
 build/
 caches/

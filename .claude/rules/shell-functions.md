@@ -1,7 +1,6 @@
 ---
 paths:
   - ".config/zsh/**"
-  - ".config/fish/**"
   - ".config/nushell/**"
   - ".zshrc"
   - ".bashrc"
@@ -10,12 +9,9 @@ paths:
 
 # Shell Function Conventions
 
-## Shell Priority
-
-1. **Zsh (Primary)** — Functions in `~/.config/zsh/functions/*`
-2. **Fish (Secondary)** — Functions in `~/.config/fish/functions/*.fish`
-3. **Nushell (Active)** — Functions in `~/.config/nushell/autoload/*.nu`
-4. **Bash (Minimal)** — Define in `~/.bashrc`
+1. **Nushell (Primary)** — Functions in `~/.config/nushell/autoload/*.nu`
+2. **Zsh (Fallback)** — Functions in `~/.config/zsh/functions/*`
+3. **Bash (Minimal)** — Define in `~/.bashrc`
 
 ## Zsh Autoload Pattern (CRITICAL)
 
@@ -39,9 +35,8 @@ Zsh functions are auto-formatted by shfmt/shellharden via `just format-shell`; f
 
 ## Required Bookkeeping
 
-After any function change, ALWAYS update `docs/functions.md`:
 - Add/remove/update the row in the alphabetically-sorted table
-- Update checkmarks for which shells implement it (nu, fish, zsh, bash)
+- Update checkmarks for which shells implement it (nu, zsh, bash)
 - Update Summary statistics if shell counts change
 
 Test the function in the target shell.

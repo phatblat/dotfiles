@@ -1,7 +1,4 @@
 export XDG_CONFIG_HOME=$HOME/.config
-export MISE_PIN=1
-export ENABLE_LSP_TOOL=1
-export FORCE_COLOR=3
 
 # Source Nix profile
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
@@ -15,15 +12,6 @@ fi
 
 # LLVM (Homebrew keg-only)
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-export CMAKE_PREFIX_PATH="/opt/homebrew/opt/llvm"
-
-# ICU4C (Homebrew keg-only, needed by go-icu-regex / beads)
-export CGO_CFLAGS="-I/opt/homebrew/opt/icu4c/include"
-export CGO_CXXFLAGS="-I/opt/homebrew/opt/icu4c/include"
-export CGO_LDFLAGS="-L/opt/homebrew/opt/icu4c/lib"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/icu4c/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
 
 export PATH="$HOME/scripts:/usr/local/bin:$PATH"
 
@@ -35,7 +23,6 @@ if (( ! $+commands[brew] )); then
     eval "$(/usr/local/bin/brew shellenv)"
   fi
 fi
-export HOMEBREW_NO_ASK=1
 if [[ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]]; then
   fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
 fi
@@ -73,21 +60,6 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
 setopt INC_APPEND_HISTORY EXTENDED_HISTORY HIST_IGNORE_ALL_DUPS
-
-# Editor configuration
-export EDITOR_CLI='nvim'
-export EDITOR_GUI='zed'
-export WAIT_FLAG_CLI='--nofork'
-export WAIT_FLAG_GUI='--wait'
-
-# Preferred editor: zed locally, nvim over SSH
-if [[ -n "$SSH_CONNECTION" ]]; then
-  export EDITOR="$EDITOR_CLI"
-  export WAIT_FLAG="$WAIT_FLAG_CLI"
-else
-  export VISUAL="$EDITOR_GUI"
-  export WAIT_FLAG="$WAIT_FLAG_GUI"
-fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -134,6 +106,15 @@ export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 # Initialize mise - version manager for tools
 # NOTE: must be after other PATH modifications so mise paths take precedence
 eval "$(mise activate zsh)"
+
+# Preferred editor: zed locally, nvim over SSH
+if [[ -n "$SSH_CONNECTION" ]]; then
+  export EDITOR="$EDITOR_CLI"
+  export WAIT_FLAG="$WAIT_FLAG_CLI"
+else
+  export VISUAL="$EDITOR_GUI"
+  export WAIT_FLAG="$WAIT_FLAG_GUI"
+fi
 
 # Keep user-managed binaries behind Homebrew and mise tools.
 export PATH="$PATH:$HOME/.local/bin"

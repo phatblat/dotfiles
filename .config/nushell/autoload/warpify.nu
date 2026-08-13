@@ -8,5 +8,5 @@
 export def warpify [] {
     let dcs = "\u{001b}P"
     let st = (char -u 0000009c)
-    print -n $"($dcs)\$f{\"hook\": \"SourcedRcFileForWarp\", \"value\": { \"shell\": \"fish\" }}($st)"
+    print -n $"($dcs)\$f{\"hook\": \"SourcedRcFileForWarp\", \"value\": { \"shell\": \"nu\" }}($st)"
 }

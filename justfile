@@ -5,7 +5,6 @@
 
 set export
 
-export MISE_PIN := "1"
 export PATH := env("HOME") / ".local" / "bin" + ":" + env("PATH")
 
 # ignore-comments - Ignore comments when formatting.
@@ -544,14 +543,6 @@ lint-zsh:
     @echo "Linting Zsh functions..."
     @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2168 {} +
 
-# Validates Fish functions syntax
-[group('checks')]
-lint-fish:
-    @echo "Validating Fish functions..."
-    @fish -n ~/.config/fish/config.fish
-    @find ~/.config/fish/functions -name '*.fish' -exec fish -n {} +
-    @find ~/.config/fish/conf.d -name '*.fish' -exec fish -n {} +
-
 # Validates Nushell scripts syntax
 [group('checks')]
 lint-nushell:
@@ -581,7 +572,7 @@ check-spelling:
 
 # Runs all linting checks
 [group('checks')]
-lint-all: lint-zsh lint-fish lint-nushell lint-github-scripts lint-bin
+lint-all: lint-zsh lint-nushell lint-github-scripts lint-bin
     @echo "All linting complete"
 
 # Checks justfile and mise config formatting, gitignore, python, and shell scripts

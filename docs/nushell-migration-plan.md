@@ -1,5 +1,7 @@
 # Nushell Migration Plan
 
+> Fish shell was removed from this repository; Zsh and Nushell are the remaining shells.
+
 Plan for porting actively-used zsh/fish shell functions to nushell.
 Branch: `nushell-migration`. Machine-readable classification: [nushell-migration.json](nushell-migration.json).
 
