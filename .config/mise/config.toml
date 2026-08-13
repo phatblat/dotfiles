@@ -91,7 +91,7 @@ fzf = "0.74.2"
 gemini = { version = "0.55.1", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "2.97.0"
 git-lfs = "3.7.1"
-go = "1.26.5"
+go = "1.26.6"
 gping = "1.20.4"
 gradle = "9.7.0"
 helm = "4.2.3"
