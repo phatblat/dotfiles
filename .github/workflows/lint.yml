@@ -25,6 +25,7 @@ on:
   # stuck on "Expected" forever. The jobs always start and decide for themselves
   # whether there is work to do — see the "Detect relevant changes" step.
   pull_request:
+  workflow_dispatch:
   schedule:
     # Weekly Monday 06:00 UTC — catch drift from tool updates
     - cron: "0 6 * * 1"
