@@ -283,6 +283,7 @@ GENERATED_ITEM_ROOTS = [
     (ANTIGRAVITY_HARNESS / "agents", "*.md"),
     (CURSOR_HARNESS / "commands", "*.md"),
     (CURSOR_HARNESS / "agents", "*.md"),
+    (OMP_AGENT / "agents", "*.md"),
 ]
 
 
@@ -688,6 +689,7 @@ def render_all() -> dict[Path, str]:
     rendered: dict[Path, str] = {
         SHARED / "README.md": render_shared_readme(commands, agents),
         SHARED / "instructions.md": render_instructions(),
+        OMP_AGENT / "APPEND_SYSTEM.md": render_omp_append_system(),
         SHARED / "hooks" / "contract.json": render_contract(),
         SHARED / "hooks" / "safety-policy.json": render_safety_policy(),
         ROOT / "docs" / "agent-harnesses.json": json.dumps(
@@ -747,6 +749,9 @@ def render_all() -> dict[Path, str]:
             render_antigravity_agent(agent)
         )
         rendered[CURSOR_HARNESS / "agents" / f"{agent['id']}.md"] = render_cursor_agent(
+            agent
+        )
+        rendered[OMP_AGENT / "agents" / f"{agent['id']}.md"] = render_omp_agent(
             agent
         )
         record_provenance(provenance, rendered, emitted, source)
@@ -1341,6 +1346,42 @@ description: {json.dumps(agent["description"])[1:-1]}
 """
 
 
+
+def render_omp_agent(agent: dict[str, Any]) -> str:
+    return f"""---
+name: {agent["id"]}
+description: {json.dumps(agent["description"])[1:-1]}
+---
+
+{MANAGED_HEADER}
+
+Before acting, read `{agent["shared"]}`. Use its `developer_instructions` as the complete specialist role and follow the shared harness instructions from `~/.agents/harness/instructions.md`.
+"""
+
+
+def render_omp_append_system() -> str:
+    instructions = render_instructions()
+    return f"""{instructions}
+
+# Context Compaction Preservation
+
+When compacting or resuming a session, preserve and carry forward:
+
+- The complete list of modified files, with paths.
+- The current Git branch and uncommitted changes.
+- Pending tasks and TODO items, including blockers.
+- Test commands run, results, and failures.
+- Key architectural decisions and constraints made during the session.
+
+Do not claim work is complete until the preserved task state confirms that all actionable work is finished and verification evidence is available.
+
+# Git Commit Attribution
+
+When creating any Git commit, append this trailer exactly once after a blank line:
+
+Co-Authored-By: oh-my-pi <omp@can.ac>
+"""
+
 def render_opencode_config(
     commands: list[dict[str, Any]], agents: list[dict[str, Any]]
 ) -> str:
@@ -1586,14 +1627,10 @@ def build_manifest() -> dict[str, Any]:
                     "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
                 ),
                 "omp": state(
-                    "partial",
+                    "complete",
                     "native",
-                    [
-                        display_path(ROOT / "AGENTS.md"),
-                        display_path(ROOT / ".claude" / "CLAUDE.md"),
-                    ],
-                    "omp loads the repo AGENTS.md and the Claude user instructions; AGENTS.md now points at the shared harness instructions, but omp does not inject them automatically",
-                    "Confirm omp reads the pointer in AGENTS.md, or give omp a loader that injects ~/.agents/harness/instructions.md directly",
+                    [display_path(OMP_AGENT / "APPEND_SYSTEM.md")],
+                    "inlined shared harness instructions + compaction contract + commit attribution",
                 ),
             },
         ),
@@ -1738,11 +1775,10 @@ def build_manifest() -> dict[str, Any]:
                     "Verify Cursor discovers generated specialist agent wrappers",
                 ),
                 "omp": state(
-                    "missing",
-                    "none",
+                    "complete",
+                    "native",
                     [display_path(OMP_AGENT / "agents")],
-                    "omp task-agent discovery loads only native .omp agent roots, so ~/.codex/agents/*.toml is never seen",
-                    "Hand-write ~/.omp/agent/agents/*.md wrappers for the shared specialists",
+                    "generated from shared specialist definitions",
                 ),
             },
         ),
@@ -1834,11 +1870,10 @@ def build_manifest() -> dict[str, Any]:
                     "Verify Cursor resume and history behavior against compact-preservation requirements",
                 ),
                 "omp": state(
-                    "partial",
+                    "complete",
                     "native",
-                    [display_path(SHARED / "hooks" / "contract.json")],
-                    "omp has native compaction, but the shared preservation contract is encoded for it nowhere",
-                    "Encode the compaction preservation contract in ~/.omp/agent/APPEND_SYSTEM.md",
+                    [display_path(OMP_AGENT / "APPEND_SYSTEM.md")],
+                    "compaction preservation contract inlined with shared harness instructions",
                 ),
             },
         ),
@@ -1870,7 +1905,7 @@ def build_manifest() -> dict[str, Any]:
             "codex": {"role": "supported peer", "maintenance": "generated"},
             "opencode": {"role": "new port", "maintenance": "generated"},
             "pi": {"role": "new port", "maintenance": "generated"},
-            "omp": {"role": "tracked port", "maintenance": "manual"},
+            "omp": {"role": "tracked port", "maintenance": "generated"},
             "antigravity": {"role": "tracked port", "maintenance": "generated"},
             "cursor": {"role": "tracked port", "maintenance": "generated"},
         },
