@@ -497,11 +497,9 @@ def command_audit(*, json_output: bool) -> int:
 
 def command_verify(*, harness: str | None = None) -> int:
     """Verify harness artifacts are discoverable by each CLI."""
-    import subprocess
     import shutil
-    
-    results = {}
-    
+    import subprocess
+
     # Check file existence and CLI discovery per harness
     checks = {
         "omp": [
@@ -521,40 +519,40 @@ def command_verify(*, harness: str | None = None) -> int:
             (CURSOR_HARNESS / "commands", "commands directory exists"),
         ],
     }
-    
+
     # Only verify requested harness or all if none specified
     harnesses_to_check = [harness] if harness else checks.keys()
-    
+
     for hname in harnesses_to_check:
         if hname not in checks:
             print(f"Unknown harness: {hname}")
             continue
-            
+
         print(f"\n{hname}:")
         for path, description in checks[hname]:
             if path.exists():
                 print(f"  ✅ {description}")
             else:
                 print(f"  ❌ {description} (missing)")
-    
+
     # For omp, also check if agents are discoverable
-    if not harness or harness == "omp":
-        if shutil.which("omp"):
-            result = subprocess.run(
-                ["omp", "task-agent", "list"],
-                capture_output=True,
-                text=True,
-                timeout=5
-            )
-            if result.returncode == 0:
-                # Count agents in output
-                output = result.stdout
-                agent_count = output.count("Expert") if "Expert" in output else 0
-                if agent_count >= 6:
-                    print(f"  ✅ omp discovers {agent_count}+ agents")
-                else:
-                    print(f"  ⚠️  omp discovered only {agent_count} agents (expected 6+)")
-    
+    if (not harness or harness == "omp") and shutil.which("omp"):
+        result = subprocess.run(
+            ["omp", "task-agent", "list"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=False,
+        )
+        if result.returncode == 0:
+            # Count agents in output
+            output = result.stdout
+            agent_count = output.count("Expert") if "Expert" in output else 0
+            if agent_count >= 6:
+                print(f"  ✅ omp discovers {agent_count}+ agents")
+            else:
+                print(f"  ⚠️  omp discovered only {agent_count} agents (expected 6+)")
+
     return 0
 
 
