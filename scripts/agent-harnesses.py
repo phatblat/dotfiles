@@ -234,6 +234,10 @@ def main() -> int:
     )
     provenance_parser.add_argument("--path", required=True)
     provenance_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    verify_parser = subparsers.add_parser(
+        "verify", help="Verify harness artifacts are discoverable"
+    )
+    verify_parser.add_argument("--harness", choices=HARNESSES, help="Check specific harness")
 
     args = parser.parse_args()
     if args.action == "inventory":
@@ -244,6 +248,10 @@ def main() -> int:
         return command_validate()
     if args.action == "audit":
         return command_audit(json_output=args.json)
+    if args.action == "verify":
+        harness = getattr(args, 'harness', None)
+        return command_verify(harness=harness)
+
     if args.action == "guard":
         return command_guard(args)
     if args.action == "provenance":
@@ -483,6 +491,70 @@ def command_audit(*, json_output: bool) -> int:
         print("## Open Items")
         for item in audit["partial"]:
             print(f"- {item['id']} ({item['harness']}): {item['next_action']}")
+    return 0
+
+
+
+def command_verify(*, harness: str | None = None) -> int:
+    """Verify harness artifacts are discoverable by each CLI."""
+    import subprocess
+    import shutil
+    
+    results = {}
+    
+    # Check file existence and CLI discovery per harness
+    checks = {
+        "omp": [
+            (OMP_AGENT / "APPEND_SYSTEM.md", "APPEND_SYSTEM.md exists"),
+            (OMP_AGENT / "agents", "agents directory exists"),
+        ],
+        "claude": [
+            (COMMAND_SOURCE, "commands directory exists"),
+            (ROOT / ".claude" / "agents", "agents directory exists"),
+        ],
+        "antigravity": [
+            (ANTIGRAVITY_HARNESS / "plugin.json", "plugin.json exists"),
+            (ANTIGRAVITY_HARNESS / "commands", "commands directory exists"),
+        ],
+        "cursor": [
+            (CURSOR_RULES, "rules directory exists"),
+            (CURSOR_HARNESS / "commands", "commands directory exists"),
+        ],
+    }
+    
+    # Only verify requested harness or all if none specified
+    harnesses_to_check = [harness] if harness else checks.keys()
+    
+    for hname in harnesses_to_check:
+        if hname not in checks:
+            print(f"Unknown harness: {hname}")
+            continue
+            
+        print(f"\n{hname}:")
+        for path, description in checks[hname]:
+            if path.exists():
+                print(f"  ✅ {description}")
+            else:
+                print(f"  ❌ {description} (missing)")
+    
+    # For omp, also check if agents are discoverable
+    if not harness or harness == "omp":
+        if shutil.which("omp"):
+            result = subprocess.run(
+                ["omp", "task-agent", "list"],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            if result.returncode == 0:
+                # Count agents in output
+                output = result.stdout
+                agent_count = output.count("Expert") if "Expert" in output else 0
+                if agent_count >= 6:
+                    print(f"  ✅ omp discovers {agent_count}+ agents")
+                else:
+                    print(f"  ⚠️  omp discovered only {agent_count} agents (expected 6+)")
+    
     return 0
 
 
