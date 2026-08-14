@@ -21,7 +21,7 @@ advisor:
   enabled: false
   syncBacklog: "off"
 prewalk:
-  enabled: true
+  enabled: false
 features:
   unexpectedStopDetection: true
 branchSummary:
