@@ -4,7 +4,9 @@
     "attributeCommitsToAgent": true,
     "attributePRsToAgent": true
   },
+  "autoAcceptWebSearch": false,
   "display": {
+    "mode": "zen",
     "showLineNumbers": false,
     "showStatusIndicators": false,
     "showStatusLineRunningTime": false,
@@ -13,8 +15,10 @@
   "editor": {
     "vimMode": false
   },
+  "exploreSubagentModel": "default",
   "hasChangedDefaultModel": false,
   "hints": true,
+  "modelSlashCommands": true,
   "network": {
     "useHttp1ForAgent": false
   },
@@ -31,6 +35,5 @@
     "mode": "disabled",
     "networkAccess": "user_config_with_defaults"
   },
-  "suggestNextPrompt": false,
   "version": 1
 }

@@ -1,8 +1,7 @@
 ---
 description: Conventions for creating and editing justfiles
-paths:
-  - "**/justfile"
-  - "**/*.just"
+alwaysApply: false
+paths: **/justfile, **/*.just
 ---
 
 # Justfile Conventions

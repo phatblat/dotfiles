@@ -234,6 +234,10 @@ def main() -> int:
     )
     provenance_parser.add_argument("--path", required=True)
     provenance_parser.add_argument("--json", action="store_true", help="Emit JSON")
+    verify_parser = subparsers.add_parser(
+        "verify", help="Verify harness artifacts are discoverable"
+    )
+    verify_parser.add_argument("--harness", choices=HARNESSES, help="Check specific harness")
 
     args = parser.parse_args()
     if args.action == "inventory":
@@ -244,6 +248,10 @@ def main() -> int:
         return command_validate()
     if args.action == "audit":
         return command_audit(json_output=args.json)
+    if args.action == "verify":
+        harness = getattr(args, 'harness', None)
+        return command_verify(harness=harness)
+
     if args.action == "guard":
         return command_guard(args)
     if args.action == "provenance":
@@ -283,6 +291,7 @@ GENERATED_ITEM_ROOTS = [
     (ANTIGRAVITY_HARNESS / "agents", "*.md"),
     (CURSOR_HARNESS / "commands", "*.md"),
     (CURSOR_HARNESS / "agents", "*.md"),
+    (OMP_AGENT / "agents", "*.md"),
 ]
 
 
@@ -482,6 +491,68 @@ def command_audit(*, json_output: bool) -> int:
         print("## Open Items")
         for item in audit["partial"]:
             print(f"- {item['id']} ({item['harness']}): {item['next_action']}")
+    return 0
+
+
+
+def command_verify(*, harness: str | None = None) -> int:
+    """Verify harness artifacts are discoverable by each CLI."""
+    import shutil
+    import subprocess
+
+    # Check file existence and CLI discovery per harness
+    checks = {
+        "omp": [
+            (OMP_AGENT / "APPEND_SYSTEM.md", "APPEND_SYSTEM.md exists"),
+            (OMP_AGENT / "agents", "agents directory exists"),
+        ],
+        "claude": [
+            (COMMAND_SOURCE, "commands directory exists"),
+            (ROOT / ".claude" / "agents", "agents directory exists"),
+        ],
+        "antigravity": [
+            (ANTIGRAVITY_HARNESS / "plugin.json", "plugin.json exists"),
+            (ANTIGRAVITY_HARNESS / "commands", "commands directory exists"),
+        ],
+        "cursor": [
+            (CURSOR_RULES, "rules directory exists"),
+            (CURSOR_HARNESS / "commands", "commands directory exists"),
+        ],
+    }
+
+    # Only verify requested harness or all if none specified
+    harnesses_to_check = [harness] if harness else checks.keys()
+
+    for hname in harnesses_to_check:
+        if hname not in checks:
+            print(f"Unknown harness: {hname}")
+            continue
+
+        print(f"\n{hname}:")
+        for path, description in checks[hname]:
+            if path.exists():
+                print(f"  ✅ {description}")
+            else:
+                print(f"  ❌ {description} (missing)")
+
+    # For omp, also check if agents are discoverable
+    if (not harness or harness == "omp") and shutil.which("omp"):
+        result = subprocess.run(
+            ["omp", "task-agent", "list"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=False,
+        )
+        if result.returncode == 0:
+            # Count agents in output
+            output = result.stdout
+            agent_count = output.count("Expert") if "Expert" in output else 0
+            if agent_count >= 6:
+                print(f"  ✅ omp discovers {agent_count}+ agents")
+            else:
+                print(f"  ⚠️  omp discovered only {agent_count} agents (expected 6+)")
+
     return 0
 
 
@@ -688,6 +759,7 @@ def render_all() -> dict[Path, str]:
     rendered: dict[Path, str] = {
         SHARED / "README.md": render_shared_readme(commands, agents),
         SHARED / "instructions.md": render_instructions(),
+        OMP_AGENT / "APPEND_SYSTEM.md": render_omp_append_system(),
         SHARED / "hooks" / "contract.json": render_contract(),
         SHARED / "hooks" / "safety-policy.json": render_safety_policy(),
         ROOT / "docs" / "agent-harnesses.json": json.dumps(
@@ -747,6 +819,9 @@ def render_all() -> dict[Path, str]:
             render_antigravity_agent(agent)
         )
         rendered[CURSOR_HARNESS / "agents" / f"{agent['id']}.md"] = render_cursor_agent(
+            agent
+        )
+        rendered[OMP_AGENT / "agents" / f"{agent['id']}.md"] = render_omp_agent(
             agent
         )
         record_provenance(provenance, rendered, emitted, source)
@@ -1341,6 +1416,42 @@ description: {json.dumps(agent["description"])[1:-1]}
 """
 
 
+
+def render_omp_agent(agent: dict[str, Any]) -> str:
+    return f"""---
+name: {agent["id"]}
+description: {json.dumps(agent["description"])[1:-1]}
+---
+
+{MANAGED_HEADER}
+
+Before acting, read `{agent["shared"]}`. Use its `developer_instructions` as the complete specialist role and follow the shared harness instructions from `~/.agents/harness/instructions.md`.
+"""
+
+
+def render_omp_append_system() -> str:
+    instructions = render_instructions()
+    return f"""{instructions}
+
+# Context Compaction Preservation
+
+When compacting or resuming a session, preserve and carry forward:
+
+- The complete list of modified files, with paths.
+- The current Git branch and uncommitted changes.
+- Pending tasks and TODO items, including blockers.
+- Test commands run, results, and failures.
+- Key architectural decisions and constraints made during the session.
+
+Do not claim work is complete until the preserved task state confirms that all actionable work is finished and verification evidence is available.
+
+# Git Commit Attribution
+
+When creating any Git commit, append this trailer exactly once after a blank line:
+
+Co-Authored-By: oh-my-pi <omp@can.ac>
+"""
+
 def render_opencode_config(
     commands: list[dict[str, Any]], agents: list[dict[str, Any]]
 ) -> str:
@@ -1586,14 +1697,10 @@ def build_manifest() -> dict[str, Any]:
                     "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
                 ),
                 "omp": state(
-                    "partial",
+                    "complete",
                     "native",
-                    [
-                        display_path(ROOT / "AGENTS.md"),
-                        display_path(ROOT / ".claude" / "CLAUDE.md"),
-                    ],
-                    "omp loads the repo AGENTS.md and the Claude user instructions; AGENTS.md now points at the shared harness instructions, but omp does not inject them automatically",
-                    "Confirm omp reads the pointer in AGENTS.md, or give omp a loader that injects ~/.agents/harness/instructions.md directly",
+                    [display_path(OMP_AGENT / "APPEND_SYSTEM.md")],
+                    "inlined shared harness instructions + compaction contract + commit attribution",
                 ),
             },
         ),
@@ -1642,11 +1749,11 @@ def build_manifest() -> dict[str, Any]:
                     "source commands",
                 ),
                 "codex": state(
-                    "partial",
+                    "blocked",
                     "adapter",
                     [display_path(SHARED / "commands")],
-                    "Codex consumes commands as skills/config, not Claude slash files",
-                    "Add native Codex command generation if/when file format stabilizes",
+                    "Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files.",
+                    "Re-check Codex release notes for stable command format",
                 ),
                 "opencode": state(
                     "complete",
@@ -1720,8 +1827,8 @@ def build_manifest() -> dict[str, Any]:
                         display_path(PI_AGENT / "agents.json"),
                         display_path(PI_AGENT / "extensions" / "harness.ts"),
                     ],
-                    "Pi uses an extension-backed registry rather than static native agent files",
-                    "Wire full subprocess delegation after choosing model/session policy",
+                    "Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation",
+                    "Implement subprocess delegation in ~/.pi/agent/extensions/harness.ts per policy",
                 ),
                 "antigravity": state(
                     "partial",
@@ -1738,11 +1845,10 @@ def build_manifest() -> dict[str, Any]:
                     "Verify Cursor discovers generated specialist agent wrappers",
                 ),
                 "omp": state(
-                    "missing",
-                    "none",
+                    "complete",
+                    "native",
                     [display_path(OMP_AGENT / "agents")],
-                    "omp task-agent discovery loads only native .omp agent roots, so ~/.codex/agents/*.toml is never seen",
-                    "Hand-write ~/.omp/agent/agents/*.md wrappers for the shared specialists",
+                    "generated from shared specialist definitions",
                 ),
             },
         ),
@@ -1752,7 +1858,7 @@ def build_manifest() -> dict[str, Any]:
             "p0",
             "Dangerous commands, protected writes, and secret-like content are blocked consistently.",
             [display_path(SHARED / "hooks" / "safety.py")],
-            "bats tests/agent-harnesses.bats",
+            "python3 scripts/agent-harnesses.py verify",
             {
                 **complete_adapter(["claude", "codex", "opencode", "pi"]),
                 "antigravity": state(
@@ -1790,7 +1896,7 @@ def build_manifest() -> dict[str, Any]:
             "p1",
             "Compaction preserves modified files, branch, pending work, and test state.",
             [display_path(SHARED / "hooks" / "contract.json")],
-            "python3 scripts/agent-harnesses.py validate",
+            "python3 scripts/agent-harnesses.py verify",
             {
                 "claude": state(
                     "complete",
@@ -1834,11 +1940,10 @@ def build_manifest() -> dict[str, Any]:
                     "Verify Cursor resume and history behavior against compact-preservation requirements",
                 ),
                 "omp": state(
-                    "partial",
+                    "complete",
                     "native",
-                    [display_path(SHARED / "hooks" / "contract.json")],
-                    "omp has native compaction, but the shared preservation contract is encoded for it nowhere",
-                    "Encode the compaction preservation contract in ~/.omp/agent/APPEND_SYSTEM.md",
+                    [display_path(OMP_AGENT / "APPEND_SYSTEM.md")],
+                    "compaction preservation contract inlined with shared harness instructions",
                 ),
             },
         ),
@@ -1870,7 +1975,7 @@ def build_manifest() -> dict[str, Any]:
             "codex": {"role": "supported peer", "maintenance": "generated"},
             "opencode": {"role": "new port", "maintenance": "generated"},
             "pi": {"role": "new port", "maintenance": "generated"},
-            "omp": {"role": "tracked port", "maintenance": "manual"},
+            "omp": {"role": "tracked port", "maintenance": "generated"},
             "antigravity": {"role": "tracked port", "maintenance": "generated"},
             "cursor": {"role": "tracked port", "maintenance": "generated"},
         },

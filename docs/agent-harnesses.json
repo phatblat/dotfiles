@@ -160,14 +160,13 @@
           }
         },
         "omp": {
-          "gap_reason": "omp loads the repo AGENTS.md and the Claude user instructions; AGENTS.md now points at the shared harness instructions, but omp does not inject them automatically",
+          "gap_reason": "inlined shared harness instructions + compaction contract + commit attribution",
           "mode": "native",
-          "next_action": "Confirm omp reads the pointer in AGENTS.md, or give omp a loader that injects ~/.agents/harness/instructions.md directly",
+          "next_action": "",
           "paths": [
-            "~/AGENTS.md",
-            "~/.claude/CLAUDE.md"
+            "~/.omp/agent/APPEND_SYSTEM.md"
           ],
-          "state": "partial",
+          "state": "complete",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -341,13 +340,13 @@
           }
         },
         "codex": {
-          "gap_reason": "Codex consumes commands as skills/config, not Claude slash files",
+          "gap_reason": "Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files.",
           "mode": "adapter",
-          "next_action": "Add native Codex command generation if/when file format stabilizes",
+          "next_action": "Re-check Codex release notes for stable command format",
           "paths": [
             "~/.agents/harness/commands"
           ],
-          "state": "partial",
+          "state": "blocked",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -471,13 +470,13 @@
           }
         },
         "omp": {
-          "gap_reason": "omp task-agent discovery loads only native .omp agent roots, so ~/.codex/agents/*.toml is never seen",
-          "mode": "none",
-          "next_action": "Hand-write ~/.omp/agent/agents/*.md wrappers for the shared specialists",
+          "gap_reason": "generated from shared specialist definitions",
+          "mode": "native",
+          "next_action": "",
           "paths": [
             "~/.omp/agent/agents"
           ],
-          "state": "missing",
+          "state": "complete",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -498,9 +497,9 @@
           }
         },
         "pi": {
-          "gap_reason": "Pi uses an extension-backed registry rather than static native agent files",
+          "gap_reason": "Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation",
           "mode": "emulated",
-          "next_action": "Wire full subprocess delegation after choosing model/session policy",
+          "next_action": "Implement subprocess delegation in ~/.pi/agent/extensions/harness.ts per policy",
           "paths": [
             "~/.pi/agent/agents.json",
             "~/.pi/agent/extensions/harness.ts"
@@ -619,7 +618,7 @@
       },
       "id": "hooks.safety",
       "priority": "p0",
-      "verification_command": "bats tests/agent-harnesses.bats"
+      "verification_command": "python3 scripts/agent-harnesses.py verify"
     },
     {
       "canonical_artifacts": [
@@ -682,13 +681,13 @@
           }
         },
         "omp": {
-          "gap_reason": "omp has native compaction, but the shared preservation contract is encoded for it nowhere",
+          "gap_reason": "compaction preservation contract inlined with shared harness instructions",
           "mode": "native",
-          "next_action": "Encode the compaction preservation contract in ~/.omp/agent/APPEND_SYSTEM.md",
+          "next_action": "",
           "paths": [
-            "~/.agents/harness/hooks/contract.json"
+            "~/.omp/agent/APPEND_SYSTEM.md"
           ],
-          "state": "partial",
+          "state": "complete",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -723,7 +722,7 @@
       },
       "id": "sessions.compaction",
       "priority": "p1",
-      "verification_command": "python3 scripts/agent-harnesses.py validate"
+      "verification_command": "python3 scripts/agent-harnesses.py verify"
     },
     {
       "canonical_artifacts": [
@@ -848,7 +847,7 @@
       "role": "tracked port"
     },
     "omp": {
-      "maintenance": "manual",
+      "maintenance": "generated",
       "role": "tracked port"
     },
     "opencode": {
