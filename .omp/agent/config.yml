@@ -19,7 +19,6 @@ display:
   cacheMissMarker: true
 advisor:
   enabled: false
-  subagents: true
   syncBacklog: "off"
 prewalk:
   enabled: true
@@ -42,3 +41,8 @@ memory:
   backend: mnemopi
 autolearn:
   enabled: true
+task:
+  agentAdvisor:
+    task: "on"
+worktree:
+  base: ~/.worktrees
