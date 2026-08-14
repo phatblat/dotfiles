@@ -1751,11 +1751,11 @@ def build_manifest() -> dict[str, Any]:
                     "source commands",
                 ),
                 "codex": state(
-                    "partial",
+                    "blocked",
                     "adapter",
                     [display_path(SHARED / "commands")],
-                    "Codex consumes commands as skills/config, not Claude slash files",
-                    "Add native Codex command generation if/when file format stabilizes",
+                    "Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files.",
+                    "Re-check Codex release notes for stable command format",
                 ),
                 "opencode": state(
                     "complete",
@@ -1829,8 +1829,8 @@ def build_manifest() -> dict[str, Any]:
                         display_path(PI_AGENT / "agents.json"),
                         display_path(PI_AGENT / "extensions" / "harness.ts"),
                     ],
-                    "Pi uses an extension-backed registry rather than static native agent files",
-                    "Wire full subprocess delegation after choosing model/session policy",
+                    "Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation",
+                    "Implement subprocess delegation in ~/.pi/agent/extensions/harness.ts per policy",
                 ),
                 "antigravity": state(
                     "partial",
@@ -1860,7 +1860,7 @@ def build_manifest() -> dict[str, Any]:
             "p0",
             "Dangerous commands, protected writes, and secret-like content are blocked consistently.",
             [display_path(SHARED / "hooks" / "safety.py")],
-            "bats tests/agent-harnesses.bats",
+            "python3 scripts/agent-harnesses.py verify",
             {
                 **complete_adapter(["claude", "codex", "opencode", "pi"]),
                 "antigravity": state(
@@ -1898,7 +1898,7 @@ def build_manifest() -> dict[str, Any]:
             "p1",
             "Compaction preserves modified files, branch, pending work, and test state.",
             [display_path(SHARED / "hooks" / "contract.json")],
-            "python3 scripts/agent-harnesses.py validate",
+            "python3 scripts/agent-harnesses.py verify",
             {
                 "claude": state(
                     "complete",
