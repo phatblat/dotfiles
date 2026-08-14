@@ -5,11 +5,6 @@
       "enabledFeatures": null,
       "version": "1.2.0"
     },
-    "@dietrichgebert/ponytail": {
-      "enabled": true,
-      "enabledFeatures": null,
-      "version": "4.9.0"
-    },
     "context-mode": {
       "enabled": true,
       "enabledFeatures": null,
