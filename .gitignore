@@ -232,6 +232,7 @@
 .config/thefuck/settings.pyc
 .config/tool_state
 .config/truffle/
+.config/truss/state.json
 .config/verdaccio/htpasswd
 .config/wtf/log.txt
 .config/xbuild/
