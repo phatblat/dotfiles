@@ -70,6 +70,10 @@
   },
   "autoupdate": "notify",
   "command": {
+    "ci:fix": {
+      "description": "Investigate and fix failing CI jobs until checks pass",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/ci/fix.md with arguments: $ARGUMENTS"
+    },
     "dupe": {
       "description": "Ignore this command. I duplicated the chat into a new tab.",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/dupe.md with arguments: $ARGUMENTS"

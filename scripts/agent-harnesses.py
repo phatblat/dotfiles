@@ -75,7 +75,7 @@ HARNESS_LABELS = {
 }
 # These shared skills are safe to expose through native adapters without
 # overwriting independently managed native skills with the same name.
-NATIVE_SKILL_ADAPTERS = {"aven", "handoff"}
+NATIVE_SKILL_ADAPTERS = {"aven", "ci-fix", "handoff"}
 MANUAL_SKILL_ADAPTERS = {"handoff"}
 VERIFIED_DATE = "2026-06-27"
 MANAGED_HEADER = (
@@ -376,9 +376,9 @@ def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
 def command_validate() -> int:
     errors: list[str] = []
     inventory = build_inventory()
-    if len(inventory["commands"]) != 24:
+    if len(inventory["commands"]) != 25:
         errors.append(
-            f"expected 24 active commands, found {len(inventory['commands'])}"
+            f"expected 25 active commands, found {len(inventory['commands'])}"
         )
     if len(inventory["agents"]) != 6:
         errors.append(f"expected 6 specialist agents, found {len(inventory['agents'])}")
@@ -1738,7 +1738,7 @@ def build_manifest() -> dict[str, Any]:
             "commands.active",
             "commands",
             "p0",
-            "The 24 active commands are available through generated native prompts.",
+            "The 25 active commands are available through generated native prompts.",
             [display_path(SHARED / "commands")],
             "python3 scripts/agent-harnesses.py inventory --json",
             {
@@ -1775,14 +1775,14 @@ def build_manifest() -> dict[str, Any]:
                     "adapter",
                     [display_path(ANTIGRAVITY_HARNESS / "commands")],
                     "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
-                    "Verify Antigravity command schema or flatten command wrappers so all 24 commands are discovered",
+                    "Verify Antigravity command schema or flatten command wrappers so all 25 commands are discovered",
                 ),
                 "cursor": state(
                     "partial",
                     "native",
                     [display_path(CURSOR_HARNESS / "commands")],
                     "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
-                    "Verify Cursor discovers all 24 generated command wrappers",
+                    "Verify Cursor discovers all 25 generated command wrappers",
                 ),
                 "omp": state(
                     "complete",
