@@ -728,6 +728,27 @@
   "~/.config/opencode/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.omp/agent/APPEND_SYSTEM.md": {
+    "source": ""
+  },
+  "~/.omp/agent/agents/ai-sdk-expert.md": {
+    "source": "~/.codex/agents/ai-sdk-expert.toml"
+  },
+  "~/.omp/agent/agents/cli-expert.md": {
+    "source": "~/.codex/agents/cli-expert.toml"
+  },
+  "~/.omp/agent/agents/code-review-expert.md": {
+    "source": "~/.codex/agents/code-review-expert.toml"
+  },
+  "~/.omp/agent/agents/nestjs-expert.md": {
+    "source": "~/.codex/agents/nestjs-expert.toml"
+  },
+  "~/.omp/agent/agents/research-expert.md": {
+    "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.omp/agent/agents/triage-expert.md": {
+    "source": "~/.codex/agents/triage-expert.toml"
+  },
   "~/.pi/agent/agents.json": {
     "source": ""
   },
