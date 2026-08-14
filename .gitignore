@@ -170,7 +170,6 @@
 .config/gh/hosts-ci.yml
 .config/gh/hosts.yml
 .config/ghb/
-.config/git/config
 .config/git/gitk
 .config/git/ignore
 .config/github-copilot/
