@@ -22,7 +22,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
-  [ "$command_count" -eq 24 ]
+  [ "$command_count" -eq 25 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
@@ -234,7 +234,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     pr-daily
     pr-merge
     pr-open-for-review
-    pr-post-findings
+    pr-post-review-findings
     pr-resolve-feedback
     pr-update-desc
     resolve-feedback
@@ -331,14 +331,14 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   done
 }
 
-@test "agent-harnesses: pr-post-findings preserves the Obsidian worklog contract" {
-  claude_workflow="$HOME/.claude/commands/pr/post-findings.md"
-  codex_workflow="$HOME/.agents/skills/pr-post-findings/SKILL.md"
+@test "agent-harnesses: pr-post-review-findings preserves the Obsidian worklog contract" {
+  claude_workflow="$HOME/.claude/commands/pr/post-review-findings.md"
+  codex_workflow="$HOME/.agents/skills/pr-post-review-findings/SKILL.md"
 
   for workflow in "$claude_workflow" "$codex_workflow"; do
     grep -Fq 'so the worklog captures which PRs you reviewed and every comment you left' "$workflow"
     grep -Fq 'note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"' "$workflow"
-    grep -Fq '<!-- pr:post-findings appends reviewed PRs here -->' "$workflow"
+    grep -Fq '<!-- pr:post-review-findings appends reviewed PRs here -->' "$workflow"
     grep -Fq 'PR already listed' "$workflow"
     grep -Fq 'PR not listed' "$workflow"
   done
@@ -384,7 +384,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
 
-  [ "$command_count" -eq 24 ]
+  [ "$command_count" -eq 25 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$inventory_skill_count" ]
 
