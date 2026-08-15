@@ -134,9 +134,9 @@
       "description": "Mark the current branch's draft PR as ready for review",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/open-for-review.md with arguments: $ARGUMENTS"
     },
-    "pr:post-findings": {
+    "pr:post-review-findings": {
       "description": "Post code review findings from /review as inline PR comments",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/post-findings.md with arguments: $ARGUMENTS"
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/post-review-findings.md with arguments: $ARGUMENTS"
     },
     "pr:resolve-feedback": {
       "description": "Address GitHub PR review comments \u2014 fetch, evaluate, fix, commit, and resolve",

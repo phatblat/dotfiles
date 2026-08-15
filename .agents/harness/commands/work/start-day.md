@@ -60,7 +60,7 @@ ls "${notes_dir}/${today_file}.md" 2>/dev/null && echo "EXISTS" || echo "MISSING
   - the `date:dddd` Obsidian variable (surrounded by double braces) → today's day name (e.g., `Friday`)
   - the `date:YYYY-MM-DD dddd` Obsidian variable (surrounded by double braces) → today's full date with day (e.g., `2026-05-29 Friday`)
 
-The template includes a `# Reviews` section seeded with a `<!-- pr:post-review-findings appends reviewed PRs here -->` placeholder — this is where `/pr:post-review-findings` records reviewed PRs and the comments left on them. Leave it empty at startup. If today's note already **EXISTS** but predates this section (no `# Reviews` heading), insert one after the `# Work Items` block before continuing.
+The template includes a `# Reviews` section seeded with a `<!-- pr:post-findings appends reviewed PRs here -->` placeholder — this is where `/pr:post-findings` records reviewed PRs and the comments left on them. Leave it empty at startup. If today's note already **EXISTS** but predates this section (no `# Reviews` heading), insert one after the `# Work Items` block before continuing.
 
 **Important**: The template's yesterday link uses today's full-date Obsidian variable, so Step 3 must replace the self-reference with the preceding note.
 
