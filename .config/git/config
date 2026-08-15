@@ -1,0 +1,11 @@
+[user]
+	name = Ben Chatelain
+	email = ben@octop.ad
+[alias]
+	cat = cat-file -p
+	ind = ls-files -s
+[log]
+	date = format:%F %R
+	abbrevCommit = yes
+[core]
+	abbrev = 4
