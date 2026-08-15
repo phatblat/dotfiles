@@ -85,7 +85,7 @@ dotnet = "10.0.400"
 duckdb = "1.5.5"
 duf = "0.9.1"
 dust = "1.2.4"
-fastfetch = "2.67.0"
+fastfetch = "2.67.1"
 fd = "10.4.2"
 fzf = "0.74.2"
 gemini = { version = "0.55.1", allow_builds = ["@github/keytar", "node-pty"] }
