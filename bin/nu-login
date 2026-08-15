@@ -1,10 +1,24 @@
 #!/bin/sh
 # nu-login - Stable login-shell wrapper for mise-managed Nushell.
+#
+# Nushell is not POSIX. Callers that probe the login shell with
+# `$SHELL -l -i -c '<posix command>'` -- VS Code/Cursor shell environment
+# resolution among them -- hit nu's parser and get exit code 1. Route every
+# `-c` invocation to zsh; nu is reserved for interactive login sessions.
 
 set -eu
 
 MISE=$HOME/.local/bin/mise
 FALLBACK=/bin/zsh
+
+# POSIX command probes (-c, -ic, -lic, ...) must not reach nu.
+for arg in "$@"; do
+  case $arg in
+    -c | -[!-]*c) exec "$FALLBACK" "$@" ;;
+    -*) ;;
+    *) break ;;
+  esac
+done
 
 NU_DIR="$("$MISE" where github:nushell/nushell 2>/dev/null || true)"
 NU_BIN="$NU_DIR/nu"
