@@ -40,7 +40,7 @@ jobs:
       HOME: ${{ github.workspace }}
       # Allowlist only tools needed for linting to prevent mise from attempting
       # to install macOS-only tools (tart, cargo-based tools, etc.) on Linux CI.
-      MISE_ENABLE_TOOLS: "just,shellcheck,ruff,bats,github:nushell/nushell,python,pipx:yamllint,npm:prettier"
+      MISE_ENABLE_TOOLS: "just,shellcheck,ruff,bats,github:nushell/nushell,python,pipx:yamllint,npm:prettier,shfmt,aqua:anordal/shellharden"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -59,7 +59,7 @@ jobs:
         if: steps.changed.outputs.relevant == 'true'
         uses: jdx/mise-action@7e36c90d9ab29c415a2384db3006f3ec8a8cc654 # v4.2.4
         with:
-          install_args: "just shellcheck ruff bats github:nushell/nushell python pipx:yamllint npm:prettier"
+          install_args: "just shellcheck ruff bats github:nushell/nushell python pipx:yamllint npm:prettier shfmt aqua:anordal/shellharden"
 
       - name: Install zsh
         if: steps.changed.outputs.relevant == 'true'
