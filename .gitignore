@@ -296,6 +296,12 @@
 .gnupg_pre_2.1/
 .google-cloud-sdk/
 .gradle/
+.grok/*
+!.grok/agents/
+!.grok/config.toml
+!.grok/hooks/
+!.grok/rules/
+!.grok/scripts/
 .grokbot/
 .groovy/
 .gstack/

@@ -22,7 +22,9 @@
     ".gemini/oauth_creds.json",
     ".gemini/antigravity-cli/installation_id",
     ".gemini/antigravity-cli/conversations/*",
-    ".cursor/ai-tracking/*"
+    ".cursor/ai-tracking/*",
+    ".grok/auth.json",
+    ".grok/mcp_credentials.json"
   ],
   "secret_categories": [
     "ai-provider-key",
