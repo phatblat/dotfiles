@@ -114,6 +114,8 @@
 .codex/skills/*
 !.codex/skills/aven/SKILL.md
 !.codex/skills/aven/
+!.codex/skills/ci-fix/SKILL.md
+!.codex/skills/ci-fix/
 !.codex/skills/handoff/
 !.codex/skills/
 .codexbar/claude-oauth-cache.lock
@@ -212,6 +214,8 @@
 .config/opencode/skills/*
 !.config/opencode/skills/aven/SKILL.md
 !.config/opencode/skills/aven/
+!.config/opencode/skills/ci-fix/SKILL.md
+!.config/opencode/skills/ci-fix/
 !.config/opencode/skills/handoff/
 !.config/opencode/skills/
 .config/orka-desktop/
