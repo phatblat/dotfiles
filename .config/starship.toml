@@ -53,3 +53,5 @@ disabled = true
 
 [status]
 disabled = true
+[swift]
+disabled = true

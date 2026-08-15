@@ -17,11 +17,12 @@ tools:
 display:
   showTokenUsage: true
   cacheMissMarker: true
+  hideToolActivity: false
 advisor:
   enabled: false
   syncBacklog: "off"
 prewalk:
-  enabled: true
+  enabled: false
 features:
   unexpectedStopDetection: true
 branchSummary:
@@ -46,3 +47,4 @@ task:
     task: "on"
 worktree:
   base: ~/.worktrees
+hideThinkingBlock: false

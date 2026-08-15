@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
-"""Sort [tools] entries alphabetically in mise config.toml."""
+"""Sort [tools] entries alphabetically in mise config.toml.
 
+    sort-tools.py            # rewrite in place
+    sort-tools.py --check    # exit 1 if the [tools] block is not already sorted
+"""
+
+import argparse
 import re
 import sys
 from pathlib import Path
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument(
+    "--check",
+    action="store_true",
+    help="exit non-zero if the [tools] block is not already sorted (no write)",
+)
+args = parser.parse_args()
 
 config = Path.home() / ".config" / "mise" / "config.toml"
 content = config.read_text()
@@ -40,4 +53,13 @@ new_content = (
     content[: match.start()] + new_tools + content[match.end() - len(next_section) :]
 )
 
-config.write_text(new_content)
+if args.check:
+    if content != new_content:
+        print(
+            f"{config} [tools] is not sorted (run: just format-mise)", file=sys.stderr
+        )
+        sys.exit(1)
+    sys.exit(0)
+
+if content != new_content:
+    config.write_text(new_content)

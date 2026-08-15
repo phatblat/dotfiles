@@ -1,0 +1,6 @@
+[preferences]
+include_git_info = false
+check_for_updates = true
+
+[feature_flags]
+enable_auto_upgrade = false

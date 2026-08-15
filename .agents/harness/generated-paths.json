@@ -20,6 +20,9 @@
   "~/.agents/harness/adapters/antigravity/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
   },
+  "~/.agents/harness/adapters/antigravity/commands/ci/fix.md": {
+    "source": "~/.claude/commands/ci/fix.md"
+  },
   "~/.agents/harness/adapters/antigravity/commands/dupe.md": {
     "source": "~/.claude/commands/dupe.md"
   },
@@ -65,8 +68,8 @@
   "~/.agents/harness/adapters/antigravity/commands/pr/open-for-review.md": {
     "source": "~/.claude/commands/pr/open-for-review.md"
   },
-  "~/.agents/harness/adapters/antigravity/commands/pr/post-findings.md": {
-    "source": "~/.claude/commands/pr/post-findings.md"
+  "~/.agents/harness/adapters/antigravity/commands/pr/post-review-findings.md": {
+    "source": "~/.claude/commands/pr/post-review-findings.md"
   },
   "~/.agents/harness/adapters/antigravity/commands/pr/resolve-feedback.md": {
     "source": "~/.claude/commands/pr/resolve-feedback.md"
@@ -115,6 +118,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/branch-finish/SKILL.md": {
     "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/ci-fix/SKILL.md": {
+    "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
@@ -197,8 +203,8 @@
   "~/.agents/harness/adapters/antigravity/skills/pr-open-for-review/SKILL.md": {
     "source": "~/.agents/skills/pr-open-for-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/pr-post-findings/SKILL.md": {
-    "source": "~/.agents/skills/pr-post-findings/SKILL.md"
+  "~/.agents/harness/adapters/antigravity/skills/pr-post-review-findings/SKILL.md": {
+    "source": "~/.agents/skills/pr-post-review-findings/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/pr-resolve-feedback/SKILL.md": {
     "source": "~/.agents/skills/pr-resolve-feedback/SKILL.md"
@@ -275,6 +281,9 @@
   "~/.agents/harness/adapters/cursor/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
   },
+  "~/.agents/harness/adapters/cursor/commands/ci/fix.md": {
+    "source": "~/.claude/commands/ci/fix.md"
+  },
   "~/.agents/harness/adapters/cursor/commands/dupe.md": {
     "source": "~/.claude/commands/dupe.md"
   },
@@ -320,8 +329,8 @@
   "~/.agents/harness/adapters/cursor/commands/pr/open-for-review.md": {
     "source": "~/.claude/commands/pr/open-for-review.md"
   },
-  "~/.agents/harness/adapters/cursor/commands/pr/post-findings.md": {
-    "source": "~/.claude/commands/pr/post-findings.md"
+  "~/.agents/harness/adapters/cursor/commands/pr/post-review-findings.md": {
+    "source": "~/.claude/commands/pr/post-review-findings.md"
   },
   "~/.agents/harness/adapters/cursor/commands/pr/resolve-feedback.md": {
     "source": "~/.claude/commands/pr/resolve-feedback.md"
@@ -370,6 +379,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/branch-finish/SKILL.md": {
     "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/ci-fix/SKILL.md": {
+    "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
@@ -452,8 +464,8 @@
   "~/.agents/harness/adapters/cursor/skills/pr-open-for-review/SKILL.md": {
     "source": "~/.agents/skills/pr-open-for-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/pr-post-findings/SKILL.md": {
-    "source": "~/.agents/skills/pr-post-findings/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/pr-post-review-findings/SKILL.md": {
+    "source": "~/.agents/skills/pr-post-review-findings/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/pr-resolve-feedback/SKILL.md": {
     "source": "~/.agents/skills/pr-resolve-feedback/SKILL.md"
@@ -527,6 +539,9 @@
   "~/.agents/harness/agents/triage-expert.toml": {
     "source": "~/.codex/agents/triage-expert.toml"
   },
+  "~/.agents/harness/commands/ci/fix.md": {
+    "source": "~/.claude/commands/ci/fix.md"
+  },
   "~/.agents/harness/commands/dupe.md": {
     "source": "~/.claude/commands/dupe.md"
   },
@@ -572,8 +587,8 @@
   "~/.agents/harness/commands/pr/open-for-review.md": {
     "source": "~/.claude/commands/pr/open-for-review.md"
   },
-  "~/.agents/harness/commands/pr/post-findings.md": {
-    "source": "~/.claude/commands/pr/post-findings.md"
+  "~/.agents/harness/commands/pr/post-review-findings.md": {
+    "source": "~/.claude/commands/pr/post-review-findings.md"
   },
   "~/.agents/harness/commands/pr/resolve-feedback.md": {
     "source": "~/.claude/commands/pr/resolve-feedback.md"
@@ -614,11 +629,17 @@
   "~/.claude/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.claude/skills/ci-fix/SKILL.md": {
+    "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
   "~/.claude/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
   "~/.codex/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.codex/skills/ci-fix/SKILL.md": {
+    "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
   "~/.codex/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
@@ -643,6 +664,9 @@
   },
   "~/.config/opencode/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.config/opencode/commands/ci:fix.md": {
+    "source": "~/.claude/commands/ci/fix.md"
   },
   "~/.config/opencode/commands/dupe.md": {
     "source": "~/.claude/commands/dupe.md"
@@ -689,8 +713,8 @@
   "~/.config/opencode/commands/pr:open-for-review.md": {
     "source": "~/.claude/commands/pr/open-for-review.md"
   },
-  "~/.config/opencode/commands/pr:post-findings.md": {
-    "source": "~/.claude/commands/pr/post-findings.md"
+  "~/.config/opencode/commands/pr:post-review-findings.md": {
+    "source": "~/.claude/commands/pr/post-review-findings.md"
   },
   "~/.config/opencode/commands/pr:resolve-feedback.md": {
     "source": "~/.claude/commands/pr/resolve-feedback.md"
@@ -724,6 +748,9 @@
   },
   "~/.config/opencode/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.config/opencode/skills/ci-fix/SKILL.md": {
+    "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
   "~/.config/opencode/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
@@ -773,6 +800,9 @@
   "~/.pi/agent/extensions/harness.ts": {
     "source": ""
   },
+  "~/.pi/agent/prompts/ci:fix.md": {
+    "source": "~/.claude/commands/ci/fix.md"
+  },
   "~/.pi/agent/prompts/dupe.md": {
     "source": "~/.claude/commands/dupe.md"
   },
@@ -818,8 +848,8 @@
   "~/.pi/agent/prompts/pr:open-for-review.md": {
     "source": "~/.claude/commands/pr/open-for-review.md"
   },
-  "~/.pi/agent/prompts/pr:post-findings.md": {
-    "source": "~/.claude/commands/pr/post-findings.md"
+  "~/.pi/agent/prompts/pr:post-review-findings.md": {
+    "source": "~/.claude/commands/pr/post-review-findings.md"
   },
   "~/.pi/agent/prompts/pr:resolve-feedback.md": {
     "source": "~/.claude/commands/pr/resolve-feedback.md"

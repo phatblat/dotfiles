@@ -114,6 +114,8 @@
 .codex/skills/*
 !.codex/skills/aven/SKILL.md
 !.codex/skills/aven/
+!.codex/skills/ci-fix/SKILL.md
+!.codex/skills/ci-fix/
 !.codex/skills/handoff/
 !.codex/skills/
 .codexbar/claude-oauth-cache.lock
@@ -170,7 +172,6 @@
 .config/gh/hosts-ci.yml
 .config/gh/hosts.yml
 .config/ghb/
-.config/git/config
 .config/git/gitk
 .config/git/ignore
 .config/github-copilot/
@@ -213,6 +214,8 @@
 .config/opencode/skills/*
 !.config/opencode/skills/aven/SKILL.md
 !.config/opencode/skills/aven/
+!.config/opencode/skills/ci-fix/SKILL.md
+!.config/opencode/skills/ci-fix/
 !.config/opencode/skills/handoff/
 !.config/opencode/skills/
 .config/orka-desktop/
@@ -233,6 +236,7 @@
 .config/thefuck/settings.pyc
 .config/tool_state
 .config/truffle/
+.config/truss/state.json
 .config/verdaccio/htpasswd
 .config/wtf/log.txt
 .config/xbuild/

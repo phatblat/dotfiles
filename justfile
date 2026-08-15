@@ -511,13 +511,47 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/agent-harnesses.py ~/scripts/sort-tools.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/.agents/harness/hooks/safety.py
+    ruff check ~/scripts/agent-harnesses.py ~/scripts/sort-tools.py ~/scripts/format-json.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/.agents/harness/hooks/safety.py
     ruff format --check ~/.agents/harness/hooks/safety.py
 
 # Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
 lint-toml:
     python3 ~/scripts/sort-codex-config.py --check ~/.codex/config.toml
+
+# Checks mise config formatting and [tools] sort order (mirrors format-mise)
+[group('checks')]
+lint-mise:
+    mise fmt --check
+    python3 ~/scripts/sort-tools.py --check
+
+# Checks all tracked JSON/JSONC config files are formatted (mirrors format-json)
+[group('checks')]
+lint-json:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd "$(git rev-parse --show-toplevel)"
+    # Exclusions below must stay in sync with format-json
+    git ls-files --cached '*.json' | while read -r f; do
+        [[ "$f" == .claude/skills/gstack/* ]] && continue
+        [[ "$f" == *.jsonc.json ]] && continue
+        case "$f" in
+            .claude/policy-limits.json) continue ;;
+            .config/zed/settings.json) continue ;;
+            .config/cmux/cmux.json) continue ;;
+            "Library/Application Support/Claude/claude_desktop_config.json") continue ;;
+        esac
+        printf '%s\0' "$f"
+    done | python3 ~/scripts/format-json.py --check
+    jsonc_files=()
+    while read -r f; do
+        [[ "$f" == .claude/skills/gstack/* ]] && continue
+        [[ "$f" == .config/opencode/opencode.jsonc ]] && continue
+        jsonc_files+=("$f")
+    done < <(git ls-files --cached '*.jsonc' '.config/zed/settings.json' '.config/cmux/cmux.json')
+    if ((${#jsonc_files[@]})); then
+        prettier --parser jsonc --check "${jsonc_files[@]}"
+    fi
 
 # Lints all tracked YAML config files with yamllint
 [group('checks')]
@@ -565,6 +599,15 @@ lint-bin:
     @echo "Linting bin scripts..."
     @find ~/bin -name '*.sh' ! -name 'dotnet-install.sh' -exec shellcheck {} +
 
+# Checks shell scripts are shfmt-formatted and shellharden-clean (mirrors format-shell)
+[group('checks')]
+lint-shell:
+    @echo "Checking shell script formatting..."
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -i 4 -sr -d {} +
+    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --check {} +
+    @find ~/.github/scripts -name '*.sh' -exec shfmt -ln bash -i 4 -sr -d {} +
+    @find ~/.github/scripts -name '*.sh' -exec shellharden --check {} +
+
 # Checks spelling with typos
 [group('checks')]
 check-spelling:
@@ -575,11 +618,11 @@ check-spelling:
 lint-all: lint-zsh lint-nushell lint-github-scripts lint-bin
     @echo "All linting complete"
 
-# Checks justfile and mise config formatting, gitignore, python, and shell scripts
+# Checks formatting/sort order for gitignore, python, toml, json, yaml, mise, and
+# shell, plus every lint-all linter
 [group('checks')]
-lint: lint-gitignore lint-python lint-toml lint-yaml lint-all
+lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-shell lint-all
     just --fmt --check
-    mise fmt --check
 
 # Runs lint, harness parity checks, and test
 [group('checks')]

@@ -1,0 +1,5 @@
+[baseten]
+remote_provider = baseten
+remote_url = https://app.baseten.co
+auth_type = oauth
+

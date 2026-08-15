@@ -1,9 +1,9 @@
 ---
-name: pr-post-findings
-description: Post findings from the most recent review output as inline GitHub PR comments and record them in today's daily note. Use when invoked as `$pr-post-findings` or when the user asks to post review findings to the current PR.
+name: pr-post-review-findings
+description: Post findings from the most recent review output as inline GitHub PR comments and record them in today's daily note. Use when invoked as `$pr-post-review-findings` or when the user asks to post review findings to the current PR.
 ---
 
-# pr-post-findings
+# pr-post-review-findings
 
 Post findings from the most recent review or code-review output in the conversation as inline comments on the current PR, then append the posted comments to today's daily note.
 
@@ -84,7 +84,7 @@ Post findings from the most recent review or code-review output in the conversat
    ```markdown
    # Reviews
 
-   <!-- pr:post-findings appends reviewed PRs here -->
+   <!-- pr:post-review-findings appends reviewed PRs here -->
 
    ***
    ```
@@ -109,7 +109,7 @@ Post findings from the most recent review or code-review output in the conversat
    **Append rules:**
 
    - **PR already listed** (a `- [<owner>/<repo>#<pr_number>](` line exists under `# Reviews`): append new comment sub-bullets under that existing item instead of repeating the PR line.
-   - **PR not listed:** insert the new PR item after `<!-- pr:post-findings appends reviewed PRs here -->`, following the next blank line. If that marker is absent, append at the end of the `# Reviews` section before its `***` separator.
+   - **PR not listed:** insert the new PR item after `<!-- pr:post-review-findings appends reviewed PRs here -->`, following the next blank line. If that marker is absent, append at the end of the `# Reviews` section before its `***` separator.
 
    Make the daily-note update before reporting success. Use `apply_patch` to make the change. If the note is outside the active Codex workspace, request narrowly scoped write access to that note and retry; do not silently skip a note that exists. Re-read the `# Reviews` entry after editing. Verify that every captured `comment_url` appears in the updated entry.
 

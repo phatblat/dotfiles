@@ -1,0 +1,5 @@
+; Work identity, included by ~/.gitconfig for repos under ~/dev/_GETDITTO/.
+; Repo-local user.email still overrides this.
+[user]
+	name = Ben Chatelain
+	email = ben@ditto.com

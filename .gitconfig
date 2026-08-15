@@ -137,7 +137,18 @@
 	rebase = true
 [rerere]
 	enabled = true
+[maintenance]
+	# Migrated out of ~/.config/git/config so this file is the only
+	# global Git config. See the [user] note below.
+	repo = /Users/phatblat/dev/ditto/ditto
 [user]
+	# Identity is declared HERE deliberately. Git reads
+	# $XDG_CONFIG_HOME/git/config (~/.config/git/config) *before*
+	# ~/.gitconfig, and a single-valued key set here overrides the XDG
+	# copy. Declaring name/email here means a stray write to the XDG
+	# file can never silently reassign authorship again.
+	name = Ben Chatelain
+	email = ben@octop.ad
 	signingkey = ~/.ssh/id_ed25519.pub
 [http]
 	postBuffer = 157286400
@@ -145,3 +156,10 @@
 	allowedsignersfile = ~/.git-allowed-signers
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+
+# Work identity by location. Repo-local `user.email` still wins over
+# this, so existing per-repo overrides are unaffected. `gitdir:` matches
+# the resolved git dir, so linked worktrees under ~/.worktrees/ inherit
+# the identity of their main repo.
+[includeIf "gitdir:~/dev/_GETDITTO/"]
+	path = ~/.gitconfig-ditto
