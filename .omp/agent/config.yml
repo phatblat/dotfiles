@@ -17,6 +17,7 @@ tools:
 display:
   showTokenUsage: true
   cacheMissMarker: true
+  hideToolActivity: false
 advisor:
   enabled: false
   syncBacklog: "off"
@@ -46,3 +47,4 @@ task:
     task: "on"
 worktree:
   base: ~/.worktrees
+hideThinkingBlock: false
