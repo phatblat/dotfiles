@@ -39,7 +39,7 @@
 "npm:@sentry/wizard" = "7.0.2"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.6.0"
-"npm:ccusage" = "20.0.19"
+"npm:ccusage" = "20.0.20"
 "npm:claudekit" = "0.9.5"
 "npm:ctx7" = "0.5.8"
 "npm:gastown-gui" = "0.9.4"
