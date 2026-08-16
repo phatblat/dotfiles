@@ -221,7 +221,7 @@ _.path = [
   "{{env.HOME}}/Library/Android/sdk/platform-tools",
   "{{env.HOME}}/Library/Android/sdk/cmdline-tools/latest/bin",
   "{{env.HOME}}/Library/Android/sdk/emulator",
-  "{{env.HOME}}/Library/Android/sdk/build-tools/37.0.0",
+  "{{env.HOME}}/Library/Android/sdk/build-tools/36.0.0",
   "{{env.HOME}}/go/bin",
 ]
 
