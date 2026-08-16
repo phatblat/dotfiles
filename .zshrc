@@ -104,7 +104,9 @@ export PATH="$HOME/.git-ai/bin:$PATH"
 export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # Initialize mise - version manager for tools
-# NOTE: must be after other PATH modifications so mise paths take precedence
+# NOTE: must be after other PATH modifications so mise paths take precedence.
+# The `mise` binary itself resolves because .zshenv puts ~/.local/bin on PATH;
+# the append further below re-adds it behind Homebrew and mise-managed tools.
 eval "$(mise activate zsh)"
 
 # Preferred editor: zed locally, nvim over SSH

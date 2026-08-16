@@ -40,8 +40,11 @@ alias la='ls -la'
 
 
 
-# Source .zshrc for login shells (ensures functions are autoloaded)
-if [[ -r "$HOME/.zshrc" ]]; then
+# zsh already auto-sources .zshrc for interactive shells, so sourcing it here
+# as well would apply every PATH export (and every other side effect) twice.
+# Only source it for non-interactive login shells, which still need the
+# autoloaded functions.
+if [[ ! -o interactive && -r "$HOME/.zshrc" ]]; then
   source "$HOME/.zshrc"
 fi
 
