@@ -264,6 +264,9 @@
 .did_show_opt_info
 .diffusionbee/
 .ditto-agent/
+.ditto-orchestrator-keychain.lock
+.ditto-orchestrator/
+.ditto-rename-migration.lock
 .docker/
 .dolt/
 .dotfiles/cron/cronenv
@@ -1051,6 +1054,7 @@ dev/_GETDITTO/*
 !dev/_GETDITTO/
 ditto-agent/
 ditto-cache/
+ditto-orchestrator/
 examples.desktop
 fvm/
 games/
