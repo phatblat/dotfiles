@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# ha - Audit installed harness versions and parity gaps
+python3 ~/scripts/agent-harnesses.py audit "$@"
