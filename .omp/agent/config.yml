@@ -31,10 +31,10 @@ secrets:
   enabled: true
 personality: pragmatic
 cycleOrder:
-  - smol
   - default
-  - plan
+  - smol
   - slow
+  - plan
 steeringMode: one-at-a-time
 followUpMode: one-at-a-time
 interruptMode: wait
