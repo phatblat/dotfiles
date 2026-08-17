@@ -1,0 +1,226 @@
+# Casper - Ditto's homegrown OpenAI-compatible AI router.
+#
+# Endpoint:  https://casper-api.ditto.live/v1
+# Auth:      export CASPER_API_KEY=... (or add CASPER_API_KEY=... to ~/.env)
+#            The apiKey value below is resolved as an env-var name first, literal second.
+# Catalog:   GET /v1/models publishes context_length/max_model_len plus a per-model
+#            `reasoning_param` naming the thinking wire. Values seen there:
+#              - "reasoning_effort"                    -> provider baseline below
+#              - "chat_template_args.enable_thinking"   -> per-model extraBody override
+#              - ""                                    -> non-reasoning model
+#            Re-check `GET /v1/models` after the router adds or retires a model.
+# Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
+#            catalog regardless of entitlement. Verified 2026-08-17: this key may
+#            invoke only `auto`; every named id returns
+#            403 {"detail":"not authorized to invoke <id>"}. The named models stay
+#            declared below so that widening `enabledModels` in config.yml is the
+#            only change needed once access is granted.
+providers:
+  casper:
+    baseUrl: https://casper-api.ditto.live/v1
+    api: openai-completions
+    apiKey: CASPER_API_KEY
+    compat:
+      # The router fronts self-hosted OSS engines, so OpenAI-only request
+      # features are off and tool schemas go out non-strict.
+      supportsStore: false
+      supportsDeveloperRole: false
+      supportsMultipleSystemMessages: false
+      supportsUsageInStreaming: true
+      maxTokensField: max_tokens
+      supportsToolChoice: true
+      supportsForcedToolChoice: true
+      supportsStrictMode: false
+      toolStrictMode: none
+      # Majority wire: reasoning_effort. Models advertising a chat-template
+      # switch override this per model.
+      supportsReasoningEffort: true
+      thinkingFormat: openai
+      reasoningContentField: reasoning_content
+      streamIdleTimeoutMs: 120000
+    models:
+      # --- router-side routing -------------------------------------------------
+      # `auto` picks the upstream model per request (observed: openai/gpt-oss-120b
+      # for plain turns, deepseek-ai/DeepSeek-V4-Flash-0731 when a tool call is
+      # forced) and returns that id in the response `model` field. It emits
+      # reasoning_content and accepts reasoning_effort, so thinking is on the
+      # standard wire and effort can steer routing.
+      - id: auto
+        name: Casper Auto Router
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      # --- reasoning_effort wire ----------------------------------------------
+      - id: kimi-k3
+        name: Kimi K3
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: glm-5.2
+        name: GLM 5.2
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: glm-5.2-fast
+        name: GLM 5.2 Fast
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: deepseek-v4-pro
+        name: DeepSeek V4 Pro
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: deepseek-v4-pro-0813
+        name: DeepSeek V4 Pro (0813)
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: deepseek-v4-flash-0731
+        name: DeepSeek V4 Flash (0731)
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: gpt-oss-120b
+        name: GPT-OSS 120B
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: inkling
+        name: Inkling
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: inkling-small
+        name: Inkling Small
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      # --- chat_template_args.enable_thinking wire ----------------------------
+      - id: kimi-k2.7-code
+        name: Kimi K2.7 Code
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        compat:
+          supportsReasoningEffort: false
+          extraBody:
+            chat_template_args:
+              enable_thinking: false
+          whenThinking:
+            extraBody:
+              chat_template_args:
+                enable_thinking: true
+
+      - id: kimi-k2.6
+        name: Kimi K2.6
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        compat:
+          supportsReasoningEffort: false
+          extraBody:
+            chat_template_args:
+              enable_thinking: false
+          whenThinking:
+            extraBody:
+              chat_template_args:
+                enable_thinking: true
+
+      - id: nemotron-3-ultra
+        name: Nemotron 3 Ultra
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        compat:
+          supportsReasoningEffort: false
+          # 550B class: first token can lag well past the provider floor.
+          streamIdleTimeoutMs: 300000
+          extraBody:
+            chat_template_args:
+              enable_thinking: false
+          whenThinking:
+            extraBody:
+              chat_template_args:
+                enable_thinking: true
+
+      - id: glm-4.7
+        name: GLM 4.7
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        compat:
+          supportsReasoningEffort: false
+          extraBody:
+            chat_template_args:
+              enable_thinking: false
+          whenThinking:
+            extraBody:
+              chat_template_args:
+                enable_thinking: true
+
+      - id: qwen3.8-27b
+        name: Qwen3.8 27B
+        reasoning: true
+        input: [text]
+        contextWindow: 131072
+        maxTokens: 16384
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        compat:
+          supportsReasoningEffort: false
+          extraBody:
+            chat_template_args:
+              enable_thinking: false
+          whenThinking:
+            extraBody:
+              chat_template_args:
+                enable_thinking: true
+
+      # --- non-reasoning ------------------------------------------------------
+      - id: dittoaicoder
+        name: Ditto AI Coder
+        reasoning: false
+        input: [text]
+        contextWindow: 32768
+        maxTokens: 8192
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        compat:
+          supportsReasoningEffort: false
