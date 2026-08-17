@@ -570,6 +570,7 @@
 .swiftenv/
 .swiftpm/
 .synx/
+.t3/
 .tart/
 .task/
 .templateengine/
@@ -908,6 +909,7 @@ Library/Application Support/rtk/tee/
 Library/Application Support/segment/
 Library/Application Support/summary-events/
 Library/Application Support/synergy/
+Library/Application Support/t3code/
 Library/Application Support/team.Immersed/
 Library/Application Support/virtualenv/
 Library/Application Support/vysor/
