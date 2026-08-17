@@ -755,6 +755,36 @@
   "~/.config/opencode/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.grok/agents/ai-sdk-expert.md": {
+    "source": "~/.codex/agents/ai-sdk-expert.toml"
+  },
+  "~/.grok/agents/cli-expert.md": {
+    "source": "~/.codex/agents/cli-expert.toml"
+  },
+  "~/.grok/agents/code-review-expert.md": {
+    "source": "~/.codex/agents/code-review-expert.toml"
+  },
+  "~/.grok/agents/nestjs-expert.md": {
+    "source": "~/.codex/agents/nestjs-expert.toml"
+  },
+  "~/.grok/agents/research-expert.md": {
+    "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.grok/agents/triage-expert.md": {
+    "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.grok/config.toml": {
+    "source": ""
+  },
+  "~/.grok/hooks/harness-guard.json": {
+    "source": ""
+  },
+  "~/.grok/rules/shared-harness.md": {
+    "source": ""
+  },
+  "~/.grok/scripts/harness-guard.py": {
+    "source": ""
+  },
   "~/.omp/agent/APPEND_SYSTEM.md": {
     "source": ""
   },

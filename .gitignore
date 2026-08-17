@@ -296,6 +296,13 @@
 .gnupg_pre_2.1/
 .google-cloud-sdk/
 .gradle/
+.grok/*
+!.grok/agents/
+!.grok/config.toml
+!.grok/hooks/
+!.grok/rules/
+!.grok/scripts/
+.grokbot/
 .groovy/
 .gstack/
 .gt/
@@ -735,6 +742,7 @@ Library/Application Support/Firefox/
 Library/Application Support/Fork/
 Library/Application Support/Google/
 Library/Application Support/Goose/
+Library/Application Support/Grok Bot/
 Library/Application Support/HelloGames/
 Library/Application Support/Hopper/Scripts/
 Library/Application Support/Insomnia/

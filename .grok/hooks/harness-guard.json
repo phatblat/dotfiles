@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "python3 $HOME/.grok/scripts/harness-guard.py",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash|Write|Edit|MultiEdit|run_terminal_cmd|run_terminal_command|search_replace|write_file|create_file|delete_file|Delete"
+      }
+    ]
+  }
+}

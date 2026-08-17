@@ -6,6 +6,7 @@
       "codex": "`name`, `description` in `SKILL.md`",
       "cursor": "`name`, `description` in `SKILL.md`",
       "feature": "Skill identity and trigger",
+      "grok": "`name`, `description` in `SKILL.md`",
       "id": "skill.identity",
       "notes": "Most portable part of a skill.",
       "opencode": "`name`, `description` in `SKILL.md`",
@@ -18,6 +19,7 @@
       "codex": "`agents/openai.yaml` `policy.allow_implicit_invocation: false`",
       "cursor": "`disable-model-invocation: true`",
       "feature": "Manual-only procedural skills",
+      "grok": "`disable-model-invocation: true`",
       "id": "skill.manual_only",
       "notes": "Codex policy blocks implicit invocation but does not hide enabled skill metadata.",
       "opencode": "No direct equivalent; use skill permissions or command wrappers",
@@ -30,6 +32,7 @@
       "codex": "Prefer nested repo skills or concise descriptions",
       "cursor": "`paths`; `globs` legacy fallback",
       "feature": "File/path-scoped guidance",
+      "grok": "No documented equivalent; scope through the description",
       "id": "skill.path_scope",
       "notes": "Not part of the shared Agent Skills core.",
       "opencode": "Directory discovery plus permissions",
@@ -42,6 +45,7 @@
       "codex": "Use permissions, hooks, or dependency metadata; no skill-level allowlist",
       "cursor": "No documented skill-level equivalent",
       "feature": "Skill-level tool preapproval",
+      "grok": "`allowed-tools` in skill frontmatter",
       "id": "tool.preapproval",
       "notes": "The Agent Skills spec marks `allowed-tools` experimental.",
       "opencode": "`permission.skill` controls skill loading, not tool preapproval",
@@ -54,6 +58,7 @@
       "codex": "`agents/openai.yaml` `interface` fields",
       "cursor": "`metadata` map for skills; `.mdc` frontmatter for rules",
       "feature": "Skill UI metadata",
+      "grok": "`metadata` map plus `argument-hint`",
       "id": "skill.ui_metadata",
       "notes": "Do not put Codex `interface` fields in portable `SKILL.md`.",
       "opencode": "`metadata` map only; unknown fields ignored",
@@ -66,6 +71,7 @@
       "codex": "Agent TOML `model`, `model_reasoning_effort`",
       "cursor": "No shared skill metadata equivalent",
       "feature": "Model and effort overrides",
+      "grok": "Skill `model`, `effort`; persona `model`, `reasoning_effort`",
       "id": "model.effort",
       "notes": "Never assume model aliases mean the same provider/model.",
       "opencode": "Global or agent `model`; `small_model`",
@@ -78,6 +84,7 @@
       "codex": "Agent TOML permissions/sandbox and inherited MCP config",
       "cursor": "Rules/plugin adapter; native behavior unverified",
       "feature": "Subagent tool restrictions",
+      "grok": "`--tools` / `--disallowed-tools`, subagent `capability_mode`, permission rules",
       "id": "agent.tools",
       "notes": "Shared harness guard covers only normalized shell/write/edit safety.",
       "opencode": "Agent `permission` and `tools`",
@@ -90,6 +97,7 @@
       "codex": "`agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP",
       "cursor": "Generated `mcp.json`, unverified",
       "feature": "MCP/tool dependencies",
+      "grok": "`[mcp_servers.*]` in `~/.grok/config.toml`",
       "id": "mcp.dependencies",
       "notes": "Dependency metadata is advisory unless the harness enforces it.",
       "opencode": "`mcp` config",
@@ -154,6 +162,19 @@
             "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc"
           ],
           "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "grok": {
+          "gap_reason": "inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.grok/rules/shared-harness.md"
+          ],
+          "state": "complete",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -262,6 +283,19 @@
             "version": "local"
           }
         },
+        "grok": {
+          "gap_reason": "grok scans ~/.agents/skills at the user tier",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.agents/skills"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "omp": {
           "gap_reason": "",
           "mode": "native",
@@ -358,6 +392,19 @@
           "next_action": "Verify Cursor discovers all 25 generated command wrappers",
           "paths": [
             "~/.agents/harness/adapters/cursor/commands"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "grok": {
+          "gap_reason": "grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills",
+          "mode": "native",
+          "next_action": "Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows",
+          "paths": [
+            "~/.agents/skills"
           ],
           "state": "partial",
           "verified": {
@@ -462,6 +509,19 @@
           "next_action": "Verify Cursor discovers generated specialist agent wrappers",
           "paths": [
             "~/.agents/harness/adapters/cursor/agents"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "grok": {
+          "gap_reason": "generated grok agent profiles are discovered by grok inspect, but spawn_subagent delegation to them has not been verified",
+          "mode": "adapter",
+          "next_action": "Verify grok spawn_subagent can launch the generated specialist profiles",
+          "paths": [
+            "~/.grok/agents"
           ],
           "state": "partial",
           "verified": {
@@ -576,6 +636,20 @@
             "version": "local"
           }
         },
+        "grok": {
+          "gap_reason": "generated grok PreToolUse guard maps grok's camelCase payload to the shared guard, but live blocking in a grok session has not been verified",
+          "mode": "adapter",
+          "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
+          "paths": [
+            "~/.grok/hooks/harness-guard.json",
+            "~/.grok/scripts/harness-guard.py"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "omp": {
           "gap_reason": "",
           "mode": "adapter",
@@ -675,6 +749,19 @@
             "~/.agents/harness/adapters/cursor/rules"
           ],
           "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "grok": {
+          "gap_reason": "compaction preservation contract inlined in the generated grok rules file",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.grok/rules/shared-harness.md"
+          ],
+          "state": "complete",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -784,6 +871,19 @@
             "version": "local"
           }
         },
+        "grok": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "omp": {
           "gap_reason": "",
           "mode": "shared",
@@ -845,6 +945,10 @@
     "cursor": {
       "maintenance": "generated",
       "role": "tracked port"
+    },
+    "grok": {
+      "maintenance": "generated",
+      "role": "new port"
     },
     "omp": {
       "maintenance": "generated",

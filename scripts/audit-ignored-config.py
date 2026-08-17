@@ -42,6 +42,7 @@ HARNESS_ROOTS = frozenset(
         ".codex",
         ".config/opencode",
         ".gemini",
+        ".grok",
         ".omp",
         ".pi",
     }

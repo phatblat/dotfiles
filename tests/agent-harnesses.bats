@@ -367,6 +367,47 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$status" -eq 0 ]
 }
 
+@test "agent-harnesses: grok artifacts exist and parse" {
+  run python3 "$SCRIPT" generate --check
+  [ "$status" -eq 0 ]
+
+  [ -f "$HOME/.grok/config.toml" ]
+  [ -f "$HOME/.grok/rules/shared-harness.md" ]
+  [ -f "$HOME/.grok/scripts/harness-guard.py" ]
+  [ -f "$HOME/.grok/agents/triage-expert.md" ]
+
+  run jq . "$HOME/.grok/hooks/harness-guard.json"
+  [ "$status" -eq 0 ]
+
+  grep -Fq 'hooks = false' "$HOME/.grok/config.toml"
+  grep -Fq 'Shared Harness Instructions' "$HOME/.grok/rules/shared-harness.md"
+  grep -Fq 'Context Compaction Preservation' "$HOME/.grok/rules/shared-harness.md"
+  grep -Fq 'Co-Authored-By: grokkybara[bot] <304785771+grokkybara[bot]@users.noreply.github.com>' "$HOME/.grok/rules/shared-harness.md"
+}
+
+@test "agent-harnesses: grok guard wrapper maps camelCase payloads" {
+  wrapper="$HOME/.grok/scripts/harness-guard.py"
+
+  deny_payload="$(jq -nc '{hookEventName: "pre_tool_use", cwd: $ENV.HOME,
+    toolName: "run_terminal_command", toolInput: {command: "sudo -n true"}}')"
+  run python3 "$wrapper" <<<"$deny_payload"
+  [ "$status" -eq 2 ]
+  [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
+
+  write_payload="$(jq -nc --arg path "$HOME/.ssh/id_ed25519" '{hookEventName: "pre_tool_use",
+    cwd: $ENV.HOME, toolName: "search_replace",
+    toolInput: {file_path: $path, new_string: "x"}}')"
+  run python3 "$wrapper" <<<"$write_payload"
+  [ "$status" -eq 2 ]
+  [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
+
+  allow_payload="$(jq -nc '{hookEventName: "pre_tool_use", cwd: $ENV.HOME,
+    toolName: "run_terminal_command", toolInput: {command: "git status --short"}}')"
+  run python3 "$wrapper" <<<"$allow_payload"
+  [ "$status" -eq 0 ]
+  [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
+}
+
 @test "agent-harnesses: antigravity plugin artifacts exist and parse" {
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
@@ -402,7 +443,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: safe shell commands pass every adapter guard" {
-  for harness in claude codex opencode pi omp antigravity cursor; do
+  for harness in claude codex opencode pi omp antigravity cursor grok; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "git status --short"
     [ "$status" -eq 0 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -411,7 +452,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: dangerous shell commands are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor; do
+  for harness in claude codex opencode pi omp antigravity cursor grok; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "rm -rf /"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -428,7 +469,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     $'echo ok\nsudo whoami'
   )
 
-  for harness in claude codex opencode pi omp antigravity cursor; do
+  for harness in claude codex opencode pi omp antigravity cursor grok; do
     for privileged_command in "${privileged_commands[@]}"; do
       run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "$privileged_command"
       [ "$status" -eq 2 ]
@@ -441,7 +482,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: protected writes are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor; do
+  for harness in claude codex opencode pi omp antigravity cursor grok; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/.ssh/id_ed25519" --content "not a key"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -458,9 +499,11 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     "$HOME/.gemini/antigravity-cli/installation_id"
     "$HOME/.gemini/antigravity-cli/conversations/session.json"
     "$HOME/.cursor/ai-tracking/state.json"
+    "$HOME/.grok/auth.json"
+    "$HOME/.grok/mcp_credentials.json"
   )
 
-  for harness in claude codex opencode pi omp antigravity cursor; do
+  for harness in claude codex opencode pi omp antigravity cursor grok; do
     for protected_path in "${protected_paths[@]}"; do
       run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$protected_path" --content "{}"
       [ "$status" -eq 2 ]
@@ -473,7 +516,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: secret-like content is denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor; do
+  for harness in claude codex opencode pi omp antigravity cursor grok; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/tmp/example.txt" --content "token = sk-example12345678901234567890"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')

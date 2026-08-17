@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# hc - Validate generated harness parity artifacts
+python3 ~/scripts/agent-harnesses.py validate "$@"

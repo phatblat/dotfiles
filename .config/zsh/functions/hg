@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# hg - Generate shared/native agent harness parity artifacts
+python3 ~/scripts/agent-harnesses.py generate "$@"
