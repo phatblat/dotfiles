@@ -1107,6 +1107,12 @@
       },
       {
         "enabled": true,
+        "id": "codex-app-tools@openai-bundled",
+        "marketplace": "openai-bundled",
+        "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
+      },
+      {
+        "enabled": true,
         "id": "computer-use@openai-bundled",
         "marketplace": "openai-bundled",
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
