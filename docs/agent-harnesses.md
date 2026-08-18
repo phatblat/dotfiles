@@ -24,6 +24,7 @@ Verified date: 2026-06-27
 | claude-hud@claude-hud | enabled | missing |
 | claude-md-management@claude-plugins-official | enabled | missing |
 | code-review@claude-plugins-official | enabled | enabled |
+| codex-app-tools@openai-bundled | missing | enabled |
 | computer-use@openai-bundled | missing | enabled |
 | context-mode@context-mode | enabled | missing |
 | csharp-lsp@claude-plugins-official | missing | enabled |
