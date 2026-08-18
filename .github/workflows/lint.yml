@@ -35,6 +35,7 @@ permissions:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       # Repo root IS the home directory; remap HOME so ~ resolves to checkout
       HOME: ${{ github.workspace }}
@@ -63,6 +64,7 @@ jobs:
 
       - name: Install zsh
         if: steps.changed.outputs.relevant == 'true'
+        timeout-minutes: 5
         run: |
           # Runner-provided Microsoft repositories intermittently return 403.
           sudo rm -f /etc/apt/sources.list.d/azure-cli.list /etc/apt/sources.list.d/microsoft-prod.list
