@@ -2,6 +2,7 @@
   "dependencies": {
     "@askjo/pi-reflect": "npm:@askjo/pi-reflect@^1.2.0",
     "context-mode": "^1.0.169",
+    "pi-cache-insight": "npm:pi-cache-insight",
     "pi-continual-harness": "npm:pi-continual-harness@^0.8.0",
     "pi-experiences": "npm:pi-experiences@^0.1.61"
   },

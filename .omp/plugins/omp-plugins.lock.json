@@ -10,6 +10,11 @@
       "enabledFeatures": null,
       "version": "1.0.169"
     },
+    "pi-cache-insight": {
+      "enabled": true,
+      "enabledFeatures": null,
+      "version": "1.0.0"
+    },
     "pi-continual-harness": {
       "enabled": true,
       "enabledFeatures": null,
