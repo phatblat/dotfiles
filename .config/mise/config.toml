@@ -93,7 +93,7 @@ git-lfs = "3.7.1"
 go = "1.26.6"
 gping = "1.20.4"
 gradle = "9.7.0"
-grok = "1.0.4"
+grok = { version = "1.0.5", bin = "grok", platforms = { windows-arm64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-aarch64.exe" }, windows-x64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-x86_64.exe" } }, url = 'https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-{{ os() }}-{{ arch(x64="x86_64", arm64="aarch64") }}', version_list_url = "https://x.ai/cli/stable" }
 helm = "4.2.4"
 hexyl = "0.17.0"
 hk = "1.55.0"
