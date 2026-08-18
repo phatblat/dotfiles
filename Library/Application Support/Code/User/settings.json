@@ -210,5 +210,10 @@
   "workbench.productIconTheme": "materialiconic-product-icons",
   "workbench.secondarySideBar.showLabels": false,
   "workbench.startupEditor": "none",
-  "xml.java.home": ""
+  "xml.java.home": "",
+  "yaml.schemas": {
+    "file:///Users/phatblat/.vscode/extensions/continue.continue-1.2.22-darwin-arm64/config-yaml-schema.json": [
+      ".continue/**/*.yaml"
+    ]
+  }
 }
