@@ -1118,6 +1118,12 @@
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
       },
       {
+        "enabled": false,
+        "id": "context-mode@context-mode",
+        "marketplace": "context-mode",
+        "marketplace_source": null
+      },
+      {
         "enabled": true,
         "id": "csharp-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
