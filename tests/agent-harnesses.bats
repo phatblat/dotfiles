@@ -347,6 +347,18 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   grep -Fq 'Verify that every captured `comment_url` appears in the updated entry.' "$codex_workflow"
 }
 
+@test "agent-harnesses: work:start-day seeds the same Reviews anchor pr-post-review-findings expects" {
+  start_day="$HOME/.claude/commands/work/start-day.md"
+  post_review="$HOME/.claude/commands/pr/post-review-findings.md"
+
+  anchor='<!-- pr:post-review-findings appends reviewed PRs here -->'
+  grep -Fq "$anchor" "$start_day"
+  grep -Fq "$anchor" "$post_review"
+
+  # Guard against stale pre-rename anchor/command-name text lingering in start-day.md.
+  ! grep -F 'pr:post-findings' "$start_day"
+}
+
 @test "agent-harnesses: cursor plugin artifacts exist" {
   [ -f "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/rules/shared-harness.mdc" ]
