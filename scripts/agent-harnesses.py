@@ -1464,6 +1464,9 @@ sessions = true
 
 [compat.codex]
 sessions = true
+
+[marketplace]
+default_skills_installs_purged = true
 """
 
 

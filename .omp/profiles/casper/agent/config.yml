@@ -1,43 +1,21 @@
-# Casper profile - every role routes through Ditto's homegrown router.
-# Launch:  omp --profile casper    (or OMP_PROFILE=casper omp / the `casper` shell wrapper)
-#
-# This key is only entitled to invoke `auto` (named ids 403; see models.yml), so
-# every role uses that route and differentiates by reasoning effort instead of by
-# model id. The router itself picks the upstream model per request, and effort is
-# part of the request it routes on.
-#
-# No role is assigned to `vision`: the router publishes no image-capable model.
-#
-# Once the key is entitled to named models, swap in the pinned map:
-#   default: casper/kimi-k2.7-code      smol:  casper/deepseek-v4-flash-0731
-#   tiny:    casper/gpt-oss-120b        slow:  casper/kimi-k3:high
-#   plan:    casper/glm-5.2:high        task:  casper/deepseek-v4-pro
-#   designer: casper/glm-5.2-fast:medium  commit: casper/qwen3.8-27b
-#   advisor: casper/nemotron-3-ultra:medium
-# and widen enabledModels to `casper/*`.
 modelRoles:
-  default: casper/auto # effort follows defaultThinkingLevel: auto
-  smol: casper/auto:low # cheap/fast turns
-  tiny: casper/auto:minimal # titles, memory, auto-thinking classification
-  slow: casper/auto:xhigh # deepest escalation
-  plan: casper/auto:high # planning and strategy
-  designer: casper/auto:medium # UI/design iteration
-  task: casper/auto:medium # subagent workhorse
-  commit: casper/auto:minimal # commit messages
-  advisor: casper/auto:medium # background advisor
-
-# Router-only, and only the route this key can actually invoke.
+  default: casper/qwen3.8-27b
+  smol: casper/deepseek-v4-flash-0731
+  tiny: casper/auto:minimal
+  slow: casper/glm-5.2
+  plan: casper/deepseek-v4-pro-0813
+  designer: casper/auto:medium
+  task: casper/auto:medium
+  commit: casper/auto:minimal
+  advisor: casper/auto:medium
 enabledModels:
   - casper/auto
-
 defaultThinkingLevel: auto
 cycleOrder:
   - default
   - smol
   - slow
   - plan
-
-# Behavioral settings mirror the default profile (profiles do not inherit it).
 personality: pragmatic
 steeringMode: one-at-a-time
 followUpMode: one-at-a-time
@@ -63,7 +41,7 @@ branchSummary:
 secrets:
   enabled: true
 memory:
-  backend: mnemopi
+  backend: "off"
 autolearn:
   enabled: true
 task:
@@ -72,3 +50,4 @@ task:
 worktree:
   base: ~/.worktrees
 setupVersion: 1
+includeWorkspaceTree: false
