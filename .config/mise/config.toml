@@ -90,7 +90,7 @@ fzf = "0.74.3"
 gemini = { version = "0.55.1", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "2.97.0"
 git-lfs = "3.7.1"
-go = "1.26.6"
+go = "1.26.7"
 gping = "1.20.4"
 gradle = "9.7.0"
 grok = { version = "1.0.5", bin = "grok", platforms = { windows-arm64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-aarch64.exe" }, windows-x64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-x86_64.exe" } }, url = 'https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-{{ os() }}-{{ arch(x64="x86_64", arm64="aarch64") }}', version_list_url = "https://x.ai/cli/stable" }
