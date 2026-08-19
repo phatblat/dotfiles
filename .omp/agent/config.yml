@@ -48,3 +48,12 @@ task:
 worktree:
   base: ~/.worktrees
 hideThinkingBlock: false
+theme:
+  dark: dark-aurora
+symbolPreset: nerd
+statusLine:
+  preset: default
+  separator: powerline-thin
+  sessionAccent: true
+  transparent: false
+  showHookStatus: true
