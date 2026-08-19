@@ -11,7 +11,7 @@ command = /Users/phatblat/bin/nu-login
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
 theme = TokyoNight
 
-font-family = JetBrains Mono
+font-family = JetBrainsMono Nerd Font Mono
 font-size = 14
 font-thicken = false
 
