@@ -345,7 +345,7 @@
         "~/.agents/harness/commands"
       ],
       "category": "commands",
-      "desired_behavior": "The 25 active commands are available through generated native prompts.",
+      "desired_behavior": "The 26 active commands are available through generated native prompts.",
       "harnesses": {
         "antigravity": {
           "gap_reason": "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
@@ -1265,7 +1265,7 @@
       "opencode-plugin",
       "pi-extension"
     ],
-    "commands": 25,
+    "commands": 26,
     "skills": 52
   },
   "verified_date": "2026-06-27"
