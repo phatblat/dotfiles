@@ -1,0 +1,183 @@
+{
+  "description": "Objective prompts for evaluating the justfile skill. Each eval sets up a fresh workspace from `fixture.files`, runs `prompt` against an agent, and checks the result against `expectations`. Run once with the skill unavailable (baseline) and once with `.agents/skills/justfile/SKILL.md` loaded (with-skill); the with-skill run must satisfy every expectation and must not regress any expectation the baseline already met.",
+  "evals": [
+    {
+      "description": "Create a capitalized Justfile for a small uv Python project that has none yet.",
+      "expectations": [
+        {
+          "check": "file_exists",
+          "id": "filename-capitalized",
+          "path": "Justfile"
+        },
+        {
+          "check": "file_absent",
+          "id": "no-lowercase-duplicate",
+          "path": "justfile"
+        },
+        {
+          "check": "just_dump",
+          "id": "default-first",
+          "jq": ".first == \"_default\""
+        },
+        {
+          "check": "just_dump",
+          "id": "default-attribute",
+          "jq": "(.recipes._default.attributes | index(\"default\")) != null"
+        },
+        {
+          "check": "just_dump",
+          "id": "default-body-silent",
+          "jq": ".recipes._default.body == [[\"@just --list\"]]"
+        },
+        {
+          "check": "just_dump",
+          "id": "no-global-export",
+          "jq": ".settings.export == false"
+        },
+        {
+          "check": "just_dump",
+          "id": "no-global-quiet",
+          "jq": ".settings.quiet == false"
+        },
+        {
+          "check": "text_absent",
+          "id": "under-ten-ungrouped",
+          "path": "Justfile",
+          "pattern": "\\[group\\("
+        },
+        {
+          "check": "text_contains_any",
+          "id": "real-uv-commands",
+          "path": "Justfile",
+          "patterns": [
+            "uv sync",
+            "uv run pytest",
+            "uv run ruff"
+          ]
+        },
+        {
+          "check": "text_contains",
+          "id": "deps-not-install-name",
+          "path": "Justfile",
+          "pattern": "\ndeps:"
+        },
+        {
+          "check": "text_absent",
+          "id": "no-install-recipe",
+          "path": "Justfile",
+          "pattern": "\ninstall:"
+        },
+        {
+          "check": "just_fmt_check",
+          "id": "fmt-clean",
+          "path": "Justfile"
+        }
+      ],
+      "fixture": {
+        "files": {
+          "pyproject.toml": "[project]\nname = \"demo\"\nversion = \"0.1.0\"\nrequires-python = \">=3.12\"\ndependencies = []\n\n[dependency-groups]\ndev = [\"pytest\", \"ruff\"]\n"
+        }
+      },
+      "id": "new-uv-justfile",
+      "prompt": "This is a small uv-managed Python project. Create a capitalized `Justfile` (not lowercase `justfile`) with recipes to install dependencies, run the test suite, and lint the code."
+    },
+    {
+      "description": "Adding a tenth non-default recipe to an existing flat, lowercase justfile must cross the grouping threshold.",
+      "expectations": [
+        {
+          "check": "just_dump",
+          "id": "recipe-count-reaches-ten",
+          "jq": "([.recipes | to_entries[] | select(.key != \"_default\")] | length) >= 10"
+        },
+        {
+          "check": "just_dump",
+          "id": "deploy-added",
+          "jq": ".recipes.deploy != null"
+        },
+        {
+          "check": "text_contains",
+          "id": "deploy-runs-real-command",
+          "path": "justfile",
+          "pattern": "./deploy.sh production"
+        },
+        {
+          "check": "text_contains",
+          "id": "grouping-applied",
+          "path": "justfile",
+          "pattern": "[group("
+        },
+        {
+          "check": "just_dump",
+          "id": "existing-recipes-still-present",
+          "jq": "([.recipes.deps, .recipes.test, .recipes.lint, .recipes.format, .recipes.build, .recipes.run, .recipes.clean, .recipes.typecheck, .recipes.docs] | all(. != null))"
+        },
+        {
+          "check": "just_dump",
+          "id": "default-still-first-and-silent",
+          "jq": ".first == \"_default\" and (.recipes._default.attributes | index(\"default\")) != null and .recipes._default.body == [[\"@just --list\"]]"
+        },
+        {
+          "check": "just_fmt_check",
+          "id": "fmt-clean",
+          "path": "justfile"
+        }
+      ],
+      "fixture": {
+        "files": {
+          "justfile": "set ignore-comments\nset script-interpreter := ['bash', '-eu']\nset unstable\n\n[default]\n_default:\n    @just --list\n\n# Installs dependencies\ndeps:\n    npm install\n\n# Runs the test suite\ntest:\n    npm test\n\n# Lints source files\nlint:\n    npm run lint\n\n# Formats source files and the justfile\nformat:\n    npm run format\n    just --fmt\n\n# Builds the project\nbuild:\n    npm run build\n\n# Runs the project locally\nrun:\n    npm start\n\n# Removes build artifacts\nclean:\n    rm -rf dist node_modules/.cache\n\n# Type-checks the project\ntypecheck:\n    npm run typecheck\n\n# Generates documentation\ndocs:\n    npm run docs\n"
+        }
+      },
+      "id": "tenth-recipe-grouping",
+      "prompt": "Add a `deploy` recipe to this justfile that runs `./deploy.sh production`."
+    },
+    {
+      "description": "Editing a *.just file that already has an `install` recipe must surface the install-to-deps rename suggestion during the active edit, without a rename-only, unprompted change.",
+      "expectations": [
+        {
+          "check": "text_contains",
+          "id": "clean-recipe-added",
+          "path": "tasks.just",
+          "pattern": "\nclean:"
+        },
+        {
+          "check": "text_contains",
+          "id": "clean-runs-real-command",
+          "path": "tasks.just",
+          "pattern": "rm -rf dist"
+        },
+        {
+          "check": "text_contains_any",
+          "id": "install-recipe-untouched-or-renamed",
+          "path": "tasks.just",
+          "patterns": [
+            "\ninstall:",
+            "\ndeps:"
+          ]
+        },
+        {
+          "check": "response_contains_any",
+          "id": "rename-suggested-in-response",
+          "note": "The agent's reply must mention renaming install to deps as a suggestion; it must not silently rename with no mention, and must not rename in a commit/change with no other purpose.",
+          "patterns": [
+            "install",
+            "deps"
+          ]
+        },
+        {
+          "check": "text_absent",
+          "id": "no-groups-for-two-recipes",
+          "path": "tasks.just",
+          "pattern": "[group("
+        }
+      ],
+      "fixture": {
+        "files": {
+          "tasks.just": "# Installs project dependencies\ninstall:\n    npm install\n\n# Runs the test suite\ntest:\n    npm test\n"
+        }
+      },
+      "id": "tasks-just-install-rename-suggestion",
+      "prompt": "Add a `clean` recipe to tasks.just that removes the dist/ directory."
+    }
+  ],
+  "version": 1
+}

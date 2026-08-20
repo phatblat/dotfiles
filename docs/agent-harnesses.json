@@ -966,13 +966,13 @@
   "plugins": {
     "claude": [
       {
-        "enabled": true,
+        "enabled": false,
         "id": "clangd-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "claude-code-setup@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -984,7 +984,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "claude-md-management@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -1032,13 +1032,13 @@
         "marketplace_source": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "plugin-dev@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "pup@datadog-pup",
         "marketplace": "datadog-pup",
         "marketplace_source": "github:DataDog/pup"
@@ -1062,7 +1062,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "skill-creator@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -1266,7 +1266,7 @@
       "pi-extension"
     ],
     "commands": 25,
-    "skills": 51
+    "skills": 52
   },
   "verified_date": "2026-06-27"
 }

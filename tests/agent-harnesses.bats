@@ -228,6 +228,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     gha-checks
     handoff
     gha-log-reader
+    justfile
     linear-plan
     optimize
     pr-create

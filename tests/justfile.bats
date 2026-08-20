@@ -1,6 +1,26 @@
 #!/usr/bin/env bats
 # Regression tests for justfile recipes that orchestrate external tools.
 
+@test "root justfile: settings and default recipe follow shared conventions" {
+  run just --justfile "$BATS_TEST_DIRNAME/../justfile" --dump --dump-format json
+  [ "$status" -eq 0 ]
+  dump="$output"
+
+  [ "$(jq -r '.settings.export' <<<"$dump")" = false ]
+  [ "$(jq -r '.settings.quiet' <<<"$dump")" = false ]
+  [ "$(jq -r '.assignments.PATH.export' <<<"$dump")" = true ]
+  [ "$(jq -r '.first' <<<"$dump")" = "_default" ]
+  [ "$(jq -r '(.recipes._default.attributes | index("default")) != null' <<<"$dump")" = true ]
+  [ "$(jq -r '(.recipes._default.attributes | all(. != {"script": null}))' <<<"$dump")" = true ]
+  [ "$(jq -c '.recipes._default.body' <<<"$dump")" = '[["@just --list"]]' ]
+
+  run just --justfile "$BATS_TEST_DIRNAME/../justfile"
+  [ "$status" -eq 0 ]
+  [[ "$output" == "Available recipes:"* ]]
+  [[ "$output" != *"just --list"* ]]
+  [[ "$output" != *"_default"* ]]
+}
+
 @test "upgrade-mise-tools-commit ignores tools without a version bump" {
   local bindir="$BATS_TEST_TMPDIR/bin"
   local home="$BATS_TEST_TMPDIR/home"

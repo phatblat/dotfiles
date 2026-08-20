@@ -179,6 +179,9 @@
   "~/.agents/harness/adapters/antigravity/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/justfile/SKILL.md": {
+    "source": "~/.agents/skills/justfile/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/linear-plan/SKILL.md": {
     "source": "~/.agents/skills/linear-plan/SKILL.md"
   },
@@ -439,6 +442,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/justfile/SKILL.md": {
+    "source": "~/.agents/skills/justfile/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/linear-plan/SKILL.md": {
     "source": "~/.agents/skills/linear-plan/SKILL.md"

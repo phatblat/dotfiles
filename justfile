@@ -1,9 +1,6 @@
 #
 # justfile for ~phatblat
 #
-# export - Export all variables as environment variables.
-
-set export
 
 export PATH := env("HOME") / ".local" / "bin" + ":" + env("PATH")
 
@@ -14,9 +11,8 @@ set ignore-comments
 # script-interpreter - Command used to invoke recipes with empty [script] attribute.
 
 set script-interpreter := ['bash', '-eu']
-set quiet
 
-# unstable - Enable unstable features. Required for --fmt.
+# unstable - Enable unstable features.
 
 set unstable
 
@@ -60,9 +56,9 @@ alias up := upgrade
 #
 
 # Default recipe, lists available recipes
-[script]
+[default]
 _default:
-    just --list
+    @just --list
 
 # Display free space on the Data volume (~ resolves to it; / is the sealed, near-empty System volume)
 [group('info')]
@@ -133,7 +129,7 @@ outdated-uv:
 # Lists Claude model IDs recorded in .claude/models.lock
 [group('info')]
 list-claude-models:
-    awk '/^  claude-/{print $1}' ~/.claude/models.lock
+    @awk '/^  claude-/{print $1}' ~/.claude/models.lock
 
 # Lists deprecated/retired Claude models and drift from .claude/models.lock
 [group('info')]
