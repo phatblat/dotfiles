@@ -2,7 +2,7 @@ providers:
   webSearchOrder: []
   anthropic:
     serverSideFallback: false
-setupVersion: 1
+setupVersion: 2
 modelRoles:
   plan: anthropic/claude-opus-5:xhigh
   slow: anthropic/claude-fable-5
@@ -62,3 +62,5 @@ statusLine:
 retry:
   usageAwareFallback: true
 doubleEscapeAction: tree
+composer:
+  shape: field
