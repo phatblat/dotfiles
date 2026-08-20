@@ -10,6 +10,10 @@ allowed-tools:
   - Bash(echo:*)
   - Bash(mkdir:*)
   - Bash(python3:*)
+  - Bash(claude:*)
+  - Bash(omp:*)
+  - Bash(pi:*)
+  - Bash(codex:*)
   - Read
   - Write
 category: workflow
@@ -38,14 +42,14 @@ branch=$(git branch --show-current 2>/dev/null || echo "")
 echo "date=${note_date} time=${note_time} host=${host} cwd=${cwd} year=${note_year} branch=${branch}"
 ```
 
-## Step 2: Find Current Session File and Harness
+## Step 2: Find Current Session File, Harness, and Version
 
 Session transcripts live in different roots depending on which harness is
 running this command. Search all roots that exist and pick the most recently
 modified `*.jsonl` — that is always the active session, since it is the file
 being appended to right now. Record which root it came from as the `harness`
 (`claude`, `omp`, `pi`, or `codex`) so the note can be traced back to the
-agent that produced it.
+agent that produced it, then resolve that harness's own CLI version.
 
 ```bash
 roots=()
@@ -69,7 +73,14 @@ case "$session_file" in
   "$HOME/.Codex/projects/"*) harness="codex" ;;
   *) harness="unknown" ;;
 esac
-echo "session_file=${session_file} harness=${harness}"
+case "$harness" in
+  claude) agent_version=$(claude --version 2>/dev/null | head -1) ;;
+  omp)    agent_version=$(omp --version 2>/dev/null | head -1) ;;
+  pi)     agent_version=$(pi --version 2>/dev/null | head -1) ;;
+  codex)  agent_version=$(codex --version 2>/dev/null | head -1) ;;
+  *)      agent_version="" ;;
+esac
+echo "session_file=${session_file} harness=${harness} agent_version=${agent_version}"
 
 ## Step 3: Extract the Last Assistant Response
 
@@ -183,6 +194,7 @@ hostname: <host>
 cwd: <cwd>
 branch: <branch>
 harness: <harness>
+agent_version: <agent_version>
 session_id: <session_id>
 tags:
   - quick-save
@@ -191,8 +203,8 @@ tags:
 <the captured response text, verbatim>
 ```
 
-Omit the `branch` line if empty. Do not summarize, trim, or reformat the
-captured text — write it exactly as extracted.
+Omit the `branch` or `agent_version` line if empty. Do not summarize, trim, or
+reformat the captured text — write it exactly as extracted.
 
 ## Step 6: Report
 
