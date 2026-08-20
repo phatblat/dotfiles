@@ -175,6 +175,15 @@ function s() {
     git status -sb "$@"
 }
 
+function cmt() {
+    # cmt - Commit with message, or auto-commit dirty files via the OMP commit workflow
+    if [[ $# -eq 0 ]]; then
+        omp -p "/git:commit" --model smol --auto-approve
+    else
+        git commit -m "$@"
+    fi
+}
+
 function root() {
     git rev-parse --show-toplevel "$@"
 }
