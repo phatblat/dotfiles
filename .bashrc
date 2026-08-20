@@ -234,7 +234,8 @@ function ignores() {
         "buck-out/" \
         "__pycache__/" \
         "node_modules/" \
-        ".npm/"
+        ".npm/" \
+        ".omc/"
 }
 
 function ignore() {
