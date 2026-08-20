@@ -40,12 +40,14 @@ branch=$(git branch --show-current 2>/dev/null || echo "")
 echo "date=${note_date} time=${note_time} host=${host} cwd=${cwd} year=${note_year} branch=${branch}"
 ```
 
-## Step 2: Find Current Session File
+## Step 2: Find Current Session File and Harness
 
 Session transcripts live in different roots depending on which harness is
 running this command. Search all roots that exist and pick the most recently
 modified `*.jsonl` — that is always the active session, since it is the file
-being appended to right now.
+being appended to right now. Record which root it came from as the `harness`
+(`claude`, `omp`, `pi`, or `codex`) so the note can be traced back to the
+agent that produced it.
 
 ```bash
 roots=()
@@ -61,8 +63,15 @@ if [ -z "$session_file" ]; then
   echo "ERROR: No session file found under: ${roots[*]}" >&2
   exit 1
 fi
-echo "session_file=${session_file}"
-```
+case "$session_file" in
+  "$HOME/.claude/projects/"*) harness="claude" ;;
+  "$HOME/.omp/agent/sessions/"*) harness="omp" ;;
+  "$HOME/.pi/agent/sessions/"*) harness="pi" ;;
+  "$HOME/.codex/sessions/"*) harness="codex" ;;
+  "$HOME/.Codex/projects/"*) harness="codex" ;;
+  *) harness="unknown" ;;
+esac
+echo "session_file=${session_file} harness=${harness}"
 
 ## Step 3: Extract the Last Assistant Response
 
@@ -175,6 +184,7 @@ time: <HH:MM:SS>
 hostname: <host>
 cwd: <cwd>
 branch: <branch>
+harness: <harness>
 session_id: <session_id>
 tags:
   - quick-save
