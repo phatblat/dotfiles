@@ -486,6 +486,7 @@ omp-plugins-reinstall:
     cd ~/.omp/plugins
     rm -rf node_modules
     bun install
+    omp plugin doctor --fix
 
 #
 # checks group recipes
