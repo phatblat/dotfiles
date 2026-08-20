@@ -1,5 +1,7 @@
 providers:
   webSearchOrder: []
+  anthropic:
+    serverSideFallback: false
 setupVersion: 1
 modelRoles:
   plan: anthropic/claude-opus-5:xhigh
@@ -57,3 +59,6 @@ statusLine:
   sessionAccent: true
   transparent: false
   showHookStatus: true
+retry:
+  usageAwareFallback: true
+doubleEscapeAction: tree
