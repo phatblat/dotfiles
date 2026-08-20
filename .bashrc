@@ -178,7 +178,7 @@ function s() {
 function cmt() {
     # cmt - Commit with message, or auto-commit dirty files via the OMP commit workflow
     if [[ $# -eq 0 ]]; then
-        omp -p "/git:commit" --model smol --auto-approve
+        omp --print "/git:commit" --model smol --auto-approve
     else
         git commit -m "$@"
     fi
