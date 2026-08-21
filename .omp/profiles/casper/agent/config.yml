@@ -3,13 +3,28 @@ modelRoles:
   smol: casper/deepseek-v4-flash-0731
   tiny: casper/auto:minimal
   slow: casper/glm-5.2
-  plan: casper/deepseek-v4-pro-0813
+  plan: casper/kimi-k3:max
   designer: casper/auto:medium
   task: casper/auto:medium
   commit: casper/auto:minimal
   advisor: casper/auto:medium
 enabledModels:
   - casper/auto
+  - casper/kimi-k3
+  - casper/glm-5.2
+  - casper/glm-5.2-fast
+  - casper/deepseek-v4-pro
+  - casper/deepseek-v4-pro-0813
+  - casper/deepseek-v4-flash-0731
+  - casper/gpt-oss-120b
+  - casper/inkling
+  - casper/inkling-small
+  - casper/kimi-k2.7-code
+  - casper/kimi-k2.6
+  - casper/nemotron-3-ultra
+  - casper/glm-4.7
+  - casper/qwen3.8-27b
+  - casper/dittoaicoder
 defaultThinkingLevel: auto
 cycleOrder:
   - default
@@ -49,5 +64,7 @@ task:
     task: "on"
 worktree:
   base: ~/.worktrees
-setupVersion: 1
+setupVersion: 2
 includeWorkspaceTree: false
+composer:
+  shape: field

@@ -342,6 +342,19 @@ update-models:
     git commit -m "chore(claude): Refresh model catalog lockfile" \
         -m "${body:-Initial model catalog lockfile.}"
 
+# Sync Casper model metadata and pricing from live APIs
+[group('configuration')]
+[script]
+update-casper-models:
+    set -euo pipefail
+    ~/scripts/sync-casper-models.sh
+    if [ -z "$(git status --porcelain -- .omp/profiles/casper/agent/models.yml)" ]; then
+        echo "Casper model catalog unchanged"
+        exit 0
+    fi
+    git add .omp/profiles/casper/agent/models.yml
+    git commit -m "chore(casper): sync models.yml with live catalog and pricing"
+
 # Update Rust toolchains
 [group('configuration')]
 [script]
