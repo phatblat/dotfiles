@@ -20,6 +20,9 @@
   "~/.agents/harness/adapters/antigravity/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
   },
+  "~/.agents/harness/adapters/antigravity/commands/2ndbrain.md": {
+    "source": "~/.claude/commands/2ndbrain.md"
+  },
   "~/.agents/harness/adapters/antigravity/commands/ci/fix.md": {
     "source": "~/.claude/commands/ci/fix.md"
   },
@@ -179,6 +182,9 @@
   "~/.agents/harness/adapters/antigravity/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/justfile/SKILL.md": {
+    "source": "~/.agents/skills/justfile/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/linear-plan/SKILL.md": {
     "source": "~/.agents/skills/linear-plan/SKILL.md"
   },
@@ -280,6 +286,9 @@
   },
   "~/.agents/harness/adapters/cursor/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.agents/harness/adapters/cursor/commands/2ndbrain.md": {
+    "source": "~/.claude/commands/2ndbrain.md"
   },
   "~/.agents/harness/adapters/cursor/commands/ci/fix.md": {
     "source": "~/.claude/commands/ci/fix.md"
@@ -440,6 +449,9 @@
   "~/.agents/harness/adapters/cursor/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/justfile/SKILL.md": {
+    "source": "~/.agents/skills/justfile/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/linear-plan/SKILL.md": {
     "source": "~/.agents/skills/linear-plan/SKILL.md"
   },
@@ -538,6 +550,9 @@
   },
   "~/.agents/harness/agents/triage-expert.toml": {
     "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.agents/harness/commands/2ndbrain.md": {
+    "source": "~/.claude/commands/2ndbrain.md"
   },
   "~/.agents/harness/commands/ci/fix.md": {
     "source": "~/.claude/commands/ci/fix.md"
@@ -664,6 +679,9 @@
   },
   "~/.config/opencode/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
+  },
+  "~/.config/opencode/commands/2ndbrain.md": {
+    "source": "~/.claude/commands/2ndbrain.md"
   },
   "~/.config/opencode/commands/ci:fix.md": {
     "source": "~/.claude/commands/ci/fix.md"
@@ -829,6 +847,9 @@
   },
   "~/.pi/agent/extensions/harness.ts": {
     "source": ""
+  },
+  "~/.pi/agent/prompts/2ndbrain.md": {
+    "source": "~/.claude/commands/2ndbrain.md"
   },
   "~/.pi/agent/prompts/ci:fix.md": {
     "source": "~/.claude/commands/ci/fix.md"

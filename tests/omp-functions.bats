@@ -70,7 +70,7 @@ teardown() {
   '
 
   [ "$status" -eq 0 ]
-  [ "$output" = "/git:commit" ]
+  [ "$output" = $'--print\n/git:commit\n--model\nsmol\n--auto-approve' ]
 }
 
 
@@ -81,7 +81,7 @@ teardown() {
   "
 
   [ "$status" -eq 0 ]
-  [ "$output" = "/git:commit" ]
+  [ "$output" = $'--print\n/git:commit\n--model\nsmol\n--auto-approve' ]
 }
 
 @test "omp wrappers pass --allow-home so home-rooted sessions are not relocated" {

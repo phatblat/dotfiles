@@ -175,6 +175,15 @@ function s() {
     git status -sb "$@"
 }
 
+function cmt() {
+    # cmt - Commit with message, or auto-commit dirty files via the OMP commit workflow
+    if [[ $# -eq 0 ]]; then
+        omp --print "/git:commit" --model smol --auto-approve
+    else
+        git commit -m "$@"
+    fi
+}
+
 function root() {
     git rev-parse --show-toplevel "$@"
 }
@@ -234,7 +243,8 @@ function ignores() {
         "buck-out/" \
         "__pycache__/" \
         "node_modules/" \
-        ".npm/"
+        ".npm/" \
+        ".omc/"
 }
 
 function ignore() {

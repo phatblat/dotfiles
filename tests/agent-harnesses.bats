@@ -22,7 +22,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
-  [ "$command_count" -eq 25 ]
+  [ "$command_count" -eq 26 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
@@ -167,7 +167,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     "$HOME/docs/agent-harnesses.json" >/dev/null
   grep -Fq '## Native Plugins' "$HOME/docs/agent-harnesses.md"
   grep -Fq '| Plugin | Claude | Codex |' "$HOME/docs/agent-harnesses.md"
-  grep -Fq '| pup@datadog-pup | enabled | enabled |' \
+  grep -Fq '| pup@datadog-pup | disabled | enabled |' \
     "$HOME/docs/agent-harnesses.md"
 }
 
@@ -228,6 +228,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     gha-checks
     handoff
     gha-log-reader
+    justfile
     linear-plan
     optimize
     pr-create
@@ -347,6 +348,18 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   grep -Fq 'Verify that every captured `comment_url` appears in the updated entry.' "$codex_workflow"
 }
 
+@test "agent-harnesses: work:start-day seeds the same Reviews anchor pr-post-review-findings expects" {
+  start_day="$HOME/.claude/commands/work/start-day.md"
+  post_review="$HOME/.claude/commands/pr/post-review-findings.md"
+
+  anchor='<!-- pr:post-review-findings appends reviewed PRs here -->'
+  grep -Fq "$anchor" "$start_day"
+  grep -Fq "$anchor" "$post_review"
+
+  # Guard against stale pre-rename anchor/command-name text lingering in start-day.md.
+  ! grep -F 'pr:post-findings' "$start_day"
+}
+
 @test "agent-harnesses: cursor plugin artifacts exist" {
   [ -f "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/rules/shared-harness.mdc" ]
@@ -425,7 +438,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
 
-  [ "$command_count" -eq 25 ]
+  [ "$command_count" -eq 26 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$inventory_skill_count" ]
 

@@ -52,5 +52,7 @@ export def ignores [] {
         node_modules/
         # npm
         .npm/
+        # oh-my-claudecode
+        .omc/
     ]
 }

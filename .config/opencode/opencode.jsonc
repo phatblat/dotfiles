@@ -70,6 +70,10 @@
   },
   "autoupdate": "notify",
   "command": {
+    "2ndbrain": {
+      "description": "Quick-save the last response as a note in the 2ndBrain Obsidian vault",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/2ndbrain.md with arguments: $ARGUMENTS"
+    },
     "ci:fix": {
       "description": "Investigate and fix failing CI jobs until checks pass",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/ci/fix.md with arguments: $ARGUMENTS"

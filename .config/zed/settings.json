@@ -1,5 +1,7 @@
 // -*- mode: jsonc -*-
 {
+  "markdown_preview_code_font_family": "JetBrainsMono Nerd Font",
+  "markdown_preview_font_family": "JetBrainsMono Nerd Font",
   "markdown_preview_font_size": 18.0,
   "cli_default_open_behavior": "existing_window",
   "bottom_dock_layout": "contained",
@@ -84,6 +86,9 @@
     "Shell Script": {
       "preferred_line_length": 120,
     },
+  },
+  "markdown_preview": {
+    "limit_content_width": false,
   },
   "lsp": {
     "rust-analyzer": {

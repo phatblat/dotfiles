@@ -345,7 +345,7 @@
         "~/.agents/harness/commands"
       ],
       "category": "commands",
-      "desired_behavior": "The 25 active commands are available through generated native prompts.",
+      "desired_behavior": "The 26 active commands are available through generated native prompts.",
       "harnesses": {
         "antigravity": {
           "gap_reason": "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
@@ -966,13 +966,13 @@
   "plugins": {
     "claude": [
       {
-        "enabled": true,
+        "enabled": false,
         "id": "clangd-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "claude-code-setup@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -984,7 +984,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "claude-md-management@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -1032,13 +1032,13 @@
         "marketplace_source": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "plugin-dev@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "pup@datadog-pup",
         "marketplace": "datadog-pup",
         "marketplace_source": "github:DataDog/pup"
@@ -1062,7 +1062,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "skill-creator@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -1116,6 +1116,12 @@
         "id": "computer-use@openai-bundled",
         "marketplace": "openai-bundled",
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
+      },
+      {
+        "enabled": false,
+        "id": "context-mode@context-mode",
+        "marketplace": "context-mode",
+        "marketplace_source": null
       },
       {
         "enabled": true,
@@ -1259,8 +1265,8 @@
       "opencode-plugin",
       "pi-extension"
     ],
-    "commands": 25,
-    "skills": 51
+    "commands": 26,
+    "skills": 52
   },
   "verified_date": "2026-06-27"
 }

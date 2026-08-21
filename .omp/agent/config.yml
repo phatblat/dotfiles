@@ -1,5 +1,7 @@
 providers:
   webSearchOrder: []
+  anthropic:
+    serverSideFallback: false
 setupVersion: 1
 modelRoles:
   plan: anthropic/claude-opus-5:xhigh
@@ -48,3 +50,15 @@ task:
 worktree:
   base: ~/.worktrees
 hideThinkingBlock: false
+theme:
+  dark: dark-aurora
+symbolPreset: nerd
+statusLine:
+  preset: default
+  separator: powerline-thin
+  sessionAccent: true
+  transparent: false
+  showHookStatus: true
+retry:
+  usageAwareFallback: true
+doubleEscapeAction: tree
