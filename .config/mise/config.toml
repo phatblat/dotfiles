@@ -27,7 +27,7 @@
 "github:DataDog/pup" = "1.12.1"
 "github:Dicklesworthstone/beads_rust" = "0.3.2"
 "github:diggerhq/opencomputer" = "0.6.0.41"
-"github:dolthub/dolt" = "2.3.0"
+"github:dolthub/dolt" = "2.3.1"
 "github:nushell/nushell" = { version = "0.115.0", version_prefix = "" }
 "github:raine/aven" = "v0.1.29"
 "github:schpet/linear-cli" = "2.5.0"
