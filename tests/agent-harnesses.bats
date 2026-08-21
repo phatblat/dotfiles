@@ -22,7 +22,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
-  [ "$command_count" -eq 25 ]
+  [ "$command_count" -eq 26 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
@@ -167,7 +167,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     "$HOME/docs/agent-harnesses.json" >/dev/null
   grep -Fq '## Native Plugins' "$HOME/docs/agent-harnesses.md"
   grep -Fq '| Plugin | Claude | Codex |' "$HOME/docs/agent-harnesses.md"
-  grep -Fq '| pup@datadog-pup | enabled | enabled |' \
+  grep -Fq '| pup@datadog-pup | disabled | enabled |' \
     "$HOME/docs/agent-harnesses.md"
 }
 
@@ -438,7 +438,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
 
-  [ "$command_count" -eq 25 ]
+  [ "$command_count" -eq 26 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$inventory_skill_count" ]
 
