@@ -282,6 +282,15 @@ function ignore() {
     git commit -m "$commit_message"
 }
 
+function f() {
+    # f - Short alias for invoking fork. Given no args, the current folder will be opened
+    if [[ $# -eq 0 ]]; then
+        fork .
+    else
+        fork "$@"
+    fi
+}
+
 # Source git aliases
 if [ -f ~/.dotfiles/git/alias.bash ]; then
   source ~/.dotfiles/git/alias.bash
