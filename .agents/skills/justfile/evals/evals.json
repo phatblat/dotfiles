@@ -177,6 +177,134 @@
       },
       "id": "tasks-just-install-rename-suggestion",
       "prompt": "Add a `clean` recipe to tasks.just that removes the dist/ directory."
+    },
+    {
+      "description": "A pnpm project asked for update-reporting and update-applying recipes must get the canonical `outdated`/`upgrade` names, an `outdated` that tolerates the non-zero \"updates found\" exit and writes nothing, and an `upgrade` that does not mask failures. Seven non-default recipes stays under the grouping threshold.",
+      "expectations": [
+        {
+          "check": "just_dump",
+          "id": "both-recipes-added",
+          "jq": ".recipes.outdated != null and .recipes.upgrade != null",
+          "note": "The skill supplies the names; the prompt deliberately describes intent only."
+        },
+        {
+          "check": "just_dump",
+          "id": "outdated-tolerates-nonzero-exit",
+          "jq": "(.recipes.outdated.body | flatten | join(\"\\n\")) | test(\"(^|\\n)@?-\") or test(\"\\\\|\\\\| *true\")",
+          "note": "`pnpm outdated` exits 1 when updates exist, so the recipe needs a `-` line prefix (or `|| true` in a [script] recipe) or it fails spuriously."
+        },
+        {
+          "check": "just_dump",
+          "id": "upgrade-does-not-mask-failure",
+          "jq": "(.recipes.upgrade.body | flatten | join(\"\\n\")) | (test(\"(^|\\n)@?-\") or test(\"\\\\|\\\\| *true\")) | not",
+          "note": "A failed upgrade is a real failure and must surface."
+        },
+        {
+          "check": "just_dump",
+          "id": "outdated-is-read-only",
+          "jq": "(.recipes.outdated.body | flatten | join(\"\\n\")) | test(\"(install|sync|pnpm +update|npm +update)\") | not"
+        },
+        {
+          "check": "just_dump",
+          "id": "outdated-uses-detected-package-manager",
+          "jq": "(.recipes.outdated.body | flatten | join(\"\\n\")) | test(\"pnpm outdated\")",
+          "note": "pnpm-lock.yaml and packageManager pin pnpm, so npm/yarn commands are wrong."
+        },
+        {
+          "check": "just_dump",
+          "id": "upgrade-uses-detected-package-manager",
+          "jq": "(.recipes.upgrade.body | flatten | join(\"\\n\")) | test(\"pnpm update\")"
+        },
+        {
+          "check": "just_dump",
+          "id": "existing-recipes-still-present",
+          "jq": "([.recipes.deps, .recipes.build, .recipes.test, .recipes.lint, .recipes.format] | all(. != null))"
+        },
+        {
+          "check": "just_dump",
+          "id": "default-still-first-and-silent",
+          "jq": ".first == \"_default\" and (.recipes._default.attributes | index(\"default\")) != null and .recipes._default.body == [[\"@just --list\"]]"
+        },
+        {
+          "check": "text_absent",
+          "id": "no-groups-under-threshold",
+          "note": "Seven non-default recipes is under 10, so the file stays flat.",
+          "path": "justfile",
+          "pattern": "[group("
+        },
+        {
+          "check": "text_absent",
+          "id": "no-machine-global-package-manager",
+          "path": "justfile",
+          "pattern": "brew "
+        },
+        {
+          "check": "just_fmt_check",
+          "id": "fmt-clean",
+          "path": "justfile"
+        }
+      ],
+      "fixture": {
+        "files": {
+          "justfile": "set ignore-comments\nset script-interpreter := ['bash', '-eu']\nset unstable\n\n[default]\n_default:\n    @just --list\n\n# Installs dependencies\ndeps:\n    pnpm install\n\n# Builds the project\nbuild:\n    pnpm build\n\n# Runs the test suite\ntest:\n    pnpm test\n\n# Lints source files\nlint:\n    pnpm lint\n\n# Formats source files and the justfile\nformat:\n    pnpm format\n    just --fmt\n",
+          "package.json": "{\n  \"name\": \"probe\",\n  \"version\": \"1.0.0\",\n  \"packageManager\": \"pnpm@9.12.0\",\n  \"scripts\": {\n    \"build\": \"tsc -p .\",\n    \"test\": \"vitest run\",\n    \"lint\": \"eslint .\",\n    \"format\": \"prettier --write .\"\n  },\n  \"dependencies\": {\n    \"semver\": \"^7.5.0\"\n  }\n}\n",
+          "pnpm-lock.yaml": "lockfileVersion: '9.0'\n\nsettings:\n  autoInstallPeers: true\n  excludeLinksFromLockfile: false\n"
+        }
+      },
+      "id": "outdated-upgrade-recipes-flat",
+      "prompt": "Add recipes to this justfile that show which dependencies have newer versions available, and that apply those updates."
+    },
+    {
+      "description": "Adding both update recipes at once to a uv project with eight non-default recipes takes the count to ten, so grouping must be applied to the whole file in the same edit. `upgrade` must also re-sync the environment rather than leaving a refreshed lockfile behind.",
+      "expectations": [
+        {
+          "check": "just_dump",
+          "id": "both-recipes-added",
+          "jq": ".recipes.outdated != null and .recipes.upgrade != null"
+        },
+        {
+          "check": "just_dump",
+          "id": "count-reaches-ten",
+          "jq": "([.recipes|to_entries[]|select(.key!=\"_default\")]|length) >= 10"
+        },
+        {
+          "check": "just_dump",
+          "id": "every-recipe-grouped",
+          "jq": "[.recipes|to_entries[]|select(.key!=\"_default\")|.value.attributes|map(select(type==\"object\" and has(\"group\")))|length]|all(.>0)",
+          "note": "Crossing the threshold groups the pre-existing recipes too, not just the two new ones."
+        },
+        {
+          "check": "just_dump",
+          "id": "update-recipes-in-configuration-group",
+          "jq": "[.recipes.outdated, .recipes.upgrade]|all(.attributes|any(type==\"object\" and .group==\"configuration\"))",
+          "note": "This fixture has no informational group, so both recipes land in `configuration` beside `deps`. Neither may go in `checks`."
+        },
+        {
+          "check": "just_dump",
+          "id": "outdated-tolerates-nonzero-exit",
+          "jq": "(.recipes.outdated.body|flatten|join(\"\\n\"))|test(\"(^|\\n)@?-\") or test(\"\\\\|\\\\| *true\")"
+        },
+        {
+          "check": "just_dump",
+          "id": "upgrade-resyncs-environment",
+          "jq": "(.recipes.upgrade.body|flatten|join(\"\\n\"))|test(\"uv lock --upgrade\") and test(\"uv sync\")",
+          "note": "`uv lock --upgrade` alone leaves the installed environment stale."
+        },
+        {
+          "check": "just_fmt_check",
+          "id": "fmt-clean",
+          "path": "justfile"
+        }
+      ],
+      "fixture": {
+        "files": {
+          "justfile": "set ignore-comments\nset script-interpreter := ['bash', '-eu']\nset unstable\n\n[default]\n_default:\n    @just --list\n\n# Installs dependencies\ndeps:\n    uv sync\n\n# Runs the test suite\ntest:\n    uv run pytest\n\n# Lints source files\nlint:\n    uv run ruff check .\n\n# Formats source files and the justfile\nformat:\n    uv run ruff format .\n    just --fmt\n\n# Type-checks the project\ntypecheck:\n    uv run mypy .\n\n# Builds the distributable\nbuild:\n    uv build\n\n# Removes build artifacts\nclean:\n    rm -rf .venv __pycache__ dist\n\n# Generates documentation\ndocs:\n    uv run mkdocs build\n",
+          "pyproject.toml": "[project]\nname = \"probe\"\nversion = \"0.1.0\"\nrequires-python = \">=3.11\"\ndependencies = [\"packaging>=24\"]\n",
+          "uv.lock": "version = 1\nrequires-python = \">=3.11\"\n\n[[package]]\nname = \"probe\"\nversion = \"0.1.0\"\nsource = { editable = \".\" }\n"
+        }
+      },
+      "id": "outdated-upgrade-crosses-grouping-threshold",
+      "prompt": "Add recipes to this justfile that report which dependencies have newer versions available, and that apply those updates."
     }
   ],
   "version": 1
