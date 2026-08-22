@@ -4,21 +4,21 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 539 unique functions/aliases across 3 shells**
+**Total: 540 unique functions/aliases across 3 shells**
 
 **Shell Statistics:**
 
-- Nushell: 284 aliases/functions (primary shell)
-- Zsh: 379 functions (daily fallback)
-- Bash: 12 functions (minimal usage)
+- Nushell: 285 aliases/functions (primary shell)
+- Zsh: 380 functions (daily fallback)
+- Bash: 13 functions (minimal usage)
 
 **Shell Coverage:**
 
-- Implemented in all 3 shells: 11
+- Implemented in all 3 shells: 12
 - Implemented in 2 shells: 161
 - Implemented in 1 shell only: 320
 
-**Functions Implemented in Multiple Shells:** 172
+**Functions Implemented in Multiple Shells:** 173
 
 ## Status Legend
 
@@ -212,6 +212,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `error`                     | ✅  | ✅  | ➖   | Prints args to stderr (nu: `error-msg` — keyword collision) |
 | `explain`                   | ➖  | ➖  | ➖   | Zsh function                                         |
 | `e`                         | ✅  | ✅  | ➖   | Short alias for editing a file. Given no args, the   |
+| `f`                         | ✅  | ✅  | ✅   | Invoke fork; given no args, defaults to '.'          |
 | `fetch`                     | ✅  | ✅  | ✅   | Fetch branch from default git remote                 |
 | `fg`                        | ✅  | ➖  | ➖   | Resume a frozen job in the foreground; resolves id from job list to work around nushell#16561 |
 | `file_base`                 | ✅  | ➖  | ➖   | Prints base name after dropping extension            |

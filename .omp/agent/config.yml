@@ -34,9 +34,9 @@ secrets:
 personality: pragmatic
 cycleOrder:
   - default
+  - plan
   - smol
   - slow
-  - plan
 steeringMode: one-at-a-time
 followUpMode: one-at-a-time
 interruptMode: wait

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# f - Short alias for invoking fork. Given no args, the current folder will be opened
+if [[ $# -eq 0 ]]; then
+    fork .
+else
+    fork "$@"
+fi

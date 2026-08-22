@@ -176,9 +176,22 @@ function s() {
 }
 
 function cmt() {
-    # cmt - Commit with message, or auto-commit dirty files via the OMP commit workflow
+    # cmt - Commit with message, or auto-commit dirty files via the OMP commit
+    # workflow. A single argument that resolves to an existing file or
+    # directory path within the current git repo is treated as a path to
+    # scope the auto-commit to (like the no-arg form, but restricted to that
+    # path) rather than as a commit message.
     if [[ $# -eq 0 ]]; then
         omp --print "/git:commit" --model smol --auto-approve
+    elif [[ $# -eq 1 ]] && git rev-parse --is-inside-work-tree &>/dev/null && [[ -e "$1" ]]; then
+        local repo_root abs_path
+        repo_root="$(git rev-parse --show-toplevel)"
+        abs_path="$(realpath "$1")"
+        if [[ "$abs_path" == "$repo_root" || "$abs_path" == "$repo_root"/* ]]; then
+            omp --print "/git:commit only the path: $abs_path" --model smol --auto-approve
+        else
+            git commit -m "$@"
+        fi
     else
         git commit -m "$@"
     fi
@@ -280,6 +293,15 @@ function ignore() {
 
     git add "$gitignore"
     git commit -m "$commit_message"
+}
+
+function f() {
+    # f - Short alias for invoking fork. Given no args, the current folder will be opened
+    if [[ $# -eq 0 ]]; then
+        fork .
+    else
+        fork "$@"
+    fi
 }
 
 # Source git aliases
