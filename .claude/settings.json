@@ -35,6 +35,12 @@
         "source": "github"
       }
     },
+    "claude-hud": {
+      "source": {
+        "repo": "jarrodwatts/claude-hud",
+        "source": "github"
+      }
+    },
     "context-mode": {
       "source": {
         "repo": "mksglu/context-mode",
