@@ -216,6 +216,7 @@
         "hooks": [
           {
             "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/context-mode-cache-heal.mjs",
+            "timeout": 5,
             "type": "command"
           }
         ]
