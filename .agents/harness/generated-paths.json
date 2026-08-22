@@ -650,23 +650,158 @@
   "~/.claude/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.claude/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.claude/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
   "~/.claude/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
+  "~/.claude/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.claude/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.claude/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.claude/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.claude/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.claude/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.claude/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.claude/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
   },
   "~/.claude/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.claude/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.claude/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.claude/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.claude/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.claude/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.claude/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.claude/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.claude/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.claude/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.claude/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
+  },
   "~/.codex/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.codex/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.codex/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
+  "~/.codex/skills/branch-finish/agents/openai.yaml": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
   "~/.codex/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
+  "~/.codex/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.codex/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.codex/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.codex/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.codex/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.codex/skills/gha-checks/agents/openai.yaml": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.codex/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.codex/skills/gha-log-reader/agents/openai.yaml": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.codex/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.codex/skills/git-worktrees/agents/openai.yaml": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.codex/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
   },
   "~/.codex/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
   "~/.codex/skills/handoff/agents/openai.yaml": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.codex/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.codex/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.codex/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.codex/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.codex/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.codex/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.codex/skills/resolve-feedback/agents/openai.yaml": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.codex/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.codex/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.codex/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.codex/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
   },
   "~/.config/opencode/agents/ai-sdk-expert.md": {
     "source": "~/.codex/agents/ai-sdk-expert.toml"
@@ -773,11 +908,71 @@
   "~/.config/opencode/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.config/opencode/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.config/opencode/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
   "~/.config/opencode/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.config/opencode/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.config/opencode/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.config/opencode/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.config/opencode/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.config/opencode/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.config/opencode/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.config/opencode/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.config/opencode/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
+  },
   "~/.config/opencode/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.config/opencode/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.config/opencode/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.config/opencode/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.config/opencode/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.config/opencode/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.config/opencode/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.config/opencode/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.config/opencode/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.config/opencode/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.config/opencode/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
   },
   "~/.grok/agents/ai-sdk-expert.md": {
     "source": "~/.codex/agents/ai-sdk-expert.toml"
