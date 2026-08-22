@@ -7,7 +7,7 @@
 # than as a commit message.
 if (($# == 0)); then
     omp --print "/git:commit" --model smol --auto-approve
-elif (($# == 1)) && git rev-parse --is-inside-work-tree &>/dev/null && [[ -e "$1" ]]; then
+elif (($# == 1)) && git rev-parse --is-inside-work-tree &> /dev/null && [[ -e "$1" ]]; then
     local repo_root="$(git rev-parse --show-toplevel)"
     local abs_path="$(realpath "$1")"
     if [[ "$abs_path" == "$repo_root" || "$abs_path" == "$repo_root"/* ]]; then
