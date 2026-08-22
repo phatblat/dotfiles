@@ -52,6 +52,24 @@
     },
   },
   "agent_servers": {
+    "grok-build": {
+      "type": "registry",
+    },
+    "antigravity-acp": {
+      "type": "registry",
+    },
+    "gemini": {
+      "type": "registry",
+    },
+    "cursor": {
+      "type": "registry",
+    },
+    "codex-acp": {
+      "type": "registry",
+    },
+    "pi-acp": {
+      "type": "registry",
+    },
     "opencode": {
       "type": "registry",
     },
