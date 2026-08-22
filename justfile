@@ -521,8 +521,8 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/agent-harnesses.py ~/scripts/sort-tools.py ~/scripts/format-json.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/.agents/harness/hooks/safety.py
-    ruff format --check ~/.agents/harness/hooks/safety.py
+    ruff check ~/scripts/agent-harnesses.py ~/scripts/harness_skills.py ~/scripts/sort-tools.py ~/scripts/format-json.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/.agents/harness/hooks/safety.py
+    ruff format --check ~/scripts/harness_skills.py ~/.agents/harness/hooks/safety.py
 
 # Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
@@ -761,7 +761,7 @@ format-yaml:
 # Formats Python policy modules with ruff
 [group('configuration')]
 format-python:
-    @ruff format ~/.agents/harness/hooks/safety.py
+    @ruff format ~/scripts/harness_skills.py ~/.agents/harness/hooks/safety.py
 
 # Formats and hardens shell scripts
 [group('configuration')]
