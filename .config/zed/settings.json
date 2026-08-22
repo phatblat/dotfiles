@@ -77,6 +77,12 @@
       "default_mode": "acceptEdits",
       "type": "registry",
     },
+    "omp": {
+      "type": "custom",
+      "command": "omp",
+      "args": ["--mode", "acp"],
+      "env": {},
+    },
   },
   "auto_update": true,
   "autosave": "on_focus_change",
