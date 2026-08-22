@@ -49,7 +49,7 @@ def usb-label [node: record, long: bool, color: bool] {
             $node.serial
         ]
     } else {
-        [$node.vendor $node.speed]
+        [$node.vendor $node.speed $node.serial]
     }
     # Host controllers report no vendor or link speed; show the bus type instead
     let fields = ($fields | compact)
