@@ -363,6 +363,7 @@
 .minecraft/
 .mint/
 .mintlify/
+.mitmproxy/
 .mongodb/
 .mono/
 .mozilla/
