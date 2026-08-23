@@ -1136,6 +1136,7 @@ omp.cache
 packages/
 private/
 realm-object-server/
+scripts/.ruff_cache/
 snap/
 src/swift/swift-*
 system_logs.logarchive/
