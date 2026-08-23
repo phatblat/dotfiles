@@ -687,6 +687,12 @@ $env.VISUAL = $_editor_gui
 # Keep user-managed binaries behind Homebrew and mise tools.
 $env.PATH ++= [($nu.home-dir | path join '.local' 'bin')]
 
+# /usr/local/bin is where vendor installers land (e.g. Apple's `container`
+# .pkg). zsh picks it up from /etc/paths via path_helper; nushell never runs
+# path_helper and does not inherit it — so re-add it here, behind Homebrew
+# and mise.
+$env.PATH ++= ['/usr/local/bin']
+
 # Tab title: show git repo name or current directory (mirrors zsh _set_tab_title precmd hook)
 $env.config.hooks.pre_prompt = $env.config.hooks.pre_prompt? | default []
 $env.config.hooks.pre_prompt ++= [{||
