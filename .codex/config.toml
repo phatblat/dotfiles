@@ -98,7 +98,6 @@ command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
 [mcp_servers.RepoPrompt]
 command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
 enabled = false
-tool_timeout_sec = 10000.0
 
 [otel.exporter."otlp-http"]
 endpoint = "https://otlp.datadoghq.com/v1/logs"
