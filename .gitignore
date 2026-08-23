@@ -542,6 +542,7 @@
 .openpeon/
 .oracle_jre_usage/
 .orbstack/
+.paseo-managed-files.json
 .paseo/
 .pex/
 .phantomjs/

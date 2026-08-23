@@ -203,6 +203,24 @@
   "~/.agents/harness/adapters/antigravity/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-advisor/SKILL.md": {
+    "source": "~/.agents/skills/paseo-advisor/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-committee/SKILL.md": {
+    "source": "~/.agents/skills/paseo-committee/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-handoff/SKILL.md": {
+    "source": "~/.agents/skills/paseo-handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-help/SKILL.md": {
+    "source": "~/.agents/skills/paseo-help/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-plugin/SKILL.md": {
+    "source": "~/.agents/skills/paseo-plugin/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
+    "source": "~/.agents/skills/paseo/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/pr-approve/SKILL.md": {
     "source": "~/.agents/skills/pr-approve/SKILL.md"
   },
@@ -478,6 +496,24 @@
   },
   "~/.agents/harness/adapters/cursor/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-advisor/SKILL.md": {
+    "source": "~/.agents/skills/paseo-advisor/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-committee/SKILL.md": {
+    "source": "~/.agents/skills/paseo-committee/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-handoff/SKILL.md": {
+    "source": "~/.agents/skills/paseo-handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-help/SKILL.md": {
+    "source": "~/.agents/skills/paseo-help/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-plugin/SKILL.md": {
+    "source": "~/.agents/skills/paseo-plugin/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo/SKILL.md": {
+    "source": "~/.agents/skills/paseo/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/pr-approve/SKILL.md": {
     "source": "~/.agents/skills/pr-approve/SKILL.md"
