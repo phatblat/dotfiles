@@ -1004,10 +1004,22 @@
         "marketplace_source": null
       },
       {
+        "enabled": false,
+        "id": "code-simplifier@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
         "enabled": true,
         "id": "context-mode@context-mode",
         "marketplace": "context-mode",
         "marketplace_source": "github:mksglu/context-mode"
+      },
+      {
+        "enabled": false,
+        "id": "csharp-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
       },
       {
         "enabled": true,
@@ -1022,10 +1034,28 @@
         "marketplace_source": null
       },
       {
+        "enabled": false,
+        "id": "jdtls-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
+        "id": "kotlin-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
         "enabled": true,
         "id": "linear-cli@linear-cli",
         "marketplace": "linear-cli",
         "marketplace_source": "github:schpet/linear-cli"
+      },
+      {
+        "enabled": false,
+        "id": "linear@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
       },
       {
         "enabled": true,
@@ -1058,6 +1088,18 @@
         "marketplace_source": null
       },
       {
+        "enabled": false,
+        "id": "ralph-loop@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
+        "enabled": false,
+        "id": "ruby-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
         "enabled": true,
         "id": "rust-analyzer-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
@@ -1072,6 +1114,12 @@
       {
         "enabled": false,
         "id": "skill-creator@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
+        "enabled": false,
+        "id": "superpowers@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
@@ -1274,7 +1322,7 @@
       "pi-extension"
     ],
     "commands": 26,
-    "skills": 54
+    "skills": 55
   },
   "verified_date": "2026-06-27"
 }
