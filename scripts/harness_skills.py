@@ -35,6 +35,7 @@ NATIVE_SKILL_ADAPTERS = {
     "brainstorm",
     "branch-finish",
     "ci-fix",
+    "container",
     "debug-issue",
     "dispatching-parallel-agents",
     "executing-plans",
