@@ -197,6 +197,9 @@
   "~/.agents/harness/adapters/antigravity/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/omp-hooks/SKILL.md": {
+    "source": "~/.agents/skills/omp-hooks/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
   },
@@ -469,6 +472,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/omp-hooks/SKILL.md": {
+    "source": "~/.agents/skills/omp-hooks/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
