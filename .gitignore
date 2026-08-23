@@ -117,6 +117,7 @@
 !.codex/skills/ci-fix/SKILL.md
 !.codex/skills/ci-fix/
 !.codex/skills/handoff/
+!.codex/skills/optimize-harness/
 !.codex/skills/
 .codexbar/claude-oauth-cache.lock
 .conche/
@@ -217,6 +218,7 @@
 !.config/opencode/skills/ci-fix/SKILL.md
 !.config/opencode/skills/ci-fix/
 !.config/opencode/skills/handoff/
+!.config/opencode/skills/optimize-harness/
 !.config/opencode/skills/
 .config/orka-desktop/
 .config/packer/

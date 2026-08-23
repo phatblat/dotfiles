@@ -45,6 +45,7 @@ NATIVE_SKILL_ADAPTERS = {
     "graphify",
     "handoff",
     "ocr",
+    "optimize-harness",
     "pr-style",
     "receiving-code-review",
     "refactor-safely",
@@ -65,6 +66,7 @@ MANUAL_SKILL_ADAPTERS = {
     "gha-log-reader",
     "git-worktrees",
     "handoff",
+    "optimize-harness",
     "resolve-feedback",
 }
 

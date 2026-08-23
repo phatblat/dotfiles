@@ -114,9 +114,9 @@
       "description": "Post a short progress update comment to a Linear ticket",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/progress.md with arguments: $ARGUMENTS"
     },
-    "optimize": {
-      "description": "Review Claude Code and shared agent harness configuration and propose efficiency or portability optimizations.",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/optimize.md with arguments: $ARGUMENTS"
+    "optimize-harness": {
+      "description": "Audit one or all supported agent harnesses for config efficiency, hook overhead, permission friction, plugin and MCP cost, and measured session friction.",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/optimize-harness.md with arguments: $ARGUMENTS"
     },
     "pr:approve": {
       "description": "Approve a GitHub PR, inferring the target from context when not given",

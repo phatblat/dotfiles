@@ -1,0 +1,9 @@
+---
+name: optimize-harness
+description: Audit one or all supported agent harnesses for config efficiency, hook overhead, permission friction, plugin and MCP cost, and measured session friction.
+argument_hint: "[harness: claude|codex|opencode|pi|omp|antigravity|cursor|grok ...] [focus: config|hooks|permissions|plugins|mcp|context|sessions|friction|all] [since:DAYS]"
+---
+
+Load and follow the shared skill at `~/.agents/skills/optimize-harness/SKILL.md`.
+
+Arguments: $ARGUMENTS

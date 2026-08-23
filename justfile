@@ -653,6 +653,11 @@ harness-check:
 audit-ignored-config *ROOTS:
     python3 ~/scripts/audit-ignored-config.py {{ ROOTS }}
 
+# Reports measured harness feature usage and friction from local session transcripts
+[group('checks')]
+harness-sessions *ARGS:
+    python3 ~/scripts/harness-sessions.py {{ ARGS }}
+
 # Audits installed harness versions and parity gaps
 [group('checks')]
 harness-audit:
