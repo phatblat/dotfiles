@@ -11,33 +11,56 @@ file_path=$(echo "$input" | jq -r '.tool_input.file_path // empty' 2>/dev/null |
 
 home="$HOME"
 
-# Format ONE JSON file the way `just format-json` would, scoped to a single file
-# instead of reformatting all ~149 tracked JSON files (~7s). Mirrors the recipe's
-# JSONC exclusions exactly so behavior is identical, minus the bulk cost.
-format_json_file() {
-    local f="$1"
-    case "$f" in *.json) ;; *) return 0 ;; esac
-    case "$f" in
-        "$home"/.claude/skills/gstack/*) return 0 ;;                                   # vendored — never reformat
-        *.jsonc.json) return 0 ;;
-        "$home"/.claude/policy-limits.json) return 0 ;;                                # JSONC; recipe skips
-        "$home"/Library/Application\ Support/Claude/claude_desktop_config.json) return 0 ;;  # JSONC; recipe skips
-        "$home"/.config/zed/settings.json|"$home"/.config/cmux/cmux.json)
-            command -v prettier >/dev/null 2>&1 && prettier --parser jsonc --write "$f" 2>/dev/null || true ;;
-        *)
-            jq --sort-keys --indent 2 . "$f" 2>/dev/null | sponge "$f" 2>/dev/null || true ;;
-    esac
+# Cache the static justfile exclusion lists so we don't pay `just --evaluate`
+# on every single zsh-function edit. The cache is keyed by the justfile mtime;
+# when the justfile changes we re-evaluate once and rewrite the cache.
+CACHE_DIR="$home/.cache/claude-hooks"
+EXCL_CACHE="$CACHE_DIR/auto-format-exclusions.cache"
+JUSTFILE="$home/justfile"
+
+_ensure_cache_dir() {
+    [ -d "$CACHE_DIR" ] || mkdir -p "$CACHE_DIR" 2>/dev/null || true
+}
+
+_load_exclusion_cache() {
+    local just_mtime cache_mtime shfmt_excl shellharden_excl
+    [ -f "$JUSTFILE" ] || return 1
+    [ -f "$EXCL_CACHE" ] || return 1
+    just_mtime=$(stat -c %Y "$JUSTFILE" 2>/dev/null || stat -f %m "$JUSTFILE" 2>/dev/null || echo "")
+    cache_mtime=$(grep -E '^justfile_mtime=' "$EXCL_CACHE" 2>/dev/null | cut -d= -f2-)
+    [ -n "$just_mtime" ] && [ -n "$cache_mtime" ] && [ "$just_mtime" = "$cache_mtime" ] || return 1
+    shfmt_excl=$(grep -E '^shfmt_exclude_functions=' "$EXCL_CACHE" 2>/dev/null | cut -d= -f2-)
+    shellharden_excl=$(grep -E '^shellharden_exclude_functions=' "$EXCL_CACHE" 2>/dev/null | cut -d= -f2-)
+    printf '%s\n' "$shfmt_excl" "$shellharden_excl"
+}
+
+_update_exclusion_cache() {
+    local just_mtime shfmt_excl shellharden_excl
+    just_mtime=$(stat -c %Y "$JUSTFILE" 2>/dev/null || stat -f %m "$JUSTFILE" 2>/dev/null || echo "")
+    [ -n "$just_mtime" ] || return 1
+    shfmt_excl=$(just -f "$JUSTFILE" --evaluate shfmt_exclude_functions 2>/dev/null || echo "")
+    shellharden_excl=$(just -f "$JUSTFILE" --evaluate shellharden_exclude_functions 2>/dev/null || echo "")
+    _ensure_cache_dir
+    {
+        printf 'justfile_mtime=%s\n' "$just_mtime"
+        printf 'shfmt_exclude_functions=%s\n' "$shfmt_excl"
+        printf 'shellharden_exclude_functions=%s\n' "$shellharden_excl"
+    } > "$EXCL_CACHE" 2>/dev/null || true
+    printf '%s\n' "$shfmt_excl" "$shellharden_excl"
 }
 
 # Format ONE zsh function, honoring the justfile's exclusion lists (read via
 # `just --evaluate` so there is a single source of truth) instead of running
 # shfmt+shellharden over the entire functions dir on every single-file edit.
 format_zsh_function() {
-    local f="$1" base excl
+    local f="$1" base excl shfmt_excl shellharden_excl cache_pair
     base=$(basename "$f")
-    excl=$(just -f "$home/justfile" --evaluate shfmt_exclude_functions 2>/dev/null || echo "")
+    cache_pair=$({ _load_exclusion_cache || _update_exclusion_cache; } 2>/dev/null)
+    shfmt_excl=$(printf '%s\n' "$cache_pair" | sed -n '1p')
+    shellharden_excl=$(printf '%s\n' "$cache_pair" | sed -n '2p')
+    excl="$shfmt_excl"
     case " $excl " in *" $base "*) ;; *) shfmt -ln zsh -w -i 4 -sr "$f" 2>/dev/null || true ;; esac
-    excl=$(just -f "$home/justfile" --evaluate shellharden_exclude_functions 2>/dev/null || echo "")
+    excl="$shellharden_excl"
     case " $excl " in *" $base "*) ;; *) shellharden --replace "$f" 2>/dev/null || true ;; esac
 }
 
