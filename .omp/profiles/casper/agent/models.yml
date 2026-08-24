@@ -176,7 +176,7 @@ providers:
         input: [text]
         contextWindow: 1048576
         maxTokens: 1048576
-        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
+        cost: { input: 0.00, output: 0.00, cacheRead: 0.0, cacheWrite: 0 }
 
       - id: nemotron-3-ultra
         name: Nemotron 3 Ultra
@@ -211,4 +211,3 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
-
