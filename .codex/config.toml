@@ -52,6 +52,7 @@ js_repl = false
 multi_agent = true
 personality = true
 plugin_hooks = true
+rmcp_client = true
 runtime_metrics = true
 shell_tool = true
 steer = true
