@@ -112,6 +112,7 @@
 !.codex/config.toml
 !.codex/hooks.json
 !.codex/hooks/
+!.codex/keybindings.json
 !.codex/rules/
 .codex/skills/*
 !.codex/skills/aven/SKILL.md
@@ -332,6 +333,9 @@
 .gconf/
 .gem/
 .gemini/*
+.gemini/antigravity-cli/*
+!.gemini/antigravity-cli/keybindings.json
+!.gemini/antigravity-cli/
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
@@ -543,6 +547,9 @@
 !.omp/profiles/*/agent/
 !.omp/profiles/*/
 !.omp/profiles/
+.omp/remote-host/*
+!.omp/remote-host/localhost.json
+!.omp/remote-host/
 .op/
 .openpeon/
 .oracle_jre_usage/
@@ -571,9 +578,11 @@
 !.pi/agent/agents.json
 !.pi/agent/agents/
 !.pi/agent/extensions/
+!.pi/agent/mcp.json
 !.pi/agent/models-store.json
 !.pi/agent/models.json
 !.pi/agent/prompts/
+!.pi/agent/ramp-router-config.json
 !.pi/agent/settings.json
 !.pi/agent/
 .pingidentity/
