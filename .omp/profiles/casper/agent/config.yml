@@ -1,9 +1,7 @@
 modelRoles:
-  default: casper/qwen3.8-27b
-  smol: casper/deepseek-v4-flash-0731
+  default: casper/kimi-k3
+  smol: casper/dittoaicoder
   tiny: casper/auto:minimal
-  slow: casper/glm-5.2
-  plan: casper/kimi-k3:max
   designer: casper/auto:medium
   task: casper/auto:medium
   commit: casper/auto:minimal
@@ -50,7 +48,7 @@ advisor:
 prewalk:
   enabled: false
 features:
-  unexpectedStopDetection: true
+  unexpectedStopDetection: smart
 branchSummary:
   enabled: true
 secrets:
@@ -68,3 +66,4 @@ setupVersion: 2
 includeWorkspaceTree: false
 composer:
   shape: field
+symbolPreset: nerd
