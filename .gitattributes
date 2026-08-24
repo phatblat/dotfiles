@@ -22,7 +22,7 @@
 # Filter script: ~/scripts/mask-pi-models-store.sh
 .pi/agent/models-store.json filter=pi-models-store
 
-# OMP rewrites ~/.omp/agent/config.yml at runtime and its YAML emitter leaves a
+# OMP rewrites its config.yml files at runtime and the YAML emitter leaves a
 # trailing space after keys introducing a nested block ("tools: "). That is the
 # only rule it violates: across 12 committed versions yamllint reported
 # trailing-spaces and nothing else, and prettier reported them all clean.
@@ -32,3 +32,4 @@
 # normalization happens at the git boundary instead. Install the filter with
 # `just git-filters`. Filter script: ~/scripts/normalize-yaml-ws.sh
 .omp/agent/config.yml filter=yaml-normalize
+.omp/profiles/*/agent/config.yml filter=yaml-normalize
