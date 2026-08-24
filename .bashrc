@@ -303,6 +303,10 @@ function f() {
         fork "$@"
     fi
 }
+function rpr() {
+    # rpr - Alias for review-pr
+    review-pr.py "$@"
+}
 
 # Source git aliases
 if [ -f ~/.dotfiles/git/alias.bash ]; then
