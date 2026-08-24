@@ -578,10 +578,13 @@ lint-yaml:
     done < <(git ls-files --cached '*.yml' '*.yaml')
     if ((${#files[@]})); then
         mise exec -- yamllint "${files[@]}"
-        # yamllint accepts formatting prettier would rewrite, so agent-written
-        # config (OMP rewrites ~/.omp/agent/config.yml at runtime) can land
-        # unformatted and only churn later when someone runs `just format`.
-        # Verifying here mirrors how lint-json gates JSON.
+        # format-yaml writes with prettier but nothing verified it, so a file
+        # could be prettier-dirty and still pass lint until `just format` later
+        # produced a churn commit. This closes that gap the way lint-json
+        # already gates JSON. It does NOT cover OMP's config.yml churn --
+        # prettier reported all 12 historical versions clean; yamllint's
+        # trailing-spaces rule is what catches those, and the yaml-normalize
+        # clean filter keeps them out of the committed blob.
         prettier --check "${files[@]}"
     fi
 
@@ -810,9 +813,13 @@ git-filters:
     git config --local filter.pi-models-store.clean ~/scripts/mask-pi-models-store.sh
     git config --local filter.pi-models-store.smudge cat
     git config --local filter.pi-models-store.required true
+    git config --local filter.yaml-normalize.clean ~/scripts/normalize-yaml-ws.sh
+    git config --local filter.yaml-normalize.smudge cat
+    git config --local filter.yaml-normalize.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
     @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
+    @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
 
 #
 # claude group recipes

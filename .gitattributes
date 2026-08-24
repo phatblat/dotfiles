@@ -21,3 +21,14 @@
 # machines. Install the filter with `just git-filters`.
 # Filter script: ~/scripts/mask-pi-models-store.sh
 .pi/agent/models-store.json filter=pi-models-store
+
+# OMP rewrites ~/.omp/agent/config.yml at runtime and its YAML emitter leaves a
+# trailing space after keys introducing a nested block ("tools: "). That is the
+# only rule it violates: across 12 committed versions yamllint reported
+# trailing-spaces and nothing else, and prettier reported them all clean.
+# Without this the churn lands in git, and a later `just format` adds a
+# whitespace-only diff on top that buries real setting changes in review.
+# OMP exposes no hook surface and a watcher would race its writer, so the
+# normalization happens at the git boundary instead. Install the filter with
+# `just git-filters`. Filter script: ~/scripts/normalize-yaml-ws.sh
+.omp/agent/config.yml filter=yaml-normalize
