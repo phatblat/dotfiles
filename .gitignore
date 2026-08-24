@@ -379,6 +379,7 @@
 .jupyter/
 .keras/
 .kindle/
+.kiro/
 .konan/
 .krew/
 .kscript/
@@ -806,6 +807,7 @@ Library/Application Support/JetBrains/
 Library/Application Support/JxBrowser/
 Library/Application Support/Kaleidoscope/*
 Library/Application Support/Kindle/
+Library/Application Support/Kiro/
 Library/Application Support/Knowledge/
 Library/Application Support/Kobo/
 Library/Application Support/LM Studio/
