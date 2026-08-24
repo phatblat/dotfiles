@@ -1149,3 +1149,5 @@ target/
 tmp/
 xcuserdata
 zclean.awk
+.omo/*
+!.omo/omo.jsonc
