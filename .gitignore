@@ -107,6 +107,8 @@
 !.codex/*.config.toml
 !.codex/AGENTS.md
 !.codex/agents/
+!.codex/casper-instructions.md
+!.codex/casper.models.json
 !.codex/config.toml
 !.codex/hooks.json
 !.codex/hooks/

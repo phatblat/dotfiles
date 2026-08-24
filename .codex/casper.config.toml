@@ -1,11 +1,38 @@
-model = "auto"
-model_provider = "ditto-gpu"
+model = "kimi-k3"
 
-[model_providers.ditto-gpu]
-name = "Casper"
+# Codex has no catalog metadata for Casper's models, so it falls back to
+# placeholders (unknown context window, and it advertises OpenAI model names to
+# sub-agents). These two files supply the missing pieces: the catalog, mirrored
+# from the router's GET /v1/models by ~/scripts/sync-codex-casper-models.py, and
+# the base prompt, a snapshot of the built-in Codex CLI prompt (refresh after a
+# Codex upgrade).
+model_catalog_json = "/Users/phatblat/.codex/casper.models.json"
+model_instructions_file = "/Users/phatblat/.codex/casper-instructions.md"
+model_provider = "casper"
+# model_reasoning_effort = "high"
+
+[model_providers.casper]
+name = "casper"
+# casper.ditto.live is the Okta-gated web UI and answers API calls with
+# 401 {"error":"login required"}; casper-api.ditto.live is the API host.
 base_url = "https://casper-api.ditto.live/v1"
-env_key = "DITTO_GPU_KEY"
+env_key = "CASPER_API_KEY"
 wire_api = "responses"
+# The router answers with SSE keepalive comments while a self-hosted engine cold
+# starts; measured stalls before the first real event: 1.9s, 7.6s, 83s, 85s.
+stream_idle_timeout_ms = 300000
+
+[mcp_servers.notion]
+enabled = false
+
+[mcp_servers.openaiDeveloperDocs]
+enabled = false
+
+[mcp_servers.orch]
+enabled = false
+
+[mcp_servers.RepoPrompt]
+enabled = false
 
 [hooks.state]
 
@@ -48,3 +75,17 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 [hooks.state."/Users/phatblat/.codex/hooks.json:stop:1:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
+[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:4:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:2:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:user_prompt_submit:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/.codex/hooks.json:stop:2:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
