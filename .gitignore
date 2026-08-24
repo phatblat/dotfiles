@@ -439,6 +439,8 @@
 .ollama/
 .omc/
 .omnigent/
+.omo/*
+!.omo/omo.jsonc
 .omp/*
 .omp/agent/*
 .omp/agent/*/**
@@ -1149,5 +1151,3 @@ target/
 tmp/
 xcuserdata
 zclean.awk
-.omo/*
-!.omo/omo.jsonc
