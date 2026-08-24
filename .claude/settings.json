@@ -439,6 +439,7 @@
       "Bash(pwd)",
       "Bash(true)",
       "Bash(test *)",
+      "Bash([ *)",
       "Bash(sleep *)",
       "Bash(sed *)",
       "Bash(shfmt *)",
