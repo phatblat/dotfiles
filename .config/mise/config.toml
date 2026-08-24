@@ -97,7 +97,7 @@ gradle = "9.7.1"
 grok = { version = "1.0.5", bin = "grok", platforms = { windows-arm64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-aarch64.exe" }, windows-x64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-x86_64.exe" } }, url = 'https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-{{ os() }}-{{ arch(x64="x86_64", arm64="aarch64") }}', version_list_url = "https://x.ai/cli/stable" }
 helm = "4.2.4"
 hexyl = "0.17.0"
-hk = "1.56.0"
+hk = "1.56.1"
 hyperfine = "1.20.0"
 java = "27.0.0"
 jjui = "0.10.9"
