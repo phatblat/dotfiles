@@ -327,7 +327,7 @@ enabled = true
 enabled = true
 
 [plugins."pr-review-toolkit@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal"]
 enabled = true
