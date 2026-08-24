@@ -312,6 +312,7 @@
 .dev-data/
 .did_show_opt_info
 .diffusionbee/
+.ditto-agent.*/
 .ditto-agent/
 .ditto-orchestrator-keychain.lock
 .ditto-orchestrator/
