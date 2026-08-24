@@ -130,15 +130,21 @@ SESSION_STORES: dict[str, SessionStore] = {
         pattern="sessions/*.jsonl",
         env=("PI_CODING_AGENT_SESSION_DIR", "PI_CODING_AGENT_DIR"),
         verified=True,
-        note="",
+        note=(
+            "sessionDir in effective Pi settings wins over env vars; scanner reads "
+            "~/.pi/agent/settings.json when present and falls back to "
+            "PI_CODING_AGENT_DIR/sessions, then ~/.pi/agent/sessions"
+        ),
     ),
     "omp": SessionStore(
         kind="jsonl",
         default=".omp/agent",
         pattern="sessions/**/*.jsonl",
-        env=("OMP_PROFILE", "PI_CODING_AGENT_DIR", "PI_CONFIG_DIR", "XDG_DATA_HOME"),
+        env=("OMP_PROFILE",),
         verified=True,
         note=(
+            "OMP_PROFILE selects ~/.omp/profiles/<profile>/agent/sessions; "
+            "default profile uses PI_CODING_AGENT_DIR/sessions or ~/.omp/agent/sessions; "
             "nested subagent jsonl sits beside the parent under the same session "
             "directory; classify by filename form, not just directory"
         ),
