@@ -563,7 +563,7 @@ lint-json:
         prettier --parser jsonc --check "${jsonc_files[@]}"
     fi
 
-# Lints all tracked YAML config files with yamllint
+# Lints all tracked YAML config files with yamllint and prettier
 [group('checks')]
 [script]
 lint-yaml:
@@ -572,11 +572,17 @@ lint-yaml:
     files=()
     while read -r f; do
         # vendored third-party gstack workflows — never lint
+        # Exclusions below must stay in sync with format-yaml
         [[ "$f" == .claude/skills/gstack/* ]] && continue
         files+=("$f")
     done < <(git ls-files --cached '*.yml' '*.yaml')
     if ((${#files[@]})); then
         mise exec -- yamllint "${files[@]}"
+        # yamllint accepts formatting prettier would rewrite, so agent-written
+        # config (OMP rewrites ~/.omp/agent/config.yml at runtime) can land
+        # unformatted and only churn later when someone runs `just format`.
+        # Verifying here mirrors how lint-json gates JSON.
+        prettier --check "${files[@]}"
     fi
 
 # Lints Zsh functions with shellcheck
