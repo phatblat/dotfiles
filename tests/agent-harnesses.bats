@@ -230,7 +230,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     gha-log-reader
     justfile
     linear-plan
-    optimize
+    optimize-harness
     pr-create
     pr-daily
     pr-merge
@@ -685,4 +685,31 @@ if missing:
   run python3 "$SCRIPT" provenance --json --path "$SCRIPT"
   [ "$status" -eq 0 ]
   [ "$(printf '%s' "$output" | jq -r '.kind')" = "generator" ]
+}
+
+# harness_paths.py is the sole source of the HARNESSES slug list
+# (scripts/agent-harnesses.py imports it unconditionally). Tokenizing on
+# whitespace/commas/brackets/parens catches the sequence regardless of
+# single-line, one-per-line, list-literal, or tuple-literal formatting, so a
+# future re-hardcoded copy is caught no matter how it is styled.
+@test "agent-harnesses: harness slug list has a single definition" {
+  run python3 -c "
+import pathlib
+pattern = ['\"claude\"', '\"codex\"', '\"opencode\"', '\"pi\"', '\"omp\"', '\"antigravity\"', '\"cursor\"', '\"grok\"']
+hits = []
+for root in (pathlib.Path.home() / 'scripts', pathlib.Path.home() / '.agents'):
+    for path in root.rglob('*.py'):
+        text = path.read_text(errors='ignore')
+        for ch in ',[](){}':
+            text = text.replace(ch, ' ')
+        tokens = text.split()
+        for i in range(len(tokens) - 7):
+            if tokens[i:i+8] == pattern:
+                hits.append(str(path))
+                break
+print('\n'.join(sorted(set(hits))))
+"
+
+  [ "$status" -eq 0 ]
+  [ "$output" = "$HOME/scripts/harness_paths.py" ]
 }

@@ -115,7 +115,9 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 @test "jv: returns a version string" {
     run nu --no-config-file -c "source '$AUTOLOAD/jv.nu'; jv"
     [ "$status" -eq 0 ]
-    [[ "$output" =~ [0-9]+\.[0-9]+ ]]
+    # Java reports 1.8.0_131, 17.0.13, 24-ea, or a bare major like 27 when a
+    # feature release ships with no patch component -- so a dot is not guaranteed
+    [[ "$output" =~ ^[0-9]+([._-][0-9A-Za-z]+)*$ ]]
 }
 
 # ---------------------------------------------------------------------------

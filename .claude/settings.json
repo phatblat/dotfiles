@@ -7,18 +7,26 @@
     "claude-hud@claude-hud": true,
     "claude-md-management@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": false,
     "context-mode@context-mode": true,
+    "csharp-lsp@claude-plugins-official": false,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": false,
+    "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
+    "linear@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": true,
     "oh-my-claudecode@omc": true,
     "plugin-dev@claude-plugins-official": false,
     "pup@datadog-pup": false,
     "pyright-lsp@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": false,
+    "ruby-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "warp@claude-code-warp": true
@@ -32,6 +40,12 @@
     "claude-code-warp": {
       "source": {
         "repo": "warpdotdev/claude-code-warp",
+        "source": "github"
+      }
+    },
+    "claude-hud": {
+      "source": {
+        "repo": "jarrodwatts/claude-hud",
         "source": "github"
       }
     },
@@ -70,6 +84,16 @@
             "type": "command"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Notification; fi",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ],
     "PostToolUse": [
@@ -194,6 +218,16 @@
             "type": "command"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd; fi",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ],
     "SessionStart": [
@@ -210,6 +244,7 @@
         "hooks": [
           {
             "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/context-mode-cache-heal.mjs",
+            "timeout": 5,
             "type": "command"
           }
         ]
@@ -224,6 +259,28 @@
             "type": "command"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Stop; fi",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude StopFailure; fi",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ],
     "SubagentStart": [
@@ -257,6 +314,16 @@
             "type": "command"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude UserPromptSubmit; fi",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ]
   },
@@ -354,7 +421,32 @@
       "Bash(go vet*)",
       "Bash(npm run*)",
       "Bash(npm test*)",
-      "Bash(npx tsc*)"
+      "Bash(npx tsc*)",
+      "Bash(cat *)",
+      "Bash(awk *)",
+      "Bash(printf *)",
+      "Bash(seq *)",
+      "Bash(tree *)",
+      "Bash(diff *)",
+      "Bash(cmp *)",
+      "Bash(du *)",
+      "Bash(which *)",
+      "Bash(command -v *)",
+      "Bash(readlink *)",
+      "Bash(realpath *)",
+      "Bash(printenv *)",
+      "Bash(env)",
+      "Bash(pwd)",
+      "Bash(true)",
+      "Bash(test *)",
+      "Bash(sleep *)",
+      "Bash(sed *)",
+      "Bash(shfmt *)",
+      "Bash(shellcheck *)",
+      "Bash(ruff *)",
+      "Bash(prettier *)",
+      "Bash(typos *)",
+      "Bash(yamllint *)"
     ],
     "defaultMode": "auto",
     "deny": []
