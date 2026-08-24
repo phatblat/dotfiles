@@ -41,7 +41,7 @@ tools:
 display:
   showTokenUsage: true
   cacheMissMarker: true
-  hideToolActivity: false
+  hideToolActivity: true
 advisor:
   enabled: false
   syncBacklog: "off"
@@ -67,3 +67,9 @@ includeWorkspaceTree: false
 composer:
   shape: field
 symbolPreset: nerd
+theme:
+  dark: dark-aurora
+retry:
+  usageAwareFallback: true
+dev:
+  autoqaConsent: granted
