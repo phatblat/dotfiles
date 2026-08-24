@@ -48,6 +48,23 @@ Use `just` recipes from the repo root:
 - For tests, use descriptive Bats names: `@test "tool is available" { ... }`.
 - Keep scripts and function names concise, lowercase, and task-oriented (`sort-gitignore`, `lint-zsh`).
 
+### Formatting Policy
+
+- Every file tracked in this repo follows its language's standard formatter
+  (`just format`, `.editorconfig`). Formatting is the default, not a per-file
+  judgment call.
+- The only exception is a tool that breaks when its tracked config or source is
+  formatted normally. Document each exception where it applies, as
+  `.gitattributes` and `scripts/sort-codex-config.py` already do for Codex's
+  marketplace key order and machine-managed state.
+- Rationale: uniform formatting keeps `just lint` fast and makes a diff
+  meaningful. A tracked file that lands unformatted -- or wholesale reformatted
+  -- is evidence the change was not reviewed.
+- Let the formatter own whitespace; never hand-churn it. Do not reformat lines a
+  change does not touch. Agent writes (pi, OMP) that leave existing whitespace
+  as found are fine -- behavior-neutral, and better than a drive-by reformat
+  that buries the real diff.
+
 ## Testing Guidelines
 - Framework: `bats-core`.
 - Location: `tests/*.bats`, helpers in `tests/helpers/`.

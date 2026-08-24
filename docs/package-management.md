@@ -70,6 +70,19 @@ and reports the rest as already present. Syncing is manual in one direction — 
 `gh extension install OWNER/REPO`, add the repo to the manifest by hand, or the next
 machine won't get it.
 
+## Vendor installers (outside all three tiers)
+
+A few tools install from a vendor package rather than any package manager, because the
+package manager only ships the bare binary while the vendor installer also registers
+system services. These are invisible to `just package-audit` by design.
+
+- **`container`** (Apple's Linux container runtime, macOS 26 + Apple Silicon) — installed
+  from the signed `.pkg` on the [apple/container releases page](https://github.com/apple/container/releases).
+  `mise` (`aqua:apple/container`) and `nixpkgs#container` extract only the CLI binary from
+  that same `.pkg` without running it, so the networking helper and system service are
+  missing. It self-updates via `/usr/local/bin/update-container.sh`; see the `container`
+  skill (`~/.agents/skills/container/SKILL.md`) for the full install/upgrade sequence.
+
 ## Nix / home-manager
 
 Configuration lives in `~/.config/home-manager/` (`flake.nix`, `home.nix`). Apply changes

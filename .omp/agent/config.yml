@@ -19,14 +19,14 @@ tools:
 display:
   showTokenUsage: true
   cacheMissMarker: true
-  hideToolActivity: false
+  hideToolActivity: true
 advisor:
   enabled: false
   syncBacklog: "off"
 prewalk:
   enabled: false
 features:
-  unexpectedStopDetection: true
+  unexpectedStopDetection: smart
 branchSummary:
   enabled: true
 secrets:

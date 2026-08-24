@@ -21,6 +21,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from harness_paths import CONFIG_ROOTS
+
 # A root is "allowlist-governed" when .gitignore denies all of its children
 # with `<root>/*` and re-includes specific paths with `!<root>/...`. Those are
 # exactly the roots where a new config file never reaches `git status`, so
@@ -35,18 +37,9 @@ REINCLUDE_RULE = re.compile(r"!(.+)")
 # and the allowlist-governed roots above: a crate cache or a checkout of
 # source repos is allowlist-governed too, but it is not harness config and
 # reviewing it teaches nothing. Pass explicit ROOT arguments to look wider.
-HARNESS_ROOTS = frozenset(
-    {
-        ".agents",
-        ".claude",
-        ".codex",
-        ".config/opencode",
-        ".gemini",
-        ".grok",
-        ".omp",
-        ".pi",
-    }
-)
+# `.agents` is shared skill/harness infrastructure, not one harness's config
+# root, so it is unioned in here rather than living in `CONFIG_ROOTS`.
+HARNESS_ROOTS = frozenset({".agents"} | {r for rs in CONFIG_ROOTS.values() for r in rs})
 
 # Files that mark their directory as a third-party package root. The whole
 # subtree, manifest included, is installed rather than hand-authored.

@@ -53,8 +53,8 @@
   "~/.agents/harness/adapters/antigravity/commands/linear/progress.md": {
     "source": "~/.claude/commands/linear/progress.md"
   },
-  "~/.agents/harness/adapters/antigravity/commands/optimize.md": {
-    "source": "~/.claude/commands/optimize.md"
+  "~/.agents/harness/adapters/antigravity/commands/optimize-harness.md": {
+    "source": "~/.claude/commands/optimize-harness.md"
   },
   "~/.agents/harness/adapters/antigravity/commands/pr/approve.md": {
     "source": "~/.claude/commands/pr/approve.md"
@@ -125,6 +125,9 @@
   "~/.agents/harness/adapters/antigravity/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/container/SKILL.md": {
+    "source": "~/.agents/skills/container/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
   },
@@ -194,8 +197,29 @@
   "~/.agents/harness/adapters/antigravity/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/optimize/SKILL.md": {
-    "source": "~/.agents/skills/optimize/SKILL.md"
+  "~/.agents/harness/adapters/antigravity/skills/omp-hooks/SKILL.md": {
+    "source": "~/.agents/skills/omp-hooks/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/optimize-harness/SKILL.md": {
+    "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-advisor/SKILL.md": {
+    "source": "~/.agents/skills/paseo-advisor/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-committee/SKILL.md": {
+    "source": "~/.agents/skills/paseo-committee/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-handoff/SKILL.md": {
+    "source": "~/.agents/skills/paseo-handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-help/SKILL.md": {
+    "source": "~/.agents/skills/paseo-help/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo-plugin/SKILL.md": {
+    "source": "~/.agents/skills/paseo-plugin/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
+    "source": "~/.agents/skills/paseo/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/pr-approve/SKILL.md": {
     "source": "~/.agents/skills/pr-approve/SKILL.md"
@@ -323,8 +347,8 @@
   "~/.agents/harness/adapters/cursor/commands/linear/progress.md": {
     "source": "~/.claude/commands/linear/progress.md"
   },
-  "~/.agents/harness/adapters/cursor/commands/optimize.md": {
-    "source": "~/.claude/commands/optimize.md"
+  "~/.agents/harness/adapters/cursor/commands/optimize-harness.md": {
+    "source": "~/.claude/commands/optimize-harness.md"
   },
   "~/.agents/harness/adapters/cursor/commands/pr/approve.md": {
     "source": "~/.claude/commands/pr/approve.md"
@@ -395,6 +419,9 @@
   "~/.agents/harness/adapters/cursor/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/container/SKILL.md": {
+    "source": "~/.agents/skills/container/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
   },
@@ -464,8 +491,29 @@
   "~/.agents/harness/adapters/cursor/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/optimize/SKILL.md": {
-    "source": "~/.agents/skills/optimize/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/omp-hooks/SKILL.md": {
+    "source": "~/.agents/skills/omp-hooks/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/optimize-harness/SKILL.md": {
+    "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-advisor/SKILL.md": {
+    "source": "~/.agents/skills/paseo-advisor/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-committee/SKILL.md": {
+    "source": "~/.agents/skills/paseo-committee/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-handoff/SKILL.md": {
+    "source": "~/.agents/skills/paseo-handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-help/SKILL.md": {
+    "source": "~/.agents/skills/paseo-help/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo-plugin/SKILL.md": {
+    "source": "~/.agents/skills/paseo-plugin/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/paseo/SKILL.md": {
+    "source": "~/.agents/skills/paseo/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/pr-approve/SKILL.md": {
     "source": "~/.agents/skills/pr-approve/SKILL.md"
@@ -590,8 +638,8 @@
   "~/.agents/harness/commands/linear/progress.md": {
     "source": "~/.claude/commands/linear/progress.md"
   },
-  "~/.agents/harness/commands/optimize.md": {
-    "source": "~/.claude/commands/optimize.md"
+  "~/.agents/harness/commands/optimize-harness.md": {
+    "source": "~/.claude/commands/optimize-harness.md"
   },
   "~/.agents/harness/commands/pr/approve.md": {
     "source": "~/.claude/commands/pr/approve.md"
@@ -650,23 +698,173 @@
   "~/.claude/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.claude/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.claude/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
   "~/.claude/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
+  "~/.claude/skills/container/SKILL.md": {
+    "source": "~/.agents/skills/container/SKILL.md"
+  },
+  "~/.claude/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.claude/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.claude/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.claude/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.claude/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.claude/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.claude/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.claude/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
   },
   "~/.claude/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.claude/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.claude/skills/optimize-harness/SKILL.md": {
+    "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.claude/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.claude/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.claude/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.claude/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.claude/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.claude/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.claude/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.claude/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.claude/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
+  },
   "~/.codex/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.codex/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.codex/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
+  "~/.codex/skills/branch-finish/agents/openai.yaml": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
   "~/.codex/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
+  "~/.codex/skills/container/SKILL.md": {
+    "source": "~/.agents/skills/container/SKILL.md"
+  },
+  "~/.codex/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.codex/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.codex/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.codex/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.codex/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.codex/skills/gha-checks/agents/openai.yaml": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.codex/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.codex/skills/gha-log-reader/agents/openai.yaml": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.codex/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.codex/skills/git-worktrees/agents/openai.yaml": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.codex/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
   },
   "~/.codex/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
   "~/.codex/skills/handoff/agents/openai.yaml": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.codex/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.codex/skills/optimize-harness/SKILL.md": {
+    "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.codex/skills/optimize-harness/agents/openai.yaml": {
+    "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.codex/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.codex/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.codex/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.codex/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.codex/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.codex/skills/resolve-feedback/agents/openai.yaml": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.codex/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.codex/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.codex/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.codex/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
   },
   "~/.config/opencode/agents/ai-sdk-expert.md": {
     "source": "~/.codex/agents/ai-sdk-expert.toml"
@@ -719,8 +917,8 @@
   "~/.config/opencode/commands/linear:progress.md": {
     "source": "~/.claude/commands/linear/progress.md"
   },
-  "~/.config/opencode/commands/optimize.md": {
-    "source": "~/.claude/commands/optimize.md"
+  "~/.config/opencode/commands/optimize-harness.md": {
+    "source": "~/.claude/commands/optimize-harness.md"
   },
   "~/.config/opencode/commands/pr:approve.md": {
     "source": "~/.claude/commands/pr/approve.md"
@@ -773,11 +971,77 @@
   "~/.config/opencode/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.config/opencode/skills/brainstorm/SKILL.md": {
+    "source": "~/.agents/skills/brainstorm/SKILL.md"
+  },
+  "~/.config/opencode/skills/branch-finish/SKILL.md": {
+    "source": "~/.agents/skills/branch-finish/SKILL.md"
+  },
   "~/.config/opencode/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.config/opencode/skills/container/SKILL.md": {
+    "source": "~/.agents/skills/container/SKILL.md"
+  },
+  "~/.config/opencode/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
+  "~/.config/opencode/skills/dispatching-parallel-agents/SKILL.md": {
+    "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  "~/.config/opencode/skills/executing-plans/SKILL.md": {
+    "source": "~/.agents/skills/executing-plans/SKILL.md"
+  },
+  "~/.config/opencode/skills/find-docs/SKILL.md": {
+    "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.config/opencode/skills/gha-checks/SKILL.md": {
+    "source": "~/.agents/skills/gha-checks/SKILL.md"
+  },
+  "~/.config/opencode/skills/gha-log-reader/SKILL.md": {
+    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.config/opencode/skills/git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  },
+  "~/.config/opencode/skills/graphify/SKILL.md": {
+    "source": "~/.agents/skills/graphify/SKILL.md"
+  },
   "~/.config/opencode/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.config/opencode/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
+  "~/.config/opencode/skills/optimize-harness/SKILL.md": {
+    "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.config/opencode/skills/pr-style/SKILL.md": {
+    "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.config/opencode/skills/receiving-code-review/SKILL.md": {
+    "source": "~/.agents/skills/receiving-code-review/SKILL.md"
+  },
+  "~/.config/opencode/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
+  "~/.config/opencode/skills/requesting-code-review/SKILL.md": {
+    "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.config/opencode/skills/resolve-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  },
+  "~/.config/opencode/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.config/opencode/skills/subagent-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
+  },
+  "~/.config/opencode/skills/test-driven-development/SKILL.md": {
+    "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.config/opencode/skills/writing-plans/SKILL.md": {
+    "source": "~/.agents/skills/writing-plans/SKILL.md"
   },
   "~/.grok/agents/ai-sdk-expert.md": {
     "source": "~/.codex/agents/ai-sdk-expert.toml"
@@ -887,8 +1151,8 @@
   "~/.pi/agent/prompts/linear:progress.md": {
     "source": "~/.claude/commands/linear/progress.md"
   },
-  "~/.pi/agent/prompts/optimize.md": {
-    "source": "~/.claude/commands/optimize.md"
+  "~/.pi/agent/prompts/optimize-harness.md": {
+    "source": "~/.claude/commands/optimize-harness.md"
   },
   "~/.pi/agent/prompts/pr:approve.md": {
     "source": "~/.claude/commands/pr/approve.md"

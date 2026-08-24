@@ -82,7 +82,7 @@ NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/phatblat/.codex/plugins/cache/openai-bundled/browser/26.818.31338/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/phatblat/.codex/plugins/cache/openai-bundled/browser/26.818.41705/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/computer-use/Codex Computer Use.app"
 
 [mcp_servers.notion]
@@ -98,7 +98,6 @@ command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
 [mcp_servers.RepoPrompt]
 command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
 enabled = false
-tool_timeout_sec = 10000.0
 
 [otel.exporter."otlp-http"]
 endpoint = "https://otlp.datadoghq.com/v1/logs"
