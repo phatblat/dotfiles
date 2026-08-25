@@ -62,7 +62,11 @@ EOF
   claude-sonnet-5               - Active
 EOF
 
-  run env HOME="$home" just --justfile "$BATS_TEST_DIRNAME/../justfile" list-claude-models
+  # The recipe resolves paths via `justfile_directory()`, not `$HOME`, so the
+  # justfile itself has to live alongside the fixture lockfile.
+  cp "$BATS_TEST_DIRNAME/../justfile" "$home/justfile"
+
+  run just --justfile "$home/justfile" list-claude-models
 
   [ "$status" -eq 0 ]
   [ "$output" = $'claude-opus-5\nclaude-sonnet-5' ]
@@ -92,8 +96,12 @@ printf 'git %s\n' "$*" >>"$COMMAND_LOG"
 EOF
   chmod +x "$bindir/git"
 
+  # The recipe resolves paths via `justfile_directory()`, not `$HOME`, so the
+  # justfile itself has to live alongside the fixture mise config.
+  cp "$BATS_TEST_DIRNAME/../justfile" "$home/justfile"
+
   run env HOME="$home" PATH="$bindir:$PATH" COMMAND_LOG="$log" \
-    just --justfile "$BATS_TEST_DIRNAME/../justfile" upgrade-mise-tools-commit
+    just --justfile "$home/justfile" upgrade-mise-tools-commit
 
   [ "$status" -eq 0 ]
   grep -Fq "git commit --only $home/.config/mise/config.toml -m chore: bump npm:example 1.0.0 → 1.1.0" "$log"
@@ -235,11 +243,13 @@ EOF
   printf 'staged edit\n' >"$repo/unrelated.txt"
   git -C "$repo" add unrelated.txt
 
-  # `just` runs recipes from the justfile's own directory, so the throwaway
-  # repo has to be selected explicitly or the recipe commits against ~.
+  # The recipe resolves paths via `justfile_directory()`, which also becomes
+  # the recipe's cwd, so the justfile has to live inside the throwaway repo
+  # or the recipe would commit against the real justfile's own directory.
+  cp "$BATS_TEST_DIRNAME/../justfile" "$repo/justfile"
+
   run env HOME="$repo" PATH="$bindir:$PATH" \
-    just --working-directory "$repo" \
-    --justfile "$BATS_TEST_DIRNAME/../justfile" upgrade-mise-tools-commit
+    just --justfile "$repo/justfile" upgrade-mise-tools-commit
 
   [ "$status" -eq 0 ]
   # The bump commit carries the mise config and nothing else.

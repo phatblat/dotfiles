@@ -129,7 +129,7 @@ outdated-uv:
 # Lists Claude model IDs recorded in .claude/models.lock
 [group('info')]
 list-claude-models:
-    @awk '/^  claude-/{print $1}' ~/.claude/models.lock
+    @awk '/^  claude-/{print $1}' {{ justfile_directory() }}/.claude/models.lock
 
 # Lists deprecated/retired Claude models and drift from .claude/models.lock
 [group('info')]
@@ -347,7 +347,7 @@ update-models:
 [script]
 update-casper-models:
     set -euo pipefail
-    ~/scripts/sync-casper-models.sh
+    {{ justfile_directory() }}/scripts/sync-casper-models.sh
     if [ -z "$(git status --porcelain -- .omp/profiles/casper/agent/models.yml)" ]; then
         echo "Casper model catalog unchanged"
         exit 0
@@ -399,7 +399,7 @@ upgrade-mise-tools-commit:
         # --only commits this path from the working tree and disregards
         # anything else staged, so concurrent work is never swept into a
         # version-bump commit.
-        git commit --only ~/.config/mise/config.toml \
+        git commit --only {{ justfile_directory() }}/.config/mise/config.toml \
             -m "chore: bump $tool $current → $bump"
     done
 
@@ -443,8 +443,8 @@ upgrade-uv-tools:
 update-nix:
     sudo determinate-nixd upgrade
     determinate-nixd status
-    nix flake update --flake ~/.config/home-manager
-    home-manager switch --flake ~/.config/home-manager
+    nix flake update --flake {{ justfile_directory() }}/.config/home-manager
+    home-manager switch --flake {{ justfile_directory() }}/.config/home-manager
 
 # Remove non-default Rust toolchains except stable and unpinned nightly
 [group('configuration')]
@@ -489,14 +489,14 @@ clean: clean-rust
 # Opens the omp plugin manifest in the configured editor
 [group('configuration')]
 omp-plugins-edit:
-    ${VISUAL:-${EDITOR:-vi}} ~/.omp/plugins/package.json
+    ${VISUAL:-${EDITOR:-vi}} {{ justfile_directory() }}/.omp/plugins/package.json
 
 # Reinstalls omp plugins from the manifest, discarding node_modules
 [group('configuration')]
 omp-plugins-reinstall:
     #!/usr/bin/env bash
     set -euo pipefail
-    cd ~/.omp/plugins
+    cd {{ justfile_directory() }}/.omp/plugins
     rm -rf node_modules
     bun install
     omp plugin doctor --fix
@@ -515,25 +515,25 @@ doctor:
 # Checks .gitignore is correctly sorted with negation overrides intact
 [group('checks')]
 lint-gitignore:
-    ~/scripts/sort-gitignore < ~/.gitignore | diff --brief - ~/.gitignore
+    {{ justfile_directory() }}/scripts/sort-gitignore < {{ justfile_directory() }}/.gitignore | diff --brief - {{ justfile_directory() }}/.gitignore
 
 # Lints Python scripts with ruff
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/agent-harnesses.py ~/scripts/harness_skills.py ~/scripts/sort-tools.py ~/scripts/format-json.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/scripts/sync-codex-casper-models.py ~/.agents/harness/hooks/safety.py
-    ruff format --check ~/scripts/harness_skills.py ~/.agents/harness/hooks/safety.py
+    ruff check {{ justfile_directory() }}/scripts/agent-harnesses.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/scripts/sort-tools.py {{ justfile_directory() }}/scripts/format-json.py {{ justfile_directory() }}/scripts/audit-package-managers.py {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ justfile_directory() }}/scripts/sort-codex-config.py {{ justfile_directory() }}/scripts/review-pr.py {{ justfile_directory() }}/scripts/sync-codex-casper-models.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    ruff format --check {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
 # Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
 lint-toml:
-    python3 ~/scripts/sort-codex-config.py --check ~/.codex/config.toml
+    python3 {{ justfile_directory() }}/scripts/sort-codex-config.py --check {{ justfile_directory() }}/.codex/config.toml
 
 # Checks mise config formatting and [tools] sort order (mirrors format-mise)
 [group('checks')]
 lint-mise:
     mise fmt --check
-    python3 ~/scripts/sort-tools.py --check
+    python3 {{ justfile_directory() }}/scripts/sort-tools.py --check
 
 # Checks all tracked JSON/JSONC config files are formatted (mirrors format-json)
 [group('checks')]
@@ -552,7 +552,7 @@ lint-json:
             "Library/Application Support/Claude/claude_desktop_config.json") continue ;;
         esac
         printf '%s\0' "$f"
-    done | python3 ~/scripts/format-json.py --check
+    done | python3 {{ justfile_directory() }}/scripts/format-json.py --check
     jsonc_files=()
     while read -r f; do
         [[ "$f" == .claude/skills/gstack/* ]] && continue
@@ -594,38 +594,76 @@ lint-yaml:
 [group('checks')]
 lint-zsh:
     @echo "Linting Zsh functions..."
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2168 {} +
+    @find {{ justfile_directory() }}/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2168 {} +
 
 # Validates Nushell scripts syntax
 [group('checks')]
 lint-nushell:
     @echo "Validating Nushell scripts..."
-    @nu --commands 'source ~/.config/nushell/config.nu'
+    @nu --commands 'source {{ justfile_directory() }}/.config/nushell/config.nu'
     # config.nu does not source autoload/, and nu -c never loads it, so the
     # 267 autoload files had no syntax check at all. nu-check covers them all
     # in one process (~0.3s); a broken autoload file otherwise exits 0.
-    @nu --commands 'let bad = (ls ~/.config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'
+    @nu --commands 'let bad = (ls {{ justfile_directory() }}/.config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'
 
 # Lints GitHub Actions shell scripts with shellcheck
 [group('checks')]
 lint-github-scripts:
     @echo "Linting GitHub Actions scripts..."
-    @find ~/.github/scripts -name '*.sh' -exec shellcheck {} +
+    @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shellcheck {} +
 
 # Lints bin scripts with shellcheck (excludes vendor scripts)
 [group('checks')]
 lint-bin:
     @echo "Linting bin scripts..."
-    @find ~/bin -name '*.sh' ! -name 'dotnet-install.sh' -exec shellcheck {} +
+    @find {{ justfile_directory() }}/bin -name '*.sh' ! -name 'dotnet-install.sh' -exec shellcheck {} +
 
 # Checks shell scripts are shfmt-formatted and shellharden-clean (mirrors format-shell)
 [group('checks')]
 lint-shell:
     @echo "Checking shell script formatting..."
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -i 4 -sr -d {} +
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --check {} +
-    @find ~/.github/scripts -name '*.sh' -exec shfmt -ln bash -i 4 -sr -d {} +
-    @find ~/.github/scripts -name '*.sh' -exec shellharden --check {} +
+    @find {{ justfile_directory() }}/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -i 4 -sr -d {} +
+    @find {{ justfile_directory() }}/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --check {} +
+    @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shfmt -ln bash -i 4 -sr -d {} +
+    @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shellharden --check {} +
+
+# Checks tracked symlinks have relative targets when they resolve to tracked
+# repo content (absolute targets resolve into the real $HOME from inside a
+# worktree, returning whichever branch is checked out there instead of this
+# tree's own content)
+[group('checks')]
+lint-symlinks:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd "$(git rev-parse --show-toplevel)"
+    offenders=()
+    while IFS=$'\t' read -r meta path; do
+        [[ "${meta%% *}" == "120000" ]] || continue
+        target=$(readlink "$path")
+        [[ "$target" == "$HOME"/* ]] || continue
+        rel="${target#"$HOME"/}"
+        if git ls-files --error-unmatch "$rel" >/dev/null 2>&1; then
+            offenders+=("$path -> $target")
+            continue
+        fi
+        # Target may itself pass through a tracked symlink (e.g. a directory
+        # alias), so also check what it ultimately resolves to. A dangling
+        # target (e.g. untracked app state that hasn't been generated yet)
+        # is not tracked either way.
+        real=$(realpath "$target" 2>/dev/null || true)
+        if [[ -n "$real" && "$real" == "$HOME"/* ]]; then
+            real_rel="${real#"$HOME"/}"
+            if git ls-files --error-unmatch "$real_rel" >/dev/null 2>&1; then
+                offenders+=("$path -> $target")
+            fi
+        fi
+    done < <(git ls-files -s)
+    if ((${#offenders[@]})); then
+        echo "Tracked symlinks with absolute targets pointing at tracked repo content:" >&2
+        printf '  %s\n' "${offenders[@]}" >&2
+        echo "Convert to a relative target so worktrees resolve this repo's own content." >&2
+        exit 1
+    fi
 
 # Checks spelling with typos
 [group('checks')]
@@ -637,10 +675,10 @@ check-spelling:
 lint-all: lint-zsh lint-nushell lint-github-scripts lint-bin
     @echo "All linting complete"
 
-# Checks formatting/sort order for gitignore, python, toml, json, yaml, mise, and
-# shell, plus every lint-all linter
+# Checks formatting/sort order for gitignore, python, toml, json, yaml, mise,
+# and shell; tracked symlink targets; plus every lint-all linter
 [group('checks')]
-lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-shell lint-all
+lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-shell lint-symlinks lint-all
     just --fmt --check
 
 # Runs lint, harness parity checks, and test
@@ -650,32 +688,32 @@ check: lint check-spelling harness-check test
 # Generates shared/native agent harness parity artifacts
 [group('checks')]
 harness-generate:
-    python3 ~/scripts/agent-harnesses.py generate
+    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py generate
 
 # Validates shared/native agent harness parity artifacts
 [group('checks')]
 harness-check:
-    python3 ~/scripts/agent-harnesses.py validate
+    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py validate
 
 # Reports gitignored harness config worth tracking (allowlist blind spots)
 [group('checks')]
 audit-ignored-config *ROOTS:
-    python3 ~/scripts/audit-ignored-config.py {{ ROOTS }}
+    python3 {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ ROOTS }}
 
 # Reports measured harness feature usage and friction from local session transcripts
 [group('checks')]
 harness-sessions *ARGS:
-    python3 ~/scripts/harness-sessions.py {{ ARGS }}
+    python3 {{ justfile_directory() }}/scripts/harness-sessions.py {{ ARGS }}
 
 # Audits installed harness versions and parity gaps
 [group('checks')]
 harness-audit:
-    python3 ~/scripts/agent-harnesses.py audit
+    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py audit
 
 # Flags CLI tools installed via both mise and Homebrew
 [group('checks')]
 package-audit:
-    python3 ~/scripts/audit-package-managers.py
+    python3 {{ justfile_directory() }}/scripts/audit-package-managers.py
 
 # Runs bats tests in parallel; `just test abort` stops at the first failure
 [group('tests')]
@@ -690,12 +728,12 @@ test mode="parallel":
         # so parallelize across files only -- within-file parallelism races.
         # Fall back to a literal count: an empty --jobs makes bats run 0 tests.
         jobs=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
-        bats --print-output-on-failure --jobs "$jobs" --no-parallelize-within-files --parallel-binary-name rush ~/tests/
+        bats --print-output-on-failure --jobs "$jobs" --no-parallelize-within-files --parallel-binary-name rush {{ justfile_directory() }}/tests/
         ;;
     abort)
         # --abort makes bats pass --halt to the parallel runner, which rush
         # does not support, so fail-fast has to run serially.
-        bats --print-output-on-failure --abort ~/tests/
+        bats --print-output-on-failure --abort {{ justfile_directory() }}/tests/
         ;;
     *)
         echo "Unknown mode '{{ mode }}' (expected: parallel, abort)" >&2
@@ -706,12 +744,12 @@ test mode="parallel":
 # Sorts .gitignore with negation-aware ordering
 [group('configuration')]
 format-gitignore:
-    ~/scripts/sort-gitignore < ~/.gitignore | sponge ~/.gitignore
+    {{ justfile_directory() }}/scripts/sort-gitignore < {{ justfile_directory() }}/.gitignore | sponge {{ justfile_directory() }}/.gitignore
 
 # Formats the Codex config.toml (native marketplace state order, state clustered)
 [group('configuration')]
 format-toml:
-    python3 ~/scripts/sort-codex-config.py ~/.codex/config.toml
+    python3 {{ justfile_directory() }}/scripts/sort-codex-config.py {{ justfile_directory() }}/.codex/config.toml
 
 # Formats and sorts mise config
 [group('configuration')]
@@ -720,7 +758,7 @@ format-mise:
     set -euo pipefail
     mise fmt
     # Sort [tools] entries alphabetically while preserving the rest of the file
-    python3 ~/scripts/sort-tools.py
+    python3 {{ justfile_directory() }}/scripts/sort-tools.py
 
 # Formats all tracked JSON/JSONC config files with sorted keys
 [group('configuration')]
@@ -742,7 +780,7 @@ format-json:
         printf '%s\0' "$f"
     # single process for all files — per-file jq|sponge spawns cost ~100ms each
     # under SentinelOne exec inspection, turning this loop into ~30s of waiting
-    done | python3 ~/scripts/format-json.py
+    done | python3 {{ justfile_directory() }}/scripts/format-json.py
     jsonc_files=()
     while read -r f; do
         [[ "$f" == .claude/skills/gstack/* ]] && continue
@@ -775,16 +813,16 @@ format-yaml:
 # Formats Python policy modules with ruff
 [group('configuration')]
 format-python:
-    @ruff format ~/scripts/harness_skills.py ~/.agents/harness/hooks/safety.py
+    @ruff format {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
 # Formats and hardens shell scripts
 [group('configuration')]
 format-shell:
     @echo "Formatting shell scripts..."
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
-    @find ~/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
-    @find ~/.github/scripts -name '*.sh' -exec shfmt -ln bash -w -i 4 -sr {} +
-    @find ~/.github/scripts -name '*.sh' -exec shellharden --replace {} +
+    @find {{ justfile_directory() }}/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shfmt_exclude_functions }}) -exec shfmt -ln zsh -w -i 4 -sr {} +
+    @find {{ justfile_directory() }}/.config/zsh/functions -type f -name '*' ! -name '.*' $(printf '! -name %s ' {{ shellharden_exclude_functions }}) -exec shellharden --replace {} +
+    @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shfmt -ln bash -w -i 4 -sr {} +
+    @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shellharden --replace {} +
 
 # Formats mise config, justfile, Python, JSON/TOML configs, and shell scripts
 [group('configuration')]
@@ -804,19 +842,19 @@ git-hooks:
 # Installs git clean filters that strip churn/secrets before staging (see .gitattributes)
 [group('git')]
 git-filters:
-    git config --local filter.codex-config.clean ~/scripts/mask-codex-state.sh
+    git config --local filter.codex-config.clean {{ justfile_directory() }}/scripts/mask-codex-state.sh
     git config --local filter.codex-config.smudge cat
     git config --local filter.codex-config.required true
-    git config --local filter.oc-config.clean ~/scripts/mask-oc-config.sh
+    git config --local filter.oc-config.clean {{ justfile_directory() }}/scripts/mask-oc-config.sh
     git config --local filter.oc-config.smudge cat
     git config --local filter.oc-config.required true
-    git config --local filter.pi-models-store.clean ~/scripts/mask-pi-models-store.sh
+    git config --local filter.pi-models-store.clean {{ justfile_directory() }}/scripts/mask-pi-models-store.sh
     git config --local filter.pi-models-store.smudge cat
     git config --local filter.pi-models-store.required true
-    git config --local filter.yaml-normalize.clean ~/scripts/normalize-yaml-ws.sh
+    git config --local filter.yaml-normalize.clean {{ justfile_directory() }}/scripts/normalize-yaml-ws.sh
     git config --local filter.yaml-normalize.smudge cat
     git config --local filter.yaml-normalize.required true
-    git config --local filter.antigravity-settings.clean ~/scripts/mask-antigravity.sh
+    git config --local filter.antigravity-settings.clean {{ justfile_directory() }}/scripts/mask-antigravity.sh
     git config --local filter.antigravity-settings.smudge cat
     git config --local filter.antigravity-settings.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
