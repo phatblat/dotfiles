@@ -96,10 +96,6 @@ url = "https://developers.openai.com/mcp"
 args = ["mcp", "serve"]
 command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
 
-[mcp_servers.RepoPrompt]
-command = "/Users/phatblat/RepoPrompt/repoprompt_cli"
-enabled = false
-
 [otel.exporter."otlp-http"]
 endpoint = "https://otlp.datadoghq.com/v1/logs"
 protocol = "binary"
