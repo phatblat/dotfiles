@@ -816,10 +816,14 @@ git-filters:
     git config --local filter.yaml-normalize.clean ~/scripts/normalize-yaml-ws.sh
     git config --local filter.yaml-normalize.smudge cat
     git config --local filter.yaml-normalize.required true
+    git config --local filter.antigravity-settings.clean ~/scripts/mask-antigravity.sh
+    git config --local filter.antigravity-settings.smudge cat
+    git config --local filter.antigravity-settings.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
     @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
     @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
+    @echo "Git filter 'antigravity-settings' installed (strips trustedWorkspaces from ~/.gemini/antigravity-cli/settings.json)"
 
 #
 # claude group recipes
