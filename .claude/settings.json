@@ -100,7 +100,7 @@
         "hooks": [
           {
             "command": "bash ~/.claude/hooks/scripts/auto-format.sh",
-            "timeout": 30,
+            "timeout": 5,
             "type": "command"
           }
         ],

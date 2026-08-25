@@ -11,6 +11,24 @@ file_path=$(echo "$input" | jq -r '.tool_input.file_path // empty' 2>/dev/null |
 
 home="$HOME"
 
+# Format ONE JSON file the way `just format-json` would, scoped to a single file
+# instead of reformatting all ~149 tracked JSON files (~7s). Mirrors the recipe's
+# JSONC exclusions exactly so behavior is identical, minus the bulk cost.
+format_json_file() {
+    local f="$1"
+    case "$f" in *.json) ;; *) return 0 ;; esac
+    case "$f" in
+        "$home"/.claude/skills/gstack/*) return 0 ;;                                   # vendored — never reformat
+        *.jsonc.json) return 0 ;;
+        "$home"/.claude/policy-limits.json) return 0 ;;                                # JSONC; recipe skips
+        "$home"/Library/Application\ Support/Claude/claude_desktop_config.json) return 0 ;;  # JSONC; recipe skips
+        "$home"/.config/zed/settings.json|"$home"/.config/cmux/cmux.json)
+            command -v prettier >/dev/null 2>&1 && prettier --parser jsonc --write "$f" 2>/dev/null || true ;;
+        *)
+            jq --sort-keys --indent 2 . "$f" 2>/dev/null | sponge "$f" 2>/dev/null || true ;;
+    esac
+}
+
 # Cache the static justfile exclusion lists so we don't pay `just --evaluate`
 # on every single zsh-function edit. The cache is keyed by the justfile mtime;
 # when the justfile changes we re-evaluate once and rewrite the cache.
