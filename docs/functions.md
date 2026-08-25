@@ -4,21 +4,21 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 540 unique functions/aliases across 3 shells**
+**Total: 541 unique functions/aliases across 3 shells**
 
 **Shell Statistics:**
 
-- Nushell: 285 aliases/functions (primary shell)
-- Zsh: 380 functions (daily fallback)
+- Nushell: 286 aliases/functions (primary shell)
+- Zsh: 381 functions (daily fallback)
 - Bash: 13 functions (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 3 shells: 12
-- Implemented in 2 shells: 161
+- Implemented in 2 shells: 162
 - Implemented in 1 shell only: 320
 
-**Functions Implemented in Multiple Shells:** 173
+**Functions Implemented in Multiple Shells:** 174
 
 ## Status Legend
 
@@ -236,6 +236,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `gbe`                       | ✅  | ➖  | ➖   | Shows Gradle build environment                       |
 | `gc`                        | ✅  | ✅  | ➖   | Run git garbage collection                           |
 | `gd`                        | ✅  | ➖  | ➖   | Launch gradle in debug mode                          |
+| `gdotenv`                   | ✅  | ✅  | ➖   | Grep var names from .env files recursively           |
 | `gem_install`               | ✅  | ✅  | ➖   | Binstubs are installed to /usr/local/bin alongside   |
 | `gem_pristine`              | ➖  | ✅  | ➖   | Runs pristine command for all gems                   |
 | `gem_update`                | ➖  | ✅  | ➖   | Binstubs are installed to /usr/local/bin alongside   |
