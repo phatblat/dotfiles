@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/devex-review/SKILL.md
+../gstack/devex-review/SKILL.md

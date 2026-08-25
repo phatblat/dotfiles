@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/design-shotgun/SKILL.md
+../gstack/design-shotgun/SKILL.md
