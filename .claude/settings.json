@@ -7,6 +7,7 @@
     "claude-md-management@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": false,
+    "context-mode@context-mode": true,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
@@ -23,8 +24,7 @@
     "superpowers@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": true,
-    "context-mode@context-mode": true
+    "warp@claude-code-warp": true
   },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "90000",
@@ -222,8 +222,8 @@
       {
         "hooks": [
           {
-            "type": "command",
-            "command": "\"/Users/phatblat/.claude/hooks/context-mode-cache-heal.mjs\""
+            "command": "\"/Users/phatblat/.claude/hooks/context-mode-cache-heal.mjs\"",
+            "type": "command"
           }
         ]
       }
