@@ -37,6 +37,12 @@ shellharden_exclude_functions := 'version_build version_market xccheck'
 # GitHub CLI extensions manifest file (one OWNER/REPO per line, read by install-gh-extensions)
 
 gh_extensions_manifest := '.config/gh/extensions.txt'
+# Tools excluded from `mise ... --bump` scans; each emits unfixable mise warnings and its
+# bump is always null: wookie = rev-pinned cargo git ref (latest resolves to the ref string
+# "HEAD"), dsh = prerelease-only npm package (mise resolves no "latest"), cursor-cli = http
+# backend without version_list_url (cursor.com publishes no version feed).
+
+mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh http:cursor-cli'
 
 #
 # aliases
@@ -118,8 +124,9 @@ list-uv:
 
 # Lists available upgrades
 [group('info')]
+[script]
 outdated:
-    mise outdated --bump
+    mise outdated --bump $(just _mise-bump-scan-tools)
 
 # Lists outdated uv tools
 [group('info')]
@@ -317,6 +324,11 @@ _check-github-token:
         echo "${yellow}⚠ GitHub API rate limit low: ${remaining}/${limit} remaining (resets ${when}).${rc}" >&2
     fi
 
+# Prints config-managed mise tools minus mise_bump_exclusions (space-separated, for --bump scans)
+[script]
+_mise-bump-scan-tools:
+    mise config get tools | sed -nE 's/^\["?([^]"]+)"?\]$/\1/p; s/^"([^"]+)" = .*/\1/p; s/^([A-Za-z0-9_-]+) = .*/\1/p' | grep -vxFf <(echo "{{ mise_bump_exclusions }}" | tr ' ' '\n') | tr '\n' ' '
+
 # Installs tools using mise
 [group('configuration')]
 deps: _check-github-token install-brew install-gh-extensions git-filters
@@ -368,8 +380,14 @@ upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade
 
 # Upgrades tools using mise
 [group('configuration')]
+[script]
 upgrade-mise-tools *args:
-    mise upgrade --bump --yes {{ args }}
+    if [ -z "{{ args }}" ]; then
+        set -- $(just _mise-bump-scan-tools)
+    else
+        set -- {{ args }}
+    fi
+    mise upgrade --bump --yes "$@"
 
 # Upgrades mise itself
 [group('configuration')]
@@ -386,7 +404,7 @@ upgrade-omp:
 upgrade-mise-tools-commit:
     #!/usr/bin/env bash
     set -euo pipefail
-    json=$(mise outdated --bump --json | jq 'with_entries(select(.value.bump | type == "string"))')
+    json=$(mise outdated --bump --json $(just _mise-bump-scan-tools) | jq 'with_entries(select(.value.bump | type == "string"))')
     if echo "$json" | jq -e 'type == "object" and (keys | length) == 0' >/dev/null 2>&1; then
         echo "All tools are up to date"
         exit 0
