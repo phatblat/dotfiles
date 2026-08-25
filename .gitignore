@@ -226,6 +226,7 @@
 .config/mise/plugins/
 .config/mise/shims/
 .config/mole/
+.config/morph/
 .config/nix/netrc
 .config/nushell/history.txt
 .config/op/
