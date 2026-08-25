@@ -27,7 +27,7 @@
       "id": "factory"
     },
     {
-      "enabled": false,
+      "enabled": true,
       "id": "antigravity"
     },
     {
