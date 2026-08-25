@@ -107,9 +107,12 @@
 !.codex/*.config.toml
 !.codex/AGENTS.md
 !.codex/agents/
+!.codex/casper-instructions.md
+!.codex/casper.models.json
 !.codex/config.toml
 !.codex/hooks.json
 !.codex/hooks/
+!.codex/keybindings.json
 !.codex/rules/
 .codex/skills/*
 !.codex/skills/aven/SKILL.md
@@ -309,6 +312,7 @@
 .dev-data/
 .did_show_opt_info
 .diffusionbee/
+.ditto-agent.*/
 .ditto-agent/
 .ditto-orchestrator-keychain.lock
 .ditto-orchestrator/
@@ -330,6 +334,9 @@
 .gconf/
 .gem/
 .gemini/*
+.gemini/antigravity-cli/*
+!.gemini/antigravity-cli/keybindings.json
+!.gemini/antigravity-cli/
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
@@ -437,6 +444,8 @@
 .ollama/
 .omc/
 .omnigent/
+.omo/*
+!.omo/omo.jsonc
 .omp/*
 .omp/agent/*
 .omp/agent/*/**
@@ -539,6 +548,9 @@
 !.omp/profiles/*/agent/
 !.omp/profiles/*/
 !.omp/profiles/
+.omp/remote-host/*
+!.omp/remote-host/localhost.json
+!.omp/remote-host/
 .op/
 .openpeon/
 .oracle_jre_usage/
@@ -567,9 +579,11 @@
 !.pi/agent/agents.json
 !.pi/agent/agents/
 !.pi/agent/extensions/
+!.pi/agent/mcp.json
 !.pi/agent/models-store.json
 !.pi/agent/models.json
 !.pi/agent/prompts/
+!.pi/agent/ramp-router-config.json
 !.pi/agent/settings.json
 !.pi/agent/
 .pingidentity/
@@ -954,6 +968,7 @@ Library/Application Support/org.dystroy.broot/launcher/fish/
 Library/Application Support/pai-installer/
 Library/Application Support/pipx/
 Library/Application Support/pup/
+Library/Application Support/pyinstaller/
 Library/Application Support/rs.com.ditto.dql-browser/
 Library/Application Support/rs.snackos.gyro.staging/
 Library/Application Support/rtk/history.db

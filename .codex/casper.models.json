@@ -1,0 +1,512 @@
+{
+  "models": [
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 131072,
+      "description": "Casper router model `auto`.",
+      "display_name": "Casper Auto",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 131072,
+      "priority": 1,
+      "shell_type": "shell_command",
+      "slug": "auto",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 1048576,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `deepseek-v4-flash-0731`.",
+      "display_name": "Deepseek V4 Flash 0731",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 1048576,
+      "priority": 2,
+      "shell_type": "shell_command",
+      "slug": "deepseek-v4-flash-0731",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 262144,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `deepseek-v4-pro`.",
+      "display_name": "Deepseek V4 Pro",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 262144,
+      "priority": 3,
+      "shell_type": "shell_command",
+      "slug": "deepseek-v4-pro",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 1048576,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `deepseek-v4-pro-0813`.",
+      "display_name": "Deepseek V4 Pro 0813",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 1048576,
+      "priority": 4,
+      "shell_type": "shell_command",
+      "slug": "deepseek-v4-pro-0813",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 262144,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `dittoaicoder`.",
+      "display_name": "Ditto AI Coder",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 262144,
+      "priority": 5,
+      "shell_type": "shell_command",
+      "slug": "dittoaicoder",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 200000,
+      "description": "Casper router model `glm-4.7`.",
+      "display_name": "GLM 4.7",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 200000,
+      "priority": 6,
+      "shell_type": "shell_command",
+      "slug": "glm-4.7",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 1048576,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `glm-5.2`.",
+      "display_name": "GLM 5.2",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 1048576,
+      "priority": 7,
+      "shell_type": "shell_command",
+      "slug": "glm-5.2",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 1048576,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `glm-5.2-fast`.",
+      "display_name": "GLM 5.2 Fast",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 1048576,
+      "priority": 8,
+      "shell_type": "shell_command",
+      "slug": "glm-5.2-fast",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 131072,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `gpt-oss-120b`.",
+      "display_name": "GPT-OSS 120B",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 131072,
+      "priority": 9,
+      "shell_type": "shell_command",
+      "slug": "gpt-oss-120b",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 1048576,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `inkling`.",
+      "display_name": "Inkling",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 1048576,
+      "priority": 10,
+      "shell_type": "shell_command",
+      "slug": "inkling",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 1048576,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `inkling-small`.",
+      "display_name": "Inkling Small",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 1048576,
+      "priority": 11,
+      "shell_type": "shell_command",
+      "slug": "inkling-small",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 262144,
+      "description": "Casper router model `kimi-k2.6`.",
+      "display_name": "Kimi K2.6",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 262144,
+      "priority": 12,
+      "shell_type": "shell_command",
+      "slug": "kimi-k2.6",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 262144,
+      "description": "Casper router model `kimi-k2.7-code`.",
+      "display_name": "Kimi K2.7 Code",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 262144,
+      "priority": 13,
+      "shell_type": "shell_command",
+      "slug": "kimi-k2.7-code",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 1048576,
+      "default_reasoning_level": "high",
+      "description": "Casper router model `kimi-k3`.",
+      "display_name": "Kimi K3",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 1048576,
+      "priority": 14,
+      "shell_type": "shell_command",
+      "slug": "kimi-k3",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [
+        {
+          "description": "Fast responses with lighter reasoning",
+          "effort": "low"
+        },
+        {
+          "description": "Balances speed and reasoning depth for everyday tasks",
+          "effort": "medium"
+        },
+        {
+          "description": "Greater reasoning depth for complex problems",
+          "effort": "high"
+        }
+      ],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 202000,
+      "description": "Casper router model `nemotron-3-ultra`.",
+      "display_name": "Nemotron 3 Ultra",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 202000,
+      "priority": 15,
+      "shell_type": "shell_command",
+      "slug": "nemotron-3-ultra",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    },
+    {
+      "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
+      "context_window": 131072,
+      "description": "Casper router model `qwen3.8-27b`.",
+      "display_name": "Qwen3.8 27B",
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "max_context_window": 131072,
+      "priority": 16,
+      "shell_type": "shell_command",
+      "slug": "qwen3.8-27b",
+      "support_verbosity": false,
+      "supported_in_api": true,
+      "supported_reasoning_levels": [],
+      "truncation_policy": {
+        "limit": 10000,
+        "mode": "tokens"
+      },
+      "visibility": "list"
+    }
+  ]
+}

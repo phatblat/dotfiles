@@ -1,0 +1,7 @@
+{
+  "compatEnabled": false,
+  "os": "macos",
+  "shell": "zsh",
+  "transferShell": "sh",
+  "version": 4
+}

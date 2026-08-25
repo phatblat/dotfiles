@@ -521,7 +521,7 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check ~/scripts/agent-harnesses.py ~/scripts/harness_skills.py ~/scripts/sort-tools.py ~/scripts/format-json.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/.agents/harness/hooks/safety.py
+    ruff check ~/scripts/agent-harnesses.py ~/scripts/harness_skills.py ~/scripts/sort-tools.py ~/scripts/format-json.py ~/scripts/audit-package-managers.py ~/scripts/audit-ignored-config.py ~/scripts/sort-codex-config.py ~/scripts/review-pr.py ~/scripts/sync-codex-casper-models.py ~/.agents/harness/hooks/safety.py
     ruff format --check ~/scripts/harness_skills.py ~/.agents/harness/hooks/safety.py
 
 # Checks Codex config formatting (alphabetized except native marketplace state order)
@@ -563,7 +563,7 @@ lint-json:
         prettier --parser jsonc --check "${jsonc_files[@]}"
     fi
 
-# Lints all tracked YAML config files with yamllint
+# Lints all tracked YAML config files with yamllint and prettier
 [group('checks')]
 [script]
 lint-yaml:
@@ -572,11 +572,20 @@ lint-yaml:
     files=()
     while read -r f; do
         # vendored third-party gstack workflows — never lint
+        # Exclusions below must stay in sync with format-yaml
         [[ "$f" == .claude/skills/gstack/* ]] && continue
         files+=("$f")
     done < <(git ls-files --cached '*.yml' '*.yaml')
     if ((${#files[@]})); then
         mise exec -- yamllint "${files[@]}"
+        # format-yaml writes with prettier but nothing verified it, so a file
+        # could be prettier-dirty and still pass lint until `just format` later
+        # produced a churn commit. This closes that gap the way lint-json
+        # already gates JSON. It does NOT cover OMP's config.yml churn --
+        # prettier reported all 12 historical versions clean; yamllint's
+        # trailing-spaces rule is what catches those, and the yaml-normalize
+        # clean filter keeps them out of the committed blob.
+        prettier --check "${files[@]}"
     fi
 
 # Lints Zsh functions with shellcheck
@@ -804,9 +813,13 @@ git-filters:
     git config --local filter.pi-models-store.clean ~/scripts/mask-pi-models-store.sh
     git config --local filter.pi-models-store.smudge cat
     git config --local filter.pi-models-store.required true
+    git config --local filter.yaml-normalize.clean ~/scripts/normalize-yaml-ws.sh
+    git config --local filter.yaml-normalize.smudge cat
+    git config --local filter.yaml-normalize.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
     @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
+    @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
 
 #
 # claude group recipes

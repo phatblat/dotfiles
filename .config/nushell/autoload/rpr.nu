@@ -3,7 +3,7 @@
 #   builtins:  none
 #   externals: none
 
-# rp - Alias for review-pr
-export def --wrapped rp [...rest: string] {
+# rpr - Alias for review-pr
+export def --wrapped rpr [...rest: string] {
     review-pr ...$rest
 }

@@ -1106,7 +1106,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "security-guidance@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -1234,7 +1234,7 @@
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "pr-review-toolkit@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"

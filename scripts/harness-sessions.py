@@ -119,6 +119,55 @@ def resolve_root(store: SessionStore) -> tuple[Path, str]:
             return Path(val).expanduser(), f"env:{var}"
     return HOME / store.default, "default"
 
+def _pi_session_dir() -> Path | None:
+    """Return the effective Pi session directory from settings.json, if present."""
+    settings_path = HOME / ".pi" / "agent" / "settings.json"
+    if not settings_path.exists():
+        return None
+    try:
+        with settings_path.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    session_dir = data.get("sessionDir")
+    if isinstance(session_dir, str) and session_dir:
+        return Path(session_dir).expanduser()
+    return None
+
+
+def resolve_session_root(slug: str, store: SessionStore) -> tuple[Path, str]:
+    """Profile-aware session root resolution for OMP/Pi; generic fallback otherwise.
+
+    Returns the directory one level above the actual sessions directory so that
+    the existing SESSION_STORES patterns (e.g. ``sessions/**/*.jsonl``) continue
+    to work unchanged.
+    """
+    if slug == "omp":
+        profile = os.environ.get("OMP_PROFILE") or os.environ.get("PI_PROFILE")
+        if profile:
+            return (
+                HOME / ".omp" / "profiles" / profile / "agent",
+                f"env:OMP_PROFILE={profile}",
+            )
+        agent_dir = os.environ.get("PI_CODING_AGENT_DIR")
+        if agent_dir:
+            return Path(agent_dir).expanduser(), "env:PI_CODING_AGENT_DIR"
+        return HOME / store.default, "default"
+
+    if slug == "pi":
+        settings_dir = _pi_session_dir()
+        if settings_dir is not None:
+            return settings_dir.parent, "settings:sessionDir"
+        session_dir = os.environ.get("PI_CODING_AGENT_SESSION_DIR")
+        if session_dir:
+            return Path(session_dir).expanduser().parent, "env:PI_CODING_AGENT_SESSION_DIR"
+        agent_dir = os.environ.get("PI_CODING_AGENT_DIR")
+        if agent_dir:
+            return Path(agent_dir).expanduser(), "env:PI_CODING_AGENT_DIR"
+        return HOME / store.default, "default"
+
+    return resolve_root(store)
+
 
 def iter_files(root: Path, pattern: str, max_files: int) -> list[Path]:
     """Newest-first files under root, capped at max_files."""
@@ -1035,10 +1084,9 @@ def scan_antigravity(files: list[Path], coverage: Coverage) -> list[Obs]:
 # Orchestration
 # ---------------------------------------------------------------------------
 
-
 def scan_harness(slug: str, *, since_days: int, max_files: int) -> tuple[list[Obs], Coverage]:
     store = SESSION_STORES[slug]
-    root, resolved_from = resolve_root(store)
+    root, resolved_from = resolve_session_root(slug, store)
     version = cli_version(CLI_BINARIES[slug])
     coverage = Coverage(
         harness=slug,
