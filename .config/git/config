@@ -9,3 +9,5 @@
 	abbrevCommit = yes
 [core]
 	abbrev = 4
+[init]
+	defaultBranch = main
