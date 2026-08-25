@@ -258,11 +258,6 @@ source_type = "git"
 source = "https://github.com/DataDog/pup.git"
 ref = "v1.6.6"
 
-[marketplaces.kyto64-codex-pr-review-toolkit-minimal]
-last_updated = "1970-01-01T00:00:00Z"
-source_type = "local"
-source = "/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"
-
 [marketplaces.linear-cli]
 last_updated = "1970-01-01T00:00:00Z"
 last_revision = "0000000000000000000000000000000000000000"
@@ -328,9 +323,6 @@ enabled = true
 
 [plugins."pr-review-toolkit@claude-plugins-official"]
 enabled = false
-
-[plugins."pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal"]
-enabled = true
 
 [plugins."presentations@openai-primary-runtime"]
 enabled = true
@@ -408,9 +400,6 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/agentic-code-review"]
-trust_level = "trusted"
-
-[projects."/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"]
 trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/ground-control"]
