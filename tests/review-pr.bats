@@ -132,7 +132,6 @@ exit "$REVIEW_PR_OMP_STATUS"'
   grep -q "gh repo clone getditto/widgets $REVIEW_PR_GETDITTO_ROOT/widgets" "$REVIEW_PR_COMMAND_LOG"
 }
 
-
 @test "review-pr nushell function: forwards the PR reference" {
   local fake_home="$BATS_TEST_TMPDIR/home"
   mkdir -p "$fake_home/scripts"
@@ -175,11 +174,9 @@ EOF
   grep -q "omp-arg:<--cwd>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<--add-dir>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<$HOME/2ndBrain/daily-notes>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<--profile>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<casper>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<--model>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<casper/kimi-k3:max>" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "omp-arg:<--thinking>" "$REVIEW_PR_COMMAND_LOG"
+  ! grep -q "omp-arg:<--model>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--thinking>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<high>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<--no-prewalk>" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "omp-arg:<-p>" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "omp-arg:<--print>" "$REVIEW_PR_COMMAND_LOG"

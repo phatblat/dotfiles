@@ -358,14 +358,12 @@ def run_omp_review(
     run(
         [
             "omp",
-            "--profile",
-            "casper",
-            "--model",
-            "casper/kimi-k3:max",
             "--cwd",
             str(worktree_dir),
             "--add-dir",
             str(DAILY_NOTES_DIR),
+            "--thinking",
+            "high",
             "--no-prewalk",
             prompt,
         ]
