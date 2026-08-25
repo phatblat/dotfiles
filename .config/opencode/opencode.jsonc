@@ -5,6 +5,7 @@
       "description": "Expert in Vercel AI SDK v5 handling streaming, model integration, tool calling, hooks, state management, edge runtime, prompt engineering, and production patterns. Use PROACTIVELY for any AI SDK implementation, streaming issues, provider integration, or AI application architecture. Detects project setup and adapts approach.",
       "mode": "subagent",
       "permission": {
+        "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
         "webfetch": "ask"
@@ -15,6 +16,7 @@
       "description": "Expert in building npm package CLIs with Unix philosophy, automatic project root detection, argument parsing, interactive/non-interactive modes, and CLI library ecosystems. Use PROACTIVELY for CLI tool development, npm package creation, command-line interface design, and Unix-style tool implementation.",
       "mode": "subagent",
       "permission": {
+        "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
         "webfetch": "ask"
@@ -25,6 +27,7 @@
       "description": "Comprehensive code review specialist covering 6 focused aspects - architecture & design, code quality, security & dependencies, performance & scalability, testing coverage, and documentation & API design. Provides deep analysis with actionable feedback. Use PROACTIVELY after significant code changes.",
       "mode": "subagent",
       "permission": {
+        "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
         "webfetch": "ask"
@@ -35,6 +38,7 @@
       "description": "Nest.js framework expert specializing in module architecture, dependency injection, middleware, guards, interceptors, testing with Jest/Supertest, TypeORM/Mongoose integration, and Passport.js authentication. Use PROACTIVELY for any Nest.js application issues including architecture decisions, testing strategies, performance optimization, or debugging complex dependency injection problems. If a specialized expert is a better fit, I will recommend switching and stop.",
       "mode": "subagent",
       "permission": {
+        "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
         "webfetch": "ask"
@@ -45,6 +49,7 @@
       "description": "Specialized research expert for parallel information gathering. Use for focused research tasks with clear objectives and structured output requirements.",
       "mode": "subagent",
       "permission": {
+        "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
         "webfetch": "ask"
@@ -55,6 +60,7 @@
       "description": "Context gathering and initial problem diagnosis specialist. Use PROACTIVELY when encountering errors, performance issues, or unexpected behavior before engaging specialized experts.",
       "mode": "subagent",
       "permission": {
+        "bash": "ask",
         "edit": "ask",
         "external_directory": "ask",
         "webfetch": "ask"
@@ -175,33 +181,16 @@
   "model": "anthropic/claude-sonnet-4-20250514",
   "permission": {
     "bash": {
-      "basename *": "allow",
-      "cat *": "allow",
-      "cut *": "allow",
-      "date *": "allow",
-      "dirname *": "allow",
-      "env": "allow",
       "find *": "allow",
-      "git branch*": "allow",
       "git diff*": "allow",
       "git log*": "allow",
       "git show*": "allow",
       "git status*": "allow",
-      "grep *": "allow",
-      "head *": "allow",
-      "jq *": "allow",
       "just harness-check": "allow",
       "ls *": "allow",
-      "pwd": "allow",
       "rg *": "allow",
       "rm *": "ask",
-      "sort *": "allow",
-      "sudo *": "deny",
-      "tail *": "allow",
-      "tr *": "allow",
-      "uniq *": "allow",
-      "wc *": "allow",
-      "which *": "allow"
+      "sudo *": "deny"
     },
     "edit": "ask",
     "external_directory": "ask",
