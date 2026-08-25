@@ -131,11 +131,20 @@ cat > "$TMP_MODELS" <<'HEADER'
 #              - ""                                    -> non-reasoning model
 #            Re-check `GET /v1/models` after the router adds or retires a model.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
-#            catalog regardless of entitlement. Verified 2026-08-17: this key may
-#            invoke only `auto`; every named id returns
-#            403 {"detail":"not authorized to invoke <id>"}. The named models stay
-#            declared below so that widening `enabledModels` in config.yml is the
-#            only change needed once access is granted.
+#            catalog regardless of entitlement. Verified 2026-08-24: this key may
+#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
+#            return 403 {"detail":"not authorized to invoke <id>"}. The named models
+#            stay declared below so that widening `enabledModels` in config.yml is
+#            the only change needed once access is granted.
+# Known issue: kimi-k3 tool calls arrive as a single buffered SSE delta emitted
+#            only after the full arguments are generated - the stream carries only
+#            ":" heartbeat comments while a tool call is being built. The silent
+#            window scales with argument size (~20 tok/s observed), and the router
+#            aborts Kimi streams at ~240s wall-clock with a
+#            stream_deadline_exceeded error frame. See
+#            ~/scripts/casper-kimi-tool-stall.py and .md for the repro harness and
+#            fix request. The kimi-k3 streamIdleTimeoutMs override below is a local
+#            mitigation only; it does not fix the underlying buffering.
 providers:
   casper:
     baseUrl: https://casper-api.ditto.live/v1
@@ -231,35 +240,46 @@ while IFS= read -r model_json; do
   price_output=$(get_price "$bkey" PRICE_OUTPUT "0")
 
   # Determine compat overrides
-  compat_extra=""
+  compat_lines=()
+  thinking_switch=no
   if [[ "$reasoning_param" == "chat_template_args.enable_thinking" ]]; then
-    compat_extra=$(cat <<'COMPAT'
-        compat:
-          supportsReasoningEffort: false
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-COMPAT
-)
-  elif [[ "$id" == "nemotron-3-ultra" ]]; then
-    compat_extra=$(cat <<'COMPAT'
-        compat:
-          supportsReasoningEffort: false
-          # 550B class: first token can lag well past the provider floor.
-          streamIdleTimeoutMs: 300000
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-COMPAT
-)
+    thinking_switch=yes
+    compat_lines+=("          supportsReasoningEffort: false")
+  fi
+
+  case "$id" in
+    kimi-k3)
+      compat_lines+=(
+        "          # Casper buffers each tool call and emits it as a single delta, so the"
+        "          # stream carries only SSE comments while arguments generate (~20 tok/s,"
+        "          # measured 2026-08-24). Stay below the router's ~240s Kimi wall-clock"
+        "          # deadline so a timeout surfaces as an error, not a silent empty turn."
+        "          streamIdleTimeoutMs: 210000"
+      )
+      ;;
+    nemotron-3-ultra)
+      compat_lines+=(
+        "          # 550B class: first token can lag well past the provider floor."
+        "          streamIdleTimeoutMs: 300000"
+      )
+      ;;
+  esac
+
+  if [[ "$thinking_switch" == yes ]]; then
+    compat_lines+=(
+      "          extraBody:"
+      "            chat_template_args:"
+      "              enable_thinking: false"
+      "          whenThinking:"
+      "            extraBody:"
+      "              chat_template_args:"
+      "                enable_thinking: true"
+    )
+  fi
+
+  compat_extra=""
+  if ((${#compat_lines[@]})); then
+    compat_extra=$(printf '%s\n' "        compat:" "${compat_lines[@]}")
   fi
 
   # Write model entry

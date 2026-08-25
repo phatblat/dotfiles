@@ -10,11 +10,20 @@
 #              - ""                                    -> non-reasoning model
 #            Re-check `GET /v1/models` after the router adds or retires a model.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
-#            catalog regardless of entitlement. Verified 2026-08-17: this key may
-#            invoke only `auto`; every named id returns
-#            403 {"detail":"not authorized to invoke <id>"}. The named models stay
-#            declared below so that widening `enabledModels` in config.yml is the
-#            only change needed once access is granted.
+#            catalog regardless of entitlement. Verified 2026-08-24: this key may
+#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
+#            return 403 {"detail":"not authorized to invoke <id>"}. The named models
+#            stay declared below so that widening `enabledModels` in config.yml is
+#            the only change needed once access is granted.
+# Known issue: kimi-k3 tool calls arrive as a single buffered SSE delta emitted
+#            only after the full arguments are generated - the stream carries only
+#            ":" heartbeat comments while a tool call is being built. The silent
+#            window scales with argument size (~20 tok/s observed), and the router
+#            aborts Kimi streams at ~240s wall-clock with a
+#            stream_deadline_exceeded error frame. See
+#            ~/scripts/casper-kimi-tool-stall.py and .md for the repro harness and
+#            fix request. The kimi-k3 streamIdleTimeoutMs override below is a local
+#            mitigation only; it does not fix the underlying buffering.
 providers:
   casper:
     baseUrl: https://casper-api.ditto.live/v1
@@ -70,14 +79,6 @@ providers:
         contextWindow: 1048576
         maxTokens: 1048576
         cost: { input: 1.74, output: 3.48, cacheRead: 0.145, cacheWrite: 0 }
-
-      - id: dittoaicoder
-        name: Ditto AI Coder
-        reasoning: true
-        input: [text]
-        contextWindow: 262144
-        maxTokens: 262144
-        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
       - id: glm-4.7
         name: Glm 4.7
@@ -176,7 +177,13 @@ providers:
         input: [text]
         contextWindow: 1048576
         maxTokens: 1048576
-        cost: { input: 0.00, output: 0.00, cacheRead: 0.0, cacheWrite: 0 }
+        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
+        compat:
+          # Casper buffers each tool call and emits it as a single delta, so the
+          # stream carries only SSE comments while arguments generate (~20 tok/s,
+          # measured 2026-08-24). Stay below the router's ~240s Kimi wall-clock
+          # deadline so a timeout surfaces as an error, not a silent empty turn.
+          streamIdleTimeoutMs: 210000
 
       - id: nemotron-3-ultra
         name: Nemotron 3 Ultra
@@ -187,6 +194,8 @@ providers:
         cost: { input: 0.60, output: 2.40, cacheRead: 0.12, cacheWrite: 0 }
         compat:
           supportsReasoningEffort: false
+          # 550B class: first token can lag well past the provider floor.
+          streamIdleTimeoutMs: 300000
           extraBody:
             chat_template_args:
               enable_thinking: false
@@ -211,3 +220,4 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
+
