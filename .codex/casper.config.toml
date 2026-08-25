@@ -24,15 +24,16 @@ stream_idle_timeout_ms = 300000
 
 [mcp_servers.notion]
 enabled = false
+url = "https://mcp.notion.com/mcp"
 
 [mcp_servers.openaiDeveloperDocs]
 enabled = false
+url = "https://developers.openai.com/mcp"
 
 [mcp_servers.orch]
 enabled = false
-
-[mcp_servers.RepoPrompt]
-enabled = false
+args = ["mcp", "serve"]
+command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
 
 [hooks.state]
 
@@ -89,3 +90,6 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:stop:2:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
+trust_level = "trusted"
