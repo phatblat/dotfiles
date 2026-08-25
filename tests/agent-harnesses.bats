@@ -323,6 +323,44 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$status" -eq 0 ]
 }
 
+@test "grill-me front door and grilling primitive are wired across harnesses" {
+  run python3 "$SCRIPT" generate --check
+  [ "$status" -eq 0 ]
+
+  primitive="$HOME/.agents/skills/grilling/SKILL.md"
+  front_door="$HOME/.agents/skills/grill-me/SKILL.md"
+
+  grep -Fq 'name: grilling' "$primitive"
+  grep -Fq 'Work the tree in **rounds**.' "$primitive"
+  grep -Fq '➡️ <your recommended answer>' "$primitive"
+  ! grep -Fq 'disable-model-invocation: true' "$primitive"
+
+  grep -Fx 'disable-model-invocation: true' "$front_door"
+  grep -Fq '~/.agents/skills/grilling/SKILL.md' "$front_door"
+  grep -Fx '  allow_implicit_invocation: false' \
+    "$HOME/.agents/skills/grill-me/agents/openai.yaml"
+
+  for skill in grill-me grilling; do
+    for pointer in \
+      "$HOME/.claude/skills/$skill/SKILL.md" \
+      "$HOME/.codex/skills/$skill/SKILL.md" \
+      "$HOME/.config/opencode/skills/$skill/SKILL.md" \
+      "$HOME/.agents/harness/adapters/antigravity/skills/$skill/SKILL.md" \
+      "$HOME/.agents/harness/adapters/cursor/skills/$skill/SKILL.md"; do
+      [ -f "$pointer" ]
+      grep -Fq "Load and follow the shared skill at \`~/.agents/skills/$skill/SKILL.md\`." "$pointer"
+      run git -C "$HOME" ls-files --error-unmatch "$pointer"
+      [ "$status" -eq 0 ]
+    done
+  done
+
+  grep -Fx 'disable-model-invocation: true' "$HOME/.claude/skills/grill-me/SKILL.md"
+  grep -Fx '  allow_implicit_invocation: false' \
+    "$HOME/.codex/skills/grill-me/agents/openai.yaml"
+  ! grep -Fq 'disable-model-invocation: true' "$HOME/.claude/skills/grilling/SKILL.md"
+  [ ! -e "$HOME/.codex/skills/grilling/agents/openai.yaml" ]
+}
+
 @test "agent-harnesses: Claude and Codex know Obsidian daily-note location" {
   for instructions in "$HOME/.claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"; do
     [ -f "$instructions" ]

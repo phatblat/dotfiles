@@ -182,6 +182,12 @@
   "~/.agents/harness/adapters/antigravity/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/grill-me/SKILL.md": {
+    "source": "~/.agents/skills/grill-me/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/grilling/SKILL.md": {
+    "source": "~/.agents/skills/grilling/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
@@ -476,6 +482,12 @@
   "~/.agents/harness/adapters/cursor/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/grill-me/SKILL.md": {
+    "source": "~/.agents/skills/grill-me/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/grilling/SKILL.md": {
+    "source": "~/.agents/skills/grilling/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
@@ -734,6 +746,12 @@
   "~/.claude/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
   },
+  "~/.claude/skills/grill-me/SKILL.md": {
+    "source": "~/.agents/skills/grill-me/SKILL.md"
+  },
+  "~/.claude/skills/grilling/SKILL.md": {
+    "source": "~/.agents/skills/grilling/SKILL.md"
+  },
   "~/.claude/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
@@ -820,6 +838,15 @@
   },
   "~/.codex/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
+  },
+  "~/.codex/skills/grill-me/SKILL.md": {
+    "source": "~/.agents/skills/grill-me/SKILL.md"
+  },
+  "~/.codex/skills/grill-me/agents/openai.yaml": {
+    "source": "~/.agents/skills/grill-me/SKILL.md"
+  },
+  "~/.codex/skills/grilling/SKILL.md": {
+    "source": "~/.agents/skills/grilling/SKILL.md"
   },
   "~/.codex/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
@@ -1006,6 +1033,12 @@
   },
   "~/.config/opencode/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
+  },
+  "~/.config/opencode/skills/grill-me/SKILL.md": {
+    "source": "~/.agents/skills/grill-me/SKILL.md"
+  },
+  "~/.config/opencode/skills/grilling/SKILL.md": {
+    "source": "~/.agents/skills/grilling/SKILL.md"
   },
   "~/.config/opencode/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
