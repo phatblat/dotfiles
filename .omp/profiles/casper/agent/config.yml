@@ -1,11 +1,11 @@
 modelRoles:
   default: casper/kimi-k3
-  smol: casper/dittoaicoder
   tiny: casper/auto:minimal
   designer: casper/auto:medium
   task: casper/auto:medium
   commit: casper/auto:minimal
   advisor: casper/auto:medium
+  smol: casper/kimi-k3:low
 enabledModels:
   - casper/auto
   - casper/kimi-k3
