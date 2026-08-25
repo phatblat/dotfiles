@@ -9,6 +9,13 @@ allowed-tools: Bash(git:*), Bash(echo:*), Bash(head:*), Bash(wc:*), Bash(test:*)
 
 Create a git commit following the project's established style
 
+## Path Scope (highest precedence)
+If the user's message scopes the commit to a single path (e.g. "only the path: /abs/file"):
+- This scope modifies the ENTIRE workflow below; it is NOT an additional instruction to run afterwards.
+- Gather status/diff for that path only (`git status --porcelain -- <path>`, `git diff -- <path>`). Every other dirty file is out of scope: never stage it, never include it in grouping analysis, never mention it.
+- Make exactly ONE commit containing only that path, using the pathspec form so pre-staged unrelated changes stay untouched: `git add -- <path>` then `git commit -m "<msg>" -- <path>`.
+- Skip the full-repo gather, skip the grouping analysis, and NEVER ask for confirmation — commit immediately, then report the single commit created.
+
 ## Combined Messages
 If the user's message contains both `/git:commit` and additional instructions (e.g., "run tests against X"), execute the commit workflow first, then handle the additional instruction separately. Do not let extra context interfere with the commit flow.
 
