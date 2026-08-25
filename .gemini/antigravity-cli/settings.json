@@ -23,8 +23,5 @@
     "command": "",
     "enabled": true
   },
-  "toolPermission": "proceed-in-sandbox",
-  "trustedWorkspaces": [
-    "/Users/phatblat"
-  ]
+  "toolPermission": "proceed-in-sandbox"
 }
