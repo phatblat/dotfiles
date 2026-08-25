@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Review a GetDitto pull request with OMP and preserve interactive follow-up."""
+"""Review a GitHub pull request with OMP and preserve interactive follow-up."""
 
 from __future__ import annotations
 
@@ -10,13 +10,18 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from collections.abc import Iterator
 from dataclasses import dataclass
 from pathlib import Path
 
 GETDITTO_OWNER = "getditto"
 DEFAULT_THREAD_WINDOW = 5
-USAGE = "Usage: review-pr <github-pr-url|repo#number|getditto/repo#number>"
+USAGE = "Usage: review-pr <github-pr-url|repo#number|owner/repo#number>"
 DAILY_NOTES_DIR = Path.home() / "2ndBrain" / "daily-notes"
+GETDITTO_CLONE_ROOT = "~/dev/_GETDITTO"
+DEFAULT_CLONE_ROOT = "~/dev/_GITHUB"
+DEFAULT_SEARCH_ROOTS = "~/dev"
+MAX_SEARCH_DEPTH = 3
 
 
 @dataclass(frozen=True)
@@ -40,10 +45,6 @@ def main(argv: list[str]) -> int:
     try:
         pr_value = parse_arguments(argv)
         pr = parse_pr(pr_value)
-        if pr.owner != GETDITTO_OWNER:
-            print("Only getditto PRs are supported for now.", file=sys.stderr)
-            return 2
-
         repo_dir = ensure_repo(pr)
         ref = f"refs/remotes/origin/pr/{pr.number}"
         base_ref, threads = fetch_pr_context(pr)
@@ -110,34 +111,108 @@ def parse_pr(value: str) -> PullRequest:
         owner, repo, number = url_match.groups()
         return PullRequest(owner.lower(), repo, int(number))
 
-    short_match = re.fullmatch(r"(?:(getditto)/)?([A-Za-z0-9_.-]+)#([0-9]+)", value)
+    short_match = re.fullmatch(
+        r"(?:([A-Za-z0-9_.-]+)/)?([A-Za-z0-9_.-]+)#([0-9]+)", value
+    )
     if short_match:
         owner, repo, number = short_match.groups()
-        return PullRequest((owner or GETDITTO_OWNER).lower(), repo, int(number))
-
-    owner_match = re.fullmatch(r"([^/]+)/([^#]+)#([0-9]+)", value)
-    if owner_match:
-        owner, repo, number = owner_match.groups()
-        return PullRequest(owner.lower(), repo, int(number))
+        return PullRequest((owner or default_owner()).lower(), repo, int(number))
 
     raise ReviewPrError(
-        "Expected https://github.com/getditto/<repo>/pull/<number>, "
-        "getditto/<repo>#<number>, or <repo>#<number>.",
+        "Expected https://github.com/<owner>/<repo>/pull/<number>, "
+        "<owner>/<repo>#<number>, or <repo>#<number>.",
         2,
     )
 
 
+def default_owner() -> str:
+    return os.environ.get("REVIEW_PR_DEFAULT_OWNER", GETDITTO_OWNER).lower()
+
+
 def ensure_repo(pr: PullRequest) -> Path:
-    root = Path(
-        os.environ.get("REVIEW_PR_GETDITTO_ROOT", "~/dev/_GETDITTO")
-    ).expanduser()
-    repo_dir = root / pr.repo
+    existing = find_existing_clone(pr)
+    if existing is not None:
+        return existing
+
+    repo_dir = fallback_repo_dir(pr)
     if repo_dir.exists():
         return repo_dir
 
-    root.mkdir(parents=True, exist_ok=True)
+    repo_dir.parent.mkdir(parents=True, exist_ok=True)
     run(["gh", "repo", "clone", f"{pr.owner}/{pr.repo}", str(repo_dir)])
     return repo_dir
+
+
+def fallback_repo_dir(pr: PullRequest) -> Path:
+    if pr.owner == GETDITTO_OWNER:
+        root = Path(
+            os.environ.get("REVIEW_PR_GETDITTO_ROOT", GETDITTO_CLONE_ROOT)
+        ).expanduser()
+        return root / pr.repo
+    root = Path(
+        os.environ.get("REVIEW_PR_CLONE_ROOT", DEFAULT_CLONE_ROOT)
+    ).expanduser()
+    return root / pr.owner / pr.repo
+
+
+def find_existing_clone(pr: PullRequest) -> Path | None:
+    slug = f"{pr.owner}/{pr.repo}".lower()
+    matches = [
+        candidate
+        for root in search_roots()
+        for candidate in iter_clones(root, MAX_SEARCH_DEPTH)
+        if candidate.name.lower() == pr.repo.lower() and origin_slug(candidate) == slug
+    ]
+    if not matches:
+        return None
+    matches.sort(key=lambda path: (len(path.parts), str(path)))
+    if len(matches) > 1:
+        print(
+            f"Multiple clones match {pr.owner}/{pr.repo}; using {matches[0]}.",
+            file=sys.stderr,
+        )
+    return matches[0]
+
+
+def search_roots() -> list[Path]:
+    value = os.environ.get("REVIEW_PR_SEARCH_ROOTS", DEFAULT_SEARCH_ROOTS)
+    return [Path(entry).expanduser() for entry in value.split(":") if entry]
+
+
+def iter_clones(root: Path, depth: int) -> Iterator[Path]:
+    if depth < 1:
+        return
+    try:
+        with os.scandir(root) as scan:
+            entries = sorted(scan, key=lambda entry: entry.name)
+    except OSError:
+        return
+    for entry in entries:
+        if entry.name.startswith(".") or not entry.is_dir(follow_symlinks=False):
+            continue
+        path = Path(entry.path)
+        if (path / ".git").exists():
+            yield path
+            continue
+        yield from iter_clones(path, depth - 1)
+
+
+def origin_slug(repo_dir: Path) -> str | None:
+    result = run(
+        ["git", "-C", str(repo_dir), "remote", "get-url", "origin"],
+        capture=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return None
+    match = re.fullmatch(
+        r"(?:(?:https?|ssh|git)://)?(?:[^@/]+@)?github\.com[:/]+([^/]+)/(.+?)(?:\.git)?/?",
+        result.stdout.strip(),
+    )
+    if not match:
+        return None
+    owner, repo = match.groups()
+    return f"{owner.lower()}/{repo.lower()}"
 
 
 def create_worktree(repo_dir: Path, pr: PullRequest, ref: str) -> Path:
