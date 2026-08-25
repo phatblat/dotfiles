@@ -8,7 +8,6 @@
     "claude-md-management@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": false,
-    "context-mode@context-mode": true,
     "csharp-lsp@claude-plugins-official": false,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
@@ -45,12 +44,6 @@
     "claude-hud": {
       "source": {
         "repo": "jarrodwatts/claude-hud",
-        "source": "github"
-      }
-    },
-    "context-mode": {
-      "source": {
-        "repo": "mksglu/context-mode",
         "source": "github"
       }
     },
@@ -225,15 +218,6 @@
           {
             "command": "bash ~/.claude/hooks/scripts/timed.sh agent-flow-guard SessionStart 'bash ~/.claude/agent-flow/agent-flow-guard.sh'",
             "timeout": 4,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/hooks/scripts/timed.sh context-mode-cache-heal SessionStart 'bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/context-mode-cache-heal.mjs'",
-            "timeout": 5,
             "type": "command"
           }
         ]
