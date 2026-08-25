@@ -1,0 +1,30 @@
+{
+  "altScreenMode": "always",
+  "colorScheme": "colorblind-friendly dark",
+  "enableTelemetry": false,
+  "enableTerminalSandbox": true,
+  "model": "Gemini 3.6 Flash (High)",
+  "permissions": {
+    "allow": [
+      "unsandboxed(git status)",
+      "unsandboxed(just lint)",
+      "unsandboxed(git add)",
+      "unsandboxed(git diff)",
+      "unsandboxed(git commit)",
+      "unsandboxed(git check-ignore)",
+      "unsandboxed(git show)",
+      "unsandboxed(~/scripts/sort-gitignore)",
+      "unsandboxed(mv)"
+    ]
+  },
+  "showFeedbackSurvey": false,
+  "statusLine": {
+    "type": "",
+    "command": "",
+    "enabled": true
+  },
+  "toolPermission": "proceed-in-sandbox",
+  "trustedWorkspaces": [
+    "/Users/phatblat"
+  ]
+}
