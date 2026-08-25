@@ -37,7 +37,7 @@
 "npm:@getpaseo/cli" = "0.5.2"
 "npm:@googleworkspace/cli" = "0.22.5"
 "npm:@openai/codex" = "0.149.1"
-"npm:@sentry/wizard" = "7.0.2"
+"npm:@sentry/wizard" = "7.0.3"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.6.0"
 "npm:ccusage" = "20.0.20"
