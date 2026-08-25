@@ -43,6 +43,12 @@
   "edit.yank": [
     "ctrl+y"
   ],
+  "item.delete": [
+    "f4"
+  ],
+  "item.rename": [
+    "f2"
+  ],
   "navigation.down": [
     "down"
   ],
@@ -102,5 +108,8 @@
   "vim.normal.submit": [
     "ctrl+enter",
     "ctrl+s"
+  ],
+  "voice.start_dictation": [
+    "f5"
   ]
 }
