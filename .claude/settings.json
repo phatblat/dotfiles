@@ -23,7 +23,8 @@
     "superpowers@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": true
+    "warp@claude-code-warp": true,
+    "context-mode@context-mode": true
   },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "90000",
@@ -215,6 +216,14 @@
             "command": "bash ~/.claude/hooks/scripts/timed.sh agent-flow-guard SessionStart 'bash ~/.claude/agent-flow/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/phatblat/.claude/hooks/context-mode-cache-heal.mjs\""
           }
         ]
       }
