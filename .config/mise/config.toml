@@ -22,7 +22,7 @@
 "cargo:tauri-cli" = "2.11.4"
 "cargo:wasm-bindgen-cli" = "0.2.127"
 "cargo:wasm-pack" = "0.15.0"
-"github:can1357/oh-my-pi" = "18.0.4"
+"github:can1357/oh-my-pi" = "18.0.5"
 "github:cirruslabs/softnet" = "0.23.0"
 "github:DataDog/pup" = "1.13.0"
 "github:Dicklesworthstone/beads_rust" = "0.4.1"
