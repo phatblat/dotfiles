@@ -21,9 +21,9 @@ which rtk             # Verify correct binary
 
 ⚠️ **Name collision**: If `rtk gain` fails, you may have reachingforthejack/rtk (Rust Type Kit) installed instead.
 
-## Hook-Based Usage
+## Manual Usage Only
 
-All other commands are automatically rewritten by the Claude Code hook.
-Example: `git status` → `rtk git status` (transparent, 0 tokens overhead)
-
-Refer to CLAUDE.md for full command reference.
+The automatic Claude Code PreToolUse hook was removed (2026-08-25): it added a
+measured p95 latency spike to every Bash call and its optimization value did
+not offset that cost. Invoke `rtk <command>` directly for token-optimized
+wrapping of a specific command; other Bash commands run unmodified.
