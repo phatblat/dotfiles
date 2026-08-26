@@ -6,7 +6,7 @@
 # mise-managed tools, ordered alphabetically
 [tools]
 "aqua:anordal/shellharden" = "4.3.2"
-"aqua:cirruslabs/tart" = "2.35.0"
+"aqua:cirruslabs/tart" = "2.36.0"
 "aqua:dalance/procs" = "0.14.12"
 "aqua:dlvhdr/gh-dash" = "4.25.2"
 "aqua:openai/codex" = "0.149.1"
