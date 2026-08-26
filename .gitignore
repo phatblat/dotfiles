@@ -144,6 +144,7 @@
 !.codex/skills/test-driven-development/
 !.codex/skills/writing-plans/
 !.codex/skills/
+.codexbar/antigravity/
 .codexbar/claude-oauth-cache.lock
 .conche/
 .config/.todoist-linux.json
@@ -225,6 +226,7 @@
 .config/mise/plugins/
 .config/mise/shims/
 .config/mole/
+.config/morph/
 .config/nix/netrc
 .config/nushell/history.txt
 .config/op/
@@ -336,6 +338,7 @@
 .gemini/*
 .gemini/antigravity-cli/*
 !.gemini/antigravity-cli/keybindings.json
+!.gemini/antigravity-cli/settings.json
 !.gemini/antigravity-cli/
 .gemini/google_accounts.json
 .gemini/installation_id

@@ -60,6 +60,7 @@
       },
       "epitaxy-transcript-links-in-preview": false,
       "epitaxy-transcript-links-chooser-seen": true
-    }
+    },
+    "coworkBrowserToolsEnabled": false
   }
 }

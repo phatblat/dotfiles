@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/ios-clean/SKILL.md
+../gstack/ios-clean/SKILL.md

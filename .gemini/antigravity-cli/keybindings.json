@@ -2,6 +2,9 @@
   "cli.clear_screen": [
     "ctrl+l"
   ],
+  "cli.cycle_mode": [
+    "shift+tab"
+  ],
   "cli.enter": [
     "enter"
   ],
@@ -39,6 +42,12 @@
   ],
   "edit.yank": [
     "ctrl+y"
+  ],
+  "item.delete": [
+    "f4"
+  ],
+  "item.rename": [
+    "f2"
   ],
   "navigation.down": [
     "down"
@@ -85,5 +94,22 @@
   ],
   "view.toggle_trajectory": [
     "ctrl+o"
+  ],
+  "vim.insert.insert_newline": [
+    "alt+enter",
+    "ctrl+j",
+    "enter",
+    "shift+enter"
+  ],
+  "vim.insert.submit": [
+    "ctrl+enter",
+    "ctrl+s"
+  ],
+  "vim.normal.submit": [
+    "ctrl+enter",
+    "ctrl+s"
+  ],
+  "voice.start_dictation": [
+    "f5"
   ]
 }

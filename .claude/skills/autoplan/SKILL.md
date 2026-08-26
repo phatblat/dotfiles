@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/autoplan/SKILL.md
+../gstack/autoplan/SKILL.md

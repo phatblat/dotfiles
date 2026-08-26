@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/retro/SKILL.md
+../gstack/retro/SKILL.md

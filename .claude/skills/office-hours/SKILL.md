@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/office-hours/SKILL.md
+../gstack/office-hours/SKILL.md

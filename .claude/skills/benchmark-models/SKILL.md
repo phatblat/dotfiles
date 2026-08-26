@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/benchmark-models/SKILL.md
+../gstack/benchmark-models/SKILL.md

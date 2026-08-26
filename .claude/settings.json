@@ -2,27 +2,22 @@
   "agentPushNotifEnabled": true,
   "effortLevel": "xhigh",
   "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": false,
     "claude-code-setup@claude-plugins-official": false,
     "claude-hud@claude-hud": true,
     "claude-md-management@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": false,
     "context-mode@context-mode": true,
-    "csharp-lsp@claude-plugins-official": false,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": false,
     "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
-    "linear@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": true,
     "oh-my-claudecode@omc": true,
     "plugin-dev@claude-plugins-official": false,
     "pup@datadog-pup": false,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
-    "ruby-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": false,
@@ -46,12 +41,6 @@
     "claude-hud": {
       "source": {
         "repo": "jarrodwatts/claude-hud",
-        "source": "github"
-      }
-    },
-    "context-mode": {
-      "source": {
-        "repo": "mksglu/context-mode",
         "source": "github"
       }
     },
@@ -101,7 +90,7 @@
         "hooks": [
           {
             "command": "bash ~/.claude/hooks/scripts/auto-format.sh",
-            "timeout": 30,
+            "timeout": 5,
             "type": "command"
           }
         ],
@@ -162,7 +151,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/hooks/scripts/bash-guard.sh",
+            "command": "bash ~/.claude/hooks/scripts/timed.sh bash-guard PreToolUse:Bash 'bash ~/.claude/hooks/scripts/bash-guard.sh'",
             "timeout": 3,
             "type": "command"
           }
@@ -172,17 +161,7 @@
       {
         "hooks": [
           {
-            "command": "rtk hook claude",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/hooks/scripts/pre-commit-format.sh",
+            "command": "bash ~/.claude/hooks/scripts/timed.sh pre-commit-format PreToolUse:Bash 'bash ~/.claude/hooks/scripts/pre-commit-format.sh'",
             "if": "Bash(git commit*)",
             "timeout": 60,
             "type": "command"
@@ -193,7 +172,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash ~/.claude/hooks/scripts/timed.sh agent-flow-guard PreToolUse:all 'bash ~/.claude/agent-flow/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }
@@ -234,7 +213,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
+            "command": "bash ~/.claude/hooks/scripts/timed.sh agent-flow-guard SessionStart 'bash ~/.claude/agent-flow/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"
           }
@@ -243,8 +222,7 @@
       {
         "hooks": [
           {
-            "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/context-mode-cache-heal.mjs",
-            "timeout": 5,
+            "command": "\"/Users/phatblat/.claude/hooks/context-mode-cache-heal.mjs\"",
             "type": "command"
           }
         ]
@@ -387,7 +365,6 @@
       "Bash(brew outdated*)",
       "Bash(brew upgrade*)",
       "Bash(uv tool upgrade*)",
-      "Bash(rtk *)",
       "Bash(ctx7 *)",
       "Bash(date *)",
       "Bash(echo *)",

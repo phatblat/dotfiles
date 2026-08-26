@@ -31,6 +31,17 @@ setup() {
   mkdir -p "$fake_home"
 }
 
+# Turns fake_home into a minimal git repo so repo_root == $HOME for the
+# dotfiles-worktree guard tests below.
+init_dotfiles_home() {
+  git init -q "$fake_home"
+  git -C "$fake_home" config user.email test@example.com
+  git -C "$fake_home" config user.name Test
+  printf 'home\n' > "$fake_home/README"
+  git -C "$fake_home" add README
+  git -C "$fake_home" commit -qm home
+}
+
 @test "zsh wt fetches and tracks a newly available remote branch" {
   run env HOME="$fake_home" zsh -c '
     fpath=("${1:h}" $fpath)
@@ -134,4 +145,114 @@ setup() {
 
   [ "$status" -eq 0 ]
 
+}
+
+@test "zsh wt refuses a plain invocation inside the dotfiles repo" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+
+  run env HOME="$fake_home" zsh -c '
+    fpath=("${1:h}" $fpath)
+    autoload -Uz wt
+    z() { builtin cd "$1"; }
+    cd "$2"
+    wt "$3"
+  ' zsh "$ZSH_WT" "$fake_home" "$dotfiles_branch"
+
+  [ "$status" -ne 0 ]
+  [[ "$output" == *"--dotfiles"* ]]
+}
+
+@test "nushell wt refuses a plain invocation inside the dotfiles repo" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+
+  run env HOME="$fake_home" nu -c "source '$NU_WT'; cd '$fake_home'; wt '$dotfiles_branch'"
+
+  [ "$status" -ne 0 ]
+  [[ "$output" == *"--dotfiles"* ]]
+}
+
+@test "zsh wt --dotfiles creates a registered worktree inside the dotfiles repo" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+
+  run env HOME="$fake_home" zsh -c '
+    fpath=("${1:h}" $fpath)
+    autoload -Uz wt
+    z() { builtin cd "$1"; }
+    cd "$2"
+    wt --dotfiles "$3"
+  ' zsh "$ZSH_WT" "$fake_home" "$dotfiles_branch"
+
+  [ "$status" -eq 0 ]
+  resolved_home=$(cd "$fake_home" && pwd -P)
+  run git -C "$fake_home" worktree list --porcelain
+  [[ "$output" == *"worktree $resolved_home/.worktrees/dotfiles/$dotfiles_branch"* ]]
+}
+
+@test "nushell wt --dotfiles creates a registered worktree inside the dotfiles repo" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+
+  run env HOME="$fake_home" nu -c "source '$NU_WT'; cd '$fake_home'; wt --dotfiles '$dotfiles_branch'"
+
+  [ "$status" -eq 0 ]
+  resolved_home=$(cd "$fake_home" && pwd -P)
+  run git -C "$fake_home" worktree list --porcelain
+  [[ "$output" == *"worktree $resolved_home/.worktrees/dotfiles/$dotfiles_branch"* ]]
+}
+
+@test "zsh wt --dotfiles errors when \$HOME is not a git repository" {
+  dotfiles_branch="dotfiles-branch"
+
+  run env HOME="$fake_home" zsh -c '
+    fpath=("${1:h}" $fpath)
+    autoload -Uz wt
+    z() { builtin cd "$1"; }
+    cd "$2"
+    wt --dotfiles "$3"
+  ' zsh "$ZSH_WT" "$BATS_TEST_TMPDIR" "$dotfiles_branch"
+
+  [ "$status" -ne 0 ]
+}
+
+@test "nushell wt --dotfiles errors when \$HOME is not a git repository" {
+  dotfiles_branch="dotfiles-branch"
+
+  run env HOME="$fake_home" nu -c "source '$NU_WT'; cd '$BATS_TEST_TMPDIR'; wt --dotfiles '$dotfiles_branch'"
+
+  [ "$status" -ne 0 ]
+}
+
+@test "zsh wt --dotfiles refuses a non-empty unregistered worktree path" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+  wt_path="$fake_home/.worktrees/dotfiles/$dotfiles_branch"
+  mkdir -p "$wt_path"
+  echo not-a-worktree > "$wt_path/marker"
+
+  run env HOME="$fake_home" zsh -c '
+    fpath=("${1:h}" $fpath)
+    autoload -Uz wt
+    z() { builtin cd "$1"; }
+    cd "$2"
+    wt --dotfiles "$3"
+  ' zsh "$ZSH_WT" "$fake_home" "$dotfiles_branch"
+
+  [ "$status" -ne 0 ]
+  [ -f "$wt_path/marker" ]
+}
+
+@test "nushell wt --dotfiles refuses a non-empty unregistered worktree path" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+  wt_path="$fake_home/.worktrees/dotfiles/$dotfiles_branch"
+  mkdir -p "$wt_path"
+  echo not-a-worktree > "$wt_path/marker"
+
+  run env HOME="$fake_home" nu -c "source '$NU_WT'; cd '$fake_home'; wt --dotfiles '$dotfiles_branch'"
+
+  [ "$status" -ne 0 ]
+  [ -f "$wt_path/marker" ]
 }

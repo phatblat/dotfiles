@@ -3,60 +3,187 @@
 # wt - Navigate to or create git worktrees
 #   no args: fzf-select existing worktree
 #   <branch>: navigate to existing worktree for branch, or create one
+#   --dotfiles: opt in to worktrees for the dotfiles repo ($HOME), from any cwd
+#   --test: like --dotfiles, then run `just check` against the worktree instead of entering it
+#   --shell: like --dotfiles, then open an isolated interactive shell inside the worktree
+
+# Warns to stderr, once per differing file, when a config file that tools
+# discover by walking up from cwd differs between $wt_path and the real
+# $HOME. Silent when the files match, since that is the common case.
+_wt_ancestor_warn() {
+    local wt="$1" f
+    for f in .config/mise/config.toml .editorconfig .envrc; do
+        [[ -e "$HOME/$f" && -e "$wt/$f" ]] || continue
+        cmp -s "$HOME/$f" "$wt/$f" && continue
+        echo "warning: $f differs between this worktree and \$HOME;" >&2
+        echo "         tools that search parent directories may use the \$HOME copy." >&2
+    done
+}
+
+local dotfiles_ok=0 do_test=0 do_shell=0
+local -a args
+local had_args=0
+(($#)) && had_args=1
+
+while (($#)); do
+    case "$1" in
+    --dotfiles) dotfiles_ok=1 ;;
+    --test)
+        do_test=1
+        dotfiles_ok=1
+        ;;
+    --shell)
+        do_shell=1
+        dotfiles_ok=1
+        ;;
+    --)
+        shift
+        args+=("$@")
+        break
+        ;;
+    -*)
+        echo "wt: unknown option: $1" >&2
+        return 1
+        ;;
+    *) args+=("$1") ;;
+    esac
+    shift
+done
+
+if ((do_test && do_shell)); then
+    echo "wt: --test and --shell cannot be combined" >&2
+    return 1
+fi
+
+local branch="${args[1]}"
+
+# Resolve the target repo: $HOME when opted in (regardless of cwd), else
+# whatever repo cwd is inside. Compared and built against the symlink-
+# resolved form of $HOME, since `git rev-parse` and `git worktree list`
+# always report resolved paths (macOS puts $TMPDIR under /var, itself a
+# symlink to /private/var, so an unresolved comparison silently never
+# matches there even though it does on an unsymlinked real $HOME).
+local home_real
+home_real=$(cd "$HOME" 2> /dev/null && pwd -P) || home_real="$HOME"
+
+local repo_root
+if ((dotfiles_ok)); then
+    if ! git -C "$home_real" rev-parse --git-dir &> /dev/null; then
+        echo "wt: \$HOME is not a git repository" >&2
+        return 1
+    fi
+    repo_root="$home_real"
+else
+    repo_root=$(git rev-parse --path-format=absolute --git-common-dir)
+    repo_root=${repo_root%/.git}
+fi
 
 # Remove administrative entries for worktrees whose directories were deleted.
-git worktree prune
+git -C "$repo_root" worktree prune
 
-if [[ $# -eq 0 ]]; then
+if ((!had_args)); then
     local dir
-    dir=$(git worktree list | fzf | awk '{print $1}')
+    dir=$(git -C "$repo_root" worktree list | fzf | awk '{print $1}')
     [[ -n "$dir" ]] && z "$dir"
     return
 fi
 
-local branch="$1"
+if [[ -z "$branch" ]]; then
+    echo "wt: branch name required" >&2
+    return 1
+fi
 
-local existing
-existing=$(git worktree list --porcelain | awk -v b="$branch" '
+local wt_path
+wt_path=$(git -C "$repo_root" worktree list --porcelain | awk -v b="$branch" '
   /^worktree /{ wt=$2 }
   /^branch refs\/heads\//{ if ($2 == "refs/heads/" b) print wt }
 ')
 
-if [[ -n "$existing" ]]; then
-    z "$existing"
+if [[ -z "$wt_path" ]]; then
+    # No worktree registered for this branch yet — may need to create one.
+
+    # Dotfiles repo guard
+    if [[ "$repo_root" == "$home_real" && $dotfiles_ok -eq 0 ]]; then
+        echo "Error: dotfiles worktrees need an explicit opt-in" >&2
+        echo "  Interactive shell startup (.zshenv/.zshrc and the functions" >&2
+        echo "  autoloaded from .config/zsh/functions) is only exercised from" >&2
+        echo "  the real \$HOME, so startup changes still need a branch switch." >&2
+        echo "  Everything the harness covers is verifiable in a worktree:" >&2
+        echo "    wt --dotfiles $branch   create/enter    wt --test $branch   verify" >&2
+        return 1
+    fi
+
+    # Build worktree path: ~/.worktrees/<path-key>/<branch>
+    local path_key
+    if [[ "$repo_root" == "$home_real" ]]; then
+        path_key=dotfiles
+        wt_path="${DOTFILES_WT_ROOT:-$home_real/.worktrees/dotfiles}/${branch}"
+    else
+        path_key=${repo_root#"$home_real"/}
+        path_key=${path_key//\//-}
+        wt_path="$home_real/.worktrees/${path_key}/${branch}"
+    fi
+
+    local is_registered=0
+    git -C "$repo_root" worktree list --porcelain | grep -qxF "worktree $wt_path" && is_registered=1
+
+    if ((!is_registered)); then
+        if [[ -e "$wt_path" ]]; then
+            if [[ -d "$wt_path" ]] && [[ -z "$(ls -A "$wt_path" 2> /dev/null)" ]]; then
+                rmdir "$wt_path"
+            else
+                echo "Error: $wt_path exists and is not a registered worktree" >&2
+                return 1
+            fi
+        fi
+
+        # Refresh origin so a branch pushed after the last fetch is discoverable.
+        if git -C "$repo_root" remote get-url origin &> /dev/null; then
+            git -C "$repo_root" fetch --prune origin || return
+        fi
+
+        if git -C "$repo_root" show-ref --quiet "refs/heads/$branch"; then
+            git -C "$repo_root" worktree add "$wt_path" "$branch" || return
+        elif git -C "$repo_root" show-ref --quiet "refs/remotes/origin/$branch"; then
+            git -C "$repo_root" worktree add --track -b "$branch" "$wt_path" "origin/$branch" || return
+        else
+            git -C "$repo_root" worktree add -b "$branch" "$wt_path" || return
+        fi
+    fi
+fi
+
+# From here $wt_path is set, whether pre-existing, reused, or freshly created.
+
+if ((do_test)); then
+    _wt_ancestor_warn "$wt_path"
+    # shellcheck disable=SC2016 # single quotes are intentional: $1 must expand inside the nested sh, not here
+    env HOME="$wt_path" \
+        MISE_DATA_DIR="$HOME/.local/share/mise" \
+        GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=commit.gpgsign GIT_CONFIG_VALUE_0=false \
+        sh -c 'cd "$1" && just check' sh "$wt_path"
     return
 fi
 
-# Dotfiles repo guard
-# Use git-common-dir to resolve the main repo root, not a worktree's toplevel
-local repo_root
-repo_root=$(git rev-parse --path-format=absolute --git-common-dir)
-repo_root=${repo_root%/.git}
-if [[ "$repo_root" == "$HOME" ]]; then
-    echo "Error: dotfiles repo must not use worktrees" >&2
-    return 1
+if [[ "$repo_root" == "$home_real" ]]; then
+    echo "── dotfiles worktree — not your live \$HOME ──" >&2
+    echo "  Nothing here is sourced by any running shell." >&2
+    echo "  Verify:  wt --test $branch" >&2
+    echo "  Startup semantics (.zshenv/.zshrc, .config/zsh/functions) still need a \$HOME branch switch." >&2
 fi
 
-# Build worktree path: ~/.worktrees/<path-key>/<branch>
-local path_key=${repo_root#"$HOME"/}
-path_key=${path_key//\//-}
-local wt_path="$HOME/.worktrees/${path_key}/${branch}"
-
-if [[ -d "$wt_path" ]]; then
-    echo "Worktree directory already exists at $wt_path — reusing it"
-    z "$wt_path"
+if ((do_shell)); then
+    _wt_ancestor_warn "$wt_path"
+    (
+        cd "$wt_path" && exec env -i \
+            HOME="$wt_path" \
+            TERM="$TERM" \
+            PATH="/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$HOME/.local/share/mise/shims" \
+            MISE_DATA_DIR="$HOME/.local/share/mise" \
+            GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=commit.gpgsign GIT_CONFIG_VALUE_0=false \
+            WT_SHELL_CHECKOUT="$wt_path" \
+            zsh -i
+    )
     return
 fi
 
-# Refresh origin so a branch pushed after the last fetch is discoverable.
-if git remote get-url origin &> /dev/null; then
-    git fetch --prune origin || return
-fi
-
-if git show-ref --quiet "refs/heads/$branch"; then
-    git worktree add "$wt_path" "$branch"
-elif git show-ref --quiet "refs/remotes/origin/$branch"; then
-    git worktree add --track -b "$branch" "$wt_path" "origin/$branch"
-else
-    git worktree add -b "$branch" "$wt_path"
-fi && z "$wt_path"
+z "$wt_path"

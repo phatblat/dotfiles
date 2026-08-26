@@ -975,12 +975,6 @@
     "claude": [
       {
         "enabled": false,
-        "id": "clangd-lsp@claude-plugins-official",
-        "marketplace": "claude-plugins-official",
-        "marketplace_source": null
-      },
-      {
-        "enabled": false,
         "id": "claude-code-setup@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -1013,12 +1007,6 @@
         "enabled": true,
         "id": "context-mode@context-mode",
         "marketplace": "context-mode",
-        "marketplace_source": "github:mksglu/context-mode"
-      },
-      {
-        "enabled": false,
-        "id": "csharp-lsp@claude-plugins-official",
-        "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
       {
@@ -1034,12 +1022,6 @@
         "marketplace_source": null
       },
       {
-        "enabled": false,
-        "id": "jdtls-lsp@claude-plugins-official",
-        "marketplace": "claude-plugins-official",
-        "marketplace_source": null
-      },
-      {
         "enabled": true,
         "id": "kotlin-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
@@ -1050,12 +1032,6 @@
         "id": "linear-cli@linear-cli",
         "marketplace": "linear-cli",
         "marketplace_source": "github:schpet/linear-cli"
-      },
-      {
-        "enabled": false,
-        "id": "linear@claude-plugins-official",
-        "marketplace": "claude-plugins-official",
-        "marketplace_source": null
       },
       {
         "enabled": true,
@@ -1090,12 +1066,6 @@
       {
         "enabled": false,
         "id": "ralph-loop@claude-plugins-official",
-        "marketplace": "claude-plugins-official",
-        "marketplace_source": null
-      },
-      {
-        "enabled": false,
-        "id": "ruby-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
@@ -1174,12 +1144,6 @@
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
       },
       {
-        "enabled": false,
-        "id": "context-mode@context-mode",
-        "marketplace": "context-mode",
-        "marketplace_source": null
-      },
-      {
         "enabled": true,
         "id": "csharp-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
@@ -1238,12 +1202,6 @@
         "id": "pr-review-toolkit@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
-      },
-      {
-        "enabled": true,
-        "id": "pr-review-toolkit@kyto64-codex-pr-review-toolkit-minimal",
-        "marketplace": "kyto64-codex-pr-review-toolkit-minimal",
-        "marketplace_source": "/Users/phatblat/dev/agents/codex/codex-pr-review-toolkit-minimal"
       },
       {
         "enabled": true,
@@ -1322,7 +1280,7 @@
       "pi-extension"
     ],
     "commands": 26,
-    "skills": 61
+    "skills": 63
   },
   "verified_date": "2026-06-27"
 }

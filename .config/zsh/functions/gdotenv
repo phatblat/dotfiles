@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+# gdotenv - Grep variable names from .env files found recursively
+local search_term="$1"
+local file key filtered
+local -a results=()
+
+while IFS= read -r file; do
+    while IFS= read -r key; do
+        results+=("${file#./}:${key}")
+    done < <(sed -nE 's/^[[:space:]]*(export[[:space:]]+)?([A-Za-z_][A-Za-z0-9_]*)[[:space:]]*=.*/\2/p' "$file")
+done < <(find . \
+    \( -name .git -o -name node_modules -o -name target -o -name vendor -o -name .venv -o -name dist -o -name build \) -prune \
+    -o -type f \( -name '.env' -o -name '.env.*' \) \
+    ! -name '.env.example' ! -name '.env.sample' ! -name '.env.template' -print)
+
+if ((${#results[@]} == 0)); then
+    print -u2 -- "gdotenv: no .env files with variables found"
+    return 1
+fi
+
+filtered="$(printf '%s\n' "${results[@]}" | awk -F: -v term="$search_term" 'term == "" || index(tolower($NF), tolower(term)) > 0')"
+
+if [[ -z "$filtered" ]]; then
+    print -u2 -- "gdotenv: no variables matching '${search_term}'"
+    return 1
+fi
+
+print -r -- "$filtered"

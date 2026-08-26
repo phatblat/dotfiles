@@ -9,6 +9,8 @@ NU_FUNCTION="$HOME/.config/nushell/autoload/review-pr.nu"
 setup() {
   export REVIEW_PR_GETDITTO_ROOT="$BATS_TEST_TMPDIR/getditto"
   export REVIEW_PR_WORKTREE_ROOT="$BATS_TEST_TMPDIR/worktrees"
+  export REVIEW_PR_CLONE_ROOT="$BATS_TEST_TMPDIR/github"
+  export REVIEW_PR_SEARCH_ROOTS="$BATS_TEST_TMPDIR/search"
   export REVIEW_PR_THREAD_WINDOW=5
   export PATH="$BATS_TEST_TMPDIR/bin:$PATH"
   export REVIEW_PR_COMMAND_LOG="$BATS_TEST_TMPDIR/commands.log"
@@ -23,6 +25,7 @@ setup() {
   export REVIEW_PR_REMOVE_FAIL=0
   export REVIEW_PR_HEAD_READS="$BATS_TEST_TMPDIR/head-reads"
   mkdir -p "$BATS_TEST_TMPDIR/bin"
+  mkdir -p "$BATS_TEST_TMPDIR/search"
 }
 
 write_stub() {
@@ -38,7 +41,7 @@ EOF
 
 write_review_stubs() {
   write_stub gh 'echo "gh $*" >> "$REVIEW_PR_COMMAND_LOG"
-if [[ "$1 $2 $3" == "repo clone getditto/widgets" ]]; then
+if [[ "$1 $2" == "repo clone" ]]; then
   mkdir -p "$4/.git"
 elif [[ "$1 $2" == "api graphql" ]]; then
   if [[ " $* " == *" after="* && -n "$REVIEW_PR_GRAPHQL_RESPONSE_2" ]]; then
@@ -69,6 +72,12 @@ elif [[ "$3" == "status" && "$4" == "--porcelain" ]]; then
   fi
 elif [[ "$3" == "worktree" && "$4" == "remove" && "$REVIEW_PR_REMOVE_FAIL" -eq 1 ]]; then
   exit 1
+elif [[ "$3" == "remote" && "$4" == "get-url" ]]; then
+  if [[ -f "$2/.git/origin-url" ]]; then
+    cat "$2/.git/origin-url"
+  else
+    exit 2
+  fi
 fi'
   write_stub omp 'printf "omp-arg:<%s>\n" "$@" >> "$REVIEW_PR_COMMAND_LOG"
 if [[ "$REVIEW_PR_OMP_INTERRUPT" -eq 1 ]]; then
@@ -78,13 +87,50 @@ fi
 exit "$REVIEW_PR_OMP_STATUS"'
 }
 
-@test "review-pr: rejects non-GetDitto pull request URLs" {
-  run "$SCRIPT" "https://github.com/example/widgets/pull/123"
+@test "review-pr: clones an unknown owner into the shared clone root" {
+  write_review_stubs
 
-  [ "$status" -eq 2 ]
-  [[ "$output" == *"Only getditto PRs are supported"* ]]
+  run "$SCRIPT" "https://github.com/anthropics/claude-code/pull/77"
+
+  [ "$status" -eq 0 ]
+  grep -q "gh repo clone anthropics/claude-code $REVIEW_PR_CLONE_ROOT/anthropics/claude-code" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "^omp-arg:</skill:review Review https://github.com/anthropics/claude-code/pull/77 against origin/release/4.0\." "$REVIEW_PR_COMMAND_LOG"
 }
 
+@test "review-pr: accepts owner/repo#number shorthand" {
+  write_review_stubs
+
+  run "$SCRIPT" "anthropics/claude-code#5"
+
+  [ "$status" -eq 0 ]
+  grep -q "gh repo clone anthropics/claude-code $REVIEW_PR_CLONE_ROOT/anthropics/claude-code" "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr: reuses an existing clone found under the search roots" {
+  write_review_stubs
+  local existing="$REVIEW_PR_SEARCH_ROOTS/topic/widgets"
+  mkdir -p "$existing/.git"
+  printf 'git@github.com:getditto/widgets.git\n' >"$existing/.git/origin-url"
+
+  run "$SCRIPT" "widgets#123"
+
+  [ "$status" -eq 0 ]
+  ! grep -q "gh repo clone" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "git -C $existing fetch origin pull/123/head" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "git -C $existing worktree add --detach" "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr: ignores a clone whose origin points elsewhere" {
+  write_review_stubs
+  local fork="$REVIEW_PR_SEARCH_ROOTS/topic/widgets"
+  mkdir -p "$fork/.git"
+  printf 'git@github.com:phatblat/widgets.git\n' >"$fork/.git/origin-url"
+
+  run "$SCRIPT" "widgets#123"
+
+  [ "$status" -eq 0 ]
+  grep -q "gh repo clone getditto/widgets $REVIEW_PR_GETDITTO_ROOT/widgets" "$REVIEW_PR_COMMAND_LOG"
+}
 
 @test "review-pr nushell function: forwards the PR reference" {
   local fake_home="$BATS_TEST_TMPDIR/home"
@@ -128,11 +174,9 @@ EOF
   grep -q "omp-arg:<--cwd>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<--add-dir>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<$HOME/2ndBrain/daily-notes>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<--profile>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<casper>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<--model>" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "omp-arg:<casper/kimi-k3:max>" "$REVIEW_PR_COMMAND_LOG"
-  ! grep -q "omp-arg:<--thinking>" "$REVIEW_PR_COMMAND_LOG"
+  ! grep -q "omp-arg:<--model>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--thinking>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<high>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<--no-prewalk>" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "omp-arg:<-p>" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "omp-arg:<--print>" "$REVIEW_PR_COMMAND_LOG"

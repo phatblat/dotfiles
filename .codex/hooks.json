@@ -85,17 +85,6 @@
       {
         "hooks": [
           {
-            "command": "rtk hook claude",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash",
-        "name": "RTK Token Optimizer"
-      },
-      {
-        "hooks": [
-          {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
             "timeout": 4,
             "type": "command"

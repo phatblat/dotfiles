@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/skillify/SKILL.md
+../gstack/skillify/SKILL.md

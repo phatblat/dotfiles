@@ -1,1 +1,1 @@
-/Users/phatblat/.claude/skills/gstack/context-restore/SKILL.md
+../gstack/context-restore/SKILL.md

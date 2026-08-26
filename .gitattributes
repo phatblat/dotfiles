@@ -33,3 +33,11 @@
 # `just git-filters`. Filter script: ~/scripts/normalize-yaml-ws.sh
 .omp/agent/config.yml filter=yaml-normalize
 .omp/profiles/*/agent/config.yml filter=yaml-normalize
+
+# `trustedWorkspaces` in ~/.gemini/antigravity-cli/settings.json records a
+# per-machine trust decision (absolute paths approved to bypass Antigravity's
+# sandbox). The `antigravity-settings` clean filter strips that field from the
+# committed blob so the trust grant is never replicated to another machine;
+# the on-disk file Antigravity reads is never touched. Install the filter
+# with `just git-filters`. Filter script: ~/scripts/mask-antigravity.sh
+.gemini/antigravity-cli/settings.json filter=antigravity-settings
