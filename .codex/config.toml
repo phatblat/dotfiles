@@ -395,6 +395,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/agents/agentic-code-review"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
+trust_level = "trusted"
+
 [projects."/Users/phatblat/dev/agents/ground-control"]
 trust_level = "trusted"
 
