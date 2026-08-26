@@ -149,9 +149,7 @@ def fallback_repo_dir(pr: PullRequest) -> Path:
             os.environ.get("REVIEW_PR_GETDITTO_ROOT", GETDITTO_CLONE_ROOT)
         ).expanduser()
         return root / pr.repo
-    root = Path(
-        os.environ.get("REVIEW_PR_CLONE_ROOT", DEFAULT_CLONE_ROOT)
-    ).expanduser()
+    root = Path(os.environ.get("REVIEW_PR_CLONE_ROOT", DEFAULT_CLONE_ROOT)).expanduser()
     return root / pr.owner / pr.repo
 
 
@@ -358,8 +356,6 @@ def run_omp_review(
     run(
         [
             "omp",
-            "--profile",
-            "casper",
             "--cwd",
             str(worktree_dir),
             "--add-dir",
