@@ -1,5 +1,5 @@
 ---
-description: End-of-day — draft and post daily comments for tracked tickets missing a comment
+description: End-of-day — post daily comments for tracked tickets; return idle in-progress tickets to Todo
 model: sonnet
 allowed-tools:
   - Read
@@ -13,9 +13,9 @@ allowed-tools:
 category: workflow
 ---
 
-# End-of-Day Comments
+# End-of-Day Wrap
 
-Review today's tracked work items, draft Linear comments for tickets that haven't been commented on today, present for approval, and post. Takes no arguments.
+Review today's tracked work items, draft Linear comments for tickets that haven't been commented on today, present for approval, and post. In-progress tickets with no meaningful logged activity today are returned to Todo with a comment stating so. Takes no arguments.
 
 ## Step 1: Read Today's Note
 
@@ -44,7 +44,14 @@ If no items need comments, report "All tracked tickets already have today's comm
 
 ## Step 3: Draft Comments
 
-For each item needing a comment, draft a Linear comment from the activity log. Format:
+Classify each collected item (has `ticket::`, `commented:: false`) into exactly one bucket:
+
+- **Idle candidate**: the note's `status::` is `in-progress` AND you judge the day's timestamped bullets contain no meaningful progress — an empty log or only trivial entries like a lone "Picked up ticket" count as idle; substantive work notes do not. When unsure, the item is NOT idle.
+- **Regular**: everything else → draft a daily-update comment (below).
+
+### Regular items
+
+Draft a Linear comment from the activity log. Format:
 
 ```markdown
 **Daily update — YYYY-MM-DD**
@@ -68,14 +75,36 @@ Status: <status>
 Tracked today, no specific updates logged.
 ```
 
+### Idle candidates
+
+Verify the real Linear state before final classification:
+
+```bash
+linear issue view <TICKET-ID> -j --no-comments --no-pager
+```
+
+The JSON contains `state.name` / `state.type` (started issues show `"name": "In Progress"`, `"type": "started"`).
+
+- If `state.type` is `started` → confirmed revert. Draft this comment instead of a daily update:
+
+  ```markdown
+  **Daily update — YYYY-MM-DD**
+
+  No meaningful activity logged today — returning this ticket to Todo.
+  ```
+
+- If the ticket is no longer started (user already moved it) → treat as regular: draft a normal/minimal daily comment, no state change.
+
 ## Step 4: Present for Approval
 
-Show ALL draft comments together, clearly labeled:
+Show ALL drafts together in two labeled groups — **Daily updates** (existing per-ticket format) and **Return to Todo** (each entry shows ticket ID, title, the state change `In Progress → Todo`, and the comment body):
 
 ```
 ## Draft Linear Comments
 
-### DXO-71 — fix(sdk-release): replace unreliable !failure()
+### Daily updates
+
+#### DXO-71 — fix(sdk-release): replace unreliable !failure()
 
 > **Daily update — 2026-05-29**
 >
@@ -85,7 +114,7 @@ Show ALL draft comments together, clearly labeled:
 > - Kicked off test release
 > - Test release passed, moving to review
 
-### DEVX-943 — Decommission 6 older macOS CI runners
+#### DEVX-943 — Decommission 6 older macOS CI runners
 
 > **Daily update — 2026-05-29**
 >
@@ -93,21 +122,36 @@ Show ALL draft comments together, clearly labeled:
 >
 > - Removed atl-mac03 from runner group
 > - PR approved, merged
+
+### Return to Todo
+
+#### DXO-88 — Title here
+
+State change: In Progress → Todo
+
+> **Daily update — 2026-05-29**
+>
+> No meaningful activity logged today — returning this ticket to Todo.
 ```
 
 Then ask the user using `AskUserQuestion`:
 
 - "Post these comments to Linear?" with options:
-  - **Post all** — post every draft as-is
+  - **Post all** — post every draft as-is (return items get comment + state change)
   - **Review individually** — step through each one for edit/skip/post
   - **Skip all** — don't post any; just mark as reviewed
 
 ### If "Review individually":
 
-For each draft, ask:
+For each daily-update draft, ask:
 - **Post** — post as-is
 - **Edit** — user provides revised text, then post that
 - **Skip** — don't post this one (leave `commented:: false`)
+
+For each return-to-Todo item, ask:
+- **Post** — post the comment, then change the state to Todo
+- **Edit** — user provides revised comment text, then post the comment + change the state
+- **Skip** — no comment, no state change (`commented::` stays `false`, `status::` untouched)
 
 ## Step 5: Post Comments
 
@@ -140,19 +184,43 @@ Edit: commented:: false → commented:: true
 
 Scope the edit to the specific item's section to avoid updating other items.
 
+### Return-to-Todo items
+
+For each approved return item, post the comment first, then change the state:
+
+```bash
+cat > /tmp/linear-comment-<TICKET-ID>.md << 'EOF'
+<comment body from Step 3>
+EOF
+linear issue comment add <TICKET-ID> --body-file /tmp/linear-comment-<TICKET-ID>.md
+linear issue update <TICKET-ID> --state unstarted
+```
+
+`--state unstarted` uses the state *type* (`-s, --state` accepts the workflow state by name or type), so it works regardless of the team's unstarted state names.
+
+Daily-note updates per returned item, scoped to that item's section:
+- After the comment post succeeds: `commented:: false` → `commented:: true`.
+- After the state change succeeds: `status:: in-progress` → `status:: todo`.
+- If the comment posts but the state change fails: report the error for that ticket, set `commented:: true`, do NOT edit `status::` (the note must keep matching real Linear state).
+
 ## Step 6: Report
 
 ```
-## EOD Comments Posted
+## End of Day Complete
 
 Posted: 2
   ✓ DXO-71 — fix(sdk-release): replace unreliable !failure()
   ✓ DEVX-943 — Decommission 6 older macOS CI runners
 
+Returned to Todo: 1
+  ↩ DXO-88 — Title here (no meaningful activity today)
+
 Skipped: 0
 
 All tracked tickets have today's comment.
 ```
+
+Omit the "Returned to Todo" section when nothing was returned.
 
 If any were skipped:
 
@@ -171,7 +239,10 @@ Skipped: 1
 | No items with `commented:: false` | Report "All done" and exit |
 | PR-only items (no `ticket::` field) | Skip — can't post to Linear without a ticket |
 | Linear API error on post | Report error for that ticket; continue with others |
-| Empty activity log | Post minimal "Tracked today, no specific updates" comment |
+| Empty activity log + `status:: in-progress` | Idle candidate (Step 3) — verify Linear state before classifying |
+| Empty activity log + any other status | Post minimal "Tracked today, no specific updates" comment |
+| Note says in-progress but Linear state is no longer started | Normal/minimal comment, no state change |
+| `linear issue update` fails | Report error for that ticket, set `commented:: true`, leave `status::` unchanged; continue with others |
 | Item status is `done` | Still post the comment (important to close the loop) |
 | User edits a draft | Use the edited text verbatim |
 | Run twice same day | Second run finds all `commented:: true`; reports "All done" |
