@@ -30,7 +30,11 @@
 
   cat >"$bindir/mise" <<'EOF'
 #!/usr/bin/env bash
-if [[ "$*" == "outdated --bump --json" ]]; then
+if [[ "$1" == "config" && "$2" == "get" && "$3" == "tools" ]]; then
+  printf '[%s]\n' "cargo:https://example.test/wookie"
+  exit 0
+fi
+if [[ "$1" == "outdated" && "$2" == "--bump" && "$3" == "--json" ]]; then
   printf '%s\n' '{"cargo:https://example.test/wookie":{"current":"rev:abc","bump":null}}'
   exit 0
 fi
@@ -82,7 +86,11 @@ EOF
 
   cat >"$bindir/mise" <<'EOF'
 #!/usr/bin/env bash
-if [[ "$*" == "outdated --bump --json" ]]; then
+if [[ "$1" == "config" && "$2" == "get" && "$3" == "tools" ]]; then
+  printf '[%s]\n' "npm:example"
+  exit 0
+fi
+if [[ "$1" == "outdated" && "$2" == "--bump" && "$3" == "--json" ]]; then
   printf '%s\n' '{"npm:example":{"current":"1.0.0","bump":"1.1.0"}}'
   exit 0
 fi
@@ -230,7 +238,11 @@ EOF
 
   cat >"$bindir/mise" <<'EOF'
 #!/usr/bin/env bash
-if [[ "$*" == "outdated --bump --json" ]]; then
+if [[ "$1" == "config" && "$2" == "get" && "$3" == "tools" ]]; then
+  printf '[%s]\n' "npm:example"
+  exit 0
+fi
+if [[ "$1" == "outdated" && "$2" == "--bump" && "$3" == "--json" ]]; then
   printf '%s\n' '{"npm:example":{"current":"1.0.0","bump":"1.1.0"}}'
   exit 0
 fi
