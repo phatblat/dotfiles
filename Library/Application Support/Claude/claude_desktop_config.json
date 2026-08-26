@@ -5,7 +5,7 @@
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
-    "coworkBrowserToolsEnabled": true,
+    "coworkBrowserToolsEnabled": false,
     "launchPreviewPersistedWorkspaces": [],
     "launchPreviewSessionScopedSessions": [],
     "coworkScheduledTasksEnabled": true,
