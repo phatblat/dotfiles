@@ -5,6 +5,7 @@
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
+    "coworkBrowserToolsEnabled": true,
     "launchPreviewPersistedWorkspaces": [],
     "launchPreviewSessionScopedSessions": [],
     "coworkScheduledTasksEnabled": true,
@@ -60,7 +61,6 @@
       },
       "epitaxy-transcript-links-in-preview": false,
       "epitaxy-transcript-links-chooser-seen": true
-    },
-    "coworkBrowserToolsEnabled": false
+    }
   }
 }
