@@ -398,6 +398,7 @@ upgrade-mise:
 [group('configuration')]
 upgrade-omp:
     mise upgrade --bump github:can1357/oh-my-pi
+    bash -ic 'cmt .config/mise/config.toml'
 
 # Upgrades each outdated tool and commits the version change individually
 [group('configuration')]
