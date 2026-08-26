@@ -358,6 +358,8 @@ def run_omp_review(
     run(
         [
             "omp",
+            "--profile",
+            "casper",
             "--cwd",
             str(worktree_dir),
             "--add-dir",
