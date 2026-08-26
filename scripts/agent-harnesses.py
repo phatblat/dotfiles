@@ -1294,6 +1294,11 @@ sessions = true
 
 [marketplace]
 default_skills_installs_purged = true
+official_marketplace_auto_installed = true
+
+[[marketplace.sources]]
+name = "xAI Official"
+git = "https://github.com/xai-org/plugin-marketplace.git"
 """
 
 
