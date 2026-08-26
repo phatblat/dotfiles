@@ -7,7 +7,7 @@ modelRoles:
   plan: anthropic/claude-opus-5:xhigh
   slow: anthropic/claude-fable-5
   smol: anthropic/claude-haiku-4-5
-  default: anthropic/claude-sonnet-5
+  default: xai-oauth/grok-4.6
   vision: anthropic/claude-opus-5
 defaultThinkingLevel: auto
 dev:
