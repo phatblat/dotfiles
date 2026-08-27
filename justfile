@@ -520,6 +520,15 @@ omp-plugins-reinstall:
     bun install
     omp plugin doctor --fix
 
+# Updates omp plugins in bun.lock to their latest allowed version and syncs the plugin manifest
+[group('configuration')]
+omp-plugins-update:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd {{ justfile_directory() }}/.omp/plugins
+    bun update
+    omp plugin doctor --fix
+
 #
 # checks group recipes
 #
