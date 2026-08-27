@@ -93,7 +93,7 @@ The JSON contains `state.name` / `state.type` (started issues show `"name": "In 
   No meaningful activity logged today — returning this ticket to Todo.
   ```
 
-- If the ticket is no longer started (user already moved it) → treat as regular: draft a normal/minimal daily comment, no state change.
+- If the ticket is no longer started (user already moved it) → treat as regular: draft a normal/minimal daily comment using the verified Linear state, no state change, and update the note's `status::` field to match the verified state.
 
 ## Step 4: Present for Approval
 
@@ -182,6 +182,8 @@ After successful post, update the daily note:
 Edit: commented:: false → commented:: true
 ```
 
+For idle candidates that were no longer started (treated as regular per Step 3), also update the note's `status::` field to match the verified Linear state.
+
 Scope the edit to the specific item's section to avoid updating other items.
 
 ### Return-to-Todo items
@@ -242,6 +244,7 @@ Skipped: 1
 | Empty activity log + `status:: in-progress` | Idle candidate (Step 3) — verify Linear state before classifying |
 | Empty activity log + any other status | Post minimal "Tracked today, no specific updates" comment |
 | Note says in-progress but Linear state is no longer started | Normal/minimal comment, no state change |
+| `linear issue view` fails during idle verification | Report error, do not revert the item; treat as regular, continue |
 | `linear issue update` fails | Report error for that ticket, set `commented:: true`, leave `status::` unchanged; continue with others |
 | Item status is `done` | Still post the comment (important to close the loop) |
 | User edits a draft | Use the edited text verbatim |
