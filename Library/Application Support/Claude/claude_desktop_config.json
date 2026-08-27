@@ -5,7 +5,7 @@
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
-    "coworkBrowserToolsEnabled": false,
+    "coworkBrowserToolsEnabled": true,
     "launchPreviewPersistedWorkspaces": [],
     "launchPreviewSessionScopedSessions": [],
     "coworkScheduledTasksEnabled": true,
@@ -70,6 +70,7 @@
         },
         "version": 0
       }
-    }
+    },
+    "coworkPreferredBrowser": "built_in"
   }
 }
