@@ -540,11 +540,13 @@ doctor:
     brew doctor
     claude doctor
 
+# CI: lint.yml (lint job, via lint)
 # Checks .gitignore is correctly sorted with negation overrides intact
 [group('checks')]
 lint-gitignore:
     {{ justfile_directory() }}/scripts/sort-gitignore < {{ justfile_directory() }}/.gitignore | diff --brief - {{ justfile_directory() }}/.gitignore
 
+# CI: lint.yml (lint job, via lint)
 # Lints Python scripts with ruff
 [group('checks')]
 lint-python:
@@ -552,23 +554,27 @@ lint-python:
     ruff check {{ justfile_directory() }}/scripts/agent-harnesses.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/scripts/sort-tools.py {{ justfile_directory() }}/scripts/format-json.py {{ justfile_directory() }}/scripts/audit-package-managers.py {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ justfile_directory() }}/scripts/sort-codex-config.py {{ justfile_directory() }}/scripts/review-pr.py {{ justfile_directory() }}/scripts/sync-codex-casper-models.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
     ruff format --check {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
+# CI: lint.yml (lint job)
 # Type-checks Python scripts with ty (scope mirrors pyproject's basedpyright include)
 [group('checks')]
 typecheck-python:
     @echo "Type-checking Python scripts..."
     ty check {{ justfile_directory() }}/scripts {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
+# CI: lint.yml (lint job, via lint)
 # Checks Codex config formatting (alphabetized except native marketplace state order)
 [group('checks')]
 lint-toml:
     python3 {{ justfile_directory() }}/scripts/sort-codex-config.py --check {{ justfile_directory() }}/.codex/config.toml
 
+# CI: lint.yml (lint job, via lint)
 # Checks mise config formatting and [tools] sort order (mirrors format-mise)
 [group('checks')]
 lint-mise:
     mise fmt --check
     python3 {{ justfile_directory() }}/scripts/sort-tools.py --check
 
+# CI: lint.yml (lint job, via lint)
 # Checks all tracked JSON/JSONC config files are formatted (mirrors format-json)
 [group('checks')]
 lint-json:
@@ -597,6 +603,7 @@ lint-json:
         prettier --parser jsonc --check "${jsonc_files[@]}"
     fi
 
+# CI: lint.yml (lint job, via lint)
 # Lints all tracked YAML config files with yamllint and prettier
 [group('checks')]
 [script]
@@ -622,14 +629,16 @@ lint-yaml:
         prettier --check "${files[@]}"
     fi
 
+# CI: lint.yml (lint job, via lint-all)
+# Uses ksh dialect and excludes SC2168 (local in function body) since these are
+# zsh autoload files
 # Lints Zsh functions with shellcheck
-
-# Uses ksh dialect and excludes SC2168 (local in function body) since these are zsh autoload files
 [group('checks')]
 lint-zsh:
     @echo "Linting Zsh functions..."
     @find {{ justfile_directory() }}/.config/zsh/functions -type f -name '*' ! -name '.*' -exec shellcheck -s ksh -e SC2168 {} +
 
+# CI: lint.yml (lint job, via lint-all)
 # Validates Nushell scripts syntax
 [group('checks')]
 lint-nushell:
@@ -640,18 +649,21 @@ lint-nushell:
     # in one process (~0.3s); a broken autoload file otherwise exits 0.
     @nu --commands 'let bad = (ls {{ justfile_directory() }}/.config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'
 
+# CI: lint.yml (lint job, via lint-all)
 # Lints GitHub Actions shell scripts with shellcheck
 [group('checks')]
 lint-github-scripts:
     @echo "Linting GitHub Actions scripts..."
     @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shellcheck {} +
 
+# CI: lint.yml (lint job, via lint-all)
 # Lints bin scripts with shellcheck (excludes vendor scripts)
 [group('checks')]
 lint-bin:
     @echo "Linting bin scripts..."
     @find {{ justfile_directory() }}/bin -name '*.sh' ! -name 'dotnet-install.sh' -exec shellcheck {} +
 
+# CI: lint.yml (lint job, via lint)
 # Checks shell scripts are shfmt-formatted and shellharden-clean (mirrors format-shell)
 [group('checks')]
 lint-shell:
@@ -661,10 +673,11 @@ lint-shell:
     @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shfmt -ln bash -i 4 -sr -d {} +
     @find {{ justfile_directory() }}/.github/scripts -name '*.sh' -exec shellharden --check {} +
 
-# Checks tracked symlinks have relative targets when they resolve to tracked
-# repo content (absolute targets resolve into the real $HOME from inside a
-# worktree, returning whichever branch is checked out there instead of this
-# tree's own content)
+# CI: lint.yml (lint job, via lint)
+# Absolute targets resolve into the real $HOME from inside a worktree,
+# returning whichever branch is checked out there instead of this tree's own
+# content.
+# Checks tracked symlinks use relative targets for tracked repo content
 [group('checks')]
 lint-symlinks:
     #!/usr/bin/env bash
@@ -704,13 +717,16 @@ lint-symlinks:
 check-spelling:
     mise exec -- typos
 
+# CI: lint.yml (lint job, via lint)
 # Runs all linting checks
 [group('checks')]
 lint-all: lint-zsh lint-nushell lint-github-scripts lint-bin
     @echo "All linting complete"
 
-# Checks formatting/sort order for gitignore, python, toml, json, yaml, mise,
-# and shell; tracked symlink targets; plus every lint-all linter
+# CI: lint.yml (lint job)
+# Covers formatting/sort order for gitignore, python, toml, json, yaml, mise,
+# and shell; tracked symlink targets; plus every lint-all linter.
+# Runs every formatting and lint check
 [group('checks')]
 lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-shell lint-symlinks lint-all
     just --fmt --check
@@ -749,6 +765,7 @@ harness-audit:
 package-audit:
     python3 {{ justfile_directory() }}/scripts/audit-package-managers.py
 
+# CI: lint.yml (test job)
 # Runs bats tests in parallel; `just test abort` stops at the first failure
 [group('tests')]
 [script]
