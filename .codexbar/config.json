@@ -15,7 +15,7 @@
       "id": "gemini"
     },
     {
-      "enabled": false,
+      "enabled": true,
       "id": "cursor"
     },
     {
@@ -175,7 +175,7 @@
       "id": "bedrock"
     },
     {
-      "enabled": false,
+      "enabled": true,
       "id": "grok"
     },
     {
@@ -267,7 +267,7 @@
       "id": "fireworks"
     },
     {
-      "enabled": false,
+      "enabled": true,
       "id": "xai"
     },
     {

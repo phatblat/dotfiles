@@ -1034,6 +1034,12 @@
         "marketplace_source": "github:schpet/linear-cli"
       },
       {
+        "enabled": false,
+        "id": "linear@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
         "enabled": true,
         "id": "lua-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",

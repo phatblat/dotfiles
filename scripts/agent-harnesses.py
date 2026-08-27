@@ -104,8 +104,8 @@ sys.path.insert(0, str(SHARED / "hooks"))
 try:
     from safety import GuardDecision, evaluate  # type: ignore
 except ImportError as exc:  # pragma: no cover - only hit before installation
-    GuardDecision = None  # type: ignore
-    evaluate = None  # type: ignore
+    GuardDecision = None
+    evaluate = None
     SAFETY_IMPORT_ERROR = exc
 else:
     SAFETY_IMPORT_ERROR = None
@@ -478,7 +478,7 @@ def command_verify(*, harness: str | None = None) -> int:
 
 
 def command_guard(args: argparse.Namespace) -> int:
-    if SAFETY_IMPORT_ERROR is not None:
+    if evaluate is None or GuardDecision is None:
         print(
             json.dumps(
                 {
@@ -1294,6 +1294,11 @@ sessions = true
 
 [marketplace]
 default_skills_installs_purged = true
+official_marketplace_auto_installed = true
+
+[[marketplace.sources]]
+name = "xAI Official"
+git = "https://github.com/xai-org/plugin-marketplace.git"
 """
 
 

@@ -45,7 +45,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     "$HOME/.agents/skills/work-track/SKILL.md"
     "$HOME/.claude/commands/linear/plan.md"
     "$HOME/.claude/commands/linear/progress.md"
-    "$HOME/.claude/commands/work/eod.md"
+    "$HOME/.claude/commands/work/end-day.md"
     "$HOME/.claude/commands/work/start-day.md"
     "$HOME/.claude/commands/work/track-item.md"
   )

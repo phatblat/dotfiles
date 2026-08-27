@@ -5,6 +5,7 @@
     "quickEntryShortcut": {
       "accelerator": "Alt+Space"
     },
+    "coworkBrowserToolsEnabled": true,
     "launchPreviewPersistedWorkspaces": [],
     "launchPreviewSessionScopedSessions": [],
     "coworkScheduledTasksEnabled": true,
@@ -59,8 +60,17 @@
         "/Users/phatblat": "auto"
       },
       "epitaxy-transcript-links-in-preview": false,
-      "epitaxy-transcript-links-chooser-seen": true
+      "epitaxy-transcript-links-chooser-seen": true,
+      "epitaxy-split-suggestion": {
+        "state": {
+          "shownCount": 1,
+          "accepted": false,
+          "dismissCount": 0,
+          "lastDismissedAt": 0
+        },
+        "version": 0
+      }
     },
-    "coworkBrowserToolsEnabled": false
+    "coworkPreferredBrowser": "built_in"
   }
 }

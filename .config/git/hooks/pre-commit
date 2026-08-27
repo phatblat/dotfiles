@@ -12,6 +12,18 @@ set -e
 zsh_list=$(mktemp)
 bin_list=$(mktemp)
 trap 'rm -f "$zsh_list" "$bin_list"' EXIT
+# Guard: never commit a leaked test identity in the tracked git config.
+# The quickstart publish test suite writes "Test Suite <test-suite@example.com>"
+# via `git config --global`; if its HOME isolation is bypassed (XDG_CONFIG_HOME),
+# that lands in ~/.config/git/config and would be committed here.
+for cfg in .config/git/config .gitconfig; do
+    git diff --cached --name-only -- "$cfg" | grep -q . || continue
+    if git show ":$cfg" | grep -qE 'Test Suite|test-suite@example\.com'; then
+        echo "pre-commit: $cfg contains the test identity (Test Suite / test-suite@example.com)" >&2
+        echo "pre-commit: strip those lines or run: git checkout -- $cfg" >&2
+        exit 1
+    fi
+done
 
 git diff --cached --name-only -z --diff-filter=ACM | while IFS= read -r -d '' file; do
     case "$file" in

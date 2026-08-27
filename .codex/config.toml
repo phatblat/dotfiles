@@ -65,9 +65,8 @@ cwd = "."
 enabled = false
 
 [mcp_servers.node_repl]
-args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
-startup_timeout_sec = 120
+startup_timeout_sec = 120.0
 
 [mcp_servers.node_repl.env]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
@@ -86,15 +85,8 @@ NODE_REPL_TRUSTED_CODE_PATHS = "/Users/phatblat/.codex:/Applications/ChatGPT.app
 NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/phatblat/.codex/plugins/cache/openai-bundled/browser/26.820.60940/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/computer-use/Codex Computer Use.app"
 
-[mcp_servers.notion]
-url = "https://mcp.notion.com/mcp"
-
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
-
-[mcp_servers.orch]
-args = ["mcp", "serve"]
-command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
 
 [otel.exporter."otlp-http"]
 endpoint = "https://otlp.datadoghq.com/v1/logs"
@@ -393,6 +385,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/agentic-code-review"]
+trust_level = "trusted"
+
+[projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
 trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/ground-control"]

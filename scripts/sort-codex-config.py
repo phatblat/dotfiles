@@ -171,7 +171,10 @@ def sort_document(text: str) -> str:
     config: list[tuple[tuple[str, ...], str, list[str]]] = []
     state: list[tuple[tuple[str, ...], str, list[str]]] = []
     for head, raw_body in blocks:
-        path = _split_dotted(HEADER_RE.match(head).group("path"))
+        head_match = HEADER_RE.match(head)
+        if head_match is None:  # blocks only ever holds headers that matched
+            raise ValueError(f"unparsable table header: {head!r}")
+        path = _split_dotted(head_match.group("path"))
         normalized_path = tuple(p.lower() for p in path)
         key_order = (
             MARKETPLACE_KEY_ORDER if normalized_path[0] == "marketplaces" else None

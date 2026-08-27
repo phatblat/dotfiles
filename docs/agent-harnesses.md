@@ -35,6 +35,7 @@ Verified date: 2026-06-27
 | jdtls-lsp@claude-plugins-official | missing | enabled |
 | kotlin-lsp@claude-plugins-official | enabled | enabled |
 | linear-cli@linear-cli | enabled | enabled |
+| linear@claude-plugins-official | disabled | missing |
 | lua-lsp@claude-plugins-official | enabled | enabled |
 | oh-my-claudecode@omc | enabled | missing |
 | pdf@openai-primary-runtime | missing | enabled |

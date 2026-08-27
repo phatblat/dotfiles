@@ -137,7 +137,7 @@ commented:: false
 - `pr::` — Present if a PR exists. Omit if ticket-only (no PR yet). Format: `[#number](url)` or `[repo#number](url)` for non-primary repos.
 - `branch::` — The PR's head branch name in backticks. Extract from `headRefName` when fetching PR details. Omit if no PR exists.
 - `status::` — Lowercase Linear state: `in-progress`, `in-review`, `done`, `blocked`, `todo`, `backlog`, `triage`
-- `commented::` — Always starts as `false`. Updated by `/work:eod`.
+- `commented::` — Always starts as `false`. Updated by `/work:end-day`.
 
 **Formatting:** Write each property on its own line with NO trailing backslash and NO blank lines between properties. Tolaria's linter converts a trailing `\` (markdown hard break) into a blank line, which breaks the consecutive inline-field block. Each `key:: value` line is parsed as a separate property regardless of soft line breaks — do not add `\` or blank `\` separator lines. If you find existing sections with trailing backslashes, clean them while you're there.
 

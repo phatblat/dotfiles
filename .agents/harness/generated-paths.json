@@ -86,8 +86,8 @@
   "~/.agents/harness/adapters/antigravity/commands/session-save.md": {
     "source": "~/.claude/commands/session-save.md"
   },
-  "~/.agents/harness/adapters/antigravity/commands/work/eod.md": {
-    "source": "~/.claude/commands/work/eod.md"
+  "~/.agents/harness/adapters/antigravity/commands/work/end-day.md": {
+    "source": "~/.claude/commands/work/end-day.md"
   },
   "~/.agents/harness/adapters/antigravity/commands/work/runners.md": {
     "source": "~/.claude/commands/work/runners.md"
@@ -386,8 +386,8 @@
   "~/.agents/harness/adapters/cursor/commands/session-save.md": {
     "source": "~/.claude/commands/session-save.md"
   },
-  "~/.agents/harness/adapters/cursor/commands/work/eod.md": {
-    "source": "~/.claude/commands/work/eod.md"
+  "~/.agents/harness/adapters/cursor/commands/work/end-day.md": {
+    "source": "~/.claude/commands/work/end-day.md"
   },
   "~/.agents/harness/adapters/cursor/commands/work/runners.md": {
     "source": "~/.claude/commands/work/runners.md"
@@ -683,8 +683,8 @@
   "~/.agents/harness/commands/session-save.md": {
     "source": "~/.claude/commands/session-save.md"
   },
-  "~/.agents/harness/commands/work/eod.md": {
-    "source": "~/.claude/commands/work/eod.md"
+  "~/.agents/harness/commands/work/end-day.md": {
+    "source": "~/.claude/commands/work/end-day.md"
   },
   "~/.agents/harness/commands/work/runners.md": {
     "source": "~/.claude/commands/work/runners.md"
@@ -977,8 +977,8 @@
   "~/.config/opencode/commands/session-save.md": {
     "source": "~/.claude/commands/session-save.md"
   },
-  "~/.config/opencode/commands/work:eod.md": {
-    "source": "~/.claude/commands/work/eod.md"
+  "~/.config/opencode/commands/work:end-day.md": {
+    "source": "~/.claude/commands/work/end-day.md"
   },
   "~/.config/opencode/commands/work:runners.md": {
     "source": "~/.claude/commands/work/runners.md"
@@ -1217,8 +1217,8 @@
   "~/.pi/agent/prompts/session-save.md": {
     "source": "~/.claude/commands/session-save.md"
   },
-  "~/.pi/agent/prompts/work:eod.md": {
-    "source": "~/.claude/commands/work/eod.md"
+  "~/.pi/agent/prompts/work:end-day.md": {
+    "source": "~/.claude/commands/work/end-day.md"
   },
   "~/.pi/agent/prompts/work:runners.md": {
     "source": "~/.claude/commands/work/runners.md"

@@ -158,9 +158,9 @@
       "description": "Save current Claude session to 2ndBrain vault with frontmatter, executive brief, and full transcript",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/session-save.md with arguments: $ARGUMENTS"
     },
-    "work:eod": {
-      "description": "End-of-day \u2014 draft and post daily comments for tracked tickets missing a comment",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/eod.md with arguments: $ARGUMENTS"
+    "work:end-day": {
+      "description": "End-of-day \u2014 post daily comments for tracked tickets; return idle in-progress tickets to Todo",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/work/end-day.md with arguments: $ARGUMENTS"
     },
     "work:runners": {
       "description": "Check macOS GHA runner status for the getditto org",

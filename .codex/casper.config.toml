@@ -91,5 +91,8 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 [hooks.state."/Users/phatblat/.codex/hooks.json:stop:2:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
+[hooks.state."/Users/phatblat/dev/_GETDITTO/ditto/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
 [projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
 trust_level = "trusted"

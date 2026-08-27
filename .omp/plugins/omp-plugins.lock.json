@@ -19,11 +19,6 @@
       "enabled": true,
       "enabledFeatures": null,
       "version": "0.8.0"
-    },
-    "pi-experiences": {
-      "enabled": true,
-      "enabledFeatures": null,
-      "version": "0.1.61"
     }
   },
   "settings": {}
