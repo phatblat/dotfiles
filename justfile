@@ -715,9 +715,9 @@ lint-all: lint-zsh lint-nushell lint-github-scripts lint-bin
 lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-shell lint-symlinks lint-all
     just --fmt --check
 
-# Runs lint, harness parity checks, and test
+# Runs lint, type checks, harness parity checks, and test
 [group('checks')]
-check: lint check-spelling harness-check test
+check: lint typecheck-python check-spelling harness-check test
 
 # Generates shared/native agent harness parity artifacts
 [group('checks')]
