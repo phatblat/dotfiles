@@ -24,7 +24,7 @@
 "cargo:wasm-pack" = "0.15.0"
 "github:can1357/oh-my-pi" = "18.0.7"
 "github:cirruslabs/softnet" = "0.23.0"
-"github:DataDog/pup" = "1.13.0"
+"github:DataDog/pup" = "1.15.0"
 "github:Dicklesworthstone/beads_rust" = "0.4.1"
 "github:diggerhq/opencomputer" = "0.6.0.43"
 "github:dolthub/dolt" = "2.3.1"
