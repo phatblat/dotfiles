@@ -1157,7 +1157,7 @@ def aggregate_usage(observations: list[Obs]) -> list[dict[str, Any]]:
     groups: dict[tuple[str, str, str], list[Obs]] = {}
     for o in observations:
         groups.setdefault((o.harness, o.kind, o.name), []).append(o)
-    rows = []
+    rows: list[dict[str, Any]] = []
     for (harness, kind, name), items in groups.items():
         attempts = len(items)
         successes = sum(1 for i in items if i.ok is True)
@@ -1209,7 +1209,7 @@ def aggregate_hook_cost(observations: list[Obs]) -> list[dict[str, Any]]:
     for o in observations:
         if o.harness == "claude" and o.kind == "hook_run":
             groups.setdefault(o.name, []).append(o)
-    rows = []
+    rows: list[dict[str, Any]] = []
     for name, items in groups.items():
         durations = sorted(i.ms for i in items if i.ms is not None)
         p50 = statistics.median(durations) if durations else None
