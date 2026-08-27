@@ -353,19 +353,20 @@ def run_omp_review(
         f"{json.dumps(thread_payload, separators=(',', ':'))}. "
         "Present the report, then remain interactive for follow-up."
     )
-    run(
-        [
-            "omp",
-            "--cwd",
-            str(worktree_dir),
-            "--add-dir",
-            str(DAILY_NOTES_DIR),
-            "--thinking",
-            "high",
-            "--no-prewalk",
-            prompt,
-        ]
-    )
+    command = ["omp"]
+    if profile := omp_profile():
+        command += ["--profile", profile]
+    command += [
+        "--cwd",
+        str(worktree_dir),
+        "--add-dir",
+        str(DAILY_NOTES_DIR),
+        "--thinking",
+        "high",
+        "--no-prewalk",
+        prompt,
+    ]
+    run(command)
 
 
 def worktree_head(worktree_dir: Path) -> str:
@@ -386,6 +387,11 @@ def worktree_changed(worktree_dir: Path, initial_head: str) -> bool:
         capture=True,
     )
     return bool(status.stdout.strip()) or worktree_head(worktree_dir) != initial_head
+
+
+def omp_profile() -> str | None:
+    value = os.environ.get("REVIEW_PR_OMP_PROFILE", "").strip()
+    return value or None
 
 
 def thread_window() -> int:
