@@ -6,7 +6,7 @@ local file key filtered
 local -a results=()
 
 # shellcheck disable=SC2154
-if (( ! $+commands[fd] )); then
+if ((!$+commands[fd])); then
     print -u2 -- "gdotenv: fd not found on PATH (install via 'mise use -g fd')"
     return 1
 fi
@@ -40,7 +40,7 @@ while IFS= read -r file; do
     while IFS= read -r key; do
         results+=("${file#./}:${key}")
     done < <(sed -nE 's/^[[:space:]]*(export[[:space:]]+)?([A-Za-z_][A-Za-z0-9_]*)[[:space:]]*=.*/\2/p' "$file")
-done < <(fd --hidden --no-ignore --type f "${fd_excludes[@]}" '^\.env(\..+)?$' . 2>/dev/null)
+done < <(fd --hidden --no-ignore --type f "${fd_excludes[@]}" '^\.env(\..+)?$' . 2> /dev/null)
 
 if ((${#results[@]} == 0)); then
     print -u2 -- "gdotenv: no .env files with variables found"
