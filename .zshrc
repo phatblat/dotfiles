@@ -154,5 +154,7 @@ baseten() {
 }
 # <<< omp profile alias: baseten <<<
 
-# review-pr.py: use casper omp profile on this machine
-export REVIEW_PR_OMP_PROFILE=casper
+# Machine-local settings from untracked ~/.env via direnv's dotenv parser
+if command -v direnv &>/dev/null && [[ -f ~/.env ]]; then
+  eval "$(direnv dotenv zsh ~/.env)"
+fi
