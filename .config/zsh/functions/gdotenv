@@ -5,14 +5,42 @@ local search_term="$1"
 local file key filtered
 local -a results=()
 
+# shellcheck disable=SC2154
+if (( ! $+commands[fd] )); then
+    print -u2 -- "gdotenv: fd not found on PATH (install via 'mise use -g fd')"
+    return 1
+fi
+
+# Directories that never contain user dotenv files, pruned everywhere.
+local -a prune_names=(
+    .git node_modules target vendor .venv dist build
+    .gradle .cargo .rustup .konan .local .cache .puro
+    .dartServer .google-cloud-sdk .npm .bun
+)
+# Heavyweight top-level dirs in $HOME with zero .env yield (measured
+# 2026-08-28: Library, tool caches, media, cloud storage). Applied only
+# when scanning from the home directory itself, so e.g. a "Library"
+# subdir inside a project is still searched.
+local -a home_prune_names=(
+    Library go Pictures Music Movies Downloads Documents
+    OrbStack OneDrive Fastlane 2ndBrain 2ndBrain.obsidian
+    obsidian.test Applications Public
+)
+
+local -a fd_excludes=(
+    -E .env.example -E .env.sample -E .env.template
+)
+local p
+for p in "${prune_names[@]}"; do fd_excludes+=(-E "$p"); done
+if [[ "$PWD" -ef "$HOME" ]]; then
+    for p in "${home_prune_names[@]}"; do fd_excludes+=(-E "$p"); done
+fi
+
 while IFS= read -r file; do
     while IFS= read -r key; do
         results+=("${file#./}:${key}")
     done < <(sed -nE 's/^[[:space:]]*(export[[:space:]]+)?([A-Za-z_][A-Za-z0-9_]*)[[:space:]]*=.*/\2/p' "$file")
-done < <(find . \
-    \( -name .git -o -name node_modules -o -name target -o -name vendor -o -name .venv -o -name dist -o -name build \) -prune \
-    -o -type f \( -name '.env' -o -name '.env.*' \) \
-    ! -name '.env.example' ! -name '.env.sample' ! -name '.env.template' -print)
+done < <(fd --hidden --no-ignore --type f "${fd_excludes[@]}" '^\.env(\..+)?$' . 2>/dev/null)
 
 if ((${#results[@]} == 0)); then
     print -u2 -- "gdotenv: no .env files with variables found"

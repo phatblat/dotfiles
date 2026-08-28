@@ -228,3 +228,28 @@ _gdotenv_fixture() {
     [[ "$output" == *"no variables matching"* ]]
     rm -rf "$dir"
 }
+# --- home-scoped pruning (both shells) ---------------------------------
+
+@test "gdotenv (nu): pruned home dirs are skipped when run from HOME" {
+    local dir
+    dir="$(_gdotenv_fixture)"
+    mkdir -p "$dir/Library"
+    printf 'HOME_LIBRARY_KEY=1\n' >"$dir/Library/.env"
+    run nu --no-config-file -c "\$env.HOME = '$dir'; cd '$dir'; source '$NU_AUTOLOAD/gdotenv.nu'; gdotenv | get key | to text"
+    [ "$status" -eq 0 ]
+    [[ "$output" != *"HOME_LIBRARY_KEY"* ]]
+    [[ "$output" == *"FOO"* ]]
+    rm -rf "$dir"
+}
+
+@test "gdotenv (zsh): pruned home dirs are skipped when run from HOME" {
+    local dir
+    dir="$(_gdotenv_fixture)"
+    mkdir -p "$dir/Library"
+    printf 'HOME_LIBRARY_KEY=1\n' >"$dir/Library/.env"
+    run bash -c "cd '$dir' && HOME='$dir' zsh --no-rcs '$HOME/.config/zsh/functions/gdotenv'"
+    [ "$status" -eq 0 ]
+    [[ "$output" != *"HOME_LIBRARY_KEY"* ]]
+    [[ "$output" == *"FOO"* ]]
+    rm -rf "$dir"
+}
