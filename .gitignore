@@ -418,6 +418,7 @@
 .matplotlib/
 .mcp-auth/
 .mcreator/
+.mesh-llm/
 .minecraft/
 .mint/
 .mintlify/
