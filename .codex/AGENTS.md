@@ -13,8 +13,6 @@
 - Only change code directly related to current task
 - Prefer simple, maintainable solutions
 
-@RTK.md
-
 ## Concision
 
 ```
