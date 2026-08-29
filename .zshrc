@@ -1,4 +1,7 @@
-export XDG_CONFIG_HOME=$HOME/.config
+# Set the XDG path for this shell (compinit uses it) but never export it: an
+# exported absolute XDG_CONFIG_HOME defeats HOME-faking test isolation —
+# git resolves `config --global` through it and writes the REAL user config.
+typeset +x XDG_CONFIG_HOME=$HOME/.config
 
 # Source Nix profile
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
@@ -151,5 +154,7 @@ baseten() {
 }
 # <<< omp profile alias: baseten <<<
 
-# review-pr.py: use casper omp profile on this machine
-export REVIEW_PR_OMP_PROFILE=casper
+# Machine-local settings from untracked ~/.env via direnv's dotenv parser
+if command -v direnv &>/dev/null && [[ -f ~/.env ]]; then
+  eval "$(direnv dotenv zsh ~/.env)"
+fi

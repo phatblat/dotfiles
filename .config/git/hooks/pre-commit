@@ -25,6 +25,22 @@ for cfg in .config/git/config .gitconfig; do
     fi
 done
 
+# Normalize the mise config before it can be committed. `mise upgrade`/`mise
+# use` append/rewrite entries without preserving the alphabetical [tools]
+# order that `just lint-mise` enforces in CI, and that drift is invisible
+# locally unless HOME happens to point at this checkout (see PR #449).
+if git diff --cached --name-only -- .config/mise/config.toml | grep -q .; then
+    if ! command -v mise >/dev/null 2>&1; then
+        echo "pre-commit: mise not found — install with: https://mise.run" >&2
+        exit 1
+    fi
+    repo_root=$(git rev-parse --show-toplevel)
+    echo "pre-commit: formatting .config/mise/config.toml..."
+    HOME="$repo_root" mise fmt
+    HOME="$repo_root" python3 "$repo_root/scripts/sort-tools.py"
+    git add .config/mise/config.toml
+fi
+
 git diff --cached --name-only -z --diff-filter=ACM | while IFS= read -r -d '' file; do
     case "$file" in
         .config/zsh/functions/*) printf '%s\0' "$file" >> "$zsh_list" ;;

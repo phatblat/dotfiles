@@ -12,7 +12,7 @@ if ! command -v jq >/dev/null; then
 fi
 cmd="$(jq -r '.tool_input.command // ""' <<<"$input" || printf ''))"
 case "$cmd" in
-  *git*commit*) ;; # git commit / git -C repo commit / rtk git commit / git add … && git commit
+  *git*commit*) ;; # git commit / git -C repo commit / git add … && git commit
   *) exit 0 ;;
 esac
 # Only stages files that formatting actually changed — preserves partial staging.

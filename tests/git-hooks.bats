@@ -122,3 +122,34 @@ EOF
     
     rm -rf "$tmpdir"
 }
+
+# ---------------------------------------------------------------------------
+# pre-commit hook: mise config auto-format
+# ---------------------------------------------------------------------------
+
+@test "pre-commit: normalizes an unsorted mise [tools] block before committing" {
+    local tmpdir
+    tmpdir="$(setup_test_repo)"
+
+    mkdir -p "$tmpdir/scripts" "$tmpdir/.config/mise"
+    cp "$BATS_TEST_DIRNAME/../scripts/sort-tools.py" "$tmpdir/scripts/sort-tools.py"
+    cat > "$tmpdir/.config/mise/config.toml" << 'EOF'
+[tools]
+zoxide = "0.10.0"
+node = "26.8.1"
+oh-my-pi = "18.0.10"
+EOF
+
+    git -C "$tmpdir" add .config/mise/config.toml scripts/sort-tools.py
+
+    # Should succeed even though [tools] is unsorted going in -- the hook
+    # normalizes it before the commit lands.
+    run git -C "$tmpdir" commit -m "test commit"
+    [ "$status" -eq 0 ]
+
+    run git -C "$tmpdir" show HEAD:.config/mise/config.toml
+    [ "$status" -eq 0 ]
+    [ "$output" = $'[tools]\nnode = "26.8.1"\noh-my-pi = "18.0.10"\nzoxide = "0.10.0"' ]
+
+    rm -rf "$tmpdir"
+}

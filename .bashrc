@@ -130,6 +130,10 @@ export PATH="$HOME/scripts:$PATH"
 
 # Cargo & Rust
 source "$HOME/.cargo/env"
+# Machine-local settings from untracked ~/.env via direnv's dotenv parser
+if command -v direnv &>/dev/null && [[ -f ~/.env ]]; then
+  eval "$(direnv dotenv bash ~/.env)"
+fi
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -181,14 +185,18 @@ function cmt() {
     # directory path within the current git repo is treated as a path to
     # scope the auto-commit to (like the no-arg form, but restricted to that
     # path) rather than as a commit message.
+    local omp_profile_args=()
+    if [[ -n "${REVIEW_PR_OMP_PROFILE:-}" ]]; then
+        omp_profile_args+=(--profile "${REVIEW_PR_OMP_PROFILE}")
+    fi
     if [[ $# -eq 0 ]]; then
-        omp --print "/git:commit" --model smol --auto-approve
+        omp ${omp_profile_args[@]+"${omp_profile_args[@]}"} --print "/git:commit" --model smol --auto-approve
     elif [[ $# -eq 1 ]] && git rev-parse --is-inside-work-tree &>/dev/null && [[ -e "$1" ]]; then
         local repo_root abs_path
         repo_root="$(git rev-parse --show-toplevel)"
         abs_path="$(realpath "$1")"
         if [[ "$abs_path" == "$repo_root" || "$abs_path" == "$repo_root"/* ]]; then
-            omp --print "/git:commit only the path: $abs_path" --model smol --auto-approve
+            omp ${omp_profile_args[@]+"${omp_profile_args[@]}"} --print "/git:commit only the path: $abs_path" --model smol --auto-approve
         else
             git commit -m "$@"
         fi

@@ -12,10 +12,6 @@ counterpart — where to look and what has already been investigated.
   enabledPlugins), `~/.claude/hooks/scripts/`, `~/.claude/agent-flow/`,
   `~/.claude/projects/*/settings.json` (project-level allowlists promotable
   to global), `~/.claude/logs/tool-failures.log`.
-- Usage data: `rtk gain --history` is the Claude command-frequency and
-  token-savings source (heavy-hitter commands, unproxied CLI tools,
-  permission-prompt tax) — a distinct signal from the session scanner's
-  transcript-derived usage/friction data, not a replacement for it.
 - Session store: `~/.claude/projects/*/*.jsonl` — see
   `docs/agent-session-transcripts.md#claude`.
 
@@ -55,7 +51,6 @@ contract.
 - Utilities: `date`, `python3`, `jq`, `yq`, `sed`, `awk`, `sort`, `uniq`,
   `tr`, `cut`, `basename`, `dirname`.
 - Mise: `ls`, `search`, `use`, `install`, `current`.
-- RTK: `gain`, `discover`, `--version`.
 
 Cross-reference against `~/.claude/logs/tool-failures.log` for patterns —
 commands that failed due to permission denial or indicate frequent use.

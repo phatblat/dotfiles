@@ -124,3 +124,14 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend [
     ($nu.home-dir | path join '.cargo' 'bin')
     ($nu.home-dir | path join '.orbstack' 'bin')
 ] | uniq)
+
+# Machine-local settings from untracked ~/.env via direnv's dotenv parser
+if ((which direnv | is-not-empty) and (($nu.home-dir | path join '.env') | path exists)) {
+    direnv dotenv json ($nu.home-dir | path join '.env')
+        | from json
+        | default {}
+        | transpose key value
+        | where key != "PATH"  # PATH is list-typed in nu; a string value would corrupt it
+        | transpose --as-record --ignore-titles
+        | load-env
+}

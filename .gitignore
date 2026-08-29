@@ -55,6 +55,7 @@
 .buildkite/config.json
 .bun/
 .bundle/cache/
+.buzz/
 .cache/
 .cagent/
 .cargo/*
@@ -417,6 +418,7 @@
 .matplotlib/
 .mcp-auth/
 .mcreator/
+.mesh-llm/
 .minecraft/
 .mint/
 .mintlify/
@@ -739,6 +741,7 @@ Library/Application Support/Arc/
 Library/Application Support/AskPermission/
 Library/Application Support/Bartender/
 Library/Application Support/BraveSoftware/
+Library/Application Support/Buzz/
 Library/Application Support/CD Projekt Red/
 Library/Application Support/CEF/
 Library/Application Support/Caches/
@@ -929,6 +932,7 @@ Library/Application Support/com.robotsandpencils.XcodesApp/
 Library/Application Support/com.robotsandpencils.xcodes/
 Library/Application Support/com.unsignedinteger.Deckset-Paddle/
 Library/Application Support/csdevkit/
+Library/Application Support/dagger/
 Library/Application Support/dart/
 Library/Application Support/default.store
 Library/Application Support/default.store-shm
@@ -984,6 +988,7 @@ Library/Application Support/t3code/
 Library/Application Support/team.Immersed/
 Library/Application Support/virtualenv/
 Library/Application Support/vysor/
+Library/Application Support/xyz.block.buzz.app/
 Library/Application Support/xyz.chatbotapp.app/
 Library/Application Support/xyz.chatboxapp.app/
 Library/Application Support/zen/

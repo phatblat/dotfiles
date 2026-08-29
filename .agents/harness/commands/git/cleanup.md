@@ -36,7 +36,34 @@ git for-each-ref --format='%(refname:short)|%(committerdate:short)|%(committerda
 
 Exclude `<default-branch>` and the current branch from candidates.
 
-### 4. Check Merge and PR Status
+### 4. List Detached Worktrees
+
+Run:
+
+```bash
+git worktree list --porcelain
+```
+
+Parse the output into blank-line-separated entries. Skip the first entry (the main worktree — git refuses to remove it anyway). For every entry containing a `detached` line (in place of a `branch refs/heads/...` line), record:
+
+- `<worktree-path>` from the `worktree <path>` line
+- `<worktree-head>` from the `HEAD <sha>` line
+- whether a `locked` line is present
+
+Classify each entry by its path basename:
+
+- **review-pr worktree**: basename matches `^review-pr-(?P<repo>.+)-(?P<number>\d+)-[A-Za-z0-9_]{8}$`. The repo component may itself contain hyphens and digits (e.g. `review-pr-cloud-infra-14965-h0md9p_l` → repo `cloud-infra`, PR `14965`), so take `<number>` as the **last** numeric group before the 8-character random suffix.
+- **other detached worktree**: anything else.
+
+For each review-pr worktree, query the PR state in the current repo:
+
+```bash
+gh pr view <number> --json state,mergedAt --jq '"\(.state)|\(.mergedAt // "n/a")"'
+```
+
+`state` is one of `OPEN`, `CLOSED`, `MERGED`. If the command fails (offline, PR deleted), record the state as `UNKNOWN`.
+
+### 5. Check Merge and PR Status
 
 For each candidate branch:
 
@@ -47,7 +74,7 @@ For each candidate branch:
    gh pr list --head "<branch>" --state all --json number,state,mergedAt --jq '.[0] | "\(.number)|\(.state)|\(.mergedAt // \"n/a\")"'
    ```
 
-### 5. Classify Branches
+### 6. Classify Branches
 
 Place each branch into one of these categories:
 
@@ -59,7 +86,21 @@ Place each branch into one of these categories:
 | **Stale** | No PR found and not merged |
 | **Protected** | Default branch or current branch — never delete |
 
-### 6. Present Summary
+Classify each detached worktree from step 4 into one of these categories. Two checks, run per worktree:
+
+- **clean**: `git -C <worktree-path> status --porcelain` produces no output
+- **local commits**: the ref `refs/remotes/origin/pr/<number>` exists (`git rev-parse --verify refs/remotes/origin/pr/<number>`) AND resolves to a different SHA than `<worktree-head>`. If the ref does not exist, treat local-commit status as unknown.
+
+| Category | Criteria |
+|----------|----------|
+| **Review worktree — safe to remove** | review-pr worktree; PR state MERGED or CLOSED; clean; no local commits |
+| **Review worktree — active** | review-pr worktree; PR state OPEN or UNKNOWN; clean; no local commits (kept, like open-PR branches) |
+| **Review worktree — has local changes** | dirty, or has local commits, or local-commit status unknown |
+| **Other detached** | not a review-pr worktree, or locked |
+
+Locked worktrees are never removed (git refuses without `--force`); list them under **Other detached** with a note.
+
+### 7. Present Summary
 
 Display a table grouped by category:
 
@@ -89,17 +130,38 @@ Display a table grouped by category:
 
 If there are no branches to delete, report "All branches are active or protected. Nothing to clean up." and stop.
 
-### 7. Confirm Deletion
+Add detached-worktree sections to the summary when any exist:
+
+```
+### Review Worktrees — PR merged/closed (safe to remove)
+| Worktree | PR | State |
+|----------|----|-------|
+| ...      | #N | MERGED |
+
+### Review Worktrees — has local changes (explicit approval required)
+| Worktree | PR | Reason |
+|----------|----|--------|
+| ...      | #N | dirty / local commits / unknown |
+
+### Other Detached Worktrees (explicit pick only)
+| Worktree | HEAD |
+|----------|------|
+| ...      | abc1234 |
+```
+
+Review worktrees in the **active** category go in the existing "Active (will keep)" table with their PR number. If there is nothing to delete in any category (branches or worktrees), report "All branches and worktrees are active or protected. Nothing to clean up." and stop.
+
+### 8. Confirm Deletion
 
 Ask the user:
 
-> "Delete **N** branches (M merged, X closed, Y stale)? [yes/no/pick]"
+> "Delete **N** branches (M merged, X closed, Y stale) and **W** review worktrees (merged/closed PRs)? [yes/no/pick]"
 >
-> - **yes** — delete all merged + closed + stale branches
+> - **yes** — delete all merged + closed + stale branches and all "safe to remove" review worktrees
 > - **no** — abort, keep everything
-> - **pick** — let user specify which categories or individual branches to delete
+> - **pick** — let user specify which categories or individual branches/worktrees to delete; "has local changes" and "other detached" worktrees are removed ONLY when explicitly picked by path
 
-### 8. Remove Worktrees for Confirmed Branches
+### 9. Remove Worktrees
 
 Before deleting branches, check for associated worktrees:
 
@@ -115,7 +177,21 @@ git worktree remove <worktree-path>
 
 If removal fails (dirty worktree), warn the user and skip that branch — do not force-remove without explicit approval.
 
-### 9. Delete Confirmed Branches (skip any whose worktree removal was declined)
+Then, for each confirmed detached worktree:
+
+```bash
+git worktree remove <worktree-path>
+```
+
+Do not pass `--force`. If removal fails (dirty, locked, or main worktree), warn the user and skip — force-remove only items the user explicitly approved by path after the warning.
+
+After all removals, clear stale administrative entries whose directories have already vanished (macOS cleans `$TMPDIR`, which orphans review-pr worktree entries):
+
+```bash
+git worktree prune
+```
+
+### 10. Delete Confirmed Branches (skip any whose worktree removal was declined)
 
 ```bash
 git branch -D <branch1> <branch2> ...
@@ -123,7 +199,7 @@ git branch -D <branch1> <branch2> ...
 
 Delete in a single command for efficiency. Do NOT use `-d` (lowercase) since squash-merged branches won't be detected as merged by git.
 
-### 10. Report Results
+### 11. Report Results
 
 List deleted branches and remaining local branches:
 
@@ -136,4 +212,11 @@ Remaining local branches:
   - main
   - feature/current-work
   - ...
+```
+
+When worktrees were removed, add:
+
+```
+Removed N worktrees:
+  - /path/to/review-pr-<repo>-<number>-<rand> (PR #N, MERGED)
 ```
