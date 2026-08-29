@@ -621,6 +621,9 @@ skip_unless_home_is_this_checkout() {
     "$HOME/.cursor/ai-tracking/state.json"
     "$HOME/.grok/auth.json"
     "$HOME/.grok/mcp_credentials.json"
+    "$HOME/.local/share/crush/crush.json"
+    "$HOME/.local/share/crush/crush.db"
+    "$HOME/.config/crush/crush.json"
   )
 
   for harness in claude codex opencode pi omp antigravity cursor grok crush; do
