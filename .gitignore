@@ -458,6 +458,7 @@
 !.oh-my-zsh/themes/*
 .ollama/
 .omc/
+.omlx/
 .omnigent/
 .omo/*
 !.omo/omo.jsonc
