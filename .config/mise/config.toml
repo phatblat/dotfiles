@@ -22,7 +22,6 @@
 "cargo:tauri-cli" = "2.11.4"
 "cargo:wasm-bindgen-cli" = "0.2.127"
 "cargo:wasm-pack" = "0.15.0"
-"github:can1357/oh-my-pi" = "18.0.9"
 "github:cirruslabs/softnet" = "0.23.0"
 "github:DataDog/pup" = "1.15.1"
 "github:Dicklesworthstone/beads_rust" = "0.5.3"
@@ -153,6 +152,7 @@ xh = "0.26.2"
 yq = "4.53.6"
 zig = "0.16.0"
 zoxide = "0.10.0"
+oh-my-pi = { version = "18.0.10", rename_exe = "omp" }
 
 [tools."http:cursor-cli"]
 version = "2026.07.01-777f564"
