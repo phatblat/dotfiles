@@ -25,7 +25,7 @@
 "github:cirruslabs/softnet" = "0.23.0"
 "github:DataDog/pup" = "1.15.2"
 "github:Dicklesworthstone/beads_rust" = "0.5.3"
-"github:diggerhq/opencomputer" = "0.6.0.43"
+"github:diggerhq/opencomputer" = "0.6.0.46"
 "github:dolthub/dolt" = "2.3.1"
 "github:nushell/nushell" = { version = "0.115.1", version_prefix = "" }
 "github:raine/aven" = "v0.1.34"
