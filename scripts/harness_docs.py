@@ -32,6 +32,7 @@ from harness_capabilities import (
     DIVERGENCES,
     DOMAINS,
     HARNESS_ROLES,
+    PARITY_STATES,
     Cell,
     cell_for,
     coverage,
@@ -40,7 +41,7 @@ from harness_capabilities import (
 from harness_paths import HARNESS_LABELS, HARNESSES
 
 # Parity states counted in the index summary tables, in reporting order.
-_COUNTED_PARITY = ("aligned", "partial", "blocked", "divergent", "unknown")
+_COUNTED_PARITY = PARITY_STATES
 
 _managed_header: str | None = None
 
