@@ -44,6 +44,9 @@
   "~/.agents/harness/adapters/antigravity/commands/git/split.md": {
     "source": "~/.claude/commands/git/split.md"
   },
+  "~/.agents/harness/adapters/antigravity/commands/git/stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
+  },
   "~/.agents/harness/adapters/antigravity/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
@@ -172,6 +175,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/git-split/SKILL.md": {
     "source": "~/.agents/skills/git-split/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-stack/SKILL.md": {
+    "source": "~/.agents/skills/git-stack/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
@@ -350,6 +356,9 @@
   "~/.agents/harness/adapters/cursor/commands/git/split.md": {
     "source": "~/.claude/commands/git/split.md"
   },
+  "~/.agents/harness/adapters/cursor/commands/git/stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
+  },
   "~/.agents/harness/adapters/cursor/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
@@ -478,6 +487,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/git-split/SKILL.md": {
     "source": "~/.agents/skills/git-split/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-stack/SKILL.md": {
+    "source": "~/.agents/skills/git-stack/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
@@ -652,6 +664,9 @@
   },
   "~/.agents/harness/commands/git/split.md": {
     "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.agents/harness/commands/git/stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
   },
   "~/.agents/harness/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
@@ -971,6 +986,9 @@
   "~/.config/opencode/commands/git:split.md": {
     "source": "~/.claude/commands/git/split.md"
   },
+  "~/.config/opencode/commands/git:stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
+  },
   "~/.config/opencode/commands/git:status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
@@ -1216,6 +1234,9 @@
   },
   "~/.pi/agent/prompts/git:split.md": {
     "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.pi/agent/prompts/git:stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
   },
   "~/.pi/agent/prompts/git:status.md": {
     "source": "~/.claude/commands/git/status.md"

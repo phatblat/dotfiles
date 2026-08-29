@@ -1,0 +1,213 @@
+---
+description: Stack an existing or new branch onto another branch in a worktree, then align GitHub PR bases and stack metadata with gh stack
+model: sonnet
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(jq:*), Bash(awk:*), Read, Edit, Skill, AskUserQuestion
+category: workflow
+argument-hint: "[branch] [base-branch]"
+---
+
+# Git Stack: Stack A Branch (And Its PR) Onto Another
+
+Stack a branch onto another branch in a dedicated worktree, then align the GitHub PR bases and the `gh stack` object with the resulting local chain.
+
+## Context Gathering
+
+Collect all needed state in one pass:
+
+!`git branch --show-current 2>/dev/null`
+!`git worktree list --porcelain`
+!`git remote -v`
+!`git status --porcelain=v1`
+!`gh stack --version 2>/dev/null || echo "gh-stack not installed: gh extension install github/gh-stack"`
+
+## gh stack v0.1.0 flag facts
+
+- `gh stack init [branches...] [-b|--base <trunk>]` — adopts existing branches automatically, creates missing ones, checks out the last one.
+- `gh stack link <branch-or-pr> <branch-or-pr> [...] [--base <trunk>] [--open] [--remote <name>]` — creates or updates a GitHub stack without local tracking state; needs two or more positional args, bottom→top; branches without PRs get PRs created automatically.
+- `gh stack rebase [branch] [--downstack|--upstack|--no-trunk|--continue|--abort|--remote <name>]`.
+- `gh stack push|sync [--remote <name>]`.
+
+## Instructions
+
+### 1. Parse Arguments
+
+Tokens come from `$ARGUMENTS`. Drop a bare literal `onto` token, then:
+
+| Tokens | Meaning |
+| --- | --- |
+| 0 | `subject` = current branch; `base` resolved in step 2 (restack mode) |
+| 1 | `base` = token; `subject` = current branch |
+| 2 | `subject` = token 1; `base` = token 2 |
+| 3+ | Stop; print `usage: /git:stack [<branch>] [<base-branch>]` |
+
+Stop if `subject` equals `base` and tell the user.
+
+### 2. Resolve Repo, Remote, Trunk, And Restack-Mode Base
+
+```bash
+repo_root=$(git rev-parse --path-format=absolute --git-common-dir); repo_root=${repo_root%/.git}
+current=$(git branch --show-current)
+remote=$(git config --get "branch.${subject}.remote" || true)
+[ -n "$remote" ] || { mapfile -t remotes < <(git remote); [ "${#remotes[@]}" -eq 1 ] && remote="${remotes[0]}"; }
+[ -n "$remote" ] || { git remote | grep -qx origin && remote=origin; }
+trunk=$(git symbolic-ref "refs/remotes/${remote}/HEAD" 2>/dev/null | sed "s|refs/remotes/${remote}/||")
+[ -n "$trunk" ] || trunk=$(git config init.defaultBranch || echo main)
+git fetch --prune "$remote"
+```
+
+Stop if `remote` is still empty (multiple remotes, none configured for the branch) and report the candidates. Never hard-code `origin`.
+
+Restack mode (0 tokens) resolves `base` as the first hit of:
+
+```bash
+base=$(gh pr view "$subject" --json baseRefName -q .baseRefName 2>/dev/null)
+[ -n "$base" ] || base=$( (cd "$repo_root" && gh stack view --json 2>/dev/null) | jq -r --arg s "$subject" '
+  .branches | to_entries | map(select(.value.name == $s))[0].key as $i
+  | if $i == null or $i == 0 then empty else .[$i-1].value.name end')
+```
+
+If both are empty, stop with the usage line. Stop if `base` resolves to neither `refs/heads/$base` nor `refs/remotes/$remote/$base`.
+
+### 3. Pick The Working Checkout
+
+Prefer the worktree that already holds `subject`, so the caller's checkout is never disturbed and a branch checked out elsewhere is never rewritten from the wrong worktree.
+
+```bash
+work_dir=$(git worktree list --porcelain | awk -v b="refs/heads/$subject" '
+  /^worktree /{ wt=$2 } /^branch /{ if ($2 == b) print wt }')
+```
+
+- `work_dir` non-empty → use it. If `git -C "$work_dir" status --porcelain=v1` is non-empty, stop: "commit or stash in `$work_dir` first".
+- `work_dir` empty and `repo_root` == `$HOME` (dotfiles repo) → do **not** create a worktree; `git-worktrees` forbids implicit dotfiles worktrees. If `subject` == `current` and the tree is clean, set `work_dir="$repo_root"`. Otherwise stop and tell the user to run `wt --dotfiles "$subject"` and re-run.
+- `work_dir` empty, non-dotfiles repo → create one under the `git-worktrees` convention:
+
+```bash
+path_key=${repo_root#"$HOME"/}; path_key=${path_key//\//-}
+work_dir="$HOME/.worktrees/${path_key}/${subject}"
+if git show-ref --quiet "refs/heads/${subject}"; then
+  git worktree add "$work_dir" "$subject"
+elif git show-ref --quiet "refs/remotes/${remote}/${subject}"; then
+  git worktree add --track -b "$subject" "$work_dir" "${remote}/${subject}"
+else                                                        # new-branch mode
+  git worktree add "$work_dir" -b "$subject" --no-track "${remote}/${base}"
+  git -C "$work_dir" push -u "$remote" "${subject}:${subject}"
+  git -C "$work_dir" branch -vv
+fi
+```
+
+`--no-track` on the new-branch path is mandatory: a feature branch cut from a remote base must not inherit the base's upstream. Report the `git branch -vv` line as proof it tracks `$remote/$subject`.
+
+New-branch mode ends here for the local half — there are no commits to replay — and continues at step 7 only if the branch already has commits to open a PR for; otherwise report the ready worktree and stop.
+
+### 4. Backup Branch (Existing-Branch Mode Only)
+
+```bash
+git -C "$work_dir" branch "${subject}.bak" "$subject"
+```
+
+If `${subject}.bak` already exists, ask (`AskUserQuestion`) whether to overwrite (`git branch -f`) or abort. Keep the backup after success; the report tells the user how to delete it.
+
+### 5. Restack Locally
+
+```bash
+base_ref="${remote}/${base}"; git show-ref --quiet "refs/remotes/${base_ref}" || base_ref="$base"
+if git -C "$work_dir" merge-base --is-ancestor "$base_ref" "$subject"; then
+  echo "already stacked on ${base}; nothing to replay"
+else
+  fork=$(git -C "$work_dir" merge-base "$subject" "$base_ref")
+  git -C "$work_dir" rebase --onto "$base_ref" "$fork" "$subject"
+fi
+```
+
+(equivalent to `git rebase --onto <base_ref> <merge-base> <subject>`, run with `-C "$work_dir"`.) `--onto` replays exactly the commits unique to `subject` relative to the new base, correct both when `subject` was cut from trunk and when it was already stacked on an older `base` tip. Do not use plain `git rebase <base>` here.
+
+On conflict, follow the conflict handler in the `git-rebase` skill's step 8 — do not restate it at length. Classify each conflict: recorded `rerere` resolution; clean-filtered machine state → `--ours`; version bumps → higher version; deliberate config updates → `--theirs`; generated artifacts → regenerate. Stage each fix, verify no conflict markers remain, then `GIT_EDITOR=true git -C "$work_dir" rebase --continue` (or `--skip` when the commit went empty). Pause only for genuine semantic collisions in hand-written source. Rollback path is `git -C "$work_dir" reset --hard "${subject}.bak"`.
+
+### 6. Push The Subject
+
+```bash
+git -C "$work_dir" push --force-with-lease -u "$remote" "${subject}:${subject}"
+git -C "$work_dir" branch --set-upstream-to="${remote}/${subject}" "$subject"
+git -C "$work_dir" branch -vv | grep '^\*'
+```
+
+The tracking line must show `[${remote}/${subject}]`; if it shows the base branch, fix it before continuing. Push before any `gh stack` call: `gh stack link` pushes without `--force-with-lease`, so a rebased branch must already be up to date on the remote.
+
+### 7. Build The Stack Chain (Bottom→Top, Trunk Excluded)
+
+Walk down from `base` through PR bases, capped at 10 hops to defend against a cycle:
+
+```bash
+chain=("$subject"); b="$base"; hops=0
+while [ "$b" != "$trunk" ] && [ "$hops" -lt 10 ]; do
+  chain=("$b" "${chain[@]}")
+  parent=$(gh pr view "$b" --json baseRefName -q .baseRefName 2>/dev/null) || parent=""
+  [ -n "$parent" ] || break            # no PR for $b: treat it as the bottom of the stack
+  b="$parent"; hops=$((hops + 1))
+done
+```
+
+### 8. Ensure Every Chain Member Has An Open PR Based On Its Parent
+
+Iterate bottom→top with `parent` = the previous chain entry, or `$trunk` for the first:
+
+```bash
+gh pr view "$member" --json number,state,baseRefName
+```
+
+- No PR, or no open PR → invoke the `pr-create` skill for that branch so the repo's title, body, label, draft, and `@me` assignment conventions in `pr-style` apply, then retarget it: `gh pr edit "$number" --base "$parent"`. Do not hand-roll `gh pr create` here and do not let `gh stack link` auto-create the PR — both bypass `pr-style`.
+- Open PR whose `baseRefName` != `parent` → `gh pr edit "$number" --base "$parent"`.
+- Open PR already based on `parent` → leave it.
+
+### 9. Align The GitHub Stack
+
+```bash
+if [ "${#chain[@]}" -ge 2 ]; then
+  (cd "$work_dir" && gh stack link --remote "$remote" --base "$trunk" "${chain[@]}")
+fi
+```
+
+A single-member chain (`base` == `trunk`) has no GitHub stack to create — GitHub stacks need two or more PRs — so skip `link` and say so in the report; step 8 already put the PR base on `$trunk`. Always pass `--remote` and `--base` explicitly. Never pass `--open`; new PRs stay drafts.
+
+### 10. Add Local Stack Tracking (Best Effort)
+
+```bash
+if ! (cd "$work_dir" && gh stack view --json >/dev/null 2>&1) && [ "${#chain[@]}" -ge 2 ]; then
+  (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable"
+fi
+```
+
+A non-zero exit is not a failure of the workflow: the GitHub metadata from step 9 is already correct, so report "local tracking unavailable — `gh stack up/down/sync` will not work for this stack" and continue. If `gh stack view --json` already succeeds but lists a different branch set, skip `init` and report the mismatch — never guess.
+
+### 11. Report Children That Now Need Restacking
+
+```bash
+gh pr list --state open --json number,headRefName,baseRefName \
+  --jq ".[] | select(.baseRefName == \"$subject\") | .headRefName"
+```
+
+For each child, print `/git:stack <child> $subject` as the follow-up command. Silently leaving children based on a rewritten branch is the main failure mode of manual stacking.
+
+### 12. Report
+
+```text
+Stacked <subject> onto <base>.
+  Worktree:     <work_dir>
+  Chain:        <trunk> → <b1> → … → <subject>
+  PRs:          #<n1> (base <trunk>) → … → #<nk> (base <base>)
+  GitHub stack: linked | single PR, no stack | local tracking unavailable
+  Tracking:     <remote>/<subject>
+  Backup:       <subject>.bak  (kept — git branch -D <subject>.bak)
+  Children to restack: /git:stack <child> <subject>   (or "none")
+```
+
+## Never
+
+- Never run bare `gh stack view` — always use `gh stack view --json`; bare `view` opens an interactive TUI.
+- Never run the `modify` subcommand, or bare `switch`/`checkout` without a branch argument — both are interactive-only.
+- Never run the `submit` subcommand — it auto-generates PR titles/bodies, conflicting with this repo's `pr-style` conventions.
+- Never run `unstack [<stack-number>] [--local]` unless the user explicitly asks — it deletes the GitHub stack.
+- Never rewrite a branch from a worktree that does not have it checked out.
+- Never create a dotfiles worktree implicitly.
+</content>
+<parameter name="i">Write git:stack Claude command

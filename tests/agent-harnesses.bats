@@ -40,7 +40,7 @@ skip_unless_home_is_this_checkout() {
   claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
-  [ "$command_count" -eq 26 ]
+  [ "$command_count" -eq 27 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
@@ -271,6 +271,7 @@ skip_unless_home_is_this_checkout() {
     git-push
     git-rebase
     git-split
+    git-stack
     git-status
     git-worktrees
     gh-stack
@@ -302,6 +303,31 @@ skip_unless_home_is_this_checkout() {
     [ -f "$sidecar" ]
     grep -Fx "policy:" "$sidecar"
     grep -Fx "  allow_implicit_invocation: false" "$sidecar"
+  done
+}
+
+@test "git-stack drives gh stack non-interactively and restacks in a worktree" {
+  workflows=(
+    "$HOME/.agents/skills/git-stack/SKILL.md"
+    "$HOME/.claude/commands/git/stack.md"
+    "$HOME/.agents/harness/commands/git/stack.md"
+  )
+
+  for workflow in "${workflows[@]}"; do
+    grep -Fq 'gh stack link --remote' "$workflow"
+    grep -Fq -- '--base "$trunk"' "$workflow"
+    grep -Fq 'git rebase --onto' "$workflow"
+    grep -Fq 'push --force-with-lease -u' "$workflow"
+    grep -Fq -- '--no-track' "$workflow"
+    grep -Fq 'gh pr edit' "$workflow"
+    ! grep -Fq 'gh stack submit' "$workflow"
+    ! grep -Fq 'gh stack modify' "$workflow"
+    ! grep -Eq '\bgh stack (unstack|checkout)\b[^-]*$' "$workflow"
+    view_total=$(grep -Fc 'gh stack view' "$workflow")
+    view_json=$(grep -Fc 'gh stack view --json' "$workflow")
+    [ "$view_total" -eq "$view_json" ]
+    ! grep -Fq -- '--prefix' "$workflow"
+    ! grep -Fq -- '--adopt' "$workflow"
   done
 }
 
@@ -545,7 +571,7 @@ skip_unless_home_is_this_checkout() {
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
 
-  [ "$command_count" -eq 26 ]
+  [ "$command_count" -eq 27 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$inventory_skill_count" ]
 

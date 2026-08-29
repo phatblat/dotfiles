@@ -348,9 +348,9 @@ def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
 def command_validate() -> int:
     errors: list[str] = []
     inventory = build_inventory()
-    if len(inventory["commands"]) != 26:
+    if len(inventory["commands"]) != 27:
         errors.append(
-            f"expected 26 active commands, found {len(inventory['commands'])}"
+            f"expected 27 active commands, found {len(inventory['commands'])}"
         )
     if len(inventory["agents"]) != 6:
         errors.append(f"expected 6 specialist agents, found {len(inventory['agents'])}")
