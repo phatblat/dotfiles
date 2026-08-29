@@ -31,6 +31,7 @@ from pathlib import Path
 # absent because it is Claude-Code-specific, externally compiled, and
 # self-updating from a URL.
 NATIVE_SKILL_ADAPTERS = {
+    "artifact-message-bus",
     "aven",
     "brainstorm",
     "branch-finish",

@@ -399,6 +399,32 @@ skip_unless_home_is_this_checkout() {
   [ "$status" -eq 0 ]
 }
 
+@test "artifact-message-bus ships bundled resources and tracked adapters" {
+  run python3 "$SCRIPT" generate --check
+  [ "$status" -eq 0 ]
+
+  skill_dir="$HOME/.agents/skills/artifact-message-bus"
+  [ -f "$skill_dir/SKILL.md" ]
+  [ -f "$skill_dir/references/protocol.md" ]
+  [ -x "$skill_dir/scripts/bus.sh" ]
+
+  for pointer in \
+    "$HOME/.claude/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.codex/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.config/opencode/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md"; do
+    [ -f "$pointer" ]
+    grep -Fq 'Load and follow the shared skill at `~/.agents/skills/artifact-message-bus/SKILL.md`.' "$pointer"
+    run git -C "$HOME" ls-files --error-unmatch "$pointer"
+    [ "$status" -eq 0 ]
+  done
+
+  ! grep -Fq 'disable-model-invocation: true' \
+    "$HOME/.claude/skills/artifact-message-bus/SKILL.md"
+  [ ! -e "$HOME/.codex/skills/artifact-message-bus/agents/openai.yaml" ]
+}
+
 @test "grill-me front door and grilling primitive are wired across harnesses" {
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
