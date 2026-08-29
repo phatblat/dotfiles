@@ -23,7 +23,7 @@
 "cargo:wasm-bindgen-cli" = "0.2.127"
 "cargo:wasm-pack" = "0.15.0"
 "github:cirruslabs/softnet" = "0.23.0"
-"github:DataDog/pup" = "1.15.1"
+"github:DataDog/pup" = "1.15.2"
 "github:Dicklesworthstone/beads_rust" = "0.5.3"
 "github:diggerhq/opencomputer" = "0.6.0.43"
 "github:dolthub/dolt" = "2.3.1"
