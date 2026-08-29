@@ -6,6 +6,7 @@
       "accelerator": "Alt+Space"
     },
     "coworkBrowserToolsEnabled": true,
+    "coworkPreferredBrowser": "built_in",
     "launchPreviewPersistedWorkspaces": [],
     "launchPreviewSessionScopedSessions": [],
     "coworkScheduledTasksEnabled": true,
@@ -71,6 +72,6 @@
         "version": 0
       }
     },
-    "coworkPreferredBrowser": "built_in"
+    "orgWorkAcrossAppsDisabled": false
   }
 }
