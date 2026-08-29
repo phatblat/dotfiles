@@ -105,8 +105,11 @@ EOF
   chmod +x "$bindir/git"
 
   # The recipe resolves paths via `justfile_directory()`, not `$HOME`, so the
-  # justfile itself has to live alongside the fixture mise config.
+  # justfile itself has to live alongside the fixture mise config, and
+  # format-mise's sort-tools.py has to live alongside the justfile.
   cp "$BATS_TEST_DIRNAME/../justfile" "$home/justfile"
+  mkdir -p "$home/scripts"
+  cp "$BATS_TEST_DIRNAME/../scripts/sort-tools.py" "$home/scripts/sort-tools.py"
 
   run env HOME="$home" PATH="$bindir:$PATH" COMMAND_LOG="$log" \
     just --justfile "$home/justfile" upgrade-mise-tools-commit
@@ -258,7 +261,10 @@ EOF
   # The recipe resolves paths via `justfile_directory()`, which also becomes
   # the recipe's cwd, so the justfile has to live inside the throwaway repo
   # or the recipe would commit against the real justfile's own directory.
+  # format-mise's sort-tools.py has to live alongside it too.
   cp "$BATS_TEST_DIRNAME/../justfile" "$repo/justfile"
+  mkdir -p "$repo/scripts"
+  cp "$BATS_TEST_DIRNAME/../scripts/sort-tools.py" "$repo/scripts/sort-tools.py"
 
   run env HOME="$repo" PATH="$bindir:$PATH" \
     just --justfile "$repo/justfile" upgrade-mise-tools-commit
