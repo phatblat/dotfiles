@@ -6,35 +6,35 @@ Coverage: 65/405 cells verified (16%)
 
 ## Harnesses
 
-| Harness | Role | CLI version | First seen | Aligned | Partial | Blocked | Divergent | Unknown |
-|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.236 (Claude Code) | 2026-08-29 | 7 | 0 | 0 | 0 | 38 |
-| codex | supported peer | codex-cli 0.149.1 | 2026-08-29 | 6 | 0 | 1 | 0 | 38 |
-| opencode | new port | 1.18.23 | 2026-08-29 | 8 | 0 | 0 | 0 | 37 |
-| pi | new port | 0.84.3 | 2026-08-29 | 7 | 1 | 0 | 0 | 37 |
-| omp | tracked port | omp/18.0.7 | 2026-08-29 | 7 | 0 | 0 | 0 | 38 |
-| antigravity | tracked port | 1.1.22 | 2026-08-29 | 1 | 6 | 0 | 0 | 38 |
-| cursor | tracked port | 2026.07.01-777f564 | 2026-08-29 | 1 | 6 | 0 | 0 | 38 |
-| grok | new port | grok 1.0.5 (5115b46bc909) | 2026-08-29 | 4 | 3 | 0 | 0 | 38 |
-| crush | new port | crush version v0.91.2 | 2026-08-29 | 4 | 2 | 1 | 0 | 38 |
+| Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
+|---|---|---|---|---|---|---|---|---|---|
+| claude | supported peer | 2.1.236 (Claude Code) | 2026-08-29 | 7 | 0 | 0 | 0 | 0 | 38 |
+| codex | supported peer | codex-cli 0.149.1 | 2026-08-29 | 6 | 0 | 0 | 1 | 0 | 38 |
+| opencode | new port | 1.18.23 | 2026-08-29 | 8 | 0 | 0 | 0 | 0 | 37 |
+| pi | new port | 0.84.3 | 2026-08-29 | 7 | 1 | 0 | 0 | 0 | 37 |
+| omp | tracked port | omp/18.0.7 | 2026-08-29 | 7 | 0 | 0 | 0 | 0 | 38 |
+| antigravity | tracked port | 1.1.22 | 2026-08-29 | 1 | 6 | 0 | 0 | 0 | 38 |
+| cursor | tracked port | 2026.07.01-777f564 | 2026-08-29 | 1 | 6 | 0 | 0 | 0 | 38 |
+| grok | new port | grok 1.0.5 (5115b46bc909) | 2026-08-29 | 4 | 3 | 0 | 0 | 0 | 38 |
+| crush | new port | crush version v0.91.2 | 2026-08-29 | 4 | 2 | 0 | 1 | 0 | 38 |
 
 ## Domains
 
-| Domain | Page | Capabilities | Aligned | Partial | Blocked | Divergent | Unknown |
-|---|---|---|---|---|---|---|---|
-| Instructions | [harness/instructions.md](harness/instructions.md) | 3 | 7 | 2 | 0 | 0 | 18 |
-| Skills | [harness/skills.md](harness/skills.md) | 7 | 7 | 2 | 0 | 0 | 54 |
-| Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 4 | 1 | 0 | 18 |
-| Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 4 | 1 | 0 | 27 |
-| Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 5 | 4 | 0 | 0 | 27 |
-| Permissions | [harness/permissions.md](harness/permissions.md) | 3 | 0 | 0 | 0 | 0 | 27 |
-| MCP | [harness/mcp.md](harness/mcp.md) | 3 | 0 | 0 | 0 | 0 | 27 |
-| Models | [harness/models.md](harness/models.md) | 4 | 0 | 0 | 0 | 0 | 36 |
-| Sessions | [harness/sessions.md](harness/sessions.md) | 4 | 7 | 2 | 0 | 0 | 27 |
-| Providers | [harness/providers.md](harness/providers.md) | 2 | 0 | 0 | 0 | 0 | 18 |
-| Profiles | [harness/profiles.md](harness/profiles.md) | 2 | 0 | 0 | 0 | 0 | 18 |
-| UI | [harness/ui.md](harness/ui.md) | 4 | 0 | 0 | 0 | 0 | 36 |
-| Maintenance | [harness/maintenance.md](harness/maintenance.md) | 2 | 11 | 0 | 0 | 0 | 7 |
+| Domain | Page | Capabilities | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
+|---|---|---|---|---|---|---|---|---|
+| Instructions | [harness/instructions.md](harness/instructions.md) | 3 | 7 | 2 | 0 | 0 | 0 | 18 |
+| Skills | [harness/skills.md](harness/skills.md) | 7 | 7 | 2 | 0 | 0 | 0 | 54 |
+| Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 4 | 0 | 1 | 0 | 18 |
+| Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 4 | 0 | 1 | 0 | 27 |
+| Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 5 | 4 | 0 | 0 | 0 | 27 |
+| Permissions | [harness/permissions.md](harness/permissions.md) | 3 | 0 | 0 | 0 | 0 | 0 | 27 |
+| MCP | [harness/mcp.md](harness/mcp.md) | 3 | 0 | 0 | 0 | 0 | 0 | 27 |
+| Models | [harness/models.md](harness/models.md) | 4 | 0 | 0 | 0 | 0 | 0 | 36 |
+| Sessions | [harness/sessions.md](harness/sessions.md) | 4 | 7 | 2 | 0 | 0 | 0 | 27 |
+| Providers | [harness/providers.md](harness/providers.md) | 2 | 0 | 0 | 0 | 0 | 0 | 18 |
+| Profiles | [harness/profiles.md](harness/profiles.md) | 2 | 0 | 0 | 0 | 0 | 0 | 18 |
+| UI | [harness/ui.md](harness/ui.md) | 4 | 0 | 0 | 0 | 0 | 0 | 36 |
+| Maintenance | [harness/maintenance.md](harness/maintenance.md) | 2 | 11 | 0 | 0 | 0 | 0 | 7 |
 
 ## Open items
 
