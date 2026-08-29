@@ -5,6 +5,24 @@ load helpers/setup
 
 SCRIPT="$HOME/scripts/agent-harnesses.py"
 
+# This file's freshness/content assertions compare $HOME's generated docs
+# against $SCRIPT's current registry, which is only meaningful when $HOME is
+# this checkout (true in CI, where HOME=github.workspace, and true in a
+# normal non-worktree checkout). Run from an unrelated linked worktree, $HOME
+# points at a different branch entirely and every such assertion is comparing
+# unrelated state -- not a locally reproducible failure. Skip those specific
+# tests with a clear reason instead of reporting a false "not ok"; tests that
+# check normalized/portable behavior rather than this worktree's generated
+# content are unaffected and still run.
+HOME_MATCHES_WORKTREE=false
+if [ "$(cd "$HOME" 2> /dev/null && pwd -P)" = "$(cd "${BATS_TEST_DIRNAME}/.." && pwd -P)" ]; then
+  HOME_MATCHES_WORKTREE=true
+fi
+skip_unless_home_is_this_checkout() {
+  [ "$HOME_MATCHES_WORKTREE" = true ] && return
+  skip "HOME ($HOME) is not this checkout; re-run with HOME=\"\$PWD\" from the repo root"
+}
+
 @test "agent-harnesses: plugin normalizers pass unit tests" {
   run python3 "$HOME/tests/test_agent_plugins.py"
 
@@ -61,6 +79,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: generated artifacts are current" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
 
   [ "$status" -eq 0 ]
@@ -160,15 +179,44 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: generated manifest contains native plugin matrix" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
   jq -e '.plugins.claude and .plugins.codex' \
     "$HOME/docs/agent-harnesses.json" >/dev/null
-  grep -Fq '## Native Plugins' "$HOME/docs/agent-harnesses.md"
-  grep -Fq '| Plugin | Claude | Codex |' "$HOME/docs/agent-harnesses.md"
+  grep -Fq '## Native Plugins' "$HOME/docs/harness/plugins.md"
+  grep -Fq '| Plugin | Claude | Codex |' "$HOME/docs/harness/plugins.md"
   grep -Fq '| pup@datadog-pup | disabled | enabled |' \
-    "$HOME/docs/agent-harnesses.md"
+    "$HOME/docs/harness/plugins.md"
+}
+
+@test "agent-harnesses: capability pages are transposed and attributed" {
+  skip_unless_home_is_this_checkout
+  run python3 "$SCRIPT" generate --check
+  [ "$status" -eq 0 ]
+
+  grep -Fq '| Harness | Parity | Mode | Native surface | Evidence | Note |' \
+    "$HOME/docs/harness/hooks.md"
+  grep -Eq '^Coverage: [0-9]+/[0-9]+ cells verified' "$HOME/docs/agent-harnesses.md"
+  grep -Fq '| Harness | Capability | Next action |' "$HOME/docs/agent-harnesses.md"
+  [ -f "$HOME/docs/harness/divergence.md" ]
+  [ -f "$HOME/docs/harness/porting.md" ]
+
+  # The old index joined every harness's action into one unattributed cell.
+  # One row per owing cell is the contract: joining any two would drop the
+  # count below the number of cells that carry a next_action.
+  open_rows=$(awk '
+    /^\| Harness \| Capability \| Next action \|/ { f = 1; next }
+    f && /^\|---/ { next }
+    f && /^\| / { n++; next }
+    f && /^$/ { exit }
+    END { print n + 0 }
+  ' "$HOME/docs/agent-harnesses.md")
+  owing_cells=$(jq '[.capabilities[].cells[] | select(.next_action != "")] | length' \
+    "$HOME/docs/agent-harnesses.json")
+  [ "$open_rows" -gt 0 ]
+  [ "$open_rows" -eq "$owing_cells" ]
 }
 
 @test "agent-harnesses: audit reports observed plugins and drift" {
@@ -214,6 +262,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: procedural Codex skills require explicit invocation" {
+  skip_unless_home_is_this_checkout
   procedural_skills=(
     branch-finish
     dupe
@@ -227,6 +276,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     gh-stack
     gha-checks
     handoff
+    harness-research
     gha-log-reader
     justfile
     linear-plan
@@ -459,6 +509,25 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
   [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
 }
 
+@test "agent-harnesses: crush guard wrapper maps snake_case payloads" {
+  wrapper="$HOME/.config/crush/hooks/harness-guard.py"
+
+  deny_payload="$(jq -nc '{tool_name: "run_terminal_command", cwd: $ENV.HOME,
+    tool_input: {command: "sudo -n true"}}')"
+  run python3 "$wrapper" <<<"$deny_payload"
+  [ "$status" -eq 2 ]
+
+  write_payload="$(jq -nc --arg path "$HOME/.ssh/id_ed25519" '{tool_name: "write_file",
+    cwd: $ENV.HOME, tool_input: {file_path: $path, new_string: "x"}}')"
+  run python3 "$wrapper" <<<"$write_payload"
+  [ "$status" -eq 2 ]
+
+  allow_payload="$(jq -nc '{tool_name: "run_terminal_command", cwd: $ENV.HOME,
+    tool_input: {command: "git status --short"}}')"
+  run python3 "$wrapper" <<<"$allow_payload"
+  [ "$status" -eq 0 ]
+}
+
 @test "agent-harnesses: antigravity plugin artifacts exist and parse" {
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
@@ -494,7 +563,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: safe shell commands pass every adapter guard" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "git status --short"
     [ "$status" -eq 0 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -503,7 +572,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: dangerous shell commands are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "rm -rf /"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -520,7 +589,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     $'echo ok\nsudo whoami'
   )
 
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     for privileged_command in "${privileged_commands[@]}"; do
       run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "$privileged_command"
       [ "$status" -eq 2 ]
@@ -533,7 +602,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: protected writes are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/.ssh/id_ed25519" --content "not a key"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -552,9 +621,12 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
     "$HOME/.cursor/ai-tracking/state.json"
     "$HOME/.grok/auth.json"
     "$HOME/.grok/mcp_credentials.json"
+    "$HOME/.local/share/crush/crush.json"
+    "$HOME/.local/share/crush/crush.db"
+    "$HOME/.config/crush/crush.json"
   )
 
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     for protected_path in "${protected_paths[@]}"; do
       run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$protected_path" --content "{}"
       [ "$status" -eq 2 ]
@@ -567,7 +639,7 @@ SCRIPT="$HOME/scripts/agent-harnesses.py"
 }
 
 @test "agent-harnesses: secret-like content is denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/tmp/example.txt" --content "token = sk-example12345678901234567890"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')

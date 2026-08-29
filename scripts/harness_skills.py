@@ -35,6 +35,7 @@ NATIVE_SKILL_ADAPTERS = {
     "brainstorm",
     "branch-finish",
     "ci-fix",
+    "cmux-workspace-status",
     "container",
     "debug-issue",
     "dispatching-parallel-agents",
@@ -47,6 +48,7 @@ NATIVE_SKILL_ADAPTERS = {
     "grill-me",
     "grilling",
     "handoff",
+    "harness-research",
     "ocr",
     "optimize-harness",
     "pr-style",
@@ -70,6 +72,7 @@ MANUAL_SKILL_ADAPTERS = {
     "git-worktrees",
     "grill-me",
     "handoff",
+    "harness-research",
     "optimize-harness",
     "resolve-feedback",
 }

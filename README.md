@@ -22,7 +22,7 @@ CLI tools are installed primarily through [mise](https://mise.jdx.dev), with Hom
 
 ## Agent harness
 
-This repo also configures several AI coding agent harnesses (Claude Code, Codex, and others) with shared instructions, commands, skills, and safety hooks under `.agents/harness/`. See `docs/agent-harnesses.md` for what's kept in parity across harnesses and what's harness-specific.
+This repo also configures several AI coding agent harnesses (Claude Code, Codex, and others) with shared instructions, commands, skills, and safety hooks under `.agents/harness/`. See `docs/agent-harnesses.md` for what's kept in parity across harnesses and what's harness-specific, and `docs/harness/` for the per-domain capability detail, porting grid, and drift ledger.
 
 ## Multi-tool parity
 

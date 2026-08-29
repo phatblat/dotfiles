@@ -13,6 +13,8 @@
           "shift": false,
         },
       },
+      "toggleFileExplorer": "cmd+;",
+      "markWorkspaceDone": "none",
     },
   },
 }

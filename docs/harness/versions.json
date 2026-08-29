@@ -1,0 +1,47 @@
+{
+  "antigravity": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "1.1.22"
+  },
+  "claude": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "2.1.236 (Claude Code)"
+  },
+  "codex": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "codex-cli 0.149.1"
+  },
+  "crush": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "crush version v0.91.2"
+  },
+  "cursor": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "2026.07.01-777f564"
+  },
+  "grok": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "grok 1.0.5 (5115b46bc909)"
+  },
+  "omp": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "omp/18.0.7"
+  },
+  "opencode": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "1.18.23"
+  },
+  "pi": {
+    "first_seen": "2026-08-29",
+    "previous": "",
+    "version": "0.84.3"
+  }
+}

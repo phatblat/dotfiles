@@ -11,11 +11,18 @@ the details.
 |---|---|---|---|
 | Package managers | mise, Homebrew, Nix/home-manager | mise primary, Homebrew fallback, Nix is an untracked experiment | `just package-audit` (basic, name-based, mise vs. installed brew) |
 | Shells | Zsh, Nushell, Bash | Mirror functions across shells, using each shell's native idioms | `docs/functions.md` (manual coverage table) + `just lint-zsh`/`lint-nushell`/`lint-bin` (parse-only, not coverage) |
-| Agent harnesses | Claude Code, Codex, OpenCode, Pi, Antigravity, Cursor | Shared source of truth under `.agents/harness/`, generated/adapted per harness | `just harness-check` (validates generated parity artifacts) + `just harness-audit` (installed versions, parity gaps) |
+| Agent harnesses | Claude Code, Codex, OpenCode, Pi, OMP, Antigravity, Cursor, Grok, Crush | Shared source of truth under `.agents/harness/`, generated/adapted per harness | `just harness-check` (validates generated parity artifacts) + `just harness-audit` (installed versions, parity gaps) + `just harness-probe` (re-verifies capability probes, records CLI versions, appends drift) |
 
-Harness parity is the deepest of the three: it has a generator, a schema-validated parity
-table (`docs/agent-harnesses.md`), and a documented attribute-mapping table for porting
-config between harnesses. See `scripts/agent-harnesses.py` and `docs/agent-harnesses.md`.
+Harness parity is the deepest of the three. A capability registry
+(`scripts/harness_capabilities.py`) holds one cell per (harness, capability) with
+its parity, mode, native surface, and cited evidence; `docs/agent-harnesses.md` is
+the index (coverage, per-harness and per-domain counts, and every open item
+attributed to the one harness that owes it); `docs/harness/<domain>.md` carries the
+transposed per-capability tables; `docs/harness/porting.md` keeps the wide
+all-harnesses grid used when porting config; `docs/harness/divergence.md` registers
+permanent differences that will never close; and `docs/harness/drift.jsonl` plus
+`docs/harness/versions.json` record what changed after a release. See
+`scripts/agent-harnesses.py`, and run `just harness-drift` for the recent ledger.
 
 Shell parity is checked for correctness (each function file parses/lints in its shell)
 but not for completeness — nothing currently fails a build if a function exists in Zsh
@@ -31,7 +38,7 @@ Nix isn't expected to stay in sync in the first place.
 
 - Package managers: `docs/package-management.md`
 - Shells: `docs/functions.md`, and the "Shell Architecture" section of `~/CLAUDE.md`
-- Agent harnesses: `docs/agent-harnesses.md`, `.agents/harness/instructions.md`
+- Agent harnesses: `docs/agent-harnesses.md`, `docs/harness/`, `.agents/harness/instructions.md`
 
 ## Future automation ideas
 

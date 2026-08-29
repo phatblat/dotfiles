@@ -125,6 +125,9 @@
   "~/.agents/harness/adapters/antigravity/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/cmux-workspace-status/SKILL.md": {
+    "source": "~/.agents/skills/cmux-workspace-status/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
@@ -190,6 +193,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/harness-research/SKILL.md": {
+    "source": "~/.agents/skills/harness-research/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/homebrew/SKILL.md": {
     "source": "~/.agents/skills/homebrew/SKILL.md"
@@ -425,6 +431,9 @@
   "~/.agents/harness/adapters/cursor/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/cmux-workspace-status/SKILL.md": {
+    "source": "~/.agents/skills/cmux-workspace-status/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
@@ -490,6 +499,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/harness-research/SKILL.md": {
+    "source": "~/.agents/skills/harness-research/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/homebrew/SKILL.md": {
     "source": "~/.agents/skills/homebrew/SKILL.md"
@@ -719,6 +731,9 @@
   "~/.claude/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.claude/skills/cmux-workspace-status/SKILL.md": {
+    "source": "~/.agents/skills/cmux-workspace-status/SKILL.md"
+  },
   "~/.claude/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
@@ -754,6 +769,9 @@
   },
   "~/.claude/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.claude/skills/harness-research/SKILL.md": {
+    "source": "~/.agents/skills/harness-research/SKILL.md"
   },
   "~/.claude/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
@@ -802,6 +820,9 @@
   },
   "~/.codex/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
+  "~/.codex/skills/cmux-workspace-status/SKILL.md": {
+    "source": "~/.agents/skills/cmux-workspace-status/SKILL.md"
   },
   "~/.codex/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
@@ -854,6 +875,12 @@
   "~/.codex/skills/handoff/agents/openai.yaml": {
     "source": "~/.agents/skills/handoff/SKILL.md"
   },
+  "~/.codex/skills/harness-research/SKILL.md": {
+    "source": "~/.agents/skills/harness-research/SKILL.md"
+  },
+  "~/.codex/skills/harness-research/agents/openai.yaml": {
+    "source": "~/.agents/skills/harness-research/SKILL.md"
+  },
   "~/.codex/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
   },
@@ -892,6 +919,15 @@
   },
   "~/.codex/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
+  },
+  "~/.config/crush/crushrc": {
+    "source": ""
+  },
+  "~/.config/crush/hooks/harness-guard.py": {
+    "source": ""
+  },
+  "~/.config/crush/shared-harness.md": {
+    "source": ""
   },
   "~/.config/opencode/agents/ai-sdk-expert.md": {
     "source": "~/.codex/agents/ai-sdk-expert.toml"
@@ -1007,6 +1043,9 @@
   "~/.config/opencode/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.config/opencode/skills/cmux-workspace-status/SKILL.md": {
+    "source": "~/.agents/skills/cmux-workspace-status/SKILL.md"
+  },
   "~/.config/opencode/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
@@ -1042,6 +1081,9 @@
   },
   "~/.config/opencode/skills/handoff/SKILL.md": {
     "source": "~/.agents/skills/handoff/SKILL.md"
+  },
+  "~/.config/opencode/skills/harness-research/SKILL.md": {
+    "source": "~/.agents/skills/harness-research/SKILL.md"
   },
   "~/.config/opencode/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
@@ -1236,6 +1278,57 @@
     "source": ""
   },
   "~/docs/agent-harnesses.md": {
+    "source": ""
+  },
+  "~/docs/harness/agents.md": {
+    "source": ""
+  },
+  "~/docs/harness/commands.md": {
+    "source": ""
+  },
+  "~/docs/harness/divergence.md": {
+    "source": ""
+  },
+  "~/docs/harness/drift.md": {
+    "source": ""
+  },
+  "~/docs/harness/hooks.md": {
+    "source": ""
+  },
+  "~/docs/harness/instructions.md": {
+    "source": ""
+  },
+  "~/docs/harness/maintenance.md": {
+    "source": ""
+  },
+  "~/docs/harness/mcp.md": {
+    "source": ""
+  },
+  "~/docs/harness/models.md": {
+    "source": ""
+  },
+  "~/docs/harness/permissions.md": {
+    "source": ""
+  },
+  "~/docs/harness/plugins.md": {
+    "source": ""
+  },
+  "~/docs/harness/porting.md": {
+    "source": ""
+  },
+  "~/docs/harness/profiles.md": {
+    "source": ""
+  },
+  "~/docs/harness/providers.md": {
+    "source": ""
+  },
+  "~/docs/harness/sessions.md": {
+    "source": ""
+  },
+  "~/docs/harness/skills.md": {
+    "source": ""
+  },
+  "~/docs/harness/ui.md": {
     "source": ""
   }
 }

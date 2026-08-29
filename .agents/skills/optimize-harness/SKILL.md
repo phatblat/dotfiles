@@ -157,9 +157,10 @@ for the current attribute mapping and source notes:
 6. Record unsupported or unverified harness metadata as an adapter gap
    instead of copying stale keys across tools.
 7. When porting research changes current agent configuration facts, update
-   `ATTRIBUTE_MAPPINGS` in `scripts/harness_paths.py`, regenerate
-   `docs/agent-harnesses.*` via `just harness-generate`, and update
-   `references/agent-harness-portability.md` in the same change.
+   `CAPABILITIES` in `scripts/harness_capabilities.py`, regenerate
+   `docs/agent-harnesses.*` and `docs/harness/` via `just harness-generate`,
+   and update `references/agent-harness-portability.md` in the same change.
+   The `harness-research` skill is the full per-release procedure.
 
 ### Session friction (measured)
 

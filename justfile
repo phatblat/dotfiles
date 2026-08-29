@@ -553,8 +553,8 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check {{ justfile_directory() }}/scripts/agent-harnesses.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/scripts/sort-tools.py {{ justfile_directory() }}/scripts/format-json.py {{ justfile_directory() }}/scripts/audit-package-managers.py {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ justfile_directory() }}/scripts/sort-codex-config.py {{ justfile_directory() }}/scripts/review-pr.py {{ justfile_directory() }}/scripts/sync-codex-casper-models.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
-    ruff format --check {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    ruff check {{ justfile_directory() }}/scripts/agent-harnesses.py {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/scripts/sort-tools.py {{ justfile_directory() }}/scripts/format-json.py {{ justfile_directory() }}/scripts/audit-package-managers.py {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ justfile_directory() }}/scripts/sort-codex-config.py {{ justfile_directory() }}/scripts/review-pr.py {{ justfile_directory() }}/scripts/sync-codex-casper-models.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    ruff format --check {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
 # CI: lint.yml (lint job)
 # Type-checks Python scripts with ty (scope mirrors pyproject's basedpyright include)
@@ -737,6 +737,10 @@ lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-sh
 [group('checks')]
 check: lint typecheck-python check-spelling harness-check test
 
+# Alias for harness-generate
+[group('checks')]
+generate: harness-generate
+
 # Generates shared/native agent harness parity artifacts
 [group('checks')]
 harness-generate:
@@ -761,6 +765,16 @@ harness-sessions *ARGS:
 [group('checks')]
 harness-audit:
     python3 {{ justfile_directory() }}/scripts/agent-harnesses.py audit
+
+# Re-verifies harness capability probes, records CLI versions, appends drift
+[group('checks')]
+harness-probe *ARGS:
+    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py probe {{ ARGS }}
+
+# Shows recent harness capability drift, newest first
+[group('checks')]
+harness-drift *ARGS:
+    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py drift {{ ARGS }}
 
 # Flags CLI tools installed via both mise and Homebrew
 [group('checks')]
@@ -866,7 +880,7 @@ format-yaml:
 # Formats Python policy modules with ruff
 [group('configuration')]
 format-python:
-    @ruff format {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    @ruff format {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
 # Formats and hardens shell scripts
 [group('configuration')]

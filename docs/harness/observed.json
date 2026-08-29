@@ -1,0 +1,765 @@
+{
+  "antigravity": {
+    "agents.specialists": {
+      "mode": "emulated",
+      "parity": "partial",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Generated hook/guard adapter"
+    },
+    "commands.active": {
+      "mode": "adapter",
+      "parity": "partial",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/adapters/antigravity/hooks/hooks.json matches harness-guard\\.py",
+      "mode": "adapter",
+      "parity": "partial",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/adapters/antigravity/plugin.json",
+      "mode": "adapter",
+      "parity": "partial",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Generated `mcp.json`, unverified"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Not verified in adapter"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "partial",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Generated wrapper skill"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local adapter or command wrapper"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local adapter only"
+    },
+    "skills.shared": {
+      "mode": "adapter",
+      "parity": "partial",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Hook/adapter guard"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Plugin manifest or adapter metadata"
+    }
+  },
+  "claude": {
+    "agents.specialists": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Agent `tools`, `disallowedTools`, `permissionMode`"
+    },
+    "commands.active": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".claude/settings.json matches bash-guard\\.sh",
+      "mode": "adapter",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/instructions.md",
+      "mode": "shared",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`.mcp.json`, settings, or agent `mcpServers`"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Skill/agent `model`, `effort`"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`name`, `description` in `SKILL.md`"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`disable-model-invocation: true`"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`paths` frontmatter"
+    },
+    "skills.shared": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`allowed-tools` and `disallowed-tools`"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Skill frontmatter or marketplace/plugin metadata"
+    }
+  },
+  "codex": {
+    "agents.specialists": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Agent TOML permissions/sandbox and inherited MCP config"
+    },
+    "commands.active": {
+      "mode": "adapter",
+      "parity": "blocked",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".codex/hooks.json matches bash-guard\\.sh",
+      "mode": "adapter",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/instructions.md",
+      "mode": "shared",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Agent TOML `model`, `model_reasoning_effort`"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`name`, `description` in `SKILL.md`"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`agents/openai.yaml` `policy.allow_implicit_invocation: false`"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Prefer nested repo skills or concise descriptions"
+    },
+    "skills.shared": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Use permissions, hooks, or dependency metadata; no skill-level allowlist"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`agents/openai.yaml` `interface` fields"
+    }
+  },
+  "crush": {
+    "agents.specialists": {
+      "mode": "native",
+      "parity": "blocked",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`permissions deny` hides tools; PreToolUse hook for the rest"
+    },
+    "commands.active": {
+      "mode": "native",
+      "parity": "partial",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".config/crush/crushrc matches harness-guard\\.py",
+      "mode": "adapter",
+      "parity": "partial",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".config/crush/shared-harness.md",
+      "mode": "native",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`mcp add` in `~/.config/crush/crushrc`"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`model large`/`model small` with `--reasoning-effort`"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`name`, `description` in `SKILL.md`"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`disable-model-invocation: true`"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "No documented equivalent; scope through the description"
+    },
+    "skills.shared": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`permissions allow`/`deny` in crushrc; no skill-level allowlist"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`metadata` map plus `user-invocable`"
+    }
+  },
+  "cursor": {
+    "agents.specialists": {
+      "mode": "native",
+      "parity": "partial",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Rules/plugin adapter; native behavior unverified"
+    },
+    "commands.active": {
+      "mode": "native",
+      "parity": "partial",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/adapters/cursor/hooks/hooks.json matches harness-guard\\.py",
+      "mode": "adapter",
+      "parity": "partial",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/adapters/cursor/rules/shared-harness.mdc",
+      "mode": "adapter",
+      "parity": "partial",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Generated `mcp.json`, unverified"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "No shared skill metadata equivalent"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "partial",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`name`, `description` in `SKILL.md`"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`disable-model-invocation: true`"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`paths`; `globs` legacy fallback"
+    },
+    "skills.shared": {
+      "mode": "native",
+      "parity": "partial",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "No documented skill-level equivalent"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`metadata` map for skills; `.mdc` frontmatter for rules"
+    }
+  },
+  "grok": {
+    "agents.specialists": {
+      "mode": "adapter",
+      "parity": "partial",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`--tools` / `--disallowed-tools`, subagent `capability_mode`, permission rules"
+    },
+    "commands.active": {
+      "mode": "native",
+      "parity": "partial",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".grok/hooks/harness-guard.json matches harness-guard\\.py",
+      "mode": "adapter",
+      "parity": "partial",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".grok/rules/shared-harness.md",
+      "mode": "native",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`[mcp_servers.*]` in `~/.grok/config.toml`"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Skill `model`, `effort`; persona `model`, `reasoning_effort`"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`name`, `description` in `SKILL.md`"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`disable-model-invocation: true`"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "No documented equivalent; scope through the description"
+    },
+    "skills.shared": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`allowed-tools` in skill frontmatter"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`metadata` map plus `argument-hint`"
+    }
+  },
+  "omp": {
+    "agents.specialists": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Generated agent wrappers in ~/.omp/agent/agents"
+    },
+    "commands.active": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".omp/agent/hooks/pre/harness-guard.ts matches agent-harnesses",
+      "mode": "adapter",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".omp/agent/APPEND_SYSTEM.md",
+      "mode": "native",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "~/.omp/agent/mcp.json"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "modelRoles, defaultThinkingLevel"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Shared skills path"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local adapter or command wrapper"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local adapter only"
+    },
+    "skills.shared": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "config.yml tools.approval"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local config only"
+    }
+  },
+  "opencode": {
+    "agents.specialists": {
+      "mode": "adapter",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Agent `permission` and `tools`"
+    },
+    "commands.active": {
+      "mode": "adapter",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".config/opencode/plugins/harness.ts matches agent-harnesses",
+      "mode": "adapter",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/instructions.md",
+      "mode": "shared",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "maintenance.config_validation": {
+      "date": "2026-08-29",
+      "detail": "opencode debug config --pure",
+      "mode": "native",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": "opencode debug config --pure"
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`mcp` config"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Global or agent `model`; `small_model`"
+    },
+    "sessions.compaction": {
+      "mode": "adapter",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`name`, `description` in `SKILL.md`"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "No direct equivalent; use skill permissions or command wrappers"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Directory discovery plus permissions"
+    },
+    "skills.shared": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`permission.skill` controls skill loading, not tool preapproval"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`metadata` map only; unknown fields ignored"
+    }
+  },
+  "pi": {
+    "agents.specialists": {
+      "mode": "emulated",
+      "parity": "partial",
+      "surface": ""
+    },
+    "agents.tool_restrictions": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Extension-enforced guard"
+    },
+    "commands.active": {
+      "mode": "adapter",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "hooks.safety": {
+      "date": "2026-08-29",
+      "detail": ".pi/agent/extensions/harness.ts matches agent-harnesses",
+      "mode": "adapter",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "instructions.global": {
+      "date": "2026-08-29",
+      "detail": ".agents/harness/instructions.md",
+      "mode": "shared",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": ""
+    },
+    "maintenance.audit": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "maintenance.config_validation": {
+      "date": "2026-08-29",
+      "detail": "pi list --no-approve",
+      "mode": "native",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": "pi list --no-approve"
+    },
+    "mcp.dependencies": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Extension or future MCP bridge"
+    },
+    "models.effort": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "`defaultModel`, `defaultThinkingLevel`"
+    },
+    "sessions.compaction": {
+      "mode": "native",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.identity": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local `skills` path adapter"
+    },
+    "skills.manual_only": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local adapter or command wrapper"
+    },
+    "skills.path_scope": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local adapter only"
+    },
+    "skills.shared": {
+      "mode": "shared",
+      "parity": "aligned",
+      "surface": ""
+    },
+    "skills.tool_preapproval": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Extension or settings adapter"
+    },
+    "skills.ui_metadata": {
+      "mode": "none",
+      "parity": "unknown",
+      "surface": "Local settings/extension only"
+    }
+  }
+}

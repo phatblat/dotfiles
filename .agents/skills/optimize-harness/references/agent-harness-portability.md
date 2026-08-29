@@ -17,11 +17,11 @@ Use this reference when optimizing or porting shared skills, commands, agents, h
 4. Use progressive disclosure. Keep `SKILL.md` short; put detailed mapping tables in references, deterministic repeated work in scripts, and output assets in assets.
 5. Declare tool dependencies where the target can use them. Codex supports `agents/openai.yaml` `dependencies.tools`; other harnesses need native MCP/config entries or adapter checks.
 6. Record unsupported behavior as a parity gap instead of copying unknown metadata across tools.
-7. When new research changes current agent configuration facts, update `ATTRIBUTE_MAPPINGS` in `scripts/harness_paths.py`, regenerate `docs/agent-harnesses.json` and `docs/agent-harnesses.md` via `just harness-generate`, and keep this reference aligned.
+7. When new research changes current agent configuration facts, update the matching `Cell.surface` and `Capability.porting` in `CAPABILITIES` in `scripts/harness_capabilities.py`, regenerate `docs/agent-harnesses.*` and `docs/harness/` via `just harness-generate`, and keep this reference aligned. The `harness-research` skill is the full procedure.
 
 ## Metadata Portability
 
-The full attribute mapping table (all 8 harnesses) is generated from `ATTRIBUTE_MAPPINGS` in `scripts/harness_paths.py` — see the "Configuration Attribute Mapping" section of `docs/agent-harnesses.md` for the current table. Do not hand-maintain a second copy here; it drifts.
+The full porting grid (all 9 harnesses) is generated from `CAPABILITIES` in `scripts/harness_capabilities.py` — see `docs/harness/porting.md` for the current table, and the per-domain pages under `docs/harness/` for one capability's parity across harnesses. Do not hand-maintain a second copy here; it drifts.
 
 ## Source Notes
 
