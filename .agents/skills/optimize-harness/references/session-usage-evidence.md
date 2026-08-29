@@ -233,25 +233,16 @@ renderers, or system-prompt behavior are unused.
 
 ## Version boundary
 
-These rules are verified against the following CLI versions
-(`just harness-audit`, 2026-08-24):
+These rules are verified against whichever CLI versions the probe ledger last
+recorded. `docs/harness/versions.json` holds the current version, its
+`first_seen` date, and the version it replaced, per harness;
+`just harness-drift` prints what moved since, newest first, and
+`docs/harness/drift.md` renders both. Read those instead of a table here — a
+hand-copied version list is stale the day after a release.
 
-| Harness | Version |
-|---|---|
-| claude | 2.1.236 (Claude Code) |
-| codex | codex-cli 0.149.0 |
-| opencode | 1.18.21 |
-| pi | 0.84.2 |
-| omp | omp/18.0.3 |
-| antigravity | 1.0.13 |
-| cursor | 2026.07.01-777f564 |
-| grok | grok 1.0.5 (5115b46bc909) [alpha] |
-
-omp (18.0.0 → 18.0.3) and opencode (1.18.20 → 1.18.21) advanced since the
-prior check-in. Both are patch releases; not re-verified against upstream
-source, but the 2026-08-23 scan of these two versions parsed every retained
-file with zero malformed records and zero unknown record types, which is
-corroborating (not exhaustive) evidence the session/event schema held.
+`just harness-probe` refreshes them. When it reports `re-research <slug>`, the
+`harness-research` skill is the procedure for re-verifying that harness's
+capability cells against the new release.
 
 Recheck storage and event schemas before applying these rules to another
 release — a schema drift shows up as an unexpectedly small observation

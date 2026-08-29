@@ -133,6 +133,7 @@
 !.codex/skills/git-worktrees/
 !.codex/skills/graphify/
 !.codex/skills/handoff/
+!.codex/skills/harness-research/
 !.codex/skills/ocr/
 !.codex/skills/optimize-harness/
 !.codex/skills/pr-style/
@@ -262,6 +263,7 @@
 !.config/opencode/skills/git-worktrees/
 !.config/opencode/skills/graphify/
 !.config/opencode/skills/handoff/
+!.config/opencode/skills/harness-research/
 !.config/opencode/skills/ocr/
 !.config/opencode/skills/optimize-harness/
 !.config/opencode/skills/pr-style/
