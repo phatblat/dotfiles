@@ -509,6 +509,25 @@ skip_unless_home_is_this_checkout() {
   [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
 }
 
+@test "agent-harnesses: crush guard wrapper maps snake_case payloads" {
+  wrapper="$HOME/.config/crush/hooks/harness-guard.py"
+
+  deny_payload="$(jq -nc '{tool_name: "run_terminal_command", cwd: $ENV.HOME,
+    tool_input: {command: "sudo -n true"}}')"
+  run python3 "$wrapper" <<<"$deny_payload"
+  [ "$status" -eq 2 ]
+
+  write_payload="$(jq -nc --arg path "$HOME/.ssh/id_ed25519" '{tool_name: "write_file",
+    cwd: $ENV.HOME, tool_input: {file_path: $path, new_string: "x"}}')"
+  run python3 "$wrapper" <<<"$write_payload"
+  [ "$status" -eq 2 ]
+
+  allow_payload="$(jq -nc '{tool_name: "run_terminal_command", cwd: $ENV.HOME,
+    tool_input: {command: "git status --short"}}')"
+  run python3 "$wrapper" <<<"$allow_payload"
+  [ "$status" -eq 0 ]
+}
+
 @test "agent-harnesses: antigravity plugin artifacts exist and parse" {
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
@@ -544,7 +563,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: safe shell commands pass every adapter guard" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "git status --short"
     [ "$status" -eq 0 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -553,7 +572,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: dangerous shell commands are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "rm -rf /"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -570,7 +589,7 @@ skip_unless_home_is_this_checkout() {
     $'echo ok\nsudo whoami'
   )
 
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     for privileged_command in "${privileged_commands[@]}"; do
       run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "$privileged_command"
       [ "$status" -eq 2 ]
@@ -583,7 +602,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: protected writes are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/.ssh/id_ed25519" --content "not a key"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
@@ -604,7 +623,7 @@ skip_unless_home_is_this_checkout() {
     "$HOME/.grok/mcp_credentials.json"
   )
 
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     for protected_path in "${protected_paths[@]}"; do
       run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$protected_path" --content "{}"
       [ "$status" -eq 2 ]
@@ -617,7 +636,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: secret-like content is denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok; do
+  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
     run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/tmp/example.txt" --content "token = sk-example12345678901234567890"
     [ "$status" -eq 2 ]
     decision=$(printf '%s' "$output" | jq -r '.decision')
