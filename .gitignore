@@ -187,6 +187,10 @@
 .config/com.tolaria.app/
 .config/configstore
 .config/context7/credentials.json
+.config/crush/*
+!.config/crush/crushrc
+!.config/crush/hooks/
+!.config/crush/shared-harness.md
 .config/dconf/
 .config/delta/lesshst
 .config/direnv/

@@ -4,6 +4,7 @@
       "antigravity": "Generated wrapper skill",
       "claude": "`name`, `description` in `SKILL.md`",
       "codex": "`name`, `description` in `SKILL.md`",
+      "crush": "`name`, `description` in `SKILL.md`",
       "cursor": "`name`, `description` in `SKILL.md`",
       "feature": "Skill identity and trigger",
       "grok": "`name`, `description` in `SKILL.md`",
@@ -18,6 +19,7 @@
       "antigravity": "Local adapter or command wrapper",
       "claude": "`disable-model-invocation: true`",
       "codex": "`agents/openai.yaml` `policy.allow_implicit_invocation: false`",
+      "crush": "`disable-model-invocation: true`",
       "cursor": "`disable-model-invocation: true`",
       "feature": "Manual-only procedural skills",
       "grok": "`disable-model-invocation: true`",
@@ -32,6 +34,7 @@
       "antigravity": "Local adapter only",
       "claude": "`paths` frontmatter",
       "codex": "Prefer nested repo skills or concise descriptions",
+      "crush": "No documented equivalent; scope through the description",
       "cursor": "`paths`; `globs` legacy fallback",
       "feature": "File/path-scoped guidance",
       "grok": "No documented equivalent; scope through the description",
@@ -46,6 +49,7 @@
       "antigravity": "Hook/adapter guard",
       "claude": "`allowed-tools` and `disallowed-tools`",
       "codex": "Use permissions, hooks, or dependency metadata; no skill-level allowlist",
+      "crush": "`permissions allow`/`deny` in crushrc; no skill-level allowlist",
       "cursor": "No documented skill-level equivalent",
       "feature": "Skill-level tool preapproval",
       "grok": "`allowed-tools` in skill frontmatter",
@@ -60,6 +64,7 @@
       "antigravity": "Plugin manifest or adapter metadata",
       "claude": "Skill frontmatter or marketplace/plugin metadata",
       "codex": "`agents/openai.yaml` `interface` fields",
+      "crush": "`metadata` map plus `user-invocable`",
       "cursor": "`metadata` map for skills; `.mdc` frontmatter for rules",
       "feature": "Skill UI metadata",
       "grok": "`metadata` map plus `argument-hint`",
@@ -74,6 +79,7 @@
       "antigravity": "Not verified in adapter",
       "claude": "Skill/agent `model`, `effort`",
       "codex": "Agent TOML `model`, `model_reasoning_effort`",
+      "crush": "`model large`/`model small` with `--reasoning-effort`",
       "cursor": "No shared skill metadata equivalent",
       "feature": "Model and effort overrides",
       "grok": "Skill `model`, `effort`; persona `model`, `reasoning_effort`",
@@ -88,6 +94,7 @@
       "antigravity": "Generated hook/guard adapter",
       "claude": "Agent `tools`, `disallowedTools`, `permissionMode`",
       "codex": "Agent TOML permissions/sandbox and inherited MCP config",
+      "crush": "`permissions deny` hides tools; PreToolUse hook for the rest",
       "cursor": "Rules/plugin adapter; native behavior unverified",
       "feature": "Subagent tool restrictions",
       "grok": "`--tools` / `--disallowed-tools`, subagent `capability_mode`, permission rules",
@@ -102,6 +109,7 @@
       "antigravity": "Generated `mcp.json`, unverified",
       "claude": "`.mcp.json`, settings, or agent `mcpServers`",
       "codex": "`agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP",
+      "crush": "`mcp add` in `~/.config/crush/crushrc`",
       "cursor": "Generated `mcp.json`, unverified",
       "feature": "MCP/tool dependencies",
       "grok": "`[mcp_servers.*]` in `~/.grok/config.toml`",
@@ -154,6 +162,19 @@
           "next_action": "",
           "paths": [
             "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "crush": {
+          "gap_reason": "inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.config/crush/shared-harness.md"
           ],
           "state": "complete",
           "verified": {
@@ -278,6 +299,19 @@
             "version": "local"
           }
         },
+        "crush": {
+          "gap_reason": "generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.agents/skills"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "cursor": {
           "gap_reason": "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
           "mode": "native",
@@ -389,6 +423,19 @@
             "~/.agents/harness/commands"
           ],
           "state": "blocked",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "crush": {
+          "gap_reason": "crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md",
+          "mode": "native",
+          "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
+          "paths": [
+            "~/.agents/skills"
+          ],
+          "state": "partial",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -506,6 +553,19 @@
             "~/.codex/agents"
           ],
           "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "crush": {
+          "gap_reason": "crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269",
+          "mode": "native",
+          "next_action": "Re-check crush releases for user-defined agent support",
+          "paths": [
+            "~/.agents/harness/agents"
+          ],
+          "state": "blocked",
           "verified": {
             "date": "2026-06-27",
             "version": "local"
@@ -630,6 +690,20 @@
             "version": "local"
           }
         },
+        "crush": {
+          "gap_reason": "generated crush PreToolUse guard maps crush's snake_case payload to the shared guard and blocks with exit 2, but crush is not installed locally so live blocking is unverified",
+          "mode": "adapter",
+          "next_action": "Install crush and verify it blocks a denied shell command through the generated crushrc PreToolUse hook",
+          "paths": [
+            "~/.config/crush/crushrc",
+            "~/.config/crush/hooks/harness-guard.py"
+          ],
+          "state": "partial",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "cursor": {
           "gap_reason": "Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified",
           "mode": "adapter",
@@ -742,6 +816,19 @@
           "next_action": "",
           "paths": [
             "~/.codex/hooks.json"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
+        "crush": {
+          "gap_reason": "compaction preservation contract inlined in the generated crush context file",
+          "mode": "native",
+          "next_action": "",
+          "paths": [
+            "~/.config/crush/shared-harness.md"
           ],
           "state": "complete",
           "verified": {
@@ -866,6 +953,19 @@
             "version": "local"
           }
         },
+        "crush": {
+          "gap_reason": "",
+          "mode": "shared",
+          "next_action": "",
+          "paths": [
+            "~/.agents/harness"
+          ],
+          "state": "complete",
+          "verified": {
+            "date": "2026-06-27",
+            "version": "local"
+          }
+        },
         "cursor": {
           "gap_reason": "",
           "mode": "shared",
@@ -949,6 +1049,10 @@
     "codex": {
       "maintenance": "generated",
       "role": "supported peer"
+    },
+    "crush": {
+      "maintenance": "generated",
+      "role": "new port"
     },
     "cursor": {
       "maintenance": "generated",

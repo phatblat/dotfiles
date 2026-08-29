@@ -1101,6 +1101,12 @@ def scan_harness(slug: str, *, since_days: int, max_files: int) -> tuple[list[Ob
 
     since_epoch = time.time() - since_days * 86400
 
+    if store.kind == "none":
+        coverage.gaps.append(
+            "no session scanner: this harness has no transcript store this tool reads"
+        )
+        return [], coverage
+
     if store.kind == "sqlite":
         db_path = root
         if not db_path.exists():

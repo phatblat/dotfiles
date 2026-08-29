@@ -23,6 +23,7 @@ HARNESSES: list[str] = [
     "antigravity",
     "cursor",
     "grok",
+    "crush",
 ]
 
 # Column headings for the parity matrix. Every HARNESSES entry needs one; the
@@ -36,6 +37,7 @@ HARNESS_LABELS: dict[str, str] = {
     "antigravity": "Antigravity",
     "cursor": "Cursor",
     "grok": "Grok",
+    "crush": "Crush",
 }
 
 # CLI binary invoked for `<binary> --version` in `command_audit`.
@@ -48,6 +50,7 @@ CLI_BINARIES: dict[str, str] = {
     "antigravity": "agy",
     "cursor": "cursor-agent",
     "grok": "grok",
+    "crush": "crush",
 }
 
 # HOME-relative config roots only, at the coarse-grained directory level
@@ -67,6 +70,7 @@ CONFIG_ROOTS: dict[str, tuple[str, ...]] = {
     "antigravity": (".gemini",),
     "cursor": (".cursor",),
     "grok": (".grok",),
+    "crush": (".config/crush",),
 }
 
 
@@ -183,6 +187,19 @@ SESSION_STORES: dict[str, SessionStore] = {
             "do not read it"
         ),
     ),
+    "crush": SessionStore(
+        kind="none",
+        default=".local/share/crush",
+        pattern="",
+        env=("CRUSH_GLOBAL_DATA", "XDG_DATA_HOME"),
+        verified=False,
+        note=(
+            "transcripts live in crush.db, whose schema upstream documents as "
+            "not a public API and reshapes through sqlc migrations; parsing it "
+            "would break on any crush release, so no scanner reads it and "
+            "session coverage is reported as none"
+        ),
+    ),
 }
 
 # Keep this table current whenever harness porting research changes agent
@@ -200,6 +217,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Generated wrapper skill",
         "cursor": "`name`, `description` in `SKILL.md`",
         "grok": "`name`, `description` in `SKILL.md`",
+        "crush": "`name`, `description` in `SKILL.md`",
         "notes": "Most portable part of a skill.",
     },
     {
@@ -214,6 +232,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Local adapter or command wrapper",
         "cursor": "`disable-model-invocation: true`",
         "grok": "`disable-model-invocation: true`",
+        "crush": "`disable-model-invocation: true`",
         "notes": "Codex policy blocks implicit invocation but does not hide enabled skill metadata.",
     },
     {
@@ -228,6 +247,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Local adapter only",
         "cursor": "`paths`; `globs` legacy fallback",
         "grok": "No documented equivalent; scope through the description",
+        "crush": "No documented equivalent; scope through the description",
         "notes": "Not part of the shared Agent Skills core.",
     },
     {
@@ -242,6 +262,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Hook/adapter guard",
         "cursor": "No documented skill-level equivalent",
         "grok": "`allowed-tools` in skill frontmatter",
+        "crush": "`permissions allow`/`deny` in crushrc; no skill-level allowlist",
         "notes": "The Agent Skills spec marks `allowed-tools` experimental.",
     },
     {
@@ -256,6 +277,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Plugin manifest or adapter metadata",
         "cursor": "`metadata` map for skills; `.mdc` frontmatter for rules",
         "grok": "`metadata` map plus `argument-hint`",
+        "crush": "`metadata` map plus `user-invocable`",
         "notes": "Do not put Codex `interface` fields in portable `SKILL.md`.",
     },
     {
@@ -270,6 +292,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Not verified in adapter",
         "cursor": "No shared skill metadata equivalent",
         "grok": "Skill `model`, `effort`; persona `model`, `reasoning_effort`",
+        "crush": "`model large`/`model small` with `--reasoning-effort`",
         "notes": "Never assume model aliases mean the same provider/model.",
     },
     {
@@ -284,6 +307,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Generated hook/guard adapter",
         "cursor": "Rules/plugin adapter; native behavior unverified",
         "grok": "`--tools` / `--disallowed-tools`, subagent `capability_mode`, permission rules",
+        "crush": "`permissions deny` hides tools; PreToolUse hook for the rest",
         "notes": "Shared harness guard covers only normalized shell/write/edit safety.",
     },
     {
@@ -298,6 +322,7 @@ ATTRIBUTE_MAPPINGS: list[dict[str, str]] = [
         "antigravity": "Generated `mcp.json`, unverified",
         "cursor": "Generated `mcp.json`, unverified",
         "grok": "`[mcp_servers.*]` in `~/.grok/config.toml`",
+        "crush": "`mcp add` in `~/.config/crush/crushrc`",
         "notes": "Dependency metadata is advisory unless the harness enforces it.",
     },
 ]

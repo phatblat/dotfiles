@@ -893,6 +893,15 @@
   "~/.codex/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
   },
+  "~/.config/crush/crushrc": {
+    "source": ""
+  },
+  "~/.config/crush/hooks/harness-guard.py": {
+    "source": ""
+  },
+  "~/.config/crush/shared-harness.md": {
+    "source": ""
+  },
   "~/.config/opencode/agents/ai-sdk-expert.md": {
     "source": "~/.codex/agents/ai-sdk-expert.toml"
   },

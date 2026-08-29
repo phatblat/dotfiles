@@ -70,7 +70,8 @@ PROTECTED_PATHS = re.compile(
     r"\.gemini/antigravity-cli/installation_id|"
     r"\.gemini/antigravity-cli/conversations/|"
     r"\.cursor/ai-tracking/|"
-    r"\.grok/auth\.json|\.grok/mcp_credentials\.json"
+    r"\.grok/auth\.json|\.grok/mcp_credentials\.json|"
+    r"\.local/share/crush/crush\.json|\.local/share/crush/crush\.db"
     r")",
     re.IGNORECASE,
 )
