@@ -119,6 +119,7 @@ mkcert = "1.4.4"
 neovim = "0.12.5"
 ninja = "1.13.2"
 node = "26.8.1"
+oh-my-pi = { version = "18.0.10", rename_exe = "omp" }
 opencode = "1.18.23"
 packer = "1.16.0"
 pi = "0.84.3"
@@ -152,7 +153,6 @@ xh = "0.26.2"
 yq = "4.53.6"
 zig = "0.16.0"
 zoxide = "0.10.0"
-oh-my-pi = { version = "18.0.10", rename_exe = "omp" }
 
 [tools."http:cursor-cli"]
 version = "2026.07.01-777f564"
