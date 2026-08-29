@@ -78,6 +78,7 @@ chromedriver = "154.0.8029.0"
 clang-format = "23.1.0"
 cmake = "4.4.3"
 cocoapods = { version = "1.17.0", install_env = { PATH = "/Users/phatblat/.local/share/mise/installs/ruby/4.0.5/bin:/Users/phatblat/.local/bin:/Users/phatblat/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" } }
+crush = "0.91.2"
 dagger = "0.21.9"
 dart = "3.13.2"
 delta = "0.19.2"
