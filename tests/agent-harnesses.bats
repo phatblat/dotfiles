@@ -179,6 +179,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: generated manifest contains native plugin matrix" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
