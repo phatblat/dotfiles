@@ -737,6 +737,10 @@ lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-sh
 [group('checks')]
 check: lint typecheck-python check-spelling harness-check test
 
+# Alias for harness-generate
+[group('checks')]
+generate: harness-generate
+
 # Generates shared/native agent harness parity artifacts
 [group('checks')]
 harness-generate:
