@@ -35,6 +35,7 @@ NATIVE_SKILL_ADAPTERS = {
     "brainstorm",
     "branch-finish",
     "ci-fix",
+    "cmux-workspace-status",
     "container",
     "debug-issue",
     "dispatching-parallel-agents",
