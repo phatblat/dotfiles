@@ -1,6 +1,6 @@
 providers:
   spark:
-    baseUrl: http://127.0.0.1:8001/v1
+    baseUrl: http://spark1.local:8000/v1
     api: openai-completions
     apiKey: SPARK_API_KEY
     compat:

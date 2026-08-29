@@ -150,3 +150,6 @@ baseten() {
     command omp --profile=baseten "$@"
 }
 # <<< omp profile alias: baseten <<<
+
+# review-pr.py: use casper omp profile on this machine
+export REVIEW_PR_OMP_PROFILE=casper
