@@ -99,6 +99,15 @@ _CONTROL_PLANE_FRAGMENTS = (
     r"/scripts/agent_plugins\.py(?![\w.-])",
     r"/harness-guard\.(?:ts|py)(?![\w.-])",
     r"/(?:write|bash)-guard\.sh(?![\w.-])",
+    # The two guard shims that are not named `harness-guard.*`: opencode and pi
+    # call the guard from a plugin/extension file literally named `harness.ts`,
+    # which the fragment above does not match. `.grok/hooks/harness-guard.json`
+    # is likewise unmatched (`.json`, not `.ts`/`.py`). Added during the ness
+    # de-risk work after auditing every guard call site by name; see
+    # crates/ness/Cargo.toml's sibling plan doc for the inventory.
+    r"/opencode/plugins/harness\.ts(?![\w.-])",
+    r"/agent/extensions/harness\.ts(?![\w.-])",
+    r"/harness-guard\.json(?![\w.-])",
 )
 
 CONTROL_PLANE_PATHS = re.compile(
