@@ -13,15 +13,15 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | local · - · 2026-06-27 | - |
-| codex | aligned | shared | - | local · - · 2026-06-27 | - |
-| opencode | aligned | shared | - | local · - · 2026-06-27 | - |
-| pi | aligned | shared | - | local · - · 2026-06-27 | - |
-| omp | aligned | shared | - | local · - · 2026-06-27 | - |
-| antigravity | aligned | shared | - | local · - · 2026-06-27 | - |
-| cursor | aligned | shared | - | local · - · 2026-06-27 | - |
-| grok | aligned | shared | - | local · - · 2026-06-27 | - |
-| crush | aligned | shared | - | local · - · 2026-06-27 | - |
+| claude | aligned | shared | - | probe · 2.1.236 (Claude Code) · 2026-08-30 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.150.1 · 2026-08-30 | - |
+| opencode | aligned | shared | - | probe · 1.18.23 · 2026-08-30 | - |
+| pi | aligned | shared | - | probe · 0.84.3 · 2026-08-30 | - |
+| omp | aligned | shared | - | probe · omp/18.0.10 · 2026-08-30 | - |
+| antigravity | aligned | shared | - | probe · 1.1.22 · 2026-08-30 | - |
+| cursor | aligned | shared | - | probe · 2026.07.01-777f564 · 2026-08-30 | - |
+| grok | aligned | shared | - | probe · grok 1.0.5 (5115b46bc909) [alpha] · 2026-08-30 | - |
+| crush | aligned | shared | - | probe · crush version v0.91.2 · 2026-08-30 | - |
 
 ### maintenance.config_validation · p1
 
@@ -33,8 +33,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config --pure | probe · 1.18.23 · 2026-08-29 | - |
-| pi | aligned | native | pi list --no-approve | probe · 0.84.3 · 2026-08-29 | - |
+| opencode | aligned | native | opencode debug config --pure | probe · 1.18.23 · 2026-08-30 | - |
+| pi | aligned | native | pi list --no-approve | probe · 0.84.3 · 2026-08-30 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |

@@ -8,14 +8,14 @@ Coverage: 65/405 cells verified (16%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.236 (Claude Code) | 2026-08-29 | 7 | 0 | 0 | 0 | 0 | 38 |
-| codex | supported peer | codex-cli 0.149.1 | 2026-08-29 | 6 | 0 | 0 | 1 | 0 | 38 |
+| claude | supported peer | 2.1.236 (Claude Code) | 2026-08-29 | 6 | 1 | 0 | 0 | 0 | 38 |
+| codex | supported peer | codex-cli 0.150.1 | 2026-08-29 | 5 | 1 | 0 | 1 | 0 | 38 |
 | opencode | new port | 1.18.23 | 2026-08-29 | 8 | 0 | 0 | 0 | 0 | 37 |
 | pi | new port | 0.84.3 | 2026-08-29 | 7 | 1 | 0 | 0 | 0 | 37 |
-| omp | tracked port | omp/18.0.7 | 2026-08-29 | 7 | 0 | 0 | 0 | 0 | 38 |
+| omp | tracked port | omp/18.0.10 | 2026-08-29 | 6 | 1 | 0 | 0 | 0 | 38 |
 | antigravity | tracked port | 1.1.22 | 2026-08-29 | 1 | 6 | 0 | 0 | 0 | 38 |
 | cursor | tracked port | 2026.07.01-777f564 | 2026-08-29 | 1 | 6 | 0 | 0 | 0 | 38 |
-| grok | new port | grok 1.0.5 (5115b46bc909) | 2026-08-29 | 4 | 3 | 0 | 0 | 0 | 38 |
+| grok | new port | grok 1.0.5 (5115b46bc909) [alpha] | 2026-08-29 | 4 | 3 | 0 | 0 | 0 | 38 |
 | crush | new port | crush version v0.91.2 | 2026-08-29 | 4 | 2 | 0 | 1 | 0 | 38 |
 
 ## Domains
@@ -24,8 +24,8 @@ Coverage: 65/405 cells verified (16%)
 |---|---|---|---|---|---|---|---|---|
 | Instructions | [harness/instructions.md](harness/instructions.md) | 3 | 7 | 2 | 0 | 0 | 0 | 18 |
 | Skills | [harness/skills.md](harness/skills.md) | 7 | 7 | 2 | 0 | 0 | 0 | 54 |
-| Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 4 | 0 | 1 | 0 | 18 |
-| Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 4 | 0 | 1 | 0 | 27 |
+| Commands | [harness/commands.md](harness/commands.md) | 3 | 2 | 6 | 0 | 1 | 0 | 18 |
+| Agents | [harness/agents.md](harness/agents.md) | 4 | 3 | 5 | 0 | 1 | 0 | 27 |
 | Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 5 | 4 | 0 | 0 | 0 | 27 |
 | Permissions | [harness/permissions.md](harness/permissions.md) | 3 | 0 | 0 | 0 | 0 | 0 | 27 |
 | MCP | [harness/mcp.md](harness/mcp.md) | 3 | 0 | 0 | 0 | 0 | 0 | 27 |
@@ -63,7 +63,18 @@ Coverage: 65/405 cells verified (16%)
 
 ## Recent drift
 
-No drift recorded yet.
+| Date | Harness | Capability | Field | From | To |
+|---|---|---|---|---|---|
+| 2026-08-30 | omp | - | version | omp/18.0.7 | omp/18.0.10 |
+| 2026-08-30 | grok | - | version | grok 1.0.5 (5115b46bc909) | grok 1.0.5 (5115b46bc909) [alpha] |
+| 2026-08-30 | codex | - | version | codex-cli 0.149.1 | codex-cli 0.150.1 |
+| 2026-08-30 | pi | skills.shared | probe | - | pass |
+| 2026-08-30 | pi | sessions.compaction | probe | - | pass |
+| 2026-08-30 | pi | maintenance.audit | probe | - | pass |
+| 2026-08-30 | pi | commands.active | probe | - | pass |
+| 2026-08-30 | pi | agents.specialists | probe | - | pass |
+| 2026-08-30 | opencode | skills.shared | probe | - | pass |
+| 2026-08-30 | opencode | sessions.compaction | probe | - | pass |
 
 ## Permanent divergences
 
