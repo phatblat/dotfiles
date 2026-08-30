@@ -77,8 +77,8 @@
   "~/.agents/harness/adapters/antigravity/commands/pr/post-review-findings.md": {
     "source": "~/.claude/commands/pr/post-review-findings.md"
   },
-  "~/.agents/harness/adapters/antigravity/commands/pr/resolve-feedback.md": {
-    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  "~/.agents/harness/adapters/antigravity/commands/pr/resolve-review-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-review-feedback.md"
   },
   "~/.agents/harness/adapters/antigravity/commands/pr/update-desc.md": {
     "source": "~/.claude/commands/pr/update-desc.md"
@@ -260,8 +260,8 @@
   "~/.agents/harness/adapters/antigravity/skills/pr-post-review-findings/SKILL.md": {
     "source": "~/.agents/skills/pr-post-review-findings/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/pr-resolve-feedback/SKILL.md": {
-    "source": "~/.agents/skills/pr-resolve-feedback/SKILL.md"
+  "~/.agents/harness/adapters/antigravity/skills/pr-resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/pr-resolve-review-feedback/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
@@ -278,8 +278,8 @@
   "~/.agents/harness/adapters/antigravity/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md": {
-    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  "~/.agents/harness/adapters/antigravity/skills/resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/retro/SKILL.md": {
     "source": "~/.agents/skills/retro/SKILL.md"
@@ -392,8 +392,8 @@
   "~/.agents/harness/adapters/cursor/commands/pr/post-review-findings.md": {
     "source": "~/.claude/commands/pr/post-review-findings.md"
   },
-  "~/.agents/harness/adapters/cursor/commands/pr/resolve-feedback.md": {
-    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  "~/.agents/harness/adapters/cursor/commands/pr/resolve-review-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-review-feedback.md"
   },
   "~/.agents/harness/adapters/cursor/commands/pr/update-desc.md": {
     "source": "~/.claude/commands/pr/update-desc.md"
@@ -575,8 +575,8 @@
   "~/.agents/harness/adapters/cursor/skills/pr-post-review-findings/SKILL.md": {
     "source": "~/.agents/skills/pr-post-review-findings/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/pr-resolve-feedback/SKILL.md": {
-    "source": "~/.agents/skills/pr-resolve-feedback/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/pr-resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/pr-resolve-review-feedback/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
@@ -593,8 +593,8 @@
   "~/.agents/harness/adapters/cursor/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md": {
-    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/retro/SKILL.md": {
     "source": "~/.agents/skills/retro/SKILL.md"
@@ -704,8 +704,8 @@
   "~/.agents/harness/commands/pr/post-review-findings.md": {
     "source": "~/.claude/commands/pr/post-review-findings.md"
   },
-  "~/.agents/harness/commands/pr/resolve-feedback.md": {
-    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  "~/.agents/harness/commands/pr/resolve-review-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-review-feedback.md"
   },
   "~/.agents/harness/commands/pr/update-desc.md": {
     "source": "~/.claude/commands/pr/update-desc.md"
@@ -815,8 +815,8 @@
   "~/.claude/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
-  "~/.claude/skills/resolve-feedback/SKILL.md": {
-    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  "~/.claude/skills/resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
   "~/.claude/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
@@ -929,11 +929,11 @@
   "~/.codex/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
-  "~/.codex/skills/resolve-feedback/SKILL.md": {
-    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  "~/.codex/skills/resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
-  "~/.codex/skills/resolve-feedback/agents/openai.yaml": {
-    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  "~/.codex/skills/resolve-review-feedback/agents/openai.yaml": {
+    "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
   "~/.codex/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
@@ -1031,8 +1031,8 @@
   "~/.config/opencode/commands/pr:post-review-findings.md": {
     "source": "~/.claude/commands/pr/post-review-findings.md"
   },
-  "~/.config/opencode/commands/pr:resolve-feedback.md": {
-    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  "~/.config/opencode/commands/pr:resolve-review-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-review-feedback.md"
   },
   "~/.config/opencode/commands/pr:update-desc.md": {
     "source": "~/.claude/commands/pr/update-desc.md"
@@ -1136,8 +1136,8 @@
   "~/.config/opencode/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
-  "~/.config/opencode/skills/resolve-feedback/SKILL.md": {
-    "source": "~/.agents/skills/resolve-feedback/SKILL.md"
+  "~/.config/opencode/skills/resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
   "~/.config/opencode/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
@@ -1283,8 +1283,8 @@
   "~/.pi/agent/prompts/pr:post-review-findings.md": {
     "source": "~/.claude/commands/pr/post-review-findings.md"
   },
-  "~/.pi/agent/prompts/pr:resolve-feedback.md": {
-    "source": "~/.claude/commands/pr/resolve-feedback.md"
+  "~/.pi/agent/prompts/pr:resolve-review-feedback.md": {
+    "source": "~/.claude/commands/pr/resolve-review-feedback.md"
   },
   "~/.pi/agent/prompts/pr:update-desc.md": {
     "source": "~/.claude/commands/pr/update-desc.md"

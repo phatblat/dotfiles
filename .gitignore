@@ -143,7 +143,7 @@
 !.codex/skills/receiving-code-review/
 !.codex/skills/refactor-safely/
 !.codex/skills/requesting-code-review/
-!.codex/skills/resolve-feedback/
+!.codex/skills/resolve-review-feedback/
 !.codex/skills/review-changes/
 !.codex/skills/subagent-driven-development/
 !.codex/skills/test-driven-development/
@@ -276,7 +276,7 @@
 !.config/opencode/skills/receiving-code-review/
 !.config/opencode/skills/refactor-safely/
 !.config/opencode/skills/requesting-code-review/
-!.config/opencode/skills/resolve-feedback/
+!.config/opencode/skills/resolve-review-feedback/
 !.config/opencode/skills/review-changes/
 !.config/opencode/skills/subagent-driven-development/
 !.config/opencode/skills/test-driven-development/

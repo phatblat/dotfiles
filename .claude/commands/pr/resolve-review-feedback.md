@@ -1,5 +1,5 @@
 ---
-description: Address GitHub PR review comments — fetch, evaluate, fix, commit, and resolve
+description: Address GitHub PR review feedback at line, file, and PR level — fetch, evaluate, fix, commit, and resolve
 model: sonnet
 argument_hint: "<PR-URL or comment-URL>"
 allowed-tools:
@@ -16,9 +16,11 @@ category: workflow
 
 # Resolve PR Feedback
 
-Address GitHub PR review comments. Invoke the `resolve-feedback` skill, then apply it to:
+Address GitHub PR review comments. Invoke the `resolve-review-feedback` skill, then apply it to:
 
 `$ARGUMENTS`
+
+Accepted targets: a PR URL, a review-comment URL (`#discussion_r<id>`), a PR-level comment URL (`#issuecomment-<id>`), or a review URL (`#pullrequestreview-<id>`).
 
 If no arguments provided, detect the current branch's PR:
 

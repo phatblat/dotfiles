@@ -56,7 +56,7 @@ NATIVE_SKILL_ADAPTERS = {
     "receiving-code-review",
     "refactor-safely",
     "requesting-code-review",
-    "resolve-feedback",
+    "resolve-review-feedback",
     "review-changes",
     "subagent-driven-development",
     "test-driven-development",
@@ -75,7 +75,7 @@ MANUAL_SKILL_ADAPTERS = {
     "handoff",
     "harness-research",
     "optimize-harness",
-    "resolve-feedback",
+    "resolve-review-feedback",
 }
 
 _managed_header: str | None = None

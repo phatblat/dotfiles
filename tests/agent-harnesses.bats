@@ -288,9 +288,9 @@ skip_unless_home_is_this_checkout() {
     pr-merge
     pr-open-for-review
     pr-post-review-findings
-    pr-resolve-feedback
+    pr-resolve-review-feedback
     pr-update-desc
-    resolve-feedback
+    resolve-review-feedback
     retro
     session-save
     work-eod
