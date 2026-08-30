@@ -1,10 +1,13 @@
 #!/usr/bin/env bats
 # wt.bats — Worktree branch-resolution tests
 
+bats_require_minimum_version 1.5.0
+
 load helpers/setup
 
 ZSH_WT="$HOME/.config/zsh/functions/wt"
 NU_WT="$HOME/.config/nushell/autoload/wt.nu"
+SH_WT="$HOME/.agents/skills/git-worktree/wt.sh"
 
 setup() {
   remote="$BATS_TEST_TMPDIR/remote.git"
@@ -255,4 +258,108 @@ init_dotfiles_home() {
 
   [ "$status" -ne 0 ]
   [ -f "$wt_path/marker" ]
+}
+
+@test "wt.sh switch fetches and tracks a newly available remote branch" {
+  run --separate-stderr env HOME="$fake_home" "$SH_WT" switch "$branch" --repo "$clone"
+
+  [ "$status" -eq 0 ]
+  worktree="$output"
+  [ "$(git -C "$worktree" rev-parse HEAD)" = "$remote_head" ]
+  [ "$(git -C "$worktree" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}')" = "origin/$branch" ]
+}
+
+@test "wt.sh path --dotfiles prints the canonical path without creating anything" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+  resolved_home=$(cd "$fake_home" && pwd -P)
+
+  run env HOME="$fake_home" "$SH_WT" path "$dotfiles_branch" --dotfiles
+
+  [ "$status" -eq 0 ]
+  [ "$output" = "$resolved_home/.worktrees/dotfiles/$dotfiles_branch" ]
+  [ ! -e "$resolved_home/.worktrees/dotfiles/$dotfiles_branch" ]
+}
+
+@test "wt.sh path derives the path-key convention for a repo under \$HOME" {
+  proj="$fake_home/dev/proj"
+  mkdir -p "$proj"
+  git init -q "$proj"
+  resolved_home=$(cd "$fake_home" && pwd -P)
+
+  run env HOME="$fake_home" "$SH_WT" path "feature-under-home" --repo "$proj"
+
+  [ "$status" -eq 0 ]
+  [ "$output" = "$resolved_home/.worktrees/dev-proj/feature-under-home" ]
+}
+
+@test "wt.sh switch refuses a plain invocation inside the dotfiles repo" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+
+  run env HOME="$fake_home" "$SH_WT" switch "$dotfiles_branch" --repo "$fake_home"
+
+  [ "$status" -eq 4 ]
+  [[ "$output" == *"--dotfiles"* ]]
+}
+
+@test "wt.sh switch refuses a non-empty unregistered worktree path" {
+  init_dotfiles_home
+  dotfiles_branch="dotfiles-branch"
+  resolved_home=$(cd "$fake_home" && pwd -P)
+  wt_path="$resolved_home/.worktrees/dotfiles/$dotfiles_branch"
+  mkdir -p "$wt_path"
+  echo not-a-worktree > "$wt_path/marker"
+
+  run env HOME="$fake_home" "$SH_WT" switch "$dotfiles_branch" --dotfiles
+
+  [ "$status" -eq 4 ]
+  [ -f "$wt_path/marker" ]
+}
+
+@test "wt.sh switch exits 4 when a registered worktree's leaf does not match the branch" {
+  mismatch_branch="mismatch-branch"
+  git -C "$clone" worktree add -q -b "$mismatch_branch" "$BATS_TEST_TMPDIR/wrongdir"
+
+  run env HOME="$fake_home" "$SH_WT" switch "$mismatch_branch" --repo "$clone"
+
+  [ "$status" -eq 4 ]
+}
+
+@test "wt.sh remove deletes a clean worktree and drops it from worktree list" {
+  remove_branch="remove-me"
+  run --separate-stderr env HOME="$fake_home" "$SH_WT" switch "$remove_branch" --repo "$clone"
+  [ "$status" -eq 0 ]
+  worktree="$output"
+
+  run env HOME="$fake_home" "$SH_WT" remove "$remove_branch" --repo "$clone"
+
+  [ "$status" -eq 0 ]
+  [ ! -d "$worktree" ]
+  run git -C "$clone" worktree list --porcelain
+  [[ "$output" != *"worktree $worktree"* ]]
+}
+
+@test "wt.sh remove refuses when \$PWD is inside the target worktree" {
+  inside_branch="inside-branch"
+  run --separate-stderr env HOME="$fake_home" "$SH_WT" switch "$inside_branch" --repo "$clone"
+  [ "$status" -eq 0 ]
+  worktree="$output"
+
+  run env HOME="$fake_home" bash -c 'cd "$1" && "$2" remove "$3" --repo "$4"' bash "$worktree" "$SH_WT" "$inside_branch" "$clone"
+
+  [ "$status" -eq 4 ]
+  [ -d "$worktree" ]
+}
+
+@test "wt.sh list prints a path-tab-branch line per worktree" {
+  list_branch="list-me"
+  run --separate-stderr env HOME="$fake_home" "$SH_WT" switch "$list_branch" --repo "$clone"
+  [ "$status" -eq 0 ]
+  worktree="$output"
+
+  run env HOME="$fake_home" "$SH_WT" list --repo "$clone"
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"$(printf '%s\t%s' "$worktree" "$list_branch")"* ]]
 }

@@ -348,9 +348,9 @@ def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
 def command_validate() -> int:
     errors: list[str] = []
     inventory = build_inventory()
-    if len(inventory["commands"]) != 27:
+    if len(inventory["commands"]) != 28:
         errors.append(
-            f"expected 27 active commands, found {len(inventory['commands'])}"
+            f"expected 28 active commands, found {len(inventory['commands'])}"
         )
     if len(inventory["agents"]) != 6:
         errors.append(f"expected 6 specialist agents, found {len(inventory['agents'])}")
@@ -468,9 +468,7 @@ def command_audit(*, json_output: bool) -> int:
     else:
         print("# Agent Harness Audit")
         print()
-        print(
-            f"Coverage: {audit['coverage']['verified']}/{audit['coverage']['total']}"
-        )
+        print(f"Coverage: {audit['coverage']['verified']}/{audit['coverage']['total']}")
         print()
         for harness, version in audit["versions"].items():
             print(f"- {harness}: {version or 'not installed'}")
@@ -590,8 +588,7 @@ def command_probe(*, harness: str | None = None) -> int:
     print(f"drift records appended: {len(records)}")
     for slug, was, now in rechecked:
         print(
-            f"re-research {slug}: run the harness-research skill for {now} "
-            f"(was {was})"
+            f"re-research {slug}: run the harness-research skill for {now} (was {was})"
         )
     return 0
 

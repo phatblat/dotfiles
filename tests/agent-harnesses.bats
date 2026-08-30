@@ -41,7 +41,7 @@ skip_unless_home_is_this_checkout() {
   claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
-  [ "$command_count" -eq 27 ]
+  [ "$command_count" -eq 28 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
@@ -274,7 +274,7 @@ skip_unless_home_is_this_checkout() {
     git-split
     git-stack
     git-status
-    git-worktrees
+    using-git-worktrees
     gh-stack
     gha-checks
     handoff
@@ -297,6 +297,7 @@ skip_unless_home_is_this_checkout() {
     work-runners
     work-start
     work-track
+    git-worktree
   )
 
   for skill in "${procedural_skills[@]}"; do
@@ -304,6 +305,22 @@ skip_unless_home_is_this_checkout() {
     [ -f "$sidecar" ]
     grep -Fx "policy:" "$sidecar"
     grep -Fx "  allow_implicit_invocation: false" "$sidecar"
+  done
+}
+
+@test "git-worktree pins the session-rebase protocol across all three surfaces" {
+  surfaces=(
+    "$HOME/.agents/skills/git-worktree/SKILL.md"
+    "$HOME/.claude/commands/git/worktree.md"
+    "$HOME/.agents/harness/commands/git/worktree.md"
+  )
+
+  for surface in "${surfaces[@]}"; do
+    [ -f "$surface" ]
+    grep -Fq '~/.worktrees/' "$surface"
+    grep -Fq 'wt.sh' "$surface"
+    grep -Fq '/move' "$surface"
+    grep -Fq 'OMPCODE' "$surface"
   done
 }
 
@@ -604,7 +621,7 @@ skip_unless_home_is_this_checkout() {
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
 
-  [ "$command_count" -eq 27 ]
+  [ "$command_count" -eq 28 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$inventory_skill_count" ]
 

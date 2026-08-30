@@ -110,6 +110,10 @@
       "description": "Intelligently analyze git status and provide insights about current project state",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/status.md with arguments: $ARGUMENTS"
     },
+    "git:worktree": {
+      "description": "Create, switch to, or delete a git worktree under ~/.worktrees/, then move the agent session into it",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/worktree.md with arguments: $ARGUMENTS"
+    },
     "linear:plan": {
       "description": "Start work on a Linear ticket \u2014 plan, branch, implement, test, PR",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/plan.md with arguments: $ARGUMENTS"

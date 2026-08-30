@@ -50,6 +50,9 @@
   "~/.agents/harness/adapters/antigravity/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
+  "~/.agents/harness/adapters/antigravity/commands/git/worktree.md": {
+    "source": "~/.claude/commands/git/worktree.md"
+  },
   "~/.agents/harness/adapters/antigravity/commands/linear/plan.md": {
     "source": "~/.claude/commands/linear/plan.md"
   },
@@ -188,8 +191,8 @@
   "~/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md": {
     "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/git-worktrees/SKILL.md": {
-    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  "~/.agents/harness/adapters/antigravity/skills/git-worktree/SKILL.md": {
+    "source": "~/.agents/skills/git-worktree/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
@@ -296,6 +299,9 @@
   "~/.agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/using-git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
     "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
@@ -364,6 +370,9 @@
   },
   "~/.agents/harness/adapters/cursor/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/git/worktree.md": {
+    "source": "~/.claude/commands/git/worktree.md"
   },
   "~/.agents/harness/adapters/cursor/commands/linear/plan.md": {
     "source": "~/.claude/commands/linear/plan.md"
@@ -503,8 +512,8 @@
   "~/.agents/harness/adapters/cursor/skills/git-value-scrubbing/SKILL.md": {
     "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/git-worktrees/SKILL.md": {
-    "source": "~/.agents/skills/git-worktrees/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/git-worktree/SKILL.md": {
+    "source": "~/.agents/skills/git-worktree/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
@@ -611,6 +620,9 @@
   "~/.agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/using-git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/wayfinder/SKILL.md": {
     "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
@@ -676,6 +688,9 @@
   },
   "~/.agents/harness/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.agents/harness/commands/git/worktree.md": {
+    "source": "~/.claude/commands/git/worktree.md"
   },
   "~/.agents/harness/commands/linear/plan.md": {
     "source": "~/.claude/commands/linear/plan.md"
@@ -779,9 +794,6 @@
   "~/.claude/skills/gha-log-reader/SKILL.md": {
     "source": "~/.agents/skills/gha-log-reader/SKILL.md"
   },
-  "~/.claude/skills/git-worktrees/SKILL.md": {
-    "source": "~/.agents/skills/git-worktrees/SKILL.md"
-  },
   "~/.claude/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
   },
@@ -826,6 +838,9 @@
   },
   "~/.claude/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.claude/skills/using-git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
   },
   "~/.claude/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
@@ -877,12 +892,6 @@
   },
   "~/.codex/skills/gha-log-reader/agents/openai.yaml": {
     "source": "~/.agents/skills/gha-log-reader/SKILL.md"
-  },
-  "~/.codex/skills/git-worktrees/SKILL.md": {
-    "source": "~/.agents/skills/git-worktrees/SKILL.md"
-  },
-  "~/.codex/skills/git-worktrees/agents/openai.yaml": {
-    "source": "~/.agents/skills/git-worktrees/SKILL.md"
   },
   "~/.codex/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
@@ -944,6 +953,12 @@
   "~/.codex/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
+  "~/.codex/skills/using-git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
+  },
+  "~/.codex/skills/using-git-worktrees/agents/openai.yaml": {
+    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
+  },
   "~/.codex/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
   },
@@ -1003,6 +1018,9 @@
   },
   "~/.config/opencode/commands/git:status.md": {
     "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.config/opencode/commands/git:worktree.md": {
+    "source": "~/.claude/commands/git/worktree.md"
   },
   "~/.config/opencode/commands/linear:plan.md": {
     "source": "~/.claude/commands/linear/plan.md"
@@ -1100,9 +1118,6 @@
   "~/.config/opencode/skills/gha-log-reader/SKILL.md": {
     "source": "~/.agents/skills/gha-log-reader/SKILL.md"
   },
-  "~/.config/opencode/skills/git-worktrees/SKILL.md": {
-    "source": "~/.agents/skills/git-worktrees/SKILL.md"
-  },
   "~/.config/opencode/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
   },
@@ -1147,6 +1162,9 @@
   },
   "~/.config/opencode/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.config/opencode/skills/using-git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
   },
   "~/.config/opencode/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
@@ -1255,6 +1273,9 @@
   },
   "~/.pi/agent/prompts/git:status.md": {
     "source": "~/.claude/commands/git/status.md"
+  },
+  "~/.pi/agent/prompts/git:worktree.md": {
+    "source": "~/.claude/commands/git/worktree.md"
   },
   "~/.pi/agent/prompts/linear:plan.md": {
     "source": "~/.claude/commands/linear/plan.md"

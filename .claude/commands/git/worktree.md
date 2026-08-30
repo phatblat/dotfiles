@@ -1,0 +1,46 @@
+---
+description: Create, switch to, or delete a git worktree under ~/.worktrees/, then move the agent session into it
+model: sonnet
+allowed-tools: Bash(git:*), Bash(just:*), Bash(~/.agents/skills/git-worktree/wt.sh:*), Read, Edit, Skill, AskUserQuestion
+category: workflow
+argument-hint: "[create|switch|remove|list|verify] [branch] [--dotfiles]"
+---
+
+# Git Worktree: Create, Switch, Or Delete A Worktree
+
+Create, switch to, or delete a git worktree under the `~/.worktrees/<path-key>/<branch>` convention, then rebase the agent session onto it.
+
+## Context Gathering
+
+Collect all needed state in one pass:
+
+!`git branch --show-current 2>/dev/null`
+!`git worktree list --porcelain`
+!`~/.agents/skills/git-worktree/wt.sh list 2>/dev/null`
+
+## Parse Arguments
+
+Tokens come from `$ARGUMENTS`, with `--dotfiles` extracted wherever it appears.
+
+| Tokens (after `--dotfiles` extraction) | Meaning |
+| --- | --- |
+| 0 | `action` = `list`; no branch |
+| 1, and token is a known verb (`create`\|`switch`\|`remove`\|`list`\|`verify`) | `action` = token; branch resolved from the current branch or context |
+| 1, and token is not a known verb | `action` = `switch`; `branch` = token |
+| 2 | `action` = token 1; `branch` = token 2 |
+| 3+ | Stop; print `usage: /git:worktree [create|switch|remove|list|verify] [branch] [--dotfiles]` |
+
+## Instructions
+
+Invoke the `git-worktree` skill and follow it exactly — its Actions table, Session Rebase Protocol, and Deleting guards are the single source of truth for this command. Do not restate that procedure here; the two must not drift.
+
+## Report
+
+Detect the harness (order matters, omp sets both `OMPCODE` and `CLAUDECODE`) exactly as the `git-worktree` skill's Session Rebase Protocol part B does, then report:
+
+```text
+Action:     <create|switch|remove|list|verify>
+Branch:     <branch>  (or "n/a" for list)
+Worktree:   <wt_path>
+Rebase:     omp → `/move <wt_path>`  |  claude → `/add-dir <wt_path>`  |  other → `omp --cwd <wt_path>`
+```

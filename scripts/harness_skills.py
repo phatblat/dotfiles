@@ -44,7 +44,6 @@ NATIVE_SKILL_ADAPTERS = {
     "find-docs",
     "gha-checks",
     "gha-log-reader",
-    "git-worktrees",
     "graphify",
     "grill-me",
     "grilling",
@@ -60,6 +59,7 @@ NATIVE_SKILL_ADAPTERS = {
     "review-changes",
     "subagent-driven-development",
     "test-driven-development",
+    "using-git-worktrees",
     "writing-plans",
 }
 
@@ -70,12 +70,12 @@ MANUAL_SKILL_ADAPTERS = {
     "branch-finish",
     "gha-checks",
     "gha-log-reader",
-    "git-worktrees",
     "grill-me",
     "handoff",
     "harness-research",
     "optimize-harness",
     "resolve-review-feedback",
+    "using-git-worktrees",
 }
 
 _managed_header: str | None = None

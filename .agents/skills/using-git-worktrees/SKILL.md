@@ -1,11 +1,11 @@
 ---
-name: git-worktrees
-description: Create and manage git worktrees using the global ~/.worktrees/ convention. Use when starting feature work that needs isolation, before executing implementation plans, or any time a git worktree is needed.
+name: using-git-worktrees
+description: Explains the ~/.worktrees/<path-key>/<branch> worktree convention, the dotfiles-repo opt-in, and what a dotfiles worktree cannot validate. Use to understand or explain worktree layout and its constraints; use the git-worktree skill to actually create, switch to, or delete one.
 ---
 
 # Git Worktrees
 
-**Announce at start:** "Using git-worktrees skill to set up an isolated workspace at ~/.worktrees/."
+**Announce at start:** "Using using-git-worktrees skill for the ~/.worktrees/ layout and constraints."
 
 ## Core Convention
 
@@ -34,89 +34,11 @@ The dotfiles repo (rooted at `~`) needs an explicit opt-in before using worktree
 - **4 intentionally-absolute symlinks.** `bin/plistbuddy`, `bin/vi`, and `bin/vim` point at system/Homebrew binaries outside `$HOME`; `.config/iterm2/AppSupport` points at untracked app state. These stay absolute by design and are excluded from `just lint-symlinks`.
 - **3 ancestor-discoverable configs.** `.config/mise/config.toml`, `.editorconfig`, and `.envrc` are found by tools that walk up from cwd. Because a dotfiles worktree lives beneath the real `$HOME`, such a tool can discover the real `$HOME`'s copy instead of the worktree's own. `wt --test`/`wt --shell` warn on stderr only when the two copies actually differ.
 
-## Creation Steps
+## Creating, Switching, Deleting
 
-### 1. Verify Not Dotfiles Repo
-
-```bash
-repo_root=$(git rev-parse --path-format=absolute --git-common-dir)
-repo_root=${repo_root%/.git}
-if [ "$repo_root" = "$HOME" ]; then
-  echo "NOTE: Dotfiles repo. Use 'wt --dotfiles <branch>' (or 'wt --test <branch>' / 'wt --shell <branch>') for an opt-in worktree — see Dotfiles Exception above."
-  exit 1
-fi
-```
-
-### 2. Guard Against Submodule False Positive
-
-Git submodules also have `GIT_DIR != GIT_COMMON_DIR`, which looks identical to a worktree.
-Before concluding you're already in a worktree, rule out submodules:
-
-```bash
-# If this returns a path, you're in a submodule, not a worktree — treat as normal repo
-superproject=$(git rev-parse --show-superproject-working-tree 2>/dev/null)
-if [ -n "$superproject" ]; then
-  echo "NOTE: Inside a git submodule (superproject: $superproject). Proceeding as normal repo."
-fi
-```
-
-### 3. Derive Path Key
-
-```bash
-repo_root=$(git rev-parse --path-format=absolute --git-common-dir)
-repo_root=${repo_root%/.git}
-path_key=$(echo "$repo_root" | sed "s|^$HOME/||" | tr '/' '-')
-```
-
-### 4. Create Worktree
-
-```bash
-worktree_path="$HOME/.worktrees/$path_key/$BRANCH_NAME"
-git worktree add "$worktree_path" -b "$BRANCH_NAME"
-```
-
-### 5. Set Up Remote Tracking Immediately
-
-Every new branch MUST have remote tracking before any commits:
-
-```bash
-cd "$worktree_path"
-git push -u origin "$BRANCH_NAME:$BRANCH_NAME"
-```
-
-Verify with `git branch -vv`.
-
-### 6. Run Project Setup
-
-Auto-detect and run appropriate setup:
-
-```bash
-[ -f package.json ] && npm install
-[ -f Cargo.toml ] && cargo build
-[ -f requirements.txt ] && pip install -r requirements.txt
-[ -f pyproject.toml ] && uv sync
-[ -f go.mod ] && go mod download
-```
-
-### 7. Verify Clean Baseline
-
-Run project-appropriate tests. If tests fail, report failures and ask whether to proceed.
-
-### 8. Report
-
-```
-Worktree ready at ~/.worktrees/<path-key>/<branch>
-Tests passing (N tests, 0 failures)
-Ready to implement <feature-name>
-```
-
-## Cleanup
-
-After merging or closing a PR:
-
-```bash
-git worktree remove ~/.worktrees/<path-key>/<branch>
-```
+Use the `git-worktree` skill (`/git:worktree`). It owns the executable
+procedure and the session rebase; this skill owns the layout and constraints
+it enforces.
 
 ## Quick Reference
 
@@ -142,4 +64,4 @@ git worktree remove ~/.worktrees/<path-key>/<branch>
 ## Integration
 
 **Called by:** Any skill or workflow needing an isolated workspace
-**Pairs with:** branch-finish for cleanup after work is complete
+**Pairs with:** branch-finish for cleanup after work is complete, git-worktree for the executable actions

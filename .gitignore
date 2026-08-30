@@ -133,7 +133,6 @@
 !.codex/skills/find-docs/
 !.codex/skills/gha-checks/
 !.codex/skills/gha-log-reader/
-!.codex/skills/git-worktrees/
 !.codex/skills/graphify/
 !.codex/skills/handoff/
 !.codex/skills/harness-research/
@@ -147,6 +146,7 @@
 !.codex/skills/review-changes/
 !.codex/skills/subagent-driven-development/
 !.codex/skills/test-driven-development/
+!.codex/skills/using-git-worktrees/
 !.codex/skills/writing-plans/
 !.codex/skills/
 .codexbar/antigravity/
@@ -266,7 +266,6 @@
 !.config/opencode/skills/find-docs/
 !.config/opencode/skills/gha-checks/
 !.config/opencode/skills/gha-log-reader/
-!.config/opencode/skills/git-worktrees/
 !.config/opencode/skills/graphify/
 !.config/opencode/skills/handoff/
 !.config/opencode/skills/harness-research/
@@ -280,6 +279,7 @@
 !.config/opencode/skills/review-changes/
 !.config/opencode/skills/subagent-driven-development/
 !.config/opencode/skills/test-driven-development/
+!.config/opencode/skills/using-git-worktrees/
 !.config/opencode/skills/writing-plans/
 !.config/opencode/skills/
 .config/orka-desktop/
