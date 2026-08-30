@@ -176,6 +176,12 @@ def evaluate_command(command: str, *, cwd: str | None = None) -> GuardDecision:
             "guard permits, so edit it directly rather than through an agent.",
         )
 
+    # Same rationale as the path rules above: a heredoc or echo through bash
+    # writes the same content a write tool would, so a secret embedded in the
+    # command text must not slip past just because it arrived via a shell.
+    if SECRET_CONTENT.search(command):
+        return GuardDecision("deny", "secret-like content detected")
+
     warning = main_branch_commit_warning(command, cwd=cwd)
     if warning:
         return GuardDecision("warn", warning)
