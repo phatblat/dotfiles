@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": "/tmp/whatever",
+  "tool": "read"
+}

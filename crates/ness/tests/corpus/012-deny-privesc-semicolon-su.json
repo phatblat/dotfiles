@@ -1,0 +1,8 @@
+{
+  "command": "echo ok; su - root",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

@@ -1,0 +1,8 @@
+{
+  "command": "mkfs.ext4 /dev/sda1",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

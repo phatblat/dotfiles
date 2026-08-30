@@ -1,0 +1,8 @@
+{
+  "command": "echo x >> /Users/phatblat/scripts/agent-harnesses.py",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

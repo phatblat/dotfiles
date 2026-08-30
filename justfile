@@ -279,6 +279,11 @@ install-gh-extensions:
 install-launchdaemons:
     ./scripts/install-launchdaemons
 
+# Installs LaunchAgents into ~/Library/LaunchAgents (user-scoped, no sudo)
+[group('configuration')]
+install-launchagents:
+    ./scripts/install-launchagents
+
 # Verifies GitHub auth/rate-limit before mise installs, so a silent 403 wall surfaces as a clear error
 [group('configuration')]
 [script]
@@ -775,6 +780,21 @@ harness-probe *ARGS:
 [group('checks')]
 harness-drift *ARGS:
     python3 {{ justfile_directory() }}/scripts/agent-harnesses.py drift {{ ARGS }}
+
+# Builds the ness compiled guard (release profile)
+[group('checks')]
+ness-build:
+    cargo build --release --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
+
+# Installs the ness compiled guard to ~/.local/bin (falls back to python3 guard chain if absent)
+[group('checks')]
+ness-install: ness-build
+    install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/ness
+
+# Differential-tests the ness guard against the Python reference implementation
+[group('checks')]
+ness-parity: ness-build
+    python3 {{ justfile_directory() }}/scripts/ness-parity.py
 
 # Flags CLI tools installed via both mise and Homebrew
 [group('checks')]

@@ -1,0 +1,8 @@
+{
+  "command": "sudo whoami",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

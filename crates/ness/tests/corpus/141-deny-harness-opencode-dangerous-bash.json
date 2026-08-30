@@ -1,0 +1,8 @@
+{
+  "command": "rm -rf /",
+  "content": null,
+  "cwd": null,
+  "harness": "opencode",
+  "path": null,
+  "tool": "bash"
+}

@@ -12,7 +12,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.1.22"
@@ -33,7 +33,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.236 (Claude Code)"
@@ -54,10 +54,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.149.1"
+            "version": "codex-cli 0.150.1"
           },
           "mode": "shared",
           "next_action": "",
@@ -75,7 +75,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
             "version": "crush version v0.91.2"
@@ -97,7 +97,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.07.01-777f564"
@@ -118,10 +118,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.5 (5115b46bc909)"
+            "version": "grok 1.0.5 (5115b46bc909) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -139,10 +139,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.0.7"
+            "version": "omp/18.0.10"
           },
           "mode": "native",
           "next_action": "",
@@ -160,7 +160,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.18.23"
@@ -181,7 +181,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_exists",
             "version": "0.84.3"
@@ -531,16 +531,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.1.22"
           },
           "mode": "adapter",
           "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
           "note": "generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "claude": {
@@ -549,16 +552,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2.1.236 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "codex": {
@@ -567,16 +573,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "codex-cli 0.150.1"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "crush": {
@@ -585,16 +594,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "crush version v0.91.2"
           },
           "mode": "native",
           "next_action": "",
           "note": "generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "cursor": {
@@ -603,16 +615,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2026.07.01-777f564"
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers and activates generated shared skill wrappers",
           "note": "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "grok": {
@@ -621,16 +636,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "grok 1.0.5 (5115b46bc909) [alpha]"
           },
           "mode": "native",
           "next_action": "",
           "note": "grok scans ~/.agents/skills at the user tier",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "omp": {
@@ -639,16 +657,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "omp/18.0.10"
           },
           "mode": "native",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "opencode": {
@@ -657,16 +678,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.18.23"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "pi": {
@@ -675,16 +699,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "0.84.3"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         }
       },
@@ -1652,16 +1679,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.1.22"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity command schema or flatten command wrappers so all 25 commands are discovered",
           "note": "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/antigravity/commands/2ndbrain.md"
+          },
           "surface": ""
         },
         "claude": {
@@ -1670,16 +1700,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2.1.236 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
-          "note": "source commands",
-          "parity": "aligned",
-          "probe": null,
+          "note": "source commands; probe failed: missing .claude/commands/2ndbrain.md",
+          "parity": "partial",
+          "probe": {
+            "kind": "file_exists",
+            "path": ".claude/commands/2ndbrain.md"
+          },
           "surface": ""
         },
         "codex": {
@@ -1688,16 +1721,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "codex-cli 0.150.1"
           },
           "mode": "adapter",
           "next_action": "Re-check Codex release notes for stable command format",
           "note": "Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files.",
           "parity": "blocked",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/commands/2ndbrain.md"
+          },
           "surface": ""
         },
         "crush": {
@@ -1706,16 +1742,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "crush version v0.91.2"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
           "note": "crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "cursor": {
@@ -1724,16 +1763,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2026.07.01-777f564"
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers all 25 generated command wrappers",
           "note": "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/cursor/commands/2ndbrain.md"
+          },
           "surface": ""
         },
         "grok": {
@@ -1742,16 +1784,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "grok 1.0.5 (5115b46bc909) [alpha]"
           },
           "mode": "native",
           "next_action": "Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows",
           "note": "grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/skills/resolve-feedback/SKILL.md"
+          },
           "surface": ""
         },
         "omp": {
@@ -1760,16 +1805,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "omp/18.0.10"
           },
           "mode": "native",
           "next_action": "",
-          "note": "",
-          "parity": "aligned",
-          "probe": null,
+          "note": "probe failed: missing .claude/commands/2ndbrain.md",
+          "parity": "partial",
+          "probe": {
+            "kind": "file_exists",
+            "path": ".claude/commands/2ndbrain.md"
+          },
           "surface": ""
         },
         "opencode": {
@@ -1779,16 +1827,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.18.23"
           },
           "mode": "adapter",
           "next_action": "",
           "note": "generated command templates",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".config/opencode/commands/2ndbrain.md"
+          },
           "surface": ""
         },
         "pi": {
@@ -1797,20 +1848,23 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "0.84.3"
           },
           "mode": "adapter",
           "next_action": "",
           "note": "generated prompt templates",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".pi/agent/prompts/2ndbrain.md"
+          },
           "surface": ""
         }
       },
-      "contract": "The 27 active commands are available through generated native prompts.",
+      "contract": "The 26 active commands are available through generated native prompts.",
       "domain": "commands",
       "id": "commands.active",
       "note": "",
@@ -2146,16 +2200,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.1.22"
           },
           "mode": "emulated",
           "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
           "note": "generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/antigravity/agents/cli-expert.md"
+          },
           "surface": ""
         },
         "claude": {
@@ -2164,16 +2221,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2.1.236 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
           "note": "native Claude agents include these plus additional specialists",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".claude/agents/cli-expert.md"
+          },
           "surface": ""
         },
         "codex": {
@@ -2182,16 +2242,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "codex-cli 0.150.1"
           },
           "mode": "native",
           "next_action": "",
-          "note": "native Codex TOML agents",
-          "parity": "aligned",
-          "probe": null,
+          "note": "native Codex TOML agents; probe failed: missing .codex/agents/cli-expert.toml",
+          "parity": "partial",
+          "probe": {
+            "kind": "file_exists",
+            "path": ".codex/agents/cli-expert.toml"
+          },
           "surface": ""
         },
         "crush": {
@@ -2200,16 +2263,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "crush version v0.91.2"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for user-defined agent support",
           "note": "crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269",
           "parity": "blocked",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/agents/cli-expert.toml"
+          },
           "surface": ""
         },
         "cursor": {
@@ -2218,16 +2284,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2026.07.01-777f564"
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers generated specialist agent wrappers",
           "note": "generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/cursor/agents/cli-expert.md"
+          },
           "surface": ""
         },
         "grok": {
@@ -2236,16 +2305,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "grok 1.0.5 (5115b46bc909) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok spawn_subagent can launch the generated specialist profiles",
           "note": "generated grok agent profiles are discovered by grok inspect, but spawn_subagent delegation to them has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".grok/agents/cli-expert.md"
+          },
           "surface": ""
         },
         "omp": {
@@ -2254,16 +2326,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "omp/18.0.10"
           },
           "mode": "native",
           "next_action": "",
           "note": "generated from shared specialist definitions",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".omp/agent/agents/cli-expert.md"
+          },
           "surface": ""
         },
         "opencode": {
@@ -2273,16 +2348,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.18.23"
           },
           "mode": "adapter",
           "next_action": "",
           "note": "generated agent config",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".config/opencode/agents/cli-expert.md"
+          },
           "surface": ""
         },
         "pi": {
@@ -2292,16 +2370,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "0.84.3"
           },
           "mode": "emulated",
           "next_action": "Implement subprocess delegation in ~/.pi/agent/extensions/harness.ts per policy",
           "note": "Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".pi/agent/agents.json"
+          },
           "surface": ""
         }
       },
@@ -2799,7 +2880,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
             "version": "1.1.22"
@@ -2821,7 +2902,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
             "version": "2.1.236 (Claude Code)"
@@ -2843,10 +2924,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "codex-cli 0.149.1"
+            "version": "codex-cli 0.150.1"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2866,7 +2947,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
             "version": "crush version v0.91.2"
@@ -2889,7 +2970,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
             "version": "2026.07.01-777f564"
@@ -2912,10 +2993,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "grok 1.0.5 (5115b46bc909)"
+            "version": "grok 1.0.5 (5115b46bc909) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
@@ -2934,10 +3015,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.0.7"
+            "version": "omp/18.0.10"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2956,7 +3037,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
             "version": "1.18.23"
@@ -2978,7 +3059,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "file_contains",
             "version": "0.84.3"
@@ -5059,16 +5140,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.1.22"
           },
           "mode": "native",
           "next_action": "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
           "note": "generated Antigravity compaction guidance records preservation requirements, but conversation/artifact behavior has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/antigravity/hooks/hooks.json"
+          },
           "surface": ""
         },
         "claude": {
@@ -5077,16 +5161,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2.1.236 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
           "note": "native PreCompact hook",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".claude/settings.json"
+          },
           "surface": ""
         },
         "codex": {
@@ -5095,16 +5182,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "codex-cli 0.150.1"
           },
           "mode": "native",
           "next_action": "",
           "note": "native PreCompact hook",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".codex/hooks.json"
+          },
           "surface": ""
         },
         "crush": {
@@ -5113,16 +5203,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "crush version v0.91.2"
           },
           "mode": "native",
           "next_action": "",
           "note": "compaction preservation contract inlined in the generated crush context file",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".config/crush/shared-harness.md"
+          },
           "surface": ""
         },
         "cursor": {
@@ -5131,16 +5224,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2026.07.01-777f564"
           },
           "mode": "native",
           "next_action": "Verify Cursor resume and history behavior against compact-preservation requirements",
           "note": "Cursor preservation instructions are generated, but resume/history behavior has not been verified",
           "parity": "partial",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".agents/harness/adapters/cursor/rules/shared-harness.mdc"
+          },
           "surface": ""
         },
         "grok": {
@@ -5149,16 +5245,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "grok 1.0.5 (5115b46bc909) [alpha]"
           },
           "mode": "native",
           "next_action": "",
           "note": "compaction preservation contract inlined in the generated grok rules file",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".grok/rules/shared-harness.md"
+          },
           "surface": ""
         },
         "omp": {
@@ -5167,16 +5266,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "omp/18.0.10"
           },
           "mode": "native",
           "next_action": "",
           "note": "compaction preservation contract inlined with shared harness instructions",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".omp/agent/APPEND_SYSTEM.md"
+          },
           "surface": ""
         },
         "opencode": {
@@ -5185,16 +5287,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.18.23"
           },
           "mode": "adapter",
           "next_action": "",
           "note": "plugin compaction hook",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".config/opencode/plugins/harness.ts"
+          },
           "surface": ""
         },
         "pi": {
@@ -5203,16 +5308,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "0.84.3"
           },
           "mode": "native",
           "next_action": "",
           "note": "native compaction settings plus extension status",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": ".pi/agent/settings.json"
+          },
           "surface": ""
         }
       },
@@ -6966,16 +7074,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.1.22"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "claude": {
@@ -6984,16 +7095,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2.1.236 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "codex": {
@@ -7002,16 +7116,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "codex-cli 0.150.1"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "crush": {
@@ -7020,16 +7137,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "crush version v0.91.2"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "cursor": {
@@ -7038,16 +7158,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "2026.07.01-777f564"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "grok": {
@@ -7056,16 +7179,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "grok 1.0.5 (5115b46bc909) [alpha]"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "omp": {
@@ -7074,16 +7200,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "omp/18.0.10"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "opencode": {
@@ -7092,16 +7221,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "1.18.23"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         },
         "pi": {
@@ -7110,16 +7242,19 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-06-27",
-            "kind": "local",
-            "ref": "",
-            "version": ""
+            "date": "2026-08-30",
+            "kind": "probe",
+            "ref": "file_exists",
+            "version": "0.84.3"
           },
           "mode": "shared",
           "next_action": "",
           "note": "",
           "parity": "aligned",
-          "probe": null,
+          "probe": {
+            "kind": "file_exists",
+            "path": "docs/agent-harnesses.json"
+          },
           "surface": ""
         }
       },
@@ -7251,7 +7386,7 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "cli_exit_zero",
             "version": "1.18.23"
@@ -7270,7 +7405,7 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-08-30",
             "kind": "probe",
             "ref": "cli_exit_zero",
             "version": "0.84.3"
@@ -7698,8 +7833,8 @@
     },
     "codex": {
       "first_seen": "2026-08-29",
-      "previous": "",
-      "version": "codex-cli 0.149.1"
+      "previous": "codex-cli 0.149.1",
+      "version": "codex-cli 0.150.1"
     },
     "crush": {
       "first_seen": "2026-08-29",
@@ -7713,13 +7848,13 @@
     },
     "grok": {
       "first_seen": "2026-08-29",
-      "previous": "",
-      "version": "grok 1.0.5 (5115b46bc909)"
+      "previous": "grok 1.0.5 (5115b46bc909)",
+      "version": "grok 1.0.5 (5115b46bc909) [alpha]"
     },
     "omp": {
       "first_seen": "2026-08-29",
-      "previous": "",
-      "version": "omp/18.0.7"
+      "previous": "omp/18.0.7",
+      "version": "omp/18.0.10"
     },
     "opencode": {
       "first_seen": "2026-08-29",

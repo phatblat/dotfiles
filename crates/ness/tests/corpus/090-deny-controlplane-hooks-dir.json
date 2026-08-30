@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "x",
+  "cwd": null,
+  "harness": "claude",
+  "path": "/Users/phatblat/.agents/harness/hooks/safety.py",
+  "tool": "write"
+}

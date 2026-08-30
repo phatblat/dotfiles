@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Installs LaunchAgents from dotfiles into ~/Library/LaunchAgents.
+#
+# User-scoped sibling of install-launchdaemons: no sudo, targets the user's
+# own LaunchAgents directory, and bootstraps into the per-user gui/<uid>
+# domain instead of the system domain.
+#
+# Copyright: Ben Chatelain. MIT.
+
+DOTFILES_AGENTS="$HOME/Library/LaunchAgents"
+UID_DOMAIN="gui/$(id -u)"
+
+for plist in "$DOTFILES_AGENTS"/*.plist; do
+    [ -f "$plist" ] || continue
+    name=$(basename "$plist")
+    # launchctl keys services by the plist's Label, not the filename
+    label=$(/usr/libexec/PlistBuddy -c 'Print :Label' "$plist" 2>/dev/null || echo "${name%.plist}")
+    echo "Installing $name..."
+    mkdir -p "$HOME/Library/LaunchAgents"
+    dest="$HOME/Library/LaunchAgents/$name"
+    # Skip cp when source and dest are the same file (e.g., when $HOME is the checkout root)
+    if [ "$plist" -ef "$dest" ]; then
+        echo "  → already in place"
+    else
+        cp "$plist" "$dest"
+    fi
+    chmod 644 "$dest"
+    launchctl bootout "$UID_DOMAIN/$label" 2>/dev/null || true
+    # Clear any prior disabled override before bootstrap so the agent runs on schedule
+    launchctl enable "$UID_DOMAIN/$label"
+    launchctl bootstrap "$UID_DOMAIN" "$dest"
+    # Verify the agent registered in the per-user gui domain
+    if launchctl print "$UID_DOMAIN/$label" >/dev/null 2>&1; then
+        echo "  ✓ $label loaded"
+    else
+        echo "  ✗ $label failed to load" >&2
+        exit 1
+    fi
+done
+
+echo "Done."

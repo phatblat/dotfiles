@@ -1,0 +1,8 @@
+{
+  "command": "sed -i s/a/b/ /Users/phatblat/.npmrc",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

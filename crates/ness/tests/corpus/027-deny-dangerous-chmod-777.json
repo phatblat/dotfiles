@@ -1,0 +1,8 @@
+{
+  "command": "chmod -R 777 /",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

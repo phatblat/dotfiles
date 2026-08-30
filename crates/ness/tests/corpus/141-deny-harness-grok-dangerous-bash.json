@@ -1,0 +1,8 @@
+{
+  "command": "rm -rf /",
+  "content": null,
+  "cwd": null,
+  "harness": "grok",
+  "path": null,
+  "tool": "bash"
+}

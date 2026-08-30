@@ -166,35 +166,45 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 probe=_exists(".agents/harness/instructions.md"),
             ),
             "codex": Cell(
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 probe=_exists(".agents/harness/instructions.md"),
             ),
             "opencode": Cell(
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 probe=_exists(".agents/harness/instructions.md"),
             ),
             "pi": Cell(
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 probe=_exists(".agents/harness/instructions.md"),
             ),
             "omp": Cell(
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.omp/agent/APPEND_SYSTEM.md",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "inlined shared harness instructions + compaction contract "
                     "+ commit attribution"
@@ -208,7 +218,9 @@ CAPABILITIES: list[Capability] = [
                     "~/.agents/harness/adapters/antigravity/plugin.json",
                     "~/.gemini/antigravity-cli/settings.json",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "generated Antigravity plugin manifest exists, but no "
                     "installed/imported context surface has verified instruction "
@@ -227,7 +239,9 @@ CAPABILITIES: list[Capability] = [
                     "~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json",
                     "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "generated Cursor plugin rule points to shared harness "
                     "instructions, but plugin discovery has not been verified"
@@ -244,7 +258,9 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.grok/rules/shared-harness.md",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "inlined shared harness instructions + compaction contract "
                     "+ commit attribution; loaded as a global rules file"
@@ -255,7 +271,9 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.config/crush/shared-harness.md",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "inlined shared harness instructions + compaction contract "
                     "+ commit attribution; loaded through option "
@@ -298,37 +316,57 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
             ),
             "codex": Cell(
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
             ),
             "opencode": Cell(
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
             ),
             "pi": Cell(
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
             ),
             "omp": Cell(
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.agents/skills",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
             ),
             "antigravity": Cell(
                 parity="partial",
                 mode="adapter",
                 artifacts=("~/.agents/harness/adapters/antigravity/skills",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(
+                    ".agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md"
+                ),
                 note=(
                     "generated Antigravity skill wrappers point to shared skills, "
                     "but runtime import has not been verified"
@@ -342,7 +380,12 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="native",
                 artifacts=("~/.agents/harness/adapters/cursor/skills",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(
+                    ".agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md"
+                ),
                 note=(
                     "generated Cursor plugin skill wrappers point to shared "
                     "skills, but runtime discovery has not been verified"
@@ -356,14 +399,20 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.agents/skills",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
                 note="grok scans ~/.agents/skills at the user tier",
             ),
             "crush": Cell(
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.agents/skills",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
                 note=(
                     "generated crushrc adds ~/.agents/skills through option "
                     "skill-path; crush's default global skill roots are "
@@ -589,7 +638,7 @@ CAPABILITIES: list[Capability] = [
         title="Active shared commands",
         priority="p0",
         contract=(
-            "The 27 active commands are available through generated native prompts."
+            "The 26 active commands are available through generated native prompts."
         ),
         canonical=("~/.agents/harness/commands",),
         verify="python3 scripts/agent-harnesses.py inventory --json",
@@ -599,13 +648,17 @@ CAPABILITIES: list[Capability] = [
                 mode="native",
                 artifacts=("~/.claude/commands",),
                 evidence=_LOCAL_2026_06_27,
+                probe=_exists(".claude/commands/2ndbrain.md"),
                 note="source commands",
             ),
             "codex": Cell(
                 parity="blocked",
                 mode="adapter",
                 artifacts=("~/.agents/harness/commands",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/harness/commands/2ndbrain.md"),
                 note=(
                     "Codex command format not yet stabilized. Last checked "
                     "2026-08-13. Codex uses skills/config instead of native "
@@ -620,14 +673,20 @@ CAPABILITIES: list[Capability] = [
                     "~/.config/opencode/commands",
                     "~/.config/opencode/opencode.jsonc",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".config/opencode/commands/2ndbrain.md"),
                 note="generated command templates",
             ),
             "pi": Cell(
                 parity="aligned",
                 mode="adapter",
                 artifacts=("~/.pi/agent/prompts",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".pi/agent/prompts/2ndbrain.md"),
                 note="generated prompt templates",
             ),
             "omp": Cell(
@@ -635,12 +694,18 @@ CAPABILITIES: list[Capability] = [
                 mode="native",
                 artifacts=("~/.claude/commands",),
                 evidence=_LOCAL_2026_06_27,
+                probe=_exists(".claude/commands/2ndbrain.md"),
             ),
             "antigravity": Cell(
                 parity="partial",
                 mode="adapter",
                 artifacts=("~/.agents/harness/adapters/antigravity/commands",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(
+                    ".agents/harness/adapters/antigravity/commands/2ndbrain.md"
+                ),
                 note=(
                     "generated Antigravity command wrappers cover all shared "
                     "prompts, but agy validation only processed a subset as skills"
@@ -654,7 +719,10 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="native",
                 artifacts=("~/.agents/harness/adapters/cursor/commands",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/harness/adapters/cursor/commands/2ndbrain.md"),
                 note=(
                     "generated Cursor plugin commands wrap shared prompts, but "
                     "runtime discovery has not been verified"
@@ -665,7 +733,10 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="native",
                 artifacts=("~/.agents/skills",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
                 note=(
                     "grok reaches 24 of the 25 command workflows through the "
                     "shared skills; linear/progress has no shared skill, and "
@@ -681,7 +752,10 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="native",
                 artifacts=("~/.agents/skills",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
                 note=(
                     "crush has no user-defined slash-command surface, so the "
                     "command workflows are reachable only through the shared "
@@ -730,7 +804,10 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.claude/agents",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".claude/agents/cli-expert.md"),
                 note="native Claude agents include these plus additional specialists",
             ),
             "codex": Cell(
@@ -738,6 +815,7 @@ CAPABILITIES: list[Capability] = [
                 mode="native",
                 artifacts=("~/.codex/agents",),
                 evidence=_LOCAL_2026_06_27,
+                probe=_exists(".codex/agents/cli-expert.toml"),
                 note="native Codex TOML agents",
             ),
             "opencode": Cell(
@@ -747,7 +825,10 @@ CAPABILITIES: list[Capability] = [
                     "~/.config/opencode/agents",
                     "~/.config/opencode/opencode.jsonc",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".config/opencode/agents/cli-expert.md"),
                 note="generated agent config",
             ),
             "pi": Cell(
@@ -757,7 +838,10 @@ CAPABILITIES: list[Capability] = [
                     "~/.pi/agent/agents.json",
                     "~/.pi/agent/extensions/harness.ts",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".pi/agent/agents.json"),
                 note=(
                     "Pi specialist delegation policy: model inferred from "
                     "specialist tier (quick=haiku, standard=sonnet, deep=opus); "
@@ -772,14 +856,22 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.omp/agent/agents",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".omp/agent/agents/cli-expert.md"),
                 note="generated from shared specialist definitions",
             ),
             "antigravity": Cell(
                 parity="partial",
                 mode="emulated",
                 artifacts=("~/.agents/harness/adapters/antigravity/agents",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(
+                    ".agents/harness/adapters/antigravity/agents/cli-expert.md"
+                ),
                 note=(
                     "generated Antigravity agent wrappers point to shared "
                     "specialists, but isolated delegation has not been verified"
@@ -793,7 +885,10 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="native",
                 artifacts=("~/.agents/harness/adapters/cursor/agents",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/harness/adapters/cursor/agents/cli-expert.md"),
                 note=(
                     "generated Cursor plugin agents wrap shared specialists, but "
                     "runtime discovery has not been verified"
@@ -804,7 +899,10 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="adapter",
                 artifacts=("~/.grok/agents",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".grok/agents/cli-expert.md"),
                 note=(
                     "generated grok agent profiles are discovered by grok inspect, "
                     "but spawn_subagent delegation to them has not been verified"
@@ -818,7 +916,10 @@ CAPABILITIES: list[Capability] = [
                 parity="blocked",
                 mode="native",
                 artifacts=("~/.agents/harness/agents",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/harness/agents/cli-expert.toml"),
                 note=(
                     "crush ships exactly two built-in agents (coder, task) and has "
                     "no user-defined agent surface; upstream tracks this as "
@@ -918,21 +1019,27 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="adapter",
                 artifacts=(_SAFETY,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 probe=_contains(".claude/settings.json", r"bash-guard\.sh"),
             ),
             "codex": Cell(
                 parity="aligned",
                 mode="adapter",
                 artifacts=(_SAFETY,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 probe=_contains(".codex/hooks.json", r"bash-guard\.sh"),
             ),
             "opencode": Cell(
                 parity="aligned",
                 mode="adapter",
                 artifacts=(_SAFETY,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 probe=_contains(
                     ".config/opencode/plugins/harness.ts", "agent-harnesses"
                 ),
@@ -941,14 +1048,18 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="adapter",
                 artifacts=(_SAFETY,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 probe=_contains(".pi/agent/extensions/harness.ts", "agent-harnesses"),
             ),
             "omp": Cell(
                 parity="aligned",
                 mode="adapter",
                 artifacts=("~/.omp/agent/hooks/pre/harness-guard.ts",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 probe=_contains(
                     ".omp/agent/hooks/pre/harness-guard.ts", "agent-harnesses"
                 ),
@@ -960,7 +1071,9 @@ CAPABILITIES: list[Capability] = [
                     "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
                     "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "generated Antigravity hook wrapper calls the shared guard, "
                     "but native pre-tool blocking has not been verified"
@@ -981,7 +1094,9 @@ CAPABILITIES: list[Capability] = [
                     "~/.agents/harness/adapters/cursor/hooks/hooks.json",
                     "~/.agents/harness/adapters/cursor/scripts/harness-guard.py",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "Cursor hook wrapper is generated, but native pre-tool "
                     "blocking behavior has not been verified"
@@ -1002,7 +1117,9 @@ CAPABILITIES: list[Capability] = [
                     "~/.grok/hooks/harness-guard.json",
                     "~/.grok/scripts/harness-guard.py",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "generated grok PreToolUse guard maps grok's camelCase payload "
                     "to the shared guard, but live blocking in a grok session has "
@@ -1021,7 +1138,9 @@ CAPABILITIES: list[Capability] = [
                     "~/.config/crush/crushrc",
                     "~/.config/crush/hooks/harness-guard.py",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                ),
                 note=(
                     "generated crush PreToolUse guard maps crush's snake_case "
                     "payload to the shared guard and blocks with exit 2, but crush "
@@ -1243,35 +1362,50 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.claude/settings.json",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".claude/settings.json"),
                 note="native PreCompact hook",
             ),
             "codex": Cell(
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.codex/hooks.json",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".codex/hooks.json"),
                 note="native PreCompact hook",
             ),
             "opencode": Cell(
                 parity="aligned",
                 mode="adapter",
                 artifacts=("~/.config/opencode/plugins/harness.ts",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".config/opencode/plugins/harness.ts"),
                 note="plugin compaction hook",
             ),
             "pi": Cell(
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.pi/agent/settings.json",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".pi/agent/settings.json"),
                 note="native compaction settings plus extension status",
             ),
             "omp": Cell(
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.omp/agent/APPEND_SYSTEM.md",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".omp/agent/APPEND_SYSTEM.md"),
                 note=(
                     "compaction preservation contract inlined with shared harness "
                     "instructions"
@@ -1284,7 +1418,10 @@ CAPABILITIES: list[Capability] = [
                     "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
                     "~/.gemini/antigravity-cli/settings.json",
                 ),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".agents/harness/adapters/antigravity/hooks/hooks.json"),
                 note=(
                     "generated Antigravity compaction guidance records "
                     "preservation requirements, but conversation/artifact behavior "
@@ -1299,7 +1436,12 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="native",
                 artifacts=("~/.agents/harness/adapters/cursor/rules",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(
+                    ".agents/harness/adapters/cursor/rules/shared-harness.mdc"
+                ),
                 note=(
                     "Cursor preservation instructions are generated, but "
                     "resume/history behavior has not been verified"
@@ -1313,7 +1455,10 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.grok/rules/shared-harness.md",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".grok/rules/shared-harness.md"),
                 note=(
                     "compaction preservation contract inlined in the generated "
                     "grok rules file"
@@ -1323,7 +1468,10 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="native",
                 artifacts=("~/.config/crush/shared-harness.md",),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists(".config/crush/shared-harness.md"),
                 note=(
                     "compaction preservation contract inlined in the generated "
                     "crush context file"
@@ -1445,7 +1593,10 @@ CAPABILITIES: list[Capability] = [
                 parity="aligned",
                 mode="shared",
                 artifacts=(_SHARED,),
-                evidence=_LOCAL_2026_06_27,
+                evidence=Evidence(
+                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                ),
+                probe=_exists("docs/agent-harnesses.json"),
             )
             for slug in HARNESSES
         },

@@ -1,0 +1,8 @@
+{
+  "command": "echo x | sudo tee /etc/hosts",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

@@ -9,15 +9,64 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.236 (Claude Code) | 2026-08-29 | - |
-| codex | codex-cli 0.149.1 | 2026-08-29 | - |
+| codex | codex-cli 0.150.1 | 2026-08-29 | codex-cli 0.149.1 |
 | opencode | 1.18.23 | 2026-08-29 | - |
 | pi | 0.84.3 | 2026-08-29 | - |
-| omp | omp/18.0.7 | 2026-08-29 | - |
+| omp | omp/18.0.10 | 2026-08-29 | omp/18.0.7 |
 | antigravity | 1.1.22 | 2026-08-29 | - |
 | cursor | 2026.07.01-777f564 | 2026-08-29 | - |
-| grok | grok 1.0.5 (5115b46bc909) | 2026-08-29 | - |
+| grok | grok 1.0.5 (5115b46bc909) [alpha] | 2026-08-29 | grok 1.0.5 (5115b46bc909) |
 | crush | crush version v0.91.2 | 2026-08-29 | - |
 
 ## Records
 
-No drift recorded yet.
+| Date | Harness | Capability | Field | From | To | Version |
+|---|---|---|---|---|---|---|
+| 2026-08-30 | pi | skills.shared | probe | - | pass | 0.84.3 |
+| 2026-08-30 | opencode | skills.shared | probe | - | pass | 1.18.23 |
+| 2026-08-30 | omp | skills.shared | probe | - | pass | omp/18.0.10 |
+| 2026-08-30 | grok | skills.shared | probe | - | pass | grok 1.0.5 (5115b46bc909) [alpha] |
+| 2026-08-30 | crush | skills.shared | probe | - | pass | crush version v0.91.2 |
+| 2026-08-30 | codex | skills.shared | probe | - | pass | codex-cli 0.150.1 |
+| 2026-08-30 | claude | skills.shared | probe | - | pass | 2.1.236 (Claude Code) |
+| 2026-08-30 | cursor | skills.shared | probe | - | pass | 2026.07.01-777f564 |
+| 2026-08-30 | antigravity | skills.shared | probe | - | pass | 1.1.22 |
+| 2026-08-30 | pi | sessions.compaction | probe | - | pass | 0.84.3 |
+| 2026-08-30 | omp | sessions.compaction | probe | - | pass | omp/18.0.10 |
+| 2026-08-30 | grok | sessions.compaction | probe | - | pass | grok 1.0.5 (5115b46bc909) [alpha] |
+| 2026-08-30 | opencode | sessions.compaction | probe | - | pass | 1.18.23 |
+| 2026-08-30 | crush | sessions.compaction | probe | - | pass | crush version v0.91.2 |
+| 2026-08-30 | codex | sessions.compaction | probe | - | pass | codex-cli 0.150.1 |
+| 2026-08-30 | claude | sessions.compaction | probe | - | pass | 2.1.236 (Claude Code) |
+| 2026-08-30 | cursor | sessions.compaction | probe | - | pass | 2026.07.01-777f564 |
+| 2026-08-30 | antigravity | sessions.compaction | probe | - | pass | 1.1.22 |
+| 2026-08-30 | pi | maintenance.audit | probe | - | pass | 0.84.3 |
+| 2026-08-30 | opencode | maintenance.audit | probe | - | pass | 1.18.23 |
+| 2026-08-30 | omp | maintenance.audit | probe | - | pass | omp/18.0.10 |
+| 2026-08-30 | grok | maintenance.audit | probe | - | pass | grok 1.0.5 (5115b46bc909) [alpha] |
+| 2026-08-30 | cursor | maintenance.audit | probe | - | pass | 2026.07.01-777f564 |
+| 2026-08-30 | crush | maintenance.audit | probe | - | pass | crush version v0.91.2 |
+| 2026-08-30 | codex | maintenance.audit | probe | - | pass | codex-cli 0.150.1 |
+| 2026-08-30 | claude | maintenance.audit | probe | - | pass | 2.1.236 (Claude Code) |
+| 2026-08-30 | antigravity | maintenance.audit | probe | - | pass | 1.1.22 |
+| 2026-08-30 | omp | - | version | omp/18.0.7 | omp/18.0.10 | omp/18.0.10 |
+| 2026-08-30 | grok | - | version | grok 1.0.5 (5115b46bc909) | grok 1.0.5 (5115b46bc909) [alpha] | grok 1.0.5 (5115b46bc909) [alpha] |
+| 2026-08-30 | codex | - | version | codex-cli 0.149.1 | codex-cli 0.150.1 | codex-cli 0.150.1 |
+| 2026-08-30 | pi | commands.active | probe | - | pass | 0.84.3 |
+| 2026-08-30 | omp | commands.active | probe | - | fail | omp/18.0.10 |
+| 2026-08-30 | claude | commands.active | probe | - | fail | 2.1.236 (Claude Code) |
+| 2026-08-30 | opencode | commands.active | probe | - | pass | 1.18.23 |
+| 2026-08-30 | grok | commands.active | probe | - | pass | grok 1.0.5 (5115b46bc909) [alpha] |
+| 2026-08-30 | crush | commands.active | probe | - | pass | crush version v0.91.2 |
+| 2026-08-30 | codex | commands.active | probe | - | pass | codex-cli 0.150.1 |
+| 2026-08-30 | cursor | commands.active | probe | - | pass | 2026.07.01-777f564 |
+| 2026-08-30 | antigravity | commands.active | probe | - | pass | 1.1.22 |
+| 2026-08-30 | pi | agents.specialists | probe | - | pass | 0.84.3 |
+| 2026-08-30 | omp | agents.specialists | probe | - | pass | omp/18.0.10 |
+| 2026-08-30 | codex | agents.specialists | probe | - | fail | codex-cli 0.150.1 |
+| 2026-08-30 | grok | agents.specialists | probe | - | pass | grok 1.0.5 (5115b46bc909) [alpha] |
+| 2026-08-30 | opencode | agents.specialists | probe | - | pass | 1.18.23 |
+| 2026-08-30 | claude | agents.specialists | probe | - | pass | 2.1.236 (Claude Code) |
+| 2026-08-30 | crush | agents.specialists | probe | - | pass | crush version v0.91.2 |
+| 2026-08-30 | cursor | agents.specialists | probe | - | pass | 2026.07.01-777f564 |
+| 2026-08-30 | antigravity | agents.specialists | probe | - | pass | 1.1.22 |

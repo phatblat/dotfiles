@@ -34,6 +34,26 @@ mise-vs-brew duplication) but doesn't catch alias mismatches (a mise package who
 binary name differs from the package name) or three-way overlaps involving Nix, since
 Nix isn't expected to stay in sync in the first place.
 
+## Extraction decision
+
+The agent-harness system in this repo has been proposed for extraction into a
+standalone product, rewritten as a compiled binary. That thesis is unvalidated
+today, so extraction is deferred to a data-driven trigger rather than decided
+on feel. The daily `at.phatbl.harness-probe` LaunchAgent (`just harness-probe`)
+is what accumulates the evidence these conditions are measured against.
+
+- **Extract** when coverage reaches ≥60% (243/405 cells) **and**
+  `docs/harness/drift.jsonl` holds ≥10 distinct records **and** ≥3 of those
+  records prompted a real config change. At that point the ledger has
+  demonstrably tracked vendor movement and is worth packaging.
+- **Abandon the product framing** if after 90 days of daily probes coverage is
+  <30% or the ledger holds <3 records. That outcome means the vendors are not
+  moving fast enough to justify a parity ledger, and what exists is a
+  generator, not a knowledge base — in which case it stays in dotfiles
+  permanently, and the compiled guard (`crates/ness/`) and decoupled source of
+  truth (`.agents/harness/{commands,agents}/`) remain worthwhile on their own,
+  independent of whether the ledger ever graduates.
+
 ## Where to go for more
 
 - Package managers: `docs/package-management.md`
