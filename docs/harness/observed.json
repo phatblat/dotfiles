@@ -1,8 +1,11 @@
 {
   "antigravity": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/antigravity/agents/cli-expert.md",
       "mode": "emulated",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -11,12 +14,15 @@
       "surface": "Generated hook/guard adapter"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/antigravity/commands/2ndbrain.md",
       "mode": "adapter",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/adapters/antigravity/hooks/hooks.json matches harness-guard\\.py",
       "mode": "adapter",
       "parity": "partial",
@@ -24,7 +30,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/adapters/antigravity/plugin.json",
       "mode": "adapter",
       "parity": "partial",
@@ -32,8 +38,11 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "mcp.dependencies": {
@@ -47,8 +56,11 @@
       "surface": "Not verified in adapter"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/antigravity/hooks/hooks.json",
       "mode": "native",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -67,8 +79,11 @@
       "surface": "Local adapter only"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md",
       "mode": "adapter",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -84,8 +99,11 @@
   },
   "claude": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".claude/agents/cli-expert.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -94,12 +112,15 @@
       "surface": "Agent `tools`, `disallowedTools`, `permissionMode`"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": "missing .claude/commands/2ndbrain.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "fail",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".claude/settings.json matches bash-guard\\.sh",
       "mode": "adapter",
       "parity": "aligned",
@@ -107,7 +128,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -115,8 +136,11 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "mcp.dependencies": {
@@ -130,8 +154,11 @@
       "surface": "Skill/agent `model`, `effort`"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".claude/settings.json",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -150,8 +177,11 @@
       "surface": "`paths` frontmatter"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -167,8 +197,11 @@
   },
   "codex": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": "missing .codex/agents/cli-expert.toml",
       "mode": "native",
       "parity": "aligned",
+      "result": "fail",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -177,12 +210,15 @@
       "surface": "Agent TOML permissions/sandbox and inherited MCP config"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/commands/2ndbrain.md",
       "mode": "adapter",
       "parity": "blocked",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".codex/hooks.json matches bash-guard\\.sh",
       "mode": "adapter",
       "parity": "aligned",
@@ -190,7 +226,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -198,8 +234,11 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "mcp.dependencies": {
@@ -213,8 +252,11 @@
       "surface": "Agent TOML `model`, `model_reasoning_effort`"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".codex/hooks.json",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -233,8 +275,11 @@
       "surface": "Prefer nested repo skills or concise descriptions"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -250,8 +295,11 @@
   },
   "crush": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/agents/cli-expert.toml",
       "mode": "native",
       "parity": "blocked",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -260,12 +308,15 @@
       "surface": "`permissions deny` hides tools; PreToolUse hook for the rest"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "native",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".config/crush/crushrc matches harness-guard\\.py",
       "mode": "adapter",
       "parity": "partial",
@@ -273,7 +324,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".config/crush/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
@@ -281,8 +332,11 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "mcp.dependencies": {
@@ -296,8 +350,11 @@
       "surface": "`model large`/`model small` with `--reasoning-effort`"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".config/crush/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -316,8 +373,11 @@
       "surface": "No documented equivalent; scope through the description"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -333,8 +393,11 @@
   },
   "cursor": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/cursor/agents/cli-expert.md",
       "mode": "native",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -343,12 +406,15 @@
       "surface": "Rules/plugin adapter; native behavior unverified"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/cursor/commands/2ndbrain.md",
       "mode": "native",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/adapters/cursor/hooks/hooks.json matches harness-guard\\.py",
       "mode": "adapter",
       "parity": "partial",
@@ -356,7 +422,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/adapters/cursor/rules/shared-harness.mdc",
       "mode": "adapter",
       "parity": "partial",
@@ -364,8 +430,11 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "mcp.dependencies": {
@@ -379,8 +448,11 @@
       "surface": "No shared skill metadata equivalent"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/cursor/rules/shared-harness.mdc",
       "mode": "native",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -399,8 +471,11 @@
       "surface": "`paths`; `globs` legacy fallback"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md",
       "mode": "native",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -416,8 +491,11 @@
   },
   "grok": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".grok/agents/cli-expert.md",
       "mode": "adapter",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -426,12 +504,15 @@
       "surface": "`--tools` / `--disallowed-tools`, subagent `capability_mode`, permission rules"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "native",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".grok/hooks/harness-guard.json matches harness-guard\\.py",
       "mode": "adapter",
       "parity": "partial",
@@ -439,7 +520,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".grok/rules/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
@@ -447,8 +528,11 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "mcp.dependencies": {
@@ -462,8 +546,11 @@
       "surface": "Skill `model`, `effort`; persona `model`, `reasoning_effort`"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".grok/rules/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -482,8 +569,11 @@
       "surface": "No documented equivalent; scope through the description"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -499,8 +589,11 @@
   },
   "omp": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".omp/agent/agents/cli-expert.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -509,12 +602,15 @@
       "surface": "Generated agent wrappers in ~/.omp/agent/agents"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": "missing .claude/commands/2ndbrain.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "fail",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".omp/agent/hooks/pre/harness-guard.ts matches agent-harnesses",
       "mode": "adapter",
       "parity": "aligned",
@@ -522,7 +618,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".omp/agent/APPEND_SYSTEM.md",
       "mode": "native",
       "parity": "aligned",
@@ -530,8 +626,11 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "mcp.dependencies": {
@@ -545,8 +644,11 @@
       "surface": "modelRoles, defaultThinkingLevel"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".omp/agent/APPEND_SYSTEM.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -565,8 +667,11 @@
       "surface": "Local adapter only"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -582,8 +687,11 @@
   },
   "opencode": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".config/opencode/agents/cli-expert.md",
       "mode": "adapter",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -592,12 +700,15 @@
       "surface": "Agent `permission` and `tools`"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": ".config/opencode/commands/2ndbrain.md",
       "mode": "adapter",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".config/opencode/plugins/harness.ts matches agent-harnesses",
       "mode": "adapter",
       "parity": "aligned",
@@ -605,7 +716,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -613,12 +724,15 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "maintenance.config_validation": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": "opencode debug config --pure",
       "mode": "native",
       "parity": "aligned",
@@ -636,8 +750,11 @@
       "surface": "Global or agent `model`; `small_model`"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".config/opencode/plugins/harness.ts",
       "mode": "adapter",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -656,8 +773,11 @@
       "surface": "Directory discovery plus permissions"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -673,8 +793,11 @@
   },
   "pi": {
     "agents.specialists": {
+      "date": "2026-08-30",
+      "detail": ".pi/agent/agents.json",
       "mode": "emulated",
       "parity": "partial",
+      "result": "pass",
       "surface": ""
     },
     "agents.tool_restrictions": {
@@ -683,12 +806,15 @@
       "surface": "Extension-enforced guard"
     },
     "commands.active": {
+      "date": "2026-08-30",
+      "detail": ".pi/agent/prompts/2ndbrain.md",
       "mode": "adapter",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".pi/agent/extensions/harness.ts matches agent-harnesses",
       "mode": "adapter",
       "parity": "aligned",
@@ -696,7 +822,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -704,12 +830,15 @@
       "surface": ""
     },
     "maintenance.audit": {
+      "date": "2026-08-30",
+      "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "maintenance.config_validation": {
-      "date": "2026-08-29",
+      "date": "2026-08-30",
       "detail": "pi list --no-approve",
       "mode": "native",
       "parity": "aligned",
@@ -727,8 +856,11 @@
       "surface": "`defaultModel`, `defaultThinkingLevel`"
     },
     "sessions.compaction": {
+      "date": "2026-08-30",
+      "detail": ".pi/agent/settings.json",
       "mode": "native",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.identity": {
@@ -747,8 +879,11 @@
       "surface": "Local adapter only"
     },
     "skills.shared": {
+      "date": "2026-08-30",
+      "detail": ".agents/skills/resolve-feedback/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
