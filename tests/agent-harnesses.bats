@@ -320,14 +320,19 @@ skip_unless_home_is_this_checkout() {
     grep -Fq 'push --force-with-lease -u' "$workflow"
     grep -Fq -- '--no-track' "$workflow"
     grep -Fq 'gh pr edit' "$workflow"
-    ! grep -Fq 'gh stack submit' "$workflow"
-    ! grep -Fq 'gh stack modify' "$workflow"
-    ! grep -Eq '\bgh stack (unstack|checkout)\b[^-]*$' "$workflow"
+    run grep -Fq 'gh stack submit' "$workflow"
+    [ "$status" -ne 0 ]
+    run grep -Fq 'gh stack modify' "$workflow"
+    [ "$status" -ne 0 ]
+    run grep -Eq '\bgh stack (unstack|checkout)\b[^-]*$' "$workflow"
+    [ "$status" -ne 0 ]
     view_total=$(grep -Fc 'gh stack view' "$workflow")
     view_json=$(grep -Fc 'gh stack view --json' "$workflow")
     [ "$view_total" -eq "$view_json" ]
-    ! grep -Fq -- '--prefix' "$workflow"
-    ! grep -Fq -- '--adopt' "$workflow"
+    run grep -Fq -- '--prefix' "$workflow"
+    [ "$status" -ne 0 ]
+    run grep -Fq -- '--adopt' "$workflow"
+    [ "$status" -ne 0 ]
   done
 }
 
