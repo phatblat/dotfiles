@@ -30,6 +30,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: inventories active commands, agents, and skills without a graph capability" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" inventory --json
 
   [ "$status" -eq 0 ]
@@ -586,6 +587,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: antigravity plugin artifacts exist and parse" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
