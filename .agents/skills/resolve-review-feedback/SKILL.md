@@ -146,6 +146,7 @@ gh api graphql -f query='
                 path
                 line
                 body
+                diffHunk
                 author { login }
                 createdAt
               }
@@ -174,17 +175,22 @@ For each unresolved thread, apply the Single Comment Flow (steps 2-7).
 
 Each fix gets its own commit. Do NOT batch fixes into one commit — one comment = one commit.
 
-### 3. Push All Commits
+### 3. Process PR-Level Findings
 
-After all threads are processed, push the branch:
+After processing all line/file threads, process PR-level comments and reviews via the
+PR-Level Flow below.
+
+### 4. Push All Commits
+
+After all threads and PR-level findings are processed, push the branch:
 
 ```bash
 git push
 ```
 
-### 4. Summary Report
+### 5. Summary Report
 
-After processing all threads:
+After processing all threads and PR-level findings:
 
 ```text
 ## PR Feedback Summary
@@ -275,9 +281,11 @@ Document the resolution-detection ladder, in order, stopping at the first hit:
      with any of `resolved`, `fixed`, `addressed`, `landed`, `implemented`.
    - deferral signal: any of `deferred`, `won't fix`, `wontfix`, `out of scope`,
      `tracked in`, `follow-up`.
-3. **Verify the claim.** A claim is a hint, not proof. Confirm the described change is
-   actually present in the working tree before skipping the finding. If it is absent,
-   treat the finding as unresolved and note the stale claim in the report.
+3. **Verify or accept the claim.** A resolution claim is a hint, not proof — confirm the
+   described change is actually present in the working tree before skipping the finding.
+   If absent, treat the finding as unresolved and note the stale claim. A deferral claim
+   by definition has no tree change — accept it (optionally checking a referenced
+   `#<number>` tracker exists) and report it under Skipped instead of reprocessing.
 4. **Otherwise** the finding is unresolved — process it through the Single Comment
    Flow steps 2–4 (evaluate, fix, commit), then mark it handled as below.
 
