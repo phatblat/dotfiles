@@ -65,6 +65,6 @@ After all tasks complete and verified:
 ## Integration
 
 **Required workflow skills:**
-- **using-git-worktrees** - Ensures isolated workspace (creates one or verifies existing)
+- **git-worktree** - Ensures isolated workspace (creates one or verifies existing)
 - **writing-plans** - Creates the plan this skill executes
 - **branch-finish** - Complete development after all tasks
