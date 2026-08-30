@@ -19,12 +19,18 @@ for plist in "$DOTFILES_AGENTS"/*.plist; do
     label=$(/usr/libexec/PlistBuddy -c 'Print :Label' "$plist" 2>/dev/null || echo "${name%.plist}")
     echo "Installing $name..."
     mkdir -p "$HOME/Library/LaunchAgents"
-    cp "$plist" "$HOME/Library/LaunchAgents/$name"
-    chmod 644 "$HOME/Library/LaunchAgents/$name"
+    dest="$HOME/Library/LaunchAgents/$name"
+    # Skip cp when source and dest are the same file (e.g., when $HOME is the checkout root)
+    if [ "$plist" -ef "$dest" ]; then
+        echo "  → already in place"
+    else
+        cp "$plist" "$dest"
+    fi
+    chmod 644 "$dest"
     launchctl bootout "$UID_DOMAIN/$label" 2>/dev/null || true
     # Clear any prior disabled override before bootstrap so the agent runs on schedule
     launchctl enable "$UID_DOMAIN/$label"
-    launchctl bootstrap "$UID_DOMAIN" "$HOME/Library/LaunchAgents/$name"
+    launchctl bootstrap "$UID_DOMAIN" "$dest"
     # Verify the agent registered in the per-user gui domain
     if launchctl print "$UID_DOMAIN/$label" >/dev/null 2>&1; then
         echo "  ✓ $label loaded"

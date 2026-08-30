@@ -49,14 +49,8 @@ fn expand_tilde(path: &str, home: &Path) -> PathBuf {
     PathBuf::from(path)
 }
 
-/// Resolve `.` and `..` textually, without touching the filesystem. Mirrors
-/// the plan's explicit mandate (not `std::fs::canonicalize`, which errors on
-/// a path that does not exist yet — the common case for a Write creating a
-/// new file) and deliberately does not follow symlinks, unlike Python's
-/// `Path.resolve(strict=False)`, which *does* resolve symlinks for path
-/// components that happen to exist on disk. That nuance is not exercised by
-/// the guard's regex rules (they match path text, not filesystem identity),
-/// so pure lexical resolution is the correct, safer choice here.
+/// Resolve `.` and `..` textually, without touching the filesystem.
+/// Used as a fallback when `canonicalize()` fails (path doesn't exist yet).
 fn lexical_normalize(path: &Path) -> PathBuf {
     let mut result = PathBuf::new();
     for component in path.components() {
@@ -78,7 +72,16 @@ fn lexical_normalize(path: &Path) -> PathBuf {
 /// that mirrors Python's `Path(expanded).resolve()`, which always resolves
 /// against `os.getcwd()`, never against the guard's `--cwd` argument (that
 /// argument is only used by `main_branch_commit_warning`'s git calls).
+///
+/// Unlike Python's `re` module where `$` matches before a trailing `\n`,
+/// Rust regex `$` matches only at true end-of-string, so we strip trailing
+/// newlines to maintain parity with Python's PROTECTED_PATHS behavior.
 pub fn normalize_str(path: &str) -> String {
+    if path.is_empty() {
+        return String::new();
+    }
+    // Strip trailing newlines to match Python regex $ anchor behavior
+    let path = path.trim_end_matches('\n');
     if path.is_empty() {
         return String::new();
     }
@@ -89,5 +92,12 @@ pub fn normalize_str(path: &str) -> String {
     } else {
         process_cwd().join(expanded)
     };
-    lexical_normalize(&absolute).to_string_lossy().into_owned()
+    
+    // Use filesystem resolution to follow symlinks, matching Python's
+    // Path.resolve() behavior. Fall back to lexical normalization only
+    // when the path doesn't exist yet (e.g., Write tool creating a new file).
+    match absolute.canonicalize() {
+        Ok(canonical) => canonical.to_string_lossy().into_owned(),
+        Err(_) => lexical_normalize(&absolute).to_string_lossy().into_owned(),
+    }
 }

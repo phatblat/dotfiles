@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "# modified file",
+  "cwd": null,
+  "harness": "claude",
+  "path": "/Users/someone/dotfiles/docs/agent-harnesses.md",
+  "tool": "edit"
+}

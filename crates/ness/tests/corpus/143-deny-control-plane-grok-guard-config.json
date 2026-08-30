@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "{}",
+  "cwd": null,
+  "harness": "grok",
+  "path": "/home/user/project/harness-guard.json",
+  "tool": "write"
+}

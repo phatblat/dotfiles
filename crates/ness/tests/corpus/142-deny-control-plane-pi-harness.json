@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "test edit",
+  "cwd": null,
+  "harness": "pi",
+  "path": "/Users/someone/.pi/agent/extensions/harness.ts",
+  "tool": "edit"
+}
