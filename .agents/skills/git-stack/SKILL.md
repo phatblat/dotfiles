@@ -26,7 +26,10 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
    repo_root=$(git rev-parse --path-format=absolute --git-common-dir); repo_root=${repo_root%/.git}
    current=$(git branch --show-current)
    remote=$(git config --get "branch.${subject}.remote" || true)
-   [ -n "$remote" ] || { mapfile -t remotes < <(git remote); [ "${#remotes[@]}" -eq 1 ] && remote="${remotes[0]}"; }
+   if [ -z "$remote" ]; then
+     remotes=$(git remote); remote_count=$(echo "$remotes" | wc -l)
+     [ "$remote_count" -eq 1 ] && remote=$(echo "$remotes" | head -1)
+   fi
    [ -n "$remote" ] || { git remote | grep -qx origin && remote=origin; }
    [ -n "$remote" ] || { echo "Multiple remotes found, none configured for branch. Candidates: $(git remote | tr '\n' ' ')"; exit 1; }
    trunk=$(git symbolic-ref "refs/remotes/${remote}/HEAD" 2>/dev/null | sed "s|refs/remotes/${remote}/||")
@@ -66,7 +69,8 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
      elif git show-ref --quiet "refs/remotes/${remote}/${subject}"; then
        git worktree add --track -b "$subject" "$work_dir" "${remote}/${subject}"
      else                                                        # new-branch mode
-       git worktree add "$work_dir" -b "$subject" --no-track "${remote}/${base}"
+       base_ref="${remote}/${base}"; git show-ref --quiet "refs/remotes/${base_ref}" || base_ref="$base"
+       git worktree add "$work_dir" -b "$subject" --no-track "$base_ref"
        git -C "$work_dir" push -u "$remote" "${subject}:${subject}"
        git -C "$work_dir" branch -vv
      fi
@@ -125,12 +129,14 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
 8. Ensure every chain member has an open PR based on its parent (previous chain entry, or `$trunk` for the first):
 
    ```bash
-   gh pr view "$member" --json number,state,baseRefName
+   pr_json=$(gh pr view "$member" --json number,state,baseRefName 2>/dev/null || echo '{}')
+   state=$(echo "$pr_json" | jq -r '.state // empty')
    ```
 
-   - No PR, or no open PR → invoke `pr-create` for that branch so the repo's title, body, label, draft, and `@me` assignment conventions (`pr-style`) apply, then retarget: `gh pr edit "$number" --base "$parent"`. Never hand-roll `gh pr create` or let `link` auto-create the PR here — both bypass `pr-style`.
-   - Open PR whose base differs from `parent` → `gh pr edit "$number" --base "$parent"`.
-   - Open PR already based on `parent` → leave it.
+   - `state` is `MERGED` or `CLOSED` → stop and report: step 7's chain walk picked up a member whose PR already landed or was abandoned; restacking must resolve this manually (typically by re-running with a `base` below that member so the chain collapses to `$trunk`). Never create a spurious new PR for it.
+   - No PR, or `state` is empty → invoke `pr-create` for that branch so the repo's title, body, label, draft, and `@me` assignment conventions (`pr-style`) apply, then retarget: `gh pr edit "$number" --base "$parent"`. Never hand-roll `gh pr create` or let `link` auto-create the PR here — both bypass `pr-style`.
+   - `state` is `OPEN` and base differs from `parent` → `gh pr edit "$number" --base "$parent"`.
+   - `state` is `OPEN` and base already matches `parent` → leave it.
 
 9. Align the GitHub stack:
 
@@ -146,6 +152,7 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
 
     ```bash
     if ! (cd "$work_dir" && gh stack view --json >/dev/null 2>&1) && [ "${#chain[@]}" -ge 2 ]; then
+      git -C "$work_dir" config --local rerere.enabled true
       (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable"
     fi
     ```
