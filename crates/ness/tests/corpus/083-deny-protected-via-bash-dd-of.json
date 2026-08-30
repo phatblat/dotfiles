@@ -1,0 +1,8 @@
+{
+  "command": "dd if=/tmp/x of=/Users/phatblat/.ssh/id_rsa",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

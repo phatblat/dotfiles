@@ -1,0 +1,8 @@
+{
+  "command": "cp /tmp/x /Users/phatblat/.aws/credentials",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

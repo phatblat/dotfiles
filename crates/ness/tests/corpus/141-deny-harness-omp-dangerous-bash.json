@@ -1,0 +1,8 @@
+{
+  "command": "rm -rf /",
+  "content": null,
+  "cwd": null,
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

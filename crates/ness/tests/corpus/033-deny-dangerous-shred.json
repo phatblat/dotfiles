@@ -1,0 +1,8 @@
+{
+  "command": "shred -u secret.txt",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

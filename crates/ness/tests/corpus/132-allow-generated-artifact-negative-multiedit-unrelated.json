@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "x",
+  "cwd": null,
+  "harness": "claude",
+  "path": "/tmp/ness-corpus-not-generated.txt",
+  "tool": "multiedit"
+}

@@ -1,0 +1,8 @@
+{
+  "command": "git status --short",
+  "content": null,
+  "cwd": null,
+  "harness": "pi",
+  "path": null,
+  "tool": "bash"
+}

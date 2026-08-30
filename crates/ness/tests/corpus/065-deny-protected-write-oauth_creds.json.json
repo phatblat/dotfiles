@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "x",
+  "cwd": null,
+  "harness": "claude",
+  "path": "/Users/phatblat/.gemini/oauth_creds.json",
+  "tool": "write"
+}

@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "hello world",
+  "cwd": null,
+  "harness": "claude",
+  "path": "/tmp/ness-corpus-ok.txt",
+  "tool": "write"
+}

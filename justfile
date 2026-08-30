@@ -776,6 +776,21 @@ harness-probe *ARGS:
 harness-drift *ARGS:
     python3 {{ justfile_directory() }}/scripts/agent-harnesses.py drift {{ ARGS }}
 
+# Builds the ness compiled guard (release profile)
+[group('checks')]
+ness-build:
+    cargo build --release --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
+
+# Installs the ness compiled guard to ~/.local/bin (falls back to python3 guard chain if absent)
+[group('checks')]
+ness-install: ness-build
+    install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/ness
+
+# Differential-tests the ness guard against the Python reference implementation
+[group('checks')]
+ness-parity: ness-build
+    python3 {{ justfile_directory() }}/scripts/ness-parity.py
+
 # Flags CLI tools installed via both mise and Homebrew
 [group('checks')]
 package-audit:

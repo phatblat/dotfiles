@@ -1,0 +1,8 @@
+{
+  "command": "truncate -s 0 /var/log/syslog",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

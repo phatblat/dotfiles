@@ -1,0 +1,8 @@
+{
+  "command": "true && doas ls",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

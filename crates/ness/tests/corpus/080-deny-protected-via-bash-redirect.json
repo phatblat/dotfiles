@@ -1,0 +1,8 @@
+{
+  "command": "echo x >> /Users/phatblat/.ssh/config",
+  "content": null,
+  "cwd": null,
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

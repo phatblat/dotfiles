@@ -1,0 +1,8 @@
+{
+  "command": null,
+  "content": "x",
+  "cwd": null,
+  "harness": "claude",
+  "path": "/Users/phatblat/.omp/agent/hooks/pre/harness-guard.ts",
+  "tool": "write"
+}

@@ -10,4 +10,8 @@ certifi = "certifi"
 [default]
 extend-ignore-re = [
     "2ndBrain",
+    # `\(ba\)\?sh` in guard regex patterns (matches "sh" or "bash"), not the
+    # English word "ba". Appears verbatim in both the Python safety policy
+    # (.agents/harness/hooks/safety.py) and its Rust port (crates/ness).
+    "\\(ba\\)\\?sh",
 ]
