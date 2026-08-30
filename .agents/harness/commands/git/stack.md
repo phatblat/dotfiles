@@ -187,9 +187,9 @@ A single-member chain (`base` == `trunk`) has no GitHub stack to create — GitH
 if ! (cd "$work_dir" && gh stack view --json >/dev/null 2>&1) && [ "${#chain[@]}" -ge 2 ]; then
   # Enable rerere to avoid interactive prompts on conflict resolution
   git -C "$work_dir" config --local rerere.enabled true
-  # gh stack init can fail with --adopt caveats (branch already stacked, PR base mismatch, etc.)
+  # gh stack init can fail with adoption caveats (branch already stacked, PR base mismatch, etc.)
   # Treat this as non-blocking: GitHub stack metadata from step 9 is what matters
-  (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable (may need manual gh stack --adopt)"
+  (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable (may need manual adoption mode)"
 fi
 ```
 
