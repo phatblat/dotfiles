@@ -1774,6 +1774,10 @@ def main() -> int:
     except ValueError as exc:
         return deny(f"shared guard failed closed: unreadable hook payload ({exc})")
 
+    # Require dict payload before extracting tool_input
+    if not isinstance(payload, dict):
+        return deny("shared guard failed closed: payload is not a dict")
+
     tool_input = payload.get("tool_input")
     if not isinstance(tool_input, dict):
         tool_input = {}
@@ -1785,11 +1789,25 @@ def main() -> int:
         if isinstance(value, str) and value:
             path = value
             break
-    content = "".join(
-        value
-        for value in (tool_input.get(key) for key in CONTENT_KEYS)
-        if isinstance(value, str)
-    )
+
+    # Collect content from direct keys and flatten nested edits[].new_string
+    content_parts = []
+    for key in CONTENT_KEYS:
+        value = tool_input.get(key)
+        if isinstance(value, str):
+            content_parts.append(value)
+
+    # Flatten multiedit payloads: extract new_string from edits[]
+    edits = tool_input.get("edits")
+    if isinstance(edits, list):
+        for edit in edits:
+            if isinstance(edit, dict):
+                for key in CONTENT_KEYS:
+                    value = edit.get(key)
+                    if isinstance(value, str):
+                        content_parts.append(value)
+
+    content = "".join(content_parts)
 
     if command:
         tool = "bash"
@@ -1817,13 +1835,18 @@ def main() -> int:
     if isinstance(cwd, str) and cwd:
         args.extend(["--cwd", cwd])
 
-    result = subprocess.run(
-        args,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
-    )
+    try:
+        result = subprocess.run(
+            args,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+    except OSError as exc:
+        # E2BIG, missing python3, etc. → fail closed
+        return deny(f"shared guard failed closed: {exc}")
+
     try:
         verdict = json.loads(result.stdout)
     except ValueError:
