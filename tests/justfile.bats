@@ -276,3 +276,52 @@ EOF
   git -C "$repo" diff --cached --name-only | grep -Fqx unrelated.txt
   [ "$(git -C "$repo" show HEAD:unrelated.txt)" = original ]
 }
+
+@test "root justfile: build and clean wire up the lifecycle recipes" {
+  run just --justfile "$BATS_TEST_DIRNAME/../justfile" --dump --dump-format json
+  [ "$status" -eq 0 ]
+  dump="$output"
+
+  [ "$(jq -r '[.recipes.build.dependencies[].recipe] | join(" ")' <<<"$dump")" = "generate" ]
+  [ "$(jq -r '(.recipes.build.attributes | index({"group":"build"})) != null' <<<"$dump")" = true ]
+  [ "$(jq -r '(.recipes.generate.attributes | index({"group":"build"})) != null' <<<"$dump")" = true ]
+  [ "$(jq -r '(.recipes["harness-generate"].attributes | index({"group":"build"})) != null' <<<"$dump")" = true ]
+  [ "$(jq -r '[.recipes.clean.dependencies[].recipe] | join(" ")' <<<"$dump")" \
+    = "clean-rust clean-caches clean-build clean-deps" ]
+  [ "$(jq -r '[.recipes.deps.dependencies[].recipe] | index("install-bun-deps") != null' <<<"$dump")" = true ]
+}
+
+@test "clean-build removes untracked build output and keeps tracked directories" {
+  local repo="$BATS_TEST_TMPDIR/repo"
+
+  mkdir -p "$repo/scripts/__pycache__" "$repo/docs/dist" \
+    "$repo/.claude/skills/gstack/browse/dist" "$repo/.ruff_cache" \
+    "$repo/.omp/plugins/node_modules/pkg/dist" "$BATS_TEST_TMPDIR/nohooks"
+  touch "$repo/scripts/__pycache__/stale.pyc" "$repo/docs/dist/keep.txt" \
+    "$repo/.claude/skills/gstack/browse/dist/browse" "$repo/.ruff_cache/cache" \
+    "$repo/.omp/plugins/node_modules/pkg/dist/index.js"
+
+  git -C "$repo" init -q
+  git -C "$repo" config user.email test@example.test
+  git -C "$repo" config user.name Test
+  git -C "$repo" config commit.gpgsign false
+  git -C "$repo" config core.hooksPath "$BATS_TEST_TMPDIR/nohooks"
+  git -C "$repo" add docs/dist/keep.txt
+  git -C "$repo" commit -qm seed
+
+  # The recipe cds to justfile_directory(), so the justfile must live in the repo.
+  cp "$BATS_TEST_DIRNAME/../justfile" "$repo/justfile"
+
+  run just --justfile "$repo/justfile" clean-build
+  [ "$status" -eq 0 ]
+
+  # Untracked output under a scanned root, and at the repo root, is gone.
+  [ ! -d "$repo/scripts/__pycache__" ]
+  [ ! -d "$repo/.ruff_cache" ]
+  # A tracked directory survives even though its name is on the artifact list.
+  [ -f "$repo/docs/dist/keep.txt" ]
+  # The vendored gstack tree is not a scanned root.
+  [ -f "$repo/.claude/skills/gstack/browse/dist/browse" ]
+  # node_modules interiors are pruned from the scan.
+  [ -f "$repo/.omp/plugins/node_modules/pkg/dist/index.js" ]
+}

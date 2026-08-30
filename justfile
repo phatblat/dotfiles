@@ -44,6 +44,20 @@ gh_extensions_manifest := '.config/gh/extensions.txt'
 
 mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh http:cursor-cli'
 
+# Repo-owned source roots scanned by clean-build. The vendored
+# .claude/skills/gstack tree is deliberately absent: `just build` does not
+# rebuild its dist/ binaries, so purging them would leave no way back.
+
+build_artifact_roots := '.agents .codex .config .omp docs scripts tests'
+
+# Directory names clean-build treats as regenerable build output
+
+build_artifact_dirs := '.build .pytest_cache .ruff_cache __pycache__ dist target'
+
+# Bun dependency trees installed from tracked package.json manifests
+
+bun_manifest_dirs := '.omp/plugins .claude/skills/gstack'
+
 #
 # aliases
 #
@@ -284,6 +298,18 @@ install-launchdaemons:
 install-launchagents:
     ./scripts/install-launchagents
 
+# Installs bun dependency trees for tracked package.json manifests
+[group('configuration')]
+[script]
+install-bun-deps:
+    set -euo pipefail
+    for dir in {{ bun_manifest_dirs }}; do
+        target="{{ justfile_directory() }}/$dir"
+        if [[ ! -f "$target/package.json" ]]; then continue; fi
+        echo "Installing bun dependencies in $dir..."
+        (cd "$target" && bun install)
+    done
+    if command -v omp >/dev/null 2>&1; then omp plugin doctor --fix; fi
 # Verifies GitHub auth/rate-limit before mise installs, so a silent 403 wall surfaces as a clear error
 [group('configuration')]
 [script]
@@ -336,7 +362,7 @@ _mise-bump-scan-tools:
 
 # Installs tools using mise
 [group('configuration')]
-deps: _check-github-token install-brew install-gh-extensions git-filters
+deps: _check-github-token install-brew install-gh-extensions install-bun-deps git-filters
     mise install
 
 # Update tools within current versions
@@ -498,19 +524,92 @@ clean-rust:
         rustup toolchain uninstall "$toolchain"
     done
 
-# Removes default.store files, *.hprof files, zcompdump clutter, and homebrew cache from home directory
+# Every entry here is re-downloadable. ~/.cache/huggingface is deliberately
+# excluded: model weights are data, not build output, and re-fetching 183 GB
+# costs hours of bandwidth.
+# Removes package manager download, cache, and temp directories
 [group('configuration')]
-clean: clean-rust
-    trash $(mise cache)
-    mise cache clear --yes
-    mise prune --yes
-    brew cleanup
+[script]
+clean-caches:
+    set -euo pipefail
+    if command -v mise >/dev/null 2>&1; then
+        cache_dir="$(mise cache)"
+        if [[ -d "$cache_dir" ]]; then trash "$cache_dir"; fi
+        mise cache clear --yes
+        mise prune --yes
+    fi
+    if command -v brew >/dev/null 2>&1; then
+        brew cleanup
+        rm -rf "$(brew --cache)"
+    fi
+    if command -v uv >/dev/null 2>&1; then uv cache clean; fi
+    if command -v bun >/dev/null 2>&1; then bun pm cache rm; fi
+    if command -v npm >/dev/null 2>&1; then npm cache clean --force; fi
+    if command -v pnpm >/dev/null 2>&1; then pnpm store prune; fi
+    if command -v go >/dev/null 2>&1; then go clean -cache -modcache -testcache -fuzzcache; fi
+    if python3 -m pip --version >/dev/null 2>&1; then python3 -m pip cache purge; fi
+    rm -rf "$HOME/.cargo/registry/cache" "$HOME/.cargo/registry/src" "$HOME/.cargo/git/checkouts"
+    if command -v nix >/dev/null 2>&1; then nix store gc; fi
+
+# Directories containing tracked files are kept, so this can never delete
+# checked-in work. .claude/skills/gstack is out of scope via
+# build_artifact_roots: `just build` does not rebuild its dist/ binaries.
+# Removes build output directories under repo-owned source roots
+[group('configuration')]
+[script]
+clean-build:
+    set -euo pipefail
+    cd {{ justfile_directory() }}
+    removed=0
+    for name in {{ build_artifact_dirs }}; do
+        candidates=()
+        if [[ -d "$name" ]]; then candidates+=("$name"); fi
+        for root in {{ build_artifact_roots }}; do
+            if [[ ! -d "$root" ]]; then continue; fi
+            while IFS= read -r -d '' dir; do
+                candidates+=("$dir")
+            done < <(find "$root" -type d -name "$name" -not -path '*/node_modules/*' -print0)
+        done
+        for dir in "${candidates[@]}"; do
+            if [[ -n "$(git ls-files -- "$dir")" ]]; then
+                echo "keeping tracked: $dir"
+                continue
+            fi
+            echo "removing: $dir"
+            rm -rf "$dir"
+            removed=$((removed + 1))
+        done
+    done
+    echo "clean-build removed $removed directories"
+
+# Removes installed dependency trees and throwaway virtualenvs; `just deps`
+# restores node_modules and `uv run`/`uv sync` recreates .venv.
+# Removes installed dependency trees and temporary virtual environments
+[group('configuration')]
+[script]
+clean-deps:
+    set -euo pipefail
+    cd {{ justfile_directory() }}
+    for dir in {{ bun_manifest_dirs }}; do
+        if [[ -d "$dir/node_modules" ]]; then
+            echo "removing: $dir/node_modules"
+            rm -rf "$dir/node_modules"
+        fi
+    done
+    for root in . {{ build_artifact_roots }}; do
+        if [[ -d "$root/.venv" ]]; then
+            echo "removing: $root/.venv"
+            rm -rf "$root/.venv"
+        fi
+    done
+
+# Purges caches, build output, dependency trees, and home directory clutter
+[group('configuration')]
+clean: clean-rust clean-caches clean-build clean-deps
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f $HOME/*.hprof
     rm -f $HOME/.claude.json.backup.*
     rm -f $HOME/.zcompdump.DTO-*
-    rm -rf "$(brew --cache)"
-    if command -v nix >/dev/null 2>&1; then nix store gc; fi
 
 # Opens the omp plugin manifest in the configured editor
 [group('configuration')]
@@ -535,6 +634,25 @@ omp-plugins-update:
     cd {{ justfile_directory() }}/.omp/plugins
     bun update
     omp plugin doctor --fix
+
+#
+# build group recipes
+#
+
+# Every tool or artifact generated from checked-in source belongs here: add its
+# build step as a dependency so a single `just build` reproduces every output.
+# Rebuilds every output generated from checked-in source
+[group('build')]
+build: generate
+
+# Alias for harness-generate
+[group('build')]
+generate: harness-generate
+
+# Generates shared/native agent harness parity artifacts
+[group('build')]
+harness-generate:
+    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py generate
 
 #
 # checks group recipes
@@ -741,15 +859,6 @@ lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-sh
 # Runs lint, type checks, harness parity checks, and test
 [group('checks')]
 check: lint typecheck-python check-spelling harness-check test
-
-# Alias for harness-generate
-[group('checks')]
-generate: harness-generate
-
-# Generates shared/native agent harness parity artifacts
-[group('checks')]
-harness-generate:
-    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py generate
 
 # Validates shared/native agent harness parity artifacts
 [group('checks')]
