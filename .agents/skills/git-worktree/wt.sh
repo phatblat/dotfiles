@@ -14,7 +14,8 @@
 #   verify <branch>    dotfiles only: just check with HOME remapped
 #
 # stdout carries only machine output. All human/diagnostic text goes to
-# stderr. Exit codes: 0 ok, 2 usage error, 3 not found, 4 refused.
+# stderr. Exit codes: 0 ok, 2 usage error, 3 not found, 4 refused. git
+# failures in switch/create/verify may leak raw exit codes (1, 128).
 set -euo pipefail
 
 usage() {
@@ -109,10 +110,10 @@ derive_wt_path() {
 find_registered() {
     local rr=$1 br=$2 found
     found=$(git -C "$rr" worktree list --porcelain | awk -v b="refs/heads/$br" '
-        /^worktree /{ wt=$2 }
+        /^worktree /{ wt=substr($0, 10) }
         /^branch /{ if ($2 == b) print wt }
     ')
-    if [ -n "$found" ]; then
+    if [ -n "$found" ] && [ "$found" != "$rr" ]; then
         case "$found" in
         */"$br") ;;
         *)
