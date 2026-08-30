@@ -28,12 +28,13 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
    remote=$(git config --get "branch.${subject}.remote" || true)
    [ -n "$remote" ] || { mapfile -t remotes < <(git remote); [ "${#remotes[@]}" -eq 1 ] && remote="${remotes[0]}"; }
    [ -n "$remote" ] || { git remote | grep -qx origin && remote=origin; }
+   [ -n "$remote" ] || { echo "Multiple remotes found, none configured for branch. Candidates: $(git remote | tr '\n' ' ')"; exit 1; }
    trunk=$(git symbolic-ref "refs/remotes/${remote}/HEAD" 2>/dev/null | sed "s|refs/remotes/${remote}/||")
    [ -n "$trunk" ] || trunk=$(git config init.defaultBranch || echo main)
    git fetch --prune "$remote"
    ```
 
-   Stop if `remote` is still empty and report the candidate remotes. Never hard-code `origin` — the repo's remote may be named anything.
+   Never hard-code `origin` — the repo's remote may be named anything.
 
    Restack mode (0 tokens) resolves `base` as the first hit of:
 
