@@ -181,5 +181,3 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
 - Never run `unstack [<stack-number>] [--local]` unless the user explicitly asks — it deletes the GitHub stack.
 - Never rewrite a branch from a worktree that does not have it checked out.
 - Never create a dotfiles worktree implicitly.
-</content>
-<parameter name="i">Write shared git-stack skill

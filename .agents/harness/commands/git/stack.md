@@ -3,7 +3,7 @@
 ---
 description: Stack an existing or new branch onto another branch in a worktree, then align GitHub PR bases and stack metadata with gh stack
 model: sonnet
-allowed-tools: Bash(git:*), Bash(gh:*), Bash(jq:*), Bash(awk:*), Read, Edit, Skill, AskUserQuestion
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(jq:*), Bash(awk:*), Bash(sed:*), Bash(grep:*), Read, Edit, Skill, AskUserQuestion
 category: workflow
 argument-hint: "[branch] [base-branch]"
 ---
@@ -50,14 +50,20 @@ Stop if `subject` equals `base` and tell the user.
 repo_root=$(git rev-parse --path-format=absolute --git-common-dir); repo_root=${repo_root%/.git}
 current=$(git branch --show-current)
 remote=$(git config --get "branch.${subject}.remote" || true)
-[ -n "$remote" ] || { mapfile -t remotes < <(git remote); [ "${#remotes[@]}" -eq 1 ] && remote="${remotes[0]}"; }
-[ -n "$remote" ] || { git remote | grep -qx origin && remote=origin; }
+if [ -z "$remote" ]; then
+  remotes=$(git remote)
+  remote_count=$(echo "$remotes" | wc -l)
+  if [ "$remote_count" -eq 1 ]; then
+    remote=$(echo "$remotes" | head -1)
+  elif echo "$remotes" | grep -qx origin; then
+    remote=origin
+  fi
+fi
+[ -n "$remote" ] || { echo "Multiple remotes found, none configured for branch. Candidates: $(git remote | tr '\n' ' ')"; exit 1; }
 trunk=$(git symbolic-ref "refs/remotes/${remote}/HEAD" 2>/dev/null | sed "s|refs/remotes/${remote}/||")
 [ -n "$trunk" ] || trunk=$(git config init.defaultBranch || echo main)
 git fetch --prune "$remote"
 ```
-
-Stop if `remote` is still empty (multiple remotes, none configured for the branch) and report the candidates. Never hard-code `origin`.
 
 Restack mode (0 tokens) resolves `base` as the first hit of:
 
@@ -91,7 +97,9 @@ if git show-ref --quiet "refs/heads/${subject}"; then
 elif git show-ref --quiet "refs/remotes/${remote}/${subject}"; then
   git worktree add --track -b "$subject" "$work_dir" "${remote}/${subject}"
 else                                                        # new-branch mode
-  git worktree add "$work_dir" -b "$subject" --no-track "${remote}/${base}"
+  base_ref="${remote}/${base}"
+  git show-ref --quiet "refs/remotes/${base_ref}" || base_ref="$base"
+  git worktree add "$work_dir" -b "$subject" --no-track "$base_ref"
   git -C "$work_dir" push -u "$remote" "${subject}:${subject}"
   git -C "$work_dir" branch -vv
 fi
@@ -154,12 +162,14 @@ done
 Iterate bottom→top with `parent` = the previous chain entry, or `$trunk` for the first:
 
 ```bash
-gh pr view "$member" --json number,state,baseRefName
+pr_json=$(gh pr view "$member" --json number,state,baseRefName 2>/dev/null || echo '{}')
+state=$(echo "$pr_json" | jq -r '.state // empty')
 ```
 
-- No PR, or no open PR → invoke the `pr-create` skill for that branch so the repo's title, body, label, draft, and `@me` assignment conventions in `pr-style` apply, then retarget it: `gh pr edit "$number" --base "$parent"`. Do not hand-roll `gh pr create` here and do not let `gh stack link` auto-create the PR — both bypass `pr-style`.
-- Open PR whose `baseRefName` != `parent` → `gh pr edit "$number" --base "$parent"`.
-- Open PR already based on `parent` → leave it.
+- `state` is `MERGED` or `CLOSED` → stop here; a merged or closed PR in the chain should collapse to trunk (or user decides next step), not open a new PR. Report: "PR for `$member` is $state; cannot continue stacking. Consider rebasing remaining chain onto `$trunk`."
+- No PR, or `state` is empty → invoke the `pr-create` skill for that branch so the repo's title, body, label, draft, and `@me` assignment conventions in `pr-style` apply, then retarget it: `gh pr edit "$number" --base "$parent"`. Do not hand-roll `gh pr create` here and do not let `gh stack link` auto-create the PR — both bypass `pr-style`.
+- `state` is `OPEN` and `baseRefName` != `parent` → `gh pr edit "$number" --base "$parent"`.
+- `state` is `OPEN` and `baseRefName` == `parent` → leave it.
 
 ### 9. Align The GitHub Stack
 
@@ -175,7 +185,11 @@ A single-member chain (`base` == `trunk`) has no GitHub stack to create — GitH
 
 ```bash
 if ! (cd "$work_dir" && gh stack view --json >/dev/null 2>&1) && [ "${#chain[@]}" -ge 2 ]; then
-  (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable"
+  # Enable rerere to avoid interactive prompts on conflict resolution
+  git -C "$work_dir" config --local rerere.enabled true
+  # gh stack init can fail with --adopt caveats (branch already stacked, PR base mismatch, etc.)
+  # Treat this as non-blocking: GitHub stack metadata from step 9 is what matters
+  (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable (may need manual gh stack --adopt)"
 fi
 ```
 
@@ -211,5 +225,3 @@ Stacked <subject> onto <base>.
 - Never run `unstack [<stack-number>] [--local]` unless the user explicitly asks — it deletes the GitHub stack.
 - Never rewrite a branch from a worktree that does not have it checked out.
 - Never create a dotfiles worktree implicitly.
-</content>
-<parameter name="i">Write git:stack Claude command
