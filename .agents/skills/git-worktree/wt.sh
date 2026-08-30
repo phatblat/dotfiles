@@ -298,7 +298,7 @@ cmd_verify() {
 cmd_list() {
     derive_repo_root
     git -C "$repo_root" worktree list --porcelain | awk '
-        /^worktree /{ wt=$2 }
+        /^worktree /{ wt=substr($0, 10) }
         /^branch /{ b=$2; sub("^refs/heads/", "", b); print wt"\t"b; next }
         /^detached$/{ print wt"\t(detached)" }
     '
