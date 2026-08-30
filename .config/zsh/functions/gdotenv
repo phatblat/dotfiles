@@ -6,7 +6,7 @@ local file key filtered
 local -a results=()
 
 # shellcheck disable=SC2154
-if ((!$+commands[fd])); then
+if ((! $+commands[fd])); then
     print -u2 -- "gdotenv: fd not found on PATH (install via 'mise use -g fd')"
     return 1
 fi

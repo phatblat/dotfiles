@@ -6,7 +6,7 @@
 
 ### commands.active · p0
 
-The 26 active commands are available through generated native prompts.
+The 27 active commands are available through generated native prompts.
 
 Canonical: `~/.agents/harness/commands`
 Verify: `python3 scripts/agent-harnesses.py inventory --json`

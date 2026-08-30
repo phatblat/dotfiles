@@ -81,7 +81,7 @@ fi
 # Remove administrative entries for worktrees whose directories were deleted.
 git -C "$repo_root" worktree prune
 
-if ((!had_args)); then
+if ((! had_args)); then
     local dir
     dir=$(git -C "$repo_root" worktree list | fzf | awk '{print $1}')
     [[ -n "$dir" ]] && z "$dir"
@@ -127,7 +127,7 @@ if [[ -z "$wt_path" ]]; then
     local is_registered=0
     git -C "$repo_root" worktree list --porcelain | grep -qxF "worktree $wt_path" && is_registered=1
 
-    if ((!is_registered)); then
+    if ((! is_registered)); then
         if [[ -e "$wt_path" ]]; then
             if [[ -d "$wt_path" ]] && [[ -z "$(ls -A "$wt_path" 2> /dev/null)" ]]; then
                 rmdir "$wt_path"

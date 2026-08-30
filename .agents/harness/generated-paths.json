@@ -44,6 +44,9 @@
   "~/.agents/harness/adapters/antigravity/commands/git/split.md": {
     "source": "~/.claude/commands/git/split.md"
   },
+  "~/.agents/harness/adapters/antigravity/commands/git/stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
+  },
   "~/.agents/harness/adapters/antigravity/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
@@ -110,6 +113,9 @@
   "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py": {
     "source": ""
   },
+  "~/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md": {
+    "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
@@ -172,6 +178,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/git-split/SKILL.md": {
     "source": "~/.agents/skills/git-split/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-stack/SKILL.md": {
+    "source": "~/.agents/skills/git-stack/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
@@ -350,6 +359,9 @@
   "~/.agents/harness/adapters/cursor/commands/git/split.md": {
     "source": "~/.claude/commands/git/split.md"
   },
+  "~/.agents/harness/adapters/cursor/commands/git/stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
+  },
   "~/.agents/harness/adapters/cursor/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
@@ -416,6 +428,9 @@
   "~/.agents/harness/adapters/cursor/scripts/harness-guard.py": {
     "source": ""
   },
+  "~/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md": {
+    "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
@@ -478,6 +493,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/git-split/SKILL.md": {
     "source": "~/.agents/skills/git-split/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/git-stack/SKILL.md": {
+    "source": "~/.agents/skills/git-stack/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
@@ -653,6 +671,9 @@
   "~/.agents/harness/commands/git/split.md": {
     "source": "~/.claude/commands/git/split.md"
   },
+  "~/.agents/harness/commands/git/stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
+  },
   "~/.agents/harness/commands/git/status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
@@ -718,6 +739,9 @@
   },
   "~/.agents/harness/instructions.md": {
     "source": ""
+  },
+  "~/.claude/skills/artifact-message-bus/SKILL.md": {
+    "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
   },
   "~/.claude/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
@@ -805,6 +829,9 @@
   },
   "~/.claude/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
+  },
+  "~/.codex/skills/artifact-message-bus/SKILL.md": {
+    "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
   },
   "~/.codex/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
@@ -971,6 +998,9 @@
   "~/.config/opencode/commands/git:split.md": {
     "source": "~/.claude/commands/git/split.md"
   },
+  "~/.config/opencode/commands/git:stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
+  },
   "~/.config/opencode/commands/git:status.md": {
     "source": "~/.claude/commands/git/status.md"
   },
@@ -1030,6 +1060,9 @@
   },
   "~/.config/opencode/plugins/harness.ts": {
     "source": ""
+  },
+  "~/.config/opencode/skills/artifact-message-bus/SKILL.md": {
+    "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
   },
   "~/.config/opencode/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
@@ -1216,6 +1249,9 @@
   },
   "~/.pi/agent/prompts/git:split.md": {
     "source": "~/.claude/commands/git/split.md"
+  },
+  "~/.pi/agent/prompts/git:stack.md": {
+    "source": "~/.claude/commands/git/stack.md"
   },
   "~/.pi/agent/prompts/git:status.md": {
     "source": "~/.claude/commands/git/status.md"

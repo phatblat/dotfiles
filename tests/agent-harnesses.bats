@@ -40,7 +40,7 @@ skip_unless_home_is_this_checkout() {
   claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
-  [ "$command_count" -eq 26 ]
+  [ "$command_count" -eq 27 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
@@ -271,6 +271,7 @@ skip_unless_home_is_this_checkout() {
     git-push
     git-rebase
     git-split
+    git-stack
     git-status
     git-worktrees
     gh-stack
@@ -302,6 +303,36 @@ skip_unless_home_is_this_checkout() {
     [ -f "$sidecar" ]
     grep -Fx "policy:" "$sidecar"
     grep -Fx "  allow_implicit_invocation: false" "$sidecar"
+  done
+}
+
+@test "git-stack drives gh stack non-interactively and restacks in a worktree" {
+  workflows=(
+    "$HOME/.agents/skills/git-stack/SKILL.md"
+    "$HOME/.claude/commands/git/stack.md"
+    "$HOME/.agents/harness/commands/git/stack.md"
+  )
+
+  for workflow in "${workflows[@]}"; do
+    grep -Fq 'gh stack link --remote' "$workflow"
+    grep -Fq -- '--base "$trunk"' "$workflow"
+    grep -Fq 'git rebase --onto' "$workflow"
+    grep -Fq 'push --force-with-lease -u' "$workflow"
+    grep -Fq -- '--no-track' "$workflow"
+    grep -Fq 'gh pr edit' "$workflow"
+    run grep -Fq 'gh stack submit' "$workflow"
+    [ "$status" -ne 0 ]
+    run grep -Fq 'gh stack modify' "$workflow"
+    [ "$status" -ne 0 ]
+    run grep -Eq '\bgh stack (unstack|checkout)\b[^-]*$' "$workflow"
+    [ "$status" -ne 0 ]
+    view_total=$(grep -Fc 'gh stack view' "$workflow")
+    view_json=$(grep -Fc 'gh stack view --json' "$workflow")
+    [ "$view_total" -eq "$view_json" ]
+    run grep -Fq -- '--prefix' "$workflow"
+    [ "$status" -ne 0 ]
+    run grep -Fq -- '--adopt' "$workflow"
+    [ "$status" -ne 0 ]
   done
 }
 
@@ -371,6 +402,32 @@ skip_unless_home_is_this_checkout() {
 
   run git -C "$HOME" ls-files --error-unmatch .config/opencode/skills/aven/SKILL.md
   [ "$status" -eq 0 ]
+}
+
+@test "artifact-message-bus ships bundled resources and tracked adapters" {
+  run python3 "$SCRIPT" generate --check
+  [ "$status" -eq 0 ]
+
+  skill_dir="$HOME/.agents/skills/artifact-message-bus"
+  [ -f "$skill_dir/SKILL.md" ]
+  [ -f "$skill_dir/references/protocol.md" ]
+  [ -x "$skill_dir/scripts/bus.sh" ]
+
+  for pointer in \
+    "$HOME/.claude/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.codex/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.config/opencode/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md" \
+    "$HOME/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md"; do
+    [ -f "$pointer" ]
+    grep -Fq 'Load and follow the shared skill at `~/.agents/skills/artifact-message-bus/SKILL.md`.' "$pointer"
+    run git -C "$HOME" ls-files --error-unmatch "$pointer"
+    [ "$status" -eq 0 ]
+  done
+
+  ! grep -Fq 'disable-model-invocation: true' \
+    "$HOME/.claude/skills/artifact-message-bus/SKILL.md"
+  [ ! -e "$HOME/.codex/skills/artifact-message-bus/agents/openai.yaml" ]
 }
 
 @test "grill-me front door and grilling primitive are wired across harnesses" {
@@ -545,7 +602,7 @@ skip_unless_home_is_this_checkout() {
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
 
-  [ "$command_count" -eq 26 ]
+  [ "$command_count" -eq 27 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$inventory_skill_count" ]
 

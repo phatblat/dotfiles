@@ -127,17 +127,9 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend [
 
 # Machine-local settings from untracked ~/.env via direnv's dotenv parser
 if ((which direnv | is-not-empty) and (($nu.home-dir | path join '.env') | path exists)) {
-    let dotenv_vars = (
-        direnv dotenv json ($nu.home-dir | path join '.env')
-            | from json
-            | default {}
-            | transpose key value
-            | where key != "PATH"  # PATH is list-typed in nu; a string value would corrupt it
-    )
-    # `transpose --as-record` only collapses a single-row table; an empty
-    # ~/.env (or one containing only PATH) leaves zero rows, which would
-    # stay a table and make load-env reject it.
-    if ($dotenv_vars | is-not-empty) {
-        $dotenv_vars | transpose --header-row --as-record --ignore-titles | load-env
-    }
+    direnv dotenv json ($nu.home-dir | path join '.env')
+        | from json
+        | default {}
+        | reject --optional PATH  # PATH is list-typed in nu; a string value would corrupt it
+        | load-env
 }

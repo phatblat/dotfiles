@@ -1810,7 +1810,7 @@
           "surface": ""
         }
       },
-      "contract": "The 26 active commands are available through generated native prompts.",
+      "contract": "The 27 active commands are available through generated native prompts.",
       "domain": "commands",
       "id": "commands.active",
       "note": "",

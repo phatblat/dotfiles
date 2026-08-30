@@ -589,7 +589,7 @@ CAPABILITIES: list[Capability] = [
         title="Active shared commands",
         priority="p0",
         contract=(
-            "The 26 active commands are available through generated native prompts."
+            "The 27 active commands are available through generated native prompts."
         ),
         canonical=("~/.agents/harness/commands",),
         verify="python3 scripts/agent-harnesses.py inventory --json",

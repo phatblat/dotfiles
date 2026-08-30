@@ -116,6 +116,7 @@
 !.codex/keybindings.json
 !.codex/rules/
 .codex/skills/*
+!.codex/skills/artifact-message-bus/
 !.codex/skills/aven/SKILL.md
 !.codex/skills/aven/
 !.codex/skills/brainstorm/
@@ -248,6 +249,7 @@
 !.config/opencode/plugins/**
 !.config/opencode/plugins/
 .config/opencode/skills/*
+!.config/opencode/skills/artifact-message-bus/
 !.config/opencode/skills/aven/SKILL.md
 !.config/opencode/skills/aven/
 !.config/opencode/skills/brainstorm/
@@ -458,6 +460,7 @@
 !.oh-my-zsh/themes/*
 .ollama/
 .omc/
+.omlx/
 .omnigent/
 .omo/*
 !.omo/omo.jsonc
