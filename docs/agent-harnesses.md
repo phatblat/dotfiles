@@ -65,16 +65,16 @@ Coverage: 65/405 cells verified (16%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
-| 2026-08-30 | omp | - | version | omp/18.0.7 | omp/18.0.10 |
-| 2026-08-30 | grok | - | version | grok 1.0.5 (5115b46bc909) | grok 1.0.5 (5115b46bc909) [alpha] |
-| 2026-08-30 | codex | - | version | codex-cli 0.149.1 | codex-cli 0.150.1 |
 | 2026-08-30 | pi | skills.shared | probe | - | pass |
-| 2026-08-30 | pi | sessions.compaction | probe | - | pass |
-| 2026-08-30 | pi | maintenance.audit | probe | - | pass |
-| 2026-08-30 | pi | commands.active | probe | - | pass |
-| 2026-08-30 | pi | agents.specialists | probe | - | pass |
 | 2026-08-30 | opencode | skills.shared | probe | - | pass |
-| 2026-08-30 | opencode | sessions.compaction | probe | - | pass |
+| 2026-08-30 | omp | skills.shared | probe | - | pass |
+| 2026-08-30 | grok | skills.shared | probe | - | pass |
+| 2026-08-30 | crush | skills.shared | probe | - | pass |
+| 2026-08-30 | codex | skills.shared | probe | - | pass |
+| 2026-08-30 | claude | skills.shared | probe | - | pass |
+| 2026-08-30 | cursor | skills.shared | probe | - | pass |
+| 2026-08-30 | antigravity | skills.shared | probe | - | pass |
+| 2026-08-30 | pi | sessions.compaction | probe | - | pass |
 
 ## Permanent divergences
 
