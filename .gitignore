@@ -1051,7 +1051,8 @@ Library/Keyboard/
 Library/KeyboardServices/
 Library/Keychains/
 Library/LanguageModeling/
-Library/LaunchAgents/
+Library/LaunchAgents/*
+!Library/LaunchAgents/at.phatbl.harness-probe.plist
 Library/Library/
 Library/LockdownMode/
 Library/Mail/

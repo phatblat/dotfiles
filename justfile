@@ -279,6 +279,11 @@ install-gh-extensions:
 install-launchdaemons:
     ./scripts/install-launchdaemons
 
+# Installs LaunchAgents into ~/Library/LaunchAgents (user-scoped, no sudo)
+[group('configuration')]
+install-launchagents:
+    ./scripts/install-launchagents
+
 # Verifies GitHub auth/rate-limit before mise installs, so a silent 403 wall surfaces as a clear error
 [group('configuration')]
 [script]
