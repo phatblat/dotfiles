@@ -187,6 +187,13 @@ pub fn evaluate_command(command: &str, cwd: &str) -> GuardDecision {
         ));
     }
 
+    // Same rationale as the path rules above: a heredoc or echo through bash
+    // writes the same content a write tool would, so a secret embedded in the
+    // command text must not slip past just because it arrived via a shell.
+    if matches(&SECRET_CONTENT, command) {
+        return GuardDecision::deny("secret-like content detected");
+    }
+
     let warning = main_branch_commit_warning(command, cwd);
     if !warning.is_empty() {
         return GuardDecision::warn(warning);
