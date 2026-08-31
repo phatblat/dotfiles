@@ -65,7 +65,7 @@
 act = "0.2.89"
 actionlint = "1.7.12"
 ast-grep = "0.45.2"
-awscli = { version = "2.36.34", symlink_bins = "true" }
+awscli = { version = "2.36.36", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.14.0"
 bazelisk = "1.29.0"
@@ -124,7 +124,7 @@ oh-my-pi = { version = "18.0.11", rename_exe = "omp" }
 opencode = "1.18.25"
 packer = "1.16.0"
 pi = "0.84.4"
-pipx = "1.16.7"
+pipx = "1.17.1"
 powershell = "7.6.5"
 protobuf = "36.0"
 python = "3.14.7"
@@ -233,6 +233,7 @@ _.path = [
 experimental = true
 pin = true
 idiomatic_version_file_enable_tools = ["node"]
+minimum_release_age = "24h"
 # oh-my-pi, claude-code, and codex ship fixes frequently; skip the 24h
 # minimum_release_age default for them.
 minimum_release_age_excludes = [
