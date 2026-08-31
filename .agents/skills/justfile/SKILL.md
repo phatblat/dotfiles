@@ -112,6 +112,7 @@ library, don't add `build` to a pure script project.
 | Recipe    | Group           | Rust            | Node.js                        | Python                     | Go                   | Swift/Apple             | JVM                       |
 |-----------|-----------------|-----------------|---------------------------------|------------------------------|-----------------------|---------------------------|-----------------------------|
 | `deps`    | `configuration` | —               | `pnpm install` / `npm install` | `uv sync`                   | `go mod download`    | —                        | —                          |
+| `generate` | `build`         | per-project     | per-project                     | per-project                   | `go generate ./...`  | per-project              | per-project                |
 | `build`   | `build`         | `cargo build`   | per-project                     | —                             | `go build ./...`     | `swift build`            | `./gradlew build`          |
 | `test`    | `tests`         | `cargo test`    | `pnpm test` / `npm test`       | `uv run pytest`             | `go test ./...`      | `swift test`             | `./gradlew test`           |
 | `lint`    | `checks`        | `cargo clippy`  | `pnpm lint` / `eslint .`       | `uv run ruff check .`       | `golangci-lint run`  | `swiftlint`              | `./gradlew lint`           |
@@ -331,6 +332,51 @@ file's informational group if one exists (`info`, `query`) and in
 `configuration` otherwise. Neither belongs in `checks`: that group is for gates
 that *should* fail CI, and an available dependency update is not a failure.
 
+#### 3g. Build, Generate, and Clean
+
+- Lifecycle recipes are the discovery surface: an agent or new contributor
+  runs `just --list` and expects `deps`, `build`, `test`, `lint`, `format`,
+  `clean`, `outdated`, `upgrade` to mean the same thing in every repo. Prefer
+  wiring a new step into one of those names over inventing a project-specific
+  verb.
+- When a repo checks in generated artifacts, give the generator a `generate`
+  recipe and make `build` depend on it, so one `just build` reproduces every
+  derived output. Any tool built from checked-in source gets its build step
+  added as a `build` dependency rather than a standalone name nobody
+  discovers.
+- Put `generate` in the `build` group, not `checks`. Generation writes files;
+  `checks` is for gates that fail CI. The paired validator (`--check`/
+  `--dry-run` form) does belong in `checks`.
+- Intermediary build artifacts must be gitignored **and** purgeable by
+  `clean`. Ignoring without purging leaves dead bytes; purging without
+  ignoring leaves status noise. The repo's own `.gitignore` owns the entry —
+  do not rely on a tool writing a self-ignoring `.gitignore` inside its own
+  output directory.
+- `clean` covers three categories, and decomposing it into one recipe per
+  category is worth it as soon as their costs differ: package-manager
+  download/cache/temp directories (`clean-caches`), source build output
+  (`clean-build`), and installed dependency trees plus throwaway virtualenvs
+  (`clean-deps`). Cache purges cost network re-download; build-output purges
+  cost seconds. A developer who wants the cheap one should not have to pay for
+  the expensive one.
+- Scope `clean` to the repo. Enumerate the source roots to scan explicitly;
+  never `find` from `$HOME` and never `git clean -X`, which deletes every
+  gitignored file in the tree.
+- `clean` must not delete tracked files. Gate each removal on the directory
+  containing no tracked files (`git ls-files -- "$dir"` empty), so an
+  artifact-shaped name that is deliberately checked in survives.
+- Keep expensive-to-restore data out of `clean`. Downloaded model weights,
+  datasets, and container images are data, not build output; excluding them
+  needs a comment saying why, or the next reader adds them back.
+- If `clean` removes an installed dependency tree, `deps` must restore it. A
+  `clean`/`deps` pair that does not round-trip is a trap: the machine ends up
+  in a state no recipe repairs.
+- Vendored third-party trees with their own build/upgrade flow stay out of
+  both `build` and `clean`. Purging output that `just build` cannot
+  regenerate is a one-way door.
+- Guard every tool invocation in a `clean` script with `command -v`: `[script]`
+  recipes run under `-e`, so one missing binary aborts the rest of the purge.
+
 ### Step 4: Rename Suggestions
 
 When actively editing an existing justfile for another reason, check for these
@@ -372,6 +418,12 @@ a change, PR, or commit solely to perform a rename.
   in the file's informational group when it has one. Neither goes in `checks`.
 - Tolerate the "updates found" non-zero exit in `outdated` (`-` line prefix, or
   `|| true` inside a `[script]` recipe); never mask failures in `upgrade`.
+- `generate` writes derived artifacts and lives in the `build` group; `build`
+  depends on it so one command reproduces every checked-in-source output.
+- Build artifacts are both gitignored by the repo's own `.gitignore` and
+  purged by `clean`; `clean` never deletes tracked files, is scoped to
+  enumerated repo roots, excludes expensive-to-restore data, and round-trips
+  with `deps`.
 
 ## Do NOT
 
@@ -386,3 +438,9 @@ a change, PR, or commit solely to perform a rename.
   Homebrew (`brew bundle install --file=Brewfile --no-upgrade`) is fine.
 - Rely on an implicit `mise` scope, or abbreviate `--local`/`--bump` to `-l`.
 - Let `outdated` mutate a lockfile, manifest, or installed dependency tree.
+- Add a `clean` recipe that runs `git clean -X`, or one that `find`s from
+  `$HOME`.
+- Purge a build output that no recipe can regenerate, or a dependency tree
+  that `deps` does not restore.
+- Ignore a build artifact without also purging it in `clean`, or rely on a
+  tool's self-written `.gitignore` instead of the repo's.

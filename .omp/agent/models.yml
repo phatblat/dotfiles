@@ -91,3 +91,51 @@ providers:
           output: 0
           cacheRead: 0
           cacheWrite: 0
+      - id: Firworks/GLM-4.5-Air-nvfp4
+        name: GLM-4.5-Air (spark1, NVFP4)
+        reasoning: true
+        input:
+          - text
+        contextWindow: 131072
+        maxTokens: 8192
+        cost:
+          input: 0
+          output: 0
+          cacheRead: 0
+          cacheWrite: 0
+      - id: RedHatAI/Qwen2.5-72B-Instruct-FP8-dynamic
+        name: Qwen2.5-72B-Instruct (spark1, FP8)
+        reasoning: false
+        input:
+          - text
+        contextWindow: 32768
+        maxTokens: 8192
+        cost:
+          input: 0
+          output: 0
+          cacheRead: 0
+          cacheWrite: 0
+      - id: RedHatAI/Qwen2.5-72B-Instruct-quantized.w4a16
+        name: Qwen2.5-72B-Instruct (spark1, INT4 W4A16)
+        reasoning: false
+        input:
+          - text
+        contextWindow: 32768
+        maxTokens: 8192
+        cost:
+          input: 0
+          output: 0
+          cacheRead: 0
+          cacheWrite: 0
+      - id: RedHatAI/Qwen3.5-122B-A10B-NVFP4
+        name: Qwen3.5-122B-A10B (spark1, NVFP4)
+        reasoning: true
+        input:
+          - text
+        contextWindow: 262144
+        maxTokens: 8192
+        cost:
+          input: 0
+          output: 0
+          cacheRead: 0
+          cacheWrite: 0

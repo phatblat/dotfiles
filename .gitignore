@@ -133,7 +133,6 @@
 !.codex/skills/find-docs/
 !.codex/skills/gha-checks/
 !.codex/skills/gha-log-reader/
-!.codex/skills/git-worktrees/
 !.codex/skills/graphify/
 !.codex/skills/handoff/
 !.codex/skills/harness-research/
@@ -143,10 +142,11 @@
 !.codex/skills/receiving-code-review/
 !.codex/skills/refactor-safely/
 !.codex/skills/requesting-code-review/
-!.codex/skills/resolve-feedback/
+!.codex/skills/resolve-review-feedback/
 !.codex/skills/review-changes/
 !.codex/skills/subagent-driven-development/
 !.codex/skills/test-driven-development/
+!.codex/skills/using-git-worktrees/
 !.codex/skills/writing-plans/
 !.codex/skills/
 .codexbar/antigravity/
@@ -266,7 +266,6 @@
 !.config/opencode/skills/find-docs/
 !.config/opencode/skills/gha-checks/
 !.config/opencode/skills/gha-log-reader/
-!.config/opencode/skills/git-worktrees/
 !.config/opencode/skills/graphify/
 !.config/opencode/skills/handoff/
 !.config/opencode/skills/harness-research/
@@ -276,10 +275,11 @@
 !.config/opencode/skills/receiving-code-review/
 !.config/opencode/skills/refactor-safely/
 !.config/opencode/skills/requesting-code-review/
-!.config/opencode/skills/resolve-feedback/
+!.config/opencode/skills/resolve-review-feedback/
 !.config/opencode/skills/review-changes/
 !.config/opencode/skills/subagent-driven-development/
 !.config/opencode/skills/test-driven-development/
+!.config/opencode/skills/using-git-worktrees/
 !.config/opencode/skills/writing-plans/
 !.config/opencode/skills/
 .config/orka-desktop/
@@ -625,6 +625,7 @@
 .rest-client/
 .rnd
 .rubygems/
+.ruff_cache/
 .runtime/
 .rustup/
 .rvm/
@@ -668,6 +669,7 @@
 .vagrant.d/
 .vault-token
 .vault_pass.txt
+.venv/
 .vim/
 .viminfo
 .void-editor/
@@ -1177,7 +1179,6 @@ omp.cache
 packages/
 private/
 realm-object-server/
-scripts/.ruff_cache/
 snap/
 src/swift/swift-*
 system_logs.logarchive/

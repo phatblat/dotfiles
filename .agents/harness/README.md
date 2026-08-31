@@ -10,7 +10,7 @@ thin generated adapters or tool-specific configuration only.
 
 ## Inventory
 
-- Commands: 27
+- Commands: 28
 - Specialist agents: 6
 - Shared skills source: `~/.agents/skills`
 - Safety policy: `~/.agents/harness/hooks/safety.py`

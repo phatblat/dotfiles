@@ -110,6 +110,10 @@
       "description": "Intelligently analyze git status and provide insights about current project state",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/git/status.md with arguments: $ARGUMENTS"
     },
+    "git:worktree": {
+      "description": "Create, switch to, or delete a git worktree under ~/.worktrees/, then move the agent session into it",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/git/worktree.md with arguments: $ARGUMENTS"
+    },
     "linear:plan": {
       "description": "Start work on a Linear ticket \u2014 plan, branch, implement, test, PR",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/linear/plan.md with arguments: $ARGUMENTS"
@@ -146,9 +150,9 @@
       "description": "Post code review findings from /review as inline PR comments",
       "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/post-review-findings.md with arguments: $ARGUMENTS"
     },
-    "pr:resolve-feedback": {
-      "description": "Address GitHub PR review comments \u2014 fetch, evaluate, fix, commit, and resolve",
-      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/resolve-feedback.md with arguments: $ARGUMENTS"
+    "pr:resolve-review-feedback": {
+      "description": "Address GitHub PR review feedback at line, file, and PR level \u2014 fetch, evaluate, fix, commit, and resolve",
+      "template": "Execute the shared harness command at ~/.agents/harness/commands/pr/resolve-review-feedback.md with arguments: $ARGUMENTS"
     },
     "pr:update-desc": {
       "description": "Update the PR description for the current branch",

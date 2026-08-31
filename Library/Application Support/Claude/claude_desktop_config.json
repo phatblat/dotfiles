@@ -11,6 +11,7 @@
     "launchPreviewSessionScopedSessions": [],
     "coworkScheduledTasksEnabled": true,
     "coworkHipaaRestricted": false,
+    "orgWorkAcrossAppsDisabled": false,
     "ccdScheduledTasksEnabled": true,
     "sidebarMode": "chat",
     "bypassPermissionsGateByAccount": {
@@ -71,7 +72,6 @@
         },
         "version": 0
       }
-    },
-    "orgWorkAcrossAppsDisabled": false
+    }
   }
 }
