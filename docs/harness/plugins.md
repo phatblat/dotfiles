@@ -17,7 +17,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | code-simplifier@claude-plugins-official | disabled | missing |
 | codex-app-tools@openai-bundled | missing | enabled |
 | computer-use@openai-bundled | missing | enabled |
-| context-mode@context-mode | enabled | missing |
+| context-mode@context-mode | enabled | disabled |
 | csharp-lsp@claude-plugins-official | missing | enabled |
 | documents@openai-primary-runtime | missing | enabled |
 | gopls-lsp@claude-plugins-official | enabled | enabled |
