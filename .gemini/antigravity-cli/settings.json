@@ -13,8 +13,7 @@
       "unsandboxed(git commit)",
       "unsandboxed(git check-ignore)",
       "unsandboxed(git show)",
-      "unsandboxed(~/scripts/sort-gitignore)",
-      "unsandboxed(mv)"
+      "unsandboxed(~/scripts/sort-gitignore)"
     ]
   },
   "showFeedbackSurvey": false,
