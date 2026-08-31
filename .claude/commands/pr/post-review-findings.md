@@ -150,25 +150,31 @@ If the note exists but has no `# Reviews` section (created from an older templat
 ***
 ```
 
-Fetch the PR title and author:
+Fetch the PR summary fields (title, author, diff size, opened-at):
 
 ```bash
-gh pr view <pr_number> --json title,author --jq '"\(.title)|@\(.author.login)"'
+gh pr view <pr_number> --json title,author,additions,deletions,changedFiles,createdAt \
+  --jq '"\(.title)|@\(.author.login)|\(.additions)|\(.deletions)|\(.changedFiles)|\(.createdAt)"'
 ```
+
+Compute `<age>` from `createdAt` relative to now: whole days when the PR is a day old or more (`3d`), otherwise hours (`5h`, minimum `1h`).
 
 **Entry format** — each reviewed PR is one top-level list item under `# Reviews`; the comments posted in this run are an indented sub-list beneath it:
 
 ```markdown
-- [<owner>/<repo>#<pr_number>](<pr_url>) — <PR title> — @<author>
+- [<owner>/<repo>#<pr_number>](<pr_url>) — <PR title> — @<author> — +<additions>/-<deletions> across <changedFiles> file(s), opened <age> ago
   - [<file>:<line>](<comment_url>) — <brief finding description>
   - [<file>:<line>](<comment_url>) — <brief finding description>
 ```
 
+Example PR line: `- [getditto/ditto#25921](https://github.com/getditto/ditto/pull/25921) — ci: migrate CI runners to EKS (-eks) — @humzam-ditto — +412/-389 across 18 files, opened 4d ago`
+
 - The PR line's link text is `<owner>/<repo>#<pr_number>` (e.g. `getditto/forge#887`), linked to `<pr_url>`.
+- The PR line ends with the short summary: diff size (`+<additions>/-<deletions> across <n> file(s)`) and age (`opened <age> ago`).
 - One sub-bullet per finding posted in Step 4. Its link text is `<file>:<line>` — the **basename** of the finding's `path` (filename only, not the full path) and its anchor `line`, e.g. `CalendarComponent.swift:209` — linked to that finding's captured `comment_url`. For a finding that fell back to a general comment, append ` (general)` to its sub-bullet.
 
 **Append rules:**
-- **PR already listed** (a `- [<owner>/<repo>#<pr_number>](` line exists under `# Reviews`): append the new comment sub-bullets under that existing item — do not repeat the PR line.
+- **PR already listed** (a `- [<owner>/<repo>#<pr_number>](` line exists under `# Reviews`): append the new comment sub-bullets under that existing item — do not repeat the PR line, and leave the existing PR line untouched (its summary reflects the PR state when first recorded; do not refresh diff size or age on later appends).
 - **PR not listed:** insert a new PR item after the `<!-- pr:post-review-findings appends reviewed PRs here -->` comment (following the next blank line); if that comment is absent, append at the end of the `# Reviews` section, before its `---`.
 
 Use `Edit` to make the change.
