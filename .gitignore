@@ -353,6 +353,9 @@
 !.gemini/antigravity-cli/keybindings.json
 !.gemini/antigravity-cli/settings.json
 !.gemini/antigravity-cli/
+.gemini/config/*
+!.gemini/config/config.json
+!.gemini/config/
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
