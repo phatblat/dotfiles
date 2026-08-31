@@ -1,7 +1,3 @@
 {
-  "mcpServers": {
-    "context-mode": {
-      "command": "/Users/phatblat/.pi/agent/npm/node_modules/.bin/context-mode"
-    }
-  }
+  "mcpServers": {}
 }
