@@ -262,6 +262,12 @@ install-mise:
 install-brew:
     brew bundle install
 
+# Installs cmux agent hooks; regenerates the machine-managed session bridges
+# (~/.omp/agent/extensions/cmux-omp-session.ts et al.) that git now ignores
+[group('configuration')]
+install-cmux-hooks:
+    cmux hooks setup --yes
+
 # Installs GitHub CLI extensions from manifest file
 [group('configuration')]
 [script]
