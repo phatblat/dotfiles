@@ -1,6 +1,4 @@
 node_modules
-package.json
 package-lock.json
 bun.lock
-!package.json
 !tui.json
