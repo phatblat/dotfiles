@@ -64,7 +64,7 @@
 "vfox:mise-plugins/vfox-gcloud" = "582.0.0"
 act = "0.2.89"
 actionlint = "1.7.12"
-ast-grep = "0.45.2"
+ast-grep = "0.45.3"
 awscli = { version = "2.36.36", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.14.0"
