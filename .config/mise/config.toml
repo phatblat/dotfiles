@@ -233,6 +233,9 @@ _.path = [
 experimental = true
 pin = true
 idiomatic_version_file_enable_tools = ["node"]
+# No committed mise.lock: fresh bootstraps resolve the newest release older
+# than this window, so installs within 24h of a tool bump above can differ
+# from what was current at merge time.
 minimum_release_age = "24h"
 # oh-my-pi, claude-code, and codex ship fixes frequently; skip the 24h
 # minimum_release_age default for them.
