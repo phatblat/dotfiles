@@ -17,4 +17,7 @@
       "markWorkspaceDone": "none",
     },
   },
+  "terminal": {
+    "autoResumeAgentSessions": true,
+  },
 }

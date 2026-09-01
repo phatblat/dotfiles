@@ -1,3 +1,4 @@
+# Machine-managed by cmux ("cmux upgrades this file in place") — install via `just install-cmux-hooks`
 *.bak
 *.dll
 *.gastown-backup
@@ -353,6 +354,9 @@
 !.gemini/antigravity-cli/keybindings.json
 !.gemini/antigravity-cli/settings.json
 !.gemini/antigravity-cli/
+.gemini/config/*
+!.gemini/config/config.json
+!.gemini/config/
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
@@ -498,6 +502,7 @@
 !.omp/agent/agents/
 !.omp/agent/commands/
 !.omp/agent/config.yml
+.omp/agent/extensions/cmux-omp-session.ts
 !.omp/agent/extensions/
 !.omp/agent/hooks/
 !.omp/agent/instructions/
@@ -596,6 +601,7 @@
 !.pi/agent/*/**/
 !.pi/agent/agents.json
 !.pi/agent/agents/
+.pi/agent/extensions/cmux-session.ts
 !.pi/agent/extensions/
 !.pi/agent/mcp.json
 !.pi/agent/models-store.json

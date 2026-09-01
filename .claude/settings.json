@@ -224,6 +224,7 @@
         "hooks": [
           {
             "command": "\"/Users/phatblat/.claude/hooks/context-mode-cache-heal.mjs\"",
+            "timeout": 5,
             "type": "command"
           }
         ]
@@ -243,7 +244,7 @@
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Stop; fi",
-            "timeout": 10,
+            "timeout": 5,
             "type": "command"
           }
         ],

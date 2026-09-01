@@ -17,12 +17,12 @@
             "input": 0,
             "output": 0
           },
-          "id": "nvidia/Qwen3.6-35B-A3B-NVFP4",
+          "id": "Inferact/Qwen3.8-27B-NVFP4",
           "input": [
             "text"
           ],
           "maxTokens": 8192,
-          "name": "Qwen3.6-35B-A3B (spark1, NVFP4)",
+          "name": "Qwen3.8-27B (spark1, NVFP4 + MTP)",
           "reasoning": true
         }
       ]

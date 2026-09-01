@@ -69,7 +69,7 @@ teardown() {
   '
 
   [ "$status" -eq 0 ]
-  [ "$output" = $'--provider\nspark\n--model\nnvidia/Qwen3.6-35B-A3B-NVFP4' ]
+  [ "$output" = $'--provider\nspark\n--model\nInferact/Qwen3.8-27B-NVFP4' ]
 }
 
 
@@ -80,5 +80,5 @@ teardown() {
   "
 
   [ "$status" -eq 0 ]
-  [ "$output" = $'--provider\nspark\n--model\nnvidia/Qwen3.6-35B-A3B-NVFP4' ]
+  [ "$output" = $'--provider\nspark\n--model\nInferact/Qwen3.8-27B-NVFP4' ]
 }

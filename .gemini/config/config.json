@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "context-mode": {
+      "enabled": true
+    }
+  },
+  "userSettings": {
+    "remoteControlHostname": "dto-a165-chatelain-stellar-cosmos"
+  }
+}

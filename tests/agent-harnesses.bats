@@ -497,14 +497,27 @@ skip_unless_home_is_this_checkout() {
 
 @test "agent-harnesses: pr-post-review-findings preserves the Obsidian worklog contract" {
   claude_workflow="$HOME/.claude/commands/pr/post-review-findings.md"
+  omp_workflow="$HOME/.agents/harness/commands/pr/post-review-findings.md"
   codex_workflow="$HOME/.agents/skills/pr-post-review-findings/SKILL.md"
 
-  for workflow in "$claude_workflow" "$codex_workflow"; do
+  for workflow in "$claude_workflow" "$omp_workflow" "$codex_workflow"; do
     grep -Fq 'so the worklog captures which PRs you reviewed and every comment you left' "$workflow"
     grep -Fq 'note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"' "$workflow"
     grep -Fq '<!-- pr:post-review-findings appends reviewed PRs here -->' "$workflow"
     grep -Fq 'PR already listed' "$workflow"
     grep -Fq 'PR not listed' "$workflow"
+    
+    # Check for the expanded gh pr view JSON fields (additions, deletions, changedFiles, createdAt)
+    grep -Fq 'additions,deletions,changedFiles,createdAt' "$workflow"
+    
+    # Check for the diff-size/age summary in the entry format
+    grep -Fq '+<additions>/-<deletions> across <changedFiles> file(s), opened <age> ago' "$workflow"
+    
+    # Check for age computation rule
+    grep -Fq 'whole days when the PR is a day old or more' "$workflow"
+    
+    # Check for the "leave existing PR line untouched" instruction
+    grep -Fq 'leave the existing PR line untouched' "$workflow"
   done
 
   grep -Fq 'Make the daily-note update before reporting success.' "$codex_workflow"
