@@ -146,4 +146,3 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
-
