@@ -1,0 +1,109 @@
+name: agentic-review
+
+# synchronize is deliberately not a trigger: v1 never re-reviews on push
+# (docs/setup.md:282-285). Use /agentic-review in a PR comment instead.
+on:
+  pull_request:
+    types: [opened, ready_for_review, reopened, edited]
+    branches: [main]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    if: github.event_name == 'pull_request'
+    runs-on: [self-hosted, spark]
+    timeout-minutes: 30
+    steps:
+      # Config loads from the PR head, not the merge commit (spec §12.4).
+      # Sparse: only .github/agentic-review/** is read from disk; every
+      # file body comes from the GitHub API.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          sparse-checkout: .github/agentic-review
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: phatblat/agentic-review
+          ref: 2f2772e7ea7f61da4a4e1642456015754bb1e178
+          path: agentic-review
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: agentic-review/go.mod
+
+      # The shim version-checks $AGENTIC_REVIEW_BIN against its own
+      # EXPECTED_VERSION, so stamp the value read out of the checked-out
+      # shim rather than duplicating it here.
+      - name: Build agentic-review
+        working-directory: agentic-review
+        run: |
+          version=$(sed -n 's/^export const EXPECTED_VERSION = "\(.*\)";$/\1/p' shim/index.mjs)
+          go build -ldflags "-X main.version=${version}" \
+            -o "${RUNNER_TEMP}/agentic-review-bin" ./cmd/agentic-review
+
+      - uses: ./agentic-review
+        env:
+          AGENTIC_REVIEW_BIN: ${{ runner.temp }}/agentic-review-bin
+        with:
+          endpoint: ${{ vars.AGENTIC_REVIEW_ENDPOINT }}
+          api_key: ${{ secrets.AGENTIC_REVIEW_API_KEY }}
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: agentic-review-run
+          path: ${{ runner.temp }}/agentic-review/
+          if-no-files-found: ignore
+
+  summons:
+    # Job-level guard: evaluated before runner assignment, so no-op
+    # comments never occupy the runner (spec §11.2).
+    if: >
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '/agentic-review') &&
+      github.event.comment.user.type != 'Bot'
+    runs-on: [self-hosted, spark]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
+          sparse-checkout: .github/agentic-review
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: phatblat/agentic-review
+          ref: 2f2772e7ea7f61da4a4e1642456015754bb1e178
+          path: agentic-review
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: agentic-review/go.mod
+
+      - name: Build agentic-review
+        working-directory: agentic-review
+        run: |
+          version=$(sed -n 's/^export const EXPECTED_VERSION = "\(.*\)";$/\1/p' shim/index.mjs)
+          go build -ldflags "-X main.version=${version}" \
+            -o "${RUNNER_TEMP}/agentic-review-bin" ./cmd/agentic-review
+
+      - uses: ./agentic-review
+        env:
+          AGENTIC_REVIEW_BIN: ${{ runner.temp }}/agentic-review-bin
+        with:
+          endpoint: ${{ vars.AGENTIC_REVIEW_ENDPOINT }}
+          api_key: ${{ secrets.AGENTIC_REVIEW_API_KEY }}
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: agentic-review-run
+          path: ${{ runner.temp }}/agentic-review/
+          if-no-files-found: ignore
