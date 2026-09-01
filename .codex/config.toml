@@ -64,6 +64,8 @@ command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.
 cwd = "."
 enabled = false
 
+# cua_repl: emitted by Codex's regenerated config template, kept disabled.
+# Enabling would spawn the ChatGPT desktop app binary as a stdio MCP server.
 [mcp_servers.cua_repl]
 command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
 enabled = false
