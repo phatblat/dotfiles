@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
 # pi-spark - Run Pi with the Spark Qwen model
-pi --provider spark --model nvidia/Qwen3.6-35B-A3B-NVFP4 "$@"
+pi --provider spark --model Inferact/Qwen3.8-27B-NVFP4 "$@"
