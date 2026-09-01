@@ -11,7 +11,7 @@
 #            Re-check `GET /v1/models` after the router adds or retires a model.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
 #            catalog regardless of entitlement. Verified 2026-08-24: this key may
-#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
+#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.3`, and `dittoaicoder`
 #            return 403 {"detail":"not authorized to invoke <id>"}. The named models
 #            stay declared below so that widening `enabledModels` in config.yml is
 #            the only change needed once access is granted.
