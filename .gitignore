@@ -1,3 +1,4 @@
+# Machine-managed by cmux ("cmux upgrades this file in place") — install via `just install-cmux-hooks`
 *.bak
 *.dll
 *.gastown-backup
@@ -491,8 +492,6 @@
 .omp/agent/*/**/secrets.yml
 .omp/agent/*/**/sessions/**
 .omp/agent/*/**/trust.json
-# Machine-managed by cmux ("cmux upgrades this file in place") — install via `just install-cmux-hooks`
-.omp/agent/extensions/cmux-omp-session.ts
 !.omp/agent/*/**/
 !.omp/agent/AGENTS.md
 !.omp/agent/APPEND_SYSTEM.md
@@ -503,6 +502,7 @@
 !.omp/agent/agents/
 !.omp/agent/commands/
 !.omp/agent/config.yml
+.omp/agent/extensions/cmux-omp-session.ts
 !.omp/agent/extensions/
 !.omp/agent/hooks/
 !.omp/agent/instructions/
@@ -598,11 +598,10 @@
 .pi/agent/*/**/npm/**
 .pi/agent/*/**/sessions/**
 .pi/agent/*/**/trust.json
-# Machine-managed by cmux ("cmux upgrades this file in place") — install via `just install-cmux-hooks`
-.pi/agent/extensions/cmux-session.ts
 !.pi/agent/*/**/
 !.pi/agent/agents.json
 !.pi/agent/agents/
+.pi/agent/extensions/cmux-session.ts
 !.pi/agent/extensions/
 !.pi/agent/mcp.json
 !.pi/agent/models-store.json
