@@ -283,6 +283,7 @@ skip_unless_home_is_this_checkout() {
     justfile
     linear-plan
     optimize-harness
+    new-project
     pr-create
     pr-daily
     pr-merge
