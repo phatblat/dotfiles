@@ -179,8 +179,7 @@ baseten_key_for() {
     kimi-k3)                 echo "kimi-k3" ;;
     kimi-k2.6)               echo "kimi-k2-6" ;;
     kimi-k2.7-code)          echo "kimi-k2-7-code" ;;
-    glm-5.2)                 echo "glm-5-2" ;;
-    glm-5.2-fast)            echo "glm-5-2-fast" ;;
+    glm-5.3)                 echo "glm-5-3" ;;
     glm-4.7)                 echo "glm-4-7" ;;
     deepseek-v4-pro)         echo "deepseek-v4-pro" ;;
     deepseek-v4-pro-0813)    echo "deepseek-v4-pro" ;;  # not yet in Baseten table; use Pro pricing
