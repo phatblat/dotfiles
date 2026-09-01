@@ -33,7 +33,7 @@
 "go:golang.org/x/tools/gopls" = "0.23.0"
 "npm:@babel/cli" = "8.0.4"
 "npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
-"npm:@getpaseo/cli" = "0.6.1"
+"npm:@getpaseo/cli" = "0.7.0"
 "npm:@googleworkspace/cli" = "0.22.5"
 "npm:@openai/codex" = "0.151.0"
 "npm:@sentry/wizard" = "7.0.3"
