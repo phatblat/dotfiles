@@ -13,9 +13,81 @@ defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
 tools:
-  approvalMode: yolo
-  approval:
-    bash: allow
+  approvalMode: ask
+bash:
+  patterns:
+    - match: "git *"
+      approval: allow
+    - match: "gh *"
+      approval: allow
+    - match: "just *"
+      approval: allow
+    - match: "make *"
+      approval: allow
+    - match: "cargo *"
+      approval: allow
+    - match: "go *"
+      approval: allow
+    - match: "npm *"
+      approval: allow
+    - match: "pnpm *"
+      approval: allow
+    - match: "yarn *"
+      approval: allow
+    - match: "pip *"
+      approval: allow
+    - match: "poetry *"
+      approval: allow
+    - match: "find *"
+      approval: allow
+    - match: "ls *"
+      approval: allow
+    - match: "wc *"
+      approval: allow
+    - match: "grep *"
+      approval: allow
+    - match: "rg *"
+      approval: allow
+    - match: "sg *"
+      approval: allow
+    - match: "fd *"
+      approval: allow
+    - match: "tree *"
+      approval: allow
+    - match: "file *"
+      approval: allow
+    - match: "stat *"
+      approval: allow
+    - match: "head *"
+      approval: allow
+    - match: "tail *"
+      approval: allow
+    - match: "date *"
+      approval: allow
+    - match: "python3 *"
+      approval: allow
+    - match: "jq *"
+      approval: allow
+    - match: "yq *"
+      approval: allow
+    - match: "sed *"
+      approval: allow
+    - match: "awk *"
+      approval: allow
+    - match: "sort *"
+      approval: allow
+    - match: "uniq *"
+      approval: allow
+    - match: "tr *"
+      approval: allow
+    - match: "cut *"
+      approval: allow
+    - match: "basename *"
+      approval: allow
+    - match: "dirname *"
+      approval: allow
+    - match: "mise *"
+      approval: allow
 display:
   showTokenUsage: true
   cacheMissMarker: true
