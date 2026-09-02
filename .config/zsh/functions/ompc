@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
 # ompc - Continue the most recent OMP session
-omp --allow-home --continue "$@"
+omp --continue "$@"

@@ -390,7 +390,7 @@ def worktree_changed(worktree_dir: Path, initial_head: str) -> bool:
 
 
 def omp_profile() -> str | None:
-    value = os.environ.get("REVIEW_PR_OMP_PROFILE", "").strip()
+    value = os.environ.get("OMP_DEFAULT_PROFILE", "").strip()
     return value or None
 
 
