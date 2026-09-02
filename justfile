@@ -734,6 +734,7 @@ lint-json:
         [[ "$f" == .claude/skills/gstack/* ]] && continue
         [[ "$f" == *.jsonc.json ]] && continue
         case "$f" in
+            .claude.json) continue ;;
             .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
             .config/cmux/cmux.json) continue ;;
@@ -991,6 +992,7 @@ format-json:
         [[ "$f" == *.jsonc.json ]] && continue
         # Files that are actually JSONC despite .json extension
         case "$f" in
+            .claude.json) continue ;;
             .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
             .config/cmux/cmux.json) continue ;;
@@ -1076,11 +1078,15 @@ git-filters:
     git config --local filter.antigravity-settings.clean {{ justfile_directory() }}/scripts/mask-antigravity.sh
     git config --local filter.antigravity-settings.smudge cat
     git config --local filter.antigravity-settings.required true
+    git config --local filter.claude-json.clean {{ justfile_directory() }}/scripts/mask-claude-json.sh
+    git config --local filter.claude-json.smudge cat
+    git config --local filter.claude-json.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
     @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
     @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
     @echo "Git filter 'antigravity-settings' installed (strips trustedWorkspaces from ~/.gemini/antigravity-cli/settings.json)"
+    @echo "Git filter 'claude-json' installed (allowlists MCP fields from ~/.claude.json)"
 
 #
 # claude group recipes
