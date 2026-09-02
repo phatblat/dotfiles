@@ -7547,12 +7547,6 @@
       },
       {
         "enabled": true,
-        "id": "context-mode@context-mode",
-        "marketplace": "context-mode",
-        "marketplace_source": null
-      },
-      {
-        "enabled": true,
         "id": "gopls-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -7690,12 +7684,6 @@
         "id": "computer-use@openai-bundled",
         "marketplace": "openai-bundled",
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
-      },
-      {
-        "enabled": false,
-        "id": "context-mode@context-mode",
-        "marketplace": "context-mode",
-        "marketplace_source": null
       },
       {
         "enabled": true,
