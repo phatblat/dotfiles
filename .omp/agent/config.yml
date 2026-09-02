@@ -1,11 +1,12 @@
 providers:
-  webSearchOrder: []
+  webSearchOrder:
+    []
   anthropic:
     serverSideFallback: false
 setupVersion: 2
 modelRoles:
   plan: anthropic/claude-opus-5:xhigh
-  slow: anthropic/claude-fable-5
+  slow: spark/Inferact/Qwen3.8-27B-NVFP4
   smol: anthropic/claude-haiku-4-5
   default: anthropic/claude-sonnet-5
   vision: anthropic/claude-opus-5
@@ -61,6 +62,6 @@ statusLine:
   showHookStatus: true
 retry:
   usageAwareFallback: true
-doubleEscapeAction: tree
+doubleEscapeAction: rewind
 composer:
   shape: field
