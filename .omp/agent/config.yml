@@ -13,80 +13,80 @@ defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
 tools:
-  approvalMode: ask
+  approvalMode: always-ask
 bash:
   patterns:
-    - match: "git *"
+    - match: git *
       approval: allow
-    - match: "gh *"
+    - match: gh *
       approval: allow
-    - match: "just *"
+    - match: just *
       approval: allow
-    - match: "make *"
+    - match: make *
       approval: allow
-    - match: "cargo *"
+    - match: cargo *
       approval: allow
-    - match: "go *"
+    - match: go *
       approval: allow
-    - match: "npm *"
+    - match: npm *
       approval: allow
-    - match: "pnpm *"
+    - match: pnpm *
       approval: allow
-    - match: "yarn *"
+    - match: yarn *
       approval: allow
-    - match: "pip *"
+    - match: pip *
       approval: allow
-    - match: "poetry *"
+    - match: poetry *
       approval: allow
-    - match: "find *"
+    - match: find *
       approval: allow
-    - match: "ls *"
+    - match: ls *
       approval: allow
-    - match: "wc *"
+    - match: wc *
       approval: allow
-    - match: "grep *"
+    - match: grep *
       approval: allow
-    - match: "rg *"
+    - match: rg *
       approval: allow
-    - match: "sg *"
+    - match: sg *
       approval: allow
-    - match: "fd *"
+    - match: fd *
       approval: allow
-    - match: "tree *"
+    - match: tree *
       approval: allow
-    - match: "file *"
+    - match: file *
       approval: allow
-    - match: "stat *"
+    - match: stat *
       approval: allow
-    - match: "head *"
+    - match: head *
       approval: allow
-    - match: "tail *"
+    - match: tail *
       approval: allow
-    - match: "date *"
+    - match: date *
       approval: allow
-    - match: "python3 *"
+    - match: python3 *
       approval: allow
-    - match: "jq *"
+    - match: jq *
       approval: allow
-    - match: "yq *"
+    - match: yq *
       approval: allow
-    - match: "sed *"
+    - match: sed *
       approval: allow
-    - match: "awk *"
+    - match: awk *
       approval: allow
-    - match: "sort *"
+    - match: sort *
       approval: allow
-    - match: "uniq *"
+    - match: uniq *
       approval: allow
-    - match: "tr *"
+    - match: tr *
       approval: allow
-    - match: "cut *"
+    - match: cut *
       approval: allow
-    - match: "basename *"
+    - match: basename *
       approval: allow
-    - match: "dirname *"
+    - match: dirname *
       approval: allow
-    - match: "mise *"
+    - match: mise *
       approval: allow
 display:
   showTokenUsage: true
