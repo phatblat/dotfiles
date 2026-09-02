@@ -13,7 +13,7 @@ defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
 tools:
-  approvalMode: write
+  approvalMode: yolo
 bash:
   patterns:
     - match: sudo *
