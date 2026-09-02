@@ -130,6 +130,11 @@ cat > "$TMP_MODELS" <<'HEADER'
 #              - "chat_template_args.enable_thinking"   -> per-model extraBody override
 #              - ""                                    -> non-reasoning model
 #            Re-check `GET /v1/models` after the router adds or retires a model.
+# Pricing:   per-1M-token costs come from the Baseten pricing page, except models
+#            Casper serves unmetered (FREE in the admin catalog at
+#            https://casper.ditto.live/catalog), which free_model() zeroes out.
+#            /v1/models does not expose the unmetered flag, so that list is
+#            maintained by hand in the sync script.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
 #            catalog regardless of entitlement. Verified 2026-08-24: this key may
 #            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
@@ -193,6 +198,18 @@ baseten_key_for() {
   esac
 }
 
+# Helper: models Casper serves unmetered (FREE in the admin catalog).
+# The `unmetered` flag lives in Casper's admin DB and /v1/models deliberately
+# does not expose it, so this list is maintained by hand against
+# https://casper.ditto.live/catalog. Baseten pricing must NOT be applied to
+# these: Casper bills nothing for them regardless of the upstream rate.
+free_model() {
+  case "$1" in
+    glm-5.3|glm-5.3-flash) return 0 ;;
+    *)                     return 1 ;;
+  esac
+}
+
 # Helper: get price or default
 get_price() {
   local key="$1" field="$2" default="$3"
@@ -232,10 +249,16 @@ while IFS= read -r model_json; do
   fi
 
   # Determine pricing
-  bkey=$(baseten_key_for "$id")
-  price_input=$(get_price "$bkey" PRICE_INPUT "0")
-  price_cache=$(get_price "$bkey" PRICE_CACHE "0")
-  price_output=$(get_price "$bkey" PRICE_OUTPUT "0")
+  if free_model "$id"; then
+    price_input=0
+    price_cache=0
+    price_output=0
+  else
+    bkey=$(baseten_key_for "$id")
+    price_input=$(get_price "$bkey" PRICE_INPUT "0")
+    price_cache=$(get_price "$bkey" PRICE_CACHE "0")
+    price_output=$(get_price "$bkey" PRICE_OUTPUT "0")
+  fi
 
   # Determine compat overrides
   compat_lines=()
