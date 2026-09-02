@@ -5,11 +5,6 @@
       "enabledFeatures": null,
       "version": "1.2.0"
     },
-    "context-mode": {
-      "enabled": true,
-      "enabledFeatures": null,
-      "version": "1.0.169"
-    },
     "pi-cache-insight": {
       "enabled": true,
       "enabledFeatures": null,

@@ -1,11 +1,3 @@
 {
-  "mcpServers": {
-    "context-mode": {
-      "args": [
-        "/Users/phatblat/.omp/plugins/node_modules/context-mode/server.bundle.mjs"
-      ],
-      "command": "node",
-      "type": "stdio"
-    }
-  }
+  "mcpServers": {}
 }
