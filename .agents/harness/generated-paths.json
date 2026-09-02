@@ -218,6 +218,9 @@
   "~/.agents/harness/adapters/antigravity/skills/linear-plan/SKILL.md": {
     "source": "~/.agents/skills/linear-plan/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/new-project/SKILL.md": {
+    "source": "~/.agents/skills/new-project/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
   },
@@ -539,6 +542,9 @@
   "~/.agents/harness/adapters/cursor/skills/linear-plan/SKILL.md": {
     "source": "~/.agents/skills/linear-plan/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/new-project/SKILL.md": {
+    "source": "~/.agents/skills/new-project/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
   },
@@ -809,8 +815,8 @@
   "~/.claude/skills/harness-research/SKILL.md": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
-  "~/.claude/skills/ocr/SKILL.md": {
-    "source": "~/.agents/skills/ocr/SKILL.md"
+  "~/.claude/skills/new-project/SKILL.md": {
+    "source": "~/.agents/skills/new-project/SKILL.md"
   },
   "~/.claude/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
@@ -917,8 +923,11 @@
   "~/.codex/skills/harness-research/agents/openai.yaml": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
-  "~/.codex/skills/ocr/SKILL.md": {
-    "source": "~/.agents/skills/ocr/SKILL.md"
+  "~/.codex/skills/new-project/SKILL.md": {
+    "source": "~/.agents/skills/new-project/SKILL.md"
+  },
+  "~/.codex/skills/new-project/agents/openai.yaml": {
+    "source": "~/.agents/skills/new-project/SKILL.md"
   },
   "~/.codex/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
@@ -1133,8 +1142,8 @@
   "~/.config/opencode/skills/harness-research/SKILL.md": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
-  "~/.config/opencode/skills/ocr/SKILL.md": {
-    "source": "~/.agents/skills/ocr/SKILL.md"
+  "~/.config/opencode/skills/new-project/SKILL.md": {
+    "source": "~/.agents/skills/new-project/SKILL.md"
   },
   "~/.config/opencode/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"

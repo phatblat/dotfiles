@@ -377,6 +377,9 @@ trust_level = "trusted"
 [projects."/Users/phatblat/dev/_GETDITTO/cloud-infra-ops"]
 trust_level = "trusted"
 
+[projects."/Users/phatblat/dev/_GETDITTO/devx-canary"]
+trust_level = "trusted"
+
 [projects."/Users/phatblat/dev/_GETDITTO/ditto"]
 trust_level = "trusted"
 

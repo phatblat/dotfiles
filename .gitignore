@@ -137,6 +137,7 @@
 !.codex/skills/graphify/
 !.codex/skills/handoff/
 !.codex/skills/harness-research/
+!.codex/skills/new-project/
 !.codex/skills/ocr/
 !.codex/skills/optimize-harness/
 !.codex/skills/pr-style/
@@ -270,6 +271,7 @@
 !.config/opencode/skills/graphify/
 !.config/opencode/skills/handoff/
 !.config/opencode/skills/harness-research/
+!.config/opencode/skills/new-project/
 !.config/opencode/skills/ocr/
 !.config/opencode/skills/optimize-harness/
 !.config/opencode/skills/pr-style/
