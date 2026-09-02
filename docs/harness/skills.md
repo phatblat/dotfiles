@@ -13,21 +13,39 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.236 (Claude Code) · 2026-08-30 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.150.1 · 2026-08-30 | - |
-| opencode | aligned | shared | - | probe · 1.18.23 · 2026-08-30 | - |
-| pi | aligned | shared | - | probe · 0.84.3 · 2026-08-30 | - |
-| omp | aligned | native | - | probe · omp/18.0.10 · 2026-08-30 | - |
-| antigravity | partial | adapter | - | probe · 1.1.22 · 2026-08-30 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
-| cursor | partial | native | - | probe · 2026.07.01-777f564 · 2026-08-30 | generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.5 (5115b46bc909) [alpha] · 2026-08-30 | grok scans ~/.agents/skills at the user tier |
-| crush | aligned | native | - | probe · crush version v0.91.2 · 2026-08-30 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
+| claude | partial | shared | - | probe · 2.1.236 (Claude Code) · 2026-09-02 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| codex | partial | shared | - | probe · codex-cli 0.152.0 · 2026-09-02 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| opencode | partial | shared | - | probe · 1.18.25 · 2026-09-02 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| pi | partial | shared | - | probe · 0.84.4 · 2026-09-02 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| omp | partial | native | - | probe · omp/18.1.2 · 2026-09-02 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| antigravity | partial | adapter | - | probe · 1.1.24 · 2026-09-02 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified; probe failed: missing .agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md |
+| cursor | partial | native | - | probe · 2026.07.01-777f564 · 2026-09-02 | generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified; probe failed: missing .agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md |
+| grok | partial | native | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-02 | grok scans ~/.agents/skills at the user tier; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| crush | partial | native | - | probe · crush version v0.92.0 · 2026-09-02 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+
+### skills.manual_only · p1
+
+A procedural skill the user runs deliberately is not model-invoked, expressed through whatever key that harness documents.
+
+Porting: Represent intent per harness; do not copy one vendor key everywhere.
+Note: Codex policy blocks implicit invocation but does not hide enabled skill metadata.
+
+| Harness | Parity | Mode | Native surface | Evidence | Note |
+|---|---|---|---|---|---|
+| claude | unknown | none | `disable-model-invocation: true` | - | - |
+| codex | unknown | none | `agents/openai.yaml` `policy.allow_implicit_invocation: false` | - | - |
+| opencode | absent | none | No per-skill invocation-policy field | docs · 1.18.25 · 2026-09-02 | Permissions are keyed by tool (bash/edit/skill/...) and match input patterns, not an invocation-policy flag; `skill` permission can only allow/ask/deny loading a named skill outright, it cannot distinguish implicit model-triggered invocation from explicit user invocation. To keep a rarely used procedural skill out of context entirely, move it out of scanned skill paths or gate it behind `[[skills.config]] enabled = false`-style per-project config; there is no Codex-equivalent policy toggle to port. |
+| pi | unknown | none | Local adapter or command wrapper | - | - |
+| omp | unknown | none | Local adapter or command wrapper | - | - |
+| antigravity | unknown | none | Local adapter or command wrapper | - | - |
+| cursor | unknown | none | `disable-model-invocation: true` | - | - |
+| grok | unknown | none | `disable-model-invocation: true` | - | - |
+| crush | unknown | none | `disable-model-invocation: true` | - | - |
 
 ### Not yet researched
 
 - `skills.discovery_roots` · p0 — Every harness reaches ~/.agents/skills natively or through a generated pointer, with no hand-copied skill bodies.
 - `skills.identity` · p0 — A shared skill's name and trigger description are expressed in the harness's own skill metadata without forking the shared SKILL.md.
-- `skills.manual_only` · p1 — A procedural skill the user runs deliberately is not model-invoked, expressed through whatever key that harness documents.
 - `skills.path_scope` · p2 — Guidance that only applies to certain paths is scoped by the harness's own mechanism rather than loaded unconditionally.
 - `skills.tool_preapproval` · p1 — Where a skill needs specific tools preapproved, that is expressed in the harness's own permission surface, never assumed portable.
 - `skills.ui_metadata` · p2 — Presentation metadata for a shared skill lives in a harness-specific sidecar so the portable SKILL.md stays vendor-neutral.

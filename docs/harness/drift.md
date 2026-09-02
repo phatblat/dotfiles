@@ -9,19 +9,41 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.236 (Claude Code) | 2026-08-29 | - |
-| codex | codex-cli 0.150.1 | 2026-08-29 | codex-cli 0.149.1 |
-| opencode | 1.18.23 | 2026-08-29 | - |
-| pi | 0.84.3 | 2026-08-29 | - |
-| omp | omp/18.0.10 | 2026-08-29 | omp/18.0.7 |
-| antigravity | 1.1.22 | 2026-08-29 | - |
+| codex | codex-cli 0.152.0 | 2026-08-29 | codex-cli 0.150.1 |
+| opencode | 1.18.25 | 2026-08-29 | 1.18.23 |
+| pi | 0.84.4 | 2026-08-29 | 0.84.3 |
+| omp | omp/18.1.2 | 2026-08-29 | omp/18.0.10 |
+| antigravity | 1.1.24 | 2026-08-29 | 1.1.22 |
 | cursor | 2026.07.01-777f564 | 2026-08-29 | - |
-| grok | grok 1.0.5 (5115b46bc909) [alpha] | 2026-08-29 | grok 1.0.5 (5115b46bc909) |
-| crush | crush version v0.91.2 | 2026-08-29 | - |
+| grok | grok 1.0.13 (5e9a58528b76) [alpha] | 2026-08-29 | grok 1.0.5 (5115b46bc909) [alpha] |
+| crush | crush version v0.92.0 | 2026-08-29 | crush version v0.91.2 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-09-02 | opencode | - | version | - | 1.18.25 | 1.18.25 |
+| 2026-09-02 | pi | - | version | 0.84.3 | 0.84.4 | 0.84.4 |
+| 2026-09-02 | opencode | - | version | 1.18.23 | - | - |
+| 2026-09-02 | omp | - | version | omp/18.0.10 | omp/18.1.2 | omp/18.1.2 |
+| 2026-09-02 | grok | - | version | grok 1.0.5 (5115b46bc909) [alpha] | grok 1.0.13 (5e9a58528b76) [alpha] | grok 1.0.13 (5e9a58528b76) [alpha] |
+| 2026-09-02 | crush | - | version | crush version v0.91.2 | crush version v0.92.0 | crush version v0.92.0 |
+| 2026-09-02 | codex | - | version | codex-cli 0.150.1 | codex-cli 0.152.0 | codex-cli 0.152.0 |
+| 2026-09-02 | antigravity | - | version | 1.1.22 | 1.1.24 | 1.1.24 |
+| 2026-09-02 | pi | skills.shared | probe | pass | fail | 0.84.4 |
+| 2026-09-02 | opencode | skills.shared | probe | pass | fail | - |
+| 2026-09-02 | omp | skills.shared | probe | pass | fail | omp/18.1.2 |
+| 2026-09-02 | omp | commands.active | probe | fail | pass | omp/18.1.2 |
+| 2026-09-02 | grok | skills.shared | probe | pass | fail | grok 1.0.13 (5e9a58528b76) [alpha] |
+| 2026-09-02 | grok | commands.active | probe | pass | fail | grok 1.0.13 (5e9a58528b76) [alpha] |
+| 2026-09-02 | cursor | skills.shared | probe | pass | fail | 2026.07.01-777f564 |
+| 2026-09-02 | crush | skills.shared | probe | pass | fail | crush version v0.92.0 |
+| 2026-09-02 | crush | commands.active | probe | pass | fail | crush version v0.92.0 |
+| 2026-09-02 | codex | skills.shared | probe | pass | fail | codex-cli 0.152.0 |
+| 2026-09-02 | codex | agents.specialists | probe | fail | pass | codex-cli 0.152.0 |
+| 2026-09-02 | claude | skills.shared | probe | pass | fail | 2.1.236 (Claude Code) |
+| 2026-09-02 | claude | commands.active | probe | fail | pass | 2.1.236 (Claude Code) |
+| 2026-09-02 | antigravity | skills.shared | probe | pass | fail | 1.1.24 |
 | 2026-08-30 | pi | skills.shared | probe | - | pass | 0.84.3 |
 | 2026-08-30 | opencode | skills.shared | probe | - | pass | 1.18.23 |
 | 2026-08-30 | omp | skills.shared | probe | - | pass | omp/18.0.10 |

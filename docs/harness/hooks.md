@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py verify`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.236 (Claude Code) · 2026-08-30 | - |
-| codex | aligned | adapter | - | probe · codex-cli 0.150.1 · 2026-08-30 | - |
-| opencode | aligned | adapter | - | probe · 1.18.23 · 2026-08-30 | - |
-| pi | aligned | adapter | - | probe · 0.84.3 · 2026-08-30 | - |
-| omp | aligned | adapter | - | probe · omp/18.0.10 · 2026-08-30 | - |
-| antigravity | partial | adapter | - | probe · 1.1.22 · 2026-08-30 | generated Antigravity hook wrapper calls the shared guard, but native pre-tool blocking has not been verified |
-| cursor | partial | adapter | - | probe · 2026.07.01-777f564 · 2026-08-30 | Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified |
-| grok | partial | adapter | - | probe · grok 1.0.5 (5115b46bc909) [alpha] · 2026-08-30 | generated grok PreToolUse guard maps grok's camelCase payload to the shared guard, but live blocking in a grok session has not been verified |
-| crush | partial | adapter | - | probe · crush version v0.91.2 · 2026-08-30 | generated crush PreToolUse guard maps crush's snake_case payload to the shared guard and blocks with exit 2, but crush is not installed locally so live blocking is unverified |
+| claude | aligned | adapter | - | probe · 2.1.236 (Claude Code) · 2026-09-02 | - |
+| codex | aligned | adapter | - | probe · codex-cli 0.152.0 · 2026-09-02 | - |
+| opencode | aligned | adapter | - | probe · 1.18.25 · 2026-09-02 | - |
+| pi | aligned | adapter | - | probe · 0.84.4 · 2026-09-02 | - |
+| omp | aligned | adapter | - | probe · omp/18.1.2 · 2026-09-02 | - |
+| antigravity | partial | adapter | - | probe · 1.1.24 · 2026-09-02 | generated Antigravity hook wrapper calls the shared guard, but native pre-tool blocking has not been verified |
+| cursor | partial | adapter | - | probe · 2026.07.01-777f564 · 2026-09-02 | Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified |
+| grok | partial | adapter | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-02 | generated grok PreToolUse guard maps grok's camelCase payload to the shared guard, but live blocking in a grok session has not been verified |
+| crush | partial | adapter | - | probe · crush version v0.92.0 · 2026-09-02 | generated crush PreToolUse guard maps crush's snake_case payload to the shared guard and blocks with exit 2, but crush is not installed locally so live blocking is unverified |
 
 ### Not yet researched
 
