@@ -434,7 +434,7 @@ upgrade-mise:
 # Upgrades the installed omp version from the upstream GitHub repository
 [group('configuration')]
 upgrade-omp:
-    mise upgrade --bump github:can1357/oh-my-pi
+    mise upgrade --bump oh-my-pi
     just format-mise
     bash -ic 'cmt .config/mise/config.toml'
 
