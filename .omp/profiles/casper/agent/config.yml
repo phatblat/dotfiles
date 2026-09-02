@@ -1,5 +1,5 @@
 modelRoles:
-  default: casper/kimi-k3
+  default: casper/kimi-k3:high
   tiny: casper/auto:minimal
   designer: casper/auto:medium
   task: casper/auto:medium
