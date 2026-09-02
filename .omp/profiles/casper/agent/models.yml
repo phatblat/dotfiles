@@ -11,7 +11,7 @@
 #            Re-check `GET /v1/models` after the router adds or retires a model.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
 #            catalog regardless of entitlement. Verified 2026-08-24: this key may
-#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.3`, and `dittoaicoder`
+#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
 #            return 403 {"detail":"not authorized to invoke <id>"}. The named models
 #            stay declared below so that widening `enabledModels` in config.yml is
 #            the only change needed once access is granted.
@@ -117,8 +117,8 @@ providers:
         name: Kimi K3
         reasoning: true
         input: [text]
-        contextWindow: 1048576
-        maxTokens: 1048576
+        contextWindow: 500000
+        maxTokens: 500000
         cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
         compat:
           # Casper buffers each tool call and emits it as a single delta, so the
@@ -145,3 +145,4 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
+
