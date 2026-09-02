@@ -10,8 +10,6 @@
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
-    "linear-cli@linear-cli": true,
-    "linear@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": true,
     "oh-my-claudecode@omc": true,
     "plugin-dev@claude-plugins-official": false,
