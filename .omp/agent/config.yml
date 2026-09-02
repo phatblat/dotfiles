@@ -1,6 +1,5 @@
 providers:
-  webSearchOrder:
-    []
+  webSearchOrder: []
   anthropic:
     serverSideFallback: false
 setupVersion: 2
