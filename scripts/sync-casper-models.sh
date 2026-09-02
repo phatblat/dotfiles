@@ -140,11 +140,10 @@ cat > "$TMP_MODELS" <<'HEADER'
 #            only after the full arguments are generated - the stream carries only
 #            ":" heartbeat comments while a tool call is being built. The silent
 #            window scales with argument size (~20 tok/s observed), and the router
-#            aborts Kimi streams at ~240s wall-clock with a
-#            stream_deadline_exceeded error frame. See
-#            ~/scripts/casper-kimi-tool-stall.py and .md for the repro harness and
-#            fix request. The kimi-k3 streamIdleTimeoutMs override below is a local
-#            mitigation only; it does not fix the underlying buffering.
+#            enforces a 300s total upstream budget (raised from 240s on 2026-08-27);
+#            crossing it aborts the stream. The kimi-k3 streamIdleTimeoutMs
+#            override below is a local mitigation only; it does not fix the
+#            underlying buffering.
 providers:
   casper:
     baseUrl: https://casper-api.ditto.live/v1
@@ -251,8 +250,8 @@ while IFS= read -r model_json; do
       compat_lines+=(
         "          # Casper buffers each tool call and emits it as a single delta, so the"
         "          # stream carries only SSE comments while arguments generate (~20 tok/s,"
-        "          # measured 2026-08-24). Stay below the router's ~240s Kimi wall-clock"
-        "          # deadline so a timeout surfaces as an error, not a silent empty turn."
+        "          # measured 2026-08-24). Stay below the router's 300s total upstream"
+        "          # budget so a timeout surfaces as an error, not a silent empty turn."
         "          streamIdleTimeoutMs: 210000"
       )
       ;;
