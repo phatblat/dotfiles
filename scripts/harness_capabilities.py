@@ -495,9 +495,24 @@ CAPABILITIES: list[Capability] = [
                 ),
             ),
             "opencode": Cell(
-                parity="unknown",
-                surface=(
-                    "No direct equivalent; use skill permissions or command wrappers"
+                parity="absent",
+                surface="No per-skill invocation-policy field",
+                evidence=Evidence(
+                    kind="docs",
+                    ref="https://opencode.ai/docs/permissions/",
+                    version="1.18.25",
+                    date="2026-09-02",
+                ),
+                note=(
+                    "Permissions are keyed by tool (bash/edit/skill/...) and match "
+                    "input patterns, not an invocation-policy flag; `skill` "
+                    "permission can only allow/ask/deny loading a named skill "
+                    "outright, it cannot distinguish implicit model-triggered "
+                    "invocation from explicit user invocation. To keep a rarely "
+                    "used procedural skill out of context entirely, move it out "
+                    "of scanned skill paths or gate it behind `[[skills.config]] "
+                    "enabled = false`-style per-project config; there is no "
+                    "Codex-equivalent policy toggle to port."
                 ),
             ),
             "pi": Cell(parity="unknown", surface="Local adapter or command wrapper"),
