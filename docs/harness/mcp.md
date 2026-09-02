@@ -4,8 +4,28 @@
 
 3 capabilities. Index: [docs/agent-harnesses.md](../agent-harnesses.md)
 
+### mcp.dependencies · p1
+
+A skill or agent that needs an MCP server declares it where the harness can act on the declaration.
+
+Canonical: `~/scripts/harness_policy.py`
+Verify: `just harness-check`
+Porting: Declare dependencies near the harness that can enforce or install them.
+Note: Dependency metadata is advisory unless the harness enforces it.
+
+| Harness | Parity | Mode | Native surface | Evidence | Note |
+|---|---|---|---|---|---|
+| claude | aligned | adapter | `.mcp.json`, settings, or agent `mcpServers` | local · - · - | - |
+| codex | partial | none | `agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP | local · - · - | - |
+| opencode | aligned | adapter | `mcp` config | local · - · - | - |
+| pi | aligned | adapter | Extension or future MCP bridge | local · - · - | - |
+| omp | aligned | adapter | ~/.omp/agent/mcp.json | local · - · - | - |
+| antigravity | aligned | adapter | Generated `mcp.json` | local · - · - | - |
+| cursor | aligned | adapter | Generated `mcp.json` | local · - · - | Written to disk by generate, but intentionally not git-tracked: ~/.cursor/ ships its own nested .gitignore with broad `!plugins/**`/`!skills-cursor/**` un-ignores that reactivate once the parent pattern narrows past a bare directory exclude, exposing cached plugin/session data. Regenerated locally by `just harness-generate`. |
+| grok | aligned | native | [compat.claude]/[compat.cursor] mcps = true imports the generated Claude and Cursor configs | local · - · - | - |
+| crush | absent | none | ~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand | runtime · - · - | - |
+
 ### Not yet researched
 
-- `mcp.dependencies` · p1 — A skill or agent that needs an MCP server declares it where the harness can act on the declaration.
 - `mcp.transport` · p1 — MCP servers are declared once per harness with a known transport and a known config file.
 - `mcp.credential_scope` · p0 — MCP credentials come from the environment and are never written into a tracked harness config file.

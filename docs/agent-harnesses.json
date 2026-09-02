@@ -3559,37 +3559,43 @@
       "verify": ""
     },
     {
-      "canonical": [],
+      "canonical": [
+        "~/scripts/harness_policy.py"
+      ],
       "cells": {
         "antigravity": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.gemini/antigravity-cli/settings.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
           "surface": ""
         },
         "claude": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.claude/settings.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
           "surface": ""
         },
@@ -3598,94 +3604,96 @@
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "docs",
+            "ref": "codex config.toml reference",
             "version": ""
           },
           "mode": "none",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "absent",
           "probe": null,
-          "surface": ""
+          "surface": "sandbox_mode enum only; no per-command allowlist"
         },
         "crush": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "docs",
+            "ref": "crush CLI config reference",
             "version": ""
           },
           "mode": "none",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "absent",
           "probe": null,
-          "surface": ""
+          "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.py"
         },
         "cursor": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "docs",
+            "ref": "cursor CLI config reference",
             "version": ""
           },
           "mode": "none",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "absent",
           "probe": null,
-          "surface": ""
+          "surface": "No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
         },
         "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "docs",
+            "ref": "grok CLI config reference",
             "version": ""
           },
           "mode": "none",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "absent",
           "probe": null,
-          "surface": ""
+          "surface": "No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.py"
         },
         "omp": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-perms-apply",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
-          "surface": ""
+          "surface": "tools.approvalMode + bash.patterns via just harness-perms-apply"
         },
         "opencode": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.config/opencode/opencode.jsonc"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
           "surface": ""
         },
@@ -3694,16 +3702,16 @@
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "docs",
+            "ref": "pi CLI config reference",
             "version": ""
           },
           "mode": "none",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "absent",
           "probe": null,
-          "surface": ""
+          "surface": "No native permission-rule surface; the shared guard runs via ~/.pi/agent/extensions/harness.ts"
         }
       },
       "contract": "Native allow/deny rules are expressed only where they add to, never weaken, the shared guard decision.",
@@ -3713,7 +3721,7 @@
       "porting": "",
       "priority": "p1",
       "title": "Native permission rules",
-      "verify": ""
+      "verify": "just harness-check"
     },
     {
       "canonical": [],
@@ -3873,55 +3881,59 @@
       "verify": ""
     },
     {
-      "canonical": [],
+      "canonical": [
+        "~/scripts/harness_policy.py"
+      ],
       "cells": {
         "antigravity": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "~/.gemini/antigravity-cli/settings.json",
             "version": ""
           },
-          "mode": "none",
+          "mode": "native",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "note": "Resolved default: proceed-in-sandbox",
+          "parity": "aligned",
           "probe": null,
-          "surface": ""
+          "surface": "`toolPermission`"
         },
         "claude": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.claude/settings.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "note": "Resolved default: auto",
+          "parity": "aligned",
           "probe": null,
-          "surface": ""
+          "surface": "`permissions.defaultMode`"
         },
         "codex": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "~/.codex/config.toml",
             "version": ""
           },
-          "mode": "none",
+          "mode": "native",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "note": "Resolved default: read-only",
+          "parity": "aligned",
           "probe": null,
-          "surface": ""
+          "surface": "`sandbox_mode`"
         },
         "crush": {
           "artifacts": [],
@@ -3976,48 +3988,52 @@
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-perms-apply",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "note": "Resolved default: write",
+          "parity": "aligned",
           "probe": null,
-          "surface": ""
+          "surface": "`tools.approvalMode`"
         },
         "opencode": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.config/opencode/opencode.jsonc"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "note": "Resolved default: ask",
+          "parity": "aligned",
           "probe": null,
-          "surface": ""
+          "surface": "`permission.edit`"
         },
         "pi": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.pi/agent/settings.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "native",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "note": "Resolved default: ask",
+          "parity": "aligned",
           "probe": null,
-          "surface": ""
+          "surface": "`defaultProjectTrust`"
         }
       },
       "contract": "The harness's interactive approval modes are known, and the default mode does not bypass the guard.",
@@ -4027,40 +4043,46 @@
       "porting": "",
       "priority": "p1",
       "title": "Interactive approval modes",
-      "verify": ""
+      "verify": "just harness-check"
     },
     {
-      "canonical": [],
+      "canonical": [
+        "~/scripts/harness_policy.py"
+      ],
       "cells": {
         "antigravity": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.agents/harness/adapters/antigravity/mcp.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
-          "surface": "Generated `mcp.json`, unverified"
+          "surface": "Generated `mcp.json`"
         },
         "claude": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.mcp.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
           "surface": "`.mcp.json`, settings, or agent `mcpServers`"
         },
@@ -4069,14 +4091,14 @@
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
           "mode": "none",
-          "next_action": "",
+          "next_action": "hand-add [mcp_servers.filesystem]; validated by just harness-check",
           "note": "",
-          "parity": "unknown",
+          "parity": "partial",
           "probe": null,
           "surface": "`agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP"
         },
@@ -4085,94 +4107,102 @@
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "runtime",
+            "ref": "crush mcp",
             "version": ""
           },
           "mode": "none",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "absent",
           "probe": null,
-          "surface": "`mcp add` in `~/.config/crush/crushrc`"
+          "surface": "~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand"
         },
         "cursor": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.cursor/mcp.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "note": "Written to disk by generate, but intentionally not git-tracked: ~/.cursor/ ships its own nested .gitignore with broad `!plugins/**`/`!skills-cursor/**` un-ignores that reactivate once the parent pattern narrows past a bare directory exclude, exposing cached plugin/session data. Regenerated locally by `just harness-generate`.",
+          "parity": "aligned",
           "probe": null,
-          "surface": "Generated `mcp.json`, unverified"
+          "surface": "Generated `mcp.json`"
         },
         "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "~/.grok/config.toml",
             "version": ""
           },
-          "mode": "none",
+          "mode": "native",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
-          "surface": "`[mcp_servers.*]` in `~/.grok/config.toml`"
+          "surface": "[compat.claude]/[compat.cursor] mcps = true imports the generated Claude and Cursor configs"
         },
         "omp": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.omp/agent/mcp.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
           "surface": "~/.omp/agent/mcp.json"
         },
         "opencode": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.config/opencode/opencode.jsonc"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
           "surface": "`mcp` config"
         },
         "pi": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.pi/agent/mcp.json"
+          ],
           "divergence": "",
           "evidence": {
             "date": "",
-            "kind": "none",
-            "ref": "",
+            "kind": "local",
+            "ref": "just harness-check",
             "version": ""
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
-          "parity": "unknown",
+          "parity": "aligned",
           "probe": null,
           "surface": "Extension or future MCP bridge"
         }
@@ -4184,7 +4214,7 @@
       "porting": "Declare dependencies near the harness that can enforce or install them.",
       "priority": "p1",
       "title": "MCP/tool dependencies",
-      "verify": ""
+      "verify": "just harness-check"
     },
     {
       "canonical": [],
@@ -7433,7 +7463,7 @@
   ],
   "coverage": {
     "total": 405,
-    "verified": 66
+    "verified": 90
   },
   "divergences": [
     {
