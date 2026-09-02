@@ -549,7 +549,14 @@ clean-caches:
         rm -rf "$(brew --cache)"
     fi
     if command -v uv >/dev/null 2>&1; then uv cache clean; fi
-    if command -v bun >/dev/null 2>&1; then bun pm cache rm; fi
+    # bun >= 1.4 requires a package.json in cwd for `bun pm cache rm`;
+    # run it from a throwaway package so cache-dir resolution stays bun's
+    if command -v bun >/dev/null 2>&1; then
+        bun_tmp="$(mktemp -d)"
+        echo '{}' > "$bun_tmp/package.json"
+        (cd "$bun_tmp" && bun pm cache rm)
+        rm -rf "$bun_tmp"
+    fi
     if command -v npm >/dev/null 2>&1; then npm cache clean --force; fi
     if command -v pnpm >/dev/null 2>&1; then pnpm store prune; fi
     if command -v go >/dev/null 2>&1; then go clean -cache -modcache -testcache -fuzzcache; fi
