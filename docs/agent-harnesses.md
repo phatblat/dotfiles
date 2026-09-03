@@ -12,7 +12,7 @@ Coverage: 90/405 cells verified (22%)
 | codex | supported peer | codex-cli 0.152.0 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
 | opencode | new port | 1.18.25 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
 | pi | new port | 0.84.4 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.1.2 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| omp | tracked port | omp/18.1.4 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.1.24 | 2026-08-29 | 4 | 6 | 0 | 0 | 0 | 35 |
 | cursor | tracked port | 2026.07.01-777f564 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.13 (5e9a58528b76) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
@@ -66,16 +66,16 @@ Coverage: 90/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
-| 2026-09-02 | opencode | - | version | - | 1.18.25 |
-| 2026-09-02 | pi | - | version | 0.84.3 | 0.84.4 |
-| 2026-09-02 | opencode | - | version | 1.18.23 | - |
-| 2026-09-02 | omp | - | version | omp/18.0.10 | omp/18.1.2 |
-| 2026-09-02 | grok | - | version | grok 1.0.5 (5115b46bc909) [alpha] | grok 1.0.13 (5e9a58528b76) [alpha] |
-| 2026-09-02 | crush | - | version | crush version v0.91.2 | crush version v0.92.0 |
-| 2026-09-02 | codex | - | version | codex-cli 0.150.1 | codex-cli 0.152.0 |
-| 2026-09-02 | antigravity | - | version | 1.1.22 | 1.1.24 |
-| 2026-09-02 | pi | skills.shared | probe | pass | fail |
-| 2026-09-02 | opencode | skills.shared | probe | pass | fail |
+| 2026-09-03 | omp | - | version | omp/18.1.2 | omp/18.1.4 |
+| 2026-09-03 | pi | mcp.dependencies | mode | none | adapter |
+| 2026-09-03 | pi | mcp.dependencies | parity | unknown | aligned |
+| 2026-09-03 | opencode | skills.manual_only | surface | No direct equivalent; use skill permissions or command wrappers | No per-skill invocation-policy field |
+| 2026-09-03 | opencode | skills.manual_only | parity | unknown | absent |
+| 2026-09-03 | opencode | mcp.dependencies | mode | none | adapter |
+| 2026-09-03 | opencode | mcp.dependencies | parity | unknown | aligned |
+| 2026-09-03 | omp | mcp.dependencies | mode | none | adapter |
+| 2026-09-03 | omp | mcp.dependencies | parity | unknown | aligned |
+| 2026-09-03 | grok | mcp.dependencies | surface | `[mcp_servers.*]` in `~/.grok/config.toml` | [compat.claude]/[compat.cursor] mcps = true imports the generated Claude and Cursor configs |
 
 ## Permanent divergences
 
