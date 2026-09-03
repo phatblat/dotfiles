@@ -3,6 +3,7 @@ modelRoles:
   task: casper/auto
   commit: casper/auto:minimal
   plan: casper/kimi-k3
+  smol: casper/glm-5.3
 enabledModels:
   - casper/auto
   - casper/kimi-k3
