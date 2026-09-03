@@ -228,6 +228,9 @@ _.path = [
   "{{env.HOME}}/Library/Android/sdk/emulator",
   "{{env.HOME}}/Library/Android/sdk/build-tools/36.0.0",
   "{{env.HOME}}/go/bin",
+  # Nix: user profile, then daemon profile (which provides `nix` itself)
+  "{{env.HOME}}/.nix-profile/bin",
+  "/nix/var/nix/profiles/default/bin",
 ]
 
 [settings]
