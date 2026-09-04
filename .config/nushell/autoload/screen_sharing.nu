@@ -8,15 +8,15 @@
 # not Remote Management (Apple Remote Desktop): that is a separate service
 # driven by ARDAgent's kickstart tool and is deliberately left alone here.
 #
-#   ard              same as `ard status`
-#   ard status       print the launchd override state for the service
-#   ard enable       enable the service and load it now (sudo)
-#   ard disable      disable the service and unload it now (sudo)
-#   ard restart      restart the service (sudo)
+#   screen_sharing              same as `screen_sharing status`
+#   screen_sharing status       print the launchd override state for the service
+#   screen_sharing enable       enable the service and load it now (sudo)
+#   screen_sharing disable      disable the service and unload it now (sudo)
+#   screen_sharing restart      restart the service (sudo)
 #
 # Arguments after the subcommand are appended to the launchctl call that
 # performs the action (bootstrap, bootout, kickstart, print-disabled).
-export def --wrapped ard [...args] {
+export def --wrapped screen_sharing [...args] {
     let service = "system/com.apple.screensharing"
     let daemon_plist = "/System/Library/LaunchDaemons/com.apple.screensharing.plist"
     let subcommand = if ($args | is-empty) { "status" } else { $args | first }
@@ -52,7 +52,7 @@ export def --wrapped ard [...args] {
         }
         _ => {
             error make --unspanned {
-                msg: $"ard: unknown subcommand '($subcommand)' \(expected: enable, disable, restart, status)"
+                msg: $"screen_sharing: unknown subcommand '($subcommand)' \(expected: enable, disable, restart, status)"
             }
         }
     }
