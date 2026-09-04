@@ -308,8 +308,8 @@
   "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
     "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/work-eod/SKILL.md": {
-    "source": "~/.agents/skills/work-eod/SKILL.md"
+  "~/.agents/harness/adapters/antigravity/skills/work-end-day/SKILL.md": {
+    "source": "~/.agents/skills/work-end-day/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/work-runners/SKILL.md": {
     "source": "~/.agents/skills/work-runners/SKILL.md"
@@ -632,8 +632,8 @@
   "~/.agents/harness/adapters/cursor/skills/wayfinder/SKILL.md": {
     "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/work-eod/SKILL.md": {
-    "source": "~/.agents/skills/work-eod/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/work-end-day/SKILL.md": {
+    "source": "~/.agents/skills/work-end-day/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/work-runners/SKILL.md": {
     "source": "~/.agents/skills/work-runners/SKILL.md"
