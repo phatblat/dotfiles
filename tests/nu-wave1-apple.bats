@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 # nu-wave1-apple.bats — Nushell port tests for Apple/Xcode/editor wave-1 functions
-# Functions: codesign_verify, list_codesign_identities, simclean, xcsp, vi, vim, pai (skipped)
+# Functions: ard, codesign_verify, list_codesign_identities, simclean, xcsp, vi, vim, pai (skipped)
 
 load helpers/setup
 
@@ -81,3 +81,77 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 #        the PAI skill has never been installed in this environment.
 #        Port deferred until the skill is installed.
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# ard — Screen Sharing control (com.apple.screensharing)
+#   Mutating subcommands are asserted against a fake sudo on PATH: the tests
+#   check the exact launchctl argv and never touch the real service.
+# ---------------------------------------------------------------------------
+
+fake_sudo_dir() {
+    local dir
+    dir="$(mktemp -d)"
+    printf '#!/bin/sh\nprintf "%%s\\n" "$*"\n' >"$dir/sudo"
+    chmod +x "$dir/sudo"
+    printf '%s' "$dir"
+}
+
+@test "ard: no args defaults to status and reports the screen sharing override" {
+    run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ard.nu'
+        ard
+    "
+    [ "$status" -eq 0 ]
+    [[ "$output" == '"com.apple.screensharing" => '* ]]
+}
+
+@test "ard enable: writes the override before loading the daemon" {
+    local fakebindir
+    fakebindir="$(fake_sudo_dir)"
+
+    run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ard.nu'
+        ard enable
+    "
+    rm -rf "$fakebindir"
+
+    [ "$status" -eq 0 ]
+    [ "$output" = $'launchctl enable system/com.apple.screensharing\nlaunchctl bootstrap system /System/Library/LaunchDaemons/com.apple.screensharing.plist' ]
+}
+
+@test "ard disable: writes the override before unloading the daemon" {
+    local fakebindir
+    fakebindir="$(fake_sudo_dir)"
+
+    run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ard.nu'
+        ard disable
+    "
+    rm -rf "$fakebindir"
+
+    [ "$status" -eq 0 ]
+    [ "$output" = $'launchctl disable system/com.apple.screensharing\nlaunchctl bootout system/com.apple.screensharing' ]
+}
+
+@test "ard restart: appends extra arguments to launchctl kickstart" {
+    local fakebindir
+    fakebindir="$(fake_sudo_dir)"
+
+    run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ard.nu'
+        ard restart -p
+    "
+    rm -rf "$fakebindir"
+
+    [ "$status" -eq 0 ]
+    [ "$output" = "launchctl kickstart -k system/com.apple.screensharing -p" ]
+}
+
+@test "ard: rejects an unknown subcommand" {
+    run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ard.nu'
+        ard bogus
+    "
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"unknown subcommand 'bogus'"* ]]
+}
