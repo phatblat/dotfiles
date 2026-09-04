@@ -72,7 +72,6 @@
 .claude-code-router/.claude-code-router.pid
 .claude-server-commander/
 .claude-worktrees/
-.claude.json
 .claude.json.backup
 .claude.json.backup.*
 .claude.json.tmp.*

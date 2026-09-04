@@ -1,4 +1,6 @@
+source ~/.config/nushell/autoload/omp.nu
+
 # Browse and resume an OMP session.
 export def --wrapped ompr [...args] {
-    ^omp --allow-home --resume ...$args
+    omp --resume ...$args
 }

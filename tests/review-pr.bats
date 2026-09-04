@@ -24,6 +24,7 @@ setup() {
   export REVIEW_PR_OMP_INTERRUPT=0
   export REVIEW_PR_REMOVE_FAIL=0
   export REVIEW_PR_HEAD_READS="$BATS_TEST_TMPDIR/head-reads"
+  export OMP_DEFAULT_PROFILE=
   mkdir -p "$BATS_TEST_TMPDIR/bin"
   mkdir -p "$BATS_TEST_TMPDIR/search"
 }
@@ -179,8 +180,20 @@ EOF
   grep -q "omp-arg:<high>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<--no-prewalk>" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "omp-arg:<-p>" "$REVIEW_PR_COMMAND_LOG"
+  ! grep -q "omp-arg:<--profile>" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q "omp-arg:<--print>" "$REVIEW_PR_COMMAND_LOG"
   ! grep -q '^codex ' "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr: forwards OMP_DEFAULT_PROFILE as --profile" {
+  export OMP_DEFAULT_PROFILE=casper
+  write_review_stubs
+
+  run "$SCRIPT" "widgets#123"
+
+  [ "$status" -eq 0 ]
+  grep -q "omp-arg:<--profile>" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<casper>" "$REVIEW_PR_COMMAND_LOG"
 }
 
 @test "review-pr: supplies explicit PR, base, and review-only startup prompt" {

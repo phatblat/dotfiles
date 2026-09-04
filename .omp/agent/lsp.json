@@ -1,0 +1,18 @@
+{
+  "servers": {
+    "nu": {
+      "args": [
+        "--lsp"
+      ],
+      "command": "nu",
+      "fileTypes": [
+        ".nu"
+      ],
+      "languageId": "nu",
+      "rootMarkers": [
+        ".config/nushell"
+      ],
+      "warmupTimeoutMs": 20000
+    }
+  }
+}

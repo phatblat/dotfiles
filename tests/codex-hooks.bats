@@ -113,8 +113,15 @@ if not hook_configs:
 enabled_incompatible = {}
 for hooks_path in hook_configs:
     plugin = f"{hooks_path.parents[2].name}@{hooks_path.parents[3].name}"
+    plugin_cfg = plugins.get(plugin)
+    # A plugin with no [plugins.*] table is not enabled in Codex — the table
+    # is what activates it. The cache is machine-local and lingers after
+    # uninstall (e.g. context-mode was removed in c357a), so an absent entry
+    # means "stale cache", not "enabled by default".
+    if plugin_cfg is None:
+        continue
     unknown_top_level = sorted(set(json.loads(hooks_path.read_text())) - {"hooks"})
-    if unknown_top_level and plugins.get(plugin, {}).get("enabled", True):
+    if unknown_top_level and plugin_cfg.get("enabled", True):
         enabled_incompatible[plugin] = unknown_top_level
 
 if enabled_incompatible:

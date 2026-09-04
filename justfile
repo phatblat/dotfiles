@@ -434,7 +434,7 @@ upgrade-mise:
 # Upgrades the installed omp version from the upstream GitHub repository
 [group('configuration')]
 upgrade-omp:
-    mise upgrade --bump github:can1357/oh-my-pi
+    mise upgrade --bump oh-my-pi
     just format-mise
     bash -ic 'cmt .config/mise/config.toml'
 
@@ -549,7 +549,14 @@ clean-caches:
         rm -rf "$(brew --cache)"
     fi
     if command -v uv >/dev/null 2>&1; then uv cache clean; fi
-    if command -v bun >/dev/null 2>&1; then bun pm cache rm; fi
+    # bun >= 1.4 requires a package.json in cwd for `bun pm cache rm`;
+    # run it from a throwaway package so cache-dir resolution stays bun's
+    if command -v bun >/dev/null 2>&1; then
+        bun_tmp="$(mktemp -d)"
+        echo '{}' > "$bun_tmp/package.json"
+        (cd "$bun_tmp" && bun pm cache rm)
+        rm -rf "$bun_tmp"
+    fi
     if command -v npm >/dev/null 2>&1; then npm cache clean --force; fi
     if command -v pnpm >/dev/null 2>&1; then pnpm store prune; fi
     if command -v go >/dev/null 2>&1; then go clean -cache -modcache -testcache -fuzzcache; fi
@@ -660,6 +667,16 @@ generate: harness-generate
 harness-generate:
     python3 {{ justfile_directory() }}/scripts/agent-harnesses.py generate
 
+# Applies the shared MCP set to Claude Code user scope (outside the dotfiles repo)
+[group('build')]
+harness-mcp-apply:
+    python3 {{ justfile_directory() }}/scripts/harness-apply.py mcp
+
+# Applies the shared permission baseline to OMP's config.yml via `omp config set`
+[group('build')]
+harness-perms-apply:
+    python3 {{ justfile_directory() }}/scripts/harness-apply.py perms
+
 #
 # checks group recipes
 #
@@ -682,8 +699,8 @@ lint-gitignore:
 [group('checks')]
 lint-python:
     @echo "Linting Python scripts..."
-    ruff check {{ justfile_directory() }}/scripts/agent-harnesses.py {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/scripts/sort-tools.py {{ justfile_directory() }}/scripts/format-json.py {{ justfile_directory() }}/scripts/audit-package-managers.py {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ justfile_directory() }}/scripts/sort-codex-config.py {{ justfile_directory() }}/scripts/review-pr.py {{ justfile_directory() }}/scripts/sync-codex-casper-models.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
-    ruff format --check {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    ruff check {{ justfile_directory() }}/scripts/agent-harnesses.py {{ justfile_directory() }}/scripts/harness_policy.py {{ justfile_directory() }}/scripts/harness-apply.py {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/scripts/sort-tools.py {{ justfile_directory() }}/scripts/format-json.py {{ justfile_directory() }}/scripts/audit-package-managers.py {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ justfile_directory() }}/scripts/sort-codex-config.py {{ justfile_directory() }}/scripts/review-pr.py {{ justfile_directory() }}/scripts/sync-codex-casper-models.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    ruff format --check {{ justfile_directory() }}/scripts/harness_policy.py {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
 # CI: lint.yml (lint job)
 # Type-checks Python scripts with ty (scope mirrors pyproject's basedpyright include)
@@ -717,6 +734,7 @@ lint-json:
         [[ "$f" == .claude/skills/gstack/* ]] && continue
         [[ "$f" == *.jsonc.json ]] && continue
         case "$f" in
+            .claude.json) continue ;;
             .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
             .config/cmux/cmux.json) continue ;;
@@ -974,6 +992,7 @@ format-json:
         [[ "$f" == *.jsonc.json ]] && continue
         # Files that are actually JSONC despite .json extension
         case "$f" in
+            .claude.json) continue ;;
             .claude/policy-limits.json) continue ;;
             .config/zed/settings.json) continue ;;
             .config/cmux/cmux.json) continue ;;
@@ -1015,7 +1034,7 @@ format-yaml:
 # Formats Python policy modules with ruff
 [group('configuration')]
 format-python:
-    @ruff format {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    @ruff format {{ justfile_directory() }}/scripts/harness_policy.py {{ justfile_directory() }}/scripts/harness_capabilities.py {{ justfile_directory() }}/scripts/harness_docs.py {{ justfile_directory() }}/scripts/harness_drift.py {{ justfile_directory() }}/scripts/harness_skills.py {{ justfile_directory() }}/.agents/harness/hooks/safety.py
 
 # Formats and hardens shell scripts
 [group('configuration')]
@@ -1059,11 +1078,15 @@ git-filters:
     git config --local filter.antigravity-settings.clean {{ justfile_directory() }}/scripts/mask-antigravity.sh
     git config --local filter.antigravity-settings.smudge cat
     git config --local filter.antigravity-settings.required true
+    git config --local filter.claude-json.clean {{ justfile_directory() }}/scripts/mask-claude-json.sh
+    git config --local filter.claude-json.smudge cat
+    git config --local filter.claude-json.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
     @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
     @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
     @echo "Git filter 'antigravity-settings' installed (strips trustedWorkspaces from ~/.gemini/antigravity-cli/settings.json)"
+    @echo "Git filter 'claude-json' installed (allowlists MCP fields from ~/.claude.json)"
 
 #
 # claude group recipes

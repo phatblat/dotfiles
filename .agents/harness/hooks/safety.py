@@ -86,6 +86,9 @@ PROTECTED_PATHS = re.compile(
 # block routine agent work across every repository, and the cost of that lands
 # on every session, not just on a self-improvement loop.
 #
+# `harness_policy.py` carries the permission baseline every harness renders
+# from, so editing it is equivalent to editing the guard.
+#
 # Fragments end with a non-path lookahead rather than `$` so the same pattern
 # matches both a bare path and a path embedded in a shell command.
 _CONTROL_PLANE_FRAGMENTS = (
@@ -97,6 +100,7 @@ _CONTROL_PLANE_FRAGMENTS = (
     r"/\.agents/harness/generated-paths\.json(?![\w.-])",
     r"/scripts/agent-harnesses\.py(?![\w.-])",
     r"/scripts/agent_plugins\.py(?![\w.-])",
+    r"/scripts/harness_policy\.py(?![\w.-])",
     r"/harness-guard\.(?:ts|py)(?![\w.-])",
     r"/(?:write|bash)-guard\.sh(?![\w.-])",
     # The two guard shims that are not named `harness-guard.*`: opencode and pi

@@ -4,8 +4,44 @@
 
 3 capabilities. Index: [docs/agent-harnesses.md](../agent-harnesses.md)
 
+### permissions.rules · p1
+
+Native allow/deny rules are expressed only where they add to, never weaken, the shared guard decision.
+
+Canonical: `~/scripts/harness_policy.py`
+Verify: `just harness-check`
+
+| Harness | Parity | Mode | Native surface | Evidence | Note |
+|---|---|---|---|---|---|
+| claude | aligned | adapter | - | local · - · - | - |
+| codex | absent | none | sandbox_mode enum only; no per-command allowlist | docs · - · - | - |
+| opencode | aligned | adapter | - | local · - · - | - |
+| pi | absent | none | No native permission-rule surface; the shared guard runs via ~/.pi/agent/extensions/harness.ts | docs · - · - | - |
+| omp | aligned | adapter | tools.approvalMode + bash.patterns via just harness-perms-apply | local · - · - | - |
+| antigravity | aligned | adapter | - | local · - · - | - |
+| cursor | absent | none | No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.py | docs · - · - | - |
+| grok | absent | none | No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.py | docs · - · - | - |
+| crush | absent | none | No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.py | docs · - · - | - |
+
+### permissions.approval_modes · p1
+
+The harness's interactive approval modes are known, and the default mode does not bypass the guard.
+
+Canonical: `~/scripts/harness_policy.py`
+Verify: `just harness-check`
+
+| Harness | Parity | Mode | Native surface | Evidence | Note |
+|---|---|---|---|---|---|
+| claude | aligned | adapter | `permissions.defaultMode` | local · - · - | Resolved default: auto |
+| codex | aligned | native | `sandbox_mode` | local · - · - | Resolved default: read-only |
+| opencode | aligned | adapter | `permission.edit` | local · - · - | Resolved default: ask |
+| pi | aligned | native | `defaultProjectTrust` | local · - · - | Resolved default: ask |
+| omp | aligned | adapter | `tools.approvalMode` | local · - · - | Resolved default: write |
+| antigravity | aligned | native | `toolPermission` | local · - · - | Resolved default: proceed-in-sandbox |
+| cursor | unknown | none | - | - | - |
+| grok | unknown | none | - | - | - |
+| crush | unknown | none | - | - | - |
+
 ### Not yet researched
 
-- `permissions.rules` · p1 — Native allow/deny rules are expressed only where they add to, never weaken, the shared guard decision.
 - `permissions.sandbox` · p2 — Whether the harness can run tools inside an OS-level sandbox, and how that interacts with the shared guard.
-- `permissions.approval_modes` · p1 — The harness's interactive approval modes are known, and the default mode does not bypass the guard.

@@ -17,15 +17,13 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | code-simplifier@claude-plugins-official | disabled | missing |
 | codex-app-tools@openai-bundled | missing | enabled |
 | computer-use@openai-bundled | missing | enabled |
-| context-mode@context-mode | enabled | disabled |
 | csharp-lsp@claude-plugins-official | missing | enabled |
 | documents@openai-primary-runtime | missing | enabled |
 | gopls-lsp@claude-plugins-official | enabled | enabled |
 | hookify@claude-plugins-official | enabled | disabled |
 | jdtls-lsp@claude-plugins-official | missing | enabled |
 | kotlin-lsp@claude-plugins-official | enabled | enabled |
-| linear-cli@linear-cli | enabled | enabled |
-| linear@claude-plugins-official | disabled | missing |
+| linear-cli@linear-cli | missing | enabled |
 | lua-lsp@claude-plugins-official | enabled | enabled |
 | oh-my-claudecode@omc | enabled | missing |
 | pdf@openai-primary-runtime | missing | enabled |

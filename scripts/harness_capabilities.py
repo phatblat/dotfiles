@@ -495,9 +495,24 @@ CAPABILITIES: list[Capability] = [
                 ),
             ),
             "opencode": Cell(
-                parity="unknown",
-                surface=(
-                    "No direct equivalent; use skill permissions or command wrappers"
+                parity="absent",
+                surface="No per-skill invocation-policy field",
+                evidence=Evidence(
+                    kind="docs",
+                    ref="https://opencode.ai/docs/permissions/",
+                    version="1.18.25",
+                    date="2026-09-02",
+                ),
+                note=(
+                    "Permissions are keyed by tool (bash/edit/skill/...) and match "
+                    "input patterns, not an invocation-policy flag; `skill` "
+                    "permission can only allow/ask/deny loading a named skill "
+                    "outright, it cannot distinguish implicit model-triggered "
+                    "invocation from explicit user invocation. To keep a rarely "
+                    "used procedural skill out of context entirely, move it out "
+                    "of scanned skill paths or gate it behind `[[skills.config]] "
+                    "enabled = false`-style per-project config; there is no "
+                    "Codex-equivalent policy toggle to port."
                 ),
             ),
             "pi": Cell(parity="unknown", surface="Local adapter or command wrapper"),
@@ -1195,6 +1210,73 @@ CAPABILITIES: list[Capability] = [
             "Native allow/deny rules are expressed only where they add to, never "
             "weaken, the shared guard decision."
         ),
+        canonical=("~/scripts/harness_policy.py",),
+        verify="just harness-check",
+        cells={
+            "claude": Cell(
+                parity="aligned",
+                mode="adapter",
+                artifacts=("~/.claude/settings.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+            ),
+            "opencode": Cell(
+                parity="aligned",
+                mode="adapter",
+                artifacts=("~/.config/opencode/opencode.jsonc",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+            ),
+            "antigravity": Cell(
+                parity="aligned",
+                mode="adapter",
+                artifacts=("~/.gemini/antigravity-cli/settings.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+            ),
+            "omp": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface=(
+                    "tools.approvalMode + bash.patterns via just harness-perms-apply"
+                ),
+                evidence=Evidence(kind="local", ref="just harness-perms-apply"),
+            ),
+            "codex": Cell(
+                parity="absent",
+                surface="sandbox_mode enum only; no per-command allowlist",
+                evidence=Evidence(kind="docs", ref="codex config.toml reference"),
+            ),
+            "pi": Cell(
+                parity="absent",
+                surface=(
+                    "No native permission-rule surface; the shared guard runs via "
+                    "~/.pi/agent/extensions/harness.ts"
+                ),
+                evidence=Evidence(kind="docs", ref="pi CLI config reference"),
+            ),
+            "grok": Cell(
+                parity="absent",
+                surface=(
+                    "No native permission-rule surface; the shared guard runs via "
+                    "~/.grok/scripts/harness-guard.py"
+                ),
+                evidence=Evidence(kind="docs", ref="grok CLI config reference"),
+            ),
+            "crush": Cell(
+                parity="absent",
+                surface=(
+                    "No native permission-rule surface; the shared guard runs via "
+                    "~/.config/crush/hooks/harness-guard.py"
+                ),
+                evidence=Evidence(kind="docs", ref="crush CLI config reference"),
+            ),
+            "cursor": Cell(
+                parity="absent",
+                surface=(
+                    "No native permission-rule surface; the shared guard runs via "
+                    "~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
+                ),
+                evidence=Evidence(kind="docs", ref="cursor CLI config reference"),
+            ),
+        },
     ),
     Capability(
         id="permissions.sandbox",
@@ -1215,6 +1297,57 @@ CAPABILITIES: list[Capability] = [
             "The harness's interactive approval modes are known, and the default "
             "mode does not bypass the guard."
         ),
+        canonical=("~/scripts/harness_policy.py",),
+        verify="just harness-check",
+        cells={
+            "claude": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface="`permissions.defaultMode`",
+                artifacts=("~/.claude/settings.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+                note="Resolved default: auto",
+            ),
+            "omp": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface="`tools.approvalMode`",
+                evidence=Evidence(kind="local", ref="just harness-perms-apply"),
+                note="Resolved default: write",
+            ),
+            "opencode": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface="`permission.edit`",
+                artifacts=("~/.config/opencode/opencode.jsonc",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+                note="Resolved default: ask",
+            ),
+            "antigravity": Cell(
+                parity="aligned",
+                mode="native",
+                surface="`toolPermission`",
+                evidence=Evidence(
+                    kind="local", ref="~/.gemini/antigravity-cli/settings.json"
+                ),
+                note="Resolved default: proceed-in-sandbox",
+            ),
+            "codex": Cell(
+                parity="aligned",
+                mode="native",
+                surface="`sandbox_mode`",
+                evidence=Evidence(kind="local", ref="~/.codex/config.toml"),
+                note="Resolved default: read-only",
+            ),
+            "pi": Cell(
+                parity="aligned",
+                mode="native",
+                surface="`defaultProjectTrust`",
+                artifacts=("~/.pi/agent/settings.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+                note="Resolved default: ask",
+            ),
+        },
     ),
     Capability(
         id="mcp.dependencies",
@@ -1225,35 +1358,89 @@ CAPABILITIES: list[Capability] = [
             "A skill or agent that needs an MCP server declares it where the "
             "harness can act on the declaration."
         ),
+        canonical=("~/scripts/harness_policy.py",),
+        verify="just harness-check",
         porting=(
             "Declare dependencies near the harness that can enforce or install them."
         ),
         note="Dependency metadata is advisory unless the harness enforces it.",
         cells={
             "claude": Cell(
-                parity="unknown",
+                parity="aligned",
+                mode="adapter",
                 surface="`.mcp.json`, settings, or agent `mcpServers`",
+                artifacts=("~/.mcp.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
             ),
             "codex": Cell(
-                parity="unknown",
+                parity="partial",
                 surface=(
                     "`agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP"
                 ),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+                next_action=(
+                    "hand-add [mcp_servers.filesystem]; validated by just harness-check"
+                ),
             ),
-            "opencode": Cell(parity="unknown", surface="`mcp` config"),
-            "pi": Cell(parity="unknown", surface="Extension or future MCP bridge"),
-            "omp": Cell(parity="unknown", surface="~/.omp/agent/mcp.json"),
+            "opencode": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface="`mcp` config",
+                artifacts=("~/.config/opencode/opencode.jsonc",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+            ),
+            "pi": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface="Extension or future MCP bridge",
+                artifacts=("~/.pi/agent/mcp.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+            ),
+            "omp": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface="~/.omp/agent/mcp.json",
+                artifacts=("~/.omp/agent/mcp.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+            ),
             "antigravity": Cell(
-                parity="unknown", surface="Generated `mcp.json`, unverified"
+                parity="aligned",
+                mode="adapter",
+                surface="Generated `mcp.json`",
+                artifacts=("~/.agents/harness/adapters/antigravity/mcp.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
             ),
             "cursor": Cell(
-                parity="unknown", surface="Generated `mcp.json`, unverified"
+                parity="aligned",
+                mode="adapter",
+                surface="Generated `mcp.json`",
+                artifacts=("~/.cursor/mcp.json",),
+                evidence=Evidence(kind="local", ref="just harness-check"),
+                note=(
+                    "Written to disk by generate, but intentionally not "
+                    "git-tracked: ~/.cursor/ ships its own nested .gitignore "
+                    "with broad `!plugins/**`/`!skills-cursor/**` un-ignores "
+                    "that reactivate once the parent pattern narrows past a "
+                    "bare directory exclude, exposing cached plugin/session "
+                    "data. Regenerated locally by `just harness-generate`."
+                ),
             ),
             "grok": Cell(
-                parity="unknown", surface="`[mcp_servers.*]` in `~/.grok/config.toml`"
+                parity="aligned",
+                mode="native",
+                surface=(
+                    "[compat.claude]/[compat.cursor] mcps = true imports the "
+                    "generated Claude and Cursor configs"
+                ),
+                evidence=Evidence(kind="local", ref="~/.grok/config.toml"),
             ),
             "crush": Cell(
-                parity="unknown", surface="`mcp add` in `~/.config/crush/crushrc`"
+                parity="absent",
+                surface=(
+                    "~/.config/crush/crush.json is a protected credential path; "
+                    "no CLI mcp subcommand"
+                ),
+                evidence=Evidence(kind="runtime", ref="crush mcp"),
             ),
         },
     ),

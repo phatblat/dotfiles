@@ -1,0 +1,275 @@
+{
+  "mcpServers": {},
+  "projects": {
+    "/": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat": {
+      "allowedTools": [],
+      "disabledMcpServers": [
+        "claude.ai Gmail",
+        "claude.ai Google Calendar",
+        "claude.ai Linear",
+        "plugin:linear:linear",
+        "claude.ai Google Drive",
+        "tolaria",
+        "github",
+        "filesystem",
+        "context7",
+        "exa"
+      ],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {
+        "context7": {
+          "args": [
+            "-y",
+            "@upstash/context7-mcp"
+          ],
+          "command": "npx",
+          "env": {},
+          "type": "stdio"
+        },
+        "exa": {
+          "args": [
+            "-y",
+            "exa-mcp-server"
+          ],
+          "command": "npx",
+          "env": {},
+          "type": "stdio"
+        },
+        "filesystem": {
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            "/Users/phatblat"
+          ],
+          "command": "npx",
+          "env": {},
+          "type": "stdio"
+        }
+      }
+    },
+    "/Users/phatblat/.claude/worktrees/eval-framework-discussion-53630d": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": []
+    },
+    "/Users/phatblat/.claude/worktrees/self-improving-agent-harness-8810da": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": []
+    },
+    "/Users/phatblat/2ndBrain": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/2ndBrain.tolaria/Getting Started": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/agents/agentic-review": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/agents/ditto-engineering-take-home-challenge": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/agents/ground-control": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/agents/openclaw/phatlab": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/claude/claude-code-review": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/claude/claude-config-schema": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/claude/gantry": {
+      "allowedTools": [],
+      "disabledMcpServers": [
+        "claude.ai Gmail",
+        "claude.ai Google Calendar",
+        "claude.ai Google Drive",
+        "claude.ai Linear",
+        "plugin:linear:linear"
+      ],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/claude/ground-control": {
+      "allowedTools": [],
+      "disabledMcpServers": [
+        "claude.ai Gmail",
+        "claude.ai Google Calendar",
+        "claude.ai Linear",
+        "claude.ai Google Drive",
+        "plugin:linear:linear"
+      ],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/claude/local-mlx": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/claude/rig": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/ditto/build-infra": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enableAllProjectMcpServers": false,
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/ebay/scraping": {
+      "allowedTools": [],
+      "disabledMcpServers": [
+        "claude.ai Gmail",
+        "claude.ai Google Calendar",
+        "claude.ai Google Drive",
+        "claude.ai Linear",
+        "plugin:linear:linear"
+      ],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/github/jolt": {
+      "allowedTools": [],
+      "disabledMcpServers": [
+        "claude.ai Gmail",
+        "claude.ai Google Calendar",
+        "claude.ai Google Drive",
+        "claude.ai Linear",
+        "plugin:linear:linear"
+      ],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/hermes": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/ldg/wave-rider": {
+      "allowedTools": [],
+      "disabledMcpServers": [
+        "claude.ai Gmail",
+        "claude.ai Google Calendar",
+        "claude.ai Google Drive",
+        "claude.ai Linear",
+        "plugin:linear:linear"
+      ],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/mise/mise-brew": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/dev/openclaw/phatlab": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/gt": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/gt/dotfiles/.repo.git": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/gt/wave_rider/.repo.git": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
+    "/Users/phatblat/gt/wave_rider/crew/phatblat": {
+      "allowedTools": [],
+      "disabledMcpServers": [
+        "claude.ai Gmail",
+        "claude.ai Google Calendar",
+        "claude.ai Linear",
+        "plugin:linear:linear"
+      ],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    }
+  }
+}
