@@ -1,0 +1,35 @@
+# agentic-review deployment config for phatblat/dotfiles.
+#
+# endpoint is blank on purpose: the workflow's `endpoint` input fills any
+# blank binding at runtime (vars.AGENTIC_REVIEW_ENDPOINT). A non-blank
+# value here would always win over that input.
+#
+# reasoning_effort: none is load-bearing, not a preference. This model
+# reasons by default and bills reasoning tokens as completion tokens, so a
+# persona budget sized for its answer gets spent thinking before the answer
+# starts (docs/setup.md:47-82).
+version: 1
+
+models:
+  triage:
+    endpoint: ""
+    model: Inferact/Qwen3.8-27B-NVFP4
+    context_window: 131072
+    reasoning_effort: none
+  review:
+    endpoint: ""
+    model: Inferact/Qwen3.8-27B-NVFP4
+    context_window: 131072
+    reasoning_effort: none
+  verify:
+    endpoint: ""
+    model: Inferact/Qwen3.8-27B-NVFP4
+    context_window: 131072
+    reasoning_effort: none
+
+review:
+  gate:
+    # Advisory check, so red must mean something. Every dotfiles daily PR
+    # carries agent-config churn that classifies as `source`, and the
+    # default fail_on: nit would put a red X on essentially all of them.
+    fail_on: blocker
