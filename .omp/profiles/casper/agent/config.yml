@@ -1,11 +1,10 @@
 modelRoles:
-  default: casper/kimi-k3:high
-  tiny: casper/auto:minimal
-  designer: casper/auto:medium
-  task: casper/auto:medium
+  default: casper/glm-5.3:high
+  task: casper/auto
   commit: casper/auto:minimal
-  advisor: casper/auto:medium
-  smol: casper/kimi-k3:low
+  plan: casper/kimi-k3
+  slow: casper/nemotron-3-ultra
+  smol: casper/glm-5.3
 enabledModels:
   - casper/auto
   - casper/kimi-k3

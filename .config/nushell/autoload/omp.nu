@@ -1,14 +1,10 @@
-# Launch OMP with home-directory sessions allowed and the machine default profile
-# from OMP_DEFAULT_PROFILE (no --profile when that variable is empty).
-# Caller-supplied --allow-home/--profile always win; neither flag is duplicated.
+# Launch OMP with home-directory sessions allowed. Profile selection is
+# env-based: omp reads OMP_PROFILE itself (set in ~/.env), and an explicit
+# profile flag on the command line overrides that variable.
 export def --wrapped omp [...args] {
-    mut extra = []
-    if not ($args | any {|a| $a == "--allow-home" }) {
-        $extra = ($extra | append "--allow-home")
+    if ($args | any {|a| $a == "--allow-home" }) {
+        ^omp ...$args
+    } else {
+        ^omp --allow-home ...$args
     }
-    let profile = ($env.OMP_DEFAULT_PROFILE? | default "" | str trim)
-    if ($profile | is-not-empty) and (not ($args | any {|a| $a == "--profile" or ($a | str starts-with "--profile=") })) {
-        $extra = ($extra | append ["--profile" $profile])
-    }
-    ^omp ...$extra ...$args
 }

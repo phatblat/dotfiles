@@ -132,7 +132,7 @@ providers:
         input: [text]
         contextWindow: 500000
         maxTokens: 500000
-        cost: { input: 0.00, output: 0.00, cacheRead: 0.00, cacheWrite: 0 }
+        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
         compat:
           # Casper buffers each tool call and emits it as a single delta, so the
           # stream carries only SSE comments while arguments generate (~20 tok/s,

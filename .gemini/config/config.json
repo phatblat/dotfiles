@@ -1,3 +1,6 @@
 {
-  "plugins": {}
+  "plugins": {},
+  "userSettings": {
+    "remoteControlHostname": "dto-a165-chatelain-zero-rocket"
+  }
 }

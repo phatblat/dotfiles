@@ -91,3 +91,7 @@
 {"capability":"mcp.dependencies","date":"2026-09-03","detail":"","field":"parity","from":"unknown","harness":"pi","to":"aligned","version_from":"0.84.4","version_to":"0.84.4"}
 {"capability":"mcp.dependencies","date":"2026-09-03","detail":"","field":"mode","from":"none","harness":"pi","to":"adapter","version_from":"0.84.4","version_to":"0.84.4"}
 {"capability":"-","date":"2026-09-03","detail":"","field":"version","from":"omp/18.1.2","harness":"omp","to":"omp/18.1.4","version_from":"omp/18.1.2","version_to":"omp/18.1.4"}
+{"capability":"-","date":"2026-09-04","detail":"","field":"version","from":"1.1.24","harness":"antigravity","to":"1.1.25","version_from":"1.1.24","version_to":"1.1.25"}
+{"capability":"-","date":"2026-09-04","detail":"","field":"version","from":"codex-cli 0.152.0","harness":"codex","to":"codex-cli 0.152.1","version_from":"codex-cli 0.152.0","version_to":"codex-cli 0.152.1"}
+{"capability":"-","date":"2026-09-04","detail":"","field":"version","from":"omp/18.1.4","harness":"omp","to":"omp/18.1.6","version_from":"omp/18.1.4","version_to":"omp/18.1.6"}
+{"capability":"-","date":"2026-09-04","detail":"","field":"version","from":"1.18.25","harness":"opencode","to":"1.18.26","version_from":"1.18.25","version_to":"1.18.26"}

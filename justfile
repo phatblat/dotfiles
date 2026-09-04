@@ -1123,15 +1123,21 @@ usage-board:
 # nix group recipes
 #
 
-# Installs Determinate Nix
+# Installs Determinate Nix (macOS .pkg alternative: https://dtr.mn/determinate-nix)
 [group('nix')]
 install-nix:
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
-# Restarts the Determinate Nix daemon
+# Restarts the Determinate Nix daemon (ensures the store volume is mounted first)
 [group('nix')]
 restart-nix:
+    sudo launchctl kickstart system/systems.determinate.nix-store
     sudo launchctl kickstart -k system/systems.determinate.nix-daemon
+
+# Repairs Nix shell hooks after a macOS upgrade (`repair sequoia` recovers _nixbld users)
+[group('nix')]
+repair-nix:
+    /nix/nix-installer repair
 
 # Uninstalls Determinate Nix
 [group('nix')]

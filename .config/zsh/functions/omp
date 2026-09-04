@@ -1,20 +1,14 @@
 #!/usr/bin/env zsh
 
-# omp - Launch OMP with home-directory sessions allowed and the machine default
-# profile from OMP_DEFAULT_PROFILE (no --profile when that variable is empty).
-# Caller-supplied --allow-home/--profile always win; neither flag is duplicated.
-local has_allow_home=0 has_profile=0 arg
+# omp - Launch OMP with home-directory sessions allowed. Profile selection is
+# env-based: omp reads OMP_PROFILE itself (set in ~/.env), and an explicit
+# profile flag on the command line overrides that variable.
+local arg
 for arg in "$@"; do
-    case $arg in
-    --allow-home) has_allow_home=1 ;;
-    --profile | --profile=*) has_profile=1 ;;
-    esac
+    if [[ $arg == --allow-home ]]; then
+        command omp "$@"
+        return
+    fi
 done
 
-local -a extra=()
-((has_allow_home)) || extra+=(--allow-home)
-if ((! has_profile)) && [[ -n ${OMP_DEFAULT_PROFILE:-} ]]; then
-    extra+=(--profile "$OMP_DEFAULT_PROFILE")
-fi
-
-command omp "${extra[@]}" "$@"
+command omp --allow-home "$@"

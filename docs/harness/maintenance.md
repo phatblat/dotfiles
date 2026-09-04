@@ -13,15 +13,15 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.236 (Claude Code) · 2026-09-03 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.152.0 · 2026-09-03 | - |
-| opencode | aligned | shared | - | probe · 1.18.25 · 2026-09-03 | - |
-| pi | aligned | shared | - | probe · 0.84.4 · 2026-09-03 | - |
-| omp | aligned | shared | - | probe · omp/18.1.4 · 2026-09-03 | - |
-| antigravity | aligned | shared | - | probe · 1.1.24 · 2026-09-03 | - |
-| cursor | aligned | shared | - | probe · 2026.07.01-777f564 · 2026-09-03 | - |
-| grok | aligned | shared | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-03 | - |
-| crush | aligned | shared | - | probe · crush version v0.92.0 · 2026-09-03 | - |
+| claude | aligned | shared | - | probe · 2.1.236 (Claude Code) · 2026-09-04 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.152.1 · 2026-09-04 | - |
+| opencode | aligned | shared | - | probe · 1.18.26 · 2026-09-04 | - |
+| pi | aligned | shared | - | probe · 0.84.4 · 2026-09-04 | - |
+| omp | aligned | shared | - | probe · omp/18.1.6 · 2026-09-04 | - |
+| antigravity | aligned | shared | - | probe · 1.1.25 · 2026-09-04 | - |
+| cursor | aligned | shared | - | probe · 2026.07.01-777f564 · 2026-09-04 | - |
+| grok | aligned | shared | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-04 | - |
+| crush | aligned | shared | - | probe · crush version v0.92.0 · 2026-09-04 | - |
 
 ### maintenance.config_validation · p1
 
@@ -33,8 +33,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config --pure | probe · 1.18.25 · 2026-09-03 | - |
-| pi | aligned | native | pi list --no-approve | probe · 0.84.4 · 2026-09-03 | - |
+| opencode | aligned | native | opencode debug config --pure | probe · 1.18.26 · 2026-09-04 | - |
+| pi | aligned | native | pi list --no-approve | probe · 0.84.4 · 2026-09-04 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |

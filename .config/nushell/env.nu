@@ -47,6 +47,19 @@ $env.NU_VENDOR_AUTOLOAD_DIRS = [
 # Add homebrew to PATH
 $env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
 
+# Nix (Determinate). There is no upstream nushell hook — nix-daemon.sh is
+# POSIX-only — so replicate its PATH setup here. Gated on the store being
+# mounted so a missing/unmounted /nix is a no-op.
+let _nix_daemon_bin = "/nix/var/nix/profiles/default/bin"
+if ($_nix_daemon_bin | path exists) {
+    let _xdg_state = ($env.XDG_STATE_HOME? | default ($nu.home-dir | path join ".local" "state"))
+    let _nix_profile_new = ($_xdg_state | path join "nix" "profile")
+    let _nix_profile_legacy = ($nu.home-dir | path join ".nix-profile")
+    let _nix_link = (if ($_nix_profile_new | path exists) { $_nix_profile_new } else { $_nix_profile_legacy })
+    $env.NIX_PROFILES = $"/nix/var/nix/profiles/default ($_nix_link)"
+    $env.PATH = ($env.PATH | prepend [($_nix_link | path join "bin") $_nix_daemon_bin] | uniq)
+}
+
 # Android SDK
 $env.ANDROID_HOME = ($nu.home-dir | path join 'Library' 'Android' 'sdk')
 let _ndk_dir = ($env.ANDROID_HOME | path join 'ndk')
