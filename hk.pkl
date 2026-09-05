@@ -249,9 +249,13 @@ local linters = new Mapping<String, Step> {
 
     ["hk-config"] {
         glob = List("hk.pkl", ".config/mise/config.toml")
+        // `hk validate` prints its success line via info! (stderr) and hk's
+        // end-of-run summary echoes every step's stderr in UI mode, so a green
+        // run looked like a failure. --quiet drops info output only: errors and
+        // warnings still print, and the exit code is unchanged.
         check =
             """
-            hk validate
+            hk validate --quiet
             scripts/check-hk-version.sh
             """
     }
@@ -261,15 +265,25 @@ hooks {
     ["pre-commit"] {
         fix = true
         // Without stashing, a partially staged file is formatted as a whole and
-        // then staged as a whole, silently committing in-progress hunks.
+        // then staged as a whole, silently committing in-progress hunks. So hk
+        // removes worktree-only changes, runs the fix steps against the staged
+        // content, stages the results, then merges the stashed edits back —
+        // that is the "stash – Restoring unstaged changes (manual)" line; the
+        // "(manual)" is a constant label in hk's restore job, not a fallback.
         //
-        // Not "git": `git stash push --include-untracked` refuses to run when
-        // the unstaged set includes a path under a gitignored directory that
-        // holds force-tracked files (.harness/*, .heroku/*) — "The following
-        // paths are ignored by one of your .gitignore files". patch-file
-        // isolates the same way via a diff instead of git stash, and isn't
-        // subject to that check.
-        stash = "patch-file"
+        // "git" is the only mechanism hk 1.57.0 implements: "patch-file" is
+        // documented as an alias of it, and src/git.rs still reads "removed
+        // patch-file custom path for now", so every method but "none" runs
+        // `git stash push --keep-index -m hk --include-untracked`. The patches
+        // under ~/.local/state/hk/patches are backups of that stash entry.
+        //
+        // If `git stash push --include-untracked` ever refuses again because
+        // the unstaged set touches a gitignored directory holding force-tracked
+        // files (.harness/*, .heroku/*) — "The following paths are ignored by
+        // one of your .gitignore files" — the lever is HK_STASH_UNTRACKED=false
+        // (it drops --include-untracked; hk defaults it to true), not the
+        // stash method.
+        stash = "git"
         stage = true
         steps = linters
     }
