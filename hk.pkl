@@ -1,30 +1,288 @@
-amends "package://github.com/jdx/hk/releases/download/v1.45.0/hk@1.45.0#/Config.pkl"
-import "package://github.com/jdx/hk/releases/download/v1.45.0/hk@1.45.0#/Builtins.pkl"
+// Lint/format orchestration and git hooks for the dotfiles repo (root is $HOME).
+//
+// Everything:   `just lint` (hk check --all) / `just format` (hk fix --all)
+// One file:     `hk fix <path>`
+// Install hooks: `just git-hooks`
+// Bypass once:  `HK=0 git commit ...` or `git commit --no-verify`
+// Drop a step:  `HK_SKIP_STEPS=shellcheck-zsh git commit ...`
+//
+// hk must run with the repo root as its working directory: step commands and
+// {{files}} are repo-root-relative and hk never chdirs. `just` recipes and git
+// hooks already run there; use `hk --cd ~ ...` from anywhere else.
+//
+// The pinned package version must equal the installed hk (enforced by the
+// hk-config step): hk embeds the Pkl package for its own version and evaluates
+// this file with no network request, while any other pin is downloaded.
+amends "package://github.com/jdx/hk/releases/download/v1.57.0/hk@1.57.0#/Config.pkl"
+
+min_hk_version = "1.57.0"
+
+// Vendored third-party tree: never linted, never reformatted.
+local gstack = ".claude/skills/gstack/*"
 
 local linters = new Mapping<String, Step> {
-    // Add linters here. Examples:
-    // ["prettier"] = Builtins.prettier
-    // ["eslint"] = Builtins.eslint
-    // ["ruff"] = Builtins.ruff
+    // Declared first with exclusive = true, so it runs alone before every other
+    // step in every hook.
+    ["guard-test-identity"] {
+        exclusive = true
+        check = "scripts/git-guard-test-identity.sh"
+    }
 
-    // Or define custom steps:
-    // ["custom"] {
-    //     glob = "**/*.py"
-    //     check = "mypy {{ files }}"
-    // }
+    ["gitignore-sort"] {
+        glob = ".gitignore"
+        check = "scripts/sort-gitignore < {{files}} | diff --brief - {{files}}"
+        fix = "scripts/sort-gitignore < {{files}} | sponge {{files}}"
+    }
+
+    ["codex-config-sort"] {
+        glob = ".codex/config.toml"
+        check = "python3 scripts/sort-codex-config.py --check {{files}}"
+        fix = "python3 scripts/sort-codex-config.py {{files}}"
+    }
+
+    // `mise fmt` with no arguments formats whatever config HOME resolves to,
+    // which is the wrong file inside a linked worktree. --stdin makes it
+    // path-exact.
+    ["mise-fmt"] {
+        glob = ".config/mise/config.toml"
+        check = "mise fmt --stdin < {{files}} | diff --brief - {{files}}"
+        fix = "mise fmt --stdin < {{files}} | sponge {{files}}"
+    }
+
+    ["mise-tools-sort"] {
+        glob = ".config/mise/config.toml"
+        depends = "mise-fmt"
+        check = "python3 scripts/sort-tools.py --check {{files}}"
+        fix = "python3 scripts/sort-tools.py {{files}}"
+    }
+
+    ["json-format"] {
+        glob = "*.json"
+        exclude =
+            List(
+                gstack,
+                "*.jsonc.json",
+                // Cursor rewrites these in its own key order on every settings change
+                ".cursor/cli-config.json",
+                ".cursor/mcp.json",
+                // JSONC despite the .json extension
+                ".claude.json",
+                ".claude/policy-limits.json",
+                ".config/zed/settings.json",
+                ".config/cmux/cmux.json",
+                "Library/Application Support/Claude/claude_desktop_config.json",
+                // Gitignored (.gitignore: "Library/Application Support/Code/") but
+                // untracked, and hk's untracked-file discovery does not honor that
+                // directory-only pattern for files under it — exclude explicitly.
+                "Library/Application Support/Code/User/chatLanguageModels.json",
+                "Library/Application Support/Code/User/syncLocalSettings.json",
+            )
+        batch = true
+        check = "python3 scripts/format-json.py --check {{files}}"
+        fix = "python3 scripts/format-json.py {{files}}"
+    }
+
+    ["prettier-jsonc"] {
+        glob = List("*.jsonc", ".config/zed/settings.json", ".config/cmux/cmux.json")
+        // opencode.jsonc is a generated artifact validated with strict
+        // json.loads; prettier's jsonc parser adds trailing commas.
+        exclude = List(gstack, ".config/opencode/opencode.jsonc")
+        batch = true
+        check = "prettier --parser jsonc --check {{files}}"
+        check_list_files = "prettier --parser jsonc --list-different {{files}}"
+        fix = "prettier --parser jsonc --write {{files}}"
+    }
+
+    ["prettier-yaml"] {
+        glob = List("*.yml", "*.yaml")
+        exclude = List(gstack)
+        batch = true
+        check = "prettier --check {{files}}"
+        check_list_files = "prettier --list-different {{files}}"
+        fix = "prettier --write {{files}}"
+    }
+
+    ["yamllint"] {
+        glob = List("*.yml", "*.yaml")
+        exclude = List(gstack)
+        // Judge the formatted result, matching today's format-then-check order.
+        depends = "prettier-yaml"
+        batch = true
+        check = "mise exec -- yamllint {{files}}"
+    }
+
+    // Both Python scopes are the recipes' hand-picked file lists, reproduced
+    // exactly: widening them introduces pre-existing ruff failures.
+    ["ruff-check"] {
+        glob =
+            List(
+                "scripts/agent-harnesses.py",
+                "scripts/harness_policy.py",
+                "scripts/harness-apply.py",
+                "scripts/harness_capabilities.py",
+                "scripts/harness_docs.py",
+                "scripts/harness_drift.py",
+                "scripts/harness_skills.py",
+                "scripts/sort-tools.py",
+                "scripts/format-json.py",
+                "scripts/audit-package-managers.py",
+                "scripts/audit-ignored-config.py",
+                "scripts/sort-codex-config.py",
+                "scripts/review-pr.py",
+                "scripts/sync-codex-casper-models.py",
+                ".agents/harness/hooks/safety.py",
+            )
+        batch = true
+        check = "ruff check {{files}}"
+    }
+
+    ["ruff-format"] {
+        glob =
+            List(
+                "scripts/harness_policy.py",
+                "scripts/harness_capabilities.py",
+                "scripts/harness_docs.py",
+                "scripts/harness_drift.py",
+                "scripts/harness_skills.py",
+                ".agents/harness/hooks/safety.py",
+            )
+        batch = true
+        check = "ruff format --check {{files}}"
+        fix = "ruff format {{files}}"
+    }
+
+    // Zsh autoload functions: extensionless, zsh dialect, 4-space indent.
+    ["shfmt-zsh"] {
+        glob = ".config/zsh/functions/*"
+        // `edit` uses zsh-only syntax (${=VAR}) that shfmt cannot parse.
+        exclude = List(".config/zsh/functions/edit", ".config/zsh/functions/.*")
+        batch = true
+        check = "shfmt -ln zsh -i 4 -sr -d {{files}}"
+        fix = "shfmt -ln zsh -i 4 -sr -w {{files}}"
+    }
+
+    ["shellharden-zsh"] {
+        glob = ".config/zsh/functions/*"
+        // These rely on intentional word-splitting.
+        exclude =
+            List(
+                ".config/zsh/functions/version_build",
+                ".config/zsh/functions/version_market",
+                ".config/zsh/functions/xccheck",
+                ".config/zsh/functions/.*",
+            )
+        depends = "shfmt-zsh"
+        batch = true
+        check = "shellharden --check {{files}}"
+        fix = "shellharden --replace {{files}}"
+    }
+
+    // ksh dialect for zsh; SC2168 (local outside a function) is inherent to
+    // autoload files. Check-only: shellcheck's --format=diff autofix is
+    // deliberately not wired up for zsh-dialect files.
+    ["shellcheck-zsh"] {
+        glob = ".config/zsh/functions/*"
+        exclude = List(".config/zsh/functions/.*")
+        depends = "shellharden-zsh"
+        batch = true
+        check = "shellcheck -s ksh -e SC2168 {{files}}"
+    }
+
+    ["shfmt-github"] {
+        glob = ".github/scripts/*.sh"
+        batch = true
+        check = "shfmt -ln bash -i 4 -sr -d {{files}}"
+        fix = "shfmt -ln bash -i 4 -sr -w {{files}}"
+    }
+
+    ["shellharden-github"] {
+        glob = ".github/scripts/*.sh"
+        depends = "shfmt-github"
+        batch = true
+        check = "shellharden --check {{files}}"
+        fix = "shellharden --replace {{files}}"
+    }
+
+    ["shellcheck-github"] {
+        glob = ".github/scripts/*.sh"
+        depends = "shellharden-github"
+        batch = true
+        check = "shellcheck {{files}}"
+    }
+
+    ["shellcheck-bin"] {
+        glob = "bin/*.sh"
+        // Vendored upstream installer.
+        exclude = List("bin/dotnet-install.sh")
+        batch = true
+        check = "shellcheck {{files}}"
+    }
+
+    ["nushell-config"] {
+        glob = ".config/nushell/config.nu"
+        check = "nu --commands 'source {{files}}'"
+    }
+
+    // config.nu does not source autoload/, and `nu -c` never loads it, so these
+    // files need their own parse check. One nu process covers the whole
+    // directory (~0.3s); the glob only decides whether the step runs at all.
+    ["nushell-autoload"] {
+        glob = ".config/nushell/autoload/*.nu"
+        check = #"nu --commands 'let bad = (ls .config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'"#
+    }
+
+    ["just-fmt"] {
+        glob = "justfile"
+        check = "just --unstable --fmt --check --justfile {{files}}"
+        fix = "just --unstable --fmt --justfile {{files}}"
+    }
+
+    // hk filters symlinks out of every other step; this one exists to inspect
+    // them, so it opts back in. No glob: it judges whatever files the run
+    // covers.
+    ["symlinks"] {
+        allow_symlinks = true
+        allow_binary = true
+        batch = true
+        check = "scripts/check-symlinks.sh {{files}}"
+    }
+
+    ["hk-config"] {
+        glob = List("hk.pkl", ".config/mise/config.toml")
+        check =
+            """
+            hk validate
+            scripts/check-hk-version.sh
+            """
+    }
 }
 
 hooks {
     ["pre-commit"] {
         fix = true
-        stash = "git"
+        // Without stashing, a partially staged file is formatted as a whole and
+        // then staged as a whole, silently committing in-progress hunks.
+        //
+        // Not "git": `git stash push --include-untracked` refuses to run when
+        // the unstaged set includes a path under a gitignored directory that
+        // holds force-tracked files (.harness/*, .heroku/*) — "The following
+        // paths are ignored by one of your .gitignore files". patch-file
+        // isolates the same way via a diff instead of git stash, and isn't
+        // subject to that check.
+        stash = "patch-file"
+        stage = true
         steps = linters
     }
+    // `hk fix` / `hk check`, driven by `just format` / `just lint`. stage =
+    // false so a bulk format or a single-file `hk fix` from an editor hook never
+    // touches the index.
     ["fix"] {
         fix = true
+        stage = false
         steps = linters
     }
     ["check"] {
+        stage = false
         steps = linters
     }
 }
