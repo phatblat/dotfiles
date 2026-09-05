@@ -126,6 +126,7 @@ local linters = new Mapping<String, Step> {
                 "scripts/sort-tools.py",
                 "scripts/format-json.py",
                 "scripts/audit-package-managers.py",
+                "scripts/brew-dump.py",
                 "scripts/audit-ignored-config.py",
                 "scripts/sort-codex-config.py",
                 "scripts/review-pr.py",

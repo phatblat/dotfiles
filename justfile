@@ -254,6 +254,11 @@ install-mise:
 install-brew:
     brew bundle install
 
+# Regenerates ~/Brewfile from current installs, minus mise-managed duplicates
+[group('configuration')]
+dump-brew:
+    python3 {{ justfile_directory() }}/scripts/brew-dump.py
+
 # Installs cmux agent hooks; regenerates the machine-managed session bridges
 # (~/.omp/agent/extensions/cmux-omp-session.ts et al.) that git now ignores
 [group('configuration')]

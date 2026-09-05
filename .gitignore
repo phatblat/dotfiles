@@ -216,6 +216,7 @@
 .config/goa-1.0/
 .config/gtk-2.0/
 .config/homebrew/*
+!.config/homebrew/dump-exclusions.txt
 !.config/homebrew/trust.json
 .config/hub
 .config/ibus/

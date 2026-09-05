@@ -1,0 +1,37 @@
+# Entries that must stay OUT of ~/Brewfile even while a local copy is installed.
+# Read by scripts/brew-dump.py; see docs/package-management.md.
+#
+# One entry per line; `#` comments and blank lines are ignored.
+#   <name>          formula (default), matched against the dumped full name
+#   brew:<name>     formula, explicit
+#   cask:<token>    cask
+#   mas:<App Name>  Mac App Store app
+#
+# mise is the primary installer: every formula below is pinned in
+# .config/mise/config.toml and exists in Homebrew only as a leftover copy.
+awscli
+bat
+bazelisk
+buildifier
+direnv
+fastfetch
+fd
+fzf
+gh
+git-delta
+jj
+jjui
+jq
+node
+ripgrep
+ruby
+rustup
+shellcheck
+shfmt
+starship
+uv
+zoxide
+
+# Mactracker is tracked as `mas "Mactracker"` (its long-standing entry); the brew
+# cask is a second copy of the same app and would fight over /Applications.
+cask:mactracker
