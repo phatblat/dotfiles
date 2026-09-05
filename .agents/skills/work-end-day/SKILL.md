@@ -1,11 +1,11 @@
 ---
-name: "work-eod"
+name: "work-end-day"
 description: "End-of-day — draft and post daily comments for tracked tickets missing a comment"
 ---
 
-# work-eod
+# work-end-day
 
-Use this skill when the user asks to run the migrated command `work-eod` or invokes `$work-eod`.
+Use this skill when the user asks to run the migrated command `work-end-day` or invokes `$work-end-day`.
 
 ## Command Template
 
