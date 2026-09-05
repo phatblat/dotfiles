@@ -882,7 +882,7 @@ lint: lint-gitignore lint-python lint-toml lint-json lint-yaml lint-mise lint-sh
 
 # Runs lint, type checks, harness parity checks, and test
 [group('checks')]
-check: lint typecheck-python check-spelling harness-check test
+check: lint typecheck-python check-spelling harness-check agentlink-check test
 
 # Validates shared/native agent harness parity artifacts
 [group('checks')]
@@ -913,6 +913,13 @@ harness-probe *ARGS:
 [group('checks')]
 harness-drift *ARGS:
     python3 {{ justfile_directory() }}/scripts/agent-harnesses.py drift {{ ARGS }}
+
+# Checks agentlink's project-tier links still match .agentlink/config.toml
+# Part of `just check`, but not CI: the links and .agentlink/lock.toml are
+# per-developer state absent from a fresh CI checkout
+[group('checks')]
+agentlink-check:
+    agentlink status --check --dir {{ justfile_directory() }}
 
 # Builds the ness compiled guard (release profile)
 [group('checks')]

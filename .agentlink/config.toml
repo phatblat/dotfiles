@@ -1,0 +1,39 @@
+# agentlink configuration — https://github.com/fialhosoft/agentlink
+#
+# Providers are listed explicitly instead of relying on agentlink's "serve every
+# provider I know about" default: a future release that ships a new provider
+# would otherwise materialise new paths in $HOME on the next `agentlink apply`
+# with nobody deciding to.
+#
+# claude-code is deliberately absent. Both of its capabilities are permanently
+# blocked here: ~/CLAUDE.md is hand-authored Claude-specific guidance, not a
+# copy of ~/AGENTS.md, and ~/.claude/skills holds real content (gstack's skills
+# plus the pointer files scripts/agent-harnesses.py generates), so it can never
+# become one symlink to ~/.agents/skills. Excluding it keeps
+# `agentlink status --check` a usable signal instead of a permanent exit 2.
+#
+# crush, grok, omp and pi are not shipped by agentlink; their manifests live in
+# .agentlink/providers/ and load on top of the embedded set.
+
+version = 1
+providers = [
+  "antigravity",
+  "codex",
+  "crush",
+  "cursor",
+  "github-copilot",
+  "grok",
+  "omp",
+  "opencode",
+  "pi",
+]
+
+# .gitignore here is sorted by scripts/sort-gitignore (enforced by
+# `just lint-gitignore`), which strips agentlink's `# >>> agentlink >>>` markers
+# and sorts the entries into the body of the file. With manage = true, every
+# `agentlink apply` rewrites the block and the next `just format` strips it
+# again. The sorter owns the file; the four entries agentlink wants
+# (/.agentlink/lock.toml, /.cursor/skills, /.github/skills, /.opencode/skills)
+# are already tracked in sorted position.
+[gitignore]
+manage = false
