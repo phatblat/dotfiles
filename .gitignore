@@ -1,4 +1,3 @@
-# Machine-managed by cmux ("cmux upgrades this file in place") — install via `just install-cmux-hooks`
 *.bak
 *.dll
 *.gastown-backup
