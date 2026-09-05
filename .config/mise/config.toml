@@ -24,7 +24,7 @@
 "cargo:wasm-pack" = "0.15.0"
 "github:cirruslabs/softnet" = "0.23.0"
 "github:DataDog/pup" = "1.18.1"
-"github:Dicklesworthstone/beads_rust" = "0.5.7"
+"github:Dicklesworthstone/beads_rust" = "0.5.10"
 "github:diggerhq/opencomputer" = "0.6.0.46"
 "github:dolthub/dolt" = "2.3.2"
 "github:nushell/nushell" = { version = "0.115.1", version_prefix = "" }
