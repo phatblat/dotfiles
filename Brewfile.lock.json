@@ -3053,7 +3053,6 @@
         },
         "version": "3.30"
       },
-      "thoughtbot/formulae/liftoff": null,
       "tig": {
         "bottle": {
           "cellar": ":any",
@@ -4394,9 +4393,6 @@
       },
       "phatblat/services": {
         "revision": "2ae435cf3f3ba0d43aeac997e3e5092a1654df9d"
-      },
-      "thoughtbot/formulae": {
-        "revision": "54a65f770be6f19540a89dd3bc698b33a75f3386"
       },
       "vapor/tap": {
         "revision": "ed62ea1f8fee678086b86abdf298bc72c77caa9e"
