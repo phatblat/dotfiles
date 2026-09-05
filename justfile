@@ -427,7 +427,7 @@ upgrade-mise:
 [group('configuration')]
 upgrade-omp:
     mise upgrade --bump oh-my-pi
-    just format-mise
+    hk fix .config/mise/config.toml
     bash -ic 'cmt .config/mise/config.toml'
 
 # Upgrades each outdated tool and commits the version change individually
@@ -445,7 +445,7 @@ upgrade-mise-tools-commit:
         bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump --yes "$tool"
-        just format-mise
+        hk fix .config/mise/config.toml
         # --only commits this path from the working tree and disregards
         # anything else staged, so concurrent work is never swept into a
         # version-bump commit.

@@ -63,7 +63,7 @@ KEY_RE = re.compile(r"^(?P<key>[^\s#=\[][^=]*?)\s*=")
 _TOP_BANNER: tuple[str, ...] = (
     "Codex config.toml — hand-authored settings first, machine-managed state last.",
     (
-        "Sections/keys are alphabetized by `just format-toml`"
+        "Sections/keys are alphabetized by `just format`"
         " (~/scripts/sort-codex-config.py), except native marketplace state order."
     ),
     (
@@ -218,7 +218,7 @@ def main() -> int:
 
     if args.check:
         if original != formatted:
-            print(f"{args.file} is not sorted (run: just format-toml)", file=sys.stderr)
+            print(f"{args.file} is not sorted (run: just format)", file=sys.stderr)
             return 1
         return 0
 
