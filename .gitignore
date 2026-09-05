@@ -317,7 +317,10 @@
 .copilot/
 .cpan/
 .cups/
-.cursor/
+.cursor/*
+!.cursor/.gitignore
+!.cursor/cli-config.json
+!.cursor/mcp.json
 .cxx/
 .dart-tool/
 .dart/

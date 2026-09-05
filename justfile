@@ -733,6 +733,8 @@ lint-json:
     git ls-files --cached '*.json' | while read -r f; do
         [[ "$f" == .claude/skills/gstack/* ]] && continue
         [[ "$f" == *.jsonc.json ]] && continue
+        # Cursor-managed key order — exempt (must stay in sync with format-json)
+        [[ "$f" == .cursor/cli-config.json || "$f" == .cursor/mcp.json ]] && continue
         case "$f" in
             .claude.json) continue ;;
             .claude/policy-limits.json) continue ;;
@@ -997,6 +999,9 @@ format-json:
         # vendored third-party gstack JSON — never reformat (churn / JSONC-truncation via jq|sponge)
         [[ "$f" == .claude/skills/gstack/* ]] && continue
         [[ "$f" == *.jsonc.json ]] && continue
+        # Cursor rewrites these in its own key order on every settings change;
+        # sorted-key formatting would fight it and break lint after each write
+        [[ "$f" == .cursor/cli-config.json || "$f" == .cursor/mcp.json ]] && continue
         # Files that are actually JSONC despite .json extension
         case "$f" in
             .claude.json) continue ;;

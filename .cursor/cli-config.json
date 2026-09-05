@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "editor": {
+    "vimMode": false
+  },
+  "display": {
+    "showLineNumbers": false,
+    "showThinkingBlocks": false,
+    "showStatusIndicators": false,
+    "showStatusLineRunningTime": false
+  },
+  "notifications": true,
+  "hints": true,
+  "rewind": true,
+  "suggestNextPrompt": false,
+  "hasChangedDefaultModel": false,
+  "permissions": {
+    "allow": [
+      "Shell(ls)",
+      "Shell(git)",
+      "Shell(gh)",
+      "Shell(just)",
+      "Shell(make)",
+      "Shell(cargo)",
+      "Shell(go)",
+      "Shell(npm)",
+      "Shell(pnpm)",
+      "Shell(yarn)",
+      "Shell(pip)",
+      "Shell(poetry)",
+      "Shell(find)",
+      "Shell(wc)",
+      "Shell(grep)",
+      "Shell(rg)",
+      "Shell(sg)",
+      "Shell(fd)",
+      "Shell(tree)",
+      "Shell(file)",
+      "Shell(stat)",
+      "Shell(head)",
+      "Shell(tail)",
+      "Shell(date)",
+      "Shell(python3)",
+      "Shell(jq)",
+      "Shell(yq)",
+      "Shell(sed)",
+      "Shell(awk)",
+      "Shell(sort)",
+      "Shell(uniq)",
+      "Shell(tr)",
+      "Shell(cut)",
+      "Shell(basename)",
+      "Shell(dirname)",
+      "Shell(mise)"
+    ],
+    "deny": []
+  },
+  "approvalMode": "allowlist",
+  "sandbox": {
+    "mode": "disabled",
+    "networkAccess": "user_config_with_defaults"
+  },
+  "runEverythingSettingsPromptStreak": 0,
+  "network": {
+    "useHttp1ForAgent": false
+  },
+  "attribution": {
+    "attributeCommitsToAgent": true,
+    "attributePRsToAgent": true
+  }
+}
