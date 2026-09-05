@@ -237,6 +237,13 @@
       "mcpContextUris": [],
       "mcpServers": {}
     },
+    "/Users/phatblat/dev/sdlc/conventional-docs": {
+      "allowedTools": [],
+      "disabledMcpjsonServers": [],
+      "enabledMcpjsonServers": [],
+      "mcpContextUris": [],
+      "mcpServers": {}
+    },
     "/Users/phatblat/gt": {
       "allowedTools": [],
       "disabledMcpjsonServers": [],
