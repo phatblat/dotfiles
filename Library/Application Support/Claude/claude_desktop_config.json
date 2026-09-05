@@ -72,6 +72,8 @@
         },
         "version": 0
       }
-    }
+    },
+    "coworkLegacyRootGrantsPruned": true,
+    "hybridDetectLatched": true
   }
 }

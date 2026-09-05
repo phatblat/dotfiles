@@ -32,29 +32,6 @@ pipeline:
             spec: {}
           execution:
             steps:
-              - parallel:
-                  - step:
-                      type: Run
-                      name: Lint Zsh
-                      identifier: lint_zsh
-                      spec:
-                        shell: Bash
-                        command: just lint-zsh
-                  - step:
-                      type: Run
-                      name: Lint Nushell
-                      identifier: lint_nushell
-                      spec:
-                        shell: Bash
-                        command: just lint-nushell
-                  - step:
-                      type: Run
-                      name: Lint Bin
-                      identifier: lint_bin
-                      spec:
-                        shell: Bash
-                        command: just lint-bin
-
               - step:
                   type: Run
                   name: Check Format

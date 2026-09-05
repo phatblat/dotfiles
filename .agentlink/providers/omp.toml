@@ -1,0 +1,21 @@
+# Oh My Pi (omp) — not shipped by agentlink 0.0.1.
+#
+# omp reads ~/AGENTS.md (plus ~/.agents/AGENTS.md) as session instructions and
+# discovers ~/.agents/skills with no configuration at all, so both capabilities
+# are native and agentlink writes nothing. Recorded as mode "native" for omp in
+# scripts/harness_capabilities.py (instructions.global, skills.shared).
+
+schema = 1
+id = "omp"
+name = "OMP"
+
+[[capability]]
+resource = "instructions"
+strategy = "native"
+path = "AGENTS.md"
+
+[[capability]]
+resource = "skills"
+strategy = "native"
+path = ".agents/skills"
+note = "omp discovers the shared skill root with no configuration."

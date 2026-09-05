@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | partial | shared | - | probe · 2.1.236 (Claude Code) · 2026-09-04 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
-| codex | partial | shared | - | probe · codex-cli 0.152.1 · 2026-09-04 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
-| opencode | partial | shared | - | probe · 1.18.26 · 2026-09-04 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
-| pi | partial | shared | - | probe · 0.84.4 · 2026-09-04 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
-| omp | partial | native | - | probe · omp/18.1.6 · 2026-09-04 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
-| antigravity | partial | adapter | - | probe · 1.1.25 · 2026-09-04 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified; probe failed: missing .agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md |
-| cursor | partial | native | - | probe · 2026.07.01-777f564 · 2026-09-04 | generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified; probe failed: missing .agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md |
-| grok | partial | native | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-04 | grok scans ~/.agents/skills at the user tier; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
-| crush | partial | native | - | probe · crush version v0.92.0 · 2026-09-04 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| claude | partial | shared | - | probe · 2.1.236 (Claude Code) · 2026-09-05 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| codex | partial | shared | - | probe · codex-cli 0.153.2 · 2026-09-05 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| opencode | partial | shared | - | probe · 1.18.27 · 2026-09-05 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| pi | partial | shared | - | probe · 0.85.0 · 2026-09-05 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| omp | partial | native | - | probe · omp/18.1.10 · 2026-09-05 | probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| antigravity | partial | adapter | - | probe · 1.1.26 · 2026-09-05 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified; probe failed: missing .agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md |
+| cursor | partial | native | - | probe · 2026.07.01-777f564 · 2026-09-05 | generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified; probe failed: missing .agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md |
+| grok | partial | native | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-05 | grok scans ~/.agents/skills at the user tier; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| crush | partial | native | - | probe · crush version v0.92.0 · 2026-09-05 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
 
 ### skills.manual_only · p1
 

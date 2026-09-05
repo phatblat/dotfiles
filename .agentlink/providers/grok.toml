@@ -1,0 +1,16 @@
+# Grok CLI — not shipped by agentlink 0.0.1.
+#
+# Skills only: grok scans ~/.agents/skills at the user tier (skills.shared mode
+# "native" for grok in scripts/harness_capabilities.py). Instructions are
+# omitted: grok loads the shared harness instructions from the generated
+# ~/.grok/rules/shared-harness.md, not AGENTS.md.
+
+schema = 1
+id = "grok"
+name = "Grok"
+
+[[capability]]
+resource = "skills"
+strategy = "native"
+path = ".agents/skills"
+note = "grok scans the shared skill root at the user tier."

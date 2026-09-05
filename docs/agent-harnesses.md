@@ -9,11 +9,11 @@ Coverage: 90/405 cells verified (22%)
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.236 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| codex | supported peer | codex-cli 0.152.1 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.18.26 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
-| pi | new port | 0.84.4 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.1.6 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.1.25 | 2026-08-29 | 4 | 6 | 0 | 0 | 0 | 35 |
+| codex | supported peer | codex-cli 0.153.2 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
+| opencode | new port | 1.18.27 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
+| pi | new port | 0.85.0 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
+| omp | tracked port | omp/18.1.10 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| antigravity | tracked port | 1.1.26 | 2026-08-29 | 4 | 6 | 0 | 0 | 0 | 35 |
 | cursor | tracked port | 2026.07.01-777f564 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.13 (5e9a58528b76) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.92.0 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
@@ -66,16 +66,16 @@ Coverage: 90/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-09-05 | pi | - | version | 0.84.4 | 0.85.0 |
+| 2026-09-05 | opencode | - | version | 1.18.26 | 1.18.27 |
+| 2026-09-05 | omp | - | version | omp/18.1.6 | omp/18.1.10 |
+| 2026-09-05 | codex | - | version | codex-cli 0.152.1 | codex-cli 0.153.2 |
+| 2026-09-05 | antigravity | - | version | 1.1.25 | 1.1.26 |
 | 2026-09-04 | opencode | - | version | 1.18.25 | 1.18.26 |
 | 2026-09-04 | omp | - | version | omp/18.1.4 | omp/18.1.6 |
 | 2026-09-04 | codex | - | version | codex-cli 0.152.0 | codex-cli 0.152.1 |
 | 2026-09-04 | antigravity | - | version | 1.1.24 | 1.1.25 |
 | 2026-09-03 | omp | - | version | omp/18.1.2 | omp/18.1.4 |
-| 2026-09-03 | pi | mcp.dependencies | mode | none | adapter |
-| 2026-09-03 | pi | mcp.dependencies | parity | unknown | aligned |
-| 2026-09-03 | opencode | skills.manual_only | surface | No direct equivalent; use skill permissions or command wrappers | No per-skill invocation-policy field |
-| 2026-09-03 | opencode | skills.manual_only | parity | unknown | absent |
-| 2026-09-03 | opencode | mcp.dependencies | mode | none | adapter |
 
 ## Permanent divergences
 

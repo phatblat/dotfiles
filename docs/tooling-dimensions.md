@@ -34,6 +34,70 @@ mise-vs-brew duplication) but doesn't catch alias mismatches (a mise package who
 binary name differs from the package name) or three-way overlaps involving Nix, since
 Nix isn't expected to stay in sync in the first place.
 
+## agentlink (external, project tier)
+
+`agentlink` (pinned in `.config/mise/config.toml` as
+`"github:fialhosoft/agentlink" = "0.0.1"`) solves placement, not generation: for the
+two resources whose format already converged — `AGENTS.md` and `SKILL.md` — it points
+each agent's expected path at one canonical location instead of copying files. Its
+canonical layout is `AGENTS.md` + `.agents/`, which is what this repo already uses, so
+most of its verdicts are `native` (nothing written at all) and the rest are symlinks.
+
+Because the workspace root here is `$HOME`, agentlink's project scope and this repo are
+the same directory. Its links therefore serve agents working *in the dotfiles repo*,
+while `scripts/agent-harnesses.py` keeps serving the user tier for all nine harnesses.
+`~/.agents/skills` is canonical for both, and no file is written by both.
+
+Config lives in `.agentlink/config.toml` plus `.agentlink/providers/` (four manifests
+agentlink does not ship), both tracked. `.agentlink/lock.toml` and the three link
+targets are per-developer and gitignored. `just agentlink-check` is part of
+`just check`, but not CI, because a fresh checkout has no materialised links.
+
+| Provider | Resource | Strategy | Path | Manifest |
+|---|---|---|---|---|
+| antigravity | instructions | native | `AGENTS.md` | embedded |
+| antigravity | skills | native | `.agents/skills` | embedded |
+| codex | instructions | native | `AGENTS.md` | embedded |
+| codex | skills | native | `.agents/skills` | embedded |
+| cursor | instructions | native | `AGENTS.md` | embedded |
+| cursor | skills | link | `.cursor/skills` | embedded |
+| github-copilot | instructions | native | `AGENTS.md` | embedded |
+| github-copilot | skills | link | `.github/skills` | embedded |
+| opencode | instructions | native | `AGENTS.md` | embedded |
+| opencode | skills | link | `.opencode/skills` | embedded |
+| omp | instructions | native | `AGENTS.md` | `.agentlink/providers/omp.toml` |
+| omp | skills | native | `.agents/skills` | `.agentlink/providers/omp.toml` |
+| pi | skills | native | `.agents/skills` | `.agentlink/providers/pi.toml` |
+| grok | skills | native | `.agents/skills` | `.agentlink/providers/grok.toml` |
+| crush | skills | native | `.agents/skills` | `.agentlink/providers/crush.toml` |
+
+`claude-code` is the one embedded provider this repo does not serve. agentlink wants
+`CLAUDE.md` → `AGENTS.md` and `.claude/skills` → `.agents/skills`, but `~/CLAUDE.md` is
+separate hand-authored Claude guidance and `~/.claude/skills` holds third-party skills
+(gstack) alongside the generated shared pointers. Both capabilities are permanently
+`blocked`, so the provider is left out of `providers` and `agentlink status --check`
+stays meaningful.
+
+### Why this does not replace the generator
+
+- Scope: agentlink 0.0.1 covers instructions and skills only. Commands, specialist
+  agents, hooks, MCP, permissions and per-harness settings — most of what
+  `scripts/agent-harnesses.py` emits — are outside its model, because those formats
+  genuinely differ per vendor.
+- Selection and metadata: the generator emits pointer files for a chosen subset (the 30
+  names in `NATIVE_SKILL_ADAPTERS`, not all 69 shared skills) and stamps per-harness
+  frontmatter on them (`disable-model-invocation: true` for the 10 manual-only skills,
+  plus Codex `agents/openai.yaml` policy sidecars). One symlinked directory can express
+  neither a subset nor per-harness metadata.
+- Coexistence: the generator's targets are different paths from agentlink's
+  (`~/.config/opencode/skills` vs `.opencode/skills`;
+  `~/.agents/harness/adapters/cursor/skills` vs `.cursor/skills`), so both can be in
+  place without fighting.
+- `.gitignore`: agentlink maintains a marked block; `scripts/sort-gitignore` (enforced
+  by `just lint-gitignore`) strips those markers and sorts the entries into the file.
+  Ownership goes to the sorter — `[gitignore] manage = false` in
+  `.agentlink/config.toml`, with the four entries tracked in sorted position.
+
 ## Extraction decision
 
 The agent-harness system in this repo has been proposed for extraction into a
@@ -58,7 +122,7 @@ is what accumulates the evidence these conditions are measured against.
 
 - Package managers: `docs/package-management.md`
 - Shells: `docs/functions.md`, and the "Shell Architecture" section of `~/CLAUDE.md`
-- Agent harnesses: `docs/agent-harnesses.md`, `docs/harness/`, `.agents/harness/instructions.md`
+- Agent harnesses: `docs/agent-harnesses.md`, `docs/harness/`, `.agents/harness/instructions.md`, `.agentlink/config.toml`
 
 ## Future automation ideas
 

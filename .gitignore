@@ -1,4 +1,3 @@
-# Machine-managed by cmux ("cmux upgrades this file in place") — install via `just install-cmux-hooks`
 *.bak
 *.dll
 *.gastown-backup
@@ -318,7 +317,10 @@
 .copilot/
 .cpan/
 .cups/
-.cursor/
+.cursor/*
+!.cursor/.gitignore
+!.cursor/cli-config.json
+!.cursor/mcp.json
 .cxx/
 .dart-tool/
 .dart/

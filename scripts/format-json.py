@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """Rewrite JSON files with sorted keys and 2-space indent (jq-compatible output).
 
-Reads NUL-separated file paths from stdin. One process for the whole set —
-per-file jq|sponge spawns cost ~100ms each under endpoint security (SentinelOne),
-which made `just format-json` take ~30s.
+One process for the whole set — per-file jq|sponge spawns cost ~100ms each under
+endpoint security (SentinelOne), which made the old per-file recipe take ~30s.
 
-    ... | format-json.py            # rewrite in place
-    ... | format-json.py --check    # exit 1 if any file is not formatted
+    format-json.py FILE...            # rewrite in place
+    format-json.py --check FILE...    # exit 1 if any file is not formatted
 """
 
 from __future__ import annotations
@@ -24,13 +23,11 @@ def main() -> int:
         action="store_true",
         help="exit non-zero if any file is not already formatted (no write)",
     )
+    parser.add_argument("paths", nargs="*", type=Path, help="JSON files to format")
     args = parser.parse_args()
 
     status = 0
-    for raw in sys.stdin.buffer.read().split(b"\0"):
-        if not raw:
-            continue
-        path = Path(raw.decode())
+    for path in args.paths:
         try:
             text = path.read_text()
             # jq passes empty input through untouched; do the same
@@ -47,7 +44,7 @@ def main() -> int:
         if text == formatted:
             continue
         if args.check:
-            print(f"{path} is not formatted (run: just format-json)", file=sys.stderr)
+            print(f"{path} is not formatted (run: just format)", file=sys.stderr)
             status = 1
             continue
         path.write_text(formatted)
