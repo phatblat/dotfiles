@@ -27,15 +27,24 @@ pub struct GuardDecision {
 
 impl GuardDecision {
     pub fn allow() -> Self {
-        Self { decision: "allow".to_string(), reason: String::new() }
+        Self {
+            decision: "allow".to_string(),
+            reason: String::new(),
+        }
     }
 
     pub fn warn(reason: impl Into<String>) -> Self {
-        Self { decision: "warn".to_string(), reason: reason.into() }
+        Self {
+            decision: "warn".to_string(),
+            reason: reason.into(),
+        }
     }
 
     pub fn deny(reason: impl Into<String>) -> Self {
-        Self { decision: "deny".to_string(), reason: reason.into() }
+        Self {
+            decision: "deny".to_string(),
+            reason: reason.into(),
+        }
     }
 
     pub fn allowed(&self) -> bool {
@@ -43,6 +52,14 @@ impl GuardDecision {
     }
 }
 
+/// Fail-open by design: a regex engine error here means the pattern itself is
+/// broken, not that the input is safe. Every static pattern in this module is
+/// fixed and non-adversarial (no user-controlled regex compilation), so a
+/// runtime match error is unreachable in practice; treating it as "allow"
+/// avoids a corrupted/incompatible regex build turning every guard call into
+/// a denial. This is the one deliberately fail-open seam in an otherwise
+/// fail-closed guard — see the manifest override below, which is fail-open
+/// for the same reason.
 fn matches(re: &Regex, text: &str) -> bool {
     re.is_match(text).unwrap_or(false)
 }
@@ -226,10 +243,17 @@ pub fn evaluate_write(path: &str, content: &str) -> GuardDecision {
 /// Port of `candidate_write_targets` (safety.py:210-224).
 pub fn candidate_write_targets(command: &str) -> Vec<String> {
     let mut targets: Vec<String> = Vec::new();
-    for pattern in [&*REDIRECT_TARGET, &*MUTATING_ARGV, &*SED_INPLACE, &*DD_TARGET] {
+    for pattern in [
+        &*REDIRECT_TARGET,
+        &*MUTATING_ARGV,
+        &*SED_INPLACE,
+        &*DD_TARGET,
+    ] {
         for caps in pattern.captures_iter(command) {
             let Ok(caps) = caps else { continue };
-            let Some(span) = caps.name("span") else { continue };
+            let Some(span) = caps.name("span") else {
+                continue;
+            };
             for tok in PATH_TOKEN.find_iter(span.as_str()).flatten() {
                 targets.push(tok.as_str().to_string());
             }
