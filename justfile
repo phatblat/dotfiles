@@ -363,9 +363,22 @@ _check-github-token:
 _mise-bump-scan-tools:
     mise config get tools | sed -nE 's/^\["?([^]"]+)"?\]$/\1/p; s/^"([^"]+)" = .*/\1/p; s/^([A-Za-z0-9_-]+) = .*/\1/p' | grep -vxFf <(echo "{{ mise_bump_exclusions }}" | tr ' ' '\n') | tr '\n' ' '
 
+# Installs the Rust toolchain and llvm-tools component (rust-objcopy needs
+# libLLVM.dylib from llvm-tools to strip debug info; see profile.release.strip
+# in crates/ness/Cargo.toml)
+[group('configuration')]
+[script]
+install-rust-deps:
+    set -euo pipefail
+    if ! command -v rustup >/dev/null 2>&1; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
+    fi
+    rustup toolchain install stable
+    rustup component add llvm-tools --toolchain stable
+
 # Installs tools using mise
 [group('configuration')]
-deps: _check-github-token install-brew install-gh-extensions install-bun-deps git-filters git-hooks
+deps: _check-github-token install-brew install-gh-extensions install-bun-deps install-rust-deps git-filters git-hooks
     mise install
 
 # Update tools within current versions
@@ -746,7 +759,7 @@ agentlink-check:
 
 # Builds the ness compiled guard (release profile)
 [group('checks')]
-ness-build:
+ness-build: install-rust-deps
     cargo build --release --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
 
 # Installs the ness compiled guard to ~/.local/bin (falls back to python3 guard chain if absent)
@@ -756,7 +769,7 @@ ness-install: ness-build
 
 # Installs the ness compiled guard to the cargo bin dir (~/.cargo/bin, which precedes ~/.local/bin on PATH)
 [group('checks')]
-ness-install-cargo:
+ness-install-cargo: install-rust-deps
     cargo install --path {{ justfile_directory() }}/crates/ness --locked --force --target-dir {{ justfile_directory() }}/crates/ness/target
 
 # CI: agent-harness-parity.yml (ness job)
