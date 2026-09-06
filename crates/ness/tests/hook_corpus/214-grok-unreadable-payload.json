@@ -1,0 +1,11 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "reason": "shared guard failed closed: payload is not a dict"
+    }
+  },
+  "payload": "not an object",
+  "shim": "grok"
+}

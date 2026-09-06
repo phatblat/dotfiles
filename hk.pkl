@@ -131,7 +131,6 @@ local linters = new Mapping<String, Step> {
                 "scripts/sort-codex-config.py",
                 "scripts/review-pr.py",
                 "scripts/sync-codex-casper-models.py",
-                ".agents/harness/hooks/safety.py",
             )
         batch = true
         check = "ruff check {{files}}"
@@ -145,7 +144,6 @@ local linters = new Mapping<String, Step> {
                 "scripts/harness_docs.py",
                 "scripts/harness_drift.py",
                 "scripts/harness_skills.py",
-                ".agents/harness/hooks/safety.py",
             )
         batch = true
         check = "ruff format --check {{files}}"

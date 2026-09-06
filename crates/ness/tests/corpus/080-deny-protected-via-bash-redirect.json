@@ -2,6 +2,10 @@
   "command": "echo x >> /Users/phatblat/.ssh/config",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "protected file blocked: /Users/phatblat/.ssh/config"
+  },
   "harness": "claude",
   "path": null,
   "tool": "bash"

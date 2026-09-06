@@ -19,9 +19,9 @@ Verify: `just harness-check`
 | pi | absent | none | No native permission-rule surface; the shared guard runs via ~/.pi/agent/extensions/harness.ts | docs · - · - | - |
 | omp | aligned | adapter | tools.approvalMode + bash.patterns via just harness-perms-apply | local · - · - | - |
 | antigravity | aligned | adapter | - | local · - · - | - |
-| cursor | absent | none | No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.py | docs · - · - | - |
-| grok | absent | none | No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.py | docs · - · - | - |
-| crush | absent | none | No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.py | docs · - · - | - |
+| cursor | absent | none | No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh | docs · - · - | - |
+| grok | absent | none | No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.sh | docs · - · - | - |
+| crush | absent | none | No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh | docs · - · - | - |
 
 ### permissions.approval_modes · p1
 

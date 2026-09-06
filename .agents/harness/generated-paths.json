@@ -113,11 +113,14 @@
   "~/.agents/harness/adapters/antigravity/plugin.json": {
     "source": ""
   },
-  "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py": {
+  "~/.agents/harness/adapters/antigravity/scripts/harness-guard.sh": {
     "source": ""
   },
   "~/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/authoring-skills/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/authoring-skills/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
@@ -278,6 +281,9 @@
   "~/.agents/harness/adapters/antigravity/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/recording-changes/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/recording-changes/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/refactor-safely/SKILL.md": {
     "source": "~/.agents/skills/refactor-safely/SKILL.md"
   },
@@ -293,8 +299,14 @@
   "~/.agents/harness/adapters/antigravity/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/semantic-versioning/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/semantic-versioning/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/session-save/SKILL.md": {
     "source": "~/.agents/skills/session-save/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/setup-phatblat-skills/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/setup-phatblat-skills/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -437,11 +449,14 @@
   "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc": {
     "source": ""
   },
-  "~/.agents/harness/adapters/cursor/scripts/harness-guard.py": {
+  "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh": {
     "source": ""
   },
   "~/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/authoring-skills/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/authoring-skills/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
@@ -602,6 +617,9 @@
   "~/.agents/harness/adapters/cursor/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/recording-changes/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/recording-changes/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/refactor-safely/SKILL.md": {
     "source": "~/.agents/skills/refactor-safely/SKILL.md"
   },
@@ -617,8 +635,14 @@
   "~/.agents/harness/adapters/cursor/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/semantic-versioning/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/semantic-versioning/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/session-save/SKILL.md": {
     "source": "~/.agents/skills/session-save/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/setup-phatblat-skills/SKILL.md": {
+    "source": "/Users/phatblat/.worktrees/ness-migration-e34e750/.agents/skills/setup-phatblat-skills/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -974,7 +998,7 @@
   "~/.config/crush/crushrc": {
     "source": ""
   },
-  "~/.config/crush/hooks/harness-guard.py": {
+  "~/.config/crush/hooks/harness-guard.sh": {
     "source": ""
   },
   "~/.config/crush/shared-harness.md": {
@@ -1205,7 +1229,7 @@
   "~/.grok/rules/shared-harness.md": {
     "source": ""
   },
-  "~/.grok/scripts/harness-guard.py": {
+  "~/.grok/scripts/harness-guard.sh": {
     "source": ""
   },
   "~/.omp/agent/APPEND_SYSTEM.md": {

@@ -22,7 +22,7 @@ lint)
     # covers .github/scripts/*.sh. Narrower than this and a lint failure
     # surfaces on some later unrelated pull request instead of the one that
     # caused it.
-    pattern='^(\.agents/harness/hooks/safety\.py$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
+    pattern='^(\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
     ;;
 parity)
     # .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:
@@ -30,7 +30,7 @@ parity)
     # sibling scripts/harness_*.py modules: the capability registry, the
     # renderers, and the probe/drift rules all feed docs/agent-harnesses.* and
     # docs/harness/**, so a registry-only change must still run the check.
-    pattern='^(\.agents/|\.claude/(commands|hooks|skills)/|\.codex/(agents|hooks|skills)/|\.config/(crush|opencode)/|\.cursor/|\.gemini/|\.grok/|\.pi/|\.omp/|crates/|scripts/agent-harnesses\.py$|scripts/agent_plugins\.py$|scripts/harness_[a-z_]+\.py$|scripts/ness-parity\.py$|docs/agent-harnesses\.|docs/harness/|\.github/(workflows/agent-harness-parity\.yml|scripts/changed\.sh)$)'
+    pattern='^(\.agents/|\.claude/(commands|hooks|skills)/|\.codex/(agents|hooks|skills)/|\.config/(crush|opencode)/|\.cursor/|\.gemini/|\.grok/|\.pi/|\.omp/|crates/|scripts/agent-harnesses\.py$|scripts/agent_plugins\.py$|scripts/harness_[a-z_]+\.py$|docs/agent-harnesses\.|docs/harness/|\.github/(workflows/agent-harness-parity\.yml|scripts/changed\.sh)$)'
     ;;
 *)
     echo "unknown profile: $profile" >&2

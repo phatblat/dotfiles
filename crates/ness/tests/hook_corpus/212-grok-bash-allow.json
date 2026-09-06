@@ -1,0 +1,15 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "decision": "allow"
+    }
+  },
+  "payload": {
+    "toolInput": {
+      "command": "git status --short"
+    },
+    "toolName": "run_terminal_command"
+  },
+  "shim": "grok"
+}

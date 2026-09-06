@@ -2,6 +2,10 @@
   "command": null,
   "content": "hello world",
   "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
   "harness": "claude",
   "path": "/tmp/ness-corpus-ok.txt",
   "tool": "write"

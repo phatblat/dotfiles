@@ -1,0 +1,13 @@
+{
+  "expected": {
+    "exit": 0,
+    "stderr": "",
+    "stdout": null
+  },
+  "payload": {
+    "tool_input": {
+      "command": "git status --short"
+    }
+  },
+  "shim": "crush"
+}

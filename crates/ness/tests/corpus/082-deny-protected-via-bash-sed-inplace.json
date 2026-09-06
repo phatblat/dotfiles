@@ -2,6 +2,10 @@
   "command": "sed -i s/a/b/ /Users/phatblat/.npmrc",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "protected file blocked: /Users/phatblat/.npmrc"
+  },
   "harness": "claude",
   "path": null,
   "tool": "bash"

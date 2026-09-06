@@ -2,6 +2,10 @@
   "command": "mkfs.ext4 /dev/sda1",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "Dangerous command pattern detected"
+  },
   "harness": "claude",
   "path": null,
   "tool": "bash"

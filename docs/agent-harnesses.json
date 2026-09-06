@@ -2870,13 +2870,13 @@
     },
     {
       "canonical": [
-        "~/.agents/harness/hooks/safety.py"
+        "~/crates/ness/src/policy.rs"
       ],
       "cells": {
         "antigravity": {
           "artifacts": [
             "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
-            "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py"
+            "~/.agents/harness/adapters/antigravity/scripts/harness-guard.sh"
           ],
           "divergence": "",
           "evidence": {
@@ -2887,18 +2887,18 @@
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
-          "note": "generated Antigravity hook wrapper calls the shared guard, but native pre-tool blocking has not been verified",
+          "note": "generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified",
           "parity": "partial",
           "probe": {
             "kind": "file_contains",
             "path": ".agents/harness/adapters/antigravity/hooks/hooks.json",
-            "pattern": "harness-guard\\.py"
+            "pattern": "harness-guard\\.sh"
           },
           "surface": ""
         },
         "claude": {
           "artifacts": [
-            "~/.agents/harness/hooks/safety.py"
+            "~/crates/ness/src/policy.rs"
           ],
           "divergence": "",
           "evidence": {
@@ -2920,7 +2920,7 @@
         },
         "codex": {
           "artifacts": [
-            "~/.agents/harness/hooks/safety.py"
+            "~/crates/ness/src/policy.rs"
           ],
           "divergence": "",
           "evidence": {
@@ -2943,7 +2943,7 @@
         "crush": {
           "artifacts": [
             "~/.config/crush/crushrc",
-            "~/.config/crush/hooks/harness-guard.py"
+            "~/.config/crush/hooks/harness-guard.sh"
           ],
           "divergence": "",
           "evidence": {
@@ -2954,19 +2954,19 @@
           },
           "mode": "adapter",
           "next_action": "Install crush and verify it blocks a denied shell command through the generated crushrc PreToolUse hook",
-          "note": "generated crush PreToolUse guard maps crush's snake_case payload to the shared guard and blocks with exit 2, but crush is not installed locally so live blocking is unverified",
+          "note": "generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified",
           "parity": "partial",
           "probe": {
             "kind": "file_contains",
             "path": ".config/crush/crushrc",
-            "pattern": "harness-guard\\.py"
+            "pattern": "harness-guard\\.sh"
           },
           "surface": ""
         },
         "cursor": {
           "artifacts": [
             "~/.agents/harness/adapters/cursor/hooks/hooks.json",
-            "~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
+            "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
           ],
           "divergence": "",
           "evidence": {
@@ -2977,19 +2977,19 @@
           },
           "mode": "adapter",
           "next_action": "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
-          "note": "Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified",
+          "note": "generated Cursor hook shim execs the compiled guard, but native pre-tool blocking behavior has not been verified",
           "parity": "partial",
           "probe": {
             "kind": "file_contains",
             "path": ".agents/harness/adapters/cursor/hooks/hooks.json",
-            "pattern": "harness-guard\\.py"
+            "pattern": "harness-guard\\.sh"
           },
           "surface": ""
         },
         "grok": {
           "artifacts": [
             "~/.grok/hooks/harness-guard.json",
-            "~/.grok/scripts/harness-guard.py"
+            "~/.grok/scripts/harness-guard.sh"
           ],
           "divergence": "",
           "evidence": {
@@ -3000,12 +3000,12 @@
           },
           "mode": "adapter",
           "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
-          "note": "generated grok PreToolUse guard maps grok's camelCase payload to the shared guard, but live blocking in a grok session has not been verified",
+          "note": "generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified",
           "parity": "partial",
           "probe": {
             "kind": "file_contains",
             "path": ".grok/hooks/harness-guard.json",
-            "pattern": "harness-guard\\.py"
+            "pattern": "harness-guard\\.sh"
           },
           "surface": ""
         },
@@ -3027,13 +3027,13 @@
           "probe": {
             "kind": "file_contains",
             "path": ".omp/agent/hooks/pre/harness-guard.ts",
-            "pattern": "agent-harnesses"
+            "pattern": "\\bness\\b"
           },
           "surface": ""
         },
         "opencode": {
           "artifacts": [
-            "~/.agents/harness/hooks/safety.py"
+            "~/crates/ness/src/policy.rs"
           ],
           "divergence": "",
           "evidence": {
@@ -3049,13 +3049,13 @@
           "probe": {
             "kind": "file_contains",
             "path": ".config/opencode/plugins/harness.ts",
-            "pattern": "agent-harnesses"
+            "pattern": "\\bness\\b"
           },
           "surface": ""
         },
         "pi": {
           "artifacts": [
-            "~/.agents/harness/hooks/safety.py"
+            "~/crates/ness/src/policy.rs"
           ],
           "divergence": "",
           "evidence": {
@@ -3071,7 +3071,7 @@
           "probe": {
             "kind": "file_contains",
             "path": ".pi/agent/extensions/harness.ts",
-            "pattern": "agent-harnesses"
+            "pattern": "\\bness\\b"
           },
           "surface": ""
         }
@@ -3083,7 +3083,7 @@
       "porting": "",
       "priority": "p0",
       "title": "Shared safety guard",
-      "verify": "python3 scripts/agent-harnesses.py verify"
+      "verify": "just ness-test"
     },
     {
       "canonical": [],
@@ -3629,7 +3629,7 @@
           "note": "",
           "parity": "absent",
           "probe": null,
-          "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.py"
+          "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
         },
         "cursor": {
           "artifacts": [],
@@ -3645,7 +3645,7 @@
           "note": "",
           "parity": "absent",
           "probe": null,
-          "surface": "No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
+          "surface": "No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
         },
         "grok": {
           "artifacts": [],
@@ -3661,7 +3661,7 @@
           "note": "",
           "parity": "absent",
           "probe": null,
-          "surface": "No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.py"
+          "surface": "No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.sh"
         },
         "omp": {
           "artifacts": [],

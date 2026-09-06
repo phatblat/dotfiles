@@ -1,8 +1,0 @@
-{
-  "command": null,
-  "content": "x",
-  "cwd": null,
-  "harness": "claude",
-  "path": "/Users/phatblat/.grok/scripts/harness-guard.py",
-  "tool": "write"
-}

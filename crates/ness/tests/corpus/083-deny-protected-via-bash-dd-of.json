@@ -2,6 +2,10 @@
   "command": "dd if=/tmp/x of=/Users/phatblat/.ssh/id_rsa",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "protected file blocked: /Users/phatblat/.ssh/id_rsa"
+  },
   "harness": "claude",
   "path": null,
   "tool": "bash"

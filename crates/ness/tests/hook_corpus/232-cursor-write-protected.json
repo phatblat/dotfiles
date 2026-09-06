@@ -1,0 +1,17 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "harness": "cursor",
+      "reason": "protected file blocked: /Users/phatblat/.ssh/id_ed25519",
+      "tool": "write"
+    }
+  },
+  "payload": {
+    "content": "x",
+    "path": "/Users/phatblat/.ssh/id_ed25519",
+    "tool": "write"
+  },
+  "shim": "cursor"
+}

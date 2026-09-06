@@ -703,7 +703,7 @@ doctor:
 [group('checks')]
 typecheck-python:
     @echo "Type-checking Python scripts..."
-    ty check {{ justfile_directory() }}/scripts {{ justfile_directory() }}/.agents/harness/hooks/safety.py
+    ty check {{ justfile_directory() }}/scripts
 
 # Checks spelling with typos
 [group('checks')]
@@ -716,9 +716,9 @@ check-spelling:
 lint:
     hk check --all
 
-# Runs lint, type checks, harness parity checks, ness parity, and test
+# Runs lint, type checks, harness parity checks, ness tests, and test
 [group('checks')]
-check: lint typecheck-python check-spelling harness-check agentlink-check ness-parity test
+check: lint typecheck-python check-spelling harness-check agentlink-check ness-test test
 
 # Validates shared/native agent harness parity artifacts
 [group('checks')]
@@ -762,21 +762,21 @@ agentlink-check:
 ness-build: install-rust-deps
     cargo build --release --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
 
-# Installs the ness compiled guard to ~/.local/bin (falls back to python3 guard chain if absent)
+# Installs the ness compiled guard to ~/.local/bin, the path every harness hook execs, then checks it against the corpus
 [group('checks')]
-ness-install: ness-build
+ness-install: ness-build && ness-check-installed
     install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/ness
 
-# Installs the ness compiled guard to the cargo bin dir (~/.cargo/bin, which precedes ~/.local/bin on PATH)
-[group('checks')]
-ness-install-cargo: install-rust-deps
-    cargo install --path {{ justfile_directory() }}/crates/ness --locked --force --target-dir {{ justfile_directory() }}/crates/ness/target
-
 # CI: agent-harness-parity.yml (ness job)
-# Differential-tests the ness guard against the Python reference implementation
+# Runs the ness guard's corpus, shim, and fail-closed tests
 [group('checks')]
-ness-parity: ness-build
-    python3 {{ justfile_directory() }}/scripts/ness-parity.py
+ness-test: install-rust-deps
+    cargo test --locked --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
+
+# Checks the installed ~/.local/bin/ness (the copy every harness hook runs) against the corpus
+[group('checks')]
+ness-check-installed: install-rust-deps
+    NESS_CHECK_INSTALLED=1 cargo test --locked --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml installed_copy_matches_corpus
 
 # Flags CLI tools installed via both mise and Homebrew
 [group('checks')]

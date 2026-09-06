@@ -17,17 +17,14 @@ from harness_paths import (
     HARNESSES,
 )
 
-# The `guard` subcommand runs on every Bash/Write/Edit hook call and needs only
-# json/os/sys/pathlib, the pure-data harness_paths module, plus the safety
-# policy. Defer the heavier imports that only the other subcommands use so the
-# hot path stays minimal (~0.06s faster per call). Non-guard invocations
-# import everything eagerly, exactly as before;
+# `provenance` needs only json/os/sys/pathlib and the pure-data harness_paths
+# module. Defer the heavier imports that only the other subcommands use so
+# the hot path stays minimal.
 #
-# `provenance` shares the fast path for a second reason: `tomllib` needs Python
-# 3.11+, and the interpreter on PATH under launchd and other non-login contexts
-# is the system 3.9. Anything a scheduled job or a hook may call has to load
-# without it.
-FAST_PATH_ACTIONS = {"guard", "provenance"}
+# `tomllib` needs Python 3.11+, and the interpreter on PATH under launchd and
+# other non-login contexts is the system 3.9. Anything a scheduled job or a
+# hook may call has to load without it.
+FAST_PATH_ACTIONS = {"provenance"}
 if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS):
     import argparse
     import shutil
@@ -62,9 +59,6 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS
     from harness_skills import (
         configure as configure_skill_rendering,
     )
-
-_IS_GUARD = len(sys.argv) >= 2 and sys.argv[1] == "guard"
-
 
 sys.dont_write_bytecode = True
 
@@ -132,16 +126,6 @@ When compacting or resuming a session, preserve and carry forward:
 Do not claim work is complete until the preserved task state confirms that all actionable work is finished and verification evidence is available.
 """
 
-sys.path.insert(0, str(SHARED / "hooks"))
-try:
-    from safety import GuardDecision, evaluate  # type: ignore
-except ImportError as exc:  # pragma: no cover - only hit before installation
-    GuardDecision = None
-    evaluate = None
-    SAFETY_IMPORT_ERROR = exc
-else:
-    SAFETY_IMPORT_ERROR = None
-
 
 def main() -> int:
     import argparse
@@ -167,16 +151,6 @@ def main() -> int:
 
     audit_parser = subparsers.add_parser("audit", help="Print version and parity audit")
     audit_parser.add_argument("--json", action="store_true", help="Emit JSON")
-
-    guard_parser = subparsers.add_parser(
-        "guard", help="Evaluate a normalized tool call"
-    )
-    guard_parser.add_argument("--harness", choices=HARNESSES, required=True)
-    guard_parser.add_argument("--tool", required=True)
-    guard_parser.add_argument("--command", dest="shell_command", default="")
-    guard_parser.add_argument("--path", default="")
-    guard_parser.add_argument("--content", default="")
-    guard_parser.add_argument("--cwd", default=str(ROOT))
 
     provenance_parser = subparsers.add_parser(
         "provenance", help="Report whether a path is generated, source, or neither"
@@ -219,8 +193,6 @@ def main() -> int:
     if args.action == "drift":
         return command_drift(limit=args.limit, harness=args.harness)
 
-    if args.action == "guard":
-        return command_guard(args)
     if args.action == "provenance":
         return command_provenance(args)
     raise AssertionError(args.action)
@@ -643,13 +615,13 @@ def command_verify(*, harness: str | None = None) -> int:
             (GROK / "config.toml", "config.toml exists"),
             (GROK / "rules" / "shared-harness.md", "rules file exists"),
             (GROK / "hooks" / "harness-guard.json", "guard hook exists"),
-            (GROK / "scripts" / "harness-guard.py", "guard wrapper exists"),
+            (GROK / "scripts" / "harness-guard.sh", "guard wrapper exists"),
             (GROK / "agents", "agents directory exists"),
         ],
         "crush": [
             (CRUSH / "crushrc", "crushrc exists"),
             (CRUSH / "shared-harness.md", "context file exists"),
-            (CRUSH / "hooks" / "harness-guard.py", "guard wrapper exists"),
+            (CRUSH / "hooks" / "harness-guard.sh", "guard wrapper exists"),
         ],
     }
 
@@ -687,39 +659,6 @@ def command_verify(*, harness: str | None = None) -> int:
                 print(f"  ⚠️  omp discovered only {agent_count} agents (expected 6+)")
 
     return 0
-
-
-def command_guard(args: argparse.Namespace) -> int:
-    if evaluate is None or GuardDecision is None:
-        print(
-            json.dumps(
-                {
-                    "decision": "deny",
-                    "reason": f"safety module unavailable: {SAFETY_IMPORT_ERROR}",
-                }
-            )
-        )
-        return 2
-
-    decision = evaluate(
-        args.tool,
-        command=args.shell_command,
-        path=args.path,
-        content=args.content,
-        cwd=args.cwd,
-    )
-    if decision.allowed and args.path:
-        generated = generated_path_warning(args.tool, args.path)
-        if generated:
-            decision = GuardDecision("deny", generated)
-    payload = {
-        "harness": args.harness,
-        "tool": args.tool,
-        "decision": decision.decision,
-        "reason": decision.reason,
-    }
-    print(json.dumps(payload, sort_keys=True))
-    return 0 if decision.allowed else 2
 
 
 def load_generated_manifest() -> dict[str, dict[str, str]]:
@@ -760,39 +699,13 @@ def generated_relpath(path: str) -> str | None:
     return None
 
 
-def generated_path_warning(tool: str, path: str) -> str:
-    """Explain why `path` must not be written, when it is a generated artifact."""
-
-    if tool.lower().strip() not in {
-        "write",
-        "edit",
-        "multiedit",
-        "file_write",
-        "file_edit",
-    }:
-        return ""
-    key = generated_relpath(path)
-    if key is None:
-        return ""
-    source = load_generated_manifest().get(key, {}).get("source") or ""
-    target = f"Edit {source} instead" if source else "Edit its source instead"
-    return (
-        f"{key} is generated by scripts/agent-harnesses.py and will be "
-        f"overwritten by the next `just harness-generate`. {target}, then "
-        "regenerate."
-    )
-
-
 def command_provenance(args: argparse.Namespace) -> int:
     key = generated_relpath(args.path)
     resolved = display_path(Path(os.path.expanduser(args.path)))
     if key is not None:
         kind = "generated"
         source = load_generated_manifest().get(key, {}).get("source") or ""
-    elif resolved in {
-        display_path(GENERATOR_PATH),
-        display_path(SHARED / "hooks" / "safety.py"),
-    }:
+    elif resolved == display_path(GENERATOR_PATH):
         kind, source = "generator", ""
     elif any(
         _is_within(args.path, root)
@@ -936,20 +849,20 @@ def render_all() -> dict[Path, str]:
         ANTIGRAVITY_HARNESS / "hooks" / "hooks.json": render_antigravity_hooks(),
         ANTIGRAVITY_HARNESS
         / "scripts"
-        / "harness-guard.py": render_antigravity_guard(),
+        / "harness-guard.sh": render_antigravity_guard(),
         ANTIGRAVITY_HARNESS / "mcp.json": render_antigravity_mcp(),
         CURSOR_PLUGIN / "plugin.json": render_cursor_plugin_manifest(),
         CURSOR_RULES / "shared-harness.mdc": render_cursor_rule(),
         CURSOR_HARNESS / "hooks" / "hooks.json": render_cursor_hooks(),
-        CURSOR_HARNESS / "scripts" / "harness-guard.py": render_cursor_guard(),
+        CURSOR_HARNESS / "scripts" / "harness-guard.sh": render_cursor_guard(),
         CURSOR_HARNESS / "mcp.json": render_cursor_mcp(),
         GROK / "config.toml": render_grok_config(),
         GROK / "rules" / "shared-harness.md": render_grok_rules(),
         GROK / "hooks" / "harness-guard.json": render_grok_hooks(),
-        GROK / "scripts" / "harness-guard.py": render_grok_guard(),
+        GROK / "scripts" / "harness-guard.sh": render_grok_guard(),
         CRUSH / "crushrc": render_crush_config(),
         CRUSH / "shared-harness.md": render_crush_context(),
-        CRUSH / "hooks" / "harness-guard.py": render_crush_guard(),
+        CRUSH / "hooks" / "harness-guard.sh": render_crush_guard(),
     }
 
     for domain in DOMAINS:
@@ -1062,16 +975,17 @@ def render_shared_readme(
 
 This directory is the portable harness layer for Claude, Codex, OpenCode, Pi,
 Antigravity, Cursor, and Grok.
-It keeps command prompts, specialist agent definitions, normalized hook contracts,
-and shared safety policy in one place. Native harness directories should contain
-thin generated adapters or tool-specific configuration only.
+It keeps command prompts, specialist agent definitions, and normalized hook
+contracts in one place; the safety policy itself is compiled from
+`~/crates/ness`. Native harness directories should contain thin generated
+adapters or tool-specific configuration only.
 
 ## Inventory
 
 - Commands: {len(commands)}
 - Specialist agents: {len(agents)}
 - Shared skills source: `~/.agents/skills`
-- Safety policy: `~/.agents/harness/hooks/safety.py`
+- Safety policy: `~/crates/ness` (compiled guard `ness`; policy in `src/policy.rs`)
 
 """
 
@@ -1301,7 +1215,7 @@ def render_antigravity_hooks() -> str:
         "hooks": {
             "tool_call": [
                 {
-                    "command": "python3 scripts/harness-guard.py",
+                    "command": "bash scripts/harness-guard.sh",
                     "description": "Evaluate shell, write, and edit calls with the shared harness guard.",
                 }
             ],
@@ -1316,71 +1230,24 @@ def render_antigravity_hooks() -> str:
 
 
 def render_antigravity_guard() -> str:
-    return """#!/usr/bin/env python3
-\"\"\"Antigravity wrapper for the shared agent harness guard.
+    return """#!/usr/bin/env bash
+# Generated by scripts/agent-harnesses.py; do not edit directly.
+# Antigravity PreToolUse adapter for the compiled harness guard (crates/ness,
+# installed by `just ness-install`). Fails closed when it is missing.
+#
+# Copyright: Ben Chatelain. Apache 2.0.
 
-Copyright: Ben Chatelain. Apache 2.0.
-\"\"\"
+set -euo pipefail
 
-from __future__ import annotations
+deny() {
+    printf '{"decision":"deny","harness":"antigravity","reason":"%s","tool":""}\n' "$1"
+    exit 2
+}
+trap 'deny "shared guard failed closed: hook error"' ERR
 
-import json
-from pathlib import Path
-import subprocess
-import sys
-
-
-def main() -> int:
-    payload = json.load(sys.stdin)
-    tool = str(payload.get("tool", ""))
-    command = str(payload.get("command", ""))
-    path = str(payload.get("path", ""))
-    content = str(payload.get("content", ""))
-    cwd = str(payload.get("cwd", ""))
-    script = Path.home() / "scripts" / "agent-harnesses.py"
-    args = [
-        "python3",
-        str(script),
-        "guard",
-        "--harness",
-        "antigravity",
-        "--tool",
-        tool,
-        "--command",
-        command,
-        "--path",
-        path,
-        "--content",
-        content,
-    ]
-    if cwd:
-        args.extend(["--cwd", cwd])
-    result = subprocess.run(
-        args,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
-    )
-    print(result.stdout, end="")
-    if result.stdout:
-        return result.returncode
-    print(
-        json.dumps(
-            {
-                "harness": "antigravity",
-                "tool": tool,
-                "decision": "deny",
-                "reason": "Shared guard failed closed",
-            },
-            sort_keys=True,
-        )
-    )
-    return 2
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+ness="$HOME/.local/bin/ness"
+[ -x "$ness" ] || deny "shared guard failed closed: $ness is not installed (run: just ness-install)"
+exec "$ness" hook --harness antigravity
 """
 
 
@@ -1434,7 +1301,7 @@ def render_cursor_hooks() -> str:
         "hooks": {
             "tool_call": [
                 {
-                    "command": "python3 scripts/harness-guard.py",
+                    "command": "bash scripts/harness-guard.sh",
                     "description": "Evaluate shell, write, and edit calls with the shared harness guard.",
                 }
             ],
@@ -1449,58 +1316,24 @@ def render_cursor_hooks() -> str:
 
 
 def render_cursor_guard() -> str:
-    return """#!/usr/bin/env python3
-\"\"\"Cursor wrapper for the shared agent harness guard.
+    return """#!/usr/bin/env bash
+# Generated by scripts/agent-harnesses.py; do not edit directly.
+# Cursor PreToolUse adapter for the compiled harness guard (crates/ness,
+# installed by `just ness-install`). Fails closed when it is missing.
+#
+# Copyright: Ben Chatelain. Apache 2.0.
 
-Copyright: Ben Chatelain. Apache 2.0.
-\"\"\"
+set -euo pipefail
 
-from __future__ import annotations
+deny() {
+    printf '{"decision":"deny","harness":"cursor","reason":"%s","tool":""}\n' "$1"
+    exit 2
+}
+trap 'deny "shared guard failed closed: hook error"' ERR
 
-import json
-from pathlib import Path
-import subprocess
-import sys
-
-
-def main() -> int:
-    payload = json.load(sys.stdin)
-    tool = str(payload.get("tool", ""))
-    command = str(payload.get("command", ""))
-    path = str(payload.get("path", ""))
-    content = str(payload.get("content", ""))
-    cwd = str(payload.get("cwd", ""))
-    script = Path.home() / "scripts" / "agent-harnesses.py"
-    args = [
-        "python3",
-        str(script),
-        "guard",
-        "--harness",
-        "cursor",
-        "--tool",
-        tool,
-        "--command",
-        command,
-        "--path",
-        path,
-        "--content",
-        content,
-    ]
-    if cwd:
-        args.extend(["--cwd", cwd])
-    result = subprocess.run(
-        args,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
-    )
-    print(result.stdout, end="")
-    return result.returncode
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+ness="$HOME/.local/bin/ness"
+[ -x "$ness" ] || deny "shared guard failed closed: $ness is not installed (run: just ness-install)"
+exec "$ness" hook --harness cursor
 """
 
 
@@ -1575,7 +1408,7 @@ def render_grok_hooks() -> str:
                     "hooks": [
                         {
                             "type": "command",
-                            "command": "python3 $HOME/.grok/scripts/harness-guard.py",
+                            "command": "bash $HOME/.grok/scripts/harness-guard.sh",
                             "timeout": 10,
                         }
                     ],
@@ -1587,108 +1420,25 @@ def render_grok_hooks() -> str:
 
 
 def render_grok_guard() -> str:
-    return '''#!/usr/bin/env python3
-"""Grok wrapper for the shared agent harness guard.
+    return """#!/usr/bin/env bash
+# Generated by scripts/agent-harnesses.py; do not edit directly.
+# grok PreToolUse adapter for the compiled harness guard (crates/ness,
+# installed by `just ness-install`). Fails closed when it is missing.
+#
+# Copyright: Ben Chatelain. Apache 2.0.
 
-Grok sends camelCase hook payloads (`toolName`, `toolInput`), unlike the
-snake_case Claude envelope, and has no `warn` decision. Classify by the shape
-of `toolInput` so an upstream tool rename cannot silently unhook the guard.
+set -euo pipefail
 
-Copyright: Ben Chatelain. Apache 2.0.
+deny() {
+    printf '{"decision":"deny","reason":"%s"}\n' "$1"
+    exit 2
+}
+trap 'deny "shared guard failed closed: hook error"' ERR
+
+ness="$HOME/.local/bin/ness"
+[ -x "$ness" ] || deny "shared guard failed closed: $ness is not installed (run: just ness-install)"
+exec "$ness" hook --harness grok
 """
-
-from __future__ import annotations
-
-import json
-from pathlib import Path
-import subprocess
-import sys
-
-PATH_KEYS = ("file_path", "path", "target_file")
-CONTENT_KEYS = ("content", "new_string", "new_text", "new_str")
-
-
-def deny(reason: str) -> int:
-    print(json.dumps({"decision": "deny", "reason": reason}))
-    return 2
-
-
-def main() -> int:
-    try:
-        payload = json.load(sys.stdin)
-    except ValueError as exc:
-        return deny(f"shared guard failed closed: unreadable hook payload ({exc})")
-
-    tool_input = payload.get("toolInput")
-    if not isinstance(tool_input, dict):
-        tool_input = {}
-    command = tool_input.get("command")
-    command = command if isinstance(command, str) else ""
-    path = ""
-    for key in PATH_KEYS:
-        value = tool_input.get(key)
-        if isinstance(value, str) and value:
-            path = value
-            break
-    content = "".join(
-        value
-        for value in (tool_input.get(key) for key in CONTENT_KEYS)
-        if isinstance(value, str)
-    )
-
-    if command:
-        tool = "bash"
-    elif path:
-        tool = "write"
-    else:
-        print(json.dumps({"decision": "allow"}))
-        return 0
-
-    args = [
-        "python3",
-        str(Path.home() / "scripts" / "agent-harnesses.py"),
-        "guard",
-        "--harness",
-        "grok",
-        "--tool",
-        tool,
-        "--command",
-        command,
-        "--path",
-        path,
-        "--content",
-        content,
-    ]
-    cwd = payload.get("cwd")
-    if isinstance(cwd, str) and cwd:
-        args.extend(["--cwd", cwd])
-
-    result = subprocess.run(
-        args,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
-    )
-    try:
-        verdict = json.loads(result.stdout)
-    except ValueError:
-        detail = result.stderr.strip() or "no guard output"
-        return deny(f"shared guard failed closed: {detail}")
-
-    decision = verdict.get("decision", "deny")
-    reason = verdict.get("reason", "shared guard failed closed")
-    if decision == "deny":
-        return deny(reason)
-    if decision == "warn" and reason:
-        print(reason, file=sys.stderr)
-    print(json.dumps({"decision": "allow"}))
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
-'''
 
 
 def render_crush_config() -> str:
@@ -1709,12 +1459,12 @@ option attribution-generated-with false
 
 # Normalized safety guard. Crush resolves a hook command against the process
 # working directory rather than the config file, so a global hook needs an
-# absolute path; python3 is invoked explicitly so the hook does not depend on
+# absolute path; bash is invoked explicitly so the hook does not depend on
 # the generated file carrying an exec bit.
 hook add PreToolUse \\
   --name shared-harness-guard \\
   --matcher "^(bash|edit|write|multiedit|download)$" \\
-  --command "python3 $HOME/.config/crush/hooks/harness-guard.py" \\
+  --command "bash $HOME/.config/crush/hooks/harness-guard.sh" \\
   --timeout 10
 """
 
@@ -1733,135 +1483,25 @@ Co-Authored-By: Crush <crush@charm.land>
 
 
 def render_crush_guard() -> str:
-    return '''#!/usr/bin/env python3
-"""Crush wrapper for the shared agent harness guard.
+    return """#!/usr/bin/env bash
+# Generated by scripts/agent-harnesses.py; do not edit directly.
+# crush PreToolUse adapter for the compiled harness guard (crates/ness,
+# installed by `just ness-install`). Fails closed when it is missing.
+#
+# Copyright: Ben Chatelain. Apache 2.0.
 
-Crush sends snake_case PreToolUse payloads (`tool_name`, `tool_input`) and
-blocks a call on exit 2, using stderr as the deny reason. Classify by the shape
-of `tool_input` so an upstream tool rename cannot silently unhook the guard.
+set -euo pipefail
 
-An allowed call stays silent on purpose. Crush reads `{"decision": "allow"}` as
-affirmative pre-approval that bypasses its own permission prompt, so echoing
-`allow` here would weaken crush's native safety rather than add to it. Exit 0
-with no stdout is crush's documented "no opinion", which falls through to the
-normal permission flow.
+deny() {
+    printf '%s\n' "$1" >&2
+    exit 2
+}
+trap 'deny "shared guard failed closed: hook error"' ERR
 
-Copyright: Ben Chatelain. Apache 2.0.
+ness="$HOME/.local/bin/ness"
+[ -x "$ness" ] || deny "shared guard failed closed: $ness is not installed (run: just ness-install)"
+exec "$ness" hook --harness crush
 """
-
-from __future__ import annotations
-
-import json
-from pathlib import Path
-import subprocess
-import sys
-
-PATH_KEYS = ("file_path", "path", "target_file")
-CONTENT_KEYS = ("content", "new_string", "new_text", "new_str")
-
-
-def deny(reason: str) -> int:
-    print(reason, file=sys.stderr)
-    return 2
-
-
-def main() -> int:
-    try:
-        payload = json.load(sys.stdin)
-    except ValueError as exc:
-        return deny(f"shared guard failed closed: unreadable hook payload ({exc})")
-
-    # Require dict payload before extracting tool_input
-    if not isinstance(payload, dict):
-        return deny("shared guard failed closed: payload is not a dict")
-
-    tool_input = payload.get("tool_input")
-    if not isinstance(tool_input, dict):
-        tool_input = {}
-    command = tool_input.get("command")
-    command = command if isinstance(command, str) else ""
-    path = ""
-    for key in PATH_KEYS:
-        value = tool_input.get(key)
-        if isinstance(value, str) and value:
-            path = value
-            break
-
-    # Collect content from direct keys and flatten nested edits[].new_string
-    content_parts = []
-    for key in CONTENT_KEYS:
-        value = tool_input.get(key)
-        if isinstance(value, str):
-            content_parts.append(value)
-
-    # Flatten multiedit payloads: extract new_string from edits[]
-    edits = tool_input.get("edits")
-    if isinstance(edits, list):
-        for edit in edits:
-            if isinstance(edit, dict):
-                for key in CONTENT_KEYS:
-                    value = edit.get(key)
-                    if isinstance(value, str):
-                        content_parts.append(value)
-
-    content = "".join(content_parts)
-
-    if command:
-        tool = "bash"
-    elif path:
-        tool = "write"
-    else:
-        return 0
-
-    args = [
-        "python3",
-        str(Path.home() / "scripts" / "agent-harnesses.py"),
-        "guard",
-        "--harness",
-        "crush",
-        "--tool",
-        tool,
-        "--command",
-        command,
-        "--path",
-        path,
-        "--content",
-        content,
-    ]
-    cwd = payload.get("cwd")
-    if isinstance(cwd, str) and cwd:
-        args.extend(["--cwd", cwd])
-
-    try:
-        result = subprocess.run(
-            args,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            check=False,
-        )
-    except OSError as exc:
-        # E2BIG, missing python3, etc. → fail closed
-        return deny(f"shared guard failed closed: {exc}")
-
-    try:
-        verdict = json.loads(result.stdout)
-    except ValueError:
-        detail = result.stderr.strip() or "no guard output"
-        return deny(f"shared guard failed closed: {detail}")
-
-    decision = verdict.get("decision", "deny")
-    reason = verdict.get("reason", "shared guard failed closed")
-    if decision == "deny":
-        return deny(reason)
-    if decision == "warn" and reason:
-        print(reason, file=sys.stderr)
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
-'''
 
 
 def render_pi_agent(agent: dict[str, Any]) -> str:
@@ -1965,9 +1605,9 @@ import type { Plugin } from "@opencode-ai/plugin";
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
 function guard(args: string[]): GuardResult {
-  const script = join(homedir(), "scripts", "agent-harnesses.py");
+  const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync("python3", [script, "guard", "--harness", "opencode", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "opencode", ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
     });
@@ -2056,9 +1696,9 @@ import { Type } from "typebox";
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
 function guard(args: string[]): GuardResult {
-  const script = join(homedir(), "scripts", "agent-harnesses.py");
+  const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync("python3", [script, "guard", "--harness", "pi", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "pi", ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
     });
@@ -2187,48 +1827,5 @@ def display_path(path: Path) -> str:
     return "~/" + rel.as_posix()
 
 
-def parse_guard_args(argv: list[str]) -> Any:
-    """Hand-parse the `guard` args to skip argparse on the hot hook path.
-
-    Mirrors the guard subparser exactly (`--command` maps to `shell_command`,
-    same defaults, `--harness`/`--tool` required). Returns a namespace, or None
-    to fall back to the full argparse dispatcher for anything it cannot parse
-    confidently (unknown flag, dangling value, invalid harness, missing tool) so
-    error handling stays identical to argparse.
-    """
-    from types import SimpleNamespace
-
-    flag_map = {
-        "--harness": "harness",
-        "--tool": "tool",
-        "--command": "shell_command",
-        "--path": "path",
-        "--content": "content",
-        "--cwd": "cwd",
-    }
-    opts: dict[str, str | None] = {
-        "harness": None,
-        "tool": None,
-        "shell_command": "",
-        "path": "",
-        "content": "",
-        "cwd": str(ROOT),
-    }
-    index = 0
-    while index < len(argv):
-        key = flag_map.get(argv[index])
-        if key is None or index + 1 >= len(argv):
-            return None
-        opts[key] = argv[index + 1]
-        index += 2
-    if opts["harness"] not in HARNESSES or not opts["tool"]:
-        return None
-    return SimpleNamespace(**opts)
-
-
 if __name__ == "__main__":
-    if _IS_GUARD:
-        _guard_ns = parse_guard_args(sys.argv[2:])
-        if _guard_ns is not None:
-            raise SystemExit(command_guard(_guard_ns))
     raise SystemExit(main())
