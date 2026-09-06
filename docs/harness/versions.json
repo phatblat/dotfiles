@@ -1,18 +1,18 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.1.25",
-    "version": "1.1.26"
+    "previous": "1.1.26",
+    "version": "1.1.27"
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "",
-    "version": "2.1.236 (Claude Code)"
+    "previous": "2.1.236 (Claude Code)",
+    "version": "2.1.261 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.152.1",
-    "version": "codex-cli 0.153.2"
+    "previous": "codex-cli 0.153.2",
+    "version": "codex-cli 0.153.3"
   },
   "crush": {
     "first_seen": "2026-08-29",
@@ -31,13 +31,13 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.1.6",
-    "version": "omp/18.1.10"
+    "previous": "omp/18.1.10",
+    "version": "omp/18.1.11"
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "1.18.26",
-    "version": "1.18.27"
+    "previous": "1.18.27",
+    "version": "1.18.28"
   },
   "pi": {
     "first_seen": "2026-08-29",
