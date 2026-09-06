@@ -42,5 +42,6 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | swift-lsp@claude-plugins-official | enabled | enabled |
 | template-creator@openai-primary-runtime | missing | enabled |
 | typescript-lsp@claude-plugins-official | enabled | enabled |
+| unified-computer-use@openai-bundled | missing | enabled |
 | visualize@openai-bundled | missing | enabled |
 | warp@claude-code-warp | enabled | missing |

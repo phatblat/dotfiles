@@ -59,7 +59,7 @@ skip_unless_home_is_this_checkout() {
 @test "agent-harnesses: Linear CLI workflows preserve macOS keychain access" {
   linear_workflows=(
     "$HOME/.agents/skills/linear-plan/SKILL.md"
-    "$HOME/.agents/skills/work-eod/SKILL.md"
+    "$HOME/.agents/skills/work-end-day/SKILL.md"
     "$HOME/.agents/skills/work-start/SKILL.md"
     "$HOME/.agents/skills/work-track/SKILL.md"
     "$HOME/.claude/commands/linear/plan.md"
@@ -294,7 +294,7 @@ skip_unless_home_is_this_checkout() {
     resolve-review-feedback
     retro
     session-save
-    work-eod
+    work-end-day
     work-runners
     work-start
     work-track

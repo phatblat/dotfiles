@@ -7825,6 +7825,12 @@
       },
       {
         "enabled": true,
+        "id": "unified-computer-use@openai-bundled",
+        "marketplace": "openai-bundled",
+        "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
+      },
+      {
+        "enabled": true,
         "id": "visualize@openai-bundled",
         "marketplace": "openai-bundled",
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
