@@ -703,9 +703,9 @@ check-spelling:
 lint:
     hk check --all
 
-# Runs lint, type checks, harness parity checks, and test
+# Runs lint, type checks, harness parity checks, ness parity, and test
 [group('checks')]
-check: lint typecheck-python check-spelling harness-check agentlink-check test
+check: lint typecheck-python check-spelling harness-check agentlink-check ness-parity test
 
 # Validates shared/native agent harness parity artifacts
 [group('checks')]
@@ -754,6 +754,12 @@ ness-build:
 ness-install: ness-build
     install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/ness
 
+# Installs the ness compiled guard to the cargo bin dir (~/.cargo/bin, which precedes ~/.local/bin on PATH)
+[group('checks')]
+ness-install-cargo:
+    cargo install --path {{ justfile_directory() }}/crates/ness --locked --force --target-dir {{ justfile_directory() }}/crates/ness/target
+
+# CI: agent-harness-parity.yml (ness job)
 # Differential-tests the ness guard against the Python reference implementation
 [group('checks')]
 ness-parity: ness-build

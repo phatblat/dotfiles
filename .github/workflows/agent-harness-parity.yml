@@ -61,3 +61,32 @@ jobs:
           else
             gh issue create --title "$title" --body-file agent-harness-parity-report.md
           fi
+
+  ness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HOME: ${{ github.workspace }}
+      # Allowlist only tools needed for the ness parity check, matching the
+      # narrow tool set convention in lint.yml's MISE_ENABLE_TOOLS.
+      MISE_ENABLE_TOOLS: "just,rust,python"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Detect relevant changes
+        id: changed
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: ./.github/scripts/changed.sh parity
+
+      - name: Install mise and tools
+        if: steps.changed.outputs.relevant == 'true'
+        uses: jdx/mise-action@3c2e0cf82a5b2e5249f0d3635a4d83d0ae861518 # v4.2.5
+        with:
+          install_args: "just rust python"
+
+      - name: Run ness parity check
+        if: steps.changed.outputs.relevant == 'true'
+        run: just ness-parity
