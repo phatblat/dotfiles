@@ -586,6 +586,7 @@
 .paseo/
 .pex/
 .phantomjs/
+.phatlab-backups/
 .pi/*
 .pi/agent/*
 .pi/agent/*/**
