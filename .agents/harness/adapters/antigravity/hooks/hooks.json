@@ -7,7 +7,7 @@
     ],
     "tool_call": [
       {
-        "command": "python3 scripts/harness-guard.py",
+        "command": "bash scripts/harness-guard.sh",
         "description": "Evaluate shell, write, and edit calls with the shared harness guard."
       }
     ]

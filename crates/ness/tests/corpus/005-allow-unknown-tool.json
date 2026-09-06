@@ -2,6 +2,10 @@
   "command": null,
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
   "harness": "claude",
   "path": "/tmp/whatever",
   "tool": "read"

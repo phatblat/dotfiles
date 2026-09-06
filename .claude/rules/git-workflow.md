@@ -44,4 +44,4 @@ paths: .gitconfig, .config/git/**, .gitignore
 
 ## .gitignore
 
-- Uses negation-aware sorted ordering — after editing, run `just format-gitignore` (checked by `just lint-gitignore`)
+- Uses negation-aware sorted ordering — after editing, run `just format` (checked by `just lint`; hk's `gitignore-sort` step)

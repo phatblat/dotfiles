@@ -1,0 +1,17 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "reason": "protected file blocked: /Users/phatblat/.ssh/id_ed25519"
+    }
+  },
+  "payload": {
+    "toolInput": {
+      "file_path": "/Users/phatblat/.ssh/id_ed25519",
+      "new_string": "x"
+    },
+    "toolName": "search_replace"
+  },
+  "shim": "grok"
+}

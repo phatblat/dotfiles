@@ -2,6 +2,10 @@
   "command": "git status --short",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
   "harness": "pi",
   "path": null,
   "tool": "bash"

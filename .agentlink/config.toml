@@ -28,8 +28,9 @@ providers = [
   "pi",
 ]
 
-# .gitignore here is sorted by scripts/sort-gitignore (enforced by
-# `just lint-gitignore`), which strips agentlink's `# >>> agentlink >>>` markers
+# .gitignore here is sorted by scripts/sort-gitignore (enforced by hk's
+# `gitignore-sort` step, run via `just lint`/`just format`), which strips
+# agentlink's `# >>> agentlink >>>` markers
 # and sorts the entries into the body of the file. With manage = true, every
 # `agentlink apply` rewrites the block and the next `just format` strips it
 # again. The sorter owns the file; the four entries agentlink wants

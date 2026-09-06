@@ -1,4 +1,6 @@
-//! Verbatim port of `.agents/harness/hooks/safety.py`.
+//! Sole implementation of the shared harness safety policy (formerly a
+//! verbatim port of `.agents/harness/hooks/safety.py`, deleted once every
+//! harness switched to this binary).
 //!
 //! Every pattern below is copied character-for-character from the Python
 //! source (re-anchored where Python's raw-string escaping of a literal
@@ -103,21 +105,23 @@ static PROTECTED_PATHS: LazyLock<Regex> = LazyLock::new(|| {
     .unwrap()
 });
 
-// safety.py:91-111. Kept as the same nine fragments currently in safety.py;
-// if a human operator adds fragments there (see the "Close the control-plane
-// gap" step in the de-risk plan), this list must be updated to match in the
-// same change, or `just ness-parity` will start failing on those new cases.
+// This list is now the only definition of the control plane: there is no
+// longer a Python `safety.py` copy for it to stay in sync with.
+// `tests/corpus/9xx-*.json` pins every fragment here to a deny/allow case;
+// add or change a fragment and its matching corpus case in the same change.
 static CONTROL_PLANE_FRAGMENTS: &[&str] = &[
     r"/\.agents/harness/hooks/",
     r"/\.agents/harness/self-improve-policy\.json(?![\w.-])",
     r"/\.agents/harness/generated-paths\.json(?![\w.-])",
     r"/scripts/agent-harnesses\.py(?![\w.-])",
     r"/scripts/agent_plugins\.py(?![\w.-])",
-    r"/harness-guard\.(?:ts|py)(?![\w.-])",
+    r"/scripts/harness_policy\.py(?![\w.-])",
+    r"/harness-guard\.(?:ts|sh)(?![\w.-])",
     r"/(?:write|bash)-guard\.sh(?![\w.-])",
     r"/opencode/plugins/harness\.ts(?![\w.-])",
     r"/agent/extensions/harness\.ts(?![\w.-])",
     r"/harness-guard\.json(?![\w.-])",
+    r"/crates/ness/(?!target(?:/|$))",
 ];
 
 // safety.py:104-107

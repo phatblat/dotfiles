@@ -1,0 +1,16 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "harness": "antigravity",
+      "reason": "Dangerous command pattern detected",
+      "tool": "bash"
+    }
+  },
+  "payload": {
+    "command": "rm -rf /",
+    "tool": "bash"
+  },
+  "shim": "antigravity"
+}

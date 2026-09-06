@@ -2,6 +2,10 @@
   "command": "true && doas ls",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "Privilege escalation blocked"
+  },
   "harness": "claude",
   "path": null,
   "tool": "bash"

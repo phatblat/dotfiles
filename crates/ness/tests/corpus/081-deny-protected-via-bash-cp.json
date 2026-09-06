@@ -2,6 +2,10 @@
   "command": "cp /tmp/x /Users/phatblat/.aws/credentials",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "protected file blocked: /Users/phatblat/.aws/credentials"
+  },
   "harness": "claude",
   "path": null,
   "tool": "bash"

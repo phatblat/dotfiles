@@ -1,0 +1,13 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "decision": "allow"
+    }
+  },
+  "payload": {
+    "toolInput": {},
+    "toolName": "Read"
+  },
+  "shim": "grok"
+}

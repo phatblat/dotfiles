@@ -558,12 +558,13 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: grok artifacts exist and parse" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
   [ -f "$HOME/.grok/config.toml" ]
   [ -f "$HOME/.grok/rules/shared-harness.md" ]
-  [ -f "$HOME/.grok/scripts/harness-guard.py" ]
+  [ -f "$HOME/.grok/scripts/harness-guard.sh" ]
   [ -f "$HOME/.grok/agents/triage-expert.md" ]
 
   run jq . "$HOME/.grok/hooks/harness-guard.json"
@@ -573,48 +574,6 @@ skip_unless_home_is_this_checkout() {
   grep -Fq 'Shared Harness Instructions' "$HOME/.grok/rules/shared-harness.md"
   grep -Fq 'Context Compaction Preservation' "$HOME/.grok/rules/shared-harness.md"
   grep -Fq 'Co-Authored-By: grokkybara[bot] <304785771+grokkybara[bot]@users.noreply.github.com>' "$HOME/.grok/rules/shared-harness.md"
-}
-
-@test "agent-harnesses: grok guard wrapper maps camelCase payloads" {
-  wrapper="$HOME/.grok/scripts/harness-guard.py"
-
-  deny_payload="$(jq -nc '{hookEventName: "pre_tool_use", cwd: $ENV.HOME,
-    toolName: "run_terminal_command", toolInput: {command: "sudo -n true"}}')"
-  run python3 "$wrapper" <<<"$deny_payload"
-  [ "$status" -eq 2 ]
-  [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
-
-  write_payload="$(jq -nc --arg path "$HOME/.ssh/id_ed25519" '{hookEventName: "pre_tool_use",
-    cwd: $ENV.HOME, toolName: "search_replace",
-    toolInput: {file_path: $path, new_string: "x"}}')"
-  run python3 "$wrapper" <<<"$write_payload"
-  [ "$status" -eq 2 ]
-  [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
-
-  allow_payload="$(jq -nc '{hookEventName: "pre_tool_use", cwd: $ENV.HOME,
-    toolName: "run_terminal_command", toolInput: {command: "git status --short"}}')"
-  run python3 "$wrapper" <<<"$allow_payload"
-  [ "$status" -eq 0 ]
-  [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
-}
-
-@test "agent-harnesses: crush guard wrapper maps snake_case payloads" {
-  wrapper="$HOME/.config/crush/hooks/harness-guard.py"
-
-  deny_payload="$(jq -nc '{tool_name: "run_terminal_command", cwd: $ENV.HOME,
-    tool_input: {command: "sudo -n true"}}')"
-  run python3 "$wrapper" <<<"$deny_payload"
-  [ "$status" -eq 2 ]
-
-  write_payload="$(jq -nc --arg path "$HOME/.ssh/id_ed25519" '{tool_name: "write_file",
-    cwd: $ENV.HOME, tool_input: {file_path: $path, new_string: "x"}}')"
-  run python3 "$wrapper" <<<"$write_payload"
-  [ "$status" -eq 2 ]
-
-  allow_payload="$(jq -nc '{tool_name: "run_terminal_command", cwd: $ENV.HOME,
-    tool_input: {command: "git status --short"}}')"
-  run python3 "$wrapper" <<<"$allow_payload"
-  [ "$status" -eq 0 ]
 }
 
 @test "agent-harnesses: antigravity plugin artifacts exist and parse" {
@@ -627,7 +586,7 @@ skip_unless_home_is_this_checkout() {
   [ -f "$adapter/commands/git/commit.md" ]
   [ -f "$adapter/agents/triage-expert.md" ]
   [ -f "$adapter/hooks/hooks.json" ]
-  [ -f "$adapter/scripts/harness-guard.py" ]
+  [ -f "$adapter/scripts/harness-guard.sh" ]
   [ -f "$adapter/mcp.json" ]
 
   command_count=$(find "$adapter/commands" -type f -name '*.md' | wc -l | tr -d ' ')
@@ -650,135 +609,6 @@ skip_unless_home_is_this_checkout() {
   run agy plugin validate "$HOME/.agents/harness/adapters/antigravity"
 
   [ "$status" -eq 0 ]
-}
-
-@test "agent-harnesses: safe shell commands pass every adapter guard" {
-  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
-    run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "git status --short"
-    [ "$status" -eq 0 ]
-    decision=$(printf '%s' "$output" | jq -r '.decision')
-    [ "$decision" = "allow" ]
-  done
-}
-
-@test "agent-harnesses: dangerous shell commands are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
-    run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "rm -rf /"
-    [ "$status" -eq 2 ]
-    decision=$(printf '%s' "$output" | jq -r '.decision')
-    reason=$(printf '%s' "$output" | jq -r '.reason')
-    [ "$decision" = "deny" ]
-    [[ "$reason" == *"Dangerous command"* ]]
-  done
-}
-
-@test "agent-harnesses: privilege escalation after shell separators is denied consistently" {
-  privileged_commands=(
-    "echo x | sudo tee /etc/hosts"
-    "printf x | su - root"
-    $'echo ok\nsudo whoami'
-  )
-
-  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
-    for privileged_command in "${privileged_commands[@]}"; do
-      run python3 "$SCRIPT" guard --harness "$harness" --tool bash --command "$privileged_command"
-      [ "$status" -eq 2 ]
-      decision=$(printf '%s' "$output" | jq -r '.decision')
-      reason=$(printf '%s' "$output" | jq -r '.reason')
-      [ "$decision" = "deny" ]
-      [[ "$reason" == *"Privilege escalation"* ]]
-    done
-  done
-}
-
-@test "agent-harnesses: protected writes are denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
-    run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/.ssh/id_ed25519" --content "not a key"
-    [ "$status" -eq 2 ]
-    decision=$(printf '%s' "$output" | jq -r '.decision')
-    reason=$(printf '%s' "$output" | jq -r '.reason')
-    [ "$decision" = "deny" ]
-    [[ "$reason" == *"protected file"* ]]
-  done
-}
-
-@test "agent-harnesses: documented protected paths are denied consistently" {
-  protected_paths=(
-    "$HOME/.gemini/google_accounts.json"
-    "$HOME/.gemini/oauth_creds.json"
-    "$HOME/.gemini/antigravity-cli/installation_id"
-    "$HOME/.gemini/antigravity-cli/conversations/session.json"
-    "$HOME/.cursor/ai-tracking/state.json"
-    "$HOME/.grok/auth.json"
-    "$HOME/.grok/mcp_credentials.json"
-    "$HOME/.local/share/crush/crush.json"
-    "$HOME/.local/share/crush/crush.db"
-    "$HOME/.config/crush/crush.json"
-  )
-
-  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
-    for protected_path in "${protected_paths[@]}"; do
-      run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$protected_path" --content "{}"
-      [ "$status" -eq 2 ]
-      decision=$(printf '%s' "$output" | jq -r '.decision')
-      reason=$(printf '%s' "$output" | jq -r '.reason')
-      [ "$decision" = "deny" ]
-      [[ "$reason" == *"protected file"* ]]
-    done
-  done
-}
-
-@test "agent-harnesses: secret-like content is denied consistently" {
-  for harness in claude codex opencode pi omp antigravity cursor grok crush; do
-    run python3 "$SCRIPT" guard --harness "$harness" --tool write --path "$HOME/tmp/example.txt" --content "token = sk-example12345678901234567890"
-    [ "$status" -eq 2 ]
-    decision=$(printf '%s' "$output" | jq -r '.decision')
-    reason=$(printf '%s' "$output" | jq -r '.reason')
-    [ "$decision" = "deny" ]
-    [[ "$reason" == *"secret-like content"* ]]
-  done
-}
-
-@test "agent-harnesses: generated guard wrappers forward cwd" {
-  repo="$(mktemp -d)"
-  git -C "$repo" init -q -b main
-  empty_tree="$(git -C "$repo" mktree </dev/null)"
-  parent=""
-  for index in $(seq 1 100); do
-    if [ -n "$parent" ]; then
-      commit="$(
-        GIT_AUTHOR_NAME="Harness Test" \
-          GIT_AUTHOR_EMAIL="harness@example.invalid" \
-          GIT_COMMITTER_NAME="Harness Test" \
-          GIT_COMMITTER_EMAIL="harness@example.invalid" \
-          git -C "$repo" commit-tree "$empty_tree" -p "$parent" -m "commit $index"
-      )"
-    else
-      commit="$(
-        GIT_AUTHOR_NAME="Harness Test" \
-          GIT_AUTHOR_EMAIL="harness@example.invalid" \
-          GIT_COMMITTER_NAME="Harness Test" \
-          GIT_COMMITTER_EMAIL="harness@example.invalid" \
-          git -C "$repo" commit-tree "$empty_tree" -m "commit $index"
-      )"
-    fi
-    parent="$commit"
-  done
-  git -C "$repo" update-ref refs/heads/main "$parent"
-  git -C "$repo" checkout -q main
-
-  payload="$(jq -nc --arg cwd "$repo" '{tool: "bash", command: "git commit -m test", cwd: $cwd}')"
-
-  for wrapper in \
-    "$HOME/.agents/harness/adapters/antigravity/scripts/harness-guard.py" \
-    "$HOME/.agents/harness/adapters/cursor/scripts/harness-guard.py"; do
-    run python3 "$wrapper" <<<"$payload"
-    [ "$status" -eq 0 ]
-    decision="$(printf '%s' "$output" | jq -r '.decision')"
-    reason="$(printf '%s' "$output" | jq -r '.reason')"
-    [ "$decision" = "warn" ]
-    [[ "$reason" == *"protected 'main' branch"* ]]
-  done
 }
 
 @test "agent-harnesses: generated-paths manifest resolves and covers header-less artifacts" {
@@ -804,73 +634,6 @@ if missing:
   [ "$status" -eq 0 ]
   run jq -e '."~/.agents/harness/generated-paths.json"' "$manifest"
   [ "$status" -eq 0 ]
-}
-
-@test "agent-harnesses: guard denies writes to generated artifacts and names the source" {
-  run python3 "$SCRIPT" guard --harness omp --tool write \
-    --path "$HOME/.agents/harness/commands/git/commit.md" --content "x"
-
-  [ "$status" -eq 2 ]
-  [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
-  [[ "$(printf '%s' "$output" | jq -r '.reason')" == *".claude/commands/git/commit.md"* ]]
-}
-
-@test "agent-harnesses: guard allows writes to hand-written sources" {
-  run python3 "$SCRIPT" guard --harness omp --tool write \
-    --path "$HOME/.claude/commands/git/commit.md" --content "x"
-
-  [ "$status" -eq 0 ]
-  [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
-}
-
-@test "agent-harnesses: guard denies writes to the control plane" {
-  for target in \
-    ".agents/harness/hooks/safety.py" \
-    "scripts/agent-harnesses.py" \
-    ".agents/harness/self-improve-policy.json" \
-    ".agents/harness/generated-paths.json"; do
-    run python3 "$SCRIPT" guard --harness omp --tool write \
-      --path "$HOME/$target" --content "x"
-
-    [ "$status" -eq 2 ]
-    [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
-  done
-}
-
-# The path rules were write-tool-only, so `echo x >> safety.py` reached the
-# guard's own source and one redirect could blank the generated-path manifest,
-# taking every generated artifact unprotected with it.
-@test "agent-harnesses: guard denies shell writes to protected and control-plane paths" {
-  for command in \
-    "echo x >> $HOME/.agents/harness/hooks/safety.py" \
-    "echo '{}' > $HOME/.agents/harness/generated-paths.json" \
-    "rm $HOME/.agents/harness/generated-paths.json" \
-    "mv /tmp/x $HOME/.agents/harness/self-improve-policy.json" \
-    "sed -i '' s/deny/allow/ $HOME/scripts/agent-harnesses.py" \
-    "cp /tmp/evil $HOME/.claude/.credentials.json" \
-    "echo x >> $HOME/.ssh/id_rsa"; do
-    run python3 "$SCRIPT" guard --harness omp --tool bash --command "$command"
-
-    [ "$status" -eq 2 ]
-    [ "$(printf '%s' "$output" | jq -r '.decision')" = "deny" ]
-  done
-}
-
-# The guard shells out to the generator, so denying every command that merely
-# names a control-plane path would deadlock the harness against itself.
-@test "agent-harnesses: guard allows reads and unrelated writes near the control plane" {
-  for command in \
-    "python3 $HOME/scripts/agent-harnesses.py generate" \
-    "python3 $HOME/scripts/agent-harnesses.py validate 2>/dev/null" \
-    "cat $HOME/.agents/harness/hooks/safety.py" \
-    "grep -n deny $HOME/scripts/agent-harnesses.py" \
-    "echo hi > /tmp/unrelated.txt" \
-    "rm -f build/out.txt"; do
-    run python3 "$SCRIPT" guard --harness omp --tool bash --command "$command"
-
-    [ "$status" -eq 0 ]
-    [ "$(printf '%s' "$output" | jq -r '.decision')" = "allow" ]
-  done
 }
 
 @test "agent-harnesses: provenance classifies generated, source, and generator paths" {

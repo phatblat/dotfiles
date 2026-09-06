@@ -4,7 +4,7 @@
       {
         "hooks": [
           {
-            "command": "python3 $HOME/.grok/scripts/harness-guard.py",
+            "command": "bash $HOME/.grok/scripts/harness-guard.sh",
             "timeout": 10,
             "type": "command"
           }

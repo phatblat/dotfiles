@@ -113,7 +113,7 @@
   "~/.agents/harness/adapters/antigravity/plugin.json": {
     "source": ""
   },
-  "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py": {
+  "~/.agents/harness/adapters/antigravity/scripts/harness-guard.sh": {
     "source": ""
   },
   "~/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md": {
@@ -437,7 +437,7 @@
   "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc": {
     "source": ""
   },
-  "~/.agents/harness/adapters/cursor/scripts/harness-guard.py": {
+  "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh": {
     "source": ""
   },
   "~/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md": {
@@ -974,7 +974,7 @@
   "~/.config/crush/crushrc": {
     "source": ""
   },
-  "~/.config/crush/hooks/harness-guard.py": {
+  "~/.config/crush/hooks/harness-guard.sh": {
     "source": ""
   },
   "~/.config/crush/shared-harness.md": {
@@ -1205,7 +1205,7 @@
   "~/.grok/rules/shared-harness.md": {
     "source": ""
   },
-  "~/.grok/scripts/harness-guard.py": {
+  "~/.grok/scripts/harness-guard.sh": {
     "source": ""
   },
   "~/.omp/agent/APPEND_SYSTEM.md": {

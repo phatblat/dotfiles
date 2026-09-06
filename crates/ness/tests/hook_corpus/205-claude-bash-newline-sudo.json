@@ -1,0 +1,20 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "hookSpecificOutput": {
+        "hookEventName": "PreToolUse",
+        "permissionDecision": "deny",
+        "permissionDecisionReason": "Privilege escalation blocked"
+      }
+    }
+  },
+  "payload": {
+    "hook_event_name": "PreToolUse",
+    "tool_input": {
+      "command": "echo ok\nsudo whoami"
+    },
+    "tool_name": "Bash"
+  },
+  "shim": "claude-bash"
+}

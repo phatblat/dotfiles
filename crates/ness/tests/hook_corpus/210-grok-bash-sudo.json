@@ -1,0 +1,18 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "reason": "Privilege escalation blocked"
+    }
+  },
+  "payload": {
+    "cwd": "/tmp",
+    "hookEventName": "pre_tool_use",
+    "toolInput": {
+      "command": "sudo -n true"
+    },
+    "toolName": "run_terminal_command"
+  },
+  "shim": "grok"
+}

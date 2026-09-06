@@ -1,9 +1,9 @@
 // Copyright: Ben Chatelain. Apache 2.0.
 //
-// Routes omp tool calls through the shared harness guard so omp enforces the
-// same protected paths, blocked command categories, and secret-content rules
-// as every other harness. Hand-written on purpose: ~/.omp/agent is tracked
-// manually, not emitted by scripts/agent-harnesses.py.
+// Routes omp tool calls through the compiled harness guard (ness) so omp
+// enforces the same protected paths, blocked command categories, and
+// secret-content rules as every other harness. Hand-written on purpose:
+// ~/.omp/agent is tracked manually, not emitted by scripts/agent-harnesses.py.
 
 import { execFileSync } from "node:child_process";
 import { homedir } from "node:os";
@@ -24,11 +24,11 @@ function stdoutOf(error: unknown): string {
 }
 
 function guard(args: string[]): GuardResult {
-  const script = join(homedir(), "scripts", "agent-harnesses.py");
+  const ness = join(homedir(), ".local", "bin", "ness");
   try {
     const output = execFileSync(
-      "python3",
-      [script, "guard", "--harness", "omp", ...args],
+      ness,
+      ["guard", "--harness", "omp", ...args],
       { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
     );
     return JSON.parse(output) as GuardResult;

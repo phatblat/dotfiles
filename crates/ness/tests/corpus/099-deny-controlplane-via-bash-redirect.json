@@ -2,6 +2,10 @@
   "command": "echo x >> /Users/phatblat/scripts/agent-harnesses.py",
   "content": null,
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "control-plane file is human-only: /Users/phatblat/scripts/agent-harnesses.py. It decides what the guard permits, so edit it directly rather than through an agent."
+  },
   "harness": "claude",
   "path": null,
   "tool": "bash"

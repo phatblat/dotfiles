@@ -3,9 +3,10 @@
 Copyright: Ben Chatelain. Apache 2.0.
 
 Split out of ``scripts/agent-harnesses.py`` so these rules stay agent-editable
-while the guard wiring in that module remains human-only
-(``~/.agents/harness/hooks/safety.py`` lists agent-harnesses.py as control
-plane, because it is the sole consumer of the safety policy).
+while the guard policy lives in the compiled, human-only ``crates/ness``
+crate (``crates/ness/src/policy.rs``'s ``CONTROL_PLANE_FRAGMENTS`` lists
+agent-harnesses.py as control plane, because it is the sole consumer of the
+harness capability registry).
 
 That split only holds while this module stays off the ``guard`` fast path.
 Every caller of the names defined here is reached solely from ``generate``,

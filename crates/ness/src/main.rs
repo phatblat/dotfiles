@@ -62,12 +62,7 @@ fn run_guard(flags: &HashMap<String, String>) -> i32 {
     let decision =
         guard_eval::evaluate_with_manifest(tool, &command, &path, &content, &cwd, &manifest);
 
-    let payload = serde_json::json!({
-        "harness": harness,
-        "tool": tool,
-        "decision": decision.decision,
-        "reason": decision.reason,
-    });
+    let payload = guard_eval::verdict_json(harness, tool, &decision);
     println!("{payload}");
     if decision.allowed() {
         0
@@ -76,38 +71,66 @@ fn run_guard(flags: &HashMap<String, String>) -> i32 {
     }
 }
 
-/// `ness hook --harness <slug> --tool <write|bash>` — see `hook.rs`.
+/// `ness hook --harness <slug> [--tool <write|bash>]` — see `hook.rs`.
+/// `--tool` is required for `claude`/`codex` (which subcommand of the
+/// two-shim chain they replace is not derivable from the payload alone) and
+/// rejected for `grok`/`crush`/`antigravity`/`cursor` (each of those sends
+/// a single normalized payload that classifies itself).
 fn run_hook(flags: &HashMap<String, String>) -> i32 {
     let Some(harness) = flags.get("harness") else {
         eprintln!("ness hook: --harness is required");
-        return 2;
-    };
-    let Some(tool) = flags.get("tool") else {
-        eprintln!("ness hook: --tool is required (write or bash)");
         return 2;
     };
     let cwd = flags.get("cwd").cloned().unwrap_or_else(default_cwd);
     let root = paths::find_root();
     let manifest = manifest_path(&root);
 
-    match tool.as_str() {
-        "bash" => hook::run_bash(harness, &cwd, &manifest),
-        "write" => hook::run_write(harness, &cwd, &manifest),
+    match harness.as_str() {
+        "claude" | "codex" => {
+            let Some(tool) = flags.get("tool") else {
+                eprintln!("ness hook: --tool is required (write or bash)");
+                return 2;
+            };
+            match tool.as_str() {
+                "bash" => hook::run_bash(harness, &cwd, &manifest),
+                "write" => hook::run_write(harness, &cwd, &manifest),
+                other => {
+                    eprintln!("ness hook: unsupported --tool '{other}' (expected write or bash)");
+                    return 2;
+                }
+            }
+            // Hook responses always exit 0: Claude/Codex read the decision
+            // from the presence (or absence) of `hookSpecificOutput` in
+            // stdout JSON, not from the process exit code — unlike `guard`,
+            // which exits 2 on deny.
+            0
+        }
+        "grok" | "crush" | "antigravity" | "cursor" => {
+            if flags.contains_key("tool") {
+                eprintln!("ness hook: --tool is only valid for claude and codex");
+                return 2;
+            }
+            match harness.as_str() {
+                "grok" => hook::run_grok(&cwd, &manifest),
+                "crush" => hook::run_crush(&cwd, &manifest),
+                _ => hook::run_normalized(harness, &cwd, &manifest),
+            }
+        }
         other => {
-            eprintln!("ness hook: unsupported --tool '{other}' (expected write or bash)");
-            return 2;
+            eprintln!(
+                "ness hook: unsupported --harness '{other}' (expected claude, codex, grok, crush, antigravity, or cursor)"
+            );
+            2
         }
     }
-    // Hook responses always exit 0: Claude/Codex read the decision from the
-    // presence (or absence) of `hookSpecificOutput` in stdout JSON, not from
-    // the process exit code — unlike `guard`, which exits 2 on deny.
-    0
 }
 
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let Some(subcommand) = args.first().cloned() else {
-        eprintln!("usage: ness <guard|hook> --harness <slug> ...");
+        eprintln!(
+            "usage: ness <guard|hook> --harness <slug> ... (hook harnesses: claude, codex, grok, crush, antigravity, cursor)"
+        );
         std::process::exit(2);
     };
 

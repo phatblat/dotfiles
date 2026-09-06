@@ -1,0 +1,21 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "hookSpecificOutput": {
+        "hookEventName": "PreToolUse",
+        "permissionDecision": "deny",
+        "permissionDecisionReason": "protected file blocked: /Users/phatblat/.ssh/id_ed25519"
+      }
+    }
+  },
+  "payload": {
+    "cwd": "/Users/phatblat",
+    "hook_event_name": "PreToolUse",
+    "tool_input": {
+      "command": "*** Begin Patch\n*** Update File: /Users/phatblat/.ssh/id_ed25519\n@@\n-old\n+new\n*** End Patch"
+    },
+    "tool_name": "apply_patch"
+  },
+  "shim": "codex-write"
+}

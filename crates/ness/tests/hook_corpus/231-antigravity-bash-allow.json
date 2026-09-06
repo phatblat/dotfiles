@@ -1,0 +1,16 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "decision": "allow",
+      "harness": "antigravity",
+      "reason": "",
+      "tool": "bash"
+    }
+  },
+  "payload": {
+    "command": "git status --short",
+    "tool": "bash"
+  },
+  "shim": "antigravity"
+}

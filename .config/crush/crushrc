@@ -15,10 +15,10 @@ option attribution-generated-with false
 
 # Normalized safety guard. Crush resolves a hook command against the process
 # working directory rather than the config file, so a global hook needs an
-# absolute path; python3 is invoked explicitly so the hook does not depend on
+# absolute path; bash is invoked explicitly so the hook does not depend on
 # the generated file carrying an exec bit.
 hook add PreToolUse \
   --name shared-harness-guard \
   --matcher "^(bash|edit|write|multiedit|download)$" \
-  --command "python3 $HOME/.config/crush/hooks/harness-guard.py" \
+  --command "bash $HOME/.config/crush/hooks/harness-guard.sh" \
   --timeout 10

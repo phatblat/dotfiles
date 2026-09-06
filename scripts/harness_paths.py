@@ -3,10 +3,10 @@ config roots, and session-store descriptors for every supported agent harness.
 
 This module decides nothing about safety -- it is pure data plus one pure
 rendering helper -- so it lives outside the human-only control plane
-(`~/.agents/harness/hooks/safety.py:_CONTROL_PLANE_FRAGMENTS`) and stays
+(`crates/ness/src/policy.rs`'s `CONTROL_PLANE_FRAGMENTS`) and stays
 agent-maintainable, mirroring what `harness_skills.py` already does for skill
 rendering. `scripts/agent-harnesses.py` imports these names unconditionally
-(including on its `guard`/`provenance` fast path), so this module must stay
+(including on its `provenance` fast path), so this module must stay
 stdlib-only with no I/O at import time.
 """
 

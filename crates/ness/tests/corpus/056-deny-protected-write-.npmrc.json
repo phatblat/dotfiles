@@ -2,6 +2,10 @@
   "command": null,
   "content": "x",
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "protected file blocked: /Users/phatblat/.npmrc"
+  },
   "harness": "claude",
   "path": "/Users/phatblat/.npmrc",
   "tool": "write"

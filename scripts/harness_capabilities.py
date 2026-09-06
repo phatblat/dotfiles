@@ -3,17 +3,9 @@
 Copyright: Ben Chatelain. Apache 2.0.
 
 Split out of ``scripts/agent-harnesses.py`` so these capability facts stay
-agent-editable while the guard wiring in that module remains human-only
-(``~/.agents/harness/hooks/safety.py`` lists agent-harnesses.py as control
-plane, because it is the sole consumer of the safety policy).
-
-That split only holds while this module stays off the ``guard`` fast path.
-Every caller of the names defined here is reached solely from ``generate``,
-``validate``, ``probe``, ``drift``, and ``audit``, and agent-harnesses.py
-imports this module inside its non-fast-path block. So an edit here cannot
-influence a safety decision. If a fast-path action ever needs something from
-this file, move that thing back into the control-plane module rather than
-importing this one earlier.
+agent-editable while the generator (control plane, see
+``crates/ness/src/policy.rs`` ``CONTROL_PLANE_FRAGMENTS``) remains
+human-only.
 
 Vocabulary, enforced by ``validate_registry()`` and switched on by the
 renderers in ``harness_docs.py``:
@@ -139,7 +131,7 @@ _LOCAL_2026_06_27 = Evidence(kind="local", date="2026-06-27")
 _PROBED_2026_08_29 = "2026-08-29"
 
 _SHARED = "~/.agents/harness"
-_SAFETY = "~/.agents/harness/hooks/safety.py"
+_SAFETY = "~/crates/ness/src/policy.rs"
 
 
 def _exists(path: str) -> dict[str, str]:
@@ -1028,7 +1020,7 @@ CAPABILITIES: list[Capability] = [
             "blocked consistently."
         ),
         canonical=(_SAFETY,),
-        verify="python3 scripts/agent-harnesses.py verify",
+        verify="just ness-test",
         cells={
             "claude": Cell(
                 parity="aligned",
@@ -1055,9 +1047,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_contains", date=_PROBED_2026_08_29
                 ),
-                probe=_contains(
-                    ".config/opencode/plugins/harness.ts", "agent-harnesses"
-                ),
+                probe=_contains(".config/opencode/plugins/harness.ts", r"\bness\b"),
             ),
             "pi": Cell(
                 parity="aligned",
@@ -1066,7 +1056,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_contains", date=_PROBED_2026_08_29
                 ),
-                probe=_contains(".pi/agent/extensions/harness.ts", "agent-harnesses"),
+                probe=_contains(".pi/agent/extensions/harness.ts", r"\bness\b"),
             ),
             "omp": Cell(
                 parity="aligned",
@@ -1075,22 +1065,20 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_contains", date=_PROBED_2026_08_29
                 ),
-                probe=_contains(
-                    ".omp/agent/hooks/pre/harness-guard.ts", "agent-harnesses"
-                ),
+                probe=_contains(".omp/agent/hooks/pre/harness-guard.ts", r"\bness\b"),
             ),
             "antigravity": Cell(
                 parity="partial",
                 mode="adapter",
                 artifacts=(
                     "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
-                    "~/.agents/harness/adapters/antigravity/scripts/harness-guard.py",
+                    "~/.agents/harness/adapters/antigravity/scripts/harness-guard.sh",
                 ),
                 evidence=Evidence(
                     kind="probe", ref="file_contains", date=_PROBED_2026_08_29
                 ),
                 note=(
-                    "generated Antigravity hook wrapper calls the shared guard, "
+                    "generated Antigravity hook shim execs the compiled guard, "
                     "but native pre-tool blocking has not been verified"
                 ),
                 next_action=(
@@ -1099,7 +1087,7 @@ CAPABILITIES: list[Capability] = [
                 ),
                 probe=_contains(
                     ".agents/harness/adapters/antigravity/hooks/hooks.json",
-                    r"harness-guard\.py",
+                    r"harness-guard\.sh",
                 ),
             ),
             "cursor": Cell(
@@ -1107,14 +1095,14 @@ CAPABILITIES: list[Capability] = [
                 mode="adapter",
                 artifacts=(
                     "~/.agents/harness/adapters/cursor/hooks/hooks.json",
-                    "~/.agents/harness/adapters/cursor/scripts/harness-guard.py",
+                    "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh",
                 ),
                 evidence=Evidence(
                     kind="probe", ref="file_contains", date=_PROBED_2026_08_29
                 ),
                 note=(
-                    "Cursor hook wrapper is generated, but native pre-tool "
-                    "blocking behavior has not been verified"
+                    "generated Cursor hook shim execs the compiled guard, but "
+                    "native pre-tool blocking behavior has not been verified"
                 ),
                 next_action=(
                     "Verify Cursor invokes hooks.json before shell/write/edit calls "
@@ -1122,7 +1110,7 @@ CAPABILITIES: list[Capability] = [
                 ),
                 probe=_contains(
                     ".agents/harness/adapters/cursor/hooks/hooks.json",
-                    r"harness-guard\.py",
+                    r"harness-guard\.sh",
                 ),
             ),
             "grok": Cell(
@@ -1130,42 +1118,43 @@ CAPABILITIES: list[Capability] = [
                 mode="adapter",
                 artifacts=(
                     "~/.grok/hooks/harness-guard.json",
-                    "~/.grok/scripts/harness-guard.py",
+                    "~/.grok/scripts/harness-guard.sh",
                 ),
                 evidence=Evidence(
                     kind="probe", ref="file_contains", date=_PROBED_2026_08_29
                 ),
                 note=(
-                    "generated grok PreToolUse guard maps grok's camelCase payload "
-                    "to the shared guard, but live blocking in a grok session has "
-                    "not been verified"
+                    "generated grok PreToolUse shim execs the compiled guard, "
+                    "which maps grok's camelCase payload; live blocking in a "
+                    "grok session has not been verified"
                 ),
                 next_action=(
                     "Verify grok blocks a denied shell command through "
                     "~/.grok/hooks/harness-guard.json in a live session"
                 ),
-                probe=_contains(".grok/hooks/harness-guard.json", r"harness-guard\.py"),
+                probe=_contains(".grok/hooks/harness-guard.json", r"harness-guard\.sh"),
             ),
             "crush": Cell(
                 parity="partial",
                 mode="adapter",
                 artifacts=(
                     "~/.config/crush/crushrc",
-                    "~/.config/crush/hooks/harness-guard.py",
+                    "~/.config/crush/hooks/harness-guard.sh",
                 ),
                 evidence=Evidence(
                     kind="probe", ref="file_contains", date=_PROBED_2026_08_29
                 ),
                 note=(
-                    "generated crush PreToolUse guard maps crush's snake_case "
-                    "payload to the shared guard and blocks with exit 2, but crush "
-                    "is not installed locally so live blocking is unverified"
+                    "generated crush PreToolUse shim execs the compiled guard, "
+                    "which maps crush's snake_case payload and blocks with exit "
+                    "2; crush is not installed locally so live blocking is "
+                    "unverified"
                 ),
                 next_action=(
                     "Install crush and verify it blocks a denied shell command "
                     "through the generated crushrc PreToolUse hook"
                 ),
-                probe=_contains(".config/crush/crushrc", r"harness-guard\.py"),
+                probe=_contains(".config/crush/crushrc", r"harness-guard\.sh"),
             ),
         },
     ),
@@ -1256,7 +1245,7 @@ CAPABILITIES: list[Capability] = [
                 parity="absent",
                 surface=(
                     "No native permission-rule surface; the shared guard runs via "
-                    "~/.grok/scripts/harness-guard.py"
+                    "~/.grok/scripts/harness-guard.sh"
                 ),
                 evidence=Evidence(kind="docs", ref="grok CLI config reference"),
             ),
@@ -1264,7 +1253,7 @@ CAPABILITIES: list[Capability] = [
                 parity="absent",
                 surface=(
                     "No native permission-rule surface; the shared guard runs via "
-                    "~/.config/crush/hooks/harness-guard.py"
+                    "~/.config/crush/hooks/harness-guard.sh"
                 ),
                 evidence=Evidence(kind="docs", ref="crush CLI config reference"),
             ),
@@ -1272,7 +1261,7 @@ CAPABILITIES: list[Capability] = [
                 parity="absent",
                 surface=(
                     "No native permission-rule surface; the shared guard runs via "
-                    "~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
+                    "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
                 ),
                 evidence=Evidence(kind="docs", ref="cursor CLI config reference"),
             ),
