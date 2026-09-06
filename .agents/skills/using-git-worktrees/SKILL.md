@@ -31,7 +31,7 @@ The dotfiles repo (rooted at `~`) needs an explicit opt-in before using worktree
 ### What a Dotfiles Worktree Does Not Cover
 
 - **Interactive shell startup.** `.zshenv`, `.zshrc`, `.zprofile`, and the functions autoloaded from `.config/zsh/functions/` are only exercised by the real, running shell at `$HOME`. Validate startup changes with a branch switch there, not a worktree.
-- **4 intentionally-absolute symlinks.** `bin/plistbuddy`, `bin/vi`, and `bin/vim` point at system/Homebrew binaries outside `$HOME`; `.config/iterm2/AppSupport` points at untracked app state. These stay absolute by design and are excluded from `just lint-symlinks`.
+- **4 intentionally-absolute symlinks.** `bin/plistbuddy`, `bin/vi`, and `bin/vim` point at system/Homebrew binaries outside `$HOME`; `.config/iterm2/AppSupport` points at untracked app state. These stay absolute by design and are excluded from hk's `symlinks` step (`scripts/check-symlinks.sh`, run via `just lint`).
 - **3 ancestor-discoverable configs.** `.config/mise/config.toml`, `.editorconfig`, and `.envrc` are found by tools that walk up from cwd. Because a dotfiles worktree lives beneath the real `$HOME`, such a tool can discover the real `$HOME`'s copy instead of the worktree's own. `wt --test`/`wt --shell` warn on stderr only when the two copies actually differ.
 
 ## Creating, Switching, Deleting

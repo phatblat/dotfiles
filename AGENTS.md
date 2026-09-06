@@ -46,7 +46,7 @@ Use `just` recipes from the repo root:
 - Use 4 spaces for `*.{gradle,java,kt,kts}`; tabs for `Makefile`, `*.plist`, `*.gitconfig`.
 - Keep shell scripts lint-clean with `shellcheck`; format shell code with `shfmt`.
 - For tests, use descriptive Bats names: `@test "tool is available" { ... }`.
-- Keep scripts and function names concise, lowercase, and task-oriented (`sort-gitignore`, `lint-zsh`).
+- Keep scripts and function names concise, lowercase, and task-oriented (`sort-gitignore`, `check-symlinks`).
 
 ### Formatting Policy
 
