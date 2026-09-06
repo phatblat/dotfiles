@@ -23,7 +23,7 @@
     },
     "hooks.safety": {
       "date": "2026-09-06",
-      "detail": ".agents/harness/adapters/antigravity/hooks/hooks.json matches harness-guard\\.py",
+      "detail": ".agents/harness/adapters/antigravity/hooks/hooks.json matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
       "result": "pass",
@@ -347,7 +347,7 @@
     },
     "hooks.safety": {
       "date": "2026-09-06",
-      "detail": ".config/crush/crushrc matches harness-guard\\.py",
+      "detail": ".config/crush/crushrc matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
       "result": "pass",
@@ -382,7 +382,7 @@
     "permissions.rules": {
       "mode": "none",
       "parity": "absent",
-      "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.py"
+      "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
     },
     "sessions.compaction": {
       "date": "2026-09-06",
@@ -450,7 +450,7 @@
     },
     "hooks.safety": {
       "date": "2026-09-06",
-      "detail": ".agents/harness/adapters/cursor/hooks/hooks.json matches harness-guard\\.py",
+      "detail": ".agents/harness/adapters/cursor/hooks/hooks.json matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
       "result": "pass",
@@ -485,7 +485,7 @@
     "permissions.rules": {
       "mode": "none",
       "parity": "absent",
-      "surface": "No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.py"
+      "surface": "No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
     },
     "sessions.compaction": {
       "date": "2026-09-06",
@@ -553,7 +553,7 @@
     },
     "hooks.safety": {
       "date": "2026-09-06",
-      "detail": ".grok/hooks/harness-guard.json matches harness-guard\\.py",
+      "detail": ".grok/hooks/harness-guard.json matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
       "result": "pass",
@@ -588,7 +588,7 @@
     "permissions.rules": {
       "mode": "none",
       "parity": "absent",
-      "surface": "No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.py"
+      "surface": "No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.sh"
     },
     "sessions.compaction": {
       "date": "2026-09-06",
