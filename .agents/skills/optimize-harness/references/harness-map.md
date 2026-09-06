@@ -105,8 +105,8 @@ commands that failed due to permission denial or indicate frequent use.
   `docs/agent-session-transcripts.md#antigravity`.
   `~/.gemini/antigravity-cli/conversations/*.pb` is protobuf with no
   published schema and is on the guard's protected-path list
-  (`~/.agents/harness/hooks/safety.py:71`); transcript bodies there are
-  permanently out of audit coverage.
+  (`crates/ness/src/policy.rs`'s `PROTECTED_PATHS`); transcript bodies there
+  are permanently out of audit coverage.
 
 ## cursor
 
