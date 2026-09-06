@@ -1,10 +1,10 @@
 {
-  "command": "echo x >> .agents/harness/hooks/safety.py",
+  "command": "echo x >> .agents/harness/hooks/contract.json",
   "content": null,
   "cwd": null,
   "expected": {
     "decision": "deny",
-    "reason": "control-plane file is human-only: .agents/harness/hooks/safety.py. It decides what the guard permits, so edit it directly rather than through an agent."
+    "reason": "control-plane file is human-only: .agents/harness/hooks/contract.json. It decides what the guard permits, so edit it directly rather than through an agent."
   },
   "harness": "claude",
   "path": null,
