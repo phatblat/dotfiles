@@ -16,13 +16,14 @@ profile="${1:?usage: changed.sh <lint|parity>}"
 
 case "$profile" in
 lint)
-    # Mirrors what `just lint` actually reads: lint-yaml covers every tracked
-    # *.yml/*.yaml, lint-toml validates .codex/config.toml, lint-python
-    # covers the explicitly listed Python files, and lint-github-scripts
-    # covers .github/scripts/*.sh. Narrower than this and a lint failure
-    # surfaces on some later unrelated pull request instead of the one that
-    # caused it.
-    pattern='^(\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
+    # Mirrors what `just lint` (`hk check --all`, steps defined in hk.pkl)
+    # actually reads: hk.pkl itself, plus every glob its steps check
+    # (.gitignore, .codex/config.toml, .config/mise/config.toml, zsh/nushell
+    # autoload functions, bin/, tracked *.yml/*.yaml, and the scripts/tests
+    # trees hk's Python/shell steps cover). Narrower than this and a lint
+    # failure surfaces on some later unrelated pull request instead of the
+    # one that caused it.
+    pattern='^(hk\.pkl$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
     ;;
 parity)
     # .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:
