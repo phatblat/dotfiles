@@ -24,7 +24,6 @@
     "https://github.com/earthbuild/homebrew-tap.git",
     "https://github.com/jundot/omlx",
     "jetbrains/utils",
-    "jfrog/tap",
     "kylef/formulae",
     "leoafarias/fvm",
     "manaflow-ai/cmux",

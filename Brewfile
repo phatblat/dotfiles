@@ -12,7 +12,6 @@ tap "gofireflyio/aiac", trusted: true
 tap "holgerbrandl/tap", trusted: true
 tap "homebrew/core"
 tap "jetbrains/utils", trusted: true
-tap "jfrog/tap.disabled", "https://github.com/jfrog/homebrew-tap.git"
 tap "jundot/omlx", "https://github.com/jundot/omlx", trusted: true
 tap "kylef/formulae", trusted: true
 tap "leoafarias/fvm", trusted: true
