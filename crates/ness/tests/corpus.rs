@@ -159,12 +159,16 @@ fn run_shim(shim: &str, payload: &Value, home: &Path) -> (i32, Value, String) {
         .stderr(Stdio::piped())
         .spawn()
         .unwrap_or_else(|e| panic!("spawn shim {shim}: {e}"));
-    child
+    let write_result = child
         .stdin
         .take()
         .expect("child stdin")
-        .write_all(payload.to_string().as_bytes())
-        .unwrap_or_else(|e| panic!("write payload to {shim}: {e}"));
+        .write_all(payload.to_string().as_bytes());
+    if let Err(e) = write_result {
+        if e.kind() != std::io::ErrorKind::BrokenPipe {
+            panic!("write payload to {shim}: {e}");
+        }
+    }
     let output = child
         .wait_with_output()
         .unwrap_or_else(|e| panic!("wait for {shim}: {e}"));
