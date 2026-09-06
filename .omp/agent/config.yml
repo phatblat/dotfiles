@@ -302,3 +302,5 @@ retry:
 doubleEscapeAction: rewind
 composer:
   shape: field
+codexResets:
+  autoRedeem: "no"
