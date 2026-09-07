@@ -96,7 +96,25 @@ Defaults (`--type auto`, `--results 10`, highlights capped at 600 chars) are
 right for nearly every coding question. Full parameter tables and API footguns
 are in `~/.claude/skills/exa-search/references/search-tuning.md`.
 
+## Documentation Convention
+
+This repo follows [Conventional Docs](https://github.com/phatblat/conventional-docs)
+(skill installed at `~/.agents/skills/conventional-docs`, symlinked from
+`~/dev/agents/conventional-docs`).
+
+- `docs/charter.md`'s Artifacts table is authoritative for where each
+  document lives.
+- Decision records are `docs/decisions/YYYY-MM-DD-slug.md`; a record is
+  frozen once accepted or rejected and corrected only by appending to its
+  `## Errata` section.
+- `PLAN.md` and `TODO.md` at the repo root are branch-scoped: written per
+  branch, committed for handoff, and deleted before merge.
+- The repo keeps no `CHANGELOG.md` — it has no releases.
+
+See `docs/decisions/2026-09-07-adopt-conventional-docs.md` for the adoption
+decision and rationale.
+
 ## Commit & Pull Request Guidelines
-- Use Conventional Commit prefixes seen in history (`feat:`, `fix:`, `chore:`, `deps:`, `style:`, `test:`, `ci:`), optionally scoped (`feat(justfile): ...`).
+- Use Conventional Commit prefixes seen in history (`feat:`, `fix:`, `chore:`, `deps:`, `style:`, `test:`, `ci:`), optionally scoped (`feat(justfile): ...`). Documentation events add `decision:`, `plan:`, and `todo:`: `decision: propose <id>` / `decision: accept <id>` / `decision: reject <id>`, `plan: start <id>` / `plan: done <id>`, `todo: sync` / `todo: clear`. Each of these subjects is the id in full, is exempt from the 50-char subject guidance below (still capped at 72), and its commit touches exactly one artifact (the decision file, `PLAN.md`, or `TODO.md`).
 - Follow `.gitmessage`: imperative subject, capitalized, no trailing period, <= 50 chars; wrap body at 72 chars and explain what/why.
 - PRs should include: concise summary, changed paths, commands run locally, and any relevant config/output screenshots.
