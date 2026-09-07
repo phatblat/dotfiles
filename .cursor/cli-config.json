@@ -17,17 +17,8 @@
   "permissions": {
     "allow": [
       "Shell(ls)",
-      "Shell(git)",
-      "Shell(gh)",
       "Shell(just)",
       "Shell(make)",
-      "Shell(cargo)",
-      "Shell(go)",
-      "Shell(npm)",
-      "Shell(pnpm)",
-      "Shell(yarn)",
-      "Shell(pip)",
-      "Shell(poetry)",
       "Shell(find)",
       "Shell(wc)",
       "Shell(grep)",
@@ -40,7 +31,6 @@
       "Shell(head)",
       "Shell(tail)",
       "Shell(date)",
-      "Shell(python3)",
       "Shell(jq)",
       "Shell(yq)",
       "Shell(sed)",
@@ -50,8 +40,7 @@
       "Shell(tr)",
       "Shell(cut)",
       "Shell(basename)",
-      "Shell(dirname)",
-      "Shell(mise)"
+      "Shell(dirname)"
     ],
     "deny": []
   },
