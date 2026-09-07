@@ -30,3 +30,7 @@ The full porting grid (all 9 harnesses) is generated from `CAPABILITIES` in `scr
 - OpenCode documents skill `metadata` as a generic object and says it ignores unrecognized properties. That means a copied vendor key can be harmless but still ineffective.
 - Cursor and Claude use overlapping field names for some skills, but overlap is not portability. Keep their metadata in generated adapters unless the Agent Skills spec or the target docs confirm the field.
 - Pi, OMP, and Antigravity rows are based on local generated adapters in this repo, not verified primary docs.
+
+## Known Gaps
+
+- **Antigravity has no implicit-invocation gate for procedural skills.** Codex's `agents/openai.yaml` `policy.allow_implicit_invocation: false` has no Antigravity equivalent: no `.yaml`/`.yml` policy file exists anywhere under `~/.agents/harness/adapters/antigravity/skills/`, and the antigravity skill-emission loop in `scripts/agent-harnesses.py` applies no `manual_only` filter (unlike the parallel Claude-targeted branch). All 73 wired skills — including purely procedural, user-run workflows like `git-commit` and `pr-create` — are equally auto-invokable on Antigravity today. `git commit` is one of only 8 `unsandboxed(...)` allow-listed patterns in `~/.gemini/antigravity-cli/settings.json`, so an auto-triggered procedural skill has no config-level backstop. Recorded here (2026-09-07 optimize-harness audit) per rule 6 above, instead of inventing a nonexistent invocation-mode field; confirm whether Antigravity's real skill schema exposes one before attempting a fix.
