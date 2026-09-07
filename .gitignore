@@ -195,6 +195,7 @@
 !.config/crush/crushrc
 !.config/crush/hooks/
 !.config/crush/shared-harness.md
+.config/cursor/
 .config/dconf/
 .config/delta/lesshst
 .config/direnv/
