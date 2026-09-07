@@ -464,10 +464,23 @@ upgrade-mise-tools-commit:
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump --yes "$tool"
         hk fix .config/mise/config.toml
-        # --only commits this path from the working tree and disregards
+        paths=("{{ justfile_directory() }}/.config/mise/config.toml")
+        if [ "$tool" = "hk" ]; then
+            # hk.pkl pins the exact hk release it amends (see hk.pkl's own
+            # comment: hk embeds that Pkl package for its own version and
+            # evaluates hk.pkl with no network request; any other pin
+            # downloads it on every run). Keep the pin in lockstep with the
+            # version mise just installed, and fail loudly before committing
+            # if the bump breaks the schema.
+            sed -i '' -E "s|(amends \"package://github.com/jdx/hk/releases/download/v)[0-9.]+(/hk@)[0-9.]+(#/Config.pkl\")|\1${bump}\2${bump}\3|" hk.pkl
+            sed -i '' -E "s|(min_hk_version = \")[0-9.]+(\")|\1${bump}\2|" hk.pkl
+            mise x -- hk validate --quiet
+            paths+=("{{ justfile_directory() }}/hk.pkl")
+        fi
+        # --only commits these paths from the working tree and disregards
         # anything else staged, so concurrent work is never swept into a
         # version-bump commit.
-        git commit --only {{ justfile_directory() }}/.config/mise/config.toml \
+        git commit --only "${paths[@]}" \
             -m "chore: bump $tool $current → $bump"
     done
 

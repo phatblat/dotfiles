@@ -13,9 +13,9 @@
 // The pinned package version must equal the installed hk (enforced by the
 // hk-config step): hk embeds the Pkl package for its own version and evaluates
 // this file with no network request, while any other pin is downloaded.
-amends "package://github.com/jdx/hk/releases/download/v1.57.0/hk@1.57.0#/Config.pkl"
+amends "package://github.com/jdx/hk/releases/download/v1.58.1/hk@1.58.1#/Config.pkl"
 
-min_hk_version = "1.57.0"
+min_hk_version = "1.58.1"
 
 // Vendored third-party tree: never linted, never reformatted.
 local gstack = ".claude/skills/gstack/*"
