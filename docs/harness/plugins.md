@@ -20,7 +20,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | csharp-lsp@claude-plugins-official | missing | enabled |
 | documents@openai-primary-runtime | missing | enabled |
 | gopls-lsp@claude-plugins-official | enabled | enabled |
-| hookify@claude-plugins-official | enabled | disabled |
+| hookify@claude-plugins-official | disabled | disabled |
 | jdtls-lsp@claude-plugins-official | missing | enabled |
 | kotlin-lsp@claude-plugins-official | enabled | enabled |
 | linear-cli@linear-cli | missing | enabled |

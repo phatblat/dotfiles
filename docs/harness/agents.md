@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · 2.1.261 (Claude Code) · 2026-09-06 | native Claude agents include these plus additional specialists |
-| codex | aligned | native | - | probe · codex-cli 0.153.3 · 2026-09-06 | native Codex TOML agents |
-| opencode | aligned | adapter | - | probe · 1.18.28 · 2026-09-06 | generated agent config |
-| pi | partial | emulated | - | probe · 0.85.0 · 2026-09-06 | Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation |
-| omp | aligned | native | - | probe · omp/18.1.11 · 2026-09-06 | generated from shared specialist definitions |
-| antigravity | partial | emulated | - | probe · 1.1.27 · 2026-09-06 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
-| cursor | partial | native | - | probe · 2026.07.01-777f564 · 2026-09-06 | generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified |
-| grok | partial | adapter | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-06 | generated grok agent profiles are discovered by grok inspect, but spawn_subagent delegation to them has not been verified |
-| crush | blocked | native | - | probe · crush version v0.92.0 · 2026-09-06 | crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269 |
+| claude | aligned | native | - | probe · 2.1.261 (Claude Code) · 2026-09-07 | native Claude agents include these plus additional specialists |
+| codex | aligned | native | - | probe · codex-cli 0.153.4 · 2026-09-07 | native Codex TOML agents |
+| opencode | aligned | adapter | - | probe · 1.18.29 · 2026-09-07 | generated agent config |
+| pi | partial | emulated | - | probe · 0.85.1 · 2026-09-07 | Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation |
+| omp | aligned | native | - | probe · omp/18.1.13 · 2026-09-07 | generated from shared specialist definitions |
+| antigravity | partial | emulated | - | probe · 1.1.27 · 2026-09-07 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
+| cursor | partial | native | - | probe · 2026.09.02-c22c1a3 · 2026-09-07 | generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified |
+| grok | partial | adapter | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-07 | generated grok agent profiles are discovered by grok inspect, but spawn_subagent delegation to them has not been verified |
+| crush | blocked | native | - | probe · crush version v0.92.0 · 2026-09-07 | crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269 |
 
 ### Not yet researched
 

@@ -13,15 +13,15 @@ Verify: `just ness-test`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.261 (Claude Code) · 2026-09-06 | - |
-| codex | aligned | adapter | - | probe · codex-cli 0.153.3 · 2026-09-06 | - |
-| opencode | aligned | adapter | - | probe · 1.18.28 · 2026-09-06 | - |
-| pi | aligned | adapter | - | probe · 0.85.0 · 2026-09-06 | - |
-| omp | aligned | adapter | - | probe · omp/18.1.11 · 2026-09-06 | - |
-| antigravity | partial | adapter | - | probe · 1.1.27 · 2026-09-06 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
-| cursor | partial | adapter | - | probe · 2026.07.01-777f564 · 2026-09-06 | generated Cursor hook shim execs the compiled guard, but native pre-tool blocking behavior has not been verified |
-| grok | partial | adapter | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-06 | generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified |
-| crush | partial | adapter | - | probe · crush version v0.92.0 · 2026-09-06 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
+| claude | aligned | adapter | - | probe · 2.1.261 (Claude Code) · 2026-09-07 | - |
+| codex | aligned | adapter | - | probe · codex-cli 0.153.4 · 2026-09-07 | - |
+| opencode | aligned | adapter | - | probe · 1.18.29 · 2026-09-07 | - |
+| pi | aligned | adapter | - | probe · 0.85.1 · 2026-09-07 | - |
+| omp | aligned | adapter | - | probe · omp/18.1.13 · 2026-09-07 | - |
+| antigravity | partial | adapter | - | probe · 1.1.27 · 2026-09-07 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
+| cursor | partial | adapter | - | probe · 2026.09.02-c22c1a3 · 2026-09-07 | generated Cursor hook shim execs the compiled guard, but native pre-tool blocking behavior has not been verified |
+| grok | partial | adapter | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-07 | generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified |
+| crush | partial | adapter | - | probe · crush version v0.92.0 · 2026-09-07 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
 
 ### Not yet researched
 
