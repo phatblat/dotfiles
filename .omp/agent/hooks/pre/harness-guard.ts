@@ -6,8 +6,9 @@
 // ~/.omp/agent is tracked manually, not emitted by scripts/agent-harnesses.py.
 
 import { execFileSync } from "node:child_process";
+import { appendFileSync, mkdirSync } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
 
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
@@ -19,6 +20,40 @@ const FAILED = "Shared guard failed closed";
 const REMEDY =
   "Run `just ness-install`; if the hook source changed mid-session (e.g. `git pull`), " +
   "restart omp — a running session keeps the module it loaded.";
+
+// 2026-09-07 optimize-harness audit: bash sees a 9.2% tool-error rate
+// (871/9460 attempts) and its own p95 (7197ms) exceeds GUARD_TIMEOUT_MS
+// (5000ms), so some fraction of "bash failed" is plausibly the guard
+// timing out rather than the shell command itself failing. This log lets
+// a future scan tell "ness denied/timed out" apart from "the command
+// failed" before tuning further. Best-effort only: a logging failure must
+// never affect the guard's decision.
+const GUARD_LOG_PATH = join(
+  homedir(),
+  ".omp",
+  "agent",
+  "logs",
+  "harness-guard.log"
+);
+let guardLogDirReady = false;
+
+function logGuardVerdict(tool: string, result: GuardResult, ms: number): void {
+  try {
+    if (!guardLogDirReady) {
+      mkdirSync(dirname(GUARD_LOG_PATH), { recursive: true });
+      guardLogDirReady = true;
+    }
+    const reason = result.reason
+      ? ` reason=${JSON.stringify(result.reason)}`
+      : "";
+    appendFileSync(
+      GUARD_LOG_PATH,
+      `${new Date().toISOString()} tool=${tool} decision=${result.decision} ms=${ms}${reason}\n`
+    );
+  } catch {
+    // Best-effort diagnostics; never let logging break the guard.
+  }
+}
 
 // Tool-input keys whose value is executed rather than stored. Key-driven so no
 // per-device table has to be maintained as xd:// devices come and go.
@@ -85,6 +120,8 @@ export function spawnFailureReason(error: unknown): string {
 
 function runGuard(args: string[], cwd: string): GuardResult {
   const flags = cwd ? [...args, "--cwd", cwd] : args;
+  const started = Date.now();
+  const tool = args[1] ?? "unknown"; // args = ["--tool", <write|bash>, ...]
   try {
     const output = execFileSync(NESS, ["guard", "--harness", "omp", ...flags], {
       encoding: "utf8",
@@ -92,19 +129,28 @@ function runGuard(args: string[], cwd: string): GuardResult {
       timeout: GUARD_TIMEOUT_MS,
       ...(cwd ? { cwd } : {}),
     });
-    return JSON.parse(output) as GuardResult;
+    const result = JSON.parse(output) as GuardResult;
+    logGuardVerdict(tool, result, Date.now() - started);
+    return result;
   } catch (error: unknown) {
     // ness exits 2 on deny but still prints its verdict; anything else means
     // the policy engine was unreachable, which stays fail-closed.
     const stdout = bytesOf(field(error, "stdout")).trim();
     if (stdout) {
       try {
-        return JSON.parse(stdout) as GuardResult;
+        const result = JSON.parse(stdout) as GuardResult;
+        logGuardVerdict(tool, result, Date.now() - started);
+        return result;
       } catch {
         // Unparseable output is an engine failure, not a verdict.
       }
     }
-    return { decision: "deny", reason: spawnFailureReason(error) };
+    const result: GuardResult = {
+      decision: "deny",
+      reason: spawnFailureReason(error),
+    };
+    logGuardVerdict(tool, result, Date.now() - started);
+    return result;
   }
 }
 
@@ -143,7 +189,7 @@ export function walkInput(
   key: string,
   commands: string[],
   strings: string[],
-  depth = 0,
+  depth = 0
 ): void {
   if (depth > 8) return;
   if (typeof value === "string") {
@@ -157,7 +203,8 @@ export function walkInput(
       for (const item of value) strings.push(item as string);
       return;
     }
-    for (const item of value) walkInput(item, key, commands, strings, depth + 1);
+    for (const item of value)
+      walkInput(item, key, commands, strings, depth + 1);
     return;
   }
   if (value && typeof value === "object") {
@@ -173,7 +220,10 @@ type Checks = {
   paths: string[];
 };
 
-export function checksFor(toolName: string, input: Record<string, unknown>): Checks {
+export function checksFor(
+  toolName: string,
+  input: Record<string, unknown>
+): Checks {
   const commands: string[] = [];
   const writes: Array<{ path: string; content: string }> = [];
   const strings: string[] = [];
@@ -228,7 +278,14 @@ export default function hook(pi: ExtensionAPI): void {
     const cwd = typeof ctx?.cwd === "string" ? ctx.cwd : "";
     const calls: string[][] = [];
     for (const write of checks.writes) {
-      calls.push(["--tool", "write", "--path", write.path, "--content", write.content]);
+      calls.push([
+        "--tool",
+        "write",
+        "--path",
+        write.path,
+        "--content",
+        write.content,
+      ]);
     }
     for (const command of checks.commands) {
       calls.push(["--tool", "bash", "--command", command]);
