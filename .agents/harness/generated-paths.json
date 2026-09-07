@@ -143,6 +143,9 @@
   "~/.agents/harness/adapters/antigravity/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/conventional-docs/SKILL.md": {
+    "source": "~/dev/agents/conventional-docs/skills/conventional-docs/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
   },
@@ -478,6 +481,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/conventional-docs/SKILL.md": {
+    "source": "~/dev/agents/conventional-docs/skills/conventional-docs/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
