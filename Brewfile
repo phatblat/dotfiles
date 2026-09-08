@@ -34,7 +34,7 @@ brew "certifi"
 # C parser in Python
 brew "pycparser"
 # Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
+brew "openssl@4"
 # C library SSHv1/SSHv2 client and server protocols
 brew "libssh"
 # General-purpose data compression with high compression ratio
@@ -341,8 +341,6 @@ brew "nushell"
 brew "openconnect"
 # Development kit for the Java programming language
 brew "openjdk@17"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3.0"
 # Learn vim commands via a game
 brew "pacvim"
 # Highly capable, feature-rich programming language
