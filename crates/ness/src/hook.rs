@@ -108,20 +108,19 @@ fn apply_patch_added_content(patch_text: &str) -> String {
 /// Port of `.claude/hooks/scripts/bash-guard.sh` / `.codex/hooks/scripts/bash-guard.sh`
 /// (the two are structurally identical: same extraction, same response shape).
 pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
-    let payload = read_stdin();
+    let payload = match read_stdin_object() {
+        Ok(v) => v,
+        Err(e) => {
+            print_deny(&format!("shared guard failed closed: {e}"));
+            return;
+        }
+    };
     let command = str_or_empty(&payload, "/tool_input/command");
     if command.trim().is_empty() {
         return; // exit 0, no output — matches `[ -z "$command" ] && exit 0`.
     }
 
-    let decision = evaluate_with_manifest(
-        "bash",
-        &command,
-        "",
-        "",
-        cwd,
-        manifest_path,
-    );
+    let decision = evaluate_with_manifest("bash", &command, "", "", cwd, manifest_path);
     let _ = harness; // response shape does not currently vary by harness.
     match decision.decision.as_str() {
         "deny" => print_deny(&decision.reason),
@@ -136,12 +135,18 @@ pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
 /// Claude never emits `tool_name == "apply_patch"` or a `*** Begin Patch`
 /// command, so gating is a safety margin rather than a behavior difference.
 pub fn run_write(harness: &str, cwd: &str, manifest_path: &Path) {
-    let payload = read_stdin();
+    let payload = match read_stdin_object() {
+        Ok(v) => v,
+        Err(e) => {
+            print_deny(&format!("shared guard failed closed: {e}"));
+            return;
+        }
+    };
     let tool_name = get_str(&payload, "/tool_name").unwrap_or("");
     let command = str_or_empty(&payload, "/tool_input/command");
 
-    let is_apply_patch =
-        harness == "codex" && (tool_name == "apply_patch" || command.starts_with("*** Begin Patch"));
+    let is_apply_patch = harness == "codex"
+        && (tool_name == "apply_patch" || command.starts_with("*** Begin Patch"));
 
     if is_apply_patch {
         for path in apply_patch_all_paths(&command) {
@@ -233,8 +238,16 @@ struct Classified {
 /// is the only normalized wrapper that ever receives `edits`).
 fn classify(tool_input: &Value, flatten_edits: bool) -> Option<Classified> {
     let empty = Value::Object(serde_json::Map::new());
-    let obj = if tool_input.is_object() { tool_input } else { &empty };
-    let command = obj.get("command").and_then(|v| v.as_str()).unwrap_or("").to_string();
+    let obj = if tool_input.is_object() {
+        tool_input
+    } else {
+        &empty
+    };
+    let command = obj
+        .get("command")
+        .and_then(|v| v.as_str())
+        .unwrap_or("")
+        .to_string();
     let path = first_nonempty_str(obj, &PATH_KEYS);
     let mut content = concat_strs(obj, &CONTENT_KEYS);
     if flatten_edits {
@@ -247,9 +260,19 @@ fn classify(tool_input: &Value, flatten_edits: bool) -> Option<Classified> {
         }
     }
     if !command.is_empty() {
-        Some(Classified { tool: "bash", command, path, content })
+        Some(Classified {
+            tool: "bash",
+            command,
+            path,
+            content,
+        })
     } else if !path.is_empty() {
-        Some(Classified { tool: "write", command, path, content })
+        Some(Classified {
+            tool: "write",
+            command,
+            path,
+            content,
+        })
     } else {
         None
     }
@@ -291,7 +314,10 @@ pub fn run_grok(default_cwd: &str, manifest: &Path) -> i32 {
     let decision = evaluate_with_manifest(c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
     match decision.decision.as_str() {
         "deny" => {
-            println!("{}", serde_json::json!({"decision": "deny", "reason": decision.reason}));
+            println!(
+                "{}",
+                serde_json::json!({"decision": "deny", "reason": decision.reason})
+            );
             2
         }
         "warn" => {
@@ -363,5 +389,9 @@ pub fn run_normalized(harness: &str, default_cwd: &str, manifest: &Path) -> i32 
     let cwd = payload_cwd(&payload, default_cwd);
     let decision = evaluate_with_manifest(&tool, &command, &path, &content, &cwd, manifest);
     println!("{}", verdict_json(harness, &tool, &decision));
-    if decision.allowed() { 0 } else { 2 }
+    if decision.allowed() {
+        0
+    } else {
+        2
+    }
 }
