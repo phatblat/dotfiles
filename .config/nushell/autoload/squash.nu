@@ -21,6 +21,6 @@ let msg = (git log -1 --format=%B $parent)
 git reset --soft $parent
 
 # Commit with original message
-git commit -m "$msg"
+print $msg | git commit --file=-
 
 echo "Successfully squashed HEAD commit into parent."
