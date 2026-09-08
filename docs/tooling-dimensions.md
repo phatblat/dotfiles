@@ -49,9 +49,12 @@ while `scripts/agent-harnesses.py` keeps serving the user tier for all nine harn
 `~/.agents/skills` is canonical for both, and no file is written by both.
 
 Config lives in `.agentlink/config.toml` plus `.agentlink/providers/` (four manifests
-agentlink does not ship), both tracked. `.agentlink/lock.toml` and the three link
-targets are per-developer and gitignored. `just agentlink-check` is part of
-`just check`, but not CI, because a fresh checkout has no materialised links.
+agentlink does not ship), both tracked. `.agentlink/lock.toml`, `.github/skills`, and
+`.opencode/skills` are committed too, so a fresh clone has working links without
+running `agentlink apply` first; only `.cursor/skills` is gitignored (via
+`.cursor/.gitignore`, not agentlink's own `[gitignore]` block, which stays
+`manage = false`). `just agentlink-check` is part of `just check`, but not CI,
+because that one link is never materialised in a fresh checkout.
 
 | Provider | Resource | Strategy | Path | Manifest |
 |---|---|---|---|---|
