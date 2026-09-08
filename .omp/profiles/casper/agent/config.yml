@@ -1,19 +1,21 @@
 modelRoles:
   default: casper/glm-5.3:high
-  task: casper/auto
-  commit: casper/auto:minimal
+  task: casper/nemotron-lightning-3p5-30b-a3b
+  commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/kimi-k3
   slow: casper/nemotron-3-ultra
   smol: casper/gpt-oss-120b
 enabledModels:
-  - casper/auto
+  # - casper/auto
   - casper/kimi-k3
   - casper/glm-5.3
+  - casper/glm-5.3-flash
   - casper/gpt-oss-120b
   - casper/kimi-k2.7-code
   - casper/kimi-k2.6
   - casper/nemotron-3-ultra
-  - casper/dittoaicoder
+  - casper/nemotron-lightning-3p5-30b-a3b
+  # - casper/dittoaicoder
 defaultThinkingLevel: auto
 cycleOrder:
   - default
