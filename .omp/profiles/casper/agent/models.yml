@@ -64,8 +64,8 @@ providers:
         name: Ditto AI Coder
         reasoning: true
         input: [text]
-        contextWindow: 1048576
-        maxTokens: 1048576
+        contextWindow: 262144
+        maxTokens: 262144
         cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
       - id: glm-5.3
@@ -158,3 +158,11 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
+
+      - id: nemotron-lightning-3p5-30b-a3b
+        name: Nemotron Lightning 3p5 30b A3b
+        reasoning: false
+        input: [text]
+        contextWindow: 262144
+        maxTokens: 262144
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }

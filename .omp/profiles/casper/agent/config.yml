@@ -4,7 +4,7 @@ modelRoles:
   commit: casper/auto:minimal
   plan: casper/kimi-k3
   slow: casper/nemotron-3-ultra
-  smol: casper/glm-5.3
+  smol: casper/gpt-oss-120b
 enabledModels:
   - casper/auto
   - casper/kimi-k3
