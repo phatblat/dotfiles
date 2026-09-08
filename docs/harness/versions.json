@@ -6,8 +6,8 @@
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.236 (Claude Code)",
-    "version": "2.1.261 (Claude Code)"
+    "previous": "2.1.261 (Claude Code)",
+    "version": "2.1.251 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
@@ -21,18 +21,18 @@
   },
   "cursor": {
     "first_seen": "2026-08-29",
-    "previous": "2026.07.01-777f564",
-    "version": "2026.09.02-c22c1a3"
+    "previous": "2026.09.02-c22c1a3",
+    "version": "2026.07.01-777f564"
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.5 (5115b46bc909) [alpha]",
-    "version": "grok 1.0.13 (5e9a58528b76) [alpha]"
+    "previous": "grok 1.0.13 (5e9a58528b76) [alpha]",
+    "version": "grok 1.0.13 (5e9a58528b76)"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.1.11",
-    "version": "omp/18.1.13"
+    "previous": "omp/18.1.13",
+    "version": "omp/18.1.14"
   },
   "opencode": {
     "first_seen": "2026-08-29",
