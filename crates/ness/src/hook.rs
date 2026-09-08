@@ -52,12 +52,6 @@ fn str_or_empty(value: &Value, pointer: &str) -> String {
         .to_string()
 }
 
-fn read_stdin() -> Value {
-    let mut buf = String::new();
-    let _ = std::io::stdin().read_to_string(&mut buf);
-    serde_json::from_str(&buf).unwrap_or(Value::Null)
-}
-
 fn print_deny(reason: &str) {
     let payload = serde_json::json!({
         "hookSpecificOutput": {
@@ -180,8 +174,7 @@ pub fn run_write(harness: &str, cwd: &str, manifest_path: &Path) {
 }
 
 /// Reads and parses stdin as a JSON object, failing closed (as `Err`) on
-/// unreadable or non-object input, unlike `read_stdin()` (used by the
-/// Claude/Codex modes above) which fails open to `Value::Null` — matching
+/// unreadable or non-object input. Used by `run_bash` and `run_write` to match
 /// the grok/crush/antigravity/cursor Python wrappers' own fail-closed
 /// behavior on a bad payload.
 fn read_stdin_object() -> Result<Value, &'static str> {
