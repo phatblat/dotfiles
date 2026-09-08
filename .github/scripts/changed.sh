@@ -23,7 +23,7 @@ lint)
     # trees hk's Python/shell steps cover). Narrower than this and a lint
     # failure surfaces on some later unrelated pull request instead of the
     # one that caused it.
-    pattern='^(hk\.pkl$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
+    pattern='^(hk\.pkl$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$|.*\.jsonc?$)'
     ;;
 parity)
     # .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:
