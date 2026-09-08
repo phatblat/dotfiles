@@ -8,11 +8,13 @@ if ((git status --porcelain | length) > 0) {
 }
 
 # Check if there is a parent commit
-let parent = (git rev-parse HEAD^1)
-if $parent == "" {
+let commit_count = (git rev-list --count HEAD | into int)
+if $commit_count < 2 {
     echo "Error: No parent commit to squash into. This is the first commit." >& stderr
     return 1
 }
+
+let parent = (git rev-parse HEAD^1)
 
 # Get the original commit message
 let msg = (git log -1 --format=%B $parent)
