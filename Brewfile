@@ -1,11 +1,7 @@
 tap "beadbox/cask", trusted: true
-tap "buildkite/buildkite", trusted: true
-tap "chamburr/tap"
 tap "cirruslabs/cli", trusted: { formulae: ["sshpass"] }
 tap "dagger/tap", trusted: true
 tap "danger/tap", trusted: true
-tap "datadog-labs/pack"
-tap "earthbuild/earthbuild", "https://github.com/EarthBuild/homebrew-tap.git", trusted: true
 tap "earthbuild/tap", "https://github.com/EarthBuild/homebrew-tap.git", trusted: true
 tap "getsentry/tools", trusted: { formulae: ["sentry"] }
 tap "gofireflyio/aiac", trusted: true
@@ -18,9 +14,6 @@ tap "leoafarias/fvm", trusted: true
 tap "macpaw/taps"
 tap "manaflow-ai/cmux", trusted: true
 tap "messense/macos-cross-toolchains", trusted: true
-tap "microsoft/git", trusted: true
-tap "pantsbuild/tap", trusted: true
-tap "phatblat/pinned", "git@github.com:phatblat/homebrew-pinned.git", trusted: true
 tap "schpet/tap", trusted: true
 tap "teamookla/speedtest"
 tap "tw93/tap", trusted: true
@@ -315,7 +308,7 @@ brew "mint"
 brew "mole"
 # GDI+-compatible API on non-Windows operating systems
 brew "mono-libgdiplus"
-# Collection of tools that nobody wrote when UNIX was young
+# Collection of tools (including sponge) that nobody wrote when UNIX was young
 brew "moreutils"
 # Library for a binary-based efficient data interchange format
 brew "msgpack"
@@ -371,8 +364,6 @@ brew "sl"
 brew "socat"
 # Framework and command-line tool for interacting with SourceKit
 brew "sourcekitten"
-# Soak up standard input and write to a file
-brew "sponge"
 # Non-interactive SSH password auth
 brew "sshpass"
 # Formatting technology for Swift source code
@@ -676,8 +667,6 @@ cask "zed"
 cask "zen"
 # Share, organise and collaborate on designs
 cask "zeplin"
-# Video communication and virtual meeting platform
-cask "zoom"
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Event Speaker Timer", id: 6467181917
