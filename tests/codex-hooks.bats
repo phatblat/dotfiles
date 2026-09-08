@@ -3,7 +3,6 @@
 
 load helpers/setup
 
-WRITE_GUARD="$HOME/.codex/hooks/scripts/write-guard.sh"
 AUTO_FORMAT="$HOME/.codex/hooks/scripts/auto-format.sh"
 AGENT_FLOW_GUARD="$HOME/.codex/hooks/scripts/agent-flow-guard.sh"
 AUDIT_TASK_COMPLETE="$HOME/.codex/hooks/scripts/audit-task-complete.sh"
@@ -129,38 +128,6 @@ if enabled_incompatible:
 PY
 
     [ "$status" -eq 0 ]
-}
-
-@test "write guard: denies protected paths in apply_patch commands" {
-    patch=$'*** Begin Patch\n*** Update File: /Users/phatblat/.ssh/id_ed25519\n@@\n-old\n+new\n*** End Patch'
-    input=$(hook_input "$patch")
-
-    run bash -c 'printf "%s" "$1" | "$2"' bash "$input" "$WRITE_GUARD"
-
-    [ "$status" -eq 0 ]
-    [ "$(printf '%s' "$output" | jq -r '.hookSpecificOutput.permissionDecision')" = "deny" ]
-    [[ "$(printf '%s' "$output" | jq -r '.hookSpecificOutput.permissionDecisionReason')" == *"protected file"* ]]
-}
-
-@test "write guard: denies secrets added by apply_patch" {
-    patch=$'*** Begin Patch\n*** Update File: config.txt\n@@\n-old\n+token = sk-abcdefghijklmnopqrstuvwxyz123456\n*** End Patch'
-    input=$(hook_input "$patch")
-
-    run bash -c 'printf "%s" "$1" | "$2"' bash "$input" "$WRITE_GUARD"
-
-    [ "$status" -eq 0 ]
-    [ "$(printf '%s' "$output" | jq -r '.hookSpecificOutput.permissionDecision')" = "deny" ]
-    [[ "$(printf '%s' "$output" | jq -r '.hookSpecificOutput.permissionDecisionReason')" == *"secret"* ]]
-}
-
-@test "write guard: ignores secrets removed by apply_patch" {
-    patch=$'*** Begin Patch\n*** Update File: config.txt\n@@\n-token = sk-abcdefghijklmnopqrstuvwxyz123456\n+token = from_environment\n*** End Patch'
-    input=$(hook_input "$patch")
-
-    run bash -c 'printf "%s" "$1" | "$2"' bash "$input" "$WRITE_GUARD"
-
-    [ "$status" -eq 0 ]
-    [ -z "$output" ]
 }
 
 @test "auto format: formats every existing file changed by apply_patch" {

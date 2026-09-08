@@ -1,0 +1,14 @@
+{
+  "expected": {
+    "exit": 2,
+    "stderr": "protected file blocked: /Users/phatblat/.ssh/id_ed25519",
+    "stdout": null
+  },
+  "payload": {
+    "tool_input": {
+      "file_path": "/Users/phatblat/.ssh/id_ed25519",
+      "new_string": "x"
+    }
+  },
+  "shim": "crush"
+}

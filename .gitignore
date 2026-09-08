@@ -1,4 +1,3 @@
-# Machine-managed by cmux ("cmux upgrades this file in place") — install via `just install-cmux-hooks`
 *.bak
 *.dll
 *.gastown-backup
@@ -196,6 +195,7 @@
 !.config/crush/crushrc
 !.config/crush/hooks/
 !.config/crush/shared-harness.md
+.config/cursor/
 .config/dconf/
 .config/delta/lesshst
 .config/direnv/
@@ -217,6 +217,7 @@
 .config/goa-1.0/
 .config/gtk-2.0/
 .config/homebrew/*
+!.config/homebrew/dump-exclusions.txt
 !.config/homebrew/trust.json
 .config/hub
 .config/ibus/
@@ -318,7 +319,10 @@
 .copilot/
 .cpan/
 .cups/
-.cursor/
+.cursor/*
+!.cursor/.gitignore
+!.cursor/cli-config.json
+!.cursor/mcp.json
 .cxx/
 .dart-tool/
 .dart/
@@ -583,6 +587,7 @@
 .paseo/
 .pex/
 .phantomjs/
+.phatlab-backups/
 .pi/*
 .pi/agent/*
 .pi/agent/*/**

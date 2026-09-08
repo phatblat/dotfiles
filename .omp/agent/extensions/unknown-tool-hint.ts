@@ -84,6 +84,26 @@ export default function unknownToolHint(pi: ExtensionAPI) {
       };
     }
 
+    // 2026-09-07 optimize-harness audit: these exact names keep recurring
+    // as single-shot misses months after the fix shipped (git_commit,
+    // git-push, git, xd_tool, xd--...-lsp_servers, git_commit_with_message)
+    // — semantic invention of a dedicated tool, not a typo, so Levenshtein
+    // against the real registry never lands close enough to suggest one.
+    if (/^git[-_]/.test(lower) || lower === "git") {
+      return {
+        block: true,
+        reason: `Unknown tool '${toolName}'. There is no dedicated git tool — run git commands through 'bash'.`,
+      };
+    }
+    if (/^xd[-_]/.test(lower)) {
+      return {
+        block: true,
+        reason:
+          `Unknown tool '${toolName}'. xd:// devices are invoked via 'write' to an ` +
+          `'xd://<tool>' path, not a direct tool call.`,
+      };
+    }
+
     const hint = bestMatch(toolName, registry);
     if (hint) {
       return {

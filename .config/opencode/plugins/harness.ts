@@ -9,9 +9,9 @@ import type { Plugin } from "@opencode-ai/plugin";
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
 function guard(args: string[]): GuardResult {
-  const script = join(homedir(), "scripts", "agent-harnesses.py");
+  const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync("python3", [script, "guard", "--harness", "opencode", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "opencode", ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
     });

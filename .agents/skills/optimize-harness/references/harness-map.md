@@ -105,8 +105,8 @@ commands that failed due to permission denial or indicate frequent use.
   `docs/agent-session-transcripts.md#antigravity`.
   `~/.gemini/antigravity-cli/conversations/*.pb` is protobuf with no
   published schema and is on the guard's protected-path list
-  (`~/.agents/harness/hooks/safety.py:71`); transcript bodies there are
-  permanently out of audit coverage.
+  (`crates/ness/src/policy.rs`'s `PROTECTED_PATHS`); transcript bodies there
+  are permanently out of audit coverage.
 
 ## cursor
 
@@ -122,7 +122,14 @@ commands that failed due to permission denial or indicate frequent use.
 ## grok
 
 - CLI: `grok`. Config root: `~/.grok`.
-- Files worth reading: `~/.grok/config.toml` (`[mcp_servers.*]`).
+- Files worth reading: `~/.grok/config.toml` (`[mcp_servers.*]` — natively
+  declared servers only). `[compat.claude]`/`[compat.cursor] mcps = true`
+  in `config.toml` means grok also inherits MCP servers from
+  `~/.claude.json`/`~/.cursor/mcp.json` plus plugin bridges; `grok mcp
+  list --json` shows only the native list (often empty), while `grok mcp
+  doctor` additionally resolves the compat-inherited servers — use
+  `doctor`, not `list` or a bare `config.toml` grep, to see grok's
+  effective MCP surface (2026-09-07 optimize-harness audit finding).
 - Session store: `~/.grok/sessions/<url-encoded-cwd>/<id>/
   {chat_history,events,updates}.jsonl` — see
   `docs/agent-session-transcripts.md#grok`. `events.jsonl` carries the only

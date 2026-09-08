@@ -27,7 +27,7 @@ git add --update "$@"
 
 ## Auto-formatting
 
-Zsh functions are auto-formatted by shfmt/shellharden via `just format-shell`; files using zsh-only syntax are excluded via Justfile variables.
+Zsh functions are auto-formatted by hk's `shfmt-zsh`/`shellharden-zsh` steps (`just format`) and linted by `shellcheck-zsh` (`just lint`); files using zsh-only syntax are excluded via `hk.pkl` globs.
 
 ## Required Bookkeeping
 

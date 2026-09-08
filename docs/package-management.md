@@ -43,12 +43,23 @@ live, machine-specific Homebrew/mise state rather than repo-tracked files.
 
 ## Homebrew
 
-`~/Brewfile` tracks explicitly-declared taps, formulae, and casks. Manage it with:
+`~/Brewfile` tracks explicitly-declared taps, formulae, casks, and Mac App Store apps.
+Manage it with:
 
 ```bash
-brew bundle install       # or: just deps
-brew bundle dump --force  # regenerate Brewfile from current installs (review the diff!)
+brew bundle install  # or: just deps
+just dump-brew       # regenerate Brewfile from current installs (review the diff!)
 ```
+
+Do not run `brew bundle dump` directly. Homebrew 6 dumps every package manager it can
+see — VS Code extensions, cargo crates, Go binaries, uv tools — and re-adds formulae that
+mise already pins. `just dump-brew` restricts the dump to taps/formulae/casks/mas and
+prunes the entries listed in `.config/homebrew/dump-exclusions.txt`.
+
+The `trusted:` options on tap/formula/cask lines are intentional: `brew bundle install`
+copies them into `~/.config/homebrew/trust.json`, so a new machine inherits the same tap
+trust without prompting. `brew trust`/`brew untrust` edit that file; the Brewfile options
+are regenerated from it on every dump.
 
 Casks remain the primary use case — proprietary or code-signed macOS GUI apps that mise
 and Nix can't install.

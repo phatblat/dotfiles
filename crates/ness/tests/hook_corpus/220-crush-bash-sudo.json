@@ -1,0 +1,15 @@
+{
+  "expected": {
+    "exit": 2,
+    "stderr": "Privilege escalation blocked",
+    "stdout": null
+  },
+  "payload": {
+    "cwd": "/tmp",
+    "tool_input": {
+      "command": "sudo -n true"
+    },
+    "tool_name": "run_terminal_command"
+  },
+  "shim": "crush"
+}

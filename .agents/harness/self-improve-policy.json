@@ -1,5 +1,5 @@
 {
-  "_comment": "Autonomy tiers for harness self-improvement work. Hand-maintained: this file decides what an agent may change, so an agent must not be able to change it. It is covered by CONTROL_PLANE_PATHS in .agents/harness/hooks/safety.py.",
+  "_comment": "Autonomy tiers for harness self-improvement work. Hand-maintained: this file decides what an agent may change, so an agent must not be able to change it. It is covered by CONTROL_PLANE_FRAGMENTS in crates/ness/src/policy.rs.",
   "auto_implement": [
     "docs",
     "ci-path-filter",

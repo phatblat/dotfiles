@@ -104,12 +104,15 @@ printf 'git %s\n' "$*" >>"$COMMAND_LOG"
 EOF
   chmod +x "$bindir/git"
 
+  cat >"$bindir/hk" <<'EOF'
+#!/usr/bin/env bash
+printf 'hk %s\n' "$*" >>"$COMMAND_LOG"
+EOF
+  chmod +x "$bindir/hk"
+
   # The recipe resolves paths via `justfile_directory()`, not `$HOME`, so the
-  # justfile itself has to live alongside the fixture mise config, and
-  # format-mise's sort-tools.py has to live alongside the justfile.
+  # justfile itself has to live alongside the fixture mise config.
   cp "$BATS_TEST_DIRNAME/../justfile" "$home/justfile"
-  mkdir -p "$home/scripts"
-  cp "$BATS_TEST_DIRNAME/../scripts/sort-tools.py" "$home/scripts/sort-tools.py"
 
   run env HOME="$home" PATH="$bindir:$PATH" COMMAND_LOG="$log" \
     just --justfile "$home/justfile" upgrade-mise-tools-commit
@@ -253,6 +256,12 @@ printf 'version = "1.1.0"\n' >"$HOME/.config/mise/config.toml"
 EOF
   chmod +x "$bindir/mise"
 
+  cat >"$bindir/hk" <<'EOF'
+#!/usr/bin/env bash
+exit 0
+EOF
+  chmod +x "$bindir/hk"
+
   # Unrelated work staged before the recipe runs -- the race that once swept
   # feature files into a version-bump commit.
   printf 'staged edit\n' >"$repo/unrelated.txt"
@@ -261,10 +270,7 @@ EOF
   # The recipe resolves paths via `justfile_directory()`, which also becomes
   # the recipe's cwd, so the justfile has to live inside the throwaway repo
   # or the recipe would commit against the real justfile's own directory.
-  # format-mise's sort-tools.py has to live alongside it too.
   cp "$BATS_TEST_DIRNAME/../justfile" "$repo/justfile"
-  mkdir -p "$repo/scripts"
-  cp "$BATS_TEST_DIRNAME/../scripts/sort-tools.py" "$repo/scripts/sort-tools.py"
 
   run env HOME="$repo" PATH="$bindir:$PATH" \
     just --justfile "$repo/justfile" upgrade-mise-tools-commit

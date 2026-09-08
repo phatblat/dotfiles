@@ -4,7 +4,7 @@ Copyright: Ben Chatelain. Apache 2.0.
 
 Control plane: an agent able to edit this file grants itself permissions on
 every harness at the next `just harness-generate`. Human-only, enforced by
-`~/.agents/harness/hooks/safety.py` `_CONTROL_PLANE_FRAGMENTS`.
+`crates/ness/src/policy.rs`'s `CONTROL_PLANE_FRAGMENTS`.
 
 Split out of scripts/agent-harnesses.py so the data is reviewable on its own,
 following the harness_capabilities.py precedent. Imported only from

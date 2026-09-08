@@ -15,7 +15,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Context:** If working in an isolated worktree, it should have been created via the `git-worktree` skill at execution time.
 
-**Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
+**Plan location:** `PLAN.md` at repo root, or `docs/plan.md` when `docs/plan.md` already exists or the repo is in graduated mode (`docs/decisions/` present). A Plan is a branch- or worktree-lifetime document: committed for backup and handoff, and deleted before merge — not a permanent artifact.
 - (User preferences for plan location override this default)
 
 ## Scope Check
@@ -53,12 +53,21 @@ This structure informs the task decomposition. Each task should produce self-con
 
 **Goal:** [One sentence describing what this builds]
 
+**Decision:** [NNNN — <title> (path to the accepted Decision)]
+
 **Architecture:** [2-3 sentences about approach]
 
 **Tech Stack:** [Key technologies/libraries]
 
 ---
 ```
+
+A Plan with no accepted Decision behind it is a plan for work that skipped its
+gate — say so and stop; do not write it.
+
+Once the Plan is saved, commit it before execution begins:
+`git commit -m "plan: start NNNN" -- PLAN.md` (adjust the path for graduated
+mode, e.g. `docs/plan.md`).
 
 ## Task Structure
 
@@ -103,6 +112,31 @@ git commit -m "feat: add specific feature"
 ```
 ````
 
+### Task N: Retire the Plan
+
+Every plan's last task, always. This closes the loop back to the Decision
+without touching `executing-plans`.
+
+- [ ] **Step 1: Set the Decision's status to `implemented`**
+
+- [ ] **Step 2: Remove the Plan file**
+
+```bash
+git rm PLAN.md   # or docs/plan.md in graduated mode
+```
+
+- [ ] **Step 3: Commit removal of the Plan**
+
+```bash
+git commit -m "plan: done NNNN" -- PLAN.md   # or docs/plan.md
+```
+
+- [ ] **Step 4: Commit the Decision status change**
+
+```bash
+git commit -m "decision: implement NNNN" -- <decision path>
+```
+
 ## No Placeholders
 
 Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
@@ -123,7 +157,7 @@ Every step must contain the actual content an engineer needs. These are **plan f
 
 After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
 
-**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
+**1. Spec coverage:** Skim each section/requirement in the accepted Decision. Can you point to a task that implements it? List any gaps.
 
 **2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
 
@@ -135,7 +169,7 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `<resolved Plan path>` (`PLAN.md`, or `docs/plan.md` in graduated mode). Two execution options:**
 
 **1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
 

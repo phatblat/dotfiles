@@ -2,6 +2,10 @@
   "command": null,
   "content": "x",
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "protected file blocked: /Users/phatblat/.gemini/antigravity-cli/installation_id"
+  },
   "harness": "claude",
   "path": "/Users/phatblat/.gemini/antigravity-cli/installation_id",
   "tool": "write"

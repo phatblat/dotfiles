@@ -1,40 +1,23 @@
 #!/usr/bin/env bash
-# Thin PreToolUse adapter for the shared harness bash safety policy.
+# Thin PreToolUse adapter: hands the payload to the compiled harness guard
+# (crates/ness, installed by `just ness-install`). Fails closed when it is
+# missing.
 #
 # Copyright: Ben Chatelain. Apache 2.0.
 
 set -euo pipefail
 
-trap 'echo "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Hook error - fail-closed\"}}"; exit 0' ERR
-
-input=$(cat)
-command=$(echo "$input" | jq -r '.tool_input.command // empty' 2>/dev/null || echo "")
-
-[ -z "$command" ] && exit 0
+deny() {
+    printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$1"
+    exit 0
+}
+trap 'deny "Hook error - fail-closed"' ERR
 
 harness="claude"
 case "$0" in
     *".codex/"*) harness="codex" ;;
 esac
 
-status=0
-result=$(python3 "$HOME/scripts/agent-harnesses.py" guard --harness "$harness" --tool bash --command "$command" 2>/dev/null) || status=$?
-decision=$(printf '%s' "$result" | jq -r '.decision // "deny"')
-reason=$(printf '%s' "$result" | jq -r '.reason // "Shared guard failed closed"')
-
-case "$decision" in
-    deny)
-        jq -n --arg reason "$reason" '{
-          hookSpecificOutput: {
-            hookEventName: "PreToolUse",
-            permissionDecision: "deny",
-            permissionDecisionReason: $reason
-          }
-        }'
-        ;;
-    warn)
-        jq -n --arg reason "$reason" '{systemMessage: $reason}'
-        ;;
-esac
-
-exit 0
+ness="$HOME/.local/bin/ness"
+[ -x "$ness" ] || deny "Shared guard failed closed: $ness is not installed (run: just ness-install)"
+exec "$ness" hook --harness "$harness" --tool bash

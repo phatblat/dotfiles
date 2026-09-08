@@ -1,0 +1,20 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "hookSpecificOutput": {
+        "hookEventName": "PreToolUse",
+        "permissionDecision": "deny",
+        "permissionDecisionReason": "Dangerous command pattern detected"
+      }
+    }
+  },
+  "payload": {
+    "hook_event_name": "PreToolUse",
+    "tool_input": {
+      "command": "env FOO=1 rm -rf /"
+    },
+    "tool_name": "Bash"
+  },
+  "shim": "claude-bash"
+}

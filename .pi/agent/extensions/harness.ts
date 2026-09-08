@@ -10,9 +10,9 @@ import { Type } from "typebox";
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
 function guard(args: string[]): GuardResult {
-  const script = join(homedir(), "scripts", "agent-harnesses.py");
+  const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync("python3", [script, "guard", "--harness", "pi", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "pi", ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
     });

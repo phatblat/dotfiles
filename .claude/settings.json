@@ -8,7 +8,7 @@
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": false,
     "gopls-lsp@claude-plugins-official": true,
-    "hookify@claude-plugins-official": true,
+    "hookify@claude-plugins-official": false,
     "kotlin-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "oh-my-claudecode@omc": true,
@@ -232,7 +232,7 @@
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Stop; fi",
-            "timeout": 5,
+            "timeout": 10,
             "type": "command"
           }
         ],

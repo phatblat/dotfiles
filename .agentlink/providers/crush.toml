@@ -1,0 +1,17 @@
+# Crush — not shipped by agentlink 0.0.1.
+#
+# Skills only. Crush's default global skill roots are ~/.config/crush/skills and
+# ~/.config/agents/skills, so the generated ~/.config/crush/crushrc names the
+# shared root explicitly with `option skill-path "$HOME/.agents/skills"`.
+# Instructions are omitted: crush loads them through `option
+# global-context-path`, not AGENTS.md.
+
+schema = 1
+id = "crush"
+name = "Crush"
+
+[[capability]]
+resource = "skills"
+strategy = "native"
+path = ".agents/skills"
+note = "generated crushrc adds the shared root through `option skill-path`."

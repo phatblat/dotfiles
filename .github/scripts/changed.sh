@@ -16,13 +16,14 @@ profile="${1:?usage: changed.sh <lint|parity>}"
 
 case "$profile" in
 lint)
-    # Mirrors what `just lint` actually reads: lint-yaml covers every tracked
-    # *.yml/*.yaml, lint-toml validates .codex/config.toml, lint-python
-    # covers the explicitly listed Python files, and lint-github-scripts
-    # covers .github/scripts/*.sh. Narrower than this and a lint failure
-    # surfaces on some later unrelated pull request instead of the one that
-    # caused it.
-    pattern='^(\.agents/harness/hooks/safety\.py$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
+    # Mirrors what `just lint` (`hk check --all`, steps defined in hk.pkl)
+    # actually reads: hk.pkl itself, plus every glob its steps check
+    # (.gitignore, .codex/config.toml, .config/mise/config.toml, zsh/nushell
+    # autoload functions, bin/, tracked *.yml/*.yaml, and the scripts/tests
+    # trees hk's Python/shell steps cover). Narrower than this and a lint
+    # failure surfaces on some later unrelated pull request instead of the
+    # one that caused it.
+    pattern='^(hk\.pkl$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.ya?ml$)'
     ;;
 parity)
     # .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:
@@ -30,7 +31,7 @@ parity)
     # sibling scripts/harness_*.py modules: the capability registry, the
     # renderers, and the probe/drift rules all feed docs/agent-harnesses.* and
     # docs/harness/**, so a registry-only change must still run the check.
-    pattern='^(\.agents/|\.claude/(commands|skills)/|\.codex/(agents|skills)/|\.config/opencode/|\.cursor/|\.gemini/|\.pi/|\.omp/|scripts/agent-harnesses\.py$|scripts/agent_plugins\.py$|scripts/harness_[a-z_]+\.py$|docs/agent-harnesses\.|docs/harness/|\.github/(workflows/agent-harness-parity\.yml|scripts/changed\.sh)$)'
+    pattern='^(\.agents/|\.claude/(commands|hooks|skills)/|\.codex/(agents|hooks|skills)/|\.config/(crush|opencode)/|\.cursor/|\.gemini/|\.grok/|\.pi/|\.omp/|crates/|scripts/agent-harnesses\.py$|scripts/agent_plugins\.py$|scripts/harness_[a-z_]+\.py$|docs/agent-harnesses\.|docs/harness/|\.github/(workflows/agent-harness-parity\.yml|scripts/changed\.sh)$)'
     ;;
 *)
     echo "unknown profile: $profile" >&2

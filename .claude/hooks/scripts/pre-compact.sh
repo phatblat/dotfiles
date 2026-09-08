@@ -9,6 +9,15 @@
 
 set -euo pipefail
 
-echo '{"systemMessage": "📝 Compacting - Preserving: modified files, branches, pending tasks."}'
+summary="modified files, branches, pending tasks"
+if git rev-parse --git-dir >/dev/null 2>&1; then
+    uncommitted=$(git status --short 2>/dev/null | wc -l | tr -d ' ')
+    branch=$(git branch --show-current 2>/dev/null)
+    if [ "$uncommitted" -gt 0 ]; then
+        summary="${uncommitted} uncommitted file(s) on ${branch:-detached HEAD}, pending tasks"
+    fi
+fi
+
+echo "{\"systemMessage\": \"📝 Compacting - Preserving: ${summary}.\"}"
 
 exit 0

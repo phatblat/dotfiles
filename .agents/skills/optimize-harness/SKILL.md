@@ -36,11 +36,12 @@ empty finding.
 ## Control-plane note
 
 `scripts/agent-harnesses.py`, `scripts/agent_plugins.py`,
-`.agents/harness/hooks/`, and `.agents/harness/generated-paths.json` are
-human-only (`~/.agents/harness/hooks/safety.py:89-100`,
-`_CONTROL_PLANE_FRAGMENTS`). A fix that lands in one of them must be
-reported as a hand-patch for the user to apply, never attempted directly —
-this prevents every future run from rediscovering the same deny.
+`scripts/harness_policy.py`, `.agents/harness/hooks/`,
+`.agents/harness/generated-paths.json`, and `crates/ness/` are human-only
+(`crates/ness/src/policy.rs`, `CONTROL_PLANE_FRAGMENTS`). A fix that lands
+in one of them must be reported as a hand-patch for the user to apply,
+never attempted directly — this prevents every future run from
+rediscovering the same deny.
 
 ## Execution shape
 

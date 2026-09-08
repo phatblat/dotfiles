@@ -1,4 +1,6 @@
-//! Verbatim port of `.agents/harness/hooks/safety.py`.
+//! Sole implementation of the shared harness safety policy (formerly a
+//! verbatim port of `.agents/harness/hooks/safety.py`, deleted once every
+//! harness switched to this binary).
 //!
 //! Every pattern below is copied character-for-character from the Python
 //! source (re-anchored where Python's raw-string escaping of a literal
@@ -27,15 +29,24 @@ pub struct GuardDecision {
 
 impl GuardDecision {
     pub fn allow() -> Self {
-        Self { decision: "allow".to_string(), reason: String::new() }
+        Self {
+            decision: "allow".to_string(),
+            reason: String::new(),
+        }
     }
 
     pub fn warn(reason: impl Into<String>) -> Self {
-        Self { decision: "warn".to_string(), reason: reason.into() }
+        Self {
+            decision: "warn".to_string(),
+            reason: reason.into(),
+        }
     }
 
     pub fn deny(reason: impl Into<String>) -> Self {
-        Self { decision: "deny".to_string(), reason: reason.into() }
+        Self {
+            decision: "deny".to_string(),
+            reason: reason.into(),
+        }
     }
 
     pub fn allowed(&self) -> bool {
@@ -43,6 +54,14 @@ impl GuardDecision {
     }
 }
 
+/// Fail-open by design: a regex engine error here means the pattern itself is
+/// broken, not that the input is safe. Every static pattern in this module is
+/// fixed and non-adversarial (no user-controlled regex compilation), so a
+/// runtime match error is unreachable in practice; treating it as "allow"
+/// avoids a corrupted/incompatible regex build turning every guard call into
+/// a denial. This is the one deliberately fail-open seam in an otherwise
+/// fail-closed guard — see the manifest override below, which is fail-open
+/// for the same reason.
 fn matches(re: &Regex, text: &str) -> bool {
     re.is_match(text).unwrap_or(false)
 }
@@ -86,21 +105,23 @@ static PROTECTED_PATHS: LazyLock<Regex> = LazyLock::new(|| {
     .unwrap()
 });
 
-// safety.py:91-111. Kept as the same nine fragments currently in safety.py;
-// if a human operator adds fragments there (see the "Close the control-plane
-// gap" step in the de-risk plan), this list must be updated to match in the
-// same change, or `just ness-parity` will start failing on those new cases.
+// This list is now the only definition of the control plane: there is no
+// longer a Python `safety.py` copy for it to stay in sync with.
+// `tests/corpus/9xx-*.json` pins every fragment here to a deny/allow case;
+// add or change a fragment and its matching corpus case in the same change.
 static CONTROL_PLANE_FRAGMENTS: &[&str] = &[
     r"/\.agents/harness/hooks/",
     r"/\.agents/harness/self-improve-policy\.json(?![\w.-])",
     r"/\.agents/harness/generated-paths\.json(?![\w.-])",
     r"/scripts/agent-harnesses\.py(?![\w.-])",
     r"/scripts/agent_plugins\.py(?![\w.-])",
-    r"/harness-guard\.(?:ts|py)(?![\w.-])",
+    r"/scripts/harness_policy\.py(?![\w.-])",
+    r"/harness-guard\.(?:ts|sh)(?![\w.-])",
     r"/(?:write|bash)-guard\.sh(?![\w.-])",
     r"/opencode/plugins/harness\.ts(?![\w.-])",
     r"/agent/extensions/harness\.ts(?![\w.-])",
     r"/harness-guard\.json(?![\w.-])",
+    r"/crates/ness/(?!target(?:/|$))",
 ];
 
 // safety.py:104-107
@@ -226,10 +247,17 @@ pub fn evaluate_write(path: &str, content: &str) -> GuardDecision {
 /// Port of `candidate_write_targets` (safety.py:210-224).
 pub fn candidate_write_targets(command: &str) -> Vec<String> {
     let mut targets: Vec<String> = Vec::new();
-    for pattern in [&*REDIRECT_TARGET, &*MUTATING_ARGV, &*SED_INPLACE, &*DD_TARGET] {
+    for pattern in [
+        &*REDIRECT_TARGET,
+        &*MUTATING_ARGV,
+        &*SED_INPLACE,
+        &*DD_TARGET,
+    ] {
         for caps in pattern.captures_iter(command) {
             let Ok(caps) = caps else { continue };
-            let Some(span) = caps.name("span") else { continue };
+            let Some(span) = caps.name("span") else {
+                continue;
+            };
             for tok in PATH_TOKEN.find_iter(span.as_str()).flatten() {
                 targets.push(tok.as_str().to_string());
             }

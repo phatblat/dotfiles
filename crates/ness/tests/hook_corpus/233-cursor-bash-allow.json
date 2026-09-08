@@ -1,0 +1,16 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "decision": "allow",
+      "harness": "cursor",
+      "reason": "",
+      "tool": "bash"
+    }
+  },
+  "payload": {
+    "command": "git status --short",
+    "tool": "bash"
+  },
+  "shim": "cursor"
+}

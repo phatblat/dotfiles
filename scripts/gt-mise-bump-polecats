@@ -101,7 +101,7 @@ Target: ${bump}
 
 Required outcome:
 - Update exactly one line for ${raw_tool} in .config/mise/config.toml.
-- Run \`just format-mise\` in /Users/phatblat.
+- Run \`just format\` in /Users/phatblat.
 - Commit message: chore(mise): bump ${branch_tool} to ${bump}
 - Branch name: ben/mise-bump-${branch_tool}-${bump}
 - Push branch and open PR to main.

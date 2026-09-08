@@ -2,6 +2,10 @@
   "command": null,
   "content": "x",
   "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "protected file blocked: /Users/phatblat/.ssh/id_ed25519"
+  },
   "harness": "claude",
   "path": "/Users/phatblat/.ssh/id_ed25519",
   "tool": "write"

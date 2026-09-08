@@ -8,20 +8,20 @@
 
 Dangerous commands, protected writes, and secret-like content are blocked consistently.
 
-Canonical: `~/.agents/harness/hooks/safety.py`
-Verify: `python3 scripts/agent-harnesses.py verify`
+Canonical: `~/crates/ness/src/policy.rs`
+Verify: `just ness-test`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.236 (Claude Code) · 2026-09-04 | - |
-| codex | aligned | adapter | - | probe · codex-cli 0.152.1 · 2026-09-04 | - |
-| opencode | aligned | adapter | - | probe · 1.18.26 · 2026-09-04 | - |
-| pi | aligned | adapter | - | probe · 0.84.4 · 2026-09-04 | - |
-| omp | aligned | adapter | - | probe · omp/18.1.6 · 2026-09-04 | - |
-| antigravity | partial | adapter | - | probe · 1.1.25 · 2026-09-04 | generated Antigravity hook wrapper calls the shared guard, but native pre-tool blocking has not been verified |
-| cursor | partial | adapter | - | probe · 2026.07.01-777f564 · 2026-09-04 | Cursor hook wrapper is generated, but native pre-tool blocking behavior has not been verified |
-| grok | partial | adapter | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-04 | generated grok PreToolUse guard maps grok's camelCase payload to the shared guard, but live blocking in a grok session has not been verified |
-| crush | partial | adapter | - | probe · crush version v0.92.0 · 2026-09-04 | generated crush PreToolUse guard maps crush's snake_case payload to the shared guard and blocks with exit 2, but crush is not installed locally so live blocking is unverified |
+| claude | aligned | adapter | - | probe · 2.1.261 (Claude Code) · 2026-09-07 | - |
+| codex | aligned | adapter | - | probe · codex-cli 0.153.4 · 2026-09-07 | - |
+| opencode | aligned | adapter | - | probe · 1.18.29 · 2026-09-07 | - |
+| pi | aligned | adapter | - | probe · 0.85.1 · 2026-09-07 | - |
+| omp | aligned | adapter | - | probe · omp/18.1.13 · 2026-09-07 | - |
+| antigravity | partial | adapter | - | probe · 1.1.27 · 2026-09-07 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
+| cursor | partial | adapter | - | probe · 2026.09.02-c22c1a3 · 2026-09-07 | generated Cursor hook shim execs the compiled guard, but native pre-tool blocking behavior has not been verified |
+| grok | partial | adapter | - | probe · grok 1.0.13 (5e9a58528b76) [alpha] · 2026-09-07 | generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified |
+| crush | partial | adapter | - | probe · crush version v0.92.0 · 2026-09-07 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
 
 ### Not yet researched
 
