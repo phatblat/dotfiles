@@ -61,8 +61,6 @@ brew "autoconf"
 brew "automake"
 # Automatically restart SSH sessions and tunnels
 brew "autossh"
-# Official Amazon AWS command-line interface
-brew "awscli"
 # GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
 # Text-based UI library
@@ -71,10 +69,6 @@ brew "ncurses"
 brew "bash"
 # C library of Git core methods that is re-entrant and linkable
 brew "libgit2"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
-# User-friendly launcher for Bazel
-brew "bazelisk"
 # Sed-like editor for binary files
 brew "bbe"
 # Command-line benchmark tool
@@ -91,8 +85,6 @@ brew "boost"
 brew "boxes"
 # New way to see and navigate directory trees
 brew "broot"
-# Format bazel BUILD files with a standard convention
-brew "buildifier"
 # Rewrite bazel BUILD files using standard commands
 brew "buildozer"
 # Asynchronous DNS library
@@ -137,8 +129,6 @@ brew "dav1d"
 brew "ddgr"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
-# Load/unload environment variables based on $PWD
-brew "direnv"
 # Embeddable Javascript engine with compact footprint
 brew "duktape"
 # Select default apps for documents and URL schemes on macOS
@@ -159,10 +149,6 @@ brew "edencommon"
 brew "emojify"
 # Test various flash cards
 brew "f3"
-# Like neofetch, but much faster because written mostly in C
-brew "fastfetch"
-# Simple, fast and user-friendly alternative to find
-brew "fd"
 # MP3 player for Linux and UNIX
 brew "mpg123"
 # Audio codec
@@ -183,8 +169,6 @@ brew "flock"
 brew "fortune"
 # Implementation of the Unicode BiDi algorithm
 brew "fribidi"
-# Command-line fuzzy finder written in Go
-brew "fzf"
 # Manage your GitHub Actions from Terminal with great UI
 brew "gama"
 # Integer Set Library for the polyhedral model
@@ -207,8 +191,6 @@ brew "openexr"
 brew "jpeg-xl"
 # GNU database manager
 brew "gdbm"
-# GitHub command-line tool
-brew "gh"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Library for JPEG-2000 image manipulation
@@ -221,8 +203,6 @@ brew "pango"
 brew "tesseract"
 # Distributed revision control system
 brew "git"
-# Syntax-highlighting pager for git and diff output
-brew "git-delta"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
 # Git repository organizer & rebase workflow automation tool
@@ -277,12 +257,6 @@ brew "hwloc"
 brew "hyx"
 # Install and debug iPhone apps from the command-line
 brew "ios-deploy"
-# Git-compatible distributed version control system
-brew "jj"
-# TUI for interacting with the Jujutsu version control system
-brew "jjui"
-# Lightweight and flexible command-line JSON processor
-brew "jq"
 # Command-line JSON pretty-printer
 brew "jsonpp"
 # Environment diagnostics for Kotlin Multiplatform Mobile app development
@@ -359,8 +333,6 @@ brew "nextdns"
 brew "nginx"
 # Port scanning utility for large networks
 brew "nmap"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Package for scientific computing with Python
 brew "numpy"
 # Modern shell for the GitHub era
@@ -383,28 +355,18 @@ brew "python-setuptools"
 brew "radare2"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
 # Readline wrapper: adds readline support to tools that lack it
 brew "rlwrap"
 # Utility that provides fast incremental file transfer
 brew "rsync"
-# Powerful, clean, object-oriented scripting language
-brew "ruby"
-# Rust toolchain installer
-brew "rustup"
 # Display and control your Android device
 brew "scrcpy"
 # Get, set, and list display resolution
 brew "screenresolution"
 # Semantic version control CLI with entity-level diffs and blame
 brew "sem-cli"
-# Static analysis and lint tool, for (ba)sh scripts
-brew "shellcheck"
 # Bash syntax highlighter that encourages/fixes variables quoting
 brew "shellharden"
-# Autoformat shell script source code
-brew "shfmt"
 # Prints a steam locomotive if you type sl instead of ls
 brew "sl"
 # SOcket CAT: netcat on steroids
@@ -415,8 +377,6 @@ brew "sourcekitten"
 brew "sponge"
 # Non-interactive SSH password auth
 brew "sshpass"
-# Cross-shell prompt for astronauts
-brew "starship"
 # Formatting technology for Swift source code
 brew "swift-format"
 # Cross-platform static analyzer and linter for Swift
@@ -445,8 +405,6 @@ brew "trash", link: true
 brew "unbound"
 # Multifunction timer tool
 brew "utimer"
-# Extremely fast Python package installer and resolver, written in Rust
-brew "uv"
 # Tool for creating isolated virtual python environments
 brew "virtualenv"
 # Watch files and take action when they change
@@ -465,8 +423,6 @@ brew "wxwidgets"
 brew "xcode-kotlin"
 # General-purpose lossless data-compression library
 brew "zlib"
-# Shell extension to navigate your filesystem faster
-brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
 brew "cirruslabs/cli/cirrus", trusted: true
@@ -622,8 +578,6 @@ cask "logi-options+"
 cask "loom"
 # Native chat application for all major LLM APIs
 cask "macai"
-# Detailed information on every Apple product ever made
-cask "mactracker"
 # Visual diff and merge tool
 cask "meld"
 # Microblogging and social networking service
@@ -741,223 +695,3 @@ mas "reMarkable", id: 1276493162
 mas "Remote Desktop", id: 409907375
 mas "Screens 5", id: 1663047912
 mas "Windows App", id: 1295203466
-vscode "4ops.packer"
-vscode "aaronyoung.dark-synthwave-vscode"
-vscode "adelphes.android-dev-ext"
-vscode "ahmadawais.shades-of-purple"
-vscode "alan.stylus"
-vscode "allan-carlos.night-rainbow"
-vscode "altbdoor.change-tab-size"
-vscode "amodio.amethyst-theme"
-vscode "antfu.icons-carbon"
-vscode "apptorium.teacode-vsc-helper"
-vscode "atommaterial.a-file-icon-vscode"
-vscode "bagetx.inf"
-vscode "bazelbuild.vscode-bazel"
-vscode "bbenoist.nix"
-vscode "bencoleman.armview"
-vscode "bierner.markdown-preview-github-styles"
-vscode "bmalehorn.vscode-fish"
-vscode "christian-kohler.npm-intellisense"
-vscode "christian-kohler.path-intellisense"
-vscode "cmstead.js-codeformer"
-vscode "cmstead.jsrefactor"
-vscode "codezombiech.gitignore"
-vscode "continue.continue"
-vscode "cschlosser.doxdocgen"
-vscode "dart-code.dart-code"
-vscode "dart-code.flutter"
-vscode "davidanson.vscode-markdownlint"
-vscode "dawhite.mustache"
-vscode "daylerees.rainglow"
-vscode "dbaeumer.vscode-eslint"
-vscode "deerawan.vscode-dash"
-vscode "dhoeric.ansible-vault"
-vscode "didericis.starlark"
-vscode "dkundel.vscode-npm-source"
-vscode "dnicolson.binary-plist"
-vscode "donjayamanne.githistory"
-vscode "dsznajder.es7-react-js-snippets"
-vscode "ecmel.vscode-html-css"
-vscode "editorconfig.editorconfig"
-vscode "endormi.2077-theme"
-vscode "eriklynd.json-tools"
-vscode "esafirm.kotlin-formatter"
-vscode "esbenp.prettier-vscode"
-vscode "fabiospampinato.vscode-open-in-github"
-vscode "fallenwood.viml"
-vscode "felipecaputo.git-project-manager"
-vscode "felixrieseberg.vsc-travis-ci-status"
-vscode "file-icons.file-icons"
-vscode "fisheva.eva-theme"
-vscode "fivepointseven.node-version"
-vscode "flesler.url-encode"
-vscode "flimberger.android-system-tools"
-vscode "fmoronzirfas.open-in-marked"
-vscode "formulahendry.auto-close-tag"
-vscode "formulahendry.auto-rename-tag"
-vscode "formulahendry.code-runner"
-vscode "fwcd.kotlin"
-vscode "georgewfraser.vscode-javac"
-vscode "github.github-vscode-theme"
-vscode "github.vscode-github-actions"
-vscode "github.vscode-pull-request-github"
-vscode "gitpod.gitpod-desktop"
-vscode "golang.go"
-vscode "hashicorp.hcl"
-vscode "hashicorp.terraform"
-vscode "helligechris.synthwave-vscode-renew"
-vscode "htmlhint.vscode-htmlhint"
-vscode "humao.rest-client"
-vscode "jakearl.search-editor-apply-changes"
-vscode "jamesmaj.easy-icons"
-vscode "jasonnutter.search-node-modules"
-vscode "jeff-hykin.better-cpp-syntax"
-vscode "jetmartin.bats"
-vscode "jlwoolf.makefile-tools-nameable"
-vscode "josetr.cmake-language-support-vscode"
-vscode "joshuapoehls.json-escaper"
-vscode "jtavin.ldif"
-vscode "juanblanco.solidity"
-vscode "jvitorfrancisco.theme-acid-purple"
-vscode "kaleidoscope-app.vscode-ksdiff"
-vscode "kevinkyang.auto-comment-blocks"
-vscode "kevinmcgowan.typescriptimport"
-vscode "kisstkondoros.vscode-codemetrics"
-vscode "kozet.purple-night"
-vscode "kumar-harsh.graphql-for-vscode"
-vscode "leizongmin.node-module-intellisense"
-vscode "lfm.vscode-makefile-term"
-vscode "lunaryorn.fish-ide"
-vscode "makashi.dark-purple"
-vscode "mariomatheu.syntax-project-pbxproj"
-vscode "mark-wiemer.vscode-autohotkey-plus-plus"
-vscode "mathiasfrohlich.kotlin"
-vscode "me-dutour-mathieu.vscode-github-actions"
-vscode "mechatroner.rainbow-csv"
-vscode "meshintelligenttechnologiesinc.pieces-vscode"
-vscode "mhcpnl.xcodestrings"
-vscode "miguelsolorio.fluent-icons"
-vscode "mikestead.dotenv"
-vscode "miramac.vscode-exec-node"
-vscode "mitaki28.vscode-clang"
-vscode "mohsen1.prettify-json"
-vscode "mongodb.mongodb-vscode"
-vscode "monokai.theme-monokai-pro-vscode"
-vscode "mpotthoff.vscode-android-webview-debug"
-vscode "ms-azuretools.vscode-azurefunctions"
-vscode "ms-azuretools.vscode-azureresourcegroups"
-vscode "ms-dotnettools.vscode-dotnet-runtime"
-vscode "ms-python.debugpy"
-vscode "ms-python.isort"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ms-toolsai.jupyter"
-vscode "ms-toolsai.jupyter-keymap"
-vscode "ms-toolsai.jupyter-renderers"
-vscode "ms-toolsai.vscode-jupyter-cell-tags"
-vscode "ms-toolsai.vscode-jupyter-slideshow"
-vscode "ms-vscode-remote.remote-containers"
-vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode-remote.remote-wsl"
-vscode "ms-vscode-remote.vscode-remote-extensionpack"
-vscode "ms-vscode.cmake-tools"
-vscode "ms-vscode.cpp-devtools"
-vscode "ms-vscode.cpptools"
-vscode "ms-vscode.cpptools-extension-pack"
-vscode "ms-vscode.cpptools-themes"
-vscode "ms-vscode.extension-test-runner"
-vscode "ms-vscode.js-atom-grammar"
-vscode "ms-vscode.makefile-tools"
-vscode "ms-vscode.powershell"
-vscode "ms-vscode.remote-explorer"
-vscode "ms-vscode.remote-server"
-vscode "ms-vsliveshare.vsliveshare"
-vscode "ms-vsliveshare.vsliveshare-audio"
-vscode "msjsdiag.debugger-for-chrome"
-vscode "msjsdiag.vscode-react-native"
-vscode "msnilshartmann.blue-light"
-vscode "naco-siren.gradle-language"
-vscode "nataliefruitema.modern-purple-theme"
-vscode "naumovs.node-modules-resolve"
-vscode "nefrob.vscode-just-syntax"
-vscode "nepaul.editorconfiggenerator"
-vscode "nodesource.vscode-for-node-js-development-pack"
-vscode "nur.just-black"
-vscode "nvidia.bluebazel"
-vscode "nyxb.materialiconic-product-icons"
-vscode "obrejla.netbeans-light-theme"
-vscode "oderwat.indent-rainbow"
-vscode "pbkit.vscode-pbkit"
-vscode "perkovec.emoji"
-vscode "phgn.vscode-starlark"
-vscode "phplasma.csv-to-table"
-vscode "pkief.material-icon-theme"
-vscode "pkief.material-product-icons"
-vscode "pkosta2005.heroku-command"
-vscode "pokey.parse-tree"
-vscode "prashaantt.node-tdd"
-vscode "redhat.ansible"
-vscode "redhat.java"
-vscode "redhat.vscode-xml"
-vscode "redhat.vscode-yaml"
-vscode "richardwillis.vscode-spotless-gradle"
-vscode "ritwickdey.liveserver"
-vscode "robbowen.synthwave-vscode"
-vscode "rust-lang.rust-analyzer"
-vscode "rvest.vs-code-prettier-eslint"
-vscode "samuelcolvin.jinjahtml"
-vscode "sclu1034.justfile"
-vscode "secanis.jenkinsfile-support"
-vscode "shan.code-settings-sync"
-vscode "shanoor.vscode-nginx"
-vscode "shd101wyy.markdown-preview-enhanced"
-vscode "shopify.ruby-lsp"
-vscode "sidneys1.gitconfig"
-vscode "skellock.just"
-vscode "skyapps.fish-vscode"
-vscode "sohibe.java-generate-setters-getters"
-vscode "surajbarkale.ninja"
-vscode "sysoev.language-stylus"
-vscode "sysoev.vscode-open-in-github"
-vscode "tamasfe.even-better-toml"
-vscode "techer.open-in-browser"
-vscode "timonwong.shellcheck"
-vscode "tombonnike.vscode-status-bar-format-toggle"
-vscode "tonybaloney.vscode-pets"
-vscode "tushortz.java-imports-snippets"
-vscode "twxs.cmake"
-vscode "unifiedjs.vscode-mdx"
-vscode "vadimcn.vscode-lldb"
-vscode "vscjava.vscode-gradle"
-vscode "vscjava.vscode-java-debug"
-vscode "vscjava.vscode-java-dependency"
-vscode "vscjava.vscode-java-pack"
-vscode "vscjava.vscode-java-test"
-vscode "vscjava.vscode-maven"
-vscode "vscode-icons-team.vscode-icons"
-vscode "wholroyd.jinja"
-vscode "wix.vscode-import-cost"
-vscode "xabikos.javascriptsnippets"
-vscode "xaver.clang-format"
-vscode "zeithaste.cursorcharcode"
-vscode "zhouronghui.propertylist"
-vscode "zhuangtongfa.material-theme"
-vscode "ziyasal.vscode-open-in-github"
-go "cmd/go"
-go "cmd/gofmt"
-cargo "apple_releases"
-cargo "cargo-about"
-cargo "cargo-deny"
-cargo "cargo-docs-rs"
-cargo "ditto-xtask"
-cargo "jolt"
-cargo "sd"
-cargo "tauri-cli"
-cargo "wasm-bindgen-cli"
-cargo "wasm-pack", source: "https://github.com/rustwasm/wasm-pack.git?tag=v0.12.1"
-uv "code-review-graph"
-uv "mitmproxy"
-uv "trafilatura"
