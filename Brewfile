@@ -202,6 +202,8 @@ brew "git-filter-repo"
 brew "git-machete"
 # Git Submodule Alternative
 brew "git-subrepo"
+# GitHub command-line tool
+brew "gh"
 # Alternative to top/htop
 brew "glances"
 # GNU implementation of the famous stream editor

@@ -17,7 +17,6 @@ direnv
 fastfetch
 fd
 fzf
-gh
 git-delta
 jj
 jjui
