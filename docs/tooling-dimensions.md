@@ -10,7 +10,7 @@ the details.
 | Dimension | Members | Strategy | Automated gap-check |
 |---|---|---|---|
 | Package managers | mise, Homebrew, Nix/home-manager | mise primary, Homebrew fallback, Nix is an untracked experiment | `just package-audit` (basic, name-based, mise vs. installed brew) |
-| Shells | Zsh, Nushell, Bash | Mirror functions across shells, using each shell's native idioms | `docs/functions.md` (manual coverage table) + hk's `shellcheck-zsh`/`shellcheck-github`/`shellcheck-bin` steps, run via `just lint` (parse-only, not coverage) |
+| Shells | Zsh, Nushell, Bash | Mirror functions across shells, using each shell's native idioms | `docs/functions.md` (manual coverage table) + hk's `shellcheck-zsh`/`shellcheck-github`/`shellcheck-bin`/`nushell-config`/`nushell-autoload` steps, run via `just lint` (parse-only, not coverage) |
 | Agent harnesses | Claude Code, Codex, OpenCode, Pi, OMP, Antigravity, Cursor, Grok, Crush | Shared source of truth under `.agents/harness/`, generated/adapted per harness | `just harness-check` (validates generated parity artifacts) + `just harness-audit` (installed versions, parity gaps) + `just harness-probe` (re-verifies capability probes, records CLI versions, appends drift) |
 
 Harness parity is the deepest of the three. A capability registry
