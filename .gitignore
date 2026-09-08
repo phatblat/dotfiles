@@ -618,6 +618,7 @@
 !.pi/agent/
 .pingidentity/
 .pki/
+.pkl/
 .pnpm-state/
 .project
 .pry_history
