@@ -1,81 +1,101 @@
 # Decision document template
 
-Conventional Docs (https://github.com/phatblat/conventional-docs) ships no decision
-template of its own. These two shapes are this fork's convention — pick the one that
-matches the repo's Artifact Location result in `~/.agents/skills/brainstorm/SKILL.md`.
+Conventional Docs (https://github.com/phatblat/conventional-docs) defines the
+skeleton below in its own `SKILL.md`; this file exists only to layer in this
+fork's one addition — the `## Prototype Findings` section for the brainstorm
+skill's `## Prototype` phase — and to restate the status values for quick
+reference during review.
 
-Heading names follow MADR where MADR has an equivalent, so MADR-aware readers and
-tooling recognize the file.
+Every Decision lives at `docs/decisions/YYYY-MM-DD-slug.md`. There is no
+single-file form and no graduation step: this is the only location.
 
-## Graduated shape — `docs/decisions/NNNN-slug.md`
+## Structure
+
+Use exactly this skeleton, H2 sections in this order:
 
 ```markdown
----
-status: proposed
-date: YYYY-MM-DD
-decision-makers: [<name>]
----
+# <Decision title>
 
-# NNNN — <Title>
+## Issue
 
-## Context and Problem Statement
+<The problem requiring a decision, with links to the motivating issue and PRs.
+If this decision extends another, the first sentence is `This decision extends
+[YYYY-MM-DD-slug](./YYYY-MM-DD-slug.md).` and nothing from that decision is
+restated.>
 
-<Why this is on the table now. The forces in play. What breaks if nothing changes.>
+## Status
 
-## Considered Options
+This is a proposal that is **awaiting review**.
 
-### <Option name>
+## Assumptions and Constraints
 
-<One paragraph: what it is and how it behaves.>
+- <Facts bounding the choice: environment, compatibility guarantees, prior
+  decisions. For a change to a public surface, state the compatibility
+  guarantee it has to keep here.>
 
-- Pro: <…>
-- Con: <…>
+## Argument
 
-## Decision Outcome
+<Why the chosen direction beats the alternatives. Name any alternative that
+shapes the choice, with its verdict (**Chosen.** / **Rejected.**), and reserve
+full reasoning for Positions. `N/A` is acceptable when the constraints make the
+decision self-evident.>
 
-<The chosen option, stated as a decision in one or two sentences, and why it beat the
-others.>
+## Architectural Decision
 
-## Consequences
-
-<What this costs. What it forecloses. What has to change as a result.>
+<The decision itself, as numbered clauses a reviewer can point at. Include code
+or YAML only where it pins down a contract — a field name, a struct variant,
+one representative manifest — never to reproduce the implementation.>
 
 ## Prototype Findings
 
-<Omit this heading entirely unless a prototype ran. What was tried, what it proved or
-disproved, and what changed in this Decision as a result. Prototype code is throwaway
-and is not committed.>
+<Omit this heading entirely unless brainstorm's `## Prototype` phase ran. What
+was tried, what it proved or disproved, and what changed in this Decision as a
+result. Prototype code is throwaway and is not committed. This section is this
+fork's addition — Conventional Docs itself does not define it — and is
+positioned after Architectural Decision so it reads as evidence for the
+decision already stated, not as a new claim.>
+
+## Positions
+
+<Alternatives considered and rejected, each with its reason, or `N/A`.>
 ```
 
-## Small-repo shape — one section appended to `DECISIONS.md`
+Optional sections, in position (from Conventional Docs):
 
-Same content one heading level deeper; status inline because there is no
-per-decision frontmatter:
-
-```markdown
-## NNNN — <Title>
-
-**Status:** proposed · **Date:** YYYY-MM-DD · **Decision-makers:** <name>
-
-### Context and Problem Statement
-### Considered Options
-### Decision Outcome
-### Consequences
-### Prototype Findings
-```
+- `## Consequences` — after Architectural Decision / Prototype Findings,
+  before Positions: rollout order, breaking changes, migration burden,
+  follow-up documentation owed.
+- `## References` — after Positions: bulleted links with `—` descriptions
+  (tracking issue, implementation PRs, related decisions, external specs).
+- `## Errata` — last, after References: append-only corrections and
+  supersession pointers, added only once the record is frozen.
 
 ## Status values
 
-- `proposed` — the spec, revisable in place (commit `decision: revise NNNN <what changed>`).
-- `accepted` — frozen. Changing your mind is a new Decision that supersedes this one.
-- `implemented` — the work shipped. This is a Conventional Docs addition to MADR's
-  status set (`proposed` / `rejected` / `accepted` / `deprecated` / `superseded`).
-- `superseded` — replaced; name the successor number in the body.
+A record has four states and moves through them in one direction:
+**draft → proposed → accepted | rejected**. Each transition is a commit, and
+`## Status` carries exactly one line:
+
+- **draft** (`decision: draft <id>`) — `This is a **draft**; it is not ready
+  for review.`
+- **proposed** (`decision: propose <id>`) — `This is a proposal that is
+  **awaiting review**.` This is the spec; revise it in place and commit
+  `decision: revise <id> <what changed>`.
+- **accepted** (`decision: accept <id>`) — `This is a proposal that is
+  **accepted**.` Frozen: `accept` is the last write to the record's body.
+  Changing your mind is a new Decision that supersedes this one — stated in
+  the superseding record's Issue and as an Errata entry here, with this
+  record's status unchanged.
+- **rejected** (`decision: reject <id>`) — `This proposal was **rejected**.`
+  A rejected record stays in the log.
+
+There is no `implemented`, `superseded`, or `deprecated` status — that is
+MADR's set, not Conventional Docs'. What shipped is `CHANGELOG.md`'s question
+(the `recording-changes` skill), and `plan: done <id>` already announces that
+an accepted decision's work is finished.
 
 ## Recording a status transition
 
-- Graduated shape: update the frontmatter `status:` field.
-- Small shape: update the inline `**Status:**` field.
-
-Either way, the transition is committed with the matching event-commit subject from
-`## Phases and Commit Gates` in the SKILL.md — never folded into an unrelated commit.
+Update the `## Status` line to the exact sentence above and commit with the
+matching event-commit subject from `## Phases and Commit Gates` in
+`brainstorm`'s `SKILL.md` — never folded into an unrelated commit.
