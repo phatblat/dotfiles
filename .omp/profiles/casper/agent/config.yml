@@ -4,7 +4,7 @@ modelRoles:
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/glm-5.3
   slow: casper/kimi-k3
-  smol: casper/gpt-oss-120b
+  smol: casper/nemotron-lightning-3p5-30b-a3b
 enabledModels:
   - casper/kimi-k3
   - casper/glm-5.3
