@@ -443,6 +443,7 @@
 .minecraft/
 .mint/
 .mintlify/
+.mirrord/
 .mitmproxy/
 .mongodb/
 .mono/
