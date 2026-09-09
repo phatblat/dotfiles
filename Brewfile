@@ -72,8 +72,6 @@ brew "bgrep"
 brew "binutils"
 # C implementation of the BLAKE3 cryptographic hash function
 brew "blake3"
-# Collection of portable C++ source libraries
-brew "boost"
 # Draw boxes around text
 brew "boxes"
 # New way to see and navigate directory trees
@@ -308,8 +306,6 @@ brew "mingw-w64"
 brew "mint"
 # Deep clean and optimize your Mac
 brew "mole"
-# GDI+-compatible API on non-Windows operating systems
-brew "mono-libgdiplus"
 # Collection of tools (including sponge) that nobody wrote when UNIX was young
 brew "moreutils"
 # Library for a binary-based efficient data interchange format
@@ -328,34 +324,20 @@ brew "nextdns"
 brew "nginx"
 # Port scanning utility for large networks
 brew "nmap"
-# Package for scientific computing with Python
-brew "numpy"
 # Modern shell for the GitHub era
 brew "nushell"
-# Open client for Cisco AnyConnect VPN
-brew "openconnect"
 # Development kit for the Java programming language
 brew "openjdk@17"
 # Learn vim commands via a game
 brew "pacvim"
-# Highly capable, feature-rich programming language
-brew "perl"
-# Draw UML diagrams
-brew "plantuml"
 # Easily download, build, install, upgrade, and uninstall Python packages
 brew "python-setuptools"
-# Reverse engineering framework
-brew "radare2"
-# Perl-powered file rename script with many helpful built-ins
-brew "rename"
 # Readline wrapper: adds readline support to tools that lack it
 brew "rlwrap"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Display and control your Android device
 brew "scrcpy"
-# Get, set, and list display resolution
-brew "screenresolution"
 # Semantic version control CLI with entity-level diffs and blame
 brew "sem-cli"
 # Bash syntax highlighter that encourages/fixes variables quoting
@@ -370,26 +352,14 @@ brew "sourcekitten"
 brew "sshpass"
 # Formatting technology for Swift source code
 brew "swift-format"
-# Cross-platform static analyzer and linter for Swift
-brew "tailor"
-# Feature-rich console based todo list manager
-brew "task"
-# Shell wrapper for Taskwarrior commands
-brew "tasksh"
-# Rich and complete approach to parallelism in C++
-brew "tbb"
 # Modern SSH server for teams managing distributed infrastructure
 brew "teleport"
-# User interface to the TELNET protocol
-brew "telnet"
 # Send macOS User Notifications from the command-line
 brew "terminal-notifier"
 # Text interface for Git repositories
 brew "tig"
 # Program that allows you to count code, quickly
 brew "tokei"
-# Generic Python virtualenv management and test command-line tool
-brew "tox"
 # CLI tool that moves files or folder to the trash
 brew "trash", link: true
 # Validating, recursive, caching DNS resolver
@@ -404,14 +374,6 @@ brew "watchman"
 brew "wget"
 # Successor of GNU Wget, a file and recursive website downloader
 brew "wget2"
-# Automatic workarounds for problems in Wine
-brew "winetricks"
-# Personal information dashboard for your terminal
-brew "wtfutil"
-# Cross-platform C++ GUI toolkit
-brew "wxwidgets"
-# Kotlin Native Xcode Plugin
-brew "xcode-kotlin"
 # General-purpose lossless data-compression library
 brew "zlib"
 # UNIX shell (command interpreter)
@@ -433,34 +395,14 @@ brew "teamookla/speedtest/speedtest", trusted: true
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
-# Agent orchestration platform
-cask "antigravity"
-# Terminal interface for Antigravity agents
-cask "antigravity-cli"
-# AI Coding Agent IDE
-cask "antigravity-ide"
-# Chromium based browser
-cask "arc"
-# AI chat client
-cask "boltai"
-# Web browser focusing on privacy
-cask "brave-browser"
 # Utility that prevents the system from going to sleep
 cask "caffeine"
-# E-books management software
-cask "calibre"
-# Web debugging Proxy application
-cask "charles"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Anthropic's official Claude AI desktop app
-cask "claude"
 # Tool to remove unnecessary files and folders from disk
 cask "cleanmymac"
 # Command-line interface for CleanMyMac
 cask "cleanmymac-cli"
-# Family of tools to build, test and package software
-cask "cmake-app"
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
 cask "cmux"
 # OpenAI's coding agent that runs in your terminal
@@ -469,112 +411,34 @@ cask "codex"
 cask "codex-app"
 # Menu bar usage monitor for Codex and Claude
 cask "codexbar"
-# Claude code parallelisation
-cask "conductor"
-# Allows switching between application windows
-cask "contexts"
-# Write, edit, and chat about your code with AI
-cask "cursor"
-# Command-line agent for Cursor
-cask "cursor-cli"
-# API documentation browser and code snippet manager
-cask "dash"
-# Presentations from Markdown
-cask "deckset"
-# Voice and text chat software
-cask "discord"
-# Control your Elgato key lights
-cask "elgato-control-center"
-# Assign keys, and then decorate and label them
-cask "elgato-stream-deck"
-# Web browser
-cask "firefox"
-# UI toolkit for building applications for mobile, web and desktop
-cask "flutter"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 # GIT client
 cask "fork"
 # Finder replacement and FTP, SFTP, WebDAV and Amazon s3 client
 cask "forklift"
-# Messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and more
-cask "franz"
-# Tool to measure the computer system's performance
-cask "geekbench"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Cross-platform Git credential storage for multiple hosting providers
-cask "git-credential-manager"
-# Desktop client for GitHub repositories
-cask "github"
-# Git client focusing on productivity
-cask "gitkraken"
-# Web browser
 cask "google-chrome"
-# Client for the Google Drive storage service
-cask "google-drive"
-# Tools to protect your emails and files
-cask "gpg-suite"
-# AI teammates that work across your apps and tools
-cask "grok-bot"
 # Desktop automation application
 cask "hammerspoon"
 # Hex editor focussing on speed
 cask "hex-fiend"
-# Testing client for REST, GraphQL, and HTTP APIs
-cask "httpie-desktop"
-# Tool to optimise images to a smaller size
-cask "imageoptim"
 # System monitoring app
 cask "istat-menus"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
-# Offline AI chat tool
-cask "jan"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
-# Remote desktop application
-cask "jump-desktop"
-# Remote desktop app
-cask "jump-desktop-connect"
 # Spot and merge differences in text and image files or folders
 cask "kaleidoscope"
-# Keyboard customiser
-cask "karabiner-elements"
 # Automation software
-cask "keyboard-maestro"
-# Open-source keystroke visualiser
-cask "keycastr"
-# Agent-centric IDE with spec-driven development
-cask "kiro"
-# AI-powered productivity tool for the command-line
-cask "kiro-cli"
-# Desktop reader for Kobo eBooks
-cask "kobo"
-# Open source code editor written in Rust
-cask "lapce"
-# Password manager
-cask "lastpass"
-# Utility that shows the latest app updates
-cask "latest"
-# Animated screen capture application
-cask "licecap"
-# App to manage software development and track bugs
 cask "linear"
-# Discover, download, and run local LLMs
-cask "lm-studio"
 # Software for Logitech devices
 cask "logi-options+"
 # Screen and video recording software
 cask "loom"
-# Native chat application for all major LLM APIs
-cask "macai"
 # Visual diff and merge tool
 cask "meld"
-# Microblogging and social networking service
-cask "microblog"
-# Meet, chat, call, and collaborate in just one place
-cask "microsoft-teams"
 # Utility to move and zoom windows—on one display
 cask "moom"
 # Run LLMs locally
@@ -584,103 +448,38 @@ cask "notion"
 # Calendar for professionals and teams
 cask "notion-calendar"
 # Tool used to generate C# interfaces starting from objective-c code
-cask "objectivesharpie"
-# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Get up and running with large language models locally
-cask "ollama-app"
-# GUI app and toolkit for Claude Code
-cask "opcode"
-# AI coding agent desktop client
-cask "opencode-desktop"
 # Replacement for Docker Desktop
 cask "orbstack"
-# Run macOS virtual machines locally and build images for use with Orka
-cask "orka-desktop"
-# Orchestration with Kubernetes on Apple
-cask "orka-vm-tools"
-# Orchestration with Kubernetes on Apple
-cask "orka3"
 # Self-hosted daemon for AI coding agents
 cask "paseo"
-# IDE for application development
-cask "qt-creator"
 # HTTP client that helps testing and describing APIs
 cask "rapidapi"
-# Imaging utility to install operating systems to a microSD card
-cask "raspberry-pi-imager"
 # Prompt generation tool
 cask "repo-prompt"
 # Time optimising application
 cask "rescuetime"
-# Web browser
-cask "safari-technology-preview"
 # Instant messaging application focusing on security
 cask "signal"
-# Access utility for iPhone Simulator apps
-cask "simpholders"
 # Team communication and collaboration software
 cask "slack"
-# Powerful and intuitive software RAID utility
-cask "softraid"
-# Video game digital distribution service
-cask "steam"
-# Git client
-cask "sublime-merge"
-# Text editor for code, markup and prose
-cask "sublime-text"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
-# Text expanding app for developers
-cask "teacode"
-# General-purpose text editor
-cask "textmate"
-# Temperature monitoring, fan control and diagnostics
-cask "tg-pro"
-# Helper application for Things
-cask "thingsmacsandboxhelper"
-# Epub reader
-cask "thorium"
 # To-do list
 cask "todoist-app"
 # Markdown knowledgebase manager
 cask "tolaria"
-# Git client focusing on power and productivity
-cask "tower"
-# File transfer application
-cask "transmit"
 # Open-source code editor
 cask "visual-studio-code"
-# Mirror and control your phone
-cask "vysor"
-# Rust-based terminal
-cask "warp"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
-# Native desktop client for WhatsApp
-cask "whatsapp"
-# Switch apps, windows, or tabs
-cask "witch"
 # Install and switch between multiple versions of Xcode
 cask "xcodes-app"
 # Multiplayer code editor
 cask "zed"
 # Gecko based web browser
 cask "zen"
-# Share, organise and collaborate on designs
-cask "zeplin"
-mas "Dark Reader for Safari", id: 1438243180
-mas "Developer", id: 640199958
-mas "Event Speaker Timer", id: 6467181917
-mas "Gapplin", id: 768053424
-mas "Interactful", id: 1528095640
-mas "Mactracker", id: 430255202
 mas "NextDNS", id: 1464122853
-mas "Notion Web Clipper", id: 1559269364
 mas "Okta Verify", id: 490179405
-mas "OneDrive", id: 823766827
 mas "Refined GitHub", id: 1519867270
-mas "reMarkable", id: 1276493162
 mas "Remote Desktop", id: 409907375
 mas "Screens 5", id: 1663047912
 mas "Windows App", id: 1295203466
