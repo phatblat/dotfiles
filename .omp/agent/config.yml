@@ -258,6 +258,9 @@ display:
   showTokenUsage: true
   cacheMissMarker: true
   hideToolActivity: true
+  showTurnTime: true
+  collapseCompacted: true
+  shimmer: classic
 advisor:
   enabled: false
   syncBacklog: "off"
@@ -285,11 +288,13 @@ autolearn:
 task:
   agentAdvisor:
     task: "on"
+  showResolvedModelBadge: true
 worktree:
   base: ~/.worktrees
 hideThinkingBlock: false
 theme:
   dark: dark-aurora
+  light: light-aurora-day
 symbolPreset: nerd
 statusLine:
   preset: default

@@ -75,3 +75,11 @@ tui:
   resizeScrollback: preserve
 terminal:
   showProgress: true
+statusLine:
+  preset: default
+  separator: powerline-thin
+  sessionAccent: true
+  transparent: false
+  showHookStatus: true
+codexResets:
+  autoRedeem: "no"
