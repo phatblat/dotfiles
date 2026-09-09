@@ -41,21 +41,23 @@ handoff is a branch-lifetime `PLAN.md` instead of a permanent plan document.
 1. Path vocabulary: `spike` / `bounded` / `architectural` → **Probe** / **Direct** /
    **Decision**, keyed to Conventional Docs' own two thresholds rather than to a
    subjective sense of size.
-2. Output artifact: `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` → a numbered
-   Decision. Numbered, not dated; statused, not frozen-on-write.
+2. Output artifact: `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` →
+   `docs/decisions/YYYY-MM-DD-slug.md`. Dated, not numbered — this fork reuses
+   Conventional Docs' own id scheme (the date the record was written plus a
+   kebab-case slug, fixed forever) rather than inventing a numbering system, and
+   the record moves through Conventional Docs' own four-state lifecycle (draft →
+   proposed → accepted | rejected) with no extension to it.
 3. Plan: `docs/superpowers/plans/YYYY-MM-DD-<x>.md` (permanent) → `PLAN.md`
    (branch-lifetime, deleted before merge).
 4. Review + prototype are *phases of a proposed Decision*, not post-hoc chat. Prototype
    findings land in the Decision under `## Prototype Findings`.
-5. New event commit `decision: revise NNNN <what changed>` — a local extension beyond
+5. New event commit `decision: revise <id> <what changed>` — a local extension beyond
    the five verbs in the conventional-docs README. Flag it here as a candidate to
    upstream.
-6. Status `implemented` extends MADR's set (`proposed`/`rejected`/`accepted`/
-   `deprecated`/`superseded`); the template documents it.
-7. The parallel multi-expert exploration from the prior local `brainstorm` skill is
+6. The parallel multi-expert exploration from the prior local `brainstorm` skill is
    absorbed as an optional exploration move (see Exploring the Idea), so nothing is
    lost.
-8. The browser visual companion is **not** ported — its judgment is salvaged as
+7. The browser visual companion is **not** ported — its judgment is salvaged as
    `### Showing versus telling` below; its scripts are not.
 
 Out of scope: the skill never writes `.changes/<slug>.md` release-note fragments —
@@ -115,31 +117,23 @@ artifact, never the approval.
 
 ## Artifact Location
 
-Evaluate in order, first match wins; announce the resolved mode before writing
-anything:
-
-1. `docs/decisions/` exists → **graduated**. Write `docs/decisions/NNNN-slug.md`.
-2. `DECISIONS.md` exists at repo root → **small**. Append a section to it.
-3. `docs/` exists and contains any of `charter.md`, `design.md`, `roadmap.md`,
-   `plan.md` → **graduated**. Create `docs/decisions/`.
-4. Otherwise → **small**. Create `DECISIONS.md`.
+Every Decision lives at `docs/decisions/YYYY-MM-DD-slug.md` — Conventional Docs
+defines no other location and no graduation step for Decisions. Announce the
+resolved path before writing anything.
 
 Rules that go with it:
-- Whenever the skill writes under `docs/decisions/` and root `.adr-dir` is absent,
-  create it containing `docs/decisions` + newline. Idempotent; no other trigger.
-- `NNNN` is zero-padded to 4 digits. Next number = `max + 1` across all three
-  sources: `## NNNN` headings in `DECISIONS.md`, `NNNN-` filename prefixes in
-  `docs/decisions/`, and `git log --all --grep='^decision: propose' --format=%s`
-  (this catches numbers claimed on sibling branches and worktrees). Empty
-  everywhere → `0001`.
-- `slug` is kebab-case from the title: lowercase, `[a-z0-9-]` only, no leading or
-  trailing hyphen, truncated at 50 characters.
-- The skill **never graduates** `DECISIONS.md` on its own. When `DECISIONS.md`
-  exceeds 400 lines or 8 decision sections, it says so in one sentence and
-  continues in small mode. Graduation is the user's call and a separate
-  mechanical move.
-- No git repo → skip every commit gate, say so once, and continue. The artifact
-  is still written.
+- Whenever the skill writes under `docs/decisions/` and root `.adr-dir` is
+  absent, create it containing `docs/decisions` + newline. Idempotent; no
+  other trigger.
+- The id is `YYYY-MM-DD-slug` — today's date plus a kebab-case slug of the
+  title — and it is the filename without `.md`. It is fixed at creation:
+  never re-date, rename, or renumber it, not when its status changes and not
+  when a later decision supersedes it. Several decisions may share a date;
+  their slugs tell them apart.
+- `slug` is kebab-case from the title: lowercase, `[a-z0-9-]` only, no
+  leading or trailing hyphen, truncated at 50 characters.
+- No git repo → skip every commit gate, say so once, and continue. The
+  artifact is still written.
 
 ## Phases and Commit Gates
 
@@ -148,11 +142,16 @@ the next phase begins.
 
 | Phase | Artifact state | Commit subject |
 |---|---|---|
-| Draft | status `proposed` | `decision: propose NNNN <title>` |
-| Review / prototype revision (repeats) | body edited, status stays `proposed` | `decision: revise NNNN <what changed>` |
-| Acceptance | status `accepted` | `decision: accept NNNN` |
-| Plan written | `PLAN.md` created (owned by `writing-plans`) | `plan: start NNNN` |
-| Implemented | status `implemented` | `decision: implement NNNN (#PR)`, `(#PR)` omitted when there is no PR |
+| Draft | status `proposed` | `decision: propose <id> <title>` |
+| Review / prototype revision (repeats) | body edited, status stays `proposed` | `decision: revise <id> <what changed>` |
+| Acceptance | status `accepted`, frozen | `decision: accept <id>` |
+| Plan written | `PLAN.md` created (owned by `writing-plans`) | not a separate commit event of its own |
+
+There is no `implemented` status and no `decision: implement` commit —
+Conventional Docs freezes a Decision's body at `accept`; what shipped is
+`CHANGELOG.md`'s question (see the `recording-changes` skill), and
+`plan: done <id>` already announces that an accepted decision's work is
+finished when `writing-plans` deletes `PLAN.md`.
 
 Committing rule, exact: `git commit -m "<subject>" -- <exact paths written>`. The
 explicit pathspec form is required — it commits only those paths regardless of
@@ -183,10 +182,10 @@ and complete them in order.
 2. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
 3. **Propose 2-3 approaches** — with trade-offs and your recommendation
 4. **Present design** — in sections scaled to their complexity, get user approval after each section
-5. **Write the Decision** — resolve artifact location, assign NNNN, write status `proposed`, commit `decision: propose NNNN <title>`
+5. **Write the Decision** — resolve artifact location, assign the id, write status `proposed`, commit `decision: propose <id> <title>`
 6. **Self-review** — check against `~/.agents/skills/brainstorm/references/decision-review.md`; fix inline
 7. **User review** — ask the user to review the committed Decision; revise and re-commit until they approve
-8. **Accept** — user says yes; set status `accepted`, commit `decision: accept NNNN`
+8. **Accept** — user says yes; set status `accepted`, commit `decision: accept <id>`
 9. **After acceptance** — invoke `writing-plans` if the Plan threshold fires; otherwise implement directly and close out per `## After Acceptance`
 
 ## Process Flow
@@ -212,7 +211,7 @@ digraph brainstorming {
     "Accept\n(commit: decision: accept)" [shape=box];
     "Plan threshold fires?" [shape=diamond];
     "Invoke writing-plans skill" [shape=doublecircle];
-    "Implement directly\n(commit: decision: implement)" [shape=doublecircle];
+    "Implement directly\n(no Decision commit; CHANGELOG.md if user-facing)" [shape=doublecircle];
     "Hidden complexity? Upgrade path" [shape=box];
 
     "Classify: probe / direct / decision" -> "Present question + probe (2-3 sentences)" [label="probe"];
@@ -238,7 +237,7 @@ digraph brainstorming {
     "User reviews Decision?" -> "Accept\n(commit: decision: accept)" [label="approved"];
     "Accept\n(commit: decision: accept)" -> "Plan threshold fires?";
     "Plan threshold fires?" -> "Invoke writing-plans skill" [label="yes"];
-    "Plan threshold fires?" -> "Implement directly\n(commit: decision: implement)" [label="no"];
+    "Plan threshold fires?" -> "Implement directly\n(no Decision commit; CHANGELOG.md if user-facing)" [label="no"];
 }
 ```
 
@@ -323,9 +322,9 @@ After the `decision: propose` commit:
 - Self-review inline against the checklist in
   `~/.agents/skills/brainstorm/references/decision-review.md`. Fix findings in
   place; do not re-review.
-- Then hand the file to the human: "Decision NNNN written and committed to
+- Then hand the file to the human: "Decision `<id>` written and committed to
   `<path>`. Please review it and tell me what to change before we accept it."
-  Wait. Requested changes → edit, commit `decision: revise NNNN <what changed>`,
+  Wait. Requested changes → edit, commit `decision: revise <id> <what changed>`,
   ask again.
 - The skill **never** sets `accepted` itself. Only an explicit human yes does.
 
@@ -337,21 +336,22 @@ settle.
 - Announce what the prototype will answer, in one or two sentences, and get a
   nod first.
 - Where it runs: needs the repo's own code → throwaway worktree on branch
-  `proto/NNNN-<slug>`, created via the `git-worktree` skill; otherwise a scratch
+  `proto/<id>`, created via the `git-worktree` skill; otherwise a scratch
   directory under the system temp dir. Either way the code is throwaway and is
   **never** committed to the Decision's branch.
 - Record what was tried, what it proved or disproved, and what changed in the
   Decision as a result, under the Decision's `## Prototype Findings`. Commit
-  `decision: revise NNNN <what the prototype changed>`.
+  `decision: revise <id> <what the prototype changed>`.
 - Delete the worktree or scratch directory when done.
 
 ## After Acceptance
 
 - Plan threshold fires (spans more than one session, or hands off to another
-  agent) → invoke the `writing-plans` skill, passing the Decision number and
+  agent) → invoke the `writing-plans` skill, passing the Decision's id and
   path. That is the only skill invoked from here.
 - Plan threshold does not fire → implement in this session through the normal
-  workflow, then set status `implemented` and commit
-  `decision: implement NNNN`.
+  workflow. The Decision's status stays `accepted`; Conventional Docs has no
+  `implemented` status and no commit event for it. If the change is
+  user-facing, add a `CHANGELOG.md` entry per the `recording-changes` skill.
 - Preserve upstream's terminal-state discipline: from the Decision path the only
   skill invoked is `writing-plans` — never an implementation or design skill.

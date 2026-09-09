@@ -28,13 +28,15 @@ providers = [
   "pi",
 ]
 
-# .gitignore here is sorted by scripts/sort-gitignore (enforced by hk's
-# `gitignore-sort` step, run via `just lint`/`just format`), which strips
-# agentlink's `# >>> agentlink >>>` markers
-# and sorts the entries into the body of the file. With manage = true, every
-# `agentlink apply` rewrites the block and the next `just format` strips it
-# again. The sorter owns the file; the four entries agentlink wants
-# (/.agentlink/lock.toml, /.cursor/skills, /.github/skills, /.opencode/skills)
-# are already tracked in sorted position.
+# Three of agentlink's four generated paths are intentionally *tracked*, not
+# gitignored: `/.agentlink/lock.toml`, `/.github/skills`, and
+# `/.opencode/skills` are committed so a fresh clone has working skill
+# symlinks without running `agentlink apply` first. Only `/.cursor/skills` is
+# ignored, and not through this file's `[gitignore]` block (`manage = false`
+# means agentlink never touches root `.gitignore`) — Cursor's own managed
+# block in `.cursor/.gitignore` re-ignores `skills` after un-ignoring it for
+# "User's personal skills", and the nested file's DOTFILES ALLOWLIST leaves
+# that re-ignore in place rather than overriding it. Root `.gitignore` has no
+# agentlink-owned entries at all.
 [gitignore]
 manage = false

@@ -116,7 +116,7 @@ static CONTROL_PLANE_FRAGMENTS: &[&str] = &[
     r"/scripts/agent-harnesses\.py(?![\w.-])",
     r"/scripts/agent_plugins\.py(?![\w.-])",
     r"/scripts/harness_policy\.py(?![\w.-])",
-    r"/harness-guard\.(?:ts|sh)(?![\w.-])",
+    r"/harness-guard\.(?:py|sh|ts)(?![\w.-])",
     r"/(?:write|bash)-guard\.sh(?![\w.-])",
     r"/opencode/plugins/harness\.ts(?![\w.-])",
     r"/agent/extensions/harness\.ts(?![\w.-])",

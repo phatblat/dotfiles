@@ -52,21 +52,22 @@ providers:
       reasoningContentField: reasoning_content
       streamIdleTimeoutMs: 120000
     models:
-      - id: auto
-        name: Casper Auto Router
-        reasoning: false
-        input: [text]
-        contextWindow: 1048576
-        maxTokens: 1048576
-        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+      # - id: auto
+      #   name: Casper Auto Router
+      #   reasoning: false
+      #   input: [text]
+      #   contextWindow: 1048576
+      #   maxTokens: 1048576
+      #   cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
-      - id: dittoaicoder
-        name: Ditto AI Coder
-        reasoning: true
-        input: [text]
-        contextWindow: 1048576
-        maxTokens: 1048576
-        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+      # # lmstudio-community/Qwen3.6-35B-A3B-MLX-8bit
+      # - id: dittoaicoder
+      #   name: Ditto AI Coder
+      #   reasoning: true
+      #   input: [text]
+      #   contextWindow: 262144
+      #   maxTokens: 262144
+      #   cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
       - id: glm-5.3
         name: Glm 5.3
@@ -74,7 +75,7 @@ providers:
         input: [text]
         contextWindow: 1048576
         maxTokens: 1048576
-        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        cost: { input: 1.40, cacheRead: 0.26, cacheWrite: 0, output: 4.40 }
 
       - id: glm-5.3-flash
         name: Glm 5.3 Flash
@@ -82,7 +83,7 @@ providers:
         input: [text]
         contextWindow: 1048576
         maxTokens: 1048576
-        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        cost: { input: 0.15, cacheRead: 0.03, cacheWrite: 0, output: 0.50 }
 
       - id: gpt-oss-120b
         name: GPT-OSS 120B
@@ -90,7 +91,7 @@ providers:
         input: [text]
         contextWindow: 131072
         maxTokens: 131072
-        cost: { input: 0.10, output: 0.50, cacheRead: 0, cacheWrite: 0 }
+        cost: { input: 0.15, cacheRead: 0.01, cacheWrite: 0, output: 0.60 }
 
       - id: kimi-k2.6
         name: Kimi K2.6
@@ -98,7 +99,7 @@ providers:
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
+        cost: { input: 0.95, cacheRead: 0.16, cacheWrite: 0, output: 4.00 }
         compat:
           supportsReasoningEffort: false
           extraBody:
@@ -115,7 +116,7 @@ providers:
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
+        cost: { input: 0.95, cacheRead: 0.19, cacheWrite: 0, output: 4.00 }
         compat:
           supportsReasoningEffort: false
           extraBody:
@@ -132,7 +133,7 @@ providers:
         input: [text]
         contextWindow: 500000
         maxTokens: 500000
-        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
+        cost: { input: 3.00, cacheRead: 0.30, cacheWrite: 0, output: 15.00 }
         compat:
           # Casper buffers each tool call and emits it as a single delta, so the
           # stream carries only SSE comments while arguments generate (~20 tok/s,
@@ -146,7 +147,7 @@ providers:
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
-        cost: { input: 0.60, output: 2.40, cacheRead: 0.12, cacheWrite: 0 }
+        cost: { input: 0.60, cacheRead: 0.12, cacheWrite: 0, output: 2.40 }
         compat:
           supportsReasoningEffort: false
           # 550B class: first token can lag well past the provider floor.
@@ -158,3 +159,11 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
+
+      - id: nemotron-lightning-3p5-30b-a3b
+        name: Nemotron Lightning 3p5 30b A3b
+        reasoning: false
+        input: [text]
+        contextWindow: 262144
+        maxTokens: 262144
+        cost: { input: 0.05, cacheRead: 0.01, cacheWrite: 0, output: 0.20 }

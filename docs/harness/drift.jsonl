@@ -110,3 +110,7 @@
 {"capability":"-","date":"2026-09-07","detail":"","field":"version","from":"omp/18.1.11","harness":"omp","to":"omp/18.1.13","version_from":"omp/18.1.11","version_to":"omp/18.1.13"}
 {"capability":"-","date":"2026-09-07","detail":"","field":"version","from":"1.18.28","harness":"opencode","to":"1.18.29","version_from":"1.18.28","version_to":"1.18.29"}
 {"capability":"-","date":"2026-09-07","detail":"","field":"version","from":"0.85.0","harness":"pi","to":"0.85.1","version_from":"0.85.0","version_to":"0.85.1"}
+{"capability":"-","date":"2026-09-08","detail":"","field":"version","from":"2.1.261 (Claude Code)","harness":"claude","to":"2.1.251 (Claude Code)","version_from":"2.1.261 (Claude Code)","version_to":"2.1.251 (Claude Code)"}
+{"capability":"-","date":"2026-09-08","detail":"","field":"version","from":"2026.09.02-c22c1a3","harness":"cursor","to":"2026.07.01-777f564","version_from":"2026.09.02-c22c1a3","version_to":"2026.07.01-777f564"}
+{"capability":"-","date":"2026-09-08","detail":"","field":"version","from":"grok 1.0.13 (5e9a58528b76) [alpha]","harness":"grok","to":"grok 1.0.13 (5e9a58528b76)","version_from":"grok 1.0.13 (5e9a58528b76) [alpha]","version_to":"grok 1.0.13 (5e9a58528b76)"}
+{"capability":"-","date":"2026-09-08","detail":"","field":"version","from":"omp/18.1.13","harness":"omp","to":"omp/18.1.14","version_from":"omp/18.1.13","version_to":"omp/18.1.14"}

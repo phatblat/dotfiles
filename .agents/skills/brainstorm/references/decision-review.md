@@ -7,7 +7,7 @@ Forked from superpowers `skills/brainstorming/spec-document-reviewer-prompt.md`
 **Purpose:** Verify the Decision is complete, consistent, and ready for
 acceptance.
 
-**Run:** inline, immediately after the `decision: propose NNNN <title>` commit —
+**Run:** inline, immediately after the `decision: propose <id> <title>` commit —
 not as a separate dispatch trigger.
 
 ```

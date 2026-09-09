@@ -15,7 +15,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Context:** If working in an isolated worktree, it should have been created via the `git-worktree` skill at execution time.
 
-**Plan location:** `PLAN.md` at repo root, or `docs/plan.md` when `docs/plan.md` already exists or the repo is in graduated mode (`docs/decisions/` present). A Plan is a branch- or worktree-lifetime document: committed for backup and handoff, and deleted before merge — not a permanent artifact.
+**Plan location:** `PLAN.md` at repo root — Conventional Docs defines no graduated form for a Plan. A Plan is a branch- or worktree-lifetime document: committed for backup and handoff, and deleted before merge — not a permanent artifact.
 - (User preferences for plan location override this default)
 
 ## Scope Check
@@ -53,7 +53,7 @@ This structure informs the task decomposition. Each task should produce self-con
 
 **Goal:** [One sentence describing what this builds]
 
-**Decision:** [NNNN — <title> (path to the accepted Decision)]
+**Decision:** [YYYY-MM-DD-slug — <title> (path to the accepted Decision)]
 
 **Architecture:** [2-3 sentences about approach]
 
@@ -65,9 +65,11 @@ This structure informs the task decomposition. Each task should produce self-con
 A Plan with no accepted Decision behind it is a plan for work that skipped its
 gate — say so and stop; do not write it.
 
-Once the Plan is saved, commit it before execution begins:
-`git commit -m "plan: start NNNN" -- PLAN.md` (adjust the path for graduated
-mode, e.g. `docs/plan.md`).
+Once the Plan is saved, commit it with an ordinary, non-event-tagged message —
+Conventional Docs defines no event-commit verb for writing a Plan (only
+`plan: done <id>` for deleting it before merge), so this commit follows the
+repo's normal commit convention, not the `decision:`/`plan:`/`todo:` event
+vocabulary: e.g. `git commit -m "docs: add implementation plan" -- PLAN.md`.
 
 ## Task Structure
 
@@ -117,25 +119,26 @@ git commit -m "feat: add specific feature"
 Every plan's last task, always. This closes the loop back to the Decision
 without touching `executing-plans`.
 
-- [ ] **Step 1: Set the Decision's status to `implemented`**
-
-- [ ] **Step 2: Remove the Plan file**
+- [ ] **Step 1: Remove the Plan file**
 
 ```bash
-git rm PLAN.md   # or docs/plan.md in graduated mode
+git rm PLAN.md
 ```
 
-- [ ] **Step 3: Commit removal of the Plan**
+- [ ] **Step 2: Commit removal of the Plan**
 
 ```bash
-git commit -m "plan: done NNNN" -- PLAN.md   # or docs/plan.md
+git commit -m "plan: done <id>" -- PLAN.md
 ```
 
-- [ ] **Step 4: Commit the Decision status change**
+- [ ] **Step 3: Record what shipped, if user-facing**
 
-```bash
-git commit -m "decision: implement NNNN" -- <decision path>
-```
+The Decision's status stays `accepted` — Conventional Docs freezes a
+Decision's body at `accept` and defines no `implemented` status or
+`decision: implement` commit. `plan: done <id>` already announces that the
+accepted decision's work is finished. If the change is user-facing, add a
+`CHANGELOG.md` entry under Unreleased per the `recording-changes` skill; that
+is a separate commit, not part of this task.
 
 ## No Placeholders
 
@@ -169,7 +172,7 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `<resolved Plan path>` (`PLAN.md`, or `docs/plan.md` in graduated mode). Two execution options:**
+**"Plan complete and saved to `PLAN.md`. Two execution options:**
 
 **1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
 
