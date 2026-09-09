@@ -35,7 +35,7 @@ display:
   hideToolActivity: true
   showTurnTime: true
   collapseCompacted: true
-  shimmer: kitt
+  shimmer: classic
 advisor:
   enabled: false
   syncBacklog: "off"
