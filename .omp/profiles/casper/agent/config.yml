@@ -64,6 +64,7 @@ composer:
 symbolPreset: nerd
 theme:
   dark: dark-aurora
+  light: light-aurora-day
 retry:
   usageAwareFallback: true
 dev:
