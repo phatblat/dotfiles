@@ -3,7 +3,7 @@ modelRoles:
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/glm-5.3
-  slow: casper/kimi-k3
+  slow: spark/Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
   smol: casper/nemotron-lightning-3p5-30b-a3b
 enabledModels:
   - casper/kimi-k3
@@ -33,6 +33,9 @@ display:
   showTokenUsage: true
   cacheMissMarker: true
   hideToolActivity: true
+  showTurnTime: true
+  collapseCompacted: true
+  shimmer: kitt
 advisor:
   enabled: false
   syncBacklog: "off"
@@ -51,6 +54,7 @@ autolearn:
 task:
   agentAdvisor:
     task: "on"
+  showResolvedModelBadge: true
 worktree:
   base: ~/.worktrees
 setupVersion: 2
@@ -64,3 +68,9 @@ retry:
   usageAwareFallback: true
 dev:
   autoqaConsent: granted
+tui:
+  imeSafeCursor: true
+  tight: true
+  resizeScrollback: preserve
+terminal:
+  showProgress: true
