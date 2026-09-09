@@ -417,6 +417,7 @@
 .krew/
 .kscript/
 .kube/
+.kwok/
 .lanes/
 .laputa/
 .lemminx/
