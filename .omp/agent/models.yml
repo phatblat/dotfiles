@@ -19,3 +19,15 @@ providers:
           output: 0
           cacheRead: 0
           cacheWrite: 0
+      - id: Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
+        name: DeepSeek-V4-Flash-0731 120B REAM (spark1, NVFP4)
+        reasoning: true
+        input:
+          - text
+        contextWindow: 196608
+        maxTokens: 8192
+        cost:
+          input: 0
+          output: 0
+          cacheRead: 0
+          cacheWrite: 0
