@@ -46,6 +46,8 @@ gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id} --jq '{
 }'
 ```
 
+**Retain the original `body` from this fetch.** If the original comment is accidentally edited instead of replied to, the original finding text can be restored by PATCHing this saved body back to the comment.
+
 If the comment includes a suggested code change (GitHub suggestion block in the body), extract the suggested code.
 
 ### 2. Evaluate the Change
@@ -71,7 +73,7 @@ fix: <concise description of what the review comment asked for>
 
 ### 5. Post the Resolution Comment
 
-Before resolving the thread, reply to it referencing the commit that addressed it. Use the short SHA from step 4's commit:
+**Reply to the thread — never edit the original comment.** The resolution message is a NEW comment in the thread, posted via the `replies` endpoint. The reviewer's original finding text must remain intact.
 
 ```bash
 gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id}/replies \
@@ -80,7 +82,22 @@ gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id}/replies \
 
 `<sha>` is the commit SHA from step 4 (`git rev-parse --short HEAD` after committing). This leaves an audit trail in the thread linking the resolution to its fix before the thread is collapsed.
 
+**FORBIDDEN — this REPLACES the original review comment's body:**
+
+```bash
+gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id} \
+  --method PATCH -f body="Resolved by <sha>"
+```
+
+Also forbidden: `gh pr comment --edit-last` and any MCP "update comment" tool for this purpose — the reply MUST go through the `replies` endpoint.
+
+**Self-check after posting:** the response JSON is a new comment whose `id` **differs** from `{comment_id}`. If the response `id` equals `{comment_id}`, the original comment was edited — restore it immediately by PATCHing the original body back (from step 1's saved `body`), then redo step 5 with the `replies` endpoint.
+
+Capture the reply's `.html_url` for the final report.
+
 ### 6. Resolve the Comment
+
+**Mandatory — the run is incomplete until the thread is resolved.** Posting the reply (step 5) is not sufficient; a thread left open will be re-processed by the next run.
 
 Mark the review thread as resolved:
 
@@ -93,6 +110,8 @@ gh api graphql -f query='
   }
 '
 ```
+
+**Confirm the response contains `isResolved: true` before moving on.** If the mutation errors (permissions, stale thread), report it in the final summary under "Needs discussion" — never silently continue past a failed resolve.
 
 To get the thread node ID from a comment:
 
@@ -114,13 +133,18 @@ gh api graphql -f query='
 '
 ```
 
+**Note for All-Comments Flow:** the thread `id` is already present in the `reviewThreads` query output (step 1 of All-Comments Flow) — skip both lookup calls and run the mutation directly.
+
 ### 7. Report
 
 ```
 Fixed: <file>:<line> — <what changed>
 Committed: <short sha> <commit message>
-Resolved: comment by <user>
+Reply: <reply comment url>
+Resolved: comment by <user> — thread isResolved: true
 ```
+
+Include the reply URL (from step 5's response `.html_url`) and the literal `isResolved: true` confirmation so a skipped step 6 leaves a visible gap in the report.
 
 ## All-Comments Flow (PR URL)
 
@@ -341,3 +365,5 @@ finding as "replied, not minimized" in the report — never fail the run over it
   re-scanning prose.
 - **Never trust a resolution claim.** A later comment saying a finding was fixed is a
   hint. Verify the change is in the tree before skipping; report stale claims.
+- **Reply, never overwrite.** The "Resolved by <sha>" message is a thread reply (`POST .../comments/{id}/replies`). Never PATCH the original comment, never `gh pr comment --edit-last` — overwriting the reviewer's finding destroys the audit trail.
+- **Resolving is mandatory.** A thread is not done until `resolveReviewThread` returns `isResolved: true`. Posting the reply alone leaves the conversation open for re-processing.
