@@ -118,3 +118,5 @@
 {"capability":"-","date":"2026-09-09","detail":"","field":"version","from":"2026.07.01-777f564","harness":"cursor","to":"2026.09.02-c22c1a3","version_from":"2026.07.01-777f564","version_to":"2026.09.02-c22c1a3"}
 {"capability":"-","date":"2026-09-09","detail":"","field":"version","from":"grok 1.0.13 (5e9a58528b76)","harness":"grok","to":"grok 1.0.24 (68e414c661e3) [alpha]","version_from":"grok 1.0.13 (5e9a58528b76)","version_to":"grok 1.0.24 (68e414c661e3) [alpha]"}
 {"capability":"-","date":"2026-09-09","detail":"","field":"version","from":"omp/18.1.14","harness":"omp","to":"omp/18.1.15","version_from":"omp/18.1.14","version_to":"omp/18.1.15"}
+{"capability":"-","date":"2026-09-10","detail":"","field":"version","from":"grok 1.0.24 (68e414c661e3) [alpha]","harness":"grok","to":"grok 1.0.25 (f7e67d6988e2) [alpha]","version_from":"grok 1.0.24 (68e414c661e3) [alpha]","version_to":"grok 1.0.25 (f7e67d6988e2) [alpha]"}
+{"capability":"-","date":"2026-09-10","detail":"","field":"version","from":"omp/18.1.15","harness":"omp","to":"omp/18.1.16","version_from":"omp/18.1.15","version_to":"omp/18.1.16"}
