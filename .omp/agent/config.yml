@@ -5,10 +5,10 @@ providers:
 setupVersion: 2
 modelRoles:
   plan: anthropic/claude-opus-5:xhigh
-  slow: spark/Inferact/Qwen3.8-27B-NVFP4
+  slow: spark/Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
   smol: anthropic/claude-haiku-4-5
   default: anthropic/claude-sonnet-5
-  vision: anthropic/claude-opus-5
+  vision: spark/Inferact/Qwen3.8-27B-NVFP4
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
@@ -258,6 +258,9 @@ display:
   showTokenUsage: true
   cacheMissMarker: true
   hideToolActivity: true
+  showTurnTime: true
+  collapseCompacted: true
+  shimmer: classic
 advisor:
   enabled: false
   syncBacklog: "off"
@@ -285,11 +288,13 @@ autolearn:
 task:
   agentAdvisor:
     task: "on"
+  showResolvedModelBadge: true
 worktree:
   base: ~/.worktrees
 hideThinkingBlock: false
 theme:
   dark: dark-aurora
+  light: light-aurora-day
 symbolPreset: nerd
 statusLine:
   preset: default

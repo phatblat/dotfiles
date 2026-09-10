@@ -131,6 +131,7 @@ local linters = new Mapping<String, Step> {
                 "scripts/sort-codex-config.py",
                 "scripts/review-pr.py",
                 "scripts/sync-codex-casper-models.py",
+                "scripts/check-nushell-autoload.py",
             )
         batch = true
         check = "ruff check {{files}}"
@@ -228,6 +229,16 @@ local linters = new Mapping<String, Step> {
     ["nushell-autoload"] {
         glob = ".config/nushell/autoload/*.nu"
         check = #"nu --commands 'let bad = (ls .config/nushell/autoload/*.nu | get name | where {|f| not (nu-check $f) }); if ($bad | is-not-empty) { $bad | each {|f| print $"  ($f)" }; print "nushell parse errors"; exit 1 }'"#
+    }
+
+    // nu-check validates syntax only: a file that rewrites git history at
+    // startup parses fine. Autoload files are sourced by every interactive
+    // session, so top-level statements are a defect, not a style choice.
+    ["nushell-autoload-purity"] {
+        glob = ".config/nushell/autoload/*.nu"
+        depends = "nushell-autoload"
+        batch = true
+        check = "python3 scripts/check-nushell-autoload.py {{files}}"
     }
 
     ["just-fmt"] {

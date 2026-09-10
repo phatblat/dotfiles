@@ -8,20 +8,24 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
-| claude | 2.1.251 (Claude Code) | 2026-08-29 | 2.1.261 (Claude Code) |
+| claude | 2.1.261 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
 | codex | codex-cli 0.153.4 | 2026-08-29 | codex-cli 0.153.3 |
 | opencode | 1.18.29 | 2026-08-29 | 1.18.28 |
 | pi | 0.85.1 | 2026-08-29 | 0.85.0 |
-| omp | omp/18.1.14 | 2026-08-29 | omp/18.1.13 |
+| omp | omp/18.1.15 | 2026-08-29 | omp/18.1.14 |
 | antigravity | 1.1.27 | 2026-08-29 | 1.1.26 |
-| cursor | 2026.07.01-777f564 | 2026-08-29 | 2026.09.02-c22c1a3 |
-| grok | grok 1.0.13 (5e9a58528b76) | 2026-08-29 | grok 1.0.13 (5e9a58528b76) [alpha] |
+| cursor | 2026.09.02-c22c1a3 | 2026-08-29 | 2026.07.01-777f564 |
+| grok | grok 1.0.24 (68e414c661e3) [alpha] | 2026-08-29 | grok 1.0.13 (5e9a58528b76) |
 | crush | crush version v0.92.0 | 2026-08-29 | crush version v0.91.2 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-09-09 | omp | - | version | omp/18.1.14 | omp/18.1.15 | omp/18.1.15 |
+| 2026-09-09 | grok | - | version | grok 1.0.13 (5e9a58528b76) | grok 1.0.24 (68e414c661e3) [alpha] | grok 1.0.24 (68e414c661e3) [alpha] |
+| 2026-09-09 | cursor | - | version | 2026.07.01-777f564 | 2026.09.02-c22c1a3 | 2026.09.02-c22c1a3 |
+| 2026-09-09 | claude | - | version | 2.1.251 (Claude Code) | 2.1.261 (Claude Code) | 2.1.261 (Claude Code) |
 | 2026-09-08 | omp | - | version | omp/18.1.13 | omp/18.1.14 | omp/18.1.14 |
 | 2026-09-08 | grok | - | version | grok 1.0.13 (5e9a58528b76) [alpha] | grok 1.0.13 (5e9a58528b76) | grok 1.0.13 (5e9a58528b76) |
 | 2026-09-08 | cursor | - | version | 2026.09.02-c22c1a3 | 2026.07.01-777f564 | 2026.07.01-777f564 |

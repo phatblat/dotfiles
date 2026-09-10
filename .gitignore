@@ -216,6 +216,7 @@
 .config/gnome-initial-setup-done
 .config/goa-1.0/
 .config/gtk-2.0/
+.config/helm/
 .config/homebrew/*
 !.config/homebrew/dump-exclusions.txt
 !.config/homebrew/trust.json
@@ -416,6 +417,7 @@
 .krew/
 .kscript/
 .kube/
+.kwok/
 .lanes/
 .laputa/
 .lemminx/
@@ -443,6 +445,7 @@
 .minecraft/
 .mint/
 .mintlify/
+.mirrord/
 .mitmproxy/
 .mongodb/
 .mono/
