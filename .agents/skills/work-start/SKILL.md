@@ -33,6 +33,7 @@ sandbox before asking the user to authenticate. Never print, log, or expose
 
    - Query macOS GitHub Actions runner status with `gh api orgs/getditto/actions/runner-groups/8/runners`.
    - Leave [#team-devx](https://dittolive.slack.com/archives/C085N9FK79B) unchecked unless a Slack integration is available.
+   - Leave the Casper budget checkbox unchecked (user fills in current spend manually until an API is available).
 
 4. Build the `## Yesterday` section from:
 
