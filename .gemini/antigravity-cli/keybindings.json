@@ -58,16 +58,20 @@
   "navigation.go_to_top": [
     "ctrl+home"
   ],
+  "navigation.half_page_down": [
+    "shift+down"
+  ],
+  "navigation.half_page_up": [
+    "shift+up"
+  ],
   "navigation.left": [
     "left"
   ],
   "navigation.page_down": [
-    "pgdown",
-    "shift+down"
+    "pgdown"
   ],
   "navigation.page_up": [
-    "pgup",
-    "shift+up"
+    "pgup"
   ],
   "navigation.right": [
     "right"
