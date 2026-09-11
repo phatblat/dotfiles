@@ -242,9 +242,9 @@ local linters = new Mapping<String, Step> {
     }
 
     ["just-fmt"] {
-        glob = "justfile"
-        check = "just --unstable --fmt --check --justfile {{files}}"
-        fix = "just --unstable --fmt --justfile {{files}}"
+        glob = List("justfile", ".config/just/*.just")
+        check = #"for f in {{files}}; do just --unstable --fmt --check --justfile "$f" || exit 1; done"#
+        fix = #"for f in {{files}}; do just --unstable --fmt --justfile "$f"; done"#
     }
 
     // hk filters symlinks out of every other step; this one exists to inspect
