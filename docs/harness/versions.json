@@ -1,8 +1,8 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.1.26",
-    "version": "1.1.27"
+    "previous": "1.1.27",
+    "version": "1.2.0"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -36,8 +36,8 @@
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "1.18.28",
-    "version": "1.18.29"
+    "previous": "1.18.29",
+    "version": "1.18.30"
   },
   "pi": {
     "first_seen": "2026-08-29",
