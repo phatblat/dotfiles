@@ -32,9 +32,19 @@ install-gh-extensions:
 
 # Installs git hooks with hk (steps live in hk.pkl)
 [group('git')]
+[script]
 git-hooks:
     hk install --mise
-    @echo "Git hooks installed by hk (hook.hk-pre-commit.command in .git/config)"
+    # GUI git clients (e.g. Fork) run hooks via a bare `sh -c` that inherits
+    # launchd's minimal PATH, not an interactive shell's PATH — so the
+    # literal `mise` hk writes into hook.hk-pre-commit.command only resolves
+    # from a terminal. Rewrite it to mise's absolute path (resolved here,
+    # from an interactive-shell context) so the hook fires from any invoker.
+    mise_bin="$(command -v mise)"
+    current="$(git config --local --get hook.hk-pre-commit.command)"
+    patched="${current/mise x -- hk run pre-commit --from-hook/$mise_bin x -- hk run pre-commit --from-hook}"
+    git config --local hook.hk-pre-commit.command "$patched"
+    echo "Git hooks installed by hk (hook.hk-pre-commit.command in .git/config, using absolute mise path: $mise_bin)"
 
 # Installs git clean filters that strip churn/secrets before staging (see .gitattributes)
 [group('git')]
