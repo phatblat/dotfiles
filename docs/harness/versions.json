@@ -1,8 +1,8 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.1.26",
-    "version": "1.1.27"
+    "previous": "1.1.27",
+    "version": "1.2.0"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -26,18 +26,18 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.13 (5e9a58528b76)",
-    "version": "grok 1.0.24 (68e414c661e3) [alpha]"
+    "previous": "grok 1.0.24 (68e414c661e3) [alpha]",
+    "version": "grok 1.0.25 (f7e67d6988e2) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.1.14",
-    "version": "omp/18.1.15"
+    "previous": "omp/18.1.15",
+    "version": "omp/18.1.16"
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "1.18.28",
-    "version": "1.18.29"
+    "previous": "1.18.29",
+    "version": "1.18.30"
   },
   "pi": {
     "first_seen": "2026-08-29",

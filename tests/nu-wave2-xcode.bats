@@ -13,13 +13,23 @@ AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 
 @test "gskip: smoke — exits non-zero when no rebase/cherry-pick/am in progress" {
+    # Use an isolated temp git repo rather than $HOME: $HOME is the live
+    # dotfiles repo and can legitimately be mid-rebase/cherry-pick/am,
+    # which would make gskip succeed and this assertion flaky.
+    local tmpdir
+    tmpdir="$(mktemp -d)"
+    git init -q "$tmpdir"
+    git -C "$tmpdir" -c user.email=test@test -c user.name=test \
+        -c commit.gpgsign=false commit -q --allow-empty -m init
+
     # All three git commands fail when nothing is in progress; gskip propagates
     # the last non-zero exit. This confirms the logic runs without parse errors.
     run nu --no-config-file -c "
         source '$AUTOLOAD/gskip.nu'
-        cd '$HOME'
+        cd '$tmpdir'
         gskip
     " 2>&1
+    rm -rf "$tmpdir"
     # status should be non-zero since no operation is in progress
     [ "$status" -ne 0 ]
 }

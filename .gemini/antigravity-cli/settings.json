@@ -1,7 +1,6 @@
 {
   "altScreenMode": "always",
   "colorScheme": "colorblind-friendly dark",
-  "enableTelemetry": false,
   "enableTerminalSandbox": true,
   "model": "Gemini 3.6 Flash (High)",
   "permissions": {

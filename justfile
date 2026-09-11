@@ -1,643 +1,63 @@
 #
 # justfile for ~phatblat
 #
+# Recipes live in one fragment per domain under .config/just/, imported below;
+# each fragment's group name is its file stem. This file holds only settings,
+# cross-fragment variables, and the lifecycle recipes that fan out across
+# fragments. `just --list` is still the flat, grouped index of everything.
+#
 
 export PATH := env("HOME") / ".local" / "bin" + ":" + env("PATH")
 
-# ignore-comments - Ignore comments when formatting.
-
 set ignore-comments
-
-# script-interpreter - Command used to invoke recipes with empty [script] attribute.
 
 set script-interpreter := ['bash', '-eu']
 
-# unstable - Enable unstable features.
-
 set unstable
 
-#
-# variables
-#
-# ANSI colors for formatting output
-# color_gray := '\e[90m'
-# color_red := '\e[31m'
-
-color_green := '\e[32m'
-color_reset := '\e[0m'
-
-# GitHub CLI extensions manifest file (one OWNER/REPO per line, read by install-gh-extensions)
-
-gh_extensions_manifest := '.config/gh/extensions.txt'
-# Tools excluded from `mise ... --bump` scans; each emits unfixable mise warnings and its
-# bump is always null: wookie = rev-pinned cargo git ref (latest resolves to the ref string
-# "HEAD"), dsh = prerelease-only npm package (mise resolves no "latest"), cursor-cli = http
-# backend without version_list_url (cursor.com publishes no version feed).
-
-mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh http:cursor-cli'
-
-# Repo-owned source roots scanned by clean-build. The vendored
-# .claude/skills/gstack tree is deliberately absent: `just build` does not
-# rebuild its dist/ binaries, so purging them would leave no way back.
-
-build_artifact_roots := '.agents .codex .config .omp docs scripts tests'
-
-# Directory names clean-build treats as regenerable build output
-
-build_artifact_dirs := '.build .pytest_cache .ruff_cache __pycache__ dist target'
-
-# Bun dependency trees installed from tracked package.json manifests
+# Bun dependency trees installed from tracked package.json manifests; installed by
+# install-bun-deps (omp.just), purged by clean-deps (clean.just)
 
 bun_manifest_dirs := '.omp/plugins .claude/skills/gstack'
 
-#
-# aliases
-#
+import '.config/just/agents.just'
+import '.config/just/brew.just'
+import '.config/just/claude.just'
+import '.config/just/clean.just'
+import '.config/just/git.just'
+import '.config/just/macos.just'
+import '.config/just/mise.just'
+import '.config/just/nix.just'
+import '.config/just/omp.just'
+import '.config/just/python.just'
+import '.config/just/rust.just'
 
-alias f := free
 alias fmt := format
 alias i := deps
-alias ls := list
-alias lsm := list-missing
-alias od := outdated
-alias ub := usage-board
 alias up := upgrade
-
-#
-# info group recipes
-#
 
 # Default recipe, lists available recipes
 [default]
 _default:
     @just --list
 
-# Display free space on the Data volume (~ resolves to it; / is the sealed, near-empty System volume)
-[group('info')]
-free:
-    @avail=$(df -h ~ | awk 'NR==2 {print $4}'); df -Pk ~ | awk -v avail="$avail" 'NR==2 {printf "Free space: %s (%.0f%% available)\n", avail, 100 * $4 / ($3 + $4)}'
-# Lists running sessions for the requested agent
-[group('info')]
-[script]
-status agent:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    invocation_dir="{{ invocation_directory() }}"
-
-    if [[ "{{ agent }}" != "omp" ]]; then
-        echo "error: status currently supports only 'omp'" >&2
-        exit 1
-    fi
-
-    found=0
-    while read -r pid state etime command; do
-        found=1
-        version=$(sed -nE 's#.*oh-my-pi/([^/]+)/omp.*#\1#p' <<< "$command")
-        args=$(sed -E 's#^.*oh-my-pi/[^ ]+/omp ?##' <<< "$command")
-        cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p')
-        marker=
-        [[ "$cwd" == "$invocation_dir" ]] && marker=", current"
-        if [[ -n "$args" ]]; then
-            printf '%s — OMP %s, %s, %s%s\n' \
-                "$pid" "$version" "$args" "$cwd" "$marker"
-        else
-            printf '%s — OMP %s, %s%s\n' \
-                "$pid" "$version" "$cwd" "$marker"
-        fi
-    done < <(
-        ps -axo pid=,state=,etime=,command= |
-            awk '$0 ~ /oh-my-pi\/[^ ]+\/omp( |$)/ && $0 !~ /__omp_worker_/'
-    )
-
-    if (( ! found )); then
-        echo "No running OMP sessions."
-    fi
-
-# Lists installed tools managed by mise
-[group('info')]
-list:
-    mise list --global
-
-# Lists missing tools managed by mise
-[group('info')]
-list-missing:
-    mise list --global --missing
-
-# Lists installed tools managed by uv
-[group('info')]
-list-uv:
-    mise exec -- uv tool list
-
-# Lists available upgrades
-[group('info')]
-[script]
-outdated:
-    mise outdated --bump $(just _mise-bump-scan-tools)
-
-# Lists outdated uv tools
-[group('info')]
-outdated-uv:
-    mise exec -- uv tool list --outdated
-
-# Lists Claude model IDs recorded in .claude/models.lock
-[group('info')]
-list-claude-models:
-    @awk '/^  claude-/{print $1}' {{ justfile_directory() }}/.claude/models.lock
-
-# Lists deprecated/retired Claude models and drift from .claude/models.lock
-[group('info')]
-outdated-models:
-    scripts/claude-models.sh check
-
-# Lists omp plugins whose installed version is behind the npm registry
-[group('info')]
-omp-plugins-outdated:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    found=0
-    while IFS=$'\t' read -r pkg installed; do
-        latest=$(npm view "$pkg" version 2>/dev/null) || continue
-        if [ "$installed" != "$latest" ]; then
-            echo "$pkg $installed → $latest"
-            found=1
-        fi
-    done < <(omp plugin list --json | jq -r '.npm[] | [.name, .version] | @tsv')
-    if [ "$found" -eq 0 ]; then
-        echo "All omp plugins are up to date"
-    fi
-
-# Lists installed Nix packages
-[group('info')]
-list-nix:
-    #!/usr/bin/env bash
-    nix-store -q --requisites ~/.nix-profile |
-      xargs -I {} basename {} |
-      sed 's/^[a-z0-9]\{32\}-//' |
-      sed -E 's/-(lib|dev|bin|static|doc)$//' |
-      sort -u |
-      sed -E 's/^(.*)-([0-9].*)$/\1 \2/' |
-      column -t
-
-# Search for a tool in mise or homebrew
-[group('info')]
-search tool:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    if mise search --match-type equal "{{ tool }}" &>/dev/null 2>&1; then
-        echo "Finding latest version of {{ tool }} in mise..."
-        version=$(mise ls-remote "{{ tool }}" | tail -n1)
-        echo -e "Latest version: {{ color_green }}{{ tool }}@$version{{ color_reset }}"
-    elif brew search "{{ tool }}" 2>&1| grep -q "{{ tool }}"; then
-        echo "Tool '{{ tool }}' found in homebrew:"
-        brew info "{{ tool }}"
-    else
-        echo "Tool '{{ tool }}' not found in mise or homebrew"
-        exit 1
-    fi
-
 #
 # configuration group recipes
 #
-
-# Adds a new tool using mise, installing the latest version
-[group('configuration')]
-add tool:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    if ! mise search "{{ tool }}" &>/dev/null; then
-        echo "Tool '{{ tool }}' not found in mise registries"
-        exit 1
-    fi
-
-    echo "Finding latest version of {{ tool }}..."
-    version=$(mise ls-remote "{{ tool }}" | tail -n1)
-
-    if [ -z "$version" ]; then
-        echo "Could not determine latest version of {{ tool }}"
-        exit 1
-    fi
-
-    echo "Installing {{ tool }}@$version..."
-    mise use "{{ tool }}@$version"
-    just format
-
-# Removes a tool from mise config and uninstalls it
-[group('configuration')]
-remove tool:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    if ! mise list --global | grep -q "{{ tool }}"; then
-        echo "Tool '{{ tool }}' is not installed via mise"
-        exit 1
-    fi
-
-    # Only uninstall if there are actual versions installed
-    if mise list "{{ tool }}" 2>/dev/null | grep -q "{{ tool }}"; then
-        echo "Uninstalling {{ tool }}..."
-        mise uninstall "{{ tool }}"
-    fi
-
-    echo "Removing {{ tool }} from mise config..."
-    mise rm "{{ tool }}"
-
-# Installs mise
-[group('configuration')]
-install-mise:
-    curl https://mise.run | sh
-    mise bootstrap packages apply
-
-# Installs Homebrew packages from Brewfile
-[group('configuration')]
-install-brew:
-    brew bundle install
-
-# Regenerates ~/Brewfile from current installs, minus mise-managed duplicates
-[group('configuration')]
-dump-brew:
-    python3 {{ justfile_directory() }}/scripts/brew-dump.py
-
-# Installs cmux agent hooks; regenerates the machine-managed session bridges
-# (~/.omp/agent/extensions/cmux-omp-session.ts et al.) that git now ignores
-[group('configuration')]
-install-cmux-hooks:
-    cmux hooks setup --yes
-
-# Installs GitHub CLI extensions from manifest file
-[group('configuration')]
-[script]
-install-gh-extensions:
-    set -euo pipefail
-    manifest="{{ gh_extensions_manifest }}"
-    # A missing manifest is a no-op, not a failure
-    if [[ ! -f "$manifest" ]]; then
-        exit 0
-    fi
-    # Installed repos: `gh extension list` is tab-separated with no header row
-    installed=$(gh extension list 2>/dev/null | awk -F'\t' '{print $2}' || echo "")
-    # Read manifest and install missing extensions
-    while IFS= read -r line; do
-        # Skip empty lines and comments
-        [[ -z "$line" || "$line" =~ ^# ]] && continue
-        repo="$line"
-        # Check if already installed
-        if grep -qxF "$repo" <<<"$installed"; then
-            echo "✓ $repo already installed"
-        else
-            echo "Installing $repo..."
-            gh extension install "$repo"
-        fi
-    done < "$manifest"
-
-# Installs LaunchDaemons into /Library/LaunchDaemons (prompts for sudo)
-[group('configuration')]
-install-launchdaemons:
-    ./scripts/install-launchdaemons
-
-# Installs LaunchAgents into ~/Library/LaunchAgents (user-scoped, no sudo)
-[group('configuration')]
-install-launchagents:
-    ./scripts/install-launchagents
-
-# Installs bun dependency trees for tracked package.json manifests
-[group('configuration')]
-[script]
-install-bun-deps:
-    set -euo pipefail
-    for dir in {{ bun_manifest_dirs }}; do
-        target="{{ justfile_directory() }}/$dir"
-        if [[ ! -f "$target/package.json" ]]; then continue; fi
-        echo "Installing bun dependencies in $dir..."
-        (cd "$target" && bun install)
-    done
-    if command -v omp >/dev/null 2>&1; then omp plugin doctor --fix; fi
-# Verifies GitHub auth/rate-limit before mise installs, so a silent 403 wall surfaces as a clear error
-[group('configuration')]
-[script]
-_check-github-token:
-    set -euo pipefail
-    token="${MISE_GITHUB_TOKEN:-${GITHUB_TOKEN:-}}"
-    auth=()
-    [[ -n "$token" ]] && auth=(-H "Authorization: Bearer $token")
-    json=$(curl -sS --max-time 10 "${auth[@]}" -H "X-GitHub-Api-Version: 2022-11-28" \
-        https://api.github.com/rate_limit 2>/dev/null || true)
-    # Offline / unreachable, or no python3 to parse: don't block local work.
-    [[ -z "$json" ]] && exit 0
-    command -v python3 >/dev/null 2>&1 || exit 0
-    read -r limit remaining reset_at <<<"$(printf '%s' "$json" | python3 -c 'import sys,json; c=json.load(sys.stdin).get("resources",{}).get("core",{}); print(c.get("limit",0), c.get("remaining",0), c.get("reset",0))' 2>/dev/null || echo "0 0 0")"
-    red=$'\033[31m'; yellow=$'\033[33m'; rc=$'\033[0m'
-    when=$(date -r "$reset_at" '+%H:%M:%S' 2>/dev/null || echo '?')
-    fix() {
-        echo "  Re-authenticate, then sync the fresh token into ~/.env:" >&2
-        echo "    gh auth refresh -h github.com -s repo,read:org" >&2
-        echo "    TOKEN=\$(GITHUB_TOKEN= GITHUB_API_TOKEN= gh auth token)" >&2
-        echo "    sed -i '' -E \"s|^(export (GITHUB_TOKEN|GITHUB_PERSONAL_ACCESS_TOKEN|MISE_GITHUB_TOKEN))=.*|\\1=\$TOKEN|\" ~/.env" >&2
-        echo "    direnv reload" >&2
-    }
-    # limit <= 60 means GitHub is treating us as anonymous (no token, or token rejected).
-    if (( limit <= 60 )); then
-        if [[ -n "$token" ]]; then
-            echo "${red}✗ GITHUB_TOKEN is set but GitHub is treating requests as unauthenticated (limit ${limit}/hr) — the token is being rejected.${rc}" >&2
-            echo "${red}  mise will hit the ${limit} req/hr cap during install.${rc}" >&2
-            echo "" >&2
-            fix
-            exit 1
-        fi
-        echo "${yellow}⚠ No GITHUB_TOKEN set — unauthenticated GitHub limit is ${limit}/hr. Set one in ~/.env to avoid install failures.${rc}" >&2
-        exit 0
-    fi
-    # Authenticated tier, but the bucket is spent — mise install will 403 mid-run.
-    if (( remaining == 0 )); then
-        echo "${red}✗ GitHub API rate limit exhausted: 0/${limit} remaining (resets ${when}).${rc}" >&2
-        echo "${red}  Wait for the reset, or mise install will fail with 403.${rc}" >&2
-        exit 1
-    fi
-    if (( remaining < 100 )); then
-        echo "${yellow}⚠ GitHub API rate limit low: ${remaining}/${limit} remaining (resets ${when}).${rc}" >&2
-    fi
-
-# Prints config-managed mise tools minus mise_bump_exclusions (space-separated, for --bump scans)
-[script]
-_mise-bump-scan-tools:
-    mise config get tools | sed -nE 's/^\["?([^]"]+)"?\]$/\1/p; s/^"([^"]+)" = .*/\1/p; s/^([A-Za-z0-9_-]+) = .*/\1/p' | grep -vxFf <(echo "{{ mise_bump_exclusions }}" | tr ' ' '\n') | tr '\n' ' '
-
-# Installs the Rust toolchain and llvm-tools component (rust-objcopy needs
-# libLLVM.dylib from llvm-tools to strip debug info; see profile.release.strip
-# in crates/ness/Cargo.toml)
-[group('configuration')]
-[script]
-install-rust-deps:
-    set -euo pipefail
-    if ! command -v rustup >/dev/null 2>&1; then
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
-    fi
-    rustup toolchain install stable
-    rustup component add llvm-tools --toolchain stable
 
 # Installs tools using mise
 [group('configuration')]
 deps: _check-github-token install-brew install-gh-extensions install-bun-deps install-rust-deps git-filters git-hooks
     mise install
 
-# Update tools within current versions
+# Runs every hk fix step over all tracked files (steps live in hk.pkl)
 [group('configuration')]
-update: update-rust
-
-# Refreshes .claude/models.lock from the Claude API, committing any change
-[group('configuration')]
-[script]
-update-models:
-    set -euo pipefail
-    scripts/claude-models.sh lock
-    if [ -z "$(git status --porcelain -- .claude/models.lock)" ]; then
-        echo "Model catalog unchanged"
-        exit 0
-    fi
-    # Summarize what moved so the commit body documents the generation change.
-    body=$(git diff -- .claude/models.lock | grep -E '^[+-]  claude-' | sed 's/^/  /' || true)
-    git add .claude/models.lock
-    git commit -m "chore(claude): Refresh model catalog lockfile" \
-        -m "${body:-Initial model catalog lockfile.}"
-
-# Sync Casper model metadata and pricing from live APIs
-[group('configuration')]
-[script]
-update-casper-models:
-    set -euo pipefail
-    {{ justfile_directory() }}/scripts/sync-casper-models.sh
-    if [ -z "$(git status --porcelain -- .omp/profiles/casper/agent/models.yml)" ]; then
-        echo "Casper model catalog unchanged"
-        exit 0
-    fi
-    git add .omp/profiles/casper/agent/models.yml
-    git commit -m "chore(casper): sync models.yml with live catalog and pricing"
-
-# Update Rust toolchains
-[group('configuration')]
-[script]
-update-rust:
-    set -euo pipefail
-    rustup update
+format:
+    hk fix --all
 
 # Common upgrades
 [group('configuration')]
 upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade-uv-tools
-
-# Upgrades tools using mise
-[group('configuration')]
-[script]
-upgrade-mise-tools *args:
-    if [ -z "{{ args }}" ]; then
-        set -- $(just _mise-bump-scan-tools)
-    else
-        set -- {{ args }}
-    fi
-    mise upgrade --bump --yes "$@"
-
-# Upgrades mise itself
-[group('configuration')]
-upgrade-mise:
-    mise self-update --yes
-
-# Upgrades the installed omp version from the upstream GitHub repository
-[group('configuration')]
-upgrade-omp:
-    mise upgrade --bump oh-my-pi
-    hk fix .config/mise/config.toml
-    bash -ic 'cmt .config/mise/config.toml'
-
-# Upgrades each outdated tool and commits the version change individually
-[group('configuration')]
-upgrade-mise-tools-commit:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    json=$(mise outdated --bump --json $(just _mise-bump-scan-tools) | jq 'with_entries(select(.value.bump | type == "string"))')
-    if echo "$json" | jq -e 'type == "object" and (keys | length) == 0' >/dev/null 2>&1; then
-        echo "All tools are up to date"
-        exit 0
-    fi
-    echo "$json" | jq -r 'keys[]' | while read -r tool; do
-        current=$(echo "$json" | jq -r --arg t "$tool" '.[$t].current')
-        bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
-        echo "Upgrading $tool: $current → $bump"
-        mise upgrade --bump --yes "$tool"
-        hk fix .config/mise/config.toml
-        paths=("{{ justfile_directory() }}/.config/mise/config.toml")
-        if [ "$tool" = "hk" ]; then
-            # hk.pkl pins the exact hk release it amends (see hk.pkl's own
-            # comment: hk embeds that Pkl package for its own version and
-            # evaluates hk.pkl with no network request; any other pin
-            # downloads it on every run). Keep the pin in lockstep with the
-            # version mise just installed, and fail loudly before committing
-            # if the bump breaks the schema.
-            sed -i '' -E "s|(amends \"package://github.com/jdx/hk/releases/download/v)[0-9.]+(/hk@)[0-9.]+(#/Config.pkl\")|\1${bump}\2${bump}\3|" hk.pkl
-            sed -i '' -E "s|(min_hk_version = \")[0-9.]+(\")|\1${bump}\2|" hk.pkl
-            mise x -- hk validate --quiet
-            paths+=("{{ justfile_directory() }}/hk.pkl")
-        fi
-        # --only commits these paths from the working tree and disregards
-        # anything else staged, so concurrent work is never swept into a
-        # version-bump commit.
-        git commit --only "${paths[@]}" \
-            -m "chore: bump $tool $current → $bump"
-    done
-
-# Updates homebrew and lists outdated formulae/casks
-[group('configuration')]
-update-brew:
-    brew update && brew outdated
-
-# Upgrades homebrew formulae/casks (pass args through to brew upgrade)
-[group('configuration')]
-upgrade-brew *args:
-    NONINTERACTIVE=1 brew upgrade {{ args }}
-
-# Shows outdated uv-managed tools by comparing against PyPI
-[group('configuration')]
-outdated-uv-tools:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    found=0
-    while IFS= read -r line; do
-        [[ "$line" =~ ^[a-zA-Z] ]] || continue
-        pkg=$(echo "$line" | awk '{print $1}')
-        installed=$(echo "$line" | awk '{print $2}' | sed 's/^v//')
-        latest=$(curl -sf "https://pypi.org/pypi/$pkg/json" | jq -r '.info.version' 2>/dev/null) || continue
-        if [ "$installed" != "$latest" ]; then
-            echo "$pkg $installed → $latest"
-            found=1
-        fi
-    done < <(mise exec -- uv tool list)
-    if [ "$found" -eq 0 ]; then
-        echo "All uv tools are up to date"
-    fi
-
-# Upgrades all uv-managed tools
-[group('configuration')]
-upgrade-uv-tools:
-    mise exec -- uv tool upgrade --all
-
-# Updates home-manager flake and rebuilds configuration
-[group('nix')]
-update-nix:
-    sudo determinate-nixd upgrade
-    determinate-nixd status
-    nix flake update --flake {{ justfile_directory() }}/.config/home-manager
-    home-manager switch --flake {{ justfile_directory() }}/.config/home-manager
-
-# Remove non-default Rust toolchains except stable and unpinned nightly
-[group('configuration')]
-[script]
-clean-rust:
-    set -euo pipefail
-    in_section=false
-    rustup show | while IFS= read -r line; do
-        if [[ "$line" == "installed toolchains" ]]; then
-            in_section=true
-            continue
-        fi
-        if [[ "$line" == "active toolchain" ]]; then
-            break
-        fi
-        if ! $in_section || [[ "$line" == -* ]] || [[ -z "$line" ]]; then
-            continue
-        fi
-        toolchain="${line%% *}"
-        if [[ "$line" == *"(default)"* ]] || [[ "$toolchain" == stable-* ]] || { [[ "$toolchain" == nightly-* ]] && [[ ! "$toolchain" =~ ^nightly-[0-9] ]]; }; then
-            echo "keeping: $toolchain"
-            continue
-        fi
-        echo "removing: $toolchain"
-        rustup toolchain uninstall "$toolchain"
-    done
-
-# Every entry here is re-downloadable. ~/.cache/huggingface is deliberately
-# excluded: model weights are data, not build output, and re-fetching 183 GB
-# costs hours of bandwidth.
-# Removes package manager download, cache, and temp directories
-[group('configuration')]
-[script]
-clean-caches:
-    set -euo pipefail
-    if command -v mise >/dev/null 2>&1; then
-        cache_dir="$(mise cache)"
-        if [[ -d "$cache_dir" ]]; then trash "$cache_dir"; fi
-        mise cache clear --yes
-        mise prune --yes
-    fi
-    if command -v brew >/dev/null 2>&1; then
-        brew cleanup
-        rm -rf "$(brew --cache)"
-    fi
-    if command -v uv >/dev/null 2>&1; then uv cache clean; fi
-    # bun >= 1.4 requires a package.json in cwd for `bun pm cache rm`;
-    # run it from a throwaway package so cache-dir resolution stays bun's
-    if command -v bun >/dev/null 2>&1; then
-        bun_tmp="$(mktemp -d)"
-        echo '{}' > "$bun_tmp/package.json"
-        (cd "$bun_tmp" && bun pm cache rm)
-        rm -rf "$bun_tmp"
-    fi
-    if command -v npm >/dev/null 2>&1; then npm cache clean --force; fi
-    if command -v pnpm >/dev/null 2>&1; then pnpm store prune; fi
-    if command -v go >/dev/null 2>&1; then go clean -cache -modcache -testcache -fuzzcache; fi
-    if python3 -m pip --version >/dev/null 2>&1; then python3 -m pip cache purge; fi
-    rm -rf "$HOME/.cargo/registry/cache" "$HOME/.cargo/registry/src" "$HOME/.cargo/git/checkouts"
-    if command -v nix >/dev/null 2>&1; then nix store gc; fi
-
-# Directories containing tracked files are kept, so this can never delete
-# checked-in work. .claude/skills/gstack is out of scope via
-# build_artifact_roots: `just build` does not rebuild its dist/ binaries.
-# Removes build output directories under repo-owned source roots
-[group('configuration')]
-[script]
-clean-build:
-    set -euo pipefail
-    cd {{ justfile_directory() }}
-    removed=0
-    for name in {{ build_artifact_dirs }}; do
-        candidates=()
-        if [[ -d "$name" ]]; then candidates+=("$name"); fi
-        for root in {{ build_artifact_roots }}; do
-            if [[ ! -d "$root" ]]; then continue; fi
-            while IFS= read -r -d '' dir; do
-                candidates+=("$dir")
-            done < <(find "$root" -type d -name "$name" -not -path '*/node_modules/*' -print0)
-        done
-        for dir in "${candidates[@]}"; do
-            if [[ -n "$(git ls-files -- "$dir")" ]]; then
-                echo "keeping tracked: $dir"
-                continue
-            fi
-            echo "removing: $dir"
-            rm -rf "$dir"
-            removed=$((removed + 1))
-        done
-    done
-    echo "clean-build removed $removed directories"
-
-# Removes installed dependency trees and throwaway virtualenvs; `just deps`
-# restores node_modules and `uv run`/`uv sync` recreates .venv.
-# Removes installed dependency trees and temporary virtual environments
-[group('configuration')]
-[script]
-clean-deps:
-    set -euo pipefail
-    cd {{ justfile_directory() }}
-    for dir in {{ bun_manifest_dirs }}; do
-        if [[ -d "$dir/node_modules" ]]; then
-            echo "removing: $dir/node_modules"
-            rm -rf "$dir/node_modules"
-        fi
-    done
-    for root in . {{ build_artifact_roots }}; do
-        if [[ -d "$root/.venv" ]]; then
-            echo "removing: $root/.venv"
-            rm -rf "$root/.venv"
-        fi
-    done
 
 # Purges caches, build output, dependency trees, and home directory clutter
 [group('configuration')]
@@ -646,30 +66,6 @@ clean: clean-rust clean-caches clean-build clean-deps
     rm -f $HOME/*.hprof
     rm -f $HOME/.claude.json.backup.*
     rm -f $HOME/.zcompdump.DTO-*
-
-# Opens the omp plugin manifest in the configured editor
-[group('configuration')]
-omp-plugins-edit:
-    ${VISUAL:-${EDITOR:-vi}} {{ justfile_directory() }}/.omp/plugins/package.json
-
-# Reinstalls omp plugins from the manifest, discarding node_modules
-[group('configuration')]
-omp-plugins-reinstall:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    cd {{ justfile_directory() }}/.omp/plugins
-    rm -rf node_modules
-    bun install
-    omp plugin doctor --fix
-
-# Updates omp plugins in bun.lock to their latest allowed version and syncs the plugin manifest
-[group('configuration')]
-omp-plugins-update:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    cd {{ justfile_directory() }}/.omp/plugins
-    bun update
-    omp plugin doctor --fix
 
 #
 # build group recipes
@@ -685,24 +81,24 @@ build: generate
 [group('build')]
 generate: harness-generate
 
-# Generates shared/native agent harness parity artifacts
-[group('build')]
-harness-generate:
-    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py generate
-
-# Applies the shared MCP set to Claude Code user scope (outside the dotfiles repo)
-[group('build')]
-harness-mcp-apply:
-    python3 {{ justfile_directory() }}/scripts/harness-apply.py mcp
-
-# Applies the shared permission baseline to OMP's config.yml via `omp config set`
-[group('build')]
-harness-perms-apply:
-    python3 {{ justfile_directory() }}/scripts/harness-apply.py perms
-
 #
 # checks group recipes
 #
+
+# Runs lint, type checks, harness parity checks, ness tests, and test
+[group('checks')]
+check: lint typecheck-python check-spelling harness-check agentlink-check ness-test test
+
+# CI: lint.yml (lint job)
+# Runs every hk check step over all tracked files (steps live in hk.pkl)
+[group('checks')]
+lint:
+    hk check --all
+
+# Checks spelling with typos
+[group('checks')]
+check-spelling:
+    mise exec -- typos
 
 # Runs system diagnostics using mise and homebrew
 [group('checks')]
@@ -711,93 +107,9 @@ doctor:
     brew doctor
     claude doctor
 
-# CI: lint.yml (lint job)
-# Type-checks Python scripts with ty (scope mirrors pyproject's basedpyright include)
-[group('checks')]
-typecheck-python:
-    @echo "Type-checking Python scripts..."
-    ty check {{ justfile_directory() }}/scripts
-
-# Checks spelling with typos
-[group('checks')]
-check-spelling:
-    mise exec -- typos
-
-# CI: lint.yml (lint job)
-# Runs every hk check step over all tracked files (steps live in hk.pkl)
-[group('checks')]
-lint:
-    hk check --all
-
-# Runs lint, type checks, harness parity checks, ness tests, and test
-[group('checks')]
-check: lint typecheck-python check-spelling harness-check agentlink-check ness-test test
-
-# Validates shared/native agent harness parity artifacts
-[group('checks')]
-harness-check:
-    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py validate
-
-# Reports gitignored harness config worth tracking (allowlist blind spots)
-[group('checks')]
-audit-ignored-config *ROOTS:
-    python3 {{ justfile_directory() }}/scripts/audit-ignored-config.py {{ ROOTS }}
-
-# Reports measured harness feature usage and friction from local session transcripts
-[group('checks')]
-harness-sessions *ARGS:
-    python3 {{ justfile_directory() }}/scripts/harness-sessions.py {{ ARGS }}
-
-# Audits installed harness versions and parity gaps
-[group('checks')]
-harness-audit:
-    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py audit
-
-# Re-verifies harness capability probes, records CLI versions, appends drift
-[group('checks')]
-harness-probe *ARGS:
-    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py probe {{ ARGS }}
-
-# Shows recent harness capability drift, newest first
-[group('checks')]
-harness-drift *ARGS:
-    python3 {{ justfile_directory() }}/scripts/agent-harnesses.py drift {{ ARGS }}
-
-# Checks agentlink's project-tier links still match .agentlink/config.toml.
-# Part of `just check`, but not CI: `.agentlink/lock.toml`, `.github/skills`,
-# and `.opencode/skills` are committed, but `.cursor/skills` is gitignored
-# (via `.cursor/.gitignore`, not this file's own `[gitignore]` block, which
-# stays `manage = false`) and so is never materialised in a fresh CI
-# checkout, which would fail this check for a reason no CI run can fix.
-[group('checks')]
-agentlink-check:
-    agentlink status --check --dir {{ justfile_directory() }}
-
-# Builds the ness compiled guard (release profile)
-[group('checks')]
-ness-build: install-rust-deps
-    cargo build --release --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
-
-# Installs the ness compiled guard to ~/.local/bin, the path every harness hook execs, then checks it against the corpus
-[group('checks')]
-ness-install: ness-build && ness-check-installed
-    install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/ness
-
-# CI: agent-harness-parity.yml (ness job)
-# Runs the ness guard's corpus, shim, and fail-closed tests
-[group('checks')]
-ness-test: install-rust-deps
-    cargo test --locked --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
-
-# Checks the installed ~/.local/bin/ness (the copy every harness hook runs) against the corpus
-[group('checks')]
-ness-check-installed: install-rust-deps
-    NESS_CHECK_INSTALLED=1 cargo test --locked --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml installed_copy_matches_corpus
-
-# Flags CLI tools installed via both mise and Homebrew
-[group('checks')]
-package-audit:
-    python3 {{ justfile_directory() }}/scripts/audit-package-managers.py
+#
+# tests group recipes
+#
 
 # CI: lint.yml (test job)
 # Runs bats tests in parallel; `just test abort` stops at the first failure
@@ -825,126 +137,3 @@ test mode="parallel":
         exit 2
         ;;
     esac
-
-# Runs every hk fix step over all tracked files (steps live in hk.pkl)
-[group('configuration')]
-format:
-    hk fix --all
-
-#
-# git group recipes
-#
-
-# Installs git hooks with hk (steps live in hk.pkl)
-[group('git')]
-git-hooks:
-    hk install --mise
-    @echo "Git hooks installed by hk (hook.hk-pre-commit.command in .git/config)"
-
-# Installs git clean filters that strip churn/secrets before staging (see .gitattributes)
-[group('git')]
-git-filters:
-    git config --local filter.codex-config.clean {{ justfile_directory() }}/scripts/mask-codex-state.sh
-    git config --local filter.codex-config.smudge cat
-    git config --local filter.codex-config.required true
-    git config --local filter.oc-config.clean {{ justfile_directory() }}/scripts/mask-oc-config.sh
-    git config --local filter.oc-config.smudge cat
-    git config --local filter.oc-config.required true
-    git config --local filter.pi-models-store.clean {{ justfile_directory() }}/scripts/mask-pi-models-store.sh
-    git config --local filter.pi-models-store.smudge cat
-    git config --local filter.pi-models-store.required true
-    git config --local filter.yaml-normalize.clean {{ justfile_directory() }}/scripts/normalize-yaml-ws.sh
-    git config --local filter.yaml-normalize.smudge cat
-    git config --local filter.yaml-normalize.required true
-    git config --local filter.antigravity-settings.clean {{ justfile_directory() }}/scripts/mask-antigravity.sh
-    git config --local filter.antigravity-settings.smudge cat
-    git config --local filter.antigravity-settings.required true
-    git config --local filter.claude-json.clean {{ justfile_directory() }}/scripts/mask-claude-json.sh
-    git config --local filter.claude-json.smudge cat
-    git config --local filter.claude-json.required true
-    @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
-    @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
-    @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
-    @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
-    @echo "Git filter 'antigravity-settings' installed (strips trustedWorkspaces from ~/.gemini/antigravity-cli/settings.json)"
-    @echo "Git filter 'claude-json' installed (allowlists MCP fields from ~/.claude.json)"
-
-#
-# claude group recipes
-#
-
-# Installs Claude Code native binary
-[group('claude')]
-install-claude:
-    npx @anthropic-ai/claude-code install
-
-alias uc := upgrade-claude
-
-# Upgrades Claude Code
-[group('claude')]
-upgrade-claude:
-    claude update
-
-# Show Claude usage statistics
-[group('claude')]
-usage:
-    ccusage
-
-# Open Claude usage online
-[group('claude')]
-usage-web:
-    open https://claude.ai/settings/usage
-
-# Show Claude usage statistics dashboard
-[group('claude')]
-usage-board:
-    ccusage blocks --live
-
-#
-# nix group recipes
-#
-
-# Installs Determinate Nix (macOS .pkg alternative: https://dtr.mn/determinate-nix)
-[group('nix')]
-install-nix:
-    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-
-# Restarts the Determinate Nix daemon (ensures the store volume is mounted first)
-[group('nix')]
-restart-nix:
-    sudo launchctl kickstart system/systems.determinate.nix-store
-    sudo launchctl kickstart -k system/systems.determinate.nix-daemon
-
-# Repairs Nix shell hooks after a macOS upgrade (`repair sequoia` recovers _nixbld users)
-[group('nix')]
-repair-nix:
-    /nix/nix-installer repair
-
-# Uninstalls Determinate Nix
-[group('nix')]
-uninstall-nix:
-    /nix/nix-installer uninstall
-
-#
-# lm-studio group recipes
-#
-
-# Start LM Studio server
-[group('lm-studio')]
-lms-start:
-    lms server start
-
-# Stop LM Studio server
-[group('lm-studio')]
-lms-stop:
-    lms server stop
-
-# Reload model
-[group('lm-studio')]
-lms-reload:
-    lms unload qwen/qwen3-coder-480b
-    lms load qwen/qwen3-coder-480b \
-        --context-length 65536 --gpu max -y
-    lms ls
-    lms ps
-    lms server status
