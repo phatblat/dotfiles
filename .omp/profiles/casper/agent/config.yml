@@ -1,5 +1,5 @@
 modelRoles:
-  default: casper/kimi-k2.6
+  default: casper/kimi-k2.7-code
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/glm-5.3
