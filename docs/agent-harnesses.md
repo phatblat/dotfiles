@@ -10,10 +10,10 @@ Coverage: 90/405 cells verified (22%)
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.261 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.153.4 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.18.29 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
+| opencode | new port | 1.18.30 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
 | pi | new port | 0.85.1 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
 | omp | tracked port | omp/18.1.16 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.1.27 | 2026-08-29 | 4 | 6 | 0 | 0 | 0 | 35 |
+| antigravity | tracked port | 1.2.0 | 2026-08-29 | 4 | 6 | 0 | 0 | 0 | 35 |
 | cursor | tracked port | 2026.09.02-c22c1a3 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.25 (f7e67d6988e2) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.92.0 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
@@ -66,6 +66,8 @@ Coverage: 90/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-09-11 | opencode | - | version | 1.18.29 | 1.18.30 |
+| 2026-09-11 | antigravity | - | version | 1.1.27 | 1.2.0 |
 | 2026-09-10 | omp | - | version | omp/18.1.15 | omp/18.1.16 |
 | 2026-09-10 | grok | - | version | grok 1.0.24 (68e414c661e3) [alpha] | grok 1.0.25 (f7e67d6988e2) [alpha] |
 | 2026-09-09 | omp | - | version | omp/18.1.14 | omp/18.1.15 |
@@ -74,8 +76,6 @@ Coverage: 90/405 cells verified (22%)
 | 2026-09-09 | claude | - | version | 2.1.251 (Claude Code) | 2.1.261 (Claude Code) |
 | 2026-09-08 | omp | - | version | omp/18.1.13 | omp/18.1.14 |
 | 2026-09-08 | grok | - | version | grok 1.0.13 (5e9a58528b76) [alpha] | grok 1.0.13 (5e9a58528b76) |
-| 2026-09-08 | cursor | - | version | 2026.09.02-c22c1a3 | 2026.07.01-777f564 |
-| 2026-09-08 | claude | - | version | 2.1.261 (Claude Code) | 2.1.251 (Claude Code) |
 
 ## Permanent divergences
 

@@ -119,6 +119,9 @@
   "~/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/authoring-skills/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/authoring-skills/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
@@ -139,6 +142,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/conventional-docs/SKILL.md": {
+    "source": "~/dev/agents/conventional-docs/skills/conventional-docs/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
@@ -278,6 +284,9 @@
   "~/.agents/harness/adapters/antigravity/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/recording-changes/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/recording-changes/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/refactor-safely/SKILL.md": {
     "source": "~/.agents/skills/refactor-safely/SKILL.md"
   },
@@ -293,8 +302,14 @@
   "~/.agents/harness/adapters/antigravity/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/semantic-versioning/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/semantic-versioning/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/session-save/SKILL.md": {
     "source": "~/.agents/skills/session-save/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/setup-phatblat-skills/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/setup-phatblat-skills/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -443,6 +458,9 @@
   "~/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/authoring-skills/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/authoring-skills/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
@@ -463,6 +481,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/conventional-docs/SKILL.md": {
+    "source": "~/dev/agents/conventional-docs/skills/conventional-docs/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/debug-issue/SKILL.md": {
     "source": "~/.agents/skills/debug-issue/SKILL.md"
@@ -602,6 +623,9 @@
   "~/.agents/harness/adapters/cursor/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/recording-changes/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/recording-changes/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/refactor-safely/SKILL.md": {
     "source": "~/.agents/skills/refactor-safely/SKILL.md"
   },
@@ -617,8 +641,14 @@
   "~/.agents/harness/adapters/cursor/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/semantic-versioning/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/semantic-versioning/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/session-save/SKILL.md": {
     "source": "~/.agents/skills/session-save/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/setup-phatblat-skills/SKILL.md": {
+    "source": "~/dev/agents/skills/skills/setup-phatblat-skills/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
