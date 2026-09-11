@@ -59,7 +59,7 @@
 "npm:yaml-language-server" = "1.24.0"
 "npm:yarn" = "1.22.22"
 "pipx:graphifyy" = "0.9.57"
-"pipx:pyright" = "1.1.411"
+"pipx:pyright" = "1.1.414"
 "pipx:python-lsp-server" = "1.15.0"
 "pipx:token-viewer" = "0.0.7"
 "pipx:yamllint" = "1.38.0"
