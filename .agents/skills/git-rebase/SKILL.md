@@ -1,6 +1,4 @@
----
-name: git-rebase
-description: Rebase the current branch onto a target branch using safety checks, backup branches, and an appropriate rebase strategy. Use when invoked as `$git-rebase` or when the user asks to update/rebase a branch.
+description: Rebase the current branch onto a target branch using safety checks and an appropriate rebase strategy. Use when invoked as `$git-rebase` or when the user asks to update/rebase a branch.
 ---
 
 # git-rebase
@@ -31,13 +29,6 @@ Rebase the current branch onto a target branch. If the user provides an argument
 
    Never use `git fetch origin "${target}:${target}"` for a branch that may be checked out in another worktree. If a local target branch must be updated, do that only in the worktree that currently has it checked out.
 
-4. Create a backup branch:
-
-   ```bash
-   git branch "${subject}.bak"
-   ```
-
-   If it already exists, ask whether to overwrite it or abort.
 
 5. Analyze divergence:
 
@@ -66,7 +57,7 @@ Rebase the current branch onto a target branch. If the user provides an argument
    - Onto: `git rebase --onto "${target_ref}" "${merge_base}" HEAD`
    - Cherry-pick: create `<subject>__cherrypick__` from `target_ref` and cherry-pick subject commits oldest-first.
 
-8. On conflicts, resolve automatically and continue; the Step 4 backup and `rerere` make this recoverable:
+8. On conflicts, resolve automatically and continue; `rerere` makes this recoverable:
 
    - Apply any recorded `rerere` resolution.
    - Filtered machine-state files (e.g. `.codex/*.config.toml` trust hashes): keep ours (`git checkout --ours`); the clean filter re-normalizes the blob on `git add`.
@@ -84,4 +75,4 @@ Rebase the current branch onto a target branch. If the user provides an argument
    git branch -vv
    ```
 
-10. Report strategy, branch, tracking, and backup branch. Keep `<subject>.bak` until the user confirms cleanup.
+10. Report strategy, branch, and tracking.
