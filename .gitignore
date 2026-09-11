@@ -149,6 +149,7 @@
 !.codex/skills/using-git-worktrees/
 !.codex/skills/writing-plans/
 !.codex/skills/
+.codexbar/
 .codexbar/antigravity/
 .codexbar/claude-oauth-cache.lock
 .conche/
