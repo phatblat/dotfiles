@@ -149,8 +149,7 @@
 !.codex/skills/using-git-worktrees/
 !.codex/skills/writing-plans/
 !.codex/skills/
-.codexbar/antigravity/
-.codexbar/claude-oauth-cache.lock
+.codexbar/
 .conche/
 .config/.todoist-linux.json
 .config/1Password/
