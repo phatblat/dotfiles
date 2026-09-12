@@ -21,7 +21,7 @@ which recorded that the symlinked skills' generated adapters are committed.
 
 ## Status
 
-This is a proposal that is **awaiting review**.
+This is a proposal that is **accepted**.
 
 ## Assumptions and Constraints
 
