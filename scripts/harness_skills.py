@@ -20,7 +20,10 @@ the control-plane module rather than importing this one earlier.
 from __future__ import annotations
 
 import json
+import os
 import re
+import subprocess
+from collections.abc import Iterable
 from pathlib import Path
 
 # Skills that get a native pointer file in each harness's own skills directory,
@@ -101,6 +104,99 @@ def _require_config() -> tuple[str, Path]:
             "harness_skills.configure() must run before rendering skills"
         )
     return _managed_header, _skill_source
+
+
+def discover_skills(source: Path, root: Path) -> tuple[list[str], dict[str, str]]:
+    """Split `source`'s entries into rendered skill names and out-of-repo ones.
+
+    Returns `(names, external)`: `names` is every directory under `source` that
+    carries a `SKILL.md` and is part of the `root` repository; `external` maps
+    each excluded directory name to the target its symlink names.
+
+    "Part of the repository" is not the same as "inside `root`'s directory
+    tree": the five skills this exists for are symlinked into `~/dev/agents/skills`
+    and `~/dev/agents/conventional-docs`, which are nested *underneath* this
+    repository's root (`root` is `$HOME`) but are separate git checkouts
+    excluded by the `dev/*` rule in `root`'s `.gitignore`. A plain
+    `is_relative_to(root)` check treats them as internal in every environment,
+    since they are structurally nested either way -- so this defers to `git
+    check-ignore`, which answers "is this path excluded by the repository's own
+    ignore rules" from the tracked `.gitignore` content alone.
+
+    The verdict has to be identical on every machine, which is why every check
+    here -- containment, and `git check-ignore` -- is evaluated against the
+    *lexical* symlink target (`readlink()` joined and normalized, never
+    `resolve()`/`realpath`) and against `.gitignore`, both of which are
+    committed and identical in CI and locally, rather than against whether the
+    target exists. Discovering with `glob("*/SKILL.md")` -- which matches only
+    what exists -- rendered adapters locally that CI reported as obsolete,
+    three times over, before this rule existed.
+
+    A missing `source` yields empty results rather than raising, preserving the
+    caller's "expected shared skills in .agents/skills" validation error.
+    """
+    resolved_root = root.resolve()
+    names: list[str] = []
+    external: dict[str, str] = {}
+    try:
+        entries = sorted(source.iterdir())
+    except OSError:
+        return names, external
+
+    lexical_targets: dict[str, Path] = {}
+    for entry in entries:
+        if entry.is_symlink():
+            raw = entry.readlink()
+            target = raw if raw.is_absolute() else entry.parent / raw
+        else:
+            target = entry
+        lexical_targets[entry.name] = Path(os.path.normpath(target))
+
+    ignored = _git_ignored(resolved_root, lexical_targets.values())
+
+    for entry in entries:
+        target = lexical_targets[entry.name]
+        if not target.is_relative_to(resolved_root) or target in ignored:
+            external[entry.name] = (
+                str(entry.readlink()) if entry.is_symlink() else str(target)
+            )
+            continue
+        if (entry / "SKILL.md").is_file():
+            names.append(entry.name)
+    return names, external
+
+
+def _git_ignored(root: Path, candidates: Iterable[Path]) -> set[Path]:
+    """Return the subset of `candidates` (each inside `root`) `root` gitignores.
+
+    `git check-ignore` matches purely against the tracked `.gitignore` rules
+    and the path string -- it needs neither the candidate nor `root` to exist
+    on disk -- so the verdict is identical whether a symlinked skill's target
+    resolves or dangles.
+    """
+    relative: dict[str, Path] = {}
+    for candidate in candidates:
+        if candidate.is_relative_to(root):
+            relative[candidate.relative_to(root).as_posix()] = candidate
+    if not relative:
+        return set()
+    try:
+        result = subprocess.run(
+            ["git", "check-ignore", "--stdin", "-v"],
+            cwd=root,
+            input="\n".join(relative) + "\n",
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except OSError:
+        return set()
+    ignored: set[Path] = set()
+    for line in result.stdout.splitlines():
+        _, _, pathname = line.partition("\t")
+        if pathname in relative:
+            ignored.add(relative[pathname])
+    return ignored
 
 
 def shared_skill_description(skill_name: str) -> str:
