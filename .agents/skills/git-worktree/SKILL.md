@@ -9,19 +9,19 @@ description: Create, switch to, or delete a git worktree under ~/.worktrees/<pat
 
 ## Contract
 
-This skill never re-derives worktree paths in prose. `~/.agents/skills/git-worktree/wt.sh` is the single agent-side implementation; invoke it with that exact tilde path so the command's `allowed-tools` prefix matches. Layout and constraint questions belong to the `using-git-worktrees` skill.
+This skill never re-derives worktree paths in prose. `wt` on `PATH` is the single agent-side implementation. Layout and constraint questions belong to the `using-git-worktrees` skill.
 
 ## Actions
 
 | Invocation | Effect |
 | --- | --- |
-| `wt.sh path <branch> [--dotfiles]` | prints the path that *would* be used; mutates nothing |
-| `wt.sh resolve <branch> [--dotfiles]` | prints the registered worktree path, or exits 3 |
-| `wt.sh switch <branch> [--dotfiles]` | resolve, else create; prints the path (this is `wt <branch>`) |
-| `wt.sh create <branch> [--dotfiles]` | create only; exits 4 if already registered |
-| `wt.sh remove <branch> [--dotfiles] [--force]` | `git worktree remove` + prune; never touches the branch |
-| `wt.sh list` | one `<path>\t<branch>` line per worktree (agents cannot use `wt`'s fzf picker) |
-| `wt.sh verify <branch>` | dotfiles only: `just check` with `HOME` remapped, mirroring `wt --test` |
+| `wt path <branch> [--allow-home]` | prints the path that *would* be used; mutates nothing |
+| `wt resolve <branch> [--allow-home]` | prints the registered worktree path, or exits 3 |
+| `wt switch <branch> [--allow-home]` | resolve, else create; prints the path |
+| `wt create <branch> [--allow-home]` | create only; exits 4 if already registered |
+| `wt remove <branch> [--allow-home] [--force]` | `git worktree remove` + prune; never touches the branch |
+| `wt list` | one `<path>\t<branch>` line per worktree (agents cannot use `wt`'s fzf picker) |
+| `wt verify <branch>` | `just check` with `HOME` remapped (implies `--allow-home`) |
 
 ## Session Rebase Protocol
 
@@ -32,7 +32,7 @@ The load-bearing part. Three parts, in this order:
 Capture the path:
 
 ```bash
-wt_path=$(~/.agents/skills/git-worktree/wt.sh switch "$branch" ${dotfiles:+--dotfiles})
+wt_path=$(wt switch "$branch" ${allow_home:+--allow-home})
 ```
 
 From this point in the session:
@@ -68,7 +68,7 @@ Continue the task under part A whether or not the user runs the line. Do not use
 
 ## Deleting
 
-`wt.sh remove` refuses in three cases; the skill explains each rather than reaching for `--force`:
+`wt remove` refuses in three cases; the skill explains each rather than reaching for `--force`:
 
 - the current session directory (or `$PWD`) is inside the target worktree → tell the user to `/move` out (omp) or work from another root first
 - the target is the repo's main worktree → never removable
@@ -78,8 +78,8 @@ Branch deletion is out of scope and stays with `git-cleanup` / `branch-finish`. 
 
 ## Never
 
-- Never re-derive the worktree path in prose or with an ad-hoc `sed`/`tr` pipeline — call `wt.sh path`.
-- Never create a dotfiles worktree without `--dotfiles`.
+- Never re-derive the worktree path in prose or with an ad-hoc `sed`/`tr` pipeline — call `wt path`.
+- Never create a dotfiles worktree without `--allow-home`.
 - Never use a dotfiles worktree to validate `.zshrc`, `.zshenv`, `.zprofile`, or `.config/zsh/functions/**` (see `using-git-worktrees`).
 - Never `git worktree add` a path whose leaf differs from the branch name.
 - Never remove a worktree to "fix" a dirty tree.

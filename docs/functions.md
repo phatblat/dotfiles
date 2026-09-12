@@ -4,12 +4,12 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 541 unique functions/aliases across 3 shells**
+**Total: 540 unique functions/aliases across 3 shells**
 
 **Shell Statistics:**
 
-- Nushell: 286 aliases/functions (primary shell)
-- Zsh: 381 functions (daily fallback)
+- Nushell: 285 aliases/functions (primary shell)
+- Zsh: 380 functions (daily fallback)
 - Bash: 13 functions (minimal usage)
 
 **Shell Coverage:**
@@ -535,8 +535,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `warpify`                   | ✅  | ➖  | ➖   | https://docs.warp.dev/features/subshells#automatic   |
 | `whichjdk`                  | ➖  | ➖  | ➖   | Zsh function                                         |
 | `wip`                       | ✅  | ➖  | ➖   | Commits WIP work                                     |
-| `wt`                        | ✅  | ✅  | ➖   | Navigate to or create git worktrees (fzf/branch)     |
-| `wt-env`                    | ✅  | ✅  | ➖   | Symlink env files from main worktree into current     |
+| `wt`                        | ✅  | ✅  | ➖   | Navigate to or create git worktrees (logic in the `wt` binary; these are thin cd wrappers) |
 | `xaccess`                   | ➖  | ✅  | ➖   | Read nginx access log                                |
 | `xcbschemes`                | ➖  | ✅  | ➖   | Displays schemes for Xcode project                   |
 | `xccheck`                   | ➖  | ✅  | ➖   | Validates Xcode application binary integrity using   |

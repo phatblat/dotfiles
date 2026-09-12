@@ -58,7 +58,7 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
    ```
 
    - `work_dir` non-empty → use it; if `git -C "$work_dir" status --porcelain=v1` is non-empty, stop and tell the user to commit or stash there first.
-   - `work_dir` empty and `repo_root` is `$HOME` (dotfiles repo) → do **not** create a worktree; `using-git-worktrees` forbids implicit dotfiles worktrees. If `subject` is the current branch and the tree is clean, set `work_dir="$repo_root"`; otherwise stop and tell the user to run `wt --dotfiles "$subject"` first.
+   - `work_dir` empty and `repo_root` is `$HOME` (dotfiles repo) → do **not** create a worktree; `using-git-worktrees` forbids implicit dotfiles worktrees. If `subject` is the current branch and the tree is clean, set `work_dir="$repo_root"`; otherwise stop and tell the user to run `wt switch "$subject" --allow-home` first.
    - Otherwise create one under the `using-git-worktrees` convention:
 
      ```bash

@@ -1,0 +1,5 @@
+# Paths linked from a repo's main worktree into each of its other worktrees.
+# One worktree-relative path per line; `#` starts a comment. A missing source
+# is skipped with a note on stderr; a destination that exists and is not a
+# symlink is an error, never a silent overwrite.
+.env

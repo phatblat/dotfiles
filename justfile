@@ -87,7 +87,7 @@ generate: harness-generate
 
 # Runs lint, type checks, harness parity checks, ness tests, and test
 [group('checks')]
-check: lint typecheck-python check-spelling harness-check agentlink-check ness-test test
+check: lint typecheck-python check-spelling harness-check agentlink-check ness-test wt-test test
 
 # CI: lint.yml (lint job)
 # Runs every hk check step over all tracked files (steps live in hk.pkl)

@@ -24,7 +24,7 @@ Where `<path-key>` is the repo root relative to `~` with `/` replaced by `-`.
 
 ## Dotfiles Exception
 
-The dotfiles repo (rooted at `~`) needs an explicit opt-in before using worktrees: `wt --dotfiles <branch>` (or `wt --test <branch>` / `wt --shell <branch>`). Without one of those flags, `wt` refuses. The real limitation is narrower than "cannot be tested": interactive shell *startup* (`.zshenv`, `.zshrc`, `.zprofile`, and the functions autoloaded from `.config/zsh/functions/`) is only exercised from the real `$HOME`, so validating startup changes still needs a branch switch there. Everything else — linting, tests, the harness gates — is verifiable from a worktree via `wt --test <branch>`, mirroring how `.github/workflows/lint.yml` already remaps `HOME` to run `just lint`/`just test` in CI.
+The dotfiles repo (rooted at `~`) needs an explicit opt-in before using worktrees: `wt switch <branch> --allow-home` (or `wt verify <branch>` / `wt shell <branch>`). Without one of those, `wt` refuses. The real limitation is narrower than "cannot be tested": interactive shell *startup* (`.zshenv`, `.zshrc`, `.zprofile`, and the functions autoloaded from `.config/zsh/functions/`) is only exercised from the real `$HOME`, so validating startup changes still needs a branch switch there. Everything else — linting, tests, the harness gates — is verifiable from a worktree via `wt verify <branch>`, mirroring how `.github/workflows/lint.yml` already remaps `HOME` to run `just lint`/`just test` in CI.
 
 **Detection:** Resolve via `git rev-parse --path-format=absolute --git-common-dir` (strip the trailing `/.git`), not `--show-toplevel` — `--show-toplevel` returns the *worktree's* root, so it misfires from inside any worktree. If the resolved path equals the home directory, you are in the dotfiles repo.
 
@@ -32,7 +32,7 @@ The dotfiles repo (rooted at `~`) needs an explicit opt-in before using worktree
 
 - **Interactive shell startup.** `.zshenv`, `.zshrc`, `.zprofile`, and the functions autoloaded from `.config/zsh/functions/` are only exercised by the real, running shell at `$HOME`. Validate startup changes with a branch switch there, not a worktree.
 - **4 intentionally-absolute symlinks.** `bin/plistbuddy`, `bin/vi`, and `bin/vim` point at system/Homebrew binaries outside `$HOME`; `.config/iterm2/AppSupport` points at untracked app state. These stay absolute by design and are excluded from hk's `symlinks` step (`scripts/check-symlinks.sh`, run via `just lint`).
-- **3 ancestor-discoverable configs.** `.config/mise/config.toml`, `.editorconfig`, and `.envrc` are found by tools that walk up from cwd. Because a dotfiles worktree lives beneath the real `$HOME`, such a tool can discover the real `$HOME`'s copy instead of the worktree's own. `wt --test`/`wt --shell` warn on stderr only when the two copies actually differ.
+- **3 ancestor-discoverable configs.** `.config/mise/config.toml`, `.editorconfig`, and `.envrc` are found by tools that walk up from cwd. Because a dotfiles worktree lives beneath the real `$HOME`, such a tool can discover the real `$HOME`'s copy instead of the worktree's own. `wt verify`/`wt shell` warn on stderr only when the two copies actually differ.
 
 ## Creating, Switching, Deleting
 
@@ -45,7 +45,7 @@ it enforces.
 | Situation | Action |
 |-----------|--------|
 | Any repo under `~` | `~/.worktrees/<path-key>/<branch>` |
-| Dotfiles repo (`~` is repo root) | Needs `wt --dotfiles`/`--test`/`--shell` opt-in; refuses otherwise |
+| Dotfiles repo (`~` is repo root) | Needs `wt switch <branch> --allow-home`/`verify`/`shell` opt-in; refuses otherwise |
 | Branch created | Push with `-u` and explicit refspec immediately |
 | PR merged/closed | `git worktree remove` the path |
 | Project-local `.worktrees/` exists | IGNORE IT — still use `~/.worktrees/` |
@@ -54,9 +54,9 @@ it enforces.
 
 - Create worktrees inside the repo (no project-local `.worktrees/` or `worktrees/`) — except dotfiles worktrees, which necessarily live at `~/.worktrees/dotfiles/<branch>` inside the `$HOME` tree; that path is `.gitignore`d so it never dirties `git status` in `$HOME`
 - Use `~/.config/superpowers/worktrees/` or any other location
-- Create a dotfiles worktree without the explicit opt-in flag (`wt --dotfiles`/`--test`/`--shell`)
+- Create a dotfiles worktree without the explicit opt-in (`wt switch <branch> --allow-home`/`verify`/`shell`)
 - Use a dotfiles worktree to validate `.zshrc`, `.zshenv`, `.zprofile`, or `.config/zsh/functions/**` — those only run from the real `$HOME`
-- Run bare `just`/`just check` inside a dotfiles worktree instead of `wt --test <branch>`, which sets up the `$HOME`/mise/git-config remapping that makes the gate meaningful
+- Run bare `just`/`just check` inside a dotfiles worktree instead of `wt verify <branch>`, which sets up the `$HOME`/mise/git-config remapping that makes the gate meaningful
 - Skip remote tracking setup after branch creation
 - Let `push.autoSetupRemote` be the only tracking mechanism
 - Update a local branch ref from a different worktree if that branch is checked out elsewhere; use `origin/<branch>` until the owning worktree is free

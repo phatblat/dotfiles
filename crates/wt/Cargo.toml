@@ -1,0 +1,18 @@
+[workspace]
+
+[package]
+name = "wt"
+version = "0.1.0"
+edition = "2021"
+description = "Git worktree resolver for the ~/.worktrees/<path-key>/<branch> convention."
+publish = false
+
+[[bin]]
+name = "wt"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
