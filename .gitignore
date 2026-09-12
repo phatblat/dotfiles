@@ -150,8 +150,6 @@
 !.codex/skills/writing-plans/
 !.codex/skills/
 .codexbar/
-.codexbar/antigravity/
-.codexbar/claude-oauth-cache.lock
 .conche/
 .config/.todoist-linux.json
 .config/1Password/
