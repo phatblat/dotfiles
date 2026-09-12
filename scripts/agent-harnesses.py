@@ -49,6 +49,7 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS
     from harness_skills import (
         MANUAL_SKILL_ADAPTERS,
         NATIVE_SKILL_ADAPTERS,
+        discover_skills,
         is_generated_pointer,
         render_antigravity_skill,
         render_claude_skill,
@@ -251,6 +252,14 @@ def find_orphans(expected: dict[Path, str]) -> list[Path]:
 
 
 def command_generate(*, check: bool) -> int:
+    # Surfaced on both paths so a maintainer who symlinks a skill out of the
+    # repo learns why it renders no adapters, instead of learning it from CI.
+    _, external_skills = discover_skills(SKILL_SOURCE, ROOT)
+    for name, target in sorted(external_skills.items()):
+        print(
+            f"skipped (source outside repo): ~/.agents/skills/{name} -> {target}",
+            file=sys.stderr,
+        )
     expected = render_all()
     stale: list[Path] = []
     obsolete = find_obsolete_skill_wrappers(expected)
@@ -734,10 +743,7 @@ def _is_within(path: str, root: Path) -> bool:
 def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
     commands = discover_commands()
     agents = discover_agents(include_prompts=include_prompts)
-    skills = sorted(
-        str(path.relative_to(SKILL_SOURCE).parent)
-        for path in SKILL_SOURCE.glob("*/SKILL.md")
-    )
+    skills, external_skills = discover_skills(SKILL_SOURCE, ROOT)
     capabilities = ["shared-skills"]
     if (OPEN_CODE / "plugins" / "harness.ts").exists():
         capabilities.append("opencode-plugin")
@@ -747,7 +753,11 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
     return {
         "commands": commands,
         "agents": agents,
-        "skills": {"count": len(skills), "paths": skills},
+        "skills": {
+            "count": len(skills),
+            "paths": skills,
+            "external": sorted(external_skills),
+        },
         "capabilities": capabilities,
         "plugins": configured_plugins(ROOT),
     }
