@@ -659,7 +659,7 @@
 .sonarlint/
 .spaceship/
 .sqlite_history
-.ssh/
+.ssh
 .standard-v14-cache/
 .steampipe/
 .subversion/
