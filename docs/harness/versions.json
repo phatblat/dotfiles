@@ -1,8 +1,8 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.1.27",
-    "version": "1.2.0"
+    "previous": "1.2.0",
+    "version": "1.2.1"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -11,13 +11,13 @@
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.153.3",
-    "version": "codex-cli 0.153.4"
+    "previous": "codex-cli 0.153.4",
+    "version": "codex-cli 0.154.0"
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.91.2",
-    "version": "crush version v0.92.0"
+    "previous": "crush version v0.92.0",
+    "version": "crush version v0.93.1"
   },
   "cursor": {
     "first_seen": "2026-08-29",
@@ -26,13 +26,13 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.24 (68e414c661e3) [alpha]",
-    "version": "grok 1.0.25 (f7e67d6988e2) [alpha]"
+    "previous": "grok 1.0.25 (f7e67d6988e2) [alpha]",
+    "version": "grok 1.0.30 (04b7ffed98c6) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.1.15",
-    "version": "omp/18.1.16"
+    "previous": "omp/18.1.16",
+    "version": "omp/18.1.17"
   },
   "opencode": {
     "first_seen": "2026-08-29",
