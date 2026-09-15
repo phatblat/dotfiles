@@ -129,6 +129,7 @@ HARNESS_ROLES: dict[str, dict[str, str]] = {
 _LOCAL_2026_06_27 = Evidence(kind="local", date="2026-06-27")
 # Probe-backed cells this restructure verified by running the probe.
 _PROBED_2026_08_29 = "2026-08-29"
+_PROBED_2026_09_15 = "2026-09-15"
 
 _SHARED = "~/.agents/harness"
 _SAFETY = "~/crates/ness/src/policy.rs"
@@ -510,7 +511,26 @@ CAPABILITIES: list[Capability] = [
             "pi": Cell(parity="unknown", surface="Local adapter or command wrapper"),
             "omp": Cell(parity="unknown", surface="Local adapter or command wrapper"),
             "antigravity": Cell(
-                parity="unknown", surface="Local adapter or command wrapper"
+                parity="partial",
+                mode="adapter",
+                surface="Excluded from adapter skill emission by source openai.yaml policy",
+                evidence=Evidence(
+                    kind="source",
+                    ref="agent-harnesses.py excludes procedural skills from ANTIGRAVITY_HARNESS/skills",
+                    date=_PROBED_2026_09_15,
+                ),
+                note=(
+                    "Procedural skills carry agents/openai.yaml "
+                    "policy.allow_implicit_invocation: false; the antigravity "
+                    "skill-emission loop excludes them, so only ability skills "
+                    "auto-invoke. Procedural workflows remain reachable via adapter "
+                    "commands. No native per-skill invocation policy exists in agy "
+                    "1.2.1."
+                ),
+                next_action=(
+                    "Verify Antigravity adapter excludes every procedural skill "
+                    "while continuing to emit ability skills"
+                ),
             ),
             "cursor": Cell(
                 parity="unknown", surface="`disable-model-invocation: true`"

@@ -128,12 +128,6 @@
   "~/.agents/harness/adapters/antigravity/skills/brainstorm/SKILL.md": {
     "source": "~/.agents/skills/brainstorm/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/branch-finish/SKILL.md": {
-    "source": "~/.agents/skills/branch-finish/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/ci-fix/SKILL.md": {
-    "source": "~/.agents/skills/ci-fix/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/cmux-workspace-status/SKILL.md": {
     "source": "~/.agents/skills/cmux-workspace-status/SKILL.md"
   },
@@ -146,9 +140,6 @@
   "~/.agents/harness/adapters/antigravity/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/dupe/SKILL.md": {
-    "source": "~/.agents/skills/dupe/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/executing-plans/SKILL.md": {
     "source": "~/.agents/skills/executing-plans/SKILL.md"
   },
@@ -158,68 +149,11 @@
   "~/.agents/harness/adapters/antigravity/skills/find-skills/SKILL.md": {
     "source": "~/.agents/skills/find-skills/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md": {
-    "source": "~/.agents/skills/gh-stack/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/gha-checks/SKILL.md": {
-    "source": "~/.agents/skills/gha-checks/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/gha-log-reader/SKILL.md": {
-    "source": "~/.agents/skills/gha-log-reader/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-cleanup/SKILL.md": {
-    "source": "~/.agents/skills/git-cleanup/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md": {
-    "source": "~/.agents/skills/git-commit/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-push/SKILL.md": {
-    "source": "~/.agents/skills/git-push/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-rebase/SKILL.md": {
-    "source": "~/.agents/skills/git-rebase/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-split/SKILL.md": {
-    "source": "~/.agents/skills/git-split/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-stack/SKILL.md": {
-    "source": "~/.agents/skills/git-stack/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
-    "source": "~/.agents/skills/git-status/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md": {
-    "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-worktree/SKILL.md": {
-    "source": "~/.agents/skills/git-worktree/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/grill-me/SKILL.md": {
-    "source": "~/.agents/skills/grill-me/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/grilling/SKILL.md": {
     "source": "~/.agents/skills/grilling/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/handoff/SKILL.md": {
-    "source": "~/.agents/skills/handoff/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/harness-research/SKILL.md": {
-    "source": "~/.agents/skills/harness-research/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/homebrew/SKILL.md": {
-    "source": "~/.agents/skills/homebrew/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/justfile/SKILL.md": {
-    "source": "~/.agents/skills/justfile/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/linear-plan/SKILL.md": {
-    "source": "~/.agents/skills/linear-plan/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/new-project/SKILL.md": {
-    "source": "~/.agents/skills/new-project/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
@@ -227,17 +161,8 @@
   "~/.agents/harness/adapters/antigravity/skills/omp-hooks/SKILL.md": {
     "source": "~/.agents/skills/omp-hooks/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/optimize-harness/SKILL.md": {
-    "source": "~/.agents/skills/optimize-harness/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/paseo-advisor/SKILL.md": {
-    "source": "~/.agents/skills/paseo-advisor/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/paseo-committee/SKILL.md": {
     "source": "~/.agents/skills/paseo-committee/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/paseo-handoff/SKILL.md": {
-    "source": "~/.agents/skills/paseo-handoff/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/paseo-help/SKILL.md": {
     "source": "~/.agents/skills/paseo-help/SKILL.md"
@@ -248,32 +173,8 @@
   "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
     "source": "~/.agents/skills/paseo/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/pr-approve/SKILL.md": {
-    "source": "~/.agents/skills/pr-approve/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/pr-create/SKILL.md": {
-    "source": "~/.agents/skills/pr-create/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/pr-daily/SKILL.md": {
-    "source": "~/.agents/skills/pr-daily/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/pr-merge/SKILL.md": {
-    "source": "~/.agents/skills/pr-merge/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/pr-open-for-review/SKILL.md": {
-    "source": "~/.agents/skills/pr-open-for-review/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/pr-post-review-findings/SKILL.md": {
-    "source": "~/.agents/skills/pr-post-review-findings/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/pr-resolve-review-feedback/SKILL.md": {
-    "source": "~/.agents/skills/pr-resolve-review-feedback/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/pr-update-desc/SKILL.md": {
-    "source": "~/.agents/skills/pr-update-desc/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
@@ -284,17 +185,8 @@
   "~/.agents/harness/adapters/antigravity/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/resolve-review-feedback/SKILL.md": {
-    "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/retro/SKILL.md": {
-    "source": "~/.agents/skills/retro/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/session-save/SKILL.md": {
-    "source": "~/.agents/skills/session-save/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -302,23 +194,8 @@
   "~/.agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/using-git-worktrees/SKILL.md": {
-    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
     "source": "~/.agents/skills/wayfinder/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/work-end-day/SKILL.md": {
-    "source": "~/.agents/skills/work-end-day/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/work-runners/SKILL.md": {
-    "source": "~/.agents/skills/work-runners/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/work-start/SKILL.md": {
-    "source": "~/.agents/skills/work-start/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/work-track/SKILL.md": {
-    "source": "~/.agents/skills/work-track/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"

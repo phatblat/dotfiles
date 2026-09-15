@@ -750,6 +750,14 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
     if (PI_AGENT / "extensions" / "harness.ts").exists():
         capabilities.append("pi-extension")
 
+    procedural = [
+        name
+        for name in skills
+        if (SKILL_SOURCE / name / "agents" / "openai.yaml").is_file()
+        and "allow_implicit_invocation: false"
+        in (SKILL_SOURCE / name / "agents" / "openai.yaml").read_text()
+    ]
+
     return {
         "commands": commands,
         "agents": agents,
@@ -757,6 +765,7 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
             "count": len(skills),
             "paths": skills,
             "external": sorted(external_skills),
+            "procedural": sorted(procedural),
         },
         "capabilities": capabilities,
         "plugins": configured_plugins(ROOT),
@@ -916,9 +925,20 @@ def render_all() -> dict[Path, str]:
     for skill_name in inventory["skills"]["paths"]:
         source = SKILL_SOURCE / skill_name / "SKILL.md"
         emitted = set(rendered)
-        rendered[ANTIGRAVITY_HARNESS / "skills" / skill_name / "SKILL.md"] = (
-            render_antigravity_skill(skill_name)
+        # Procedural skills must not be implicitly invocable on Antigravity,
+        # which has no per-skill invocation policy. The gate is the source
+        # skill's own agents/openai.yaml allow_implicit_invocation: false
+        # marker, so the exclusion set can never drift from Codex's.
+        procedural = (
+            SKILL_SOURCE / skill_name / "agents" / "openai.yaml"
+        ).is_file() and (
+            "allow_implicit_invocation: false"
+            in (SKILL_SOURCE / skill_name / "agents" / "openai.yaml").read_text()
         )
+        if not procedural:
+            rendered[ANTIGRAVITY_HARNESS / "skills" / skill_name / "SKILL.md"] = (
+                render_antigravity_skill(skill_name)
+            )
         rendered[CURSOR_HARNESS / "skills" / skill_name / "SKILL.md"] = (
             render_cursor_skill(skill_name)
         )
