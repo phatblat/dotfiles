@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.261 (Claude Code) · 2026-09-15 | - |
+| claude | aligned | shared | - | probe · 2.1.251 (Claude Code) · 2026-09-15 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.154.0 · 2026-09-15 | - |
 | opencode | aligned | shared | - | probe · 1.18.30 · 2026-09-15 | - |
 | pi | aligned | shared | - | probe · 0.85.1 · 2026-09-15 | - |
-| omp | aligned | native | - | probe · omp/18.1.17 · 2026-09-15 | inlined shared harness instructions + compaction contract + commit attribution |
+| omp | aligned | native | - | probe · omp/18.1.22 · 2026-09-15 | inlined shared harness instructions + compaction contract + commit attribution |
 | antigravity | partial | adapter | - | probe · 1.2.1 · 2026-09-15 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
-| cursor | partial | adapter | - | probe · 2026.09.02-c22c1a3 · 2026-09-15 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.30 (04b7ffed98c6) [alpha] · 2026-09-15 | inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file |
-| crush | aligned | native | - | probe · crush version v0.93.1 · 2026-09-15 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
+| cursor | partial | adapter | - | probe · 2026.07.01-777f564 · 2026-09-15 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
+| grok | aligned | native | - | probe · grok 1.0.30 (04b7ffed98c6) · 2026-09-15 | inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file |
+| crush | aligned | native | - | probe · crush version v0.94.1 · 2026-09-15 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
 
 ### Not yet researched
 

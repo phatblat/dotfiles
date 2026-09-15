@@ -8,15 +8,15 @@ Coverage: 90/405 cells verified (22%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.261 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| claude | supported peer | 2.1.251 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.154.0 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
 | opencode | new port | 1.18.30 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
 | pi | new port | 0.85.1 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.1.17 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| omp | tracked port | omp/18.1.22 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.2.1 | 2026-08-29 | 4 | 6 | 0 | 0 | 0 | 35 |
-| cursor | tracked port | 2026.09.02-c22c1a3 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.30 (04b7ffed98c6) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
-| crush | new port | crush version v0.93.1 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
+| cursor | tracked port | 2026.07.01-777f564 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
+| grok | new port | grok 1.0.30 (04b7ffed98c6) | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
+| crush | new port | crush version v0.94.1 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
@@ -66,16 +66,16 @@ Coverage: 90/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-09-15 | omp | - | version | omp/18.1.17 | omp/18.1.22 |
+| 2026-09-15 | grok | - | version | grok 1.0.30 (04b7ffed98c6) [alpha] | grok 1.0.30 (04b7ffed98c6) |
+| 2026-09-15 | cursor | - | version | 2026.09.02-c22c1a3 | 2026.07.01-777f564 |
+| 2026-09-15 | crush | - | version | crush version v0.93.1 | crush version v0.94.1 |
+| 2026-09-15 | claude | - | version | 2.1.261 (Claude Code) | 2.1.251 (Claude Code) |
 | 2026-09-13 | omp | - | version | omp/18.1.16 | omp/18.1.17 |
 | 2026-09-13 | grok | - | version | grok 1.0.25 (f7e67d6988e2) [alpha] | grok 1.0.30 (04b7ffed98c6) [alpha] |
 | 2026-09-13 | crush | - | version | crush version v0.92.0 | crush version v0.93.1 |
 | 2026-09-13 | codex | - | version | codex-cli 0.153.4 | codex-cli 0.154.0 |
 | 2026-09-13 | antigravity | - | version | 1.2.0 | 1.2.1 |
-| 2026-09-11 | opencode | - | version | 1.18.29 | 1.18.30 |
-| 2026-09-11 | antigravity | - | version | 1.1.27 | 1.2.0 |
-| 2026-09-10 | omp | - | version | omp/18.1.15 | omp/18.1.16 |
-| 2026-09-10 | grok | - | version | grok 1.0.24 (68e414c661e3) [alpha] | grok 1.0.25 (f7e67d6988e2) [alpha] |
-| 2026-09-09 | omp | - | version | omp/18.1.14 | omp/18.1.15 |
 
 ## Permanent divergences
 
