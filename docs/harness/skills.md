@@ -37,7 +37,7 @@ Note: Codex policy blocks implicit invocation but does not hide enabled skill me
 | opencode | absent | none | No per-skill invocation-policy field | docs · 1.18.25 · 2026-09-02 | Permissions are keyed by tool (bash/edit/skill/...) and match input patterns, not an invocation-policy flag; `skill` permission can only allow/ask/deny loading a named skill outright, it cannot distinguish implicit model-triggered invocation from explicit user invocation. To keep a rarely used procedural skill out of context entirely, move it out of scanned skill paths or gate it behind `[[skills.config]] enabled = false`-style per-project config; there is no Codex-equivalent policy toggle to port. |
 | pi | unknown | none | Local adapter or command wrapper | - | - |
 | omp | unknown | none | Local adapter or command wrapper | - | - |
-| antigravity | unknown | none | Local adapter or command wrapper | - | - |
+| antigravity | partial | adapter | Excluded from adapter skill emission by source openai.yaml policy | source · - · 2026-09-15 | Procedural skills carry agents/openai.yaml policy.allow_implicit_invocation: false; the antigravity skill-emission loop excludes them, so only ability skills auto-invoke. Procedural workflows remain reachable via adapter commands. No native per-skill invocation policy exists in agy 1.2.1. |
 | cursor | unknown | none | `disable-model-invocation: true` | - | - |
 | grok | unknown | none | `disable-model-invocation: true` | - | - |
 | crush | unknown | none | `disable-model-invocation: true` | - | - |

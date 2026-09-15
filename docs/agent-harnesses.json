@@ -1047,17 +1047,17 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
+            "date": "2026-09-15",
+            "kind": "source",
+            "ref": "agent-harnesses.py excludes procedural skills from ANTIGRAVITY_HARNESS/skills",
             "version": ""
           },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
+          "mode": "adapter",
+          "next_action": "Verify Antigravity adapter excludes every procedural skill while continuing to emit ability skills",
+          "note": "Procedural skills carry agents/openai.yaml policy.allow_implicit_invocation: false; the antigravity skill-emission loop excludes them, so only ability skills auto-invoke. Procedural workflows remain reachable via adapter commands. No native per-skill invocation policy exists in agy 1.2.1.",
+          "parity": "partial",
           "probe": null,
-          "surface": "Local adapter or command wrapper"
+          "surface": "Excluded from adapter skill emission by source openai.yaml policy"
         },
         "claude": {
           "artifacts": [],
@@ -7463,7 +7463,7 @@
   ],
   "coverage": {
     "total": 405,
-    "verified": 90
+    "verified": 91
   },
   "divergences": [
     {
