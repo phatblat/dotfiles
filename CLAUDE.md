@@ -53,3 +53,7 @@ Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude
 - Tool versions: run `mise ls` (never hardcode versions — they go stale)
 - Check for tools installed via both mise and Homebrew with `just package-audit` (see `docs/package-management.md`)
 - Just recipes: run `just --list`
+
+## Tessl
+
+Read `~/.tessl/RULES.md` when a task involves tessl skills or plugins. Only `~/.tessl/RULES.md` and `~/.tessl/tessl.json` are tracked — everything else under `~/.tessl/` is ignored runtime state or credentials. `tessl init` re-injects `@../.tessl/RULES.md` into `~/.claude/CLAUDE.md` and other harness memory files; delete those and keep this section as the only inclusion point.

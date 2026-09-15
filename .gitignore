@@ -676,6 +676,9 @@
 .templateengine/
 .terminfo/
 .terraform.d/
+.tessl/*
+!.tessl/RULES.md
+!.tessl/tessl.json
 .thunderbird/
 .tldrc/
 .tokview/

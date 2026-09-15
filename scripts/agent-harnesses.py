@@ -1112,6 +1112,10 @@ def render_safety_policy() -> str:
             ".cursor/ai-tracking/*",
             ".grok/auth.json",
             ".grok/mcp_credentials.json",
+            ".tessl/api-credentials.json",
+            ".tessl/agent/auth.json",
+            ".tessl/llm-keys/*",
+            ".tessl/remote-config.json",
         ],
         "blocked_command_categories": [
             "privilege-escalation",
