@@ -83,3 +83,5 @@ statusLine:
   showHookStatus: true
 codexResets:
   autoRedeem: "no"
+ask:
+  timeout: 1800
