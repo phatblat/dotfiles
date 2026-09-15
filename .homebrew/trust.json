@@ -1,0 +1,28 @@
+{
+  "trustedcasks": [
+    "yoanwai/tap/agent-manager"
+  ],
+  "trustedformulae": [
+    "cirruslabs/cli/cirrus",
+    "cirruslabs/cli/sshpass",
+    "getsentry/tools/sentry",
+    "jetbrains/utils/kotlin-lsp",
+    "teamookla/speedtest/speedtest"
+  ],
+  "trustedtaps": [
+    "beadbox/cask",
+    "dagger/tap",
+    "danger/tap",
+    "earthbuild/tap",
+    "gofireflyio/aiac",
+    "holgerbrandl/tap",
+    "https://github.com/jundot/omlx",
+    "jetbrains/utils",
+    "kylef/formulae",
+    "leoafarias/fvm",
+    "manaflow-ai/cmux",
+    "messense/macos-cross-toolchains",
+    "schpet/tap",
+    "tw93/tap"
+  ]
+}
