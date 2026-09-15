@@ -20,7 +20,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | csharp-lsp@claude-plugins-official | missing | enabled |
 | documents@openai-primary-runtime | missing | enabled |
 | gopls-lsp@claude-plugins-official | enabled | enabled |
-| hookify@claude-plugins-official | disabled | disabled |
+| hookify@claude-plugins-official | disabled | missing |
 | jdtls-lsp@claude-plugins-official | missing | enabled |
 | kotlin-lsp@claude-plugins-official | enabled | enabled |
 | linear-cli@linear-cli | missing | enabled |
@@ -34,7 +34,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | pyright-lsp@claude-plugins-official | enabled | enabled |
 | ralph-loop@claude-plugins-official | disabled | missing |
 | rust-analyzer-lsp@claude-plugins-official | enabled | enabled |
-| security-guidance@claude-plugins-official | disabled | disabled |
+| security-guidance@claude-plugins-official | disabled | missing |
 | sites@openai-bundled | missing | enabled |
 | skill-creator@claude-plugins-official | disabled | missing |
 | spreadsheets@openai-primary-runtime | missing | enabled |
