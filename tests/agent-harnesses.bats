@@ -29,6 +29,12 @@ skip_unless_home_is_this_checkout() {
   [ "$status" -eq 0 ]
 }
 
+@test "agent-harnesses: skill discovery passes unit tests" {
+  run python3 "$HOME/tests/test_harness_skills.py"
+
+  [ "$status" -eq 0 ]
+}
+
 @test "agent-harnesses: inventories active commands, agents, and skills without a graph capability" {
   skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" inventory --json
@@ -177,6 +183,40 @@ skip_unless_home_is_this_checkout() {
   [ "$symlink_target_exists" = true ]
   [ "$second_generate_status" -eq 0 ]
   [ "$idempotent_check_status" -eq 0 ]
+}
+
+@test "agent-harnesses: out-of-repo skills render no adapters and no drift" {
+  skip_unless_home_is_this_checkout
+  external_skill="external-source-skill"
+  link="$HOME/.agents/skills/$external_skill"
+  target="$BATS_TEST_TMPDIR/$external_skill"
+  [ ! -e "$link" ]
+
+  mkdir -p "$target"
+  printf -- '---\nname: %s\ndescription: fixture\n---\n' "$external_skill" \
+    >"$target/SKILL.md"
+  ln -s "$target" "$link"
+
+  run python3 "$SCRIPT" generate --check
+  resolving_status="$status"
+  resolving_output="$output"
+  resolving_inventory="$(python3 "$SCRIPT" inventory --json)"
+
+  rm -rf "$target"
+  run python3 "$SCRIPT" generate --check
+  dangling_status="$status"
+  dangling_inventory="$(python3 "$SCRIPT" inventory --json)"
+
+  rm -f "$link"
+
+  [ "$resolving_status" -eq 0 ]
+  [ "$dangling_status" -eq 0 ]
+  [[ "$resolving_output" == *"skipped (source outside repo): ~/.agents/skills/$external_skill -> $target"* ]]
+  [ ! -e "$HOME/.agents/harness/adapters/antigravity/skills/$external_skill" ]
+  [ ! -e "$HOME/.agents/harness/adapters/cursor/skills/$external_skill" ]
+  [ "$(printf '%s' "$resolving_inventory" | jq -r --arg s "$external_skill" '.skills.paths | index($s) // "absent"')" = "absent" ]
+  [ "$(printf '%s' "$resolving_inventory" | jq -r --arg s "$external_skill" '.skills.external | index($s) != null')" = "true" ]
+  [ "$(printf '%s' "$resolving_inventory" | jq -c '.skills')" = "$(printf '%s' "$dangling_inventory" | jq -c '.skills')" ]
 }
 
 @test "agent-harnesses: generated manifest contains native plugin matrix" {

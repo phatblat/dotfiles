@@ -93,3 +93,11 @@ until the triggering condition exists, per the Architectural Decision below.
   convention is still moving: a copy forks the source and needs manual resync
   on every `SKILL.md` change; a symlink stays current for free.
 - **Create a `CHANGELOG.md`.** Rejected: no releases, nothing to describe.
+
+## Errata
+
+- 2026-09-11: Clause 8's statement that the symlinked skills' generated
+  `antigravity`/`cursor` adapters are committed is superseded by
+  [2026-09-11-exclude-out-of-repo-skills](./2026-09-11-exclude-out-of-repo-skills.md);
+  skills whose source resolves outside the repository are no longer rendered.
+  The adoption decision is otherwise unchanged.

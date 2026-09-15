@@ -122,3 +122,8 @@
 {"capability":"-","date":"2026-09-10","detail":"","field":"version","from":"omp/18.1.15","harness":"omp","to":"omp/18.1.16","version_from":"omp/18.1.15","version_to":"omp/18.1.16"}
 {"capability":"-","date":"2026-09-11","detail":"","field":"version","from":"1.1.27","harness":"antigravity","to":"1.2.0","version_from":"1.1.27","version_to":"1.2.0"}
 {"capability":"-","date":"2026-09-11","detail":"","field":"version","from":"1.18.29","harness":"opencode","to":"1.18.30","version_from":"1.18.29","version_to":"1.18.30"}
+{"capability":"-","date":"2026-09-13","detail":"","field":"version","from":"1.2.0","harness":"antigravity","to":"1.2.1","version_from":"1.2.0","version_to":"1.2.1"}
+{"capability":"-","date":"2026-09-13","detail":"","field":"version","from":"codex-cli 0.153.4","harness":"codex","to":"codex-cli 0.154.0","version_from":"codex-cli 0.153.4","version_to":"codex-cli 0.154.0"}
+{"capability":"-","date":"2026-09-13","detail":"","field":"version","from":"crush version v0.92.0","harness":"crush","to":"crush version v0.93.1","version_from":"crush version v0.92.0","version_to":"crush version v0.93.1"}
+{"capability":"-","date":"2026-09-13","detail":"","field":"version","from":"grok 1.0.25 (f7e67d6988e2) [alpha]","harness":"grok","to":"grok 1.0.30 (04b7ffed98c6) [alpha]","version_from":"grok 1.0.25 (f7e67d6988e2) [alpha]","version_to":"grok 1.0.30 (04b7ffed98c6) [alpha]"}
+{"capability":"-","date":"2026-09-13","detail":"","field":"version","from":"omp/18.1.16","harness":"omp","to":"omp/18.1.17","version_from":"omp/18.1.16","version_to":"omp/18.1.17"}

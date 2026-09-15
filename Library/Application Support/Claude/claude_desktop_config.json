@@ -9,10 +9,13 @@
     "coworkPreferredBrowser": "built_in",
     "launchPreviewPersistedWorkspaces": [],
     "launchPreviewSessionScopedSessions": [],
+    "coworkLegacyRootGrantsPruned": true,
     "coworkScheduledTasksEnabled": true,
     "coworkHipaaRestricted": false,
     "orgWorkAcrossAppsDisabled": false,
     "ccdScheduledTasksEnabled": true,
+    "hybridDetectLatched": true,
+    "earlyWindowShowLatched": true,
     "sidebarMode": "chat",
     "bypassPermissionsGateByAccount": {
       "193b5ba3-3754-4e2a-953b-4adcc4457018": false,
@@ -73,7 +76,6 @@
         "version": 0
       }
     },
-    "coworkLegacyRootGrantsPruned": true,
-    "hybridDetectLatched": true
+    "storeReadCacheLatched": true
   }
 }

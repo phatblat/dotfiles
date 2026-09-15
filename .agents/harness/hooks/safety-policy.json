@@ -24,7 +24,11 @@
     ".gemini/antigravity-cli/conversations/*",
     ".cursor/ai-tracking/*",
     ".grok/auth.json",
-    ".grok/mcp_credentials.json"
+    ".grok/mcp_credentials.json",
+    ".tessl/api-credentials.json",
+    ".tessl/agent/auth.json",
+    ".tessl/llm-keys/*",
+    ".tessl/remote-config.json"
   ],
   "secret_categories": [
     "ai-provider-key",
