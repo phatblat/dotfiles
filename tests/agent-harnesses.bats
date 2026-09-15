@@ -506,12 +506,28 @@ skip_unless_home_is_this_checkout() {
   grep -Fx '  allow_implicit_invocation: false' \
     "$HOME/.agents/skills/grill-me/agents/openai.yaml"
 
-  for skill in grill-me grilling; do
+  # grilling is an ability skill and is wired into every adapter.
+  for skill in grilling; do
     for pointer in \
       "$HOME/.claude/skills/$skill/SKILL.md" \
       "$HOME/.codex/skills/$skill/SKILL.md" \
       "$HOME/.config/opencode/skills/$skill/SKILL.md" \
       "$HOME/.agents/harness/adapters/antigravity/skills/$skill/SKILL.md" \
+      "$HOME/.agents/harness/adapters/cursor/skills/$skill/SKILL.md"; do
+      [ -f "$pointer" ]
+      grep -Fq "Load and follow the shared skill at \`~/.agents/skills/$skill/SKILL.md\`." "$pointer"
+      run git -C "$HOME" ls-files --error-unmatch "$pointer"
+      [ "$status" -eq 0 ]
+    done
+  done
+
+  # grill-me is procedural; the Antigravity adapter excludes procedural
+  # skills because it has no per-skill implicit-invocation policy.
+  for skill in grill-me; do
+    for pointer in \
+      "$HOME/.claude/skills/$skill/SKILL.md" \
+      "$HOME/.codex/skills/$skill/SKILL.md" \
+      "$HOME/.config/opencode/skills/$skill/SKILL.md" \
       "$HOME/.agents/harness/adapters/cursor/skills/$skill/SKILL.md"; do
       [ -f "$pointer" ]
       grep -Fq "Load and follow the shared skill at \`~/.agents/skills/$skill/SKILL.md\`." "$pointer"
@@ -633,10 +649,12 @@ skip_unless_home_is_this_checkout() {
   agent_count=$(find "$adapter/agents" -type f -name '*.md' | wc -l | tr -d ' ')
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
+  procedural_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.procedural | length')
+  expected_skill_count=$((inventory_skill_count - procedural_count))
 
   [ "$command_count" -eq 28 ]
   [ "$agent_count" -eq 6 ]
-  [ "$skill_count" -eq "$inventory_skill_count" ]
+  [ "$skill_count" -eq "$expected_skill_count" ]
 
   jq . "$adapter/plugin.json" >/dev/null
   jq . "$adapter/hooks/hooks.json" >/dev/null

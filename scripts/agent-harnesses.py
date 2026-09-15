@@ -750,6 +750,14 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
     if (PI_AGENT / "extensions" / "harness.ts").exists():
         capabilities.append("pi-extension")
 
+    procedural = [
+        name
+        for name in skills
+        if (SKILL_SOURCE / name / "agents" / "openai.yaml").is_file()
+        and "allow_implicit_invocation: false"
+        in (SKILL_SOURCE / name / "agents" / "openai.yaml").read_text()
+    ]
+
     return {
         "commands": commands,
         "agents": agents,
@@ -757,6 +765,7 @@ def build_inventory(*, include_prompts: bool = False) -> dict[str, Any]:
             "count": len(skills),
             "paths": skills,
             "external": sorted(external_skills),
+            "procedural": sorted(procedural),
         },
         "capabilities": capabilities,
         "plugins": configured_plugins(ROOT),
