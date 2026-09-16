@@ -16,6 +16,7 @@
     "ccdScheduledTasksEnabled": true,
     "hybridDetectLatched": true,
     "earlyWindowShowLatched": true,
+    "storeReadCacheLatched": true,
     "sidebarMode": "chat",
     "bypassPermissionsGateByAccount": {
       "193b5ba3-3754-4e2a-953b-4adcc4457018": false,
@@ -43,7 +44,8 @@
           "extraPanesByMode": {},
           "colWeightsByMode": {},
           "rowSplit": 0.5,
-          "draftNonce": 0
+          "draftNonce": 0,
+          "lastPrimaryCodeSession": null
         },
         "version": 4
       },
@@ -75,7 +77,6 @@
         },
         "version": 0
       }
-    },
-    "storeReadCacheLatched": true
+    }
   }
 }
