@@ -2,7 +2,7 @@
   "antigravity": {
     "first_seen": "2026-08-29",
     "previous": "1.2.1",
-    "version": ""
+    "version": "1.2.1"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -17,12 +17,12 @@
   "crush": {
     "first_seen": "2026-08-29",
     "previous": "crush version v0.94.1",
-    "version": ""
+    "version": "crush version v0.94.2"
   },
   "cursor": {
     "first_seen": "2026-08-29",
     "previous": "2026.07.01-777f564",
-    "version": ""
+    "version": "2026.09.02-c22c1a3"
   },
   "grok": {
     "first_seen": "2026-08-29",
@@ -31,13 +31,13 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.1.22",
-    "version": "omp/18.2.0"
+    "previous": "omp/18.2.0",
+    "version": "omp/18.2.1"
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "1.18.29",
-    "version": "1.18.30"
+    "previous": "1.18.30",
+    "version": "1.18.31"
   },
   "pi": {
     "first_seen": "2026-08-29",

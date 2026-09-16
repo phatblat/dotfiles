@@ -15,13 +15,13 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | aligned | shared | - | probe · 2.1.261 (Claude Code) · 2026-09-16 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.154.0 · 2026-09-16 | - |
-| opencode | aligned | shared | - | probe · 1.18.30 · 2026-09-16 | - |
+| opencode | aligned | shared | - | probe · 1.18.31 · 2026-09-16 | - |
 | pi | aligned | shared | - | probe · 0.85.1 · 2026-09-16 | - |
-| omp | aligned | native | - | probe · omp/18.2.0 · 2026-09-16 | inlined shared harness instructions + compaction contract + commit attribution |
-| antigravity | partial | adapter | - | probe · - · 2026-09-16 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
-| cursor | partial | adapter | - | probe · - · 2026-09-16 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
+| omp | aligned | native | - | probe · omp/18.2.1 · 2026-09-16 | inlined shared harness instructions + compaction contract + commit attribution |
+| antigravity | partial | adapter | - | probe · 1.2.1 · 2026-09-16 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
+| cursor | partial | adapter | - | probe · 2026.09.02-c22c1a3 · 2026-09-16 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
 | grok | aligned | native | - | probe · grok 1.0.30 (04b7ffed98c6) [alpha] · 2026-09-16 | inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file |
-| crush | aligned | native | - | probe · - · 2026-09-16 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
+| crush | aligned | native | - | probe · crush version v0.94.2 · 2026-09-16 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
 
 ### Not yet researched
 
