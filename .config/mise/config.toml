@@ -173,6 +173,15 @@ DENO_TLS_CA_STORE = "system"
 NODE_USE_SYSTEM_CA = "1"
 UV_SYSTEM_CERTS = "1"
 
+# macOS calloc(3) doesn't reliably zero allocations, so tmux's configure
+# script refuses to proceed without an explicit --enable/--disable choice
+# for jemalloc and utf8proc. The asdf-tmux plugin only forwards a single
+# unsplit word via TMUX_EXTRA_CONFIGURE_OPTIONS, so two flags can't be
+# passed that way; set the autoconf-generated `enable_*` shell variables
+# directly instead, which configure honors from the environment.
+enable_jemalloc = "no"
+enable_utf8proc = "no"
+
 # Agent/tool output
 ENABLE_LSP_TOOL = "1"
 FORCE_COLOR = "3"
