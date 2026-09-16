@@ -132,12 +132,12 @@
 {"capability":"-","date":"2026-09-15","detail":"","field":"version","from":"2026.09.02-c22c1a3","harness":"cursor","to":"2026.07.01-777f564","version_from":"2026.09.02-c22c1a3","version_to":"2026.07.01-777f564"}
 {"capability":"-","date":"2026-09-15","detail":"","field":"version","from":"grok 1.0.30 (04b7ffed98c6) [alpha]","harness":"grok","to":"grok 1.0.30 (04b7ffed98c6)","version_from":"grok 1.0.30 (04b7ffed98c6) [alpha]","version_to":"grok 1.0.30 (04b7ffed98c6)"}
 {"capability":"-","date":"2026-09-15","detail":"","field":"version","from":"omp/18.1.17","harness":"omp","to":"omp/18.1.22","version_from":"omp/18.1.17","version_to":"omp/18.1.22"}
-{"capability":"skills.manual_only","date":"2026-09-16","detail":"","field":"parity","from":"unknown","harness":"antigravity","to":"partial","version_from":"1.2.1","version_to":""}
-{"capability":"skills.manual_only","date":"2026-09-16","detail":"","field":"mode","from":"none","harness":"antigravity","to":"adapter","version_from":"1.2.1","version_to":""}
-{"capability":"skills.manual_only","date":"2026-09-16","detail":"","field":"surface","from":"Local adapter or command wrapper","harness":"antigravity","to":"Excluded from adapter skill emission by source openai.yaml policy","version_from":"1.2.1","version_to":""}
-{"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"1.2.1","harness":"antigravity","to":"","version_from":"1.2.1","version_to":""}
+{"capability":"skills.manual_only","date":"2026-09-16","detail":"","field":"parity","from":"unknown","harness":"antigravity","to":"partial","version_from":"1.2.1","version_to":"1.2.3"}
+{"capability":"skills.manual_only","date":"2026-09-16","detail":"","field":"mode","from":"none","harness":"antigravity","to":"adapter","version_from":"1.2.1","version_to":"1.2.3"}
+{"capability":"skills.manual_only","date":"2026-09-16","detail":"","field":"surface","from":"Local adapter or command wrapper","harness":"antigravity","to":"Excluded from adapter skill emission by source openai.yaml policy","version_from":"1.2.1","version_to":"1.2.3"}
+{"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"1.2.1","harness":"antigravity","to":"1.2.3","version_from":"1.2.1","version_to":"1.2.3"}
 {"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"2.1.251 (Claude Code)","harness":"claude","to":"2.1.261 (Claude Code)","version_from":"2.1.251 (Claude Code)","version_to":"2.1.261 (Claude Code)"}
-{"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"crush version v0.94.1","harness":"crush","to":"","version_from":"crush version v0.94.1","version_to":""}
+{"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"crush version v0.94.1","harness":"crush","to":"crush version v0.94.2","version_from":"crush version v0.94.1","version_to":"crush version v0.94.2"}
 {"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"2026.07.01-777f564","harness":"cursor","to":"","version_from":"2026.07.01-777f564","version_to":""}
 {"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"grok 1.0.30 (04b7ffed98c6)","harness":"grok","to":"grok 1.0.30 (04b7ffed98c6) [alpha]","version_from":"grok 1.0.30 (04b7ffed98c6)","version_to":"grok 1.0.30 (04b7ffed98c6) [alpha]"}
 {"capability":"-","date":"2026-09-16","detail":"","field":"version","from":"omp/18.1.22","harness":"omp","to":"omp/18.2.0","version_from":"omp/18.1.22","version_to":"omp/18.2.0"}
