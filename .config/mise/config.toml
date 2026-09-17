@@ -39,7 +39,7 @@
 "npm:@openai/codex" = "0.154.0"
 "npm:@sentry/wizard" = "7.0.3"
 "npm:@vtsls/language-server" = "0.3.0"
-"npm:bash-language-server" = "5.7.0"
+"npm:bash-language-server" = "5.7.1"
 "npm:ccusage" = "20.0.20"
 "npm:claudekit" = "0.9.5"
 "npm:ctx7" = "0.5.11"
