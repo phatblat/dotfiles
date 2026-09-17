@@ -18,7 +18,7 @@ Verify: `just harness-check`
 | opencode | aligned | shared | - | probe · 1.18.31 · 2026-09-16 | - |
 | pi | aligned | shared | - | probe · 0.85.1 · 2026-09-16 | - |
 | omp | aligned | shared | - | probe · omp/18.2.1 · 2026-09-16 | - |
-| antigravity | aligned | shared | - | probe · 1.2.1 · 2026-09-16 | - |
+| antigravity | aligned | shared | - | probe · 1.2.3 · 2026-09-16 | - |
 | cursor | aligned | shared | - | probe · 2026.09.02-c22c1a3 · 2026-09-16 | - |
 | grok | aligned | shared | - | probe · grok 1.0.30 (04b7ffed98c6) [alpha] · 2026-09-16 | - |
 | crush | aligned | shared | - | probe · crush version v0.94.2 · 2026-09-16 | - |

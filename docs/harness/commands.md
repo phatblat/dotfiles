@@ -18,7 +18,7 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 | opencode | aligned | adapter | - | probe · 1.18.31 · 2026-09-16 | generated command templates |
 | pi | aligned | adapter | - | probe · 0.85.1 · 2026-09-16 | generated prompt templates |
 | omp | aligned | native | - | probe · omp/18.2.1 · 2026-09-16 | - |
-| antigravity | partial | adapter | - | probe · 1.2.1 · 2026-09-16 | generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills |
+| antigravity | partial | adapter | - | probe · 1.2.3 · 2026-09-16 | generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills |
 | cursor | partial | native | - | probe · 2026.09.02-c22c1a3 · 2026-09-16 | generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified |
 | grok | partial | native | - | probe · grok 1.0.30 (04b7ffed98c6) [alpha] · 2026-09-16 | grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
 | crush | partial | native | - | probe · crush version v0.94.2 · 2026-09-16 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |

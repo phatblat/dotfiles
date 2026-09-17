@@ -13,7 +13,7 @@ Coverage: 91/405 cells verified (22%)
 | opencode | new port | 1.18.31 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
 | pi | new port | 0.85.1 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
 | omp | tracked port | omp/18.2.1 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.2.1 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
+| antigravity | tracked port | 1.2.3 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
 | cursor | tracked port | 2026.09.02-c22c1a3 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.30 (04b7ffed98c6) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.94.2 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
@@ -75,7 +75,7 @@ Coverage: 91/405 cells verified (22%)
 | 2026-09-16 | omp | - | version | omp/18.1.22 | omp/18.2.0 |
 | 2026-09-16 | grok | - | version | grok 1.0.30 (04b7ffed98c6) | grok 1.0.30 (04b7ffed98c6) [alpha] |
 | 2026-09-16 | cursor | - | version | 2026.07.01-777f564 | - |
-| 2026-09-16 | crush | - | version | crush version v0.94.1 | - |
+| 2026-09-16 | crush | - | version | crush version v0.94.1 | crush version v0.94.2 |
 | 2026-09-16 | claude | - | version | 2.1.251 (Claude Code) | 2.1.261 (Claude Code) |
 
 ## Permanent divergences
