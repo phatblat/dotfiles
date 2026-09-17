@@ -5,8 +5,7 @@
 # its parent shell's directory: the binary writes the directory to enter into
 # the file named by --cd-file, and this function acts on it.
 def --env wt [...args: string] {
-    let cd_file = ([($env.TMPDIR? | default "/tmp") $"wt-cd.($nu.pid)"] | path join)
-    "" | save --force $cd_file
+    let cd_file = (^mktemp ([($env.TMPDIR? | default "/tmp") "wt-cd.XXXXXX"] | path join))
     let rc = (try { ^wt --cd-file $cd_file ...$args; 0 } catch { $env.LAST_EXIT_CODE })
     let dest = (open --raw $cd_file | str trim)
     rm --force $cd_file

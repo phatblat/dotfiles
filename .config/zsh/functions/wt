@@ -8,8 +8,8 @@
 # the file named by --cd-file, and this function acts on it. Every other action
 # -- list, path, verify, shell, overlay -- passes straight through untouched.
 
-local cd_file="${TMPDIR:-/tmp}/wt-cd.$$"
-: > "$cd_file"
+local cd_file
+cd_file=$(mktemp "${TMPDIR:-/tmp}/wt-cd.XXXXXX") || return $?
 command wt --cd-file "$cd_file" "$@"
 local rc=$?
 local dest
