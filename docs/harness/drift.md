@@ -10,27 +10,32 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 |---|---|---|---|
 | claude | 2.1.261 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
 | codex | codex-cli 0.154.0 | 2026-08-29 | codex-cli 0.153.4 |
-| opencode | 1.18.30 | 2026-08-29 | 1.18.29 |
+| opencode | 1.18.31 | 2026-08-29 | 1.18.30 |
 | pi | 0.85.1 | 2026-08-29 | 0.85.0 |
-| omp | omp/18.2.0 | 2026-08-29 | omp/18.1.22 |
-| antigravity | - | 2026-08-29 | 1.2.1 |
-| cursor | - | 2026-08-29 | 2026.07.01-777f564 |
+| omp | omp/18.2.1 | 2026-08-29 | omp/18.2.0 |
+| antigravity | 1.2.3 | 2026-08-29 | 1.2.1 |
+| cursor | 2026.09.02-c22c1a3 | 2026-08-29 | 2026.07.01-777f564 |
 | grok | grok 1.0.30 (04b7ffed98c6) [alpha] | 2026-08-29 | grok 1.0.30 (04b7ffed98c6) |
-| crush | - | 2026-08-29 | crush version v0.94.1 |
+| crush | crush version v0.94.2 | 2026-08-29 | crush version v0.94.1 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-09-16 | opencode | - | version | 1.18.30 | 1.18.31 | 1.18.31 |
+| 2026-09-16 | omp | - | version | omp/18.2.0 | omp/18.2.1 | omp/18.2.1 |
+| 2026-09-16 | cursor | - | version | - | 2026.09.02-c22c1a3 | 2026.09.02-c22c1a3 |
+| 2026-09-16 | crush | - | version | - | crush version v0.94.2 | crush version v0.94.2 |
+| 2026-09-16 | antigravity | - | version | - | 1.2.1 | 1.2.1 |
 | 2026-09-16 | omp | - | version | omp/18.1.22 | omp/18.2.0 | omp/18.2.0 |
 | 2026-09-16 | grok | - | version | grok 1.0.30 (04b7ffed98c6) | grok 1.0.30 (04b7ffed98c6) [alpha] | grok 1.0.30 (04b7ffed98c6) [alpha] |
 | 2026-09-16 | cursor | - | version | 2026.07.01-777f564 | - | - |
-| 2026-09-16 | crush | - | version | crush version v0.94.1 | - | - |
+| 2026-09-16 | crush | - | version | crush version v0.94.1 | crush version v0.94.2 | crush version v0.94.2 |
 | 2026-09-16 | claude | - | version | 2.1.251 (Claude Code) | 2.1.261 (Claude Code) | 2.1.261 (Claude Code) |
-| 2026-09-16 | antigravity | - | version | 1.2.1 | - | - |
-| 2026-09-16 | antigravity | skills.manual_only | surface | Local adapter or command wrapper | Excluded from adapter skill emission by source openai.yaml policy | - |
-| 2026-09-16 | antigravity | skills.manual_only | mode | none | adapter | - |
-| 2026-09-16 | antigravity | skills.manual_only | parity | unknown | partial | - |
+| 2026-09-16 | antigravity | - | version | 1.2.1 | 1.2.3 | 1.2.3 |
+| 2026-09-16 | antigravity | skills.manual_only | surface | Local adapter or command wrapper | Excluded from adapter skill emission by source openai.yaml policy | 1.2.3 |
+| 2026-09-16 | antigravity | skills.manual_only | mode | none | adapter | 1.2.3 |
+| 2026-09-16 | antigravity | skills.manual_only | parity | unknown | partial | 1.2.3 |
 | 2026-09-15 | omp | - | version | omp/18.1.17 | omp/18.1.22 | omp/18.1.22 |
 | 2026-09-15 | grok | - | version | grok 1.0.30 (04b7ffed98c6) [alpha] | grok 1.0.30 (04b7ffed98c6) | grok 1.0.30 (04b7ffed98c6) |
 | 2026-09-15 | cursor | - | version | 2026.09.02-c22c1a3 | 2026.07.01-777f564 | 2026.07.01-777f564 |

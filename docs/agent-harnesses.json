@@ -15,7 +15,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "1.2.3"
           },
           "mode": "adapter",
           "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
@@ -78,7 +78,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "crush version v0.94.2"
           },
           "mode": "native",
           "next_action": "",
@@ -100,7 +100,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "2026.09.02-c22c1a3"
           },
           "mode": "adapter",
           "next_action": "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
@@ -142,7 +142,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.2.0"
+            "version": "omp/18.2.1"
           },
           "mode": "native",
           "next_action": "",
@@ -163,7 +163,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "shared",
           "next_action": "",
@@ -534,7 +534,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "1.2.3"
           },
           "mode": "adapter",
           "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
@@ -597,7 +597,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "crush version v0.94.2"
           },
           "mode": "native",
           "next_action": "",
@@ -618,7 +618,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "2026.09.02-c22c1a3"
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers and activates generated shared skill wrappers",
@@ -660,7 +660,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.2.0"
+            "version": "omp/18.2.1"
           },
           "mode": "native",
           "next_action": "",
@@ -681,7 +681,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "shared",
           "next_action": "",
@@ -1682,7 +1682,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "1.2.3"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity command schema or flatten command wrappers so all 25 commands are discovered",
@@ -1745,7 +1745,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "crush version v0.94.2"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
@@ -1766,7 +1766,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "2026.09.02-c22c1a3"
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers all 25 generated command wrappers",
@@ -1808,7 +1808,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.2.0"
+            "version": "omp/18.2.1"
           },
           "mode": "native",
           "next_action": "",
@@ -1830,7 +1830,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2203,7 +2203,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "1.2.3"
           },
           "mode": "emulated",
           "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
@@ -2266,7 +2266,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "crush version v0.94.2"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for user-defined agent support",
@@ -2287,7 +2287,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "2026.09.02-c22c1a3"
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers generated specialist agent wrappers",
@@ -2329,7 +2329,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.2.0"
+            "version": "omp/18.2.1"
           },
           "mode": "native",
           "next_action": "",
@@ -2351,7 +2351,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2883,7 +2883,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_contains",
-            "version": ""
+            "version": "1.2.3"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
@@ -2950,7 +2950,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_contains",
-            "version": ""
+            "version": "crush version v0.94.2"
           },
           "mode": "adapter",
           "next_action": "Install crush and verify it blocks a denied shell command through the generated crushrc PreToolUse hook",
@@ -2973,7 +2973,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_contains",
-            "version": ""
+            "version": "2026.09.02-c22c1a3"
           },
           "mode": "adapter",
           "next_action": "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
@@ -3018,7 +3018,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.2.0"
+            "version": "omp/18.2.1"
           },
           "mode": "adapter",
           "next_action": "",
@@ -3040,7 +3040,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "adapter",
           "next_action": "",
@@ -5173,7 +5173,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "1.2.3"
           },
           "mode": "native",
           "next_action": "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
@@ -5236,7 +5236,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "crush version v0.94.2"
           },
           "mode": "native",
           "next_action": "",
@@ -5257,7 +5257,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "2026.09.02-c22c1a3"
           },
           "mode": "native",
           "next_action": "Verify Cursor resume and history behavior against compact-preservation requirements",
@@ -5299,7 +5299,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.2.0"
+            "version": "omp/18.2.1"
           },
           "mode": "native",
           "next_action": "",
@@ -5320,7 +5320,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "adapter",
           "next_action": "",
@@ -7107,7 +7107,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "1.2.3"
           },
           "mode": "shared",
           "next_action": "",
@@ -7170,7 +7170,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "crush version v0.94.2"
           },
           "mode": "shared",
           "next_action": "",
@@ -7191,7 +7191,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "2026.09.02-c22c1a3"
           },
           "mode": "shared",
           "next_action": "",
@@ -7233,7 +7233,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.2.0"
+            "version": "omp/18.2.1"
           },
           "mode": "shared",
           "next_action": "",
@@ -7254,7 +7254,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "shared",
           "next_action": "",
@@ -7419,7 +7419,7 @@
             "date": "2026-09-16",
             "kind": "probe",
             "ref": "cli_exit_zero",
-            "version": "1.18.30"
+            "version": "1.18.31"
           },
           "mode": "native",
           "next_action": "",
@@ -7830,7 +7830,7 @@
     "antigravity": {
       "first_seen": "2026-08-29",
       "previous": "1.2.1",
-      "version": ""
+      "version": "1.2.3"
     },
     "claude": {
       "first_seen": "2026-08-29",
@@ -7845,12 +7845,12 @@
     "crush": {
       "first_seen": "2026-08-29",
       "previous": "crush version v0.94.1",
-      "version": ""
+      "version": "crush version v0.94.2"
     },
     "cursor": {
       "first_seen": "2026-08-29",
       "previous": "2026.07.01-777f564",
-      "version": ""
+      "version": "2026.09.02-c22c1a3"
     },
     "grok": {
       "first_seen": "2026-08-29",
@@ -7859,13 +7859,13 @@
     },
     "omp": {
       "first_seen": "2026-08-29",
-      "previous": "omp/18.1.22",
-      "version": "omp/18.2.0"
+      "previous": "omp/18.2.0",
+      "version": "omp/18.2.1"
     },
     "opencode": {
       "first_seen": "2026-08-29",
-      "previous": "1.18.29",
-      "version": "1.18.30"
+      "previous": "1.18.30",
+      "version": "1.18.31"
     },
     "pi": {
       "first_seen": "2026-08-29",
