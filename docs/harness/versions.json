@@ -6,8 +6,8 @@
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.251 (Claude Code)",
-    "version": "2.1.261 (Claude Code)"
+    "previous": "2.1.261 (Claude Code)",
+    "version": "2.1.251 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
@@ -21,8 +21,8 @@
   },
   "cursor": {
     "first_seen": "2026-08-29",
-    "previous": "2026.07.01-777f564",
-    "version": "2026.09.02-c22c1a3"
+    "previous": "2026.09.02-c22c1a3",
+    "version": "2026.07.01-777f564"
   },
   "grok": {
     "first_seen": "2026-08-29",
