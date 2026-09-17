@@ -36,7 +36,7 @@ triage blind spots, nu builtin collisions).
 | **Total port units** | **154** | |
 | Dropped (obsolete) | 4 | `as`, `fc`, `fl`, `jabba` (java is mise-managed) |
 | Deferred (needs nu-native redesign) | 6 | `reload`, `fn`, `fe` + their private deps `yn`, `editw`, `function_template` |
-| Already done | 1 | `wt-env` (verify, fix tracking row) |
+| Already done | 1 | `wt-env` (`wt-env.nu` deleted; folded into the Rust `wt` binary — no longer a distinct nushell port item) |
 
 ## Renames (nu builtin collisions — verified on nu 0.113.1)
 
@@ -61,7 +61,7 @@ Record both renames in `docs/functions.md` notes.
    - `cc` falsely marked ➖ (autoload/cc.nu exists)
    - duplicate conflicting `bD` rows (line ~77 stale, ~83 correct)
    - `ghostty.nu` exists but has no row
-   - `wt-env` already implemented — remove from any port tracking
+   - `wt-env` — `wt-env.nu` was deleted and folded into the Rust `wt` binary; drop from port tracking entirely (not "already implemented")
 2. Configure zsh history persistence (`HISTFILE`/`HISTSIZE`/`SAVEHIST` are unset,
    so only 1k lines exist) — future triage rounds need real zsh data.
 3. Port shared helpers used by multiple port targets: `error`, `edit`, `is_mac`,
