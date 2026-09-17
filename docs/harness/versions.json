@@ -1,8 +1,8 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.2.1",
-    "version": "1.2.3"
+    "previous": "1.2.3",
+    "version": "1.2.1"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -26,13 +26,13 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.30 (04b7ffed98c6)",
-    "version": "grok 1.0.30 (04b7ffed98c6) [alpha]"
+    "previous": "grok 1.0.30 (04b7ffed98c6) [alpha]",
+    "version": "grok 1.0.34 (3736acbc8658) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.2.0",
-    "version": "omp/18.2.1"
+    "previous": "omp/18.2.1",
+    "version": "omp/18.2.2"
   },
   "opencode": {
     "first_seen": "2026-08-29",
