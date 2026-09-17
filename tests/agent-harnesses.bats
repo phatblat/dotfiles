@@ -359,7 +359,7 @@ skip_unless_home_is_this_checkout() {
   for surface in "${surfaces[@]}"; do
     [ -f "$surface" ]
     grep -Fq '~/.worktrees/' "$surface"
-    grep -Fq 'wt.sh' "$surface"
+    grep -Fq 'wt ' "$surface"
     grep -Fq '/move' "$surface"
     grep -Fq 'OMPCODE' "$surface"
   done

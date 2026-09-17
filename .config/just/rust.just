@@ -1,4 +1,4 @@
-# rust — toolchain management and the ness compiled guard
+# rust — toolchain management, the ness compiled guard, and the wt worktree resolver
 
 # Installs the Rust toolchain and llvm-tools component (rust-objcopy needs
 # libLLVM.dylib from llvm-tools to strip debug info; see profile.release.strip
@@ -66,3 +66,19 @@ ness-test: install-rust-deps
 [group('rust')]
 ness-check-installed: install-rust-deps
     NESS_CHECK_INSTALLED=1 cargo test --locked --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml installed_copy_matches_corpus
+
+# Builds the wt worktree resolver (release profile)
+[group('rust')]
+wt-build: install-rust-deps
+    cargo build --release --manifest-path {{ justfile_directory() }}/crates/wt/Cargo.toml
+
+# Installs the wt resolver to ~/.local/bin, the path the shell wrappers exec
+[group('rust')]
+wt-install: wt-build
+    install -m 755 {{ justfile_directory() }}/crates/wt/target/release/wt {{ env("HOME") }}/.local/bin/wt
+
+# CI: agent-harness-parity.yml (wt job)
+# Runs the wt resolver's worktree and overlay integration tests
+[group('rust')]
+wt-test: install-rust-deps
+    cargo test --locked --manifest-path {{ justfile_directory() }}/crates/wt/Cargo.toml

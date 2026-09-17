@@ -84,7 +84,7 @@ work_dir=$(git worktree list --porcelain | awk -v b="refs/heads/$subject" '
 ```
 
 - `work_dir` non-empty → use it. If `git -C "$work_dir" status --porcelain=v1` is non-empty, stop: "commit or stash in `$work_dir` first".
-- `work_dir` empty and `repo_root` == `$HOME` (dotfiles repo) → do **not** create a worktree; `using-git-worktrees` forbids implicit dotfiles worktrees. If `subject` == `current` and the tree is clean, set `work_dir="$repo_root"`. Otherwise stop and tell the user to run `wt --dotfiles "$subject"` and re-run.
+- `work_dir` empty and `repo_root` == `$HOME` (dotfiles repo) → do **not** create a worktree; `using-git-worktrees` forbids implicit dotfiles worktrees. If `subject` == `current` and the tree is clean, set `work_dir="$repo_root"`. Otherwise stop and tell the user to run `wt switch "$subject" --allow-home` and re-run.
 - `work_dir` empty, non-dotfiles repo → create one under the `using-git-worktrees` convention:
 
 ```bash

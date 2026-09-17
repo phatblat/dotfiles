@@ -3,9 +3,9 @@
 ---
 description: Create, switch to, or delete a git worktree under ~/.worktrees/, then move the agent session into it
 model: sonnet
-allowed-tools: Bash(git:*), Bash(just:*), Bash(~/.agents/skills/git-worktree/wt.sh:*), Read, Edit, Skill, AskUserQuestion
+allowed-tools: Bash(git:*), Bash(just:*), Bash(wt:*), Read, Edit, Skill, AskUserQuestion
 category: workflow
-argument-hint: "[create|switch|remove|list|verify] [branch] [--dotfiles]"
+argument-hint: "[create|switch|remove|list|verify] [branch] [--allow-home]"
 ---
 
 # Git Worktree: Create, Switch, Or Delete A Worktree
@@ -18,19 +18,19 @@ Collect all needed state in one pass:
 
 !`git branch --show-current 2>/dev/null`
 !`git worktree list --porcelain`
-!`~/.agents/skills/git-worktree/wt.sh list 2>/dev/null`
+!`wt list 2>/dev/null`
 
 ## Parse Arguments
 
-Tokens come from `$ARGUMENTS`, with `--dotfiles` extracted wherever it appears.
+Tokens come from `$ARGUMENTS`, with `--allow-home` extracted wherever it appears.
 
-| Tokens (after `--dotfiles` extraction) | Meaning |
+| Tokens (after `--allow-home` extraction) | Meaning |
 | --- | --- |
 | 0 | `action` = `list`; no branch |
 | 1, and token is a known verb (`create`\|`switch`\|`remove`\|`list`\|`verify`) | `action` = token; branch resolved from the current branch or context |
 | 1, and token is not a known verb | `action` = `switch`; `branch` = token |
 | 2 | `action` = token 1; `branch` = token 2 |
-| 3+ | Stop; print `usage: /git:worktree [create|switch|remove|list|verify] [branch] [--dotfiles]` |
+| 3+ | Stop; print `usage: /git:worktree [create|switch|remove|list|verify] [branch] [--allow-home]` |
 
 ## Instructions
 

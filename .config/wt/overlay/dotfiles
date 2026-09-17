@@ -1,0 +1,13 @@
+# Paths linked from the real $HOME into a HOME-remapped dotfiles worktree, so
+# `wt verify` and `wt shell` see the tools and credentials the real $HOME has.
+#
+# Every entry must be gitignored in the dotfiles repo. Two things depend on it:
+# the worktree has no copy of its own, so the link cannot shadow tracked
+# content; and `git worktree remove` refuses on untracked-but-unignored files,
+# so a non-ignored entry would make every overlaid worktree unremovable.
+# .gitconfig, .config/git/config, and .config/gh/config.yml are tracked and
+# must never be listed here -- `wt overlay` exits 4 if they are.
+.local/share/mise
+.ssh
+.netrc
+.config/gh/hosts.yml
