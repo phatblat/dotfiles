@@ -6,6 +6,8 @@ use std::fs;
 use std::os::unix::fs::symlink;
 use std::path::{Path, PathBuf};
 
+use crate::repo::join_safe;
+
 /// `${WT_OVERLAY_DIR:-<home_real>/.config/wt/overlay}/<path-key>`, falling
 /// back to `default` in the same directory, then to no manifest at all.
 fn manifest_path(home_real: &Path, path_key: &str) -> Option<PathBuf> {
@@ -55,8 +57,8 @@ pub fn apply(home_real: &Path, path_key: &str, link_root: &Path, wt: &Path) -> R
     })?;
 
     for entry in parse_manifest(&text) {
-        let source = link_root.join(&entry);
-        let dest = wt.join(&entry);
+        let source = join_safe(&link_root, &entry);
+        let dest = join_safe(&wt, &entry);
 
         if !source.exists() {
             eprintln!("skip: {entry} not found in main worktree");

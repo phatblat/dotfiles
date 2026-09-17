@@ -77,6 +77,19 @@ pub fn path_key(repo_root: &Path, home_real: &Path) -> String {
     stripped.replace('/', "-")
 }
 
+/// Joins `base` with `component`, defusing `Path::join`'s absolute-path
+/// override and dropping any `..`/root components so `component` (an
+/// untrusted branch name or manifest entry) can never escape `base`.
+pub(crate) fn join_safe(base: &Path, component: &str) -> PathBuf {
+    let mut result = base.to_path_buf();
+    for part in Path::new(component).components() {
+        if let std::path::Component::Normal(p) = part {
+            result.push(p);
+        }
+    }
+    result
+}
+
 /// `${DOTFILES_WT_ROOT:-<home_real>/.worktrees/dotfiles}/<branch>` for the
 /// dotfiles repo, else `<home_real>/.worktrees/<path_key>/<branch>`.
 pub fn wt_path(repo_root: &Path, home_real: &Path, branch: &str) -> PathBuf {
@@ -84,10 +97,10 @@ pub fn wt_path(repo_root: &Path, home_real: &Path, branch: &str) -> PathBuf {
         let root = env::var_os("DOTFILES_WT_ROOT")
             .map(PathBuf::from)
             .unwrap_or_else(|| home_real.join(".worktrees").join("dotfiles"));
-        root.join(branch)
+        join_safe(&root, branch)
     } else {
         let key = path_key(repo_root, home_real);
-        home_real.join(".worktrees").join(key).join(branch)
+        join_safe(&home_real.join(".worktrees").join(key), branch)
     }
 }
 
