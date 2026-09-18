@@ -37,20 +37,17 @@
     "showLineNumbers": false,
     "showThinkingBlocks": false,
     "showStatusIndicators": false,
-    "showStatusLineRunningTime": false,
-    "mode": "zen"
+    "showStatusLineRunningTime": false
   },
   "notifications": true,
   "hints": true,
-  "modelSlashCommands": true,
   "rewind": true,
+  "suggestNextPrompt": false,
   "hasChangedDefaultModel": false,
-  "exploreSubagentModel": "default",
   "network": {
     "useHttp1ForAgent": false
   },
   "approvalMode": "allowlist",
-  "autoAcceptWebSearch": false,
   "sandbox": {
     "mode": "disabled",
     "networkAccess": "user_config_with_defaults"

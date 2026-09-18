@@ -1,11 +1,11 @@
-# wt - Navigate to or create git worktrees.
+# wt - Navigate to or create git worktrees (nushell wrapper).
 #
-# All logic lives in the `wt` binary (crates/wt, installed by `just
-# wt-install`). This wrapper exists only because a child process cannot change
-# its parent shell's directory: the binary writes the directory to enter into
-# the file named by --cd-file, and this function acts on it.
-def --env wt [...args: string] {
-    let cd_file = (^mktemp ([($env.TMPDIR? | default "/tmp") "wt-cd.XXXXXX"] | path join))
+# All logic lives in the `wt` binary (~/.local/bin/wt). A child process
+# cannot change this shell's directory, so the binary writes the target
+# directory to the file named by --cd-file and this wrapper cd's to it.
+# Every other action passes straight through untouched.
+def --env --wrapped wt [...args] {
+    let cd_file = (^mktemp -t wt-cd)
     let rc = (try { ^wt --cd-file $cd_file ...$args; 0 } catch { $env.LAST_EXIT_CODE })
     let dest = (open --raw $cd_file | str trim)
     rm --force $cd_file
