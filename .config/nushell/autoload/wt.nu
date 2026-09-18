@@ -6,7 +6,7 @@
 # Every other action passes straight through untouched.
 def --env --wrapped wt [...args] {
     let cd_file = (^mktemp -t wt-cd)
-    do -i { ^/Users/phatblat/.local/bin/wt --cd-file $cd_file ...$args }
+    do -i { ^wt --cd-file $cd_file ...$args }
     let dest = (open --raw $cd_file | str trim)
     rm $cd_file
     if ($dest | is-not-empty) { cd $dest }
