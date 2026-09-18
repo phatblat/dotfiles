@@ -6,8 +6,9 @@
 # Every other action passes straight through untouched.
 def --env --wrapped wt [...args] {
     let cd_file = (^mktemp -t wt-cd)
-    do -i { ^wt --cd-file $cd_file ...$args }
+    let rc = (try { ^wt --cd-file $cd_file ...$args; 0 } catch { $env.LAST_EXIT_CODE })
     let dest = (open --raw $cd_file | str trim)
-    rm $cd_file
+    rm --force $cd_file
     if ($dest | is-not-empty) { cd $dest }
+    if $rc != 0 { error make --unspanned { msg: $"wt exited ($rc)" } }
 }
