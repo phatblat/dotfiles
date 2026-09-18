@@ -521,6 +521,7 @@
 !.omp/agent/instructions/
 !.omp/agent/keybindings.yml
 !.omp/agent/lsp.json
+!.omp/agent/managed-skills/
 !.omp/agent/mcp.json
 !.omp/agent/models.yml
 !.omp/agent/prompts/
