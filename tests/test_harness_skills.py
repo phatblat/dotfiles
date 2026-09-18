@@ -97,6 +97,28 @@ class DiscoverSkillsTests(unittest.TestCase):
         )
         self.assertEqual(dangling, resolving)
 
+    def test_negated_gitignore_rule_is_not_treated_as_ignore(self) -> None:
+        """A path matched by an ignore pattern and then whitelisted by a later
+        negation ("!...") must be discovered as in-repo, not external.
+        """
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            repo = root / "repo"
+            skills = repo / ".agents" / "skills"
+            skills.mkdir(parents=True)
+            subprocess.run(
+                ["git", "init", "-q", str(repo)], check=True, capture_output=True
+            )
+            (repo / ".gitignore").write_text("2ndBrain*/\n!.agents/skills/whitelisted/\n")
+            whitelisted = skills / "whitelisted"
+            whitelisted.mkdir(parents=True)
+            (whitelisted / "SKILL.md").write_text("---\nname: whitelisted\n---\n")
+
+            names, external = discover_skills(skills, repo)
+
+        self.assertIn("whitelisted", names)
+        self.assertNotIn("whitelisted", external)
+
 
 if __name__ == "__main__":
     unittest.main()

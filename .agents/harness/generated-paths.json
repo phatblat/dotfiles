@@ -317,6 +317,9 @@
   "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh": {
     "source": ""
   },
+  "~/.agents/harness/adapters/cursor/skills/2ndbrain/SKILL.md": {
+    "source": "~/.agents/skills/2ndbrain/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
   },
@@ -638,6 +641,9 @@
   "~/.agents/harness/instructions.md": {
     "source": ""
   },
+  "~/.claude/skills/2ndbrain/SKILL.md": {
+    "source": "~/.agents/skills/2ndbrain/SKILL.md"
+  },
   "~/.claude/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
   },
@@ -727,6 +733,12 @@
   },
   "~/.claude/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
+  },
+  "~/.codex/skills/2ndbrain/SKILL.md": {
+    "source": "~/.agents/skills/2ndbrain/SKILL.md"
+  },
+  "~/.codex/skills/2ndbrain/agents/openai.yaml": {
+    "source": "~/.agents/skills/2ndbrain/SKILL.md"
   },
   "~/.codex/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"
@@ -964,6 +976,9 @@
   },
   "~/.config/opencode/plugins/harness.ts": {
     "source": ""
+  },
+  "~/.config/opencode/skills/2ndbrain/SKILL.md": {
+    "source": "~/.agents/skills/2ndbrain/SKILL.md"
   },
   "~/.config/opencode/skills/artifact-message-bus/SKILL.md": {
     "source": "~/.agents/skills/artifact-message-bus/SKILL.md"

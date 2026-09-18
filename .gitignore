@@ -24,6 +24,9 @@
 .Ultimate/
 .Xauthority
 .advLdap/
+!.agents/harness/adapters/cursor/skills/2ndbrain/
+!.agents/skills/2ndbrain/**
+!.agents/skills/2ndbrain/
 .android/
 .anka/
 .ansible/
@@ -92,6 +95,7 @@
 .claude/remote-settings.json
 .claude/security/
 .claude/security_warnings_state_*.json
+!.claude/skills/2ndbrain/
 .claude/skills/gstack/**/*.icns
 .claude/skills/gstack/**/test/
 .claude/skills/gstack/node_modules/
@@ -115,6 +119,7 @@
 !.codex/keybindings.json
 !.codex/rules/
 .codex/skills/*
+!.codex/skills/2ndbrain/
 !.codex/skills/artifact-message-bus/
 !.codex/skills/aven/SKILL.md
 !.codex/skills/aven/
@@ -251,6 +256,7 @@
 !.config/opencode/plugins/**
 !.config/opencode/plugins/
 .config/opencode/skills/*
+!.config/opencode/skills/2ndbrain/
 !.config/opencode/skills/artifact-message-bus/
 !.config/opencode/skills/aven/SKILL.md
 !.config/opencode/skills/aven/

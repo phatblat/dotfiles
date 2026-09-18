@@ -35,6 +35,7 @@ from pathlib import Path
 # absent because it is Claude-Code-specific, externally compiled, and
 # self-updating from a URL.
 NATIVE_SKILL_ADAPTERS = {
+    "2ndbrain",
     "artifact-message-bus",
     "aven",
     "brainstorm",
@@ -71,6 +72,7 @@ NATIVE_SKILL_ADAPTERS = {
 # user runs deliberately. Membership mirrors `allow_implicit_invocation: false`
 # in each shared skill's agents/openai.yaml, so the two stay consistent.
 MANUAL_SKILL_ADAPTERS = {
+    "2ndbrain",
     "branch-finish",
     "gha-checks",
     "gha-log-reader",
@@ -193,9 +195,16 @@ def _git_ignored(root: Path, candidates: Iterable[Path]) -> set[Path]:
         return set()
     ignored: set[Path] = set()
     for line in result.stdout.splitlines():
-        _, _, pathname = line.partition("\t")
-        if pathname in relative:
-            ignored.add(relative[pathname])
+        meta, _, pathname = line.partition("\t")
+        if pathname not in relative:
+            continue
+        # `git check-ignore -v` emits the last matching rule even when it is a
+        # negation ("!...") that un-ignores the path. Skip negation rules so
+        # whitelisted paths are not treated as ignored.
+        _, _, pattern = meta.rpartition(":")
+        if pattern.startswith("!"):
+            continue
+        ignored.add(relative[pathname])
     return ignored
 
 
