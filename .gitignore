@@ -192,6 +192,7 @@
 .config/chromium/
 .config/claude-profiles/
 .config/claude/versions
+.config/codexbar/
 .config/com.tolaria.app/
 .config/configstore
 .config/context7/credentials.json
