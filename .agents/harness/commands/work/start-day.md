@@ -156,7 +156,7 @@ Format the summary as concise bullet points under `## Yesterday`. Example:
 - [DEVX-943](https://linear.app/ditto/issue/DEVX-943) decommission runners (in progress)
 ```
 
-Use `Edit` to replace the `<!-- auto-populated by /work:start -->` comment with the summary content. Keep the comment on the line after the content for re-runs.
+Use `Edit` to replace the `<!-- auto-populated by /work:start-day -->` comment with the summary content. Keep the comment on the line after the content for re-runs.
 
 ## Step 6: Build Today's Agenda
 
@@ -212,7 +212,7 @@ Format under `# Agenda`:
 
 The "In Progress (needs daily comment)" section reminds the user which tickets need a comment today.
 
-Use `Edit` to replace the `<!-- auto-populated by /work:start with meetings + todo tickets -->` comment with the agenda. Keep the comment on the line after for re-runs.
+Use `Edit` to replace the `<!-- auto-populated by /work:start-day with meetings + todo tickets -->` comment with the agenda. Keep the comment on the line after for re-runs.
 
 ## Step 7: Post Daily Status Comments to In-Progress Tickets
 

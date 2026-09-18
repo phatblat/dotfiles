@@ -25,7 +25,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | kotlin-lsp@claude-plugins-official | enabled | enabled |
 | linear-cli@linear-cli | missing | enabled |
 | lua-lsp@claude-plugins-official | enabled | enabled |
-| oh-my-claudecode@omc | enabled | missing |
+| oh-my-claudecode@omc | disabled | missing |
 | pdf@openai-primary-runtime | missing | enabled |
 | plugin-dev@claude-plugins-official | disabled | missing |
 | pr-review-toolkit@claude-plugins-official | missing | disabled |
