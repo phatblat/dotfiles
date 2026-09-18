@@ -125,7 +125,7 @@ ninja = "1.13.2"
 node = "26.9.0"
 oh-my-pi = { version = "18.2.5", rename_exe = "omp" }
 opencode = "1.18.31"
-packer = "1.16.0"
+packer = "1.16.1"
 pi = "0.85.1"
 pipx = "1.17.3"
 powershell = "7.6.6"
