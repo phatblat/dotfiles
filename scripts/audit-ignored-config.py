@@ -288,16 +288,33 @@ def classify(relpath):
     return "other"
 
 
+def sniff_bytes(blob):
+    """Return names of secret patterns found in blob, or [] if clean."""
+    if b"\0" in blob[:8192]:
+        return []
+    text = blob.decode("utf-8", errors="replace")
+    return [label for label, pattern in SECRET_CONTENT if pattern.search(text)]
+
+
 def sniff_secrets(path):
     """Return names of secret patterns found in a file, or [] if clean."""
     try:
         blob = path.read_bytes()[:CONTENT_SCAN_LIMIT]
     except OSError:
         return []
-    if b"\0" in blob[:8192]:
-        return []
-    text = blob.decode("utf-8", errors="replace")
-    return [label for label, pattern in SECRET_CONTENT if pattern.search(text)]
+    return sniff_bytes(blob)
+
+
+def staged_bytes(repo, relpath):
+    """Return a tracked path's index bytes (post-clean-filter), or None."""
+    result = subprocess.run(
+        ["git", "-C", str(repo), "cat-file", "blob", f":{relpath}"],
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        return None
+    return result.stdout[:CONTENT_SCAN_LIMIT]
 
 
 def is_package_root(repo, reldir, memo):
@@ -369,15 +386,27 @@ def scan_ignored(repo, roots):
 
 
 def scan_tracked(repo, roots):
-    """Flag tracked files that are named or shaped like credentials."""
+    """Flag tracked files that are named or shaped like credentials.
+
+    Content warnings are confirmed against the index rather than the worktree.
+    A path with a `filter=` clean filter in .gitattributes is scrubbed on its
+    way into git, so the worktree copy can hold a trust grant or a token that
+    never reaches a blob. Judging the worktree reports a leak that does not
+    exist — and reports it again on every audit. The index lookup costs one
+    subprocess and only runs for a file the cheap worktree scan already
+    flagged.
+    """
     flagged = []
     for entry in git_lines(repo, ["ls-files", "-z", "--", *roots]):
         if entry in TRACKED_ALLOWLIST:
             continue
-        warnings = []
+        warnings = sniff_secrets(repo / entry)
+        if warnings:
+            staged = staged_bytes(repo, entry)
+            if staged is not None:
+                warnings = sniff_bytes(staged)
         if classify(entry) == "secret":
-            warnings.append("credential-shaped name")
-        warnings.extend(sniff_secrets(repo / entry))
+            warnings = ["credential-shaped name", *warnings]
         if warnings:
             flagged.append({"path": entry, "warnings": warnings})
     return flagged
