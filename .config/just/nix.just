@@ -40,3 +40,12 @@ repair-nix:
 [group('nix')]
 uninstall-nix:
     /nix/nix-installer uninstall
+
+# Cleans old Nix generations, runs GC, and deduplicates the store
+[group('nix')]
+[script]
+clean-nix:
+    set -euo pipefail
+    nix-collect-garbage --delete-old
+    nix store gc
+    nix store optimise

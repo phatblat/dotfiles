@@ -8,15 +8,15 @@ Coverage: 91/405 cells verified (22%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.251 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| claude | supported peer | 2.1.261 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.154.0 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
 | opencode | new port | 1.18.31 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
 | pi | new port | 0.85.1 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.2.2 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.2.1 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
-| cursor | tracked port | 2026.07.01-777f564 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
+| omp | tracked port | omp/18.2.5 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| antigravity | tracked port | 1.2.6 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
+| cursor | tracked port | 2026.09.02-c22c1a3 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.34 (3736acbc8658) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
-| crush | new port | crush version v0.94.2 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
+| crush | new port | crush version v0.95.0 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
@@ -67,16 +67,16 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-09-18 | omp | - | version | omp/18.2.2 | omp/18.2.5 |
+| 2026-09-18 | cursor | - | version | 2026.07.01-777f564 | 2026.09.02-c22c1a3 |
+| 2026-09-18 | crush | - | version | crush version v0.94.2 | crush version v0.95.0 |
+| 2026-09-18 | claude | - | version | 2.1.251 (Claude Code) | 2.1.261 (Claude Code) |
+| 2026-09-18 | antigravity | - | version | 1.2.1 | 1.2.6 |
 | 2026-09-17 | omp | - | version | omp/18.2.1 | omp/18.2.2 |
 | 2026-09-17 | grok | - | version | grok 1.0.30 (04b7ffed98c6) [alpha] | grok 1.0.34 (3736acbc8658) [alpha] |
 | 2026-09-17 | cursor | - | version | 2026.09.02-c22c1a3 | 2026.07.01-777f564 |
 | 2026-09-17 | claude | - | version | 2.1.261 (Claude Code) | 2.1.251 (Claude Code) |
 | 2026-09-17 | antigravity | - | version | 1.2.3 | 1.2.1 |
-| 2026-09-16 | opencode | - | version | 1.18.30 | 1.18.31 |
-| 2026-09-16 | omp | - | version | omp/18.2.0 | omp/18.2.1 |
-| 2026-09-16 | cursor | - | version | - | 2026.09.02-c22c1a3 |
-| 2026-09-16 | crush | - | version | - | crush version v0.94.2 |
-| 2026-09-16 | antigravity | - | version | - | 1.2.1 |
 
 ## Permanent divergences
 
