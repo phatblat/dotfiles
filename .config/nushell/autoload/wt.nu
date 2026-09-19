@@ -5,7 +5,9 @@
 # directory to the file named by --cd-file and this wrapper cd's to it.
 # Every other action passes straight through untouched.
 def --env --wrapped wt [...args] {
-    let cd_file = (^mktemp -t wt-cd)
+    let tmpdir = ($env.TMPDIR? | default "/tmp")
+    let tmpdir = (if ($tmpdir | is-empty) { "/tmp" } else { $tmpdir })
+    let cd_file = (^mktemp ([$tmpdir "wt-cd.XXXXXX"] | path join))
     let rc = (try { ^wt --cd-file $cd_file ...$args; 0 } catch { $env.LAST_EXIT_CODE })
     let dest = (open --raw $cd_file | str trim)
     rm --force $cd_file

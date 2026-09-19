@@ -1,9 +1,9 @@
 ---
-name: work-start
-description: Morning startup workflow for daily notes, yesterday summary, agenda, status comments, meeting sections, and daily branch setup. Use when invoked as `$work-start` or when the user asks to start the work day.
+name: work-start-day
+description: Morning startup workflow for daily notes, yesterday summary, agenda, status comments, meeting sections, and daily branch setup. Use when invoked as `$work-start-day` or when the user asks to start the work day.
 ---
 
-# work-start
+# work-start-day
 
 Create or refresh today's daily note, populate yesterday summary and agenda, post daily status comments when appropriate, create meeting sections, and run `$pr-daily`.
 

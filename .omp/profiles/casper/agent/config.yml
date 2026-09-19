@@ -85,3 +85,5 @@ codexResets:
   autoRedeem: "no"
 ask:
   timeout: 1800
+bash:
+  allowCompoundCommands: true

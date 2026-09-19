@@ -47,7 +47,7 @@ today_year=$(date +%Y)
 note_path="$HOME/2ndBrain/daily-notes/${today_year}/${today_date} ${today_day}.md"
 ```
 
-If the note doesn't exist, tell the user to run `/work:start` first.
+If the note doesn't exist, tell the user to run `/work:start-day` first.
 
 ## Step 2: Fetch Item Details
 
@@ -177,7 +177,7 @@ commented:: false
 
 | Scenario | Handling |
 |----------|----------|
-| Today's note doesn't exist | Error: "Run `/work:start` first" |
+| Today's note doesn't exist | Error: "Run `/work:start-day` first" |
 | Ticket ID not found in Linear | Error with message; suggest checking the ID |
 | PR has linked Linear ticket | Populate both `ticket::` and `pr::` fields |
 | Ticket has no PR yet | Omit `pr::` line; add it on future updates if a PR appears |
