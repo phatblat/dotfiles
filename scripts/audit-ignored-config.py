@@ -46,6 +46,7 @@ HARNESS_ROOTS = frozenset({".agents"} | {r for rs in CONFIG_ROOTS.values() for r
 VENDOR_MARKERS = (
     ".claude-plugin",
     ".git",
+    ".paseo-managed-files.json",
     "Cargo.toml",
     "gemini-extension.json",
     "go.mod",
@@ -115,6 +116,7 @@ STATE_DIRS = frozenset(
         "dist",
         "docs",
         "extensions",
+        "grove",
         "handoffs",
         "history",
         "jobs",
@@ -128,6 +130,7 @@ STATE_DIRS = frozenset(
         "npm",
         "plans",
         "process_manager",
+        "projects",
         "python-env",
         "registry",
         "run",
@@ -141,6 +144,7 @@ STATE_DIRS = frozenset(
         "terminals",
         "tmp",
         "venv",
+        "webcache",
         "worktrees",
     }
 )
@@ -173,11 +177,14 @@ STATE_NAMES = frozenset(
         ".DS_Store",
         ".crates.toml",
         ".crates2.json",
+        "active_sessions.json",
         "argv.json",
         "chrome-native-hosts-v2.json",
         "external_agent_session_imports.json",
         "gpu_cache.json",
         "last-changelog-version",
+        "projects.json",
+        "tip_cursor.json",
         "version.json",
     }
 )
