@@ -43,6 +43,7 @@
   "notifications": true,
   "hints": true,
   "modelSlashCommands": true,
+  "steering": true,
   "rewind": true,
   "hasChangedDefaultModel": false,
   "exploreSubagentModel": "default",
