@@ -159,9 +159,9 @@ zig = "0.16.0"
 zoxide = "0.10.0"
 
 [tools."http:cursor-cli"]
-version = "2026.07.01-777f564"
-url = "https://downloads.cursor.com/lab/2026.07.01-777f564/darwin/arm64/agent-cli-package.tar.gz"
-checksum = "sha256:853979acec109c887623013623ad4dbe1f44d4cbe598ebefaa0e55145d9c993d"
+version = "2026.09.15-d2fe57e"
+url = "https://downloads.cursor.com/lab/2026.09.15-d2fe57e/darwin/arm64/agent-cli-package.tar.gz"
+checksum = "sha256:f51579a1ea1725c2bebd1a14064d52bdea5e05aaff47cfa7d5b5d0d07a8d3fbc"
 bin_path = "dist-package"
 bin = "cursor-agent"
 
