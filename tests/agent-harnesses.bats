@@ -336,7 +336,7 @@ skip_unless_home_is_this_checkout() {
     session-save
     work-end-day
     work-runners
-    work-start
+    work-start-day
     work-track
     git-worktree
   )
