@@ -64,4 +64,15 @@ agentlink-check:
 # Runs Harbor evals for the shared agent harness
 [group('agents')]
 harness-evals:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # Populate gitignored snapshot from live harness (exclude evals/ to avoid recursion)
+    SNAPSHOT_DIR="{{ justfile_directory() }}/.agents/harness/evals/harbor/harness-structure/environment/snapshot"
+    rm -rf "$SNAPSHOT_DIR"
+    mkdir -p "$SNAPSHOT_DIR"
+    cd {{ justfile_directory() }}/.agents/harness
+    cp -r README.md instructions.md adapters commands agents hooks \
+          generated-paths.json self-improve-policy.json \
+          "$SNAPSHOT_DIR/"
+    # Run Harbor eval
     mise exec -- harbor run -p {{ justfile_directory() }}/.agents/harness/evals/harbor/harness-structure -a nop

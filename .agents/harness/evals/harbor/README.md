@@ -43,10 +43,12 @@ A Harbor task that validates the shared agent harness structure.
 harness-structure/
 ├── task.toml                    # Task configuration (schema_version 1.4)
 ├── instruction.md               # Task description
+├── .gitignore                   # Ignores environment/snapshot/
 ├── environment/
-│   ├── Dockerfile              # Build context
-│   └── harness/                # Harness snapshot (regenerate on changes)
-│       ├── README.md
+│   ├── Dockerfile              # Build context (COPY snapshot/)
+│   ├── harness/                # Tracked (minimal README only)
+│   └── snapshot/               # GITIGNORED — harness snapshot populated at run time
+│       ├── README.md           # (populated by just recipe before harbor run)
 │       ├── instructions.md
 │       ├── adapters/
 │       ├── commands/
@@ -64,18 +66,20 @@ harness-structure/
 - Content validation (inventory section, commands count)
 - At least one adapter exists
 
-**Regenerating the harness snapshot:**
+**Harness snapshot:**
 
-When the shared harness changes, update the snapshot in `environment/harness/`:
+The `environment/snapshot/` directory is gitignored and populated at run time by the `just harness-evals` recipe. It copies the live harness from `.agents/harness/` (excluding `evals/`) so Docker can build from it.
+
+To manually populate the snapshot:
 
 ```bash
 cd .agents/harness
+rm -rf evals/harbor/harness-structure/environment/snapshot
+mkdir -p evals/harbor/harness-structure/environment/snapshot
 cp -r README.md instructions.md adapters commands agents hooks \
       generated-paths.json self-improve-policy.json \
-      evals/harbor/harness-structure/environment/harness/
+      evals/harbor/harness-structure/environment/snapshot/
 ```
-
-Exclude `evals/` to avoid recursion.
 
 ## Adding New Evals
 
