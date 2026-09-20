@@ -25,7 +25,7 @@ targets:
     - ".agents/harness/self-improve-policy.json"
     - "scripts/agent-harnesses.py"
     - ".github/scripts/changed.sh"
-    - ".github/workflows/lint.yml"
+    - ".github/workflows/check.yml"
     - ".github/workflows/agent-harness-parity.yml"
     - ".github/workflows/human-approval.yml"
     - "tests/agent-harnesses.bats"

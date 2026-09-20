@@ -89,7 +89,7 @@ generate: harness-generate
 [group('checks')]
 check: lint typecheck-python check-spelling harness-check agentlink-check ness-test wt-test test
 
-# CI: lint.yml (lint job)
+# CI: check.yml (lint job)
 # Runs every hk check step over all tracked files (steps live in hk.pkl)
 [group('checks')]
 lint:
@@ -111,7 +111,7 @@ doctor:
 # tests group recipes
 #
 
-# CI: lint.yml (test job)
+# CI: check.yml (test job)
 # Runs bats tests in parallel; `just test abort` stops at the first failure
 [group('tests')]
 [script]
