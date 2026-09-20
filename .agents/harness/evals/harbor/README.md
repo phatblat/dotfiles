@@ -36,44 +36,40 @@ harbor run .
 Run a specific eval task:
 
 ```bash
-harbor run .agents/harness/evals/harbor/harness-structure.yaml
+harbor run .agents/harness/evals/harbor/harness-structure/
 ```
 
 ## Available Evals
 
-### harness-structure.yaml
+### harness-structure/
 
-Validates that the shared agent harness has the expected directory structure:
+A Harbor task directory that validates the shared agent harness structure:
+
+**Structure:**
+- `task.toml` - Task configuration
+- `instruction.md` - Task description and requirements
+- `tests/test_structure.sh` - Verification script
+
+**What it checks:**
 - Required files (README.md, instructions.md)
 - Required directories (adapters/, commands/, agents/, hooks/)
 - Content verification (non-empty files, inventory counts)
 - At least one adapter exists
 
-This eval runs locally with no external dependencies and completes in under 30 seconds.
+This eval runs locally with no external dependencies.
 
 ## Adding New Evals
 
-Follow the Harbor task format:
+Harbor tasks are directories with:
 
-```yaml
-name: task-name
-description: What this task verifies
-version: "1.0"
-
-environment:
-  type: local
-  working_directory: relative/path
-
-instruction: |
-  Clear description of what to verify or test.
-
-verifier:
-  type: script
-  script: |
-    #!/bin/bash
-    # Verification script that exits 0 on success, non-zero on failure
-
-timeout: 30
 ```
+task-name/
+├── task.toml           # Task configuration
+├── instruction.md      # Task description
+└── tests/              # Test scripts
+    └── test_*.sh
+```
+
+Create new tasks with `harbor task init <name>` or by copying the structure above.
 
 See [Harbor documentation](https://docs.harborframework.com/) for full task format details.

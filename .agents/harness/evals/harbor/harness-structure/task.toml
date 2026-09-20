@@ -1,0 +1,7 @@
+[task]
+name = "harness-structure"
+version = "1.0.0"
+description = "Verify shared agent harness structure is complete and valid"
+
+[environment]
+working_directory = ".agents/harness"
