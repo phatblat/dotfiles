@@ -1,0 +1,5 @@
+{
+  "description": "Shared agent harness adapter for Cursor.",
+  "name": "shared-agent-harness",
+  "version": "1.0.0"
+}

@@ -4,7 +4,7 @@ Verify that the shared agent harness has the expected directory structure and th
 
 ## Required Structure
 
-Check that the following exist:
+The harness must have:
 
 1. **Files:**
    - `README.md` - explains the harness purpose and contains inventory information

@@ -64,4 +64,4 @@ agentlink-check:
 # Runs Harbor evals for the shared agent harness
 [group('agents')]
 harness-evals:
-    mise exec -- harbor run {{ justfile_directory() }}/.agents/harness/evals/harbor/
+    mise exec -- harbor run -p {{ justfile_directory() }}/.agents/harness/evals/harbor/harness-structure -a nop

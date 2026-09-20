@@ -1,0 +1,42 @@
+{
+  "blocked_command_categories": [
+    "privilege-escalation",
+    "destructive-filesystem",
+    "device-writes",
+    "pipe-to-shell",
+    "obfuscated-execution"
+  ],
+  "protected_paths": [
+    ".env*",
+    ".ssh/*",
+    "*.pem",
+    "*.key",
+    ".aws/credentials",
+    ".docker/config.json",
+    ".claude/.credentials.json",
+    ".codex/auth.json",
+    ".omp/agent/agent.db",
+    ".omp/agent/secrets.yml",
+    ".pi/agent/auth.json",
+    ".gemini/google_accounts.json",
+    ".gemini/oauth_creds.json",
+    ".gemini/antigravity-cli/installation_id",
+    ".gemini/antigravity-cli/conversations/*",
+    ".cursor/ai-tracking/*",
+    ".grok/auth.json",
+    ".grok/mcp_credentials.json",
+    ".tessl/api-credentials.json",
+    ".tessl/agent/auth.json",
+    ".tessl/llm-keys/*",
+    ".tessl/remote-config.json"
+  ],
+  "secret_categories": [
+    "ai-provider-key",
+    "cloud-access-key",
+    "vcs-token",
+    "chat-token",
+    "private-key",
+    "password-assignment"
+  ],
+  "version": 1
+}

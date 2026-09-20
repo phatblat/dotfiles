@@ -22,54 +22,67 @@ harbor --version
 
 ## Running Evals
 
-Run all Harbor evals for the harness:
+Run Harbor evals for the harness:
 
 ```bash
-# From repo root
-harbor run .agents/harness/evals/harbor/
+# Via just recipe
+just harness-evals
 
-# Or from this directory
-cd .agents/harness/evals/harbor
-harbor run .
-```
-
-Run a specific eval task:
-
-```bash
-harbor run .agents/harness/evals/harbor/harness-structure/
+# Or directly with Harbor
+harbor run -p .agents/harness/evals/harbor/harness-structure -a nop
 ```
 
 ## Available Evals
 
 ### harness-structure/
 
-A Harbor task directory that validates the shared agent harness structure:
+A Harbor task that validates the shared agent harness structure.
 
-**Structure:**
-- `task.toml` - Task configuration
-- `instruction.md` - Task description and requirements
-- `tests/test_structure.sh` - Verification script
+**Task structure (Harbor 0.23.0 format):**
+```
+harness-structure/
+├── task.toml                    # Task configuration (schema_version 1.4)
+├── instruction.md               # Task description
+├── environment/
+│   ├── Dockerfile              # Build context
+│   └── harness/                # Harness snapshot (regenerate on changes)
+│       ├── README.md
+│       ├── instructions.md
+│       ├── adapters/
+│       ├── commands/
+│       ├── agents/
+│       └── hooks/
+├── tests/
+│   └── test.sh                 # Verification script (writes reward.txt)
+└── solution/
+    └── solve.sh                # No-op solution
+```
 
-**What it checks:**
+**What it verifies:**
 - Required files (README.md, instructions.md)
 - Required directories (adapters/, commands/, agents/, hooks/)
-- Content verification (non-empty files, inventory counts)
+- Content validation (inventory section, commands count)
 - At least one adapter exists
 
-This eval runs locally with no external dependencies.
+**Regenerating the harness snapshot:**
+
+When the shared harness changes, update the snapshot in `environment/harness/`:
+
+```bash
+cd .agents/harness
+cp -r README.md instructions.md adapters commands agents hooks \
+      generated-paths.json self-improve-policy.json \
+      evals/harbor/harness-structure/environment/harness/
+```
+
+Exclude `evals/` to avoid recursion.
 
 ## Adding New Evals
 
-Harbor tasks are directories with:
+Create new Harbor tasks with:
 
-```
-task-name/
-├── task.toml           # Task configuration
-├── instruction.md      # Task description
-└── tests/              # Test scripts
-    └── test_*.sh
+```bash
+harbor task init phatblat/<task-name> --no-pytest
 ```
 
-Create new tasks with `harbor task init <name>` or by copying the structure above.
-
-See [Harbor documentation](https://docs.harborframework.com/) for full task format details.
+Task name must be in `org/name` format. See [Harbor documentation](https://docs.harborframework.com/) for full details.
