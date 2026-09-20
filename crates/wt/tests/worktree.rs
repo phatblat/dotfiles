@@ -248,6 +248,61 @@ fn switch_exits_4_on_mismatched_leaf() {
 }
 
 #[test]
+fn slashed_branch_round_trips_through_resolve_switch_and_remove() {
+    let f = fixture();
+    let branch = "docs/nested/what-this-convention-adds";
+
+    let out = wt_cmd(&f.fake_home)
+        .args(["create", branch, "--repo", f.clone.to_str().unwrap()])
+        .output()
+        .unwrap();
+    assert!(out.status.success(), "{}", output_to_string(&out.stderr));
+    let created = output_to_string(&out.stdout);
+    assert!(created.ends_with("/docs/nested/what-this-convention-adds"), "{created}");
+
+    // The regression: every lookup rejected the nested layout `create` had
+    // just written, because the check compared one path component against
+    // the whole branch name.
+    for action in ["resolve", "switch"] {
+        let out = wt_cmd(&f.fake_home)
+            .args([action, branch, "--repo", f.clone.to_str().unwrap()])
+            .output()
+            .unwrap();
+        assert!(out.status.success(), "{action}: {}", output_to_string(&out.stderr));
+        assert_eq!(output_to_string(&out.stdout), created, "{action} path");
+    }
+
+    let out = wt_cmd(&f.fake_home)
+        .args(["remove", branch, "--repo", f.clone.to_str().unwrap()])
+        .output()
+        .unwrap();
+    assert!(out.status.success(), "{}", output_to_string(&out.stderr));
+    assert!(!Path::new(&created).exists());
+}
+
+#[test]
+fn switch_exits_4_when_a_slashed_branch_is_registered_elsewhere() {
+    let f = fixture();
+    let branch = "feat/registered-elsewhere";
+    // Same leaf, wrong parent: the suffix check must compare every
+    // component of the branch, not just the last one.
+    let wrongdir = f.root.join("wrong/registered-elsewhere");
+    fs::create_dir_all(wrongdir.parent().unwrap()).unwrap();
+    std::process::Command::new("git")
+        .arg("-C")
+        .arg(&f.clone)
+        .args(["worktree", "add", "-q", "-b", branch, wrongdir.to_str().unwrap()])
+        .status()
+        .unwrap();
+
+    let out = wt_cmd(&f.fake_home)
+        .args(["switch", branch, "--repo", f.clone.to_str().unwrap()])
+        .output()
+        .unwrap();
+    assert_eq!(out.status.code(), Some(4));
+}
+
+#[test]
 fn remove_deletes_clean_worktree() {
     let f = fixture();
     let branch = "remove-me";

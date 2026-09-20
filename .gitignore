@@ -192,6 +192,7 @@
 .config/chromium/
 .config/claude-profiles/
 .config/claude/versions
+.config/codexbar/
 .config/com.tolaria.app/
 .config/configstore
 .config/context7/credentials.json
@@ -521,6 +522,7 @@
 !.omp/agent/instructions/
 !.omp/agent/keybindings.yml
 !.omp/agent/lsp.json
+!.omp/agent/managed-skills/
 !.omp/agent/mcp.json
 !.omp/agent/models.yml
 !.omp/agent/prompts/

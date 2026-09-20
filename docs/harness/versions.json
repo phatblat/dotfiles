@@ -1,13 +1,13 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.2.3",
-    "version": "1.2.1"
+    "previous": "1.2.1",
+    "version": "1.2.6"
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.261 (Claude Code)",
-    "version": "2.1.251 (Claude Code)"
+    "previous": "2.1.251 (Claude Code)",
+    "version": "2.1.261 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
@@ -16,13 +16,13 @@
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.94.1",
-    "version": "crush version v0.94.2"
+    "previous": "crush version v0.94.2",
+    "version": "crush version v0.95.0"
   },
   "cursor": {
     "first_seen": "2026-08-29",
-    "previous": "2026.09.02-c22c1a3",
-    "version": "2026.07.01-777f564"
+    "previous": "2026.07.01-777f564",
+    "version": "2026.09.02-c22c1a3"
   },
   "grok": {
     "first_seen": "2026-08-29",
@@ -31,8 +31,8 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.2.1",
-    "version": "omp/18.2.2"
+    "previous": "omp/18.2.2",
+    "version": "omp/18.2.5"
   },
   "opencode": {
     "first_seen": "2026-08-29",

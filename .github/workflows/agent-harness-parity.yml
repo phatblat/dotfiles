@@ -68,7 +68,7 @@ jobs:
     env:
       HOME: ${{ github.workspace }}
       # Allowlist only tools needed for the ness tests, matching the narrow
-      # tool set convention in lint.yml's MISE_ENABLE_TOOLS.
+      # tool set convention in check.yml's MISE_ENABLE_TOOLS.
       MISE_ENABLE_TOOLS: "just,rust,sccache"
     steps:
       - uses: actions/checkout@v7
@@ -104,7 +104,7 @@ jobs:
       GIT_CONFIG_KEY_0: commit.gpgsign
       GIT_CONFIG_VALUE_0: "false"
       # Allowlist only tools needed for the wt tests, matching the narrow
-      # tool set convention in lint.yml's MISE_ENABLE_TOOLS.
+      # tool set convention in check.yml's MISE_ENABLE_TOOLS.
       MISE_ENABLE_TOOLS: "just,rust,sccache"
     steps:
       - uses: actions/checkout@v7

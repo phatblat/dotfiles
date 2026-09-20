@@ -15,7 +15,7 @@ outdated-uv:
 upgrade-uv-tools:
     mise exec -- uv tool upgrade --all
 
-# CI: lint.yml (lint job)
+# CI: check.yml (lint job)
 # Type-checks Python scripts with ty (scope mirrors pyproject's basedpyright include)
 [group('python')]
 typecheck-python:

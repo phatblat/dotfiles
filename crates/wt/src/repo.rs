@@ -77,17 +77,25 @@ pub fn path_key(repo_root: &Path, home_real: &Path) -> String {
     stripped.replace('/', "-")
 }
 
-/// Joins `base` with `component`, defusing `Path::join`'s absolute-path
-/// override and dropping any `..`/root components so `component` (an
-/// untrusted branch name or manifest entry) can never escape `base`.
-pub(crate) fn join_safe(base: &Path, component: &str) -> PathBuf {
-    let mut result = base.to_path_buf();
+/// The relative path `join_safe` appends for `component`: its `Normal`
+/// components in order, with any `..` or root segments dropped. A branch
+/// name with slashes yields a nested path, so this is the shape a
+/// registered worktree has to end in.
+pub(crate) fn safe_relative(component: &str) -> PathBuf {
+    let mut result = PathBuf::new();
     for part in Path::new(component).components() {
         if let std::path::Component::Normal(p) = part {
             result.push(p);
         }
     }
     result
+}
+
+/// Joins `base` with `component`, defusing `Path::join`'s absolute-path
+/// override and dropping any `..`/root components so `component` (an
+/// untrusted branch name or manifest entry) can never escape `base`.
+pub(crate) fn join_safe(base: &Path, component: &str) -> PathBuf {
+    base.join(safe_relative(component))
 }
 
 /// `${DOTFILES_WT_ROOT:-<home_real>/.worktrees/dotfiles}/<branch>` for the
@@ -161,9 +169,9 @@ fn parse_worktree_list(root: &Path) -> Result<Vec<WorktreeRecord>, i32> {
 
 /// Finds a worktree already registered for `refs/heads/<branch>` under
 /// `repo_root`. Returns `Ok(None)` when there is none. Exits (returns
-/// `Err(4)` after printing) when a registered worktree's leaf does not
-/// match the branch — a mismatch is a defect to surface, never to silently
-/// adopt.
+/// `Err(4)` after printing) when a registered worktree's path does not end
+/// in the components `wt_path` would have appended for the branch — a
+/// mismatch is a defect to surface, never to silently adopt.
 pub fn find_registered(repo_root: &Path, branch: &str) -> Result<Option<PathBuf>, i32> {
     let records = parse_worktree_list(repo_root)?;
     let found = records
@@ -178,17 +186,16 @@ pub fn find_registered(repo_root: &Path, branch: &str) -> Result<Option<PathBuf>
         return Ok(Some(record.path));
     }
 
-    let leaf_matches = record
-        .path
-        .file_name()
-        .map(|n| n == branch)
-        .unwrap_or(false);
-    if !leaf_matches {
+    // A slashed branch nests, so the registered path has to end in every
+    // component of the branch, not just its last one.
+    let expected = safe_relative(branch);
+    let tail_matches = !expected.as_os_str().is_empty() && record.path.ends_with(&expected);
+    if !tail_matches {
         eprintln!(
             "wt: registered worktree for {branch} has a mismatched directory"
         );
         eprintln!("  registered: {}", record.path.display());
-        eprintln!("  expected to end in: /{branch}");
+        eprintln!("  expected to end in: /{}", expected.display());
         return Err(4);
     }
 
