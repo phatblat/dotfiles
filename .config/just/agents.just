@@ -60,3 +60,8 @@ harness-drift *ARGS:
 [group('agents')]
 agentlink-check:
     agentlink status --check --dir {{ justfile_directory() }}
+
+# Runs Harbor evals for the shared agent harness
+[group('agents')]
+harness-evals:
+    mise exec -- harbor run {{ justfile_directory() }}/.agents/harness/evals/harbor/
