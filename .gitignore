@@ -47,6 +47,7 @@
 .azure-functions-core-tools/
 .azure/
 .azurefunctions/
+.bansai/
 .bash_history
 .bash_sessions/
 .beadboard/
