@@ -13,15 +13,15 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.261 (Claude Code) · 2026-09-18 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.154.0 · 2026-09-18 | - |
-| opencode | aligned | shared | - | probe · 1.18.31 · 2026-09-18 | - |
-| pi | aligned | shared | - | probe · 0.85.1 · 2026-09-18 | - |
-| omp | aligned | shared | - | probe · omp/18.2.5 · 2026-09-18 | - |
-| antigravity | aligned | shared | - | probe · 1.2.6 · 2026-09-18 | - |
-| cursor | aligned | shared | - | probe · 2026.09.02-c22c1a3 · 2026-09-18 | - |
-| grok | aligned | shared | - | probe · grok 1.0.34 (3736acbc8658) [alpha] · 2026-09-18 | - |
-| crush | aligned | shared | - | probe · crush version v0.95.0 · 2026-09-18 | - |
+| claude | aligned | shared | - | probe · 2.1.261 (Claude Code) · 2026-09-19 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.155.0 · 2026-09-19 | - |
+| opencode | aligned | shared | - | probe · 1.18.31 · 2026-09-19 | - |
+| pi | aligned | shared | - | probe · 0.85.1 · 2026-09-19 | - |
+| omp | aligned | shared | - | probe · omp/18.2.6 · 2026-09-19 | - |
+| antigravity | aligned | shared | - | probe · 1.2.7 · 2026-09-19 | - |
+| cursor | aligned | shared | - | probe · - · 2026-09-19 | - |
+| grok | aligned | shared | - | probe · grok 1.0.34 (3736acbc8658) [alpha] · 2026-09-19 | - |
+| crush | aligned | shared | - | probe · crush version v0.95.0 · 2026-09-19 | - |
 
 ### maintenance.config_validation · p1
 
@@ -33,8 +33,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config --pure | probe · 1.18.31 · 2026-09-18 | - |
-| pi | aligned | native | pi list --no-approve | probe · 0.85.1 · 2026-09-18 | - |
+| opencode | aligned | native | opencode debug config --pure | probe · - · 2026-08-29 | probe unavailable: opencode: Command '['opencode', 'debug', 'config', '--pure']' timed out after 5 seconds |
+| pi | aligned | native | pi list --no-approve | probe · 0.85.1 · 2026-09-19 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |
