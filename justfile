@@ -81,6 +81,10 @@ build: generate
 [group('build')]
 generate: harness-generate
 
+# Regenerates artifacts and formats the result; run after generator/source edits
+[group('build')]
+fix: generate format
+
 #
 # checks group recipes
 #
