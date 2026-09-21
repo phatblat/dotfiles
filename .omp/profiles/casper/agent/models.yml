@@ -178,6 +178,7 @@ providers:
       - id: qwen3.8-max
         name: Qwen3.8 Max
         reasoning: true
+        supportsTools: false
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
