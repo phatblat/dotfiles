@@ -29,39 +29,6 @@
 #            override below is a local mitigation only; it does not fix the
 #            underlying buffering.
 providers:
-  spark:
-    baseUrl: http://spark1.local:8000/v1
-    api: openai-completions
-    apiKey: SPARK_API_KEY
-    compat:
-      supportsDeveloperRole: false
-      supportsReasoningEffort: false
-    models:
-      - id: Inferact/Qwen3.8-27B-NVFP4
-        name: Qwen3.8-27B (spark1, NVFP4 + MTP)
-        reasoning: true
-        input:
-          - text
-        contextWindow: 131072
-        maxTokens: 8192
-        cost:
-          input: 0
-          output: 0
-          cacheRead: 0
-          cacheWrite: 0
-      - id: Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
-        name: DeepSeek-V4-Flash-0731 120B REAM (spark1, NVFP4)
-        reasoning: true
-        input:
-          - text
-        contextWindow: 196608
-        maxTokens: 8192
-        cost:
-          input: 0
-          output: 0
-          cacheRead: 0
-          cacheWrite: 0
-
   casper:
     baseUrl: https://casper-api.ditto.live/v1
     api: openai-completions
@@ -85,22 +52,21 @@ providers:
       reasoningContentField: reasoning_content
       streamIdleTimeoutMs: 120000
     models:
-      # - id: auto
-      #   name: Casper Auto Router
-      #   reasoning: false
-      #   input: [text]
-      #   contextWindow: 1048576
-      #   maxTokens: 1048576
-      #   cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+      - id: auto
+        name: Casper Auto Router
+        reasoning: false
+        input: [text]
+        contextWindow: 1048576
+        maxTokens: 1048576
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
-      # # lmstudio-community/Qwen3.6-35B-A3B-MLX-8bit
-      # - id: dittoaicoder
-      #   name: Ditto AI Coder
-      #   reasoning: true
-      #   input: [text]
-      #   contextWindow: 262144
-      #   maxTokens: 262144
-      #   cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+      - id: dittoaicoder
+        name: Ditto AI Coder
+        reasoning: true
+        input: [text]
+        contextWindow: 262144
+        maxTokens: 262144
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
       - id: glm-5.3
         name: Glm 5.3
@@ -108,7 +74,7 @@ providers:
         input: [text]
         contextWindow: 1048576
         maxTokens: 1048576
-        cost: { input: 1.40, cacheRead: 0.26, cacheWrite: 0, output: 4.40 }
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
       - id: glm-5.3-flash
         name: Glm 5.3 Flash
@@ -116,7 +82,7 @@ providers:
         input: [text]
         contextWindow: 1048576
         maxTokens: 1048576
-        cost: { input: 0.15, cacheRead: 0.03, cacheWrite: 0, output: 0.50 }
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
       - id: gpt-oss-120b
         name: GPT-OSS 120B
@@ -124,7 +90,7 @@ providers:
         input: [text]
         contextWindow: 131072
         maxTokens: 131072
-        cost: { input: 0.15, cacheRead: 0.01, cacheWrite: 0, output: 0.60 }
+        cost: { input: 0.10, output: 0.50, cacheRead: 0, cacheWrite: 0 }
 
       - id: kimi-k2.6
         name: Kimi K2.6
@@ -132,7 +98,7 @@ providers:
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
-        cost: { input: 0.95, cacheRead: 0.16, cacheWrite: 0, output: 4.00 }
+        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
         compat:
           supportsReasoningEffort: false
           extraBody:
@@ -149,7 +115,7 @@ providers:
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
-        cost: { input: 0.95, cacheRead: 0.19, cacheWrite: 0, output: 4.00 }
+        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
         compat:
           supportsReasoningEffort: false
           extraBody:
@@ -164,9 +130,9 @@ providers:
         name: Kimi K3
         reasoning: true
         input: [text]
-        contextWindow: 500000
-        maxTokens: 500000
-        cost: { input: 3.00, cacheRead: 0.30, cacheWrite: 0, output: 15.00 }
+        contextWindow: 1048576
+        maxTokens: 1048576
+        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
         compat:
           # Casper buffers each tool call and emits it as a single delta, so the
           # stream carries only SSE comments while arguments generate (~20 tok/s,
@@ -174,13 +140,21 @@ providers:
           # budget so a timeout surfaces as an error, not a silent empty turn.
           streamIdleTimeoutMs: 210000
 
+      - id: minimax-m3
+        name: Minimax M3
+        reasoning: true
+        input: [text]
+        contextWindow: 524288
+        maxTokens: 524288
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
       - id: nemotron-3-ultra
         name: Nemotron 3 Ultra
         reasoning: true
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
-        cost: { input: 0.60, cacheRead: 0.12, cacheWrite: 0, output: 2.40 }
+        cost: { input: 0.60, output: 2.40, cacheRead: 0.12, cacheWrite: 0 }
         compat:
           supportsReasoningEffort: false
           # 550B class: first token can lag well past the provider floor.
@@ -199,4 +173,21 @@ providers:
         input: [text]
         contextWindow: 262144
         maxTokens: 262144
-        cost: { input: 0.05, cacheRead: 0.01, cacheWrite: 0, output: 0.20 }
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
+      - id: qwen3.8-max
+        name: Qwen3.8 Max
+        reasoning: true
+        input: [text]
+        contextWindow: 262144
+        maxTokens: 262144
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        compat:
+          supportsReasoningEffort: false
+          extraBody:
+            chat_template_args:
+              enable_thinking: false
+          whenThinking:
+            extraBody:
+              chat_template_args:
+                enable_thinking: true
