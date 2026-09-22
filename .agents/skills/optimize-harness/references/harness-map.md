@@ -168,3 +168,16 @@ with new measurements, not with a fresh reading of the same config.
   hits across all 7 MCP config files, `claude plugin list`, and the marketplace list. Do
   not re-flag `ctx7` (Context7's docs CLI) as a context-mode remnant — different tool,
   similar name.
+- **Codex `~/.codex/auth.json` is not tracked in git** and carries no OAuth tokens into a
+  commit. A prior audit pass flagged this as Critical; `git ls-files` shows it untracked
+  and `git check-ignore -v` resolves it to `.gitignore:112:.codex/*`. Verify with both
+  commands before flagging a credential file as tracked — do not infer tracked status
+  from the file's existence or its content alone.
+- **OMP's raw bash error rate is not a config defect.** Of the errors behind the
+  2026-09-07 finding ("6.2% error rate needs a config fix"), the only config-caused share
+  was the guard false positives fixed above (157 denials). The rest is agent behavior:
+  88 `git` pathspec misses, 117 non-zero exits with no output (e.g. `grep` exit 1), 152
+  `read` path-not-found. Re-measure the guard-caused share after the ness patch before
+  treating the remainder as a harness problem.
+- **Cursor's `approvalMode: allowlist` with 25 read-only commands is deliberate**, not
+  overly restrictive — it is a light annotation tool, and no wider access was requested.
