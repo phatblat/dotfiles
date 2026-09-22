@@ -29,8 +29,9 @@ Each entry: package/tool name, where it was managed, when and why it was removed
 - **Reason**: Retired by request. Unlike the other entries in this log, `ccusage` was an
   active dependency — wired into `just usage` and `just usage-board` in
   `.config/just/claude.just` — so both recipes were removed alongside the mise entry
-  rather than left dangling. `just usage-web` (opens the usage page on claude.ai) remains
-  as the surviving way to check usage.
+  rather than left dangling. `just usage-web` (opens the usage page on claude.ai) was
+  removed separately in a follow-up; there is no remaining `just` recipe for checking
+  Claude usage.
 - **Cleanup**: Removed the `[tools]` entry from `.config/mise/config.toml`, deleted the
   `usage` and `usage-board` recipes from `.config/just/claude.just`, and ran
   `mise uninstall npm:ccusage --all` to remove the 3 installed versions (20.0.20, 20.0.23,

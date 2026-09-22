@@ -1,4 +1,4 @@
-# claude — Claude Code install, upgrade, models, and usage
+# claude — Claude Code install, upgrade, and models
 
 alias uc := upgrade-claude
 
@@ -37,8 +37,3 @@ install-claude:
 [group('claude')]
 upgrade-claude:
     claude update
-
-# Open Claude usage online
-[group('claude')]
-usage-web:
-    open https://claude.ai/settings/usage
