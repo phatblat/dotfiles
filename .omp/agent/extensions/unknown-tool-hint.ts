@@ -4,10 +4,11 @@
 // Evidence (30-day OMP session scan, 2026-08-25): underscore-prefixed native
 // tool guesses (_bash, _read, _eval, _edit, _todo), case-typo'd native names
 // (Bash, Read), and malformed MCP-device invocations (xd_bash, xd_edit,
-// ctx_execute called directly instead of through an `xd://` path) each failed
-// 100% of the time across every attempt observed, with no self-correction
-// between attempts. This blocks each miss before it burns a real tool-call
-// turn and tells the model the exact fix.
+// ctx_execute called directly instead of through an `xd://` path; that
+// server (context-mode) was removed 2026-08-25 and its prefix test with it)
+// each failed 100% of the time across every attempt observed, with no
+// self-correction between attempts. This blocks each miss before it burns a
+// real tool-call turn and tells the model the exact fix.
 import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
 
 // Curated fallback in case getAllTools() has not populated yet when a very
@@ -73,13 +74,13 @@ export default function unknownToolHint(pi: ExtensionAPI) {
       };
     }
 
-    if (/^xd_+/.test(lower) || /^ctx_/.test(lower) || /^mcp__/.test(lower)) {
+    if (/^xd_+/.test(lower) || /^mcp__/.test(lower)) {
       return {
         block: true,
         reason:
           `Unknown tool '${toolName}'. MCP/device tools are not called directly by ` +
           `name — write JSON args to the path 'xd://<tool>' using the 'write' tool ` +
-          `(e.g. write to "xd://mcp__context_mode_ctx_execute"), or read 'xd://<tool>' ` +
+          `(e.g. write to "xd://ast_edit"), or read 'xd://<tool>' ` +
           `first to see its schema.`,
       };
     }
