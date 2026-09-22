@@ -133,6 +133,7 @@ STATE_DIRS = frozenset(
         "projects",
         "python-env",
         "registry",
+        "remote-host",
         "run",
         "security",
         "sessions",
