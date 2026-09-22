@@ -256,8 +256,6 @@ brew "jsonpp"
 brew "kdoctor"
 # Save disk space by cleaning non-essential files from software projects
 brew "kondo"
-# TUI for Jujutsu/jj
-brew "lazyjj"
 # Pager program similar to more
 brew "less"
 # Implementation of the Unicode line- and word-breaking algorithms
