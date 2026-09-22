@@ -71,7 +71,7 @@ agentlink-apply:
 harness-evals:
     #!/usr/bin/env bash
     set -euo pipefail
-    # Populate gitignored snapshot from live harness (exclude evals/ to avoid recursion)
+    # Copy only these tracked harness files into the snapshot (evals/ is never included)
     SNAPSHOT_DIR="{{ justfile_directory() }}/.agents/harness/evals/harbor/harness-structure/environment/snapshot"
     rm -rf "$SNAPSHOT_DIR"
     mkdir -p "$SNAPSHOT_DIR"
