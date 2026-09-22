@@ -185,7 +185,6 @@ enable_utf8proc = "no"
 
 # Agent/tool output
 ENABLE_LSP_TOOL = "1"
-FORCE_COLOR = "3"
 
 # Homebrew behavior
 HOMEBREW_NO_ASK = "1"
