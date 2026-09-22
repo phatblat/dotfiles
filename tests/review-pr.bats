@@ -118,7 +118,7 @@ exit "$REVIEW_PR_OMP_STATUS"'
 
   [ "$status" -eq 0 ]
   ! grep -q "gh repo clone" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "git -C $existing fetch origin pull/123/head" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "git -C $existing fetch origin +pull/123/head" "$REVIEW_PR_COMMAND_LOG"
   grep -q "git -C $existing worktree add --detach" "$REVIEW_PR_COMMAND_LOG"
 }
 
@@ -172,7 +172,7 @@ EOF
 
   [ "$status" -eq 0 ]
   grep -q "gh repo clone getditto/widgets $REVIEW_PR_GETDITTO_ROOT/widgets" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "git -C $REVIEW_PR_GETDITTO_ROOT/widgets fetch origin pull/123/head:refs/remotes/origin/pr/123 release/4.0:refs/remotes/origin/release/4.0" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "git -C $REVIEW_PR_GETDITTO_ROOT/widgets fetch origin +pull/123/head:refs/remotes/origin/pr/123 +release/4.0:refs/remotes/origin/release/4.0" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<--cwd>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<--add-dir>" "$REVIEW_PR_COMMAND_LOG"
   grep -q "omp-arg:<$HOME/2ndBrain/daily-notes>" "$REVIEW_PR_COMMAND_LOG"
