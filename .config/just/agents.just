@@ -81,3 +81,43 @@ harness-evals:
           "$SNAPSHOT_DIR/"
     # Run Harbor eval
     mise exec -- harbor run -p {{ justfile_directory() }}/.agents/harness/evals/harbor/harness-structure -a nop
+
+# Rebuilds the graphify knowledge graph from scratch, rooted at this checkout.
+# --code-only keeps it key-free (no LLM API key is set on this machine); docs
+# and other non-code files enter the graph via `just graphify-semantic`.
+[group('agents')]
+[script]
+graphify-reindex: && _graphify-pin
+    rm -rf {{ justfile_directory() }}/graphify-out
+    mise exec -- graphify extract {{ justfile_directory() }} --code-only --out {{ justfile_directory() }}
+
+# Incremental re-index plus lessons refresh; driven daily by the
+# at.phatbl.graphify-refresh LaunchAgent.
+[group('agents')]
+[script]
+graphify-refresh: && _graphify-pin
+    mise exec -- graphify update {{ justfile_directory() }}
+    mise exec -- graphify reflect \
+        --memory-dir {{ justfile_directory() }}/graphify-out/memory \
+        --out {{ justfile_directory() }}/graphify-out/reflections/LESSONS.md \
+        --graph {{ justfile_directory() }}/graphify-out/graph.json
+    mise exec -- graphify check-update {{ justfile_directory() }}
+
+# Adds the doc/paper/image layer the key-free rebuild skips. Uses the local
+# Claude Code CLI as the backend, so it needs no API key, but it is a long LLM
+# pass over the whole corpus - run it deliberately, never on a schedule.
+[group('agents')]
+graphify-semantic:
+    mise exec -- graphify extract {{ justfile_directory() }} --backend claude-cli --out {{ justfile_directory() }}
+
+# Re-pins the sidecars the graphify skill reads. The skill resolves its
+# interpreter through `uv tool run --from graphifyy` first and caches the
+# absolute path in .graphify_python; that path dies on the next graphifyy
+# version bump (it was still pinned to the removed 0.9.16 install while mise
+# had 0.9.65). Rewriting both sidecars keeps the skill on the mise-pinned
+# install and on the correct scan root.
+[script]
+_graphify-pin:
+    mkdir -p {{ justfile_directory() }}/graphify-out
+    printf '%s\n' "$(head -1 "$(mise which graphify)" | sed 's|^#!||')" > {{ justfile_directory() }}/graphify-out/.graphify_python
+    printf '%s\n' "{{ justfile_directory() }}" > {{ justfile_directory() }}/graphify-out/.graphify_root
