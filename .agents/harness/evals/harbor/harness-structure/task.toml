@@ -1,0 +1,30 @@
+schema_version = "1.4"
+artifacts = []
+
+[task]
+name = "phatblat/harness-structure"
+version = "1.0.0"
+description = "Verify shared agent harness structure is complete and valid"
+authors = []
+keywords = ["harness", "structure"]
+
+[metadata]
+
+[verifier]
+timeout_sec = 120.0
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+network_mode = "none"
+build_timeout_sec = 600.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

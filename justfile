@@ -83,7 +83,7 @@ generate: harness-generate
 
 # Regenerates artifacts and formats the result; run after generator/source edits
 [group('build')]
-fix: generate format
+fix: generate agentlink-apply format
 
 #
 # checks group recipes

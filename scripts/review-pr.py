@@ -55,8 +55,8 @@ def main(argv: list[str]) -> int:
                 str(repo_dir),
                 "fetch",
                 "origin",
-                f"pull/{pr.number}/head:{ref}",
-                f"{base_ref}:refs/remotes/origin/{base_ref}",
+                f"+pull/{pr.number}/head:{ref}",
+                f"+{base_ref}:refs/remotes/origin/{base_ref}",
             ]
         )
 

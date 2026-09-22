@@ -60,3 +60,24 @@ harness-drift *ARGS:
 [group('agents')]
 agentlink-check:
     agentlink status --check --dir {{ justfile_directory() }}
+
+# Applies agentlink's project-tier links per .agentlink/config.toml
+[group('agents')]
+agentlink-apply:
+    agentlink apply --dir {{ justfile_directory() }}
+
+# Runs Harbor evals for the shared agent harness
+[group('agents')]
+harness-evals:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # Copy only these tracked harness files into the snapshot (evals/ is never included)
+    SNAPSHOT_DIR="{{ justfile_directory() }}/.agents/harness/evals/harbor/harness-structure/environment/snapshot"
+    rm -rf "$SNAPSHOT_DIR"
+    mkdir -p "$SNAPSHOT_DIR"
+    cd {{ justfile_directory() }}/.agents/harness
+    cp -r README.md instructions.md adapters commands agents hooks \
+          generated-paths.json self-improve-policy.json \
+          "$SNAPSHOT_DIR/"
+    # Run Harbor eval
+    mise exec -- harbor run -p {{ justfile_directory() }}/.agents/harness/evals/harbor/harness-structure -a nop
