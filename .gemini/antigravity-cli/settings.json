@@ -17,9 +17,9 @@
   },
   "showFeedbackSurvey": false,
   "statusLine": {
-    "type": "",
     "command": "",
-    "enabled": true
+    "enabled": true,
+    "type": ""
   },
   "toolPermission": "proceed-in-sandbox"
 }
