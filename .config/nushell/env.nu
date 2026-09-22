@@ -45,7 +45,7 @@ $env.NU_VENDOR_AUTOLOAD_DIRS = [
 ]
 
 # Add homebrew to PATH
-$env.PATH = ($env.PATH | prepend "/opt/homebrew/bin")
+$env.PATH = ($env.PATH | prepend ["/opt/homebrew/sbin" "/opt/homebrew/bin"])
 
 # Nix (Determinate). There is no upstream nushell hook — nix-daemon.sh is
 # POSIX-only — so replicate its PATH setup here. Gated on the store being
