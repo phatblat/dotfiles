@@ -318,14 +318,10 @@ brew "nasm"
 brew "ncdu"
 # CLI for NextDNS's DNS-over-HTTPS (DoH)
 brew "nextdns"
-# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
-brew "nginx"
 # Port scanning utility for large networks
 brew "nmap"
 # Modern shell for the GitHub era
 brew "nushell"
-# Development kit for the Java programming language
-brew "openjdk@17"
 # Learn vim commands via a game
 brew "pacvim"
 # Easily download, build, install, upgrade, and uninstall Python packages
