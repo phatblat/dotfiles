@@ -1,7 +1,6 @@
 # claude — Claude Code install, upgrade, models, and usage
 
 alias uc := upgrade-claude
-alias ub := usage-board
 
 # Lists Claude model IDs recorded in .claude/models.lock
 [group('claude')]
@@ -39,17 +38,7 @@ install-claude:
 upgrade-claude:
     claude update
 
-# Show Claude usage statistics
-[group('claude')]
-usage:
-    ccusage
-
 # Open Claude usage online
 [group('claude')]
 usage-web:
     open https://claude.ai/settings/usage
-
-# Show Claude usage statistics dashboard
-[group('claude')]
-usage-board:
-    ccusage blocks --live
