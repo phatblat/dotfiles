@@ -147,6 +147,14 @@ providers:
         contextWindow: 524288
         maxTokens: 524288
         cost: { input: 0.30, output: 1.20, cacheRead: 0.06, cacheWrite: 0 }
+        thinkingLevelMap:
+          off: none
+          minimal: low
+          low: low
+          medium: medium
+          high: high
+          xhigh: xhigh
+          max: max
 
       - id: nemotron-3-ultra
         name: Nemotron 3 Ultra
