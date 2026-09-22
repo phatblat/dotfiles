@@ -10,7 +10,7 @@
 "aqua:dalance/procs" = "0.14.12"
 "aqua:dlvhdr/gh-dash" = "4.26.0"
 "aqua:openai/codex" = "0.155.1"
-"aqua:shenwei356/rush" = "0.10.0"
+"aqua:shenwei356/rush" = "0.11.0"
 "aqua:tcnksm/ghr" = "0.18.4"
 "aqua:uutils/coreutils" = "0.12.0"
 "cargo:cargo-about" = "0.9.2"
