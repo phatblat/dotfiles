@@ -26,6 +26,9 @@ if (( ! $+commands[brew] )); then
     eval "$(/usr/local/bin/brew shellenv)"
   fi
 fi
+if [[ ! "$PATH" == */opt/homebrew/sbin* ]]; then
+  export PATH="/opt/homebrew/sbin:$PATH"
+fi
 if [[ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]]; then
   fpath+=("${HOMEBREW_PREFIX}/share/zsh/site-functions")
 fi
