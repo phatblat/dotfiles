@@ -439,8 +439,6 @@ cask "loom"
 cask "meld"
 # Utility to move and zoom windows—on one display
 cask "moom"
-# Run LLMs locally
-cask "msty"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Calendar for professionals and teams
