@@ -61,6 +61,11 @@ harness-drift *ARGS:
 agentlink-check:
     agentlink status --check --dir {{ justfile_directory() }}
 
+# Applies agentlink's project-tier links per .agentlink/config.toml
+[group('agents')]
+agentlink-apply:
+    agentlink apply --dir {{ justfile_directory() }}
+
 # Runs Harbor evals for the shared agent harness
 [group('agents')]
 harness-evals:
