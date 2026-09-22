@@ -25,6 +25,7 @@
 .Xauthority
 .advLdap/
 !.agents/harness/adapters/cursor/skills/2ndbrain/
+.agents/harness/jobs/
 !.agents/skills/2ndbrain/**
 !.agents/skills/2ndbrain/
 .android/
