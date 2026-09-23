@@ -170,3 +170,8 @@
 {"capability":"-","date":"2026-09-22","detail":"","field":"version","from":"grok 1.0.34 (3736acbc8658) [alpha]","harness":"grok","to":"grok 1.0.40 (eb1a2256660d) [alpha]","version_from":"grok 1.0.34 (3736acbc8658) [alpha]","version_to":"grok 1.0.40 (eb1a2256660d) [alpha]"}
 {"capability":"-","date":"2026-09-22","detail":"","field":"version","from":"omp/18.2.6","harness":"omp","to":"omp/18.2.8","version_from":"omp/18.2.6","version_to":"omp/18.2.8"}
 {"capability":"-","date":"2026-09-22","detail":"","field":"version","from":"0.85.1","harness":"pi","to":"0.86.1","version_from":"0.85.1","version_to":"0.86.1"}
+{"capability":"-","date":"2026-09-23","detail":"","field":"version","from":"crush version v0.96.0","harness":"crush","to":"crush version v0.96.1","version_from":"crush version v0.96.0","version_to":"crush version v0.96.1"}
+{"capability":"-","date":"2026-09-23","detail":"","field":"version","from":"grok 1.0.40 (eb1a2256660d) [alpha]","harness":"grok","to":"grok 1.0.41 (4220f3b224a6) [alpha]","version_from":"grok 1.0.40 (eb1a2256660d) [alpha]","version_to":"grok 1.0.41 (4220f3b224a6) [alpha]"}
+{"capability":"-","date":"2026-09-23","detail":"","field":"version","from":"omp/18.2.8","harness":"omp","to":"omp/18.2.11","version_from":"omp/18.2.8","version_to":"omp/18.2.11"}
+{"capability":"-","date":"2026-09-23","detail":"","field":"version","from":"1.18.31","harness":"opencode","to":"1.18.32","version_from":"1.18.31","version_to":"1.18.32"}
+{"capability":"-","date":"2026-09-23","detail":"","field":"version","from":"0.86.1","harness":"pi","to":"0.87.0","version_from":"0.86.1","version_to":"0.87.0"}
