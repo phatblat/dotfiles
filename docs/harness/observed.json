@@ -90,10 +90,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md",
       "mode": "adapter",
       "parity": "partial",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -198,10 +198,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -306,10 +306,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -339,10 +339,10 @@
     },
     "commands.active": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "partial",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
@@ -409,10 +409,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "aligned",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -512,10 +512,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "partial",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -545,10 +545,10 @@
     },
     "commands.active": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "partial",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "hooks.safety": {
@@ -615,10 +615,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "aligned",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -723,10 +723,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "aligned",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -839,10 +839,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {
@@ -955,10 +955,10 @@
     },
     "skills.shared": {
       "date": "2026-09-24",
-      "detail": "missing .agents/skills/resolve-feedback/SKILL.md",
+      "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
-      "result": "fail",
+      "result": "pass",
       "surface": ""
     },
     "skills.tool_preapproval": {

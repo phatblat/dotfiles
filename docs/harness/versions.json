@@ -1,13 +1,13 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.2.8",
-    "version": "1.2.3"
+    "previous": "1.2.3",
+    "version": "1.2.10"
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.278 (Claude Code)",
-    "version": "2.1.251 (Claude Code)"
+    "previous": "2.1.251 (Claude Code)",
+    "version": "2.1.278 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
@@ -26,8 +26,8 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.41 (4220f3b224a6) [alpha]",
-    "version": "grok 1.0.41 (4220f3b224a6)"
+    "previous": "grok 1.0.41 (4220f3b224a6)",
+    "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",

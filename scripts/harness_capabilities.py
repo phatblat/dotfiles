@@ -312,7 +312,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
             ),
             "codex": Cell(
                 parity="aligned",
@@ -321,7 +321,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
             ),
             "opencode": Cell(
                 parity="aligned",
@@ -330,7 +330,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
             ),
             "pi": Cell(
                 parity="aligned",
@@ -339,7 +339,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
             ),
             "omp": Cell(
                 parity="aligned",
@@ -348,7 +348,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
             ),
             "antigravity": Cell(
                 parity="partial",
@@ -358,7 +358,7 @@ CAPABILITIES: list[Capability] = [
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
                 probe=_exists(
-                    ".agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md"
+                    ".agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md"
                 ),
                 note=(
                     "generated Antigravity skill wrappers point to shared skills, "
@@ -377,7 +377,7 @@ CAPABILITIES: list[Capability] = [
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
                 probe=_exists(
-                    ".agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md"
+                    ".agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md"
                 ),
                 note=(
                     "generated Cursor plugin skill wrappers point to shared "
@@ -395,7 +395,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
                 note="grok scans ~/.agents/skills at the user tier",
             ),
             "crush": Cell(
@@ -405,7 +405,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
                 note=(
                     "generated crushrc adds ~/.agents/skills through option "
                     "skill-path; crush's default global skill roots are "
@@ -763,7 +763,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
                 note=(
                     "grok reaches 24 of the 25 command workflows through the "
                     "shared skills; linear/progress has no shared skill, and "
@@ -782,7 +782,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/skills/resolve-feedback/SKILL.md"),
+                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
                 note=(
                     "crush has no user-defined slash-command surface, so the "
                     "command workflows are reachable only through the shared "
