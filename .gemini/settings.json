@@ -8,9 +8,6 @@
     }
   },
   "mcpServers": {},
-  "model": {
-    "name": "auto-gemini-3"
-  },
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
