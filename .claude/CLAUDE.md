@@ -37,7 +37,7 @@ Uncertainty → State immediately
 
 ## Git Commits
 
-- Always use `/git:commit` or the `commit-message` skill. Never manually compose commit messages.
+- Always use `/git:commit` or the `git-commit` skill. Never manually compose commit messages.
 - **Logical grouping**: When multiple files are changed, group them into separate commits by logical concern. Do not lump unrelated changes into a single commit. Each commit should represent one coherent change (e.g., a bug fix, a config update, a new feature). Ask the user to confirm grouping when the split is ambiguous.
 
 ### Git commit attribution
