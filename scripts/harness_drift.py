@@ -101,9 +101,14 @@ def _run_file_probe(slug: str, probe: dict[str, str], *, home: Path) -> dict[str
 
 def _run_cli_probe(slug: str, probe: dict[str, str]) -> dict[str, str]:
     """Run the harness binary; a missing binary or a timeout is unavailable."""
-    binary = resolve_cli(slug) if CLI_BINARIES.get(slug) else ""
+    name = CLI_BINARIES.get(slug, "")
+    # Execute the resolved path (so a $TMPDIR shim can't shadow the real
+    # install) but report the bare name: an absolute mise path carries a
+    # version number, and writing that into the tracked ledger would churn
+    # observed.json on every toolchain bump.
+    binary = resolve_cli(slug) if name else ""
     if not binary or shutil.which(binary) is None:
-        return {"result": "unavailable", "detail": f"{binary or slug} not on PATH"}
+        return {"result": "unavailable", "detail": f"{name or slug} not on PATH"}
     kind = probe["kind"]
     args = ["--help"] if kind == "cli_help_contains" else probe.get("args", "").split()
     try:
@@ -115,8 +120,8 @@ def _run_cli_probe(slug: str, probe: dict[str, str]) -> dict[str, str]:
             timeout=_CLI_TIMEOUT,
         )
     except (OSError, subprocess.TimeoutExpired) as exc:
-        return {"result": "unavailable", "detail": f"{binary}: {exc}"}
-    printed = f"{binary} {' '.join(args)}".strip()
+        return {"result": "unavailable", "detail": f"{name}: {exc}"}
+    printed = f"{name} {' '.join(args)}".strip()
     if kind == "cli_exit_zero":
         if result.returncode == 0:
             return {"result": "pass", "detail": printed}
