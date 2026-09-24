@@ -314,3 +314,5 @@ spelling:
   autocorrect: true
 error:
   notify: "on"
+skills:
+  enableClaudeProject: false
