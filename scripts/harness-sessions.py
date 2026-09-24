@@ -37,7 +37,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harness_paths import CLI_BINARIES, HARNESSES, SESSION_STORES, SessionStore
+from harness_paths import HARNESSES, SESSION_STORES, SessionStore, resolve_cli
 
 HOME = Path(os.environ.get("HOME", str(Path.home()))).resolve()
 MAX_FIELD_LEN = 64
@@ -1087,7 +1087,7 @@ def scan_antigravity(files: list[Path], coverage: Coverage) -> list[Obs]:
 def scan_harness(slug: str, *, since_days: int, max_files: int) -> tuple[list[Obs], Coverage]:
     store = SESSION_STORES[slug]
     root, resolved_from = resolve_session_root(slug, store)
-    version = cli_version(CLI_BINARIES[slug])
+    version = cli_version(resolve_cli(slug))
     coverage = Coverage(
         harness=slug,
         root=str(root),

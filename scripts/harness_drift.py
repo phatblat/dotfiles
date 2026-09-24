@@ -37,7 +37,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from harness_paths import CLI_BINARIES, CONFIG_ROOTS
+from harness_paths import CLI_BINARIES, CONFIG_ROOTS, resolve_cli
 
 # Probe kinds a Cell may declare. `file_*` carry a HOME-relative `path`,
 # `*_contains` carry a regex `pattern`, and `cli_*` carry a space-separated
@@ -101,7 +101,7 @@ def _run_file_probe(slug: str, probe: dict[str, str], *, home: Path) -> dict[str
 
 def _run_cli_probe(slug: str, probe: dict[str, str]) -> dict[str, str]:
     """Run the harness binary; a missing binary or a timeout is unavailable."""
-    binary = CLI_BINARIES.get(slug, "")
+    binary = resolve_cli(slug) if CLI_BINARIES.get(slug) else ""
     if not binary or shutil.which(binary) is None:
         return {"result": "unavailable", "detail": f"{binary or slug} not on PATH"}
     kind = probe["kind"]
