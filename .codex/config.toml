@@ -64,11 +64,6 @@ command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.
 cwd = "."
 enabled = false
 
-[mcp_servers.filesystem]
-args = ["-y", "@modelcontextprotocol/server-filesystem", "/Users/phatblat"]
-command = "npx"
-startup_timeout_sec = 60
-
 [mcp_servers.node_repl]
 args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
