@@ -211,7 +211,7 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/hooks/scripts/timed.sh agent-flow-guard SessionStart 'bash ~/.claude/agent-flow/agent-flow-guard.sh'",
+            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
             "timeout": 4,
             "type": "command"
           }
