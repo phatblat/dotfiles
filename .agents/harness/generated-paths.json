@@ -701,6 +701,9 @@
   "~/.claude/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
   },
+  "~/.claude/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
   "~/.claude/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
   },
@@ -820,6 +823,9 @@
   },
   "~/.codex/skills/new-project/agents/openai.yaml": {
     "source": "~/.agents/skills/new-project/SKILL.md"
+  },
+  "~/.codex/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
   },
   "~/.codex/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
@@ -1039,6 +1045,9 @@
   },
   "~/.config/opencode/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
+  },
+  "~/.config/opencode/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
   },
   "~/.config/opencode/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"

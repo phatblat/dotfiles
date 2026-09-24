@@ -55,6 +55,7 @@ NATIVE_SKILL_ADAPTERS = {
     "handoff",
     "harness-research",
     "new-project",
+    "ocr",
     "optimize-harness",
     "pr-style",
     "receiving-code-review",
