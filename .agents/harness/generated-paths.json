@@ -758,6 +758,9 @@
   "~/.codex/skills/ci-fix/SKILL.md": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
+  "~/.codex/skills/ci-fix/agents/openai.yaml": {
+    "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
   "~/.codex/skills/cmux-workspace-status/SKILL.md": {
     "source": "~/.agents/skills/cmux-workspace-status/SKILL.md"
   },

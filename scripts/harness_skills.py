@@ -74,6 +74,7 @@ NATIVE_SKILL_ADAPTERS = {
 MANUAL_SKILL_ADAPTERS = {
     "2ndbrain",
     "branch-finish",
+    "ci-fix",
     "gha-checks",
     "gha-log-reader",
     "grill-me",
