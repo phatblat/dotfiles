@@ -2,6 +2,7 @@
 # Sections/keys are alphabetized by `just format` (~/scripts/sort-codex-config.py), except native marketplace state order.
 # Volatile churn (timestamps/revisions/hashes) is masked out of git by ~/scripts/mask-codex-state.sh (clean filter; see .gitattributes).
 
+approval_policy = "on-request"
 approvals_reviewer = "auto_review"
 commit_attribution = "Co-Authored-By: Codex <noreply@openai.com>"
 model = "gpt-6-astra"
@@ -9,7 +10,7 @@ model_reasoning_effort = "ultra"
 notify = ["/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
-sandbox_mode = "read-only"
+sandbox_mode = "workspace-write"
 service_tier = "default"
 suppress_unstable_features_warning = true
 tool_output_token_limit = 12000
