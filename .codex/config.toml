@@ -91,13 +91,6 @@ SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/computer-use/Codex Computer Use.a
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
 
-[otel.exporter."otlp-http"]
-endpoint = "https://otlp.datadoghq.com/v1/logs"
-protocol = "binary"
-
-[otel.exporter."otlp-http".headers]
-"DD-API-KEY" = "${DD_API_KEY}"
-
 [shell_environment_policy]
 inherit = "core"
 
