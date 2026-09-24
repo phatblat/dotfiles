@@ -253,6 +253,7 @@ bash:
       approval: allow
     - match: "true"
       approval: allow
+  allowCompoundCommands: true
 display:
   showTokenUsage: true
   cacheMissMarker: true
