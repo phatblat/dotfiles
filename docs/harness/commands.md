@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · 2.1.278 (Claude Code) · 2026-09-22 | source commands |
-| codex | blocked | adapter | - | probe · codex-cli 0.155.1 · 2026-09-22 | Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files. |
-| opencode | aligned | adapter | - | probe · 1.18.31 · 2026-09-22 | generated command templates |
-| pi | aligned | adapter | - | probe · 0.86.1 · 2026-09-22 | generated prompt templates |
-| omp | aligned | native | - | probe · omp/18.2.8 · 2026-09-22 | - |
-| antigravity | partial | adapter | - | probe · 1.2.8 · 2026-09-22 | generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills |
-| cursor | partial | native | - | probe · 2026.09.15-d2fe57e · 2026-09-22 | generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified |
-| grok | partial | native | - | probe · grok 1.0.40 (eb1a2256660d) [alpha] · 2026-09-22 | grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
-| crush | partial | native | - | probe · crush version v0.96.0 · 2026-09-22 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| claude | aligned | native | - | probe · 2.1.278 (Claude Code) · 2026-09-23 | source commands |
+| codex | blocked | adapter | - | probe · codex-cli 0.155.1 · 2026-09-23 | Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files. |
+| opencode | aligned | adapter | - | probe · 1.18.32 · 2026-09-23 | generated command templates |
+| pi | aligned | adapter | - | probe · 0.87.0 · 2026-09-23 | generated prompt templates |
+| omp | aligned | native | - | probe · omp/18.2.11 · 2026-09-23 | - |
+| antigravity | partial | adapter | - | probe · 1.2.8 · 2026-09-23 | generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills |
+| cursor | partial | native | - | probe · 2026.09.15-d2fe57e · 2026-09-23 | generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified |
+| grok | partial | native | - | probe · grok 1.0.41 (4220f3b224a6) [alpha] · 2026-09-23 | grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
+| crush | partial | native | - | probe · crush version v0.96.1 · 2026-09-23 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md; probe failed: missing .agents/skills/resolve-feedback/SKILL.md |
 
 ### Not yet researched
 

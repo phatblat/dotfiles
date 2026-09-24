@@ -10,13 +10,13 @@ Coverage: 91/405 cells verified (22%)
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.278 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.155.1 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.18.31 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
-| pi | new port | 0.86.1 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.2.8 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| opencode | new port | 1.18.32 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
+| pi | new port | 0.87.0 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
+| omp | tracked port | omp/18.2.11 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.2.8 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
 | cursor | tracked port | 2026.09.15-d2fe57e | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.40 (eb1a2256660d) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
-| crush | new port | crush version v0.96.0 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
+| grok | new port | grok 1.0.41 (4220f3b224a6) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
+| crush | new port | crush version v0.96.1 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
@@ -67,16 +67,16 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-09-23 | pi | - | version | 0.86.1 | 0.87.0 |
+| 2026-09-23 | opencode | - | version | 1.18.31 | 1.18.32 |
+| 2026-09-23 | omp | - | version | omp/18.2.8 | omp/18.2.11 |
+| 2026-09-23 | grok | - | version | grok 1.0.40 (eb1a2256660d) [alpha] | grok 1.0.41 (4220f3b224a6) [alpha] |
+| 2026-09-23 | crush | - | version | crush version v0.96.0 | crush version v0.96.1 |
 | 2026-09-22 | pi | - | version | 0.85.1 | 0.86.1 |
 | 2026-09-22 | omp | - | version | omp/18.2.6 | omp/18.2.8 |
 | 2026-09-22 | grok | - | version | grok 1.0.34 (3736acbc8658) [alpha] | grok 1.0.40 (eb1a2256660d) [alpha] |
 | 2026-09-22 | cursor | - | version | - | 2026.09.15-d2fe57e |
 | 2026-09-22 | crush | - | version | crush version v0.95.0 | crush version v0.96.0 |
-| 2026-09-22 | codex | - | version | codex-cli 0.155.0 | codex-cli 0.155.1 |
-| 2026-09-22 | claude | - | version | 2.1.261 (Claude Code) | 2.1.278 (Claude Code) |
-| 2026-09-22 | antigravity | - | version | 1.2.7 | 1.2.8 |
-| 2026-09-22 | opencode | maintenance.config_validation | probe | unavailable | pass |
-| 2026-09-19 | omp | - | version | omp/18.2.5 | omp/18.2.6 |
 
 ## Permanent divergences
 
