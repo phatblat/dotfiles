@@ -22,7 +22,7 @@
     "superpowers@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": true
+    "warp@claude-code-warp": false
   },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "90000",
