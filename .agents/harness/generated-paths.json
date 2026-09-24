@@ -521,8 +521,8 @@
   "~/.agents/harness/adapters/cursor/skills/work-start-day/SKILL.md": {
     "source": "~/.agents/skills/work-start-day/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/work-track/SKILL.md": {
-    "source": "~/.agents/skills/work-track/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/work-track-item/SKILL.md": {
+    "source": "~/.agents/skills/work-track-item/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
