@@ -1,5 +1,7 @@
-model = "gpt-5.6-terra"
-model_reasoning_effort = "high"
+# main.config.toml — `codex --profile main`. Pure pass-through by design:
+# any bare key ABOVE [hooks.state] is an active override of ~/.codex/config.toml.
+# See the commented scratch-space block at the end of this file.
+
 [hooks.state]
 
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
