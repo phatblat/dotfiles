@@ -31,7 +31,7 @@ source "$HOME/.config/broot/launcher/bash/br"
 export HOMEBREW_PREFIX=$(brew --prefix)
 
 # JDK
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17
+export JAVA_HOME=/opt/homebrew/opt/openjdk
 
 # Aliases
 alias ll='ls -l'

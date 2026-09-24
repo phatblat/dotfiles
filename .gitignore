@@ -25,6 +25,7 @@
 .Xauthority
 .advLdap/
 !.agents/harness/adapters/cursor/skills/2ndbrain/
+.agents/harness/jobs/
 !.agents/skills/2ndbrain/**
 !.agents/skills/2ndbrain/
 .android/
@@ -85,7 +86,6 @@
 .claude/.session-stats.json
 .claude/.session-stats.json.tmp.*
 .claude/agent-flow/*.json
-.claude/context-mode/
 .claude/daemon.lock
 .claude/daemon.status.json
 .claude/daemon/
@@ -1081,6 +1081,7 @@ Library/KeyboardServices/
 Library/Keychains/
 Library/LanguageModeling/
 Library/LaunchAgents/*
+!Library/LaunchAgents/at.phatbl.graphify-refresh.plist
 !Library/LaunchAgents/at.phatbl.harness-probe.plist
 Library/Library/
 Library/LockdownMode/

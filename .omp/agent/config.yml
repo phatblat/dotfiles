@@ -1,5 +1,4 @@
 providers:
-  webSearchOrder: []
   anthropic:
     serverSideFallback: false
 setupVersion: 2
@@ -278,8 +277,8 @@ cycleOrder:
   - plan
   - smol
   - slow
-steeringMode: one-at-a-time
-followUpMode: one-at-a-time
+steeringMode: all
+followUpMode: all
 interruptMode: wait
 memory:
   backend: mnemopi
@@ -304,8 +303,13 @@ statusLine:
   showHookStatus: true
 retry:
   usageAwareFallback: true
-doubleEscapeAction: rewind
+doubleEscapeAction: tree
 composer:
   shape: field
 codexResets:
   autoRedeem: "no"
+treeFilterMode: all
+spelling:
+  autocorrect: true
+error:
+  notify: "on"

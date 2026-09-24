@@ -1,0 +1,27 @@
+# Corpus boundary for graphify. This repo is checked out at $HOME, so the scan
+# root is $HOME and .gitignore alone is not enough: dev/, Downloads/, Library/,
+# Applications/ and most other top-level directories are untracked but not
+# ignored, and a bare scan walks the entire home directory.
+#
+# `/*/` matches root-level DIRECTORIES only, so root-level files (AGENTS.md,
+# justfile, hk.pkl, .zshrc, ...) stay in the corpus. Git's parent-exclusion rule
+# means a `!` line below cannot re-include anything beneath a directory excluded
+# here, so Library/LaunchAgents/*.plist is deliberately out of scope.
+/*/
+!/.agents/
+!/.claude/
+!/.codex/
+!/.config/
+!/.cursor/
+!/.gemini/
+!/.github/
+!/.grok/
+!/.omp/
+!/.opencode/
+!/.pi/
+!/bin/
+!/crates/
+!/docs/
+!/scripts/
+!/settings/
+!/tests/

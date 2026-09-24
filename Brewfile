@@ -256,8 +256,6 @@ brew "jsonpp"
 brew "kdoctor"
 # Save disk space by cleaning non-essential files from software projects
 brew "kondo"
-# TUI for Jujutsu/jj
-brew "lazyjj"
 # Pager program similar to more
 brew "less"
 # Implementation of the Unicode line- and word-breaking algorithms
@@ -320,14 +318,10 @@ brew "nasm"
 brew "ncdu"
 # CLI for NextDNS's DNS-over-HTTPS (DoH)
 brew "nextdns"
-# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
-brew "nginx"
 # Port scanning utility for large networks
 brew "nmap"
 # Modern shell for the GitHub era
 brew "nushell"
-# Development kit for the Java programming language
-brew "openjdk@17"
 # Learn vim commands via a game
 brew "pacvim"
 # Easily download, build, install, upgrade, and uninstall Python packages
@@ -407,8 +401,6 @@ cask "cleanmymac-cli"
 cask "cmux"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# OpenAI's Codex desktop app for managing coding agents
-cask "codex-app"
 # Menu bar usage monitor for Codex and Claude
 cask "codexbar"
 cask "font-jetbrains-mono"
@@ -441,8 +433,6 @@ cask "loom"
 cask "meld"
 # Utility to move and zoom windows—on one display
 cask "moom"
-# Run LLMs locally
-cask "msty"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Calendar for professionals and teams
