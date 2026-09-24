@@ -7546,6 +7546,12 @@
   "plugins": {
     "claude": [
       {
+        "enabled": true,
+        "id": "clangd-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
         "enabled": false,
         "id": "claude-code-setup@claude-plugins-official",
         "marketplace": "claude-plugins-official",
@@ -7577,6 +7583,12 @@
       },
       {
         "enabled": true,
+        "id": "csharp-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
         "id": "gopls-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -7589,9 +7601,21 @@
       },
       {
         "enabled": true,
+        "id": "jdtls-lsp@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
         "id": "kotlin-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
+      },
+      {
+        "enabled": true,
+        "id": "linear-cli@linear-cli",
+        "marketplace": "linear-cli",
+        "marketplace_source": "github:schpet/linear-cli"
       },
       {
         "enabled": true,
@@ -7626,6 +7650,12 @@
       {
         "enabled": false,
         "id": "ralph-loop@claude-plugins-official",
+        "marketplace": "claude-plugins-official",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
+        "id": "ruby-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
       },
@@ -7666,7 +7696,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "warp@claude-code-warp",
         "marketplace": "claude-code-warp",
         "marketplace_source": "github:warpdotdev/claude-code-warp"
