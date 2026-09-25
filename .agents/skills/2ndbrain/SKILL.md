@@ -39,7 +39,7 @@ session running this skill. Identify the transcript that contains *this*
 invocation instead.
 
 First write the invocation — the user message that triggered this skill,
-verbatim — to a marker file with the Write tool, so no shell quoting can
+verbatim — to a marker file with the `write` tool, so no shell quoting can
 mangle it:
 
 `${TMPDIR:-/tmp}/2ndbrain-invocation.txt`
