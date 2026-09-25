@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · 2.1.278 (Claude Code) · 2026-09-24 | source commands |
-| codex | blocked | adapter | - | probe · codex-cli 0.155.1 · 2026-09-24 | Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files. |
-| opencode | aligned | adapter | - | probe · 1.18.32 · 2026-09-24 | generated command templates |
-| pi | aligned | adapter | - | probe · 0.87.0 · 2026-09-24 | generated prompt templates |
-| omp | aligned | native | - | probe · omp/18.2.11 · 2026-09-24 | - |
-| antigravity | partial | adapter | - | probe · 1.2.10 · 2026-09-24 | generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills |
-| cursor | partial | native | - | probe · 2026.09.15-d2fe57e · 2026-09-24 | generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified |
-| grok | partial | native | - | probe · grok 1.0.41 (4220f3b224a6) [alpha] · 2026-09-24 | grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills |
-| crush | partial | native | - | probe · crush version v0.96.1 · 2026-09-24 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md |
+| claude | aligned | native | - | probe · 2.1.278 (Claude Code) · 2026-09-25 | source commands |
+| codex | blocked | adapter | - | probe · codex-cli 0.156.1 · 2026-09-25 | Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files. |
+| opencode | aligned | adapter | - | probe · 1.18.32 · 2026-09-25 | generated command templates |
+| pi | aligned | adapter | - | probe · 0.87.1 · 2026-09-25 | generated prompt templates |
+| omp | aligned | native | - | probe · omp/18.3.1 · 2026-09-25 | - |
+| antigravity | partial | adapter | - | probe · 1.2.10 · 2026-09-25 | generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills |
+| cursor | partial | native | - | probe · 2026.09.15-d2fe57e · 2026-09-25 | generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified |
+| grok | partial | native | - | probe · grok 1.0.41 (4220f3b224a6) [alpha] · 2026-09-25 | grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills |
+| crush | partial | native | - | probe · crush version v0.96.1 · 2026-09-25 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md |
 
 ### Not yet researched
 

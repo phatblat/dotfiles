@@ -192,3 +192,6 @@
 {"capability":"-","date":"2026-09-24","detail":"","field":"version","from":"1.2.3","harness":"antigravity","to":"1.2.10","version_from":"1.2.3","version_to":"1.2.10"}
 {"capability":"-","date":"2026-09-24","detail":"","field":"version","from":"2.1.251 (Claude Code)","harness":"claude","to":"2.1.278 (Claude Code)","version_from":"2.1.251 (Claude Code)","version_to":"2.1.278 (Claude Code)"}
 {"capability":"-","date":"2026-09-24","detail":"","field":"version","from":"grok 1.0.41 (4220f3b224a6)","harness":"grok","to":"grok 1.0.41 (4220f3b224a6) [alpha]","version_from":"grok 1.0.41 (4220f3b224a6)","version_to":"grok 1.0.41 (4220f3b224a6) [alpha]"}
+{"capability":"-","date":"2026-09-25","detail":"","field":"version","from":"codex-cli 0.155.1","harness":"codex","to":"codex-cli 0.156.1","version_from":"codex-cli 0.155.1","version_to":"codex-cli 0.156.1"}
+{"capability":"-","date":"2026-09-25","detail":"","field":"version","from":"omp/18.2.11","harness":"omp","to":"omp/18.3.1","version_from":"omp/18.2.11","version_to":"omp/18.3.1"}
+{"capability":"-","date":"2026-09-25","detail":"","field":"version","from":"0.87.0","harness":"pi","to":"0.87.1","version_from":"0.87.0","version_to":"0.87.1"}
