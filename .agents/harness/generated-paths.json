@@ -173,6 +173,9 @@
   "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
     "source": "~/.agents/skills/paseo/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/plan-design-review/SKILL.md": {
+    "source": "~/.agents/skills/plan-design-review/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
   },
@@ -187,6 +190,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/security-audit/SKILL.md": {
+    "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -416,6 +422,9 @@
   "~/.agents/harness/adapters/cursor/skills/homebrew/SKILL.md": {
     "source": "~/.agents/skills/homebrew/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/ios-device-qa/SKILL.md": {
+    "source": "~/.agents/skills/ios-device-qa/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/justfile/SKILL.md": {
     "source": "~/.agents/skills/justfile/SKILL.md"
   },
@@ -451,6 +460,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/paseo/SKILL.md": {
     "source": "~/.agents/skills/paseo/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/plan-design-review/SKILL.md": {
+    "source": "~/.agents/skills/plan-design-review/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/pr-approve/SKILL.md": {
     "source": "~/.agents/skills/pr-approve/SKILL.md"
@@ -496,6 +508,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/security-audit/SKILL.md": {
+    "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/session-save/SKILL.md": {
     "source": "~/.agents/skills/session-save/SKILL.md"
@@ -698,6 +713,9 @@
   "~/.claude/skills/harness-research/SKILL.md": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
+  "~/.claude/skills/ios-device-qa/SKILL.md": {
+    "source": "~/.agents/skills/ios-device-qa/SKILL.md"
+  },
   "~/.claude/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
   },
@@ -706,6 +724,9 @@
   },
   "~/.claude/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.claude/skills/plan-design-review/SKILL.md": {
+    "source": "~/.agents/skills/plan-design-review/SKILL.md"
   },
   "~/.claude/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
@@ -722,8 +743,14 @@
   "~/.claude/skills/resolve-review-feedback/SKILL.md": {
     "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
+  "~/.claude/skills/retro/SKILL.md": {
+    "source": "~/.agents/skills/retro/SKILL.md"
+  },
   "~/.claude/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.claude/skills/security-audit/SKILL.md": {
+    "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.claude/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -818,6 +845,12 @@
   "~/.codex/skills/harness-research/agents/openai.yaml": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
+  "~/.codex/skills/ios-device-qa/SKILL.md": {
+    "source": "~/.agents/skills/ios-device-qa/SKILL.md"
+  },
+  "~/.codex/skills/ios-device-qa/agents/openai.yaml": {
+    "source": "~/.agents/skills/ios-device-qa/SKILL.md"
+  },
   "~/.codex/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
   },
@@ -832,6 +865,9 @@
   },
   "~/.codex/skills/optimize-harness/agents/openai.yaml": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.codex/skills/plan-design-review/SKILL.md": {
+    "source": "~/.agents/skills/plan-design-review/SKILL.md"
   },
   "~/.codex/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
@@ -851,8 +887,17 @@
   "~/.codex/skills/resolve-review-feedback/agents/openai.yaml": {
     "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
+  "~/.codex/skills/retro/SKILL.md": {
+    "source": "~/.agents/skills/retro/SKILL.md"
+  },
+  "~/.codex/skills/retro/agents/openai.yaml": {
+    "source": "~/.agents/skills/retro/SKILL.md"
+  },
   "~/.codex/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.codex/skills/security-audit/SKILL.md": {
+    "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.codex/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -1043,6 +1088,9 @@
   "~/.config/opencode/skills/harness-research/SKILL.md": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
+  "~/.config/opencode/skills/ios-device-qa/SKILL.md": {
+    "source": "~/.agents/skills/ios-device-qa/SKILL.md"
+  },
   "~/.config/opencode/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
   },
@@ -1051,6 +1099,9 @@
   },
   "~/.config/opencode/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.config/opencode/skills/plan-design-review/SKILL.md": {
+    "source": "~/.agents/skills/plan-design-review/SKILL.md"
   },
   "~/.config/opencode/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
@@ -1067,8 +1118,14 @@
   "~/.config/opencode/skills/resolve-review-feedback/SKILL.md": {
     "source": "~/.agents/skills/resolve-review-feedback/SKILL.md"
   },
+  "~/.config/opencode/skills/retro/SKILL.md": {
+    "source": "~/.agents/skills/retro/SKILL.md"
+  },
   "~/.config/opencode/skills/review-changes/SKILL.md": {
     "source": "~/.agents/skills/review-changes/SKILL.md"
+  },
+  "~/.config/opencode/skills/security-audit/SKILL.md": {
+    "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.config/opencode/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"

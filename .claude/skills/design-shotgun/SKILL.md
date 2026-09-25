@@ -1,1 +1,0 @@
-../gstack/design-shotgun/SKILL.md

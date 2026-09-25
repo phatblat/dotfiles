@@ -1,1 +1,0 @@
-../gstack/open-gstack-browser/SKILL.md

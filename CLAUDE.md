@@ -39,10 +39,6 @@ Primarily shell scripting (Zsh), with Go, Ruby, Python, Swift, and other languag
 
 Use **ast-grep** (`sg`) for code search, not grep/ripgrep/sed.
 
-## gstack
-
-Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude-in-chrome__*` tools. gstack skills are auto-discovered each session — invoke by name as needed.
-
 ## Special Notes
 
 - **bat** replaces cat in Zsh (syntax highlighting, git integration)

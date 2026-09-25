@@ -1,1 +1,0 @@
-../gstack/ios-sync/SKILL.md

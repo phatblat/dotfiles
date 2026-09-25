@@ -1,1 +1,0 @@
-../gstack/setup-gbrain/SKILL.md

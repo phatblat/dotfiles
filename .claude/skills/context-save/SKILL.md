@@ -1,1 +1,0 @@
-../gstack/context-save/SKILL.md

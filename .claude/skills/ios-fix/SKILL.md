@@ -1,1 +1,0 @@
-../gstack/ios-fix/SKILL.md

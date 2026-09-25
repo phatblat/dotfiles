@@ -97,9 +97,6 @@
 .claude/security/
 .claude/security_warnings_state_*.json
 !.claude/skills/2ndbrain/
-.claude/skills/gstack/**/*.icns
-.claude/skills/gstack/**/test/
-.claude/skills/gstack/node_modules/
 .claude/skills/synced/
 .claude/teams/
 .claude_settings.json
@@ -394,7 +391,6 @@
 !.grok/scripts/
 .grokbot/
 .groovy/
-.gstack/
 .gt/
 .harness/
 .hawtjni/
@@ -404,6 +400,7 @@
 .idapro/
 .idea/
 .install4j
+.ios-agent-qa/
 .ipfs/
 .ipython/
 .iterm2/

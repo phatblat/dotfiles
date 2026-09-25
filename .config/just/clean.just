@@ -1,8 +1,6 @@
 # clean — cache, build output, and dependency-tree cleanup
 
-# Repo-owned source roots scanned by clean-build. The vendored
-# .claude/skills/gstack tree is deliberately absent: `just build` does not
-# rebuild its dist/ binaries, so purging them would leave no way back.
+# Repo-owned source roots scanned by clean-build.
 
 build_artifact_roots := '.agents .codex .config .omp docs scripts tests'
 
@@ -45,8 +43,7 @@ clean-caches:
     if command -v nix >/dev/null 2>&1; then nix store gc; fi
 
 # Directories containing tracked files are kept, so this can never delete
-# checked-in work. .claude/skills/gstack is out of scope via
-# build_artifact_roots: `just build` does not rebuild its dist/ binaries.
+# checked-in work.
 # Removes build output directories under repo-owned source roots
 [group('clean')]
 [script]

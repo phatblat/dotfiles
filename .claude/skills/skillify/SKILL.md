@@ -1,1 +1,0 @@
-../gstack/skillify/SKILL.md

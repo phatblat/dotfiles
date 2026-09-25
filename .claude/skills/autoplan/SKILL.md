@@ -1,1 +1,0 @@
-../gstack/autoplan/SKILL.md

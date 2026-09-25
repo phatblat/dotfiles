@@ -1,1 +1,0 @@
-../gstack/diagram/SKILL.md

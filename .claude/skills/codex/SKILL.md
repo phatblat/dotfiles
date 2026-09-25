@@ -1,1 +1,0 @@
-../gstack/codex/SKILL.md

@@ -310,10 +310,10 @@ EOF
   local repo="$BATS_TEST_TMPDIR/repo"
 
   mkdir -p "$repo/scripts/__pycache__" "$repo/docs/dist" \
-    "$repo/.claude/skills/gstack/browse/dist" "$repo/.ruff_cache" \
+    "$repo/.claude/plugins/dist" "$repo/.ruff_cache" \
     "$repo/.omp/plugins/node_modules/pkg/dist" "$BATS_TEST_TMPDIR/nohooks"
   touch "$repo/scripts/__pycache__/stale.pyc" "$repo/docs/dist/keep.txt" \
-    "$repo/.claude/skills/gstack/browse/dist/browse" "$repo/.ruff_cache/cache" \
+    "$repo/.claude/plugins/dist/artifact" "$repo/.ruff_cache/cache" \
     "$repo/.omp/plugins/node_modules/pkg/dist/index.js"
 
   git -C "$repo" init -q
@@ -335,8 +335,8 @@ EOF
   [ ! -d "$repo/.ruff_cache" ]
   # A tracked directory survives even though its name is on the artifact list.
   [ -f "$repo/docs/dist/keep.txt" ]
-  # The vendored gstack tree is not a scanned root.
-  [ -f "$repo/.claude/skills/gstack/browse/dist/browse" ]
+  # A root outside build_artifact_roots is never scanned.
+  [ -f "$repo/.claude/plugins/dist/artifact" ]
   # node_modules interiors are pruned from the scan.
   [ -f "$repo/.omp/plugins/node_modules/pkg/dist/index.js" ]
 }
