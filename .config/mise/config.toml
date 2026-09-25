@@ -41,7 +41,7 @@
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.8.1"
 "npm:claudekit" = "0.9.5"
-"npm:ctx7" = "0.5.11"
+"npm:ctx7" = "0.5.12"
 "npm:gastown-gui" = "0.9.4"
 "npm:gtop" = "1.1.5"
 "npm:jsonlint" = "1.6.3"
