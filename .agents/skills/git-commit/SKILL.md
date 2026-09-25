@@ -14,9 +14,6 @@ Create a git commit following the project's established style
 ## Combined Messages
 If the user's message contains both `/git:commit` and additional instructions (e.g., "run tests against X"), execute the commit workflow first, then handle the additional instruction separately. Do not let extra context interfere with the commit flow.
 
-## Git Expert Integration
-For complex commit scenarios (merge commits, conflict resolution, commit history issues, interactive rebasing), consider using the Task tool with `git-expert` subagent for specialized git expertise.
-
 ## Efficiency Note:
 This command intelligently reuses recent git:status results when available to avoid redundant operations. If you just ran /git:status, the commit process will be faster.
 
