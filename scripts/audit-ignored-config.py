@@ -183,6 +183,7 @@ STATE_NAMES = frozenset(
         "chrome-native-hosts-v2.json",
         "external_agent_session_imports.json",
         "gpu_cache.json",
+        "import_manifest.json",
         "last-changelog-version",
         "projects.json",
         "tip_cursor.json",
