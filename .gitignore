@@ -897,6 +897,7 @@ Library/Application Support/OpenAI/
 Library/Application Support/OpenUsage/
 Library/Application Support/Orange/
 Library/Application Support/Paseo/
+Library/Application Support/Razer/
 Library/Application Support/Remotion/
 Library/Application Support/RepoPrompt/
 Library/Application Support/Rocket/
@@ -1101,6 +1102,7 @@ Library/Preferences/*
 Library/Printers/
 Library/PrivateCloudCompute/
 Library/Python/
+Library/Razer/
 Library/Receipts/
 Library/Reminders/
 Library/ResponseKit/
