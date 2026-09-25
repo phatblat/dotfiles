@@ -15,7 +15,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.2.10"
           },
           "mode": "adapter",
           "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
@@ -36,7 +36,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.251 (Claude Code)"
+            "version": "2.1.278 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -121,7 +121,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.41 (4220f3b224a6)"
+            "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -534,15 +534,15 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.2.10"
           },
           "mode": "adapter",
           "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
-          "note": "generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified; probe failed: missing .agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md",
+          "note": "generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified",
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/harness/adapters/antigravity/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -555,15 +555,15 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.251 (Claude Code)"
+            "version": "2.1.278 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
-          "note": "probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
-          "parity": "partial",
+          "note": "",
+          "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -580,11 +580,11 @@
           },
           "mode": "shared",
           "next_action": "",
-          "note": "probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
-          "parity": "partial",
+          "note": "",
+          "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -601,11 +601,11 @@
           },
           "mode": "native",
           "next_action": "",
-          "note": "generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly; probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
-          "parity": "partial",
+          "note": "generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly",
+          "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -622,11 +622,11 @@
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers and activates generated shared skill wrappers",
-          "note": "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified; probe failed: missing .agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md",
+          "note": "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/harness/adapters/cursor/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -639,15 +639,15 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.41 (4220f3b224a6)"
+            "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
           },
           "mode": "native",
           "next_action": "",
-          "note": "grok scans ~/.agents/skills at the user tier; probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
-          "parity": "partial",
+          "note": "grok scans ~/.agents/skills at the user tier",
+          "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -664,11 +664,11 @@
           },
           "mode": "native",
           "next_action": "",
-          "note": "probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
-          "parity": "partial",
+          "note": "",
+          "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -685,11 +685,11 @@
           },
           "mode": "shared",
           "next_action": "",
-          "note": "probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
-          "parity": "partial",
+          "note": "",
+          "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -706,11 +706,11 @@
           },
           "mode": "shared",
           "next_action": "",
-          "note": "probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
-          "parity": "partial",
+          "note": "",
+          "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         }
@@ -1682,7 +1682,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.2.10"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity command schema or flatten command wrappers so all 25 commands are discovered",
@@ -1703,7 +1703,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.251 (Claude Code)"
+            "version": "2.1.278 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -1749,11 +1749,11 @@
           },
           "mode": "native",
           "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
-          "note": "crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md; probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
+          "note": "crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md",
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -1787,15 +1787,15 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.41 (4220f3b224a6)"
+            "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
           },
           "mode": "native",
           "next_action": "Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows",
-          "note": "grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills; probe failed: missing .agents/skills/resolve-feedback/SKILL.md",
+          "note": "grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills",
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/resolve-feedback/SKILL.md"
+            "path": ".agents/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -2203,7 +2203,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.2.10"
           },
           "mode": "emulated",
           "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
@@ -2224,7 +2224,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.251 (Claude Code)"
+            "version": "2.1.278 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -2308,7 +2308,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.41 (4220f3b224a6)"
+            "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok spawn_subagent can launch the generated specialist profiles",
@@ -2883,7 +2883,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.2.3"
+            "version": "1.2.10"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
@@ -2905,7 +2905,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "2.1.251 (Claude Code)"
+            "version": "2.1.278 (Claude Code)"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2996,7 +2996,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "grok 1.0.41 (4220f3b224a6)"
+            "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
@@ -5173,7 +5173,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.2.10"
           },
           "mode": "native",
           "next_action": "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
@@ -5194,7 +5194,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.251 (Claude Code)"
+            "version": "2.1.278 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -5278,7 +5278,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.41 (4220f3b224a6)"
+            "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -7107,7 +7107,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.2.10"
           },
           "mode": "shared",
           "next_action": "",
@@ -7128,7 +7128,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.251 (Claude Code)"
+            "version": "2.1.278 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -7212,7 +7212,7 @@
             "date": "2026-09-24",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.41 (4220f3b224a6)"
+            "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
           },
           "mode": "shared",
           "next_action": "",
@@ -7859,13 +7859,13 @@
   "versions": {
     "antigravity": {
       "first_seen": "2026-08-29",
-      "previous": "1.2.8",
-      "version": "1.2.3"
+      "previous": "1.2.3",
+      "version": "1.2.10"
     },
     "claude": {
       "first_seen": "2026-08-29",
-      "previous": "2.1.278 (Claude Code)",
-      "version": "2.1.251 (Claude Code)"
+      "previous": "2.1.251 (Claude Code)",
+      "version": "2.1.278 (Claude Code)"
     },
     "codex": {
       "first_seen": "2026-08-29",
@@ -7884,8 +7884,8 @@
     },
     "grok": {
       "first_seen": "2026-08-29",
-      "previous": "grok 1.0.41 (4220f3b224a6) [alpha]",
-      "version": "grok 1.0.41 (4220f3b224a6)"
+      "previous": "grok 1.0.41 (4220f3b224a6)",
+      "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
     },
     "omp": {
       "first_seen": "2026-08-29",
