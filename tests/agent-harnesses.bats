@@ -67,7 +67,7 @@ skip_unless_home_is_this_checkout() {
     "$HOME/.agents/skills/linear-plan/SKILL.md"
     "$HOME/.agents/skills/work-end-day/SKILL.md"
     "$HOME/.agents/skills/work-start-day/SKILL.md"
-    "$HOME/.agents/skills/work-track/SKILL.md"
+    "$HOME/.agents/skills/work-track-item/SKILL.md"
     "$HOME/.claude/commands/linear/plan.md"
     "$HOME/.claude/commands/linear/progress.md"
     "$HOME/.claude/commands/work/end-day.md"
@@ -337,7 +337,7 @@ skip_unless_home_is_this_checkout() {
     work-end-day
     work-runners
     work-start-day
-    work-track
+    work-track-item
     git-worktree
   )
 
