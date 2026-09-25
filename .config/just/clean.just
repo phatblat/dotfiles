@@ -92,3 +92,37 @@ clean-deps:
             rm -rf "$root/.venv"
         fi
     done
+
+# Runs kondo over every git repo under ~/dev, deleting build artifacts
+# older than 1 day without confirmation. Repos are discovered at any depth
+# by locating .git directories and .git worktree files; artifact trees are
+# skipped during traversal so nested checkouts (e.g. SPM .build/checkouts)
+# are not double-counted.
+[group('clean')]
+[script]
+clean-dev:
+    set -euo pipefail
+    if ! command -v kondo >/dev/null 2>&1; then
+        echo "kondo is not installed (brew install kondo)" >&2
+        exit 1
+    fi
+    repo_list="$(mktemp)"
+    trap 'rm -f "$repo_list"' EXIT
+    find "$HOME/dev" \
+        \( -type d \( -name node_modules -o -name .venv -o -name target \
+            -o -name .build -o -name dist \) -prune \) \
+        -o \( -type d -name .git -print -prune \) \
+        -o \( -type f -name .git -print \) \
+        | sed 's|/\.git$||' \
+        | sort -u > "$repo_list"
+    if [[ ! -s "$repo_list" ]]; then
+        echo "no git repos found under ~/dev"
+        exit 0
+    fi
+    repo_count="$(wc -l < "$repo_list" | tr -d ' ')"
+    echo "kondo: scanning $repo_count repos under $HOME/dev"
+    repos=()
+    while IFS= read -r repo; do
+        repos+=("$repo")
+    done < "$repo_list"
+    kondo --all --older 1d "${repos[@]}"
