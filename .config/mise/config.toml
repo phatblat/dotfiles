@@ -112,7 +112,7 @@ kind = "0.33.0"
 kotlin = { version = "2.4.20", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
 kscript = "4.2.3"
 ktlint = "1.8.0"
-kubectl = "1.37.0"
+kubectl = "1.37.1"
 lazygit = "0.65.1"
 lsd = "1.2.0"
 lua-language-server = "3.19.1"
