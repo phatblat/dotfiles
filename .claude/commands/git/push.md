@@ -7,9 +7,6 @@ allowed-tools: Bash(git:*), Task
 
 Push commits to remote repository with appropriate safety checks and branch management.
 
-## Git Expert Integration
-For complex push scenarios (force push requirements, diverged branches, upstream conflicts, protected branch workflows), consider using the Task tool with `git-expert` subagent for specialized git expertise.
-
 ## Efficiency Note:
 Be concise. Use single bash calls where possible. Skip verbose explanations and intermediate status messages. Execute the push directly if safe, show only the result.
 

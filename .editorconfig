@@ -35,3 +35,6 @@ trim_trailing_whitespace = false
 # JSON files contain newlines inconsistently
 [*.json]
 insert_final_newline = ignore
+
+[*.pkl]
+indent_size = 2

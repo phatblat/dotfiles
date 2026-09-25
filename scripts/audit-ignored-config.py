@@ -183,6 +183,7 @@ STATE_NAMES = frozenset(
         "chrome-native-hosts-v2.json",
         "external_agent_session_imports.json",
         "gpu_cache.json",
+        "import_manifest.json",
         "last-changelog-version",
         "projects.json",
         "tip_cursor.json",
@@ -264,6 +265,20 @@ TRACKED_ALLOWLIST = frozenset(
 )
 
 CONTENT_SCAN_LIMIT = 1 << 20  # 1 MiB
+
+# Documentation a CLI writes into its own config root on install or upgrade.
+# Shipped artifacts, never hand-authored configuration.
+BUNDLED_DOC_NAMES = frozenset(
+    {
+        "readme.md",
+        "readme",
+        "changelog.md",
+        "license",
+        "license.md",
+        "license.txt",
+        "notice",
+    }
+)
 
 
 def classify(relpath):
@@ -352,6 +367,31 @@ def is_unshared_skill(repo, relpath):
     return False
 
 
+def is_bundled_doc(relpath):
+    """True if relpath is documentation a CLI ships into its own config root.
+
+    `~/.grok/README.md` is 108 KB rewritten by every grok upgrade — its title
+    string is embedded in the grok binary — and it resurfaced as a "candidate
+    worth tracking" on every audit. No one hand-authors a README as harness
+    configuration, so match the shape rather than the one path.
+    """
+    parts = Path(relpath).parts
+    return len(parts) == 2 and parts[1].lower() in BUNDLED_DOC_NAMES
+
+
+def is_empty(path):
+    """True if path is a zero-byte file.
+
+    An empty file carries no configuration to replicate. `classify()` reaches
+    `config` on the `.json` suffix alone, which kept surfacing a 0-byte
+    pre-migration orphan (`~/.gemini/config/mcp_config.json`) as a candidate.
+    """
+    try:
+        return path.stat().st_size == 0
+    except OSError:
+        return False
+
+
 def git_lines(repo, args):
     """Run a git command in repo and return its NUL-separated output as a list."""
     result = subprocess.run(
@@ -374,7 +414,10 @@ def scan_ignored(repo, roots):
         if kind not in ("config", "state"):
             continue
         if kind == "config" and (
-            is_vendored(repo, entry, vendored, roots) or is_unshared_skill(repo, entry)
+            is_vendored(repo, entry, vendored, roots)
+            or is_unshared_skill(repo, entry)
+            or is_bundled_doc(entry)
+            or is_empty(repo / entry)
         ):
             kind = "state"
         record = {"path": entry, "kind": kind, "warnings": []}

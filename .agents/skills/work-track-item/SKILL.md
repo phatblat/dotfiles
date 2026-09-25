@@ -1,9 +1,9 @@
 ---
-name: work-track
-description: Track a Linear ticket or GitHub PR in today's daily note with fields and timestamped activity. Use when invoked as `$work-track` or when the user asks to track a work item.
+name: work-track-item
+description: Track a Linear ticket or GitHub PR in today's daily note with fields and timestamped activity. Use when invoked as `$work-track-item` or when the user asks to track a work item.
 ---
 
-# work-track
+# work-track-item
 
 Add or update a Linear ticket or GitHub PR in today's daily note. Each item gets an H2 section with inline fields and timestamped activity.
 

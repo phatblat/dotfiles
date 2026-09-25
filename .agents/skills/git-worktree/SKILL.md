@@ -37,7 +37,7 @@ wt_path=$(wt switch "$branch" ${allow_home:+--allow-home})
 
 From this point in the session:
 
-- every shell call passes the worktree as the working directory — `git -C "$wt_path" …`, or the Bash tool's `cwd` parameter (omp resolves an absolute `cwd` outside the session directory fine; verified)
+- every shell call passes the worktree as the working directory — `git -C "$wt_path" …`, or the `bash` tool's `cwd` parameter (omp resolves an absolute `cwd` outside the session directory fine; verified)
 - every file tool call (`read`/`grep`/`glob`/`edit`) uses absolute paths under `$wt_path`
 - **every `task` subagent prompt states `$wt_path` and requires absolute paths under it.** Subagents inherit the parent's cwd and the `task` tool has no `cwd` field, so a subagent given relative paths silently works in the wrong tree
 - the final report restates `$wt_path` verbatim, so the binding survives context compaction

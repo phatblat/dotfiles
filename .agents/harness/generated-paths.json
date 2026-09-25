@@ -521,8 +521,8 @@
   "~/.agents/harness/adapters/cursor/skills/work-start-day/SKILL.md": {
     "source": "~/.agents/skills/work-start-day/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/work-track/SKILL.md": {
-    "source": "~/.agents/skills/work-track/SKILL.md"
+  "~/.agents/harness/adapters/cursor/skills/work-track-item/SKILL.md": {
+    "source": "~/.agents/skills/work-track-item/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
@@ -701,6 +701,9 @@
   "~/.claude/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
   },
+  "~/.claude/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
+  },
   "~/.claude/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
   },
@@ -756,6 +759,9 @@
     "source": "~/.agents/skills/branch-finish/SKILL.md"
   },
   "~/.codex/skills/ci-fix/SKILL.md": {
+    "source": "~/.agents/skills/ci-fix/SKILL.md"
+  },
+  "~/.codex/skills/ci-fix/agents/openai.yaml": {
     "source": "~/.agents/skills/ci-fix/SKILL.md"
   },
   "~/.codex/skills/cmux-workspace-status/SKILL.md": {
@@ -817,6 +823,9 @@
   },
   "~/.codex/skills/new-project/agents/openai.yaml": {
     "source": "~/.agents/skills/new-project/SKILL.md"
+  },
+  "~/.codex/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
   },
   "~/.codex/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
@@ -1036,6 +1045,9 @@
   },
   "~/.config/opencode/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
+  },
+  "~/.config/opencode/skills/ocr/SKILL.md": {
+    "source": "~/.agents/skills/ocr/SKILL.md"
   },
   "~/.config/opencode/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"

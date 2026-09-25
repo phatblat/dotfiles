@@ -8,20 +8,37 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
-| claude | 2.1.278 (Claude Code) | 2026-08-29 | 2.1.261 (Claude Code) |
+| claude | 2.1.278 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
 | codex | codex-cli 0.155.1 | 2026-08-29 | codex-cli 0.155.0 |
 | opencode | 1.18.32 | 2026-08-29 | 1.18.31 |
 | pi | 0.87.0 | 2026-08-29 | 0.86.1 |
 | omp | omp/18.2.11 | 2026-08-29 | omp/18.2.8 |
-| antigravity | 1.2.8 | 2026-08-29 | 1.2.7 |
+| antigravity | 1.2.10 | 2026-08-29 | 1.2.3 |
 | cursor | 2026.09.15-d2fe57e | 2026-08-29 | 2026.09.02-c22c1a3 |
-| grok | grok 1.0.41 (4220f3b224a6) [alpha] | 2026-08-29 | grok 1.0.40 (eb1a2256660d) [alpha] |
+| grok | grok 1.0.41 (4220f3b224a6) [alpha] | 2026-08-29 | grok 1.0.41 (4220f3b224a6) |
 | crush | crush version v0.96.1 | 2026-08-29 | crush version v0.96.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-09-24 | grok | - | version | grok 1.0.41 (4220f3b224a6) | grok 1.0.41 (4220f3b224a6) [alpha] | grok 1.0.41 (4220f3b224a6) [alpha] |
+| 2026-09-24 | claude | - | version | 2.1.251 (Claude Code) | 2.1.278 (Claude Code) | 2.1.278 (Claude Code) |
+| 2026-09-24 | antigravity | - | version | 1.2.3 | 1.2.10 | 1.2.10 |
+| 2026-09-24 | pi | skills.shared | probe | fail | pass | 0.87.0 |
+| 2026-09-24 | opencode | skills.shared | probe | fail | pass | 1.18.32 |
+| 2026-09-24 | omp | skills.shared | probe | fail | pass | omp/18.2.11 |
+| 2026-09-24 | grok | skills.shared | probe | fail | pass | grok 1.0.41 (4220f3b224a6) [alpha] |
+| 2026-09-24 | grok | commands.active | probe | fail | pass | grok 1.0.41 (4220f3b224a6) [alpha] |
+| 2026-09-24 | cursor | skills.shared | probe | fail | pass | 2026.09.15-d2fe57e |
+| 2026-09-24 | crush | skills.shared | probe | fail | pass | crush version v0.96.1 |
+| 2026-09-24 | crush | commands.active | probe | fail | pass | crush version v0.96.1 |
+| 2026-09-24 | codex | skills.shared | probe | fail | pass | codex-cli 0.155.1 |
+| 2026-09-24 | claude | skills.shared | probe | fail | pass | 2.1.278 (Claude Code) |
+| 2026-09-24 | antigravity | skills.shared | probe | fail | pass | 1.2.10 |
+| 2026-09-23 | grok | - | version | grok 1.0.41 (4220f3b224a6) [alpha] | grok 1.0.41 (4220f3b224a6) | grok 1.0.41 (4220f3b224a6) |
+| 2026-09-23 | claude | - | version | 2.1.278 (Claude Code) | 2.1.251 (Claude Code) | 2.1.251 (Claude Code) |
+| 2026-09-23 | antigravity | - | version | 1.2.8 | 1.2.3 | 1.2.3 |
 | 2026-09-23 | pi | - | version | 0.86.1 | 0.87.0 | 0.87.0 |
 | 2026-09-23 | opencode | - | version | 1.18.31 | 1.18.32 | 1.18.32 |
 | 2026-09-23 | omp | - | version | omp/18.2.8 | omp/18.2.11 | omp/18.2.11 |

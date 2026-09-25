@@ -58,5 +58,6 @@ skills-cursor/
 subagents/
 !.gitignore
 !cli-config.json
+!hooks.json
 !mcp.json
 # <<< DOTFILES ALLOWLIST <<<

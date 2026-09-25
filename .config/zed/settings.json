@@ -78,6 +78,9 @@
       "type": "registry",
     },
     "omp": {
+      "default_config_options": {
+        "model": "anthropic/claude-sonnet-5",
+      },
       "type": "custom",
       "command": "omp",
       "args": ["--mode", "acp"],

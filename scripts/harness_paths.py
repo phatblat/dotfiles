@@ -53,6 +53,36 @@ CLI_BINARIES: dict[str, str] = {
     "crush": "crush",
 }
 
+
+def resolve_cli(slug: str) -> str:
+    """Absolute path to a harness CLI, ignoring temp-directory shims.
+
+    Terminal wrappers (cmux, for one) drop shim scripts into a per-session
+    `$TMPDIR` directory and prepend it to PATH, so a bare `shutil.which()`
+    resolves a different binary depending on whether such a session is live.
+    That made the version ledger record a Claude Code *downgrade* on
+    2026-09-23 (2.1.278 -> 2.1.251) and fire a spurious `re-research claude`.
+
+    Skipping temp-rooted PATH entries pins the probe to the real install. The
+    lookup is lazy on purpose: this module must do no I/O at import time.
+    Falls back to the bare name so a caller's own `which` check still owns the
+    "not installed" verdict.
+    """
+    import os
+    import shutil
+    import tempfile
+
+    name = CLI_BINARIES.get(slug, slug)
+    temp_root = os.path.realpath(tempfile.gettempdir())
+    entries = [
+        entry
+        for entry in os.environ.get("PATH", os.defpath).split(os.pathsep)
+        if entry
+        and not os.path.realpath(entry).startswith(temp_root + os.sep)
+    ]
+    return shutil.which(name, path=os.pathsep.join(entries)) or name
+
+
 # HOME-relative config roots only, at the coarse-grained directory level
 # `audit-ignored-config.py`'s ignored-config scan has always used (whole
 # top-level dotdir, not the narrower subpath a harness actually reads config

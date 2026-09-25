@@ -8,22 +8,22 @@ Coverage: 91/405 cells verified (22%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.278 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| codex | supported peer | codex-cli 0.155.1 | 2026-08-29 | 6 | 2 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.18.32 | 2026-08-29 | 10 | 1 | 0 | 0 | 1 | 33 |
-| pi | new port | 0.87.0 | 2026-08-29 | 8 | 2 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.2.11 | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.2.8 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
+| claude | supported peer | 2.1.278 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| codex | supported peer | codex-cli 0.155.1 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
+| opencode | new port | 1.18.32 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| pi | new port | 0.87.0 | 2026-08-29 | 9 | 1 | 0 | 0 | 1 | 34 |
+| omp | tracked port | omp/18.2.11 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| antigravity | tracked port | 1.2.10 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
 | cursor | tracked port | 2026.09.15-d2fe57e | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.41 (4220f3b224a6) [alpha] | 2026-08-29 | 4 | 4 | 0 | 0 | 1 | 36 |
-| crush | new port | crush version v0.96.1 | 2026-08-29 | 3 | 3 | 0 | 1 | 2 | 36 |
+| grok | new port | grok 1.0.41 (4220f3b224a6) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
+| crush | new port | crush version v0.96.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
 | Domain | Page | Capabilities | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|
 | Instructions | [harness/instructions.md](harness/instructions.md) | 3 | 7 | 2 | 0 | 0 | 0 | 18 |
-| Skills | [harness/skills.md](harness/skills.md) | 7 | 0 | 10 | 0 | 0 | 1 | 52 |
+| Skills | [harness/skills.md](harness/skills.md) | 7 | 7 | 3 | 0 | 0 | 1 | 52 |
 | Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 4 | 0 | 1 | 0 | 18 |
 | Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 4 | 0 | 1 | 0 | 27 |
 | Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 5 | 4 | 0 | 0 | 0 | 27 |
@@ -67,16 +67,16 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
-| 2026-09-23 | pi | - | version | 0.86.1 | 0.87.0 |
-| 2026-09-23 | opencode | - | version | 1.18.31 | 1.18.32 |
-| 2026-09-23 | omp | - | version | omp/18.2.8 | omp/18.2.11 |
-| 2026-09-23 | grok | - | version | grok 1.0.40 (eb1a2256660d) [alpha] | grok 1.0.41 (4220f3b224a6) [alpha] |
-| 2026-09-23 | crush | - | version | crush version v0.96.0 | crush version v0.96.1 |
-| 2026-09-22 | pi | - | version | 0.85.1 | 0.86.1 |
-| 2026-09-22 | omp | - | version | omp/18.2.6 | omp/18.2.8 |
-| 2026-09-22 | grok | - | version | grok 1.0.34 (3736acbc8658) [alpha] | grok 1.0.40 (eb1a2256660d) [alpha] |
-| 2026-09-22 | cursor | - | version | - | 2026.09.15-d2fe57e |
-| 2026-09-22 | crush | - | version | crush version v0.95.0 | crush version v0.96.0 |
+| 2026-09-24 | grok | - | version | grok 1.0.41 (4220f3b224a6) | grok 1.0.41 (4220f3b224a6) [alpha] |
+| 2026-09-24 | claude | - | version | 2.1.251 (Claude Code) | 2.1.278 (Claude Code) |
+| 2026-09-24 | antigravity | - | version | 1.2.3 | 1.2.10 |
+| 2026-09-24 | pi | skills.shared | probe | fail | pass |
+| 2026-09-24 | opencode | skills.shared | probe | fail | pass |
+| 2026-09-24 | omp | skills.shared | probe | fail | pass |
+| 2026-09-24 | grok | skills.shared | probe | fail | pass |
+| 2026-09-24 | grok | commands.active | probe | fail | pass |
+| 2026-09-24 | cursor | skills.shared | probe | fail | pass |
+| 2026-09-24 | crush | skills.shared | probe | fail | pass |
 
 ## Permanent divergences
 

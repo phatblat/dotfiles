@@ -55,6 +55,7 @@ NATIVE_SKILL_ADAPTERS = {
     "handoff",
     "harness-research",
     "new-project",
+    "ocr",
     "optimize-harness",
     "pr-style",
     "receiving-code-review",
@@ -74,6 +75,7 @@ NATIVE_SKILL_ADAPTERS = {
 MANUAL_SKILL_ADAPTERS = {
     "2ndbrain",
     "branch-finish",
+    "ci-fix",
     "gha-checks",
     "gha-log-reader",
     "grill-me",

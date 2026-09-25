@@ -3,19 +3,8 @@ modelRoles:
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/glm-5.3
-  slow: spark/Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
+  slow: casper/kimi-k3
   smol: casper/nemotron-lightning-3p5-30b-a3b
-# enabledModels:
-#   - casper/glm-5.3
-#   - casper/glm-5.3-flash
-#   - casper/gpt-oss-120b
-#   - casper/kimi-k2.6
-#   - casper/kimi-k2.7-code
-#   - casper/kimi-k3
-#   - casper/minimax-m3
-#   - casper/nemotron-3-ultra
-#   - casper/nemotron-lightning-3p5-30b-a3b
-#   - casper/qwen3.8-max
 defaultThinkingLevel: auto
 cycleOrder:
   - default

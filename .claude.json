@@ -17,44 +17,12 @@
         "plugin:linear:linear",
         "claude.ai Google Drive",
         "tolaria",
-        "github",
-        "filesystem",
-        "context7",
-        "exa"
+        "github"
       ],
       "disabledMcpjsonServers": [],
       "enabledMcpjsonServers": [],
       "mcpContextUris": [],
-      "mcpServers": {
-        "context7": {
-          "args": [
-            "-y",
-            "@upstash/context7-mcp"
-          ],
-          "command": "npx",
-          "env": {},
-          "type": "stdio"
-        },
-        "exa": {
-          "args": [
-            "-y",
-            "exa-mcp-server"
-          ],
-          "command": "npx",
-          "env": {},
-          "type": "stdio"
-        },
-        "filesystem": {
-          "args": [
-            "-y",
-            "@modelcontextprotocol/server-filesystem",
-            "/Users/phatblat"
-          ],
-          "command": "npx",
-          "env": {},
-          "type": "stdio"
-        }
-      }
+      "mcpServers": {}
     },
     "/Users/phatblat/.claude/worktrees/eval-framework-discussion-53630d": {
       "allowedTools": [],

@@ -9,7 +9,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | Plugin | Claude | Codex |
 |---|---|---|
 | browser@openai-bundled | missing | enabled |
-| clangd-lsp@claude-plugins-official | missing | enabled |
+| clangd-lsp@claude-plugins-official | enabled | enabled |
 | claude-code-setup@claude-plugins-official | disabled | missing |
 | claude-hud@claude-hud | enabled | missing |
 | claude-md-management@claude-plugins-official | disabled | missing |
@@ -17,13 +17,13 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | code-simplifier@claude-plugins-official | disabled | missing |
 | codex-app-tools@openai-bundled | missing | enabled |
 | computer-use@openai-bundled | missing | enabled |
-| csharp-lsp@claude-plugins-official | missing | enabled |
+| csharp-lsp@claude-plugins-official | enabled | enabled |
 | documents@openai-primary-runtime | missing | enabled |
 | gopls-lsp@claude-plugins-official | enabled | enabled |
 | hookify@claude-plugins-official | disabled | missing |
-| jdtls-lsp@claude-plugins-official | missing | enabled |
+| jdtls-lsp@claude-plugins-official | enabled | enabled |
 | kotlin-lsp@claude-plugins-official | enabled | enabled |
-| linear-cli@linear-cli | missing | enabled |
+| linear-cli@linear-cli | enabled | enabled |
 | lua-lsp@claude-plugins-official | enabled | enabled |
 | oh-my-claudecode@omc | disabled | missing |
 | pdf@openai-primary-runtime | missing | enabled |
@@ -33,6 +33,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | pup@datadog-pup | disabled | enabled |
 | pyright-lsp@claude-plugins-official | enabled | enabled |
 | ralph-loop@claude-plugins-official | disabled | missing |
+| ruby-lsp@claude-plugins-official | enabled | missing |
 | rust-analyzer-lsp@claude-plugins-official | enabled | enabled |
 | security-guidance@claude-plugins-official | disabled | missing |
 | sites@openai-bundled | missing | enabled |
@@ -44,4 +45,4 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | typescript-lsp@claude-plugins-official | enabled | enabled |
 | unified-computer-use@openai-bundled | missing | enabled |
 | visualize@openai-bundled | missing | enabled |
-| warp@claude-code-warp | enabled | missing |
+| warp@claude-code-warp | disabled | missing |
