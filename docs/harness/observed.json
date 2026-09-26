@@ -788,10 +788,10 @@
     },
     "maintenance.config_validation": {
       "date": "2026-09-25",
-      "detail": "opencode debug config --pure",
+      "detail": "opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/1.18.32/opencode', 'debug', 'config', '--pure']' timed out after 5 seconds",
       "mode": "native",
       "parity": "aligned",
-      "result": "pass",
+      "result": "unavailable",
       "surface": "opencode debug config --pure"
     },
     "mcp.dependencies": {
