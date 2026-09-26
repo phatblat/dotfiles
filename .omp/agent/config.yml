@@ -8,6 +8,7 @@ modelRoles:
   smol: anthropic/claude-haiku-4-5
   default: anthropic/claude-sonnet-5
   vision: spark/Inferact/Qwen3.8-27B-NVFP4
+  commit: anthropic/claude-haiku-4-5:auto
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
