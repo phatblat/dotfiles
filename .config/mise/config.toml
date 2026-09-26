@@ -24,7 +24,7 @@
 "cargo:wasm-pack" = "0.15.0"
 "github:cirruslabs/softnet" = "0.23.0"
 "github:DataDog/pup" = "1.23.3"
-"github:Dicklesworthstone/beads_rust" = "0.6.0"
+"github:Dicklesworthstone/beads_rust" = "0.7.0"
 "github:diggerhq/opencomputer" = "0.6.0.48"
 "github:dolthub/dolt" = "2.3.5"
 "github:fialhosoft/agentlink" = "0.0.1"
