@@ -22,6 +22,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-09-25 | opencode | maintenance.config_validation | probe | pass | unavailable | 1.18.32 |
 | 2026-09-25 | pi | - | version | 0.87.0 | 0.87.1 | 0.87.1 |
 | 2026-09-25 | omp | - | version | omp/18.2.11 | omp/18.3.1 | omp/18.3.1 |
 | 2026-09-25 | codex | - | version | codex-cli 0.155.1 | codex-cli 0.156.1 | codex-cli 0.156.1 |

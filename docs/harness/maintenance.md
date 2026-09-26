@@ -33,7 +33,7 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config --pure | probe · 1.18.32 · 2026-09-25 | - |
+| opencode | aligned | native | opencode debug config --pure | probe · - · 2026-08-29 | probe unavailable: opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/1.18.32/opencode', 'debug', 'config', '--pure']' timed out after 5 seconds |
 | pi | aligned | native | pi list --no-approve | probe · 0.87.1 · 2026-09-25 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |

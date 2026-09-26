@@ -7416,14 +7416,14 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-09-25",
+            "date": "2026-08-29",
             "kind": "probe",
             "ref": "cli_exit_zero",
-            "version": "1.18.32"
+            "version": ""
           },
           "mode": "native",
           "next_action": "",
-          "note": "",
+          "note": "probe unavailable: opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/1.18.32/opencode', 'debug', 'config', '--pure']' timed out after 5 seconds",
           "parity": "aligned",
           "probe": {
             "args": "debug config --pure",
