@@ -46,7 +46,7 @@ If a caller passes additional directives, honor them:
 
 - **Base ref**: "Review <url> against origin/<base>" — diff against that specific base ref, not the PR's actual base. `gh pr diff` cannot override the base, so freeze via git instead:
   ```sh
-  git fetch origin +pull/<number>/head:refs/remotes/origin/pr/<number> refs/remotes/origin/<base>
+  git fetch origin +pull/<number>/head:refs/remotes/origin/pr/<number> <base>:refs/remotes/origin/<base>
   git diff refs/remotes/origin/<base>...refs/remotes/origin/pr/<number> > "$diff_dir/pr-review.diff"
   ```
   Requires a local clone; if none is available, clone first or fall back to `gh pr diff` and note the base override was not applied.
