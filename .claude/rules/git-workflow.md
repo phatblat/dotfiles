@@ -1,6 +1,6 @@
 ---
 alwaysApply: false
-paths: .gitconfig, .config/git/**, .gitignore
+paths: .config/git/**, .gitignore
 ---
 
 # Git Workflow Conventions
@@ -38,8 +38,8 @@ paths: .gitconfig, .config/git/**, .gitignore
 
 ## Git Config Structure
 
-- Global: `~/.gitconfig` (tracked)
-- Local overrides: `~/.config/git/config` (not tracked, machine-specific email)
+- Global: `~/.config/git/config` (tracked; `~/.gitconfig` must not exist — it would override identity)
+- Work identity: `~/.gitconfig-ditto`, pulled in by `includeIf "gitdir:~/dev/_GETDITTO/"`
 - Rerere enabled
 
 ## .gitignore
