@@ -67,6 +67,7 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-09-26 | opencode | maintenance.config_validation | probe | unavailable | pass |
 | 2026-09-25 | opencode | maintenance.config_validation | probe | pass | unavailable |
 | 2026-09-25 | pi | - | version | 0.87.0 | 0.87.1 |
 | 2026-09-25 | omp | - | version | omp/18.2.11 | omp/18.3.1 |
@@ -76,7 +77,6 @@ Coverage: 91/405 cells verified (22%)
 | 2026-09-24 | antigravity | - | version | 1.2.3 | 1.2.10 |
 | 2026-09-24 | pi | skills.shared | probe | fail | pass |
 | 2026-09-24 | opencode | skills.shared | probe | fail | pass |
-| 2026-09-24 | omp | skills.shared | probe | fail | pass |
 
 ## Permanent divergences
 
