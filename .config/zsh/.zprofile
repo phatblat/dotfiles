@@ -44,8 +44,8 @@ alias la='ls -la'
 # as well would apply every PATH export (and every other side effect) twice.
 # Only source it for non-interactive login shells, which still need the
 # autoloaded functions.
-if [[ ! -o interactive && -r "$HOME/.zshrc" ]]; then
-  source "$HOME/.zshrc"
+if [[ ! -o interactive && -r "$ZDOTDIR/.zshrc" ]]; then
+  source "$ZDOTDIR/.zshrc"
 fi
 
 # Added by Obsidian
