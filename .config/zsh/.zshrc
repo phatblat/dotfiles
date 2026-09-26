@@ -161,3 +161,6 @@ baseten() {
 if command -v direnv &>/dev/null && [[ -f ~/.env ]]; then
   eval "$(direnv dotenv zsh ~/.env)"
 fi
+
+# Shell `wt shell <branch>` execs inside a HOME-remapped dotfiles worktree
+export WT_SHELL=nu

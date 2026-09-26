@@ -5,6 +5,8 @@
 $env.XDG_CONFIG_HOME = $nu.home-dir | path join '.config'
 $env.STARSHIP_SHELL = "nu"
 $env.MISE_SHELL = "nu"
+# Shell `wt shell <branch>` execs inside a HOME-remapped dotfiles worktree
+$env.WT_SHELL = "nu"
 
 # Use nushell functions to define your right and left prompt
 $env.PROMPT_COMMAND = {|| create_left_prompt }
