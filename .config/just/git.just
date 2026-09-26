@@ -94,7 +94,7 @@ git-normalize:
     while IFS= read -r -d '' path \
        && IFS= read -r -d '' _attr \
        && IFS= read -r -d '' value; do
-        [[ "$value" == "unspecified" ]] && continue
+        [[ "$value" == "unspecified" || "$value" == "unset" ]] && continue
         paths+=("$path")
         names+=("$value")
     done < <(git ls-files -z | git check-attr --stdin -z filter)
