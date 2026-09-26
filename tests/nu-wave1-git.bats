@@ -101,9 +101,12 @@ _fork_stub_dir() {
 }
 
 _fork_poison_env() {
-    export GIT_TRACE=1 GIT_TRACE_PERFORMANCE=1 GIT_TRACE2=1 GIT_CURL_VERBOSE=1
+    export GIT_TRACE=1 GIT_TRACE_SETUP=1 GIT_TRACE_PERFORMANCE=1
+    export GIT_TRACE_PACKET=1 GIT_TRACE_PACK_ACCESS=1 GIT_TRACE_SHALLOW=1 GIT_TRACE_CURL=1
+    export GIT_TRACE2=1 GIT_TRACE2_EVENT=1 GIT_TRACE2_PERF=1 GIT_CURL_VERBOSE=1
     export GIT_SSH_COMMAND='ssh -vvv'
     export GIT_DIR=/tmp/fake/.git GIT_WORK_TREE=/tmp/fake
+    export GIT_INDEX_FILE=/tmp/fake/.git/index GIT_OBJECT_DIRECTORY=/tmp/fake/.git/objects GIT_COMMON_DIR=/tmp/fake/.git
     export FORK_PROBE_KEEP=must-survive
 }
 
