@@ -14,7 +14,6 @@
     "coworkHipaaRestricted": false,
     "orgWorkAcrossAppsDisabled": false,
     "ccdScheduledTasksEnabled": true,
-    "hybridDetectLatched": true,
     "earlyWindowShowLatched": true,
     "storeReadCacheLatched": true,
     "sidebarMode": "chat",
@@ -76,7 +75,8 @@
           "lastDismissedAt": 0
         },
         "version": 0
-      }
+      },
+      "starred-local-routines": []
     }
   }
 }

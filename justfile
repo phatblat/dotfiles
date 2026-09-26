@@ -18,7 +18,7 @@ set unstable
 # Bun dependency trees installed from tracked package.json manifests; installed by
 # install-bun-deps (omp.just), purged by clean-deps (clean.just)
 
-bun_manifest_dirs := '.omp/plugins .claude/skills/gstack'
+bun_manifest_dirs := '.omp/plugins'
 
 import '.config/just/agents.just'
 import '.config/just/brew.just'

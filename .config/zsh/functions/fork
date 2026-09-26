@@ -1,4 +1,41 @@
 #!/usr/bin/env zsh
 
 # fork - Launch Fork.app from the terminal (inherits mise PATH)
-open -a Fork "$@"
+#
+# `open -a` hands the calling shell's entire environment to the app, and a GUI
+# app keeps that environment for its whole lifetime -- days, in practice. PATH
+# is why this function exists, but the git debug variables that ride along with
+# it are actively harmful:
+#
+#   With GIT_TRACE/GIT_TRACE_PERFORMANCE/GIT_SSH_COMMAND='ssh -vvv' set, every
+#   git child Fork spawns floods its 16K stdout and 64K stderr pipes. Once Fork
+#   stops draining them, the child finishes its work and then blocks forever in
+#   write() from print_command_performance_atexit. Observed: four git processes
+#   wedged for 12h at 0% CPU, and Fork's background fetch silently broken
+#   because it parsed trace output as an error.
+#
+# The repo-scoping variables are stripped for the same reason: inherited from a
+# hook or a scripted git invocation, they would pin a long-lived GUI to one
+# worktree's index just as durably.
+#
+# Listed one per line rather than globbed, so adding or removing one is a
+# visible diff. `env -u` ignores names that are not set.
+env \
+    -u GIT_TRACE \
+    -u GIT_TRACE_SETUP \
+    -u GIT_TRACE_PERFORMANCE \
+    -u GIT_TRACE_PACKET \
+    -u GIT_TRACE_PACK_ACCESS \
+    -u GIT_TRACE_SHALLOW \
+    -u GIT_TRACE_CURL \
+    -u GIT_TRACE2 \
+    -u GIT_TRACE2_EVENT \
+    -u GIT_TRACE2_PERF \
+    -u GIT_CURL_VERBOSE \
+    -u GIT_SSH_COMMAND \
+    -u GIT_DIR \
+    -u GIT_WORK_TREE \
+    -u GIT_INDEX_FILE \
+    -u GIT_OBJECT_DIRECTORY \
+    -u GIT_COMMON_DIR \
+    open -a Fork "$@"

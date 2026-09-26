@@ -73,3 +73,54 @@ git-filters:
     @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
     @echo "Git filter 'antigravity-settings' installed (strips trustedWorkspaces from ~/.gemini/antigravity-cli/settings.json)"
     @echo "Git filter 'claude-json' installed (allowlists MCP fields from ~/.claude.json)"
+
+# Re-stages clean-filtered paths so `git status` stops reporting phantom edits
+#
+# `git status` is stat-based: when a filtered file's size changes it reports
+# `M` without ever running the clean filter, while `git diff` applies the
+# filter and correctly reports nothing. Re-adding the path re-runs the filter
+# and refreshes the index stat cache, which clears the phantom.
+#
+# Because `git add` also stages genuine edits to allowlisted fields, this
+# reports anything that survived the filter instead of swallowing it.
+[group('git')]
+[script]
+git-normalize:
+    set -euo pipefail
+    # Discover filtered paths from the attributes themselves, so this never
+    # drifts from .gitattributes or from the git-filters recipe above.
+    paths=()
+    names=()
+    while IFS= read -r -d '' path \
+       && IFS= read -r -d '' _attr \
+       && IFS= read -r -d '' value; do
+        [[ "$value" == "unspecified" || "$value" == "unset" ]] && continue
+        paths+=("$path")
+        names+=("$value")
+    done < <(git ls-files -z | git check-attr --stdin -z filter)
+
+    if [[ ${#paths[@]} -eq 0 ]]; then
+        echo "No clean-filtered paths are tracked."
+        exit 0
+    fi
+
+    # Staging without the filters installed would commit the raw file — which
+    # for oc-config means a live API key. Refuse rather than leak.
+    missing=()
+    while IFS= read -r name; do
+        git config --get "filter.${name}.clean" >/dev/null || missing+=("$name")
+    done < <(printf '%s\n' "${names[@]}" | sort -u)
+    if [[ ${#missing[@]} -gt 0 ]]; then
+        echo "error: clean filter(s) not installed: ${missing[*]}" >&2
+        echo "       run \`just git-filters\` first; staging now would commit unmasked content" >&2
+        exit 1
+    fi
+
+    git add -- "${paths[@]}"
+
+    if git diff --cached --quiet -- "${paths[@]}"; then
+        echo "✓ ${#paths[@]} filtered path(s) normalized — all churn, nothing staged"
+    else
+        echo "⚠ real changes survived the filter and are now staged for review:"
+        git diff --cached --stat -- "${paths[@]}"
+    fi

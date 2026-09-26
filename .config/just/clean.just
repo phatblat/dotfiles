@@ -1,8 +1,6 @@
 # clean — cache, build output, and dependency-tree cleanup
 
-# Repo-owned source roots scanned by clean-build. The vendored
-# .claude/skills/gstack tree is deliberately absent: `just build` does not
-# rebuild its dist/ binaries, so purging them would leave no way back.
+# Repo-owned source roots scanned by clean-build.
 
 build_artifact_roots := '.agents .codex .config .omp docs scripts tests'
 
@@ -45,8 +43,7 @@ clean-caches:
     if command -v nix >/dev/null 2>&1; then nix store gc; fi
 
 # Directories containing tracked files are kept, so this can never delete
-# checked-in work. .claude/skills/gstack is out of scope via
-# build_artifact_roots: `just build` does not rebuild its dist/ binaries.
+# checked-in work.
 # Removes build output directories under repo-owned source roots
 [group('clean')]
 [script]
@@ -95,3 +92,37 @@ clean-deps:
             rm -rf "$root/.venv"
         fi
     done
+
+# Runs kondo over every git repo under ~/dev, deleting build artifacts
+# older than 1 day without confirmation. Repos are discovered at any depth
+# by locating .git directories and .git worktree files; artifact trees are
+# skipped during traversal so nested checkouts (e.g. SPM .build/checkouts)
+# are not double-counted.
+[group('clean')]
+[script]
+clean-dev:
+    set -euo pipefail
+    if ! command -v kondo >/dev/null 2>&1; then
+        echo "kondo is not installed (brew install kondo)" >&2
+        exit 1
+    fi
+    repo_list="$(mktemp)"
+    trap 'rm -f "$repo_list"' EXIT
+    find "$HOME/dev" \
+        \( -type d \( -name node_modules -o -name .venv -o -name target \
+            -o -name .build -o -name dist \) -prune \) \
+        -o \( -type d -name .git -print -prune \) \
+        -o \( -type f -name .git -print \) \
+        | sed 's|/\.git$||' \
+        | sort -u > "$repo_list"
+    if [[ ! -s "$repo_list" ]]; then
+        echo "no git repos found under ~/dev"
+        exit 0
+    fi
+    repo_count="$(wc -l < "$repo_list" | tr -d ' ')"
+    echo "kondo: scanning $repo_count repos under $HOME/dev"
+    repos=()
+    while IFS= read -r repo; do
+        repos+=("$repo")
+    done < "$repo_list"
+    kondo --all --older 1d "${repos[@]}"

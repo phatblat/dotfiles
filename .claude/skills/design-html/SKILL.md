@@ -1,1 +1,0 @@
-../gstack/design-html/SKILL.md

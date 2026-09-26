@@ -1,1 +1,0 @@
-../gstack/guard/SKILL.md

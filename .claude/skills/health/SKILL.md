@@ -1,1 +1,0 @@
-../gstack/health/SKILL.md

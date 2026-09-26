@@ -29,10 +29,7 @@ from pathlib import Path
 # Skills that get a native pointer file in each harness's own skills directory,
 # rather than only the generated antigravity/cursor adapter copies.
 #
-# `retro` is deliberately absent: ~/.claude/skills/retro is the gstack skill
-# (1812 lines), unrelated to the 54-line shared harness-cleanup skill of the
-# same name, and generating a pointer over it would destroy it. `boris` is
-# absent because it is Claude-Code-specific, externally compiled, and
+# `boris` is absent because it is Claude-Code-specific, externally compiled, and
 # self-updating from a URL.
 NATIVE_SKILL_ADAPTERS = {
     "2ndbrain",
@@ -54,15 +51,19 @@ NATIVE_SKILL_ADAPTERS = {
     "grilling",
     "handoff",
     "harness-research",
+    "ios-device-qa",
     "new-project",
     "ocr",
     "optimize-harness",
+    "plan-design-review",
     "pr-style",
     "receiving-code-review",
     "refactor-safely",
     "requesting-code-review",
     "resolve-review-feedback",
+    "retro",
     "review-changes",
+    "security-audit",
     "subagent-driven-development",
     "test-driven-development",
     "using-git-worktrees",
@@ -81,9 +82,11 @@ MANUAL_SKILL_ADAPTERS = {
     "grill-me",
     "handoff",
     "harness-research",
+    "ios-device-qa",
     "new-project",
     "optimize-harness",
     "resolve-review-feedback",
+    "retro",
     "using-git-worktrees",
 }
 

@@ -1,1 +1,0 @@
-../gstack/plan-tune/SKILL.md

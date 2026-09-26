@@ -1,1 +1,0 @@
-../gstack/context-restore/SKILL.md

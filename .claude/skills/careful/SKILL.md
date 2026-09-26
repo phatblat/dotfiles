@@ -1,1 +1,0 @@
-../gstack/careful/SKILL.md

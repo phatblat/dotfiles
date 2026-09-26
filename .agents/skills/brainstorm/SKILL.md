@@ -251,6 +251,20 @@ short in-chat design is the whole process.
 **Understanding the idea:**
 
 - Check out the current project state first (files, docs, recent commits)
+- **Ground technical questions in evidence before you ask them.** Read at least one
+  piece of the actual codebase — Grep for the symbol, Read the file, inspect the
+  manifest and the relevant directory — and cite `path:line` in your first
+  technical question. Never open with "what file should I look at?"; find it
+  yourself. Don't ask what the code can already tell you; ask what it can't. If
+  you searched and genuinely found nothing related, say so explicitly and treat
+  it as greenfield.
+- Don't leave the "why" vague. Push until all five are crisp: **who** is affected;
+  what the current behavior **is** (verified, not assumed); what it **should** be;
+  **why now** (blocking work, costing money, correctness, compliance); and **how
+  you'll know it's done** as an observable outcome rather than a feeling.
+- Lock the boundaries before designing: what is explicitly **out** of scope, which
+  existing systems this touches, any ordering constraints, the smallest version
+  that still delivers the value, and the failure and rollback modes.
 - Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
 - If the project is too large for a single Decision, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own Decision → Plan cycle.
 - For appropriately-scoped projects, ask questions one at a time to refine the idea
@@ -284,9 +298,8 @@ architecture diagrams, side-by-side comparisons, spacing and hierarchy — earns
 picture; requirements, conceptual A/B/C choices, trade-off lists, and
 API/data-model decisions stay in the terminal. A question merely *about* a UI
 topic is not a visual question. 2-4 options max; scale fidelity to the question.
-Route this at tooling that already exists here: the `diagram` skill for
-architecture and flow, `design-shotgun` / `design-html` for UI mockups,
-`browser.open` to view the result.
+Route this at tooling that already exists here: a fenced `mermaid` block for
+architecture and flow, and `browser.open` to render and view a mockup directly.
 
 **Presenting the design:**
 

@@ -11,22 +11,28 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 # ---------------------------------------------------------------------------
 
 # Builds a fixture tree that exercises every branch:
-#   .env             - FOO=1, a comment, a blank line, export BAR=2
-#   .env.local       - BAZ=3
+#   .env             - FOO, a comment, a blank line, export BAR
+#   .env.local       - BAZ
 #   .env.example     - SHOULD_NOT_APPEAR (excluded by name)
 #   .envrc           - ALSO_NOT_APPEAR (direnv config, not a dotenv file)
 #   node_modules/.env - PRUNED (excluded by directory pruning)
 #   nested/deep/.env - DEEP_KEY (recursion)
+#
+# Every value carries the SENTINELVALUE prefix so the "never prints values"
+# tests can assert on one unmistakable token. Numeric values used to collide
+# with Nushell's table row-index column: `FOO=1` was checked with `*" 1 "*`,
+# which matches the `│ 1 │` index cell, so that test failed on correct output
+# and would have passed on a leaky implementation.
 _gdotenv_fixture() {
     local dir
     dir="$(mktemp -d)"
     mkdir -p "$dir/node_modules" "$dir/nested/deep"
-    printf 'FOO=1\n# comment line\n\nexport BAR=2\n' >"$dir/.env"
-    printf 'BAZ=3\n' >"$dir/.env.local"
-    printf 'SHOULD_NOT_APPEAR=x\n' >"$dir/.env.example"
-    printf 'export ALSO_NOT_APPEAR=y\n' >"$dir/.envrc"
-    printf 'PRUNED=z\n' >"$dir/node_modules/.env"
-    printf 'DEEP_KEY=4\n' >"$dir/nested/deep/.env"
+    printf 'FOO=SENTINELVALUE1\n# comment line\n\nexport BAR=SENTINELVALUE2\n' >"$dir/.env"
+    printf 'BAZ=SENTINELVALUE3\n' >"$dir/.env.local"
+    printf 'SHOULD_NOT_APPEAR=SENTINELVALUE4\n' >"$dir/.env.example"
+    printf 'export ALSO_NOT_APPEAR=SENTINELVALUE5\n' >"$dir/.envrc"
+    printf 'PRUNED=SENTINELVALUE6\n' >"$dir/node_modules/.env"
+    printf 'DEEP_KEY=SENTINELVALUE7\n' >"$dir/nested/deep/.env"
     echo "$dir"
 }
 
@@ -86,9 +92,7 @@ _gdotenv_fixture() {
     run nu --no-config-file -c "cd '$dir'; source '$NU_AUTOLOAD/gdotenv.nu'; gdotenv"
     [ "$status" -eq 0 ]
     [[ "$output" != *"="* ]]
-    [[ "$output" != *" 1 "* ]]
-    [[ "$output" != *" 2 "* ]]
-    [[ "$output" != *" 3 "* ]]
+    [[ "$output" != *"SENTINELVALUE"* ]]
     rm -rf "$dir"
 }
 
@@ -186,9 +190,7 @@ _gdotenv_fixture() {
     dir="$(_gdotenv_fixture)"
     run bash -c "cd '$dir' && zsh --no-rcs '$HOME/.config/zsh/functions/gdotenv'"
     [ "$status" -eq 0 ]
-    [[ "$output" != *"=1"* ]]
-    [[ "$output" != *"=2"* ]]
-    [[ "$output" != *"=3"* ]]
+    [[ "$output" != *"SENTINELVALUE"* ]]
     rm -rf "$dir"
 }
 

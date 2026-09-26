@@ -17,9 +17,6 @@ amends "package://github.com/jdx/hk/releases/download/v2.1.0/hk@2.1.0#/Config.pk
 
 min_hk_version = "2.1.0"
 
-// Vendored third-party tree: never linted, never reformatted.
-local gstack = ".claude/skills/gstack/*"
-
 local linters = new Mapping<String, Step | Group> {
   // Declared first with exclusive = true, so it runs alone before every other
   // step in every hook.
@@ -60,7 +57,6 @@ local linters = new Mapping<String, Step | Group> {
     glob = "*.json"
     exclude =
       List(
-        gstack,
         "*.jsonc.json",
         // Cursor rewrites these in its own key order on every settings change
         ".cursor/cli-config.json",
@@ -86,7 +82,7 @@ local linters = new Mapping<String, Step | Group> {
     glob = List("*.jsonc", ".config/zed/settings.json", ".config/cmux/cmux.json")
     // opencode.jsonc is a generated artifact validated with strict
     // json.loads; prettier's jsonc parser adds trailing commas.
-    exclude = List(gstack, ".config/opencode/opencode.jsonc")
+    exclude = List(".config/opencode/opencode.jsonc")
     batch = true
     check = "prettier --parser jsonc --check {{files}}"
     check_list_files = "prettier --parser jsonc --list-different {{files}}"
@@ -95,7 +91,6 @@ local linters = new Mapping<String, Step | Group> {
 
   ["prettier-yaml"] {
     glob = List("*.yml", "*.yaml")
-    exclude = List(gstack)
     batch = true
     check = "prettier --check {{files}}"
     check_list_files = "prettier --list-different {{files}}"
@@ -104,7 +99,6 @@ local linters = new Mapping<String, Step | Group> {
 
   ["yamllint"] {
     glob = List("*.yml", "*.yaml")
-    exclude = List(gstack)
     // Judge the formatted result, matching today's format-then-check order.
     depends = "prettier-yaml"
     batch = true

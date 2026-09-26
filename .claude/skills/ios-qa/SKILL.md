@@ -1,1 +1,0 @@
-../gstack/ios-qa/SKILL.md

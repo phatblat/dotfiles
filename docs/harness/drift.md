@@ -9,10 +9,10 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.278 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
-| codex | codex-cli 0.155.1 | 2026-08-29 | codex-cli 0.155.0 |
+| codex | codex-cli 0.156.1 | 2026-08-29 | codex-cli 0.155.1 |
 | opencode | 1.18.32 | 2026-08-29 | 1.18.31 |
-| pi | 0.87.0 | 2026-08-29 | 0.86.1 |
-| omp | omp/18.2.11 | 2026-08-29 | omp/18.2.8 |
+| pi | 0.87.1 | 2026-08-29 | 0.87.0 |
+| omp | omp/18.3.1 | 2026-08-29 | omp/18.2.11 |
 | antigravity | 1.2.10 | 2026-08-29 | 1.2.3 |
 | cursor | 2026.09.15-d2fe57e | 2026-08-29 | 2026.09.02-c22c1a3 |
 | grok | grok 1.0.41 (4220f3b224a6) [alpha] | 2026-08-29 | grok 1.0.41 (4220f3b224a6) |
@@ -22,6 +22,11 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-09-26 | opencode | maintenance.config_validation | probe | unavailable | pass | 1.18.32 |
+| 2026-09-25 | opencode | maintenance.config_validation | probe | pass | unavailable | 1.18.32 |
+| 2026-09-25 | pi | - | version | 0.87.0 | 0.87.1 | 0.87.1 |
+| 2026-09-25 | omp | - | version | omp/18.2.11 | omp/18.3.1 | omp/18.3.1 |
+| 2026-09-25 | codex | - | version | codex-cli 0.155.1 | codex-cli 0.156.1 | codex-cli 0.156.1 |
 | 2026-09-24 | grok | - | version | grok 1.0.41 (4220f3b224a6) | grok 1.0.41 (4220f3b224a6) [alpha] | grok 1.0.41 (4220f3b224a6) [alpha] |
 | 2026-09-24 | claude | - | version | 2.1.251 (Claude Code) | 2.1.278 (Claude Code) | 2.1.278 (Claude Code) |
 | 2026-09-24 | antigravity | - | version | 1.2.3 | 1.2.10 | 1.2.10 |

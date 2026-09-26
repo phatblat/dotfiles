@@ -76,8 +76,8 @@ because that one link is never materialised in a fresh checkout.
 
 `claude-code` is the one embedded provider this repo does not serve. agentlink wants
 `CLAUDE.md` → `AGENTS.md` and `.claude/skills` → `.agents/skills`, but `~/CLAUDE.md` is
-separate hand-authored Claude guidance and `~/.claude/skills` holds third-party skills
-(gstack) alongside the generated shared pointers. Both capabilities are permanently
+separate hand-authored Claude guidance and `~/.claude/skills` holds the generated
+shared pointers, not a mirror of `~/.agents/skills`. Both capabilities are permanently
 `blocked`, so the provider is left out of `providers` and `agentlink status --check`
 stays meaningful.
 

@@ -25,7 +25,7 @@ from skills_ref import errors, parser, validator
 #
 #   version                  - per-skill semver; openclaw host pins a fixed
 #                               value via extraFields, other templates declare
-#                               their own (gstack/scripts/hosts/*.ts)
+#                               their own
 #   triggers                 - keyword list; allowlisted verbatim for the
 #                               "gbrain" ingestion host (hosts/gbrain.ts
 #                               keepFields includes 'triggers')
@@ -33,7 +33,7 @@ from skills_ref import errors, parser, validator
 #                               1-4, hard error if out of range
 #                               (resolvers/preamble.ts)
 #   hooks                     - documents/drives the Claude Code hook this
-#                               skill installs at setup (careful/freeze/guard)
+#                               skill installs at setup
 #   disable-model-invocation - host-native Claude Code / Factory field:
 #                               blocks automatic model-initiated invocation
 #   user-invocable            - host-native field: explicitly allowlisted for
@@ -42,7 +42,7 @@ from skills_ref import errors, parser, validator
 #   interactive                - documents that a skill runs in interactive
 #                               Q&A mode (plan-*-review skills)
 #   gbrain                    - build-time-only block (schema, context_queries)
-#                               consumed by gstack/scripts/resolvers/gbrain.ts
+#                               consumed by external resolvers
 #                               during `bun run gen:skill-docs` to splice
 #                               literal bash into the generated skill body;
 #                               inert by the time SKILL.md ships
