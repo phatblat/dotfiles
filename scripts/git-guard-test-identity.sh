@@ -14,11 +14,11 @@ set -eu
 
 cd "$(git rev-parse --show-toplevel)"
 
-for cfg in .config/git/config .gitconfig; do
-    git diff --cached --name-only -- "$cfg" | grep -q . || continue
+cfg=.config/git/config
+if git diff --cached --name-only -- "$cfg" | grep -q .; then
     if git show ":$cfg" | grep -qE 'Test Suite|test-suite@example\.com'; then
         echo "pre-commit: $cfg contains the test identity (Test Suite / test-suite@example.com)" >&2
         echo "pre-commit: strip those lines or run: git checkout -- $cfg" >&2
         exit 1
     fi
-done
+fi

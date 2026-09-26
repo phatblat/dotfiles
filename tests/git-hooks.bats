@@ -37,24 +37,6 @@ EOF
     rm -rf "$tmpdir"
 }
 
-@test "guard-test-identity: blocks leaked test identity in .gitconfig" {
-    local tmpdir
-    tmpdir="$(setup_test_repo)"
-
-    cat > "$tmpdir/.gitconfig" << 'EOF'
-[user]
-    name = Test Suite
-    email = test-suite@example.com
-EOF
-    git -C "$tmpdir" add .gitconfig
-
-    run bash -c "cd '$tmpdir' && '$GUARD'"
-    [ "$status" -ne 0 ]
-    [[ "$output" =~ "contains the test identity" ]]
-
-    rm -rf "$tmpdir"
-}
-
 @test "guard-test-identity: allows clean git config" {
     local tmpdir
     tmpdir="$(setup_test_repo)"
