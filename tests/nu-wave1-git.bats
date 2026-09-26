@@ -85,8 +85,70 @@ NU_AUTOLOAD="$HOME/.config/nushell/autoload"
 }
 
 # ---------------------------------------------------------------------------
-# fork — open -a Fork (macOS GUI app: parse check + help only)
+# fork — open -a Fork (macOS GUI app: never launched; `open` is stubbed)
 # ---------------------------------------------------------------------------
+
+# `open -a` hands the caller's whole environment to the GUI app, which keeps it
+# for days. Git debug vars inherited that way wedge every git child Fork spawns
+# (they block in write() on a pipe Fork stopped draining). Both ports must
+# strip them while leaving everything else — notably PATH — intact.
+_fork_stub_dir() {
+    local dir
+    dir="$(mktemp -d)"
+    printf '#!/bin/sh\nenv > "%s/seen.txt"\necho "ARGS: $*" >> "%s/seen.txt"\n' "$dir" "$dir" >"$dir/open"
+    chmod +x "$dir/open"
+    echo "$dir"
+}
+
+_fork_poison_env() {
+    export GIT_TRACE=1 GIT_TRACE_PERFORMANCE=1 GIT_TRACE2=1 GIT_CURL_VERBOSE=1
+    export GIT_SSH_COMMAND='ssh -vvv'
+    export GIT_DIR=/tmp/fake/.git GIT_WORK_TREE=/tmp/fake
+    export FORK_PROBE_KEEP=must-survive
+}
+
+# Asserts on $1/seen.txt written by the stub.
+#
+# Leak checks use `if grep; then return 1; fi` rather than `! grep -q`: bash
+# exempts a command whose status is inverted with `!` from errexit, so the
+# negated form silently passes even when the variable IS present.
+_fork_assert_clean() {
+    local dir="$1" leaked
+    [ -f "$dir/seen.txt" ]
+    leaked="$(grep -E '^(GIT_TRACE|GIT_TRACE_SETUP|GIT_TRACE_PERFORMANCE|GIT_TRACE_PACKET|GIT_TRACE_PACK_ACCESS|GIT_TRACE_SHALLOW|GIT_TRACE_CURL|GIT_TRACE2|GIT_TRACE2_EVENT|GIT_TRACE2_PERF|GIT_CURL_VERBOSE|GIT_SSH_COMMAND|GIT_DIR|GIT_WORK_TREE|GIT_INDEX_FILE|GIT_OBJECT_DIRECTORY|GIT_COMMON_DIR)=' "$dir/seen.txt" || true)"
+    if [ -n "$leaked" ]; then
+        echo "env leaked to Fork:" >&2
+        echo "$leaked" >&2
+        return 1
+    fi
+    # Unrelated variables must still pass through.
+    grep -qx 'FORK_PROBE_KEEP=must-survive' "$dir/seen.txt"
+    # And it must still have asked to open the app.
+    grep -qx 'ARGS: -a Fork' "$dir/seen.txt"
+}
+
+@test "fork (nu): strips git debug env, keeps everything else" {
+    local dir
+    dir="$(_fork_stub_dir)"
+    _fork_poison_env
+    PATH="$dir:$PATH" run nu --no-config-file -c "
+        source '$NU_AUTOLOAD/fork.nu'
+        fork
+    "
+    [ "$status" -eq 0 ]
+    _fork_assert_clean "$dir"
+    rm -rf "$dir"
+}
+
+@test "fork (zsh): strips git debug env, keeps everything else" {
+    local dir
+    dir="$(_fork_stub_dir)"
+    _fork_poison_env
+    PATH="$dir:$PATH" run zsh --no-rcs "$HOME/.config/zsh/functions/fork"
+    [ "$status" -eq 0 ]
+    _fork_assert_clean "$dir"
+    rm -rf "$dir"
+}
 
 # ---------------------------------------------------------------------------
 # ginit — git init (mutating: parse + temp dir smoke)
