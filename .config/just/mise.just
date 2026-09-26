@@ -8,9 +8,14 @@ color_reset := '\e[0m'
 # Tools excluded from `mise ... --bump` scans; each emits unfixable mise warnings and its
 # bump is always null: wookie = rev-pinned cargo git ref (latest resolves to the ref string
 # "HEAD"), dsh = prerelease-only npm package (mise resolves no "latest"), cursor-cli = http
-# backend without version_list_url (cursor.com publishes no version feed).
+# backend without version_list_url (cursor.com publishes no version feed), cargo-binstall =
+# mise's cargo backend bootstraps new cargo-binstall versions using the currently pinned
+# cargo-binstall binary, which self-deadlocks on mise's own per-tool install lock (the
+# bootstrap process waits forever on a lock it already holds). Bump manually by downloading
+# the arm64 release binary from https://github.com/cargo-bins/cargo-binstall/releases and
+# copying it into the mise install dir, then update the version pin.
 
-mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh http:cursor-cli'
+mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh http:cursor-cli cargo:cargo-binstall'
 
 alias ls := list
 alias lsm := list-missing
@@ -179,7 +184,6 @@ upgrade-mise-tools-commit:
         bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump --yes "$tool"
-        mise x -- hk fix .config/mise/config.toml
         paths=("{{ justfile_directory() }}/.config/mise/config.toml")
         if [ "$tool" = "hk" ]; then
             # hk.pkl pins the exact hk release it amends (see hk.pkl's own
@@ -187,12 +191,16 @@ upgrade-mise-tools-commit:
             # evaluates hk.pkl with no network request; any other pin
             # downloads it on every run). Keep the pin in lockstep with the
             # version mise just installed, and fail loudly before committing
-            # if the bump breaks the schema.
+            # if the bump breaks the schema. This must run before `hk fix`
+            # below: hk validates its own pin on every invocation, so an
+            # hk bump would otherwise fail hk fix with a stale-pin error
+            # before the pin is ever synced.
             sed -i '' -E "s|(amends \"package://github.com/jdx/hk/releases/download/v)[0-9.]+(/hk@)[0-9.]+(#/Config.pkl\")|\1${bump}\2${bump}\3|" hk.pkl
             sed -i '' -E "s|(min_hk_version = \")[0-9.]+(\")|\1${bump}\2|" hk.pkl
             mise x -- hk validate --quiet
             paths+=("{{ justfile_directory() }}/hk.pkl")
         fi
+        mise x -- hk fix .config/mise/config.toml
         # --only commits these paths from the working tree and disregards
         # anything else staged, so concurrent work is never swept into a
         # version-bump commit.
