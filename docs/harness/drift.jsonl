@@ -196,3 +196,4 @@
 {"capability":"-","date":"2026-09-25","detail":"","field":"version","from":"omp/18.2.11","harness":"omp","to":"omp/18.3.1","version_from":"omp/18.2.11","version_to":"omp/18.3.1"}
 {"capability":"-","date":"2026-09-25","detail":"","field":"version","from":"0.87.0","harness":"pi","to":"0.87.1","version_from":"0.87.0","version_to":"0.87.1"}
 {"capability":"maintenance.config_validation","date":"2026-09-25","detail":"opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/1.18.32/opencode', 'debug', 'config', '--pure']' timed out after 5 seconds","field":"probe","from":"pass","harness":"opencode","to":"unavailable","version_from":"1.18.32","version_to":"1.18.32"}
+{"capability":"maintenance.config_validation","date":"2026-09-26","detail":"opencode debug config --pure","field":"probe","from":"unavailable","harness":"opencode","to":"pass","version_from":"1.18.32","version_to":"1.18.32"}
