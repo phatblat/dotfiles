@@ -66,6 +66,7 @@ NATIVE_SKILL_ADAPTERS = {
     "security-audit",
     "subagent-driven-development",
     "test-driven-development",
+    "typesafe-ai",
     "using-git-worktrees",
     "writing-plans",
 }

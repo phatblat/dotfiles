@@ -200,6 +200,9 @@
   "~/.agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/typesafe-ai/SKILL.md": {
+    "source": "~/.agents/skills/typesafe-ai/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
     "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
@@ -521,6 +524,9 @@
   "~/.agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/typesafe-ai/SKILL.md": {
+    "source": "~/.agents/skills/typesafe-ai/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/using-git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
   },
@@ -758,6 +764,9 @@
   "~/.claude/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
   },
+  "~/.claude/skills/typesafe-ai/SKILL.md": {
+    "source": "~/.agents/skills/typesafe-ai/SKILL.md"
+  },
   "~/.claude/skills/using-git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
   },
@@ -904,6 +913,9 @@
   },
   "~/.codex/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.codex/skills/typesafe-ai/SKILL.md": {
+    "source": "~/.agents/skills/typesafe-ai/SKILL.md"
   },
   "~/.codex/skills/using-git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
@@ -1132,6 +1144,9 @@
   },
   "~/.config/opencode/skills/test-driven-development/SKILL.md": {
     "source": "~/.agents/skills/test-driven-development/SKILL.md"
+  },
+  "~/.config/opencode/skills/typesafe-ai/SKILL.md": {
+    "source": "~/.agents/skills/typesafe-ai/SKILL.md"
   },
   "~/.config/opencode/skills/using-git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
