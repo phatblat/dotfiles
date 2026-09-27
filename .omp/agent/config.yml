@@ -312,7 +312,7 @@ codexResets:
   autoRedeem: "no"
 treeFilterMode: all
 spelling:
-  autocorrect: true
+  autocorrect: false
 error:
   notify: "on"
 skills:
