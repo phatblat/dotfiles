@@ -1,11 +1,11 @@
 source ~/.config/nushell/autoload/omp.nu
 
-# cmt - Commit with message, or auto-commit dirty files via the OMP commit
-# workflow. A single positional argument (no extra flags) that resolves to
-# an existing file or directory path within the current git repo is treated
-# as a path to scope the auto-commit to (like the no-arg form, but
-# restricted to that path) rather than as a commit message.
-export def cmt [
+# git-commit-skill - Commit with message, or auto-commit dirty files via the
+# OMP commit workflow. A single positional argument (no extra flags) that
+# resolves to an existing file or directory path within the current git repo
+# is treated as a path to scope the auto-commit to (like the no-arg form,
+# but restricted to that path) rather than as a commit message.
+export def git-commit-skill [
     message?: string  # commit message, or a path to auto-commit
     ...args           # additional git commit flags
 ] {
