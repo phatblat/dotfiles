@@ -142,11 +142,6 @@
   "python.jediEnabled": false,
   "python.languageServer": "None",
   "qiskit-vscode.config.firstRun": false,
-  "qiskit-vscode.ibmq.group": "",
-  "qiskit-vscode.ibmq.hub": "",
-  "qiskit-vscode.ibmq.project": "",
-  "qiskit-vscode.ibmq.token": "33542ea6966055db01c78c8325f8304dae34f0f9118eb67183ecc178ab09b2f70d06b99a6a52ae803b8434f0d170062e360072942e46bcd98867ef678fca5279",
-  "qiskit-vscode.ibmq.url": "",
   "redhat.telemetry.enabled": true,
   "remote.SSH.remotePlatform": {
     "*.gitpod.io": "linux"

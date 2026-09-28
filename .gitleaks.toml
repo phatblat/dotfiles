@@ -1,0 +1,23 @@
+#
+# gitleaks secret-scanning config for phatblat/dotfiles.
+#
+# Extends gitleaks' built-in ruleset rather than replacing it, so upstream
+# rule additions/fixes keep applying on every `mise upgrade`:
+# https://github.com/gitleaks/gitleaks/blob/v8.30.1/config/gitleaks.toml
+#
+title = "phatblat/dotfiles"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "ness crate's own secret-detection test fixtures: every file under this path intentionally embeds fake secrets to exercise ness's deny rules"
+paths = [
+  '''^crates/ness/tests/corpus/''',
+]
+
+[[allowlists]]
+description = "Vendored skill doc: truncated illustrative JWT example, not a live token"
+paths = [
+  '''^\.claude/agent-skills/README\.md$''',
+]

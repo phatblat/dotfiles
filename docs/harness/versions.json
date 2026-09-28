@@ -11,8 +11,8 @@
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.155.1",
-    "version": "codex-cli 0.156.1"
+    "previous": "codex-cli 0.156.1",
+    "version": "codex-cli 0.157.1"
   },
   "crush": {
     "first_seen": "2026-08-29",
@@ -31,8 +31,8 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.2.11",
-    "version": "omp/18.3.1"
+    "previous": "omp/18.3.1",
+    "version": "omp/18.3.2"
   },
   "opencode": {
     "first_seen": "2026-08-29",

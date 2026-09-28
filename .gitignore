@@ -98,6 +98,7 @@
 .claude/security_warnings_state_*.json
 !.claude/skills/2ndbrain/
 .claude/skills/synced/
+!.claude/skills/typesafe-ai/
 .claude/teams/
 .claude_settings.json
 .clawdbot/
@@ -154,6 +155,7 @@
 !.codex/skills/security-audit/
 !.codex/skills/subagent-driven-development/
 !.codex/skills/test-driven-development/
+!.codex/skills/typesafe-ai/
 !.codex/skills/using-git-worktrees/
 !.codex/skills/writing-plans/
 !.codex/skills/
@@ -296,6 +298,7 @@
 !.config/opencode/skills/security-audit/
 !.config/opencode/skills/subagent-driven-development/
 !.config/opencode/skills/test-driven-development/
+!.config/opencode/skills/typesafe-ai/
 !.config/opencode/skills/using-git-worktrees/
 !.config/opencode/skills/writing-plans/
 !.config/opencode/skills/

@@ -13,9 +13,9 @@
 // The pinned package version must equal the installed hk (enforced by the
 // hk-config step): hk embeds the Pkl package for its own version and evaluates
 // this file with no network request, while any other pin is downloaded.
-amends "package://github.com/jdx/hk/releases/download/v2.1.0/hk@2.1.0#/Config.pkl"
+amends "package://github.com/jdx/hk/releases/download/v2.2.0/hk@2.2.0#/Config.pkl"
 
-min_hk_version = "2.1.0"
+min_hk_version = "2.2.0"
 
 local linters = new Mapping<String, Step | Group> {
   // Declared first with exclusive = true, so it runs alone before every other
@@ -266,6 +266,27 @@ local linters = new Mapping<String, Step | Group> {
   }
 }
 
+// Split from `linters` because the two hooks need different gitleaks
+// invocations: pre-commit only has the staged diff to look at, while
+// check/lint audit the full tracked tree at HEAD. gitleaks has no fix
+// command, so neither belongs in the "fix" hook.
+local gitleaksProtect = new Mapping<String, Step | Group> {
+  ["gitleaks-protect"] {
+    // `protect` has been undocumented since gitleaks v8.19 (hidden from
+    // --help, still shipped) but is exactly what's needed here: scan the
+    // staged diff before it lands in history. hk's "git" stash method runs
+    // with --keep-index, so this reads the same staged content pre-commit
+    // is about to record, not whatever else is sitting in the worktree.
+    check = "gitleaks protect --staged --redact --verbose --no-banner --config .gitleaks.toml"
+  }
+}
+
+local gitleaksTree = new Mapping<String, Step | Group> {
+  ["gitleaks-tree"] {
+    check = "scripts/gitleaks-tree.sh"
+  }
+}
+
 hooks = new {
   ["pre-commit"] {
     fix = true
@@ -290,7 +311,7 @@ hooks = new {
     // stash method.
     stash = "git"
     stage = true
-    steps = linters
+    steps = linters + gitleaksProtect
   }
   // `hk fix` / `hk check`, driven by `just format` / `just lint`. stage =
   // false so a bulk format or a single-file `hk fix` from an editor hook never
@@ -302,7 +323,7 @@ hooks = new {
   }
   ["check"] {
     stage = false
-    steps = linters
+    steps = linters + gitleaksTree
   }
 }
 
