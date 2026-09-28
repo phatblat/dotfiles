@@ -2,7 +2,7 @@
   "dependencies": {
     "@askjo/pi-reflect": "npm:@askjo/pi-reflect@^1.2.0",
     "pi-cache-insight": "^1.1.0",
-    "pi-continual-harness": "npm:pi-continual-harness@^0.8.0"
+    "pi-continual-harness": "npm:pi-continual-harness@^0.11.0"
   },
   "name": "omp-plugins",
   "private": true
