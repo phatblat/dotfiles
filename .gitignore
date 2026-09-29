@@ -410,6 +410,7 @@
 .hyper_plugins/
 .idapro/
 .idea/
+.infisical/
 .install4j
 .ios-agent-qa/
 .ipfs/
