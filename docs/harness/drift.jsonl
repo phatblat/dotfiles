@@ -199,3 +199,5 @@
 {"capability":"maintenance.config_validation","date":"2026-09-26","detail":"opencode debug config --pure","field":"probe","from":"unavailable","harness":"opencode","to":"pass","version_from":"1.18.32","version_to":"1.18.32"}
 {"capability":"-","date":"2026-09-27","detail":"","field":"version","from":"codex-cli 0.156.1","harness":"codex","to":"codex-cli 0.157.1","version_from":"codex-cli 0.156.1","version_to":"codex-cli 0.157.1"}
 {"capability":"-","date":"2026-09-27","detail":"","field":"version","from":"omp/18.3.1","harness":"omp","to":"omp/18.3.2","version_from":"omp/18.3.1","version_to":"omp/18.3.2"}
+{"capability":"-","date":"2026-09-29","detail":"","field":"version","from":"omp/18.3.2","harness":"omp","to":"omp/18.4.2","version_from":"omp/18.3.2","version_to":"omp/18.4.2"}
+{"capability":"-","date":"2026-09-29","detail":"","field":"version","from":"1.18.32","harness":"opencode","to":"1.18.33","version_from":"1.18.32","version_to":"1.18.33"}
