@@ -310,6 +310,7 @@
 .config/realm-cli/
 .config/realm/
 .config/session/
+.config/sops/
 .config/stetic/
 .config/sublime-text-3/
 .config/swiftpm/
