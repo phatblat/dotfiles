@@ -1217,6 +1217,7 @@ obj/
 obsidian.test/
 omp.cache
 packages/
+phatlab/
 private/
 realm-object-server/
 snap/
