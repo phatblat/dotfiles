@@ -3,10 +3,10 @@ providers:
     serverSideFallback: false
 setupVersion: 2
 modelRoles:
-  plan: anthropic/claude-opus-5:xhigh
+  plan: anthropic/claude-opus-5-5:xhigh
   slow: spark/Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
   smol: anthropic/claude-haiku-4-5
-  default: anthropic/claude-sonnet-5
+  default: anthropic/claude-sonnet-5-5
   vision: spark/Inferact/Qwen3.8-27B-NVFP4
   commit: anthropic/claude-haiku-4-5:auto
 defaultThinkingLevel: auto
