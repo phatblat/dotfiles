@@ -50,6 +50,9 @@ case "$1" in
     repo) echo "o/r"; exit 0;;
     api)
         printf '%s\n' "$2" >> "$dir/api.log"
+        printf '%s\n' "$*" >> "$dir/api.args"
+        # Honor the job selector like the real --jq filter: no match -> no output.
+        [ "${GHRUN_JOB-}" = "${GHSTUB_JOB:-My Job}" ] || exit 0
         if [ "$st" = "in_progress" ]; then
             polls=$(( $(cat "$dir/polls" 2>/dev/null || echo 0) + 1 ))
             echo "$polls" > "$dir/polls"
@@ -249,4 +252,27 @@ fakegh_setup() {
     [ "$status" -eq 0 ]
     [[ "$output" == *"rerun run=123"* ]]
     [[ "$output" == *"My Job succeeded after 1 attempts"* ]]
+}
+
+@test "zsh: ghrun retry passes an unusual job name via env, not jq source" {
+    export GHSTUB_JOB='My "Odd" \ Job'
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job '$GHSTUB_JOB' --max 2 --until-success --interval 1
+    " 2>&1
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"succeeded after 1 attempts"* ]]
+    ! grep -qF 'Odd' "$STUB_DIR/api.args"
+}
+
+@test "nu: ghrun retry passes an unusual job name via env, not jq source" {
+    export GHSTUB_JOB='My "Odd" \ Job'
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        ghrun retry 123 --job 'My \"Odd\" \\ Job' --max 2 --until-success
+    " 2>&1
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"succeeded after 1 attempts"* ]]
+    ! grep -qF 'Odd' "$STUB_DIR/api.args"
 }

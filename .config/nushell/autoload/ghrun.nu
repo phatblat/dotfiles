@@ -84,7 +84,7 @@ export def "ghrun retry" [
         ^gh run view $id ...$repo_args --json attempt --jq '.attempt' | str trim | into int
     }
     def job-for-attempt [attempt: int] {
-        let jobs = do -i { ^gh api $"repos/($owner_repo)/actions/runs/($id)/attempts/($attempt)/jobs?per_page=100" --jq '.jobs[] | select(.name == $jobname) | [.id, .status, (.conclusion // "")] | @tsv' }
+        let jobs = do -i { with-env {GHRUN_JOB: $job} { ^gh api $"repos/($owner_repo)/actions/runs/($id)/attempts/($attempt)/jobs?per_page=100" --jq '.jobs[] | select(.name == env.GHRUN_JOB) | [.id, .status, (.conclusion // "")] | @tsv' } }
         if (($jobs | default "" | str trim) | is-empty) { "" } else {
             $jobs | lines | last
         }

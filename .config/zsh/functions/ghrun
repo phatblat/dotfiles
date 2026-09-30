@@ -107,8 +107,8 @@ _ghrun_latest_attempt() {
 # Job record for attempt $1 matching $job_name: "id<TAB>status<TAB>conclusion".
 _ghrun_job_for_attempt() {
     local attempt="$1"
-    gh api "repos/${owner_repo}/actions/runs/${run_id}/attempts/${attempt}/jobs?per_page=100" \
-        --jq ".jobs[] | select(.name == \"${job_name}\") | [.id, .status, (.conclusion // \"\")] | @tsv" |
+    GHRUN_JOB="$job_name" gh api "repos/${owner_repo}/actions/runs/${run_id}/attempts/${attempt}/jobs?per_page=100" \
+        --jq '.jobs[] | select(.name == env.GHRUN_JOB) | [.id, .status, (.conclusion // "")] | @tsv' |
         tail -n 1
 }
 
