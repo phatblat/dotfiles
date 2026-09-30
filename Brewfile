@@ -136,6 +136,8 @@ brew "fb303"
 brew "edencommon"
 # Emoji on the command-line :scream:
 brew "emojify"
+# Enable transparent encryption/decryption of files in a git repo
+brew "git-crypt"
 # Test various flash cards
 brew "f3"
 # MP3 player for Linux and UNIX
