@@ -55,6 +55,60 @@ EOF
     rm -rf "$tmpdir"
 }
 
+@test "guard-test-identity: blocks leaked test identity in .gitconfig" {
+    local tmpdir
+    tmpdir="$(setup_test_repo)"
+
+    cat > "$tmpdir/.gitconfig" << 'EOF'
+[user]
+    name = Test Suite
+    email = test-suite@example.com
+EOF
+    git -C "$tmpdir" add .gitconfig
+
+    run bash -c "cd '$tmpdir' && '$GUARD'"
+    [ "$status" -ne 0 ]
+    [[ "$output" =~ "contains the test identity" ]]
+
+    rm -rf "$tmpdir"
+}
+
+@test "guard-test-identity: allows a clean staged .gitconfig" {
+    local tmpdir
+    tmpdir="$(setup_test_repo)"
+
+    cat > "$tmpdir/.gitconfig" << 'EOF'
+[user]
+    name = Real User
+    email = real@example.com
+EOF
+    git -C "$tmpdir" add .gitconfig
+
+    run bash -c "cd '$tmpdir' && '$GUARD'"
+    [ "$status" -eq 0 ]
+
+    rm -rf "$tmpdir"
+}
+
+@test "guard-test-identity: allows staged deletion of .gitconfig" {
+    local tmpdir
+    tmpdir="$(setup_test_repo)"
+
+    cat > "$tmpdir/.gitconfig" << 'EOF'
+[user]
+    name = Test Suite
+    email = test-suite@example.com
+EOF
+    git -C "$tmpdir" add .gitconfig
+    git -C "$tmpdir" commit -qm "add gitconfig"
+    git -C "$tmpdir" rm -q .gitconfig
+
+    run bash -c "cd '$tmpdir' && '$GUARD'"
+    [ "$status" -eq 0 ]
+
+    rm -rf "$tmpdir"
+}
+
 @test "guard-test-identity: allows commit when config files are not staged" {
     local tmpdir
     tmpdir="$(setup_test_repo)"
