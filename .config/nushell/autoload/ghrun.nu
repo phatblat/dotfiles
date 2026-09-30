@@ -9,6 +9,13 @@ def ghrun-usage [] {
   ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--interval SECONDS] [--until-success]"
 }
 
+# Fail unless an integer option is at least 1 (0 busy-polls; `seq 1 0` counts down).
+def ghrun-require-positive [name: string, value: int] {
+    if $value < 1 {
+        error make {msg: $"ghrun: --($name) must be a positive integer: ($value)"}
+    }
+}
+
 # Resolve the latest run id in the target repo.
 def ghrun-resolve-run-id [repo?: string] {
     let id = (^gh run list --limit 1 --json databaseId ...(if ($repo | is-empty) { [] } else { ["-R" $repo] }) --jq '.[0].databaseId' | str trim)
@@ -34,6 +41,7 @@ export def ghrun [
     --logs  # print failed-job logs on non-success completion
     --interval: int = 20  # seconds between polls
 ] {
+    ghrun-require-positive "interval" $interval
     let repo_args = if ($repo | is-empty) { [] } else { ["-R" $repo] }
     let id = if ($run_id | is-empty) { ghrun-resolve-run-id $repo } else { $run_id }
     mut last_summary = ""
@@ -71,6 +79,8 @@ export def "ghrun retry" [
     --interval: int = 20  # seconds between polls (the new-attempt check polls at most every 5s)
     --until-success  # stop as soon as the job conclusion is success
 ] {
+    ghrun-require-positive "interval" $interval
+    ghrun-require-positive "max" $max
     if ($job | is-empty) {
         error make {msg: $"ghrun retry: --job is required\n(ghrun-usage)"}
     }

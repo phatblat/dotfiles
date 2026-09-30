@@ -291,3 +291,51 @@ fakegh_setup() {
     [[ "$output" == *"succeeded after 1 attempts"* ]]
     ! grep -qF 'Odd' "$STUB_DIR/api.args"
 }
+
+# ---------------------------------------------------------------------------
+# Option validation
+# ---------------------------------------------------------------------------
+
+@test "zsh: ghrun rejects non-numeric or non-positive --max and --interval" {
+    for args in "--max abc" "--max 0" "--interval 0" "--interval 1.5"; do
+        run env PATH="$STUB_DIR:$PATH" zsh -c "
+            fpath=('$ZSH_FUNCTIONS' \$fpath)
+            autoload -Uz ghrun
+            ghrun retry 123 --job 'My Job' $args
+        " 2>&1
+        [ "$status" -eq 1 ]
+        [[ "$output" == *"must be a positive integer"* ]]
+    done
+    [ ! -e "$STUB_DIR/api.log" ]
+}
+
+@test "zsh: ghrun watch rejects --interval 0" {
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun --interval 0
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"--interval must be a positive integer"* ]]
+}
+
+@test "nu: ghrun rejects non-positive --max and --interval" {
+    for args in "--max 0" "--interval 0"; do
+        run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+            source '$NU_AUTOLOAD/ghrun.nu'
+            ghrun retry 123 --job 'My Job' $args
+        " 2>&1
+        [ "$status" -eq 1 ]
+        [[ "$output" == *"must be a positive integer"* ]]
+    done
+    [ ! -e "$STUB_DIR/api.log" ]
+}
+
+@test "nu: ghrun watch rejects --interval 0" {
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        ghrun --interval 0
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"--interval must be a positive integer"* ]]
+}

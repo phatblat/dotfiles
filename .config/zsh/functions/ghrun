@@ -77,6 +77,16 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# --- validate ----------------------------------------------------------
+if [[ ! "$interval" =~ ^[1-9][0-9]*$ ]]; then
+    echo "ghrun: --interval must be a positive integer: ${interval}" >&2
+    return 1
+fi
+if [[ ! "$max" =~ ^[1-9][0-9]*$ ]]; then
+    echo "ghrun: --max must be a positive integer: ${max}" >&2
+    return 1
+fi
+
 # --- shared helpers ----------------------------------------------------
 
 # Resolve $run_id when omitted: latest run in the target repo.
