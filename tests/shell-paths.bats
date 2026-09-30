@@ -9,7 +9,7 @@ import sys
 
 home = Path(sys.argv[1])
 checks = {
-    '.zshrc': ('eval "$(mise activate zsh)"', 'export PATH="$PATH:$HOME/.local/bin"'),
+    '.config/zsh/.zshrc': ('eval "$(mise activate zsh)"', 'export PATH="$PATH:$HOME/.local/bin"'),
     '.bashrc': ('eval "$(mise activate bash)"', 'export PATH="$PATH:$HOME/.local/bin"'),
     '.config/nushell/config.nu': ('source $mise_init', '$env.PATH ++= [($nu.home-dir | path join \'.local\' \'bin\')]'),
 }
