@@ -310,6 +310,7 @@
 .config/realm-cli/
 .config/realm/
 .config/session/
+.config/sops/
 .config/stetic/
 .config/sublime-text-3/
 .config/swiftpm/
@@ -410,6 +411,7 @@
 .hyper_plugins/
 .idapro/
 .idea/
+.infisical/
 .install4j
 .ios-agent-qa/
 .ipfs/
@@ -864,6 +866,7 @@ Library/Application Support/FileProvider/
 Library/Application Support/Final Cut Pro/
 Library/Application Support/Firefox/
 Library/Application Support/Fork/
+Library/Application Support/GitHub/
 Library/Application Support/Google/
 Library/Application Support/Goose/
 Library/Application Support/Grok Bot/
@@ -1217,6 +1220,7 @@ obj/
 obsidian.test/
 omp.cache
 packages/
+phatlab/
 private/
 realm-object-server/
 snap/
