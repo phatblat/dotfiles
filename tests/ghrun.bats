@@ -49,6 +49,7 @@ case "$1" in
         esac;;
     repo) echo "o/r"; exit 0;;
     api)
+        printf '%s\n' "$2" >> "$dir/api.log"
         if [ "$st" = "in_progress" ]; then
             polls=$(( $(cat "$dir/polls" 2>/dev/null || echo 0) + 1 ))
             echo "$polls" > "$dir/polls"
@@ -225,6 +226,19 @@ fakegh_setup() {
     " 2>&1
     [ "$status" -eq 0 ]
     [[ "$output" == *"Completed 1 attempts: 1 success / 0 failure"* ]]
+}
+
+@test "zsh: ghrun retry resolves --repo on every call in the same shell" {
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1 --repo a/b
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1 --repo c/d
+    " 2>&1
+    [ "$status" -eq 0 ]
+    grep -q '^repos/a/b/actions/runs/123/' "$STUB_DIR/api.log"
+    grep -q '^repos/c/d/actions/runs/123/' "$STUB_DIR/api.log"
+    [ "$(tail -n 1 "$STUB_DIR/api.log" | cut -d/ -f1-3)" = "repos/c/d" ]
 }
 
 @test "nu: ghrun retry --until-success exits 0 when the rerun succeeds" {

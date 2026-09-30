@@ -2,7 +2,7 @@
 
 # ghrun - Watch a GitHub Actions run; `ghrun retry` reruns a job until success or N times
 local -a gh_repo_args
-local cmd="watch" run_id repo interval=20 max=10 job_name conclusion_flag logs_flag
+local cmd="watch" run_id repo owner_repo interval=20 max=10 job_name conclusion_flag logs_flag
 local usage="Usage:
   ghrun [run-id] [--repo OWNER/REPO] [--logs] [--interval SECONDS]
   ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--until-success]"
