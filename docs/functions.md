@@ -4,21 +4,21 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 540 unique functions/aliases across 3 shells**
+**Total: 541 unique functions/aliases across 3 shells**
 
 **Shell Statistics:**
 
-- Nushell: 285 aliases/functions (primary shell)
-- Zsh: 380 functions (daily fallback)
+- Nushell: 286 aliases/functions (primary shell)
+- Zsh: 381 functions (daily fallback)
 - Bash: 13 functions (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 3 shells: 12
-- Implemented in 2 shells: 162
-- Implemented in 1 shell only: 320
+- Implemented in 2 shells: 163
+- Implemented in 1 shell only: 321
 
-**Functions Implemented in Multiple Shells:** 174
+**Functions Implemented in Multiple Shells:** 175
 
 ## Status Legend
 
@@ -243,8 +243,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `gemdir`                    | ➖  | ✅  | ➖   | Prints path to system gem dir                        |
 | `genv`                      | ✅  | ✅  | ➖   | Grep environment                                     |
 | `gh_token_test`             | ✅  | ➖  | ➖   | Tests GitHub personal access token                   |
-| `ghostty`                   | ✅  | ➖  | ➖   | Wrapper for Ghostty terminal emulator                |
 | `github-pat-refresh`        | ➖  | ➖  | ➖   | Extend fine-grained GitHub PAT expiration by N days  |
+| `ghostty`                   | ✅  | ➖  | ➖   | Wrapper for Ghostty terminal emulator                |
+| `ghrun`                     | ✅  | ✅  | ➖   | Watch GitHub Actions runs; retry a job until success or N times |
 | `ginit`                     | ✅  | ➖  | ➖   | Git init                                             |
 | `git-plist-filter`          | ➖  | ✅  | ➖   | Converts plist data to XML format                    |
 | `git_bundle_create`         | ✅  | ✅  | ➖   | Creates a git bundle containing any changes in the   |

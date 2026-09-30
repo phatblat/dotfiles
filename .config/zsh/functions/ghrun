@@ -1,0 +1,228 @@
+#!/usr/bin/env zsh
+
+# ghrun - Watch a GitHub Actions run; `ghrun retry` reruns a job until success or N times
+local -a gh_repo_args
+local cmd="watch" run_id repo interval=20 max=10 job_name conclusion_flag logs_flag
+local usage="Usage:
+  ghrun [run-id] [--repo OWNER/REPO] [--logs] [--interval SECONDS]
+  ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--until-success]"
+
+# --- parse -------------------------------------------------------------
+if [[ "$1" == "retry" ]]; then
+    cmd="retry"
+    shift
+fi
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+    --repo)
+        repo="$2"
+        gh_repo_args=(-R "$repo")
+        shift 2
+        ;;
+    --repo=*)
+        repo="${1#*=}"
+        gh_repo_args=(-R "$repo")
+        shift
+        ;;
+    --logs)
+        logs_flag=1
+        shift
+        ;;
+    --interval)
+        interval="$2"
+        shift 2
+        ;;
+    --interval=*)
+        interval="${1#*=}"
+        shift
+        ;;
+    --job)
+        job_name="$2"
+        shift 2
+        ;;
+    --job=*)
+        job_name="${1#*=}"
+        shift
+        ;;
+    --max)
+        max="$2"
+        shift 2
+        ;;
+    --max=*)
+        max="${1#*=}"
+        shift
+        ;;
+    --until-success)
+        conclusion_flag=1
+        shift
+        ;;
+    -h | --help)
+        echo "$usage"
+        return 0
+        ;;
+    --*)
+        echo "ghrun: unknown option: $1" >&2
+        echo "$usage" >&2
+        return 1
+        ;;
+    *)
+        if [[ -n "$run_id" ]]; then
+            echo "ghrun: unexpected argument: $1" >&2
+            echo "$usage" >&2
+            return 1
+        fi
+        run_id="$1"
+        shift
+        ;;
+    esac
+done
+
+# --- shared helpers ----------------------------------------------------
+
+# Resolve $run_id when omitted: latest run in the target repo.
+_ghrun_resolve_run_id() {
+    run_id="$(gh run list --limit 1 --json databaseId "${gh_repo_args[@]}" --jq '.[0].databaseId')"
+    if [[ -z "$run_id" ]]; then
+        echo "ghrun: no runs found" >&2
+        return 1
+    fi
+}
+
+# $owner_repo: OWNER/REPO for the gh api path (resolved once, cached in $owner_repo).
+_ghrun_owner_repo() {
+    if [[ -z "$owner_repo" ]]; then
+        if [[ -n "$repo" ]]; then
+            owner_repo="$repo"
+        else
+            owner_repo="$(gh repo view --json nameWithOwner --jq '.nameWithOwner')"
+        fi
+    fi
+}
+
+# Latest attempt number of the run.
+_ghrun_latest_attempt() {
+    gh run view "$run_id" "${gh_repo_args[@]}" --json attempt --jq '.attempt'
+}
+
+# Job record for attempt $1 matching $job_name: "id<TAB>status<TAB>conclusion".
+_ghrun_job_for_attempt() {
+    local attempt="$1"
+    gh api "repos/${owner_repo}/actions/runs/${run_id}/attempts/${attempt}/jobs?per_page=100" \
+        --jq ".jobs[] | select(.name == \"${job_name}\") | [.id, .status, (.conclusion // \"\")] | @tsv" |
+        tail -n 1
+}
+
+# Poll until attempt $1's job completes; print one line per change.
+_ghrun_wait_for_attempt_job_completion() {
+    local attempt="$1" last_line="" line job_id job_state conclusion summary
+    while true; do
+        line="$(_ghrun_job_for_attempt "$attempt" || true)"
+        if [[ -n "$line" ]]; then
+            IFS=$'\t' read -r job_id job_state conclusion <<< "$line"
+            summary="attempt=${attempt} job=${job_id} status=${job_state} conclusion=${conclusion:-null}"
+            if [[ "$summary" != "$last_line" ]]; then
+                echo "$summary"
+                last_line="$summary"
+            fi
+            if [[ "$job_state" == "completed" ]]; then
+                return 0
+            fi
+        fi
+        sleep "$interval"
+    done
+}
+
+# --- watch (default) ---------------------------------------------------
+
+if [[ "$cmd" == "watch" ]]; then
+    if [[ -z "$run_id" ]]; then
+        _ghrun_resolve_run_id || return 1
+    fi
+    local last_summary="" line attempt run_status conclusion summary
+    while true; do
+        line="$(gh run view "$run_id" "${gh_repo_args[@]}" --json attempt,status,conclusion \
+            --jq '[.attempt, .status, (.conclusion // "-")] | @tsv' || true)"
+        if [[ -n "$line" ]]; then
+            IFS=$'\t' read -r attempt run_status conclusion <<< "$line"
+            summary="attempt=${attempt} status=${run_status} conclusion=${conclusion}"
+            if [[ "$summary" != "$last_summary" ]]; then
+                echo "$summary"
+                last_summary="$summary"
+            fi
+            if [[ "$run_status" == "completed" ]]; then
+                echo "run ${run_id} completed: ${conclusion}"
+                if [[ "$conclusion" == "success" ]]; then
+                    return 0
+                fi
+                if [[ -n "$logs_flag" ]]; then
+                    gh run view "$run_id" "${gh_repo_args[@]}" --log-failed || true
+                fi
+                return 1
+            fi
+        fi
+        sleep "$interval"
+    done
+fi
+
+# --- retry ------------------------------------------------------------
+
+if [[ -z "$job_name" ]]; then
+    echo "ghrun retry: --job is required" >&2
+    echo "$usage" >&2
+    return 1
+fi
+if [[ -z "$run_id" ]]; then
+    _ghrun_resolve_run_id || return 1
+fi
+_ghrun_owner_repo || return 1
+
+local before_attempt before_line before_job_id before_state
+local after_attempt successes=0 failures=0 k rerun_conclusion
+
+for ((k = 1; k <= max; k++)); do
+    before_attempt="$(_ghrun_latest_attempt)"
+    before_line="$(_ghrun_job_for_attempt "$before_attempt")"
+    IFS=$'\t' read -r before_job_id before_state _ <<< "$before_line"
+
+    # If the latest attempt's job is still running, wait for it first.
+    if [[ "$before_state" != "completed" ]]; then
+        echo "[${k}/${max}] latest attempt=${before_attempt} is still ${before_state}; waiting before next rerun"
+        _ghrun_wait_for_attempt_job_completion "$before_attempt"
+        before_attempt="$(_ghrun_latest_attempt)"
+        before_line="$(_ghrun_job_for_attempt "$before_attempt")"
+        IFS=$'\t' read -r before_job_id before_state _ <<< "$before_line"
+    fi
+
+    echo "[${k}/${max}] rerun run=${run_id} attempt=${before_attempt} job=${before_job_id}"
+    gh run rerun "$run_id" "${gh_repo_args[@]}" --job "$before_job_id" || return 1
+    # Wait for the new attempt to appear.
+    while true; do
+        after_attempt="$(_ghrun_latest_attempt)"
+        if ((after_attempt > before_attempt)); then
+            break
+        fi
+        sleep 5
+    done
+
+    # Wait for the new attempt's job to complete.
+    _ghrun_wait_for_attempt_job_completion "$after_attempt"
+
+    before_line="$(_ghrun_job_for_attempt "$after_attempt")"
+    IFS=$'\t' read -r _ _ rerun_conclusion <<< "$before_line"
+    if [[ "$rerun_conclusion" == "success" ]]; then
+        successes=$((successes + 1))
+        if [[ -n "$conclusion_flag" ]]; then
+            echo "${job_name} succeeded after ${k} attempts"
+            return 0
+        fi
+    else
+        failures=$((failures + 1))
+    fi
+done
+
+if [[ -n "$conclusion_flag" ]]; then
+    echo "${job_name} failed after ${max} attempts" >&2
+    return 1
+fi
+echo "Completed ${max} attempts: ${successes} success / ${failures} failure"
+return 0
