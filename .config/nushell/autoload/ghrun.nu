@@ -13,8 +13,7 @@ def ghrun-usage [] {
 def ghrun-resolve-run-id [repo?: string] {
     let id = (^gh run list --limit 1 --json databaseId ...(if ($repo | is-empty) { [] } else { ["-R" $repo] }) --jq '.[0].databaseId' | str trim)
     if ($id | is-empty) {
-        print -e "ghrun: no runs found"
-        exit 1
+        error make {msg: "ghrun: no runs found"}
     }
     $id
 }
@@ -51,12 +50,12 @@ export def ghrun [
                 let conclusion = $parts | get 2
                 print $"run ($id) completed: ($conclusion)"
                 if $conclusion == "success" {
-                    exit 0
+                    return
                 }
                 if $logs {
                     do -i { ^gh run view $id ...$repo_args --log-failed }
                 }
-                exit 1
+                error make {msg: $"ghrun: run ($id) concluded ($conclusion)"}
             }
         }
         sleep ($interval * 1sec)
@@ -72,9 +71,7 @@ export def "ghrun retry" [
     --until-success  # stop as soon as the job conclusion is success
 ] {
     if ($job | is-empty) {
-        print -e "ghrun retry: --job is required"
-        print -e (ghrun-usage)
-        exit 1
+        error make {msg: $"ghrun retry: --job is required\n(ghrun-usage)"}
     }
     let repo_args = if ($repo | is-empty) { [] } else { ["-R" $repo] }
     let id = if ($run_id | is-empty) { ghrun-resolve-run-id $repo } else { $run_id }
@@ -146,7 +143,7 @@ export def "ghrun retry" [
             $successes = $successes + 1
             if $until_success {
                 print $"($job) succeeded after ($k) attempts"
-                exit 0
+                return
             }
         } else {
             $failures = $failures + 1
@@ -154,9 +151,7 @@ export def "ghrun retry" [
     }
 
     if $until_success {
-        print -e $"($job) failed after ($max) attempts"
-        exit 1
+        error make {msg: $"ghrun retry: ($job) failed after ($max) attempts"}
     }
     print $"Completed ($max) attempts: ($successes) success / ($failures) failure"
-    exit 0
 }

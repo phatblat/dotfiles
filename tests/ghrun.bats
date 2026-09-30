@@ -195,6 +195,21 @@ fakegh_setup() {
     [[ "$output" == *"run 123 completed: failure"* ]]
 }
 
+@test "nu: ghrun failure and success leave the calling shell running" {
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        try { ghrun } catch { print 'caught failure' }
+        print 'after failure'
+        printf '1|completed|success\n' | save -f '$GHSTUB_STATE'
+        ghrun
+        print 'after success'
+    "
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"caught failure"* ]]
+    [[ "$output" == *"after failure"* ]]
+    [[ "$output" == *"after success"* ]]
+}
+
 @test "nu: ghrun with no runs prints no runs found and exits 1" {
     printf '#!/bin/sh\ncase "$1 $2" in "run list") exit 0;; esac\nexit 1\n' > "$STUB_DIR/gh"
     chmod +x "$STUB_DIR/gh"
