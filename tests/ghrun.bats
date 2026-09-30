@@ -7,15 +7,13 @@ load helpers/setup
 REPO_ROOT="$(cd "$BATS_TEST_DIRNAME/.." && pwd)"
 NU_AUTOLOAD="$REPO_ROOT/.config/nushell/autoload"
 ZSH_FUNCTIONS="$REPO_ROOT/.config/zsh/functions"
-STUB_DIR="$REPO_ROOT/.ghrun-test"
-GHSTUB_STATE="$STUB_DIR/state"
+STUB_DIR=""
+GHSTUB_STATE=""
 
 setup() {
+    STUB_DIR="$BATS_TEST_TMPDIR/stub"
+    GHSTUB_STATE="$STUB_DIR/state"
     fakegh_setup
-}
-
-teardown() {
-    fakegh_teardown
 }
 
 # ---------------------------------------------------------------------------
@@ -26,13 +24,16 @@ teardown() {
 #   run list  -> fixed id "123"
 #   run view --json attempt,... -> state fields (tab-separated)
 #   run view --json attempt -> state attempt
-#   run rerun -> attempt+1, in_progress, null
+#   run rerun -> attempt+1, in_progress, null; resets the poll counter
 #   repo view -> o/r
-#   api .../attempts/N/jobs -> "999\tstatus\tconclusion" (empty conclusion when null)
+#   api .../attempts/N/jobs -> "999\tstatus\tconclusion" (empty conclusion when null).
+#       An in_progress job flips to completed after GHSTUB_POLLS polls (default 2),
+#       with conclusion GHSTUB_RERUN_CONCLUSION (default success). No wall-clock timing.
 make_fake_gh() {
     cat > "$STUB_DIR/gh" <<'STUB'
 #!/bin/sh
 state="$GHSTUB_STATE"
+dir="$(dirname "$state")"
 [ -f "$state" ] || printf "1|completed|failure\n" > "$state"
 IFS="|" read -r attempt st con < "$state"
 case "$1" in
@@ -44,10 +45,20 @@ case "$1" in
                 esac
                 echo "$attempt"; exit 0;;
             list) echo "123"; exit 0;;
-            rerun) printf "%s|in_progress|null\n" "$((attempt+1))" > "$state"; exit 0;;
+            rerun) printf "%s|in_progress|null\n" "$((attempt+1))" > "$state"; echo 0 > "$dir/polls"; exit 0;;
         esac;;
     repo) echo "o/r"; exit 0;;
-    api) printf "999\t%s\t%s\n" "$st" "$con" | sed "s/null//"; exit 0;;
+    api)
+        if [ "$st" = "in_progress" ]; then
+            polls=$(( $(cat "$dir/polls" 2>/dev/null || echo 0) + 1 ))
+            echo "$polls" > "$dir/polls"
+            if [ "$polls" -ge "${GHSTUB_POLLS:-2}" ]; then
+                st="completed"
+                con="${GHSTUB_RERUN_CONCLUSION:-success}"
+                printf "%s|%s|%s\n" "$attempt" "$st" "$con" > "$state"
+            fi
+        fi
+        printf "999\t%s\t%s\n" "$st" "$con" | sed "s/null//"; exit 0;;
 esac
 exit 1
 STUB
@@ -55,15 +66,10 @@ STUB
 }
 
 fakegh_setup() {
-    rm -rf "$STUB_DIR"
     mkdir -p "$STUB_DIR"
     make_fake_gh
     printf "1|completed|failure\n" > "$GHSTUB_STATE"
     export GHSTUB_STATE
-}
-
-fakegh_teardown() {
-    rm -rf "$STUB_DIR"
 }
 
 # ---------------------------------------------------------------------------
@@ -201,56 +207,32 @@ fakegh_teardown() {
 # ---------------------------------------------------------------------------
 
 @test "zsh: ghrun retry --until-success exits 0 when the rerun succeeds" {
-    (
-        sleep 1
-        printf "2|completed|success\n" > "$GHSTUB_STATE"
-    ) &
-    flipper=$!
-    env PATH="$STUB_DIR:$PATH" zsh -c "
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
         fpath=('$ZSH_FUNCTIONS' \$fpath)
         autoload -Uz ghrun
-        ghrun retry 123 --job 'My Job' --max 2 --until-success
-    " >"$BATS_TEST_TMPDIR/out" 2>&1
-    status=$?
-    kill "$flipper" 2>/dev/null || true
-    wait "$flipper" 2>/dev/null || true
+        ghrun retry 123 --job 'My Job' --max 2 --until-success --interval 1
+    " 2>&1
     [ "$status" -eq 0 ]
-    grep -q "rerun run=123" "$BATS_TEST_TMPDIR/out"
-    grep -q "My Job succeeded after 1 attempts" "$BATS_TEST_TMPDIR/out"
+    [[ "$output" == *"rerun run=123"* ]]
+    [[ "$output" == *"My Job succeeded after 1 attempts"* ]]
 }
 
 @test "zsh: ghrun retry fixed-count tallies and exits 0" {
-    (
-        sleep 1
-        printf "2|completed|success\n" > "$GHSTUB_STATE"
-    ) &
-    flipper=$!
-    env PATH="$STUB_DIR:$PATH" zsh -c "
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
         fpath=('$ZSH_FUNCTIONS' \$fpath)
         autoload -Uz ghrun
-        ghrun retry 123 --job 'My Job' --max 1
-    " >"$BATS_TEST_TMPDIR/out" 2>&1
-    status=$?
-    kill "$flipper" 2>/dev/null || true
-    wait "$flipper" 2>/dev/null || true
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1
+    " 2>&1
     [ "$status" -eq 0 ]
-    grep -q "Completed 1 attempts: 1 success / 0 failure" "$BATS_TEST_TMPDIR/out"
+    [[ "$output" == *"Completed 1 attempts: 1 success / 0 failure"* ]]
 }
 
 @test "nu: ghrun retry --until-success exits 0 when the rerun succeeds" {
-    (
-        sleep 1
-        printf "2|completed|success\n" > "$GHSTUB_STATE"
-    ) &
-    flipper=$!
-    env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
         source '$NU_AUTOLOAD/ghrun.nu'
         ghrun retry 123 --job 'My Job' --max 2 --until-success
-    " >"$BATS_TEST_TMPDIR/out" 2>&1
-    status=$?
-    kill "$flipper" 2>/dev/null || true
-    wait "$flipper" 2>/dev/null || true
+    " 2>&1
     [ "$status" -eq 0 ]
-    grep -q "rerun run=123" "$BATS_TEST_TMPDIR/out"
-    grep -q "My Job succeeded after 1 attempts" "$BATS_TEST_TMPDIR/out"
+    [[ "$output" == *"rerun run=123"* ]]
+    [[ "$output" == *"My Job succeeded after 1 attempts"* ]]
 }
