@@ -16,7 +16,7 @@ actions:
   remove <branch>     git worktree remove + prune; never touches the branch
   list                one <path>\\t<branch> line per worktree
   verify <branch>     HOME-remapped `just check` (implies --allow-home)
-  shell <branch>      HOME-remapped interactive zsh (implies --allow-home)
+  shell <branch>      HOME-remapped interactive $WT_SHELL, default `zsh -i` (implies --allow-home)
   overlay [<branch>]  apply this repo's link manifest to the worktree
 
 flags, accepted in any position:

@@ -97,7 +97,7 @@ jobs:
     timeout-minutes: 20
     env:
       HOME: ${{ github.workspace }}
-      # Under the remapped HOME the repo's .gitconfig becomes the global git
+      # Under the remapped HOME the repo's .config/git/config becomes the global git
       # config, and its commit.gpgsign points at an SSH key that only exists
       # on real machines — override so test fixture commits don't fail.
       GIT_CONFIG_COUNT: "1"
@@ -123,6 +123,16 @@ jobs:
         with:
           version: "2026.9.12"
           install_args: "just rust sccache"
+
+      # `wt shell` falls back to `zsh -i`. ubuntu-latest does not ship zsh;
+      # check.yml installs it for the same reason.
+      - name: Install zsh
+        if: steps.changed.outputs.relevant == 'true'
+        timeout-minutes: 5
+        run: |
+          # Runner-provided Microsoft repositories intermittently return 403.
+          sudo rm -f /etc/apt/sources.list.d/azure-cli.list /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt-get update && sudo apt-get install -y zsh
 
       - name: Run wt tests
         if: steps.changed.outputs.relevant == 'true'

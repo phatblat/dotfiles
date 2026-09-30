@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
-# configg - Manage global git configuration (~/.gitconfig)
+# configg - Manage global git configuration (~/.config/git/config)
 git config --global "$@"

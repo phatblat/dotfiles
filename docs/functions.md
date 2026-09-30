@@ -121,7 +121,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `col1`                      | ➖  | ✅  | ➖   | Prints the first column of input (first argument) (n/a in nu — subsumed by structured pipelines) |
 | `commit_count`              | ✅  | ✅  | ➖   | Count commits by date for a branch                   |
 | `commit`                    | ✅  | ✅  | ➖   | Perform a git commit                                 |
-| `configg`                   | ➖  | ✅  | ➖   | Manage global git configuration (~/.gitconfig)       |
+| `configg`                   | ➖  | ✅  | ➖   | Manage global git config (~/.config/git/config)      |
 | `console_user`              | ➖  | ✅  | ➖   | Prints username of console user                      |
 | `continue`                  | ➖  | ➖  | ➖   | Zsh function                                         |
 | `cont`                      | ✅  | ✅  | ➖   | Commit merge or continue rebase/cherry-pick          |

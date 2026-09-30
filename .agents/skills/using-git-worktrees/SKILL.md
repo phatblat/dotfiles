@@ -24,13 +24,13 @@ Where `<path-key>` is the repo root relative to `~` with `/` replaced by `-`.
 
 ## Dotfiles Exception
 
-The dotfiles repo (rooted at `~`) needs an explicit opt-in before using worktrees: `wt switch <branch> --allow-home` (or `wt verify <branch>` / `wt shell <branch>`). Without one of those, `wt` refuses. The real limitation is narrower than "cannot be tested": interactive shell *startup* (`.zshenv`, `.zshrc`, `.zprofile`, and the functions autoloaded from `.config/zsh/functions/`) is only exercised from the real `$HOME`, so validating startup changes still needs a branch switch there. Everything else — linting, tests, the harness gates — is verifiable from a worktree via `wt verify <branch>`, mirroring how `.github/workflows/lint.yml` already remaps `HOME` to run `just lint`/`just test` in CI.
+The dotfiles repo (rooted at `~`) needs an explicit opt-in before using worktrees: `wt switch <branch> --allow-home` (or `wt verify <branch>` / `wt shell <branch>`). Without one of those, `wt` refuses. The real limitation is narrower than "cannot be tested": `wt shell <branch>` runs shell startup under the worktree (`$HOME`, `$XDG_CONFIG_HOME`, and via the `~/.zshenv` stub `$ZDOTDIR` all remap, so `.config/zsh/**` and `.config/nushell/**` load from the branch), but every *live* terminal still sources the real `$HOME`, so promoting startup changes still needs a branch switch there. Everything else — linting, tests, the harness gates — is verifiable from a worktree via `wt verify <branch>`, mirroring how `.github/workflows/lint.yml` already remaps `HOME` to run `just lint`/`just test` in CI.
 
 **Detection:** Resolve via `git rev-parse --path-format=absolute --git-common-dir` (strip the trailing `/.git`), not `--show-toplevel` — `--show-toplevel` returns the *worktree's* root, so it misfires from inside any worktree. If the resolved path equals the home directory, you are in the dotfiles repo.
 
 ### What a Dotfiles Worktree Does Not Cover
 
-- **Interactive shell startup.** `.zshenv`, `.zshrc`, `.zprofile`, and the functions autoloaded from `.config/zsh/functions/` are only exercised by the real, running shell at `$HOME`. Validate startup changes with a branch switch there, not a worktree.
+- **Live shell startup.** `wt shell <branch>` exercises `.config/zsh/**` (via `$ZDOTDIR`) and `.config/nushell/**` (via `$XDG_CONFIG_HOME`) for one nested session; running terminals keep sourcing the real `$HOME`. Only the `~/.zshenv` stub itself is unavoidably read from `$HOME`.
 - **4 intentionally-absolute symlinks.** `bin/plistbuddy`, `bin/vi`, and `bin/vim` point at system/Homebrew binaries outside `$HOME`; `.config/iterm2/AppSupport` points at untracked app state. These stay absolute by design and are excluded from hk's `symlinks` step (`scripts/check-symlinks.sh`, run via `just lint`).
 - **3 ancestor-discoverable configs.** `.config/mise/config.toml`, `.editorconfig`, and `.envrc` are found by tools that walk up from cwd. Because a dotfiles worktree lives beneath the real `$HOME`, such a tool can discover the real `$HOME`'s copy instead of the worktree's own. `wt verify`/`wt shell` warn on stderr only when the two copies actually differ.
 
@@ -55,7 +55,7 @@ it enforces.
 - Create worktrees inside the repo (no project-local `.worktrees/` or `worktrees/`) — except dotfiles worktrees, which necessarily live at `~/.worktrees/dotfiles/<branch>` inside the `$HOME` tree; that path is `.gitignore`d so it never dirties `git status` in `$HOME`
 - Use `~/.config/superpowers/worktrees/` or any other location
 - Create a dotfiles worktree without the explicit opt-in (`wt switch <branch> --allow-home`/`verify`/`shell`)
-- Use a dotfiles worktree to validate `.zshrc`, `.zshenv`, `.zprofile`, or `.config/zsh/functions/**` — those only run from the real `$HOME`
+- Treat a `wt shell` session as proof that live terminals picked up `.config/zsh/**` or `.config/nushell/**` — only a branch switch at the real `$HOME` does that
 - Run bare `just`/`just check` inside a dotfiles worktree instead of `wt verify <branch>`, which sets up the `$HOME`/mise/git-config remapping that makes the gate meaningful
 - Skip remote tracking setup after branch creation
 - Let `push.autoSetupRemote` be the only tracking mechanism

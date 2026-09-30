@@ -39,7 +39,7 @@ fn dotfiles_banner(repo_root: &Path, home_real: &Path, branch: &str) {
     eprintln!("── dotfiles worktree — not your live $HOME ──");
     eprintln!("  Nothing here is sourced by any running shell.");
     eprintln!("  Verify:  wt verify {branch}");
-    eprintln!("  Startup semantics (.zshenv/.zshrc, .config/zsh/functions) still need a $HOME branch switch.");
+    eprintln!("  Startup semantics (.zshenv, .config/zsh, .config/nushell) need `wt shell {branch}`.");
 }
 
 fn home_repo_guard(branch: &str) {
@@ -293,6 +293,7 @@ fn cmd_verify(args: &Args, home_real: &Path) -> Result<(), i32> {
         .current_dir(&found)
         .env("HOME", &found)
         .env("MISE_DATA_DIR", home_real.join(".local").join("share").join("mise"))
+        .env("MISE_STATE_DIR", home_real.join(".local").join("state").join("mise"))
         .env("GIT_CONFIG_COUNT", "1")
         .env("GIT_CONFIG_KEY_0", "commit.gpgsign")
         .env("GIT_CONFIG_VALUE_0", "false")
@@ -302,6 +303,20 @@ fn cmd_verify(args: &Args, home_real: &Path) -> Result<(), i32> {
         Ok(s) if s.success() => Ok(()),
         Ok(s) => Err(s.code().unwrap_or(1)),
         Err(_) => Err(1),
+    }
+}
+
+/// The shell `wt shell` execs: `$WT_SHELL` split on whitespace (program
+/// first, then its arguments), falling back to `zsh -i`. Read from the
+/// caller's environment, so dotfiles can pick their shell per machine.
+fn shell_command() -> Vec<String> {
+    let configured: Vec<String> = env::var("WT_SHELL")
+        .map(|s| s.split_whitespace().map(str::to_string).collect())
+        .unwrap_or_default();
+    if configured.is_empty() {
+        vec!["zsh".to_string(), "-i".to_string()]
+    } else {
+        configured
     }
 }
 
@@ -328,21 +343,24 @@ fn cmd_shell(args: &Args, home_real: &Path) -> Result<(), i32> {
         home_real.display()
     );
 
-    let err = Command::new("zsh")
-        .arg("-i")
+    let shell = shell_command();
+    let err = Command::new(&shell[0])
+        .args(&shell[1..])
         .current_dir(&found)
         .env_clear()
         .env("HOME", &found)
+        .env("XDG_CONFIG_HOME", found.join(".config"))
         .env("TERM", term)
         .env("PATH", path)
         .env("MISE_DATA_DIR", home_real.join(".local").join("share").join("mise"))
+        .env("MISE_STATE_DIR", home_real.join(".local").join("state").join("mise"))
         .env("GIT_CONFIG_COUNT", "1")
         .env("GIT_CONFIG_KEY_0", "commit.gpgsign")
         .env("GIT_CONFIG_VALUE_0", "false")
         .env("WT_SHELL_CHECKOUT", &found)
         .exec();
 
-    eprintln!("wt: exec zsh failed: {err}");
+    eprintln!("wt: exec {} failed: {err}", shell[0]);
     Err(1)
 }
 

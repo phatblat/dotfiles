@@ -1,6 +1,6 @@
 ---
 alwaysApply: false
-paths: .config/zsh/**, .config/nushell/**, .zshrc, .bashrc, docs/functions.md
+paths: .config/zsh/**, .config/nushell/**, .zshenv, .bashrc, docs/functions.md
 ---
 
 # Shell Function Conventions

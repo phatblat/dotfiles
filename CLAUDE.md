@@ -26,7 +26,7 @@ Dotfiles repository — cross-machine config sync. Home directory (`~`) is the g
 ## Shell Architecture
 
 1. **Nushell (Primary)** — `~/.config/nushell/config.nu`
-2. **Zsh (Fallback)** — `~/.zshrc`, functions in `~/.config/zsh/functions/*`
+2. **Zsh (Fallback)** — `~/.config/zsh/.zshrc` (via `$ZDOTDIR`, set by the `~/.zshenv` stub), functions in `~/.config/zsh/functions/*`
 3. **Bash (Minimal)** — `~/.bashrc`
 
 Shell function conventions are in the `shell-functions` rule (loads when editing shell config files).

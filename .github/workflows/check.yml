@@ -92,7 +92,7 @@ jobs:
     env:
       # Repo root IS the home directory; remap HOME so ~ resolves to checkout
       HOME: ${{ github.workspace }}
-      # Under the remapped HOME the repo's .gitconfig becomes the global git
+      # Under the remapped HOME the repo's .config/git/config becomes the global git
       # config, and its commit.gpgsign points at an SSH key that only exists
       # on real machines — override so test fixture commits don't fail
       GIT_CONFIG_COUNT: "1"
