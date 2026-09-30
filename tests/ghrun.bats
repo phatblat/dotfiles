@@ -350,3 +350,40 @@ fakegh_setup() {
     [[ "$output" == *"--logs is only supported when watching"* ]]
     [ ! -e "$STUB_DIR/api.log" ]
 }
+
+@test "zsh: ghrun retry --until-success does not rerun a job that already succeeded" {
+    printf "3|completed|success\n" > "$GHSTUB_STATE"
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --until-success --interval 1
+    " 2>&1
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"My Job already succeeded on attempt 3"* ]]
+    [[ "$output" != *"rerun run="* ]]
+    [ "$(cat "$GHSTUB_STATE")" = "3|completed|success" ]
+}
+
+@test "zsh: ghrun retry fixed-count still reruns a job that already succeeded" {
+    printf "3|completed|success\n" > "$GHSTUB_STATE"
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1
+    " 2>&1
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"rerun run=123 attempt=3"* ]]
+    [ "$(cut -d'|' -f1 "$GHSTUB_STATE")" = "4" ]
+}
+
+@test "nu: ghrun retry --until-success does not rerun a job that already succeeded" {
+    printf "3|completed|success\n" > "$GHSTUB_STATE"
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        ghrun retry 123 --job 'My Job' --until-success --interval 1
+    " 2>&1
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"My Job already succeeded on attempt 3"* ]]
+    [[ "$output" != *"rerun run="* ]]
+    [ "$(cat "$GHSTUB_STATE")" = "3|completed|success" ]
+}

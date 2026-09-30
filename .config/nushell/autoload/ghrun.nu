@@ -6,7 +6,9 @@
 def ghrun-usage [] {
     "Usage:
   ghrun [run-id] [--repo OWNER/REPO] [--logs] [--interval SECONDS]
-  ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--interval SECONDS] [--until-success]"
+  ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--interval SECONDS] [--until-success]
+
+With --until-success, retry exits 0 without rerunning if the job's latest attempt already succeeded."
 }
 
 # Fail unless an integer option is at least 1 (0 busy-polls; `seq 1 0` counts down).
@@ -120,17 +122,24 @@ export def "ghrun retry" [
     mut successes = 0
     mut failures = 0
     for k in (seq 1 $max) {
-        let before_attempt = latest-attempt
+        mut before_attempt = latest-attempt
         mut before_line = job-for-attempt $before_attempt
 
         # If the latest attempt's job is still running, wait for it first.
         if (($before_line | is-empty) or (($before_line | split row "\t" | get 1) != "completed")) {
             print $"[($k)/($max)] latest attempt=($before_attempt) is still running; waiting before next rerun"
             wait-for-attempt-job-completion $before_attempt
-            $before_line = job-for-attempt (latest-attempt)
+            $before_attempt = latest-attempt
+            $before_line = job-for-attempt $before_attempt
         }
         let before_parts = $before_line | split row "\t"
         let before_job_id = $before_parts | get 0
+
+        # --until-success is already satisfied when the latest attempt's job succeeded.
+        if $until_success and (($before_parts | get 2) == "success") {
+            print $"($job) already succeeded on attempt ($before_attempt)"
+            return
+        }
 
         print $"[($k)/($max)] rerun run=($id) attempt=($before_attempt) job=($before_job_id)"
         ^gh run rerun $id ...$repo_args --job $before_job_id

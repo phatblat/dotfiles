@@ -5,7 +5,9 @@ local -a gh_repo_args
 local cmd="watch" run_id repo owner_repo interval=20 max=10 job_name conclusion_flag logs_flag
 local usage="Usage:
   ghrun [run-id] [--repo OWNER/REPO] [--logs] [--interval SECONDS]
-  ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--interval SECONDS] [--until-success]"
+  ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--interval SECONDS] [--until-success]
+
+With --until-success, retry exits 0 without rerunning if the job's latest attempt already succeeded."
 
 # --- parse -------------------------------------------------------------
 if [[ "$1" == "retry" ]]; then
@@ -191,13 +193,13 @@ if [[ -z "$run_id" ]]; then
 fi
 _ghrun_owner_repo || return 1
 
-local before_attempt before_line before_job_id before_state
+local before_attempt before_line before_job_id before_state before_conclusion
 local after_attempt successes=0 failures=0 k rerun_conclusion
 
 for ((k = 1; k <= max; k++)); do
     before_attempt="$(_ghrun_latest_attempt)"
     before_line="$(_ghrun_job_for_attempt "$before_attempt")"
-    IFS=$'\t' read -r before_job_id before_state _ <<< "$before_line"
+    IFS=$'\t' read -r before_job_id before_state before_conclusion <<< "$before_line"
 
     # If the latest attempt's job is still running, wait for it first.
     if [[ "$before_state" != "completed" ]]; then
@@ -205,7 +207,13 @@ for ((k = 1; k <= max; k++)); do
         _ghrun_wait_for_attempt_job_completion "$before_attempt"
         before_attempt="$(_ghrun_latest_attempt)"
         before_line="$(_ghrun_job_for_attempt "$before_attempt")"
-        IFS=$'\t' read -r before_job_id before_state _ <<< "$before_line"
+        IFS=$'\t' read -r before_job_id before_state before_conclusion <<< "$before_line"
+    fi
+
+    # --until-success is already satisfied when the latest attempt's job succeeded.
+    if [[ -n "$conclusion_flag" && "$before_conclusion" == "success" ]]; then
+        echo "${job_name} already succeeded on attempt ${before_attempt}"
+        return 0
     fi
 
     echo "[${k}/${max}] rerun run=${run_id} attempt=${before_attempt} job=${before_job_id}"
