@@ -262,7 +262,7 @@ fakegh_setup() {
 @test "nu: ghrun retry --until-success exits 0 when the rerun succeeds" {
     run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
         source '$NU_AUTOLOAD/ghrun.nu'
-        ghrun retry 123 --job 'My Job' --max 2 --until-success
+        ghrun retry 123 --job 'My Job' --max 2 --until-success --interval 1
     " 2>&1
     [ "$status" -eq 0 ]
     [[ "$output" == *"rerun run=123"* ]]
@@ -285,7 +285,7 @@ fakegh_setup() {
     export GHSTUB_JOB='My "Odd" \ Job'
     run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
         source '$NU_AUTOLOAD/ghrun.nu'
-        ghrun retry 123 --job 'My \"Odd\" \\ Job' --max 2 --until-success
+        ghrun retry 123 --job 'My \"Odd\" \\ Job' --max 2 --until-success --interval 1
     " 2>&1
     [ "$status" -eq 0 ]
     [[ "$output" == *"succeeded after 1 attempts"* ]]

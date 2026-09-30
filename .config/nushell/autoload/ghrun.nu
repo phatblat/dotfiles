@@ -6,7 +6,7 @@
 def ghrun-usage [] {
     "Usage:
   ghrun [run-id] [--repo OWNER/REPO] [--logs] [--interval SECONDS]
-  ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--until-success]"
+  ghrun retry [run-id] --job NAME [--repo OWNER/REPO] [--max N] [--interval SECONDS] [--until-success]"
 }
 
 # Resolve the latest run id in the target repo.
@@ -68,6 +68,7 @@ export def "ghrun retry" [
     --repo: string  # OWNER/REPO (default: repo resolved from the cwd git remote)
     --job: string  # job name to rerun (required)
     --max: int = 10  # number of attempts
+    --interval: int = 20  # seconds between polls (the new-attempt check polls at most every 5s)
     --until-success  # stop as soon as the job conclusion is success
 ] {
     if ($job | is-empty) {
@@ -102,7 +103,7 @@ export def "ghrun retry" [
                     return
                 }
             }
-            sleep 20sec
+            sleep ($interval * 1sec)
         }
     }
 
@@ -131,7 +132,7 @@ export def "ghrun retry" [
             if $after_attempt > $before_attempt {
                 break
             }
-            sleep 5sec
+            sleep (([$interval 5] | math min) * 1sec)
         }
 
         # Wait for the new attempt's job to complete.
