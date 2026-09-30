@@ -181,6 +181,11 @@ if [[ -z "$job_name" ]]; then
     echo "$usage" >&2
     return 1
 fi
+if [[ -n "$logs_flag" ]]; then
+    echo "ghrun retry: --logs is only supported when watching a run" >&2
+    echo "$usage" >&2
+    return 1
+fi
 if [[ -z "$run_id" ]]; then
     _ghrun_resolve_run_id || return 1
 fi

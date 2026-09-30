@@ -339,3 +339,14 @@ fakegh_setup() {
     [ "$status" -eq 1 ]
     [[ "$output" == *"--interval must be a positive integer"* ]]
 }
+
+@test "zsh: ghrun retry rejects --logs" {
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --logs
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"--logs is only supported when watching"* ]]
+    [ ! -e "$STUB_DIR/api.log" ]
+}
