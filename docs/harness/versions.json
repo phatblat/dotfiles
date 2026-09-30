@@ -11,8 +11,8 @@
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.156.1",
-    "version": "codex-cli 0.157.1"
+    "previous": "codex-cli 0.157.1",
+    "version": "codex-cli 0.158.0"
   },
   "crush": {
     "first_seen": "2026-08-29",
@@ -21,18 +21,18 @@
   },
   "cursor": {
     "first_seen": "2026-08-29",
-    "previous": "2026.09.02-c22c1a3",
-    "version": "2026.09.15-d2fe57e"
+    "previous": "2026.09.15-d2fe57e",
+    "version": "2026.09.28-64d2043"
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.41 (4220f3b224a6)",
-    "version": "grok 1.0.41 (4220f3b224a6) [alpha]"
+    "previous": "grok 1.0.41 (4220f3b224a6) [alpha]",
+    "version": "grok 1.0.44 (5b807183dd79) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.3.2",
-    "version": "omp/18.4.2"
+    "previous": "omp/18.4.2",
+    "version": "omp/18.4.4"
   },
   "opencode": {
     "first_seen": "2026-08-29",
