@@ -102,7 +102,7 @@ local linters = new Mapping<String, Step | Group> {
     // Judge the formatted result, matching today's format-then-check order.
     depends = "prettier-yaml"
     batch = true
-    check = "mise exec -- yamllint {{files}}"
+    check = "yamllint {{files}}"
   }
 
   // Both Python scopes are the recipes' hand-picked file lists, reproduced
