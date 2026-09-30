@@ -36,7 +36,6 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | ruby-lsp@claude-plugins-official | enabled | missing |
 | rust-analyzer-lsp@claude-plugins-official | enabled | enabled |
 | security-guidance@claude-plugins-official | disabled | missing |
-| sites@openai-bundled | missing | enabled |
 | skill-creator@claude-plugins-official | disabled | missing |
 | spreadsheets@openai-primary-runtime | missing | enabled |
 | superpowers@claude-plugins-official | disabled | missing |
