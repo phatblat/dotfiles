@@ -243,9 +243,9 @@ This document tracks the implementation status of all shell functions and aliase
 | `gemdir`                    | ➖  | ✅  | ➖   | Prints path to system gem dir                        |
 | `genv`                      | ✅  | ✅  | ➖   | Grep environment                                     |
 | `gh_token_test`             | ✅  | ➖  | ➖   | Tests GitHub personal access token                   |
-| `github-pat-refresh`        | ➖  | ➖  | ➖   | Extend fine-grained GitHub PAT expiration by N days  |
 | `ghostty`                   | ✅  | ➖  | ➖   | Wrapper for Ghostty terminal emulator                |
-| `ghrun`                     | ✅  | ✅  | ➖   | Watch GitHub Actions runs; retry a job until success or N times |
+| `ghrun`                     | ✅  | ✅  | ➖   | Watch GitHub Actions runs; retry a job until success |
+| `github-pat-refresh`        | ➖  | ➖  | ➖   | Extend fine-grained GitHub PAT expiration by N days  |
 | `ginit`                     | ✅  | ➖  | ➖   | Git init                                             |
 | `git-plist-filter`          | ➖  | ✅  | ➖   | Converts plist data to XML format                    |
 | `git_bundle_create`         | ✅  | ✅  | ➖   | Creates a git bundle containing any changes in the   |
