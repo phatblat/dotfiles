@@ -99,20 +99,28 @@ export def "ghrun retry" [
             $jobs | lines | last
         }
     }
+    # Gives up after 5 consecutive polls that find no job record.
     def wait-for-attempt-job-completion [attempt: int] {
         mut last_line = ""
+        mut misses = 0
         loop {
             let line = job-for-attempt $attempt
             if not ($line | is-empty) {
-            let parts = ($line | split row "\t")
-            let conclusion = if (($parts | get 2) | is-empty) { "null" } else { $parts | get 2 }
-            let summary = $"attempt=($attempt) job=($parts | get 0) status=($parts | get 1) conclusion=($conclusion)"
+                $misses = 0
+                let parts = ($line | split row "\t")
+                let conclusion = if (($parts | get 2) | is-empty) { "null" } else { $parts | get 2 }
+                let summary = $"attempt=($attempt) job=($parts | get 0) status=($parts | get 1) conclusion=($conclusion)"
                 if $summary != $last_line {
                     print $summary
                     $last_line = $summary
                 }
                 if ($parts | get 1) == "completed" {
                     return
+                }
+            } else {
+                $misses = $misses + 1
+                if $misses >= 5 {
+                    error make {msg: $"ghrun: job '($job)' not found in run ($id) attempt ($attempt) after ($misses) checks"}
                 }
             }
             sleep ($interval * 1sec)
@@ -124,9 +132,12 @@ export def "ghrun retry" [
     for k in (seq 1 $max) {
         mut before_attempt = latest-attempt
         mut before_line = job-for-attempt $before_attempt
+        if ($before_line | is-empty) {
+            error make {msg: $"ghrun: job '($job)' not found in run ($id) attempt ($before_attempt)"}
+        }
 
         # If the latest attempt's job is still running, wait for it first.
-        if (($before_line | is-empty) or (($before_line | split row "\t" | get 1) != "completed")) {
+        if (($before_line | split row "\t" | get 1) != "completed") {
             print $"[($k)/($max)] latest attempt=($before_attempt) is still running; waiting before next rerun"
             wait-for-attempt-job-completion $before_attempt
             $before_attempt = latest-attempt
@@ -144,12 +155,18 @@ export def "ghrun retry" [
         print $"[($k)/($max)] rerun run=($id) attempt=($before_attempt) job=($before_job_id)"
         ^gh run rerun $id ...$repo_args --job $before_job_id
 
-        # Wait for the new attempt to appear.
+        # Wait for the new attempt to appear (bounded: GitHub creates it as soon as the rerun is accepted).
         mut after_attempt = $before_attempt
+        mut polls = 0
         loop {
-            $after_attempt = latest-attempt
-            if $after_attempt > $before_attempt {
+            let latest = (try { latest-attempt } catch { 0 })
+            if $latest > $before_attempt {
+                $after_attempt = $latest
                 break
+            }
+            $polls = $polls + 1
+            if $polls >= 10 {
+                error make {msg: $"ghrun: rerun of attempt ($before_attempt) did not start a new attempt after ($polls) checks"}
             }
             sleep (([$interval 5] | math min) * 1sec)
         }

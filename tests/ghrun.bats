@@ -29,6 +29,9 @@ setup() {
 #   api .../attempts/N/jobs -> "999\tstatus\tconclusion" (empty conclusion when null).
 #       An in_progress job flips to completed after GHSTUB_POLLS polls (default 2),
 #       with conclusion GHSTUB_RERUN_CONCLUSION (default success). No wall-clock timing.
+#   GHSTUB_JOB: the only job name the api stub knows (default "My Job").
+#   GHSTUB_RERUN_NOOP: rerun is accepted but never starts a new attempt.
+#   GHSTUB_API_OK_CALLS: api answers only this many calls, then returns nothing.
 make_fake_gh() {
     cat > "$STUB_DIR/gh" <<'STUB'
 #!/bin/sh
@@ -45,7 +48,9 @@ case "$1" in
                 esac
                 echo "$attempt"; exit 0;;
             list) echo "123"; exit 0;;
-            rerun) printf "%s|in_progress|null\n" "$((attempt+1))" > "$state"; echo 0 > "$dir/polls"; exit 0;;
+            rerun)
+                [ -n "${GHSTUB_RERUN_NOOP-}" ] && exit 0
+                printf "%s|in_progress|null\n" "$((attempt+1))" > "$state"; echo 0 > "$dir/polls"; exit 0;;
         esac;;
     repo) echo "o/r"; exit 0;;
     api)
@@ -53,6 +58,9 @@ case "$1" in
         printf '%s\n' "$*" >> "$dir/api.args"
         # Honor the job selector like the real --jq filter: no match -> no output.
         [ "${GHRUN_JOB-}" = "${GHSTUB_JOB:-My Job}" ] || exit 0
+        calls=$(( $(cat "$dir/api.count" 2>/dev/null || echo 0) + 1 ))
+        echo "$calls" > "$dir/api.count"
+        if [ -n "${GHSTUB_API_OK_CALLS-}" ] && [ "$calls" -gt "$GHSTUB_API_OK_CALLS" ]; then exit 0; fi
         if [ "$st" = "in_progress" ]; then
             polls=$(( $(cat "$dir/polls" 2>/dev/null || echo 0) + 1 ))
             echo "$polls" > "$dir/polls"
@@ -386,4 +394,109 @@ fakegh_setup() {
     [[ "$output" == *"My Job already succeeded on attempt 3"* ]]
     [[ "$output" != *"rerun run="* ]]
     [ "$(cat "$GHSTUB_STATE")" = "3|completed|success" ]
+}
+
+# ---------------------------------------------------------------------------
+# Retry exit paths and bounded waits
+# ---------------------------------------------------------------------------
+
+@test "zsh: ghrun retry fails when --job matches no job" {
+    export GHSTUB_JOB="Other Job"
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --max 2 --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"job 'My Job' not found in run 123"* ]]
+    [ "$(cat "$GHSTUB_STATE")" = "1|completed|failure" ]
+}
+
+@test "nu: ghrun retry fails when --job matches no job" {
+    export GHSTUB_JOB="Other Job"
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        ghrun retry 123 --job 'My Job' --max 2 --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"job 'My Job' not found in run 123"* ]]
+    [ "$(cat "$GHSTUB_STATE")" = "1|completed|failure" ]
+}
+
+@test "zsh: ghrun retry --until-success exits 1 when every rerun fails" {
+    export GHSTUB_RERUN_CONCLUSION=failure
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --max 2 --until-success --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"My Job failed after 2 attempts"* ]]
+    [ "$(cut -d'|' -f1 "$GHSTUB_STATE")" = "3" ]
+}
+
+@test "nu: ghrun retry --until-success exits 1 when every rerun fails" {
+    export GHSTUB_RERUN_CONCLUSION=failure
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        ghrun retry 123 --job 'My Job' --max 2 --until-success --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"My Job failed after 2 attempts"* ]]
+    [ "$(cut -d'|' -f1 "$GHSTUB_STATE")" = "3" ]
+}
+
+@test "zsh: ghrun retry fixed-count tallies failures and exits 0" {
+    export GHSTUB_RERUN_CONCLUSION=failure
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --max 2 --interval 1
+    " 2>&1
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"Completed 2 attempts: 0 success / 2 failure"* ]]
+}
+
+@test "zsh: ghrun retry gives up when the rerun never starts a new attempt" {
+    export GHSTUB_RERUN_NOOP=1
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"did not start a new attempt after 10 checks"* ]]
+}
+
+@test "nu: ghrun retry gives up when the rerun never starts a new attempt" {
+    export GHSTUB_RERUN_NOOP=1
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"did not start a new attempt after 10 checks"* ]]
+}
+
+@test "zsh: ghrun retry gives up when the job record disappears mid-wait" {
+    printf "1|in_progress|null\n" > "$GHSTUB_STATE"
+    export GHSTUB_POLLS=100 GHSTUB_API_OK_CALLS=1
+    run env PATH="$STUB_DIR:$PATH" zsh -c "
+        fpath=('$ZSH_FUNCTIONS' \$fpath)
+        autoload -Uz ghrun
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"job 'My Job' not found in run 123 attempt 1 after 5 checks"* ]]
+}
+
+@test "nu: ghrun retry gives up when the job record disappears mid-wait" {
+    printf "1|in_progress|null\n" > "$GHSTUB_STATE"
+    export GHSTUB_POLLS=100 GHSTUB_API_OK_CALLS=1
+    run env PATH="$STUB_DIR:$PATH" nu --no-config-file -c "
+        source '$NU_AUTOLOAD/ghrun.nu'
+        ghrun retry 123 --job 'My Job' --max 1 --interval 1
+    " 2>&1
+    [ "$status" -eq 1 ]
+    [[ "$output" == *"job 'My Job' not found in run 123 attempt 1 after 5 checks"* ]]
 }

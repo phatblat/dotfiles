@@ -111,9 +111,15 @@ _ghrun_owner_repo() {
     fi
 }
 
-# Latest attempt number of the run.
+# Latest attempt number of the run; fails when gh returns anything but a number.
 _ghrun_latest_attempt() {
-    gh run view "$run_id" "${gh_repo_args[@]}" --json attempt --jq '.attempt'
+    local attempt
+    attempt="$(gh run view "$run_id" "${gh_repo_args[@]}" --json attempt --jq '.attempt')" || attempt=""
+    if [[ ! "$attempt" =~ ^[0-9]+$ ]]; then
+        echo "ghrun: could not read the latest attempt of run ${run_id}" >&2
+        return 1
+    fi
+    echo "$attempt"
 }
 
 # Job record for attempt $1 matching $job_name: "id<TAB>status<TAB>conclusion".
@@ -125,11 +131,14 @@ _ghrun_job_for_attempt() {
 }
 
 # Poll until attempt $1's job completes; print one line per change.
+# Gives up after $max_misses consecutive polls that find no job record.
 _ghrun_wait_for_attempt_job_completion() {
     local attempt="$1" last_line="" line job_id job_state conclusion summary
+    local misses=0 max_misses=5
     while true; do
         line="$(_ghrun_job_for_attempt "$attempt" || true)"
         if [[ -n "$line" ]]; then
+            misses=0
             IFS=$'\t' read -r job_id job_state conclusion <<< "$line"
             summary="attempt=${attempt} job=${job_id} status=${job_state} conclusion=${conclusion:-null}"
             if [[ "$summary" != "$last_line" ]]; then
@@ -139,6 +148,9 @@ _ghrun_wait_for_attempt_job_completion() {
             if [[ "$job_state" == "completed" ]]; then
                 return 0
             fi
+        elif ((++misses >= max_misses)); then
+            echo "ghrun: job '${job_name}' not found in run ${run_id} attempt ${attempt} after ${misses} checks" >&2
+            return 1
         fi
         sleep "$interval"
     done
@@ -194,18 +206,22 @@ fi
 _ghrun_owner_repo || return 1
 
 local before_attempt before_line before_job_id before_state before_conclusion
-local after_attempt successes=0 failures=0 k rerun_conclusion
+local after_attempt successes=0 failures=0 k rerun_conclusion polls appear_polls=10
 
 for ((k = 1; k <= max; k++)); do
-    before_attempt="$(_ghrun_latest_attempt)"
+    before_attempt="$(_ghrun_latest_attempt)" || return 1
     before_line="$(_ghrun_job_for_attempt "$before_attempt")"
     IFS=$'\t' read -r before_job_id before_state before_conclusion <<< "$before_line"
+    if [[ -z "$before_job_id" ]]; then
+        echo "ghrun: job '${job_name}' not found in run ${run_id} attempt ${before_attempt}" >&2
+        return 1
+    fi
 
     # If the latest attempt's job is still running, wait for it first.
     if [[ "$before_state" != "completed" ]]; then
         echo "[${k}/${max}] latest attempt=${before_attempt} is still ${before_state}; waiting before next rerun"
-        _ghrun_wait_for_attempt_job_completion "$before_attempt"
-        before_attempt="$(_ghrun_latest_attempt)"
+        _ghrun_wait_for_attempt_job_completion "$before_attempt" || return 1
+        before_attempt="$(_ghrun_latest_attempt)" || return 1
         before_line="$(_ghrun_job_for_attempt "$before_attempt")"
         IFS=$'\t' read -r before_job_id before_state before_conclusion <<< "$before_line"
     fi
@@ -218,17 +234,21 @@ for ((k = 1; k <= max; k++)); do
 
     echo "[${k}/${max}] rerun run=${run_id} attempt=${before_attempt} job=${before_job_id}"
     gh run rerun "$run_id" "${gh_repo_args[@]}" --job "$before_job_id" || return 1
-    # Wait for the new attempt to appear.
+    # Wait for the new attempt to appear (bounded: GitHub creates it as soon as the rerun is accepted).
+    polls=0
     while true; do
-        after_attempt="$(_ghrun_latest_attempt)"
-        if ((after_attempt > before_attempt)); then
+        if after_attempt="$(_ghrun_latest_attempt 2> /dev/null)" && ((after_attempt > before_attempt)); then
             break
+        fi
+        if ((++polls >= appear_polls)); then
+            echo "ghrun: rerun of attempt ${before_attempt} did not start a new attempt after ${polls} checks" >&2
+            return 1
         fi
         sleep $((interval < 5 ? interval : 5))
     done
 
     # Wait for the new attempt's job to complete.
-    _ghrun_wait_for_attempt_job_completion "$after_attempt"
+    _ghrun_wait_for_attempt_job_completion "$after_attempt" || return 1
 
     before_line="$(_ghrun_job_for_attempt "$after_attempt")"
     IFS=$'\t' read -r _ _ rerun_conclusion <<< "$before_line"
