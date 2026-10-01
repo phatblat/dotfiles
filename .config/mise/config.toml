@@ -103,7 +103,7 @@ helm = "4.3.0"
 hexyl = "0.17.0"
 hk = "2.4.0"
 hyperfine = "1.20.0"
-infisical = { version = "0.43.137", asset_pattern = "cli_{{ version }}_{{ os(macos='darwin') }}_{{ arch(x64='amd64') }}.tar.gz" }
+infisical = { version = "0.43.138", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
 java = "27.0.0"
 jjui = "0.10.11"
 jq = "1.8.2"
