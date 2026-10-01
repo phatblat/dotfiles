@@ -124,3 +124,34 @@ git-normalize:
         echo "⚠ real changes survived the filter and are now staged for review:"
         git diff --cached --stat -- "${paths[@]}"
     fi
+
+# Machine-local file that holds user.signingkey (untracked, gitignored; included by .config/git/config)
+
+git_config_local := env("HOME") / ".config/git/config.local"
+
+# Each machine has its own GPG key, so the key lives in an untracked include
+# rather than the tracked global config. Setting writes only config.local.
+
+# Shows the effective user.signingkey, or with KEY sets it in the machine-local git config
+[group('git')]
+[script]
+git-signingkey key='':
+    set -euo pipefail
+    file="{{ git_config_local }}"
+    key="{{ key }}"
+    if [[ -n "$key" ]]; then
+        git config --file "$file" user.signingkey "$key"
+        echo "✓ user.signingkey set in $file"
+    fi
+    if ! effective="$(git config --show-origin --get user.signingkey)"; then
+        echo "user.signingkey is unset (git will sign with the key matching the committer email)"
+        echo "set one with: just git-signingkey <KEYID>"
+        exit 0
+    fi
+    echo "$effective"
+    value="${effective##*$'\t'}"
+    if gpg --list-secret-keys "$value" >/dev/null 2>&1; then
+        echo "✓ secret key present in this keyring"
+    else
+        echo "⚠ no secret key for $value in this keyring; signed commits will fail" >&2
+    fi

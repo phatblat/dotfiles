@@ -143,7 +143,11 @@
 	# while ~/.gitconfig is absent.
 	name = Ben Chatelain
 	email = ben@octop.ad
-	signingkey = 7DC19D458C028953E1A46DEF09AFF776E74DE6D8
+[include]
+	# Machine-local overrides (untracked, gitignored). Holds user.signingkey
+	# because each machine has its own GPG key; manage it with
+	# `just git-signingkey`. A missing file is silently skipped.
+	path = ~/.config/git/config.local
 [http]
 	postBuffer = 157286400
 [credential "https://dev.azure.com"]
