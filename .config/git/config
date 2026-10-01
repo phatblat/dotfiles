@@ -106,8 +106,7 @@
 [github]
 	user = phatblat
 [gpg]
-	format = ssh
-	program = /usr/local/bin/gpg
+	program = gpg
 [hub]
 	protocol = ssh
 [init]
@@ -144,11 +143,9 @@
 	# while ~/.gitconfig is absent.
 	name = Ben Chatelain
 	email = ben@octop.ad
-	signingkey = ~/.ssh/id_ed25519.pub
+	signingkey = 7DC19D458C028953E1A46DEF09AFF776E74DE6D8
 [http]
 	postBuffer = 157286400
-[gpg "ssh"]
-	allowedsignersfile = ~/.git-allowed-signers
 [credential "https://dev.azure.com"]
 
 # Work identity by location. Repo-local `user.email` still wins over
