@@ -143,7 +143,7 @@ sd = "1.1.0"
 shellcheck = "0.11.0"
 shfmt = "3.14.1"
 starship = "1.26.0"
-swiftformat = { version = "0.63.0", no_app = "true", rename_exe = "swiftformat" }
+swiftformat = { version = "0.63.1", no_app = "true", rename_exe = "swiftformat" }
 swiftlint = "0.65.1"
 temporal = "1.32.0"
 terraform = "1.16.4"
