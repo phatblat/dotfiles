@@ -6,18 +6,18 @@
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.251 (Claude Code)",
-    "version": "2.1.278 (Claude Code)"
+    "previous": "2.1.278 (Claude Code)",
+    "version": "2.1.285 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.157.1",
-    "version": "codex-cli 0.158.0"
+    "previous": "codex-cli 0.158.0",
+    "version": "codex-cli 0.159.2"
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.96.0",
-    "version": "crush version v0.96.1"
+    "previous": "crush version v0.96.1",
+    "version": "crush version v0.97.1"
   },
   "cursor": {
     "first_seen": "2026-08-29",
@@ -26,13 +26,13 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.41 (4220f3b224a6) [alpha]",
-    "version": "grok 1.0.44 (5b807183dd79) [alpha]"
+    "previous": "grok 1.0.44 (5b807183dd79) [alpha]",
+    "version": "grok 1.0.46 (2765805b9442) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.4.2",
-    "version": "omp/18.4.4"
+    "previous": "omp/18.4.4",
+    "version": "omp/18.4.8"
   },
   "opencode": {
     "first_seen": "2026-08-29",
@@ -41,7 +41,7 @@
   },
   "pi": {
     "first_seen": "2026-08-29",
-    "previous": "0.87.0",
-    "version": "0.87.1"
+    "previous": "0.87.1",
+    "version": "0.99.1"
   }
 }
