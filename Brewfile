@@ -220,6 +220,8 @@ brew "libgpg-error"
 brew "libksba"
 # Passphrase entry dialog utilizing the Assuan protocol
 brew "pinentry"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # C library for the MaxMind DB file format
