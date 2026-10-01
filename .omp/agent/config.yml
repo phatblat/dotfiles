@@ -3,10 +3,10 @@ providers:
     serverSideFallback: false
 setupVersion: 2
 modelRoles:
-  plan: openai-codex/gpt-5.6-terra:xhigh
+  plan: anthropic/claude-opus-5-5:xhigh
   slow: spark/Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
-  smol: cursor/grok-4.7-low-fast
-  default: cursor/grok-4.7-high
+  smol: anthropic/claude-haiku-4-5
+  default: anthropic/claude-sonnet-5-5:high
   vision: spark/Inferact/Qwen3.8-27B-NVFP4
   commit: anthropic/claude-haiku-4-5:auto
 defaultThinkingLevel: auto

@@ -8,9 +8,7 @@ tap "gofireflyio/aiac", trusted: true
 tap "holgerbrandl/tap", trusted: true
 tap "homebrew/core"
 tap "jetbrains/utils", trusted: true
-tap "jundot/omlx", "https://github.com/jundot/omlx", trusted: true
 tap "kylef/formulae", trusted: true
-tap "leoafarias/fvm", trusted: true
 tap "macpaw/taps"
 tap "manaflow-ai/cmux", trusted: true
 tap "messense/macos-cross-toolchains", trusted: true
@@ -138,6 +136,8 @@ brew "fb303"
 brew "edencommon"
 # Emoji on the command-line :scream:
 brew "emojify"
+# Enable transparent encryption/decryption of files in a git repo
+brew "git-crypt"
 # Test various flash cards
 brew "f3"
 # MP3 player for Linux and UNIX
@@ -373,10 +373,6 @@ brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
 brew "cirruslabs/cli/cirrus", trusted: true
-# Official Language Server Protocol for the Kotlin language
-brew "jetbrains/utils/kotlin-lsp", trusted: true
-# LLM inference server optimized for Apple Silicon
-brew "jundot/omlx/omlx"
 # aarch64-unknown-linux-gnu Toolchain
 brew "messense/macos-cross-toolchains/aarch64-unknown-linux-gnu"
 # x86_64-unknown-linux-gnu Toolchain
@@ -389,8 +385,6 @@ brew "teamookla/speedtest/speedtest", trusted: true
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
-# Utility that prevents the system from going to sleep
-cask "caffeine"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
 # Tool to remove unnecessary files and folders from disk
@@ -429,8 +423,6 @@ cask "linear"
 cask "logi-options+"
 # Screen and video recording software
 cask "loom"
-# Visual diff and merge tool
-cask "meld"
 # Utility to move and zoom windows—on one display
 cask "moom"
 # App to write, plan, collaborate, and get organised
@@ -443,14 +435,6 @@ cask "obsidian"
 cask "orbstack"
 # Self-hosted daemon for AI coding agents
 cask "paseo"
-# HTTP client that helps testing and describing APIs
-cask "rapidapi"
-# Prompt generation tool
-cask "repo-prompt"
-# Time optimising application
-cask "rescuetime"
-# Instant messaging application focusing on security
-cask "signal"
 # Team communication and collaboration software
 cask "slack"
 # Mesh VPN based on WireGuard
