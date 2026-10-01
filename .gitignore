@@ -391,7 +391,10 @@
 .git/
 .gitkraken/
 .gnome/
-.gnupg/
+.gnupg/*
+!.gnupg/dirmngr.conf
+!.gnupg/gpg-agent.conf
+!.gnupg/gpg.conf
 .gnupg_pre_2.1/
 .google-cloud-sdk/
 .gradle/
