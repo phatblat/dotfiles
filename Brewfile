@@ -220,6 +220,8 @@ brew "libgpg-error"
 brew "libksba"
 # Passphrase entry dialog utilizing the Assuan protocol
 brew "pinentry"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # C library for the MaxMind DB file format
@@ -324,6 +326,8 @@ brew "nmap"
 brew "nushell"
 # Learn vim commands via a game
 brew "pacvim"
+# Apache Parquet command-line tools and utilities
+brew "parquet-cli"
 # Easily download, build, install, upgrade, and uninstall Python packages
 brew "python-setuptools"
 # Readline wrapper: adds readline support to tools that lack it

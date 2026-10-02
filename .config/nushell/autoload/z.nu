@@ -1,5 +1,5 @@
-def "nu-complete zoxide path" [context: string] {
-    let parts = $context | split row " " | skip 1
+def "nu-complete zoxide path" [buffer: string] {
+    let parts = $buffer | split row " " | skip 1
     {
       options: {
         sort: false,
