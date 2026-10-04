@@ -77,7 +77,7 @@ caddy = "2.11.7"
 cheat = "5.1.0"
 chromedriver = "157.0.8083.0"
 clang-format = "23.1.2"
-cmake = "4.4.3"
+cmake = "4.4.4"
 cocoapods = { version = "1.17.0", install_env = { PATH = "/Users/phatblat/.local/share/mise/installs/ruby/4.0.5/bin:/Users/phatblat/.local/bin:/Users/phatblat/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" } }
 crush = "0.97.1"
 dagger = "0.21.10"
