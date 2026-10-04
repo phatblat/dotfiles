@@ -157,7 +157,7 @@ xcbeautify = "3.2.1"
 xcodes = "2.1.0"
 xh = "0.26.2"
 yq = "4.54.1"
-zig = "0.16.0"
+zig = "0.17.0"
 zoxide = "0.10.0"
 
 [tools."http:cursor-cli"]
