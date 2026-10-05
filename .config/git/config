@@ -106,7 +106,7 @@
 [github]
 	user = phatblat
 [gpg]
-	program = gpg
+	program = /opt/homebrew/bin/gpg
 [hub]
 	protocol = ssh
 [init]
