@@ -135,10 +135,9 @@ git_config_local := env("HOME") / ".config/git/config.local"
 # Shows the effective user.signingkey, or with KEY sets it in the machine-local git config
 [group('git')]
 [script]
-git-signingkey key='':
+git-signingkey $key='':
     set -euo pipefail
     file="{{ git_config_local }}"
-    key="{{ key }}"
     if [[ -n "$key" ]]; then
         git config --file "$file" user.signingkey "$key"
         echo "✓ user.signingkey set in $file"
