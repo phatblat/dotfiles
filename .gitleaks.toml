@@ -21,13 +21,3 @@ description = "Vendored skill doc: truncated illustrative JWT example, not a liv
 paths = [
   '''^\.claude/agent-skills/README\.md$''',
 ]
-
-[[allowlists]]
-description = "OpenPGP signing key fingerprint in git config: public identifier, not a secret"
-paths = [
-  '''^\.config/git/config$''',
-]
-regexTarget = "line"
-regexes = [
-  '''signingkey\s*=\s*[0-9A-F]{40}''',
-]
