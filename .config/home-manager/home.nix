@@ -23,7 +23,7 @@
 
     # CLI Tools (migrated from Homebrew)
     # Note: act, awscli2, bat, bazelisk, caddy, delta, fzf, gh, git-lfs, jujutsu,
-    #       mas, neovim, pnpm, starship, xcodes, zig, zoxide → managed by mise
+    #       mas, neovim, pnpm, starship, xcodes, zoxide → managed by mise
     pkgs.apktool
     pkgs.aria2
     pkgs.fswatch # no mise backend available

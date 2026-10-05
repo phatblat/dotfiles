@@ -290,8 +290,13 @@ task:
   agentAdvisor:
     task: "on"
   showResolvedModelBadge: true
+  eager: preferred
+  enableEffort: false
+  isolation:
+    commits: ai
 worktree:
   base: ~/.worktrees
+  cleanSource: true
 hideThinkingBlock: false
 theme:
   dark: dark-aurora
@@ -317,3 +322,9 @@ error:
   notify: "on"
 skills:
   enableClaudeProject: false
+  enableSkillCommands: true
+plan:
+  autosave: true
+commands:
+  enableClaudeProject: false
+  enableOpencodeProject: false

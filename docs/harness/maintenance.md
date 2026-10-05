@@ -13,15 +13,15 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.278 (Claude Code) · 2026-09-30 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.158.0 · 2026-09-30 | - |
-| opencode | aligned | shared | - | probe · 1.18.33 · 2026-09-30 | - |
-| pi | aligned | shared | - | probe · 0.87.1 · 2026-09-30 | - |
-| omp | aligned | shared | - | probe · omp/18.4.4 · 2026-09-30 | - |
-| antigravity | aligned | shared | - | probe · 1.2.10 · 2026-09-30 | - |
-| cursor | aligned | shared | - | probe · 2026.09.28-64d2043 · 2026-09-30 | - |
-| grok | aligned | shared | - | probe · grok 1.0.44 (5b807183dd79) [alpha] · 2026-09-30 | - |
-| crush | aligned | shared | - | probe · crush version v0.96.1 · 2026-09-30 | - |
+| claude | aligned | shared | - | probe · 2.1.285 (Claude Code) · 2026-10-05 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.160.0 · 2026-10-05 | - |
+| opencode | aligned | shared | - | probe · 1.18.34 · 2026-10-05 | - |
+| pi | aligned | shared | - | probe · 1.0.1 · 2026-10-05 | - |
+| omp | aligned | shared | - | probe · omp/18.6.1 · 2026-10-05 | - |
+| antigravity | aligned | shared | - | probe · 1.2.10 · 2026-10-05 | - |
+| cursor | aligned | shared | - | probe · 2026.09.28-64d2043 · 2026-10-05 | - |
+| grok | aligned | shared | - | probe · grok 1.0.46 (2765805b9442) [alpha] · 2026-10-05 | - |
+| crush | aligned | shared | - | probe · crush version v0.97.1 · 2026-10-05 | - |
 
 ### maintenance.config_validation · p1
 
@@ -33,8 +33,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config --pure | probe · 1.18.33 · 2026-09-30 | - |
-| pi | aligned | native | pi list --no-approve | probe · 0.87.1 · 2026-09-30 | - |
+| opencode | aligned | native | opencode debug config --pure | probe · - · 2026-08-29 | probe unavailable: opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/1.18.34/opencode', 'debug', 'config', '--pure']' timed out after 5 seconds |
+| pi | aligned | native | pi list --no-approve | probe · 1.0.1 · 2026-10-05 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |

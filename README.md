@@ -16,6 +16,10 @@ Functions are mirrored across shells (using each shell's own idioms rather than 
 
 Common tasks (installing tools, linting, testing, formatting) are wired up as [`just`](https://github.com/casey/just) recipes. Run `just --list` for the full set, or see `CLAUDE.md` for the ones used most often.
 
+## Commit signing
+
+Commits are GPG-signed (`commit.gpgsign = true` in `.config/git/config`), but the key is per-machine and lives in the untracked `~/.config/git/config.local`. On a new machine, install `gnupg` and `pinentry-mac` (both in the `Brewfile`), import or create a GPG key, then run `just git-signingkey <KEYID>`. Without a matching secret key in the keyring, every commit fails. Run `just git-signingkey` with no argument to check the effective key.
+
 ## Package management
 
 CLI tools are installed primarily through [mise](https://mise.jdx.dev), with Homebrew as a fallback and a separate, intentionally-unsynced Nix/home-manager experiment. See `docs/package-management.md` for the strategy and drift-checking tooling.

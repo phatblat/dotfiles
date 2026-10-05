@@ -219,6 +219,7 @@
 .config/gh/hosts-ci.yml
 .config/gh/hosts.yml
 .config/ghb/
+.config/git/config.local
 .config/git/gitk
 .config/git/ignore
 .config/github-copilot/
@@ -391,7 +392,10 @@
 .git/
 .gitkraken/
 .gnome/
-.gnupg/
+.gnupg/*
+!.gnupg/dirmngr.conf
+!.gnupg/gpg-agent.conf
+!.gnupg/gpg.conf
 .gnupg_pre_2.1/
 .google-cloud-sdk/
 .gradle/

@@ -106,8 +106,7 @@
 [github]
 	user = phatblat
 [gpg]
-	format = ssh
-	program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 [hub]
 	protocol = ssh
 [init]
@@ -144,11 +143,13 @@
 	# while ~/.gitconfig is absent.
 	name = Ben Chatelain
 	email = ben@octop.ad
-	signingkey = ~/.ssh/id_ed25519.pub
+[include]
+	# Machine-local overrides (untracked, gitignored). Holds user.signingkey
+	# because each machine has its own GPG key; manage it with
+	# `just git-signingkey`. A missing file is silently skipped.
+	path = ~/.config/git/config.local
 [http]
 	postBuffer = 157286400
-[gpg "ssh"]
-	allowedsignersfile = ~/.git-allowed-signers
 [credential "https://dev.azure.com"]
 
 # Work identity by location. Repo-local `user.email` still wins over
