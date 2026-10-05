@@ -76,7 +76,54 @@
         },
         "version": 0
       },
-      "starred-local-routines": []
+      "starred-local-routines": [],
+      "dframe-code-sections": {
+        "193b5ba3-3754-4e2a-953b-4adcc4457018/3e25f271-75dd-4066-8506-a8200882f46e": {
+          "sections": [
+            {
+              "id": "pinned",
+              "kind": "pinned",
+              "name": "",
+              "order": 0,
+              "sortBy": "recency",
+              "ascending": false,
+              "show": {
+                "metadata": true,
+                "emptyGroups": false
+              },
+              "collapsed": false
+            },
+            {
+              "id": "routines",
+              "kind": "routines",
+              "name": "",
+              "order": 1,
+              "sortBy": "recency",
+              "ascending": false,
+              "show": {
+                "metadata": true,
+                "emptyGroups": false
+              },
+              "collapsed": true
+            },
+            {
+              "id": "sessions",
+              "kind": "sessions",
+              "name": "",
+              "order": 2,
+              "sortBy": "recency",
+              "ascending": false,
+              "show": {
+                "metadata": true,
+                "emptyGroups": false
+              },
+              "collapsed": false
+            }
+          ],
+          "migratedFrom": 1,
+          "prefsSeeded": true
+        }
+      }
     }
   }
 }
