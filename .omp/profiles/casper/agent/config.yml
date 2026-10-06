@@ -78,3 +78,5 @@ ask:
   timeout: 1800
 bash:
   allowCompoundCommands: true
+browser:
+  relay: true
