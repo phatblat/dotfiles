@@ -1,5 +1,5 @@
 modelRoles:
-  default: casper/glm-5.3
+  default: casper/glm-5.3:low
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/glm-5.3
