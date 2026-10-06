@@ -63,10 +63,13 @@ fn shell_falls_back_to_zsh_when_wt_shell_is_unset_or_blank() {
 
     // A blank WT_SHELL is "unset", not "run the empty string": the fallback
     // `zsh -i` must run. With HOME remapped, an interactive zsh sources the
-    // worktree's own .zshrc, which is where the proof comes from. stdin is
-    // /dev/null, so zsh exits at EOF right after startup.
+    // worktree's own .zshrc, which is where the proof comes from. An
+    // interactive zsh does not read commands from a non-tty stdin — it opens
+    // /dev/tty instead, so the harness's null stdin never delivers EOF and
+    // the shell would block on the controlling terminal forever. The .zshrc
+    // therefore exits explicitly after printing its marker.
     let wt = f.fake_home.join(".worktrees/dotfiles/shell-default");
-    fs::write(wt.join(".zshrc"), "echo \"zshrc-home=$HOME\"\n").unwrap();
+    fs::write(wt.join(".zshrc"), "echo \"zshrc-home=$HOME\"\nexit\n").unwrap();
     let out = wt_cmd(&f.fake_home)
         .current_dir(&f.fake_home)
         .env("WT_SHELL", "   ")
