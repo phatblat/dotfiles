@@ -36,7 +36,7 @@
 "npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
 "npm:@getpaseo/cli" = "0.10.3"
 "npm:@googleworkspace/cli" = "0.22.5"
-"npm:@openai/codex" = "0.160.0"
+"npm:@openai/codex" = "0.160.1"
 "npm:@sentry/wizard" = "8.0.0"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.8.1"
