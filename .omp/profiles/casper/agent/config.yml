@@ -1,5 +1,6 @@
+# Model role suffixes indicate thinking level: :low (fast), :medium (balanced), :high (deep)
 modelRoles:
-  default: casper/glm-5.3:low
+  default: casper/glm-5.3:low # :low = fast/lightweight model for default role
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/glm-5.3
@@ -79,4 +80,4 @@ ask:
 bash:
   allowCompoundCommands: true
 browser:
-  relay: true
+  relay: true # Enable browser-use relay for agent-driven browsing
