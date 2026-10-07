@@ -125,7 +125,7 @@ node = "26.10.0"
 oh-my-pi = { version = "18.8.3", rename_exe = "omp" }
 opencode = "1.18.34"
 packer = "1.16.1"
-pi = "1.0.3"
+pi = "1.0.4"
 pinact = "5.0.0"
 pipx = "1.17.11"
 powershell = "7.6.6"
