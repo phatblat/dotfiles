@@ -1,0 +1,4 @@
+# ~/.config/bash_env - sourced by non-interactive bash (via BASH_ENV, exported
+# from ~/.zshenv). Keep in sync with the NO_COLOR normalization there:
+# harnesses export NO_COLOR=1 which breaks clap-parsed bool flags.
+export NO_COLOR=true
