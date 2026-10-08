@@ -96,3 +96,6 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 
 [projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
 trust_level = "trusted"
+
+[tui]
+screen_reader_detection_done = true
