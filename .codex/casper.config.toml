@@ -9,6 +9,7 @@ model = "kimi-k3"
 model_catalog_json = "/Users/phatblat/.codex/casper.models.json"
 model_instructions_file = "/Users/phatblat/.codex/casper-instructions.md"
 model_provider = "casper"
+model_reasoning_effort = "low"
 # model_reasoning_effort = "high"
 
 [model_providers.casper]
