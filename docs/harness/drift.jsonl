@@ -226,3 +226,6 @@
 {"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"omp/18.6.1","harness":"omp","to":"omp/18.8.3","version_from":"omp/18.6.1","version_to":"omp/18.8.3"}
 {"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"1.0.1","harness":"pi","to":"1.0.3","version_from":"1.0.1","version_to":"1.0.3"}
 {"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"1.0.1","harness":"pi","to":"","version_from":"1.0.1","version_to":""}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"omp/18.8.3","harness":"omp","to":"omp/18.8.5","version_from":"omp/18.8.3","version_to":"omp/18.8.5"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"1.18.34","harness":"opencode","to":"1.18.35","version_from":"1.18.34","version_to":"1.18.35"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"1.0.3","harness":"pi","to":"1.0.4","version_from":"1.0.3","version_to":"1.0.4"}
