@@ -218,4 +218,11 @@
 {"capability":"maintenance.config_validation","date":"2026-10-05","detail":"opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/1.18.34/opencode', 'debug', 'config', '--pure']' timed out after 5 seconds","field":"probe","from":"pass","harness":"opencode","to":"unavailable","version_from":"1.18.34","version_to":"1.18.34"}
 {"capability":"maintenance.config_validation","date":"2026-10-08","detail":"opencode debug config --pure","field":"probe","from":"unavailable","harness":"opencode","to":"pass","version_from":"1.18.34","version_to":"1.18.34"}
 {"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"omp/18.6.1","harness":"omp","to":"omp/18.6.3","version_from":"omp/18.6.1","version_to":"omp/18.6.3"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"1.2.10","harness":"antigravity","to":"1.2.3","version_from":"1.2.10","version_to":"1.2.3"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"2.1.285 (Claude Code)","harness":"claude","to":"2.1.251 (Claude Code)","version_from":"2.1.285 (Claude Code)","version_to":"2.1.251 (Claude Code)"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"codex-cli 0.160.0","harness":"codex","to":"codex-cli 0.160.1","version_from":"codex-cli 0.160.0","version_to":"codex-cli 0.160.1"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"2026.09.28-64d2043","harness":"cursor","to":"2026.09.15-d2fe57e","version_from":"2026.09.28-64d2043","version_to":"2026.09.15-d2fe57e"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"grok 1.0.46 (2765805b9442) [alpha]","harness":"grok","to":"grok 1.0.46 (2765805b9442)","version_from":"grok 1.0.46 (2765805b9442) [alpha]","version_to":"grok 1.0.46 (2765805b9442)"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"omp/18.6.1","harness":"omp","to":"omp/18.8.3","version_from":"omp/18.6.1","version_to":"omp/18.8.3"}
 {"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"1.0.1","harness":"pi","to":"1.0.3","version_from":"1.0.1","version_to":"1.0.3"}
+{"capability":"-","date":"2026-10-08","detail":"","field":"version","from":"1.0.1","harness":"pi","to":"","version_from":"1.0.1","version_to":""}
