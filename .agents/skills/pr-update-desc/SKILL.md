@@ -20,6 +20,7 @@ Regenerate and update the GitHub PR description for the current branch based on 
 Read `~/.agents/skills/pr-style/SKILL.md` and apply its formatting conventions.
 
 If the target repo has its own PR template (detected in Step 3), the repo template **replaces** the pr-style default body, while pr-style still governs title format (unless the template's frontmatter specifies one), labels, assignment, and draft policy.
+
 ### 1. Gather Context
 
 Run a single combined command:
