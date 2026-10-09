@@ -101,7 +101,7 @@ grok = { version = "1.0.50", bin = "grok", url = 'https://storage.googleapis.com
 helm = "4.3.0"
 hexyl = "0.17.0"
 hk = "2.5.0"
-hyperfine = "1.21.0"
+hyperfine = "2.0.0"
 infisical = { version = "0.43.139", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
 java = "27.0.0"
 jjui = "0.10.11"
