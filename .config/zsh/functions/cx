@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
 # cx - Launch Codex without alternate screen mode (main profile)
-codex --no-alt-screen --profile main "$@"
+# --no-daemon: --profile forces embedded mode anyway; opting in explicitly
+# silences the "Running without the shared background server" startup warning.
+codex --no-alt-screen --no-daemon --profile main "$@"
 local cx_status=$?
 
 # Codex inline mode can leave enhanced keyboard reporting active in some

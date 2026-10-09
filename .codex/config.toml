@@ -4,7 +4,7 @@
 
 approval_policy = "on-request"
 approvals_reviewer = "auto_review"
-commit_attribution = "Co-Authored-By: Codex <noreply@openai.com>"
+disable_paste_burst = true
 model = "gpt-6-astra"
 model_reasoning_effort = "ultra"
 notify = ["/Users/phatblat/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
@@ -47,13 +47,11 @@ global = "zed"
 apps = false
 codex_git_commit = true
 collaboration_modes = true
-disable_paste_burst = true
 hooks = true
 js_repl = false
 multi_agent = true
 personality = true
 plugin_hooks = true
-rmcp_client = true
 runtime_metrics = true
 shell_tool = true
 steer = true

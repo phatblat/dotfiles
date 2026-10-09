@@ -6,7 +6,8 @@
 # Tests whether the current user is a member of the admin group (macOS or Linux)
 export def user_is_admin [] {
     if (is_mac) {
-        let membership = (do { ^dsmemberutil checkmembership -U $env.USER -G admin } | complete)
+        let user = $env.USER? | default (^whoami | str trim)
+        let membership = (do { ^dsmemberutil checkmembership -U $user -G admin } | complete)
         if $membership.exit_code == 0 {
             ($membership.stdout | str trim) == "user is a member of the group"
         } else {

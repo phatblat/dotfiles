@@ -341,6 +341,52 @@ EOF
   [ -f "$repo/.omp/plugins/node_modules/pkg/dist/index.js" ]
 }
 
+@test "clean-dev discovers repos under ~/.worktrees and purges artifacts via kondo" {
+  local bindir="$BATS_TEST_TMPDIR/bin"
+  local home="$BATS_TEST_TMPDIR/home"
+  local log="$BATS_TEST_TMPDIR/commands.log"
+
+  mkdir -p "$bindir" "$home/.worktrees/wt-abc/.git" "$home/dev"
+
+  cat >"$bindir/kondo" <<'EOF'
+#!/usr/bin/env bash
+printf 'kondo %s\n' "$*" >>"$COMMAND_LOG"
+EOF
+  chmod +x "$bindir/kondo"
+
+  run env HOME="$home" PATH="$bindir:$PATH" COMMAND_LOG="$log" \
+    just --justfile "$BATS_TEST_DIRNAME/../justfile" clean-dev
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"scanning 1 repos under ~/dev and ~/.worktrees"* ]]
+  grep -Fq -- "--all --older 1d" "$log"
+  grep -Fq "$home/.worktrees/wt-abc" "$log"
+}
+
+@test "clean-dev prunes .terraform module checkouts from repo discovery" {
+  local bindir="$BATS_TEST_TMPDIR/bin"
+  local home="$BATS_TEST_TMPDIR/home"
+  local log="$BATS_TEST_TMPDIR/commands.log"
+
+  mkdir -p "$bindir" "$home/.worktrees/tfops/.git" \
+    "$home/.worktrees/tfops/terraform/main_account/.terraform/modules/mod"
+  mkdir -p "$home/dev"
+  cat >"$bindir/kondo" <<'EOF'
+#!/usr/bin/env bash
+printf 'kondo %s\n' "$*" >>"$COMMAND_LOG"
+EOF
+  chmod +x "$bindir/kondo"
+
+  run env HOME="$home" PATH="$bindir:$PATH" COMMAND_LOG="$log" \
+    just --justfile "$BATS_TEST_DIRNAME/../justfile" clean-dev
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"scanning 1 repos under ~/dev and ~/.worktrees"* ]]
+  grep -Fq "$home/.worktrees/tfops" "$log"
+  # The .terraform vendored checkout is pruned and does not appear as a repo
+  ! grep -Fq "terraform/main_account" "$log"
+}
+
 @test "root justfile imports every fragment" {
   local f
   for f in "$BATS_TEST_DIRNAME"/../.config/just/*.just; do

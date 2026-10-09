@@ -3,6 +3,11 @@
 # version = "0.106.0"
 
 $env.XDG_CONFIG_HOME = $nu.home-dir | path join '.config'
+
+# Normalize NO_COLOR: harnesses export NO_COLOR=1, but clap-parsed bool flags
+# (e.g. ditto tracing-config --disable-color) require "true"/"false".
+# Mirrors ~/.zshenv and ~/.config/bash_env.
+$env.NO_COLOR = "true"
 $env.STARSHIP_SHELL = "nu"
 $env.MISE_SHELL = "nu"
 # Shell `wt shell <branch>` execs inside a HOME-remapped dotfiles worktree
