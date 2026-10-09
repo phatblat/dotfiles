@@ -106,7 +106,7 @@ infisical = { version = "0.43.140", asset_pattern = "cli_{{ version }}_darwin_ar
 java = "27.0.0"
 jjui = "0.10.11"
 jq = "1.8.2"
-jujutsu = "0.45.1"
+jujutsu = "0.46.0"
 just = "1.58.0"
 k3d = "5.9.0"
 kind = "0.33.0"
