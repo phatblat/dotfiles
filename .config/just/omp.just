@@ -101,6 +101,19 @@ update-casper-models:
     git add .omp/profiles/casper/agent/models.yml
     git commit -m "chore(casper): sync models.yml with live catalog and pricing"
 
+# Sync Subconscious per-token pricing from the vendor pricing page
+[group('omp')]
+[script]
+update-subconscious-models:
+    set -euo pipefail
+    python3 {{ justfile_directory() }}/scripts/sync-subconscious-models.py
+    if [ -z "$(git status --porcelain -- .omp/profiles/subconscious/agent/models.yml)" ]; then
+        echo "Subconscious pricing unchanged"
+        exit 0
+    fi
+    git add .omp/profiles/subconscious/agent/models.yml
+    git commit -m "chore(subconscious): sync models.yml pricing"
+
 # Upgrades the installed omp version from the upstream GitHub repository
 [group('omp')]
 upgrade-omp:
