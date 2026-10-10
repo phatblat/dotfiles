@@ -82,6 +82,7 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/.last-update-result.json
+.claude/.oauth_refresh.lock.owner
 .claude/.ramp-router-settings.lock
 .claude/.session-stats.json
 .claude/.session-stats.json.tmp.*
