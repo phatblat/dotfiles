@@ -16,7 +16,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 PRICING_URL = "https://www.subconscious.dev/pricing.md"
@@ -114,7 +114,7 @@ def main() -> None:
     lines, changed = rewrite(original.splitlines(keepends=True), prices)
     updated = "".join(lines)
     if changed:
-        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        today = datetime.now(UTC).strftime("%Y-%m-%d")
         updated = DATE.sub(f"rates last updated {today}", updated)
 
     if updated == original:
