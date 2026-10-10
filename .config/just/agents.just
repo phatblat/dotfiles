@@ -26,6 +26,11 @@ harness-perms-apply:
 harness-check:
     python3 {{ justfile_directory() }}/scripts/agent-harnesses.py validate
 
+# Fails when the antigravity plugin agy imported has drifted from the generated adapter (agy copies it once, so regeneration is invisible to it)
+[group('agents')]
+harness-agy-drift:
+    diff -rq {{ env("HOME") }}/.agents/harness/adapters/antigravity {{ env("HOME") }}/.gemini/config/plugins/shared-agent-harness
+
 # Reports gitignored harness config worth tracking (allowlist blind spots)
 [group('agents')]
 audit-ignored-config *ROOTS:
