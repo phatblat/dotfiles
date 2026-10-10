@@ -1,0 +1,90 @@
+# Subconscious - long-context ("Marathon Mode") inference provider for agents.
+#
+# Endpoint:  https://api.subconscious.dev/v1 (OpenAI Chat Completions). The
+#            Anthropic Messages route at https://api.subconscious.dev is unused.
+# Auth:      export SUBCONSCIOUS_API_KEY=... (or add it to ~/.env). The apiKey
+#            value below is resolved as an env-var name first, literal second,
+#            so an unset variable sends the literal name and fails with 401.
+# Catalog:   GET /v1/models lists ids only (no context or pricing metadata);
+#            GET /v1/models/available lists the ids this key may invoke. Models
+#            are declared instead of discovered so unpriced ids (for example
+#            subconscious/tim-qwen3.6-27b) stay out of the picker.
+# Pricing:   per-1M-token rates from https://www.subconscious.dev/pricing.md,
+#            which the vendor marks as the source of truth. Subconscious has no
+#            pricing API and omp's catalog has no subconscious provider, so
+#            `just update-subconscious-models` re-syncs the cost lines below:
+#            rates last changed 2026-10-10.
+# Limits:    contextWindow/maxTokens mirror the vendor's own Pi integration
+#            (subconscious-cli bin/runbook/pi: 5,000,000 / 65,536). The gateway
+#            compresses context server-side, so omp's local compaction
+#            effectively never triggers at this window.
+# Thinking:  chat_template_kwargs.enable_thinking toggles reasoning. The
+#            documented chat-completions API has no reasoning_effort, so the
+#            only levels are :high (on) and :off. Reasoning arrives inline as
+#            <think>...</think>; streamMarkupHealingPattern turns it into
+#            thinking blocks.
+providers:
+  subconscious:
+    api: openai-completions
+    apiKey: SUBCONSCIOUS_API_KEY
+    baseUrl: https://api.subconscious.dev/v1
+    headers:
+      # Client tag the gateway uses to attribute traffic; the vendor's own
+      # integrations send pi, opencode, codex, and so on.
+      x-subconscious-client: omp
+    compat:
+      # The OpenAPI spec documents none of store, developer role, strict tool
+      # schemas, or reasoning_effort; it does document include_usage.
+      supportsStore: false
+      supportsDeveloperRole: false
+      supportsMultipleSystemMessages: false
+      supportsUsageInStreaming: true
+      maxTokensField: max_tokens
+      supportsStrictMode: false
+      toolStrictMode: none
+      supportsReasoningEffort: false
+      extraBody:
+        chat_template_kwargs:
+          enable_thinking: false
+      whenThinking:
+        extraBody:
+          chat_template_kwargs:
+            enable_thinking: true
+      # Marathon models can think for more than 5 minutes before emitting a
+      # token (subconscious-cli Codex runbook, CODEX_STREAM_IDLE_TIMEOUT_MS).
+      streamIdleTimeoutMs: 900000
+      # Pi's subc integration sends x-session-affinity so the gateway groups
+      # a session's requests (Pi's sendSessionAffinityHeaders). omp has no
+      # such flag; this sends the session's prompt-cache id under that name.
+      promptCacheSessionHeader: x-session-affinity
+    models:
+      - id: subconscious/glm-5.3-marathon
+        name: GLM-5.3 Marathon
+        reasoning: true
+        thinking:
+          mode: effort
+          efforts: [high]
+          requiresEffort: false
+        input: [text]
+        cost: { input: 1.40, output: 4.40, cacheRead: 0.26, cacheWrite: 0 }
+        contextWindow: 5000000
+        maxTokens: 65536
+        compat:
+          streamMarkupHealingPattern: thinking
+
+      - id: subconscious/deepseek-v4.1-flash-marathon
+        name: DeepSeek V4.1 Flash Marathon
+        reasoning: true
+        thinking:
+          mode: effort
+          efforts: [high]
+          requiresEffort: false
+        input: [text, image]
+        cost: { input: 0.30, output: 1.40, cacheRead: 0.007, cacheWrite: 0 }
+        contextWindow: 5000000
+        maxTokens: 65536
+        compat:
+          # DeepSeek-class catalog rules strip images by default; Subconscious
+          # serves this model with vision (subconscious-cli model_capabilities).
+          stripImageInput: false
+          streamMarkupHealingPattern: dsml
