@@ -170,9 +170,6 @@
   "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
     "source": "~/.agents/skills/paseo/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/plan-design-review/SKILL.md": {
-    "source": "~/.agents/skills/plan-design-review/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
   },
@@ -182,9 +179,6 @@
   "~/.agents/harness/adapters/antigravity/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/security-audit/SKILL.md": {
-    "source": "~/.agents/skills/security-audit/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
   },
@@ -193,9 +187,6 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/typesafe-ai/SKILL.md": {
     "source": "~/.agents/skills/typesafe-ai/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
-    "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
@@ -848,6 +839,9 @@
   "~/.codex/skills/plan-design-review/SKILL.md": {
     "source": "~/.agents/skills/plan-design-review/SKILL.md"
   },
+  "~/.codex/skills/plan-design-review/agents/openai.yaml": {
+    "source": "~/.agents/skills/plan-design-review/SKILL.md"
+  },
   "~/.codex/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
   },
@@ -870,6 +864,9 @@
     "source": "~/.agents/skills/retro/SKILL.md"
   },
   "~/.codex/skills/security-audit/SKILL.md": {
+    "source": "~/.agents/skills/security-audit/SKILL.md"
+  },
+  "~/.codex/skills/security-audit/agents/openai.yaml": {
     "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.codex/skills/subagent-driven-development/SKILL.md": {

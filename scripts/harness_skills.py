@@ -83,8 +83,10 @@ MANUAL_SKILL_ADAPTERS = {
     "ios-device-qa",
     "new-project",
     "optimize-harness",
+    "plan-design-review",
     "resolve-review-feedback",
     "retro",
+    "security-audit",
     "using-git-worktrees",
 }
 
