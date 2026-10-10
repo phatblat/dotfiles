@@ -1,6 +1,7 @@
 ---
 name: pr-resolve-review-feedback
 description: Address GitHub PR review comments at line, file, and PR level by fetching, evaluating, fixing, committing, and resolving feedback. Use when invoked as `$pr-resolve-review-feedback` or when the user asks to resolve PR feedback.
+disable-model-invocation: true
 ---
 
 # pr-resolve-review-feedback

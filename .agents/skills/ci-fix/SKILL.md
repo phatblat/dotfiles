@@ -13,6 +13,7 @@ description: >
   intent — use gha-log-reader for that.
 compatibility:
   gh_cli: required
+disable-model-invocation: true
 ---
 
 # CI Fix

@@ -1,6 +1,7 @@
 ---
 name: "pr-open-for-review"
 description: "Mark the current branch's draft PR as ready for review"
+disable-model-invocation: true
 ---
 
 # pr-open-for-review
