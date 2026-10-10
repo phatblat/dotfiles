@@ -1,6 +1,7 @@
 ---
 name: git-rebase
 description: Rebase the current branch onto a target branch using safety checks and an appropriate rebase strategy. Use when invoked as `$git-rebase` or when the user asks to update/rebase a branch.
+disable-model-invocation: true
 ---
 
 # git-rebase

@@ -1,6 +1,7 @@
 ---
 name: "git-cleanup"
 description: "Delete local branches that have been merged or whose PRs are closed/stale"
+disable-model-invocation: true
 ---
 
 # git-cleanup
