@@ -6,6 +6,7 @@
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex PermissionRequest; fi",
             "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex PermissionRequest) else (paseo hooks codex PermissionRequest)) else (exit /b 0)",
+            "statusMessage": "Paseo",
             "timeout": 10,
             "type": "command"
           }
@@ -18,28 +19,29 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/auto-format.sh'",
+            "statusMessage": "Auto Format",
             "timeout": 30,
             "type": "command"
           }
         ],
-        "matcher": "Write|Edit",
-        "name": "Auto Format"
+        "matcher": "Write|Edit"
       },
       {
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "statusMessage": "Agent Flow Guard",
             "timeout": 4,
             "type": "command"
           }
-        ],
-        "name": "Agent Flow Guard"
+        ]
       },
       {
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex PostToolUse; fi",
             "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex PostToolUse) else (paseo hooks codex PostToolUse)) else (exit /b 0)",
+            "statusMessage": "Paseo",
             "timeout": 10,
             "type": "command"
           }
@@ -52,11 +54,11 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/pre-compact.sh'",
+            "statusMessage": "Pre-Compact Snapshot",
             "timeout": 5,
             "type": "command"
           }
-        ],
-        "name": "Pre-Compact Snapshot"
+        ]
       }
     ],
     "PreToolUse": [
@@ -64,39 +66,40 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/write-guard.sh'",
+            "statusMessage": "Write Guard",
             "timeout": 3,
             "type": "command"
           }
         ],
-        "matcher": "Write|Edit",
-        "name": "Write Guard"
+        "matcher": "Write|Edit"
       },
       {
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/bash-guard.sh'",
+            "statusMessage": "Bash Guard",
             "timeout": 3,
             "type": "command"
           }
         ],
-        "matcher": "Bash",
-        "name": "Bash Guard"
+        "matcher": "Bash"
       },
       {
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "statusMessage": "Agent Flow Guard",
             "timeout": 4,
             "type": "command"
           }
-        ],
-        "name": "Agent Flow Guard"
+        ]
       },
       {
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex PreToolUse; fi",
             "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex PreToolUse) else (paseo hooks codex PreToolUse)) else (exit /b 0)",
+            "statusMessage": "Paseo",
             "timeout": 10,
             "type": "command"
           }
@@ -109,11 +112,11 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "statusMessage": "Agent Flow Guard",
             "timeout": 4,
             "type": "command"
           }
-        ],
-        "name": "Agent Flow Guard"
+        ]
       }
     ],
     "Stop": [
@@ -121,27 +124,28 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "statusMessage": "Agent Flow Guard",
             "timeout": 4,
             "type": "command"
           }
-        ],
-        "name": "Agent Flow Guard"
+        ]
       },
       {
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/audit-task-complete.sh'",
+            "statusMessage": "Task Complete Audit",
             "timeout": 5,
             "type": "command"
           }
-        ],
-        "name": "Task Complete Audit"
+        ]
       },
       {
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex Stop; fi",
             "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex Stop) else (paseo hooks codex Stop)) else (exit /b 0)",
+            "statusMessage": "Paseo",
             "timeout": 10,
             "type": "command"
           }
@@ -154,11 +158,11 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "statusMessage": "Agent Flow Guard",
             "timeout": 4,
             "type": "command"
           }
-        ],
-        "name": "Agent Flow Guard"
+        ]
       }
     ],
     "SubagentStop": [
@@ -166,11 +170,11 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
+            "statusMessage": "Agent Flow Guard",
             "timeout": 4,
             "type": "command"
           }
-        ],
-        "name": "Agent Flow Guard"
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -178,17 +182,18 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/user-prompt-secrets.sh'",
+            "statusMessage": "Secrets Scanner",
             "timeout": 2,
             "type": "command"
           }
-        ],
-        "name": "Secrets Scanner"
+        ]
       },
       {
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex UserPromptSubmit; fi",
             "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex UserPromptSubmit) else (paseo hooks codex UserPromptSubmit)) else (exit /b 0)",
+            "statusMessage": "Paseo",
             "timeout": 10,
             "type": "command"
           }
