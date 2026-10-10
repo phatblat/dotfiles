@@ -98,6 +98,7 @@ MAX_MCP_OUTPUT_TOKENS = "12000"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "0000000000000000000000000000000000000000000000000000000000000000"
 
 [tui]
+screen_reader_detection_done = true
 status_line = ["model-with-reasoning", "current-dir", "model", "reasoning", "project-name", "git-branch"]
 status_line_use_colors = true
 terminal_title = ["project"]
@@ -106,6 +107,7 @@ terminal_title = ["project"]
 "gpt-5.3-codex-spark" = 4
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
+"gpt-6.1-sol" = 1
 
 # ──────────────────────────────────────────────────────────────────────────
 # machine-managed state — written by Codex, not hand-edited.
