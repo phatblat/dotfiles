@@ -3,15 +3,28 @@
 # Renders each OMP profile's config.yml from the main config plus its
 # overrides.yml.
 #
-# Usage: generate-omp-profiles.sh
+# Usage: generate-omp-profiles.sh [--check]
 #
 # Copyright: Ben Chatelain. MIT
 #
 # OMP has no profile inheritance. This deep-merges with OMP's own rules: maps
 # merge, scalars and arrays replace. Main's modelRoles are emptied first so a
 # profile never inherits roles naming providers it lacks.
+#
+# --check renders to a temp file and diffs it against the committed
+# config.yml, exiting 1 when any profile is stale.
 
 set -euo pipefail
+
+mode="write"
+case "${1:-}" in
+    "") ;;
+    --check) mode=check ;;
+    *)
+        echo "usage: ${0##*/} [--check]" >&2
+        exit 2
+        ;;
+esac
 
 command -v yq > /dev/null || {
     echo "error: yq is required" >&2
@@ -32,11 +45,24 @@ EOF
     yq eval-all '(select(fileIndex == 0) | .modelRoles = {}) * select(fileIndex == 1) | ... comments = ""' "$main" "$1"
 }
 
+stale=0
 for overrides in "$root"/.omp/profiles/*/agent/overrides.yml; do
     [[ -f "$overrides" ]] || continue
     out="$(dirname "$overrides")/config.yml"
     render "$overrides" > "$tmp"
-    # cp, not mv: keeps the existing file's mode and inode.
-    cp "$tmp" "$out"
-    echo "Rendered ${out#"$root"/}"
+    if [[ $mode == check ]]; then
+        if ! diff -u "$out" "$tmp" > /dev/null; then
+            echo "stale: ${out#"$root"/} differs from main config + overrides" >&2
+            stale=1
+        fi
+    else
+        # cp, not mv: keeps the existing file's mode and inode.
+        cp "$tmp" "$out"
+        echo "Rendered ${out#"$root"/}"
+    fi
 done
+
+if ((stale)); then
+    echo "run: just generate-omp-profiles" >&2
+    exit 1
+fi

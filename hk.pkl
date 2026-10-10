@@ -105,6 +105,19 @@ local linters = new Mapping<String, Step | Group> {
     check = "yamllint {{files}}"
   }
 
+  // Profile config.yml files are renders of the main config plus overrides.yml;
+  // fails when any of the three inputs/outputs changed without a re-render.
+  ["omp-profiles"] {
+    glob =
+      List(
+        ".omp/agent/config.yml",
+        ".omp/profiles/*/agent/config.yml",
+        ".omp/profiles/*/agent/overrides.yml",
+      )
+    check = "scripts/generate-omp-profiles.sh --check"
+    fix = "scripts/generate-omp-profiles.sh"
+  }
+
   // Both Python scopes are the recipes' hand-picked file lists, reproduced
   // exactly: widening them introduces pre-existing ruff failures.
   ["ruff-check"] {
