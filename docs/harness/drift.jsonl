@@ -236,3 +236,6 @@
 {"capability":"-","date":"2026-10-09","detail":"","field":"version","from":"grok 1.0.46 (2765805b9442)","harness":"grok","to":"grok 1.0.50 (c58f321264ba) [alpha]","version_from":"grok 1.0.46 (2765805b9442)","version_to":"grok 1.0.50 (c58f321264ba) [alpha]"}
 {"capability":"-","date":"2026-10-09","detail":"","field":"version","from":"omp/18.8.5","harness":"omp","to":"omp/18.8.6","version_from":"omp/18.8.5","version_to":"omp/18.8.6"}
 {"capability":"-","date":"2026-10-09","detail":"","field":"version","from":"1.0.4","harness":"pi","to":"1.1.0","version_from":"1.0.4","version_to":"1.1.0"}
+{"capability":"-","date":"2026-10-10","detail":"","field":"version","from":"codex-cli 0.161.0","harness":"codex","to":"codex-cli 0.162.0","version_from":"codex-cli 0.161.0","version_to":"codex-cli 0.162.0"}
+{"capability":"-","date":"2026-10-10","detail":"","field":"version","from":"crush version v0.97.1","harness":"crush","to":"crush version v0.98.0","version_from":"crush version v0.97.1","version_to":"crush version v0.98.0"}
+{"capability":"-","date":"2026-10-10","detail":"","field":"version","from":"omp/18.8.6","harness":"omp","to":"omp/18.8.7","version_from":"omp/18.8.6","version_to":"omp/18.8.7"}
