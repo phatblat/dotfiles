@@ -294,7 +294,7 @@ local gitleaksProtect = new Mapping<String, Step | Group> {
     // staged diff before it lands in history. hk's "git" stash method runs
     // with --keep-index, so this reads the same staged content pre-commit
     // is about to record, not whatever else is sitting in the worktree.
-    check = "gitleaks protect --staged --redact --verbose --no-banner --config .gitleaks.toml"
+    check = "gitleaks protect --staged --redact --verbose --no-banner --log-level warn --config .gitleaks.toml"
   }
 }
 
