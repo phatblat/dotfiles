@@ -120,7 +120,7 @@ lsd = "1.2.0"
 lua-language-server = "3.19.1"
 mirrord = "3.271.0"
 mkcert = "1.4.4"
-neovim = "0.12.5"
+neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.11.1"
 oh-my-pi = { version = "18.8.7", rename_exe = "omp" }
