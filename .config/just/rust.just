@@ -54,7 +54,8 @@ ness-build: install-rust-deps
 # Installs the ness compiled guard to ~/.local/bin, the path every harness hook execs, then checks it against the corpus
 [group('rust')]
 ness-install: ness-build && ness-check-installed
-    install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/ness
+    install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/.ness.new
+    mv -f {{ env("HOME") }}/.local/bin/.ness.new {{ env("HOME") }}/.local/bin/ness
 
 # CI: agent-harness-parity.yml (ness job)
 # Runs the ness guard's corpus, shim, and fail-closed tests
