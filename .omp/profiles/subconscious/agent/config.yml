@@ -329,6 +329,8 @@ error:
 skills:
   enableClaudeProject: false
   enableSkillCommands: true
+  ignoredSkills:
+    - codex/*
 plan:
   autosave: true
 commands:

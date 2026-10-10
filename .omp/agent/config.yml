@@ -324,7 +324,7 @@ skills:
   enableClaudeProject: false
   enableSkillCommands: true
   ignoredSkills:
-    - "codex/*"
+    - codex/*
 plan:
   autosave: true
 commands:
