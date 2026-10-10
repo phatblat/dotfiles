@@ -50,7 +50,7 @@ git-hooks:
 [group('git')]
 git-filters:
     git config --local filter.codex-config.clean {{ justfile_directory() }}/scripts/mask-codex-state.sh
-    git config --local filter.codex-config.smudge cat
+    git config --local filter.codex-config.smudge {{ justfile_directory() }}/scripts/restore-codex-trust.sh
     git config --local filter.codex-config.required true
     git config --local filter.oc-config.clean {{ justfile_directory() }}/scripts/mask-oc-config.sh
     git config --local filter.oc-config.smudge cat
@@ -67,7 +67,7 @@ git-filters:
     git config --local filter.claude-json.clean {{ justfile_directory() }}/scripts/mask-claude-json.sh
     git config --local filter.claude-json.smudge cat
     git config --local filter.claude-json.required true
-    @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn)"
+    @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn, restores real hook trust hashes on checkout)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
     @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
     @echo "Git filter 'yaml-normalize' installed (strips trailing whitespace from ~/.omp/agent/config.yml)"
