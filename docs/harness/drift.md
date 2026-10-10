@@ -9,19 +9,22 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.285 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
-| codex | codex-cli 0.161.0 | 2026-08-29 | codex-cli 0.160.1 |
+| codex | codex-cli 0.162.0 | 2026-08-29 | codex-cli 0.161.0 |
 | opencode | 1.18.35 | 2026-08-29 | 1.18.34 |
 | pi | 1.1.0 | 2026-08-29 | 1.0.4 |
-| omp | omp/18.8.6 | 2026-08-29 | omp/18.8.5 |
+| omp | omp/18.8.7 | 2026-08-29 | omp/18.8.6 |
 | antigravity | 1.2.10 | 2026-08-29 | 1.2.3 |
 | cursor | 2026.09.28-64d2043 | 2026-08-29 | 2026.09.15-d2fe57e |
 | grok | grok 1.0.50 (c58f321264ba) [alpha] | 2026-08-29 | grok 1.0.46 (2765805b9442) |
-| crush | crush version v0.97.1 | 2026-08-29 | crush version v0.96.1 |
+| crush | crush version v0.98.0 | 2026-08-29 | crush version v0.97.1 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-10 | omp | - | version | omp/18.8.6 | omp/18.8.7 | omp/18.8.7 |
+| 2026-10-10 | crush | - | version | crush version v0.97.1 | crush version v0.98.0 | crush version v0.98.0 |
+| 2026-10-10 | codex | - | version | codex-cli 0.161.0 | codex-cli 0.162.0 | codex-cli 0.162.0 |
 | 2026-10-09 | pi | - | version | 1.0.4 | 1.1.0 | 1.1.0 |
 | 2026-10-09 | omp | - | version | omp/18.8.5 | omp/18.8.6 | omp/18.8.6 |
 | 2026-10-09 | grok | - | version | grok 1.0.46 (2765805b9442) | grok 1.0.50 (c58f321264ba) [alpha] | grok 1.0.50 (c58f321264ba) [alpha] |
@@ -219,6 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-08-30 | crush | skills.shared | probe | - | pass | crush version v0.91.2 |
 | 2026-08-30 | codex | skills.shared | probe | - | pass | codex-cli 0.150.1 |
 | 2026-08-30 | claude | skills.shared | probe | - | pass | 2.1.236 (Claude Code) |
-| 2026-08-30 | cursor | skills.shared | probe | - | pass | 2026.07.01-777f564 |
-| 2026-08-30 | antigravity | skills.shared | probe | - | pass | 1.1.22 |
-| 2026-08-30 | pi | sessions.compaction | probe | - | pass | 0.84.3 |
