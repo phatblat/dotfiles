@@ -72,21 +72,7 @@ install-bun-deps:
 [script]
 generate-omp-profiles:
     set -euo pipefail
-    command -v yq >/dev/null || { echo "error: yq is required" >&2; exit 1; }
-    root="{{ justfile_directory() }}"
-    main="$root/.omp/agent/config.yml"
-    tmp="$(mktemp)"
-    trap 'rm -f "$tmp"' EXIT
-    # OMP has no profile inheritance. Deep merge with OMP's own rules: maps
-    # merge, scalars and arrays replace. Main's modelRoles are emptied first so
-    # a profile never inherits roles naming providers it lacks.
-    for overrides in "$root"/.omp/profiles/*/agent/overrides.yml; do
-        [[ -f "$overrides" ]] || continue
-        out="$(dirname "$overrides")/config.yml"
-        yq eval-all '(select(fileIndex == 0) | .modelRoles = {}) * select(fileIndex == 1) | ... comments = ""' "$main" "$overrides" > "$tmp"
-        cp "$tmp" "$out"
-        echo "Rendered ${out#"$root"/}"
-    done
+    {{ justfile_directory() }}/scripts/generate-omp-profiles.sh
 
 # Sync Casper model metadata and pricing from live APIs
 [group('omp')]
