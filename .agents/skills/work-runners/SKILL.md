@@ -1,6 +1,7 @@
 ---
 name: "work-runners"
 description: "Check macOS GHA runner status for the getditto org"
+disable-model-invocation: true
 ---
 
 # work-runners

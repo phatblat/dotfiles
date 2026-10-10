@@ -17,7 +17,9 @@ extend-ignore-re = [
     # English word "ba". Appears verbatim in the guard's Rust policy
     # (crates/ness/src/policy.rs).
     "\\(ba\\)\\?sh",
-    # 12-char git commit hashes in harness version strings, e.g.
-    # "grok 1.0.50 (c58f321264ba)" (docs/harness/*); hex runs can contain "ba".
-    "\\([0-9a-f]{12}\\)",
+    # Abbreviated commit hashes that tools print in version strings, such as
+    # `grok 1.0.50 (c58f321264ba)` or `cmux 0.65.0 (108) [dda24fbd2]`. The harness
+    # probe copies them into generated docs/, so the hex fragments (`ba`) are
+    # not words.
+    "[(\\[][0-9a-f]{7,40}[)\\]]",
 ]

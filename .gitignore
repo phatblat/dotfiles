@@ -82,6 +82,7 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/.last-update-result.json
+.claude/.oauth_refresh.lock.owner
 .claude/.ramp-router-settings.lock
 .claude/.session-stats.json
 .claude/.session-stats.json.tmp.*
@@ -197,6 +198,7 @@
 .config/chromium/
 .config/claude-profiles/
 .config/claude/versions
+.config/cmux/cmux.json.cmux-write.lock
 .config/codexbar/
 .config/com.tolaria.app/
 .config/configstore
@@ -935,6 +937,8 @@ Library/Application Support/Sublime Text 3/Local/
 Library/Application Support/SyncServices/
 Library/Application Support/TG Pro/
 Library/Application Support/TabNine/
+Library/Application Support/Tern/*
+!Library/Application Support/Tern/settings.json
 Library/Application Support/TextMate/
 Library/Application Support/Things Sandbox Helper/
 Library/Application Support/Thunderbird/

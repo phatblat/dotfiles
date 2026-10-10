@@ -134,9 +134,6 @@
   "~/.agents/harness/adapters/antigravity/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/debug-issue/SKILL.md": {
-    "source": "~/.agents/skills/debug-issue/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
@@ -173,26 +170,14 @@
   "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
     "source": "~/.agents/skills/paseo/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/plan-design-review/SKILL.md": {
-    "source": "~/.agents/skills/plan-design-review/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/refactor-safely/SKILL.md": {
-    "source": "~/.agents/skills/refactor-safely/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/review-changes/SKILL.md": {
-    "source": "~/.agents/skills/review-changes/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/security-audit/SKILL.md": {
-    "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -202,9 +187,6 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/typesafe-ai/SKILL.md": {
     "source": "~/.agents/skills/typesafe-ai/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/wayfinder/SKILL.md": {
-    "source": "~/.agents/skills/wayfinder/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
@@ -353,9 +335,6 @@
   "~/.agents/harness/adapters/cursor/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/debug-issue/SKILL.md": {
-    "source": "~/.agents/skills/debug-issue/SKILL.md"
-  },
   "~/.agents/harness/adapters/cursor/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
@@ -497,9 +476,6 @@
   "~/.agents/harness/adapters/cursor/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
-  "~/.agents/harness/adapters/cursor/skills/refactor-safely/SKILL.md": {
-    "source": "~/.agents/skills/refactor-safely/SKILL.md"
-  },
   "~/.agents/harness/adapters/cursor/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
@@ -508,9 +484,6 @@
   },
   "~/.agents/harness/adapters/cursor/skills/retro/SKILL.md": {
     "source": "~/.agents/skills/retro/SKILL.md"
-  },
-  "~/.agents/harness/adapters/cursor/skills/review-changes/SKILL.md": {
-    "source": "~/.agents/skills/review-changes/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/security-audit/SKILL.md": {
     "source": "~/.agents/skills/security-audit/SKILL.md"
@@ -686,9 +659,6 @@
   "~/.claude/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
-  "~/.claude/skills/debug-issue/SKILL.md": {
-    "source": "~/.agents/skills/debug-issue/SKILL.md"
-  },
   "~/.claude/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
@@ -740,9 +710,6 @@
   "~/.claude/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
-  "~/.claude/skills/refactor-safely/SKILL.md": {
-    "source": "~/.agents/skills/refactor-safely/SKILL.md"
-  },
   "~/.claude/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
@@ -751,9 +718,6 @@
   },
   "~/.claude/skills/retro/SKILL.md": {
     "source": "~/.agents/skills/retro/SKILL.md"
-  },
-  "~/.claude/skills/review-changes/SKILL.md": {
-    "source": "~/.agents/skills/review-changes/SKILL.md"
   },
   "~/.claude/skills/security-audit/SKILL.md": {
     "source": "~/.agents/skills/security-audit/SKILL.md"
@@ -805,9 +769,6 @@
   },
   "~/.codex/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
-  },
-  "~/.codex/skills/debug-issue/SKILL.md": {
-    "source": "~/.agents/skills/debug-issue/SKILL.md"
   },
   "~/.codex/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
@@ -878,14 +839,14 @@
   "~/.codex/skills/plan-design-review/SKILL.md": {
     "source": "~/.agents/skills/plan-design-review/SKILL.md"
   },
+  "~/.codex/skills/plan-design-review/agents/openai.yaml": {
+    "source": "~/.agents/skills/plan-design-review/SKILL.md"
+  },
   "~/.codex/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
   },
   "~/.codex/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
-  },
-  "~/.codex/skills/refactor-safely/SKILL.md": {
-    "source": "~/.agents/skills/refactor-safely/SKILL.md"
   },
   "~/.codex/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
@@ -902,10 +863,10 @@
   "~/.codex/skills/retro/agents/openai.yaml": {
     "source": "~/.agents/skills/retro/SKILL.md"
   },
-  "~/.codex/skills/review-changes/SKILL.md": {
-    "source": "~/.agents/skills/review-changes/SKILL.md"
-  },
   "~/.codex/skills/security-audit/SKILL.md": {
+    "source": "~/.agents/skills/security-audit/SKILL.md"
+  },
+  "~/.codex/skills/security-audit/agents/openai.yaml": {
     "source": "~/.agents/skills/security-audit/SKILL.md"
   },
   "~/.codex/skills/subagent-driven-development/SKILL.md": {
@@ -1067,9 +1028,6 @@
   "~/.config/opencode/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
-  "~/.config/opencode/skills/debug-issue/SKILL.md": {
-    "source": "~/.agents/skills/debug-issue/SKILL.md"
-  },
   "~/.config/opencode/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
@@ -1121,9 +1079,6 @@
   "~/.config/opencode/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
-  "~/.config/opencode/skills/refactor-safely/SKILL.md": {
-    "source": "~/.agents/skills/refactor-safely/SKILL.md"
-  },
   "~/.config/opencode/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
@@ -1132,9 +1087,6 @@
   },
   "~/.config/opencode/skills/retro/SKILL.md": {
     "source": "~/.agents/skills/retro/SKILL.md"
-  },
-  "~/.config/opencode/skills/review-changes/SKILL.md": {
-    "source": "~/.agents/skills/review-changes/SKILL.md"
   },
   "~/.config/opencode/skills/security-audit/SKILL.md": {
     "source": "~/.agents/skills/security-audit/SKILL.md"

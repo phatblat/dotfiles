@@ -22,4 +22,4 @@ trap 'rm -rf "$tmpdir"' EXIT
 
 git -C "$repo_root" archive HEAD | tar -x -C "$tmpdir"
 cd "$tmpdir"
-gitleaks dir . --config "$repo_root/.gitleaks.toml" --redact --verbose --no-banner
+gitleaks dir . --config "$repo_root/.gitleaks.toml" --redact --verbose --no-banner --log-level warn

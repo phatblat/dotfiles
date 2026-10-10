@@ -4,7 +4,7 @@
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": false,
-    "claude-hud@claude-hud": true,
+    "claude-hud@claude-hud": false,
     "claude-md-management@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": false,
@@ -186,15 +186,6 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/hooks/scripts/session-end.sh",
-            "timeout": 3,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
             "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
             "timeout": 4,
             "type": "command"
@@ -301,11 +292,6 @@
     ]
   },
   "model": "sonnet",
-  "omcHud": {
-    "elements": {
-      "showTokens": true
-    }
-  },
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
@@ -428,10 +414,7 @@
   "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "statusLine": {
-    "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs",
-    "type": "command"
-  },
+  "syncClaudeAiSkills": false,
   "teammateMode": "in-process",
   "theme": "auto",
   "tui": "fullscreen",

@@ -1,6 +1,7 @@
 ---
 name: work-track-item
 description: Track a Linear ticket or GitHub PR in today's daily note with fields and timestamped activity. Use when invoked as `$work-track-item` or when the user asks to track a work item.
+disable-model-invocation: true
 ---
 
 # work-track-item

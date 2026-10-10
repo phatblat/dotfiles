@@ -1,6 +1,7 @@
 ---
 name: "pr-merge"
 description: "Merge the current branch's PR after confirmation"
+disable-model-invocation: true
 ---
 
 # pr-merge
