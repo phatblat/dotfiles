@@ -8,7 +8,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 
 | Plugin | Claude | Codex |
 |---|---|---|
-| browser@openai-bundled | missing | enabled |
+| browser@openai-bundled | missing | disabled |
 | clangd-lsp@claude-plugins-official | enabled | enabled |
 | claude-code-setup@claude-plugins-official | disabled | missing |
 | claude-hud@claude-hud | enabled | missing |
@@ -42,6 +42,6 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | swift-lsp@claude-plugins-official | enabled | enabled |
 | template-creator@openai-primary-runtime | missing | enabled |
 | typescript-lsp@claude-plugins-official | enabled | enabled |
-| unified-computer-use@openai-bundled | missing | enabled |
+| unified-computer-use@openai-bundled | missing | disabled |
 | visualize@openai-bundled | missing | enabled |
 | warp@claude-code-warp | disabled | missing |

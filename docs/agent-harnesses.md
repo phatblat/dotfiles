@@ -9,14 +9,14 @@ Coverage: 91/405 cells verified (22%)
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.285 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| codex | supported peer | codex-cli 0.161.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
+| codex | supported peer | codex-cli 0.162.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | 1.18.35 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.1.0 | 2026-08-29 | 9 | 1 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.8.6 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| omp | tracked port | omp/18.8.7 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.2.10 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
 | cursor | tracked port | 2026.09.28-64d2043 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.50 (c58f321264ba) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
-| crush | new port | crush version v0.97.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
+| crush | new port | crush version v0.98.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
@@ -67,6 +67,9 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-10-10 | omp | - | version | omp/18.8.6 | omp/18.8.7 |
+| 2026-10-10 | crush | - | version | crush version v0.97.1 | crush version v0.98.0 |
+| 2026-10-10 | codex | - | version | codex-cli 0.161.0 | codex-cli 0.162.0 |
 | 2026-10-09 | pi | - | version | 1.0.4 | 1.1.0 |
 | 2026-10-09 | omp | - | version | omp/18.8.5 | omp/18.8.6 |
 | 2026-10-09 | grok | - | version | grok 1.0.46 (2765805b9442) | grok 1.0.50 (c58f321264ba) [alpha] |
@@ -74,9 +77,6 @@ Coverage: 91/405 cells verified (22%)
 | 2026-10-09 | codex | - | version | codex-cli 0.160.1 | codex-cli 0.161.0 |
 | 2026-10-09 | claude | - | version | 2.1.251 (Claude Code) | 2.1.285 (Claude Code) |
 | 2026-10-09 | antigravity | - | version | 1.2.3 | 1.2.10 |
-| 2026-10-08 | pi | - | version | 1.0.3 | 1.0.4 |
-| 2026-10-08 | opencode | - | version | 1.18.34 | 1.18.35 |
-| 2026-10-08 | omp | - | version | omp/18.8.3 | omp/18.8.5 |
 
 ## Permanent divergences
 
