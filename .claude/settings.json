@@ -292,11 +292,6 @@
     ]
   },
   "model": "sonnet",
-  "omcHud": {
-    "elements": {
-      "showTokens": true
-    }
-  },
   "permissions": {
     "allow": [
       "mcp__acp__Edit",
@@ -419,10 +414,6 @@
   "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
-  "statusLine": {
-    "command": "bun ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs",
-    "type": "command"
-  },
   "teammateMode": "in-process",
   "theme": "auto",
   "tui": "fullscreen",
