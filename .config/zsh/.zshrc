@@ -146,18 +146,6 @@ alias pai="bun $HOME/.claude/skills/PAI/Tools/pai.ts"
 
 source $HOME/.config/broot/launcher/bash/br
 
-# >>> omp profile alias: casper >>>
-casper() {
-    command omp --profile=casper "$@"
-}
-# <<< omp profile alias: casper <<<
-
-# >>> omp profile alias: baseten >>>
-baseten() {
-    command omp --profile=baseten "$@"
-}
-# <<< omp profile alias: baseten <<<
-
 # Machine-local settings from untracked ~/.env via direnv's dotenv parser
 if command -v direnv &>/dev/null && [[ -f ~/.env ]]; then
   eval "$(direnv dotenv zsh ~/.env)"

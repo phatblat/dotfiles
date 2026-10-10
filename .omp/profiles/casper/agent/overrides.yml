@@ -1,0 +1,35 @@
+# Settings this profile layers over the main profile's .omp/agent/config.yml.
+# `just generate-omp-profiles` renders config.yml from the two: maps merge,
+# scalars and arrays replace, and main's modelRoles never carry over. Edit
+# this file, then re-render; OMP writes /settings changes into config.yml,
+# and the next render discards them.
+modelRoles:
+  default: casper/ember-1:low
+  task: casper/nemotron-lightning-3p5-30b-a3b
+  commit: casper/nemotron-lightning-3p5-30b-a3b
+  plan: casper/ember-1:high
+  slow: casper/kimi-k3:high
+  smol: casper/nemotron-lightning-3p5-30b-a3b
+cycleOrder:
+  - default
+  - smol
+  - plan
+  - slow
+steeringMode: one-at-a-time
+followUpMode: one-at-a-time
+tools:
+  approval:
+    bash: allow
+memory:
+  backend: "off"
+includeWorkspaceTree: false
+tui:
+  imeSafeCursor: true
+  tight: true
+  resizeScrollback: preserve
+terminal:
+  showProgress: true
+ask:
+  timeout: 1800
+browser:
+  relay: true

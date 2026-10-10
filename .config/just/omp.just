@@ -67,6 +67,13 @@ install-bun-deps:
     done
     if command -v omp >/dev/null 2>&1; then omp plugin doctor --fix; fi
 
+# Renders each OMP profile's config.yml from the main config plus its overrides.yml
+[group('omp')]
+[script]
+generate-omp-profiles:
+    set -euo pipefail
+    {{ justfile_directory() }}/scripts/generate-omp-profiles.sh
+
 # Sync Casper model metadata and pricing from live APIs
 [group('omp')]
 [script]
@@ -79,6 +86,19 @@ update-casper-models:
     fi
     git add .omp/profiles/casper/agent/models.yml
     git commit -m "chore(casper): sync models.yml with live catalog and pricing"
+
+# Sync Subconscious per-token pricing from the vendor pricing page
+[group('omp')]
+[script]
+update-subconscious-models:
+    set -euo pipefail
+    python3 {{ justfile_directory() }}/scripts/sync-subconscious-models.py
+    if [ -z "$(git status --porcelain -- .omp/profiles/subconscious/agent/models.yml)" ]; then
+        echo "Subconscious pricing unchanged"
+        exit 0
+    fi
+    git add .omp/profiles/subconscious/agent/models.yml
+    git commit -m "chore(subconscious): sync models.yml pricing" -- .omp/profiles/subconscious/agent/models.yml
 
 # Upgrades the installed omp version from the upstream GitHub repository
 [group('omp')]

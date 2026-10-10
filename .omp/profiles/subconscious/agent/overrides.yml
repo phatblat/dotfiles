@@ -1,0 +1,36 @@
+# Settings this profile layers over the main profile's .omp/agent/config.yml.
+# `just generate-omp-profiles` renders config.yml from the two: maps merge,
+# scalars and arrays replace, and main's modelRoles never carry over. Edit
+# this file, then re-render; OMP writes /settings changes into config.yml,
+# and the next render discards them.
+modelRoles:
+  default: subconscious/subconscious/glm-5.3-marathon:high
+  task: subconscious/subconscious/deepseek-v4.1-flash-marathon
+  commit: subconscious/subconscious/deepseek-v4.1-flash-marathon
+  plan: subconscious/subconscious/glm-5.3-marathon:high
+  slow: subconscious/subconscious/glm-5.3-marathon:high
+  smol: subconscious/subconscious/deepseek-v4.1-flash-marathon
+  vision: subconscious/subconscious/deepseek-v4.1-flash-marathon
+cycleOrder:
+  - default
+  - smol
+  - plan
+  - slow
+steeringMode: one-at-a-time
+followUpMode: one-at-a-time
+tools:
+  approval:
+    bash: allow
+memory:
+  backend: "off"
+includeWorkspaceTree: false
+tui:
+  imeSafeCursor: true
+  tight: true
+  resizeScrollback: preserve
+terminal:
+  showProgress: true
+ask:
+  timeout: 1800
+browser:
+  relay: true

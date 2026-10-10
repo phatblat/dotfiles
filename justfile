@@ -77,9 +77,9 @@ clean: clean-rust clean-caches clean-build clean-deps
 [group('build')]
 build: generate
 
-# Alias for harness-generate
+# Regenerates harness artifacts and OMP profile configs
 [group('build')]
-generate: harness-generate
+generate: harness-generate generate-omp-profiles
 
 # Regenerates artifacts and formats the result; run after generator/source edits
 [group('build')]

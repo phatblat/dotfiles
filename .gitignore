@@ -594,6 +594,7 @@
 !.omp/profiles/*/agent/lsp.json
 !.omp/profiles/*/agent/mcp.json
 !.omp/profiles/*/agent/models.yml
+!.omp/profiles/*/agent/overrides.yml
 !.omp/profiles/*/agent/prompts/
 !.omp/profiles/*/agent/rules/
 !.omp/profiles/*/agent/skills/

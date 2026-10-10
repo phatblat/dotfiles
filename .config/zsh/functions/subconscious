@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# subconscious - Run OMP with the subconscious profile (Subconscious long-context inference)
+omp --profile subconscious "$@"

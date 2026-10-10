@@ -4,6 +4,7 @@
 load helpers/setup
 
 setup() {
+  repo="$(cd "$BATS_TEST_DIRNAME/.." && pwd)"
   fakebindir="$(mktemp -d)"
   cat >"$fakebindir/omp" <<'EOF'
 #!/bin/sh
@@ -152,5 +153,33 @@ teardown() {
     ! grep -q -- '--allow-home' "$HOME/.config/nushell/autoload/$wrapper.nu"
     grep -q -- '^omp --' "$HOME/.config/zsh/functions/$wrapper"
     grep -q -F 'source ~/.config/nushell/autoload/omp.nu' "$HOME/.config/nushell/autoload/$wrapper.nu"
+  done
+}
+
+# Profile wrappers resolve from this checkout, not $HOME, so a branch that adds
+# one is testable before the live home directory has it.
+@test "zsh profile wrappers launch omp with their profile through the omp wrapper" {
+  for profile in casper baseten subconscious; do
+    run env PATH="$fakebindir:$PATH" zsh -c "
+      rehash
+      fpath=(\"$repo/.config/zsh/functions\" \$fpath)
+      autoload -Uz omp $profile
+      $profile --print hello
+    "
+
+    [ "$status" -eq 0 ]
+    [ "$output" = $'--allow-home\n--profile\n'"$profile"$'\n--print\nhello' ]
+  done
+}
+
+@test "nushell profile wrappers launch omp with their profile through the omp wrapper" {
+  for profile in casper baseten subconscious; do
+    run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+      source '$repo/.config/nushell/autoload/$profile.nu'
+      $profile --print hello
+    "
+
+    [ "$status" -eq 0 ]
+    [ "$output" = $'--allow-home\n--profile\n'"$profile"$'\n--print\nhello' ]
   done
 }
