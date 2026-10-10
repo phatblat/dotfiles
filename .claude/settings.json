@@ -414,6 +414,7 @@
   "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
+  "syncClaudeAiSkills": false,
   "teammateMode": "in-process",
   "theme": "auto",
   "tui": "fullscreen",
