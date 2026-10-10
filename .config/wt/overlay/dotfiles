@@ -8,6 +8,7 @@
 # .config/git/config and .config/gh/config.yml are tracked and must never be
 # listed here -- `wt overlay` exits 4 if they are.
 .env
+.local/bin/mise
 .local/share/mise
 .ssh
 .netrc

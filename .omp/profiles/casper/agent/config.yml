@@ -6,10 +6,10 @@ providers:
     serverSideFallback: false
 setupVersion: 2
 modelRoles:
-  default: casper/kimi-k3:low
+  default: casper/ember-1:low
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
-  plan: casper/kimi-k3:high
+  plan: casper/ember-1:high
   slow: casper/kimi-k3:high
   smol: casper/nemotron-lightning-3p5-30b-a3b
 defaultThinkingLevel: auto
