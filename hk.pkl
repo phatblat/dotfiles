@@ -140,6 +140,7 @@ local linters = new Mapping<String, Step | Group> {
         "scripts/sync-codex-casper-models.py",
         "scripts/check-nushell-autoload.py",
         "scripts/sync-subconscious-models.py",
+        "scripts/cmux-settings.py",
       )
     batch = true
     check = "ruff check {{files}}"
@@ -154,6 +155,7 @@ local linters = new Mapping<String, Step | Group> {
         "scripts/harness_drift.py",
         "scripts/harness_skills.py",
         "scripts/sync-subconscious-models.py",
+        "scripts/cmux-settings.py",
       )
     batch = true
     check = "ruff format --check {{files}}"
