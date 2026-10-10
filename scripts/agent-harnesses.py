@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+from datetime import UTC
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -29,8 +30,8 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS
     import argparse
     import shutil
     import subprocess
-
     import tomllib
+
     from agent_plugins import audit_plugins, configured_plugins
     from harness_capabilities import CAPABILITIES, DOMAINS, validate_registry
     from harness_docs import (
@@ -487,10 +488,10 @@ def command_probe(*, harness: str | None = None) -> int:
     build break, so this exits 0 either way; `validate` is where a hard failure
     belongs.
     """
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     # Local calendar date: Evidence.date records the day the claim was checked.
-    today = datetime.now(tz=timezone.utc).astimezone().date().isoformat()
+    today = datetime.now(tz=UTC).astimezone().date().isoformat()
     slugs = [harness] if harness else list(HARNESSES)
     previous_observed = read_json(OBSERVED_PATH, {})
     previous_versions = read_json(VERSIONS_PATH, {})
