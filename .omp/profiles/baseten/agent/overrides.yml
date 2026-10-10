@@ -14,3 +14,9 @@ modelRoles:
 symbolPreset: unicode
 theme:
   dark: titanium
+# baseten never enabled long-term memory or autolearn; keep it that way
+# instead of inheriting main's mnemopi backend and autolearn.
+memory:
+  backend: "off"
+autolearn:
+  enabled: false

@@ -284,9 +284,9 @@ steeringMode: all
 followUpMode: all
 interruptMode: wait
 memory:
-  backend: mnemopi
+  backend: "off"
 autolearn:
-  enabled: true
+  enabled: false
 task:
   agentAdvisor:
     task: "on"
