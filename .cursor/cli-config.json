@@ -4,7 +4,6 @@
       "Shell(ls)",
       "Shell(just)",
       "Shell(make)",
-      "Shell(find)",
       "Shell(wc)",
       "Shell(grep)",
       "Shell(rg)",
@@ -18,8 +17,6 @@
       "Shell(date)",
       "Shell(jq)",
       "Shell(yq)",
-      "Shell(sed)",
-      "Shell(awk)",
       "Shell(sort)",
       "Shell(uniq)",
       "Shell(tr)",
@@ -27,7 +24,14 @@
       "Shell(basename)",
       "Shell(dirname)"
     ],
-    "deny": []
+    "deny": [
+      "Shell(sudo)",
+      "Shell(rm)",
+      "Read(.env*)",
+      "Write(**/.env*)",
+      "Write(**/*.key)",
+      "Write(**/*.pem)"
+    ]
   },
   "version": 1,
   "editor": {
