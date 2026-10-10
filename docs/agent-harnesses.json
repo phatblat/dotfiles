@@ -7558,7 +7558,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "claude-hud@claude-hud",
         "marketplace": "claude-hud",
         "marketplace_source": "github:jarrodwatts/claude-hud"
