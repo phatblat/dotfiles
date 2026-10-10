@@ -1,0 +1,47 @@
+{
+  "plugins": {
+    "android-cli-plugin": {
+      "enabled": true,
+      "installed_version": "1.0.0",
+      "skills": 1,
+      "version": "1.0.0"
+    },
+    "chrome-devtools-plugin": {
+      "enabled": true,
+      "installed_version": "1.0.0",
+      "skills": 5,
+      "version": "0.21.0"
+    },
+    "firebase": {
+      "enabled": true,
+      "installed_version": "1.0.0",
+      "skills": 11,
+      "version": ""
+    },
+    "google-antigravity-sdk": {
+      "enabled": true,
+      "installed_version": "0.0.4",
+      "skills": 1,
+      "version": "0.0.4"
+    },
+    "modern-web-guidance-plugin": {
+      "enabled": true,
+      "installed_version": "1.0.4",
+      "skills": 2,
+      "version": "1.0.4"
+    },
+    "science": {
+      "enabled": true,
+      "installed_version": "1.0.0",
+      "skills": 37,
+      "version": "1.0.0"
+    },
+    "shared-agent-harness": {
+      "enabled": true,
+      "installed_version": "",
+      "skills": 25,
+      "tree_sha256": "901cd0e186415a7704ac6f542a653fae1f0cbd7f05d43557910b3efa44afafdf",
+      "version": "1.0.0"
+    }
+  }
+}
