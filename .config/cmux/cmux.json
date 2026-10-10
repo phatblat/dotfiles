@@ -3,16 +3,7 @@
   "schemaVersion": 1,
   "shortcuts": {
     "bindings": {
-      "showHideAllWindows": {
-        "first": {
-          "command": false,
-          "control": true,
-          "key": "`",
-          "keyCode": 50,
-          "option": false,
-          "shift": false,
-        },
-      },
+      "showHideAllWindows": "ctrl+`",
       "toggleFileExplorer": "cmd+;",
       "markWorkspaceDone": "none",
     },
