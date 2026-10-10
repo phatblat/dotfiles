@@ -256,10 +256,14 @@ SECRET_CONTENT = (
     ),
 )
 
-# Tracked files whose credential-shaped names are the detector, not the
-# credential — verified false positives.
+# Tracked files whose credential-shaped names or content are not credentials —
+# verified false positives. user-prompt-secrets.sh is the secret-warning hook
+# itself; loopback-expert.md is an agent prompt whose example code reads
+# `process.env.DB_PASSWORD`.
 TRACKED_ALLOWLIST = frozenset(
     {
+        ".claude/agents-disabled/loopback/loopback-expert.md",
+        ".claude/hooks/scripts/user-prompt-secrets.sh",
         ".codex/hooks/scripts/user-prompt-secrets.sh",
     }
 )
@@ -548,7 +552,11 @@ def main():
     candidates.sort(key=lambda i: i["path"])
     review = sorted((i for i in ignored if i["kind"] == "review"), key=lambda i: i["path"])
     state = sorted((i for i in ignored if i["kind"] == "state"), key=lambda i: i["path"])
-    flagged = scan_tracked(repo, roots)
+    # The ignored-file scan only makes sense for allowlist-governed roots, but a
+    # tracked credential can sit under any harness root, including the ones
+    # (.claude, .agents) that are not allowlist-governed. Explicit roots narrow both.
+    tracked_roots = roots if args.roots else sorted(HARNESS_ROOTS)
+    flagged = scan_tracked(repo, tracked_roots)
 
     if args.json:
         json.dump(
