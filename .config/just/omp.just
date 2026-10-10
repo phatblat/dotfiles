@@ -98,7 +98,7 @@ update-subconscious-models:
         exit 0
     fi
     git add .omp/profiles/subconscious/agent/models.yml
-    git commit -m "chore(subconscious): sync models.yml pricing"
+    git commit -m "chore(subconscious): sync models.yml pricing" -- .omp/profiles/subconscious/agent/models.yml
 
 # Upgrades the installed omp version from the upstream GitHub repository
 [group('omp')]
