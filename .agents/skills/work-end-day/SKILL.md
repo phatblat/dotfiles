@@ -1,6 +1,7 @@
 ---
 name: "work-end-day"
 description: "End-of-day — draft and post daily comments for tracked tickets missing a comment"
+disable-model-invocation: true
 ---
 
 # work-end-day

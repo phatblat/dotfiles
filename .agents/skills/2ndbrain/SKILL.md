@@ -1,6 +1,7 @@
 ---
 name: "2ndbrain"
 description: "Quick-save the last assistant response as a verbatim note in the 2ndBrain Obsidian vault (~/2ndBrain/quick-notes/<year>/). Use when the user asks to quick-save/save the last response to 2ndBrain, or invokes $2ndbrain or /skill:2ndbrain."
+disable-model-invocation: true
 ---
 
 # 2ndbrain

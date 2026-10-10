@@ -1,6 +1,7 @@
 ---
 name: "pr-update-desc"
 description: "Update the PR description for the current branch"
+disable-model-invocation: true
 ---
 
 # pr-update-desc
