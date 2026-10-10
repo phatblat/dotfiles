@@ -14,7 +14,6 @@
     "coworkHipaaRestricted": false,
     "orgWorkAcrossAppsDisabled": false,
     "ccdScheduledTasksEnabled": true,
-    "earlyWindowShowLatched": true,
     "storeReadCacheLatched": true,
     "sidebarMode": "chat",
     "bypassPermissionsGateByAccount": {
@@ -91,7 +90,8 @@
                 "metadata": true,
                 "emptyGroups": false
               },
-              "collapsed": false
+              "collapsed": false,
+              "shown": true
             },
             {
               "id": "routines",
@@ -104,7 +104,8 @@
                 "metadata": true,
                 "emptyGroups": false
               },
-              "collapsed": true
+              "collapsed": true,
+              "shown": false
             },
             {
               "id": "sessions",
@@ -117,7 +118,8 @@
                 "metadata": true,
                 "emptyGroups": false
               },
-              "collapsed": false
+              "collapsed": false,
+              "shown": true
             }
           ],
           "migratedFrom": 1,

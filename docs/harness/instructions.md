@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.251 (Claude Code) · 2026-10-08 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.160.1 · 2026-10-08 | - |
-| opencode | aligned | shared | - | probe · 1.18.35 · 2026-10-08 | - |
-| pi | aligned | shared | - | probe · 1.0.4 · 2026-10-08 | - |
-| omp | aligned | native | - | probe · omp/18.8.5 · 2026-10-08 | inlined shared harness instructions + compaction contract + commit attribution |
-| antigravity | partial | adapter | - | probe · 1.2.3 · 2026-10-08 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
-| cursor | partial | adapter | - | probe · 2026.09.15-d2fe57e · 2026-10-08 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.46 (2765805b9442) · 2026-10-08 | inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file |
-| crush | aligned | native | - | probe · crush version v0.97.1 · 2026-10-08 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
+| claude | aligned | shared | - | probe · 2.1.285 (Claude Code) · 2026-10-09 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.161.0 · 2026-10-09 | - |
+| opencode | aligned | shared | - | probe · 1.18.35 · 2026-10-09 | - |
+| pi | aligned | shared | - | probe · 1.1.0 · 2026-10-09 | - |
+| omp | aligned | native | - | probe · omp/18.8.6 · 2026-10-09 | inlined shared harness instructions + compaction contract + commit attribution |
+| antigravity | partial | adapter | - | probe · 1.2.10 · 2026-10-09 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
+| cursor | partial | adapter | - | probe · 2026.09.28-64d2043 · 2026-10-09 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
+| grok | aligned | native | - | probe · grok 1.0.50 (c58f321264ba) [alpha] · 2026-10-09 | inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file |
+| crush | aligned | native | - | probe · crush version v0.97.1 · 2026-10-09 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
 
 ### Not yet researched
 
