@@ -10,7 +10,7 @@ if ! command -v jq >/dev/null; then
   # Fail open: a formatter must never block commits when jq is unavailable.
   exit 0
 fi
-cmd="$(jq -r '.tool_input.command // ""' <<<"$input" || printf ''))"
+cmd="$(jq -r '.tool_input.command // ""' <<<"$input" || printf '')"
 case "$cmd" in
   *git*commit*) ;; # git commit / git -C repo commit / git add … && git commit
   *) exit 0 ;;
