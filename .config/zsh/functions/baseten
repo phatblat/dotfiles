@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# baseten - Run OMP with the baseten profile
+omp --profile baseten "$@"
