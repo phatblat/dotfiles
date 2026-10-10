@@ -1,3 +1,7 @@
+providers:
+  anthropic:
+    serverSideFallback: false
+setupVersion: 2
 modelRoles:
   default: baseten/moonshotai/Kimi-K2.7-Code:medium
   tiny: baseten/openai/gpt-oss-120b
@@ -6,8 +10,322 @@ modelRoles:
   plan: baseten/zai-org/GLM-5.2:high
   designer: baseten/zai-org/GLM-5.2-Fast:high
   advisor: baseten/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B:medium
-symbolPreset: unicode
+defaultThinkingLevel: auto
+dev:
+  autoqaConsent: granted
+tools:
+  approvalMode: yolo
+bash:
+  patterns:
+    - match: sudo *
+      approval: deny
+    - match: sudo
+      approval: deny
+    - match: rm *
+      approval: ask
+    - match: rm
+      approval: ask
+    - match: "[*"
+      approval: allow
+    - match: awk*
+      approval: allow
+    - match: basename*
+      approval: allow
+    - match: brew outdated*
+      approval: allow
+    - match: brew update*
+      approval: allow
+    - match: brew upgrade*
+      approval: allow
+    - match: cargo check*
+      approval: allow
+    - match: cargo clippy*
+      approval: allow
+    - match: cargo fmt*
+      approval: allow
+    - match: cargo test*
+      approval: allow
+    - match: cat*
+      approval: allow
+    - match: cmp*
+      approval: allow
+    - match: command -v*
+      approval: allow
+    - match: ctx7*
+      approval: allow
+    - match: cut*
+      approval: allow
+    - match: date*
+      approval: allow
+    - match: diff*
+      approval: allow
+    - match: dirname*
+      approval: allow
+    - match: du*
+      approval: allow
+    - match: echo*
+      approval: allow
+    - match: fd*
+      approval: allow
+    - match: file*
+      approval: allow
+    - match: find*
+      approval: allow
+    - match: gh api*
+      approval: allow
+    - match: gh issue*
+      approval: allow
+    - match: gh pr create*
+      approval: allow
+    - match: gh pr edit*
+      approval: allow
+    - match: gh pr list*
+      approval: allow
+    - match: gh pr view*
+      approval: allow
+    - match: gh run*
+      approval: allow
+    - match: gh search*
+      approval: allow
+    - match: gh stack*
+      approval: allow
+    - match: git add*
+      approval: allow
+    - match: git branch*
+      approval: allow
+    - match: git check-ignore*
+      approval: allow
+    - match: git checkout*
+      approval: allow
+    - match: git commit*
+      approval: allow
+    - match: git diff*
+      approval: allow
+    - match: git fetch*
+      approval: allow
+    - match: git log*
+      approval: allow
+    - match: git ls-remote*
+      approval: allow
+    - match: git merge --ff-only*
+      approval: allow
+    - match: git pull*
+      approval: allow
+    - match: git push*
+      approval: allow
+    - match: git rebase*
+      approval: allow
+    - match: git remote*
+      approval: allow
+    - match: git rev-list*
+      approval: allow
+    - match: git rev-parse*
+      approval: allow
+    - match: git show*
+      approval: allow
+    - match: git stash*
+      approval: allow
+    - match: git status*
+      approval: allow
+    - match: git switch*
+      approval: allow
+    - match: git symbolic-ref*
+      approval: allow
+    - match: git tag*
+      approval: allow
+    - match: git worktree*
+      approval: allow
+    - match: go build*
+      approval: allow
+    - match: go test*
+      approval: allow
+    - match: go vet*
+      approval: allow
+    - match: grep*
+      approval: allow
+    - match: head*
+      approval: allow
+    - match: jq*
+      approval: allow
+    - match: just*
+      approval: allow
+    - match: linear*
+      approval: allow
+    - match: ls*
+      approval: allow
+    - match: make*
+      approval: allow
+    - match: mise current*
+      approval: allow
+    - match: mise install*
+      approval: allow
+    - match: mise ls*
+      approval: allow
+    - match: mise search*
+      approval: allow
+    - match: mise self-update*
+      approval: allow
+    - match: mise upgrade*
+      approval: allow
+    - match: mise use*
+      approval: allow
+    - match: npm run*
+      approval: allow
+    - match: npm test*
+      approval: allow
+    - match: npx tsc*
+      approval: allow
+    - match: pip*
+      approval: allow
+    - match: pnpm*
+      approval: allow
+    - match: poetry*
+      approval: allow
+    - match: prettier*
+      approval: allow
+    - match: printenv*
+      approval: allow
+    - match: printf*
+      approval: allow
+    - match: ps*
+      approval: allow
+    - match: python3*
+      approval: allow
+    - match: readlink*
+      approval: allow
+    - match: realpath*
+      approval: allow
+    - match: rg*
+      approval: allow
+    - match: ruff*
+      approval: allow
+    - match: sed*
+      approval: allow
+    - match: seq*
+      approval: allow
+    - match: sg*
+      approval: allow
+    - match: shellcheck*
+      approval: allow
+    - match: shfmt*
+      approval: allow
+    - match: sleep*
+      approval: allow
+    - match: sort*
+      approval: allow
+    - match: stat*
+      approval: allow
+    - match: tail*
+      approval: allow
+    - match: tee*
+      approval: allow
+    - match: test*
+      approval: allow
+    - match: timeout*
+      approval: allow
+    - match: tr*
+      approval: allow
+    - match: tree*
+      approval: allow
+    - match: typos*
+      approval: allow
+    - match: uniq*
+      approval: allow
+    - match: uv tool upgrade*
+      approval: allow
+    - match: wc*
+      approval: allow
+    - match: which*
+      approval: allow
+    - match: xargs*
+      approval: allow
+    - match: yamllint*
+      approval: allow
+    - match: yarn*
+      approval: allow
+    - match: yq*
+      approval: allow
+    - match: ~/scripts/sort-gitignore*
+      approval: allow
+    - match: claude mcp list
+      approval: allow
+    - match: env
+      approval: allow
+    - match: pwd
+      approval: allow
+    - match: "true"
+      approval: allow
+  allowCompoundCommands: true
+display:
+  showTokenUsage: true
+  cacheMissMarker: true
+  hideToolActivity: true
+  showTurnTime: true
+  collapseCompacted: true
+  shimmer: classic
+advisor:
+  enabled: false
+  syncBacklog: "off"
+prewalk:
+  enabled: false
+features:
+  unexpectedStopDetection: smart
+branchSummary:
+  enabled: true
+secrets:
+  enabled: true
+personality: pragmatic
+cycleOrder:
+  - default
+  - plan
+  - smol
+  - slow
+steeringMode: all
+followUpMode: all
+interruptMode: wait
+memory:
+  backend: mnemopi
+autolearn:
+  enabled: true
+task:
+  agentAdvisor:
+    task: "on"
+  showResolvedModelBadge: true
+  eager: preferred
+  enableEffort: false
+  isolation:
+    commits: ai
+worktree:
+  base: ~/.worktrees
+  cleanSource: true
+hideThinkingBlock: false
 theme:
   dark: titanium
-setupVersion: 1
-defaultThinkingLevel: auto
+  light: light-aurora-day
+symbolPreset: unicode
+statusLine:
+  preset: default
+  separator: powerline-thin
+  sessionAccent: true
+  transparent: false
+  showHookStatus: true
+retry:
+  usageAwareFallback: true
+doubleEscapeAction: tree
+composer:
+  shape: field
+codexResets:
+  autoRedeem: "no"
+treeFilterMode: all
+spelling:
+  autocorrect: false
+error:
+  notify: "on"
+skills:
+  enableClaudeProject: false
+  enableSkillCommands: true
+plan:
+  autosave: true
+commands:
+  enableClaudeProject: false
+  enableOpencodeProject: false
