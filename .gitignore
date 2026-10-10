@@ -198,6 +198,7 @@
 .config/chromium/
 .config/claude-profiles/
 .config/claude/versions
+.config/cmux/cmux.json.cmux-write.lock
 .config/codexbar/
 .config/com.tolaria.app/
 .config/configstore
