@@ -19,5 +19,33 @@
   },
   "terminal": {
     "autoResumeAgentSessions": true,
+    "agentHibernation": {
+      "maxLiveTerminals": 8,
+    },
+  },
+  "app": {
+    "appearance": "system",
+    "commandPaletteSearchesAllSurfaces": true,
+    "confirmQuit": "never",
+    "equalizeSplitsOnCreate": true,
+    "focusPaneOnFirstClick": true,
+    "hideTabCloseButton": false,
+    "menuBarOnly": false,
+    "minimalMode": true,
+    "preferredEditor": "zed",
+    "reorderOnNotification": false,
+    "warnBeforeClosingTab": false,
+  },
+  "fileEditor": {
+    "wordWrap": true,
+  },
+  "notifications": {
+    "paneFlashThemeColor": true,
+    "showInMenuBar": true,
+    "sound": "Purr",
+  },
+  "workspaceColors": {
+    "notificationBadgeColor": "#00FC00",
+    "selectionColor": "#6A00FF",
   },
 }
