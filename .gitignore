@@ -937,6 +937,8 @@ Library/Application Support/Sublime Text 3/Local/
 Library/Application Support/SyncServices/
 Library/Application Support/TG Pro/
 Library/Application Support/TabNine/
+Library/Application Support/Tern/*
+!Library/Application Support/Tern/settings.json
 Library/Application Support/TextMate/
 Library/Application Support/Things Sandbox Helper/
 Library/Application Support/Thunderbird/
