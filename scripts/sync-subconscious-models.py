@@ -29,7 +29,7 @@ ROW = re.compile(
     r"^\|[^|]*\|\s*`(?P<id>[^`]+)`\s*\|\s*\$(?P<cached>[0-9.]+)\s*\|\s*\$(?P<input>[0-9.]+)\s*\|\s*\$(?P<output>[0-9.]+)\s*\|\s*$",
     re.MULTILINE,
 )
-DATE = re.compile(r"rates last changed \d{4}-\d{2}-\d{2}")
+DATE = re.compile(r"rates last updated \d{4}-\d{2}-\d{2}")
 MODEL_ID = re.compile(r"^\s*- id: (\S+)\s*$")
 COST = re.compile(r"^([ \t]*)cost: \{.*\}[ \t]*")
 
@@ -111,7 +111,7 @@ def main() -> None:
     updated = "".join(lines)
     if changed:
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        updated = DATE.sub(f"rates last changed {today}", updated)
+        updated = DATE.sub(f"rates last updated {today}", updated)
 
     if updated == original:
         print("Subconscious pricing unchanged")

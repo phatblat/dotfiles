@@ -13,7 +13,7 @@
 #            which the vendor marks as the source of truth. Subconscious has no
 #            pricing API and omp's catalog has no subconscious provider, so
 #            `just update-subconscious-models` re-syncs the cost lines below:
-#            rates last changed 2026-10-10.
+#            rates last updated 2026-10-10 (the sync date, not a vendor date).
 # Limits:    contextWindow/maxTokens mirror the vendor's own Pi integration
 #            (subconscious-cli bin/runbook/pi: 5,000,000 / 65,536). The gateway
 #            compresses context server-side, so omp's local compaction
