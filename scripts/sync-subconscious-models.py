@@ -36,12 +36,7 @@ COST = re.compile(r"^([ \t]*)cost: \{.*\}[ \t]*")
 Prices = dict[str, dict[str, str]]
 
 
-def fetch_prices() -> Prices:
-    try:
-        with urllib.request.urlopen(PRICING_URL, timeout=30) as response:
-            page = response.read().decode("utf-8")
-    except (urllib.error.URLError, TimeoutError) as err:
-        sys.exit(f"error: could not fetch {PRICING_URL}: {err}")
+def parse_prices(page: str) -> Prices:
     if HEADER not in page:
         sys.exit(f"error: pricing table header changed on {PRICING_URL}")
     prices: Prices = {
@@ -55,6 +50,15 @@ def fetch_prices() -> Prices:
     if not prices:
         sys.exit(f"error: no prices parsed from {PRICING_URL}")
     return prices
+
+
+def fetch_prices() -> Prices:
+    try:
+        with urllib.request.urlopen(PRICING_URL, timeout=30) as response:
+            page = response.read().decode("utf-8")
+    except (urllib.error.URLError, TimeoutError) as err:
+        sys.exit(f"error: could not fetch {PRICING_URL}: {err}")
+    return parse_prices(page)
 
 
 def rewrite(lines: list[str], prices: Prices) -> tuple[list[str], list[str]]:

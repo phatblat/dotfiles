@@ -154,3 +154,29 @@ teardown() {
     grep -q -F 'source ~/.config/nushell/autoload/omp.nu' "$HOME/.config/nushell/autoload/$wrapper.nu"
   done
 }
+
+@test "zsh profile wrappers launch omp with their profile through the omp wrapper" {
+  for profile in casper baseten subconscious; do
+    run env PATH="$fakebindir:$PATH" zsh -c "
+      rehash
+      fpath=(\"\$HOME/.config/zsh/functions\" \$fpath)
+      autoload -Uz omp $profile
+      $profile --print hello
+    "
+
+    [ "$status" -eq 0 ]
+    [ "$output" = $'--allow-home\n--profile\n'"$profile"$'\n--print\nhello' ]
+  done
+}
+
+@test "nushell profile wrappers launch omp with their profile through the omp wrapper" {
+  for profile in casper baseten subconscious; do
+    run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
+      source '$HOME/.config/nushell/autoload/$profile.nu'
+      $profile --print hello
+    "
+
+    [ "$status" -eq 0 ]
+    [ "$output" = $'--allow-home\n--profile\n'"$profile"$'\n--print\nhello' ]
+  done
+}
