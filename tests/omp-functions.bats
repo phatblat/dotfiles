@@ -4,6 +4,7 @@
 load helpers/setup
 
 setup() {
+  repo="$(cd "$BATS_TEST_DIRNAME/.." && pwd)"
   fakebindir="$(mktemp -d)"
   cat >"$fakebindir/omp" <<'EOF'
 #!/bin/sh
@@ -155,11 +156,13 @@ teardown() {
   done
 }
 
+# Profile wrappers resolve from this checkout, not $HOME, so a branch that adds
+# one is testable before the live home directory has it.
 @test "zsh profile wrappers launch omp with their profile through the omp wrapper" {
   for profile in casper baseten subconscious; do
     run env PATH="$fakebindir:$PATH" zsh -c "
       rehash
-      fpath=(\"\$HOME/.config/zsh/functions\" \$fpath)
+      fpath=(\"$repo/.config/zsh/functions\" \$fpath)
       autoload -Uz omp $profile
       $profile --print hello
     "
@@ -172,7 +175,7 @@ teardown() {
 @test "nushell profile wrappers launch omp with their profile through the omp wrapper" {
   for profile in casper baseten subconscious; do
     run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
-      source '$HOME/.config/nushell/autoload/$profile.nu'
+      source '$repo/.config/nushell/autoload/$profile.nu'
       $profile --print hello
     "
 

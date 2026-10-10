@@ -3,11 +3,15 @@
 
 load helpers/setup
 
+# Resolve files from this checkout, not $HOME: a linked worktree or branch may
+# carry files the live home directory does not have yet.
+repo="$(cd "$BATS_TEST_DIRNAME/.." && pwd)"
+
 setup() {
   command -v yq >/dev/null || skip "yq is not installed"
   root="$(mktemp -d)"
   mkdir -p "$root/scripts" "$root/.omp/agent" "$root/.omp/profiles/p/agent"
-  cp "$HOME/scripts/generate-omp-profiles.sh" "$root/scripts/"
+  cp "$repo/scripts/generate-omp-profiles.sh" "$root/scripts/"
   cat >"$root/.omp/agent/config.yml" <<'EOF'
 modelRoles:
   default: main/model
@@ -81,11 +85,11 @@ teardown() {
 }
 
 @test "generate-omp-profiles: committed profile configs are current" {
-  run "$HOME/scripts/generate-omp-profiles.sh" --check
+  run "$repo/scripts/generate-omp-profiles.sh" --check
   [ "$status" -eq 0 ]
 }
 
 @test "sync-subconscious-models: parsing and rewriting unit tests pass" {
-  run python3 "$HOME/tests/test_sync_subconscious_models.py"
+  run python3 "$repo/tests/test_sync_subconscious_models.py"
   [ "$status" -eq 0 ]
 }
