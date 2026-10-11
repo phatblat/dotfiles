@@ -39,7 +39,7 @@ permissions:
 
 jobs:
   human-approval:
-    runs-on: ubuntu-latest
+    runs-on: arc-ubuntu-24.04-arm64
     timeout-minutes: 5
     steps:
       - name: Require explicit sign-off on agent-authored changes
