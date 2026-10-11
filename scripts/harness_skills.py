@@ -35,6 +35,7 @@ NATIVE_SKILL_ADAPTERS = {
     "2ndbrain",
     "artifact-message-bus",
     "aven",
+    "backlog-batch-delivery",
     "brainstorm",
     "branch-finish",
     "ci-fix",
