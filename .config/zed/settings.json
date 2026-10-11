@@ -107,6 +107,9 @@
       "soft_wrap": "editor_width",
       "remove_trailing_whitespace_on_save": false,
     },
+    "Python": {
+      "language_servers": ["basedpyright", "ruff"],
+    },
     "Shell Script": {
       "preferred_line_length": 120,
     },
@@ -118,6 +121,18 @@
     "limit_content_width": false,
   },
   "lsp": {
+    "basedpyright": {
+      "binary": {
+        "path": "/Users/phatblat/.local/share/mise/shims/basedpyright-langserver",
+        "arguments": ["--stdio"],
+      },
+    },
+    "ruff": {
+      "binary": {
+        "path": "/Users/phatblat/.local/share/mise/shims/ruff",
+        "arguments": ["server"],
+      },
+    },
     "rust-analyzer": {
       "initialization_options": {
         "analyzerTargetDir": true,
