@@ -673,7 +673,7 @@ def scan_opencode(db_path: Path, coverage: Coverage) -> list[Obs]:
                 if dtype == "tool":
                     state = data.get("state") or {}
                     status = state.get("status")
-                    ok = {"completed": True, "error": False}.get(status)
+                    ok = {"completed": True, "error": False}.get(status) if isinstance(status, str) else None
                     time_val = state.get("time") or {}
                     ms = None
                     if isinstance(time_val, dict) and "start" in time_val and "end" in time_val:

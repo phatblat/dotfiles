@@ -525,7 +525,7 @@ def allowlist_roots(repo):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser = argparse.ArgumentParser(description=(__doc__ or "").partition("\n")[0])
     parser.add_argument("roots", nargs="*", help="paths to scan (default: allowlisted roots)")
     parser.add_argument("--repo", default=str(Path.home()), help="repository root")
     parser.add_argument("--json", action="store_true", help="emit JSON instead of markdown")

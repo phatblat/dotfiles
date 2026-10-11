@@ -236,16 +236,16 @@ def bash_rules(style: str) -> Any:
         return sorted(rules)
 
     if style == "opencode":
-        rules: dict[str, str] = {}
+        opencode_rules: dict[str, str] = {}
         for cmd in BASH_ALLOW_PREFIX:
-            rules[f"{cmd}*"] = "allow"
+            opencode_rules[f"{cmd}*"] = "allow"
         for cmd in BASH_ALLOW_EXACT:
-            rules[cmd] = "allow"
+            opencode_rules[cmd] = "allow"
         for cmd in BASH_ASK_PREFIX:
-            rules[f"{cmd} *"] = "ask"
+            opencode_rules[f"{cmd} *"] = "ask"
         for cmd in BASH_DENY_PREFIX:
-            rules[f"{cmd} *"] = "deny"
-        return rules
+            opencode_rules[f"{cmd} *"] = "deny"
+        return opencode_rules
 
     if style == "omp":
         # First-match-wins: deny, then ask, then allow.
