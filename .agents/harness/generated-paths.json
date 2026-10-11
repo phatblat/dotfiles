@@ -122,6 +122,9 @@
   "~/.agents/harness/adapters/antigravity/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/backlog-batch-delivery/SKILL.md": {
+    "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/boris/SKILL.md": {
     "source": "~/.agents/skills/boris/SKILL.md"
   },
@@ -316,6 +319,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/backlog-batch-delivery/SKILL.md": {
+    "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/boris/SKILL.md": {
     "source": "~/.agents/skills/boris/SKILL.md"
@@ -644,6 +650,9 @@
   "~/.claude/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
+  "~/.claude/skills/backlog-batch-delivery/SKILL.md": {
+    "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
+  },
   "~/.claude/skills/brainstorm/SKILL.md": {
     "source": "~/.agents/skills/brainstorm/SKILL.md"
   },
@@ -748,6 +757,9 @@
   },
   "~/.codex/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.codex/skills/backlog-batch-delivery/SKILL.md": {
+    "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
   },
   "~/.codex/skills/brainstorm/SKILL.md": {
     "source": "~/.agents/skills/brainstorm/SKILL.md"
@@ -1012,6 +1024,9 @@
   },
   "~/.config/opencode/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
+  },
+  "~/.config/opencode/skills/backlog-batch-delivery/SKILL.md": {
+    "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
   },
   "~/.config/opencode/skills/brainstorm/SKILL.md": {
     "source": "~/.agents/skills/brainstorm/SKILL.md"

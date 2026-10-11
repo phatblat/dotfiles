@@ -124,6 +124,7 @@
 !.codex/skills/artifact-message-bus/
 !.codex/skills/aven/SKILL.md
 !.codex/skills/aven/
+!.codex/skills/backlog-batch-delivery/
 !.codex/skills/brainstorm/
 !.codex/skills/branch-finish/
 !.codex/skills/ci-fix/SKILL.md
@@ -269,6 +270,7 @@
 !.config/opencode/skills/artifact-message-bus/
 !.config/opencode/skills/aven/SKILL.md
 !.config/opencode/skills/aven/
+!.config/opencode/skills/backlog-batch-delivery/
 !.config/opencode/skills/brainstorm/
 !.config/opencode/skills/branch-finish/
 !.config/opencode/skills/ci-fix/SKILL.md
