@@ -119,6 +119,9 @@ This repo follows [Conventional Docs](https://github.com/phatblat/conventional-d
   `## Errata` section.
 - `PLAN.md` and `TODO.md` at the repo root are branch-scoped: written per
   branch, committed for handoff, and deleted before merge.
+- Queued work that is real but not being done now is filed as
+  `docs/backlog/<slug>.md`, one file per item, and deleted by the change
+  that implements it.
 - The repo keeps no `CHANGELOG.md` — it has no releases.
 
 See `docs/decisions/2026-09-07-adopt-conventional-docs.md` for the adoption
