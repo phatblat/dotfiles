@@ -70,6 +70,10 @@ jobs:
       # Allowlist only tools needed for the ness tests, matching the narrow
       # tool set convention in check.yml's MISE_ENABLE_TOOLS.
       MISE_ENABLE_TOOLS: "just,rust,sccache"
+      # The ARC runner image exports LC_ALL=en_US.UTF-8 without generating that
+      # locale, so bash warns on stderr and the ness hook corpus compares stderr.
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     steps:
       - uses: actions/checkout@v7
         with:
