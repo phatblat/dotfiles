@@ -85,12 +85,12 @@ with no current requirement for it.
 
    | Agent                  | Model role → default                        | Tools                                                      | Autoloaded skills         | Result fields                                                      |
    | ---------------------- | ------------------------------------------- | ---------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------ |
-   | `delivery-implementer` | `delivery_impl` → `anthropic/claude-sonnet-5-5:high` | `read`, `grep`, `glob`, `find`, `edit`, `write`, `bash`, `lsp`, `ast_edit` | `test-driven-development` | `summary`, `files_changed`, `tests_added`, `open_questions`        |
+   | `delivery-builder`     | `delivery_build` → `anthropic/claude-sonnet-5-5:high` | `read`, `grep`, `glob`, `find`, `edit`, `write`, `bash`, `lsp`, `ast_edit` | `test-driven-development` | `summary`, `files_changed`, `tests_added`, `open_questions`        |
    | `delivery-tester`      | `delivery_test` → `anthropic/claude-haiku-5-5:auto`  | `read`, `grep`, `glob`, `bash`                             | —                         | `commands_run`, `passed`, `failures` (with output excerpts)        |
    | `delivery-reviewer`    | `delivery_review` → `anthropic/claude-opus-5-5:xhigh` | `read`, `grep`, `glob`, `bash`                             | `requesting-code-review`  | `verdict`, `findings` (`severity`, `path`, `line`, `issue`, `fix`) |
 
    Result fields are enforced through each agent's `output` schema. Only the
-   implementer holds file-editing tools. Tester and reviewer keep `bash` to
+   builder holds file-editing tools. Tester and reviewer keep `bash` to
    run checks and read diffs, so their read-only role is an instruction, not a
    sandbox; the lead confirms `git status --porcelain` is unchanged after each
    of their runs and stops the run if it is not. The `delivery-` prefix keeps
@@ -101,22 +101,22 @@ with no current requirement for it.
    | - | --------- | ---------------------------------------------------- | ----------------------------------------------------------------------- |
    | 0 | Preflight | lead                                                 | not on the default branch (or the human confirms); base SHA recorded    |
    | 1 | Plan      | lead with human: `brainstorm` → `writing-plans`      | **Gate 1:** human approves `PLAN.md`                                     |
-   | 2 | Build     | `delivery-implementer`, one `PLAN.md` step per message | step result has no open questions; step ticked in `PLAN.md`             |
+   | 2 | Build     | `delivery-builder`, one `PLAN.md` step per message   | step result has no open questions; step ticked in `PLAN.md`             |
    | 3 | Check     | `delivery-tester`, after every step                  | `passed: true`                                                          |
    | 4 | Review    | `delivery-reviewer` and bundled `security-reviewer`, in parallel | no blocker findings, or two review rounds spent                         |
    | 5 | Ship      | lead with human: `git-commit` → `pr-create`          | **Gate 2:** human approves                                              |
 
-   One implementer instance serves every step and receives follow-ups through
+   One builder instance serves every step and receives follow-ups through
    `write agent://<id>`, keeping its context. The lead passes step numbers,
    prior results, and failure excerpts; members read `PLAN.md` and the
    repository themselves. Review covers `git diff <base>` plus the untracked
    files `git status --porcelain` lists. The lead updates `PLAN.md`'s
    `## Status` after each step so an interrupted run can resume from it.
-5. **Failure policy.** Open questions from the implementer stop the run until
+5. **Failure policy.** Open questions from the builder stop the run until
    the human answers, and the answer goes to the same agent. A step that
    cannot be done as planned stops the run for a `PLAN.md` revision. A failing
-   check returns to the implementer at most twice per step, then escalates.
-   Blocker findings return to the implementer for at most two review rounds;
+   check returns to the builder at most twice per step, then escalates.
+   Blocker findings return to the builder for at most two review rounds;
    any that remain go to Gate 2. An agent that fails, aborts, or returns
    schema-invalid output gets one retry on the same agent; a second failure
    stops the run and reports the agent's `agent://` and `history://` links.
