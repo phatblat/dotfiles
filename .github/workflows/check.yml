@@ -35,14 +35,15 @@ permissions:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: arc-ubuntu-24.04-arm64
     timeout-minutes: 30
     env:
       # Repo root IS the home directory; remap HOME so ~ resolves to checkout
       HOME: ${{ github.workspace }}
       # Allowlist only tools needed for linting to prevent mise from attempting
       # to install macOS-only tools (tart, cargo-based tools, etc.) on Linux CI.
-      MISE_ENABLE_TOOLS: "just,shellcheck,ruff,ty,bats,github:nushell/nushell,python,pipx:yamllint,npm:prettier,shfmt,aqua:anordal/shellharden,hk,gitleaks,yq"
+      # node backs npm:prettier; the ARC runner image ships no node/npm.
+      MISE_ENABLE_TOOLS: "just,shellcheck,ruff,ty,bats,github:nushell/nushell,python,node,pipx:yamllint,npm:prettier,shfmt,aqua:anordal/shellharden,hk,gitleaks,yq"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -62,15 +63,12 @@ jobs:
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
           version: "2026.10.2"
-          install_args: "just shellcheck ruff ty bats github:nushell/nushell python pipx:yamllint npm:prettier shfmt aqua:anordal/shellharden hk gitleaks yq"
+          install_args: "just shellcheck ruff ty bats github:nushell/nushell python node pipx:yamllint npm:prettier shfmt aqua:anordal/shellharden hk gitleaks yq"
 
       - name: Install zsh
         if: steps.changed.outputs.relevant == 'true'
         timeout-minutes: 5
-        run: |
-          # Runner-provided Microsoft repositories intermittently return 403.
-          sudo rm -f /etc/apt/sources.list.d/azure-cli.list /etc/apt/sources.list.d/microsoft-prod.list
-          sudo apt-get update && sudo apt-get install -y zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
 
       # Runs `check` minus the macOS-only halves: `just check` also pulls in
       # `test`, whose bats suites need xcrun/xcodebuild/brew and so belong to

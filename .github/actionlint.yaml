@@ -1,0 +1,5 @@
+# Self-hosted runner labels used by .github/workflows. arc-ubuntu-24.04-arm64 is
+# the ARC runner scale set on phatstudio, defined in phatblat/phatlab config/arc.
+self-hosted-runner:
+  labels:
+    - arc-ubuntu-24.04-arm64
