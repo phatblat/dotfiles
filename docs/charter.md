@@ -28,6 +28,7 @@ versus what stays scratch — see
 | Design    | —                  | per-domain docs under `docs/`; no single `docs/design.md`  |
 | Decisions | `docs/decisions/`  | in use                                                     |
 | Roadmap   | —                  | not used yet — no ordered backlog distinct from ad-hoc work |
+| Backlog   | `docs/backlog/`    | in use                                                     |
 | Plan      | —                  | written per branch as `PLAN.md`, deleted at `plan: done`   |
 | Todo      | —                  | written per branch as `TODO.md`, deleted at `todo: clear`  |
 | Events    | —                  | vocabulary recorded in `AGENTS.md`; no `EVENTS.md`         |
