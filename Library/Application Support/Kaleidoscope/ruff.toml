@@ -1,0 +1,3 @@
+# lldb_ksdiff.py is vendored from Kaleidoscope.app
+# (Contents/Resources/Integration/scripts); keep it byte-identical to upstream.
+extend-exclude = ["lldb_ksdiff.py"]
