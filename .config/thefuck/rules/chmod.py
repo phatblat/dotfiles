@@ -1,10 +1,13 @@
+import subprocess
+
+
 def match(command):
     return ('permission denied' in command.stderr.lower()
          or 'EACCES' in command.stderr)
 
 
 def get_new_command(command):
-    return 'sudo {}'.format(command.script)
+    return f'sudo {command.script}'
 
 # Optional:
 enabled_by_default = True

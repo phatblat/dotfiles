@@ -3,16 +3,16 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from harness_skills import discover_skills  # noqa: E402
+from harness_skills import discover_skills
 
 
 class DiscoverSkillsTests(unittest.TestCase):
