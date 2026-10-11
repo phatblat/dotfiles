@@ -70,10 +70,6 @@ jobs:
       # Allowlist only tools needed for the ness tests, matching the narrow
       # tool set convention in check.yml's MISE_ENABLE_TOOLS.
       MISE_ENABLE_TOOLS: "just,rust,sccache"
-      # The ARC runner image exports LC_ALL=en_US.UTF-8 without generating that
-      # locale, so bash warns on stderr and the ness hook corpus compares stderr.
-      LANG: C.UTF-8
-      LC_ALL: C.UTF-8
     steps:
       - uses: actions/checkout@v7
         with:
@@ -91,6 +87,14 @@ jobs:
         with:
           version: "2026.10.2"
           install_args: "just rust sccache"
+
+      # .config/mise/config.toml exports LC_ALL=en_US.UTF-8, which the ARC runner
+      # image does not generate; without it bash warns on stderr and the ness
+      # hook corpus, which compares stderr, mismatches.
+      - name: Generate en_US.UTF-8 locale
+        if: steps.changed.outputs.relevant == 'true'
+        timeout-minutes: 5
+        run: sudo apt-get update && sudo apt-get install -y locales && sudo locale-gen en_US.UTF-8
 
       - name: Run ness tests
         if: steps.changed.outputs.relevant == 'true'
