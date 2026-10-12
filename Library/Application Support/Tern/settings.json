@@ -6,5 +6,9 @@
   "prompt_parts": {
     "palette": "dracula"
   },
-  "prefs_width": 589
+  "prefs_width": 589,
+  "sqlite": {
+    "location_dir": "/Users/phatblat/dev",
+    "browse_font_size": 12
+  }
 }
