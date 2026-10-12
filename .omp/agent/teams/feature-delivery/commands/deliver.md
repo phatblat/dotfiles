@@ -115,16 +115,18 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
 2. `open_questions` non-empty: ask the human each question, send the
    answers to the builder, and repeat from the ref check. If the task
    cannot be done as written, stop and ask the human to revise `PLAN.md`.
-3. Tick the task's checkboxes in `PLAN.md`.
-4. **Check.** Tree snapshot; dispatch `agent: "delivery-tester"` with a
+3. **Check.** Tree snapshot; dispatch `agent: "delivery-tester"` with a
    task naming the `PLAN.md` task just built and `solutionSpace`
    "no fix; run the checks and report". Ref check and tree check.
-5. `passed` false: send the `failures` to the builder, ref check, and
-   repeat step 4. When the third check of this task fails (two fix
+4. `passed` false: send the `failures` to the builder, ref check, and
+   repeat step 3. When the third check of this task fails (two fix
    attempts spent), ask "Revise PLAN.md" / "Steer the builder" (send the
-   human's text to the builder, then repeat step 4) / "End the run".
-6. Set `## Status` to "Task N built and checked" plus anything notable,
-   commit `PLAN.md` (status subject), and re-record the ref baseline.
+   human's text to the builder, then repeat step 3) / "End the run".
+5. `passed` true: only now tick the task's checkboxes in `PLAN.md` (a
+   task that never passed its check must stay unticked so resume does not
+   skip it), set `## Status` to "Task N built and checked" plus anything
+   notable, commit `PLAN.md` (status subject), and re-record the ref
+   baseline.
 
 ## Phase 4 — Review
 
