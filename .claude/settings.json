@@ -71,15 +71,6 @@
       {
         "hooks": [
           {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Notification; fi",
             "timeout": 10,
             "type": "command"
@@ -98,15 +89,6 @@
           }
         ],
         "matcher": "Write|Edit"
-      },
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
       }
     ],
     "PostToolUseFailure": [
@@ -115,15 +97,6 @@
           {
             "command": "bash ~/.claude/hooks/scripts/posttooluse-failure.sh",
             "timeout": 3,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
             "type": "command"
           }
         ]
@@ -171,27 +144,9 @@
           }
         ],
         "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
       }
     ],
     "SessionEnd": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      },
       {
         "hooks": [
           {
@@ -203,27 +158,7 @@
         "matcher": ""
       }
     ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      }
-    ],
     "Stop": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      },
       {
         "hooks": [
           {
@@ -245,28 +180,6 @@
           }
         ],
         "matcher": ""
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "command": "bash ~/.claude/agent-flow/agent-flow-guard.sh",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
       }
     ],
     "UserPromptSubmit": [

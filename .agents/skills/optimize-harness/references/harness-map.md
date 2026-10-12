@@ -9,33 +9,11 @@ counterpart — where to look and what has already been investigated.
 
 - CLI: `claude`. Config root: `~/.claude`.
 - Files worth reading: `~/.claude/settings.json` (hooks, permissions,
-  enabledPlugins), `~/.claude/hooks/scripts/`, `~/.claude/agent-flow/`,
+  enabledPlugins), `~/.claude/hooks/scripts/`,
   `~/.claude/projects/*/settings.json` (project-level allowlists promotable
   to global), `~/.claude/logs/tool-failures.log`.
 - Session store: `~/.claude/projects/*/*.jsonl` — see
   `docs/agent-session-transcripts.md#claude`.
-
-### Known-good hook exception (investigated — do not re-flag)
-
-`agent-flow-guard.sh` is registered on all 9 Claude Code hook events
-(`Notification`, `PostToolUse`, `PostToolUseFailure`, `PreToolUse`,
-`SessionEnd`, `SessionStart`, `Stop`, `SubagentStart`, `SubagentStop`). This
-is **not** redundant duplication — it is required by
-`DittoAgentOrchestrator`'s visualizer contract
-(`~/dev/agents/claude/DittoAgentOrchestrator/src/ditto_agent/orchestrator/hooks.py`,
-`HOOK_EVENTS` tuple and docstring: "configure `~/.claude/settings.json` for
-all 9 Claude Code hook events"). Dropping any event creates a gap in the
-live trace view (e.g. no `SubagentStop` means the visualizer never sees a
-subagent's timeline close). The guard script's `find | grep -q` pre-check
-(dotfiles commits `adf7d`, `4bc1`) already skips spawning `mise exec bun`
-entirely when no live Agent Flow session is listening, so the registration
-breadth does not imply hot-path cost on every firing.
-
-**Rule before flagging any hook as redundant in general**: check
-`git log --oneline -- <hook script path>` in the dotfiles repo for prior
-`optimize:`/`fix:` commits — a hook that looks like duplicated overhead may
-already be a deliberately tuned guard around an external tool's fixed event
-contract.
 
 ### Permission command families investigated
 

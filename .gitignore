@@ -86,7 +86,6 @@
 .claude/.ramp-router-settings.lock
 .claude/.session-stats.json
 .claude/.session-stats.json.tmp.*
-.claude/agent-flow/*.json
 .claude/daemon.lock
 .claude/daemon.status.json
 .claude/daemon/
