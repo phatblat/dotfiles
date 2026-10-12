@@ -2,6 +2,6 @@
 export def --env xconf [] {
     let bh = (^brew --prefix | str trim)
     cd $"($bh)/etc/nginx/"
-    sa
+    try { sa }
     edit ...(glob "**/*.conf")
 }
