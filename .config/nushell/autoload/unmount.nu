@@ -5,7 +5,7 @@ export def unmount [drive_path?: string] {
         error make { msg: "unmount requires a drive_path argument" }
     }
 
-    if not ($drive_path | path exists) {
+    if ($drive_path | path type) != "dir" {
         print --stderr $"Not found: ($drive_path)"
         error make { msg: $"Not found: ($drive_path)" }
     }
