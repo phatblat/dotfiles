@@ -29,13 +29,16 @@ or the index.
   difference stops the run: report the difference, the member, and its
   `agent://<id>` and `history://<id>` links to the human.
 - **Tree snapshot** — immediately before every tester, reviewer, and
-  security-reviewer run, record `git diff HEAD --binary | git hash-object --stdin`,
+  security-reviewer run, record `git diff HEAD --binary | git hash-object --stdin`
+  (tracked files), `git ls-files -z --others --exclude-standard | xargs -0 git hash-object | git hash-object --stdin`
+  (untracked file contents; never `git add -N`, which writes the index),
   `git ls-files --others --exclude-standard`, `git status --porcelain`, and
   `SNAP=$(git stash create)` (empty output means use `SNAP=HEAD`;
   `git stash create` writes no ref).
-- **Tree check** — after those runs, recompute the hash and the untracked
-  list. If either differs, list the changed paths (difference between the
-  two `git status --porcelain` outputs) and ask: "Revert these changes" /
+- **Tree check** — after those runs, recompute both hashes and the
+  untracked list. If any differs, list the changed paths (difference
+  between the two `git status --porcelain` outputs, plus untracked files
+  whose content hash changed) and ask: "Revert these changes" /
   "Keep them" / "End the run". Revert: `git restore --source=$SNAP --worktree -- <changed tracked paths>`
   and delete untracked paths absent from the pre-run list; report any
   pre-existing untracked file that changed, since it cannot be restored.
