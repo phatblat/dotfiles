@@ -61,6 +61,9 @@ local linters = new Mapping<String, Step | Group> {
         // Cursor rewrites these in its own key order on every settings change
         ".cursor/cli-config.json",
         ".cursor/mcp.json",
+        // Tern rewrites this in its own key order, without a final newline,
+        // on every preference change
+        "Library/Application Support/Tern/settings.json",
         // JSONC despite the .json extension
         ".claude.json",
         ".claude/policy-limits.json",
