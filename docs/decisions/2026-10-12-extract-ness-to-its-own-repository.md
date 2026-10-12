@@ -60,9 +60,12 @@ This is a proposal that is **proposed**.
   versions and waits 7 days before proposing any update.
 - `.agents/harness/hooks/safety-policy.json` is rendered by
   `render_safety_policy()` in `scripts/agent-harnesses.py`. A search of the
-  tree finds no reader: the only references are the generator, its manifest,
-  and a name in `.agents/harness/self-improve-policy.json`. `contract.json` is
-  referenced by the shared instructions and stays.
+  tree finds no reader of the file: the only references are the generator and
+  its manifest entry in `generated-paths.json`. The string `safety-policy` in
+  `.agents/harness/self-improve-policy.json` is unrelated: it is an autonomy
+  category in the `never` list (also relied on by `docs/specs/README.md` and
+  `docs/specs/001-self-improvement-loop.md`) and is not a file reference.
+  `contract.json` is referenced by the shared instructions and stays.
 - `ness` has no `--version` flag. mise does not need one; the pin is the
   version.
 
@@ -125,11 +128,13 @@ every harness, measured above.
    no longer a dependency of anything in `just check`, and `rust.just` keeps
    only toolchain maintenance (`install-rust-deps`, `update-rust`,
    `clean-rust`). `.graphifyignore`'s `!/crates/` line goes with the directory.
-7. **`safety-policy.json` is deleted.** `render_safety_policy()` and the
-   rendered file are removed, and the `safety-policy` entry in
-   `self-improve-policy.json` with them. This amends clause 6 of the parity
-   decision, which had `ness` emit the file: with no reader, there is nothing
-   to emit. `contract.json` is unaffected.
+7. **`safety-policy.json` is deleted.** `render_safety_policy()`, the rendered
+   file, and its `generated-paths.json` entry are removed. The `safety-policy`
+   autonomy category in `self-improve-policy.json` stays: it is a different
+   thing that shares the name, and removing it would let the self-improvement
+   loop treat safety-policy changes as something other than human-only. This
+   amends clause 6 of the parity decision, which had `ness` emit the file:
+   with no reader, there is nothing to emit. `contract.json` is unaffected.
 8. **Renovate and urgent bumps.** The `github:phatblat/` package rule from the
    `wt` decision applies (no 7-day wait). An `upgrade-ness` recipe mirrors
    `upgrade-omp`: `mise upgrade --bump ness`, `hk fix` on the mise config, and a
