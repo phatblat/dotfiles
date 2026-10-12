@@ -3,6 +3,11 @@
 #   builtins:  str complete get split row any
 #   externals: dsmemberutil groups
 
+const is_mac_nu = path self is_mac.nu
+source $is_mac_nu
+const is_linux_nu = path self is_linux.nu
+source $is_linux_nu
+
 # Tests whether the current user is a member of the admin group (macOS or Linux)
 export def user_is_admin [] {
     if (is_mac) {
