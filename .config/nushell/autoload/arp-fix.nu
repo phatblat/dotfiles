@@ -1,4 +1,6 @@
 # arp-fix - Disables unicast ARP cache validation
+const user_is_admin_nu = path self user_is_admin.nu
+source $user_is_admin_nu
 export def arp-fix [] {
     if not (user_is_admin) {
         error make { msg: "You must be an admin to run this command." }
