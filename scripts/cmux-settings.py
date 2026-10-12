@@ -194,14 +194,40 @@ def parse_catalog(src: Path) -> list[CatalogKey]:
     return catalog
 
 
+def read_catalog_cache(cache: Path) -> list[CatalogKey] | None:
+    """Return the cached catalog, or None when it is absent or unusable.
+
+    A truncated or hand-edited cache is a miss, not an error: the catalog is
+    fetched again and the bad file replaced, instead of every run raising until
+    someone deletes it by hand.
+    """
+    try:
+        return [CatalogKey(**entry) for entry in json.loads(cache.read_text())]
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
+def write_catalog_cache(cache: Path, entries: list[CatalogKey]) -> None:
+    """Write the cache atomically, so an interrupted run never leaves a partial file."""
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps([asdict(entry) for entry in entries], indent=2) + "\n"
+    fd, tmp_name = tempfile.mkstemp(dir=cache.parent, prefix=f".{cache.name}.")
+    try:
+        with os.fdopen(fd, "w") as handle:
+            handle.write(payload)
+        os.replace(tmp_name, cache)
+    except BaseException:
+        Path(tmp_name).unlink(missing_ok=True)
+        raise
+
+
 def load_catalog(version: str, sha: str) -> dict[str, CatalogKey]:
     cache_root = Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache")
     cache = (
         cache_root / "cmux-settings" / f"catalog{CATALOG_FORMAT}-{version}-{sha}.json"
     )
-    if cache.exists():
-        entries = [CatalogKey(**entry) for entry in json.loads(cache.read_text())]
-    else:
+    entries = read_catalog_cache(cache)
+    if entries is None:
         print(f"Fetching the cmux v{version} settings catalog...", file=sys.stderr)
         with tempfile.TemporaryDirectory() as tmp:
             src = Path(tmp) / "cmux"
@@ -236,10 +262,7 @@ def load_catalog(version: str, sha: str) -> dict[str, CatalogKey]:
                     f"tag v{version} is {head[:9]}, but the installed cmux was built from {sha}"
                 )
             entries = parse_catalog(src)
-        cache.parent.mkdir(parents=True, exist_ok=True)
-        cache.write_text(
-            json.dumps([asdict(entry) for entry in entries], indent=2) + "\n"
-        )
+        write_catalog_cache(cache, entries)
     return {entry.defaults_key: entry for entry in entries}
 
 

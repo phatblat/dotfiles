@@ -453,6 +453,52 @@ class LoadCatalogTests(unittest.TestCase):
         self.assertEqual(catalog, {"aKey": parsed[0]})
         self.assertEqual(cached, [{"path": "app.a", "defaults_key": "aKey"}])
 
+    def test_unusable_cache_is_a_miss_that_is_refetched_and_replaced(self) -> None:
+        def run(command, **_kwargs):
+            stdout = "abc1234999\n" if "rev-parse" in command else ""
+            return subprocess.CompletedProcess(command, 0, stdout=stdout, stderr="")
+
+        parsed = [cs.CatalogKey("app.a", "aKey")]
+        bad_caches = {
+            "truncated": '[{"path": "app.a", "defaults_',
+            "wrong shape": '{"path": "app.a"}',
+            "missing field": '[{"path": "app.a"}]',
+            "not a list of objects": "[1, 2]",
+            "empty file": "",
+        }
+        for label, text in bad_caches.items():
+            with self.subTest(label), tempfile.TemporaryDirectory() as directory:
+                name = f"catalog{cs.CATALOG_FORMAT}-1.2-abc1234.json"
+                cache = Path(directory) / "cmux-settings" / name
+                cache.parent.mkdir()
+                cache.write_text(text)
+                with (
+                    patch.dict(os.environ, {"XDG_CACHE_HOME": directory}),
+                    patch.object(cs.subprocess, "run", side_effect=run),
+                    patch.object(cs, "parse_catalog", return_value=parsed),
+                ):
+                    catalog, _, _ = run_quiet(cs.load_catalog, "1.2", "abc1234")
+                self.assertEqual(catalog, {"aKey": parsed[0]})
+                self.assertEqual(
+                    json.loads(cache.read_text()),
+                    [{"path": "app.a", "defaults_key": "aKey"}],
+                )
+
+    def test_interrupted_cache_write_keeps_the_old_file_and_leaves_no_temp(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            cache = Path(directory) / "cmux-settings" / "catalog.json"
+            cache.parent.mkdir()
+            cache.write_text("old contents")
+            with (
+                patch.object(cs.os, "replace", side_effect=KeyboardInterrupt),
+                self.assertRaises(KeyboardInterrupt),
+            ):
+                cs.write_catalog_cache(cache, [cs.CatalogKey("app.a", "aKey")])
+            self.assertEqual(cache.read_text(), "old contents")
+            self.assertEqual([p.name for p in cache.parent.iterdir()], [cache.name])
+
 
 class InstalledVersionTests(unittest.TestCase):
     def version(self, output: str):
