@@ -39,8 +39,8 @@
     "shared-agent-harness": {
       "enabled": true,
       "installed_version": "",
-      "skills": 25,
-      "tree_sha256": "901cd0e186415a7704ac6f542a653fae1f0cbd7f05d43557910b3efa44afafdf",
+      "skills": 26,
+      "tree_sha256": "1887702d724eb8f97732cc51bf01b3cc123104ca6ad7956ec4c247ea483b7891",
       "version": "1.0.0"
     }
   }
