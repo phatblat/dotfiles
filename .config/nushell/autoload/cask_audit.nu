@@ -7,6 +7,6 @@ export def cask_audit [token: string] {
     if $info.exit_code != 0 {
         error make { msg: $"Cask ($token) does not exist." }
     }
-    ^brew audit --cask $token --download
+    try { ^brew audit --cask $token --download }
     ^brew style --cask $token --fix
 }
