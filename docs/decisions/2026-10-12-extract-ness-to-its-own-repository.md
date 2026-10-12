@@ -125,11 +125,19 @@ every harness, measured above.
    `installed_copy_matches_corpus` as the proof that the installed binary and
    the shims agree. The `ness` CI job in `agent-harness-parity.yml` becomes a
    shim-test job that installs `ness` through mise and needs no Rust.
-5. **Control plane.** `CONTROL_PLANE_FRAGMENTS` drops `/crates/ness/` and gains
-   a fragment for the `ness` checkout's path on this machine, so an agent in
-   any harness still cannot edit the policy source. The checkout location is
-   fixed in the plan, under `~/dev/` per this repository's layout, and the
-   fragment names it exactly.
+5. **Control plane.** The checkout fragment is a precondition of the
+   extraction, not a follow-up: before `crates/ness` is removed, this
+   repository adds `CONTROL_PLANE_FRAGMENTS` entries (each with its `9xx`
+   corpus case, as `policy.rs` requires) for the `ness` checkout's path on this
+   machine and for `.config/mise/config.toml`, and only then drops
+   `/crates/ness/`. The checkout covers the policy source. The mise config
+   joins the control plane because after extraction its pin and `postinstall`
+   decide which binary runs as the guard, so an agent that can edit it can
+   swap the guard. The cost is that no agent edits any mise pin directly;
+   Renovate and the human-run `upgrade-*` recipes are unaffected. The checkout
+   location is fixed in the plan, under `~/dev/` per this repository's layout,
+   and the fragment names it exactly. There is no window in which the policy
+   source or its install pin is unprotected.
 6. **Toolchain leaves `check`.** With both crates gone, `install-rust-deps` is
    no longer a dependency of anything in `just check`, and `rust.just` keeps
    only toolchain maintenance (`install-rust-deps`, `update-rust`,
