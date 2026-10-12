@@ -67,16 +67,17 @@ the colon. Never push before Gate 2.
 1. Empty request: ask for a feature description, then continue with it.
 2. `git rev-parse --show-toplevel` fails: say /deliver needs a git
    repository and stop.
-3. Default branch: `git symbolic-ref --short refs/remotes/origin/HEAD`
+3. `git status --porcelain` non-empty: ask "Include these existing changes
+   in the delivery" / "Stop".
+4. `PLAN.md` exists at the repository root: read it and ask "Resume this
+   plan" / "Stop". Resume skips Phase 1 and step 5, staying on the current
+   branch, and continues Phase 2 at the first task with unchecked boxes.
+5. Default branch: `git symbolic-ref --short refs/remotes/origin/HEAD`
    without its `origin/` prefix; if that fails, `main` when it exists, else
    `master`. On the default branch, ask: "Create branch feat/<slug>" (slug:
    kebab-case of the request, at most 40 characters) / "Continue on
-   <default branch>" / "Stop". Create with `git switch -c`.
-4. `git status --porcelain` non-empty: ask "Include these existing changes
-   in the delivery" / "Stop".
-5. `PLAN.md` exists at the repository root: read it and ask "Resume this
-   plan" / "Stop". Resume skips Phase 1 and continues Phase 2 at the first
-   task with unchecked boxes.
+   <default branch>" / "Stop". Create with `git switch -c`. This runs after
+   every other stop-capable step so a "Stop" never leaves an empty branch.
 6. Record `BASE=$(git rev-parse HEAD)` and the ref baseline.
 
 ## Phase 1 — Plan (Gate 1)
