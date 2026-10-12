@@ -3,18 +3,18 @@ export def --wrapped search [...args] {
     if (is_linux) {
         print "Snap"
         print "-----------------------------------------------------------------"
-        ^snap find ...$args
+        try { ^snap find ...$args }
 
         print "APT"
         print "-----------------------------------------------------------------"
-        ^apt search ...$args
+        try { ^apt search ...$args }
     } else if (is_mac) {
         print "Mac App Store"
         print "-----------------------------------------------------------------"
-        ^mas search ...$args
+        try { ^mas search ...$args }
     }
 
     print "Homebrew"
     print "-----------------------------------------------------------------"
-    ^brew search ...$args
+    try { ^brew search ...$args }
 }
