@@ -1,4 +1,6 @@
 # rubygems - Installs and updates Ruby gems (converted from 💎_rubygems)
+const user_is_admin_nu = path self user_is_admin.nu
+source $user_is_admin_nu
 export def rubygems [] {
     print "💎 Updating Ruby Gems"
     print ""
