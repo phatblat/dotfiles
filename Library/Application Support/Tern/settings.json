@@ -7,8 +7,14 @@
     "palette": "dracula"
   },
   "prefs_width": 589,
+  "git": {
+    "external_editor": "/opt/homebrew/bin/zed --wait",
+    "show_commit_author": true
+  },
   "sqlite": {
     "location_dir": "/Users/phatblat/dev",
-    "browse_font_size": 12
+    "browse_font_size": 12,
+    "image_preview": true,
+    "indent_compact": true
   }
 }
