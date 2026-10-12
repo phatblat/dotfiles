@@ -123,6 +123,10 @@ with no current requirement for it.
    repository themselves. Review covers `git diff <base>` plus the untracked
    files `git status --porcelain` lists. The lead updates `PLAN.md`'s
    `## Status` after each step so an interrupted run can resume from it.
+   `PLAN.md` is the one tracked change made before Gate 2: the lead commits it
+   at Gate 1 and after each `## Status` update, in commits that touch only
+   `PLAN.md`, and re-records the `HEAD` and `git for-each-ref` baseline after
+   each such commit. Code changes stay uncommitted until Gate 2.
 5. **Failure policy.** Open questions from the builder stop the run until
    the human answers, and the answer goes to the same agent. A step that
    cannot be done as planned stops the run for a `PLAN.md` revision. A failing
@@ -131,7 +135,8 @@ with no current requirement for it.
    any that remain go to Gate 2. An agent that fails, aborts, or returns
    schema-invalid output gets one retry on the same agent; a second failure
    stops the run and reports the agent's `agent://` and `history://` links.
-6. **Out of scope.** No commits before Gate 2, no `TODO.md` cache, no parallel
+6. **Out of scope.** No commits before Gate 2 other than the lead's `PLAN.md`
+   commits (clause 4), no `TODO.md` cache, no parallel
    build steps or isolated worktrees, no automatic merge, no advisor or
    `WATCHDOG.yml`, no extension hooks or custom tools.
 7. **Generator untouched.** `scripts/agent-harnesses.py` and the harness
