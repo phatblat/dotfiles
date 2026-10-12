@@ -15,11 +15,9 @@ export def ruby_upgrade [] {
     $gem_err | save -f $tmpfile
 
     print "Looping over gem errors"
-    for line in (open $tmpfile | lines) {
-        let pristine_cmd = ($line | split row "Try: " | last)
-        if not ($pristine_cmd | is-empty) {
-            ^sh -c $pristine_cmd
-        }
+    for line in (open $tmpfile | lines | where {|l| $l | str contains 'Try: '}) {
+        let pristine_cmd = ($line | split row 'Try: ' | last | str trim)
+        try { ^sh -c $pristine_cmd }
     }
     ^rm $tmpfile
 
