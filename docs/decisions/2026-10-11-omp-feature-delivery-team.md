@@ -94,7 +94,15 @@ with no current requirement for it.
    | ---------------------- | ------------------------------------------- | ---------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------ |
    | `delivery-builder`     | `delivery_build` → `anthropic/claude-sonnet-5-5:high` | `read`, `grep`, `glob`, `find`, `edit`, `write`, `bash`, `lsp`, `ast_edit` | `test-driven-development` | `summary`, `files_changed`, `tests_added`, `open_questions`        |
    | `delivery-tester`      | `delivery_test` → `anthropic/claude-haiku-5-5:auto`  | `read`, `grep`, `glob`, `bash`                             | —                         | `commands_run`, `passed`, `failures` (with output excerpts)        |
-   | `delivery-reviewer`    | `delivery_review` → `anthropic/claude-opus-5-5:xhigh` | `read`, `grep`, `glob`, `bash`                             | `requesting-code-review`  | `verdict`, `findings` (`severity`, `path`, `line`, `issue`, `fix`) |
+   | `delivery-reviewer`    | `delivery_review` → `anthropic/claude-opus-5-5:xhigh` | `read`, `grep`, `glob`, `bash`                             | —                         | `verdict`, `findings` (`severity`, `path`, `line`, `issue`, `fix`) |
+
+   `delivery-reviewer` loads no skill: `requesting-code-review` addresses the
+   party asking for a review (it says to dispatch a reviewer and act on the
+   findings), and the `code-reviewer.md` template it cites does not exist in
+   this repository or in `~/.agents/skills`. The reviewer's own prompt states
+   its criteria — correctness against the `PLAN.md` step, test adequacy,
+   error handling, security-sensitive changes, and consistency with
+   surrounding code — and maps them onto its result fields.
 
    Result fields are enforced through each agent's `output` schema. Only the
    builder holds file-editing tools, and every member's prompt forbids
@@ -114,7 +122,7 @@ with no current requirement for it.
    | 1 | Plan      | lead with human: `brainstorm` → `writing-plans`      | **Gate 1:** human approves `PLAN.md`                                     |
    | 2 | Build     | `delivery-builder`, one `PLAN.md` step per message   | step result has no open questions; step ticked in `PLAN.md`             |
    | 3 | Check     | `delivery-tester`, after every step                  | `passed: true`                                                          |
-   | 4 | Review    | `delivery-reviewer` and bundled `security-reviewer`, in parallel | no blocker findings, or two review rounds spent                         |
+   | 4 | Review    | lead loads `requesting-code-review`, then dispatches `delivery-reviewer` and bundled `security-reviewer` in parallel | no blocker findings, or two review rounds spent                         |
    | 5 | Ship      | lead with human: `git-commit` → `pr-create`          | **Gate 2:** human approves                                              |
 
    One builder instance serves every step and receives follow-ups through
