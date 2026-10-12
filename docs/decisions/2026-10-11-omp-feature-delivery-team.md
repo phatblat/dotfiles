@@ -160,6 +160,14 @@ with no current requirement for it.
    human. Nothing is pushed before Gate 2, `PLAN.md` commits included; on
    approval `pr-create` pushes the branch, and on rejection the commits stay
    local for the human to amend, reset, or discard.
+   After Gate 2 approval and before `pr-create`, the lead deletes `PLAN.md`
+   in a commit of its own, so the plan never reaches the base branch. The
+   three kinds of `PLAN.md` commit use the target repository's event
+   vocabulary when it has one — in a Conventional Docs repository,
+   `plan: start <id>` at Gate 1, a plain `docs:` commit for each `## Status`
+   update, and `plan: done <id>` for the deletion, where `<id>` is the
+   decision the plan implements — and otherwise `docs: add plan`,
+   `docs: update plan status`, and `docs: remove plan`.
 5. **Failure policy.** Every escalation and stop goes to the human in the
    main session. Open questions from the builder pause the run until the
    human answers, and the answer goes to the same agent. A step that cannot
