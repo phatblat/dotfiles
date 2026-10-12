@@ -15,7 +15,7 @@ to pull request, with the human approving at fixed gates.
 
 ## Status
 
-This is a proposal that is **awaiting review**.
+This is a proposal that is **accepted**.
 
 ## Assumptions and Constraints
 
