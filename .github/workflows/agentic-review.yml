@@ -16,7 +16,7 @@ permissions:
 jobs:
   review:
     if: github.event_name == 'pull_request'
-    runs-on: [self-hosted, spark]
+    runs-on: arc-ubuntu-24.04-arm64
     timeout-minutes: 30
     steps:
       # Config loads from the PR head, not the merge commit (spec §12.4).
@@ -69,7 +69,7 @@ jobs:
       github.event.issue.pull_request &&
       contains(github.event.comment.body, '/agentic-review') &&
       github.event.comment.user.type != 'Bot'
-    runs-on: [self-hosted, spark]
+    runs-on: arc-ubuntu-24.04-arm64
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
