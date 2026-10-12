@@ -7,6 +7,9 @@
     "palette": "dracula"
   },
   "prefs_width": 589,
+  "file_tree": {
+    "open": true
+  },
   "git": {
     "external_editor": "/opt/homebrew/bin/zed --wait",
     "show_commit_author": true
