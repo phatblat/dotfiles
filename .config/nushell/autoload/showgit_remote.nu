@@ -3,6 +3,6 @@ export def showgit_remote [] {
     for git_dir in (showgit | lines) {
         let dir = ($git_dir | path dirname)
         print $dir
-        ^grep url $"($dir)/.git/config"
+        try { ^grep url $"($dir)/.git/config" }
     }
 }
