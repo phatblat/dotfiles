@@ -9,6 +9,6 @@ export def xccheck [] {
     )
     for xcode_version in $xcodes {
         print $"Checking integrity of ($xcode_version)"
-        ^spctl --assess --verbose $xcode_version
+        try { ^spctl --assess --verbose $xcode_version }
     }
 }
