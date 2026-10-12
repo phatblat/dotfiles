@@ -15,7 +15,8 @@ hs.hotkey.bind({}, "F12", function()
   end
 end)
 
--- Cmd-Tab to an app whose windows are all minimized: restore one
+-- When an app is activated by any means (Cmd-Tab, Dock click, notification)
+-- and all of its standard windows are minimized, restore one of them
 appWatcher = hs.application.watcher.new(function(name, event, app)
   if event ~= hs.application.watcher.activated or not app then return end
   local wins = app:allWindows()
@@ -23,7 +24,9 @@ appWatcher = hs.application.watcher.new(function(name, event, app)
   for _, w in ipairs(wins) do
     if w:isStandard() and not w:isMinimized() and w:isVisible() then return end
   end
-  -- every standard window is minimized: restore the most recent one
+  -- Every standard window is minimized: restore the first one allWindows()
+  -- lists. That order is not guaranteed to be recency (ranking them would need
+  -- hs.window.filter's focus history).
   for _, w in ipairs(wins) do
     if w:isStandard() and w:isMinimized() then w:unminimize(); w:focus(); return end
   end
