@@ -1,4 +1,10 @@
 # version - Manage version numbers for an Xcode project
+const version_build_nu = path self version_build.nu
+source $version_build_nu
+const version_market_nu = path self version_market.nu
+source $version_market_nu
+const version_current_nu = path self version_current.nu
+source $version_current_nu
 export def version [
     action?: string = "*",
     market_version?: string,
