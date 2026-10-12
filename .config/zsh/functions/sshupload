@@ -29,5 +29,5 @@ curl \
     --request POST \
     --url "https://api.github.com/user/keys" \
     --header "Authorization: token $token" \
-    --data "{\"title\":\"$title\",\"key\":\"$key\"" \
+    --data "{\"title\":\"$title\",\"key\":\"$key\"}" \
     --verbose
