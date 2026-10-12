@@ -25,6 +25,39 @@ local linters = new Mapping<String, Step | Group> {
     check = "scripts/git-guard-test-identity.sh"
   }
 
+  // Generated harness artifacts and OMP profile renders must be current
+  // before the linters judge them (json-format, prettier-yaml, yamllint all
+  // cover generator output). Declared second with exclusive = true so it runs
+  // alone, after the identity guard and before every other step. No glob:
+  // the generator reads .claude/commands, .codex/agents, .agents/skills, the
+  // capability registry, and the drift ledger, so it is a whole-project
+  // command (~0.5s when nothing changed). Outputs land outside the staged
+  // set; `stage` lists their roots so hk, not the command, writes the index.
+  // Skip once with HK_SKIP_STEPS=generate.
+  ["generate"] {
+    exclusive = true
+    check =
+      """
+      python3 scripts/agent-harnesses.py validate
+      scripts/generate-omp-profiles.sh --check
+      """
+    fix = "just generate"
+    stage =
+      List(
+        ".agents/harness/**",
+        ".claude/skills/**",
+        ".codex/skills/**",
+        ".config/crush/**",
+        ".config/opencode/**",
+        ".grok/**",
+        ".omp/agent/**",
+        ".omp/profiles/**",
+        ".pi/agent/**",
+        "docs/harness/**",
+        "docs/agent-harnesses.*",
+      )
+  }
+
   ["gitignore-sort"] {
     glob = ".gitignore"
     check = "scripts/sort-gitignore < {{files}} | diff --brief - {{files}}"
