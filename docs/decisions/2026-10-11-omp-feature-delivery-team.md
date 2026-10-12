@@ -127,14 +127,19 @@ with no current requirement for it.
    at Gate 1 and after each `## Status` update, in commits that touch only
    `PLAN.md`, and re-records the `HEAD` and `git for-each-ref` baseline after
    each such commit. Code changes stay uncommitted until Gate 2.
-5. **Failure policy.** Open questions from the builder stop the run until
-   the human answers, and the answer goes to the same agent. A step that
-   cannot be done as planned stops the run for a `PLAN.md` revision. A failing
-   check returns to the builder at most twice per step, then escalates.
-   Blocker findings return to the builder for at most two review rounds;
-   any that remain go to Gate 2. An agent that fails, aborts, or returns
-   schema-invalid output gets one retry on the same agent; a second failure
-   stops the run and reports the agent's `agent://` and `history://` links.
+5. **Failure policy.** Every escalation and stop goes to the human in the
+   main session. Open questions from the builder pause the run until the
+   human answers, and the answer goes to the same agent. A step that cannot
+   be done as planned stops the run for a `PLAN.md` revision. A failing check
+   returns to the builder at most twice per step; a third failure escalates to
+   the human, who fixes the plan, steers the builder, or ends the run. Blocker
+   findings return to the builder for at most two review rounds; after each
+   round's fixes `delivery-tester` reruns, under the same two-retry limit,
+   before the next review round. Blockers that remain after the second round
+   do not stop the run: they are presented at Gate 2 for the human to accept,
+   fix, or abandon. An agent that fails, aborts, or returns schema-invalid
+   output gets one retry on the same agent; a second failure stops the run and
+   reports the agent's `agent://` and `history://` links.
 6. **Out of scope.** No commits before Gate 2 other than the lead's `PLAN.md`
    commits (clause 4), no `TODO.md` cache, no parallel
    build steps or isolated worktrees, no automatic merge, no advisor or
