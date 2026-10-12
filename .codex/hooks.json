@@ -29,16 +29,6 @@
       {
         "hooks": [
           {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
-            "statusMessage": "Agent Flow Guard",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex PostToolUse; fi",
             "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex PostToolUse) else (paseo hooks codex PostToolUse)) else (exit /b 0)",
             "statusMessage": "Paseo",
@@ -87,16 +77,6 @@
       {
         "hooks": [
           {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
-            "statusMessage": "Agent Flow Guard",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex PreToolUse; fi",
             "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex PreToolUse) else (paseo hooks codex PreToolUse)) else (exit /b 0)",
             "statusMessage": "Paseo",
@@ -107,29 +87,7 @@
         "matcher": ""
       }
     ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
-            "statusMessage": "Agent Flow Guard",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      }
-    ],
     "Stop": [
-      {
-        "hooks": [
-          {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
-            "statusMessage": "Agent Flow Guard",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      },
       {
         "hooks": [
           {
@@ -151,30 +109,6 @@
           }
         ],
         "matcher": ""
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
-            "statusMessage": "Agent Flow Guard",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/agent-flow-guard.sh'",
-            "statusMessage": "Agent Flow Guard",
-            "timeout": 4,
-            "type": "command"
-          }
-        ]
       }
     ],
     "UserPromptSubmit": [
