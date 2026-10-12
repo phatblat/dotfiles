@@ -70,9 +70,9 @@ def snapshot() -> dict:
             manifest = read_json(directory / "plugin.json")
             entry = {
                 "version": manifest.get("version", ""),
-                "installed_version": read_json(directory / "installed_version.json").get(
-                    "version", ""
-                ),
+                "installed_version": read_json(
+                    directory / "installed_version.json"
+                ).get("version", ""),
                 "enabled": enabled.get(directory.name, {}).get("enabled", True),
                 "skills": sum(1 for _ in directory.glob("skills/**/SKILL.md")),
             }
@@ -94,7 +94,9 @@ def diff(old: dict, new: dict) -> list[str]:
             for key in sorted(old_p[name].keys() | new_p[name].keys()):
                 before, after = old_p[name].get(key), new_p[name].get(key)
                 if before != after:
-                    problems.append(f"{name}.{key}: lock={before!r} installed={after!r}")
+                    problems.append(
+                        f"{name}.{key}: lock={before!r} installed={after!r}"
+                    )
     return problems
 
 
@@ -103,7 +105,9 @@ def adapter_drift() -> list[str]:
         return [f"adapter missing: {ADAPTER}"]
     installed = PLUGINS_DIR / ADAPTER_PLUGIN
     if not installed.is_dir():
-        return [f"{ADAPTER_PLUGIN}: adapter not installed (run: just agy-plugins-install)"]
+        return [
+            f"{ADAPTER_PLUGIN}: adapter not installed (run: just agy-plugins-install)"
+        ]
     if tree_sha256(ADAPTER) != tree_sha256(installed):
         return [
             (
@@ -133,7 +137,9 @@ def cmd_install(_: argparse.Namespace) -> int:
         print("agy is not on PATH", file=sys.stderr)
         return 1
     if not ADAPTER.is_dir():
-        print(f"adapter missing: {ADAPTER} (run: just harness-generate)", file=sys.stderr)
+        print(
+            f"adapter missing: {ADAPTER} (run: just harness-generate)", file=sys.stderr
+        )
         return 1
     result = subprocess.run(["agy", "plugin", "install", str(ADAPTER)], check=False)
     return result.returncode
