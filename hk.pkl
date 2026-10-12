@@ -17,23 +17,32 @@ amends "package://github.com/jdx/hk/releases/download/v2.5.0/hk@2.5.0#/Config.pk
 
 min_hk_version = "2.5.0"
 
-local linters = new Mapping<String, Step | Group> {
+local guard = new Mapping<String, Step | Group> {
   // Declared first with exclusive = true, so it runs alone before every other
   // step in every hook.
   ["guard-test-identity"] {
     exclusive = true
     check = "scripts/git-guard-test-identity.sh"
   }
+}
 
-  // Generated harness artifacts and OMP profile renders must be current
-  // before the linters judge them (json-format, prettier-yaml, yamllint all
-  // cover generator output). Declared second with exclusive = true so it runs
-  // alone, after the identity guard and before every other step. No glob:
-  // the generator reads .claude/commands, .codex/agents, .agents/skills, the
-  // capability registry, and the drift ledger, so it is a whole-project
-  // command (~0.5s when nothing changed). Outputs land outside the staged
-  // set; `stage` lists their roots so hk, not the command, writes the index.
-  // Skip once with HK_SKIP_STEPS=generate.
+// Pre-commit only (not in `linters`, which the `fix` and `check` hooks share):
+// `just format` / `hk fix` from an editor hook must never rewrite working-tree
+// files outside the file being formatted, and `just check` already validates
+// generated artifacts through `harness-check`.
+//
+// Generated harness artifacts and OMP profile renders must be current
+// before the linters judge them (json-format, prettier-yaml, yamllint all
+// cover generator output). Declared with exclusive = true so it runs alone,
+// after the identity guard and before every other pre-commit step. No glob:
+// the generator reads .claude/commands, .codex/agents, .agents/skills, the
+// capability registry, and the drift ledger, so it is a whole-project
+// command. Measured 2026-10-12 with nothing to regenerate: `validate` 2.4s +
+// `generate-omp-profiles.sh --check` 0.2s for the check, 0.7s for
+// `just generate`. Outputs land outside the staged
+// set; `stage` lists their roots so hk, not the command, writes the index.
+// Skip once with HK_SKIP_STEPS=generate.
+local generate = new Mapping<String, Step | Group> {
   ["generate"] {
     exclusive = true
     check =
@@ -57,7 +66,9 @@ local linters = new Mapping<String, Step | Group> {
         "docs/agent-harnesses.*",
       )
   }
+}
 
+local linters = new Mapping<String, Step | Group> {
   ["gitignore-sort"] {
     glob = ".gitignore"
     check = "scripts/sort-gitignore < {{files}} | diff --brief - {{files}}"
@@ -359,7 +370,7 @@ hooks = new {
     // stash method.
     stash = "git"
     stage = true
-    steps = linters + gitleaksProtect
+    steps = guard + generate + linters + gitleaksProtect
   }
   // `hk fix` / `hk check`, driven by `just format` / `just lint`. stage =
   // false so a bulk format or a single-file `hk fix` from an editor hook never
@@ -367,11 +378,11 @@ hooks = new {
   ["fix"] {
     fix = true
     stage = false
-    steps = linters
+    steps = guard + linters
   }
   ["check"] {
     stage = false
-    steps = linters + gitleaksTree
+    steps = guard + linters + gitleaksTree
   }
 }
 
