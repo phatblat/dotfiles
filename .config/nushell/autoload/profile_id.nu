@@ -5,5 +5,5 @@ export def profile_id [profile: path] {
     }
     ^grep -a -A 2 UUID $profile
     | ^grep string
-    | ^sed -e 's/<string>//' -e 's/<\/string>//' -e 's/[ \t]//'
+    | ^sed -e 's/<string>//' -e 's/<\/string>//' -e "s/[ \t]//"
 }
