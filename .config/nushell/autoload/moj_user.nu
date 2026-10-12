@@ -11,7 +11,7 @@ export def moj_user [] {
             if ($user | str starts-with "f") {
                 print "🚶"
             } else {
-                let first = ($user | str substring 0..0)
+                let first = ($user | str substring --grapheme-clusters 0..0)
                 print $"($first)❓"
             }
         }
