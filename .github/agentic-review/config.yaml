@@ -32,4 +32,10 @@ review:
     # Advisory check, so red must mean something. Every dotfiles daily PR
     # carries agent-config churn that classifies as `source`, and the
     # default fail_on: nit would put a red X on essentially all of them.
+    #
+    # Cost: config-guard's blockers are the check that flags this very
+    # setting, and with the pinned agentic-review a verifier lens can still
+    # filter them as ungrounded (fixed upstream in agentic-review#3; bump
+    # the pin to get it). Until then, a change to this directory needs a
+    # human review; do not rely on the check to catch it.
     fail_on: blocker
