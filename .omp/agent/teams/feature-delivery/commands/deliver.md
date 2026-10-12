@@ -81,7 +81,10 @@ the colon. Never push before Gate 2.
    `git ls-files --error-unmatch PLAN.md` fails (never committed, so never
    approved), go to Phase 1 step 4 (Gate 1) and then its step 5 (the start
    commit). Otherwise continue Phase 2 at the first task with unchecked
-   boxes.
+   boxes, or go straight to Phase 4 when every task is ticked. A resumed
+   run has no builder agent id: dispatch a fresh `DeliveryBuilder` when
+   one is first needed and tell it earlier uncommitted work may already be
+   in the tree.
 5. Default branch: `git symbolic-ref --short refs/remotes/origin/HEAD`
    without its `origin/` prefix; if that fails, `main` when it exists, else
    `master`. On the default branch, ask: "Create branch feat/<slug>" (slug:
