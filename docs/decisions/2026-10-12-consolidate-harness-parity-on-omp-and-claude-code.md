@@ -143,19 +143,15 @@ every skill edit, which is the cost this decision exists to remove.
    runs `just generate` before every lint step and stages the output roots it
    declares. This landed with this decision. No OMP hook, Tern hook, or
    LaunchAgent regenerates files.
-5. **wt.** `crates/wt` moves to its own repository, `phatblat/wt`, with GitHub
-   release binaries for `darwin-arm64` and `linux-x64`. This repository pins it
-   as `"github:phatblat/wt"` in `.config/mise/config.toml`, deletes
-   `crates/wt` and the `wt-build`, `wt-install`, and `wt-test` recipes, and
-   keeps the shell wrappers and `tests/wt-wrapper.bats` against the installed
-   binary.
-6. **ness.** `crates/ness` stays until clause 2 has landed and the fallback shim
-   set is final. It then moves to `phatblat/ness` on the same terms as `wt`,
-   with two additions: the hook-corpus tests split so the `ness` repository
-   tests verdicts and this repository tests its shims against the installed
-   binary (the existing `installed_copy_matches_corpus` pattern), and `ness`
-   emits `safety-policy.json` itself so the policy has one source instead of
-   `src/policy.rs` plus `render_safety_policy()` in Python.
+5. **wt.** `crates/wt` moves to its own repository first, installed back
+   through mise's `github:` backend and bumped by Renovate. The terms are in
+   [2026-10-12-extract-wt-to-its-own-repository](./2026-10-12-extract-wt-to-its-own-repository.md).
+6. **ness.** `crates/ness` follows once clause 2 has landed and `wt` has shipped
+   a release, with the shim-corpus tests split by ownership and the shims still
+   executing `~/.local/bin/ness` by absolute path. The terms are in
+   [2026-10-12-extract-ness-to-its-own-repository](./2026-10-12-extract-ness-to-its-own-repository.md),
+   which also deletes `safety-policy.json` rather than having `ness` emit it,
+   since nothing reads the file.
 7. **Shells.** Zsh is frozen: no new functions, no requirement that a Nushell
    function has a Zsh twin, and the coverage table in `docs/functions.md` is
    replaced by a one-line statement of the freeze. Existing Zsh functions,
