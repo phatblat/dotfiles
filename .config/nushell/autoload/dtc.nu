@@ -1,4 +1,4 @@
 # dtc - Git difftool on cached/staged changes
-export def dtc [...args] {
+export def --wrapped dtc [...args] {
     ^git difftool --cached ...$args
 }

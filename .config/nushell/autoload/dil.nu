@@ -1,4 +1,4 @@
 # dil - List docker images
-export def dil [...args] {
+export def --wrapped dil [...args] {
     ^docker images ...$args
 }

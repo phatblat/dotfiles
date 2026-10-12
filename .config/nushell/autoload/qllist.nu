@@ -1,4 +1,4 @@
 # qllist - List QuickLook plugins
-export def qllist [...args] {
+export def --wrapped qllist [...args] {
     ^qlmanage -m plugins ...$args
 }

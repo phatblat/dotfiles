@@ -1,4 +1,4 @@
 # dlf - Alias of dlogs
-export def dlf [...args] {
-    ^dlogs ...$args
+export def --wrapped dlf [...args] {
+    dlogs ...$args
 }

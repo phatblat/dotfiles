@@ -1,4 +1,4 @@
 # dt - Git difftool shorthand
-export def dt [...args] {
+export def --wrapped dt [...args] {
     ^git difftool ...$args
 }

@@ -42,7 +42,7 @@ export def --env xcode [] {
 
     print ""
     print "Installed:"
-    ^xclist
+    xclist
 
     print ""
     print "Themes"

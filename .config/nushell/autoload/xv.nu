@@ -1,4 +1,4 @@
 # xv - Prints Xcode version information
-export def xv [...args] {
+export def --wrapped xv [...args] {
     ^xcodebuild -version ...$args
 }

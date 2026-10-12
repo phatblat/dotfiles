@@ -1,4 +1,4 @@
 # dnuke - Remove unused docker images not just dangling ones
-export def dnuke [...args] {
+export def --wrapped dnuke [...args] {
     ^docker system prune --all --force ...$args
 }

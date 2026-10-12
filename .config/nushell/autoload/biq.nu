@@ -1,4 +1,4 @@
 # biq - Quiet bundle install
-export def biq [...args] {
-    ^bi --quiet ...$args
+export def --wrapped biq [...args] {
+    bi --quiet ...$args
 }

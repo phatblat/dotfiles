@@ -1,5 +1,5 @@
 # search - Search for CLI tools through various package managers
-export def search [...args] {
+export def --wrapped search [...args] {
     if (is_linux) {
         print "Snap"
         print "-----------------------------------------------------------------"

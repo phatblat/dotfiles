@@ -1,4 +1,4 @@
 # dw - Git diff with word diff
-export def dw [...args] {
+export def --wrapped dw [...args] {
     ^git diff --word-diff ...$args
 }

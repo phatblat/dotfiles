@@ -1,4 +1,4 @@
 # dcr - Remove one or more running docker containers
-export def dcr [...args] {
+export def --wrapped dcr [...args] {
     ^docker container rm --force ...$args
 }

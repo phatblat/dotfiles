@@ -1,4 +1,4 @@
 # dps - List docker containers
-export def dps [...args] {
+export def --wrapped dps [...args] {
     ^docker ps ...$args
 }

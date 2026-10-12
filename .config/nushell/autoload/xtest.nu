@@ -1,4 +1,4 @@
 # xtest - Validate nginx config
-export def xtest [...args] {
+export def --wrapped xtest [...args] {
     ^sudo nginx -t ...$args
 }

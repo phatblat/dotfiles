@@ -1,3 +1,3 @@
-export def merge [...args] {
+export def --wrapped merge [...args] {
     ^git merge ...$args
 }

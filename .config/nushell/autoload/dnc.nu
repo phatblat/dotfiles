@@ -1,4 +1,4 @@
 # dnc - Create a docker network
-export def dnc [...args] {
+export def --wrapped dnc [...args] {
     ^docker network create ...$args
 }

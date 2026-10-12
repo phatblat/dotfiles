@@ -1,4 +1,4 @@
 # dib - Build an image from a Dockerfile
-export def dib [...args] {
+export def --wrapped dib [...args] {
     ^docker image build ...$args
 }

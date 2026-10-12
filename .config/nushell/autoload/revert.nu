@@ -1,4 +1,4 @@
 # revert - Git revert
-export def revert [...args] {
+export def --wrapped revert [...args] {
     ^git revert ...$args
 }

@@ -1,4 +1,4 @@
 # dcstop - Stop one or more running docker containers
-export def dcstop [...args] {
+export def --wrapped dcstop [...args] {
     ^docker container stop ...$args
 }

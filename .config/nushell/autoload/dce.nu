@@ -1,4 +1,4 @@
 # dce - Executes a command in a running container
-export def dce [...args] {
+export def --wrapped dce [...args] {
     ^docker container exec --interactive --tty ...$args
 }

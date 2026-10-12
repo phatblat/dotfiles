@@ -1,4 +1,4 @@
 # xstop - Stops nginx
-export def xstop [...args] {
+export def --wrapped xstop [...args] {
     ^sudo nginx -s stop ...$args
 }

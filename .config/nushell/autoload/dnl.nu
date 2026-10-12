@@ -1,4 +1,4 @@
 # dnl - List docker networks
-export def dnl [...args] {
+export def --wrapped dnl [...args] {
     ^docker network ls ...$args
 }

@@ -1,4 +1,4 @@
 # dss - Scale one or multiple replicated docker services
-export def dss [...args] {
+export def --wrapped dss [...args] {
     ^docker service scale ...$args
 }

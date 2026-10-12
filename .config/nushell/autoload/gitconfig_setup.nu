@@ -3,7 +3,7 @@ export def gitconfig_setup [email?: string, name?: string] {
     print "🗄 Git configuration"
     print ""
 
-    let config_dir = ($nu.home-path | path join ".config" "git")
+    let config_dir = ($nu.home-dir | path join ".config" "git")
     mkdir $config_dir
     let global_config = ($config_dir | path join "config")
     if not ($global_config | path exists) {
@@ -11,9 +11,9 @@ export def gitconfig_setup [email?: string, name?: string] {
     }
 
     let have_both = (
-        (try { ^git config --file $global_config user.name | ignore; true } catch { false })
+        (try { ^git config --file $global_config user.name o> /dev/null; true } catch { false })
         and
-        (try { ^git config --file $global_config user.email | ignore; true } catch { false })
+        (try { ^git config --file $global_config user.email o> /dev/null; true } catch { false })
     )
 
     if $have_both {

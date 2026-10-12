@@ -1,4 +1,4 @@
 # branch - Manage git branches
-export def branch [...args] {
+export def --wrapped branch [...args] {
     ^git branch ...$args
 }

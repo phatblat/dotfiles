@@ -1,4 +1,4 @@
 # dvr - Remove one or more volumes
-export def dvr [...args] {
+export def --wrapped dvr [...args] {
     ^docker volume rm ...$args
 }

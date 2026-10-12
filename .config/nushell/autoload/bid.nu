@@ -1,5 +1,5 @@
 # bid - Get bundle ID for app name
-export def bid [...args: string] {
+export def --wrapped bid [...args: string] {
     let input = ($args | str join " ")
     let shortname = ($input | ^sed -E 's/\.app$//' | ^sed 's/\///g' | str trim)
     let loc1 = $"/Applications/($shortname).localized/($shortname).app"

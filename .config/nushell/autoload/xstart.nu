@@ -1,5 +1,5 @@
 # xstart - Starts nginx
-export def xstart [...args] {
+export def --wrapped xstart [...args] {
     ^sudo nginx ...$args
     xstatus
 }

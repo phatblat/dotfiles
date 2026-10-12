@@ -1,4 +1,4 @@
 # dnr - Remove one or more docker networks
-export def dnr [...args] {
+export def --wrapped dnr [...args] {
     ^docker network rm ...$args
 }

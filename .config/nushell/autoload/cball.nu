@@ -1,4 +1,4 @@
 # cball - Build all platforms using Carthage
-export def cball [...args] {
+export def --wrapped cball [...args] {
     ^carthage build --platform all ...$args
 }

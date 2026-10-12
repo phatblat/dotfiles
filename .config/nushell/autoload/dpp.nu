@@ -1,4 +1,4 @@
 # dpp - List docker containers managed by docker compose
-export def dpp [...args] {
+export def --wrapped dpp [...args] {
     ^docker compose ps ...$args
 }

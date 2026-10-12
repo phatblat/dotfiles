@@ -1,4 +1,4 @@
 # dvi - Display detailed information on one or more docker volumes
-export def dvi [...args] {
+export def --wrapped dvi [...args] {
     ^docker volume inspect ...$args
 }

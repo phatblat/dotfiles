@@ -1,4 +1,4 @@
 # bef - Short alias for executing Fastlane through Bundler
-export def bef [...args] {
+export def --wrapped bef [...args] {
     ^bundle exec fastlane ...$args
 }

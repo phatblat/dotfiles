@@ -1,4 +1,4 @@
 # ldot - List hidden files
-export def ldot [...args] {
+export def --wrapped ldot [...args] {
     ^ls -ld .* ...$args
 }

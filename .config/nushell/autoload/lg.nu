@@ -1,4 +1,4 @@
 # Launch lazygit
-export def lg [...args] {
+export def --wrapped lg [...args] {
     ^lazygit ...$args
 }
