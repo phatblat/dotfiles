@@ -1,5 +1,9 @@
 # textmate - Manage TextMate bundles (converted from zsh textmate)
-export def --env textmate [] {
+# Dependencies: tmbundleplist (sorts after this file, so it is sourced explicitly)
+const tmbundleplist_nu = path self tmbundleplist.nu
+source $tmbundleplist_nu
+
+export def textmate [] {
     print "TextMate - https://github.com/textmate/textmate"
     print ""
 
