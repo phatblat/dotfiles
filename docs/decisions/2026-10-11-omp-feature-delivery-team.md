@@ -15,7 +15,7 @@ to pull request, with the human approving at fixed gates.
 
 ## Status
 
-This is a proposal that is **accepted**.
+This is a proposal that is **awaiting review**.
 
 ## Assumptions and Constraints
 
@@ -37,8 +37,12 @@ This is a proposal that is **accepted**.
 - A worktree of this repository is not the `~/.omp` omp reads, so pre-merge
   verification points omp at the worktree package explicitly.
 - The default omp profile's `~/.omp/agent/config.yml` is the only config this
-  decision changes; the `casper`, `subconscious`, and `baseten` profiles keep
-  their own.
+  decision targets. The `casper`, `subconscious`, and `baseten` profiles'
+  `config.yml` files are renders (`just generate-omp-profiles`) of the main
+  config merged with each profile's `overrides.yml`: maps merge, scalars and
+  arrays replace, and the main config's `modelRoles` never carry over. A main
+  `extensions:` array therefore reaches every profile, without the
+  `delivery_*` roles, unless an `overrides.yml` replaces it.
 
 ## Argument
 
@@ -74,7 +78,10 @@ with no current requirement for it.
    `!.omp/agent/teams/` re-include in `.gitignore`. It contains `package.json`,
    `commands/deliver.md`, and one `agents/<name>.md` per member. An empty
    `index.ts` is added only if verification shows an extension root requires
-   an entry module.
+   an entry module. Each profile's `overrides.yml` sets `extensions: []`, so
+   the rendered profile configs do not load the team; a profile opts in later
+   by adding its own `extensions:` entry and `delivery_*` `modelRoles` to its
+   `overrides.yml`.
 2. **Lead.** `/deliver <feature description>` (`commands/deliver.md`, with
    `description` and `argument-hint` frontmatter, input via `$ARGUMENTS`)
    turns the main session into the lead. It loads existing skills by name and
@@ -161,11 +168,14 @@ output:
   each member headlessly on a scratch repository and confirm its resolved
   model role, schema-valid result, and (for tester and reviewer) absence of
   file-editing tools; then run `/deliver` end to end on a scratch repository
-  for a one-function feature, including one forced test failure. `hk check` and
-  `scripts/agent-harnesses.py generate --check` must stay green.
+  for a one-function feature, including one forced test failure. `hk check`
+  (including its `omp-profiles` step), `just generate-omp-profiles` with a
+  clean diff afterwards, and `scripts/agent-harnesses.py generate --check`
+  must stay green.
 - After merge, one `/deliver` dry run from the real `$HOME` checkout confirms
   the registered `extensions:` path and `modelRoles` entries.
-- Named profiles do not get the team until their own `config.yml` opts in.
+- Named profiles do not get the team: their rendered `config.yml` carries
+  `extensions: []` from `overrides.yml` until a profile opts in there.
 
 ## Positions
 
