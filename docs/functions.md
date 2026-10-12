@@ -248,7 +248,6 @@ This document tracks the implementation status of all shell functions and aliase
 | `github-pat-refresh`        | ✅  | ✅  | ➖   | Extend fine-grained GitHub PAT expiration by N days  |
 | `ginit`                     | ✅  | ➖  | ➖   | Git init                                             |
 | `git-plist-filter`          | ✅  | ✅  | ➖   | Converts plist data to XML format                    |
-| `git-skip`                  | ✅  | ➖  | ➖   | Nushell alias of `skip` — avoids builtin collision   |
 | `git_bundle_create`         | ✅  | ✅  | ➖   | Creates a git bundle containing any changes in the   |
 | `git_clean`                 | ✅  | ✅  | ➖   | Clean non-tracked files from working tree            |
 | `git_inside_repo`           | ✅  | ✅  | ➖   | Detects whether $PWD is inside git repo              |
@@ -271,6 +270,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `gradle_wrapper`            | ✅  | ➖  | ➖   | Installs gradle wrapper                             |
 | `gradle_debug`              | ✅  | ✅  | ➖   | Toggles Gradle remote debugging on/off               |
 | `gradledebug`               | ➖  | ➖  | ➖   | Zsh function                                         |
+| `gskip`                     | ✅  | ➖  | ➖   | Skip current commit in git rebase/cherry-pick/am     |
 | `gst`                       | ✅  | ➖  | ➖   | Git status                                           |
 | `gs`                        | ✅  | ➖  | ➖   | Git status short format                              |
 | `gta`                       | ✅  | ➖  | ➖   | Alias for gradle tasks --all                         |
@@ -471,7 +471,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `show`                      | ✅  | ✅  | ➖   | Git show                                             |
 | `signing_cert_details`      | ✅  | ✅  | ➖   | Prints signing certificate details                   |
 | `simclean`                  | ✅  | ✅  | ➖   | Deletes all unavailable simulators                   |
-| `skip`                      | ➖  | ✅  | ➖   | Skip current commit in git rebase/cherry-pick (nu: use `git-skip`, name collides with builtin) |
+| `skip`                      | ➖  | ✅  | ➖   | Skip current commit in git rebase/cherry-pick/am (nu: use `gskip`; name collides with builtin) |
 | `sortdiff`                  | ✅  | ➖  | ➖   | Filter and sort a git diff showing only the change   |
 | `spotlight_reload`          | ✅  | ✅  | ➖   | Reloads Spotlight triggering re-index                |
 | `sshcopypub`                | ✅  | ✅  | ➖   | Copy SSH public key to pasteboard/clipboard          |
