@@ -136,9 +136,11 @@ every harness, measured above.
    amends clause 6 of the parity decision, which had `ness` emit the file:
    with no reader, there is nothing to emit. `contract.json` is unaffected.
 8. **Renovate and urgent bumps.** The `github:phatblat/` package rule from the
-   `wt` decision applies (no 7-day wait). An `upgrade-ness` recipe mirrors
-   `upgrade-omp`: `mise upgrade --bump ness`, `hk fix` on the mise config, and a
-   commit, for a policy fix that cannot wait for the next Renovate run.
+   `wt` decision applies (no 7-day wait, any-time schedule; `0.x` still never
+   automerges, so each bump arrives as a pull request). An `upgrade-ness`
+   recipe mirrors `upgrade-omp`: `mise upgrade --bump ness`, `hk fix` on the
+   mise config, and a commit, for a policy fix that cannot wait for the next
+   Renovate run.
 
 ## Positions
 
