@@ -1,4 +1,4 @@
 # format-patch - Git format-patch wrapper
-export def format-patch [...args] {
+export def --wrapped format-patch [...args] {
     ^git format-patch ...$args
 }

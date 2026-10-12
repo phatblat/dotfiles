@@ -1,4 +1,4 @@
 # ls-files - Git ls-files
-export def ls-files [...args] {
+export def --wrapped ls-files [...args] {
     ^git ls-files ...$args
 }

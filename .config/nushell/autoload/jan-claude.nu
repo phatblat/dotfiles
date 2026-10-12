@@ -1,5 +1,5 @@
 # jan-claude - Launch Claude Code against Jan's local API server
-export def jan-claude [...args: string] {
+export def --wrapped jan-claude [...args: string] {
     with-env {
         ANTHROPIC_BASE_URL: "http://127.0.0.1:1337"
         ANTHROPIC_AUTH_TOKEN: "jan"

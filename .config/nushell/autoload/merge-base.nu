@@ -1,4 +1,4 @@
 # merge-base - Git merge-base wrapper
-export def merge-base [...args] {
+export def --wrapped merge-base [...args] {
     ^git merge-base ...$args
 }

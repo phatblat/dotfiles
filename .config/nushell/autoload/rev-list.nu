@@ -1,4 +1,4 @@
 # rev-list - Git rev-list
-export def rev-list [...args] {
+export def --wrapped rev-list [...args] {
     ^git rev-list ...$args
 }
