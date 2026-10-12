@@ -18,17 +18,15 @@ export def version_build [] {
 
     mut project_versions = []
     for index in 0..10 {
-        let config = (try {
-            ^$plistbuddy -c $"Print :objects:($build_config_list):buildConfigurations:($index)" $project_file | str trim
-        } catch { "" })
+        let r = (do { ^$plistbuddy -c $"Print :objects:($build_config_list):buildConfigurations:($index)" $project_file } | complete)
+        let config = (if $r.exit_code == 0 { $r.stdout | str trim } else { "" })
         if ($config | is-empty) { break }
-        let ver = (try {
-            ^$plistbuddy -c $"Print :objects:($config):buildSettings:($build_setting_name)" $project_file | str trim
-        } catch { "" })
+        let r = (do { ^$plistbuddy -c $"Print :objects:($config):buildSettings:($build_setting_name)" $project_file } | complete)
+        let ver = (if $r.exit_code == 0 { $r.stdout | str trim } else { "" })
         if ($ver | is-not-empty) {
             $project_versions = ($project_versions | append $ver)
         }
     }
 
-    $project_versions | uniq | first
+    $project_versions | uniq | sort | first
 }
