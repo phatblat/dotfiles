@@ -12,7 +12,7 @@ export def sync [] {
 
     pull
 
-    let remote_name = (remote_for_current_branch)
+    let remote_name = (^git config $"branch.(current_branch).remote" | str trim)
     prune $remote_name
 
     bra
