@@ -61,6 +61,13 @@ jobs:
       # (spec §12.4). issue_comment: config loads from the default branch,
       # never the PR head. A fork PR controls its own config.yaml, and a
       # non-blank models[].endpoint there would receive the API key.
+      #
+      # Accepted risk on pull_request: a same-repo branch's config can do
+      # the same, since the action does not stop a PR-head endpoint from
+      # overriding the workflow's. Fork PRs get no secrets under this
+      # trigger, so only someone who can push a branch here (owner or
+      # collaborator) can exploit it. Closing it needs agentic-review to
+      # ignore PR-head endpoints; until then, review config changes by hand.
       # Sparse: only .github/agentic-review/** is read from disk; every
       # file body comes from the GitHub API.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
