@@ -4,11 +4,11 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 545 unique functions/aliases across 3 shells**
+**Total: 546 unique functions/aliases across 3 shells**
 
 **Shell Statistics:**
 
-- Nushell: 494 aliases/functions (primary shell)
+- Nushell: 495 aliases/functions (primary shell)
 - Zsh: 384 functions (daily fallback)
 - Bash: 13 functions (minimal usage)
 
@@ -16,7 +16,7 @@ This document tracks the implementation status of all shell functions and aliase
 
 - Implemented in all 3 shells: 12
 - Implemented in 2 shells: 368
-- Implemented in 1 shell only: 119
+- Implemented in 1 shell only: 120
 
 **Functions Implemented in Multiple Shells:** 380
 
@@ -508,6 +508,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `textmate`                  | ✅  | ✅  | ➖   | Manage TextMate bundles                              |
 | `theirs`                    | ✅  | ✅  | ➖   | When checking out paths from the index, check out    |
 | `title`                     | ✅  | ✅  | ➖   | Sets window/tab title                                |
+| `tmbundleplist`             | ✅  | ➖  | ➖   | Generate a minimal TextMate bundle Info.plist        |
 | `tminstall`                 | ➖  | ➖  | ➖   | Zsh function                                         |
 | `tmsnapshots`               | ✅  | ➖  | ➖   | List Time Machine Snapshots                          |
 | `todo`                      | ✅  | ➖  | ➖   | Edit rebase todo file                                |
