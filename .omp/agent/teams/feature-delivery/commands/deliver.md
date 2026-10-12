@@ -129,18 +129,24 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
 ## Phase 4 — Review
 
 1. Read `skill://requesting-code-review`.
-2. Tree snapshot. In one `task` call dispatch `agent: "delivery-reviewer"`
-   (task: base `BASE`, `PLAN.md`, every task heading) and
-   `agent: "security-reviewer"` (task: review the uncommitted change
-   relative to `BASE` — `git diff BASE` plus untracked files — for
-   vulnerabilities). Ref check and tree check.
+2. Tree snapshot. List `CHANGED`: `git diff --name-only BASE` plus
+   `git ls-files --others --exclude-standard`. In one `task` call dispatch
+   `agent: "delivery-reviewer"` (task: base `BASE`, `PLAN.md`, every task
+   heading) and `agent: "security-reviewer"` (task: review the files in
+   `CHANGED`, listed in the task, for vulnerabilities; it has no `bash`, so
+   it reads the files directly and cannot run git). Ref check and tree
+   check.
 3. Normalize every finding to severity, path, line, issue, fix:
-   `delivery-reviewer` entries as returned; `security-reviewer` entries
-   map severity `critical`/`high` → `blocker`, `medium` → `major`, `low` →
-   `minor`, `informational` → `nit`, path and line from the first
-   `locations` entry, issue from `title` and `summary`, fix from its text
-   or "see security finding". Blocker findings are exactly the `blocker`
-   entries.
+   `delivery-reviewer` entries as returned. `security-reviewer` returns
+   `findings` (absent or empty means none) with `severity`, `title`,
+   `summary`, `locations` (each `path` and `start_line`), and optional
+   `remediation`: map severity `critical`/`high` → `blocker`, `medium` →
+   `major`, `low` → `minor`, `informational` → `nit`; path and line from the
+   first `locations` entry's `path` and `start_line`; issue from `title`
+   and `summary`; fix from `remediation`, else "see security finding". A
+   missing field or unrecognized severity never drops a finding: use path
+   `unknown`, line 0, severity `major`, and the raw finding text as the
+   issue. Blocker findings are exactly the `blocker` entries.
 4. No blockers: go to Phase 5. Otherwise send the blockers to the builder
    (ref check), rerun the Phase 3 check under the same two-retry limit,
    and run a second review round from step 2. Blockers left after the
