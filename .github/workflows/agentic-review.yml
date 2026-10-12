@@ -5,7 +5,7 @@ name: agentic-review
 on:
   pull_request:
     types: [opened, ready_for_review, reopened, edited]
-    branches: [main]
+    branches: [main, weekend]
   issue_comment:
     types: [created]
 
