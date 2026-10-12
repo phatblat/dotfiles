@@ -3,5 +3,5 @@ export def filesize [file?: string] {
     if ($file | is-empty) {
         error make { msg: "Usage: filesize filename" }
     }
-    ls $file | get 0.size
+    ls -D $file | get 0.size | into int
 }
