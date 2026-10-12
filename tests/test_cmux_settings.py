@@ -380,7 +380,7 @@ DefaultsKey<Bool>(id: "app.b", userDefaultsKey: "b")
         catalog, _, _ = self.parse(section)
         self.assertEqual(catalog, [cs.CatalogKey("app.b", "b")])
 
-    def test_entry_does_not_borrow_the_next_entrys_defaults_key(self) -> None:
+    def test_entry_does_not_borrow_the_next_entries_defaults_key(self) -> None:
         section = """
 DefaultsKey<Bool>(id: "app.a", userFacing: true)
 DefaultsKey<Bool>(id: "app.b", userDefaultsKey: "b")
