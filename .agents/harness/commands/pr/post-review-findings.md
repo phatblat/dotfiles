@@ -100,31 +100,35 @@ The body format depends on `suggestion_type`:
 
 #### Post the comment
 
-Capture the created comment's URL — Step 5 links to it from the daily note.
+The harness bash guard scans the **entire** command string, including inline JSON and heredoc bodies, and denies words such as `truncate` or `shred` ("Dangerous command pattern detected") even when they are only review prose. Never put the comment body in the shell command. Write the JSON payload to a temp file with your file-write tool (not `echo`, `printf`, or a heredoc), then pass the file to `gh`.
 
-```bash
-body="<body from above>"
-resp=$(gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
-  --method POST \
-  --input - <<EOF
+Write `$payload` (for example `${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>.json`) containing:
+
+```json
 {
-  "body": $(echo "$body" | jq -Rs '.'),
+  "body": "<body from above, JSON-escaped>",
   "commit_id": "<commit_sha>",
   "path": "<path>",
   "line": <line>,
   "side": "RIGHT"
 }
-EOF
-)
-comment_url=$(printf '%s' "$resp" | jq -r '.html_url')
 ```
 
-If the `gh api` call returns an error (e.g. line not in diff), fall back to a general PR comment and capture its URL instead:
+Capture the created comment's URL — Step 5 links to it from the daily note.
 
 ```bash
-comment_url=$(gh pr comment <pr_number> --body "<description>
+resp=$(gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
+  --method POST \
+  --input "$payload")
+comment_url=$(printf '%s' "$resp" | jq -r '.html_url')
+rm -f "$payload"
+```
 
-_Originally at: <url>_")
+If the `gh api` call returns an error (e.g. line not in diff), fall back to a general PR comment and capture its URL instead. Write the fallback text (description plus `_Originally at: <url>_`) to a temp file the same way:
+
+```bash
+comment_url=$(gh pr comment <pr_number> --body-file "$fallback_body")
+rm -f "$fallback_body"
 ```
 
 Record `{number, description, path, line, comment_url, kind}` for each finding (`kind` = `suggestion` | `inline` | `general`) — Step 5 uses these. Report success or fallback for each finding.
