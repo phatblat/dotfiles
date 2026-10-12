@@ -140,13 +140,16 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
 ## Phase 4 — Review
 
 1. Read `skill://requesting-code-review`.
-2. Tree snapshot. List `CHANGED`: `git diff --name-only BASE` plus
-   `git ls-files --others --exclude-standard`. In one `task` call dispatch
-   `agent: "delivery-reviewer"` (task: base `BASE`, `PLAN.md`, every task
-   heading) and `agent: "security-reviewer"` (task: review the files in
-   `CHANGED`, listed in the task, for vulnerabilities; it has no `bash`, so
-   it reads the files directly and cannot run git). Ref check and tree
-   check.
+2. Tree snapshot. List `CHANGED`: `git diff --name-only BASE -- ':!PLAN.md'`
+   plus `git ls-files --others --exclude-standard` without `PLAN.md`
+   (`PLAN.md` is process scaffolding, not part of the change). In one
+   `task` call dispatch `agent: "delivery-reviewer"` (task: base `BASE`,
+   `PLAN.md`, every task heading, and that the diff to review is
+   `git diff BASE -- ':!PLAN.md'`, `PLAN.md` being scaffolding to read for
+   requirements only) and `agent: "security-reviewer"` (task: review the
+   files in `CHANGED`, listed in the task, for vulnerabilities; it has no
+   `bash`, so it reads the files directly and cannot run git). Ref check
+   and tree check.
 3. Normalize every finding to severity, path, line, issue, fix:
    `delivery-reviewer` entries as returned. `security-reviewer` returns
    `findings` (absent or empty means none) with `severity`, `title`,
@@ -169,7 +172,7 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
 1. Read `skill://git-commit` and follow it to group the uncommitted changes
    into local commits. Do not push.
 2. **Gate 2:** show `git log --oneline BASE..HEAD`,
-   `git diff --stat BASE..HEAD`, and every remaining finding, blockers
+   `git diff --stat BASE..HEAD -- ':!PLAN.md'`, and every remaining finding, blockers
    first. Ask "Approve — remove PLAN.md and open the PR" / "Request
    changes" / "Stop here (keep local commits)".
    - **Request changes:** send the human's change to the builder, then run
