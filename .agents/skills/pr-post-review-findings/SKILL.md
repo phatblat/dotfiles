@@ -46,6 +46,7 @@ Post findings from the most recent review or code-review output in the conversat
    Then post it and capture the created comment URL:
 
    ```bash
+   payload="${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>.json"
    resp=$(gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
      --method POST \
      --input "$payload")
@@ -58,7 +59,9 @@ Post findings from the most recent review or code-review output in the conversat
 5. If inline posting fails because the line is not in the diff, fall back to a general PR comment. Write the text (`<description>`, a blank line, `_Originally at: <url>_`) to a temp file the same way as step 4, then:
 
    ```bash
+   fallback_body="${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>-fallback.md"
    gh pr comment <pr_number> --body-file "$fallback_body"
+   rm -f "$fallback_body"
    ```
 
    Capture the fallback comment URL when possible. If `gh pr comment` prints only a success line, query recent PR comments or use the PR URL as a last-resort link. Record `kind=general`.

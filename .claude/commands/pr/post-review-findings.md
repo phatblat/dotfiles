@@ -2,7 +2,7 @@
 description: Post code review findings from /review as inline PR comments
 model: sonnet
 argument_hint: "[finding numbers, e.g. 1,2,4] — omit to post all"
-allowed-tools: Bash(gh:*), Bash(git:*), Bash(date:*), Bash(grep:*), Read, Edit
+allowed-tools: Bash(gh:*), Bash(git:*), Bash(date:*), Bash(grep:*), Bash(jq:*), Bash(rm:*), Read, Write, Edit
 category: workflow
 ---
 
@@ -115,6 +115,7 @@ Write `$payload` (for example `${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>.json`)
 Capture the created comment's URL — Step 5 links to it from the daily note.
 
 ```bash
+payload="${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>.json"
 resp=$(gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
   --method POST \
   --input "$payload")
@@ -125,6 +126,7 @@ rm -f "$payload"
 If the `gh api` call returns an error (e.g. line not in diff), fall back to a general PR comment and capture its URL instead. Write the fallback text (description plus `_Originally at: <url>_`) to a temp file the same way:
 
 ```bash
+fallback_body="${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>-fallback.md"
 comment_url=$(gh pr comment <pr_number> --body-file "$fallback_body")
 rm -f "$fallback_body"
 ```
