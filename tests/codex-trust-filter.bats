@@ -20,6 +20,12 @@ hook_state() {
   printf '[hooks.state."%s"]\ntrusted_hash = "%s"\n' "$1" "$2"
 }
 
+# inode <file>: the inode number. `ls -i` is POSIX; `stat` flags differ between
+# BSD and GNU (on GNU, `stat -f` reports the filesystem, not the file).
+inode() {
+  ls -i "$1" | awk '{print $1}'
+}
+
 @test "mask: replaces a real hook hash with the zero sentinel" {
   hook_state "hooks.json:stop:0:0" "$HASH_A" > "$BATS_TEST_TMPDIR/in.toml"
 
@@ -122,11 +128,11 @@ hook_state() {
 @test "mask: leaves the cache file untouched when nothing changed" {
   hook_state "hooks.json:stop:0:0" "$HASH_A" > "$BATS_TEST_TMPDIR/in.toml"
   "$MASK" < "$BATS_TEST_TMPDIR/in.toml" > /dev/null
-  before=$(stat -f %i "$CODEX_HOOK_TRUST_CACHE" 2> /dev/null || stat -c %i "$CODEX_HOOK_TRUST_CACHE")
+  before=$(inode "$CODEX_HOOK_TRUST_CACHE")
 
   "$MASK" < "$BATS_TEST_TMPDIR/in.toml" > /dev/null
 
-  after=$(stat -f %i "$CODEX_HOOK_TRUST_CACHE" 2> /dev/null || stat -c %i "$CODEX_HOOK_TRUST_CACHE")
+  after=$(inode "$CODEX_HOOK_TRUST_CACHE")
   [ "$before" = "$after" ]
 }
 
