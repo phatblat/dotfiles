@@ -154,9 +154,10 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
    `git diff --stat BASE..HEAD`, and every remaining finding, blockers
    first. Ask "Approve — remove PLAN.md and open the PR" / "Request
    changes" / "Stop here (keep local commits)".
-   - **Request changes:** send the human's change to the builder, run one
-     Phase 3 check and one Phase 4 review round, repeat step 1 (new commits
-     on top), and ask Gate 2 again.
+   - **Request changes:** send the human's change to the builder, then run
+     one Phase 3 check with the human's requested change as the tester's
+     check context in place of a `PLAN.md` task, and one Phase 4 review
+     round; repeat step 1 (new commits on top), and ask Gate 2 again.
    - **Stop:** report the local commits and end; nothing is pushed.
    - **Approve:** commit the removal of `PLAN.md` (done subject), then
      read `skill://pr-create` and follow it. That is the run's first push.
