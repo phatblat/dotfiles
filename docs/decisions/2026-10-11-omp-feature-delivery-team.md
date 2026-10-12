@@ -15,7 +15,7 @@ to pull request, with the human approving at fixed gates.
 
 ## Status
 
-This is a proposal that is **accepted**.
+This is a proposal that is **awaiting review**.
 
 ## Assumptions and Constraints
 
@@ -112,12 +112,14 @@ with no current requirement for it.
    builder holds file-editing tools, and every member's prompt forbids
    commits, pushes, stashes, branch switches, and other ref writes. All three
    keep `bash` under forced `yolo`, so that is an instruction, not a sandbox;
-   the lead enforces it. After every member run, builder included, the lead
-   compares `git rev-parse HEAD` and `git for-each-ref` — which covers
+   the lead enforces it. After every subagent run the lead dispatches —
+   builder, tester, reviewer, and the bundled `security-reviewer`, whose
+   bundled tool list has no `bash` but which is checked the same way — the
+   lead compares `git rev-parse HEAD` and `git for-each-ref` — which covers
    `refs/stash` and the remote-tracking refs a push updates — against the
-   Phase 0 baseline, and for tester and reviewer also requires an unchanged
-   `git status --porcelain`; any difference stops the run. The `delivery-`
-   prefix keeps names clear of user and bundled agents.
+   Phase 0 baseline, and for tester and both reviewers also requires an
+   unchanged `git status --porcelain`; any difference stops the run. The
+   `delivery-` prefix keeps names clear of user and bundled agents.
 4. **Phases.**
 
    | # | Phase     | Actor                                                | Exit condition                                                          |
