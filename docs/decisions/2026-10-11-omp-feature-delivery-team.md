@@ -143,7 +143,7 @@ with no current requirement for it.
    | 2 | Build     | `delivery-builder`, one `PLAN.md` step per message   | step result has no open questions; step ticked in `PLAN.md`             |
    | 3 | Check     | `delivery-tester`, after every step                  | `passed: true`                                                          |
    | 4 | Review    | lead loads `requesting-code-review`, then dispatches `delivery-reviewer` and bundled `security-reviewer` in parallel | no blocker findings, or two review rounds spent                         |
-   | 5 | Ship      | lead with human: `git-commit` → `pr-create`          | **Gate 2:** human approves                                              |
+   | 5 | Ship      | lead: `git-commit` (local commits only) → **Gate 2** → `pr-create` | **Gate 2:** human approves the local commits and any remaining findings; only then does `pr-create` push |
 
    One builder instance serves every step and receives follow-ups through
    `write agent://<id>`, keeping its context. The lead passes step numbers,
@@ -151,10 +151,15 @@ with no current requirement for it.
    repository themselves. Review covers `git diff <base>` plus the untracked
    files `git status --porcelain` lists. The lead updates `PLAN.md`'s
    `## Status` after each step so an interrupted run can resume from it.
-   `PLAN.md` is the one tracked change made before Gate 2: the lead commits it
+   `PLAN.md` is the one tracked change made before Phase 5: the lead commits it
    at Gate 1 and after each `## Status` update, in commits that touch only
    `PLAN.md`, and re-records the `HEAD` and `git for-each-ref` baseline after
-   each such commit. Code changes stay uncommitted until Gate 2.
+   each such commit. Code changes stay uncommitted until Phase 5. In Phase 5
+   the lead runs `git-commit` to group the changes into local commits, then
+   holds Gate 2 with those commits and any remaining findings in front of the
+   human. Nothing is pushed before Gate 2, `PLAN.md` commits included; on
+   approval `pr-create` pushes the branch, and on rejection the commits stay
+   local for the human to amend, reset, or discard.
 5. **Failure policy.** Every escalation and stop goes to the human in the
    main session. Open questions from the builder pause the run until the
    human answers, and the answer goes to the same agent. A step that cannot
@@ -168,8 +173,9 @@ with no current requirement for it.
    fix, or abandon. An agent that fails, aborts, or returns schema-invalid
    output gets one retry on the same agent; a second failure stops the run and
    reports the agent's `agent://` and `history://` links.
-6. **Out of scope.** No commits before Gate 2 other than the lead's `PLAN.md`
-   commits (clause 4), no `TODO.md` cache, no parallel
+6. **Out of scope.** No commits before Phase 5 other than the lead's
+   `PLAN.md` commits, and no push before Gate 2 (clause 4), no `TODO.md`
+   cache, no parallel
    build steps or isolated worktrees, no automatic merge, no advisor or
    `WATCHDOG.yml`, no extension hooks or custom tools.
 7. **Generator untouched.** `scripts/agent-harnesses.py` and the harness
