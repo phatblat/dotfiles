@@ -23,9 +23,9 @@ appWatcher = hs.application.watcher.new(function(name, event, app)
   for _, w in ipairs(wins) do
     if w:isStandard() and not w:isMinimized() and w:isVisible() then return end
   end
-  -- every window is minimized: restore the most recent one
+  -- every standard window is minimized: restore the most recent one
   for _, w in ipairs(wins) do
-    if w:isMinimized() then w:unminimize(); w:focus(); return end
+    if w:isStandard() and w:isMinimized() then w:unminimize(); w:focus(); return end
   end
 end)
 appWatcher:start()
