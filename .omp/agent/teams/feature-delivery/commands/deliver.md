@@ -47,8 +47,10 @@ or the index.
 
 ## PLAN.md commits
 
-Commit `PLAN.md` alone with `git commit -m "<subject>" -- PLAN.md` (for the
-removal, `git rm PLAN.md` first). Subjects: when the run implements a
+Commit `PLAN.md` alone with `git commit -m "<subject>" -- PLAN.md`. Run
+`git add PLAN.md` first for the first commit (`PLAN.md` is untracked until
+then and the pathspec would not match) and `git rm PLAN.md` first for the
+removal. Subjects: when the run implements a
 decision id and the repository has `docs/decisions/`, use
 `plan: start <id>`, `docs: update plan status`, and `plan: done <id>`;
 otherwise `docs: add plan`, `docs: update plan status`, and
