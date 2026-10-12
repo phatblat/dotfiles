@@ -21,12 +21,14 @@ or the index.
 
 ## Checks
 
-- **Ref baseline.** `git rev-parse HEAD` plus
-  `git for-each-ref --format='%(objectname) %(refname)'`, recorded verbatim.
-  Re-record it after every commit you make.
+- **Ref baseline.** `git rev-parse HEAD`,
+  `git for-each-ref --format='%(objectname) %(refname)'`, and
+  `git write-tree` (the index's tree id, so staged changes show up; it
+  writes no ref and leaves the index as is), recorded verbatim. Re-record
+  it after every commit you make.
 - **Ref check** — after every member run (builder, tester, reviewer,
-  security-reviewer): recompute both and compare with the baseline. Any
-  difference stops the run: report the difference, the member, and its
+  security-reviewer): recompute all three and compare with the baseline.
+  Any difference stops the run: report the difference, the member, and its
   `agent://<id>` and `history://<id>` links to the human.
 - **Tree snapshot** — immediately before every tester, reviewer, and
   security-reviewer run, record `git diff HEAD --binary | git hash-object --stdin`
