@@ -3,3 +3,4 @@ include = [
     "scripts",
 ]
 reportImplicitRelativeImport = "none"
+typeCheckingMode = "standard"

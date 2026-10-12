@@ -32,7 +32,7 @@ import tempfile
 import time
 from collections.abc import Iterator
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -193,7 +193,7 @@ def parse_ts(value: Any) -> float | None:
         return value / 1000.0 if value > 1e12 else float(value)
     if isinstance(value, str) and value:
         try:
-            return datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp()
+            return datetime.fromisoformat(value).timestamp()
         except ValueError:
             return None
     return None
@@ -202,7 +202,7 @@ def parse_ts(value: Any) -> float | None:
 def iso(epoch: float | None) -> str:
     if epoch is None:
         return ""
-    return datetime.fromtimestamp(epoch, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return datetime.fromtimestamp(epoch, tz=UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 class CallJoiner:
@@ -673,7 +673,7 @@ def scan_opencode(db_path: Path, coverage: Coverage) -> list[Obs]:
                 if dtype == "tool":
                     state = data.get("state") or {}
                     status = state.get("status")
-                    ok = {"completed": True, "error": False}.get(status)
+                    ok = {"completed": True, "error": False}.get(status) if isinstance(status, str) else None
                     time_val = state.get("time") or {}
                     ms = None
                     if isinstance(time_val, dict) and "start" in time_val and "end" in time_val:

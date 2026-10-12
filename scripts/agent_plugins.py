@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Normalize configured and observed plugins across agent harnesses.
 
 Copyright: Ben Chatelain. MIT.
@@ -7,9 +6,9 @@ Copyright: Ben Chatelain. MIT.
 from __future__ import annotations
 
 import json
-from pathlib import Path
 import shutil
 import subprocess
+from pathlib import Path
 from typing import Any
 
 from codex_config import load as load_codex_config
@@ -201,8 +200,7 @@ def _load_live_plugins(harness: str) -> dict[str, Any]:
     try:
         result = subprocess.run(
             [harness, "plugin", "list", "--json"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            capture_output=True,
             text=True,
             check=False,
         )

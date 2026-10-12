@@ -16,8 +16,8 @@ upgrade-uv-tools:
     mise exec -- uv tool upgrade --all
 
 # CI: check.yml (lint job)
-# Type-checks Python scripts with ty (scope mirrors pyproject's basedpyright include)
+# Type-checks Python with basedpyright; scope and mode come from pyproject's [tool.basedpyright]
 [group('python')]
 typecheck-python:
     @echo "Type-checking Python scripts..."
-    ty check {{ justfile_directory() }}/scripts
+    basedpyright --project {{ justfile_directory() }} --warnings
