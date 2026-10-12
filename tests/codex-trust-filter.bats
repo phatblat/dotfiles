@@ -148,3 +148,35 @@ hook_state() {
   [ "$(dirname "$temp_source")" = "$cache_dir" ]
   [ "$(find "$cache_dir" -mindepth 1 | wc -l | tr -d ' ')" = 1 ]
 }
+
+@test "mask: an unreadable cache is left alone, not replaced by a truncated one" {
+  [ "$(id -u)" -ne 0 ] || skip "root can read a mode 000 file"
+  hook_state "hooks.json:pre_tool_use:4:0" "$HASH_B" | "$MASK" > /dev/null
+  chmod 000 "$CODEX_HOOK_TRUST_CACHE"
+  hook_state "hooks.json:stop:0:0" "$HASH_A" > "$BATS_TEST_TMPDIR/in.toml"
+
+  run "$MASK" < "$BATS_TEST_TMPDIR/in.toml"
+
+  chmod 600 "$CODEX_HOOK_TRUST_CACHE"
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"trusted_hash = \"$ZERO\""* ]]
+  # The hash recorded from the other profile survives.
+  grep -q 'pre_tool_use:4:0' "$CODEX_HOOK_TRUST_CACHE"
+  [ "$(find "$(dirname "$CODEX_HOOK_TRUST_CACHE")" -mindepth 1 | wc -l | tr -d ' ')" = 1 ]
+}
+
+@test "mask: a failed merge pipeline leaves the cache untouched and the filter exits 0" {
+  hook_state "hooks.json:pre_tool_use:4:0" "$HASH_B" | "$MASK" > /dev/null
+  cp "$CODEX_HOOK_TRUST_CACHE" "$BATS_TEST_TMPDIR/cache.before"
+  mkdir -p "$BATS_TEST_TMPDIR/bin"
+  printf '#!/bin/sh\nexit 1\n' > "$BATS_TEST_TMPDIR/bin/sort"
+  chmod +x "$BATS_TEST_TMPDIR/bin/sort"
+  hook_state "hooks.json:stop:0:0" "$HASH_A" > "$BATS_TEST_TMPDIR/in.toml"
+
+  PATH="$BATS_TEST_TMPDIR/bin:$PATH" run "$MASK" < "$BATS_TEST_TMPDIR/in.toml"
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"trusted_hash = \"$ZERO\""* ]]
+  cmp "$BATS_TEST_TMPDIR/cache.before" "$CODEX_HOOK_TRUST_CACHE"
+  [ "$(find "$(dirname "$CODEX_HOOK_TRUST_CACHE")" -mindepth 1 | wc -l | tr -d ' ')" = 1 ]
+}

@@ -36,10 +36,21 @@ trap 'rm -f "$input" ${newcache:+"$newcache"}' EXIT
 cat > "$input"
 
 # Capture real hashes. Best effort: a failure here must never fail the filter,
-# or `git status` would break.
+# or `git status` would break. But a failed capture must also never touch the
+# cache: `capture || true` suspends `set -e` in here, so every failure is
+# checked and returned explicitly, leaving the existing cache as it was.
+#
+# Concurrent cleans (two files staged together) each read-merge-write, so one
+# can lose the other's new key. That costs one /hooks re-trust, not a wrong
+# hash, so it is accepted rather than guarded with a lock macOS lacks (flock).
 capture() {
-    mkdir -p "$(dirname "$cache")"
-    newcache="$(mktemp "$(dirname "$cache")/.codex-hook-trust.XXXXXX")"
+    # An existing but unreadable cache would read as an empty map, and the
+    # merge would then replace it with only this file's keys.
+    if [[ -e "$cache" && ! -r "$cache" ]]; then
+        return 1
+    fi
+    mkdir -p "$(dirname "$cache")" || return 1
+    newcache="$(mktemp "$(dirname "$cache")/.codex-hook-trust.XXXXXX")" || return 1
     awk -v cache="$cache" '
         BEGIN {
             while ((getline line < cache) > 0) {
@@ -62,12 +73,12 @@ capture() {
             # because restore-codex-trust.sh only matches exact keys.
             for (k in old) if (old[k] != "") printf "%s\t%s\n", k, old[k]
         }
-    ' "$input" | LC_ALL=C sort > "$newcache"
+    ' "$input" | LC_ALL=C sort > "$newcache" || return 1
     # Only touch the cache when it changed. $newcache lives in the cache's own
     # directory, so this mv is a same-filesystem rename and a concurrent smudge
     # never reads a half-written cache.
     if ! cmp -s "$newcache" "$cache" 2>/dev/null; then
-        mv -f "$newcache" "$cache"
+        mv -f "$newcache" "$cache" || return 1
     fi
 }
 capture || true
