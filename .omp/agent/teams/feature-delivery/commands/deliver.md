@@ -69,14 +69,19 @@ the colon. Never push before Gate 2.
 1. Empty request: ask for a feature description, then continue with it.
 2. `git rev-parse --show-toplevel` fails: say /deliver needs a git
    repository and stop.
-3. `git status --porcelain` non-empty: ask "Include these existing changes
-   in the delivery" / "Stop".
+3. `git status --porcelain` non-empty, ignoring an untracked `PLAN.md`
+   (step 4 handles it): ask "Include these existing changes in the
+   delivery" / "Stop".
 4. `PLAN.md` exists at the repository root: unless it has a `**Base:**` or
    `**Decision:**` header line it is not a /deliver plan; say so, tell the
    human to move or remove it, and stop. Otherwise read it and ask "Resume
    this plan" / "Stop" (to start over, the human removes `PLAN.md` first
-   and reruns). Resume skips Phase 1 and step 5, staying on the current
-   branch, and continues Phase 2 at the first task with unchecked boxes.
+   and reruns). Resume skips the branch step (5), staying on the current
+   branch, and skips Phase 1 except as follows: if
+   `git ls-files --error-unmatch PLAN.md` fails (never committed, so never
+   approved), go to Phase 1 step 4 (Gate 1) and then its step 5 (the start
+   commit). Otherwise continue Phase 2 at the first task with unchecked
+   boxes.
 5. Default branch: `git symbolic-ref --short refs/remotes/origin/HEAD`
    without its `origin/` prefix; if that fails, `main` when it exists, else
    `master`. On the default branch, ask: "Create branch feat/<slug>" (slug:
