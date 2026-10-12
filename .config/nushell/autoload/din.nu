@@ -1,4 +1,6 @@
 # din - Remove all docker images
+const dip_nu = path self dip.nu
+source $dip_nu
 export def din [] {
     print "Running command to: Remove all Docker images"
 
