@@ -1,4 +1,6 @@
 # nix_install - Installs nix tools (converted from ❄️_nix)
+const nixtest_nu = path self nixtest.nu
+source $nixtest_nu
 export def nix_install [] {
     print "❄️ Nix - https://nixos.org/download.html#nix-install-macos"
     print ""
