@@ -126,9 +126,11 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
    task naming the `PLAN.md` task just built and `solutionSpace`
    "no fix; run the checks and report". Ref check and tree check.
 4. `passed` false: send the `failures` to the builder, ref check, and
-   repeat step 3. When the third check of this task fails (two fix
-   attempts spent), ask "Revise PLAN.md" / "Steer the builder" (send the
-   human's text to the builder, then repeat step 3) / "End the run".
+   repeat step 3. When the third check fails (two fix attempts spent), ask
+   "Revise PLAN.md" / "Steer the builder" (send the human's text to the
+   builder, then repeat step 3) / "End the run". When the check has no
+   single `PLAN.md` task (a review fix loop or Request changes), omit
+   "Revise PLAN.md" and ask only "Steer the builder" / "End the run".
 5. `passed` true: only now tick the task's checkboxes in `PLAN.md` (a
    task that never passed its check must stay unticked so resume does not
    skip it), set `## Status` to "Task N built and checked" plus anything
@@ -157,9 +159,10 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
    `unknown`, line 0, severity `major`, and the raw finding text as the
    issue. Blocker findings are exactly the `blocker` entries.
 4. No blockers: go to Phase 5. Otherwise send the blockers to the builder
-   (ref check), rerun the Phase 3 check under the same two-retry limit,
-   and run a second review round from step 2. Blockers left after the
-   second round go to Gate 2.
+   (ref check), rerun the Phase 3 check with the blocker findings as the
+   tester's check context in place of a `PLAN.md` task, under the same
+   two-retry limit and the no-single-task menu, and run a second review
+   round from step 2. Blockers left after the second round go to Gate 2.
 
 ## Phase 5 — Ship (Gate 2)
 
