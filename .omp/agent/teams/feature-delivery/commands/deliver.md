@@ -46,6 +46,11 @@ or the index.
   "Keep them" / "End the run". Revert: `git restore --source=$SNAP --worktree -- <changed tracked paths>`
   and delete untracked paths absent from the pre-run list; report any
   pre-existing untracked file that changed, since it cannot be restored.
+  After a tester run, a difference confined to untracked paths the check
+  commands plausibly produced (caches, build output, coverage reports) is
+  not a violation: name the paths in your report and keep them without
+  asking; any tracked-file change or other untracked change is asked about
+  as above.
 - **Member failure** — a member that fails, aborts, or returns
   schema-invalid output gets one retry on the same agent (the builder via
   `write agent://<builder id>`, others by re-dispatching) with the error

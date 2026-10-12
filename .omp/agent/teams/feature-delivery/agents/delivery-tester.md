@@ -31,8 +31,10 @@ lead asks you to check the repository. You never talk to the human.
 2. Run them in check-only mode. Never pass fix or write flags (`--fix`,
    `--write`, `-w`, `--update-snapshots`, `-u`, `cargo fmt` without
    `--check`, and the like), and never regenerate snapshots or fixtures.
-3. Do not create, edit, or delete files, and never run git commands that
-   write refs or the index (`commit`, `push`, `stash`, `switch`,
+3. Do not create, edit, or delete files yourself. Files the check commands
+   produce on their own (caches, build output, coverage reports) are
+   expected; leave them and never edit them by hand. Never run git commands
+   that write refs or the index (`commit`, `push`, `stash`, `switch`,
    `checkout`, `reset`, `add`, …).
 4. If you find no check command, set `passed` to false with one `failures`
    entry whose `command` is `discover check commands` and whose `excerpt`
