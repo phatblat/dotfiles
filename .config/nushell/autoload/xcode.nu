@@ -15,7 +15,7 @@ export def --env xcode [] {
     ^xcode-select --print-path
 
     # Update the list of available versions to install
-    ^xcversion update
+    try { ^xcversion update }
 
     # Install the CLI tools, if necessary
     if not ("/Library/Developer/CommandLineTools/usr/lib/libxcrun.dylib" | path exists) {
@@ -51,9 +51,8 @@ export def --env xcode [] {
     let repo_dir = $"($xcode_dev_dir)/xcode-themes"
     ^mkdir -p $xcode_themes_dir $xcode_dev_dir
     clone_or_pull $repo_dir "git@github.com:hdoria/xcode-themes.git"
-    cd $repo_dir
-    for theme in (ls | where name =~ '\.dvtcolortheme$' | get name) {
-        if not ($"($xcode_themes_dir)/($theme)" | path exists) {
+    for theme in (glob $"($repo_dir)/*.dvtcolortheme") {
+        if not ($"($xcode_themes_dir)/($theme | path basename)" | path exists) {
             # Only copy new themes
             ^cp -v $theme $xcode_themes_dir
         }
