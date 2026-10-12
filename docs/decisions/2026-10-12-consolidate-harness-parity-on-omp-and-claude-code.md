@@ -93,10 +93,12 @@ things a fallback actually needs, and it does so without inventing a new sync
 mechanism.
 
 Keep all nine harnesses and automate the parity harder: an OMP `tool_result`
-hook and the hk pre-commit step regenerate on every change, and the probe is
-folded into `pr-daily`. **Rejected**: the 458 files and the registry remain,
-the churn moves into one daily commit instead of disappearing, and the OMP
-hook only fires for edits made inside OMP.
+hook regenerates on every change, and the probe is folded into `pr-daily`.
+**Rejected**: the objection is keeping nine harnesses, not how they are
+regenerated. The 458 files and the registry remain, the churn moves into one
+daily commit instead of disappearing, and the OMP hook only fires for edits
+made inside OMP. Regeneration in the hk pre-commit hook is not the rejected
+part; clause 4 adopts it for the harnesses that stay.
 
 Fork the shared skills to OMP-native `skill://` references and generate
 portable copies for other harnesses. **Rejected**: `skill://` is an alias with
