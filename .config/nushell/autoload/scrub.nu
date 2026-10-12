@@ -10,9 +10,11 @@ export def scrub [delete_path: string] {
         "y" | "yes" | "Y" | "YES" => { print "YES" }
         _ => {
             print "NO"
-            return
+            error make { msg: "Aborted" }
         }
     }
 
-    ^git filter-branch --force --index-filter $"git rm -r --force --cached --ignore-unmatch ($delete_path)" --prune-empty --tag-name-filter cat -- --all
+    # Single-quote the path for the sh-evaluated --index-filter
+    let q = $"'($delete_path | str replace --all "'" "'\\''")'"
+    ^git filter-branch --force --index-filter $"git rm -r --force --cached --ignore-unmatch -- ($q)" --prune-empty --tag-name-filter cat -- --all
 }
