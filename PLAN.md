@@ -4,10 +4,10 @@ Decision: [docs/decisions/2026-10-11-omp-feature-delivery-team.md](docs/decision
 
 ## Steps
 
-- [ ] 1. Start the plan
-- [ ] 2. Add the package skeleton and the three agents
-- [ ] 3. Add the /deliver command
-- [ ] 4. Register the package in the default profile only
+- [x] 1. Start the plan
+- [x] 2. Add the package skeleton and the three agents
+- [x] 3. Add the /deliver command
+- [x] 4. Register the package in the default profile only
 - [ ] 5. Verify, then retire the plan and open the PR
 
 ### Approach
@@ -706,4 +706,4 @@ repository; `/deliver` autocompletes and `/agents` lists the three
 
 ## Status
 
-Not started.
+Steps 1–4 committed; step 5 verification A–C in progress.
