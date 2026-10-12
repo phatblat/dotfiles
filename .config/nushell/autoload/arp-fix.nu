@@ -30,12 +30,12 @@ export def arp-fix [] {
 
     let sysctl_file = "/etc/sysctl.conf"
     if not ($sysctl_file | path exists) {
-        $arp_fixed | ^sudo tee $sysctl_file
+        $"($arp_fixed)\n" | ^sudo tee $sysctl_file
         print $"ARP fix added to ($sysctl_file)"
     } else {
         let match = (do { ^grep -q $arp_fixed $sysctl_file } | complete)
         if $match.exit_code != 0 {
-            $arp_fixed | ^sudo tee -a $sysctl_file
+            $"($arp_fixed)\n" | ^sudo tee -a $sysctl_file
             print $"ARP fix added to ($sysctl_file)"
         } else {
             print $"($sysctl_file) already contains the ARP fix."
