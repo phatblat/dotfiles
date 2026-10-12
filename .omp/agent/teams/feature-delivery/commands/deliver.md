@@ -32,8 +32,10 @@ or the index.
   `agent://<id>` and `history://<id>` links to the human.
 - **Tree snapshot** — immediately before every tester, reviewer, and
   security-reviewer run, record `git diff HEAD --binary | git hash-object --stdin`
-  (tracked files), `git ls-files -z --others --exclude-standard | xargs -0 git hash-object | git hash-object --stdin`
-  (untracked file contents; never `git add -N`, which writes the index),
+  (tracked files), `git ls-files -z --others --exclude-standard | while IFS= read -r -d '' f; do if [ -f "$f" ] || [ -L "$f" ]; then git hash-object -- "$f"; fi; done | git hash-object --stdin`
+  (untracked file contents; the loop skips non-file entries such as a
+  nested repository's `dir/` and is safe on an empty list, unlike
+  `xargs`; never `git add -N`, which writes the index),
   `git ls-files --others --exclude-standard`, `git status --porcelain`, and
   `SNAP=$(git stash create)` (empty output means use `SNAP=HEAD`;
   `git stash create` writes no ref).
