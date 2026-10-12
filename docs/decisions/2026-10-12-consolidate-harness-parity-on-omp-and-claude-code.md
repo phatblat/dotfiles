@@ -141,10 +141,15 @@ every skill edit, which is the cost this decision exists to remove.
    to record that the abandon criterion was invoked early, on 2026-10-12, with
    the evidence in this decision's Issue.
 4. **Generation trigger.** Regeneration happens in the hk `pre-commit` hook: a
-   `generate` step declared after `guard-test-identity` with `exclusive = true`
-   runs `just generate` before every lint step and stages the output roots it
-   declares. This landed with this decision. No OMP hook, Tern hook, or
-   LaunchAgent regenerates files.
+   `generate` step, used by that hook only, declared after `guard-test-identity`
+   with `exclusive = true`, runs `just generate` before every lint step and
+   stages the output roots it declares. The step exists today in its
+   pre-decision form; its comment still says the generator reads the drift
+   ledger, and its `stage` list still names `.codex/skills`,
+   `.config/opencode`, `.pi/agent`, and `.grok`. Implementing clauses 2 and 3
+   updates both: the comment drops the ledger, and `stage` shrinks to the roots
+   the narrowed generator still writes. No OMP hook, Tern hook, or LaunchAgent
+   regenerates files.
 5. **wt.** `crates/wt` moves to its own repository first, installed back
    through mise's `github:` backend and bumped by Renovate. The terms are in
    [2026-10-12-extract-wt-to-its-own-repository](./2026-10-12-extract-wt-to-its-own-repository.md).
