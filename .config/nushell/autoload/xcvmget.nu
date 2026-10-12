@@ -1,6 +1,6 @@
 # xcvmget - Show a live list of Xcode versions available to download
 export def xcvmget [] {
-    let ruby_code = r#"
+    let ruby_code = r##"
 class Xcode
 attr_reader :date_modified
 attr_reader :name
@@ -94,6 +94,6 @@ end
 
 xcodes = parse_seedlist(json)
 puts xcodes.map(&:name)
-"#
+"##
     $ruby_code | ^bundle exec ruby
 }
