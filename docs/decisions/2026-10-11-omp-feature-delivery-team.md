@@ -97,16 +97,20 @@ with no current requirement for it.
    | `delivery-reviewer`    | `delivery_review` → `anthropic/claude-opus-5-5:xhigh` | `read`, `grep`, `glob`, `bash`                             | `requesting-code-review`  | `verdict`, `findings` (`severity`, `path`, `line`, `issue`, `fix`) |
 
    Result fields are enforced through each agent's `output` schema. Only the
-   builder holds file-editing tools. Tester and reviewer keep `bash` to
-   run checks and read diffs, so their read-only role is an instruction, not a
-   sandbox; the lead confirms `git status --porcelain` is unchanged after each
-   of their runs and stops the run if it is not. The `delivery-` prefix keeps
-   names clear of user and bundled agents.
+   builder holds file-editing tools, and every member's prompt forbids
+   commits, pushes, stashes, branch switches, and other ref writes. All three
+   keep `bash` under forced `yolo`, so that is an instruction, not a sandbox;
+   the lead enforces it. After every member run, builder included, the lead
+   compares `git rev-parse HEAD` and `git for-each-ref` — which covers
+   `refs/stash` and the remote-tracking refs a push updates — against the
+   Phase 0 baseline, and for tester and reviewer also requires an unchanged
+   `git status --porcelain`; any difference stops the run. The `delivery-`
+   prefix keeps names clear of user and bundled agents.
 4. **Phases.**
 
    | # | Phase     | Actor                                                | Exit condition                                                          |
    | - | --------- | ---------------------------------------------------- | ----------------------------------------------------------------------- |
-   | 0 | Preflight | lead                                                 | not on the default branch (or the human confirms); base SHA recorded    |
+   | 0 | Preflight | lead                                                 | not on the default branch (or the human confirms); base SHA and `git for-each-ref` baseline recorded |
    | 1 | Plan      | lead with human: `brainstorm` → `writing-plans`      | **Gate 1:** human approves `PLAN.md`                                     |
    | 2 | Build     | `delivery-builder`, one `PLAN.md` step per message   | step result has no open questions; step ticked in `PLAN.md`             |
    | 3 | Check     | `delivery-tester`, after every step                  | `passed: true`                                                          |
