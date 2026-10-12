@@ -55,3 +55,15 @@
 # file with the scrubbed blob, which logs Claude out and clears project
 # trust. Recovery is re-running `claude` and re-authenticating.
 .claude.json filter=claude-json
+
+# Claude Desktop rewrites UI state into
+# ~/Library/Application Support/Claude/claude_desktop_config.json on nearly
+# every launch: preferences.epitaxyPrefs (pane layout, session IDs, filters,
+# notice-seen flags), preferences.sidebarMode (last-viewed sidebar tab), and
+# one-shot internal flags (*Latched, floatingAtollActive,
+# coworkLegacyRootGrantsPruned, coworkOnboardingResumeStep, launchPreview*).
+# The `claude-desktop-config` clean filter strips those keys from the
+# committed blob so real setting toggles stay reviewable; the on-disk file
+# the app reads is never touched. Install the filter with `just git-filters`.
+# Filter script: ~/scripts/mask-claude-desktop.sh
+"Library/Application Support/Claude/claude_desktop_config.json" filter=claude-desktop-config
