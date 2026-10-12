@@ -1,4 +1,4 @@
 # Git merge
-export def m [...args] {
+export def --wrapped m [...args] {
     ^git merge ...$args
 }
