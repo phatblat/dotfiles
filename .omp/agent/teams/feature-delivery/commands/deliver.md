@@ -78,7 +78,11 @@ the colon. Never push before Gate 2.
    kebab-case of the request, at most 40 characters) / "Continue on
    <default branch>" / "Stop". Create with `git switch -c`. This runs after
    every other stop-capable step so a "Stop" never leaves an empty branch.
-6. Record `BASE=$(git rev-parse HEAD)` and the ref baseline.
+6. Record `BASE`. Fresh run: `git rev-parse HEAD`. Resume: the sha in
+   `PLAN.md`'s `**Base:**` header when `git merge-base --is-ancestor <sha> HEAD`
+   succeeds; otherwise (no header, or rewritten history)
+   `git merge-base HEAD <default branch>`, the default branch found as in
+   step 5 without asking. Then record the ref baseline.
 
 ## Phase 1 — Plan (Gate 1)
 
@@ -100,9 +104,10 @@ step 3 with that decision.
    path, follow writing-plans' format with the header line
    `**Decision:** none — Direct path`; in /deliver this replaces
    writing-plans' rule that a plan needs an accepted decision. Either way:
-   omit every per-task commit step and the final "Retire the Plan" task
-   (all commits happen in Phase 5, which removes `PLAN.md`), and end the
-   file with `## Status` reading `Not started.`
+   add the header line `**Base:** <BASE sha>` (a resumed run reads it
+   back), omit every per-task commit step and the final "Retire the Plan"
+   task (all commits happen in Phase 5, which removes `PLAN.md`), and end
+   the file with `## Status` reading `Not started.`
 4. **Gate 1:** show the plan path and its task headings, then ask
    "Approve plan" / "Revise plan" / "Stop". Revise: apply the human's
    changes and ask again.
