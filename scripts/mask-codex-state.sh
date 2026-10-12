@@ -47,21 +47,20 @@ capture() {
         }
         /^\[/ {
             h = ($0 ~ /^\[hooks\.state\./) ? $0 : ""
-            if (h != "") seen[h] = 1
             next
         }
         /^trusted_hash = "/ && h != "" {
-            if ($0 !~ /sha256:0+"$/) cur[h] = $0
+            if ($0 !~ /sha256:0+"$/) old[h] = $0
             h = ""
         }
         END {
-            # Entries for hooks no longer in the file are dropped.
-            for (k in seen) {
-                v = (k in cur) ? cur[k] : ((k in old) ? old[k] : "")
-                if (v != "") printf "%s\t%s\n", k, v
-            }
+            # Merge, never prune: the cache is shared by config.toml and every
+            # *.config.toml, whose hook key sets differ, so a key this file does
+            # not mention may belong to another one. A stale key is harmless
+            # because restore-codex-trust.sh only matches exact keys.
+            for (k in old) if (old[k] != "") printf "%s\t%s\n", k, old[k]
         }
-    ' "$input" > "$input.cache"
+    ' "$input" | LC_ALL=C sort > "$input.cache"
     # Only touch the cache when it changed, and swap atomically.
     if ! cmp -s "$input.cache" "$cache" 2>/dev/null; then
         mv -f "$input.cache" "$cache"
