@@ -1,0 +1,34 @@
+# version_market - Displays the marketing version of the current Xcode project
+export def version_market [] {
+    let plistbuddy = "/usr/libexec/PlistBuddy"
+    let build_setting_name = "MARKETING_VERSION"
+
+    let project_file = (
+        ^find . -maxdepth 2 -name "project.pbxproj" -path "*xcodeproj*"
+        | lines
+        | first
+    )
+    if ($project_file | is-empty) {
+        print --stderr "No xcodeproj found in current directory"
+        error make { msg: "No xcodeproj found" }
+    }
+
+    let root_object = (^$plistbuddy -c "Print :rootObject" $project_file | str trim)
+    let build_config_list = (^$plistbuddy -c $"Print :objects:($root_object):buildConfigurationList" $project_file | str trim)
+
+    mut marketing_versions = []
+    for index in 0..10 {
+        let config = (try {
+            ^$plistbuddy -c $"Print :objects:($build_config_list):buildConfigurations:($index)" $project_file | str trim
+        } catch { "" })
+        if ($config | is-empty) { break }
+        let ver = (try {
+            ^$plistbuddy -c $"Print :objects:($config):buildSettings:($build_setting_name)" $project_file | str trim
+        } catch { "" })
+        if ($ver | is-not-empty) {
+            $marketing_versions = ($marketing_versions | append $ver)
+        }
+    }
+
+    $marketing_versions | uniq | first
+}
