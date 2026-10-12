@@ -132,7 +132,6 @@
 !.codex/skills/cmux-workspace-status/
 !.codex/skills/container/SKILL.md
 !.codex/skills/container/
-!.codex/skills/debug-issue/
 !.codex/skills/dispatching-parallel-agents/
 !.codex/skills/executing-plans/
 !.codex/skills/find-docs/
@@ -148,11 +147,9 @@
 !.codex/skills/plan-design-review/
 !.codex/skills/pr-style/
 !.codex/skills/receiving-code-review/
-!.codex/skills/refactor-safely/
 !.codex/skills/requesting-code-review/
 !.codex/skills/resolve-review-feedback/
 !.codex/skills/retro/
-!.codex/skills/review-changes/
 !.codex/skills/security-audit/
 !.codex/skills/subagent-driven-development/
 !.codex/skills/test-driven-development/
@@ -278,7 +275,6 @@
 !.config/opencode/skills/cmux-workspace-status/
 !.config/opencode/skills/container/SKILL.md
 !.config/opencode/skills/container/
-!.config/opencode/skills/debug-issue/
 !.config/opencode/skills/dispatching-parallel-agents/
 !.config/opencode/skills/executing-plans/
 !.config/opencode/skills/find-docs/
@@ -294,11 +290,9 @@
 !.config/opencode/skills/plan-design-review/
 !.config/opencode/skills/pr-style/
 !.config/opencode/skills/receiving-code-review/
-!.config/opencode/skills/refactor-safely/
 !.config/opencode/skills/requesting-code-review/
 !.config/opencode/skills/resolve-review-feedback/
 !.config/opencode/skills/retro/
-!.config/opencode/skills/review-changes/
 !.config/opencode/skills/security-audit/
 !.config/opencode/skills/subagent-driven-development/
 !.config/opencode/skills/test-driven-development/
