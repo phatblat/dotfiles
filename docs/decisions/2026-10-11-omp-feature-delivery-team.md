@@ -22,8 +22,13 @@ This is a proposal that is **awaiting review**.
 - omp discovers agents and commands from `<extension-root>/agents/*.md` and
   `<extension-root>/commands/*.md` for every directory listed in the
   `extensions:` setting (`omp://task-agent-discovery.md`,
-  `omp://slash-command-internals.md`). Whether a directory with no entry
-  module counts as an extension root is unverified.
+  `omp://slash-command-internals.md`). A directory with no entry module
+  counts: a throwaway package holding only `package.json` and `commands/`
+  had its command listed by RPC `get_available_commands` under
+  `omp --mode rpc --no-session -e <dir>`, with or without an `index.ts`.
+- omp's bundled agents (`omp agents unpack`) express frontmatter `output` in
+  JSON Type Definition form (`properties`, `optionalProperties`, `elements`,
+  `type`), list `model` as `@role` aliases, and use camelCase keys.
 - `~/.omp/agent/agents/` is generator-owned: `GENERATED_ITEM_ROOTS` in
   `scripts/agent-harnesses.py` prunes any `*.md` there that `generate` did not
   produce, so hand-authored agents cannot live in it.
@@ -76,9 +81,8 @@ with no current requirement for it.
    `~/.omp/agent/config.yml` as
    `extensions: [~/.omp/agent/teams/feature-delivery]`, and tracked through a
    `!.omp/agent/teams/` re-include in `.gitignore`. It contains `package.json`,
-   `commands/deliver.md`, and one `agents/<name>.md` per member. An empty
-   `index.ts` is added only if verification shows an extension root requires
-   an entry module. Each profile's `overrides.yml` sets `extensions: []`, so
+   `commands/deliver.md`, and one `agents/<name>.md` per member, and no
+   `index.ts`. Each profile's `overrides.yml` sets `extensions: []`, so
    the rendered profile configs do not load the team; a profile opts in later
    by adding its own `extensions:` entry and `delivery_*` `modelRoles` to its
    `overrides.yml`.
@@ -163,19 +167,21 @@ A representative member definition, pinning the frontmatter contract:
 ---
 name: delivery-tester
 description: Runs a repository's tests and linters for one delivery step and reports pass/fail.
-model: "@delivery_test"
-tools: read, grep, glob, bash
+model:
+  - "@delivery_test"
+tools:
+  - read
+  - grep
+  - glob
+  - bash
 output:
-  type: object
-  required: [commands_run, passed, failures]
   properties:
-    commands_run: { type: array, items: { type: string } }
-    passed: { type: boolean }
+    commands_run:
+      elements: { type: string }
+    passed:
+      type: boolean
     failures:
-      type: array
-      items:
-        type: object
-        required: [command, excerpt]
+      elements:
         properties:
           command: { type: string }
           excerpt: { type: string }
@@ -185,8 +191,8 @@ output:
 ## Consequences
 
 - Verification before merge: load the worktree package with
-  `omp -e <worktree package>`, with and without an empty `index.ts`, to settle
-  clause 1; confirm `/deliver` appears in RPC `get_available_commands`; spawn
+  `omp -e <worktree package>` and confirm `/deliver` appears in RPC
+  `get_available_commands`; spawn
   each member headlessly on a scratch repository and confirm its resolved
   model role, schema-valid result, and (for tester and reviewer) absence of
   file-editing tools; then run `/deliver` end to end on a scratch repository
