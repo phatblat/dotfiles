@@ -25,11 +25,11 @@ export def git_bundle_create []: nothing -> nothing {
     print $"snapshot: ($snapshot_sha)"
 
     # Create bundle
-    do { ^git tag -d snapshot_end } | ignore
+    do -i { ^git tag -d snapshot_end o+e> /dev/null }
     ^git tag snapshot_end $snapshot_sha
 
     # This requires the HEAD commit to be present in the local repo
     ^git bundle create $bundle_name $"HEAD..snapshot_end"
     ^git bundle verify $bundle_name
-    do { ^git tag -d snapshot_end } | ignore
+    do -i { ^git tag -d snapshot_end o+e> /dev/null }
 }
