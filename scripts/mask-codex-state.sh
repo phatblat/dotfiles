@@ -31,13 +31,15 @@ set -euo pipefail
 
 cache="${CODEX_HOOK_TRUST_CACHE:-${XDG_STATE_HOME:-$HOME/.local/state}/codex-hook-trust.tsv}"
 input="$(mktemp)"
-trap 'rm -f "$input" "$input.cache"' EXIT
+newcache=""
+trap 'rm -f "$input" ${newcache:+"$newcache"}' EXIT
 cat > "$input"
 
 # Capture real hashes. Best effort: a failure here must never fail the filter,
 # or `git status` would break.
 capture() {
     mkdir -p "$(dirname "$cache")"
+    newcache="$(mktemp "$(dirname "$cache")/.codex-hook-trust.XXXXXX")"
     awk -v cache="$cache" '
         BEGIN {
             while ((getline line < cache) > 0) {
@@ -60,10 +62,12 @@ capture() {
             # because restore-codex-trust.sh only matches exact keys.
             for (k in old) if (old[k] != "") printf "%s\t%s\n", k, old[k]
         }
-    ' "$input" | LC_ALL=C sort > "$input.cache"
-    # Only touch the cache when it changed, and swap atomically.
-    if ! cmp -s "$input.cache" "$cache" 2>/dev/null; then
-        mv -f "$input.cache" "$cache"
+    ' "$input" | LC_ALL=C sort > "$newcache"
+    # Only touch the cache when it changed. $newcache lives in the cache's own
+    # directory, so this mv is a same-filesystem rename and a concurrent smudge
+    # never reads a half-written cache.
+    if ! cmp -s "$newcache" "$cache" 2>/dev/null; then
+        mv -f "$newcache" "$cache"
     fi
 }
 capture || true

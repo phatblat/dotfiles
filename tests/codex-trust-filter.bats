@@ -129,3 +129,22 @@ hook_state() {
   after=$(stat -f %i "$CODEX_HOOK_TRUST_CACHE" 2> /dev/null || stat -c %i "$CODEX_HOOK_TRUST_CACHE")
   [ "$before" = "$after" ]
 }
+
+@test "mask: swaps the cache in with a same-directory rename and leaves no temp files" {
+  # A temp file on another filesystem would turn mv into a non-atomic copy that
+  # a concurrent smudge could read half-written. Record where mv reads from.
+  mkdir -p "$BATS_TEST_TMPDIR/bin"
+  printf '#!/bin/sh\nprintf "%%s\\n" "$@" >> "%s/mv.log"\nexec /bin/mv "$@"\n' \
+    "$BATS_TEST_TMPDIR" > "$BATS_TEST_TMPDIR/bin/mv"
+  chmod +x "$BATS_TEST_TMPDIR/bin/mv"
+  hook_state "hooks.json:stop:0:0" "$HASH_A" > "$BATS_TEST_TMPDIR/in.toml"
+
+  PATH="$BATS_TEST_TMPDIR/bin:$PATH" "$MASK" < "$BATS_TEST_TMPDIR/in.toml" > /dev/null
+  # Second run changes nothing: the temp file must still be cleaned up.
+  PATH="$BATS_TEST_TMPDIR/bin:$PATH" "$MASK" < "$BATS_TEST_TMPDIR/in.toml" > /dev/null
+
+  cache_dir=$(dirname "$CODEX_HOOK_TRUST_CACHE")
+  temp_source=$(grep -m 1 '/\.codex-hook-trust\.' "$BATS_TEST_TMPDIR/mv.log")
+  [ "$(dirname "$temp_source")" = "$cache_dir" ]
+  [ "$(find "$cache_dir" -mindepth 1 | wc -l | tr -d ' ')" = 1 ]
+}
