@@ -30,6 +30,26 @@ jobs:
     runs-on: arc-ubuntu-24.04-arm64
     timeout-minutes: 30
     steps:
+      # issue_comment payloads carry no base ref and the trigger has no
+      # branch filter, so check the PR's base here; keep the list in step
+      # with on.pull_request.branches. Every later step skips when it is
+      # outside that list.
+      - name: Check PR base branch
+        id: scope
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          base=$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json baseRefName --jq .baseRefName)
+          case "${base}" in
+            main | weekend) echo "in_scope=true" >> "${GITHUB_OUTPUT}" ;;
+            *)
+              echo "::notice::PR base ${base} is outside main and weekend; not reviewing"
+              echo "in_scope=false" >> "${GITHUB_OUTPUT}"
+              ;;
+          esac
+
       # pull_request: config loads from the PR head, not the merge commit
       # (spec §12.4). issue_comment: config loads from the default branch,
       # never the PR head. A fork PR controls its own config.yaml, and a
@@ -37,17 +57,20 @@ jobs:
       # Sparse: only .github/agentic-review/** is read from disk; every
       # file body comes from the GitHub API.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.scope.outputs.in_scope != 'false'
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.event.repository.default_branch }}
           sparse-checkout: .github/agentic-review
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.scope.outputs.in_scope != 'false'
         with:
           repository: phatblat/agentic-review
           ref: 2f2772e7ea7f61da4a4e1642456015754bb1e178
           path: agentic-review
 
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        if: steps.scope.outputs.in_scope != 'false'
         with:
           go-version-file: agentic-review/go.mod
           cache-dependency-path: agentic-review/go.sum
@@ -56,6 +79,7 @@ jobs:
       # EXPECTED_VERSION, so stamp the value read out of the checked-out
       # shim rather than duplicating it here.
       - name: Build agentic-review
+        if: steps.scope.outputs.in_scope != 'false'
         working-directory: agentic-review
         run: |
           version=$(sed -n 's/^export const EXPECTED_VERSION = "\(.*\)";$/\1/p' shim/index.mjs)
@@ -63,6 +87,7 @@ jobs:
             -o "${RUNNER_TEMP}/agentic-review-bin" ./cmd/agentic-review
 
       - uses: ./agentic-review
+        if: steps.scope.outputs.in_scope != 'false'
         env:
           AGENTIC_REVIEW_BIN: ${{ runner.temp }}/agentic-review-bin
         with:
@@ -70,7 +95,7 @@ jobs:
           api_key: ${{ secrets.AGENTIC_REVIEW_API_KEY }}
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        if: always()
+        if: always() && steps.scope.outputs.in_scope != 'false'
         with:
           name: agentic-review-run
           path: ${{ runner.temp }}/agentic-review/
