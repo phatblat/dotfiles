@@ -13,6 +13,7 @@ modelRoles:
   slow: subconscious/subconscious/glm-5.3-marathon:high
   smol: subconscious/subconscious/deepseek-v4.1-flash-marathon
   vision: subconscious/subconscious/deepseek-v4.1-flash-marathon
+extensions: []
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted

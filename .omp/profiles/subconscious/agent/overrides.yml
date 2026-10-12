@@ -34,3 +34,6 @@ ask:
   timeout: 1800
 browser:
   relay: true
+# The feature-delivery team needs main's delivery_* modelRoles, which never
+# carry over; opt in by adding an extensions: entry and those roles here.
+extensions: []

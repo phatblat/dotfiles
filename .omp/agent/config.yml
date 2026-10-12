@@ -9,6 +9,11 @@ modelRoles:
   default: anthropic/claude-sonnet-5-5:high
   vision: spark/Inferact/Qwen3.8-27B-NVFP4
   commit: anthropic/claude-haiku-5-5:low
+  delivery_build: anthropic/claude-sonnet-5-5:high
+  delivery_test: anthropic/claude-haiku-5-5:auto
+  delivery_review: anthropic/claude-opus-5-5:xhigh
+extensions:
+  - ~/.omp/agent/teams/feature-delivery
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
