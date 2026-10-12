@@ -4,7 +4,7 @@ export def git-plist-filter [] {
     let tmpdir = ($env.TMPDIR? | default "/tmp")
     let tmpfile = (^mktemp $"($tmpdir)/git-plist-filter.XXXXXX" | str trim)
     $in | save --force --raw $tmpfile
-    ^plutil -convert xml1 $tmpfile
-    open --raw $tmpfile
-    ^rm $tmpfile
+    let out = (try { ^plutil -convert xml1 $tmpfile; open --raw $tmpfile } catch {|e| rm -f $tmpfile; error make {msg: $e.msg} })
+    rm -f $tmpfile
+    $out
 }
