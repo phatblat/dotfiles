@@ -48,9 +48,11 @@ or the index.
   pre-existing untracked file that changed, since it cannot be restored.
   After a tester run, a difference confined to untracked paths the check
   commands plausibly produced (caches, build output, coverage reports) is
-  not a violation: name the paths in your report and keep them without
-  asking; any tracked-file change or other untracked change is asked about
-  as above.
+  not a violation and is not asked about: name the paths in your report
+  and delete those absent from the pre-run list, so they never reach
+  `CHANGED` or the Phase 5 commits; a pre-existing untracked file the
+  check rewrote stays. Any tracked-file change or other untracked change
+  is asked about as above.
 - **Member failure** — a member that fails, aborts, or returns
   schema-invalid output gets one retry on the same agent (the builder via
   `write agent://<builder id>`, others by re-dispatching) with the error
