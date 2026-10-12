@@ -16,9 +16,12 @@
 # rewrites what git stores — the on-disk file Claude reads is never touched,
 # so Claude keeps working normally on this machine.
 #
-# Projects are kept only for the fields below, and dropped entirely once none
-# of those fields are present, so churn from merely opening a new directory
-# in Claude Code never touches the committed blob.
+# Projects are kept only for the fields below, and only while at least one
+# of them holds a non-default value. Claude Code seeds every directory it
+# opens with null/[]/{}/false defaults (allowedTools: [], mcpServers: {},
+# enableAllProjectMcpServers: false, ...), so a project carrying nothing but
+# those defaults is dropped entirely and merely opening a new directory or
+# worktree never touches the committed blob.
 #
 # CHECKOUT HAZARD: smudge is `cat`, so `git checkout -- .claude.json` (or a
 # stash pop, or any branch switch that touches this path) replaces the live
@@ -44,7 +47,7 @@ jq -S '
       mcpContextUris,
       allowedTools
     }
-    | with_entries(select(.value != null));
+    | with_entries(select(.value | . != null and . != [] and . != {} and . != false));
 
   {
     mcpServers: (.mcpServers // {}),

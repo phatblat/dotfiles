@@ -46,9 +46,10 @@
 # ID, verbatim first prompts, per-project session metrics) that gains new
 # keys on most Claude Code releases and does not belong in git history. The
 # `claude-json` clean filter keeps a strict allowlist -- top-level and
-# per-project mcpServers plus MCP trust/context fields -- so the committed
-# blob tracks only the hand-authored MCP registry. Install the filter with
-# `just git-filters`. Filter script: ~/scripts/mask-claude-json.sh
+# per-project mcpServers plus MCP trust/context fields, skipping projects
+# that hold only empty/default values -- so the committed blob tracks only
+# the hand-authored MCP registry. Install the filter with `just git-filters`.
+# Filter script: ~/scripts/mask-claude-json.sh
 #
 # CHECKOUT HAZARD: smudge is `cat`, so `git checkout -- .claude.json` (or a
 # stash pop, or a branch switch that touches this path) replaces the live
