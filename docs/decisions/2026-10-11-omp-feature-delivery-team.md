@@ -117,9 +117,16 @@ with no current requirement for it.
    bundled tool list has no `bash` but which is checked the same way — the
    lead compares `git rev-parse HEAD` and `git for-each-ref` — which covers
    `refs/stash` and the remote-tracking refs a push updates — against the
-   Phase 0 baseline, and for tester and both reviewers also requires an
-   unchanged `git status --porcelain`; any difference stops the run. The
-   `delivery-` prefix keeps names clear of user and bundled agents.
+   Phase 0 baseline; any ref difference stops the run. The tester's prompt
+   requires check-only invocations (no `--fix`, no snapshot updates). Around
+   each tester and reviewer run the lead also snapshots the working tree —
+   `git diff HEAD --binary | git hash-object --stdin` plus
+   `git ls-files --others --exclude-standard`, taken immediately before the
+   run so the builder's uncommitted changes are part of the baseline — and
+   compares it afterwards. Gitignored output is therefore never flagged. A
+   tree difference does not stop the run automatically: the lead lists the
+   changed paths and the human chooses to revert them, keep them, or end the
+   run. The `delivery-` prefix keeps names clear of user and bundled agents.
 4. **Phases.**
 
    | # | Phase     | Actor                                                | Exit condition                                                          |
