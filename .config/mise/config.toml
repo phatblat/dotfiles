@@ -126,7 +126,7 @@ neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.11.1"
 oh-my-pi = { version = "18.10.2", rename_exe = "omp" }
-opencode = "1.18.35"
+opencode = "1.19.0"
 packer = "1.16.1"
 pi = "1.1.0"
 pinact = "5.0.0"
