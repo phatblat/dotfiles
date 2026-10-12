@@ -129,7 +129,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `createdirs`                | ✅  | ✅  | ➖   | Creates set of directories if missing                |
 | `cron_edit`                 | ✅  | ✅  | ➖   | Opens cron file in editor                            |
 | `cron_list`                 | ✅  | ✅  | ➖   | Prints cron file                                     |
-| `cron_reload`               | ✅  | ✅  | ➖   | Reloads cron file                                    |
+| `cron_reload`               | ➖  | ✅  | ➖   | Reloads cron file (nu removed: target cron.file no longer exists) |
 | `ctitle`                    | ➖  | ➖  | ➖   | Zsh function                                         |
 | `curl_download`             | ✅  | ➖  | ➖   | Download a file using curl with the most common op   |
 | `current-branch`            | ➖  | ➖  | ➖   | Zsh function                                         |
@@ -153,7 +153,8 @@ This document tracks the implementation status of all shell functions and aliase
 | `dc`                        | ✅  | ✅  | ➖   | Diff the git staging area                            |
 | `ddc`                       | ✅  | ✅  | ➖   | Docker deep clean                                    |
 | `ddd`                       | ✅  | ✅  | ➖   | Delete Derived Data                                  |
-| `debug`                     | ✅  | ✅  | ➖   | Prints args only when debug env var set              |
+| `dbg`                       | ✅  | ➖  | ➖   | Nushell port of `debug` (renamed to avoid builtin collision) |
+| `debug`                     | ➖  | ✅  | ➖   | Prints args only when debug env var set (nu: use `dbg`) |
 | `defaults_set`              | ✅  | ➖  | ➖   | --------------------------------------------------   |
 | `deflate`                   | ✅  | ✅  | ➖   | Unzip git blobs                                      |
 | `delete-tag`                | ✅  | ✅  | ➖   | Deletes a git tag from both the local and remote r   |
@@ -355,7 +356,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `members`                   | ✅  | ✅  | ➖   | List members of the given group                      |
 | `merge-base`                | ✅  | ✅  | ➖   | Git merge-base wrapper                               |
 | `mergetool`                 | ✅  | ✅  | ➖   | Perform a git merge using the configured tool (Kal   |
-| `merge`                     | ✅  | ✅  | ➖   | Git merge                                            |
+| `merge`                     | ➖  | ✅  | ➖   | Git merge (nu: use `m`; name collides with builtin)  |
 | `mirror`                    | ✅  | ➖  | ➖   | Reset the git staging area and working copy to mir   |
 | `mise_activate`             | ✅  | ➖  | ➖   | Nushell function                                     |
 | `mkdir`                     | ✅  | ➖  | ➖   | Create directory and set CWD (nu: `mkcd` — builtin collision) |
