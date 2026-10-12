@@ -1,0 +1,7 @@
+{
+  "description": "omp agent team and /deliver workflow that take a feature from an approved PLAN.md to a pull request.",
+  "license": "MIT",
+  "name": "feature-delivery",
+  "private": true,
+  "version": "0.0.0"
+}
