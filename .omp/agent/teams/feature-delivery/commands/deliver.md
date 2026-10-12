@@ -68,7 +68,10 @@ the colon. Never push before Gate 2.
 
 1. Empty request: ask for a feature description, then continue with it.
 2. `git rev-parse --show-toplevel` fails: say /deliver needs a git
-   repository and stop.
+   repository and stop. Otherwise `cd` to its output and run every command
+   from there (`PLAN.md`, `':!PLAN.md'`, `git commit -- PLAN.md` and the
+   changed-file lists are all relative to it), and pass it as the
+   repository root in every `task` context.
 3. `git status --porcelain` non-empty, ignoring an untracked `PLAN.md`
    (step 4 handles it): ask "Include these existing changes in the
    delivery" / "Stop".
