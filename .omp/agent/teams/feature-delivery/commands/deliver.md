@@ -89,7 +89,10 @@ the colon. Never push before Gate 2.
    `git ls-files --error-unmatch PLAN.md` fails (never committed, so never
    approved), go to Phase 1 step 4 (Gate 1) and then its step 5 (the start
    commit). Otherwise continue Phase 2 at the first task with unchecked
-   boxes, or go straight to Phase 4 when every task is ticked. A resumed
+   boxes. When every task is ticked, go to Phase 5 step 2 if `## Status`
+   starts "Reviewed, awaiting Gate 2" and `git status --porcelain` is
+   empty (the findings listed there are the remaining findings), else to
+   Phase 4. A resumed
    run has no builder agent id: dispatch a fresh `DeliveryBuilder` when
    one is first needed and tell it earlier uncommitted work may already be
    in the tree.
@@ -202,7 +205,10 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
 ## Phase 5 — Ship (Gate 2)
 
 1. Read `skill://git-commit` and follow it to group the uncommitted changes
-   into local commits. Do not push.
+   into local commits. Do not push. Then set `## Status` to "Reviewed,
+   awaiting Gate 2" followed by the remaining findings (one line each,
+   blockers first), commit `PLAN.md` (status subject), and re-record the
+   ref baseline.
 2. **Gate 2:** show `git log --oneline BASE..HEAD`,
    `git diff --stat BASE..HEAD -- ':!PLAN.md'`, and every remaining finding, blockers
    first. Ask "Approve — remove PLAN.md and open the PR" / "Request
