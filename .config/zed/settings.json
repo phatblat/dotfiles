@@ -86,6 +86,9 @@
       "env": {},
     },
   },
+  "auto_install_extensions": {
+    "blade-runner-2049": true,
+  },
   "auto_update": true,
   "autosave": "on_focus_change",
   "buffer_font_family": ".ZedMono",
