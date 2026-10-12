@@ -72,7 +72,7 @@ This is a proposal that is **proposed**.
 ## Argument
 
 Move `crates/ness` to `phatblat/ness` on the path `wt` proved, keep the shims
-executing `~/.local/bin/ness` as a symlink to the mise-installed binary so
+executing `~/.local/bin/ness`, a copy of the mise-installed binary, so
 hook latency is unchanged, split the tests so each repository tests what it
 owns, and keep `0.x` versioning so every policy bump lands here through a
 reviewed pull request. **Chosen.** The guard is the one component where a
@@ -87,7 +87,7 @@ Extract `ness` now, together with `wt`. **Rejected**: the shim set is about to
 change under the parity decision, and the hook-corpus tests would have to be
 split twice.
 
-Have the shims call `mise x -- ness` or the mise shim so no symlink needs
+Have the shims call `mise x -- ness` or the mise shim so no installed copy needs
 maintaining. **Rejected**: it roughly doubles per-tool-call hook latency on
 every harness, measured above.
 
@@ -104,8 +104,14 @@ every harness, measured above.
    `aarch64-apple-darwin` and `x86_64-unknown-linux-gnu`, assets
    `ness-<version>-<target>.tar.gz` plus `SHA256SUMS`.
 3. **Install and exec path.** `.config/mise/config.toml` pins
-   `"github:phatblat/ness"` with a `postinstall` that links
-   `~/.local/bin/ness` to the installed binary. Every shim keeps executing
+   `"github:phatblat/ness"` with a `postinstall` that copies the installed
+   binary to `~/.local/bin/ness` with `install -m 755`, as `ness-install`
+   does today. It is a copy, not a symlink: a symlink into the
+   version-specific mise install directory dangles after a bump plus
+   `mise prune`, and a dangling link makes every shim fail closed, denying
+   every tool call on every harness. Every `mise install` of a new pin
+   refreshes the copy; between a pin bump and that install the shims keep
+   running the previous, intact binary. Every shim keeps executing
    `$HOME/.local/bin/ness` by absolute path and keeps failing closed when it
    is missing; their remedy text changes from `just ness-install` to
    `mise install ness`. `ness-build` and `ness-install` are removed;
