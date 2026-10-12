@@ -29,6 +29,13 @@ jobs:
       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
     runs-on: arc-ubuntu-24.04-arm64
     timeout-minutes: 30
+    # One run per PR at a time. Job level rather than workflow level: a job
+    # skipped by the `if` above never joins the group, so a no-op comment
+    # cannot cancel a queued real review. In-progress runs are not
+    # cancelled; a review is minutes of model time worth finishing.
+    concurrency:
+      group: agentic-review-${{ github.event.pull_request.number || github.event.issue.number }}
+      cancel-in-progress: false
     steps:
       # issue_comment payloads carry no base ref and the trigger has no
       # branch filter, so check the PR's base here; keep the list in step
