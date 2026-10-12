@@ -22,9 +22,8 @@ hook_input() {
 
 @test "audit hook: is registered only in hooks.json" {
     run jq -e '
-    .hooks.Stop[]
-    | select(.name == "Task Complete Audit")
-    | .hooks[]
+    .hooks.Stop[].hooks[]
+    | select(.statusMessage == "Task Complete Audit")
     | select(.command == "bash '\''/Users/phatblat/.codex/hooks/scripts/audit-task-complete.sh'\''")
   ' "$CODEX_HOOKS"
     [ "$status" -eq 0 ]
