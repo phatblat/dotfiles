@@ -36,6 +36,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: agentic-review/go.mod
+          cache-dependency-path: agentic-review/go.sum
 
       # The shim version-checks $AGENTIC_REVIEW_BIN against its own
       # EXPECTED_VERSION, so stamp the value read out of the checked-out
@@ -86,6 +87,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: agentic-review/go.mod
+          cache-dependency-path: agentic-review/go.sum
 
       - name: Build agentic-review
         working-directory: agentic-review
