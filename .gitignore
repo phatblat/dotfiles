@@ -547,6 +547,7 @@
 !.omp/agent/prompts/
 !.omp/agent/rules/
 !.omp/agent/skills/
+!.omp/agent/teams/
 !.omp/agent/themes/
 !.omp/agent/tools/
 !.omp/agent/
