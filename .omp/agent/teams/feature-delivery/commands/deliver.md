@@ -139,10 +139,13 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
    builder, then repeat step 3) / "End the run". When the check has no
    single `PLAN.md` task (a review fix loop or Request changes), omit
    "Revise PLAN.md" and ask only "Steer the builder" / "End the run".
-5. `passed` true: only now tick the task's checkboxes in `PLAN.md` (a
-   task that never passed its check must stay unticked so resume does not
-   skip it), set `## Status` to "Task N built and checked" plus anything
-   notable, commit `PLAN.md` (status subject), and re-record the ref
+5. `passed` true: for a `### Task N` check, only now tick the task's
+   checkboxes in `PLAN.md` (a task that never passed its check must stay
+   unticked so resume does not skip it) and set `## Status` to "Task N
+   built and checked" plus anything notable. When the check has no single
+   task (a review fix loop or Request changes), tick nothing and set
+   `## Status` to what was checked, for example "review fixes applied and
+   checked". Commit `PLAN.md` (status subject) and re-record the ref
    baseline.
 
 ## Phase 4 — Review
