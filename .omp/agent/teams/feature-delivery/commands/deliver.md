@@ -170,16 +170,18 @@ The unit of work is one `### Task N` of `PLAN.md`, in order. For each:
 ## Phase 4 — Review
 
 1. Read `skill://requesting-code-review`.
-2. Tree snapshot. List `CHANGED`: `git diff --name-only BASE -- ':!PLAN.md'`
+2. Tree snapshot. List `CHANGED`: `git diff --name-only --diff-filter=d BASE -- ':!PLAN.md'`
    plus `git ls-files --others --exclude-standard` without `PLAN.md`
-   (`PLAN.md` is process scaffolding, not part of the change). In one
-   `task` call dispatch `agent: "delivery-reviewer"` (task: base `BASE`,
-   `PLAN.md`, every task heading, and that the diff to review is
+   (`PLAN.md` is process scaffolding, not part of the change), and
+   `DELETED`: `git diff --name-only --diff-filter=D BASE -- ':!PLAN.md'`.
+   In one `task` call dispatch `agent: "delivery-reviewer"` (task: base
+   `BASE`, `PLAN.md`, every task heading, and that the diff to review is
    `git diff BASE -- ':!PLAN.md'`, `PLAN.md` being scaffolding to read for
    requirements only) and `agent: "security-reviewer"` (task: review the
-   files in `CHANGED`, listed in the task, for vulnerabilities; it has no
-   `bash`, so it reads the files directly and cannot run git). Ref check
-   and tree check.
+   files in `CHANGED`, listed in the task, for vulnerabilities, and note
+   the removed paths in `DELETED`, which it cannot read; it has no `bash`,
+   so it reads the files directly and cannot run git). Ref check and tree
+   check.
 3. Normalize every finding to severity, path, line, issue, fix:
    `delivery-reviewer` entries as returned. `security-reviewer` returns
    `findings` (absent or empty means none) with `severity`, `title`,
