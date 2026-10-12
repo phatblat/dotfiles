@@ -21,5 +21,5 @@ export def sshupload [keyfile?: string] {
 
     print $"Uploading SSH public key to GitHub [($kf)]"
 
-    ^curl --request POST --url "https://api.github.com/user/keys" --header $"Authorization: token ($token)" --data $"{\"title\":\"($title)\",\"key\":\"($key)\"" --verbose
+    ^curl --request POST --url "https://api.github.com/user/keys" --header $"Authorization: token ($token)" --data $"{\"title\":\"($title)\",\"key\":\"($key)\"}" --verbose
 }
