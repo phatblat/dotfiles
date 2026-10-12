@@ -106,7 +106,14 @@ with no current requirement for it.
    this repository or in `~/.agents/skills`. The reviewer's own prompt states
    its criteria — correctness against the `PLAN.md` step, test adequacy,
    error handling, security-sensitive changes, and consistency with
-   surrounding code — and maps them onto its result fields.
+   surrounding code — and maps them onto its result fields. Its `severity` is
+   one of `blocker`, `major`, `minor`, or `nit`, and only `blocker` means the
+   change must not ship as is. The bundled `security-reviewer` returns its own
+   shape (`findings` with `severity` of `critical`, `high`, `medium`, `low`, or
+   `informational`, and `locations`); the lead treats `critical` and `high` as
+   blockers, and normalizes both reviewers' findings into one list of
+   severity, path, line, issue, and suggested fix for the builder and for
+   Gate 2. "Blocker findings" anywhere in this decision means that set.
 
    Result fields are enforced through each agent's `output` schema. Only the
    builder holds file-editing tools, and every member's prompt forbids
