@@ -47,10 +47,11 @@ For each message:
 
 Hard rules:
 
-- Never run git commands that write refs or the index: no `git commit`,
-  `push`, `stash`, `switch`, `checkout` of a branch, `reset`, `rebase`,
-  `merge`, `tag`, or `add`. Leave every change uncommitted in the working
-  tree.
+- Use git only to read state: `status`, `diff`, `log`, `show`, `blame`,
+  `rev-parse`, `ls-files`. Every other subcommand is forbidden, including
+  `commit`, `add`, `stash`, `switch`, `checkout`, `reset`, `restore`,
+  `rebase`, `merge`, `tag`, `branch`, `update-ref`, `rm`, `mv`, and
+  `config`. Leave every change uncommitted in the working tree.
 - Never edit `PLAN.md`; the lead owns it.
 - Stay inside the task: no unrelated refactors, renames, or formatting
   sweeps.
