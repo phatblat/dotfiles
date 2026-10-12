@@ -4,21 +4,21 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 543 unique functions/aliases across 3 shells**
+**Total: 545 unique functions/aliases across 3 shells**
 
 **Shell Statistics:**
 
-- Nushell: 496 aliases/functions (primary shell)
-- Zsh: 383 functions (daily fallback)
+- Nushell: 494 aliases/functions (primary shell)
+- Zsh: 384 functions (daily fallback)
 - Bash: 13 functions (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 3 shells: 12
-- Implemented in 2 shells: 371
-- Implemented in 1 shell only: 114
+- Implemented in 2 shells: 368
+- Implemented in 1 shell only: 119
 
-**Functions Implemented in Multiple Shells:** 383
+**Functions Implemented in Multiple Shells:** 380
 
 ## Status Legend
 
