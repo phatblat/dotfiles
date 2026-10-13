@@ -132,7 +132,7 @@ EOF
   echo "$output" | jq -e '.preferences == {keepAwakeEnabled: true, coworkBrowserToolsEnabled: false}'
 }
 
-@test "mask-claude-desktop: removes *Latched suffix keys but keeps look-alikes" {
+@test "mask-claude-desktop: removes *Latched suffix keys but keeps lookalike keys" {
   run "$MASK_DESKTOP" <<'EOF'
 {"preferences":{
   "fooLatched":true,"anotherLatched":1,
