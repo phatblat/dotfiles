@@ -1,5 +1,8 @@
 {
   "theme_light": "dark-neon-noir",
+  "copy_on_select": true,
+  "link_click": "Command",
+  "link_target": "Browser",
   "font_size": 17,
   "tabs": "Vertical",
   "prompt_style": "tokyonight",
@@ -7,8 +10,14 @@
     "palette": "dracula"
   },
   "prefs_width": 589,
+  "files": {
+    "auto_save": {
+      "after_delay": 1000
+    }
+  },
   "file_tree": {
-    "open": true
+    "open": true,
+    "preview_click": true
   },
   "git": {
     "external_editor": "/opt/homebrew/bin/zed --wait",
