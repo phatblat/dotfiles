@@ -4,6 +4,11 @@
 #
 
 # mise-managed tools, ordered alphabetically
+# scripts/sort-tools.py drops comments inside [tools], so notes on tool options
+# live here. hk's `workflow` is a packslip backend option: it pins the repository
+# workflow that signs hk releases, so mise rejects releases signed by any other
+# workflow. `mise upgrade --bump` rewrites only `version`, so the table form
+# survives bumps.
 [tools]
 "aqua:anordal/shellharden" = "4.3.2"
 "aqua:cirruslabs/tart" = "2.40.1"
