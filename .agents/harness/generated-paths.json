@@ -137,6 +137,9 @@
   "~/.agents/harness/adapters/antigravity/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
@@ -179,8 +182,14 @@
   "~/.agents/harness/adapters/antigravity/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
@@ -341,6 +350,9 @@
   "~/.agents/harness/adapters/cursor/skills/container/SKILL.md": {
     "source": "~/.agents/skills/container/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/debug-issue/SKILL.md": {
+    "source": "~/.agents/skills/debug-issue/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
@@ -482,6 +494,9 @@
   "~/.agents/harness/adapters/cursor/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
   },
+  "~/.agents/harness/adapters/cursor/skills/refactor-safely/SKILL.md": {
+    "source": "~/.agents/skills/refactor-safely/SKILL.md"
+  },
   "~/.agents/harness/adapters/cursor/skills/requesting-code-review/SKILL.md": {
     "source": "~/.agents/skills/requesting-code-review/SKILL.md"
   },
@@ -490,6 +505,9 @@
   },
   "~/.agents/harness/adapters/cursor/skills/retro/SKILL.md": {
     "source": "~/.agents/skills/retro/SKILL.md"
+  },
+  "~/.agents/harness/adapters/cursor/skills/review-changes/SKILL.md": {
+    "source": "~/.agents/skills/review-changes/SKILL.md"
   },
   "~/.agents/harness/adapters/cursor/skills/security-audit/SKILL.md": {
     "source": "~/.agents/skills/security-audit/SKILL.md"
