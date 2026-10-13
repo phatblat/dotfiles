@@ -81,7 +81,7 @@ jobs:
         if: steps.scope.outputs.in_scope != 'false'
         with:
           repository: phatblat/agentic-review
-          ref: 839e56bcafc01f30245dc8618044d5f11c52333e # v0.1.0
+          ref: 6b1630b91c98ad332863afb079494ddfd2c4642a # v0.1.1
           path: agentic-review
           persist-credentials: false
 
