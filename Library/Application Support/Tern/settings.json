@@ -1,32 +1,15 @@
 {
-  "theme_light": "dark-neon-noir",
+  "theme_light": "dark-lavender",
   "copy_on_select": true,
   "link_click": "Command",
   "link_target": "Browser",
-  "font_size": 17,
-  "tabs": "Vertical",
-  "prompt_style": "tokyonight",
-  "prompt_parts": {
-    "palette": "dracula"
-  },
-  "prefs_width": 589,
+  "shell": "/Users/phatblat/bin/nu-login",
   "files": {
     "auto_save": {
       "after_delay": 1000
     }
   },
   "file_tree": {
-    "open": true,
     "preview_click": true
-  },
-  "git": {
-    "external_editor": "/opt/homebrew/bin/zed --wait",
-    "show_commit_author": true
-  },
-  "sqlite": {
-    "location_dir": "/Users/phatblat/dev",
-    "browse_font_size": 12,
-    "image_preview": true,
-    "indent_compact": true
   }
 }
