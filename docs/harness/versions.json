@@ -26,18 +26,18 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.46 (2765805b9442)",
-    "version": "grok 1.0.50 (c58f321264ba) [alpha]"
+    "previous": "grok 1.0.50 (c58f321264ba) [alpha]",
+    "version": "grok 1.0.52 (0920c8169e27) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.9.1",
-    "version": "omp/18.10.1"
+    "previous": "omp/18.10.1",
+    "version": "omp/18.10.3"
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "1.18.34",
-    "version": "1.18.35"
+    "previous": "1.18.35",
+    "version": "1.19.0"
   },
   "pi": {
     "first_seen": "2026-08-29",

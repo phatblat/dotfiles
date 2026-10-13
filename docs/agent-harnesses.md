@@ -10,12 +10,12 @@ Coverage: 91/405 cells verified (22%)
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.285 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.162.1 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.18.35 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| opencode | new port | 1.19.0 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.1.0 | 2026-08-29 | 9 | 1 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.10.1 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| omp | tracked port | omp/18.10.3 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.3.3 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
 | cursor | tracked port | 2026.10.01-e373342 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.50 (c58f321264ba) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
+| grok | new port | grok 1.0.52 (0920c8169e27) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.98.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
@@ -67,6 +67,9 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-10-13 | opencode | - | version | 1.18.35 | 1.19.0 |
+| 2026-10-13 | omp | - | version | omp/18.10.1 | omp/18.10.3 |
+| 2026-10-13 | grok | - | version | grok 1.0.50 (c58f321264ba) [alpha] | grok 1.0.52 (0920c8169e27) [alpha] |
 | 2026-10-12 | omp | - | version | omp/18.9.1 | omp/18.10.1 |
 | 2026-10-11 | omp | - | version | omp/18.8.7 | omp/18.9.1 |
 | 2026-10-11 | cursor | - | version | 2026.09.28-64d2043 | 2026.10.01-e373342 |
@@ -74,9 +77,6 @@ Coverage: 91/405 cells verified (22%)
 | 2026-10-11 | codex | - | version | codex-cli 0.162.0 | codex-cli 0.162.1 |
 | 2026-10-11 | antigravity | - | version | 1.2.10 | 1.3.3 |
 | 2026-10-10 | omp | - | version | omp/18.8.6 | omp/18.8.7 |
-| 2026-10-10 | crush | - | version | crush version v0.97.1 | crush version v0.98.0 |
-| 2026-10-10 | codex | - | version | codex-cli 0.161.0 | codex-cli 0.162.0 |
-| 2026-10-09 | pi | - | version | 1.0.4 | 1.1.0 |
 
 ## Permanent divergences
 

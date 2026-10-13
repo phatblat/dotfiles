@@ -10,18 +10,21 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 |---|---|---|---|
 | claude | 2.1.285 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
 | codex | codex-cli 0.162.1 | 2026-08-29 | codex-cli 0.162.0 |
-| opencode | 1.18.35 | 2026-08-29 | 1.18.34 |
+| opencode | 1.19.0 | 2026-08-29 | 1.18.35 |
 | pi | 1.1.0 | 2026-08-29 | 1.0.4 |
-| omp | omp/18.10.1 | 2026-08-29 | omp/18.9.1 |
+| omp | omp/18.10.3 | 2026-08-29 | omp/18.10.1 |
 | antigravity | 1.3.3 | 2026-08-29 | 1.2.10 |
 | cursor | 2026.10.01-e373342 | 2026-08-29 | 2026.09.28-64d2043 |
-| grok | grok 1.0.50 (c58f321264ba) [alpha] | 2026-08-29 | grok 1.0.46 (2765805b9442) |
+| grok | grok 1.0.52 (0920c8169e27) [alpha] | 2026-08-29 | grok 1.0.50 (c58f321264ba) [alpha] |
 | crush | crush version v0.98.1 | 2026-08-29 | crush version v0.98.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-13 | opencode | - | version | 1.18.35 | 1.19.0 | 1.19.0 |
+| 2026-10-13 | omp | - | version | omp/18.10.1 | omp/18.10.3 | omp/18.10.3 |
+| 2026-10-13 | grok | - | version | grok 1.0.50 (c58f321264ba) [alpha] | grok 1.0.52 (0920c8169e27) [alpha] | grok 1.0.52 (0920c8169e27) [alpha] |
 | 2026-10-12 | omp | - | version | omp/18.9.1 | omp/18.10.1 | omp/18.10.1 |
 | 2026-10-11 | omp | - | version | omp/18.8.7 | omp/18.9.1 | omp/18.9.1 |
 | 2026-10-11 | cursor | - | version | 2026.09.28-64d2043 | 2026.10.01-e373342 | 2026.10.01-e373342 |
@@ -219,6 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-02 | codex | skills.shared | probe | pass | fail | codex-cli 0.152.0 |
 | 2026-09-02 | codex | agents.specialists | probe | fail | pass | codex-cli 0.152.0 |
 | 2026-09-02 | claude | skills.shared | probe | pass | fail | 2.1.236 (Claude Code) |
-| 2026-09-02 | claude | commands.active | probe | fail | pass | 2.1.236 (Claude Code) |
-| 2026-09-02 | antigravity | skills.shared | probe | pass | fail | 1.1.24 |
-| 2026-08-30 | pi | skills.shared | probe | - | pass | 0.84.3 |
