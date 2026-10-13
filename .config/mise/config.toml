@@ -4,6 +4,11 @@
 #
 
 # mise-managed tools, ordered alphabetically
+# scripts/sort-tools.py drops comments inside [tools], so notes on tool options
+# live here. hk's `workflow` is a packslip backend option: it pins the repository
+# workflow that signs hk releases, so mise rejects releases signed by any other
+# workflow. `mise upgrade --bump` rewrites only `version`, so the table form
+# survives bumps.
 [tools]
 "aqua:anordal/shellharden" = "4.3.2"
 "aqua:cirruslabs/tart" = "2.40.1"
@@ -30,7 +35,7 @@
 "github:dolthub/dolt" = "2.4.2"
 "github:fialhosoft/agentlink" = "0.0.1"
 "github:nushell/nushell" = { version = "0.116.1", version_prefix = "" }
-"github:raine/aven" = "v0.1.47"
+"github:raine/aven" = "v0.1.48"
 "github:schpet/linear-cli" = "3.0.0"
 "go:golang.org/x/tools/gopls" = "0.23.0"
 "npm:@babel/cli" = "8.0.6"
@@ -50,7 +55,7 @@
 "npm:markdownlint-cli2" = "0.23.3"
 "npm:pnpm" = "12.11.2"
 "npm:prettier" = "3.9.10"
-"npm:renovate" = "44.151.0"
+"npm:renovate" = "44.155.1"
 "npm:standard-readme-spec" = "1.3.1"
 "npm:typescript" = "7.0.2"
 "npm:typescript-language-server" = "6.0.2"
@@ -58,17 +63,17 @@
 "npm:yaml-language-server" = "1.25.0"
 "npm:yarn" = "1.22.22"
 "pipx:basedpyright" = "1.40.2"
-"pipx:graphifyy" = "0.9.86"
+"pipx:graphifyy" = "0.9.87"
 "pipx:harbor" = "0.24.0"
 "pipx:pyright" = "1.1.414"
 "pipx:python-lsp-server" = "1.15.0"
 "pipx:token-viewer" = "0.0.7"
 "pipx:yamllint" = "1.38.0"
-"vfox:mise-plugins/vfox-gcloud" = "588.0.0"
+"vfox:mise-plugins/vfox-gcloud" = "589.0.0"
 act = "0.2.89"
 actionlint = "1.7.12"
 ast-grep = "0.50.0"
-awscli = { version = "2.37.13", symlink_bins = "true" }
+awscli = { version = "2.38.0", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.14.0"
 bazelisk = "1.29.0"
@@ -77,7 +82,7 @@ buildifier = "10.1.0"
 bun = "1.4.3"
 caddy = "2.11.7"
 cheat = "5.1.0"
-chromedriver = "157.0.8101.0"
+chromedriver = "157.0.8102.0"
 clang-format = "23.1.3"
 cmake = "4.4.4"
 crush = "0.98.1"
@@ -86,7 +91,7 @@ dart = "3.13.5"
 delta = "0.20.1"
 direnv = "2.38.2"
 docker-compose = "5.6.0"
-dotnet = "10.0.401"
+dotnet = "10.0.402"
 duckdb = "1.5.6"
 duf = "0.9.1"
 dust = "1.2.6"
@@ -102,9 +107,9 @@ gradle = "9.8.1"
 grok = { version = "1.0.52", bin = "grok", url = 'https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-{{ os() }}-{{ arch(arm64="aarch64", x64="x86_64") }}', version_list_url = "https://x.ai/cli/stable", platforms = { windows-arm64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-aarch64.exe" }, windows-x64 = { bin = "grok.exe", url = "https://storage.googleapis.com/grok-build-public-artifacts/cli/grok-{{ version }}-windows-x86_64.exe" } } }
 helm = "4.3.0"
 hexyl = "0.17.0"
-hk = "2.5.0"
+hk = { version = "2.6.0", workflow = "release.yml" }
 hyperfine = "2.0.0"
-infisical = { version = "0.43.141", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
+infisical = { version = "0.43.142", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
 java = "27.0.0"
 jjui = "0.10.11"
 jq = "1.8.2"
@@ -125,12 +130,12 @@ mkcert = "1.4.4"
 neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.11.1"
-oh-my-pi = { version = "18.10.3", rename_exe = "omp" }
+oh-my-pi = { version = "18.10.4", rename_exe = "omp" }
 opencode = "1.19.0"
 packer = "1.16.1"
 pi = "1.1.0"
 pinact = "5.0.0"
-pipx = "1.17.13"
+pipx = "1.17.14"
 powershell = "7.6.6"
 protobuf = "36.2"
 python = "3.15.0"

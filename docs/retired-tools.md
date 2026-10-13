@@ -11,7 +11,7 @@ Each entry: package/tool name, where it was managed, when and why it was removed
 - **Managed via**: mise (`.config/mise/config.toml`, `npm:oh-my-claude-sisyphus`)
 - **Removed**: 2026-09-22
 - **Reason**: Unused — not referenced by any workflow, skill, or script in this repo aside
-  from an optional, best-effort HUD probe (`hud/omc-hud.mjs`, which tries importing
+  from an optional, best-effort HUD probe (`hud/omc-hud.mjs`, since removed, which tried importing
   `oh-my-claude-sisyphus/dist/hud/index.js` behind an `existsSync` guard and silently skips
   it if absent). Confirmed via repo-wide search that no config, command, or doc depended on
   the pinned CLI itself.

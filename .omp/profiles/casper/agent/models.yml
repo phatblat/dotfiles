@@ -65,6 +65,10 @@ providers:
         name: Ditto AI Coder
         cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
+      ember:
+        name: Ember-1
+        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
+
       glm-5.3:
         name: Glm 5.3
         cost: { input: 1.40, output: 4.40, cacheRead: 0.26, cacheWrite: 0 }
