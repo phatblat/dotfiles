@@ -200,7 +200,7 @@ SESSION_STORES: dict[str, SessionStore] = {
         pattern="projects/*/agent-transcripts/*/*.jsonl",
         env=(),
         verified=False,
-        note="single local file observed; expect a low-coverage report",
+        note="a handful of local transcripts (3 in a 30-day window); no timestamps or tool results, so expect a low-coverage report",
     ),
     "grok": SessionStore(
         kind="jsonl",

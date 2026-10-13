@@ -7,15 +7,10 @@
     },
     "coworkBrowserToolsEnabled": true,
     "coworkPreferredBrowser": "built_in",
-    "launchPreviewPersistedWorkspaces": [],
-    "launchPreviewSessionScopedSessions": [],
-    "coworkLegacyRootGrantsPruned": true,
     "coworkScheduledTasksEnabled": true,
     "coworkHipaaRestricted": false,
     "orgWorkAcrossAppsDisabled": false,
     "ccdScheduledTasksEnabled": true,
-    "storeReadCacheLatched": true,
-    "sidebarMode": "chat",
     "bypassPermissionsGateByAccount": {
       "193b5ba3-3754-4e2a-953b-4adcc4457018": false,
       "5093aaa7-aa7d-4b88-b0ab-be76abbb9ba5": false
@@ -26,106 +21,8 @@
       "5093aaa7-aa7d-4b88-b0ab-be76abbb9ba5": true
     },
     "keepAwakeEnabled": true,
-    "coworkOnboardingResumeStep": null,
     "chicagoEnabled": true,
     "remoteToolsDeviceName": "phathub",
-    "ccAutoArchiveOnPrClose": true,
-    "epitaxyPrefs": {
-      "ccd-sessions-filter": {
-        "state": {
-          "selectedProjects": []
-        },
-        "version": 0
-      },
-      "desktop-frame.paneStore.v1": {
-        "state": {
-          "extraPanesByMode": {},
-          "colWeightsByMode": {},
-          "rowSplit": 0.5,
-          "draftNonce": 0,
-          "lastPrimaryCodeSession": null
-        },
-        "version": 4
-      },
-      "dframe-local-slice": {
-        "pinnedOrder": [],
-        "homeProjectsPinnedOrder": []
-      },
-      "starred-cowork-spaces": [],
-      "starred-local-code-sessions": [],
-      "starred-session-groups": [],
-      "dframe-group-scopes": {},
-      "code-sessions-selected-environments": [],
-      "code-sessions-status-filter": "all",
-      "cc-landing-worktree-enabled": true,
-      "epitaxy-perm-mode-acks.193b5ba3-3754-4e2a-953b-4adcc4457018": [
-        "/Users/phatblat:auto"
-      ],
-      "epitaxy-folder-permission-mode.193b5ba3-3754-4e2a-953b-4adcc4457018": {
-        "/Users/phatblat": "auto"
-      },
-      "epitaxy-transcript-links-in-preview": false,
-      "epitaxy-transcript-links-chooser-seen": true,
-      "epitaxy-split-suggestion": {
-        "state": {
-          "shownCount": 1,
-          "accepted": false,
-          "dismissCount": 0,
-          "lastDismissedAt": 0
-        },
-        "version": 0
-      },
-      "starred-local-routines": [],
-      "dframe-code-sections": {
-        "193b5ba3-3754-4e2a-953b-4adcc4457018/3e25f271-75dd-4066-8506-a8200882f46e": {
-          "sections": [
-            {
-              "id": "pinned",
-              "kind": "pinned",
-              "name": "",
-              "order": 0,
-              "sortBy": "recency",
-              "ascending": false,
-              "show": {
-                "metadata": true,
-                "emptyGroups": false
-              },
-              "collapsed": false,
-              "shown": true
-            },
-            {
-              "id": "routines",
-              "kind": "routines",
-              "name": "",
-              "order": 1,
-              "sortBy": "recency",
-              "ascending": false,
-              "show": {
-                "metadata": true,
-                "emptyGroups": false
-              },
-              "collapsed": true,
-              "shown": false
-            },
-            {
-              "id": "sessions",
-              "kind": "sessions",
-              "name": "",
-              "order": 2,
-              "sortBy": "recency",
-              "ascending": false,
-              "show": {
-                "metadata": true,
-                "emptyGroups": false
-              },
-              "collapsed": false,
-              "shown": true
-            }
-          ],
-          "migratedFrom": 1,
-          "prefsSeeded": true
-        }
-      }
-    }
+    "ccAutoArchiveOnPrClose": true
   }
 }

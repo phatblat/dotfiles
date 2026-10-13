@@ -4,11 +4,16 @@ providers:
 setupVersion: 2
 modelRoles:
   plan: anthropic/claude-opus-5-5:xhigh
-  slow: spark/Baekpica/DeepSeek-V4-Flash-0731-120B-REAM-104E-NVFP4
-  smol: anthropic/claude-haiku-4-5
+  slow: spark/Inferact/Qwen3.8-27B-NVFP4
+  smol: anthropic/claude-haiku-5-5:auto
   default: anthropic/claude-sonnet-5-5:high
   vision: spark/Inferact/Qwen3.8-27B-NVFP4
-  commit: anthropic/claude-haiku-4-5:auto
+  commit: anthropic/claude-haiku-5-5:low
+  delivery_build: anthropic/claude-sonnet-5-5:high
+  delivery_test: anthropic/claude-haiku-5-5:auto
+  delivery_review: anthropic/claude-opus-5-5:xhigh
+extensions:
+  - ~/.omp/agent/teams/feature-delivery
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
@@ -323,6 +328,8 @@ error:
 skills:
   enableClaudeProject: false
   enableSkillCommands: true
+  ignoredSkills:
+    - codex/*
 plan:
   autosave: true
 commands:

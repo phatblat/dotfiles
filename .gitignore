@@ -82,10 +82,10 @@
 .claude/.credentials.json
 .claude/.last-cleanup
 .claude/.last-update-result.json
+.claude/.oauth_refresh.lock.owner
 .claude/.ramp-router-settings.lock
 .claude/.session-stats.json
 .claude/.session-stats.json.tmp.*
-.claude/agent-flow/*.json
 .claude/daemon.lock
 .claude/daemon.status.json
 .claude/daemon/
@@ -123,6 +123,7 @@
 !.codex/skills/artifact-message-bus/
 !.codex/skills/aven/SKILL.md
 !.codex/skills/aven/
+!.codex/skills/backlog-batch-delivery/
 !.codex/skills/brainstorm/
 !.codex/skills/branch-finish/
 !.codex/skills/ci-fix/SKILL.md
@@ -131,7 +132,6 @@
 !.codex/skills/cmux-workspace-status/
 !.codex/skills/container/SKILL.md
 !.codex/skills/container/
-!.codex/skills/debug-issue/
 !.codex/skills/dispatching-parallel-agents/
 !.codex/skills/executing-plans/
 !.codex/skills/find-docs/
@@ -147,11 +147,9 @@
 !.codex/skills/plan-design-review/
 !.codex/skills/pr-style/
 !.codex/skills/receiving-code-review/
-!.codex/skills/refactor-safely/
 !.codex/skills/requesting-code-review/
 !.codex/skills/resolve-review-feedback/
 !.codex/skills/retro/
-!.codex/skills/review-changes/
 !.codex/skills/security-audit/
 !.codex/skills/subagent-driven-development/
 !.codex/skills/test-driven-development/
@@ -197,6 +195,7 @@
 .config/chromium/
 .config/claude-profiles/
 .config/claude/versions
+.config/cmux/cmux.json.cmux-write.lock
 .config/codexbar/
 .config/com.tolaria.app/
 .config/configstore
@@ -267,6 +266,7 @@
 !.config/opencode/skills/artifact-message-bus/
 !.config/opencode/skills/aven/SKILL.md
 !.config/opencode/skills/aven/
+!.config/opencode/skills/backlog-batch-delivery/
 !.config/opencode/skills/brainstorm/
 !.config/opencode/skills/branch-finish/
 !.config/opencode/skills/ci-fix/SKILL.md
@@ -275,7 +275,6 @@
 !.config/opencode/skills/cmux-workspace-status/
 !.config/opencode/skills/container/SKILL.md
 !.config/opencode/skills/container/
-!.config/opencode/skills/debug-issue/
 !.config/opencode/skills/dispatching-parallel-agents/
 !.config/opencode/skills/executing-plans/
 !.config/opencode/skills/find-docs/
@@ -291,11 +290,9 @@
 !.config/opencode/skills/plan-design-review/
 !.config/opencode/skills/pr-style/
 !.config/opencode/skills/receiving-code-review/
-!.config/opencode/skills/refactor-safely/
 !.config/opencode/skills/requesting-code-review/
 !.config/opencode/skills/resolve-review-feedback/
 !.config/opencode/skills/retro/
-!.config/opencode/skills/review-changes/
 !.config/opencode/skills/security-audit/
 !.config/opencode/skills/subagent-driven-development/
 !.config/opencode/skills/test-driven-development/
@@ -544,6 +541,7 @@
 !.omp/agent/prompts/
 !.omp/agent/rules/
 !.omp/agent/skills/
+!.omp/agent/teams/
 !.omp/agent/themes/
 !.omp/agent/tools/
 !.omp/agent/
@@ -936,6 +934,8 @@ Library/Application Support/Sublime Text 3/Local/
 Library/Application Support/SyncServices/
 Library/Application Support/TG Pro/
 Library/Application Support/TabNine/
+Library/Application Support/Tern/*
+!Library/Application Support/Tern/settings.json
 Library/Application Support/TextMate/
 Library/Application Support/Things Sandbox Helper/
 Library/Application Support/Thunderbird/

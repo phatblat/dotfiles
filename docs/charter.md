@@ -27,7 +27,8 @@ versus what stays scratch — see
 | Charter   | `docs/charter.md` | this file                                                  |
 | Design    | —                  | per-domain docs under `docs/`; no single `docs/design.md`  |
 | Decisions | `docs/decisions/`  | in use                                                     |
-| Roadmap   | —                  | not used yet — no ordered backlog distinct from ad-hoc work |
+| Roadmap   | —                  | not used — no ordering yet; queued items live in `docs/backlog/` |
+| Backlog   | `docs/backlog/`    | in use                                                     |
 | Plan      | —                  | written per branch as `PLAN.md`, deleted at `plan: done`   |
 | Todo      | —                  | written per branch as `TODO.md`, deleted at `todo: clear`  |
 | Events    | —                  | vocabulary recorded in `AGENTS.md`; no `EVENTS.md`         |

@@ -1,6 +1,7 @@
 ---
 name: pr-post-review-findings
 description: Post findings from the most recent review output as inline GitHub PR comments and record them in today's daily note. Use when invoked as `$pr-post-review-findings` or when the user asks to post review findings to the current PR.
+disable-model-invocation: true
 ---
 
 # pr-post-review-findings
@@ -28,19 +29,13 @@ Post findings from the most recent review or code-review output in the conversat
 
    If no open PR exists, stop and tell the user to run `$pr-create` first.
 
-4. For each finding, extract path and use the last linked line as the comment anchor. Post an inline review comment:
+4. For each finding, extract path and use the last linked line as the comment anchor. Post an inline review comment.
 
-   ```bash
-   gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
-     --method POST \
-     --input -
-   ```
-
-   JSON body:
+   The harness bash guard scans the **entire** command string, including inline JSON, heredocs, and `printf`/`echo` pipes, and denies words such as `truncate` or `shred` ("Dangerous command pattern detected") even when they appear only in review prose. Never put the comment body in the shell command. Write the JSON payload to a temp file with your file-write tool (not `echo`, `printf`, or a heredoc), for example `${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>.json`:
 
    ```json
    {
-     "body": "<description>",
+     "body": "<description, JSON-escaped>",
      "commit_id": "<headRefOid>",
      "path": "<path>",
      "line": <line>,
@@ -48,18 +43,25 @@ Post findings from the most recent review or code-review output in the conversat
    }
    ```
 
-   Capture the created comment URL:
+   Then post it and capture the created comment URL:
 
    ```bash
+   payload="${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>.json"
+   resp=$(gh api repos/{owner}/{repo}/pulls/<pr_number>/comments \
+     --method POST \
+     --input "$payload")
    comment_url=$(printf '%s' "$resp" | jq -r '.html_url')
+   rm -f "$payload"
    ```
 
    Record `{number, description, path, line, comment_url, kind}` for every posted finding. Use `kind=inline` for successful inline comments.
 
-5. If inline posting fails because the line is not in the diff, fall back to:
+5. If inline posting fails because the line is not in the diff, fall back to a general PR comment. Write the text (`<description>`, a blank line, `_Originally at: <url>_`) to a temp file the same way as step 4, then:
 
    ```bash
-   gh pr comment <pr_number> --body "<description>\n\n_Originally at: <url>_"
+   fallback_body="${TMPDIR:-/tmp}/pr-<pr_number>-finding-<n>-fallback.md"
+   gh pr comment <pr_number> --body-file "$fallback_body"
+   rm -f "$fallback_body"
    ```
 
    Capture the fallback comment URL when possible. If `gh pr comment` prints only a success line, query recent PR comments or use the PR URL as a last-resort link. Record `kind=general`.

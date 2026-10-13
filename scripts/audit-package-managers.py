@@ -25,9 +25,8 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
-from pathlib import Path
-
 import tomllib
+from pathlib import Path
 
 sys.dont_write_bytecode = True
 

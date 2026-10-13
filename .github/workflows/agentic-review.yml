@@ -1,0 +1,118 @@
+name: agentic-review
+
+# synchronize is deliberately not a trigger: v1 never re-reviews on push
+# (docs/setup.md:282-285). Use /agentic-review in a PR comment instead.
+on:
+  pull_request:
+    types: [opened, ready_for_review, reopened, edited]
+    branches: [main, weekend]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    # One job for both triggers so the build and the agentic-review pin
+    # exist once. The comment half of the guard is evaluated before runner
+    # assignment, so no-op comments never occupy the runner (spec §11.2).
+    # Only an owner, member or collaborator can summon a review: the job
+    # runs with repo secrets, and this repo is public.
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '/agentic-review') &&
+      github.event.comment.user.type != 'Bot' &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+    runs-on: arc-ubuntu-24.04-arm64
+    timeout-minutes: 30
+    # One run per PR at a time. Job level rather than workflow level: a job
+    # skipped by the `if` above never joins the group, so a no-op comment
+    # cannot cancel a queued real review. In-progress runs are not
+    # cancelled; a review is minutes of model time worth finishing.
+    concurrency:
+      group: agentic-review-${{ github.event.pull_request.number || github.event.issue.number }}
+      cancel-in-progress: false
+    steps:
+      # issue_comment payloads carry no base ref and the trigger has no
+      # branch filter, so check the PR's base here; keep the list in step
+      # with on.pull_request.branches. Every later step skips when it is
+      # outside that list.
+      - name: Check PR base branch
+        id: scope
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          base=$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json baseRefName --jq .baseRefName)
+          case "${base}" in
+            main | weekend) echo "in_scope=true" >> "${GITHUB_OUTPUT}" ;;
+            *)
+              echo "::notice::PR base ${base} is outside main and weekend; not reviewing"
+              echo "in_scope=false" >> "${GITHUB_OUTPUT}"
+              ;;
+          esac
+
+      # pull_request: config loads from the PR head, not the merge commit
+      # (spec §12.4). issue_comment: config loads from the default branch,
+      # never the PR head. A fork PR controls its own config.yaml, and a
+      # non-blank models[].endpoint there would receive the API key.
+      #
+      # Accepted risk on pull_request: a same-repo branch's config can do
+      # the same, since the action does not stop a PR-head endpoint from
+      # overriding the workflow's. Fork PRs get no secrets under this
+      # trigger, so only someone who can push a branch here (owner or
+      # collaborator) can exploit it. Closing it needs agentic-review to
+      # ignore PR-head endpoints; until then, review config changes by hand.
+      # Sparse: only .github/agentic-review/** is read from disk; every
+      # file body comes from the GitHub API.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.scope.outputs.in_scope != 'false'
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.event.repository.default_branch }}
+          sparse-checkout: .github/agentic-review
+          persist-credentials: false
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.scope.outputs.in_scope != 'false'
+        with:
+          repository: phatblat/agentic-review
+          ref: 6b1630b91c98ad332863afb079494ddfd2c4642a # v0.1.1
+          path: agentic-review
+          persist-credentials: false
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        if: steps.scope.outputs.in_scope != 'false'
+        with:
+          go-version-file: agentic-review/go.mod
+          cache-dependency-path: agentic-review/go.sum
+
+      # The shim version-checks $AGENTIC_REVIEW_BIN against its own
+      # EXPECTED_VERSION, so stamp the value read out of the checked-out
+      # shim rather than duplicating it here.
+      - name: Build agentic-review
+        if: steps.scope.outputs.in_scope != 'false'
+        working-directory: agentic-review
+        run: |
+          version=$(sed -n 's/^export const EXPECTED_VERSION = "\(.*\)";$/\1/p' shim/index.mjs)
+          go build -ldflags "-X main.version=${version}" \
+            -o "${RUNNER_TEMP}/agentic-review-bin" ./cmd/agentic-review
+
+      - uses: ./agentic-review
+        if: steps.scope.outputs.in_scope != 'false'
+        env:
+          AGENTIC_REVIEW_BIN: ${{ runner.temp }}/agentic-review-bin
+        with:
+          endpoint: ${{ vars.AGENTIC_REVIEW_ENDPOINT }}
+          api_key: ${{ secrets.AGENTIC_REVIEW_API_KEY }}
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always() && steps.scope.outputs.in_scope != 'false'
+        with:
+          name: agentic-review-run
+          path: ${{ runner.temp }}/agentic-review/
+          if-no-files-found: ignore

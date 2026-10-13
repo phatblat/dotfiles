@@ -1,6 +1,7 @@
 ---
 name: pr-create
 description: Create or update a GitHub pull request for the current branch. Use when the user invokes `$pr-create`, asks to create/open a PR, or wants the current branch pushed and described as a draft PR.
+disable-model-invocation: true
 ---
 
 # pr-create

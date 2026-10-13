@@ -29,7 +29,9 @@
     "dock": "right",
   },
   "agent": {
-    "sidebar_side": "right",
+    "threads_sidebar": {
+      "position": "right",
+    },
     "dock": "left",
     "default_model": {
       "model": "claude-3-5-haiku-latest",
@@ -84,6 +86,9 @@
       "env": {},
     },
   },
+  "auto_install_extensions": {
+    "blade-runner-2049": true,
+  },
   "auto_update": true,
   "autosave": "on_focus_change",
   "buffer_font_family": ".ZedMono",
@@ -98,7 +103,7 @@
   "format_on_save": "on",
   "hard_tabs": false,
   "icon_theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
@@ -171,7 +176,7 @@
   "theme": {
     "mode": "system",
     "light": "Ayu Light",
-    "dark": "Ayu Dark",
+    "dark": "Blade Runner 2049 Dark User Imput",
   },
   "ui_font_size": 16,
 }
