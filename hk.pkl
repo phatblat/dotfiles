@@ -353,7 +353,7 @@ hooks = new {
     //
     // If `git stash push --include-untracked` ever refuses again because
     // the unstaged set touches a gitignored directory holding force-tracked
-    // files (.harness/*, .heroku/*) — "The following paths are ignored by
+    // files (.harness/*) — "The following paths are ignored by
     // one of your .gitignore files" — the lever is HK_STASH_UNTRACKED=false
     // (it drops --include-untracked; hk defaults it to true), not the
     // stash method.
