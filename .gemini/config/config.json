@@ -1,6 +1,34 @@
 {
-  "plugins": {},
+  "plugins": {
+    "android-cli-plugin": {
+      "enabled": true
+    },
+    "chrome-devtools-plugin": {
+      "enabled": true
+    },
+    "firebase": {
+      "enabled": true
+    },
+    "google-antigravity-sdk": {
+      "enabled": true
+    },
+    "modern-web-guidance-plugin": {
+      "enabled": true
+    },
+    "science": {
+      "enabled": true
+    },
+    "shared-agent-harness": {
+      "enabled": true
+    }
+  },
   "userSettings": {
+    "conversationWidth": "CONVERSATION_WIDTH_WIDE",
+    "customThemeSeedsDark": {
+      "background": "#1A1B26",
+      "foregroundOverride": "#A9B1D6",
+      "primary": "#7AA2F7"
+    },
     "remoteControlHostname": "dto-a165-chatelain-zero-rocket"
   }
 }
