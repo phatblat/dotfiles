@@ -248,3 +248,5 @@
 {"capability":"-","date":"2026-10-13","detail":"","field":"version","from":"grok 1.0.50 (c58f321264ba) [alpha]","harness":"grok","to":"grok 1.0.52 (0920c8169e27) [alpha]","version_from":"grok 1.0.50 (c58f321264ba) [alpha]","version_to":"grok 1.0.52 (0920c8169e27) [alpha]"}
 {"capability":"-","date":"2026-10-13","detail":"","field":"version","from":"omp/18.10.1","harness":"omp","to":"omp/18.10.3","version_from":"omp/18.10.1","version_to":"omp/18.10.3"}
 {"capability":"-","date":"2026-10-13","detail":"","field":"version","from":"1.18.35","harness":"opencode","to":"1.19.0","version_from":"1.18.35","version_to":"1.19.0"}
+{"capability":"-","date":"2026-10-14","detail":"","field":"version","from":"omp/18.10.3","harness":"omp","to":"omp/18.10.4","version_from":"omp/18.10.3","version_to":"omp/18.10.4"}
+{"capability":"-","date":"2026-10-14","detail":"","field":"version","from":"1.1.0","harness":"pi","to":"1.2.0","version_from":"1.1.0","version_to":"1.2.0"}
