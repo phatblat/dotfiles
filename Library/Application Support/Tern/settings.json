@@ -18,6 +18,7 @@
     }
   },
   "file_tree": {
+    "open": true,
     "preview_click": true
   },
   "git": {
