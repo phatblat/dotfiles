@@ -160,4 +160,5 @@
 [includeIf "gitdir:~/dev/_GETDITTO/"]
 	path = ~/.gitconfig-ditto
 [credential "https://github.com"]
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
