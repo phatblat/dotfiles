@@ -250,7 +250,6 @@
       phplasma.csv-to-table
       pkief.material-icon-theme
       pkief.material-product-icons
-      pkosta2005.heroku-command
       pokey.parse-tree
       prashaantt.node-tdd
       redhat.ansible

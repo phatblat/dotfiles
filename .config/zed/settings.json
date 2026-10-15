@@ -88,6 +88,7 @@
   },
   "auto_install_extensions": {
     "blade-runner-2049": true,
+    "tokyo-night": true,
   },
   "auto_update": true,
   "autosave": "on_focus_change",
@@ -176,7 +177,7 @@
   "theme": {
     "mode": "system",
     "light": "Ayu Light",
-    "dark": "Blade Runner 2049 Dark User Imput",
+    "dark": "Tokyo Night",
   },
   "ui_font_size": 16,
 }

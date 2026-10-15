@@ -64,8 +64,7 @@
 	autocrlf = input
 [credential]
 	guiPrompt = false
-	helper = 1password
-	helper = /usr/local/share/gcm-core/git-credential-manager
+	helper = osxkeychain
 [delta]
 	navigate = true    # use n and N to move between diff sections
 	light = false      # set to true if you're in a terminal w/ a light background color
@@ -153,6 +152,8 @@
 	postBuffer = 157286400
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
 
 # Work identity by location. Repo-local `user.email` still wins over
 # this, so existing per-repo overrides are unaffected. `gitdir:` matches
@@ -160,3 +161,9 @@
 # the identity of their main repo.
 [includeIf "gitdir:~/dev/_GETDITTO/"]
 	path = ~/.gitconfig-ditto
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
