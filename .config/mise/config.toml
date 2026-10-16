@@ -63,7 +63,7 @@
 "npm:yaml-language-server" = "1.25.0"
 "npm:yarn" = "1.22.22"
 "pipx:basedpyright" = "1.40.2"
-"pipx:graphifyy" = "0.9.90"
+"pipx:graphifyy" = "0.9.91"
 "pipx:harbor" = "0.24.0"
 "pipx:pyright" = "1.1.414"
 "pipx:python-lsp-server" = "1.15.0"
