@@ -11,7 +11,7 @@
 # survives bumps.
 [tools]
 "aqua:anordal/shellharden" = "4.3.2"
-"aqua:cirruslabs/tart" = "2.41.0"
+"aqua:cirruslabs/tart" = "2.41.1"
 "aqua:dalance/procs" = "0.14.12"
 "aqua:dlvhdr/gh-dash" = "4.26.1"
 "aqua:openai/codex" = "0.162.1"
