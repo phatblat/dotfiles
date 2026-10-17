@@ -12,10 +12,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.3.3"
+            "version": "1.4.0"
           },
           "mode": "adapter",
           "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
@@ -33,7 +33,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.285 (Claude Code)"
@@ -55,10 +55,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "codex-cli 0.162.1"
+            "version": "codex-cli 0.163.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -77,7 +77,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "crush version v0.98.1"
@@ -99,7 +99,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.01-e373342"
@@ -120,10 +120,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+            "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -141,10 +141,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.11.1"
+            "version": "omp/18.11.3"
           },
           "mode": "native",
           "next_action": "",
@@ -162,10 +162,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "shared",
           "next_action": "",
@@ -183,10 +183,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.0"
+            "version": "1.3.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -533,10 +533,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.3.3"
+            "version": "1.4.0"
           },
           "mode": "adapter",
           "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
@@ -554,7 +554,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.285 (Claude Code)"
@@ -575,10 +575,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.162.1"
+            "version": "codex-cli 0.163.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -596,7 +596,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "crush version v0.98.1"
@@ -617,7 +617,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.01-e373342"
@@ -638,10 +638,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+            "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -659,10 +659,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.11.1"
+            "version": "omp/18.11.3"
           },
           "mode": "native",
           "next_action": "",
@@ -680,10 +680,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "shared",
           "next_action": "",
@@ -701,10 +701,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.0"
+            "version": "1.3.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -1697,7 +1697,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.285 (Claude Code)"
@@ -1718,10 +1718,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.162.1"
+            "version": "codex-cli 0.163.0"
           },
           "mode": "adapter",
           "next_action": "Re-check Codex release notes for stable command format",
@@ -1739,7 +1739,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "crush version v0.98.1"
@@ -1760,7 +1760,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.01-e373342"
@@ -1781,10 +1781,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+            "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
           },
           "mode": "native",
           "next_action": "Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows",
@@ -1802,10 +1802,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.11.1"
+            "version": "omp/18.11.3"
           },
           "mode": "native",
           "next_action": "",
@@ -1823,10 +1823,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "adapter",
           "next_action": "",
@@ -1844,10 +1844,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.0"
+            "version": "1.3.0"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2196,10 +2196,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.3.3"
+            "version": "1.4.0"
           },
           "mode": "emulated",
           "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
@@ -2217,7 +2217,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.285 (Claude Code)"
@@ -2238,10 +2238,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.162.1"
+            "version": "codex-cli 0.163.0"
           },
           "mode": "native",
           "next_action": "",
@@ -2259,7 +2259,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "crush version v0.98.1"
@@ -2280,7 +2280,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.01-e373342"
@@ -2301,10 +2301,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+            "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok spawn_subagent can launch the generated specialist profiles",
@@ -2322,10 +2322,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.11.1"
+            "version": "omp/18.11.3"
           },
           "mode": "native",
           "next_action": "",
@@ -2343,10 +2343,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2869,10 +2869,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.3.3"
+            "version": "1.4.0"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
@@ -2891,7 +2891,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
             "version": "2.1.285 (Claude Code)"
@@ -2913,10 +2913,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "codex-cli 0.162.1"
+            "version": "codex-cli 0.163.0"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2936,7 +2936,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
             "version": "crush version v0.98.1"
@@ -2959,7 +2959,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
             "version": "2026.10.01-e373342"
@@ -2982,10 +2982,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+            "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
@@ -3004,10 +3004,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.11.1"
+            "version": "omp/18.11.3"
           },
           "mode": "adapter",
           "next_action": "",
@@ -3026,10 +3026,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "adapter",
           "next_action": "",
@@ -3048,10 +3048,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.2.0"
+            "version": "1.3.0"
           },
           "mode": "adapter",
           "next_action": "",
@@ -5159,10 +5159,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.3.3"
+            "version": "1.4.0"
           },
           "mode": "native",
           "next_action": "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
@@ -5180,7 +5180,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.285 (Claude Code)"
@@ -5201,10 +5201,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.162.1"
+            "version": "codex-cli 0.163.0"
           },
           "mode": "native",
           "next_action": "",
@@ -5222,7 +5222,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "crush version v0.98.1"
@@ -5243,7 +5243,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.01-e373342"
@@ -5264,10 +5264,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+            "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -5285,10 +5285,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.11.1"
+            "version": "omp/18.11.3"
           },
           "mode": "native",
           "next_action": "",
@@ -5306,10 +5306,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "adapter",
           "next_action": "",
@@ -5327,10 +5327,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.0"
+            "version": "1.3.0"
           },
           "mode": "native",
           "next_action": "",
@@ -7093,10 +7093,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.3.3"
+            "version": "1.4.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -7114,7 +7114,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.285 (Claude Code)"
@@ -7135,10 +7135,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.162.1"
+            "version": "codex-cli 0.163.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -7156,7 +7156,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "crush version v0.98.1"
@@ -7177,7 +7177,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.01-e373342"
@@ -7198,10 +7198,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+            "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
           },
           "mode": "shared",
           "next_action": "",
@@ -7219,10 +7219,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.11.1"
+            "version": "omp/18.11.3"
           },
           "mode": "shared",
           "next_action": "",
@@ -7240,10 +7240,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "shared",
           "next_action": "",
@@ -7261,10 +7261,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.0"
+            "version": "1.3.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -7405,10 +7405,10 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "cli_exit_zero",
-            "version": "1.19.0"
+            "version": "1.19.3"
           },
           "mode": "native",
           "next_action": "",
@@ -7424,10 +7424,10 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "kind": "probe",
             "ref": "cli_exit_zero",
-            "version": "1.2.0"
+            "version": "1.3.0"
           },
           "mode": "native",
           "next_action": "",
@@ -7836,8 +7836,8 @@
   "versions": {
     "antigravity": {
       "first_seen": "2026-08-29",
-      "previous": "1.2.10",
-      "version": "1.3.3"
+      "previous": "1.3.3",
+      "version": "1.4.0"
     },
     "claude": {
       "first_seen": "2026-08-29",
@@ -7846,8 +7846,8 @@
     },
     "codex": {
       "first_seen": "2026-08-29",
-      "previous": "codex-cli 0.162.0",
-      "version": "codex-cli 0.162.1"
+      "previous": "codex-cli 0.162.1",
+      "version": "codex-cli 0.163.0"
     },
     "crush": {
       "first_seen": "2026-08-29",
@@ -7861,23 +7861,23 @@
     },
     "grok": {
       "first_seen": "2026-08-29",
-      "previous": "grok 1.0.50 (c58f321264ba) [alpha]",
-      "version": "grok 1.0.52 (0920c8169e27) [alpha]"
+      "previous": "grok 1.0.52 (0920c8169e27) [alpha]",
+      "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
     },
     "omp": {
       "first_seen": "2026-08-29",
       "previous": "omp/18.11.0",
-      "version": "omp/18.11.1"
+      "version": "omp/18.11.3"
     },
     "opencode": {
       "first_seen": "2026-08-29",
-      "previous": "1.18.35",
-      "version": "1.19.0"
+      "previous": "1.19.0",
+      "version": "1.19.3"
     },
     "pi": {
       "first_seen": "2026-08-29",
-      "previous": "1.1.0",
-      "version": "1.2.0"
+      "previous": "1.2.0",
+      "version": "1.3.0"
     }
   }
 }

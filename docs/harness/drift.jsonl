@@ -251,4 +251,18 @@
 {"capability":"-","date":"2026-10-14","detail":"","field":"version","from":"omp/18.10.3","harness":"omp","to":"omp/18.10.4","version_from":"omp/18.10.3","version_to":"omp/18.10.4"}
 {"capability":"-","date":"2026-10-14","detail":"","field":"version","from":"1.1.0","harness":"pi","to":"1.2.0","version_from":"1.1.0","version_to":"1.2.0"}
 {"capability":"-","date":"2026-10-15","detail":"","field":"version","from":"omp/18.10.4","harness":"omp","to":"omp/18.11.0","version_from":"omp/18.10.4","version_to":"omp/18.11.0"}
-{"capability":"-","date":"2026-10-16","detail":"","field":"version","from":"omp/18.11.0","harness":"omp","to":"omp/18.11.1","version_from":"omp/18.11.0","version_to":"omp/18.11.1"}
+{"capability":"commands.active","date":"2026-10-17","detail":"","field":"probe","from":"pass","harness":"antigravity","to":"","version_from":"1.3.3","version_to":"1.4.0"}
+{"capability":"commands.active","date":"2026-10-17","detail":"","field":"parity","from":"partial","harness":"antigravity","to":"absent","version_from":"1.3.3","version_to":"1.4.0"}
+{"capability":"commands.active","date":"2026-10-17","detail":"","field":"mode","from":"adapter","harness":"antigravity","to":"none","version_from":"1.3.3","version_to":"1.4.0"}
+{"capability":"commands.active","date":"2026-10-17","detail":"","field":"surface","from":"","harness":"antigravity","to":"Plugins load skills, agents, rules, hooks, mcpServers","version_from":"1.3.3","version_to":"1.4.0"}
+{"capability":"mcp.dependencies","date":"2026-10-17","detail":"","field":"surface","from":"Generated `mcp.json`","harness":"antigravity","to":"Generated `mcp_config.json`","version_from":"1.3.3","version_to":"1.4.0"}
+{"capability":"agents.specialists","date":"2026-10-17","detail":"","field":"probe","from":"pass","harness":"pi","to":"","version_from":"1.2.0","version_to":"1.3.0"}
+{"capability":"agents.specialists","date":"2026-10-17","detail":"","field":"parity","from":"partial","harness":"pi","to":"absent","version_from":"1.2.0","version_to":"1.3.0"}
+{"capability":"agents.specialists","date":"2026-10-17","detail":"","field":"mode","from":"emulated","harness":"pi","to":"none","version_from":"1.2.0","version_to":"1.3.0"}
+{"capability":"agents.specialists","date":"2026-10-17","detail":"","field":"surface","from":"","harness":"pi","to":"No agent registry or subagent support in Pi 1.2.0","version_from":"1.2.0","version_to":"1.3.0"}
+{"capability":"-","date":"2026-10-17","detail":"","field":"version","from":"1.3.3","harness":"antigravity","to":"1.4.0","version_from":"1.3.3","version_to":"1.4.0"}
+{"capability":"-","date":"2026-10-17","detail":"","field":"version","from":"codex-cli 0.162.1","harness":"codex","to":"codex-cli 0.163.0","version_from":"codex-cli 0.162.1","version_to":"codex-cli 0.163.0"}
+{"capability":"-","date":"2026-10-17","detail":"","field":"version","from":"grok 1.0.52 (0920c8169e27) [alpha]","harness":"grok","to":"grok 1.0.62 (1474f9cbdd91) [alpha]","version_from":"grok 1.0.52 (0920c8169e27) [alpha]","version_to":"grok 1.0.62 (1474f9cbdd91) [alpha]"}
+{"capability":"-","date":"2026-10-17","detail":"","field":"version","from":"omp/18.11.0","harness":"omp","to":"omp/18.11.3","version_from":"omp/18.11.0","version_to":"omp/18.11.3"}
+{"capability":"-","date":"2026-10-17","detail":"","field":"version","from":"1.19.0","harness":"opencode","to":"1.19.3","version_from":"1.19.0","version_to":"1.19.3"}
+{"capability":"-","date":"2026-10-17","detail":"","field":"version","from":"1.2.0","harness":"pi","to":"1.3.0","version_from":"1.2.0","version_to":"1.3.0"}

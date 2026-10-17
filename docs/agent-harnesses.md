@@ -9,13 +9,13 @@ Coverage: 91/405 cells verified (22%)
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.285 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| codex | supported peer | codex-cli 0.162.1 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.19.0 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
-| pi | new port | 1.2.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.11.1 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.3.3 | 2026-08-29 | 4 | 6 | 0 | 0 | 1 | 34 |
+| codex | supported peer | codex-cli 0.163.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
+| opencode | new port | 1.19.3 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| pi | new port | 1.3.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
+| omp | tracked port | omp/18.11.3 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| antigravity | tracked port | 1.4.0 | 2026-08-29 | 4 | 6 | 0 | 0 | 1 | 34 |
 | cursor | tracked port | 2026.10.01-e373342 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.52 (0920c8169e27) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
+| grok | new port | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.98.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
@@ -65,16 +65,16 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
-| 2026-10-16 | omp | - | version | omp/18.11.0 | omp/18.11.1 |
-| 2026-10-15 | omp | - | version | omp/18.10.4 | omp/18.11.0 |
-| 2026-10-14 | pi | - | version | 1.1.0 | 1.2.0 |
-| 2026-10-14 | omp | - | version | omp/18.10.3 | omp/18.10.4 |
-| 2026-10-13 | opencode | - | version | 1.18.35 | 1.19.0 |
-| 2026-10-13 | omp | - | version | omp/18.10.1 | omp/18.10.3 |
-| 2026-10-13 | grok | - | version | grok 1.0.50 (c58f321264ba) [alpha] | grok 1.0.52 (0920c8169e27) [alpha] |
-| 2026-10-12 | omp | - | version | omp/18.9.1 | omp/18.10.1 |
-| 2026-10-11 | omp | - | version | omp/18.8.7 | omp/18.9.1 |
-| 2026-10-11 | cursor | - | version | 2026.09.28-64d2043 | 2026.10.01-e373342 |
+| 2026-10-17 | pi | - | version | 1.2.0 | 1.3.0 |
+| 2026-10-17 | opencode | - | version | 1.19.0 | 1.19.3 |
+| 2026-10-17 | omp | - | version | omp/18.11.0 | omp/18.11.3 |
+| 2026-10-17 | grok | - | version | grok 1.0.52 (0920c8169e27) [alpha] | grok 1.0.62 (1474f9cbdd91) [alpha] |
+| 2026-10-17 | codex | - | version | codex-cli 0.162.1 | codex-cli 0.163.0 |
+| 2026-10-17 | antigravity | - | version | 1.3.3 | 1.4.0 |
+| 2026-10-17 | pi | agents.specialists | surface | - | No agent registry or subagent support in Pi 1.2.0 |
+| 2026-10-17 | pi | agents.specialists | mode | emulated | none |
+| 2026-10-17 | pi | agents.specialists | parity | partial | absent |
+| 2026-10-17 | pi | agents.specialists | probe | pass | - |
 
 ## Permanent divergences
 
