@@ -24,6 +24,35 @@ bash:
       approval: deny
     - match: sudo
       approval: deny
+    # rm under /tmp runs without a prompt; every other rm still prompts (rules below).
+    # Globs cannot prove that every argument lives under /tmp, so the prompts come first
+    # and the allows are narrow: flags (listed, never `-*`) then one /tmp path, nothing after it.
+    - match: "rm *..*"
+      approval: prompt
+    - match: "rm *~*"
+      approval: prompt
+    - match: "rm *$*"
+      approval: prompt
+    - match: "rm *`*"
+      approval: prompt
+    - match: "rm /tmp/"
+      approval: prompt
+    - match: "rm * /tmp/"
+      approval: prompt
+    - match: "rm /tmp/* *"
+      approval: prompt
+    - match: "rm * /tmp/* *"
+      approval: prompt
+    - match: "rm /tmp/*"
+      approval: allow
+    - match: "rm -f /tmp/*"
+      approval: allow
+    - match: "rm -r /tmp/*"
+      approval: allow
+    - match: "rm -rf /tmp/*"
+      approval: allow
+    - match: "rm -fr /tmp/*"
+      approval: allow
     - match: rm *
       approval: prompt
     - match: rm
