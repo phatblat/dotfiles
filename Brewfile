@@ -12,6 +12,7 @@ tap "kylef/formulae", trusted: true
 tap "macpaw/taps"
 tap "manaflow-ai/cmux", trusted: true
 tap "messense/macos-cross-toolchains", trusted: true
+tap "phatblat/stencil", "https://github.com/phatblat/homebrew-stencil.git", trusted: true
 tap "schpet/tap", trusted: true
 tap "teamookla/speedtest"
 tap "tw93/tap", trusted: true
@@ -473,6 +474,8 @@ cask "paseo"
 cask "repo-prompt", args: { appdir: "/Applications/Agents" }
 # Team communication and collaboration software
 cask "slack"
+# Native terminal whose sessions outlive the window
+cask "stencil-tern"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
 # Epub reader
