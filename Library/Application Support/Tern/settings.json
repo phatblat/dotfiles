@@ -7,7 +7,7 @@
   "link_click": "Command",
   "link_target": "Browser",
   "layout": "Rail",
-  "font_size": 18,
+  "font_size": 22,
   "tabs": "Vertical",
   "status_bar": true,
   "surface_diffs": "Split",
