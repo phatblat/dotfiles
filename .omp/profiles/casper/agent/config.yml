@@ -27,9 +27,9 @@ bash:
     - match: sudo
       approval: deny
     - match: rm *
-      approval: ask
+      approval: prompt
     - match: rm
-      approval: ask
+      approval: prompt
     - match: "[*"
       approval: allow
     - match: awk*

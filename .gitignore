@@ -584,8 +584,8 @@
 !.omp/profiles/*/agent/agents/
 !.omp/profiles/*/agent/commands/
 !.omp/profiles/*/agent/config.yml
-!.omp/profiles/*/agent/extensions/
-!.omp/profiles/*/agent/hooks/
+!.omp/profiles/*/agent/extensions
+!.omp/profiles/*/agent/hooks
 !.omp/profiles/*/agent/instructions/
 !.omp/profiles/*/agent/keybindings.yml
 !.omp/profiles/*/agent/lsp.json
