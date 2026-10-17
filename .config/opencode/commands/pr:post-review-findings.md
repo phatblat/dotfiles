@@ -8,4 +8,4 @@ Execute the shared `pr/post-review-findings` command prompt from:
 
 `~/.agents/harness/commands/pr/post-review-findings.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

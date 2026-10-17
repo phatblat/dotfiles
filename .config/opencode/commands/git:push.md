@@ -8,4 +8,4 @@ Execute the shared `git/push` command prompt from:
 
 `~/.agents/harness/commands/git/push.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

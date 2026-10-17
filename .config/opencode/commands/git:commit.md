@@ -8,4 +8,4 @@ Execute the shared `git/commit` command prompt from:
 
 `~/.agents/harness/commands/git/commit.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

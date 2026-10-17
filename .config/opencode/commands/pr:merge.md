@@ -8,4 +8,4 @@ Execute the shared `pr/merge` command prompt from:
 
 `~/.agents/harness/commands/pr/merge.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

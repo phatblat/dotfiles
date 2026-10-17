@@ -113,7 +113,8 @@ fn run_hook(flags: &HashMap<String, String>) -> i32 {
             match harness.as_str() {
                 "grok" => hook::run_grok(&cwd, &manifest),
                 "crush" => hook::run_crush(&cwd, &manifest),
-                _ => hook::run_normalized(harness, &cwd, &manifest),
+                "antigravity" => hook::run_antigravity(&cwd, &manifest),
+                _ => hook::run_cursor(&cwd, &manifest),
             }
         }
         other => {

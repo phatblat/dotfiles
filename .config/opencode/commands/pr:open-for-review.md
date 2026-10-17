@@ -8,4 +8,4 @@ Execute the shared `pr/open-for-review` command prompt from:
 
 `~/.agents/harness/commands/pr/open-for-review.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

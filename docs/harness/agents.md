@@ -16,7 +16,7 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 | claude | aligned | native | - | probe · 2.1.285 (Claude Code) · 2026-10-15 | native Claude agents include these plus additional specialists |
 | codex | aligned | native | - | probe · codex-cli 0.162.1 · 2026-10-15 | native Codex TOML agents |
 | opencode | aligned | adapter | - | probe · 1.19.0 · 2026-10-15 | generated agent config |
-| pi | partial | emulated | - | probe · 1.2.0 · 2026-10-15 | Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation |
+| pi | absent | none | No agent registry or subagent support in Pi 1.2.0 | docs · 1.2.0 · 2026-10-16 | Pi 1.2.0 has no agent registry or subagent support; no adapter is generated |
 | omp | aligned | native | - | probe · omp/18.11.0 · 2026-10-15 | generated from shared specialist definitions |
 | antigravity | partial | emulated | - | probe · 1.3.3 · 2026-10-15 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
 | cursor | partial | native | - | probe · 2026.10.01-e373342 · 2026-10-15 | generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified |

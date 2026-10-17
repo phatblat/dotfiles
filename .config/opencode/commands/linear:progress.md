@@ -8,4 +8,4 @@ Execute the shared `linear/progress` command prompt from:
 
 `~/.agents/harness/commands/linear/progress.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

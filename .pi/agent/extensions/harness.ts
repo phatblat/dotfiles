@@ -5,7 +5,6 @@ import { execFileSync } from "node:child_process";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { Type } from "typebox";
 
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
@@ -15,6 +14,7 @@ function guard(args: string[]): GuardResult {
     const output = execFileSync(ness, ["guard", "--harness", "pi", ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
+      timeout: 5000,
     });
     return JSON.parse(output) as GuardResult;
   } catch (error: any) {
@@ -33,32 +33,14 @@ export default function (pi: ExtensionAPI) {
     let result: GuardResult = { decision: "allow" };
     if (event.toolName === "bash") {
       result = guard(["--tool", "bash", "--command", String(event.input.command || "")]);
-    } else if (event.toolName === "write" || event.toolName === "edit") {
-      const path = String(event.input.file_path || event.input.path || "");
-      const content = String(event.input.content || event.input.new_string || "");
-      result = guard(["--tool", event.toolName, "--path", path, "--content", content]);
+    } else if (event.toolName === "write") {
+      result = guard(["--tool", "write", "--path", String(event.input.path || ""), "--content", String(event.input.content || "")]);
+    } else if (event.toolName === "edit") {
+      const edits = Array.isArray(event.input.edits) ? event.input.edits : [];
+      const content = edits.map((e: any) => String(e?.newText ?? "")).join("\n");
+      result = guard(["--tool", "edit", "--path", String(event.input.path || ""), "--content", content]);
     }
     if (result.decision === "deny") return { block: true, reason: result.reason || "Blocked by shared harness guard" };
     return undefined;
-  });
-
-  pi.registerCommand("harness-agents", {
-    description: "List shared specialist agents",
-    handler: async (_args, ctx) => {
-      ctx.ui.notify("Shared specialist agents are registered in ~/.pi/agent/agents.json", "info");
-    },
-  });
-
-  pi.registerTool({
-    name: "harness_agent_registry",
-    label: "Harness Agents",
-    description: "Return the shared specialist agent registry.",
-    parameters: Type.Object({}),
-    async execute() {
-      return {
-        content: [{ type: "text", text: "Read ~/.pi/agent/agents.json for shared specialist agent definitions." }],
-        details: { path: "~/.pi/agent/agents.json" },
-      };
-    },
   });
 }

@@ -19,7 +19,7 @@ Verify: `just ness-test`
 | pi | aligned | adapter | - | probe · 1.2.0 · 2026-10-15 | - |
 | omp | aligned | adapter | - | probe · omp/18.11.0 · 2026-10-15 | - |
 | antigravity | partial | adapter | - | probe · 1.3.3 · 2026-10-15 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
-| cursor | partial | adapter | - | probe · 2026.10.01-e373342 · 2026-10-15 | generated Cursor hook shim execs the compiled guard, but native pre-tool blocking behavior has not been verified |
+| cursor | partial | adapter | - | probe · 2026.10.01-e373342 · 2026-10-15 | ~/.cursor/hooks.json preToolUse (failClosed) execs the compiled guard; Cursor also imports ~/.claude/settings.json Bash and Write\|Edit guard hooks (fail-open), so ness runs twice for Shell and Write calls |
 | grok | partial | adapter | - | probe · grok 1.0.52 (0920c8169e27) [alpha] · 2026-10-15 | generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified |
 | crush | partial | adapter | - | probe · crush version v0.98.1 · 2026-10-15 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
 

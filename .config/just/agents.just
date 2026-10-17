@@ -46,6 +46,11 @@ agy-plugins-update:
 agy-plugins-lock:
     python3 {{ justfile_directory() }}/scripts/agy-plugins.py lock
 
+# Installs the generated Cursor plugin (manifest, commands, agents) where cursor-agent auto-loads local plugins
+[group('agents')]
+cursor-plugin-install:
+    rsync -a --delete --exclude scripts/ --exclude rules/ --exclude mcp.json {{ env("HOME") }}/.agents/harness/adapters/cursor/ {{ env("HOME") }}/.cursor/plugins/local/shared-agent-harness/
+
 # Reports gitignored harness config worth tracking (allowlist blind spots)
 [group('agents')]
 audit-ignored-config *ROOTS:

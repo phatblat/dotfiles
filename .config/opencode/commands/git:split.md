@@ -8,4 +8,4 @@ Execute the shared `git/split` command prompt from:
 
 `~/.agents/harness/commands/git/split.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

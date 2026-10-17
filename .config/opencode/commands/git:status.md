@@ -8,4 +8,4 @@ Execute the shared `git/status` command prompt from:
 
 `~/.agents/harness/commands/git/status.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

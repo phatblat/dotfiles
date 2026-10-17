@@ -1,17 +1,19 @@
 {
   "expected": {
-    "exit": 2,
+    "exit": 0,
     "stdout": {
-      "decision": "deny",
-      "harness": "cursor",
-      "reason": "protected file blocked: /Users/phatblat/.ssh/id_ed25519",
-      "tool": "write"
+      "agent_message": "protected file blocked: /Users/phatblat/.ssh/id_ed25519",
+      "permission": "deny",
+      "user_message": "protected file blocked: /Users/phatblat/.ssh/id_ed25519"
     }
   },
   "payload": {
-    "content": "x",
-    "path": "/Users/phatblat/.ssh/id_ed25519",
-    "tool": "write"
+    "cwd": "/tmp",
+    "tool_input": {
+      "contents": "x",
+      "file_path": "/Users/phatblat/.ssh/id_ed25519"
+    },
+    "tool_name": "Write"
   },
   "shim": "cursor"
 }
