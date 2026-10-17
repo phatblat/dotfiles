@@ -368,14 +368,25 @@ fn shims_fail_closed_without_ness() {
         mismatches.push(format!("crush: exit {exit} stdout {stdout} stderr {stderr:?}"));
     }
 
-    for shim in ["antigravity", "cursor"] {
-        let payload = serde_json::json!({"tool": "bash", "command": "git status"});
-        let (exit, stdout, _stderr) = run_shim(shim, &payload, &home);
-        let decision = stdout.get("decision").and_then(Value::as_str).unwrap_or("");
-        let harness = stdout.get("harness").and_then(Value::as_str).unwrap_or("");
-        if exit != 2 || decision != "deny" || harness != shim {
-            mismatches.push(format!("{shim}: exit {exit} stdout {stdout}"));
-        }
+    let antigravity_payload = serde_json::json!({
+        "toolCall": {"name": "run_command", "args": {"CommandLine": "git status"}},
+    });
+    let (exit, stdout, _stderr) = run_shim("antigravity", &antigravity_payload, &home);
+    let decision = stdout.get("decision").and_then(Value::as_str).unwrap_or("");
+    let reason = stdout.get("reason").and_then(Value::as_str).unwrap_or("");
+    if exit != 0 || decision != "deny" || !reason.contains("not installed") {
+        mismatches.push(format!("antigravity: exit {exit} stdout {stdout}"));
+    }
+
+    let cursor_payload = serde_json::json!({
+        "tool_name": "Shell",
+        "tool_input": {"command": "git status"},
+    });
+    let (exit, stdout, _stderr) = run_shim("cursor", &cursor_payload, &home);
+    let permission = stdout.get("permission").and_then(Value::as_str).unwrap_or("");
+    let message = stdout.get("user_message").and_then(Value::as_str).unwrap_or("");
+    if exit != 0 || permission != "deny" || !message.contains("not installed") {
+        mismatches.push(format!("cursor: exit {exit} stdout {stdout}"));
     }
 
     assert!(
@@ -394,17 +405,28 @@ fn main_branch_commit_warning_forwards_cwd() {
     let repo_str = repo.to_string_lossy().into_owned();
     let mut mismatches = Vec::new();
 
-    for shim in ["antigravity", "cursor"] {
-        let payload = serde_json::json!({
-            "tool": "bash",
-            "command": "git commit -m test",
-            "cwd": repo_str,
-        });
-        let (exit, stdout, _stderr) = run_shim(shim, &payload, &home);
-        let decision = stdout.get("decision").and_then(Value::as_str).unwrap_or("");
-        let reason = stdout.get("reason").and_then(Value::as_str).unwrap_or("");
-        if exit != 0 || decision != "warn" || !reason.contains("protected 'main' branch") {
-            mismatches.push(format!("{shim}: exit {exit} stdout {stdout}"));
+    let antigravity_payload = serde_json::json!({
+        "toolCall": {
+            "name": "run_command",
+            "args": {"CommandLine": "git commit -m test", "Cwd": repo_str},
+        },
+        "workspacePaths": [repo_str],
+    });
+    let cursor_payload = serde_json::json!({
+        "tool_name": "Shell",
+        "tool_input": {"command": "git commit -m test"},
+        "cwd": repo_str,
+    });
+    for (shim, payload) in [
+        ("antigravity", &antigravity_payload),
+        ("cursor", &cursor_payload),
+    ] {
+        let (exit, stdout, stderr) = run_shim(shim, payload, &home);
+        if exit != 0
+            || stdout != serde_json::json!({})
+            || !stderr.contains("protected 'main' branch")
+        {
+            mismatches.push(format!("{shim}: exit {exit} stdout {stdout} stderr {stderr:?}"));
         }
     }
 

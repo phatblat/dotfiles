@@ -389,8 +389,16 @@ brew "teamookla/speedtest/speedtest", trusted: true
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
+# Agent orchestration platform
+cask "antigravity", args: { appdir: "/Applications/Agents" }
+# AI Coding Agent IDE
+cask "antigravity-ide", args: { appdir: "/Applications/Agents" }
+# AI chat client
+cask "boltai", args: { appdir: "/Applications/Agents" }
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Anthropic's official Claude AI desktop app
+cask "claude", args: { appdir: "/Applications/Agents" }
 # Tool to remove unnecessary files and folders from disk
 cask "cleanmymac"
 # Command-line interface for CleanMyMac
@@ -401,6 +409,10 @@ cask "cmux"
 cask "codex"
 # Menu bar usage monitor for Codex and Claude
 cask "codexbar"
+# Claude code parallelisation
+cask "conductor", args: { appdir: "/Applications/Agents" }
+# Write, edit, and chat about your code with AI
+cask "cursor", args: { appdir: "/Applications/Agents" }
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 # GIT client
@@ -411,22 +423,34 @@ cask "forklift"
 cask "ghostty"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "google-chrome"
+# AI teammates that work across your apps and tools
+cask "grok-bot", args: { appdir: "/Applications/Agents" }
 # Desktop automation application
 cask "hammerspoon"
 # Hex editor focussing on speed
 cask "hex-fiend"
 # System monitoring app
 cask "istat-menus"
+# Offline AI chat tool
+cask "jan", args: { appdir: "/Applications/Agents" }
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Spot and merge differences in text and image files or folders
 cask "kaleidoscope"
+# Agent-centric IDE with spec-driven development
+cask "kiro", args: { appdir: "/Applications/Agents" }
+# AI-powered productivity tool for the command-line
+cask "kiro-cli", args: { appdir: "/Applications/Agents" }
 # Automation software
 cask "linear"
+# Discover, download, and run local LLMs
+cask "lm-studio", args: { appdir: "/Applications/Agents" }
 # Software for Logitech devices
 cask "logi-options+"
 # Screen and video recording software
 cask "loom"
+# Native chat application for all major LLM APIs
+cask "macai", args: { appdir: "/Applications/Agents" }
 # Utility to move and zoom windows—on one display
 cask "moom"
 # App to write, plan, collaborate, and get organised
@@ -435,18 +459,28 @@ cask "notion"
 cask "notion-calendar"
 # Tool used to generate C# interfaces starting from objective-c code
 cask "obsidian"
+# Get up and running with large language models locally
+cask "ollama-app", args: { appdir: "/Applications/Agents" }
+# GUI app and toolkit for Claude Code
+cask "opcode", args: { appdir: "/Applications/Agents" }
+# AI coding agent desktop client
+cask "opencode-desktop", args: { appdir: "/Applications/Agents" }
 # Replacement for Docker Desktop
 cask "orbstack"
 # Self-hosted daemon for AI coding agents
 cask "paseo"
+# Prompt generation tool
+cask "repo-prompt", args: { appdir: "/Applications/Agents" }
 # Team communication and collaboration software
 cask "slack"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
+# Epub reader
+cask "thorium", args: { appdir: "/Applications/Agents" }
 # To-do list
 cask "todoist-app"
 # Markdown knowledgebase manager
-cask "tolaria"
+cask "tolaria", args: { appdir: "/Applications/Agents" }
 # Open-source code editor
 cask "visual-studio-code"
 # Install and switch between multiple versions of Xcode

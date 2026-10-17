@@ -1,0 +1,12 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "agent_message": "shared guard failed closed: payload is not a dict",
+      "permission": "deny",
+      "user_message": "shared guard failed closed: payload is not a dict"
+    }
+  },
+  "payload": "not an object",
+  "shim": "cursor"
+}

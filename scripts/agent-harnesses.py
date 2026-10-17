@@ -54,9 +54,6 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS
         is_generated_pointer,
         render_antigravity_skill,
         render_claude_skill,
-        render_codex_skill,
-        render_cursor_skill,
-        render_opencode_skill,
     )
     from harness_skills import (
         configure as configure_skill_rendering,
@@ -93,14 +90,11 @@ COMMAND_SOURCE = ROOT / ".claude" / "commands"
 AGENT_SOURCE = ROOT / ".codex" / "agents"
 SKILL_SOURCE = ROOT / ".agents" / "skills"
 CLAUDE_SKILLS = ROOT / ".claude" / "skills"
-CODEX_SKILLS = ROOT / ".codex" / "skills"
 OPEN_CODE = ROOT / ".config" / "opencode"
-OPEN_CODE_SKILLS = OPEN_CODE / "skills"
 PI_AGENT = ROOT / ".pi" / "agent"
 OMP_AGENT = ROOT / ".omp" / "agent"
 ANTIGRAVITY = ROOT / ".gemini" / "antigravity-cli"
 ANTIGRAVITY_HARNESS = SHARED / "adapters" / "antigravity"
-ANTIGRAVITY_COMMANDS = ANTIGRAVITY_HARNESS / "commands"
 CURSOR = ROOT / ".cursor"
 CURSOR_HARNESS = SHARED / "adapters" / "cursor"
 CURSOR_PLUGIN = CURSOR_HARNESS / ".cursor-plugin"
@@ -227,8 +221,6 @@ GENERATED_ITEM_ROOTS = [
     (OPEN_CODE / "commands", "*.md"),
     (OPEN_CODE / "agents", "*.md"),
     (PI_AGENT / "prompts", "*.md"),
-    (PI_AGENT / "agents", "*.md"),
-    (ANTIGRAVITY_COMMANDS, "*.md"),
     (ANTIGRAVITY_HARNESS / "agents", "*.md"),
     (CURSOR_HARNESS / "commands", "*.md"),
     (CURSOR_HARNESS / "agents", "*.md"),
@@ -307,7 +299,6 @@ def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
     obsolete: list[Path] = []
     adapters = [
         (ANTIGRAVITY_HARNESS / "skills", render_antigravity_skill),
-        (CURSOR_HARNESS / "skills", render_cursor_skill),
     ]
 
     for root, render in adapters:
@@ -347,9 +338,9 @@ def command_validate() -> int:
         PI_AGENT / "settings.json",
         ROOT / "docs" / "agent-harnesses.json",
         ANTIGRAVITY_HARNESS / "plugin.json",
-        ANTIGRAVITY_HARNESS / "hooks" / "hooks.json",
-        ANTIGRAVITY_HARNESS / "mcp.json",
-        CURSOR_HARNESS / "hooks" / "hooks.json",
+        ANTIGRAVITY_HARNESS / "hooks.json",
+        ANTIGRAVITY_HARNESS / "mcp_config.json",
+        CURSOR / "hooks.json",
         CURSOR_HARNESS / "mcp.json",
         GROK / "hooks" / "harness-guard.json",
         # Absent until the first `probe` run, so parsed only once written.
@@ -615,7 +606,6 @@ def command_verify(*, harness: str | None = None) -> int:
         ],
         "antigravity": [
             (ANTIGRAVITY_HARNESS / "plugin.json", "plugin.json exists"),
-            (ANTIGRAVITY_HARNESS / "commands", "commands directory exists"),
         ],
         "cursor": [
             (CURSOR_RULES, "rules directory exists"),
@@ -857,23 +847,20 @@ def render_all() -> dict[Path, str]:
         HARNESS_DOCS / "divergence.md": render_divergence_page(state),
         HARNESS_DOCS / "drift.md": render_drift_page(state, drift_records),
         HARNESS_DOCS / "plugins.md": render_plugins_page(state),
-        OPEN_CODE / "opencode.jsonc": render_opencode_config(commands, agents),
+        OPEN_CODE / "opencode.jsonc": render_opencode_config(),
         OPEN_CODE / "plugins" / "harness.ts": render_opencode_plugin(),
         PI_AGENT / "settings.json": render_pi_settings(),
         PI_AGENT / "extensions" / "harness.ts": render_pi_extension(),
-        PI_AGENT / "agents.json": json.dumps(
-            {"agents": slim_agents(agents)}, indent=2, sort_keys=True
-        )
-        + "\n",
         ANTIGRAVITY_HARNESS / "plugin.json": render_antigravity_plugin_manifest(),
-        ANTIGRAVITY_HARNESS / "hooks" / "hooks.json": render_antigravity_hooks(),
+        ANTIGRAVITY_HARNESS / "hooks.json": render_antigravity_hooks(),
         ANTIGRAVITY_HARNESS
         / "scripts"
         / "harness-guard.sh": render_antigravity_guard(),
-        ANTIGRAVITY_HARNESS / "mcp.json": render_antigravity_mcp(),
+        ANTIGRAVITY_HARNESS / "mcp_config.json": render_antigravity_mcp(),
         CURSOR_PLUGIN / "plugin.json": render_cursor_plugin_manifest(),
         CURSOR_RULES / "shared-harness.mdc": render_cursor_rule(),
-        CURSOR_HARNESS / "hooks" / "hooks.json": render_cursor_hooks(),
+        # Not under the adapter dir: Cursor reads hooks from ~/.cursor/hooks.json.
+        CURSOR / "hooks.json": render_cursor_hooks(),
         CURSOR_HARNESS / "scripts" / "harness-guard.sh": render_cursor_guard(),
         CURSOR_HARNESS / "mcp.json": render_cursor_mcp(),
         GROK / "config.toml": render_grok_config(),
@@ -894,12 +881,11 @@ def render_all() -> dict[Path, str]:
         rel = Path(command["id"] + ".md")
         rendered[SHARED / "commands" / rel] = render_shared_command(source.read_text())
         rendered[OPEN_CODE / "commands" / f"{command['native']}.md"] = (
-            render_native_command(command)
+            render_opencode_command(command)
         )
         rendered[PI_AGENT / "prompts" / f"{command['native']}.md"] = render_pi_prompt(
             command
         )
-        rendered[ANTIGRAVITY_COMMANDS / rel] = render_antigravity_command(command)
         rendered[CURSOR_HARNESS / "commands" / rel] = render_cursor_command(command)
         record_provenance(provenance, rendered, emitted, source)
 
@@ -909,10 +895,9 @@ def render_all() -> dict[Path, str]:
         rendered[SHARED / "agents" / f"{agent['id']}.toml"] = render_shared_agent(
             source.read_text()
         )
-        rendered[OPEN_CODE / "agents" / f"{agent['id']}.md"] = render_native_agent(
+        rendered[OPEN_CODE / "agents" / f"{agent['id']}.md"] = render_opencode_agent(
             agent
         )
-        rendered[PI_AGENT / "agents" / f"{agent['id']}.md"] = render_pi_agent(agent)
         rendered[ANTIGRAVITY_HARNESS / "agents" / f"{agent['id']}.md"] = (
             render_antigravity_agent(agent)
         )
@@ -940,9 +925,6 @@ def render_all() -> dict[Path, str]:
             rendered[ANTIGRAVITY_HARNESS / "skills" / skill_name / "SKILL.md"] = (
                 render_antigravity_skill(skill_name)
             )
-        rendered[CURSOR_HARNESS / "skills" / skill_name / "SKILL.md"] = (
-            render_cursor_skill(skill_name)
-        )
         record_provenance(provenance, rendered, emitted, source)
     for skill_name in sorted(NATIVE_SKILL_ADAPTERS & set(inventory["skills"]["paths"])):
         source = SKILL_SOURCE / skill_name / "SKILL.md"
@@ -950,16 +932,6 @@ def render_all() -> dict[Path, str]:
         manual_only = skill_name in MANUAL_SKILL_ADAPTERS
         rendered[CLAUDE_SKILLS / skill_name / "SKILL.md"] = render_claude_skill(
             skill_name, manual_only=manual_only
-        )
-        rendered[CODEX_SKILLS / skill_name / "SKILL.md"] = render_codex_skill(
-            skill_name
-        )
-        if manual_only:
-            rendered[CODEX_SKILLS / skill_name / "agents" / "openai.yaml"] = (
-                render_codex_skill_policy()
-            )
-        rendered[OPEN_CODE_SKILLS / skill_name / "SKILL.md"] = render_opencode_skill(
-            skill_name
         )
         record_provenance(provenance, rendered, emitted, source)
 
@@ -1180,6 +1152,21 @@ Pass user arguments through unchanged.
 """
 
 
+def render_opencode_command(command: dict[str, Any]) -> str:
+    return f"""---
+description: {json.dumps(command["description"])[1:-1]}
+---
+
+{MANAGED_HEADER}
+
+Execute the shared `{command["id"]}` command prompt from:
+
+`{command["shared"]}`
+
+Arguments: $ARGUMENTS
+"""
+
+
 def render_pi_prompt(command: dict[str, Any]) -> str:
     hint = (
         f'argument-hint: "{command["argument_hint"]}"\n'
@@ -1200,15 +1187,21 @@ Arguments: $ARGUMENTS
 """
 
 
-def render_native_agent(agent: dict[str, Any]) -> str:
+def render_opencode_agent(agent: dict[str, Any]) -> str:
     return f"""---
 name: {agent["id"]}
 description: {json.dumps(agent["description"])[1:-1]}
+mode: subagent
+permission:
+  edit: ask
+  bash: ask
+  webfetch: ask
+  external_directory: ask
 ---
 
 {MANAGED_HEADER}
 
-Load the shared specialist definition from `{agent["shared"]}`.
+Load and follow the shared specialist agent definition at `{agent["shared"]}` before acting.
 """
 
 
@@ -1224,10 +1217,6 @@ def render_antigravity_plugin_manifest() -> str:
     return json.dumps(manifest, indent=2, sort_keys=True) + "\n"
 
 
-def render_antigravity_command(command: dict[str, Any]) -> str:
-    return render_native_command(command)
-
-
 def render_antigravity_agent(agent: dict[str, Any]) -> str:
     return f"""---
 name: {agent["id"]}
@@ -1240,26 +1229,22 @@ Load the shared specialist definition from `{agent["shared"]}`.
 """
 
 
-def render_codex_skill_policy() -> str:
-    return "policy:\n  allow_implicit_invocation: false\n"
-
-
 def render_antigravity_hooks() -> str:
     hooks = {
-        "version": 1,
-        "hooks": {
-            "tool_call": [
+        "shared-harness-guard": {
+            "PreToolUse": [
                 {
-                    "command": "bash scripts/harness-guard.sh",
-                    "description": "Evaluate shell, write, and edit calls with the shared harness guard.",
+                    "matcher": "*",
+                    "hooks": [
+                        {
+                            "type": "command",
+                            "command": "bash ~/.agents/harness/adapters/antigravity/scripts/harness-guard.sh",
+                            "timeout": 10,
+                        }
+                    ],
                 }
-            ],
-            "compaction": [
-                {
-                    "append": "Preserve modified files, current branch, pending tasks, test results, and harness parity gaps."
-                }
-            ],
-        },
+            ]
+        }
     }
     return json.dumps(hooks, indent=2, sort_keys=True) + "\n"
 
@@ -1267,16 +1252,15 @@ def render_antigravity_hooks() -> str:
 def render_antigravity_guard() -> str:
     return """#!/usr/bin/env bash
 # Generated by scripts/agent-harnesses.py; do not edit directly.
-# Antigravity PreToolUse adapter for the compiled harness guard (crates/ness,
-# installed by `just ness-install`). Fails closed when it is missing.
+# Antigravity PreToolUse adapter for the compiled harness guard (crates/ness, installed by `just ness-install`). Fails closed when it is missing; agy reads the stdout decision, so a deny exits 0.
 #
 # Copyright: Ben Chatelain. Apache 2.0.
 
 set -euo pipefail
 
 deny() {
-    printf '{"decision":"deny","harness":"antigravity","reason":"%s","tool":""}\n' "$1"
-    exit 2
+    printf '{"decision":"deny","reason":"%s"}\\n' "$1"
+    exit 0
 }
 trap 'deny "shared guard failed closed: hook error"' ERR
 
@@ -1331,20 +1315,18 @@ Load the shared specialist definition from `{agent["shared"]}` before acting.
 
 
 def render_cursor_hooks() -> str:
+    # Cursor discards the whole file on an unknown hook name, and failClosed
+    # blocks the call when the guard crashes.
     hooks = {
         "version": 1,
         "hooks": {
-            "tool_call": [
+            "preToolUse": [
                 {
-                    "command": "bash scripts/harness-guard.sh",
-                    "description": "Evaluate shell, write, and edit calls with the shared harness guard.",
+                    "command": "bash ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh",
+                    "failClosed": True,
+                    "timeout": 10,
                 }
-            ],
-            "compaction": [
-                {
-                    "append": "Preserve modified files, current branch, pending tasks, test results, and harness parity gaps."
-                }
-            ],
+            ]
         },
     }
     return json.dumps(hooks, indent=2, sort_keys=True) + "\n"
@@ -1361,8 +1343,8 @@ def render_cursor_guard() -> str:
 set -euo pipefail
 
 deny() {
-    printf '{"decision":"deny","harness":"cursor","reason":"%s","tool":""}\n' "$1"
-    exit 2
+    printf '{"permission":"deny","user_message":"%s","agent_message":"%s"}\\n' "$1" "$1"
+    exit 0
 }
 trap 'deny "shared guard failed closed: hook error"' ERR
 
@@ -1377,8 +1359,29 @@ def render_cursor_mcp() -> str:
     return json.dumps(mcp, indent=2, sort_keys=True) + "\n"
 
 
+def claude_disabled_plugins() -> list[str]:
+    """Names of Claude plugins disabled in ``.claude/settings.json``.
+
+    grok's Claude compatibility layer loads every installed Claude plugin
+    regardless of Claude's ``enabledPlugins``, so the disabled ones are listed
+    in grok's own config.
+    """
+    settings = read_json(ROOT / ".claude" / "settings.json", {})
+    enabled = settings.get("enabledPlugins", {})
+    return sorted(
+        {key.split("@", 1)[0] for key, value in enabled.items() if value is False}
+    )
+
+
 def render_grok_config() -> str:
-    return """# Generated by scripts/agent-harnesses.py; do not edit directly.
+    disabled = claude_disabled_plugins()
+    if disabled:
+        disabled_toml = (
+            "disabled = [\n" + "".join(f'  "{n}",\n' for n in disabled) + "]"
+        )
+    else:
+        disabled_toml = "disabled = []"
+    return f"""# Generated by scripts/agent-harnesses.py; do not edit directly.
 
 [compat.claude]
 skills = true
@@ -1398,6 +1401,9 @@ sessions = true
 
 [compat.codex]
 sessions = true
+
+[plugins]
+{disabled_toml}
 
 [marketplace]
 default_skills_installs_purged = true
@@ -1439,7 +1445,7 @@ def render_grok_hooks() -> str:
         "hooks": {
             "PreToolUse": [
                 {
-                    "matcher": "Bash|Write|Edit|MultiEdit|run_terminal_cmd|run_terminal_command|search_replace|write_file|create_file|delete_file|Delete",
+                    "matcher": "Bash|Write|Edit|MultiEdit|run_terminal_cmd|run_terminal_command|search_replace|write_file|create_file|delete_file|Delete|apply_patch",
                     "hooks": [
                         {
                             "type": "command",
@@ -1539,18 +1545,6 @@ exec "$ness" hook --harness crush
 """
 
 
-def render_pi_agent(agent: dict[str, Any]) -> str:
-    return f"""---
-name: {agent["id"]}
-description: {json.dumps(agent["description"])[1:-1]}
----
-
-{MANAGED_HEADER}
-
-{agent["prompt"].strip()}
-"""
-
-
 def render_omp_agent(agent: dict[str, Any]) -> str:
     return f"""---
 name: {agent["id"]}
@@ -1576,25 +1570,31 @@ Co-Authored-By: oh-my-pi <omp@can.ac>
 """
 
 
-def render_opencode_config(
-    commands: list[dict[str, Any]], agents: list[dict[str, Any]]
-) -> str:
+def render_opencode_config() -> str:
     config = {
         "$schema": "https://opencode.ai/config.json",
         "instructions": ["~/.agents/harness/instructions.md"],
-        "model": "anthropic/claude-sonnet-4-20250514",
-        "small_model": "anthropic/claude-haiku-3-5-20241022",
+        "model": "openrouter/anthropic/claude-sonnet-4.6",
+        "small_model": "openrouter/anthropic/claude-haiku-4.5",
         "share": "manual",
         "autoupdate": "notify",
         "permission": {
             "edit": "ask",
+            # opencode applies the last matching rule and sort_keys puts "*"
+            # first, so it is the default and every other rule overrides it.
             "bash": {
+                "*": "ask",
                 "git status*": "allow",
                 "git diff*": "allow",
                 "git log*": "allow",
                 "git show*": "allow",
                 "rg *": "allow",
                 "find *": "allow",
+                "find * -delete*": "ask",
+                "find * -exec*": "ask",
+                "find * -fls*": "ask",
+                "find * -fprint*": "ask",
+                "find * -ok*": "ask",
                 "ls *": "allow",
                 "just harness-check": "allow",
                 "rm *": "ask",
@@ -1603,33 +1603,12 @@ def render_opencode_config(
             "external_directory": "ask",
             "webfetch": "ask",
         },
-        "command": {
-            command["native"]: {
-                "description": command["description"],
-                "template": f"Execute the shared harness command at {command['shared']} with arguments: $ARGUMENTS",
-            }
-            for command in commands
-        },
-        "agent": {
-            agent["id"]: {
-                "description": agent["description"],
-                "mode": "subagent",
-                "prompt": f"Load and follow the shared specialist agent definition at {agent['shared']} before acting.",
-                "permission": {
-                    "edit": "ask",
-                    "bash": "ask",
-                    "webfetch": "ask",
-                    "external_directory": "ask",
-                },
-            }
-            for agent in agents
-        },
     }
     return json.dumps(config, indent=2, sort_keys=True) + "\n"
 
 
 def render_opencode_plugin() -> str:
-    return """// Generated by scripts/agent-harnesses.py; do not edit directly.
+    return r"""// Generated by scripts/agent-harnesses.py; do not edit directly.
 // Copyright: Ben Chatelain. Apache 2.0.
 
 import { execFileSync } from "node:child_process";
@@ -1639,12 +1618,14 @@ import type { Plugin } from "@opencode-ai/plugin";
 
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
-function guard(args: string[]): GuardResult {
+function guard(args: string[], cwd: string): GuardResult {
   const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync(ness, ["guard", "--harness", "opencode", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "opencode", "--cwd", cwd, ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
+      cwd,
+      timeout: 5000,
     });
     return JSON.parse(output) as GuardResult;
   } catch (error: any) {
@@ -1654,7 +1635,23 @@ function guard(args: string[]): GuardResult {
   }
 }
 
-export const HarnessPlugin: Plugin = async () => ({
+function patchTargets(patchText: string): string[] {
+  const targets = new Set<string>();
+  for (const match of patchText.matchAll(/^\*\*\* (?:Add File|Update File|Delete File|Move to): (.+)$/gm)) {
+    targets.add(match[1].trim());
+  }
+  return [...targets];
+}
+
+function patchAddedContent(patchText: string): string {
+  return patchText
+    .split("\n")
+    .filter((line) => line.startsWith("+") && !line.startsWith("+++"))
+    .map((line) => line.slice(1))
+    .join("\n");
+}
+
+export const HarnessPlugin: Plugin = async ({ directory }) => ({
   async "experimental.chat.system.transform"(_input, output) {
     output.system.push("Use shared harness instructions from ~/.agents/harness/instructions.md.");
   },
@@ -1665,18 +1662,27 @@ export const HarnessPlugin: Plugin = async () => ({
 
   async "tool.execute.before"(input, output) {
     const args = output.args || {};
-    let result: GuardResult = { decision: "allow" };
+    const checks: string[][] = [];
 
     if (input.tool === "bash") {
-      result = guard(["--tool", "bash", "--command", String(args.command || "")]);
-    } else if (input.tool === "write" || input.tool === "edit") {
-      const path = String(args.file_path || args.path || "");
-      const content = String(args.content || args.new_string || "");
-      result = guard(["--tool", input.tool, "--path", path, "--content", content]);
+      checks.push(["--tool", "bash", "--command", String(args.command || "")]);
+    } else if (input.tool === "write") {
+      checks.push(["--tool", "write", "--path", String(args.filePath || ""), "--content", String(args.content || "")]);
+    } else if (input.tool === "edit") {
+      checks.push(["--tool", "edit", "--path", String(args.filePath || ""), "--content", String(args.newString || "")]);
+    } else if (input.tool === "apply_patch") {
+      const patchText = String(args.patchText || "");
+      for (const target of patchTargets(patchText)) {
+        checks.push(["--tool", "write", "--path", target, "--content", ""]);
+      }
+      checks.push(["--tool", "write", "--path", "", "--content", patchAddedContent(patchText)]);
     }
 
-    if (result.decision === "deny") {
-      throw new Error(result.reason || "Blocked by shared harness guard");
+    for (const check of checks) {
+      const result = guard(check, directory);
+      if (result.decision === "deny") {
+        throw new Error(result.reason || "Blocked by shared harness guard");
+      }
     }
   },
 });
@@ -1726,7 +1732,6 @@ import { execFileSync } from "node:child_process";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { Type } from "typebox";
 
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
@@ -1736,6 +1741,7 @@ function guard(args: string[]): GuardResult {
     const output = execFileSync(ness, ["guard", "--harness", "pi", ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
+      timeout: 5000,
     });
     return JSON.parse(output) as GuardResult;
   } catch (error: any) {
@@ -1754,47 +1760,18 @@ export default function (pi: ExtensionAPI) {
     let result: GuardResult = { decision: "allow" };
     if (event.toolName === "bash") {
       result = guard(["--tool", "bash", "--command", String(event.input.command || "")]);
-    } else if (event.toolName === "write" || event.toolName === "edit") {
-      const path = String(event.input.file_path || event.input.path || "");
-      const content = String(event.input.content || event.input.new_string || "");
-      result = guard(["--tool", event.toolName, "--path", path, "--content", content]);
+    } else if (event.toolName === "write") {
+      result = guard(["--tool", "write", "--path", String(event.input.path || ""), "--content", String(event.input.content || "")]);
+    } else if (event.toolName === "edit") {
+      const edits = Array.isArray(event.input.edits) ? event.input.edits : [];
+      const content = edits.map((e: any) => String(e?.newText ?? "")).join("\\n");
+      result = guard(["--tool", "edit", "--path", String(event.input.path || ""), "--content", content]);
     }
     if (result.decision === "deny") return { block: true, reason: result.reason || "Blocked by shared harness guard" };
     return undefined;
   });
-
-  pi.registerCommand("harness-agents", {
-    description: "List shared specialist agents",
-    handler: async (_args, ctx) => {
-      ctx.ui.notify("Shared specialist agents are registered in ~/.pi/agent/agents.json", "info");
-    },
-  });
-
-  pi.registerTool({
-    name: "harness_agent_registry",
-    label: "Harness Agents",
-    description: "Return the shared specialist agent registry.",
-    parameters: Type.Object({}),
-    async execute() {
-      return {
-        content: [{ type: "text", text: "Read ~/.pi/agent/agents.json for shared specialist agent definitions." }],
-        details: { path: "~/.pi/agent/agents.json" },
-      };
-    },
-  });
 }
 """
-
-
-def slim_agents(agents: list[dict[str, Any]]) -> list[dict[str, str]]:
-    return [
-        {
-            "id": agent["id"],
-            "description": agent["description"],
-            "shared": agent["shared"],
-        }
-        for agent in agents
-    ]
 
 
 def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:

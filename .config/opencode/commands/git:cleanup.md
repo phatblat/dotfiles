@@ -8,4 +8,4 @@ Execute the shared `git/cleanup` command prompt from:
 
 `~/.agents/harness/commands/git/cleanup.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

@@ -13,11 +13,15 @@ status agent:
         exit 1
     fi
 
+    # Tern's bundle path carries no version; mise installs do (parsed per process below).
+    current_version="$(omp --version 2>/dev/null | sed -nE 's#^omp/##p')"
+
     found=0
     while read -r pid state etime command; do
         found=1
         version=$(sed -nE 's#.*oh-my-pi/([^/]+)/omp.*#\1#p' <<< "$command")
-        args=$(sed -E 's#^.*oh-my-pi/[^ ]+/omp ?##' <<< "$command")
+        [[ -n "$version" ]] || version="$current_version"
+        args=$(sed -E 's#^.*/omp( |$)##' <<< "$command")
         cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p')
         marker=
         [[ "$cwd" == "$invocation_dir" ]] && marker=", current"
@@ -30,7 +34,7 @@ status agent:
         fi
     done < <(
         ps -axo pid=,state=,etime=,command= |
-            awk '$0 ~ /oh-my-pi\/[^ ]+\/omp( |$)/ && $0 !~ /__omp_worker_/'
+            awk '$0 ~ /\/omp( |$)/ && $0 !~ /__omp_worker_/'
     )
 
     if (( ! found )); then
@@ -99,13 +103,6 @@ update-subconscious-models:
     fi
     git add .omp/profiles/subconscious/agent/models.yml
     git commit -m "chore(subconscious): sync models.yml pricing" -- .omp/profiles/subconscious/agent/models.yml
-
-# Upgrades the installed omp version from the upstream GitHub repository
-[group('omp')]
-upgrade-omp:
-    mise upgrade --bump oh-my-pi
-    hk fix .config/mise/config.toml
-    bash -ic 'cmt .config/mise/config.toml'
 
 # Opens the omp plugin manifest in the configured editor
 [group('omp')]

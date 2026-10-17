@@ -1,5 +1,7 @@
 # Global Codex Instructions
 
+Follow the shared harness instructions in `~/.agents/harness/instructions.md` alongside this file.
+
 ## Core Behavior
 
 1. Always respond in the user's language (code comments stay in English)
@@ -76,6 +78,7 @@ When context is compacted, ALWAYS preserve:
 - Pending tasks and TODO items
 - Test results and failures
 - Key architectural decisions made during session
+
 # graphify
-- **graphify** (`~/.Codex/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.
+- **graphify** (`~/.agents/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `$graphify`
+When the user types `$graphify`, read and follow `~/.agents/skills/graphify/SKILL.md` before doing anything else.

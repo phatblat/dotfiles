@@ -16,10 +16,3 @@ resource = "skills"
 target = ".github/skills"
 canonical = ".agents/skills"
 via = "symlink"
-
-[[entry]]
-provider = "opencode"
-resource = "skills"
-target = ".opencode/skills"
-canonical = ".agents/skills"
-via = "symlink"

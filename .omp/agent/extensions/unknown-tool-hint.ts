@@ -96,12 +96,21 @@ export default function unknownToolHint(pi: ExtensionAPI) {
         reason: `Unknown tool '${toolName}'. There is no dedicated git tool — run git commands through 'bash'.`,
       };
     }
-    if (/^xd[-_]/.test(lower)) {
+    if (/^xd([-_]|$)/.test(lower)) {
       return {
         block: true,
         reason:
           `Unknown tool '${toolName}'. xd:// devices are invoked via 'write' to an ` +
           `'xd://<tool>' path, not a direct tool call.`,
+      };
+    }
+
+    const SCHEME_TOOLS = ["artifact", "proc", "agent", "history", "skill", "local"];
+    const scheme = lower.replace(/_.*$/, "");
+    if (SCHEME_TOOLS.includes(scheme)) {
+      return {
+        block: true,
+        reason: `Unknown tool '${toolName}'. '${scheme}://' is a URL scheme, not a tool — use 'read' on a '${scheme}://…' path.`,
       };
     }
 

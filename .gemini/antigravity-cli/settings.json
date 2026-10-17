@@ -5,14 +5,14 @@
   "model": "Gemini 3.6 Flash (High)",
   "permissions": {
     "allow": [
-      "unsandboxed(git status)",
-      "unsandboxed(just lint)",
-      "unsandboxed(git add)",
-      "unsandboxed(git diff)",
-      "unsandboxed(git commit)",
-      "unsandboxed(git check-ignore)",
-      "unsandboxed(git show)",
-      "unsandboxed(~/scripts/sort-gitignore)"
+      "command(git status)",
+      "command(just lint)",
+      "command(git add)",
+      "command(git diff)",
+      "command(git commit)",
+      "command(git check-ignore)",
+      "command(git show)",
+      "command(~/scripts/sort-gitignore)"
     ]
   },
   "showFeedbackSurvey": false,

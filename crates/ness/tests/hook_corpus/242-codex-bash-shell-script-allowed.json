@@ -1,0 +1,13 @@
+{
+  "expected": {
+    "exit": 0
+  },
+  "payload": {
+    "hook_event_name": "PreToolUse",
+    "tool_input": {
+      "command": "bash -lc 'git status'"
+    },
+    "tool_name": "Bash"
+  },
+  "shim": "codex-bash"
+}

@@ -8,4 +8,4 @@ Execute the shared `work/end-day` command prompt from:
 
 `~/.agents/harness/commands/work/end-day.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

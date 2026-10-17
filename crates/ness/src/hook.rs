@@ -11,15 +11,19 @@
 //! sniffing `tool_name`, which differs across harnesses (Claude's Bash tool
 //! is not necessarily named the same as Codex's).
 //!
-//! `grok`, `crush`, `antigravity`, and `cursor` take no `--tool`: their
-//! payloads carry a single normalized tool call (`toolInput`/`tool_input`
-//! for grok/crush, or top-level `tool`/`command`/`path`/`content` for
-//! antigravity/cursor) that `classify` sorts into bash-vs-write the same way
-//! the Python wrappers did (`render_grok_guard`, `render_crush_guard`,
-//! `render_antigravity_guard`/`render_cursor_guard`,
+//! `grok`, `crush`, `antigravity`, and `cursor` take no `--tool`: each sends
+//! one tool call in its own native shape, and each gets its native reply:
+//! - grok: `toolName`/`toolInput` (camelCase); `{"decision":...}` + exit 2 on deny.
+//! - crush: `tool_name`/`tool_input`; stderr + exit 2 on deny.
+//! - cursor: `tool_name`/`tool_input`; `{"permission":"deny",...}`.
+//! - antigravity: `toolCall.args` (`CommandLine`/`TargetFile`/`CodeContent`/
+//!   `ReplacementChunks`); `{"decision":"deny",...}`.
+//!
+//! `classify` sorts a `tool_input` object into bash-vs-write the same way the
+//! Python wrappers did (`render_grok_guard`, `render_crush_guard`,
 //! `scripts/agent-harnesses.py`).
 
-use crate::guard_eval::{evaluate_with_manifest, verdict_json};
+use crate::guard_eval::evaluate_with_manifest;
 use crate::policy::GuardDecision;
 use serde_json::Value;
 use std::io::Read;
@@ -99,6 +103,28 @@ fn apply_patch_added_content(patch_text: &str) -> String {
         .join("\n")
 }
 
+/// Write-checks every apply_patch target, then the added content. Shared by
+/// Codex's write hook and grok's `apply_patch` tool. Returns the first deny.
+fn evaluate_apply_patch(patch_text: &str, cwd: &str, manifest: &Path) -> GuardDecision {
+    for path in apply_patch_all_paths(patch_text) {
+        if path.is_empty() {
+            continue;
+        }
+        let decision = evaluate_with_manifest("write", "", &path, "", cwd, manifest);
+        if decision.decision == "deny" {
+            return decision;
+        }
+    }
+    evaluate_with_manifest(
+        "write",
+        "",
+        "",
+        &apply_patch_added_content(patch_text),
+        cwd,
+        manifest,
+    )
+}
+
 /// Port of `.claude/hooks/scripts/bash-guard.sh` / `.codex/hooks/scripts/bash-guard.sh`
 /// (the two are structurally identical: same extraction, same response shape).
 pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
@@ -115,7 +141,12 @@ pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
     }
 
     let decision = evaluate_with_manifest("bash", &command, "", "", cwd, manifest_path);
-    let _ = harness; // response shape does not currently vary by harness.
+    if harness == "codex" && crate::policy::is_interactive_launch(&command) {
+        print_deny(
+            "Interactive shell/REPL launch blocked: input sent with write_stdin never re-runs the guard. Run each command directly.",
+        );
+        return;
+    }
     match decision.decision.as_str() {
         "deny" => print_deny(&decision.reason),
         "warn" => print_warn(&decision.reason),
@@ -143,18 +174,7 @@ pub fn run_write(harness: &str, cwd: &str, manifest_path: &Path) {
         && (tool_name == "apply_patch" || command.starts_with("*** Begin Patch"));
 
     if is_apply_patch {
-        for path in apply_patch_all_paths(&command) {
-            if path.is_empty() {
-                continue;
-            }
-            let decision = evaluate_with_manifest("write", "", &path, "", cwd, manifest_path);
-            if decision.decision == "deny" {
-                print_deny(&decision.reason);
-                return;
-            }
-        }
-        let added_content = apply_patch_added_content(&command);
-        let decision = evaluate_with_manifest("write", "", "", &added_content, cwd, manifest_path);
+        let decision = evaluate_apply_patch(&command, cwd, manifest_path);
         if decision.decision == "deny" {
             print_deny(&decision.reason);
         }
@@ -191,7 +211,7 @@ fn read_stdin_object() -> Result<Value, &'static str> {
 }
 
 const PATH_KEYS: [&str; 3] = ["file_path", "path", "target_file"];
-const CONTENT_KEYS: [&str; 4] = ["content", "new_string", "new_text", "new_str"];
+const CONTENT_KEYS: [&str; 5] = ["content", "contents", "new_string", "new_text", "new_str"];
 
 /// First key in `keys` holding a non-empty string, else `""`.
 fn first_nonempty_str(obj: &Value, keys: &[&str]) -> String {
@@ -299,6 +319,24 @@ pub fn run_grok(default_cwd: &str, manifest: &Path) -> i32 {
     };
     let empty = Value::Object(serde_json::Map::new());
     let tool_input = payload.get("toolInput").unwrap_or(&empty);
+    let patch = tool_input
+        .get("patch")
+        .and_then(|v| v.as_str())
+        .unwrap_or("");
+    if get_str(&payload, "/toolName") == Some("apply_patch") || patch.starts_with("*** Begin Patch")
+    {
+        let cwd = payload_cwd(&payload, default_cwd);
+        let decision = evaluate_apply_patch(patch, &cwd, manifest);
+        if decision.decision == "deny" {
+            println!(
+                "{}",
+                serde_json::json!({"decision": "deny", "reason": decision.reason})
+            );
+            return 2;
+        }
+        println!("{}", serde_json::json!({"decision": "allow"}));
+        return 0;
+    }
     let Some(c) = classify(tool_input, false) else {
         println!("{}", serde_json::json!({"decision": "allow"}));
         return 0;
@@ -361,30 +399,115 @@ pub fn run_crush(default_cwd: &str, manifest: &Path) -> i32 {
     }
 }
 
-/// Port of `render_antigravity_guard`/`render_cursor_guard`: both send an
-/// already-normalized top-level `{tool, command, path, content, cwd}`
-/// payload and expect the same `verdict_json` shape back on stdout
-/// regardless of allow/deny, with the process exit code carrying the
-/// decision.
-pub fn run_normalized(harness: &str, default_cwd: &str, manifest: &Path) -> i32 {
+/// `antigravity` (agy). The payload is `{toolCall: {name, args}, workspacePaths}`
+/// with PascalCase args: `CommandLine`/`Cwd` for shell calls, `TargetFile` plus
+/// `CodeContent` (write) or `ReplacementChunks[].ReplacementContent` (edit) for
+/// file calls. agy reads only the stdout decision, so every outcome exits 0:
+/// deny prints `{"decision":"deny","reason":R}`; allow and warn print `{}`
+/// (an empty decision means "use the normal permission flow", whereas an
+/// explicit `allow` would bypass agy's own prompts and sandbox).
+pub fn run_antigravity(default_cwd: &str, manifest: &Path) -> i32 {
+    let deny = |reason: &str| {
+        println!(
+            "{}",
+            serde_json::json!({"decision": "deny", "reason": reason})
+        );
+    };
     let payload = match read_stdin_object() {
         Ok(v) => v,
         Err(e) => {
-            let decision = GuardDecision::deny(format!("shared guard failed closed: {e}"));
-            println!("{}", verdict_json(harness, "", &decision));
-            return 2;
+            deny(&format!("shared guard failed closed: {e}"));
+            return 0;
         }
     };
-    let tool = str_or_empty(&payload, "/tool");
-    let command = str_or_empty(&payload, "/command");
-    let path = str_or_empty(&payload, "/path");
-    let content = str_or_empty(&payload, "/content");
-    let cwd = payload_cwd(&payload, default_cwd);
-    let decision = evaluate_with_manifest(&tool, &command, &path, &content, &cwd, manifest);
-    println!("{}", verdict_json(harness, &tool, &decision));
-    if decision.allowed() {
-        0
-    } else {
-        2
+    let Some(tool_call) = payload.get("toolCall").filter(|v| v.is_object()) else {
+        deny("shared guard failed closed: payload has no toolCall");
+        return 0;
+    };
+    let empty = Value::Object(serde_json::Map::new());
+    let args = tool_call
+        .get("args")
+        .filter(|v| v.is_object())
+        .unwrap_or(&empty);
+    let str_arg = |key: &str| -> String {
+        args.get(key)
+            .and_then(|v| v.as_str())
+            .unwrap_or("")
+            .to_string()
+    };
+    let command = str_arg("CommandLine");
+    let path = str_arg("TargetFile");
+    let mut parts = vec![str_arg("CodeContent")];
+    if let Some(chunks) = args.get("ReplacementChunks").and_then(|v| v.as_array()) {
+        for chunk in chunks {
+            if let Some(s) = chunk.get("ReplacementContent").and_then(|v| v.as_str()) {
+                parts.push(s.to_string());
+            }
+        }
     }
+    let content = parts
+        .into_iter()
+        .filter(|s| !s.is_empty())
+        .collect::<Vec<_>>()
+        .join("\n");
+    let cwd = [str_arg("Cwd"), str_or_empty(&payload, "/workspacePaths/0")]
+        .into_iter()
+        .find(|s| !s.is_empty())
+        .unwrap_or_else(|| default_cwd.to_string());
+
+    let tool = if !command.is_empty() {
+        "bash"
+    } else if !path.is_empty() {
+        "write"
+    } else {
+        println!("{{}}");
+        return 0;
+    };
+    let decision = evaluate_with_manifest(tool, &command, &path, &content, &cwd, manifest);
+    match decision.decision.as_str() {
+        "deny" => deny(&decision.reason),
+        "warn" => {
+            eprintln!("{}", decision.reason);
+            println!("{{}}");
+        }
+        _ => println!("{{}}"),
+    }
+    0
+}
+
+/// `cursor` (cursor-agent). The payload is `{tool_name, tool_input, cwd, ...}`.
+/// Deny prints `{"permission":"deny","user_message":R,"agent_message":R}`;
+/// allow and warn print `{}` (`permission: allow` would bypass Cursor's
+/// allowlist prompts). Always exits 0.
+pub fn run_cursor(default_cwd: &str, manifest: &Path) -> i32 {
+    let deny = |reason: &str| {
+        println!(
+            "{}",
+            serde_json::json!({"permission": "deny", "user_message": reason, "agent_message": reason})
+        );
+    };
+    let payload = match read_stdin_object() {
+        Ok(v) => v,
+        Err(e) => {
+            deny(&format!("shared guard failed closed: {e}"));
+            return 0;
+        }
+    };
+    let empty = Value::Object(serde_json::Map::new());
+    let tool_input = payload.get("tool_input").unwrap_or(&empty);
+    let Some(c) = classify(tool_input, true) else {
+        println!("{{}}");
+        return 0;
+    };
+    let cwd = payload_cwd(&payload, default_cwd);
+    let decision = evaluate_with_manifest(c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
+    match decision.decision.as_str() {
+        "deny" => deny(&decision.reason),
+        "warn" => {
+            eprintln!("{}", decision.reason);
+            println!("{{}}");
+        }
+        _ => println!("{{}}"),
+    }
+    0
 }

@@ -74,6 +74,7 @@ NATIVE_SKILL_ADAPTERS = {
 # in each shared skill's agents/openai.yaml, so the two stay consistent.
 MANUAL_SKILL_ADAPTERS = {
     "2ndbrain",
+    "backlog-batch-delivery",
     "branch-finish",
     "ci-fix",
     "gha-checks",
@@ -88,7 +89,6 @@ MANUAL_SKILL_ADAPTERS = {
     "resolve-review-feedback",
     "retro",
     "security-audit",
-    "using-git-worktrees",
 }
 
 _managed_header: str | None = None
@@ -317,24 +317,5 @@ def render_claude_skill(skill_name: str, *, manual_only: bool) -> str:
     return _pointer_body(skill_name, extra_frontmatter=extra)
 
 
-def render_codex_skill(skill_name: str) -> str:
-    # Codex expresses manual-only through agents/openai.yaml, rendered
-    # separately by render_codex_skill_policy(), not through frontmatter.
-    return _pointer_body(skill_name)
-
-
-def render_opencode_skill(skill_name: str) -> str:
-    # OpenCode has no documented manual-invocation key; skill loading is
-    # controlled by `permission.skill` in its own config instead.
-    return _pointer_body(skill_name)
-
-
 def render_antigravity_skill(skill_name: str) -> str:
-    return _pointer_body(skill_name)
-
-
-def render_cursor_skill(skill_name: str) -> str:
-    # Cursor does document `disable-model-invocation`, so this is a known parity
-    # gap: wiring it up needs a manual_only argument here and at both call
-    # sites in the control-plane module.
     return _pointer_body(skill_name)

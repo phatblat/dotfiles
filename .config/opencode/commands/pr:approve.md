@@ -8,4 +8,4 @@ Execute the shared `pr/approve` command prompt from:
 
 `~/.agents/harness/commands/pr/approve.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

@@ -66,6 +66,22 @@ fn matches(re: &Regex, text: &str) -> bool {
     re.is_match(text).unwrap_or(false)
 }
 
+// Codex `unified_exec` keeps a launched process open, and `write_stdin` input
+// never re-runs `PreToolUse`: a bare interactive shell/REPL launch would let
+// every later command bypass the guard.
+static INTERACTIVE_LAUNCH: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"^\s*(?:(?:env|exec|command)\s+)?(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu|python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)(?:\s+repl)?(?:\s+--?(?:i|l|q|login|interactive|norc|noprofile|quiet))*\s*$").unwrap()
+});
+
+pub fn is_interactive_launch(command: &str) -> bool {
+    matches(&INTERACTIVE_LAUNCH, command)
+}
+
+// `gh auth token` / `gh auth status --show-token` print the stored credential.
+static CREDENTIAL_DISCLOSURE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"(?i)\bgh\s+auth\s+(?:token\b|status\b[^;&|\n]*\s(?:--show-token|-t)\b)").unwrap()
+});
+
 // safety.py:26-29
 static PRIVILEGE_ESCALATION: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"(?i)(^|;|&&|\|\||\||\n|\r|\$\(|`)\s*(sudo|su|doas|pkexec)\b").unwrap()
@@ -194,6 +210,10 @@ pub fn evaluate_command(command: &str, cwd: &str) -> GuardDecision {
 
     if OBFUSCATED_EXECUTION.iter().any(|p| matches(p, command)) {
         return GuardDecision::deny("Obfuscated execution pattern detected");
+    }
+
+    if matches(&CREDENTIAL_DISCLOSURE, command) {
+        return GuardDecision::deny("Credential disclosure blocked");
     }
 
     let target = writes_to(command, &PROTECTED_PATHS);

@@ -48,6 +48,7 @@ VENDOR_MARKERS = (
     ".git",
     ".paseo-managed-files.json",
     "Cargo.toml",
+    "codex-package.json",
     "gemini-extension.json",
     "go.mod",
     "installed_version.json",
@@ -241,9 +242,13 @@ SECRET_CONTENT = (
         "assigned credential",
         re.compile(
             # allow an optional closing quote after the key so JSON
-            # ("apiKey": "…") matches as well as shell/yaml (key=value) forms
+            # ("apiKey": "…") matches as well as shell/yaml (key=value) forms.
+            # ALL_CAPS values are env-var names (apiKey: SOME_API_KEY), not
+            # secrets; the tradeoff is an all-caps literal key is not caught.
             r"(?i)\b(api[_-]?key|secret|password|passwd|access[_-]?token|bearer)"
-            r"\b[\"']?\s*[:=]\s*[\"']?[A-Za-z0-9_\-./+]{16,}"
+            r"\b[\"']?\s*[:=]\s*[\"']?"
+            r"(?-i:(?![A-Z][A-Z0-9_]*(?:[\"'\s,;}]|\Z)))"
+            r"[A-Za-z0-9_\-./+]{16,}"
         ),
     ),
     # Not a credential, but the same never-track class: a trust grant records a

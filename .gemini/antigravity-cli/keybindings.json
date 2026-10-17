@@ -87,6 +87,9 @@
     "ctrl+j",
     "shift+enter"
   ],
+  "prompt.submit_alternate": [
+    "alt+m"
+  ],
   "subagent.approve_fast": [
     "ctrl+k"
   ],
