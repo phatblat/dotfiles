@@ -1,16 +1,25 @@
 {
   "theme_light": "dark-neon-noir",
   "copy_on_select": true,
+  "cursor": {
+    "glide": 40
+  },
   "link_click": "Command",
   "link_target": "Browser",
-  "font_size": 17,
+  "font_size": 18,
   "tabs": "Vertical",
-  "tabs_autohide": true,
+  "status_bar": true,
+  "surface_diffs": "Split",
+  "surface_tab_width": 2,
+  "surface_fold": true,
+  "expand_thoughts": true,
+  "composer_text": "Markdown",
   "shell": "/Users/phatblat/bin/nu-login",
   "prompt_style": "tokyonight",
   "prompt_parts": {
     "palette": "dracula"
   },
+  "agent_placement": "replace_if_alone",
   "prefs_width": 589,
   "files": {
     "auto_save": {
@@ -18,9 +27,11 @@
     }
   },
   "file_tree": {
+    "width": 544,
     "preview_click": true
   },
   "git": {
+    "use_local_ssh_agent": false,
     "external_editor": "/opt/homebrew/bin/zed --wait",
     "show_commit_author": true
   },
@@ -32,5 +43,6 @@
   },
   "agents": {
     "auto_acp": true
-  }
+  },
+  "secure_keyboard_entry": true
 }
