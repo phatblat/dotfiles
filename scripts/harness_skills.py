@@ -74,6 +74,7 @@ NATIVE_SKILL_ADAPTERS = {
 # in each shared skill's agents/openai.yaml, so the two stay consistent.
 MANUAL_SKILL_ADAPTERS = {
     "2ndbrain",
+    "backlog-batch-delivery",
     "branch-finish",
     "ci-fix",
     "gha-checks",
@@ -88,7 +89,6 @@ MANUAL_SKILL_ADAPTERS = {
     "resolve-review-feedback",
     "retro",
     "security-audit",
-    "using-git-worktrees",
 }
 
 _managed_header: str | None = None

@@ -305,22 +305,19 @@ skip_unless_home_is_this_checkout() {
 @test "agent-harnesses: procedural Codex skills require explicit invocation" {
   skip_unless_home_is_this_checkout
   procedural_skills=(
+    backlog-batch-delivery
     branch-finish
     dupe
     git-cleanup
-    git-commit
     git-push
     git-rebase
     git-split
     git-stack
-    git-status
-    using-git-worktrees
     gh-stack
     gha-checks
     handoff
     harness-research
     gha-log-reader
-    justfile
     linear-plan
     optimize-harness
     new-project

@@ -122,9 +122,6 @@
   "~/.agents/harness/adapters/antigravity/skills/aven/SKILL.md": {
     "source": "~/.agents/skills/aven/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/backlog-batch-delivery/SKILL.md": {
-    "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/boris/SKILL.md": {
     "source": "~/.agents/skills/boris/SKILL.md"
   },
@@ -149,11 +146,26 @@
   "~/.agents/harness/adapters/antigravity/skills/find-skills/SKILL.md": {
     "source": "~/.agents/skills/find-skills/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md": {
+    "source": "~/.agents/skills/git-commit/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
+    "source": "~/.agents/skills/git-status/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md": {
+    "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/grilling/SKILL.md": {
     "source": "~/.agents/skills/grilling/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/homebrew/SKILL.md": {
+    "source": "~/.agents/skills/homebrew/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/justfile/SKILL.md": {
+    "source": "~/.agents/skills/justfile/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/ocr/SKILL.md": {
     "source": "~/.agents/skills/ocr/SKILL.md"
@@ -190,6 +202,9 @@
   },
   "~/.agents/harness/adapters/antigravity/skills/typesafe-ai/SKILL.md": {
     "source": "~/.agents/skills/typesafe-ai/SKILL.md"
+  },
+  "~/.agents/harness/adapters/antigravity/skills/using-git-worktrees/SKILL.md": {
+    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
@@ -761,6 +776,9 @@
   "~/.codex/skills/backlog-batch-delivery/SKILL.md": {
     "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
   },
+  "~/.codex/skills/backlog-batch-delivery/agents/openai.yaml": {
+    "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
+  },
   "~/.codex/skills/brainstorm/SKILL.md": {
     "source": "~/.agents/skills/brainstorm/SKILL.md"
   },
@@ -891,9 +909,6 @@
     "source": "~/.agents/skills/typesafe-ai/SKILL.md"
   },
   "~/.codex/skills/using-git-worktrees/SKILL.md": {
-    "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
-  },
-  "~/.codex/skills/using-git-worktrees/agents/openai.yaml": {
     "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
   },
   "~/.codex/skills/writing-plans/SKILL.md": {
