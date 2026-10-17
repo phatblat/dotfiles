@@ -1,22 +1,52 @@
 {
   "plugins": {
     "android-cli-plugin": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/android-cli-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": "1.0.16500706"
+      }
     },
     "chrome-devtools-plugin": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/chrome-devtools-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": "1.0.0"
+      }
     },
     "firebase": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/firebase",
+        "marketplace": "antigravity-plugins-official",
+        "version": "1.0.3"
+      }
     },
     "google-antigravity-sdk": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/google-antigravity-sdk",
+        "marketplace": "antigravity-plugins-official",
+        "version": "0.0.9"
+      }
     },
     "modern-web-guidance-plugin": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/modern-web-guidance-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": "1.0.6"
+      }
     },
     "science": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/science",
+        "marketplace": "antigravity-plugins-official",
+        "version": "1.2.4"
+      }
     },
     "shared-agent-harness": {
       "enabled": true
@@ -29,6 +59,8 @@
       "foregroundOverride": "#A9B1D6",
       "primary": "#7AA2F7"
     },
-    "remoteControlHostname": "dto-a165-chatelain-zero-rocket"
+    "permissionGrantsV2Migrated": true,
+    "remoteControlHostname": "dto-a165-chatelain-zero-rocket",
+    "sandboxEnabledAtV2Migration": true
   }
 }
