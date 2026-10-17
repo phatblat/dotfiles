@@ -77,8 +77,7 @@ def resolve_cli(slug: str) -> str:
     entries = [
         entry
         for entry in os.environ.get("PATH", os.defpath).split(os.pathsep)
-        if entry
-        and not os.path.realpath(entry).startswith(temp_root + os.sep)
+        if entry and not os.path.realpath(entry).startswith(temp_root + os.sep)
     ]
     return shutil.which(name, path=os.pathsep.join(entries)) or name
 
@@ -109,7 +108,9 @@ class SessionStore:
     """Describes where one harness keeps its session transcripts."""
 
     kind: str  # "jsonl" | "sqlite" | "none"
-    default: str  # HOME-relative default root (file included for single-file sqlite stores)
+    default: (
+        str  # HOME-relative default root (file included for single-file sqlite stores)
+    )
     pattern: str  # glob relative to root for jsonl, "" for sqlite
     env: tuple[str, ...]  # env vars that relocate the root, highest precedence first
     verified: bool  # True only when the override was confirmed from primary output
@@ -161,13 +162,14 @@ SESSION_STORES: dict[str, SessionStore] = {
     "pi": SessionStore(
         kind="jsonl",
         default=".pi/agent",
-        pattern="sessions/*.jsonl",
+        pattern="sessions/**/*.jsonl",
         env=("PI_CODING_AGENT_SESSION_DIR", "PI_CODING_AGENT_DIR"),
         verified=True,
         note=(
-            "sessionDir in effective Pi settings wins over env vars; scanner reads "
-            "~/.pi/agent/settings.json when present and falls back to "
-            "PI_CODING_AGENT_DIR/sessions, then ~/.pi/agent/sessions"
+            "env PI_CODING_AGENT_SESSION_DIR wins over the sessionDir setting, which "
+            "wins over PI_CODING_AGENT_DIR/sessions; settings are read from "
+            "$PI_CODING_AGENT_DIR/settings.json when set; the pattern recurses "
+            "because Pi's default layout nests sessions/--<cwd>--/"
         ),
     ),
     "omp": SessionStore(
