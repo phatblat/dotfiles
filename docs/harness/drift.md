@@ -12,7 +12,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | codex | codex-cli 0.162.1 | 2026-08-29 | codex-cli 0.162.0 |
 | opencode | 1.19.0 | 2026-08-29 | 1.18.35 |
 | pi | 1.2.0 | 2026-08-29 | 1.1.0 |
-| omp | omp/18.10.4 | 2026-08-29 | omp/18.10.3 |
+| omp | omp/18.11.1 | 2026-08-29 | omp/18.11.0 |
 | antigravity | 1.3.3 | 2026-08-29 | 1.2.10 |
 | cursor | 2026.10.01-e373342 | 2026-08-29 | 2026.09.28-64d2043 |
 | grok | grok 1.0.52 (0920c8169e27) [alpha] | 2026-08-29 | grok 1.0.50 (c58f321264ba) [alpha] |
@@ -22,6 +22,8 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-16 | omp | - | version | omp/18.11.0 | omp/18.11.1 | omp/18.11.1 |
+| 2026-10-15 | omp | - | version | omp/18.10.4 | omp/18.11.0 | omp/18.11.0 |
 | 2026-10-14 | pi | - | version | 1.1.0 | 1.2.0 | 1.2.0 |
 | 2026-10-14 | omp | - | version | omp/18.10.3 | omp/18.10.4 | omp/18.10.4 |
 | 2026-10-13 | opencode | - | version | 1.18.35 | 1.19.0 | 1.19.0 |
@@ -220,5 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-02 | grok | commands.active | probe | pass | fail | grok 1.0.13 (5e9a58528b76) [alpha] |
 | 2026-09-02 | cursor | skills.shared | probe | pass | fail | 2026.07.01-777f564 |
 | 2026-09-02 | crush | skills.shared | probe | pass | fail | crush version v0.92.0 |
-| 2026-09-02 | crush | commands.active | probe | pass | fail | crush version v0.92.0 |
-| 2026-09-02 | codex | skills.shared | probe | pass | fail | codex-cli 0.152.0 |

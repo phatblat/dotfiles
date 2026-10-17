@@ -9,6 +9,8 @@ For a repo that follows Conventional Docs (`docs/backlog/`, `docs/decisions/`, `
 
 Two phases: **investigate and plan** (no code, ends with an approved plan), then **deliver** (one item at a time, same pipeline each).
 
+**Run Phase 1 in plan mode** when the harness has one, so the approval in step 8 is the harness's own plan-review screen, not a chat question. In omp, start the batch with `/plan /skill:backlog-batch-delivery <scope>`; the `/backlog-batch <scope>` command from `~/.omp/agent/extensions/backlog-batch-delivery.ts` types that line for you. omp plan mode limits `task` subagents to `read`, `grep`, `glob` and `web_search`, so run the read-only probes of step 3 (`gh api`, read-only service requests) from the main agent's shell.
+
 ## One owner per worktree
 
 Before touching a branch or worktree, check that nobody else is driving it: `git ls-remote --heads origin '*<slug>'`, `git log -3` and `gh pr list --head <branch>`. A duplicated or forked session (for example one opened to write a skill) shares the worktree with the original. If commits, a PR or a `TODO.md` you did not write appear, stop editing, report, and leave uncommitted files alone. Never run the same item's pipeline twice.
@@ -33,7 +35,15 @@ Before touching a branch or worktree, check that nobody else is driving it: `git
    - release and deploy go after everything; deploy once.
    Where a proposed decision record links to a backlog item that will be deleted, plan the in-place link edit.
 7. **Pin stop conditions in the plan.** Examples: a claim in a backlog item that fails to reproduce, a collaborator who is not the owner, a failed entitlement probe. A stop condition means stop and ask, not improvise.
-8. **Write the plan to a plan file and submit it for approval** through the harness's plan-approval step (in omp: `local://<slug>-plan.md`, submitted via `xd://propose`). Re-submit when it changes. The plan carries, per item: branch, decision slug, gaps found, decision clauses, build steps with file anchors, tests, verification commands, inbound links to rewrite.
+8. **Write the plan to a plan file and submit it for approval** through the harness's plan-approval step, never through an `ask` question or a request in prose. In omp, write `local://<slug>-plan.md`, then submit `<slug>` via `xd://propose`, which opens the Plan Review screen. Re-submit after every change. `xd://propose` works only in plan mode. If plan mode is off, write the plan file, end the turn, and tell the user to press Alt+Shift+P (or run `/plan`) and then run `/plan-review`, which opens the same screen on the newest `local://*plan.md`. In omp, "Approve and execute" starts Phase 2 in a fresh context that sees only the plan file. So the plan's first line is "Load `skill://backlog-batch-delivery` and run Phase 2 on the items below, in order.", and for each item the plan carries:
+   - branch
+   - decision slug
+   - gaps found
+   - decision clauses
+   - build steps with file anchors
+   - tests
+   - verification commands
+   - inbound links to rewrite
 
 ## Phase 2: Deliver (per item, in plan order)
 

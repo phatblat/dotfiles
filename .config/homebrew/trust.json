@@ -15,6 +15,7 @@
   ],
   "trustedtaps": [
     "beadbox/cask",
+    "btwld/fvm",
     "buildkite/buildkite",
     "chamburr/tap",
     "dagger/tap",

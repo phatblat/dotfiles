@@ -30,5 +30,8 @@
     "browse_font_size": 12,
     "image_preview": true,
     "indent_compact": true
+  },
+  "agents": {
+    "auto_acp": true
   }
 }

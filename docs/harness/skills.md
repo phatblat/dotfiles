@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.285 (Claude Code) · 2026-10-14 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.162.1 · 2026-10-14 | - |
-| opencode | aligned | shared | - | probe · 1.19.0 · 2026-10-14 | - |
-| pi | aligned | shared | - | probe · 1.2.0 · 2026-10-14 | - |
-| omp | aligned | native | - | probe · omp/18.10.4 · 2026-10-14 | - |
-| antigravity | partial | adapter | - | probe · 1.3.3 · 2026-10-14 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
-| cursor | partial | native | - | probe · 2026.10.01-e373342 · 2026-10-14 | generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.52 (0920c8169e27) [alpha] · 2026-10-14 | grok scans ~/.agents/skills at the user tier |
-| crush | aligned | native | - | probe · crush version v0.98.1 · 2026-10-14 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
+| claude | aligned | shared | - | probe · 2.1.285 (Claude Code) · 2026-10-16 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.162.1 · 2026-10-16 | - |
+| opencode | aligned | shared | - | probe · 1.19.0 · 2026-10-16 | - |
+| pi | aligned | shared | - | probe · 1.2.0 · 2026-10-16 | - |
+| omp | aligned | native | - | probe · omp/18.11.1 · 2026-10-16 | - |
+| antigravity | partial | adapter | - | probe · 1.3.3 · 2026-10-16 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
+| cursor | partial | native | - | probe · 2026.10.01-e373342 · 2026-10-16 | generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified |
+| grok | aligned | native | - | probe · grok 1.0.52 (0920c8169e27) [alpha] · 2026-10-16 | grok scans ~/.agents/skills at the user tier |
+| crush | aligned | native | - | probe · crush version v0.98.1 · 2026-10-16 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
 
 ### skills.manual_only · p1
 
