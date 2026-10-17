@@ -72,8 +72,8 @@ harness-drift *ARGS:
     python3 {{ justfile_directory() }}/scripts/agent-harnesses.py drift {{ ARGS }}
 
 # Checks agentlink's project-tier links still match .agentlink/config.toml.
-# Part of `just check`, but not CI: `.agentlink/lock.toml`, `.github/skills`,
-# and `.opencode/skills` are committed, but `.cursor/skills` is gitignored
+# Part of `just check`, but not CI: `.agentlink/lock.toml` and `.github/skills`
+# are committed, but `.cursor/skills` is gitignored
 # (via `.cursor/.gitignore`, not this file's own `[gitignore]` block, which
 # stays `manage = false`) and so is never materialised in a fresh CI
 # checkout, which would fail this check for a reason no CI run can fix.

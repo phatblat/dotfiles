@@ -14,6 +14,9 @@
 #
 # crush, grok, omp and pi are not shipped by agentlink; their manifests live in
 # .agentlink/providers/ and load on top of the embedded set.
+#
+# opencode is deliberately absent: it reads ~/.agents/skills natively, so a
+# project-tier ~/.opencode/skills link only made it load every skill twice.
 
 version = 1
 providers = [
@@ -24,15 +27,14 @@ providers = [
   "github-copilot",
   "grok",
   "omp",
-  "opencode",
   "pi",
 ]
 
-# Three of agentlink's four generated paths are intentionally *tracked*, not
-# gitignored: `/.agentlink/lock.toml`, `/.github/skills`, and
-# `/.opencode/skills` are committed so a fresh clone has working skill
-# symlinks without running `agentlink apply` first. Only `/.cursor/skills` is
-# ignored, and not through this file's `[gitignore]` block (`manage = false`
+# Two of agentlink's three generated paths are intentionally *tracked*, not
+# gitignored: `/.agentlink/lock.toml` and `/.github/skills` are committed so a
+# fresh clone has working skill symlinks without running `agentlink apply`
+# first. Only `/.cursor/skills` is ignored, and not through this file's
+# `[gitignore]` block (`manage = false`
 # means agentlink never touches root `.gitignore`) — Cursor's own managed
 # block in `.cursor/.gitignore` re-ignores `skills` after un-ignoring it for
 # "User's personal skills", and the nested file's DOTFILES ALLOWLIST leaves
