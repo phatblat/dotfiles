@@ -1,62 +1,6 @@
 # main.config.toml — `codex --profile main`. Pure pass-through by design:
-# any bare key ABOVE [hooks.state] is an active override of ~/.codex/config.toml.
+# any bare key above the first [table] is an active override of ~/.codex/config.toml.
 # See the commented scratch-space block at the end of this file.
-
-[hooks.state]
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:1:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:2:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:3:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:1:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:2:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_compact:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:1:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:session_start:2:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:user_prompt_submit:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_start:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:subagent_stop:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:stop:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/.codex/hooks.json:stop:1:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/dev/_GETDITTO/ditto-devx/.codex/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
-[hooks.state."/Users/phatblat/dev/_GETDITTO/ditto/.codex/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
 [projects."/Users/phatblat/dev/_GETDITTO/cloud-infra"]
 trust_level = "trusted"
