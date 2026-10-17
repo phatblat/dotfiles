@@ -125,9 +125,6 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 [hooks.state."/Users/phatblat/.codex/hooks.json:post_tool_use:1:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
-[hooks.state."/Users/phatblat/.codex/hooks.json:pre_compact:0:0"]
-trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-
 [hooks.state."/Users/phatblat/.codex/hooks.json:pre_tool_use:0:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
@@ -187,7 +184,7 @@ source = "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/op
 enabled = false
 
 [plugins."clangd-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."code-review@claude-plugins-official"]
 enabled = true
@@ -199,25 +196,25 @@ enabled = true
 enabled = true
 
 [plugins."csharp-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."documents@openai-primary-runtime"]
 enabled = true
 
 [plugins."gopls-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."jdtls-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."kotlin-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."linear-cli@linear-cli"]
 enabled = true
 
 [plugins."lua-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."pdf@openai-primary-runtime"]
 enabled = true
@@ -232,31 +229,28 @@ enabled = true
 enabled = true
 
 [plugins."pyright-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."rust-analyzer-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."spreadsheets@openai-primary-runtime"]
 enabled = true
 
 [plugins."swift-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."template-creator@openai-primary-runtime"]
 enabled = true
 
 [plugins."typescript-lsp@claude-plugins-official"]
-enabled = true
+enabled = false
 
 [plugins."unified-computer-use@openai-bundled"]
 enabled = false
 
 [plugins."visualize@openai-bundled"]
 enabled = true
-
-[projects."/"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat"]
 trust_level = "trusted"

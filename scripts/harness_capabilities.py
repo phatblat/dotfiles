@@ -130,6 +130,7 @@ _LOCAL_2026_06_27 = Evidence(kind="local", date="2026-06-27")
 # Probe-backed cells this restructure verified by running the probe.
 _PROBED_2026_08_29 = "2026-08-29"
 _PROBED_2026_09_15 = "2026-09-15"
+_PROBED_2026_10_16 = "2026-10-16"
 
 _SHARED = "~/.agents/harness"
 _SAFETY = "~/crates/ness/src/policy.rs"
@@ -167,11 +168,13 @@ CAPABILITIES: list[Capability] = [
             "codex": Cell(
                 parity="aligned",
                 mode="shared",
-                artifacts=(_SHARED,),
+                artifacts=("~/.codex/AGENTS.md", _SHARED),
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                    kind="probe", ref="file_contains", date=_PROBED_2026_10_16
                 ),
-                probe=_exists(".agents/harness/instructions.md"),
+                probe=_contains(
+                    ".codex/AGENTS.md", r"\.agents/harness/instructions\.md"
+                ),
             ),
             "opencode": Cell(
                 parity="aligned",
