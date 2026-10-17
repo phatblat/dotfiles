@@ -1,19 +1,8 @@
 {
-  "general": {
-    "previewFeatures": true,
-    "sessionRetention": {
-      "enabled": true,
-      "maxAge": "30d",
-      "warningAcknowledged": true
-    }
-  },
   "mcpServers": {},
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
     }
-  },
-  "ui": {
-    "showHomeDirectoryWarning": false
   }
 }
