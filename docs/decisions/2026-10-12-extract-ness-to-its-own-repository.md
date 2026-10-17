@@ -37,6 +37,14 @@ This decision implements clause 6 of
 and amends it in one respect: `safety-policy.json` is deleted rather than
 regenerated from `ness`, because nothing reads it (see clause 7 below).
 
+This decision is extended by
+[2026-10-17-ness-policy-as-data](./2026-10-17-ness-policy-as-data.md), which
+moves the policy tables the crate reads into `~/.config/ness/policy.toml` and
+amends two clauses below: clause 1 no longer moves `tests/corpus/` to the
+ness repository (the guard cases become `~/.config/ness/cases/` here), and
+clause 5 gains `~/.config/ness/policy.toml` and
+`~/.local/state/ness/applied.json` as control-plane entries.
+
 ## Status
 
 This is a proposal that is **proposed**.
@@ -170,3 +178,10 @@ every harness, measured above.
 - **Resolve the binary through `PATH` like `wt`.** Rejected: harness hook
   processes do not run `mise activate`, and the absolute path is what makes
   the fail-closed check unambiguous.
+- **A separate policy repository, independent of the engine.** Not chosen now:
+  the policy stays personal configuration in dotfiles per
+  [2026-10-17-ness-policy-as-data](./2026-10-17-ness-policy-as-data.md).
+  Recorded as a possible later evolution: once `ness` ships from its own
+  repository, a policy repository would be both the place a shared policy
+  lives and a test harness that exercises the extracted engine against
+  policies other than this machine's.
