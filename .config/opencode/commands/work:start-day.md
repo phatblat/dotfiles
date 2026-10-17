@@ -8,4 +8,4 @@ Execute the shared `work/start-day` command prompt from:
 
 `~/.agents/harness/commands/work/start-day.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

@@ -8,4 +8,4 @@ Execute the shared `work/runners` command prompt from:
 
 `~/.agents/harness/commands/work/runners.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

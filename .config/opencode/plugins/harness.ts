@@ -8,12 +8,14 @@ import type { Plugin } from "@opencode-ai/plugin";
 
 type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
 
-function guard(args: string[]): GuardResult {
+function guard(args: string[], cwd: string): GuardResult {
   const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync(ness, ["guard", "--harness", "opencode", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "opencode", "--cwd", cwd, ...args], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
+      cwd,
+      timeout: 5000,
     });
     return JSON.parse(output) as GuardResult;
   } catch (error: any) {
@@ -23,7 +25,23 @@ function guard(args: string[]): GuardResult {
   }
 }
 
-export const HarnessPlugin: Plugin = async () => ({
+function patchTargets(patchText: string): string[] {
+  const targets = new Set<string>();
+  for (const match of patchText.matchAll(/^\*\*\* (?:Add File|Update File|Delete File|Move to): (.+)$/gm)) {
+    targets.add(match[1].trim());
+  }
+  return [...targets];
+}
+
+function patchAddedContent(patchText: string): string {
+  return patchText
+    .split("\n")
+    .filter((line) => line.startsWith("+") && !line.startsWith("+++"))
+    .map((line) => line.slice(1))
+    .join("\n");
+}
+
+export const HarnessPlugin: Plugin = async ({ directory }) => ({
   async "experimental.chat.system.transform"(_input, output) {
     output.system.push("Use shared harness instructions from ~/.agents/harness/instructions.md.");
   },
@@ -34,18 +52,27 @@ export const HarnessPlugin: Plugin = async () => ({
 
   async "tool.execute.before"(input, output) {
     const args = output.args || {};
-    let result: GuardResult = { decision: "allow" };
+    const checks: string[][] = [];
 
     if (input.tool === "bash") {
-      result = guard(["--tool", "bash", "--command", String(args.command || "")]);
-    } else if (input.tool === "write" || input.tool === "edit") {
-      const path = String(args.file_path || args.path || "");
-      const content = String(args.content || args.new_string || "");
-      result = guard(["--tool", input.tool, "--path", path, "--content", content]);
+      checks.push(["--tool", "bash", "--command", String(args.command || "")]);
+    } else if (input.tool === "write") {
+      checks.push(["--tool", "write", "--path", String(args.filePath || ""), "--content", String(args.content || "")]);
+    } else if (input.tool === "edit") {
+      checks.push(["--tool", "edit", "--path", String(args.filePath || ""), "--content", String(args.newString || "")]);
+    } else if (input.tool === "apply_patch") {
+      const patchText = String(args.patchText || "");
+      for (const target of patchTargets(patchText)) {
+        checks.push(["--tool", "write", "--path", target, "--content", ""]);
+      }
+      checks.push(["--tool", "write", "--path", "", "--content", patchAddedContent(patchText)]);
     }
 
-    if (result.decision === "deny") {
-      throw new Error(result.reason || "Blocked by shared harness guard");
+    for (const check of checks) {
+      const result = guard(check, directory);
+      if (result.decision === "deny") {
+        throw new Error(result.reason || "Blocked by shared harness guard");
+      }
     }
   },
 });

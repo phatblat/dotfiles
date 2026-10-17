@@ -8,4 +8,4 @@ Execute the shared `pr/resolve-review-feedback` command prompt from:
 
 `~/.agents/harness/commands/pr/resolve-review-feedback.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

@@ -230,9 +230,7 @@ def bash_rules(style: str) -> Any:
         return [f"Bash({cmd} *)" for cmd in BASH_DENY_PREFIX]
 
     if style == "antigravity":
-        rules = [
-            f"unsandboxed({cmd})" for cmd in (*BASH_ALLOW_PREFIX, *BASH_ALLOW_EXACT)
-        ]
+        rules = [f"command({cmd})" for cmd in (*BASH_ALLOW_PREFIX, *BASH_ALLOW_EXACT)]
         return sorted(rules)
 
     if style == "opencode":
@@ -248,14 +246,15 @@ def bash_rules(style: str) -> Any:
         return opencode_rules
 
     if style == "omp":
-        # First-match-wins: deny, then ask, then allow.
+        # First-match-wins: deny, then prompt, then allow. omp accepts only
+        # allow|deny|prompt and silently drops any other value.
         patterns: list[dict[str, str]] = []
         for cmd in BASH_DENY_PREFIX:
             patterns.append({"match": f"{cmd} *", "approval": "deny"})
             patterns.append({"match": cmd, "approval": "deny"})
         for cmd in BASH_ASK_PREFIX:
-            patterns.append({"match": f"{cmd} *", "approval": "ask"})
-            patterns.append({"match": cmd, "approval": "ask"})
+            patterns.append({"match": f"{cmd} *", "approval": "prompt"})
+            patterns.append({"match": cmd, "approval": "prompt"})
         for cmd in BASH_ALLOW_PREFIX:
             patterns.append({"match": f"{cmd}*", "approval": "allow"})
         for cmd in BASH_ALLOW_EXACT:

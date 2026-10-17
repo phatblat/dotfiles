@@ -8,4 +8,4 @@ Execute the shared `pr/create` command prompt from:
 
 `~/.agents/harness/commands/pr/create.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

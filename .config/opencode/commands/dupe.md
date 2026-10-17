@@ -8,4 +8,4 @@ Execute the shared `dupe` command prompt from:
 
 `~/.agents/harness/commands/dupe.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

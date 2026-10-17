@@ -1,16 +1,22 @@
 {
   "expected": {
-    "exit": 2,
+    "exit": 0,
     "stdout": {
       "decision": "deny",
-      "harness": "antigravity",
-      "reason": "Dangerous command pattern detected",
-      "tool": "bash"
+      "reason": "Dangerous command pattern detected"
     }
   },
   "payload": {
-    "command": "rm -rf /",
-    "tool": "bash"
+    "toolCall": {
+      "args": {
+        "CommandLine": "rm -rf /",
+        "Cwd": "/tmp"
+      },
+      "name": "run_command"
+    },
+    "workspacePaths": [
+      "/tmp"
+    ]
   },
   "shim": "antigravity"
 }

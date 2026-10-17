@@ -8,4 +8,4 @@ Execute the shared `session-save` command prompt from:
 
 `~/.agents/harness/commands/session-save.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

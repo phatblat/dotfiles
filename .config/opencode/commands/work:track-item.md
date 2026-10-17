@@ -8,4 +8,4 @@ Execute the shared `work/track-item` command prompt from:
 
 `~/.agents/harness/commands/work/track-item.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

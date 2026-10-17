@@ -8,4 +8,4 @@ Execute the shared `pr/update-desc` command prompt from:
 
 `~/.agents/harness/commands/pr/update-desc.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

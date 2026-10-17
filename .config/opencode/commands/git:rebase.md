@@ -8,4 +8,4 @@ Execute the shared `git/rebase` command prompt from:
 
 `~/.agents/harness/commands/git/rebase.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

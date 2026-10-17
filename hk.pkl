@@ -55,9 +55,9 @@ local generate = new Mapping<String, Step | Group> {
       List(
         ".agents/harness/**",
         ".claude/skills/**",
-        ".codex/skills/**",
         ".config/crush/**",
         ".config/opencode/**",
+        ".cursor/hooks.json",
         ".grok/**",
         ".omp/agent/**",
         ".omp/profiles/**",

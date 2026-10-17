@@ -613,7 +613,7 @@
         },
         "cursor": {
           "artifacts": [
-            "~/.agents/harness/adapters/cursor/skills"
+            "~/.cursor/skills"
           ],
           "divergence": "",
           "evidence": {
@@ -623,12 +623,12 @@
             "version": "2026.10.01-e373342"
           },
           "mode": "native",
-          "next_action": "Verify Cursor discovers and activates generated shared skill wrappers",
-          "note": "generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified",
+          "next_action": "Verify Cursor discovers and activates the shared skills",
+          "note": "agentlink symlink to ~/.agents/skills",
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md"
+            "path": ".cursor/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },
@@ -1676,25 +1676,20 @@
       ],
       "cells": {
         "antigravity": {
-          "artifacts": [
-            "~/.agents/harness/adapters/antigravity/commands"
-          ],
+          "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "2026-10-16",
-            "kind": "probe",
-            "ref": "file_exists",
+            "kind": "docs",
+            "ref": "agy plugin hooks/spec (embedded docs)",
             "version": "1.3.3"
           },
-          "mode": "adapter",
-          "next_action": "Verify Antigravity command schema or flatten command wrappers so all 25 commands are discovered",
-          "note": "generated Antigravity command wrappers cover all shared prompts, but agy validation only processed a subset as skills",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/harness/adapters/antigravity/commands/2ndbrain.md"
-          },
-          "surface": ""
+          "mode": "none",
+          "next_action": "",
+          "note": "agy 1.3.3 plugins load skills, agents, rules, hooks, mcpServers and sidecars only; command wrappers are not generated because flattening them into skills would make user-run workflows implicitly invocable",
+          "parity": "absent",
+          "probe": null,
+          "surface": "Plugins load skills, agents, rules, hooks, mcpServers"
         },
         "claude": {
           "artifacts": [
@@ -1824,8 +1819,7 @@
         },
         "opencode": {
           "artifacts": [
-            "~/.config/opencode/commands",
-            "~/.config/opencode/opencode.jsonc"
+            "~/.config/opencode/commands"
           ],
           "divergence": "",
           "evidence": {
@@ -2345,8 +2339,7 @@
         },
         "opencode": {
           "artifacts": [
-            "~/.config/opencode/agents",
-            "~/.config/opencode/opencode.jsonc"
+            "~/.config/opencode/agents"
           ],
           "divergence": "",
           "evidence": {
@@ -2366,26 +2359,20 @@
           "surface": ""
         },
         "pi": {
-          "artifacts": [
-            "~/.pi/agent/agents.json",
-            "~/.pi/agent/extensions/harness.ts"
-          ],
+          "artifacts": [],
           "divergence": "",
           "evidence": {
             "date": "2026-10-16",
-            "kind": "probe",
-            "ref": "file_exists",
+            "kind": "docs",
+            "ref": "pi CLI config reference",
             "version": "1.2.0"
           },
-          "mode": "emulated",
-          "next_action": "Implement subprocess delegation in ~/.pi/agent/extensions/harness.ts per policy",
-          "note": "Pi specialist delegation policy: model inferred from specialist tier (quick=haiku, standard=sonnet, deep=opus); fresh session per delegation for context isolation",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".pi/agent/agents.json"
-          },
-          "surface": ""
+          "mode": "none",
+          "next_action": "",
+          "note": "Pi 1.2.0 has no agent registry or subagent support; no adapter is generated",
+          "parity": "absent",
+          "probe": null,
+          "surface": "No agent registry or subagent support in Pi 1.2.0"
         }
       },
       "contract": "Six specialist agents are represented for delegation.",
@@ -2877,7 +2864,7 @@
       "cells": {
         "antigravity": {
           "artifacts": [
-            "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
+            "~/.agents/harness/adapters/antigravity/hooks.json",
             "~/.agents/harness/adapters/antigravity/scripts/harness-guard.sh"
           ],
           "divergence": "",
@@ -2893,7 +2880,7 @@
           "parity": "partial",
           "probe": {
             "kind": "file_contains",
-            "path": ".agents/harness/adapters/antigravity/hooks/hooks.json",
+            "path": ".agents/harness/adapters/antigravity/hooks.json",
             "pattern": "harness-guard\\.sh"
           },
           "surface": ""
@@ -2967,7 +2954,7 @@
         },
         "cursor": {
           "artifacts": [
-            "~/.agents/harness/adapters/cursor/hooks/hooks.json",
+            "~/.cursor/hooks.json",
             "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
           ],
           "divergence": "",
@@ -2978,12 +2965,12 @@
             "version": "2026.10.01-e373342"
           },
           "mode": "adapter",
-          "next_action": "Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny",
-          "note": "generated Cursor hook shim execs the compiled guard, but native pre-tool blocking behavior has not been verified",
+          "next_action": "Confirm in a live Cursor session that a protected-path write is blocked",
+          "note": "~/.cursor/hooks.json preToolUse (failClosed) execs the compiled guard; Cursor also imports ~/.claude/settings.json Bash and Write|Edit guard hooks (fail-open), so ness runs twice for Shell and Write calls",
           "parity": "partial",
           "probe": {
             "kind": "file_contains",
-            "path": ".agents/harness/adapters/cursor/hooks/hooks.json",
+            "path": ".cursor/hooks.json",
             "pattern": "harness-guard\\.sh"
           },
           "surface": ""
@@ -4054,7 +4041,7 @@
       "cells": {
         "antigravity": {
           "artifacts": [
-            "~/.agents/harness/adapters/antigravity/mcp.json"
+            "~/.agents/harness/adapters/antigravity/mcp_config.json"
           ],
           "divergence": "",
           "evidence": {
@@ -4068,7 +4055,7 @@
           "note": "",
           "parity": "aligned",
           "probe": null,
-          "surface": "Generated `mcp.json`"
+          "surface": "Generated `mcp_config.json`"
         },
         "claude": {
           "artifacts": [
@@ -5167,7 +5154,7 @@
       "cells": {
         "antigravity": {
           "artifacts": [
-            "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
+            "~/.agents/harness/adapters/antigravity/hooks.json",
             "~/.gemini/antigravity-cli/settings.json"
           ],
           "divergence": "",
@@ -5183,7 +5170,7 @@
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/harness/adapters/antigravity/hooks/hooks.json"
+            "path": ".agents/harness/adapters/antigravity/hooks.json"
           },
           "surface": ""
         },

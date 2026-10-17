@@ -8,4 +8,4 @@ Execute the shared `optimize-harness` command prompt from:
 
 `~/.agents/harness/commands/optimize-harness.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS
