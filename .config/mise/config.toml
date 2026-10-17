@@ -42,7 +42,6 @@
 "npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
 "npm:@getpaseo/cli" = "0.11.2"
 "npm:@googleworkspace/cli" = "0.22.5"
-"npm:@openai/codex" = "0.162.1"
 "npm:@sentry/wizard" = "8.0.1"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.8.1"
@@ -129,7 +128,6 @@ mkcert = "1.4.4"
 neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.12.0"
-oh-my-pi = { version = "18.11.2", rename_exe = "omp" }
 opencode = "1.19.0"
 packer = "1.16.1"
 pi = "1.2.0"
@@ -162,16 +160,6 @@ xh = "0.26.2"
 yq = "4.54.1"
 zoxide = "0.10.0"
 
-[tools."http:cursor-cli"]
-version = "2026.09.15-d2fe57e"
-url = "https://downloads.cursor.com/lab/2026.09.15-d2fe57e/darwin/arm64/agent-cli-package.tar.gz"
-checksum = "sha256:f51579a1ea1725c2bebd1a14064d52bdea5e05aaff47cfa7d5b5d0d07a8d3fbc"
-bin_path = "dist-package"
-bin = "cursor-agent"
-
-# Trust the OS keychain instead of each runtime's bundled root store, so
-# corporate TLS-inspecting proxies (invalid peer certificate: UnknownIssuer)
-# don't break tools like linear-cli (Deno), node, and uv/python.
 [env]
 DENO_TLS_CA_STORE = "system"
 NODE_USE_SYSTEM_CA = "1"
@@ -255,13 +243,9 @@ idiomatic_version_file_enable_tools = ["node"]
 # than this window, so installs within 24h of a tool bump above can differ
 # from what was current at merge time.
 minimum_release_age = "24h"
-# oh-my-pi, claude-code, and codex ship fixes frequently; skip the 24h
+# claude-code and codex ship fixes frequently; skip the 24h
 # minimum_release_age default for them.
-minimum_release_age_excludes = [
-  "github:can1357/oh-my-pi",
-  "claude-code",
-  "codex",
-]
+minimum_release_age_excludes = ["claude-code", "codex"]
 use_versions_host = false
 
 [settings.python]

@@ -7,15 +7,14 @@ color_reset := '\e[0m'
 
 # Tools excluded from `mise ... --bump` scans; each emits unfixable mise warnings and its
 # bump is always null: wookie = rev-pinned cargo git ref (latest resolves to the ref string
-# "HEAD"), dsh = prerelease-only npm package (mise resolves no "latest"), cursor-cli = http
-# backend without version_list_url (cursor.com publishes no version feed), cargo-binstall =
+# "HEAD"), dsh = prerelease-only npm package (mise resolves no "latest"), cargo-binstall =
 # mise's cargo backend bootstraps new cargo-binstall versions using the currently pinned
 # cargo-binstall binary, which self-deadlocks on mise's own per-tool install lock (the
 # bootstrap process waits forever on a lock it already holds). Bump manually by downloading
 # the arm64 release binary from https://github.com/cargo-bins/cargo-binstall/releases and
 # copying it into the mise install dir, then update the version pin.
 
-mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh http:cursor-cli cargo:cargo-binstall'
+mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh cargo:cargo-binstall'
 
 alias ls := list
 alias lsm := list-missing
