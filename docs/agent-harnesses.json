@@ -7625,12 +7625,6 @@
       },
       {
         "enabled": false,
-        "id": "oh-my-claudecode@omc",
-        "marketplace": "omc",
-        "marketplace_source": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
-      },
-      {
-        "enabled": false,
         "id": "plugin-dev@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
