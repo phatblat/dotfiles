@@ -1,6 +1,6 @@
 ---
 name: subagent-output-schema-contract
-description: "Use when spawning a task()/agent()/workpool() subagent with an outputSchema, to reduce yield-tool retry failures by stating the exact result envelope and required fields in the task prompt."
+description: "Use when spawning an agent()/workpool() subagent with an outputSchema, or a task agent whose frontmatter sets structured: true, to reduce yield retry failures by stating the exact result envelope and required fields in the prompt."
 ---
 
 ## Problem
@@ -15,7 +15,7 @@ OMP's built-in retry loop (`MAX_YIELD_RETRIES=3`) recovers from this ~99% of the
 
 ## Practice
 
-When calling `task()`, `agent()`, or `workpool()` with an `outputSchema`, append an explicit output-contract line to the `task`/prompt text (not just relying on the schema being attached mechanically):
+When calling `agent()` or `workpool()` with an `outputSchema`, append an explicit output-contract line to the `task`/prompt text (not just relying on the schema being attached mechanically):
 
 ```
 Output contract: finish by calling yield with {"data": {...}} on success (or {"error": "<message>"} if you cannot complete the task). The data object must include these required fields verbatim: <list the schema's required top-level field names>. Do not wrap the object in an extra "result" key.
@@ -24,6 +24,8 @@ Output contract: finish by calling yield with {"data": {...}} on success (or {"e
 For schemas with nested/array sections (e.g. a `findings[]` array of review items), spell out the nested required fields too, since these are the most common source of mismatch.
 
 This does not require any OMP config change — it is a parent-side prompting habit, applied every time an `outputSchema` is supplied to a spawned subagent.
+
+Since omp 18.10.3, `task()` subagents return plain text (`task.structured` is false) and never call `yield`; apply this to `task()` only for agents whose frontmatter sets `structured: true`.
 
 ## Non-fix
 
