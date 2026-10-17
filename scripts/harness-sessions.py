@@ -119,9 +119,12 @@ def resolve_root(store: SessionStore) -> tuple[Path, str]:
             return Path(val).expanduser(), f"env:{var}"
     return HOME / store.default, "default"
 
+
 def _pi_session_dir() -> Path | None:
     """Return the effective Pi session directory from settings.json, if present."""
-    settings_path = HOME / ".pi" / "agent" / "settings.json"
+    agent_dir = os.environ.get("PI_CODING_AGENT_DIR")
+    base = Path(agent_dir).expanduser() if agent_dir else HOME / ".pi" / "agent"
+    settings_path = base / "settings.json"
     if not settings_path.exists():
         return None
     try:
@@ -155,12 +158,14 @@ def resolve_session_root(slug: str, store: SessionStore) -> tuple[Path, str]:
         return HOME / store.default, "default"
 
     if slug == "pi":
+        session_dir = os.environ.get("PI_CODING_AGENT_SESSION_DIR")
+        if session_dir:
+            return Path(
+                session_dir
+            ).expanduser().parent, "env:PI_CODING_AGENT_SESSION_DIR"
         settings_dir = _pi_session_dir()
         if settings_dir is not None:
             return settings_dir.parent, "settings:sessionDir"
-        session_dir = os.environ.get("PI_CODING_AGENT_SESSION_DIR")
-        if session_dir:
-            return Path(session_dir).expanduser().parent, "env:PI_CODING_AGENT_SESSION_DIR"
         agent_dir = os.environ.get("PI_CODING_AGENT_DIR")
         if agent_dir:
             return Path(agent_dir).expanduser(), "env:PI_CODING_AGENT_DIR"
@@ -169,19 +174,25 @@ def resolve_session_root(slug: str, store: SessionStore) -> tuple[Path, str]:
     return resolve_root(store)
 
 
-def iter_files(root: Path, pattern: str, max_files: int) -> list[Path]:
-    """Newest-first files under root, capped at max_files."""
+def iter_files(root: Path, pattern: str) -> list[tuple[Path, float]]:
+    """Newest-first (path, mtime) pairs under root; each file is stat'ed once."""
     if pattern:
         try:
-            files = [p for p in root.glob(pattern) if p.is_file()]
+            paths = [p for p in root.glob(pattern) if p.is_file()]
         except OSError:
             return []
     elif root.is_file():
-        files = [root]
+        paths = [root]
     else:
-        files = []
-    files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
-    return files[:max_files]
+        paths = []
+    files: list[tuple[Path, float]] = []
+    for p in paths:
+        try:
+            files.append((p, p.stat().st_mtime))
+        except OSError:
+            continue
+    files.sort(key=lambda item: item[1], reverse=True)
+    return files
 
 
 def parse_ts(value: Any) -> float | None:
@@ -326,9 +337,9 @@ def scan_claude(files: list[Path], coverage: Coverage) -> list[Obs]:
             ts = str(record.get("timestamp", "") or "")
             coverage.note_ts(ts)
             rtype = record.get("type")
-            is_subagent = bool(record.get("isSidechain")) or record.get(
-                "agentId"
-            ) is not None
+            is_subagent = (
+                bool(record.get("isSidechain")) or record.get("agentId") is not None
+            )
             actor = "subagent" if is_subagent else "assistant"
 
             att = record.get("attachment")
@@ -410,7 +421,9 @@ def scan_claude(files: list[Path], coverage: Coverage) -> list[Obs]:
                         if item.get("type") == "tool_use":
                             name = str(item.get("name", ""))[:MAX_FIELD_LEN]
                             call_id = str(item.get("id", ""))
-                            kind = "mcp_call" if name.startswith("mcp__") else "tool_call"
+                            kind = (
+                                "mcp_call" if name.startswith("mcp__") else "tool_call"
+                            )
                             if name == "Skill":
                                 skill_input = item.get("input")
                                 if isinstance(skill_input, dict) and skill_input.get(
@@ -557,7 +570,12 @@ def scan_codex(files: list[Path], coverage: Coverage) -> list[Obs]:
                 )
             elif ptype == "context_compacted":
                 emit(
-                    obs, harness="codex", session=sid, kind="compaction", ts=ts, actor="system"
+                    obs,
+                    harness="codex",
+                    session=sid,
+                    kind="compaction",
+                    ts=ts,
+                    actor="system",
                 )
             elif rtype == "turn_context":
                 profile = payload.get("permission_profile")
@@ -636,10 +654,14 @@ def scan_opencode(db_path: Path, coverage: Coverage) -> list[Obs]:
                 except (json.JSONDecodeError, TypeError):
                     coverage.files_malformed += 1
                     continue
-                sid = session_by_id.get(msg_session, session_id(db_path / str(msg_session)))
+                sid = session_by_id.get(
+                    msg_session, session_id(db_path / str(msg_session))
+                )
                 role = data.get("role", "")
-                actor = "subagent" if data.get("parentID") else (
-                    "assistant" if role == "assistant" else "user"
+                actor = (
+                    "subagent"
+                    if data.get("parentID")
+                    else ("assistant" if role == "assistant" else "user")
                 )
                 time_val = data.get("time")
                 ts = ""
@@ -668,20 +690,34 @@ def scan_opencode(db_path: Path, coverage: Coverage) -> list[Obs]:
                 except (json.JSONDecodeError, TypeError):
                     coverage.files_malformed += 1
                     continue
-                sid = session_by_id.get(part_session, session_id(db_path / str(part_session)))
+                sid = session_by_id.get(
+                    part_session, session_id(db_path / str(part_session))
+                )
                 dtype = data.get("type")
                 if dtype == "tool":
                     state = data.get("state") or {}
                     status = state.get("status")
-                    ok = {"completed": True, "error": False}.get(status) if isinstance(status, str) else None
+                    ok = (
+                        {"completed": True, "error": False}.get(status)
+                        if isinstance(status, str)
+                        else None
+                    )
                     time_val = state.get("time") or {}
                     ms = None
-                    if isinstance(time_val, dict) and "start" in time_val and "end" in time_val:
+                    if (
+                        isinstance(time_val, dict)
+                        and "start" in time_val
+                        and "end" in time_val
+                    ):
                         try:
                             ms = int(time_val["end"] - time_val["start"])
                         except TypeError:
                             ms = None
-                    ts = iso(parse_ts(time_val.get("start"))) if isinstance(time_val, dict) else ""
+                    ts = (
+                        iso(parse_ts(time_val.get("start")))
+                        if isinstance(time_val, dict)
+                        else ""
+                    )
                     coverage.note_ts(ts)
                     emit(
                         obs,
@@ -761,16 +797,19 @@ def scan_pi(files: list[Path], coverage: Coverage) -> list[Obs]:
                             name = str(item.get("name", ""))[:MAX_FIELD_LEN]
                             call_id = str(item.get("id", ""))
                             joiner.open(
-                                call_id, ts=ts, name=name, kind="tool_call", actor="assistant"
+                                call_id,
+                                ts=ts,
+                                name=name,
+                                kind="tool_call",
+                                actor="assistant",
                             )
                             args = item.get("arguments")
                             target = ""
                             if isinstance(args, dict):
-                                target = str(
-                                    args.get("path") or args.get("url") or ""
-                                )
+                                target = str(args.get("path") or args.get("url") or "")
                             if name == "read" and (
-                                target.endswith("SKILL.md") or target.startswith("skill://")
+                                target.endswith("SKILL.md")
+                                or target.startswith("skill://")
                             ):
                                 if target.startswith("skill://"):
                                     skill_name = target[len("skill://") :].split("/")[0]
@@ -803,7 +842,13 @@ def scan_pi(files: list[Path], coverage: Coverage) -> list[Obs]:
                     )
                 else:
                     emit(
-                        obs, harness="pi", session=sid, kind="tool_result", ts=ts, actor="assistant", ok=ok
+                        obs,
+                        harness="pi",
+                        session=sid,
+                        kind="tool_result",
+                        ts=ts,
+                        actor="assistant",
+                        ok=ok,
                     )
         for opened in joiner.flush():
             emit(
@@ -825,6 +870,51 @@ def scan_pi(files: list[Path], coverage: Coverage) -> list[Obs]:
 import re as _re
 
 _PI_SKILL_TAG = _re.compile(r'^<skill name="(?P<name>[^"]+)" location="[^"]*">')
+
+_OMP_ERROR_CLASSES = (
+    (
+        "guard",
+        _re.compile(
+            r"control-plane file is human-only|protected file blocked|secret-like content detected"
+            r"|Privilege escalation blocked|Dangerous command pattern detected"
+            r"|Obfuscated execution pattern detected|Credential disclosure blocked"
+            r"|[Ss]hared guard failed closed"
+        ),
+    ),
+    ("unknown_tool", _re.compile(r"\bunknown tool\b", _re.IGNORECASE)),
+    (
+        "stale_anchor",
+        _re.compile(
+            r"stale|never (?:been )?(?:displayed|shown|read)|not (?:been )?(?:displayed|seen)"
+            r"|unseen|no longer matches|changed since",
+            _re.IGNORECASE,
+        ),
+    ),
+    ("auto_generated", _re.compile(r"auto-?generated", _re.IGNORECASE)),
+    ("not_found", _re.compile(r"not found|ENOENT|no such file", _re.IGNORECASE)),
+    ("timeout", _re.compile(r"timed? ?out|timeout", _re.IGNORECASE)),
+    (
+        "exit_code",
+        _re.compile(r"exit(?:ed)? (?:with )?(?:code|status) \d+", _re.IGNORECASE),
+    ),
+    ("parse", _re.compile(r"parse|syntax|malformed|invalid json", _re.IGNORECASE)),
+)
+
+
+def _omp_error_class(message: dict) -> str:
+    """Fixed label for an errored result; only the label leaves this function."""
+    content = message.get("content")
+    text = content if isinstance(content, str) else ""
+    if isinstance(content, list):
+        for chunk in content:
+            if isinstance(chunk, dict) and chunk.get("type") == "text":
+                text = str(chunk.get("text", ""))
+                break
+    first = text.splitlines()[0] if text else ""
+    for label, pattern in _OMP_ERROR_CLASSES:
+        if pattern.search(first):
+            return label
+    return "other"
 
 
 def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
@@ -848,7 +938,12 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
             rtype = record.get("type")
             if rtype == "compaction":
                 emit(
-                    obs, harness="omp", session=sid, kind="compaction", ts=ts, actor="system"
+                    obs,
+                    harness="omp",
+                    session=sid,
+                    kind="compaction",
+                    ts=ts,
+                    actor="system",
                 )
             elif rtype == "custom":
                 custom_type = record.get("customType")
@@ -861,18 +956,19 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
                         call_id,
                         ts=started,
                         name=name,
-                        kind="tool_call",
+                        kind="mcp_call" if name.startswith("mcp__") else "tool_call",
                         actor=default_actor,
                     )
                 elif custom_type == "session_exit":
+                    reason = str(data.get("reason", ""))[:MAX_FIELD_LEN]
                     emit(
                         obs,
                         harness="omp",
                         session=sid,
-                        kind="turn_abort",
+                        kind="session_exit" if reason == "dispose" else "turn_abort",
                         ts=ts,
                         actor="system",
-                        detail=str(data.get("reason", ""))[:MAX_FIELD_LEN],
+                        detail=reason,
                     )
             elif rtype == "custom_message":
                 if record.get("customType") == "skill-prompt":
@@ -889,10 +985,59 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
                         )
             elif rtype == "message":
                 message = record.get("message")
+                if isinstance(message, dict) and message.get("role") == "assistant":
+                    content = message.get("content")
+                    if isinstance(content, list):
+                        for item in content:
+                            if not (
+                                isinstance(item, dict)
+                                and item.get("type") == "toolCall"
+                            ):
+                                continue
+                            tname = str(item.get("name", ""))
+                            args = item.get("arguments")
+                            target = ""
+                            if isinstance(args, dict) and isinstance(
+                                args.get("path"), str
+                            ):
+                                target = args["path"]
+                            if tname in ("write", "read") and target.startswith(
+                                "xd://"
+                            ):
+                                device = target[5:].split("/")[0].split("?")[0]
+                                emit(
+                                    obs,
+                                    harness="omp",
+                                    session=sid,
+                                    kind="mcp_call"
+                                    if device.startswith("mcp__")
+                                    else "device_call",
+                                    ts=ts,
+                                    actor=default_actor,
+                                    name=device[:MAX_FIELD_LEN],
+                                )
+                            elif tname == "read" and (
+                                target.startswith("skill://")
+                                or target.endswith("SKILL.md")
+                            ):
+                                if target.startswith("skill://"):
+                                    skill_name = target[len("skill://") :].split("/")[0]
+                                else:
+                                    skill_name = Path(target).parent.name
+                                emit(
+                                    obs,
+                                    harness="omp",
+                                    session=sid,
+                                    kind="skill_read",
+                                    ts=ts,
+                                    actor=default_actor,
+                                    name=skill_name[:MAX_FIELD_LEN],
+                                )
                 if isinstance(message, dict) and message.get("role") == "toolResult":
                     call_id = str(message.get("toolCallId", ""))
                     is_error = message.get("isError")
                     ok = None if is_error is None else (not is_error)
+                    err_class = _omp_error_class(message) if ok is False else ""
                     opened = joiner.close(call_id)
                     if opened:
                         ms = None
@@ -910,6 +1055,7 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
                             name=opened["name"],
                             ok=ok,
                             ms=ms,
+                            detail=err_class,
                         )
                     else:
                         emit(
@@ -919,7 +1065,9 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
                             kind="tool_result",
                             ts=ts,
                             actor=default_actor,
+                            name=str(message.get("toolName", ""))[:MAX_FIELD_LEN],
                             ok=ok,
+                            detail=err_class,
                         )
         for opened in joiner.flush():
             emit(
@@ -1072,7 +1220,12 @@ def scan_antigravity(files: list[Path], coverage: Coverage) -> list[Obs]:
             ts = iso(parse_ts(record.get("timestamp")))
             coverage.note_ts(ts)
             emit(
-                obs, harness="antigravity", session=sid, kind="session_start", ts=ts, actor="user"
+                obs,
+                harness="antigravity",
+                session=sid,
+                kind="session_start",
+                ts=ts,
+                actor="user",
             )
         coverage.files_seen += 1
         if parsed_any:
@@ -1084,7 +1237,10 @@ def scan_antigravity(files: list[Path], coverage: Coverage) -> list[Obs]:
 # Orchestration
 # ---------------------------------------------------------------------------
 
-def scan_harness(slug: str, *, since_days: int, max_files: int) -> tuple[list[Obs], Coverage]:
+
+def scan_harness(
+    slug: str, *, since_days: int, max_files: int
+) -> tuple[list[Obs], Coverage]:
     store = SESSION_STORES[slug]
     root, resolved_from = resolve_session_root(slug, store)
     version = cli_version(resolve_cli(slug))
@@ -1097,7 +1253,9 @@ def scan_harness(slug: str, *, since_days: int, max_files: int) -> tuple[list[Ob
     if store.note:
         coverage.gaps.append(store.note)
     if not store.verified and resolved_from != "default":
-        coverage.gaps.append(f"{resolved_from} override not confirmed from primary CLI output")
+        coverage.gaps.append(
+            f"{resolved_from} override not confirmed from primary CLI output"
+        )
 
     since_epoch = time.time() - since_days * 86400
 
@@ -1122,27 +1280,25 @@ def scan_harness(slug: str, *, since_days: int, max_files: int) -> tuple[list[Ob
         return [], coverage
 
     if slug == "grok":
-        session_dirs = [p for p in root.glob(store.pattern) if p.is_dir()]
-        session_dirs.sort(
-            key=lambda p: max(
-                (f.stat().st_mtime for f in p.glob("*.jsonl") if f.is_file()), default=0
-            ),
-            reverse=True,
-        )
-        kept = []
-        for d in session_dirs[:max_files]:
-            mtimes = [f.stat().st_mtime for f in d.glob("*.jsonl") if f.is_file()]
-            if mtimes and max(mtimes) >= since_epoch:
-                kept.append(d)
-            else:
-                coverage.files_skipped_since += 1
-        return scan_grok(kept, coverage), coverage
+        dir_mtimes: list[tuple[Path, float]] = []
+        for d in root.glob(store.pattern):
+            if not d.is_dir():
+                continue
+            newest = max(
+                (f.stat().st_mtime for f in d.glob("*.jsonl") if f.is_file()), default=0
+            )
+            dir_mtimes.append((d, newest))
+        dir_mtimes.sort(key=lambda item: item[1], reverse=True)
+        in_window_dirs = [d for d, mtime in dir_mtimes if mtime >= since_epoch]
+        coverage.files_skipped_since = len(dir_mtimes) - len(in_window_dirs)
+        coverage.files_skipped_max = max(0, len(in_window_dirs) - max_files)
+        return scan_grok(in_window_dirs[:max_files], coverage), coverage
 
-    all_files = iter_files(root, store.pattern, max_files=max_files + 10_000)
-    coverage.files_skipped_max = max(0, len(all_files) - max_files)
-    candidates = all_files[:max_files]
-    kept = [p for p in candidates if p.stat().st_mtime >= since_epoch]
-    coverage.files_skipped_since = len(candidates) - len(kept)
+    all_files = iter_files(root, store.pattern)
+    in_window = [p for p, mtime in all_files if mtime >= since_epoch]
+    coverage.files_skipped_since = len(all_files) - len(in_window)
+    coverage.files_skipped_max = max(0, len(in_window) - max_files)
+    kept = in_window[:max_files]
 
     if slug == "claude":
         return scan_claude(kept, coverage), coverage
@@ -1238,22 +1394,44 @@ def aggregate_hook_cost(observations: list[Obs]) -> list[dict[str, Any]]:
     return rows
 
 
-def aggregate_friction(usage_rows: list[dict[str, Any]], observations: list[Obs]) -> dict[str, Any]:
+def aggregate_friction(
+    usage_rows: list[dict[str, Any]], observations: list[Obs]
+) -> dict[str, Any]:
     tool_errors = [r for r in usage_rows if r["errors"] > 0]
     tool_errors.sort(key=lambda r: (-r["errors"], -(r["p95_ms"] or 0)))
     aborts = [o for o in observations if o.kind == "turn_abort"]
     abort_reasons: dict[str, int] = {}
     for o in aborts:
-        abort_reasons[o.detail or "unknown"] = abort_reasons.get(o.detail or "unknown", 0) + 1
+        abort_reasons[o.detail or "unknown"] = (
+            abort_reasons.get(o.detail or "unknown", 0) + 1
+        )
     cache_misses: dict[str, int] = {}
     for o in observations:
         if o.kind == "cache_miss":
-            cache_misses[o.detail or "unknown"] = cache_misses.get(o.detail or "unknown", 0) + 1
+            cache_misses[o.detail or "unknown"] = (
+                cache_misses.get(o.detail or "unknown", 0) + 1
+            )
     mcp_failures = [
         o for o in observations if o.kind == "mcp_lifecycle" and o.ok is False
     ]
+    error_counts: dict[tuple[str, str, str], int] = {}
+    for o in observations:
+        if (
+            o.ok is False
+            and o.detail
+            and o.kind in ("tool_call", "mcp_call", "tool_result")
+        ):
+            key = (o.harness, o.name, o.detail)
+            error_counts[key] = error_counts.get(key, 0) + 1
+    error_classes = [
+        {"harness": h, "name": n, "class": c, "count": count}
+        for (h, n, c), count in sorted(
+            error_counts.items(), key=lambda kv: (-kv[1], kv[0])
+        )
+    ]
     return {
         "tool_error_rates": tool_errors,
+        "error_classes": error_classes,
         "aborted_turns": {"count": len(aborts), "by_reason": abort_reasons},
         "cache_miss_reasons": cache_misses,
         "mcp_failures": len(mcp_failures),
@@ -1305,6 +1483,16 @@ def render_markdown(
                 f"{r['errors']} | {r['p95_ms'] if r['p95_ms'] is not None else '-'} |"
             )
         lines.append("")
+    if friction["error_classes"]:
+        lines.append("### Error classes")
+        lines.append("")
+        lines.append("| Harness | Name | Class | Count |")
+        lines.append("|---|---|---|---|")
+        for r in friction["error_classes"]:
+            lines.append(
+                f"| {r['harness']} | {r['name'] or '-'} | {r['class']} | {r['count']} |"
+            )
+        lines.append("")
     lines.append(
         f"- Aborted turns: {friction['aborted_turns']['count']} "
         f"({', '.join(f'{k}: {v}' for k, v in friction['aborted_turns']['by_reason'].items()) or 'none'})"
@@ -1338,10 +1526,17 @@ def build_parser() -> argparse.ArgumentParser:
         nargs="*",
         help=f"harness slugs to scan (default: all of {', '.join(HARNESSES)})",
     )
-    parser.add_argument("--since", type=int, default=30, help="session window in days (default 30)")
-    parser.add_argument("--json", action="store_true", help="emit JSON instead of markdown")
     parser.add_argument(
-        "--max-files", type=int, default=400, help="max files scanned per harness, newest first"
+        "--since", type=int, default=30, help="session window in days (default 30)"
+    )
+    parser.add_argument(
+        "--json", action="store_true", help="emit JSON instead of markdown"
+    )
+    parser.add_argument(
+        "--max-files",
+        type=int,
+        default=400,
+        help="max files scanned per harness, newest first",
     )
     parser.add_argument(
         "--repo",
@@ -1370,10 +1565,16 @@ def main(argv: list[str] | None = None) -> int:
     hard_error = False
     for slug in slugs:
         try:
-            obs, coverage = scan_harness(slug, since_days=args.since, max_files=args.max_files)
+            obs, coverage = scan_harness(
+                slug, since_days=args.since, max_files=args.max_files
+            )
         except OSError as exc:
             coverage = Coverage(
-                harness=slug, root="", resolved_from="", cli_version=None, gaps=[f"unreadable: {exc}"]
+                harness=slug,
+                root="",
+                resolved_from="",
+                cli_version=None,
+                gaps=[f"unreadable: {exc}"],
             )
             obs = []
             hard_error = True
