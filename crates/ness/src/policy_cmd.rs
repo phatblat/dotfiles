@@ -26,7 +26,8 @@ fn load_cases(dir: &Path) -> Result<Vec<Case>, String> {
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(cases),
         Err(e) => return Err(format!("read {}: {e}", dir.display())),
     };
-    for entry in rd.filter_map(|e| e.ok()) {
+    for entry in rd {
+        let entry = entry.map_err(|e| format!("read {}: {e}", dir.display()))?;
         let name = entry.file_name().to_string_lossy().into_owned();
         if !name.ends_with(".json") {
             continue;
