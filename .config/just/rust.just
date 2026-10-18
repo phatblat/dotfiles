@@ -51,7 +51,7 @@ clean-rust:
 ness-build: install-rust-deps
     cargo build --release --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
 
-# Installs the ness compiled guard to ~/.local/bin, the path every harness hook execs, then checks it against the corpus. Requires an applied policy in $HOME first: ness policy apply ~/.config/ness/policy.toml
+# Installs the ness compiled guard to ~/.local/bin, the path every harness hook execs, then checks it against the corpus. Requires an applied policy in $HOME first (on a first bootstrap the installed ness has no `policy` subcommand, so use the freshly built one): crates/ness/target/release/ness policy apply ~/.config/ness/policy.toml
 [group('rust')]
 ness-install: ness-build && ness-check-installed
     install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/.ness.new

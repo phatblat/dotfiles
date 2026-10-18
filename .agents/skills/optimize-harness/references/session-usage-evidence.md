@@ -44,8 +44,8 @@ Exclude these sources from the primary scan:
 - Grok `session_search.sqlite` (FTS index over the same transcript text as
   `events.jsonl`/`chat_history.jsonl`, not an additional source).
 - Antigravity `conversations/*.pb` (protobuf with no published schema, and
-  on the guard's protected-path list, `crates/ness/src/policy.rs`'s
-  `PROTECTED_PATHS`).
+  on the guard's protected-path list, `[protected_paths]` in
+  `~/.config/ness/policy.toml`).
 - Model/token/cost statistics; they do not identify skill, MCP, or plugin
   invocations.
 

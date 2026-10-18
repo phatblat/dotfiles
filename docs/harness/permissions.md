@@ -8,7 +8,7 @@
 
 Native allow/deny rules are expressed only where they add to, never weaken, the shared guard decision.
 
-Canonical: `~/scripts/harness_policy.py`
+Canonical: `~/.config/ness/policy.toml`, `~/scripts/harness_policy.py`
 Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
@@ -27,7 +27,7 @@ Verify: `just harness-check`
 
 The harness's interactive approval modes are known, and the default mode does not bypass the guard.
 
-Canonical: `~/scripts/harness_policy.py`
+Canonical: `~/.config/ness/policy.toml`, `~/scripts/harness_policy.py`
 Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |

@@ -16,8 +16,8 @@ unparseable = "unparseable"
 extend-ignore-re = [
     "2ndBrain",
     # `\(ba\)\?sh` in guard regex patterns (matches "sh" or "bash"), not the
-    # English word "ba". Appears verbatim in the guard's Rust policy
-    # (crates/ness/src/policy.rs).
+    # English word "ba". Appears verbatim in the guard's policy
+    # (~/.config/ness/policy.toml).
     "\\(ba\\)\\?sh",
     # Abbreviated commit hashes that tools print in version strings, such as
     # `grok 1.0.50 (c58f321264ba)` or `cmux 0.65.0 (108) [dda24fbd2]`. The harness
