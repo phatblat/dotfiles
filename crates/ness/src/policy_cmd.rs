@@ -325,6 +325,23 @@ pub fn apply(candidate: &Path, accept_case_changes: bool) -> i32 {
         eprintln!("ness policy apply: requires a terminal on stdin; a human runs this");
         return 2;
     }
+    // A PTY satisfies `is_terminal()`, so the TTY check alone does not prove
+    // a human. `sudo -k -v` ignores cached credentials and demands a fresh
+    // factor (password, or Touch ID via pam_tid) that no tool input supplies.
+    match std::process::Command::new("sudo")
+        .args(["-k", "-v"])
+        .status()
+    {
+        Ok(s) if s.success() => {}
+        Ok(_) => {
+            eprintln!("ness policy apply: sudo authentication failed; a human applies policy");
+            return 2;
+        }
+        Err(e) => {
+            eprintln!("ness policy apply: cannot run sudo -v: {e}");
+            return 2;
+        }
+    }
     let mut buf: Vec<u8> = Vec::new();
     let (report, bytes) = match run_check(candidate, &mut buf) {
         Ok(r) => r,
@@ -334,26 +351,35 @@ pub fn apply(candidate: &Path, accept_case_changes: bool) -> i32 {
         }
     };
     print!("{}", String::from_utf8_lossy(&buf));
-    if report.exit_code() != 0 {
-        if !(report.only_case_changes() && accept_case_changes) {
-            eprintln!(
-                "ness policy apply: refusing; fix the failures above{}",
-                if report.only_case_changes() {
-                    " or pass --accept-case-changes"
-                } else {
-                    ""
-                }
-            );
-            return 1;
+    let case_changes = report.exit_code() != 0;
+    if case_changes && !(report.only_case_changes() && accept_case_changes) {
+        eprintln!(
+            "ness policy apply: refusing; fix the failures above{}",
+            if report.only_case_changes() {
+                " or pass --accept-case-changes"
+            } else {
+                ""
+            }
+        );
+        return 1;
+    }
+    // Always confirm: a candidate that passes every existing case can still
+    // weaken the guard on an input no case covers.
+    print!(
+        "Install {} as the active policy{}? Type yes: ",
+        candidate.display(),
+        if case_changes {
+            " and accept the removed/changed cases listed above"
+        } else {
+            ""
         }
-        print!("Accept the removed/changed cases listed above? Type yes: ");
-        std::io::stdout().flush().ok();
-        let mut line = String::new();
-        std::io::stdin().lock().read_line(&mut line).ok();
-        if line.trim() != "yes" {
-            eprintln!("ness policy apply: not confirmed");
-            return 1;
-        }
+    );
+    std::io::stdout().flush().ok();
+    let mut line = String::new();
+    std::io::stdin().lock().read_line(&mut line).ok();
+    if line.trim() != "yes" {
+        eprintln!("ness policy apply: not confirmed");
+        return 1;
     }
     let target = paths::policy_path();
     if let Err(e) = install(&bytes, report.case_digests, &target, &paths::applied_path()) {
