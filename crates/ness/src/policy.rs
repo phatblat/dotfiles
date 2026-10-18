@@ -68,9 +68,13 @@ fn matches(re: &Regex, text: &str) -> bool {
 
 // Codex `unified_exec` keeps a launched process open, and `write_stdin` input
 // never re-runs `PreToolUse`: a bare interactive shell/REPL launch would let
-// every later command bypass the guard.
+// every later command bypass the guard. Reading the program from stdin
+// (`bash -s`, `bash -`, `python3 -`) is the same bypass. Matched per
+// `&&`/`||`/`;`/newline segment, after any `env`/`nohup`-style launcher
+// prefix (including `VAR=val` assignments and launcher flags), with the
+// stdin/interactive short flags allowed in clusters (`-il`, `-iq`).
 static INTERACTIVE_LAUNCH: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"^\s*(?:(?:env|exec|command)\s+)?(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu|python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)(?:\s+repl)?(?:\s+--?(?:i|l|q|login|interactive|norc|noprofile|quiet))*\s*$").unwrap()
+    Regex::new(r"(?:^|&&|\|\||;|\n)\s*(?:(?:\S*/)?(?:env|exec|command|nohup|time)(?:\s+(?:-\S+|\w+=\S*))*\s+)*(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu|python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)(?:\s+repl)?(?:\s+(?:-[ilqs]+|--?(?:login|interactive|norc|noprofile|quiet)))*(?:\s+-)?\s*(?:$|(?=&&|\|\||;|\n))").unwrap()
 });
 
 pub fn is_interactive_launch(command: &str) -> bool {
