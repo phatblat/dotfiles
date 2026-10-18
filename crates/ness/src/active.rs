@@ -50,11 +50,16 @@ pub fn read_applied(path: &Path) -> Result<Applied, String> {
 
 pub fn check_required_protection(p: &Compiled) -> Result<(), String> {
     for path in REQUIRED_PROTECTED_PATHS {
-        let normalized = crate::paths::normalize_lexical(path);
-        match p.control_plane.is_match(&normalized) {
-            Ok(true) => {}
-            Ok(false) => return Err(format!("[control_plane] must cover {path} ({normalized})")),
-            Err(e) => return Err(format!("policy pattern error: {e}")),
+        // Lexical: what the policy text covers. Canonical: what the guard
+        // sees on a real write when a component is a symlink. Both must match.
+        let lexical = crate::paths::normalize_lexical(path);
+        let canonical = crate::paths::normalize_str(path);
+        for form in [&lexical, &canonical] {
+            match p.control_plane.is_match(form) {
+                Ok(true) => {}
+                Ok(false) => return Err(format!("[control_plane] must cover {path} ({form})")),
+                Err(e) => return Err(format!("policy pattern error: {e}")),
+            }
         }
     }
     let mut denied = false;
@@ -255,6 +260,7 @@ mod tests {
         let normalized = crate::paths::normalize_lexical("~/.config/ness/policy.toml");
         assert!(err.contains(&normalized), "{err}");
     }
+
     #[test]
     fn required_protection_rejects_unprotected_policy_path() {
         let text = fixture().replace(r"'/\.config/ness/policy\.toml(?![\w.-])', ", "");
@@ -269,5 +275,26 @@ mod tests {
         let c = crate::policy_file::parse(&text).unwrap().compile().unwrap();
         let err = check_required_protection(&c).unwrap_err();
         assert!(err.contains("ness policy apply"), "{err}");
+    }
+
+    #[test]
+    fn applied_non_utf8_policy_is_an_error() {
+        let home = temp_home();
+        let policy = home.join(".config/ness/policy.toml");
+        let mut bytes = fixture().into_bytes();
+        bytes.extend_from_slice(b"\n# \xff\xfe\n");
+        std::fs::write(&policy, &bytes).unwrap();
+        write_applied(&home, &policy);
+        let err = load_from(&policy, &home.join(".local/state/ness/applied.json")).unwrap_err();
+        assert!(err.contains("policy.toml"), "{err}");
+    }
+
+    #[test]
+    fn policy_path_that_is_a_directory_is_an_error() {
+        let home = temp_home();
+        let policy = home.join(".config/ness/policy.toml");
+        std::fs::create_dir_all(&policy).unwrap();
+        let err = load_from(&policy, &home.join(".local/state/ness/applied.json")).unwrap_err();
+        assert!(err.contains("policy.toml"), "{err}");
     }
 }
