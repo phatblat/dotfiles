@@ -118,8 +118,13 @@ policy:
 
 In Codex 0.162.1, `allow_implicit_invocation: false` removes the skill from the
 model-visible skill list (`codex debug prompt-input` omits it); the user can still
-run it as `$<name>`. Never set it on a skill that AGENTS.md or another skill tells
-the model to use. If a rarely used procedural skill should not appear in context at
+run it as `$<name>`. Never set it on a skill that AGENTS.md tells the model to use
+on its own. A reference from another skill to a flagged procedural skill is fine
+when that reference only hands off to the user-run entry point (for example
+`using-git-worktrees` pointing at `/git:worktree`) or sits inside a workflow the user
+started explicitly (`backlog-batch-delivery` steps, `executing-plans` finishing with
+`branch-finish`); do not report those as flag mistakes. If a rarely used procedural
+skill should not appear in context at
 all, recommend disabling it via harness-specific config (`[[skills.config]]
 enabled = false` for Codex) or moving it out of scanned skill paths. Do not
 recommend creating a separate `classify-skill` skill unless the rubric is reused by
