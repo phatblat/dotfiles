@@ -4,7 +4,7 @@ providers:
 setupVersion: 2
 modelRoles:
   plan: anthropic/claude-opus-5-5:xhigh
-  slow: anthropic/claude-opus-5-5
+  slow: google-antigravity/gemini-3.8-flash
   smol: anthropic/claude-haiku-5-5:auto
   default: anthropic/claude-sonnet-5-5:high
   commit: anthropic/claude-haiku-5-5:low
@@ -309,6 +309,7 @@ cycleOrder:
   - default
   - plan
   - smol
+  - slow
 steeringMode: all
 followUpMode: all
 interruptMode: wait

@@ -310,6 +310,7 @@ cycleOrder:
   - default
   - plan
   - smol
+  - slow
 steeringMode: all
 followUpMode: all
 interruptMode: wait
