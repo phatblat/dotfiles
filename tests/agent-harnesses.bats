@@ -123,6 +123,7 @@ skip_unless_home_is_this_checkout() {
   sed "s|boris|$stale_skill|g" \
     "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
     >"$antigravity_dir/SKILL.md"
+  printf '%s\n' "preserve this sidecar" >"$antigravity_dir/notes.md"
   sed "s|boris|$modified_skill|g" \
     "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
     >"$modified_dir/SKILL.md"
@@ -141,7 +142,8 @@ skip_unless_home_is_this_checkout() {
 
   run python3 "$SCRIPT" generate
   generate_status="$status"
-  antigravity_exists="$([ -e "$antigravity_dir" ] && echo true || echo false)"
+  antigravity_skill_exists="$([ -e "$antigravity_dir/SKILL.md" ] && echo true || echo false)"
+  antigravity_sidecar_exists="$([ -e "$antigravity_dir/notes.md" ] && echo true || echo false)"
   modified_exists="$([ -e "$modified_dir/SKILL.md" ] && echo true || echo false)"
   symlink_exists="$([ -L "$symlink_dir" ] && echo true || echo false)"
   symlink_target_exists="$([ -e "$symlink_target/SKILL.md" ] && echo true || echo false)"
@@ -152,9 +154,10 @@ skip_unless_home_is_this_checkout() {
   idempotent_check_status="$status"
 
   rm -f \
+    "$antigravity_dir/notes.md" \
     "$modified_dir/SKILL.md" \
     "$symlink_dir"
-  rmdir "$modified_dir" 2>/dev/null || true
+  rmdir "$antigravity_dir" "$modified_dir" 2>/dev/null || true
 
   [ "$check_status" -eq 1 ]
   [[ "$check_output" == *"obsolete: ~/.agents/harness/adapters/antigravity/skills/$stale_skill/SKILL.md"* ]]
@@ -162,7 +165,8 @@ skip_unless_home_is_this_checkout() {
   [[ "$check_output" != *"$symlink_skill"* ]]
   [ "$antigravity_hash_after_check" = "$antigravity_hash" ]
   [ "$generate_status" -eq 0 ]
-  [ "$antigravity_exists" = false ]
+  [ "$antigravity_skill_exists" = false ]
+  [ "$antigravity_sidecar_exists" = true ]
   [ "$modified_exists" = true ]
   [ "$symlink_exists" = true ]
   [ "$symlink_target_exists" = true ]
