@@ -475,6 +475,11 @@ pub fn run_antigravity(default_cwd: &str, manifest: &Path) -> i32 {
     0
 }
 
+/// Cursor tools that only read: `.cursor/hooks.json` has no matcher, so they
+/// reach the hook too, carrying `file_path`/`path`, which `classify` would
+/// otherwise treat as a write target.
+const CURSOR_READ_ONLY_TOOLS: [&str; 4] = ["Read", "Grep", "List", "ReadLints"];
+
 /// `cursor` (cursor-agent). The payload is `{tool_name, tool_input, cwd, ...}`.
 /// Deny prints `{"permission":"deny","user_message":R,"agent_message":R}`;
 /// allow and warn print `{}` (`permission: allow` would bypass Cursor's
@@ -495,6 +500,14 @@ pub fn run_cursor(default_cwd: &str, manifest: &Path) -> i32 {
     };
     let empty = Value::Object(serde_json::Map::new());
     let tool_input = payload.get("tool_input").unwrap_or(&empty);
+    let tool_name = payload
+        .get("tool_name")
+        .and_then(|v| v.as_str())
+        .unwrap_or("");
+    if CURSOR_READ_ONLY_TOOLS.contains(&tool_name) {
+        println!("{{}}");
+        return 0;
+    }
     let Some(c) = classify(tool_input, true) else {
         println!("{{}}");
         return 0;
