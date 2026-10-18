@@ -136,7 +136,7 @@
             "type": "command"
           },
           {
-            "command": "bash \"$HOME/.claude/hooks/scripts/pre-commit-format.sh\"",
+            "command": "bash ~/.claude/hooks/scripts/pre-commit-format.sh",
             "if": "Bash(git -C * commit*)",
             "timeout": 60,
             "type": "command"
