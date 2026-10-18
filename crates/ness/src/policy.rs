@@ -81,9 +81,11 @@ pub fn is_interactive_launch(command: &str) -> bool {
     matches(&INTERACTIVE_LAUNCH, command)
 }
 
-// `gh auth token` / `gh auth status --show-token` print the stored credential.
+// `gh auth token`, `gh auth status --show-token` (also as a short flag, alone
+// or clustered: `-t`, `-at`, `-ta`) and `gh auth git-credential get` print
+// the stored credential.
 static CREDENTIAL_DISCLOSURE: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"(?i)\bgh\s+auth\s+(?:token\b|status\b[^;&|\n]*\s(?:--show-token|-t)\b)").unwrap()
+    Regex::new(r"(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))").unwrap()
 });
 
 // safety.py:26-29
