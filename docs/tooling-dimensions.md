@@ -117,9 +117,10 @@ is what accumulates the evidence these conditions are measured against.
   <30% or the ledger holds <3 records. That outcome means the vendors are not
   moving fast enough to justify a parity ledger, and what exists is a
   generator, not a knowledge base — in which case it stays in dotfiles
-  permanently, and the compiled guard (`crates/ness/`) and decoupled source of
-  truth (`.agents/harness/{commands,agents}/`) remain worthwhile on their own,
-  independent of whether the ledger ever graduates.
+  permanently, and the compiled guard (`crates/ness/`), whose policy is
+  `~/.config/ness/policy.toml` (decision 2026-10-17-ness-policy-as-data), and
+  decoupled source of truth (`.agents/harness/{commands,agents}/`) remain
+  worthwhile on their own, independent of whether the ledger ever graduates.
 
 ## Where to go for more
 

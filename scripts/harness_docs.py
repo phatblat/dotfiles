@@ -3,10 +3,10 @@
 Copyright: Ben Chatelain. Apache 2.0.
 
 Split out of ``scripts/agent-harnesses.py`` so these rendering rules stay
-agent-editable while the guard policy lives in the compiled, human-only
-``crates/ness`` crate (``crates/ness/src/policy.rs``'s
-``CONTROL_PLANE_FRAGMENTS`` lists agent-harnesses.py as control plane, because
-it is the sole consumer of the harness capability registry).
+agent-editable while the guard policy lives in the human-only
+``~/.config/ness/policy.toml`` (its ``[control_plane]`` table lists
+agent-harnesses.py as control plane, because it is the sole consumer of the
+harness capability registry).
 
 That split only holds while this module stays off the ``guard`` fast path.
 Every caller of the names defined here is reached solely from ``generate``,

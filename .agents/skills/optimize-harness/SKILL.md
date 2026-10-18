@@ -38,11 +38,15 @@ empty finding.
 
 `scripts/agent-harnesses.py`, `scripts/agent_plugins.py`,
 `scripts/harness_policy.py`, `.agents/harness/hooks/`,
-`.agents/harness/generated-paths.json`, and `crates/ness/` are human-only
-(`crates/ness/src/policy.rs`, `CONTROL_PLANE_FRAGMENTS`). A fix that lands
-in one of them must be reported as a hand-patch for the user to apply,
-never attempted directly — this prevents every future run from
-rediscovering the same deny.
+`.agents/harness/generated-paths.json`, `crates/ness/`,
+`~/.config/ness/policy.toml`, and `~/.local/state/ness/applied.json` are
+human-only (`[control_plane]` in `policy.toml`, floored by
+`REQUIRED_PROTECTED_PATHS` in `crates/ness/src/active.rs`). Policy *content*
+is data: propose a change by writing a candidate to
+`~/.local/state/ness/proposals/<slug>/policy.toml`, adding cases under
+`~/.config/ness/cases/`, running `ness policy check <candidate>`, and
+reporting the verdict diff; the user runs `ness policy apply`. A fix in one
+of the other files above is still a hand-patch for the user to apply.
 
 ## Execution shape
 

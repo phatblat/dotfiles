@@ -30,7 +30,7 @@ Whitespace-split `$ARGUMENTS`, order-independent:
    `--help`/CLI output. Never infer a cell from a sibling harness, from this
    repository's adapters, or from what "should" be true.
 2. **Never edit `scripts/agent-harnesses.py`.** It is control plane and
-   human-only (`crates/ness/src/policy.rs`, `CONTROL_PLANE_FRAGMENTS`).
+   human-only (`[control_plane]` in `~/.config/ness/policy.toml`).
    Registry edits land in `scripts/harness_capabilities.py`; renderer
    changes in `scripts/harness_docs.py`; probe kinds in
    `scripts/harness_drift.py`. A change that truly needs the control-plane

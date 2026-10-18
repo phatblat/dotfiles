@@ -51,7 +51,7 @@ clean-rust:
 ness-build: install-rust-deps
     cargo build --release --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml
 
-# Installs the ness compiled guard to ~/.local/bin, the path every harness hook execs, then checks it against the corpus
+# Installs the ness compiled guard to ~/.local/bin, the path every harness hook execs, then checks it against the corpus. Requires an applied policy in $HOME first: ness policy apply ~/.config/ness/policy.toml
 [group('rust')]
 ness-install: ness-build && ness-check-installed
     install -m 755 {{ justfile_directory() }}/crates/ness/target/release/ness {{ env("HOME") }}/.local/bin/.ness.new
@@ -67,6 +67,11 @@ ness-test: install-rust-deps
 [group('rust')]
 ness-check-installed: install-rust-deps
     NESS_CHECK_INSTALLED=1 cargo test --locked --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml installed_copy_matches_corpus
+
+# Validates a candidate policy and prints the verdict diff against the active one (agent-runnable; `ness policy apply` is human-only)
+[group('rust')]
+ness-policy-check candidate:
+    {{ env("HOME") }}/.local/bin/ness policy check {{ candidate }}
 
 # Builds the wt worktree resolver (release profile)
 [group('rust')]

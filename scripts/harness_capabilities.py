@@ -3,9 +3,8 @@
 Copyright: Ben Chatelain. Apache 2.0.
 
 Split out of ``scripts/agent-harnesses.py`` so these capability facts stay
-agent-editable while the generator (control plane, see
-``crates/ness/src/policy.rs`` ``CONTROL_PLANE_FRAGMENTS``) remains
-human-only.
+agent-editable while the generator (control plane, see ``[control_plane]`` in
+``~/.config/ness/policy.toml``) remains human-only.
 
 Vocabulary, enforced by ``validate_registry()`` and switched on by the
 renderers in ``harness_docs.py``:
