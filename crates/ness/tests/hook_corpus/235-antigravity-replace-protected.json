@@ -9,12 +9,8 @@
   "payload": {
     "toolCall": {
       "args": {
-        "ReplacementChunks": [
-          {
-            "ReplacementContent": "b",
-            "TargetContent": "a"
-          }
-        ],
+        "ReplacementContent": "b",
+        "TargetContent": "a",
         "TargetFile": "/Users/phatblat/.ssh/id_ed25519"
       },
       "name": "replace_file_content"

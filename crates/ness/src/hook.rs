@@ -17,7 +17,7 @@
 //! - crush: `tool_name`/`tool_input`; stderr + exit 2 on deny.
 //! - cursor: `tool_name`/`tool_input`; `{"permission":"deny",...}`.
 //! - antigravity: `toolCall.args` (`CommandLine`/`TargetFile`/`CodeContent`/
-//!   `ReplacementChunks`); `{"decision":"deny",...}`.
+//!   `ReplacementContent`/`ReplacementChunks`); `{"decision":"deny",...}`.
 //!
 //! `classify` sorts a `tool_input` object into bash-vs-write the same way the
 //! Python wrappers did (`render_grok_guard`, `render_crush_guard`,
@@ -401,7 +401,8 @@ pub fn run_crush(default_cwd: &str, manifest: &Path) -> i32 {
 
 /// `antigravity` (agy). The payload is `{toolCall: {name, args}, workspacePaths}`
 /// with PascalCase args: `CommandLine`/`Cwd` for shell calls, `TargetFile` plus
-/// `CodeContent` (write) or `ReplacementChunks[].ReplacementContent` (edit) for
+/// `CodeContent` (write), top-level `ReplacementContent` (`replace_file_content`)
+/// or `ReplacementChunks[].ReplacementContent` (`multi_replace_file_content`) for
 /// file calls. agy reads only the stdout decision, so every outcome exits 0:
 /// deny prints `{"decision":"deny","reason":R}`; allow and warn print `{}`
 /// (an empty decision means "use the normal permission flow", whereas an
@@ -437,7 +438,7 @@ pub fn run_antigravity(default_cwd: &str, manifest: &Path) -> i32 {
     };
     let command = str_arg("CommandLine");
     let path = str_arg("TargetFile");
-    let mut parts = vec![str_arg("CodeContent")];
+    let mut parts = vec![str_arg("CodeContent"), str_arg("ReplacementContent")];
     if let Some(chunks) = args.get("ReplacementChunks").and_then(|v| v.as_array()) {
         for chunk in chunks {
             if let Some(s) = chunk.get("ReplacementContent").and_then(|v| v.as_str()) {
