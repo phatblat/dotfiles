@@ -16,6 +16,13 @@
         "version": ""
       }
     },
+    "data-agent-kit-plugin": {
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/data-agent-kit-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
+    },
     "firebase": {
       "enabled": true,
       "installedFrom": {
@@ -59,6 +66,7 @@
       "foregroundOverride": "#A9B1D6",
       "primary": "#7AA2F7"
     },
+    "gcpRegion": "us",
     "permissionGrantsV2Migrated": true,
     "remoteControlHostname": "dto-a165-chatelain-zero-rocket",
     "sandboxEnabledAtV2Migration": true

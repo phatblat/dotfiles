@@ -1,8 +1,11 @@
 {
   "altScreenMode": "always",
-  "colorScheme": "colorblind-friendly dark",
   "enableTerminalSandbox": true,
-  "model": "Gemini 3.6 Flash (High)",
+  "gcp": {
+    "location": "us",
+    "project": "octopad-antigravity"
+  },
+  "model": "Gemini 4 Argon (Medium)",
   "permissions": {
     "allow": [
       "command(git status)",
