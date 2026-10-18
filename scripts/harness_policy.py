@@ -4,11 +4,14 @@ Copyright: Ben Chatelain. Apache 2.0.
 
 Control plane: an agent able to edit this file grants itself permissions on
 every harness at the next `just harness-generate`. Human-only, enforced by
-`crates/ness/src/policy.rs`'s `CONTROL_PLANE_FRAGMENTS`.
+`[control_plane]` in `~/.config/ness/policy.toml`.
 
-Split out of scripts/agent-harnesses.py so the data is reviewable on its own,
-following the harness_capabilities.py precedent. Imported only from
-agent-harnesses.py's non-fast-path block, so it never reaches a guard decision.
+The approval baseline lives in `[approval]` of that policy file; this module
+is the renderer (`bash_rules(style)`). `load_approval()` reads the checkout's
+policy.toml directly, without the `applied.json` hash check the guard applies:
+the rendered permission files trust the tracked file, as the hardcoded tuples
+did before. Imported only from agent-harnesses.py's non-fast-path block, so it
+never reaches a guard decision.
 
 Every value here is portable across machines or resolved from the environment:
 MCP credentials are never literals (capability `mcp.credential_scope`, p0).
