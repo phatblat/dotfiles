@@ -41,3 +41,38 @@ pub fn verdict_json(harness: &str, tool: &str, decision: &GuardDecision) -> serd
         "reason": decision.reason,
     })
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn load_error_denies_bash_with_the_reason() {
+        let d = evaluate_with_manifest(
+            Err("policy not applied"),
+            "bash",
+            "ls",
+            "",
+            "",
+            "",
+            Path::new("/nonexistent"),
+        );
+        assert_eq!(d.decision, "deny");
+        assert_eq!(d.reason, "policy not applied");
+    }
+
+    #[test]
+    fn load_error_denies_harmless_write_with_the_reason() {
+        let d = evaluate_with_manifest(
+            Err("policy not applied"),
+            "write",
+            "",
+            "/tmp/ness-guard-eval-harmless.txt",
+            "x",
+            "",
+            Path::new("/nonexistent"),
+        );
+        assert_eq!(d.decision, "deny");
+        assert_eq!(d.reason, "policy not applied");
+    }
+}
