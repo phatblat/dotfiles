@@ -109,7 +109,7 @@ hk = { version = "2.7.0", workflow = "release.yml" }
 hyperfine = "2.0.0"
 infisical = { version = "0.44.2", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
 java = "27.0.0"
-jjui = "0.10.11"
+jjui = "0.10.12"
 jq = "1.8.2"
 jujutsu = "0.46.0"
 just = "1.59.0"
