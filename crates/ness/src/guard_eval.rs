@@ -4,9 +4,11 @@
 
 use crate::manifest::generated_path_warning;
 use crate::policy::{self, GuardDecision};
+use crate::policy_file::Compiled;
 use std::path::Path;
 
 pub fn evaluate_with_manifest(
+    p: Result<&Compiled, &str>,
     tool: &str,
     command: &str,
     path: &str,
@@ -14,7 +16,11 @@ pub fn evaluate_with_manifest(
     cwd: &str,
     manifest_path: &Path,
 ) -> GuardDecision {
-    let decision = policy::evaluate(tool, command, path, content, cwd);
+    let p = match p {
+        Ok(p) => p,
+        Err(reason) => return GuardDecision::deny(reason),
+    };
+    let decision = policy::evaluate(p, tool, command, path, content, cwd);
     if decision.allowed() && !path.is_empty() {
         let warning = generated_path_warning(tool, path, manifest_path);
         if !warning.is_empty() {

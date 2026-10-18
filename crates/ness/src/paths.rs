@@ -92,7 +92,7 @@ pub fn normalize_str(path: &str) -> String {
     } else {
         process_cwd().join(expanded)
     };
-    
+
     // Use filesystem resolution to follow symlinks, matching Python's
     // Path.resolve() behavior. Fall back to lexical normalization only
     // when the path doesn't exist yet (e.g., Write tool creating a new file).
@@ -100,4 +100,43 @@ pub fn normalize_str(path: &str) -> String {
         Ok(canonical) => canonical.to_string_lossy().into_owned(),
         Err(_) => lexical_normalize(&absolute).to_string_lossy().into_owned(),
     }
+}
+
+/// `normalize_str` without the filesystem step: tilde expansion plus lexical
+/// `.`/`..` resolution only. For invariants about what a policy *text*
+/// covers (`REQUIRED_PROTECTED_PATHS`): following a symlink that happens to
+/// exist (a user who installed `~/.local/bin/ness` as a link into a build
+/// tree) would turn a property of the policy into a property of the disk.
+///
+/// The floor check assumes the required `[control_plane]` entries match on
+/// the path's *ending* (`/.config/ness/policy.toml(?![\w.-])`), so the
+/// `$HOME` prefix this expands to is irrelevant to the match; every
+/// required path therefore starts with `~/`.
+pub fn normalize_lexical(path: &str) -> String {
+    debug_assert!(
+        path.starts_with("~/"),
+        "required protected paths are home-relative: {path}"
+    );
+    lexical_normalize(&expand_tilde(path, &home_dir()))
+        .to_string_lossy()
+        .into_owned()
+}
+
+/// `~/.config/ness/policy.toml`: the one place the guard reads policy from.
+pub fn policy_path() -> PathBuf {
+    home_dir().join(".config").join("ness").join("policy.toml")
+}
+
+/// `~/.config/ness/cases/`: guard cases, agent-writable.
+pub fn cases_dir() -> PathBuf {
+    home_dir().join(".config").join("ness").join("cases")
+}
+
+/// `~/.local/state/ness/applied.json`: hashes recorded by the last human apply.
+pub fn applied_path() -> PathBuf {
+    home_dir()
+        .join(".local")
+        .join("state")
+        .join("ness")
+        .join("applied.json")
 }

@@ -1,9 +1,13 @@
+mod active;
 mod guard_eval;
 mod hook;
 mod manifest;
 mod paths;
 mod policy;
+mod policy_cmd;
+mod policy_file;
 
+use policy_file::Compiled;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
@@ -29,7 +33,9 @@ fn parse_flags(args: &[String]) -> Result<HashMap<String, String>, String> {
 }
 
 fn manifest_path(root: &Path) -> PathBuf {
-    root.join(".agents").join("harness").join("generated-paths.json")
+    root.join(".agents")
+        .join("harness")
+        .join("generated-paths.json")
 }
 
 /// Default `--cwd` when the flag is omitted, matching `parse_guard_args`'
@@ -43,7 +49,7 @@ fn default_cwd() -> String {
 /// `ness guard --harness <slug> --tool <name> [--command|--path|--content|--cwd]`
 /// — drop-in for `python3 scripts/agent-harnesses.py guard …`
 /// (`command_guard`, agent-harnesses.py:695-725).
-fn run_guard(flags: &HashMap<String, String>) -> i32 {
+fn run_guard(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 {
     let Some(harness) = flags.get("harness") else {
         eprintln!("ness guard: --harness is required");
         return 2;
@@ -60,7 +66,7 @@ fn run_guard(flags: &HashMap<String, String>) -> i32 {
     let root = paths::find_root();
     let manifest = manifest_path(&root);
     let decision =
-        guard_eval::evaluate_with_manifest(tool, &command, &path, &content, &cwd, &manifest);
+        guard_eval::evaluate_with_manifest(p, tool, &command, &path, &content, &cwd, &manifest);
 
     let payload = guard_eval::verdict_json(harness, tool, &decision);
     println!("{payload}");
@@ -76,7 +82,7 @@ fn run_guard(flags: &HashMap<String, String>) -> i32 {
 /// two-shim chain they replace is not derivable from the payload alone) and
 /// rejected for `grok`/`crush`/`antigravity`/`cursor` (each of those sends
 /// a single normalized payload that classifies itself).
-fn run_hook(flags: &HashMap<String, String>) -> i32 {
+fn run_hook(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 {
     let Some(harness) = flags.get("harness") else {
         eprintln!("ness hook: --harness is required");
         return 2;
@@ -92,8 +98,8 @@ fn run_hook(flags: &HashMap<String, String>) -> i32 {
                 return 2;
             };
             match tool.as_str() {
-                "bash" => hook::run_bash(harness, &cwd, &manifest),
-                "write" => hook::run_write(harness, &cwd, &manifest),
+                "bash" => hook::run_bash(p, harness, &cwd, &manifest),
+                "write" => hook::run_write(p, harness, &cwd, &manifest),
                 other => {
                     eprintln!("ness hook: unsupported --tool '{other}' (expected write or bash)");
                     return 2;
@@ -111,10 +117,10 @@ fn run_hook(flags: &HashMap<String, String>) -> i32 {
                 return 2;
             }
             match harness.as_str() {
-                "grok" => hook::run_grok(&cwd, &manifest),
-                "crush" => hook::run_crush(&cwd, &manifest),
-                "antigravity" => hook::run_antigravity(&cwd, &manifest),
-                _ => hook::run_cursor(&cwd, &manifest),
+                "grok" => hook::run_grok(p, &cwd, &manifest),
+                "crush" => hook::run_crush(p, &cwd, &manifest),
+                "antigravity" => hook::run_antigravity(p, &cwd, &manifest),
+                _ => hook::run_cursor(p, &cwd, &manifest),
             }
         }
         other => {
@@ -130,10 +136,14 @@ fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let Some(subcommand) = args.first().cloned() else {
         eprintln!(
-            "usage: ness <guard|hook> --harness <slug> ... (hook harnesses: claude, codex, grok, crush, antigravity, cursor)"
+            "usage: ness <guard|hook|policy> ... (guard/hook take --harness <slug>; hook harnesses: claude, codex, grok, crush, antigravity, cursor; policy actions: check, apply, active)"
         );
         std::process::exit(2);
     };
+
+    if subcommand == "policy" {
+        std::process::exit(policy_cmd::run(&args[1..]));
+    }
 
     let flags = match parse_flags(&args[1..]) {
         Ok(flags) => flags,
@@ -143,9 +153,16 @@ fn main() {
         }
     };
 
+    // Fail closed: a load failure is a reason string that becomes a deny on
+    // every verdict, emitted in each harness's native output shape. Never
+    // panic here: with `panic = "abort"` a panic is SIGABRT, which Claude
+    // treats as a non-blocking hook error, so the guard would fail open.
+    let policy = active::load();
+    let p = policy.as_ref().map_err(String::as_str);
+
     let code = match subcommand.as_str() {
-        "guard" => run_guard(&flags),
-        "hook" => run_hook(&flags),
+        "guard" => run_guard(p, &flags),
+        "hook" => run_hook(p, &flags),
         other => {
             eprintln!("ness: unknown subcommand '{other}' (expected guard or hook)");
             2
