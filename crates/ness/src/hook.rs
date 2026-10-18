@@ -56,6 +56,8 @@ fn str_or_empty(value: &Value, pointer: &str) -> String {
         .to_string()
 }
 
+const INTERACTIVE_LAUNCH_REASON: &str = "Interactive shell/REPL launch blocked: input sent with write_stdin never re-runs the guard. Run each command directly.";
+
 fn print_deny(reason: &str) {
     let payload = serde_json::json!({
         "hookSpecificOutput": {
@@ -142,9 +144,7 @@ pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
 
     let decision = evaluate_with_manifest("bash", &command, "", "", cwd, manifest_path);
     if harness == "codex" && crate::policy::is_interactive_launch(&command) {
-        print_deny(
-            "Interactive shell/REPL launch blocked: input sent with write_stdin never re-runs the guard. Run each command directly.",
-        );
+        print_deny(INTERACTIVE_LAUNCH_REASON);
         return;
     }
     match decision.decision.as_str() {
@@ -436,7 +436,13 @@ pub fn run_antigravity(default_cwd: &str, manifest: &Path) -> i32 {
             .unwrap_or("")
             .to_string()
     };
-    let command = str_arg("CommandLine");
+    // `manage_task` with `Action: "send_input"` types `Input` into a running
+    // shell, so that text is the command the guard has to see.
+    let command = if str_arg("Action") == "send_input" {
+        str_arg("Input")
+    } else {
+        str_arg("CommandLine")
+    };
     let path = str_arg("TargetFile");
     let mut parts = vec![str_arg("CodeContent"), str_arg("ReplacementContent")];
     if let Some(chunks) = args.get("ReplacementChunks").and_then(|v| v.as_array()) {
@@ -513,6 +519,10 @@ pub fn run_cursor(default_cwd: &str, manifest: &Path) -> i32 {
         println!("{{}}");
         return 0;
     };
+    if c.tool == "bash" && crate::policy::is_interactive_launch(&c.command) {
+        deny(INTERACTIVE_LAUNCH_REASON);
+        return 0;
+    }
     let cwd = payload_cwd(&payload, default_cwd);
     let decision = evaluate_with_manifest(c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
     match decision.decision.as_str() {
