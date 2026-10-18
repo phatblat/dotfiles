@@ -37,6 +37,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-10-17 | antigravity | commands.active | mode | adapter | none | 1.4.0 |
 | 2026-10-17 | antigravity | commands.active | parity | partial | absent | 1.4.0 |
 | 2026-10-17 | antigravity | commands.active | probe | pass | - | 1.4.0 |
+| 2026-10-16 | omp | - | version | omp/18.11.0 | omp/18.11.1 | omp/18.11.1 |
 | 2026-10-15 | omp | - | version | omp/18.10.4 | omp/18.11.0 | omp/18.11.0 |
 | 2026-10-14 | pi | - | version | 1.1.0 | 1.2.0 | 1.2.0 |
 | 2026-10-14 | omp | - | version | omp/18.10.3 | omp/18.10.4 | omp/18.10.4 |
@@ -221,4 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-03 | antigravity | mcp.dependencies | mode | none | adapter | 1.1.24 |
 | 2026-09-03 | antigravity | mcp.dependencies | parity | unknown | aligned | 1.1.24 |
 | 2026-09-02 | opencode | - | version | - | 1.18.25 | 1.18.25 |
-| 2026-09-02 | pi | - | version | 0.84.3 | 0.84.4 | 0.84.4 |
