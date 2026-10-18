@@ -14,7 +14,7 @@ status agent:
     fi
 
     # Tern's bundle path carries no version; mise installs do (parsed per process below).
-    current_version="$(omp --version 2>/dev/null | sed -nE 's#^omp/##p')"
+    current_version="$(omp --version 2>/dev/null | sed -nE 's#^omp/##p')" || current_version=
 
     found=0
     while read -r pid state etime command; do
