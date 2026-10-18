@@ -36,7 +36,9 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "harness_policy: bash_rules renders policy.toml" {
-  run python3 "$HOME/tests/test_harness_policy.py"
+  # Resolves scripts/ relative to itself, so it runs from this checkout even
+  # when $HOME is a different branch.
+  run python3 "${BATS_TEST_DIRNAME}/test_harness_policy.py"
   [ "$status" -eq 0 ]
 }
 
