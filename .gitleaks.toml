@@ -11,9 +11,9 @@ title = "phatblat/dotfiles"
 useDefault = true
 
 [[allowlists]]
-description = "ness crate's own secret-detection test fixtures: every file under this path intentionally embeds fake secrets to exercise ness's deny rules"
+description = "ness guard cases: every file under this path intentionally embeds fake secrets to exercise ness's deny rules (decision 2026-10-17-ness-policy-as-data moved them from crates/ness/tests/corpus/)"
 paths = [
-  '''^crates/ness/tests/corpus/''',
+  '''^\.config/ness/cases/''',
 ]
 
 [[allowlists]]

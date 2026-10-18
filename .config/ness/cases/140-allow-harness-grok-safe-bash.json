@@ -1,0 +1,12 @@
+{
+  "command": "git status --short",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "grok",
+  "path": null,
+  "tool": "bash"
+}

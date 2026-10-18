@@ -1224,13 +1224,16 @@ fn fake_home(ness: Option<&Path>) -> PathBuf {
         std::fs::write(cfg.join("cases").join(&name), serde_json::to_string_pretty(&case).unwrap()).unwrap();
     }
     let state = home.join(".local").join("state").join("ness");
-    std::fs::create_dir_all(&state).unwrap();
-    let out = Command::new(built_ness())
-        .args(["policy", "apply", "--for-tests", cfg.join("policy.toml").to_str().unwrap()])
-        .env("HOME", &home)
-        .output()
-        .expect("spawn ness policy apply --for-tests");
-    assert!(out.status.success(), "apply --for-tests: {}", String::from_utf8_lossy(&out.stderr));
+    // Write applied.json directly (same shape as `active::Applied`), so the
+    // harness never needs a non-interactive `apply` path.
+    let policy_sha256 = format!("{:x}", sha2::Sha256::digest(std::fs::read(cfg.join("policy.toml")).unwrap()));
+    let mut cases = serde_json::Map::new();
+    for (name, case) in load("corpus") {
+        let bytes = serde_json::to_string_pretty(&case).unwrap();
+        cases.insert(name, serde_json::Value::String(format!("{:x}", sha2::Sha256::digest(bytes.as_bytes()))));
+    }
+    let applied = serde_json::json!({"policy_sha256": policy_sha256, "applied_at": "2026-01-01T00:00:00Z", "cases": cases});
+    std::fs::write(state.join("applied.json"), serde_json::to_string_pretty(&applied).unwrap()).unwrap();
     if let Some(ness) = ness {
         let bin_dir = home.join(".local").join("bin");
         std::fs::create_dir_all(&bin_dir).unwrap();
@@ -1240,7 +1243,7 @@ fn fake_home(ness: Option<&Path>) -> PathBuf {
 }
 ```
 
-`--for-tests` is a hidden flag Task 6 adds to `apply`: it skips the TTY and confirmation checks **only when the target `$HOME` is under the system temp dir**, so a real apply can never be scripted with it. Change `run_guard` to set `HOME`:
+**Executed as:** no `--for-tests` flag exists. Two reviews showed any test-mode gate on `apply` (temp-dir prefix, canonicalized home, confined subdirs) is bypassable by an agent that owns the test home, so `apply` has exactly one path: a TTY on stdin, and a typed `yes` when cases were removed or changed. `fake_home` writes `applied.json` itself (above), and a corpus test asserts `--for-tests` is rejected as an unknown flag. Change `run_guard` to set `HOME`:
 
 ```rust
 fn run_guard(binary: &Path, home: &Path, case: &Value) -> (i32, Value) {
@@ -1258,12 +1261,12 @@ and in `guard_mismatches` create `let home = fake_home(None);` once and pass it.
 - [ ] **Step 4: Run the integration tests**
 
 Run: `cargo test --manifest-path $W/crates/ness/Cargo.toml --test corpus`
-Expected: fails until Task 6 provides `policy apply --for-tests`. Proceed to Task 6, then return here.
+Expected: fails until Task 6 provides the `policy` subcommand (`policy_active_prints_state` etc.). Proceed to Task 6, then return here.
 
 - [ ] **Step 5 (after Task 6): Run again**
 
 Run: `cargo test --manifest-path $W/crates/ness/Cargo.toml --test corpus`
-Expected: `guard_corpus_matches_expected`, `hook_corpus_matches_expected`, `reshaped_corpus_matches_shims`, `shims_fail_closed_without_ness`, `main_branch_commit_warning_forwards_cwd` pass; `installed_copy_matches_corpus` skipped. 132 cases run. (`fake_home` relies on `--for-tests`, which only works when `$HOME` is under `std::env::temp_dir()`; `corpus.rs`'s `temp_dir()` helper builds on `std::env::temp_dir()`, so this holds.)
+Expected: `guard_corpus_matches_expected`, `hook_corpus_matches_expected`, `reshaped_corpus_matches_shims`, `shims_fail_closed_without_ness`, `main_branch_commit_warning_forwards_cwd` pass; `installed_copy_matches_corpus` skipped. 132 cases run.
 
 - [ ] **Step 6: Commit (one commit for the move plus the harness changes)**
 
@@ -2008,7 +2011,7 @@ In a scratch `$HOME` (not the real one):
 ```bash
 h=$(mktemp -d); mkdir -p $h/.config/ness $h/.local/state/ness
 cp ~/.config/ness/policy.toml $h/.config/ness/; cp -R ~/.config/ness/cases $h/.config/ness/
-HOME=$h ~/.local/bin/ness policy apply --for-tests $h/.config/ness/policy.toml
+HOME=$h ~/.local/bin/ness policy apply $h/.config/ness/policy.toml   # interactive; run from a terminal
 printf '\n# edited after apply\n' >> $h/.config/ness/policy.toml
 HOME=$h ~/.local/bin/ness guard --harness claude --tool bash --command ls
 ```
