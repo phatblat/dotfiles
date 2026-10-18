@@ -12,9 +12,11 @@ color_reset := '\e[0m'
 # cargo-binstall binary, which self-deadlocks on mise's own per-tool install lock (the
 # bootstrap process waits forever on a lock it already holds). Bump manually by downloading
 # the arm64 release binary from https://github.com/cargo-bins/cargo-binstall/releases and
-# copying it into the mise install dir, then update the version pin.
+# copying it into the mise install dir, then update the version pin. shfmt is pinned to
+# 3.13.1 for getditto/ditto compatibility (3.14 heredoc rules conflict); bumping it breaks
+# their hooks/CI, so raise the pin manually once ditto moves.
 
-mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh cargo:cargo-binstall'
+mise_bump_exclusions := 'cargo:https://github.com/nkotval-ditto/wookie npm:@deepseek-ai/dsh cargo:cargo-binstall shfmt'
 
 alias ls := list
 alias lsm := list-missing
