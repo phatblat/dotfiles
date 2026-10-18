@@ -26,31 +26,31 @@ bash:
       approval: deny
     - match: sudo
       approval: deny
-    - match: "rm *..*"
+    - match: rm *..*
       approval: prompt
-    - match: "rm *~*"
+    - match: rm *~*
       approval: prompt
-    - match: "rm *$*"
+    - match: rm *$*
       approval: prompt
     - match: "rm *`*"
       approval: prompt
-    - match: "rm /tmp/"
+    - match: rm /tmp/
       approval: prompt
-    - match: "rm * /tmp/"
+    - match: rm * /tmp/
       approval: prompt
-    - match: "rm /tmp/* *"
+    - match: rm /tmp/* *
       approval: prompt
-    - match: "rm * /tmp/* *"
+    - match: rm * /tmp/* *
       approval: prompt
-    - match: "rm /tmp/*"
+    - match: rm /tmp/*
       approval: allow
-    - match: "rm -f /tmp/*"
+    - match: rm -f /tmp/*
       approval: allow
-    - match: "rm -r /tmp/*"
+    - match: rm -r /tmp/*
       approval: allow
-    - match: "rm -rf /tmp/*"
+    - match: rm -rf /tmp/*
       approval: allow
-    - match: "rm -fr /tmp/*"
+    - match: rm -fr /tmp/*
       approval: allow
     - match: rm *
       approval: prompt
