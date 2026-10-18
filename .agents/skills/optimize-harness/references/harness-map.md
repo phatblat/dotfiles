@@ -47,7 +47,7 @@ commands that failed due to permission denial or indicate frequent use.
 
 - CLI: `opencode`. Config root: `~/.config/opencode`.
 - Files worth reading: `opencode.jsonc` config, plugin hooks,
-  `~/.config/opencode/skills/`, `~/.config/opencode/commands/`.
+  `~/.config/opencode/commands/`. Skills load natively from `~/.agents/skills/`.
 - Session store: SQLite `~/.local/share/opencode/opencode.db` — see
   `docs/agent-session-transcripts.md#opencode`. Local message/part volume is
   characteristically tiny relative to session count; treat that as low
