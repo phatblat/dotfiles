@@ -245,3 +245,31 @@ submodule. **Rejected**: see Positions.
   — engine extraction this decision extends and amends
 - [2026-09-25-extend-destructive-command-policy](./2026-09-25-extend-destructive-command-policy.md)
   — the last policy change made by hand-editing `policy.rs`
+
+## Errata
+
+- 2026-10-18: Clauses 3 and 5 say `applied.json` records one sha256 of the
+  case set. It shipped as `Applied.cases: BTreeMap<name, sha256>`, one hash
+  per case file, so `check` can name each added, removed, or changed case.
+  The decision is unchanged.
+- 2026-10-18: Clause 3 names a single `REQUIRED_PROTECTION` table. The floor
+  shipped as `active::REQUIRED_PROTECTED_PATHS` (matched against
+  `[control_plane]` after lexical normalization) plus
+  `active::REQUIRED_DENIED_COMMAND` (matched against `[commands.dangerous]`),
+  checked by `check_required_protection`. The decision is unchanged.
+- 2026-10-18: Clause 1 says the engine owns no pattern of its own. It adds an
+  engine-side `(?i)` to `[control_plane]` when compiling, as the old
+  `CONTROL_PLANE_PATHS` static had, so a policy edit cannot make the table
+  that guards the guard's own inputs case-sensitive. The decision is
+  unchanged.
+- 2026-10-18: Clause 8 says only `policy.toml` is denied to agents under
+  `~/.config/ness/`. Four case files are also denied because their names
+  match `[protected_paths]` by name alone: `050-…-id_ed25519.json`,
+  `051-…-.env.json`, `058-…-.git-credentials.json`, `074-…-kubeconfig.json`.
+  This fails closed and is an extra pin on those patterns, so the files keep
+  their names; an agent that needs to change one asks a human. The decision
+  is unchanged.
+- 2026-10-18: Positions omitted one alternative. A test-only gate for `apply`
+  (an `--for-tests` flag that skipped the TTY check when `$HOME` was under the
+  temp dir) was rejected: any such gate is bypassable by an agent that owns
+  the test home. The corpus runner writes `applied.json` directly instead.
