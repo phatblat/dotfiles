@@ -588,7 +588,7 @@ fn policy_check_reports_verdict_diff_and_case_delta() {
     // Candidate: drop the credential-disclosure rule; cases 145/146 flip to allow.
     let text = std::fs::read_to_string(home.join(".config/ness/policy.toml")).unwrap();
     let candidate = text.replace(
-        r"patterns = ['(?i)\bgh\s+auth\s+(?:token\b|status\b[^;&|\n]*\s(?:--show-token|-t)\b)']",
+        r"patterns = ['(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))']",
         "patterns = ['(?i)\\bgh\\s+auth\\s+never-matches-anything\\b']",
     );
     assert_ne!(candidate, text);
@@ -612,7 +612,7 @@ fn policy_check_reports_verdict_diff_and_case_delta() {
         stdout.contains("145-deny-gh-auth-token.json: expected deny"),
         "{stdout}"
     );
-    assert!(stdout.contains("verdict diff: 2 case(s)"), "{stdout}");
+    assert!(stdout.contains("verdict diff: 5 case(s)"), "{stdout}");
     assert!(
         stdout.contains("removed: 147-allow-gh-auth-status.json"),
         "{stdout}"
