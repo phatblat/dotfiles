@@ -273,3 +273,8 @@ submodule. **Rejected**: see Positions.
   (an `--for-tests` flag that skipped the TTY check when `$HOME` was under the
   temp dir) was rejected: any such gate is bypassable by an agent that owns
   the test home. The corpus runner writes `applied.json` directly instead.
+- 2026-10-18: Clause 9 does not say which verification `harness_policy.py`
+  applies. `load_approval()` reads the checkout's `policy.toml` with no
+  `applied.json` hash check: the rendered permission files trust the tracked
+  file, the same exposure the hardcoded tuples had. The guard's rule (clause
+  3) is stricter and separate. The decision is unchanged.
