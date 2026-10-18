@@ -1,8 +1,8 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.3.3",
-    "version": "1.4.0"
+    "previous": "1.4.0",
+    "version": "1.4.2"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -31,8 +31,8 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.11.0",
-    "version": "omp/18.11.3"
+    "previous": "omp/18.11.3",
+    "version": "omp/18.12.0"
   },
   "opencode": {
     "first_seen": "2026-08-29",

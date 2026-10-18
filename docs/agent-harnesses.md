@@ -12,8 +12,8 @@ Coverage: 91/405 cells verified (22%)
 | codex | supported peer | codex-cli 0.163.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | 1.19.3 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.3.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.11.3 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.4.0 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
+| omp | tracked port | omp/18.12.0 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| antigravity | tracked port | 1.4.2 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | cursor | tracked port | 2026.10.01-e373342 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.98.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
@@ -65,16 +65,16 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-10-18 | omp | - | version | omp/18.11.3 | omp/18.12.0 |
+| 2026-10-18 | antigravity | - | version | 1.4.0 | 1.4.2 |
+| 2026-10-18 | antigravity | sessions.compaction | surface | - | No generated compaction guidance |
+| 2026-10-18 | antigravity | sessions.compaction | mode | native | none |
+| 2026-10-18 | antigravity | sessions.compaction | parity | partial | absent |
+| 2026-10-18 | antigravity | sessions.compaction | probe | pass | - |
 | 2026-10-17 | pi | - | version | 1.2.0 | 1.3.0 |
 | 2026-10-17 | opencode | - | version | 1.19.0 | 1.19.3 |
 | 2026-10-17 | omp | - | version | omp/18.11.0 | omp/18.11.3 |
 | 2026-10-17 | grok | - | version | grok 1.0.52 (0920c8169e27) [alpha] | grok 1.0.62 (1474f9cbdd91) [alpha] |
-| 2026-10-17 | codex | - | version | codex-cli 0.162.1 | codex-cli 0.163.0 |
-| 2026-10-17 | antigravity | - | version | 1.3.3 | 1.4.0 |
-| 2026-10-17 | pi | agents.specialists | surface | - | No agent registry or subagent support in Pi 1.2.0 |
-| 2026-10-17 | pi | agents.specialists | mode | emulated | none |
-| 2026-10-17 | pi | agents.specialists | parity | partial | absent |
-| 2026-10-17 | pi | agents.specialists | probe | pass | - |
 
 ## Permanent divergences
 
