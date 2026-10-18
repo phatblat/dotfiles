@@ -1,0 +1,851 @@
+{
+  "antigravity": [
+    "command([)",
+    "command(awk)",
+    "command(basename)",
+    "command(brew outdated)",
+    "command(brew update)",
+    "command(brew upgrade)",
+    "command(cargo check)",
+    "command(cargo clippy)",
+    "command(cargo fmt)",
+    "command(cargo test)",
+    "command(cat)",
+    "command(claude mcp list)",
+    "command(cmp)",
+    "command(command -v)",
+    "command(ctx7)",
+    "command(cut)",
+    "command(date)",
+    "command(diff)",
+    "command(dirname)",
+    "command(du)",
+    "command(echo)",
+    "command(env)",
+    "command(fd)",
+    "command(file)",
+    "command(find)",
+    "command(gh api)",
+    "command(gh issue)",
+    "command(gh pr create)",
+    "command(gh pr edit)",
+    "command(gh pr list)",
+    "command(gh pr view)",
+    "command(gh run)",
+    "command(gh search)",
+    "command(gh stack)",
+    "command(git add)",
+    "command(git branch)",
+    "command(git check-ignore)",
+    "command(git checkout)",
+    "command(git commit)",
+    "command(git diff)",
+    "command(git fetch)",
+    "command(git log)",
+    "command(git ls-remote)",
+    "command(git merge --ff-only)",
+    "command(git pull)",
+    "command(git push)",
+    "command(git rebase)",
+    "command(git remote)",
+    "command(git rev-list)",
+    "command(git rev-parse)",
+    "command(git show)",
+    "command(git stash)",
+    "command(git status)",
+    "command(git switch)",
+    "command(git symbolic-ref)",
+    "command(git tag)",
+    "command(git worktree)",
+    "command(go build)",
+    "command(go test)",
+    "command(go vet)",
+    "command(grep)",
+    "command(head)",
+    "command(jq)",
+    "command(just)",
+    "command(linear)",
+    "command(ls)",
+    "command(make)",
+    "command(mise current)",
+    "command(mise install)",
+    "command(mise ls)",
+    "command(mise search)",
+    "command(mise self-update)",
+    "command(mise upgrade)",
+    "command(mise use)",
+    "command(npm run)",
+    "command(npm test)",
+    "command(npx tsc)",
+    "command(pip)",
+    "command(pnpm)",
+    "command(poetry)",
+    "command(prettier)",
+    "command(printenv)",
+    "command(printf)",
+    "command(ps)",
+    "command(pwd)",
+    "command(python3)",
+    "command(readlink)",
+    "command(realpath)",
+    "command(rg)",
+    "command(ruff)",
+    "command(sed)",
+    "command(seq)",
+    "command(sg)",
+    "command(shellcheck)",
+    "command(shfmt)",
+    "command(sleep)",
+    "command(sort)",
+    "command(stat)",
+    "command(tail)",
+    "command(tee)",
+    "command(test)",
+    "command(timeout)",
+    "command(tr)",
+    "command(tree)",
+    "command(true)",
+    "command(typos)",
+    "command(uniq)",
+    "command(uv tool upgrade)",
+    "command(wc)",
+    "command(which)",
+    "command(xargs)",
+    "command(yamllint)",
+    "command(yarn)",
+    "command(yq)",
+    "command(~/scripts/sort-gitignore)"
+  ],
+  "claude": {
+    "rules": [
+      "Bash([ *)",
+      "Bash(awk *)",
+      "Bash(basename *)",
+      "Bash(brew outdated *)",
+      "Bash(brew update *)",
+      "Bash(brew upgrade *)",
+      "Bash(cargo check *)",
+      "Bash(cargo clippy *)",
+      "Bash(cargo fmt *)",
+      "Bash(cargo test *)",
+      "Bash(cat *)",
+      "Bash(claude mcp list)",
+      "Bash(cmp *)",
+      "Bash(command -v *)",
+      "Bash(ctx7 *)",
+      "Bash(cut *)",
+      "Bash(date *)",
+      "Bash(diff *)",
+      "Bash(dirname *)",
+      "Bash(du *)",
+      "Bash(echo *)",
+      "Bash(env)",
+      "Bash(fd *)",
+      "Bash(file *)",
+      "Bash(find *)",
+      "Bash(gh api *)",
+      "Bash(gh issue *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr edit *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr view *)",
+      "Bash(gh run *)",
+      "Bash(gh search *)",
+      "Bash(gh stack *)",
+      "Bash(git add *)",
+      "Bash(git branch *)",
+      "Bash(git check-ignore *)",
+      "Bash(git checkout *)",
+      "Bash(git commit *)",
+      "Bash(git diff *)",
+      "Bash(git fetch *)",
+      "Bash(git log *)",
+      "Bash(git ls-remote *)",
+      "Bash(git merge --ff-only *)",
+      "Bash(git pull *)",
+      "Bash(git push *)",
+      "Bash(git rebase *)",
+      "Bash(git remote *)",
+      "Bash(git rev-list *)",
+      "Bash(git rev-parse *)",
+      "Bash(git show *)",
+      "Bash(git stash *)",
+      "Bash(git status *)",
+      "Bash(git switch *)",
+      "Bash(git symbolic-ref *)",
+      "Bash(git tag *)",
+      "Bash(git worktree *)",
+      "Bash(go build *)",
+      "Bash(go test *)",
+      "Bash(go vet *)",
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(jq *)",
+      "Bash(just *)",
+      "Bash(linear *)",
+      "Bash(ls *)",
+      "Bash(make *)",
+      "Bash(mise current *)",
+      "Bash(mise install *)",
+      "Bash(mise ls *)",
+      "Bash(mise search *)",
+      "Bash(mise self-update *)",
+      "Bash(mise upgrade *)",
+      "Bash(mise use *)",
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(npx tsc *)",
+      "Bash(pip *)",
+      "Bash(pnpm *)",
+      "Bash(poetry *)",
+      "Bash(prettier *)",
+      "Bash(printenv *)",
+      "Bash(printf *)",
+      "Bash(ps *)",
+      "Bash(pwd)",
+      "Bash(python3 *)",
+      "Bash(readlink *)",
+      "Bash(realpath *)",
+      "Bash(rg *)",
+      "Bash(ruff *)",
+      "Bash(sed *)",
+      "Bash(seq *)",
+      "Bash(sg *)",
+      "Bash(shellcheck *)",
+      "Bash(shfmt *)",
+      "Bash(sleep *)",
+      "Bash(sort *)",
+      "Bash(stat *)",
+      "Bash(tail *)",
+      "Bash(tee *)",
+      "Bash(test *)",
+      "Bash(timeout *)",
+      "Bash(tr *)",
+      "Bash(tree *)",
+      "Bash(true)",
+      "Bash(typos *)",
+      "Bash(uniq *)",
+      "Bash(uv tool upgrade *)",
+      "Bash(wc *)",
+      "Bash(which *)",
+      "Bash(xargs *)",
+      "Bash(yamllint *)",
+      "Bash(yarn *)",
+      "Bash(yq *)",
+      "Bash(~/scripts/sort-gitignore *)",
+      "WebFetch(domain:docs.basedpyright.com)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "mcp__acp__Bash",
+      "mcp__acp__Edit",
+      "mcp__acp__Write"
+    ]
+  },
+  "claude-deny": [
+    "Bash(sudo *)"
+  ],
+  "modes": {
+    "claude_default_mode": "auto",
+    "omp_approval_mode": "write",
+    "opencode_edit": "ask",
+    "opencode_external_directory": "ask",
+    "opencode_webfetch": "ask"
+  },
+  "omp": [
+    {
+      "approval": "deny",
+      "match": "sudo *"
+    },
+    {
+      "approval": "deny",
+      "match": "sudo"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm *"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm"
+    },
+    {
+      "approval": "allow",
+      "match": "[*"
+    },
+    {
+      "approval": "allow",
+      "match": "awk*"
+    },
+    {
+      "approval": "allow",
+      "match": "basename*"
+    },
+    {
+      "approval": "allow",
+      "match": "brew outdated*"
+    },
+    {
+      "approval": "allow",
+      "match": "brew update*"
+    },
+    {
+      "approval": "allow",
+      "match": "brew upgrade*"
+    },
+    {
+      "approval": "allow",
+      "match": "cargo check*"
+    },
+    {
+      "approval": "allow",
+      "match": "cargo clippy*"
+    },
+    {
+      "approval": "allow",
+      "match": "cargo fmt*"
+    },
+    {
+      "approval": "allow",
+      "match": "cargo test*"
+    },
+    {
+      "approval": "allow",
+      "match": "cat*"
+    },
+    {
+      "approval": "allow",
+      "match": "cmp*"
+    },
+    {
+      "approval": "allow",
+      "match": "command -v*"
+    },
+    {
+      "approval": "allow",
+      "match": "ctx7*"
+    },
+    {
+      "approval": "allow",
+      "match": "cut*"
+    },
+    {
+      "approval": "allow",
+      "match": "date*"
+    },
+    {
+      "approval": "allow",
+      "match": "diff*"
+    },
+    {
+      "approval": "allow",
+      "match": "dirname*"
+    },
+    {
+      "approval": "allow",
+      "match": "du*"
+    },
+    {
+      "approval": "allow",
+      "match": "echo*"
+    },
+    {
+      "approval": "allow",
+      "match": "fd*"
+    },
+    {
+      "approval": "allow",
+      "match": "file*"
+    },
+    {
+      "approval": "allow",
+      "match": "find*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh api*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh issue*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh pr create*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh pr edit*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh pr list*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh pr view*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh run*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh search*"
+    },
+    {
+      "approval": "allow",
+      "match": "gh stack*"
+    },
+    {
+      "approval": "allow",
+      "match": "git add*"
+    },
+    {
+      "approval": "allow",
+      "match": "git branch*"
+    },
+    {
+      "approval": "allow",
+      "match": "git check-ignore*"
+    },
+    {
+      "approval": "allow",
+      "match": "git checkout*"
+    },
+    {
+      "approval": "allow",
+      "match": "git commit*"
+    },
+    {
+      "approval": "allow",
+      "match": "git diff*"
+    },
+    {
+      "approval": "allow",
+      "match": "git fetch*"
+    },
+    {
+      "approval": "allow",
+      "match": "git log*"
+    },
+    {
+      "approval": "allow",
+      "match": "git ls-remote*"
+    },
+    {
+      "approval": "allow",
+      "match": "git merge --ff-only*"
+    },
+    {
+      "approval": "allow",
+      "match": "git pull*"
+    },
+    {
+      "approval": "allow",
+      "match": "git push*"
+    },
+    {
+      "approval": "allow",
+      "match": "git rebase*"
+    },
+    {
+      "approval": "allow",
+      "match": "git remote*"
+    },
+    {
+      "approval": "allow",
+      "match": "git rev-list*"
+    },
+    {
+      "approval": "allow",
+      "match": "git rev-parse*"
+    },
+    {
+      "approval": "allow",
+      "match": "git show*"
+    },
+    {
+      "approval": "allow",
+      "match": "git stash*"
+    },
+    {
+      "approval": "allow",
+      "match": "git status*"
+    },
+    {
+      "approval": "allow",
+      "match": "git switch*"
+    },
+    {
+      "approval": "allow",
+      "match": "git symbolic-ref*"
+    },
+    {
+      "approval": "allow",
+      "match": "git tag*"
+    },
+    {
+      "approval": "allow",
+      "match": "git worktree*"
+    },
+    {
+      "approval": "allow",
+      "match": "go build*"
+    },
+    {
+      "approval": "allow",
+      "match": "go test*"
+    },
+    {
+      "approval": "allow",
+      "match": "go vet*"
+    },
+    {
+      "approval": "allow",
+      "match": "grep*"
+    },
+    {
+      "approval": "allow",
+      "match": "head*"
+    },
+    {
+      "approval": "allow",
+      "match": "jq*"
+    },
+    {
+      "approval": "allow",
+      "match": "just*"
+    },
+    {
+      "approval": "allow",
+      "match": "linear*"
+    },
+    {
+      "approval": "allow",
+      "match": "ls*"
+    },
+    {
+      "approval": "allow",
+      "match": "make*"
+    },
+    {
+      "approval": "allow",
+      "match": "mise current*"
+    },
+    {
+      "approval": "allow",
+      "match": "mise install*"
+    },
+    {
+      "approval": "allow",
+      "match": "mise ls*"
+    },
+    {
+      "approval": "allow",
+      "match": "mise search*"
+    },
+    {
+      "approval": "allow",
+      "match": "mise self-update*"
+    },
+    {
+      "approval": "allow",
+      "match": "mise upgrade*"
+    },
+    {
+      "approval": "allow",
+      "match": "mise use*"
+    },
+    {
+      "approval": "allow",
+      "match": "npm run*"
+    },
+    {
+      "approval": "allow",
+      "match": "npm test*"
+    },
+    {
+      "approval": "allow",
+      "match": "npx tsc*"
+    },
+    {
+      "approval": "allow",
+      "match": "pip*"
+    },
+    {
+      "approval": "allow",
+      "match": "pnpm*"
+    },
+    {
+      "approval": "allow",
+      "match": "poetry*"
+    },
+    {
+      "approval": "allow",
+      "match": "prettier*"
+    },
+    {
+      "approval": "allow",
+      "match": "printenv*"
+    },
+    {
+      "approval": "allow",
+      "match": "printf*"
+    },
+    {
+      "approval": "allow",
+      "match": "ps*"
+    },
+    {
+      "approval": "allow",
+      "match": "python3*"
+    },
+    {
+      "approval": "allow",
+      "match": "readlink*"
+    },
+    {
+      "approval": "allow",
+      "match": "realpath*"
+    },
+    {
+      "approval": "allow",
+      "match": "rg*"
+    },
+    {
+      "approval": "allow",
+      "match": "ruff*"
+    },
+    {
+      "approval": "allow",
+      "match": "sed*"
+    },
+    {
+      "approval": "allow",
+      "match": "seq*"
+    },
+    {
+      "approval": "allow",
+      "match": "sg*"
+    },
+    {
+      "approval": "allow",
+      "match": "shellcheck*"
+    },
+    {
+      "approval": "allow",
+      "match": "shfmt*"
+    },
+    {
+      "approval": "allow",
+      "match": "sleep*"
+    },
+    {
+      "approval": "allow",
+      "match": "sort*"
+    },
+    {
+      "approval": "allow",
+      "match": "stat*"
+    },
+    {
+      "approval": "allow",
+      "match": "tail*"
+    },
+    {
+      "approval": "allow",
+      "match": "tee*"
+    },
+    {
+      "approval": "allow",
+      "match": "test*"
+    },
+    {
+      "approval": "allow",
+      "match": "timeout*"
+    },
+    {
+      "approval": "allow",
+      "match": "tr*"
+    },
+    {
+      "approval": "allow",
+      "match": "tree*"
+    },
+    {
+      "approval": "allow",
+      "match": "typos*"
+    },
+    {
+      "approval": "allow",
+      "match": "uniq*"
+    },
+    {
+      "approval": "allow",
+      "match": "uv tool upgrade*"
+    },
+    {
+      "approval": "allow",
+      "match": "wc*"
+    },
+    {
+      "approval": "allow",
+      "match": "which*"
+    },
+    {
+      "approval": "allow",
+      "match": "xargs*"
+    },
+    {
+      "approval": "allow",
+      "match": "yamllint*"
+    },
+    {
+      "approval": "allow",
+      "match": "yarn*"
+    },
+    {
+      "approval": "allow",
+      "match": "yq*"
+    },
+    {
+      "approval": "allow",
+      "match": "~/scripts/sort-gitignore*"
+    },
+    {
+      "approval": "allow",
+      "match": "claude mcp list"
+    },
+    {
+      "approval": "allow",
+      "match": "env"
+    },
+    {
+      "approval": "allow",
+      "match": "pwd"
+    },
+    {
+      "approval": "allow",
+      "match": "true"
+    }
+  ],
+  "opencode": {
+    "[*": "allow",
+    "awk*": "allow",
+    "basename*": "allow",
+    "brew outdated*": "allow",
+    "brew update*": "allow",
+    "brew upgrade*": "allow",
+    "cargo check*": "allow",
+    "cargo clippy*": "allow",
+    "cargo fmt*": "allow",
+    "cargo test*": "allow",
+    "cat*": "allow",
+    "claude mcp list": "allow",
+    "cmp*": "allow",
+    "command -v*": "allow",
+    "ctx7*": "allow",
+    "cut*": "allow",
+    "date*": "allow",
+    "diff*": "allow",
+    "dirname*": "allow",
+    "du*": "allow",
+    "echo*": "allow",
+    "env": "allow",
+    "fd*": "allow",
+    "file*": "allow",
+    "find*": "allow",
+    "gh api*": "allow",
+    "gh issue*": "allow",
+    "gh pr create*": "allow",
+    "gh pr edit*": "allow",
+    "gh pr list*": "allow",
+    "gh pr view*": "allow",
+    "gh run*": "allow",
+    "gh search*": "allow",
+    "gh stack*": "allow",
+    "git add*": "allow",
+    "git branch*": "allow",
+    "git check-ignore*": "allow",
+    "git checkout*": "allow",
+    "git commit*": "allow",
+    "git diff*": "allow",
+    "git fetch*": "allow",
+    "git log*": "allow",
+    "git ls-remote*": "allow",
+    "git merge --ff-only*": "allow",
+    "git pull*": "allow",
+    "git push*": "allow",
+    "git rebase*": "allow",
+    "git remote*": "allow",
+    "git rev-list*": "allow",
+    "git rev-parse*": "allow",
+    "git show*": "allow",
+    "git stash*": "allow",
+    "git status*": "allow",
+    "git switch*": "allow",
+    "git symbolic-ref*": "allow",
+    "git tag*": "allow",
+    "git worktree*": "allow",
+    "go build*": "allow",
+    "go test*": "allow",
+    "go vet*": "allow",
+    "grep*": "allow",
+    "head*": "allow",
+    "jq*": "allow",
+    "just*": "allow",
+    "linear*": "allow",
+    "ls*": "allow",
+    "make*": "allow",
+    "mise current*": "allow",
+    "mise install*": "allow",
+    "mise ls*": "allow",
+    "mise search*": "allow",
+    "mise self-update*": "allow",
+    "mise upgrade*": "allow",
+    "mise use*": "allow",
+    "npm run*": "allow",
+    "npm test*": "allow",
+    "npx tsc*": "allow",
+    "pip*": "allow",
+    "pnpm*": "allow",
+    "poetry*": "allow",
+    "prettier*": "allow",
+    "printenv*": "allow",
+    "printf*": "allow",
+    "ps*": "allow",
+    "pwd": "allow",
+    "python3*": "allow",
+    "readlink*": "allow",
+    "realpath*": "allow",
+    "rg*": "allow",
+    "rm *": "ask",
+    "ruff*": "allow",
+    "sed*": "allow",
+    "seq*": "allow",
+    "sg*": "allow",
+    "shellcheck*": "allow",
+    "shfmt*": "allow",
+    "sleep*": "allow",
+    "sort*": "allow",
+    "stat*": "allow",
+    "sudo *": "deny",
+    "tail*": "allow",
+    "tee*": "allow",
+    "test*": "allow",
+    "timeout*": "allow",
+    "tr*": "allow",
+    "tree*": "allow",
+    "true": "allow",
+    "typos*": "allow",
+    "uniq*": "allow",
+    "uv tool upgrade*": "allow",
+    "wc*": "allow",
+    "which*": "allow",
+    "xargs*": "allow",
+    "yamllint*": "allow",
+    "yarn*": "allow",
+    "yq*": "allow",
+    "~/scripts/sort-gitignore*": "allow"
+  }
+}

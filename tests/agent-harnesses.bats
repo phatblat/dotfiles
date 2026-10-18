@@ -35,6 +35,11 @@ skip_unless_home_is_this_checkout() {
   [ "$status" -eq 0 ]
 }
 
+@test "harness_policy: bash_rules renders policy.toml" {
+  run python3 "$HOME/tests/test_harness_policy.py"
+  [ "$status" -eq 0 ]
+}
+
 @test "agent-harnesses: inventories active commands, agents, and skills without a graph capability" {
   skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" inventory --json
