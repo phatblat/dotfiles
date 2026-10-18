@@ -479,7 +479,7 @@ cask "stencil-tern"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
 # Epub reader
-cask "thorium", args: { appdir: "/Applications/Agents" }
+cask "thorium"
 # To-do list
 cask "todoist-app"
 # Markdown knowledgebase manager
