@@ -23,12 +23,12 @@ class BashRulesTests(unittest.TestCase):
 
     def test_omp_rules_are_ordered_deny_prompt_allow(self) -> None:
         a = harness_policy.load_approval()
-        nd = 2 * len(a["deny_prefix"])
-        np = 2 * len(a["prompt_prefix"])
+        denies = 2 * len(a["deny_prefix"])
+        prompts = 2 * len(a["prompt_prefix"])
         approvals = [r["approval"] for r in harness_policy.bash_rules("omp")]
-        self.assertEqual(approvals[:nd], ["deny"] * nd)
-        self.assertEqual(approvals[nd : nd + np], ["prompt"] * np)
-        self.assertTrue(all(x == "allow" for x in approvals[nd + np :]))
+        self.assertEqual(approvals[:denies], ["deny"] * denies)
+        self.assertEqual(approvals[denies : denies + prompts], ["prompt"] * prompts)
+        self.assertTrue(all(x == "allow" for x in approvals[denies + prompts :]))
 
     def test_matches_pre_change_snapshot(self) -> None:
         before = json.loads(BASELINE.read_text())

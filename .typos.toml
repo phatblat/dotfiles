@@ -9,6 +9,8 @@ extend-exclude = [
 
 [default.extend-words]
 certifi = "certifi"
+# Valid variant spelling; appears in a frozen decision record.
+unparseable = "unparseable"
 
 [default]
 extend-ignore-re = [
