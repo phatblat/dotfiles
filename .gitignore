@@ -166,6 +166,7 @@
 !.config/crush/hooks/
 !.config/crush/shared-harness.md
 .config/cursor/
+.config/data-agent-kit/
 .config/dconf/
 .config/delta/lesshst
 .config/direnv/
