@@ -328,6 +328,13 @@ pub fn run_grok(default_cwd: &str, manifest: &Path) -> i32 {
         .unwrap_or("");
     if get_str(&payload, "/toolName") == Some("apply_patch") || patch.starts_with("*** Begin Patch")
     {
+        if patch.trim().is_empty() {
+            println!(
+                "{}",
+                serde_json::json!({"decision": "deny", "reason": "shared guard failed closed: apply_patch payload has no patch text"})
+            );
+            return 2;
+        }
         let cwd = payload_cwd(&payload, default_cwd);
         let decision = evaluate_apply_patch(patch, &cwd, manifest);
         if decision.decision == "deny" {
