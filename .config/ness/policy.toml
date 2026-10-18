@@ -9,7 +9,7 @@
 # add cases under ~/.config/ness/cases/, run `ness policy check <candidate>`,
 # then a human runs `ness policy apply <candidate>`.
 
-# Paths the guard denies agent writes to. Each entry must be pinned by a 9xx case under ~/.config/ness/cases/.
+# Paths the guard denies agent writes to. New entries must be pinned by a 9xx case under ~/.config/ness/cases/ (older entries are pinned by 09x cases).
 [control_plane]
 patterns = [
   '/\.agents/harness/hooks/',
@@ -24,7 +24,7 @@ patterns = [
   '/agent/extensions/harness\.ts(?![\w.-])',
   '/harness-guard\.json(?![\w.-])',
   '/crates/ness/(?!target(?:/|$))',
-  # The policy itself and the record of the last human apply (REQUIRED_PROTECTION).
+  # The policy itself, the last-apply record, and the binary: active::REQUIRED_PROTECTED_PATHS; `ness policy check` refuses a candidate that drops any of them.
   '/\.config/ness/policy\.toml(?![\w.-])',
   '/\.local/state/ness/applied\.json(?![\w.-])',
   '/\.local/bin/ness(?![\w.-])',
