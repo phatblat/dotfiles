@@ -9,6 +9,7 @@
   "layout": "Rail",
   "font_size": 22,
   "tabs": "Vertical",
+  "tabs_autohide": true,
   "status_bar": true,
   "surface_diffs": "Split",
   "surface_tab_width": 2,
