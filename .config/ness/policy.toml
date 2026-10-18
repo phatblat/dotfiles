@@ -68,15 +68,21 @@ patterns = [
   '(?i)\bbash\s+<\(',
 ]
 
-# `gh auth token` / `gh auth status --show-token` print the stored credential.
+# `gh auth token`, `gh auth status --show-token` (also as a short flag, alone
+# or clustered: `-t`, `-at`, `-ta`) and `gh auth git-credential get` print
+# the stored credential.
 [commands.credential_disclosure]
-patterns = ['(?i)\bgh\s+auth\s+(?:token\b|status\b[^;&|\n]*\s(?:--show-token|-t)\b)']
+patterns = ['(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))']
 
 # Codex `unified_exec` keeps a launched process open and `write_stdin` never
-# re-runs PreToolUse, so a bare interactive shell/REPL launch would let every
-# later command bypass the guard.
+# re-runs `PreToolUse`: a bare interactive shell/REPL launch would let every
+# later command bypass the guard. Reading the program from stdin (`bash -s`,
+# `bash -`, `python3 -`) is the same bypass. Matched per `&&`/`||`/`;`/newline
+# segment, after any `env`/`nohup`-style launcher prefix (including `VAR=val`
+# assignments and launcher flags), with the stdin/interactive short flags
+# allowed in clusters (`-il`, `-iq`).
 [commands.interactive_launch]
-patterns = ['^\s*(?:(?:env|exec|command)\s+)?(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu|python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)(?:\s+repl)?(?:\s+--?(?:i|l|q|login|interactive|norc|noprofile|quiet))*\s*$']
+patterns = ['(?:^|&&|\|\||;|\n)\s*(?:(?:\S*/)?(?:env|exec|command|nohup|time)(?:\s+(?:-\S+|\w+=\S*))*\s+)*(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu|python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)(?:\s+repl)?(?:\s+(?:-[ilqs]+|--?(?:login|interactive|norc|noprofile|quiet)))*(?:\s+-)?\s*(?:$|(?=&&|\|\||;|\n))']
 
 # Deliberately case-sensitive (matches the original Python source).
 [commands.warn]
