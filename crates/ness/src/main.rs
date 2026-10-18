@@ -164,7 +164,7 @@ fn main() {
         "guard" => run_guard(p, &flags),
         "hook" => run_hook(p, &flags),
         other => {
-            eprintln!("ness: unknown subcommand '{other}' (expected guard or hook)");
+            eprintln!("ness: unknown subcommand '{other}' (expected guard, hook, or policy)");
             2
         }
     };
