@@ -71,7 +71,7 @@ ness-check-installed: install-rust-deps
 # Validates a candidate policy and prints the verdict diff against the active one (agent-runnable; `ness policy apply` is human-only)
 [group('rust')]
 ness-policy-check candidate:
-    {{ env("HOME") }}/.local/bin/ness policy check {{ candidate }}
+    {{ env("HOME") }}/.local/bin/ness policy check {{ quote(candidate) }}
 
 # Builds the wt worktree resolver (release profile)
 [group('rust')]
