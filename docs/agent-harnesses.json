@@ -1056,7 +1056,7 @@
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity adapter excludes every procedural skill while continuing to emit ability skills",
-          "note": "Procedural skills carry agents/openai.yaml policy.allow_implicit_invocation: false; the antigravity skill-emission loop excludes them, so only ability skills auto-invoke. Procedural workflows remain reachable via adapter commands. No native per-skill invocation policy exists in agy 1.2.1.",
+          "note": "Procedural skills carry agents/openai.yaml policy.allow_implicit_invocation: false; the antigravity skill-emission loop excludes them, so only ability skills auto-invoke. The adapter commands that used to expose procedural workflows were removed. No native per-skill invocation policy exists in agy 1.2.1.",
           "parity": "partial",
           "probe": null,
           "surface": "Excluded from adapter skill emission by source openai.yaml policy"
@@ -1193,7 +1193,7 @@
       "contract": "A procedural skill the user runs deliberately is not model-invoked, expressed through whatever key that harness documents.",
       "domain": "skills",
       "id": "skills.manual_only",
-      "note": "Codex policy blocks implicit invocation but does not hide enabled skill metadata.",
+      "note": "Codex 0.162.1: `allow_implicit_invocation: false` removes the skill from the model-visible skill list; the user can still run it as `$<name>`.",
       "porting": "Represent intent per harness; do not copy one vendor key everywhere.",
       "priority": "p1",
       "title": "Manual-only procedural skills",
@@ -5153,26 +5153,20 @@
       ],
       "cells": {
         "antigravity": {
-          "artifacts": [
-            "~/.agents/harness/adapters/antigravity/hooks.json",
-            "~/.gemini/antigravity-cli/settings.json"
-          ],
+          "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-17",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "1.4.0"
+            "date": "2026-10-18",
+            "kind": "source",
+            "ref": "agent-harnesses.py renders no compaction guidance into ANTIGRAVITY_HARNESS",
+            "version": ""
           },
-          "mode": "native",
-          "next_action": "Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements",
-          "note": "generated Antigravity compaction guidance records preservation requirements, but conversation/artifact behavior has not been verified",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/harness/adapters/antigravity/hooks.json"
-          },
-          "surface": ""
+          "mode": "none",
+          "next_action": "Decide where Antigravity should receive the compact-preservation requirements, then verify conversation and artifact persistence",
+          "note": "The generated hooks.json now holds only the PreToolUse guard, so nothing in the Antigravity adapter carries the compaction preservation contract.",
+          "parity": "absent",
+          "probe": null,
+          "surface": "No generated compaction guidance"
         },
         "claude": {
           "artifacts": [
@@ -5197,7 +5191,7 @@
         },
         "codex": {
           "artifacts": [
-            "~/.codex/hooks.json"
+            "~/.codex/AGENTS.md"
           ],
           "divergence": "",
           "evidence": {
@@ -5208,11 +5202,11 @@
           },
           "mode": "native",
           "next_action": "",
-          "note": "native PreCompact hook",
+          "note": "Compact Preservation section in ~/.codex/AGENTS.md; the PreCompact hook was removed",
           "parity": "aligned",
           "probe": {
             "kind": "file_exists",
-            "path": ".codex/hooks.json"
+            "path": ".codex/AGENTS.md"
           },
           "surface": ""
         },

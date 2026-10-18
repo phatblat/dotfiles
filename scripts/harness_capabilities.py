@@ -469,8 +469,9 @@ CAPABILITIES: list[Capability] = [
             "Represent intent per harness; do not copy one vendor key everywhere."
         ),
         note=(
-            "Codex policy blocks implicit invocation but does not hide enabled "
-            "skill metadata."
+            "Codex 0.162.1: `allow_implicit_invocation: false` removes the skill "
+            "from the model-visible skill list; the user can still run it as "
+            "`$<name>`."
         ),
         cells={
             "claude": Cell(
@@ -518,9 +519,9 @@ CAPABILITIES: list[Capability] = [
                     "Procedural skills carry agents/openai.yaml "
                     "policy.allow_implicit_invocation: false; the antigravity "
                     "skill-emission loop excludes them, so only ability skills "
-                    "auto-invoke. Procedural workflows remain reachable via adapter "
-                    "commands. No native per-skill invocation policy exists in agy "
-                    "1.2.1."
+                    "auto-invoke. The adapter commands that used to expose "
+                    "procedural workflows were removed. No native per-skill "
+                    "invocation policy exists in agy 1.2.1."
                 ),
                 next_action=(
                     "Verify Antigravity adapter excludes every procedural skill "
@@ -1545,12 +1546,15 @@ CAPABILITIES: list[Capability] = [
             "codex": Cell(
                 parity="aligned",
                 mode="native",
-                artifacts=("~/.codex/hooks.json",),
+                artifacts=("~/.codex/AGENTS.md",),
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".codex/hooks.json"),
-                note="native PreCompact hook",
+                probe=_exists(".codex/AGENTS.md"),
+                note=(
+                    "Compact Preservation section in ~/.codex/AGENTS.md; the "
+                    "PreCompact hook was removed"
+                ),
             ),
             "opencode": Cell(
                 parity="aligned",
@@ -1586,24 +1590,22 @@ CAPABILITIES: list[Capability] = [
                 ),
             ),
             "antigravity": Cell(
-                parity="partial",
-                mode="native",
-                artifacts=(
-                    "~/.agents/harness/adapters/antigravity/hooks.json",
-                    "~/.gemini/antigravity-cli/settings.json",
-                ),
+                parity="absent",
+                mode="none",
+                surface="No generated compaction guidance",
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                    kind="source",
+                    ref="agent-harnesses.py renders no compaction guidance into ANTIGRAVITY_HARNESS",
+                    date="2026-10-18",
                 ),
-                probe=_exists(".agents/harness/adapters/antigravity/hooks.json"),
                 note=(
-                    "generated Antigravity compaction guidance records "
-                    "preservation requirements, but conversation/artifact behavior "
-                    "has not been verified"
+                    "The generated hooks.json now holds only the PreToolUse guard, "
+                    "so nothing in the Antigravity adapter carries the compaction "
+                    "preservation contract."
                 ),
                 next_action=(
-                    "Verify Antigravity conversation and artifact persistence "
-                    "behavior against compact-preservation requirements"
+                    "Decide where Antigravity should receive the compact-preservation "
+                    "requirements, then verify conversation and artifact persistence"
                 ),
             ),
             "cursor": Cell(

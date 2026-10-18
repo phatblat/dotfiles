@@ -13,7 +13,7 @@ Coverage: 91/405 cells verified (22%)
 | opencode | new port | 1.19.3 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.3.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
 | omp | tracked port | omp/18.11.3 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.4.0 | 2026-08-29 | 4 | 6 | 0 | 0 | 1 | 34 |
+| antigravity | tracked port | 1.4.0 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | cursor | tracked port | 2026.10.01-e373342 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.98.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
@@ -30,7 +30,7 @@ Coverage: 91/405 cells verified (22%)
 | Permissions | [harness/permissions.md](harness/permissions.md) | 3 | 10 | 0 | 0 | 0 | 5 | 12 |
 | MCP | [harness/mcp.md](harness/mcp.md) | 3 | 7 | 1 | 0 | 0 | 1 | 18 |
 | Models | [harness/models.md](harness/models.md) | 4 | 0 | 0 | 0 | 0 | 0 | 36 |
-| Sessions | [harness/sessions.md](harness/sessions.md) | 4 | 7 | 2 | 0 | 0 | 0 | 27 |
+| Sessions | [harness/sessions.md](harness/sessions.md) | 4 | 7 | 1 | 0 | 0 | 1 | 27 |
 | Providers | [harness/providers.md](harness/providers.md) | 2 | 0 | 0 | 0 | 0 | 0 | 18 |
 | Profiles | [harness/profiles.md](harness/profiles.md) | 2 | 0 | 0 | 0 | 0 | 0 | 18 |
 | UI | [harness/ui.md](harness/ui.md) | 4 | 0 | 0 | 0 | 0 | 0 | 36 |
@@ -45,7 +45,7 @@ Coverage: 91/405 cells verified (22%)
 | antigravity | agents.specialists | Verify Antigravity can delegate to generated specialist wrappers with isolated context |
 | antigravity | hooks.safety | Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny |
 | antigravity | instructions.global | Install or import the Antigravity plugin and verify it loads shared harness instructions |
-| antigravity | sessions.compaction | Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements |
+| antigravity | sessions.compaction | Decide where Antigravity should receive the compact-preservation requirements, then verify conversation and artifact persistence |
 | antigravity | skills.manual_only | Verify Antigravity adapter excludes every procedural skill while continuing to emit ability skills |
 | antigravity | skills.shared | Verify agy imports and activates shared skill wrappers from the plugin |
 | cursor | agents.specialists | Verify Cursor discovers generated specialist agent wrappers |
