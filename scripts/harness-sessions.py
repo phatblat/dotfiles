@@ -1001,10 +1001,13 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
                                 args.get("path"), str
                             ):
                                 target = args["path"]
-                            if tname in ("write", "read") and target.startswith(
-                                "xd://"
-                            ):
-                                device = target[5:].split("/")[0].split("?")[0]
+                            device = (
+                                target[5:].split("/")[0].split("?")[0]
+                                if target.startswith("xd://")
+                                else ""
+                            )
+                            # `read xd://<tool>` only fetches docs; only a `write` calls the device.
+                            if tname == "write" and device:
                                 emit(
                                     obs,
                                     harness="omp",
