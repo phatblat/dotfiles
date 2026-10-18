@@ -332,5 +332,7 @@ if [ -f ~/.dotfiles/git/alias.bash ]; then
   source ~/.dotfiles/git/alias.bash
 fi
 
-# Added by Antigravity IDE
-export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+# Antigravity IDE (machine-specific; only when installed)
+if [ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ]; then
+  export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+fi
