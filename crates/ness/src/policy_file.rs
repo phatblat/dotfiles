@@ -1,7 +1,8 @@
 //! Schema and loader for `~/.config/ness/policy.toml` (decision
 //! 2026-10-17-ness-policy-as-data). Every pattern is a `fancy-regex`
-//! expression transcribed verbatim from the former `policy.rs` statics; the
-//! engine owns no pattern of its own except `active::REQUIRED_PROTECTION`.
+//! expression transcribed verbatim from the former `policy.rs` statics. The
+//! engine owns no pattern of its own; its onloy hardcoded policy is the
+//! required control-plane coverage checked by `active::check_required_protection`.
 //!
 //! `parse` rejects unknown keys (`deny_unknown_fields`) so a typo in a table
 //! name is a load error, not a silently empty rule set.
@@ -104,7 +105,6 @@ pub struct Compiled {
     pub sed_inplace: Regex,
     pub dd: Regex,
     pub path_token: Regex,
-    pub approval: Approval,
     /// Entry counts per table, for `ness policy active`.
     pub counts: Vec<(&'static str, usize)>,
 }
@@ -218,7 +218,6 @@ impl Policy {
             sed_inplace: compile_with_span("write_targets.sed_inplace", &w.sed_inplace)?,
             dd: compile_with_span("write_targets.dd", &w.dd)?,
             path_token: compile_one("write_targets.path_token", &w.path_token)?,
-            approval: self.approval.clone(),
             counts,
         })
     }
@@ -243,18 +242,16 @@ mod tests {
             "/../../.config/ness/policy.toml"
         );
         let text = std::fs::read_to_string(path).unwrap();
-        let c = parse(&text).unwrap().compile().unwrap();
-        assert_eq!(c.dangerous.len(), 10);
-        assert_eq!(c.control_plane.as_str().matches("ness/policy").count(), 1);
+        parse(&text).unwrap().compile().unwrap();
     }
 
     #[test]
     fn parses_and_compiles_fixture() {
         let p = parse(&fixture()).unwrap();
+        assert_eq!(p.approval.allow_prefix, vec!["git status"]);
+        assert_eq!(p.approval.modes.omp_approval_mode, "write");
         let c = p.compile().unwrap();
         assert_eq!(c.dangerous.len(), 2);
-        assert_eq!(c.approval.allow_prefix, vec!["git status"]);
-        assert_eq!(c.approval.modes.omp_approval_mode, "write");
     }
 
     #[test]
