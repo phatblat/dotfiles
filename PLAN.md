@@ -1879,15 +1879,11 @@ git -C $W commit -m "refactor(harness): render approval baselines from policy.to
 
 **Files:** none in the repo. Real `$HOME` state only.
 
-The real `$HOME` is on branch `friday`; `.config/ness/` does not exist there until this branch merges. The installed binary must not be replaced before the real `$HOME` has an applied policy.
+The real `$HOME` is on branch `friday`. The installed binary must not be replaced before the real `$HOME` has an applied policy, and `git merge` into `$HOME` refuses to overwrite an untracked `~/.config/ness/`, so the branch lands first and the bootstrap follows.
 
-- [ ] **Step 1: Stage the policy and cases in the real `$HOME` (untracked on `friday`)**
+- [ ] **Step 1: Land the branch in the real `$HOME`**
 
-```bash
-mkdir -p ~/.config/ness
-cp $W/.config/ness/policy.toml ~/.config/ness/policy.toml
-cp -R $W/.config/ness/cases ~/.config/ness/cases
-```
+Merge `ness-policy-as-data` into the branch checked out at `$HOME` (via the PR, or `git -C ~ merge ness-policy-as-data`). Afterwards `~/.config/ness/policy.toml` and `~/.config/ness/cases/` are tracked files, identical to `$W/.config/ness/`. Do not stage copies by hand beforehand: an untracked `~/.config/ness/` blocks the merge. If `$W` was removed after the merge, build the binary in `$HOME` instead (`cargo build --release --manifest-path ~/crates/ness/Cargo.toml`) and use `~/crates/ness/target/release/ness` below.
 
 - [ ] **Step 2: Apply it with the new binary, from a terminal (human)**
 
