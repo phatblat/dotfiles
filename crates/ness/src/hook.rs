@@ -75,16 +75,19 @@ fn print_warn(reason: &str) {
 
 /// Port of `apply_patch_all_paths` (`.codex/hooks/scripts/apply-patch-input.sh:11-22`):
 /// every `*** Add/Update/Delete File:` and `*** Move to:` target, first
-/// occurrence only, in appearance order.
+/// occurrence only, in appearance order. The target is whatever follows the
+/// colon, trimmed: opencode's patch parser accepts `*** Add File:.env` (no
+/// space) and extra whitespace, so a fixed `": "` prefix would be bypassable.
 fn apply_patch_all_paths(patch_text: &str) -> Vec<String> {
     let mut seen = std::collections::HashSet::new();
     let mut out = Vec::new();
     for line in patch_text.lines() {
         let target = line
-            .strip_prefix("*** Add File: ")
-            .or_else(|| line.strip_prefix("*** Update File: "))
-            .or_else(|| line.strip_prefix("*** Delete File: "))
-            .or_else(|| line.strip_prefix("*** Move to: "));
+            .strip_prefix("*** Add File:")
+            .or_else(|| line.strip_prefix("*** Update File:"))
+            .or_else(|| line.strip_prefix("*** Delete File:"))
+            .or_else(|| line.strip_prefix("*** Move to:"))
+            .map(str::trim);
         if let Some(target) = target {
             if seen.insert(target.to_string()) {
                 out.push(target.to_string());

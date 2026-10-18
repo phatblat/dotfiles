@@ -27,8 +27,9 @@ function guard(args: string[], cwd: string): GuardResult {
 
 function patchTargets(patchText: string): string[] {
   const targets = new Set<string>();
-  for (const match of patchText.matchAll(/^\*\*\* (?:Add File|Update File|Delete File|Move to): (.+)$/gm)) {
-    targets.add(match[1].trim());
+  for (const match of patchText.matchAll(/^\*\*\* (?:Add File|Update File|Delete File|Move to):(.*)$/gm)) {
+    const target = match[1].trim();
+    if (target) targets.add(target);
   }
   return [...targets];
 }
