@@ -5,7 +5,7 @@
       "installedFrom": {
         "id": "antigravity-plugins-official/plugin/android-cli-plugin",
         "marketplace": "antigravity-plugins-official",
-        "version": "1.0.16500706"
+        "version": ""
       }
     },
     "chrome-devtools-plugin": {
@@ -13,7 +13,7 @@
       "installedFrom": {
         "id": "antigravity-plugins-official/plugin/chrome-devtools-plugin",
         "marketplace": "antigravity-plugins-official",
-        "version": "1.0.0"
+        "version": ""
       }
     },
     "firebase": {
@@ -21,7 +21,7 @@
       "installedFrom": {
         "id": "antigravity-plugins-official/plugin/firebase",
         "marketplace": "antigravity-plugins-official",
-        "version": "1.0.3"
+        "version": ""
       }
     },
     "google-antigravity-sdk": {
@@ -29,7 +29,7 @@
       "installedFrom": {
         "id": "antigravity-plugins-official/plugin/google-antigravity-sdk",
         "marketplace": "antigravity-plugins-official",
-        "version": "0.0.9"
+        "version": ""
       }
     },
     "modern-web-guidance-plugin": {
@@ -37,7 +37,7 @@
       "installedFrom": {
         "id": "antigravity-plugins-official/plugin/modern-web-guidance-plugin",
         "marketplace": "antigravity-plugins-official",
-        "version": "1.0.6"
+        "version": ""
       }
     },
     "science": {
@@ -45,7 +45,7 @@
       "installedFrom": {
         "id": "antigravity-plugins-official/plugin/science",
         "marketplace": "antigravity-plugins-official",
-        "version": "1.2.4"
+        "version": ""
       }
     },
     "shared-agent-harness": {
