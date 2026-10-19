@@ -13,7 +13,7 @@ throughout (slugs, labels, CLI binaries, config roots, session-store
 descriptors) lives in `~/scripts/harness_paths.py`.
 
 `~/.gemini/antigravity-cli/conversations/*` is guard-protected
-(`~/crates/ness/src/policy.rs`, `PROTECTED_PATHS`) and is never
+(`[protected_paths]` in `~/.config/ness/policy.toml`) and is never
 read by any tooling described here, even though it is technically part of
 the Antigravity session store.
 

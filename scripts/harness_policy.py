@@ -4,11 +4,14 @@ Copyright: Ben Chatelain. Apache 2.0.
 
 Control plane: an agent able to edit this file grants itself permissions on
 every harness at the next `just harness-generate`. Human-only, enforced by
-`crates/ness/src/policy.rs`'s `CONTROL_PLANE_FRAGMENTS`.
+`[control_plane]` in `~/.config/ness/policy.toml`.
 
-Split out of scripts/agent-harnesses.py so the data is reviewable on its own,
-following the harness_capabilities.py precedent. Imported only from
-agent-harnesses.py's non-fast-path block, so it never reaches a guard decision.
+The approval baseline lives in `[approval]` of that policy file; this module
+is the renderer (`bash_rules(style)`). `load_approval()` reads the checkout's
+policy.toml directly, without the `applied.json` hash check the guard applies:
+the rendered permission files trust the tracked file, as the hardcoded tuples
+did before. Imported only from agent-harnesses.py's non-fast-path block, so it
+never reaches a guard decision.
 
 Every value here is portable across machines or resolved from the environment:
 MCP credentials are never literals (capability `mcp.credential_scope`, p0).
@@ -18,6 +21,9 @@ from __future__ import annotations
 
 import copy
 import json
+import tomllib
+from functools import cache
+from pathlib import Path
 from typing import Any
 
 # Shared MCP servers, rendered into every harness that has a verified consumer.
@@ -31,131 +37,19 @@ MCP_SERVERS: dict[str, dict[str, Any]] = {
     },
 }
 
-# Command prefixes auto-approved everywhere. A prefix entry allows the command
-# and any arguments; an exact entry allows only the bare command line.
-BASH_ALLOW_PREFIX: tuple[str, ...] = (
-    "[",
-    "awk",
-    "basename",
-    "brew outdated",
-    "brew update",
-    "brew upgrade",
-    "cargo check",
-    "cargo clippy",
-    "cargo fmt",
-    "cargo test",
-    "cat",
-    "cmp",
-    "command -v",
-    "ctx7",
-    "cut",
-    "date",
-    "diff",
-    "dirname",
-    "du",
-    "echo",
-    "fd",
-    "file",
-    "find",
-    "gh api",
-    "gh issue",
-    "gh pr create",
-    "gh pr edit",
-    "gh pr list",
-    "gh pr view",
-    "gh run",
-    "gh search",
-    "gh stack",
-    "git add",
-    "git branch",
-    "git check-ignore",
-    "git checkout",
-    "git commit",
-    "git diff",
-    "git fetch",
-    "git log",
-    "git ls-remote",
-    "git merge --ff-only",
-    "git pull",
-    "git push",
-    "git rebase",
-    "git remote",
-    "git rev-list",
-    "git rev-parse",
-    "git show",
-    "git stash",
-    "git status",
-    "git switch",
-    "git symbolic-ref",
-    "git tag",
-    "git worktree",
-    "go build",
-    "go test",
-    "go vet",
-    "grep",
-    "head",
-    "jq",
-    "just",
-    "linear",
-    "ls",
-    "make",
-    "mise current",
-    "mise install",
-    "mise ls",
-    "mise search",
-    "mise self-update",
-    "mise upgrade",
-    "mise use",
-    "npm run",
-    "npm test",
-    "npx tsc",
-    "pip",
-    "pnpm",
-    "poetry",
-    "prettier",
-    "printenv",
-    "printf",
-    "ps",
-    "python3",
-    "readlink",
-    "realpath",
-    "rg",
-    "ruff",
-    "sed",
-    "seq",
-    "sg",
-    "shellcheck",
-    "shfmt",
-    "sleep",
-    "sort",
-    "stat",
-    "tail",
-    "tee",
-    "test",
-    "timeout",
-    "tr",
-    "tree",
-    "typos",
-    "uniq",
-    "uv tool upgrade",
-    "wc",
-    "which",
-    "xargs",
-    "yamllint",
-    "yarn",
-    "yq",
-    "~/scripts/sort-gitignore",
+# The approval baseline lives with the rest of the safety policy
+# (decision 2026-10-17-ness-policy-as-data). Read from the repo checkout so a
+# worktree renders its own branch's policy, not $HOME's.
+POLICY_PATH = (
+    Path(__file__).resolve().parent.parent / ".config" / "ness" / "policy.toml"
 )
 
-BASH_ALLOW_EXACT: tuple[str, ...] = (
-    "claude mcp list",
-    "env",
-    "pwd",
-    "true",
-)
 
-# Prompt even where the mode would auto-approve.
-BASH_ASK_PREFIX: tuple[str, ...] = ("rm",)
+@cache
+def load_approval() -> dict[str, Any]:
+    with POLICY_PATH.open("rb") as fh:
+        return tomllib.load(fh)["approval"]
+
 
 # omp only: `rm` targets that could escape /tmp or expand unexpectedly. These
 # must precede BASH_ALLOW_RM_TMP, since omp matches first-wins.
@@ -172,31 +66,24 @@ BASH_ASK_RM_RISKY: tuple[str, ...] = (
 
 # omp only: allow `rm` under /tmp without a prompt. The combined force +
 # recursive spellings are left out on purpose: the shared guard's
-# DANGEROUS_COMMANDS denies them before omp's pattern matters.
+# [commands.dangerous] denies them before omp's pattern matters.
 BASH_ALLOW_RM_TMP: tuple[str, ...] = (
     "rm /tmp/*",
     "rm -f /tmp/*",
     "rm -r /tmp/*",
 )
 
-# Absolute deny, matching the shared guard's privilege-escalation rule.
-BASH_DENY_PREFIX: tuple[str, ...] = ("sudo",)
 
-# Non-Bash Claude-style rules; only Claude has a surface for these.
-WEBFETCH_ALLOW_DOMAINS: tuple[str, ...] = ("docs.basedpyright.com", "github.com")
-CLAUDE_TOOL_ALLOW: tuple[str, ...] = (
-    "WebSearch",
-    "mcp__acp__Bash",
-    "mcp__acp__Edit",
-    "mcp__acp__Write",
-)
+def _modes() -> dict[str, str]:
+    return load_approval()["modes"]
 
-# Per-harness default approval posture.
-CLAUDE_DEFAULT_MODE = "auto"
-OMP_APPROVAL_MODE = "write"
-OPENCODE_EDIT = "ask"
-OPENCODE_EXTERNAL_DIRECTORY = "ask"
-OPENCODE_WEBFETCH = "ask"
+
+# Kept as module attributes for harness-apply.py and any other importer.
+CLAUDE_DEFAULT_MODE = _modes()["claude_default_mode"]
+OMP_APPROVAL_MODE = _modes()["omp_approval_mode"]
+OPENCODE_EDIT = _modes()["opencode_edit"]
+OPENCODE_EXTERNAL_DIRECTORY = _modes()["opencode_external_directory"]
+OPENCODE_WEBFETCH = _modes()["opencode_webfetch"]
 
 # Schema URL OMP itself writes into the MCP files it manages
 # (`omp://mcp-config.md`). Emitted only for the OMP and pi targets.
@@ -241,29 +128,36 @@ def mcp_opencode_block() -> dict[str, Any]:
 
 def bash_rules(style: str) -> Any:
     """Render the permission baseline in one harness's native shape."""
+    a = load_approval()
+    allow_prefix: list[str] = a["allow_prefix"]
+    allow_exact: list[str] = a["allow_exact"]
+    prompt_prefix: list[str] = a["prompt_prefix"]
+    deny_prefix: list[str] = a["deny_prefix"]
+
     if style == "claude":
-        rules = [f"Bash({cmd} *)" for cmd in BASH_ALLOW_PREFIX]
-        rules += [f"Bash({cmd})" for cmd in BASH_ALLOW_EXACT]
-        rules += [f"WebFetch(domain:{domain})" for domain in WEBFETCH_ALLOW_DOMAINS]
-        rules += list(CLAUDE_TOOL_ALLOW)
+        rules = [f"Bash({cmd} *)" for cmd in allow_prefix]
+        rules += [f"Bash({cmd})" for cmd in allow_exact]
+        rules += [
+            f"WebFetch(domain:{domain})" for domain in a["claude"]["webfetch_domains"]
+        ]
+        rules += list(a["claude"]["tools"])
         return sorted(rules)
 
     if style == "claude-deny":
-        return [f"Bash({cmd} *)" for cmd in BASH_DENY_PREFIX]
+        return [f"Bash({cmd} *)" for cmd in deny_prefix]
 
     if style == "antigravity":
-        rules = [f"command({cmd})" for cmd in (*BASH_ALLOW_PREFIX, *BASH_ALLOW_EXACT)]
-        return sorted(rules)
+        return sorted(f"command({cmd})" for cmd in (*allow_prefix, *allow_exact))
 
     if style == "opencode":
         opencode_rules: dict[str, str] = {}
-        for cmd in BASH_ALLOW_PREFIX:
+        for cmd in allow_prefix:
             opencode_rules[f"{cmd}*"] = "allow"
-        for cmd in BASH_ALLOW_EXACT:
+        for cmd in allow_exact:
             opencode_rules[cmd] = "allow"
-        for cmd in BASH_ASK_PREFIX:
+        for cmd in prompt_prefix:
             opencode_rules[f"{cmd} *"] = "ask"
-        for cmd in BASH_DENY_PREFIX:
+        for cmd in deny_prefix:
             opencode_rules[f"{cmd} *"] = "deny"
         return opencode_rules
 
@@ -271,19 +165,19 @@ def bash_rules(style: str) -> Any:
         # First-match-wins: deny, then prompt, then allow. omp accepts only
         # allow|deny|prompt and silently drops any other value.
         patterns: list[dict[str, str]] = []
-        for cmd in BASH_DENY_PREFIX:
+        for cmd in deny_prefix:
             patterns.append({"match": f"{cmd} *", "approval": "deny"})
             patterns.append({"match": cmd, "approval": "deny"})
         for match in BASH_ASK_RM_RISKY:
             patterns.append({"match": match, "approval": "prompt"})
         for match in BASH_ALLOW_RM_TMP:
             patterns.append({"match": match, "approval": "allow"})
-        for cmd in BASH_ASK_PREFIX:
+        for cmd in prompt_prefix:
             patterns.append({"match": f"{cmd} *", "approval": "prompt"})
             patterns.append({"match": cmd, "approval": "prompt"})
-        for cmd in BASH_ALLOW_PREFIX:
+        for cmd in allow_prefix:
             patterns.append({"match": f"{cmd}*", "approval": "allow"})
-        for cmd in BASH_ALLOW_EXACT:
+        for cmd in allow_exact:
             patterns.append({"match": cmd, "approval": "allow"})
         return patterns
 

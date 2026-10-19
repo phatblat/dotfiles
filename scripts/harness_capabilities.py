@@ -3,9 +3,8 @@
 Copyright: Ben Chatelain. Apache 2.0.
 
 Split out of ``scripts/agent-harnesses.py`` so these capability facts stay
-agent-editable while the generator (control plane, see
-``crates/ness/src/policy.rs`` ``CONTROL_PLANE_FRAGMENTS``) remains
-human-only.
+agent-editable while the generator (control plane, see ``[control_plane]`` in
+``~/.config/ness/policy.toml``) remains human-only.
 
 Vocabulary, enforced by ``validate_registry()`` and switched on by the
 renderers in ``harness_docs.py``:
@@ -133,7 +132,7 @@ _PROBED_2026_09_15 = "2026-09-15"
 _PROBED_2026_10_16 = "2026-10-16"
 
 _SHARED = "~/.agents/harness"
-_SAFETY = "~/crates/ness/src/policy.rs"
+_SAFETY = "~/.config/ness/policy.toml"
 
 
 def _exists(path: str) -> dict[str, str]:
@@ -1198,7 +1197,7 @@ CAPABILITIES: list[Capability] = [
             "Native allow/deny rules are expressed only where they add to, never "
             "weaken, the shared guard decision."
         ),
-        canonical=("~/scripts/harness_policy.py",),
+        canonical=(_SAFETY, "~/scripts/harness_policy.py"),
         verify="just harness-check",
         cells={
             "claude": Cell(
@@ -1285,7 +1284,7 @@ CAPABILITIES: list[Capability] = [
             "The harness's interactive approval modes are known, and the default "
             "mode does not bypass the guard."
         ),
-        canonical=("~/scripts/harness_policy.py",),
+        canonical=(_SAFETY, "~/scripts/harness_policy.py"),
         verify="just harness-check",
         cells={
             "claude": Cell(

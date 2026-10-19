@@ -1,0 +1,51 @@
+# Minimal fixture for engine unit tests. The real policy is ~/.config/ness/policy.toml.
+[control_plane]
+patterns = ['/\.config/ness/policy\.toml(?![\w.-])', '/\.local/state/ness/applied\.json(?![\w.-])', '/\.local/bin/ness(?![\w.-])']
+
+[protected_paths]
+patterns = ['(?i)(\.env($|\.)|\.ssh/)']
+
+[secret_content]
+patterns = ['(?i)(AKIA[0-9A-Z]{16})']
+
+[commands.privilege_escalation]
+patterns = ['(?i)(^|;|&&|\|\||\||\n|\r|\$\(|`)\s*(sudo|su|doas|pkexec)\b']
+
+[commands.dangerous]
+patterns = ['(?i)\brm\s+-(?=[A-Za-z-]*r)(?=[A-Za-z-]*f)[A-Za-z-]*\s+(/|~|\*|\.\.)', '(?i)\bness\s+policy\s+apply\b']
+
+[commands.obfuscated]
+patterns = ['(?i)\beval\s+.*\$']
+
+[commands.credential_disclosure]
+patterns = ['(?i)\bgh\s+auth\s+token\b']
+
+[commands.interactive_launch]
+patterns = ['^\s*bash\s*$']
+
+[commands.warn]
+commit = '^\s*(git\s+commit|git\s+-C\s+\S+\s+commit)\b'
+
+[write_targets]
+redirect = '>>?\s*(?P<span>[^\s;|&<>]+)'
+mutating_argv = '(?i)\b(?:rm|mv|cp|tee|ln|install|truncate|shred|unlink|touch|chmod|chown)\b(?P<span>[^;|&]*)'
+sed_inplace = '(?i)\bsed\b(?P<span>[^;|&]*?-i(?:\S*)?[^;|&]*)'
+dd = '(?i)\bdd\b[^;|&]*?\bof=(?P<span>[^\s;|&]+)'
+path_token = '''[^\s;|&<>'"]*[/~][^\s;|&<>'"]*'''
+
+[approval]
+allow_prefix = ["git status"]
+allow_exact = ["pwd"]
+prompt_prefix = ["rm"]
+deny_prefix = ["sudo"]
+
+[approval.modes]
+claude_default_mode = "auto"
+omp_approval_mode = "write"
+opencode_edit = "ask"
+opencode_external_directory = "ask"
+opencode_webfetch = "ask"
+
+[approval.claude]
+webfetch_domains = ["github.com"]
+tools = ["WebSearch"]

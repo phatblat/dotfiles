@@ -2,7 +2,7 @@
 //! `scripts/ness-parity.py` and the guard-behavior bats tests it exercised.
 //!
 //! Fixture schema:
-//! - `crates/ness/tests/corpus/*.json`: `harness`, `tool`,
+//! - `.config/ness/cases/*.json` (repo root): `harness`, `tool`,
 //!   `command`/`path`/`content`/`cwd` (nullable) keys plus
 //!   `"expected": {"decision": "allow"|"warn"|"deny", "reason": "<string>"}`.
 //! - `crates/ness/tests/hook_corpus/*.json`: `shim`, `payload` keys plus
@@ -41,7 +41,12 @@ fn built_ness() -> PathBuf {
 }
 
 fn load(dir: &str) -> Vec<(String, Value)> {
-    let path = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests").join(dir);
+    let path = match dir {
+        "corpus" => repo_root().join(".config").join("ness").join("cases"),
+        other => Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("tests")
+            .join(other),
+    };
     let mut entries: Vec<(String, Value)> = std::fs::read_dir(&path)
         .unwrap_or_else(|e| panic!("read {}: {e}", path.display()))
         .filter_map(|entry| entry.ok())
@@ -80,11 +85,17 @@ fn guard_args(case: &Value) -> Vec<String> {
     }
     args
 }
-fn run_guard(binary: &Path, case: &Value) -> (i32, Value) {
+
+fn paths_home() -> PathBuf {
+    PathBuf::from(std::env::var("HOME").expect("HOME must be set"))
+}
+
+fn run_guard(binary: &Path, home: &Path, case: &Value) -> (i32, Value) {
     let output = Command::new(binary)
         .arg("guard")
         .args(guard_args(case))
         .current_dir(repo_root())
+        .env("HOME", home)
         .output()
         .unwrap_or_else(|e| panic!("spawn {}: {e}", binary.display()));
     let stdout = String::from_utf8_lossy(&output.stdout);
@@ -92,16 +103,20 @@ fn run_guard(binary: &Path, case: &Value) -> (i32, Value) {
     (output.status.code().unwrap_or(-1), parsed)
 }
 
-fn guard_mismatches(binary: &Path) -> Vec<String> {
+fn guard_mismatches(binary: &Path, home: &Path) -> Vec<String> {
     let mut mismatches = Vec::new();
-    for (name, case) in load("corpus") {
+    let cases = load("corpus");
+    assert!(cases.len() >= 132, "corpus has only {} cases", cases.len());
+    for (name, case) in cases {
         let expected_decision = case["expected"]["decision"].as_str().expect("decision");
         let expected_reason = case["expected"]["reason"].as_str().expect("reason");
         let expected_exit = if expected_decision == "deny" { 2 } else { 0 };
-        let (exit, got) = run_guard(binary, &case);
+        let (exit, got) = run_guard(binary, home, &case);
         let got_decision = got["decision"].as_str().unwrap_or("<missing>");
         let got_reason = got["reason"].as_str().unwrap_or("<missing>");
-        if got_decision != expected_decision || got_reason != expected_reason || exit != expected_exit
+        if got_decision != expected_decision
+            || got_reason != expected_reason
+            || exit != expected_exit
         {
             mismatches.push(format!(
                 "{name}: expected ({expected_decision:?}, {expected_reason:?}) exit {expected_exit}; got ({got_decision:?}, {got_reason:?}) exit {exit}"
@@ -113,23 +128,82 @@ fn guard_mismatches(binary: &Path) -> Vec<String> {
 
 static TEMP_COUNTER: AtomicUsize = AtomicUsize::new(0);
 
-fn temp_dir() -> PathBuf {
+fn temp_dir() -> TempHome {
     let n = TEMP_COUNTER.fetch_add(1, Ordering::SeqCst);
     let dir = std::env::temp_dir().join(format!("ness-test-{}-{n}", std::process::id()));
     std::fs::create_dir_all(&dir).unwrap_or_else(|e| panic!("mkdir {}: {e}", dir.display()));
-    dir
+    TempHome(dir)
 }
 
-/// A fresh `$HOME`; when `ness` is `Some`, symlinks it to
-/// `$HOME/.local/bin/ness`, the absolute path every shim execs.
-fn fake_home(ness: Option<&Path>) -> PathBuf {
+/// A temp directory removed on drop, except when the test is panicking so
+/// the failure can be inspected.
+struct TempHome(PathBuf);
+
+impl std::ops::Deref for TempHome {
+    type Target = Path;
+    fn deref(&self) -> &Path {
+        &self.0
+    }
+}
+
+impl AsRef<std::ffi::OsStr> for TempHome {
+    fn as_ref(&self) -> &std::ffi::OsStr {
+        self.0.as_os_str()
+    }
+}
+
+impl Drop for TempHome {
+    fn drop(&mut self) {
+        if std::thread::panicking() {
+            eprintln!("kept for inspection: {}", self.0.display());
+        } else {
+            std::fs::remove_dir_all(&self.0).ok();
+        }
+    }
+}
+
+fn sha256_hex(bytes: &[u8]) -> String {
+    use sha2::Digest;
+    format!("{:x}", sha2::Sha256::digest(bytes))
+}
+
+/// A `$HOME` with the repo's policy installed and applied, so a binary run
+/// under it loads the same policy the corpus was written against. The
+/// `applied.json` record is written here directly, in the shape
+/// `active::Applied` reads, because `ness policy apply` has no
+/// non-interactive path by design. `ness` is copied into `.local/bin` when
+/// given, for the shim tests: copied, not symlinked, because the guard
+/// canonicalizes paths before matching `[control_plane]`, and a symlink
+/// would make `~/.local/bin/ness` resolve to the build output (case 909).
+/// `just ness-install` copies too.
+fn fake_home(ness: Option<&Path>) -> TempHome {
     let home = temp_dir();
+    let cfg = home.join(".config").join("ness");
+    std::fs::create_dir_all(cfg.join("cases")).unwrap();
+    let policy = std::fs::read(repo_root().join(".config/ness/policy.toml")).unwrap();
+    std::fs::write(cfg.join("policy.toml"), &policy).unwrap();
+    let mut cases = serde_json::Map::new();
+    for (name, case) in load("corpus") {
+        let bytes = serde_json::to_vec_pretty(&case).unwrap();
+        std::fs::write(cfg.join("cases").join(&name), &bytes).unwrap();
+        cases.insert(name, Value::String(sha256_hex(&bytes)));
+    }
+    let state = home.join(".local").join("state").join("ness");
+    std::fs::create_dir_all(&state).unwrap();
+    let applied = serde_json::json!({
+        "policy_sha256": sha256_hex(&policy),
+        "applied_at": "2026-01-01T00:00:00Z",
+        "cases": cases,
+    });
+    std::fs::write(
+        state.join("applied.json"),
+        serde_json::to_string_pretty(&applied).unwrap(),
+    )
+    .unwrap();
     if let Some(ness) = ness {
         let bin_dir = home.join(".local").join("bin");
-        std::fs::create_dir_all(&bin_dir).unwrap_or_else(|e| panic!("mkdir {}: {e}", bin_dir.display()));
-        std::os::unix::fs::symlink(ness, bin_dir.join("ness")).unwrap_or_else(|e| {
-            panic!("symlink {} -> {}: {e}", ness.display(), bin_dir.display())
-        });
+        std::fs::create_dir_all(&bin_dir).unwrap();
+        std::fs::copy(ness, bin_dir.join("ness")).unwrap();
     }
     home
 }
@@ -206,7 +280,11 @@ fn run_capture_ok(cmd: &mut Command) -> String {
 /// `commits >= 100` threshold is met without 100 real commits.
 fn init_main_branch_repo(repo: &Path) {
     std::fs::create_dir_all(repo).unwrap_or_else(|e| panic!("mkdir {}: {e}", repo.display()));
-    run_ok(Command::new("git").args(["init", "-q", "-b", "main"]).current_dir(repo));
+    run_ok(
+        Command::new("git")
+            .args(["init", "-q", "-b", "main"])
+            .current_dir(repo),
+    );
     let empty_tree = run_capture_ok(
         Command::new("git")
             .arg("mktree")
@@ -236,12 +314,17 @@ fn init_main_branch_repo(repo: &Path) {
             .args(["update-ref", "refs/heads/main", &last])
             .current_dir(repo),
     );
-    run_ok(Command::new("git").args(["checkout", "-q", "main"]).current_dir(repo));
+    run_ok(
+        Command::new("git")
+            .args(["checkout", "-q", "main"])
+            .current_dir(repo),
+    );
 }
 
 #[test]
 fn guard_corpus_matches_expected() {
-    let mismatches = guard_mismatches(&built_ness());
+    let home = fake_home(None);
+    let mismatches = guard_mismatches(&built_ness(), &home);
     assert!(
         mismatches.is_empty(),
         "guard corpus mismatches:\n{}",
@@ -365,7 +448,9 @@ fn shims_fail_closed_without_ness() {
     let crush_payload = serde_json::json!({"tool_input": {"command": "git status"}});
     let (exit, stdout, stderr) = run_shim("crush", &crush_payload, &home);
     if exit != 2 || stdout != Value::Null || !stderr.contains("not installed") {
-        mismatches.push(format!("crush: exit {exit} stdout {stdout} stderr {stderr:?}"));
+        mismatches.push(format!(
+            "crush: exit {exit} stdout {stdout} stderr {stderr:?}"
+        ));
     }
 
     let antigravity_payload = serde_json::json!({
@@ -383,8 +468,14 @@ fn shims_fail_closed_without_ness() {
         "tool_input": {"command": "git status"},
     });
     let (exit, stdout, _stderr) = run_shim("cursor", &cursor_payload, &home);
-    let permission = stdout.get("permission").and_then(Value::as_str).unwrap_or("");
-    let message = stdout.get("user_message").and_then(Value::as_str).unwrap_or("");
+    let permission = stdout
+        .get("permission")
+        .and_then(Value::as_str)
+        .unwrap_or("");
+    let message = stdout
+        .get("user_message")
+        .and_then(Value::as_str)
+        .unwrap_or("");
     if exit != 0 || permission != "deny" || !message.contains("not installed") {
         mismatches.push(format!("cursor: exit {exit} stdout {stdout}"));
     }
@@ -426,7 +517,9 @@ fn main_branch_commit_warning_forwards_cwd() {
             || stdout != serde_json::json!({})
             || !stderr.contains("protected 'main' branch")
         {
-            mismatches.push(format!("{shim}: exit {exit} stdout {stdout} stderr {stderr:?}"));
+            mismatches.push(format!(
+                "{shim}: exit {exit} stdout {stdout} stderr {stderr:?}"
+            ));
         }
     }
 
@@ -440,7 +533,9 @@ fn main_branch_commit_warning_forwards_cwd() {
         || stdout != serde_json::json!({"decision": "allow"})
         || !stderr.contains("protected 'main' branch")
     {
-        mismatches.push(format!("grok: exit {exit} stdout {stdout} stderr {stderr:?}"));
+        mismatches.push(format!(
+            "grok: exit {exit} stdout {stdout} stderr {stderr:?}"
+        ));
     }
 
     let crush_payload = serde_json::json!({
@@ -450,7 +545,9 @@ fn main_branch_commit_warning_forwards_cwd() {
     });
     let (exit, stdout, stderr) = run_shim("crush", &crush_payload, &home);
     if exit != 0 || stdout != Value::Null || !stderr.contains("protected 'main' branch") {
-        mismatches.push(format!("crush: exit {exit} stdout {stdout} stderr {stderr:?}"));
+        mismatches.push(format!(
+            "crush: exit {exit} stdout {stdout} stderr {stderr:?}"
+        ));
     }
 
     assert!(
@@ -470,15 +567,108 @@ fn installed_copy_matches_corpus() {
         eprintln!("skipped: set NESS_CHECK_INSTALLED=1 to check $HOME/.local/bin/ness");
         return;
     }
-    let home = std::env::var("HOME").expect("HOME must be set");
-    let binary = PathBuf::from(home).join(".local").join("bin").join("ness");
+    let home = paths_home();
+    let binary = home.join(".local").join("bin").join("ness");
     if !binary.exists() {
         panic!("{} not installed; run just ness-install", binary.display());
     }
-    let mismatches = guard_mismatches(&binary);
+    let mismatches = guard_mismatches(&binary, &home);
     assert!(
         mismatches.is_empty(),
         "installed ness mismatches:\n{}",
         mismatches.join("\n")
     );
+}
+
+#[test]
+fn policy_check_reports_verdict_diff_and_case_delta() {
+    let home = fake_home(None);
+    let proposals = home.join(".local/state/ness/proposals/t");
+    std::fs::create_dir_all(&proposals).unwrap();
+    // Candidate: drop the credential-disclosure rule; cases 145/146 flip to allow.
+    let text = std::fs::read_to_string(home.join(".config/ness/policy.toml")).unwrap();
+    let candidate = text.replace(
+        r"patterns = ['(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))']",
+        "patterns = ['(?i)\\bgh\\s+auth\\s+never-matches-anything\\b']",
+    );
+    assert_ne!(candidate, text);
+    std::fs::write(proposals.join("policy.toml"), candidate).unwrap();
+    // Delete a case so the delta is non-empty.
+    std::fs::remove_file(home.join(".config/ness/cases/147-allow-gh-auth-status.json")).unwrap();
+
+    let out = Command::new(built_ness())
+        .args([
+            "policy",
+            "check",
+            proposals.join("policy.toml").to_str().unwrap(),
+        ])
+        .env("HOME", &home)
+        .current_dir(repo_root())
+        .output()
+        .unwrap();
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert_eq!(out.status.code(), Some(1), "{stdout}");
+    assert!(
+        stdout.contains("145-deny-gh-auth-token.json: expected deny"),
+        "{stdout}"
+    );
+    assert!(stdout.contains("verdict diff: 5 case(s)"), "{stdout}");
+    assert!(
+        stdout.contains("removed: 147-allow-gh-auth-status.json"),
+        "{stdout}"
+    );
+}
+
+#[test]
+fn policy_apply_refuses_without_tty() {
+    let home = fake_home(None);
+    let out = Command::new(built_ness())
+        .args([
+            "policy",
+            "apply",
+            home.join(".config/ness/policy.toml").to_str().unwrap(),
+        ])
+        .env("HOME", &home)
+        .stdin(std::process::Stdio::null())
+        .output()
+        .unwrap();
+    assert_eq!(out.status.code(), Some(2));
+    assert!(String::from_utf8_lossy(&out.stderr).contains("requires a terminal"));
+}
+
+#[test]
+fn policy_active_prints_state() {
+    let home = fake_home(None);
+    let out = Command::new(built_ness())
+        .args(["policy"])
+        .env("HOME", &home)
+        .output()
+        .unwrap();
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(out.status.success(), "{stdout}");
+    assert!(
+        stdout.contains("verified: yes") && stdout.contains("commands.dangerous: 10"),
+        "{stdout}"
+    );
+}
+
+/// `--for-tests` once bypassed the TTY check; it must stay unknown so the
+/// flag never silently returns.
+#[test]
+fn policy_apply_rejects_for_tests_flag() {
+    let home = fake_home(None);
+    let out = Command::new(built_ness())
+        .args([
+            "policy",
+            "apply",
+            "--for-tests",
+            home.join(".config/ness/policy.toml").to_str().unwrap(),
+        ])
+        .env("HOME", &home)
+        .stdin(std::process::Stdio::null())
+        .output()
+        .unwrap();
+    let stderr = String::from_utf8_lossy(&out.stderr);
+    assert_eq!(out.status.code(), Some(2), "{stderr}");
+    assert!(stderr.contains("unknown flag '--for-tests'"), "{stderr}");
 }

@@ -8,7 +8,7 @@
 
 Dangerous commands, protected writes, and secret-like content are blocked consistently.
 
-Canonical: `~/crates/ness/src/policy.rs`
+Canonical: `~/.config/ness/policy.toml`
 Verify: `just ness-test`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |

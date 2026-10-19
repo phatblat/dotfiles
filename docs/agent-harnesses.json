@@ -2859,7 +2859,7 @@
     },
     {
       "canonical": [
-        "~/crates/ness/src/policy.rs"
+        "~/.config/ness/policy.toml"
       ],
       "cells": {
         "antigravity": {
@@ -2887,7 +2887,7 @@
         },
         "claude": {
           "artifacts": [
-            "~/crates/ness/src/policy.rs"
+            "~/.config/ness/policy.toml"
           ],
           "divergence": "",
           "evidence": {
@@ -2909,7 +2909,7 @@
         },
         "codex": {
           "artifacts": [
-            "~/crates/ness/src/policy.rs"
+            "~/.config/ness/policy.toml"
           ],
           "divergence": "",
           "evidence": {
@@ -3022,7 +3022,7 @@
         },
         "opencode": {
           "artifacts": [
-            "~/crates/ness/src/policy.rs"
+            "~/.config/ness/policy.toml"
           ],
           "divergence": "",
           "evidence": {
@@ -3044,7 +3044,7 @@
         },
         "pi": {
           "artifacts": [
-            "~/crates/ness/src/policy.rs"
+            "~/.config/ness/policy.toml"
           ],
           "divergence": "",
           "evidence": {
@@ -3549,6 +3549,7 @@
     },
     {
       "canonical": [
+        "~/.config/ness/policy.toml",
         "~/scripts/harness_policy.py"
       ],
       "cells": {
@@ -3871,6 +3872,7 @@
     },
     {
       "canonical": [
+        "~/.config/ness/policy.toml",
         "~/scripts/harness_policy.py"
       ],
       "cells": {

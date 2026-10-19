@@ -1,25 +1,15 @@
-//! Sole implementation of the shared harness safety policy (formerly a
-//! verbatim port of `.agents/harness/hooks/safety.py`, deleted once every
-//! harness switched to this binary).
+//! Sole implementation of the shared harness safety policy. Every pattern
+//! lives in `~/.config/ness/policy.toml` (decision
+//! 2026-10-17-ness-policy-as-data), compiled by `policy_file.rs` and loaded
+//! by `active.rs`. This module is the engine only: the order of checks and
+//! the reasons each produces.
 //!
-//! Every pattern below is copied character-for-character from the Python
-//! source (re-anchored where Python's raw-string escaping of a literal
-//! quote, e.g. `[\"']`, has no special regex meaning and is written here as
-//! the equivalent `["']`). Do not hand-simplify a pattern that already
-//! compiles — a transcription "cleanup" here is how a security rule quietly
-//! stops matching. `fancy-regex` is used for every pattern (not just the
-//! ones with lookaround) so the whole set stays copy-pasteable from the
-//! Python source without engine-specific rewrites.
-//!
-//! `is_match` is a `Result` in `fancy-regex` because backtracking patterns
-//! can in principle blow a resource limit. None of the patterns here are
-//! adversarially explosive, but if one ever did error, `matches()` treats
-//! that as "no match" — consistent with this module's broader fail-open
-//! philosophy (a missing/unreadable manifest also fails open; see
-//! `manifest.rs`).
+//! `fancy-regex` can error at match time on a backtracking blow-up. That is
+//! treated as a deny (`policy pattern error`), never as "no match": a guard
+//! whose pattern cannot run must not fall open.
 
+use crate::policy_file::Compiled;
 use fancy_regex::Regex;
-use std::sync::LazyLock;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GuardDecision {
@@ -54,287 +44,150 @@ impl GuardDecision {
     }
 }
 
-/// Fail-open by design: a regex engine error here means the pattern itself is
-/// broken, not that the input is safe. Every static pattern in this module is
-/// fixed and non-adversarial (no user-controlled regex compilation), so a
-/// runtime match error is unreachable in practice; treating it as "allow"
-/// avoids a corrupted/incompatible regex build turning every guard call into
-/// a denial. This is the one deliberately fail-open seam in an otherwise
-/// fail-closed guard — see the manifest override below, which is fail-open
-/// for the same reason.
-fn matches(re: &Regex, text: &str) -> bool {
-    re.is_match(text).unwrap_or(false)
+/// A pattern that errors at match time is reported, and every caller turns
+/// the error into a deny.
+fn matches(re: &Regex, text: &str) -> Result<bool, String> {
+    re.is_match(text)
+        .map_err(|e| format!("policy pattern error: {e}"))
 }
 
-// Codex `unified_exec` keeps a launched process open, and `write_stdin` input
-// never re-runs `PreToolUse`: a PTY shell/REPL with no `-c`/script argument is
-// interactive whatever its other flags, and would let every later command
-// bypass the guard. So the rule is inverted: a shell or REPL followed only by
-// option tokens is a launch (`bash -x`, `zsh -f`, `python3 -u`), as is a shell
-// reading stdin (`bash -s -- arg`, `python3 -`, `ls | bash`). A script
-// argument or `-c`/`-e`/`-m`/`-p` makes it a normal command. Matched per
-// `&&`/`||`/`|`/`;`/newline/`(`/`{` segment, after any `env`/`nohup`-style
-// launcher prefix, plus bare `tmux`/`screen`/`ssh host` sessions.
-static INTERACTIVE_LAUNCH: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(concat!(
-        // Segment start: line start, `&&`, `||`, `|`, `;`, newline, `(` or `{`,
-        // then any launcher prefix (`env -i VAR=x`, `nohup`, ...).
-        r"(?:^|&&|\|\||\||;|\n|\(|\{)\s*",
-        r"(?:(?:\S*/)?(?:env|exec|command|nohup|time)(?:\s+(?:-\S+|\w+=\S*))*\s+)*",
-        r"(?:",
-        // Shell reading its program from stdin (`-s`, even with args after it)
-        // unless `-c` supplies the program.
-        r"(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu)",
-        r"(?:\s+-(?![A-Za-z]*c)[A-Za-z]*s[A-Za-z]*(?:(?!\s-[A-Za-z]*c\b)\s+\S+)*",
-        // Shell followed only by option tokens: no script argument and no `-c`.
-        r"|(?:\s+(?:--(?:rcfile|init-file)\s+\S+|--(?!command\b)[A-Za-z][\w-]*|-(?![A-Za-z]*c)[A-Za-z]+|[-+]o\s+\w+))*(?:\s+-)?)",
-        // REPL/interpreter followed only by options: no script, `-c/-e/-m/-p`.
-        r"|(?:\S*/)?(?:python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)",
-        r"(?:\s+repl)?(?:\s+(?:--(?!eval\b|print\b|command\b)[A-Za-z][\w-]*(?:=\S+)?|-(?![A-Za-z]*[cemp])[A-Za-z]+))*(?:\s+-)?",
-        // Other persistent PTY sessions.
-        r"|(?:tmux|screen)(?:\s+(?:new(?:-session)?|attach(?:-session)?|-[A-Za-z]+))*",
-        r"|ssh(?:\s+-(?![A-Za-z]*[TNnfW])[A-Za-z]+)*\s+[\w.@-]+",
-        r")\s*(?:$|(?=&&|\|\||\||;|\n|\)|\}))",
-    ))
-    .unwrap()
-});
-
-pub fn is_interactive_launch(command: &str) -> bool {
-    matches(&INTERACTIVE_LAUNCH, command)
+fn any_matches(res: &[Regex], text: &str) -> Result<bool, String> {
+    for re in res {
+        if matches(re, text)? {
+            return Ok(true);
+        }
+    }
+    Ok(false)
 }
 
-// `gh auth token`, `gh auth status --show-token` (also as a short flag, alone
-// or clustered: `-t`, `-at`, `-ta`) and `gh auth git-credential get` print
-// the stored credential.
-static CREDENTIAL_DISCLOSURE: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))").unwrap()
-});
-
-// safety.py:26-29
-static PRIVILEGE_ESCALATION: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"(?i)(^|;|&&|\|\||\||\n|\r|\$\(|`)\s*(sudo|su|doas|pkexec)\b").unwrap()
-});
-
-// safety.py:31-44
-static DANGEROUS_COMMANDS: LazyLock<Vec<Regex>> = LazyLock::new(|| {
-    vec![
-        Regex::new(r"(?i)\brm\s+-(?=[A-Za-z-]*r)(?=[A-Za-z-]*f)[A-Za-z-]*\s+(/|~|\*|\.\.)")
-            .unwrap(),
-        Regex::new(r"(?i)>\s*/dev/sd[a-z]?").unwrap(),
-        Regex::new(r"(?i)\bmkfs(\.|\s)").unwrap(),
-        Regex::new(r"(?i)\bdd\s+if=.*\s+of=/dev/").unwrap(),
-        Regex::new(r"(?i)\bchmod\s+(-R\s+)?777\b").unwrap(),
-        Regex::new(r"(?i)\bchmod\s+\+s\b").unwrap(),
-        Regex::new(r"(?i):\(\)\{.*:\|:&\};").unwrap(),
-        Regex::new(r"(?i)\b(curl|wget)\b[^|]*\|\s*(ba)?sh\b").unwrap(),
-        Regex::new(r"(?i)\b(truncate|shred)\b").unwrap(),
-    ]
-});
-
-// safety.py:46-51
-static OBFUSCATED_EXECUTION: LazyLock<Vec<Regex>> = LazyLock::new(|| {
-    vec![
-        Regex::new(r"(?i)\beval\s+.*\$").unwrap(),
-        Regex::new(r"(?i)\bbase64\s+-d.*\|\s*(ba)?sh\b").unwrap(),
-        Regex::new(r"(?i)\bawk\s+.*system\s*\(").unwrap(),
-        Regex::new(r"(?i)\bbash\s+<\(").unwrap(),
-    ]
-});
-
-// safety.py:53-78
-static PROTECTED_PATHS: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(
-        r"(?i)(\.env($|\.)|\.ssh/|id_(rsa|ed25519|ecdsa)|\.pem$|\.key$|\.p12$|\.pfx$|\.jks$|\.aws/credentials|\.docker/config\.json|kubeconfig|\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials|\.claude/\.credentials\.json|\.codex/auth\.json|\.omp/agent/agent\.db|\.omp/agent/secrets\.yml|\.pi/agent/auth\.json|\.gemini/google_accounts\.json|\.gemini/oauth_creds\.json|\.gemini/antigravity-cli/installation_id|\.gemini/antigravity-cli/conversations/|\.cursor/ai-tracking/|\.grok/auth\.json|\.grok/mcp_credentials\.json|\.config/crush/crush\.json|\.local/share/crush/crush\.json|\.local/share/crush/crush\.db)",
-    )
-    .unwrap()
-});
-
-// This list is now the only definition of the control plane: there is no
-// longer a Python `safety.py` copy for it to stay in sync with.
-// `tests/corpus/9xx-*.json` pins every fragment here to a deny/allow case;
-// add or change a fragment and its matching corpus case in the same change.
-static CONTROL_PLANE_FRAGMENTS: &[&str] = &[
-    r"/\.agents/harness/hooks/",
-    r"/\.agents/harness/self-improve-policy\.json(?![\w.-])",
-    r"/\.agents/harness/generated-paths\.json(?![\w.-])",
-    r"/scripts/agent-harnesses\.py(?![\w.-])",
-    r"/scripts/agent_plugins\.py(?![\w.-])",
-    r"/scripts/harness_policy\.py(?![\w.-])",
-    r"/harness-guard\.(?:py|sh|ts)(?![\w.-])",
-    r"/(?:write|bash)-guard\.sh(?![\w.-])",
-    r"/opencode/plugins/harness\.ts(?![\w.-])",
-    r"/agent/extensions/harness\.ts(?![\w.-])",
-    r"/harness-guard\.json(?![\w.-])",
-    r"/crates/ness/(?!target(?:/|$))",
-];
-
-// safety.py:104-107
-static CONTROL_PLANE_PATHS: LazyLock<Regex> = LazyLock::new(|| {
-    let joined = format!("(?i)(?:{})", CONTROL_PLANE_FRAGMENTS.join("|"));
-    Regex::new(&joined).unwrap()
-});
-
-// safety.py:109-121
-static SECRET_CONTENT: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(
-        r#"(?i)(AKIA[0-9A-Z]{16}|sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|gho_[A-Za-z0-9]{36}|glpat-[A-Za-z0-9_-]{20,}|xox[bpoas]-[A-Za-z0-9-]+|-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----|password\s*[:=]\s*["'][^"']{8,}["'])"#,
-    )
-    .unwrap()
-});
-
-// safety.py:198
-static REDIRECT_TARGET: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r">>?\s*(?P<span>[^\s;|&<>]+)").unwrap());
-
-// safety.py:199-203
-static MUTATING_ARGV: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(
-        r"(?i)\b(?:rm|mv|cp|tee|ln|install|truncate|shred|unlink|touch|chmod|chown)\b(?P<span>[^;|&]*)",
-    )
-    .unwrap()
-});
-
-// safety.py:204
-static SED_INPLACE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(?i)\bsed\b(?P<span>[^;|&]*?-i(?:\S*)?[^;|&]*)").unwrap());
-
-// safety.py:205
-static DD_TARGET: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(?i)\bdd\b[^;|&]*?\bof=(?P<span>[^\s;|&]+)").unwrap());
-
-// safety.py:207
-static PATH_TOKEN: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r#"[^\s;|&<>'"]*[/~][^\s;|&<>'"]*"#).unwrap());
-
-// safety.py:244 (main_branch_commit_warning's own match; deliberately no
-// IGNORECASE, matching the Python source exactly)
-static COMMIT_COMMAND: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"^\s*(git\s+commit|git\s+-C\s+\S+\s+commit)\b").unwrap());
+pub fn is_interactive_launch(p: &Compiled, command: &str) -> Result<bool, String> {
+    any_matches(&p.interactive_launch, command)
+}
 
 /// Port of `evaluate` (safety.py:124-139).
-pub fn evaluate(tool: &str, command: &str, path: &str, content: &str, cwd: &str) -> GuardDecision {
+pub fn evaluate(
+    p: &Compiled,
+    tool: &str,
+    command: &str,
+    path: &str,
+    content: &str,
+    cwd: &str,
+) -> GuardDecision {
     let normalized_tool = tool.to_lowercase();
-    let normalized_tool = normalized_tool.trim();
-    match normalized_tool {
-        "bash" | "shell" | "exec" => evaluate_command(command, cwd),
-        "write" | "edit" | "file_write" | "file_edit" => evaluate_write(path, content),
-        _ => GuardDecision::allow(),
-    }
+    let result = match normalized_tool.trim() {
+        "bash" | "shell" | "exec" => evaluate_command(p, command, cwd),
+        "write" | "edit" | "file_write" | "file_edit" => evaluate_write(p, path, content),
+        _ => Ok(GuardDecision::allow()),
+    };
+    result.unwrap_or_else(GuardDecision::deny)
 }
 
 /// Port of `evaluate_command` (safety.py:142-174).
-pub fn evaluate_command(command: &str, cwd: &str) -> GuardDecision {
+pub fn evaluate_command(p: &Compiled, command: &str, cwd: &str) -> Result<GuardDecision, String> {
     if command.trim().is_empty() {
-        return GuardDecision::allow();
+        return Ok(GuardDecision::allow());
     }
-
-    if matches(&PRIVILEGE_ESCALATION, command) {
-        return GuardDecision::deny("Privilege escalation blocked");
+    if any_matches(&p.privilege_escalation, command)? {
+        return Ok(GuardDecision::deny("Privilege escalation blocked"));
     }
-
-    if DANGEROUS_COMMANDS.iter().any(|p| matches(p, command)) {
-        return GuardDecision::deny("Dangerous command pattern detected");
+    if any_matches(&p.dangerous, command)? {
+        return Ok(GuardDecision::deny("Dangerous command pattern detected"));
     }
-
-    if OBFUSCATED_EXECUTION.iter().any(|p| matches(p, command)) {
-        return GuardDecision::deny("Obfuscated execution pattern detected");
+    if any_matches(&p.obfuscated, command)? {
+        return Ok(GuardDecision::deny("Obfuscated execution pattern detected"));
     }
-
-    if matches(&CREDENTIAL_DISCLOSURE, command) {
-        return GuardDecision::deny("Credential disclosure blocked");
+    if any_matches(&p.credential_disclosure, command)? {
+        return Ok(GuardDecision::deny("Credential disclosure blocked"));
     }
-
-    let target = writes_to(command, &PROTECTED_PATHS);
+    let target = writes_to(p, command, &p.protected_paths)?;
     if !target.is_empty() {
-        return GuardDecision::deny(format!("protected file blocked: {target}"));
+        return Ok(GuardDecision::deny(format!(
+            "protected file blocked: {target}"
+        )));
     }
-
-    let target = writes_to(command, &CONTROL_PLANE_PATHS);
+    let target = writes_to(p, command, &p.control_plane)?;
     if !target.is_empty() {
-        return GuardDecision::deny(format!(
+        return Ok(GuardDecision::deny(format!(
             "control-plane file is human-only: {target}. It decides what the guard permits, so edit it directly rather than through an agent."
-        ));
+        )));
     }
-
     // Same rationale as the path rules above: a heredoc or echo through bash
     // writes the same content a write tool would, so a secret embedded in the
     // command text must not slip past just because it arrived via a shell.
-    if matches(&SECRET_CONTENT, command) {
-        return GuardDecision::deny("secret-like content detected");
+    if matches(&p.secret_content, command)? {
+        return Ok(GuardDecision::deny("secret-like content detected"));
     }
-
-    let warning = main_branch_commit_warning(command, cwd);
+    let warning = main_branch_commit_warning(p, command, cwd)?;
     if !warning.is_empty() {
-        return GuardDecision::warn(warning);
+        return Ok(GuardDecision::warn(warning));
     }
-
-    GuardDecision::allow()
+    Ok(GuardDecision::allow())
 }
 
 /// Port of `evaluate_write` (safety.py:177-192).
-pub fn evaluate_write(path: &str, content: &str) -> GuardDecision {
+pub fn evaluate_write(p: &Compiled, path: &str, content: &str) -> Result<GuardDecision, String> {
     if !path.is_empty() {
         let normalized = crate::paths::normalize_str(path);
-        if matches(&PROTECTED_PATHS, &normalized) {
-            return GuardDecision::deny(format!("protected file blocked: {path}"));
+        if matches(&p.protected_paths, &normalized)? {
+            return Ok(GuardDecision::deny(format!(
+                "protected file blocked: {path}"
+            )));
         }
-        if matches(&CONTROL_PLANE_PATHS, &normalized) {
-            return GuardDecision::deny(format!(
+        if matches(&p.control_plane, &normalized)? {
+            return Ok(GuardDecision::deny(format!(
                 "control-plane file is human-only: {path}. It decides what the guard permits, so edit it directly rather than through an agent."
-            ));
+            )));
         }
     }
-
-    if !content.is_empty() && matches(&SECRET_CONTENT, content) {
-        return GuardDecision::deny("secret-like content detected");
+    if !content.is_empty() && matches(&p.secret_content, content)? {
+        return Ok(GuardDecision::deny("secret-like content detected"));
     }
-
-    GuardDecision::allow()
+    Ok(GuardDecision::allow())
 }
 
 /// Port of `candidate_write_targets` (safety.py:210-224).
-pub fn candidate_write_targets(command: &str) -> Vec<String> {
+pub fn candidate_write_targets(p: &Compiled, command: &str) -> Result<Vec<String>, String> {
     let mut targets: Vec<String> = Vec::new();
-    for pattern in [
-        &*REDIRECT_TARGET,
-        &*MUTATING_ARGV,
-        &*SED_INPLACE,
-        &*DD_TARGET,
-    ] {
+    for pattern in [&p.redirect, &p.mutating_argv, &p.sed_inplace, &p.dd] {
         for caps in pattern.captures_iter(command) {
-            let Ok(caps) = caps else { continue };
+            let caps = caps.map_err(|e| format!("policy pattern error: {e}"))?;
             let Some(span) = caps.name("span") else {
                 continue;
             };
-            for tok in PATH_TOKEN.find_iter(span.as_str()).flatten() {
+            for tok in p.path_token.find_iter(span.as_str()) {
+                let tok = tok.map_err(|e| format!("policy pattern error: {e}"))?;
                 targets.push(tok.as_str().to_string());
             }
         }
     }
-    targets
+    Ok(targets
         .into_iter()
         .map(|t| t.trim_matches(|c| c == '\'' || c == '"').to_string())
         .filter(|t| !t.is_empty())
-        .collect()
+        .collect())
 }
 
 /// Port of `writes_to` (safety.py:227-233).
-pub fn writes_to(command: &str, pattern: &Regex) -> String {
-    for target in candidate_write_targets(command) {
-        if matches(pattern, &crate::paths::normalize_str(&target)) {
-            return target;
+pub fn writes_to(p: &Compiled, command: &str, pattern: &Regex) -> Result<String, String> {
+    for target in candidate_write_targets(p, command)? {
+        if matches(pattern, &crate::paths::normalize_str(&target))? {
+            return Ok(target);
         }
     }
-    String::new()
+    Ok(String::new())
 }
 
 /// Port of `main_branch_commit_warning` (safety.py:244-266). `cwd == ""`
 /// falls back to the real process cwd, matching Python's `cwd or
 /// os.getcwd()` — distinct from the CLI layer's default of `find_root()`
 /// when `--cwd` is omitted entirely (`parse_guard_args`' `"cwd": str(ROOT)`).
-pub fn main_branch_commit_warning(command: &str, cwd: &str) -> String {
-    if !matches(&COMMIT_COMMAND, command) {
-        return String::new();
+pub fn main_branch_commit_warning(
+    p: &Compiled,
+    command: &str,
+    cwd: &str,
+) -> Result<String, String> {
+    if !matches(&p.commit_command, command)? {
+        return Ok(String::new());
     }
 
     let workdir = if cwd.is_empty() {
@@ -348,7 +201,7 @@ pub fn main_branch_commit_warning(command: &str, cwd: &str) -> String {
 
     let branch = run_git(&["branch", "--show-current"], workdir);
     if branch != "main" && branch != "master" {
-        return String::new();
+        return Ok(String::new());
     }
 
     let repo_root = run_git(&["rev-parse", "--show-toplevel"], workdir);
@@ -357,11 +210,11 @@ pub fn main_branch_commit_warning(command: &str, cwd: &str) -> String {
     let commits: i64 = commit_count.parse().unwrap_or(0);
 
     if repo_root != home && commits >= 100 {
-        return format!(
+        return Ok(format!(
             "WARNING: You are on the protected '{branch}' branch. Create a feature branch before committing."
-        );
+        ));
     }
-    String::new()
+    Ok(String::new())
 }
 
 /// Port of `run_git` (safety.py:269-284): 2s timeout, empty string on any
@@ -401,5 +254,74 @@ pub fn run_git(args: &[&str], cwd: &str) -> String {
             String::new()
         }
         Err(_) => String::new(),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn compiled() -> crate::policy_file::Compiled {
+        let text = std::fs::read_to_string(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/policy.toml"
+        ))
+        .unwrap();
+        crate::policy_file::parse(&text).unwrap().compile().unwrap()
+    }
+
+    #[test]
+    fn evaluate_takes_policy() {
+        let p = compiled();
+        assert_eq!(evaluate(&p, "bash", "sudo ls", "", "", "").decision, "deny");
+        assert_eq!(
+            evaluate(&p, "bash", "ness policy apply x", "", "", "").decision,
+            "deny"
+        );
+        assert_eq!(
+            evaluate(&p, "write", "", "/Users/x/.config/ness/policy.toml", "", "").decision,
+            "deny"
+        );
+        assert_eq!(evaluate(&p, "bash", "ls", "", "", "").decision, "allow");
+    }
+
+    #[test]
+    fn regex_runtime_error_denies() {
+        let mut p = compiled();
+        // fancy-regex backtrack limit of 1 makes any match attempt error out.
+        // The lookahead keeps the pattern on fancy-regex's backtracking VM
+        // (a plain `(a+)+b` is delegated to `regex`, which never errors).
+        p.dangerous = vec![fancy_regex::RegexBuilder::new(r"(?=a)(a+)+b")
+            .backtrack_limit(1)
+            .build()
+            .unwrap()];
+        let d = evaluate(&p, "bash", "aaaaaaaaaaaaaaaaaaaaaaaaaaaac", "", "", "");
+        assert_eq!(d.decision, "deny");
+        assert!(d.reason.starts_with("policy pattern error"), "{}", d.reason);
+    }
+
+    fn limited() -> Regex {
+        fancy_regex::RegexBuilder::new(r"(?=a)(a+)+b")
+            .backtrack_limit(1)
+            .build()
+            .unwrap()
+    }
+
+    #[test]
+    fn write_target_pattern_error_denies() {
+        let mut p = compiled();
+        p.path_token = limited();
+        let d = evaluate(&p, "bash", "echo > aaaaaaaaaaaaaaaaaaaaaaaaac", "", "", "");
+        assert_eq!(d.decision, "deny");
+        assert!(d.reason.starts_with("policy pattern error"), "{}", d.reason);
+    }
+
+    #[test]
+    fn interactive_launch_pattern_error_is_err() {
+        let mut p = compiled();
+        p.interactive_launch = vec![limited()];
+        let r = is_interactive_launch(&p, "aaaaaaaaaaaaaaaaaaaaaaaaac");
+        assert!(r.is_err(), "{r:?}");
+        assert!(r.unwrap_err().starts_with("policy pattern error"));
     }
 }

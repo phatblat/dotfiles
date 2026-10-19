@@ -988,8 +988,7 @@ adapters or tool-specific configuration only.
 - Commands: {len(commands)}
 - Specialist agents: {len(agents)}
 - Shared skills source: `~/.agents/skills`
-- Safety policy: `~/crates/ness` (compiled guard `ness`; policy in `src/policy.rs`)
-
+- Safety policy: `~/.config/ness/policy.toml` (`[control_plane]` and friends), enforced by the compiled guard `ness` from `~/crates/ness`
 """
 
 

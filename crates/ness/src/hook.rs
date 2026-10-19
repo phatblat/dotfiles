@@ -25,6 +25,7 @@
 
 use crate::guard_eval::evaluate_with_manifest;
 use crate::policy::GuardDecision;
+use crate::policy_file::Compiled;
 use serde_json::Value;
 use std::io::Read;
 use std::path::Path;
@@ -113,17 +114,23 @@ fn apply_patch_added_content(patch_text: &str) -> String {
 
 /// Write-checks every apply_patch target, then the added content. Shared by
 /// Codex's write hook and grok's `apply_patch` tool. Returns the first deny.
-fn evaluate_apply_patch(patch_text: &str, cwd: &str, manifest: &Path) -> GuardDecision {
+fn evaluate_apply_patch(
+    p: Result<&Compiled, &str>,
+    patch_text: &str,
+    cwd: &str,
+    manifest: &Path,
+) -> GuardDecision {
     for path in apply_patch_all_paths(patch_text) {
         if path.is_empty() {
             continue;
         }
-        let decision = evaluate_with_manifest("write", "", &path, "", cwd, manifest);
+        let decision = evaluate_with_manifest(p, "write", "", &path, "", cwd, manifest);
         if decision.decision == "deny" {
             return decision;
         }
     }
     evaluate_with_manifest(
+        p,
         "write",
         "",
         "",
@@ -135,7 +142,7 @@ fn evaluate_apply_patch(patch_text: &str, cwd: &str, manifest: &Path) -> GuardDe
 
 /// Port of `.claude/hooks/scripts/bash-guard.sh` / `.codex/hooks/scripts/bash-guard.sh`
 /// (the two are structurally identical: same extraction, same response shape).
-pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
+pub fn run_bash(p: Result<&Compiled, &str>, harness: &str, cwd: &str, manifest_path: &Path) {
     let payload = match read_stdin_object() {
         Ok(v) => v,
         Err(e) => {
@@ -148,10 +155,20 @@ pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
         return; // exit 0, no output — matches `[ -z "$command" ] && exit 0`.
     }
 
-    let decision = evaluate_with_manifest("bash", &command, "", "", cwd, manifest_path);
-    if harness == "codex" && crate::policy::is_interactive_launch(&command) {
-        print_deny(INTERACTIVE_LAUNCH_REASON);
-        return;
+    let decision = evaluate_with_manifest(p, "bash", &command, "", "", cwd, manifest_path);
+    // On `Err` the deny already came from `evaluate_with_manifest`.
+    if let (Ok(p), "codex") = (p, harness) {
+        match crate::policy::is_interactive_launch(p, &command) {
+            Ok(true) => {
+                print_deny(INTERACTIVE_LAUNCH_REASON);
+                return;
+            }
+            Ok(false) => {}
+            Err(reason) => {
+                print_deny(&format!("interactive_launch: {reason}"));
+                return;
+            }
+        }
     }
     match decision.decision.as_str() {
         "deny" => print_deny(&decision.reason),
@@ -165,7 +182,7 @@ pub fn run_bash(harness: &str, cwd: &str, manifest_path: &Path) {
 /// plan's explicit callout that only Codex sends apply_patch payloads;
 /// Claude never emits `tool_name == "apply_patch"` or a `*** Begin Patch`
 /// command, so gating is a safety margin rather than a behavior difference.
-pub fn run_write(harness: &str, cwd: &str, manifest_path: &Path) {
+pub fn run_write(p: Result<&Compiled, &str>, harness: &str, cwd: &str, manifest_path: &Path) {
     let payload = match read_stdin_object() {
         Ok(v) => v,
         Err(e) => {
@@ -180,7 +197,7 @@ pub fn run_write(harness: &str, cwd: &str, manifest_path: &Path) {
         && (tool_name == "apply_patch" || command.starts_with("*** Begin Patch"));
 
     if is_apply_patch {
-        let decision = evaluate_apply_patch(&command, cwd, manifest_path);
+        let decision = evaluate_apply_patch(p, &command, cwd, manifest_path);
         if decision.decision == "deny" {
             print_deny(&decision.reason);
         }
@@ -193,7 +210,7 @@ pub fn run_write(harness: &str, cwd: &str, manifest_path: &Path) {
         str_or_empty(&payload, "/tool_input/content"),
         str_or_empty(&payload, "/tool_input/new_string")
     );
-    let decision = evaluate_with_manifest("write", "", &file_path, &content, cwd, manifest_path);
+    let decision = evaluate_with_manifest(p, "write", "", &file_path, &content, cwd, manifest_path);
     if decision.decision == "deny" {
         print_deny(&decision.reason);
     }
@@ -312,7 +329,7 @@ fn payload_cwd(payload: &Value, default_cwd: &str) -> String {
 /// exits 2, on warn it writes the reason to stderr and still allows (grok
 /// has no separate warning channel), and a bad payload fails closed with
 /// the same JSON shape rather than silently allowing.
-pub fn run_grok(default_cwd: &str, manifest: &Path) -> i32 {
+pub fn run_grok(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path) -> i32 {
     let payload = match read_stdin_object() {
         Ok(v) => v,
         Err(e) => {
@@ -339,7 +356,7 @@ pub fn run_grok(default_cwd: &str, manifest: &Path) -> i32 {
             return 2;
         }
         let cwd = payload_cwd(&payload, default_cwd);
-        let decision = evaluate_apply_patch(patch, &cwd, manifest);
+        let decision = evaluate_apply_patch(p, patch, &cwd, manifest);
         if decision.decision == "deny" {
             println!(
                 "{}",
@@ -355,7 +372,8 @@ pub fn run_grok(default_cwd: &str, manifest: &Path) -> i32 {
         return 0;
     };
     let cwd = payload_cwd(&payload, default_cwd);
-    let decision = evaluate_with_manifest(c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
+    let decision =
+        evaluate_with_manifest(p, c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
     match decision.decision.as_str() {
         "deny" => {
             println!(
@@ -384,7 +402,7 @@ pub fn run_grok(default_cwd: &str, manifest: &Path) -> i32 {
 /// crush treats a printed `{"decision":"allow"}` on stdout as extra output
 /// to surface to the user rather than as a no-op, so allow must produce no
 /// stdout at all.
-pub fn run_crush(default_cwd: &str, manifest: &Path) -> i32 {
+pub fn run_crush(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path) -> i32 {
     let payload = match read_stdin_object() {
         Ok(v) => v,
         Err(e) => {
@@ -398,7 +416,8 @@ pub fn run_crush(default_cwd: &str, manifest: &Path) -> i32 {
         return 0;
     };
     let cwd = payload_cwd(&payload, default_cwd);
-    let decision = evaluate_with_manifest(c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
+    let decision =
+        evaluate_with_manifest(p, c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
     match decision.decision.as_str() {
         "deny" => {
             eprintln!("{}", decision.reason);
@@ -420,7 +439,7 @@ pub fn run_crush(default_cwd: &str, manifest: &Path) -> i32 {
 /// deny prints `{"decision":"deny","reason":R}`; allow and warn print `{}`
 /// (an empty decision means "use the normal permission flow", whereas an
 /// explicit `allow` would bypass agy's own prompts and sandbox).
-pub fn run_antigravity(default_cwd: &str, manifest: &Path) -> i32 {
+pub fn run_antigravity(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path) -> i32 {
     let deny = |reason: &str| {
         println!(
             "{}",
@@ -483,7 +502,7 @@ pub fn run_antigravity(default_cwd: &str, manifest: &Path) -> i32 {
         println!("{{}}");
         return 0;
     };
-    let decision = evaluate_with_manifest(tool, &command, &path, &content, &cwd, manifest);
+    let decision = evaluate_with_manifest(p, tool, &command, &path, &content, &cwd, manifest);
     match decision.decision.as_str() {
         "deny" => deny(&decision.reason),
         "warn" => {
@@ -504,7 +523,7 @@ const CURSOR_READ_ONLY_TOOLS: [&str; 4] = ["Read", "Grep", "List", "ReadLints"];
 /// Deny prints `{"permission":"deny","user_message":R,"agent_message":R}`;
 /// allow and warn print `{}` (`permission: allow` would bypass Cursor's
 /// allowlist prompts). Always exits 0.
-pub fn run_cursor(default_cwd: &str, manifest: &Path) -> i32 {
+pub fn run_cursor(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path) -> i32 {
     let deny = |reason: &str| {
         println!(
             "{}",
@@ -532,12 +551,23 @@ pub fn run_cursor(default_cwd: &str, manifest: &Path) -> i32 {
         println!("{{}}");
         return 0;
     };
-    if c.tool == "bash" && crate::policy::is_interactive_launch(&c.command) {
-        deny(INTERACTIVE_LAUNCH_REASON);
-        return 0;
+    // On `Err` the deny comes from `evaluate_with_manifest` below.
+    if let (Ok(p), "bash") = (p, c.tool) {
+        match crate::policy::is_interactive_launch(p, &c.command) {
+            Ok(true) => {
+                deny(INTERACTIVE_LAUNCH_REASON);
+                return 0;
+            }
+            Ok(false) => {}
+            Err(reason) => {
+                deny(&format!("interactive_launch: {reason}"));
+                return 0;
+            }
+        }
     }
     let cwd = payload_cwd(&payload, default_cwd);
-    let decision = evaluate_with_manifest(c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
+    let decision =
+        evaluate_with_manifest(p, c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
     match decision.decision.as_str() {
         "deny" => deny(&decision.reason),
         "warn" => {

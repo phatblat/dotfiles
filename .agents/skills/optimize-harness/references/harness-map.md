@@ -83,7 +83,7 @@ commands that failed due to permission denial or indicate frequent use.
   `docs/agent-session-transcripts.md#antigravity`.
   `~/.gemini/antigravity-cli/conversations/*.pb` is protobuf with no
   published schema and is on the guard's protected-path list
-  (`crates/ness/src/policy.rs`'s `PROTECTED_PATHS`); transcript bodies there
+  (`[protected_paths]` in `~/.config/ness/policy.toml`); transcript bodies there
   are permanently out of audit coverage.
 
 ## cursor
@@ -137,7 +137,8 @@ with new measurements, not with a fresh reading of the same config.
 - **OMP `tools.approvalMode: yolo` is not an ungated configuration.** `~/.omp/agent/config.yml`
   layers `sudo *` → `deny` over it, plus the independent `ness` pre-tool hook. Judge the
   effective policy, not the mode name. The `rm *` rule is emitted as `prompt`
-  (omp accepts only `allow|deny|prompt` and silently drops `ask`; fixed 2026-10-16 in
+  (omp accepts only `allow|deny|prompt` and silently drops `ask`; fixed 2026-10-16; the
+  baseline now lives in `[approval]` of `~/.config/ness/policy.toml`, rendered by
   `scripts/harness_policy.py`), and named profiles load the same ness hook through the
   `hooks`/`extensions` links `generate-omp-profiles.sh` maintains.
 - **A grok scan of 0 files with `files_skipped_since: 1` is genuine inactivity**, not a scanner
