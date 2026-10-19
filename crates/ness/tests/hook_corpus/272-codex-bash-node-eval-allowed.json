@@ -1,0 +1,13 @@
+{
+  "expected": {
+    "exit": 0
+  },
+  "payload": {
+    "hook_event_name": "PreToolUse",
+    "tool_input": {
+      "command": "node -e 'console.log(1)'"
+    },
+    "tool_name": "Bash"
+  },
+  "shim": "codex-bash"
+}
