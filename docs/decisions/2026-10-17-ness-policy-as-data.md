@@ -278,3 +278,9 @@ submodule. **Rejected**: see Positions.
   `applied.json` hash check: the rendered permission files trust the tracked
   file, the same exposure the hardcoded tuples had. The guard's rule (clause
   3) is stricter and separate. The decision is unchanged.
+- 2026-10-19: The latency measurement in Assumptions and clause 11 was taken:
+  `ness guard --harness claude --tool bash --command 'git status'`, 200 runs
+  per binary, four rounds, pre-change binary against the data-driven one
+  with an applied policy. The data-driven engine adds 2.6–3.0 ms p50
+  (9.1–15.6 ms → 12.2–18.5 ms; absolute figures drift with machine load,
+  the delta does not), within the 10 ms budget. The decision is unchanged.
