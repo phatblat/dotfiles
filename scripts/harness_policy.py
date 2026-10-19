@@ -50,6 +50,7 @@ def load_approval() -> dict[str, Any]:
     with POLICY_PATH.open("rb") as fh:
         return tomllib.load(fh)["approval"]
 
+
 # omp only: `rm` targets that could escape /tmp or expand unexpectedly. These
 # must precede BASH_ALLOW_RM_TMP, since omp matches first-wins.
 BASH_ASK_RM_RISKY: tuple[str, ...] = (
@@ -71,6 +72,7 @@ BASH_ALLOW_RM_TMP: tuple[str, ...] = (
     "rm -f /tmp/*",
     "rm -r /tmp/*",
 )
+
 
 def _modes() -> dict[str, str]:
     return load_approval()["modes"]
