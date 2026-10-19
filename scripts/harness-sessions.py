@@ -167,12 +167,10 @@ def resolve_session_root(slug: str, store: SessionStore) -> tuple[Path, str]:
     if slug == "pi":
         session_dir = os.environ.get("PI_CODING_AGENT_SESSION_DIR")
         if session_dir:
-            return Path(
-                session_dir
-            ).expanduser().parent, "env:PI_CODING_AGENT_SESSION_DIR"
+            return Path(session_dir).expanduser(), "env:PI_CODING_AGENT_SESSION_DIR"
         settings_dir = _pi_session_dir()
         if settings_dir is not None:
-            return settings_dir.parent, "settings:sessionDir"
+            return settings_dir, "settings:sessionDir"
         agent_dir = os.environ.get("PI_CODING_AGENT_DIR")
         if agent_dir:
             return Path(agent_dir).expanduser(), "env:PI_CODING_AGENT_DIR"
