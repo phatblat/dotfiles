@@ -82,7 +82,7 @@ patterns = ['(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n
 # assignments and launcher flags), with the stdin/interactive short flags
 # allowed in clusters (`-il`, `-iq`).
 [commands.interactive_launch]
-patterns = ['(?:^|&&|\|\||;|\n)\s*(?:(?:\S*/)?(?:env|exec|command|nohup|time)(?:\s+(?:-\S+|\w+=\S*))*\s+)*(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu|python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)(?:\s+repl)?(?:\s+(?:-[ilqs]+|--?(?:login|interactive|norc|noprofile|quiet)))*(?:\s+-)?\s*(?:$|(?=&&|\|\||;|\n))']
+patterns = ['(?:^|&&|\|\||\||;|\n|\(|\{)\s*(?:(?:\S*/)?(?:env|exec|command|nohup|time)(?:\s+(?:-\S+|\w+=\S*))*\s+)*(?:(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu)(?:\s+-(?![A-Za-z]*c)[A-Za-z]*s[A-Za-z]*(?:(?!\s-[A-Za-z]*c\b)\s+\S+)*|(?:\s+(?:--(?:rcfile|init-file)\s+\S+|--(?!command\b)[A-Za-z][\w-]*|-(?![A-Za-z]*c)[A-Za-z]+|[-+]o\s+\w+))*(?:\s+-)?)|(?:\S*/)?(?:python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)(?:\s+repl)?(?:\s+(?:--(?!eval\b|print\b|command\b)[A-Za-z][\w-]*(?:=\S+)?|-(?![A-Za-z]*[cemp])[A-Za-z]+))*(?:\s+-)?|(?:tmux|screen)(?:\s+(?:new(?:-session)?|attach(?:-session)?|-[A-Za-z]+))*|ssh(?:\s+-(?![A-Za-z]*[TNnfW])[A-Za-z]+)*\s+[\w.@-]+)\s*(?:$|(?=&&|\|\||\||;|\n|\)|\}))']
 
 # Deliberately case-sensitive (matches the original Python source).
 [commands.warn]
