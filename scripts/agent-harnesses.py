@@ -1647,7 +1647,7 @@ function patchTargets(patchText: string): string[] {
 function patchAddedContent(patchText: string): string {
   return patchText
     .split("\n")
-    .filter((line) => line.startsWith("+") && !line.startsWith("+++"))
+    .filter((line) => line.startsWith("+"))
     .map((line) => line.slice(1))
     .join("\n");
 }

@@ -98,12 +98,12 @@ fn apply_patch_all_paths(patch_text: &str) -> Vec<String> {
 }
 
 /// Port of `apply_patch_added_content` (`apply-patch-input.sh:37-43`): every
-/// added line (`+`, not `+++`), stripped of its leading `+`, newline-joined.
+/// added line (anything starting with `+`, including `+++`: the apply_patch
+/// format has no `+++` header), with one leading `+` stripped, newline-joined.
 fn apply_patch_added_content(patch_text: &str) -> String {
     patch_text
         .lines()
-        .filter(|line| line.starts_with('+') && !line.starts_with("+++"))
-        .map(|line| &line[1..])
+        .filter_map(|line| line.strip_prefix('+'))
         .collect::<Vec<_>>()
         .join("\n")
 }
