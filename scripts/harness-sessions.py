@@ -1318,6 +1318,11 @@ def scan_harness(
     raise AssertionError(f"no adapter for {slug}")
 
 
+# Observation kinds taken from an assistant toolCall with no result join; the
+# call may have been denied or failed, so they never count as confirmed.
+ATTEMPT_ONLY_KINDS = frozenset({"device_call", "skill_read"})
+
+
 def aggregate_usage(observations: list[Obs]) -> list[dict[str, Any]]:
     groups: dict[tuple[str, str, str], list[Obs]] = {}
     for o in observations:
@@ -1342,6 +1347,10 @@ def aggregate_usage(observations: list[Obs]) -> list[dict[str, Any]]:
             confidence = "confirmed invocation"
         elif kind in ("tool_call", "tool_result", "mcp_call"):
             confidence = "corroborated probable"
+        elif kind in ATTEMPT_ONLY_KINDS and not (successes or errors):
+            # Emitted from assistant toolCall blocks and never joined to a
+            # result, so a guard-denied or failed call looks identical.
+            confidence = "attempt only"
         elif attempts:
             confidence = "confirmed invocation"
         else:
