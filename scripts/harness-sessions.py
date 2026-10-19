@@ -915,7 +915,7 @@ def _omp_error_class(message: dict) -> str:
             if isinstance(chunk, dict) and chunk.get("type") == "text":
                 text = str(chunk.get("text", ""))
                 break
-    first = text.splitlines()[0] if text else ""
+    first = next((line for line in text.splitlines() if line.strip()), "")
     for label, pattern in _OMP_ERROR_CLASSES:
         if pattern.search(first):
             return label

@@ -20,3 +20,9 @@ load helpers/setup
 
   [ "$status" -eq 0 ]
 }
+
+@test "harness-sessions: usage labels, Pi session roots and OMP error classes" {
+  run python3 "${BATS_TEST_DIRNAME}/test_harness_sessions.py"
+
+  [ "$status" -eq 0 ]
+}
