@@ -262,6 +262,50 @@
     },
     {
       "approval": "prompt",
+      "match": "rm *..*"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm *~*"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm *$*"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm *`*"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm /tmp/"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm * /tmp/"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm /tmp/* *"
+    },
+    {
+      "approval": "prompt",
+      "match": "rm * /tmp/* *"
+    },
+    {
+      "approval": "allow",
+      "match": "rm /tmp/*"
+    },
+    {
+      "approval": "allow",
+      "match": "rm -f /tmp/*"
+    },
+    {
+      "approval": "allow",
+      "match": "rm -r /tmp/*"
+    },
+    {
+      "approval": "prompt",
       "match": "rm *"
     },
     {
