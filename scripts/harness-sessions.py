@@ -138,12 +138,19 @@ def _pi_session_dir() -> Path | None:
     return None
 
 
+# Pi session-dir overrides name the transcript directory itself, whatever its
+# basename, so the scan globs it directly rather than via the store pattern.
+PI_SESSION_DIR_SOURCES = frozenset({"env:PI_CODING_AGENT_SESSION_DIR", "settings:sessionDir"})
+
+
 def resolve_session_root(slug: str, store: SessionStore) -> tuple[Path, str]:
     """Profile-aware session root resolution for OMP/Pi; generic fallback otherwise.
 
     Returns the directory one level above the actual sessions directory so that
     the existing SESSION_STORES patterns (e.g. ``sessions/**/*.jsonl``) continue
-    to work unchanged.
+    to work unchanged. The exception is a Pi session-dir override
+    (``PI_SESSION_DIR_SOURCES``): it returns the directory itself, because its
+    basename is arbitrary and ``scan_harness`` globs it with ``**/*.jsonl``.
     """
     if slug == "omp":
         profile = os.environ.get("OMP_PROFILE") or os.environ.get("PI_PROFILE")
@@ -1297,7 +1304,8 @@ def scan_harness(
         coverage.files_skipped_max = max(0, len(in_window_dirs) - max_files)
         return scan_grok(in_window_dirs[:max_files], coverage), coverage
 
-    all_files = iter_files(root, store.pattern)
+    pattern = "**/*.jsonl" if resolved_from in PI_SESSION_DIR_SOURCES else store.pattern
+    all_files = iter_files(root, pattern)
     in_window = [p for p, mtime in all_files if mtime >= since_epoch]
     coverage.files_skipped_since = len(all_files) - len(in_window)
     coverage.files_skipped_max = max(0, len(in_window) - max_files)
