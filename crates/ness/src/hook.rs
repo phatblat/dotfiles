@@ -82,6 +82,9 @@ fn apply_patch_all_paths(patch_text: &str) -> Vec<String> {
     let mut seen = std::collections::HashSet::new();
     let mut out = Vec::new();
     for line in patch_text.lines() {
+        // The patch parser trims each marker line, so leading whitespace
+        // (`  *** Add File: .env`) must not hide a header from the guard.
+        let line = line.trim();
         let target = line
             .strip_prefix("*** Add File:")
             .or_else(|| line.strip_prefix("*** Update File:"))
