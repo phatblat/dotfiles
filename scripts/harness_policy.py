@@ -157,6 +157,28 @@ BASH_ALLOW_EXACT: tuple[str, ...] = (
 # Prompt even where the mode would auto-approve.
 BASH_ASK_PREFIX: tuple[str, ...] = ("rm",)
 
+# omp only: `rm` targets that could escape /tmp or expand unexpectedly. These
+# must precede BASH_ALLOW_RM_TMP, since omp matches first-wins.
+BASH_ASK_RM_RISKY: tuple[str, ...] = (
+    "rm *..*",
+    "rm *~*",
+    "rm *$*",
+    "rm *`*",
+    "rm /tmp/",
+    "rm * /tmp/",
+    "rm /tmp/* *",
+    "rm * /tmp/* *",
+)
+
+# omp only: allow `rm` under /tmp without a prompt. The combined force +
+# recursive spellings are left out on purpose: the shared guard's
+# DANGEROUS_COMMANDS denies them before omp's pattern matters.
+BASH_ALLOW_RM_TMP: tuple[str, ...] = (
+    "rm /tmp/*",
+    "rm -f /tmp/*",
+    "rm -r /tmp/*",
+)
+
 # Absolute deny, matching the shared guard's privilege-escalation rule.
 BASH_DENY_PREFIX: tuple[str, ...] = ("sudo",)
 
@@ -252,6 +274,10 @@ def bash_rules(style: str) -> Any:
         for cmd in BASH_DENY_PREFIX:
             patterns.append({"match": f"{cmd} *", "approval": "deny"})
             patterns.append({"match": cmd, "approval": "deny"})
+        for match in BASH_ASK_RM_RISKY:
+            patterns.append({"match": match, "approval": "prompt"})
+        for match in BASH_ALLOW_RM_TMP:
+            patterns.append({"match": match, "approval": "allow"})
         for cmd in BASH_ASK_PREFIX:
             patterns.append({"match": f"{cmd} *", "approval": "prompt"})
             patterns.append({"match": cmd, "approval": "prompt"})
