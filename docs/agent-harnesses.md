@@ -9,13 +9,13 @@ Coverage: 91/405 cells verified (22%)
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.285 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| codex | supported peer | codex-cli 0.162.1 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.19.0 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
-| pi | new port | 1.2.0 | 2026-08-29 | 9 | 1 | 0 | 0 | 1 | 34 |
-| omp | tracked port | omp/18.11.1 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| antigravity | tracked port | 1.3.3 | 2026-08-29 | 4 | 7 | 0 | 0 | 0 | 34 |
+| codex | supported peer | codex-cli 0.163.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
+| opencode | new port | 1.19.3 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| pi | new port | 1.3.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
+| omp | tracked port | omp/18.12.0 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| antigravity | tracked port | 1.4.2 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | cursor | tracked port | 2026.10.01-e373342 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.52 (0920c8169e27) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
+| grok | new port | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.98.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
@@ -24,13 +24,13 @@ Coverage: 91/405 cells verified (22%)
 |---|---|---|---|---|---|---|---|---|
 | Instructions | [harness/instructions.md](harness/instructions.md) | 3 | 7 | 2 | 0 | 0 | 0 | 18 |
 | Skills | [harness/skills.md](harness/skills.md) | 7 | 7 | 3 | 0 | 0 | 1 | 52 |
-| Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 4 | 0 | 1 | 0 | 18 |
-| Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 4 | 0 | 1 | 0 | 27 |
+| Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 3 | 0 | 1 | 1 | 18 |
+| Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 3 | 0 | 1 | 1 | 27 |
 | Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 5 | 4 | 0 | 0 | 0 | 27 |
 | Permissions | [harness/permissions.md](harness/permissions.md) | 3 | 10 | 0 | 0 | 0 | 5 | 12 |
 | MCP | [harness/mcp.md](harness/mcp.md) | 3 | 7 | 1 | 0 | 0 | 1 | 18 |
 | Models | [harness/models.md](harness/models.md) | 4 | 0 | 0 | 0 | 0 | 0 | 36 |
-| Sessions | [harness/sessions.md](harness/sessions.md) | 4 | 7 | 2 | 0 | 0 | 0 | 27 |
+| Sessions | [harness/sessions.md](harness/sessions.md) | 4 | 7 | 1 | 0 | 0 | 1 | 27 |
 | Providers | [harness/providers.md](harness/providers.md) | 2 | 0 | 0 | 0 | 0 | 0 | 18 |
 | Profiles | [harness/profiles.md](harness/profiles.md) | 2 | 0 | 0 | 0 | 0 | 0 | 18 |
 | UI | [harness/ui.md](harness/ui.md) | 4 | 0 | 0 | 0 | 0 | 0 | 36 |
@@ -42,20 +42,18 @@ Coverage: 91/405 cells verified (22%)
 |---|---|---|
 | codex | commands.active | Re-check Codex release notes for stable command format |
 | codex | mcp.dependencies | hand-add [mcp_servers.filesystem]; validated by just harness-check |
-| pi | agents.specialists | Implement subprocess delegation in ~/.pi/agent/extensions/harness.ts per policy |
 | antigravity | agents.specialists | Verify Antigravity can delegate to generated specialist wrappers with isolated context |
-| antigravity | commands.active | Verify Antigravity command schema or flatten command wrappers so all 25 commands are discovered |
 | antigravity | hooks.safety | Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny |
 | antigravity | instructions.global | Install or import the Antigravity plugin and verify it loads shared harness instructions |
-| antigravity | sessions.compaction | Verify Antigravity conversation and artifact persistence behavior against compact-preservation requirements |
+| antigravity | sessions.compaction | Decide where Antigravity should receive the compact-preservation requirements, then verify conversation and artifact persistence |
 | antigravity | skills.manual_only | Verify Antigravity adapter excludes every procedural skill while continuing to emit ability skills |
 | antigravity | skills.shared | Verify agy imports and activates shared skill wrappers from the plugin |
 | cursor | agents.specialists | Verify Cursor discovers generated specialist agent wrappers |
 | cursor | commands.active | Verify Cursor discovers all 25 generated command wrappers |
-| cursor | hooks.safety | Verify Cursor invokes hooks.json before shell/write/edit calls and blocks on deny |
+| cursor | hooks.safety | Confirm in a live Cursor session that a protected-path write is blocked |
 | cursor | instructions.global | Link or install the Cursor plugin and verify Cursor loads the shared-harness rule |
 | cursor | sessions.compaction | Verify Cursor resume and history behavior against compact-preservation requirements |
-| cursor | skills.shared | Verify Cursor discovers and activates generated shared skill wrappers |
+| cursor | skills.shared | Verify Cursor discovers and activates the shared skills |
 | grok | agents.specialists | Verify grok spawn_subagent can launch the generated specialist profiles |
 | grok | commands.active | Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows |
 | grok | hooks.safety | Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session |
@@ -67,16 +65,16 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
-| 2026-10-16 | omp | - | version | omp/18.11.0 | omp/18.11.1 |
-| 2026-10-15 | omp | - | version | omp/18.10.4 | omp/18.11.0 |
-| 2026-10-14 | pi | - | version | 1.1.0 | 1.2.0 |
-| 2026-10-14 | omp | - | version | omp/18.10.3 | omp/18.10.4 |
-| 2026-10-13 | opencode | - | version | 1.18.35 | 1.19.0 |
-| 2026-10-13 | omp | - | version | omp/18.10.1 | omp/18.10.3 |
-| 2026-10-13 | grok | - | version | grok 1.0.50 (c58f321264ba) [alpha] | grok 1.0.52 (0920c8169e27) [alpha] |
-| 2026-10-12 | omp | - | version | omp/18.9.1 | omp/18.10.1 |
-| 2026-10-11 | omp | - | version | omp/18.8.7 | omp/18.9.1 |
-| 2026-10-11 | cursor | - | version | 2026.09.28-64d2043 | 2026.10.01-e373342 |
+| 2026-10-18 | omp | - | version | omp/18.11.3 | omp/18.12.0 |
+| 2026-10-18 | antigravity | - | version | 1.4.0 | 1.4.2 |
+| 2026-10-18 | antigravity | sessions.compaction | surface | - | No generated compaction guidance |
+| 2026-10-18 | antigravity | sessions.compaction | mode | native | none |
+| 2026-10-18 | antigravity | sessions.compaction | parity | partial | absent |
+| 2026-10-18 | antigravity | sessions.compaction | probe | pass | - |
+| 2026-10-17 | pi | - | version | 1.2.0 | 1.3.0 |
+| 2026-10-17 | opencode | - | version | 1.19.0 | 1.19.3 |
+| 2026-10-17 | omp | - | version | omp/18.11.0 | omp/18.11.3 |
+| 2026-10-17 | grok | - | version | grok 1.0.52 (0920c8169e27) [alpha] | grok 1.0.62 (1474f9cbdd91) [alpha] |
 
 ## Permanent divergences
 

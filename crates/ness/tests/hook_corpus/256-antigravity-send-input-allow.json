@@ -1,0 +1,20 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {}
+  },
+  "payload": {
+    "toolCall": {
+      "args": {
+        "Action": "send_input",
+        "Input": "git status --short\n",
+        "TaskId": "t1"
+      },
+      "name": "manage_task"
+    },
+    "workspacePaths": [
+      "/tmp"
+    ]
+  },
+  "shim": "antigravity"
+}

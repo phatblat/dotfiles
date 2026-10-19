@@ -1,22 +1,59 @@
 {
   "plugins": {
     "android-cli-plugin": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/android-cli-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
     },
     "chrome-devtools-plugin": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/chrome-devtools-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
+    },
+    "data-agent-kit-plugin": {
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/data-agent-kit-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
     },
     "firebase": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/firebase",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
     },
     "google-antigravity-sdk": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/google-antigravity-sdk",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
     },
     "modern-web-guidance-plugin": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/modern-web-guidance-plugin",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
     },
     "science": {
-      "enabled": true
+      "enabled": true,
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/science",
+        "marketplace": "antigravity-plugins-official",
+        "version": ""
+      }
     },
     "shared-agent-harness": {
       "enabled": true
@@ -29,6 +66,9 @@
       "foregroundOverride": "#A9B1D6",
       "primary": "#7AA2F7"
     },
-    "remoteControlHostname": "dto-a165-chatelain-zero-rocket"
+    "gcpRegion": "us",
+    "permissionGrantsV2Migrated": true,
+    "remoteControlHostname": "dto-a165-chatelain-zero-rocket",
+    "sandboxEnabledAtV2Migration": true
   }
 }

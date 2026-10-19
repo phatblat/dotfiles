@@ -8,4 +8,4 @@ Execute the shared `retro` command prompt from:
 
 `~/.agents/harness/commands/retro.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

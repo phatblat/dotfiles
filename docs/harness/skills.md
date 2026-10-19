@@ -13,22 +13,22 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.285 (Claude Code) · 2026-10-16 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.162.1 · 2026-10-16 | - |
-| opencode | aligned | shared | - | probe · 1.19.0 · 2026-10-16 | - |
-| pi | aligned | shared | - | probe · 1.2.0 · 2026-10-16 | - |
-| omp | aligned | native | - | probe · omp/18.11.1 · 2026-10-16 | - |
-| antigravity | partial | adapter | - | probe · 1.3.3 · 2026-10-16 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
-| cursor | partial | native | - | probe · 2026.10.01-e373342 · 2026-10-16 | generated Cursor plugin skill wrappers point to shared skills, but runtime discovery has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.52 (0920c8169e27) [alpha] · 2026-10-16 | grok scans ~/.agents/skills at the user tier |
-| crush | aligned | native | - | probe · crush version v0.98.1 · 2026-10-16 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
+| claude | aligned | shared | - | probe · 2.1.285 (Claude Code) · 2026-10-18 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.163.0 · 2026-10-18 | - |
+| opencode | aligned | shared | - | probe · 1.19.3 · 2026-10-18 | - |
+| pi | aligned | shared | - | probe · 1.3.0 · 2026-10-18 | - |
+| omp | aligned | native | - | probe · omp/18.12.0 · 2026-10-18 | - |
+| antigravity | partial | adapter | - | probe · 1.4.2 · 2026-10-18 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
+| cursor | partial | native | - | probe · 2026.10.01-e373342 · 2026-10-18 | agentlink symlink to ~/.agents/skills |
+| grok | aligned | native | - | probe · grok 1.0.62 (1474f9cbdd91) [alpha] · 2026-10-18 | grok scans ~/.agents/skills at the user tier |
+| crush | aligned | native | - | probe · crush version v0.98.1 · 2026-10-18 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
 
 ### skills.manual_only · p1
 
 A procedural skill the user runs deliberately is not model-invoked, expressed through whatever key that harness documents.
 
 Porting: Represent intent per harness; do not copy one vendor key everywhere.
-Note: Codex policy blocks implicit invocation but does not hide enabled skill metadata.
+Note: Codex 0.162.1: `allow_implicit_invocation: false` removes the skill from the model-visible skill list; the user can still run it as `$<name>`.
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
@@ -37,7 +37,7 @@ Note: Codex policy blocks implicit invocation but does not hide enabled skill me
 | opencode | absent | none | No per-skill invocation-policy field | docs · 1.18.25 · 2026-09-02 | Permissions are keyed by tool (bash/edit/skill/...) and match input patterns, not an invocation-policy flag; `skill` permission can only allow/ask/deny loading a named skill outright, it cannot distinguish implicit model-triggered invocation from explicit user invocation. To keep a rarely used procedural skill out of context entirely, move it out of scanned skill paths or gate it behind `[[skills.config]] enabled = false`-style per-project config; there is no Codex-equivalent policy toggle to port. |
 | pi | unknown | none | Local adapter or command wrapper | - | - |
 | omp | unknown | none | Local adapter or command wrapper | - | - |
-| antigravity | partial | adapter | Excluded from adapter skill emission by source openai.yaml policy | source · - · 2026-09-15 | Procedural skills carry agents/openai.yaml policy.allow_implicit_invocation: false; the antigravity skill-emission loop excludes them, so only ability skills auto-invoke. Procedural workflows remain reachable via adapter commands. No native per-skill invocation policy exists in agy 1.2.1. |
+| antigravity | partial | adapter | Excluded from adapter skill emission by source openai.yaml policy | source · - · 2026-09-15 | Procedural skills carry agents/openai.yaml policy.allow_implicit_invocation: false; the antigravity skill-emission loop excludes them, so only ability skills auto-invoke. The adapter commands that used to expose procedural workflows were removed. No native per-skill invocation policy exists in agy 1.2.1. |
 | cursor | unknown | none | `disable-model-invocation: true` | - | - |
 | grok | unknown | none | `disable-model-invocation: true` | - | - |
 | crush | unknown | none | `disable-model-invocation: true` | - | - |

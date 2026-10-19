@@ -9,19 +9,40 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.285 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
-| codex | codex-cli 0.162.1 | 2026-08-29 | codex-cli 0.162.0 |
-| opencode | 1.19.0 | 2026-08-29 | 1.18.35 |
-| pi | 1.2.0 | 2026-08-29 | 1.1.0 |
-| omp | omp/18.11.1 | 2026-08-29 | omp/18.11.0 |
-| antigravity | 1.3.3 | 2026-08-29 | 1.2.10 |
+| codex | codex-cli 0.163.0 | 2026-08-29 | codex-cli 0.162.1 |
+| opencode | 1.19.3 | 2026-08-29 | 1.19.0 |
+| pi | 1.3.0 | 2026-08-29 | 1.2.0 |
+| omp | omp/18.12.0 | 2026-08-29 | omp/18.11.3 |
+| antigravity | 1.4.2 | 2026-08-29 | 1.4.0 |
 | cursor | 2026.10.01-e373342 | 2026-08-29 | 2026.09.28-64d2043 |
-| grok | grok 1.0.52 (0920c8169e27) [alpha] | 2026-08-29 | grok 1.0.50 (c58f321264ba) [alpha] |
+| grok | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | grok 1.0.52 (0920c8169e27) [alpha] |
 | crush | crush version v0.98.1 | 2026-08-29 | crush version v0.98.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-18 | omp | - | version | omp/18.11.3 | omp/18.12.0 | omp/18.12.0 |
+| 2026-10-18 | antigravity | - | version | 1.4.0 | 1.4.2 | 1.4.2 |
+| 2026-10-18 | antigravity | sessions.compaction | surface | - | No generated compaction guidance | 1.4.2 |
+| 2026-10-18 | antigravity | sessions.compaction | mode | native | none | 1.4.2 |
+| 2026-10-18 | antigravity | sessions.compaction | parity | partial | absent | 1.4.2 |
+| 2026-10-18 | antigravity | sessions.compaction | probe | pass | - | 1.4.2 |
+| 2026-10-17 | pi | - | version | 1.2.0 | 1.3.0 | 1.3.0 |
+| 2026-10-17 | opencode | - | version | 1.19.0 | 1.19.3 | 1.19.3 |
+| 2026-10-17 | omp | - | version | omp/18.11.0 | omp/18.11.3 | omp/18.11.3 |
+| 2026-10-17 | grok | - | version | grok 1.0.52 (0920c8169e27) [alpha] | grok 1.0.62 (1474f9cbdd91) [alpha] | grok 1.0.62 (1474f9cbdd91) [alpha] |
+| 2026-10-17 | codex | - | version | codex-cli 0.162.1 | codex-cli 0.163.0 | codex-cli 0.163.0 |
+| 2026-10-17 | antigravity | - | version | 1.3.3 | 1.4.0 | 1.4.0 |
+| 2026-10-17 | pi | agents.specialists | surface | - | No agent registry or subagent support in Pi 1.2.0 | 1.3.0 |
+| 2026-10-17 | pi | agents.specialists | mode | emulated | none | 1.3.0 |
+| 2026-10-17 | pi | agents.specialists | parity | partial | absent | 1.3.0 |
+| 2026-10-17 | pi | agents.specialists | probe | pass | - | 1.3.0 |
+| 2026-10-17 | antigravity | mcp.dependencies | surface | Generated `mcp.json` | Generated `mcp_config.json` | 1.4.0 |
+| 2026-10-17 | antigravity | commands.active | surface | - | Plugins load skills, agents, rules, hooks, mcpServers | 1.4.0 |
+| 2026-10-17 | antigravity | commands.active | mode | adapter | none | 1.4.0 |
+| 2026-10-17 | antigravity | commands.active | parity | partial | absent | 1.4.0 |
+| 2026-10-17 | antigravity | commands.active | probe | pass | - | 1.4.0 |
 | 2026-10-16 | omp | - | version | omp/18.11.0 | omp/18.11.1 | omp/18.11.1 |
 | 2026-10-15 | omp | - | version | omp/18.10.4 | omp/18.11.0 | omp/18.11.0 |
 | 2026-10-14 | pi | - | version | 1.1.0 | 1.2.0 | 1.2.0 |
@@ -201,24 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-03 | crush | mcp.dependencies | surface | `mcp add` in `~/.config/crush/crushrc` | ~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand | crush version v0.92.0 |
 | 2026-09-03 | crush | mcp.dependencies | parity | unknown | absent | crush version v0.92.0 |
 | 2026-09-03 | codex | mcp.dependencies | parity | unknown | partial | codex-cli 0.152.0 |
-| 2026-09-03 | claude | mcp.dependencies | mode | none | adapter | 2.1.236 (Claude Code) |
-| 2026-09-03 | claude | mcp.dependencies | parity | unknown | aligned | 2.1.236 (Claude Code) |
-| 2026-09-03 | antigravity | mcp.dependencies | surface | Generated `mcp.json`, unverified | Generated `mcp.json` | 1.1.24 |
-| 2026-09-03 | antigravity | mcp.dependencies | mode | none | adapter | 1.1.24 |
-| 2026-09-03 | antigravity | mcp.dependencies | parity | unknown | aligned | 1.1.24 |
-| 2026-09-02 | opencode | - | version | - | 1.18.25 | 1.18.25 |
-| 2026-09-02 | pi | - | version | 0.84.3 | 0.84.4 | 0.84.4 |
-| 2026-09-02 | opencode | - | version | 1.18.23 | - | - |
-| 2026-09-02 | omp | - | version | omp/18.0.10 | omp/18.1.2 | omp/18.1.2 |
-| 2026-09-02 | grok | - | version | grok 1.0.5 (5115b46bc909) [alpha] | grok 1.0.13 (5e9a58528b76) [alpha] | grok 1.0.13 (5e9a58528b76) [alpha] |
-| 2026-09-02 | crush | - | version | crush version v0.91.2 | crush version v0.92.0 | crush version v0.92.0 |
-| 2026-09-02 | codex | - | version | codex-cli 0.150.1 | codex-cli 0.152.0 | codex-cli 0.152.0 |
-| 2026-09-02 | antigravity | - | version | 1.1.22 | 1.1.24 | 1.1.24 |
-| 2026-09-02 | pi | skills.shared | probe | pass | fail | 0.84.4 |
-| 2026-09-02 | opencode | skills.shared | probe | pass | fail | - |
-| 2026-09-02 | omp | skills.shared | probe | pass | fail | omp/18.1.2 |
-| 2026-09-02 | omp | commands.active | probe | fail | pass | omp/18.1.2 |
-| 2026-09-02 | grok | skills.shared | probe | pass | fail | grok 1.0.13 (5e9a58528b76) [alpha] |
-| 2026-09-02 | grok | commands.active | probe | pass | fail | grok 1.0.13 (5e9a58528b76) [alpha] |
-| 2026-09-02 | cursor | skills.shared | probe | pass | fail | 2026.07.01-777f564 |
-| 2026-09-02 | crush | skills.shared | probe | pass | fail | crush version v0.92.0 |

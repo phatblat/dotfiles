@@ -1,17 +1,6 @@
 ---
 name: boris
-description: |
-  Codex workflow tips from Boris Cherny (creator of Codex) and the Codex team.
-  Use when: setting up Codex, optimizing workflows, running parallel sessions, configuring
-  AGENTS.md, using skills/commands, subagents, hooks, MCP integrations, or learning best practices.
-  Covers: git worktrees, plan mode, verification, permissions, Slack MCP, BigQuery, prompting tips,
-  plugins, custom agents, sandboxing, keybindings, status lines, output styles, customization,
-  /simplify for code quality, /batch for parallel code migrations, /loop for scheduled tasks,
-  code review agents, /btw for mid-task questions, /effort max reasoning, remote control sessions,
-  voice mode, setup scripts, session naming, /color, PostCompact hook,
-  auto mode, /schedule cloud jobs, iMessage plugin, auto-memory, and auto-dream,
-  mobile app, session teleporting, Cowork Dispatch, Chrome extension, Desktop app,
-  /branch forking, --bare SDK startup, --add-dir multi-repo, --agent custom agents, /voice input.
+description: "Codex workflow tips from Boris Cherny and the Codex team. Use when setting up Codex or optimizing workflows: parallel sessions, worktrees, plan mode, AGENTS.md, skills, subagents, hooks, MCP, permissions, and sandboxing."
 author: Boris Cherny (tips)
 source: howborisusesclaudecode.com
 compiled-by: "@CarolinaCherry"

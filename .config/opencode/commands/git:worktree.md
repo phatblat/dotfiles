@@ -8,4 +8,4 @@ Execute the shared `git/worktree` command prompt from:
 
 `~/.agents/harness/commands/git/worktree.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

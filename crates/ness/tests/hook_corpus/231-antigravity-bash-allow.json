@@ -1,16 +1,19 @@
 {
   "expected": {
     "exit": 0,
-    "stdout": {
-      "decision": "allow",
-      "harness": "antigravity",
-      "reason": "",
-      "tool": "bash"
-    }
+    "stdout": {}
   },
   "payload": {
-    "command": "git status --short",
-    "tool": "bash"
+    "toolCall": {
+      "args": {
+        "CommandLine": "git status --short",
+        "Cwd": "/tmp"
+      },
+      "name": "run_command"
+    },
+    "workspacePaths": [
+      "/tmp"
+    ]
   },
   "shim": "antigravity"
 }

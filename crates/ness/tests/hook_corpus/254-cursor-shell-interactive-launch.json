@@ -1,0 +1,18 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "agent_message": "Interactive shell/REPL launch blocked: input sent with write_stdin never re-runs the guard. Run each command directly.",
+      "permission": "deny",
+      "user_message": "Interactive shell/REPL launch blocked: input sent with write_stdin never re-runs the guard. Run each command directly."
+    }
+  },
+  "payload": {
+    "cwd": "/tmp",
+    "tool_input": {
+      "command": "bash -s"
+    },
+    "tool_name": "Shell"
+  },
+  "shim": "cursor"
+}

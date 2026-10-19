@@ -84,6 +84,25 @@ teardown() {
   [ "$status" -eq 1 ]
 }
 
+@test "generate-omp-profiles: links each profile's hooks and extensions to the main agent" {
+  mkdir -p "$root/.omp/agent/hooks" "$root/.omp/agent/extensions"
+  run "$render"
+  [ "$status" -eq 0 ]
+  profile_agent="$root/.omp/profiles/p/agent"
+  [ "$(readlink "$profile_agent/hooks")" = "../../../agent/hooks" ]
+  [ "$(readlink "$profile_agent/extensions")" = "../../../agent/extensions" ]
+  [ -d "$profile_agent/hooks" ]
+  [ -d "$profile_agent/extensions" ]
+}
+
+@test "generate-omp-profiles --check fails when a profile hooks link is missing" {
+  "$render"
+  rm "$root/.omp/profiles/p/agent/hooks"
+  run "$render" --check
+  [ "$status" -eq 1 ]
+  [[ "$output" == *"stale: .omp/profiles/p/agent/hooks is not linked to the main agent hooks"* ]]
+}
+
 @test "generate-omp-profiles: committed profile configs are current" {
   run "$repo/scripts/generate-omp-profiles.sh" --check
   [ "$status" -eq 0 ]

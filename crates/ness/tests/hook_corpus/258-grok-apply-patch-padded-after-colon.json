@@ -1,0 +1,17 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "reason": "protected file blocked: .env"
+    }
+  },
+  "payload": {
+    "cwd": "/tmp",
+    "toolInput": {
+      "patch": "*** Begin Patch\n*** Add File:\t.env \n+x\n*** End Patch"
+    },
+    "toolName": "apply_patch"
+  },
+  "shim": "grok"
+}

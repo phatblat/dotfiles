@@ -1,14 +1,10 @@
 {
   "hooks": {
-    "compaction": [
-      {
-        "append": "Preserve modified files, current branch, pending tasks, test results, and harness parity gaps."
-      }
-    ],
-    "tool_call": [
+    "preToolUse": [
       {
         "command": "bash ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh",
-        "description": "Evaluate shell, write, and edit calls with the shared harness guard."
+        "failClosed": true,
+        "timeout": 10
       }
     ]
   },

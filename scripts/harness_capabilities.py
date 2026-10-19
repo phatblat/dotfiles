@@ -130,6 +130,7 @@ _LOCAL_2026_06_27 = Evidence(kind="local", date="2026-06-27")
 # Probe-backed cells this restructure verified by running the probe.
 _PROBED_2026_08_29 = "2026-08-29"
 _PROBED_2026_09_15 = "2026-09-15"
+_PROBED_2026_10_16 = "2026-10-16"
 
 _SHARED = "~/.agents/harness"
 _SAFETY = "~/crates/ness/src/policy.rs"
@@ -167,11 +168,13 @@ CAPABILITIES: list[Capability] = [
             "codex": Cell(
                 parity="aligned",
                 mode="shared",
-                artifacts=(_SHARED,),
+                artifacts=("~/.codex/AGENTS.md", _SHARED),
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                    kind="probe", ref="file_contains", date=_PROBED_2026_10_16
                 ),
-                probe=_exists(".agents/harness/instructions.md"),
+                probe=_contains(
+                    ".codex/AGENTS.md", r"\.agents/harness/instructions\.md"
+                ),
             ),
             "opencode": Cell(
                 parity="aligned",
@@ -372,21 +375,13 @@ CAPABILITIES: list[Capability] = [
             "cursor": Cell(
                 parity="partial",
                 mode="native",
-                artifacts=("~/.agents/harness/adapters/cursor/skills",),
+                artifacts=("~/.cursor/skills",),
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                    kind="probe", ref="file_exists", date=_PROBED_2026_10_16
                 ),
-                probe=_exists(
-                    ".agents/harness/adapters/cursor/skills/test-driven-development/SKILL.md"
-                ),
-                note=(
-                    "generated Cursor plugin skill wrappers point to shared "
-                    "skills, but runtime discovery has not been verified"
-                ),
-                next_action=(
-                    "Verify Cursor discovers and activates generated shared skill "
-                    "wrappers"
-                ),
+                probe=_exists(".cursor/skills/test-driven-development/SKILL.md"),
+                note="agentlink symlink to ~/.agents/skills",
+                next_action=("Verify Cursor discovers and activates the shared skills"),
             ),
             "grok": Cell(
                 parity="aligned",
@@ -474,8 +469,9 @@ CAPABILITIES: list[Capability] = [
             "Represent intent per harness; do not copy one vendor key everywhere."
         ),
         note=(
-            "Codex policy blocks implicit invocation but does not hide enabled "
-            "skill metadata."
+            "Codex 0.162.1: `allow_implicit_invocation: false` removes the skill "
+            "from the model-visible skill list; the user can still run it as "
+            "`$<name>`."
         ),
         cells={
             "claude": Cell(
@@ -523,9 +519,9 @@ CAPABILITIES: list[Capability] = [
                     "Procedural skills carry agents/openai.yaml "
                     "policy.allow_implicit_invocation: false; the antigravity "
                     "skill-emission loop excludes them, so only ability skills "
-                    "auto-invoke. Procedural workflows remain reachable via adapter "
-                    "commands. No native per-skill invocation policy exists in agy "
-                    "1.2.1."
+                    "auto-invoke. The adapter commands that used to expose "
+                    "procedural workflows were removed. No native per-skill "
+                    "invocation policy exists in agy 1.2.1."
                 ),
                 next_action=(
                     "Verify Antigravity adapter excludes every procedural skill "
@@ -696,10 +692,7 @@ CAPABILITIES: list[Capability] = [
             "opencode": Cell(
                 parity="aligned",
                 mode="adapter",
-                artifacts=(
-                    "~/.config/opencode/commands",
-                    "~/.config/opencode/opencode.jsonc",
-                ),
+                artifacts=("~/.config/opencode/commands",),
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
@@ -724,22 +717,19 @@ CAPABILITIES: list[Capability] = [
                 probe=_exists(".claude/commands/2ndbrain.md"),
             ),
             "antigravity": Cell(
-                parity="partial",
-                mode="adapter",
-                artifacts=("~/.agents/harness/adapters/antigravity/commands",),
+                parity="absent",
+                surface="Plugins load skills, agents, rules, hooks, mcpServers",
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(
-                    ".agents/harness/adapters/antigravity/commands/2ndbrain.md"
+                    kind="docs",
+                    ref="agy plugin hooks/spec (embedded docs)",
+                    version="1.3.3",
+                    date=_PROBED_2026_10_16,
                 ),
                 note=(
-                    "generated Antigravity command wrappers cover all shared "
-                    "prompts, but agy validation only processed a subset as skills"
-                ),
-                next_action=(
-                    "Verify Antigravity command schema or flatten command wrappers "
-                    "so all 25 commands are discovered"
+                    "agy 1.3.3 plugins load skills, agents, rules, hooks, "
+                    "mcpServers and sidecars only; command wrappers are not "
+                    "generated because flattening them into skills would make "
+                    "user-run workflows implicitly invocable"
                 ),
             ),
             "cursor": Cell(
@@ -848,10 +838,7 @@ CAPABILITIES: list[Capability] = [
             "opencode": Cell(
                 parity="aligned",
                 mode="adapter",
-                artifacts=(
-                    "~/.config/opencode/agents",
-                    "~/.config/opencode/opencode.jsonc",
-                ),
+                artifacts=("~/.config/opencode/agents",),
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
@@ -859,24 +846,17 @@ CAPABILITIES: list[Capability] = [
                 note="generated agent config",
             ),
             "pi": Cell(
-                parity="partial",
-                mode="emulated",
-                artifacts=(
-                    "~/.pi/agent/agents.json",
-                    "~/.pi/agent/extensions/harness.ts",
-                ),
+                parity="absent",
+                surface="No agent registry or subagent support in Pi 1.2.0",
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                    kind="docs",
+                    ref="pi CLI config reference",
+                    version="1.2.0",
+                    date=_PROBED_2026_10_16,
                 ),
-                probe=_exists(".pi/agent/agents.json"),
                 note=(
-                    "Pi specialist delegation policy: model inferred from "
-                    "specialist tier (quick=haiku, standard=sonnet, deep=opus); "
-                    "fresh session per delegation for context isolation"
-                ),
-                next_action=(
-                    "Implement subprocess delegation in "
-                    "~/.pi/agent/extensions/harness.ts per policy"
+                    "Pi 1.2.0 has no agent registry or subagent support; no "
+                    "adapter is generated"
                 ),
             ),
             "omp": Cell(
@@ -1091,7 +1071,7 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="adapter",
                 artifacts=(
-                    "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
+                    "~/.agents/harness/adapters/antigravity/hooks.json",
                     "~/.agents/harness/adapters/antigravity/scripts/harness-guard.sh",
                 ),
                 evidence=Evidence(
@@ -1106,7 +1086,7 @@ CAPABILITIES: list[Capability] = [
                     "calls and blocks on deny"
                 ),
                 probe=_contains(
-                    ".agents/harness/adapters/antigravity/hooks/hooks.json",
+                    ".agents/harness/adapters/antigravity/hooks.json",
                     r"harness-guard\.sh",
                 ),
             ),
@@ -1114,24 +1094,23 @@ CAPABILITIES: list[Capability] = [
                 parity="partial",
                 mode="adapter",
                 artifacts=(
-                    "~/.agents/harness/adapters/cursor/hooks/hooks.json",
+                    "~/.cursor/hooks.json",
                     "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh",
                 ),
                 evidence=Evidence(
-                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                    kind="probe", ref="file_contains", date=_PROBED_2026_10_16
                 ),
                 note=(
-                    "generated Cursor hook shim execs the compiled guard, but "
-                    "native pre-tool blocking behavior has not been verified"
+                    "~/.cursor/hooks.json preToolUse (failClosed) execs the "
+                    "compiled guard; Cursor also imports ~/.claude/settings.json "
+                    "Bash and Write|Edit guard hooks (fail-open), so ness runs "
+                    "twice for Shell and Write calls"
                 ),
                 next_action=(
-                    "Verify Cursor invokes hooks.json before shell/write/edit calls "
-                    "and blocks on deny"
+                    "Confirm in a live Cursor session that a protected-path "
+                    "write is blocked"
                 ),
-                probe=_contains(
-                    ".agents/harness/adapters/cursor/hooks/hooks.json",
-                    r"harness-guard\.sh",
-                ),
+                probe=_contains(".cursor/hooks.json", r"harness-guard\.sh"),
             ),
             "grok": Cell(
                 parity="partial",
@@ -1415,8 +1394,8 @@ CAPABILITIES: list[Capability] = [
             "antigravity": Cell(
                 parity="aligned",
                 mode="adapter",
-                surface="Generated `mcp.json`",
-                artifacts=("~/.agents/harness/adapters/antigravity/mcp.json",),
+                surface="Generated `mcp_config.json`",
+                artifacts=("~/.agents/harness/adapters/antigravity/mcp_config.json",),
                 evidence=Evidence(kind="local", ref="just harness-check"),
             ),
             "cursor": Cell(
@@ -1567,12 +1546,15 @@ CAPABILITIES: list[Capability] = [
             "codex": Cell(
                 parity="aligned",
                 mode="native",
-                artifacts=("~/.codex/hooks.json",),
+                artifacts=("~/.codex/AGENTS.md",),
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".codex/hooks.json"),
-                note="native PreCompact hook",
+                probe=_exists(".codex/AGENTS.md"),
+                note=(
+                    "Compact Preservation section in ~/.codex/AGENTS.md; the "
+                    "PreCompact hook was removed"
+                ),
             ),
             "opencode": Cell(
                 parity="aligned",
@@ -1608,24 +1590,22 @@ CAPABILITIES: list[Capability] = [
                 ),
             ),
             "antigravity": Cell(
-                parity="partial",
-                mode="native",
-                artifacts=(
-                    "~/.agents/harness/adapters/antigravity/hooks/hooks.json",
-                    "~/.gemini/antigravity-cli/settings.json",
-                ),
+                parity="absent",
+                mode="none",
+                surface="No generated compaction guidance",
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                    kind="source",
+                    ref="agent-harnesses.py renders no compaction guidance into ANTIGRAVITY_HARNESS",
+                    date="2026-10-18",
                 ),
-                probe=_exists(".agents/harness/adapters/antigravity/hooks/hooks.json"),
                 note=(
-                    "generated Antigravity compaction guidance records "
-                    "preservation requirements, but conversation/artifact behavior "
-                    "has not been verified"
+                    "The generated hooks.json now holds only the PreToolUse guard, "
+                    "so nothing in the Antigravity adapter carries the compaction "
+                    "preservation contract."
                 ),
                 next_action=(
-                    "Verify Antigravity conversation and artifact persistence "
-                    "behavior against compact-preservation requirements"
+                    "Decide where Antigravity should receive the compact-preservation "
+                    "requirements, then verify conversation and artifact persistence"
                 ),
             ),
             "cursor": Cell(

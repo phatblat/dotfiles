@@ -66,6 +66,50 @@ fn matches(re: &Regex, text: &str) -> bool {
     re.is_match(text).unwrap_or(false)
 }
 
+// Codex `unified_exec` keeps a launched process open, and `write_stdin` input
+// never re-runs `PreToolUse`: a PTY shell/REPL with no `-c`/script argument is
+// interactive whatever its other flags, and would let every later command
+// bypass the guard. So the rule is inverted: a shell or REPL followed only by
+// option tokens is a launch (`bash -x`, `zsh -f`, `python3 -u`), as is a shell
+// reading stdin (`bash -s -- arg`, `python3 -`, `ls | bash`). A script
+// argument or `-c`/`-e`/`-m`/`-p` makes it a normal command. Matched per
+// `&&`/`||`/`|`/`;`/newline/`(`/`{` segment, after any `env`/`nohup`-style
+// launcher prefix, plus bare `tmux`/`screen`/`ssh host` sessions.
+static INTERACTIVE_LAUNCH: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(concat!(
+        // Segment start: line start, `&&`, `||`, `|`, `;`, newline, `(` or `{`,
+        // then any launcher prefix (`env -i VAR=x`, `nohup`, ...).
+        r"(?:^|&&|\|\||\||;|\n|\(|\{)\s*",
+        r"(?:(?:\S*/)?(?:env|exec|command|nohup|time)(?:\s+(?:-\S+|\w+=\S*))*\s+)*",
+        r"(?:",
+        // Shell reading its program from stdin (`-s`, even with args after it)
+        // unless `-c` supplies the program.
+        r"(?:\S*/)?(?:bash|zsh|sh|dash|ksh|fish|nu)",
+        r"(?:\s+-(?![A-Za-z]*c)[A-Za-z]*s[A-Za-z]*(?:(?!\s-[A-Za-z]*c\b)\s+\S+)*",
+        // Shell followed only by option tokens: no script argument and no `-c`.
+        r"|(?:\s+(?:--(?:rcfile|init-file)\s+\S+|--(?!command\b)[A-Za-z][\w-]*|-(?![A-Za-z]*c)[A-Za-z]+|[-+]o\s+\w+))*(?:\s+-)?)",
+        // REPL/interpreter followed only by options: no script, `-c/-e/-m/-p`.
+        r"|(?:\S*/)?(?:python3?(?:\.\d+)?|node|bun|deno|irb|ruby|lua|psql|sqlite3|mysql|redis-cli)",
+        r"(?:\s+repl)?(?:\s+(?:--(?!eval\b|print\b|command\b)[A-Za-z][\w-]*(?:=\S+)?|-(?![A-Za-z]*[cemp])[A-Za-z]+))*(?:\s+-)?",
+        // Other persistent PTY sessions.
+        r"|(?:tmux|screen)(?:\s+(?:new(?:-session)?|attach(?:-session)?|-[A-Za-z]+))*",
+        r"|ssh(?:\s+-(?![A-Za-z]*[TNnfW])[A-Za-z]+)*\s+[\w.@-]+",
+        r")\s*(?:$|(?=&&|\|\||\||;|\n|\)|\}))",
+    ))
+    .unwrap()
+});
+
+pub fn is_interactive_launch(command: &str) -> bool {
+    matches(&INTERACTIVE_LAUNCH, command)
+}
+
+// `gh auth token`, `gh auth status --show-token` (also as a short flag, alone
+// or clustered: `-t`, `-at`, `-ta`) and `gh auth git-credential get` print
+// the stored credential.
+static CREDENTIAL_DISCLOSURE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))").unwrap()
+});
+
 // safety.py:26-29
 static PRIVILEGE_ESCALATION: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"(?i)(^|;|&&|\|\||\||\n|\r|\$\(|`)\s*(sudo|su|doas|pkexec)\b").unwrap()
@@ -194,6 +238,10 @@ pub fn evaluate_command(command: &str, cwd: &str) -> GuardDecision {
 
     if OBFUSCATED_EXECUTION.iter().any(|p| matches(p, command)) {
         return GuardDecision::deny("Obfuscated execution pattern detected");
+    }
+
+    if matches(&CREDENTIAL_DISCLOSURE, command) {
+        return GuardDecision::deny("Credential disclosure blocked");
     }
 
     let target = writes_to(command, &PROTECTED_PATHS);

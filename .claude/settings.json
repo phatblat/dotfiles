@@ -15,7 +15,6 @@
     "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
     "lua-lsp@claude-plugins-official": true,
-    "oh-my-claudecode@omc": false,
     "plugin-dev@claude-plugins-official": false,
     "pup@datadog-pup": false,
     "pyright-lsp@claude-plugins-official": true,
@@ -57,12 +56,6 @@
       "source": {
         "repo": "schpet/linear-cli",
         "source": "github"
-      }
-    },
-    "omc": {
-      "source": {
-        "source": "git",
-        "url": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
       }
     }
   },
@@ -141,6 +134,12 @@
             "if": "Bash(git commit*)",
             "timeout": 60,
             "type": "command"
+          },
+          {
+            "command": "bash ~/.claude/hooks/scripts/pre-commit-format.sh",
+            "if": "Bash(git -C * commit*)",
+            "timeout": 60,
+            "type": "command"
           }
         ],
         "matcher": "Bash"
@@ -207,9 +206,6 @@
   "model": "sonnet",
   "permissions": {
     "allow": [
-      "mcp__acp__Edit",
-      "mcp__acp__Bash",
-      "mcp__acp__Write",
       "WebSearch",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.basedpyright.com)",
@@ -263,13 +259,10 @@
       "Bash(ctx7:*)",
       "Bash(date:*)",
       "Bash(echo:*)",
-      "Bash(timeout:*)",
       "Bash(wc:*)",
       "Bash(find:*)",
-      "Bash(xargs:*)",
       "Bash(ls:*)",
       "Bash(ps:*)",
-      "Bash(python3:*)",
       "Bash(jq:*)",
       "Bash(sort:*)",
       "Bash(uniq:*)",
@@ -306,8 +299,6 @@
       "Bash(command -v:*)",
       "Bash(readlink:*)",
       "Bash(realpath:*)",
-      "Bash(printenv:*)",
-      "Bash(env)",
       "Bash(pwd)",
       "Bash(true)",
       "Bash(test:*)",
@@ -320,6 +311,43 @@
       "Bash(prettier:*)",
       "Bash(typos:*)",
       "Bash(yamllint:*)"
+    ],
+    "ask": [
+      "Bash(gh api * --field *)",
+      "Bash(gh api * --input *)",
+      "Bash(gh api * --method *)",
+      "Bash(gh api * --method=*)",
+      "Bash(gh api * --raw-field *)",
+      "Bash(gh api * -F *)",
+      "Bash(gh api * -X *)",
+      "Bash(gh api * -X?*)",
+      "Bash(gh api * -f *)",
+      "Bash(gh api --field *)",
+      "Bash(gh api --input *)",
+      "Bash(gh api --method *)",
+      "Bash(gh api --method=*)",
+      "Bash(gh api --raw-field *)",
+      "Bash(gh api -F *)",
+      "Bash(gh api -X *)",
+      "Bash(gh api -X?*)",
+      "Bash(gh api -f *)",
+      "Bash(git checkout * -- *)",
+      "Bash(git checkout -- *)",
+      "Bash(git checkout .)",
+      "Bash(git commit * --amend*)",
+      "Bash(git commit --amend*)",
+      "Bash(git push * --force *)",
+      "Bash(git push * --force)",
+      "Bash(git push * -f *)",
+      "Bash(git push * -f)",
+      "Bash(git push --force *)",
+      "Bash(git push --force)",
+      "Bash(git push -f *)",
+      "Bash(git push -f)",
+      "Bash(git push * +*)",
+      "Bash(git push +*)",
+      "Bash(git stash clear*)",
+      "Bash(git stash drop*)"
     ],
     "defaultMode": "auto",
     "deny": []

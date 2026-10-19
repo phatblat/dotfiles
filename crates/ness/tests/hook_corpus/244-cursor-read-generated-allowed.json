@@ -1,0 +1,14 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {}
+  },
+  "payload": {
+    "cwd": "/tmp",
+    "tool_input": {
+      "file_path": "/Users/phatblat/.cursor/hooks.json"
+    },
+    "tool_name": "Read"
+  },
+  "shim": "cursor"
+}

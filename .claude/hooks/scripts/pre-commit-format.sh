@@ -11,10 +11,13 @@ if ! command -v jq >/dev/null; then
   exit 0
 fi
 cmd="$(jq -r '.tool_input.command // ""' <<<"$input" || printf '')"
-case "$cmd" in
-  *git*commit*) ;; # git commit / git -C repo commit / git add … && git commit
-  *) exit 0 ;;
-esac
+# Match `git commit` as tokens (optionally `git -C <dir> commit`, repeated and
+# with quoted paths containing spaces, possibly after `&&`/`;`/`|`), not as
+# substrings: `*git*commit*` also fired on read-only commands that merely
+# mention both words, then ran `just format` + `git add`.
+sq="'"
+commit_re="(^|[;&|[:space:]])git([[:space:]]+-C[[:space:]]+(\"[^\"]*\"|${sq}[^${sq}]*${sq}|[^[:space:]]+))*[[:space:]]+commit([[:space:]]|\$)"
+[[ $cmd =~ $commit_re ]] || exit 0
 # Only stages files that formatting actually changed — preserves partial staging.
 # Uses git hash-object to compare content before/after, handling spaces in paths.
 #

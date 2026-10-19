@@ -1,0 +1,23 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "decision": "deny",
+      "reason": "protected file blocked: /Users/phatblat/.ssh/id_ed25519"
+    }
+  },
+  "payload": {
+    "toolCall": {
+      "args": {
+        "ReplacementContent": "b",
+        "TargetContent": "a",
+        "TargetFile": "/Users/phatblat/.ssh/id_ed25519"
+      },
+      "name": "replace_file_content"
+    },
+    "workspacePaths": [
+      "/tmp"
+    ]
+  },
+  "shim": "antigravity"
+}

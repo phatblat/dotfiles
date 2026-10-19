@@ -70,6 +70,9 @@ git-filters:
     git config --local filter.claude-desktop-config.clean {{ justfile_directory() }}/scripts/mask-claude-desktop.sh
     git config --local filter.claude-desktop-config.smudge cat
     git config --local filter.claude-desktop-config.required true
+    git config --local filter.gemini-config.clean {{ justfile_directory() }}/scripts/mask-gemini-config.sh
+    git config --local filter.gemini-config.smudge cat
+    git config --local filter.gemini-config.required true
     @echo "Git filter 'codex-config' installed (masks ~/.codex/config.toml churn, restores real hook trust hashes on checkout)"
     @echo "Git filter 'oc-config' installed (strips ~/.oc/config.json api_key)"
     @echo "Git filter 'pi-models-store' installed (masks ~/.pi/agent/models-store.json churn)"
@@ -77,6 +80,7 @@ git-filters:
     @echo "Git filter 'antigravity-settings' installed (strips trustedWorkspaces from ~/.gemini/antigravity-cli/settings.json)"
     @echo "Git filter 'claude-json' installed (allowlists MCP fields from ~/.claude.json)"
     @echo "Git filter 'claude-desktop-config' installed (strips UI state from ~/Library/Application Support/Claude/claude_desktop_config.json)"
+    @echo "Git filter 'gemini-config' installed (blanks plugin installedFrom.version and drops sidecars in ~/.gemini/config/config.json)"
 
 # Re-stages clean-filtered paths so `git status` stops reporting phantom edits
 #

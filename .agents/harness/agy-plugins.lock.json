@@ -2,9 +2,9 @@
   "plugins": {
     "android-cli-plugin": {
       "enabled": true,
-      "installed_version": "1.0.0",
+      "installed_version": "1.0.16500706",
       "skills": 1,
-      "version": "1.0.0"
+      "version": "1.0.16500706"
     },
     "chrome-devtools-plugin": {
       "enabled": true,
@@ -14,33 +14,33 @@
     },
     "firebase": {
       "enabled": true,
-      "installed_version": "1.0.0",
-      "skills": 11,
-      "version": ""
+      "installed_version": "1.0.3",
+      "skills": 13,
+      "version": "1.0.3"
     },
     "google-antigravity-sdk": {
       "enabled": true,
-      "installed_version": "0.0.4",
+      "installed_version": "0.0.9",
       "skills": 1,
-      "version": "0.0.4"
+      "version": "0.0.9"
     },
     "modern-web-guidance-plugin": {
       "enabled": true,
-      "installed_version": "1.0.4",
+      "installed_version": "1.0.6",
       "skills": 2,
-      "version": "1.0.4"
+      "version": "1.0.6"
     },
     "science": {
       "enabled": true,
-      "installed_version": "1.0.0",
-      "skills": 37,
-      "version": "1.0.0"
+      "installed_version": "1.2.4",
+      "skills": 41,
+      "version": "1.2.4"
     },
     "shared-agent-harness": {
       "enabled": true,
       "installed_version": "",
-      "skills": 26,
-      "tree_sha256": "1887702d724eb8f97732cc51bf01b3cc123104ca6ad7956ec4c247ea483b7891",
+      "skills": 31,
+      "tree_sha256": "b937452169b60cf498ca888aac981723adfb6c1ae6f6ae1733f2c75a81348663",
       "version": "1.0.0"
     }
   }

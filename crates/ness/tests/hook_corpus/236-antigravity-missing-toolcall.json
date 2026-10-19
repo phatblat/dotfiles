@@ -1,0 +1,15 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "decision": "deny",
+      "reason": "shared guard failed closed: payload has no toolCall"
+    }
+  },
+  "payload": {
+    "workspacePaths": [
+      "/tmp"
+    ]
+  },
+  "shim": "antigravity"
+}

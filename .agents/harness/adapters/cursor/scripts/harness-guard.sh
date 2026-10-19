@@ -8,9 +8,8 @@
 set -euo pipefail
 
 deny() {
-    printf '{"decision":"deny","harness":"cursor","reason":"%s","tool":""}
-' "$1"
-    exit 2
+    printf '{"permission":"deny","user_message":"%s","agent_message":"%s"}\n' "$1" "$1"
+    exit 0
 }
 trap 'deny "shared guard failed closed: hook error"' ERR
 

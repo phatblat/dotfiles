@@ -14,3 +14,15 @@ load helpers/setup
 
   [ "$status" -eq 0 ]
 }
+
+@test "audit-ignored-config: assigned-credential rule unit tests pass" {
+  run python3 "${BATS_TEST_DIRNAME}/test_audit_ignored_config.py"
+
+  [ "$status" -eq 0 ]
+}
+
+@test "harness-sessions: usage labels, Pi session roots and OMP error classes" {
+  run python3 "${BATS_TEST_DIRNAME}/test_harness_sessions.py"
+
+  [ "$status" -eq 0 ]
+}

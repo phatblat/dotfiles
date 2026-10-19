@@ -8,4 +8,4 @@ Execute the shared `git/stack` command prompt from:
 
 `~/.agents/harness/commands/git/stack.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

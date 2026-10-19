@@ -27,10 +27,32 @@ bash:
       approval: deny
     - match: sudo
       approval: deny
+    - match: rm *..*
+      approval: prompt
+    - match: rm *~*
+      approval: prompt
+    - match: rm *$*
+      approval: prompt
+    - match: "rm *`*"
+      approval: prompt
+    - match: rm /tmp/
+      approval: prompt
+    - match: rm * /tmp/
+      approval: prompt
+    - match: rm /tmp/* *
+      approval: prompt
+    - match: rm * /tmp/* *
+      approval: prompt
+    - match: rm /tmp/*
+      approval: allow
+    - match: rm -f /tmp/*
+      approval: allow
+    - match: rm -r /tmp/*
+      approval: allow
     - match: rm *
-      approval: ask
+      approval: prompt
     - match: rm
-      approval: ask
+      approval: prompt
     - match: "[*"
       approval: allow
     - match: awk*
@@ -262,6 +284,7 @@ bash:
     - match: "true"
       approval: allow
   allowCompoundCommands: true
+  gitGuard: true
 display:
   showTokenUsage: true
   cacheMissMarker: true
@@ -298,12 +321,16 @@ task:
     task: "on"
   showResolvedModelBadge: true
   eager: preferred
-  enableEffort: false
+  enableEffort: true
   isolation:
     commits: ai
+    enabled: true
+    apply: true
 worktree:
   base: ~/.worktrees
   cleanSource: true
+  onStart: ask
+  onExit: ask
 hideThinkingBlock: false
 theme:
   dark: dark-aurora
@@ -320,6 +347,7 @@ retry:
 doubleEscapeAction: tree
 composer:
   shape: field
+  predictions: false
 codexResets:
   autoRedeem: "no"
 treeFilterMode: all
@@ -337,6 +365,28 @@ plan:
 commands:
   enableClaudeProject: false
   enableOpencodeProject: false
+input:
+  bareExitOnEmptySession: false
+bashInterceptor:
+  enabled: true
+github:
+  enabled: true
+vault:
+  enabled: true
+checkpoint:
+  enabled: true
+ratchet:
+  enabled: true
+computer:
+  enabled: true
+generate_image:
+  enabled: true
+speechgen:
+  enabled: true
+find:
+  enabled: auto
+astGrep:
+  enabled: true
 includeWorkspaceTree: false
 tui:
   imeSafeCursor: true

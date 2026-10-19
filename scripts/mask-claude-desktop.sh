@@ -8,7 +8,8 @@
 # notice-seen flags), preferences.sidebarMode (the sidebar tab last viewed),
 # and one-shot internal flags (*Latched, floatingAtollActive,
 # coworkLegacyRootGrantsPruned, coworkOnboardingResumeStep,
-# launchPreviewPersistedWorkspaces, launchPreviewSessionScopedSessions).
+# launchPreviewPersistedWorkspaces, launchPreviewSessionScopedSessions,
+# remoteChatFolderGrants, remoteFolderConsentMemory).
 # Those keys produced most of this file's commit history while real
 # settings (coworkBrowserToolsEnabled, bypassPermissionsGateByAccount,
 # keepAwakeEnabled, ...) changed only occasionally.
@@ -39,7 +40,8 @@ jq '
       (.key | IN("epitaxyPrefs", "sidebarMode", "floatingAtollActive",
                  "coworkLegacyRootGrantsPruned", "coworkOnboardingResumeStep",
                  "launchPreviewPersistedWorkspaces",
-                 "launchPreviewSessionScopedSessions")
+                 "launchPreviewSessionScopedSessions",
+                 "remoteChatFolderGrants", "remoteFolderConsentMemory")
          or endswith("Latched")) | not
     ))
   else

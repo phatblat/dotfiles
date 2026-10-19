@@ -60,6 +60,20 @@ for overrides in "$root"/.omp/profiles/*/agent/overrides.yml; do
         cp "$tmp" "$out"
         echo "Rendered ${out#"$root"/}"
     fi
+
+    # omp loads <agentDir>/hooks/pre/*.ts per profile, so without these links the
+    # shared ness guard never loads in named profiles.
+    dir="$(dirname "$overrides")"
+    for name in hooks extensions; do
+        if [[ $mode == check ]]; then
+            if [[ "$(readlink "$dir/$name" 2> /dev/null)" != "../../../agent/$name" ]]; then
+                echo "stale: ${dir#"$root"/}/$name is not linked to the main agent $name" >&2
+                stale=1
+            fi
+        else
+            ln -sfn "../../../agent/$name" "$dir/$name"
+        fi
+    done
 done
 
 if ((stale)); then

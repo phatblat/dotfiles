@@ -1,16 +1,27 @@
 {
   "theme_light": "dark-neon-noir",
   "copy_on_select": true,
+  "cursor": {
+    "glide": 40
+  },
   "link_click": "Command",
   "link_target": "Browser",
-  "font_size": 17,
+  "layout": "Rail",
+  "font_size": 22,
   "tabs": "Vertical",
   "tabs_autohide": true,
+  "status_bar": true,
+  "surface_diffs": "Split",
+  "surface_tab_width": 2,
+  "expand_thoughts": true,
+  "composer_text": "Markdown",
   "shell": "/Users/phatblat/bin/nu-login",
   "prompt_style": "tokyonight",
   "prompt_parts": {
-    "palette": "dracula"
+    "palette": "dracula",
+    "collapse": false
   },
+  "agent_placement": "replace_if_alone",
   "prefs_width": 589,
   "files": {
     "auto_save": {
@@ -18,10 +29,11 @@
     }
   },
   "file_tree": {
-    "open": true,
+    "width": 544,
     "preview_click": true
   },
   "git": {
+    "use_local_ssh_agent": false,
     "external_editor": "/opt/homebrew/bin/zed --wait",
     "show_commit_author": true
   },
@@ -33,5 +45,21 @@
   },
   "agents": {
     "auto_acp": true
-  }
+  },
+  "keybinds": {
+    "cmd+b": [
+      "git.new_branch",
+      "markdown.bold",
+      "sqlite.browse.bold"
+    ],
+    "ctrl+cmd+s": "toggle_sidebar",
+    "ctrl+shift+k": "switch_session",
+    "ctrl+shift+l": "lock_session",
+    "ctrl+shift+n": "new_session",
+    "ctrl+shift+r": "rename_session",
+    "ctrl+shift+w": "close_session",
+    "shift+cmd+[": "previous_tab_across_sessions",
+    "shift+cmd+]": "next_tab_across_sessions"
+  },
+  "secure_keyboard_entry": true
 }

@@ -8,4 +8,4 @@ Execute the shared `linear/plan` command prompt from:
 
 `~/.agents/harness/commands/linear/plan.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

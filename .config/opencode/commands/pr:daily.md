@@ -8,4 +8,4 @@ Execute the shared `pr/daily` command prompt from:
 
 `~/.agents/harness/commands/pr/daily.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

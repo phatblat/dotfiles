@@ -1,0 +1,17 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "reason": "protected file blocked: /Users/phatblat/.ssh/id_ed25519"
+    }
+  },
+  "payload": {
+    "cwd": "/tmp",
+    "toolInput": {
+      "patch": "*** Begin Patch\n*** Add File: /Users/phatblat/.ssh/id_ed25519\n+x\n*** End Patch"
+    },
+    "toolName": "apply_patch"
+  },
+  "shim": "grok"
+}

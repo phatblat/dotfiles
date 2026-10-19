@@ -8,4 +8,4 @@ Execute the shared `2ndbrain` command prompt from:
 
 `~/.agents/harness/commands/2ndbrain.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

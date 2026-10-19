@@ -113,21 +113,17 @@ skip_unless_home_is_this_checkout() {
 @test "agent-harnesses: generation removes obsolete skill wrappers" {
   stale_skill="obsolete-generated-skill"
   antigravity_dir="$HOME/.agents/harness/adapters/antigravity/skills/$stale_skill"
-  cursor_dir="$HOME/.agents/harness/adapters/cursor/skills/$stale_skill"
   modified_skill="modified-generated-skill"
   modified_dir="$HOME/.agents/harness/adapters/antigravity/skills/$modified_skill"
   symlink_skill="symlink-generated-skill"
   symlink_dir="$HOME/.agents/harness/adapters/antigravity/skills/$symlink_skill"
   symlink_target="$BATS_TEST_TMPDIR/$symlink_skill"
 
-  mkdir -p "$antigravity_dir" "$cursor_dir" "$modified_dir" "$symlink_target"
+  mkdir -p "$antigravity_dir" "$modified_dir" "$symlink_target"
   sed "s|boris|$stale_skill|g" \
     "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
     >"$antigravity_dir/SKILL.md"
-  sed "s|boris|$stale_skill|g" \
-    "$HOME/.agents/harness/adapters/cursor/skills/boris/SKILL.md" \
-    >"$cursor_dir/SKILL.md"
-  printf '%s\n' "preserve this sidecar" >"$cursor_dir/notes.md"
+  printf '%s\n' "preserve this sidecar" >"$antigravity_dir/notes.md"
   sed "s|boris|$modified_skill|g" \
     "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
     >"$modified_dir/SKILL.md"
@@ -138,19 +134,16 @@ skip_unless_home_is_this_checkout() {
   ln -s "$symlink_target" "$symlink_dir"
 
   antigravity_hash="$(shasum -a 256 "$antigravity_dir/SKILL.md")"
-  cursor_hash="$(shasum -a 256 "$cursor_dir/SKILL.md")"
 
   run python3 "$SCRIPT" generate --check
   check_status="$status"
   check_output="$output"
   antigravity_hash_after_check="$(shasum -a 256 "$antigravity_dir/SKILL.md")"
-  cursor_hash_after_check="$(shasum -a 256 "$cursor_dir/SKILL.md")"
 
   run python3 "$SCRIPT" generate
   generate_status="$status"
-  antigravity_exists="$([ -e "$antigravity_dir" ] && echo true || echo false)"
-  cursor_skill_exists="$([ -e "$cursor_dir/SKILL.md" ] && echo true || echo false)"
-  cursor_sidecar_exists="$([ -e "$cursor_dir/notes.md" ] && echo true || echo false)"
+  antigravity_skill_exists="$([ -e "$antigravity_dir/SKILL.md" ] && echo true || echo false)"
+  antigravity_sidecar_exists="$([ -e "$antigravity_dir/notes.md" ] && echo true || echo false)"
   modified_exists="$([ -e "$modified_dir/SKILL.md" ] && echo true || echo false)"
   symlink_exists="$([ -L "$symlink_dir" ] && echo true || echo false)"
   symlink_target_exists="$([ -e "$symlink_target/SKILL.md" ] && echo true || echo false)"
@@ -161,23 +154,19 @@ skip_unless_home_is_this_checkout() {
   idempotent_check_status="$status"
 
   rm -f \
-    "$cursor_dir/SKILL.md" \
-    "$cursor_dir/notes.md" \
+    "$antigravity_dir/notes.md" \
     "$modified_dir/SKILL.md" \
     "$symlink_dir"
-  rmdir "$cursor_dir" "$modified_dir" 2>/dev/null || true
+  rmdir "$antigravity_dir" "$modified_dir" 2>/dev/null || true
 
   [ "$check_status" -eq 1 ]
   [[ "$check_output" == *"obsolete: ~/.agents/harness/adapters/antigravity/skills/$stale_skill/SKILL.md"* ]]
-  [[ "$check_output" == *"obsolete: ~/.agents/harness/adapters/cursor/skills/$stale_skill/SKILL.md"* ]]
   [[ "$check_output" != *"$modified_skill"* ]]
   [[ "$check_output" != *"$symlink_skill"* ]]
   [ "$antigravity_hash_after_check" = "$antigravity_hash" ]
-  [ "$cursor_hash_after_check" = "$cursor_hash" ]
   [ "$generate_status" -eq 0 ]
-  [ "$antigravity_exists" = false ]
-  [ "$cursor_skill_exists" = false ]
-  [ "$cursor_sidecar_exists" = true ]
+  [ "$antigravity_skill_exists" = false ]
+  [ "$antigravity_sidecar_exists" = true ]
   [ "$modified_exists" = true ]
   [ "$symlink_exists" = true ]
   [ "$symlink_target_exists" = true ]
@@ -213,7 +202,6 @@ skip_unless_home_is_this_checkout() {
   [ "$dangling_status" -eq 0 ]
   [[ "$resolving_output" == *"skipped (source outside repo): ~/.agents/skills/$external_skill -> $target"* ]]
   [ ! -e "$HOME/.agents/harness/adapters/antigravity/skills/$external_skill" ]
-  [ ! -e "$HOME/.agents/harness/adapters/cursor/skills/$external_skill" ]
   [ "$(printf '%s' "$resolving_inventory" | jq -r --arg s "$external_skill" '.skills.paths | index($s) // "absent"')" = "absent" ]
   [ "$(printf '%s' "$resolving_inventory" | jq -r --arg s "$external_skill" '.skills.external | index($s) != null')" = "true" ]
   [ "$(printf '%s' "$resolving_inventory" | jq -c '.skills')" = "$(printf '%s' "$dangling_inventory" | jq -c '.skills')" ]
@@ -305,22 +293,19 @@ skip_unless_home_is_this_checkout() {
 @test "agent-harnesses: procedural Codex skills require explicit invocation" {
   skip_unless_home_is_this_checkout
   procedural_skills=(
+    backlog-batch-delivery
     branch-finish
     dupe
     git-cleanup
-    git-commit
     git-push
     git-rebase
     git-split
     git-stack
-    git-status
-    using-git-worktrees
     gh-stack
     gha-checks
     handoff
     harness-research
     gha-log-reader
-    justfile
     linear-plan
     optimize-harness
     new-project
@@ -413,17 +398,13 @@ skip_unless_home_is_this_checkout() {
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
-  for skill in \
-    "$HOME/.claude/skills/handoff/SKILL.md" \
-    "$HOME/.codex/skills/handoff/SKILL.md" \
-    "$HOME/.config/opencode/skills/handoff/SKILL.md"; do
-    [ -f "$skill" ]
-    grep -Fq 'Load and follow the shared skill at `~/.agents/skills/handoff/SKILL.md`.' "$skill"
-  done
+  skill="$HOME/.claude/skills/handoff/SKILL.md"
+  [ -f "$skill" ]
+  grep -Fq 'Load and follow the shared skill at `~/.agents/skills/handoff/SKILL.md`.' "$skill"
 
-  grep -Fx 'disable-model-invocation: true' "$HOME/.claude/skills/handoff/SKILL.md"
+  grep -Fx 'disable-model-invocation: true' "$skill"
   grep -Fx '  allow_implicit_invocation: false' \
-    "$HOME/.codex/skills/handoff/agents/openai.yaml"
+    "$HOME/.agents/skills/handoff/agents/openai.yaml"
 }
 
 @test "aven skill has generated ability adapters" {
@@ -437,30 +418,15 @@ skip_unless_home_is_this_checkout() {
 
   for skill in \
     "$HOME/.claude/skills/aven/SKILL.md" \
-    "$HOME/.codex/skills/aven/SKILL.md" \
-    "$HOME/.config/opencode/skills/aven/SKILL.md"; do
+    "$HOME/.agents/harness/adapters/antigravity/skills/aven/SKILL.md"; do
     [ -f "$skill" ]
     grep -Fq 'Load and follow the shared skill at `~/.agents/skills/aven/SKILL.md`.' "$skill"
   done
 
   ! grep -Fq "disable-model-invocation: true" \
     "$HOME/.claude/skills/aven/SKILL.md"
-  [ ! -e "$HOME/.codex/skills/aven/agents/openai.yaml" ]
-
-  for skill in \
-    "$HOME/.agents/harness/adapters/antigravity/skills/aven/SKILL.md" \
-    "$HOME/.agents/harness/adapters/cursor/skills/aven/SKILL.md"; do
-    [ -f "$skill" ]
-    grep -Fq 'Load and follow the shared skill at `~/.agents/skills/aven/SKILL.md`.' "$skill"
-  done
-}
-
-@test "aven native adapters are tracked" {
-  run git -C "$HOME" ls-files --error-unmatch .codex/skills/aven/SKILL.md
-  [ "$status" -eq 0 ]
-
-  run git -C "$HOME" ls-files --error-unmatch .config/opencode/skills/aven/SKILL.md
-  [ "$status" -eq 0 ]
+  ! grep -sFqx '  allow_implicit_invocation: false' \
+    "$HOME/.agents/skills/aven/agents/openai.yaml"
 }
 
 @test "artifact-message-bus ships bundled resources and tracked adapters" {
@@ -474,10 +440,7 @@ skip_unless_home_is_this_checkout() {
 
   for pointer in \
     "$HOME/.claude/skills/artifact-message-bus/SKILL.md" \
-    "$HOME/.codex/skills/artifact-message-bus/SKILL.md" \
-    "$HOME/.config/opencode/skills/artifact-message-bus/SKILL.md" \
-    "$HOME/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md" \
-    "$HOME/.agents/harness/adapters/cursor/skills/artifact-message-bus/SKILL.md"; do
+    "$HOME/.agents/harness/adapters/antigravity/skills/artifact-message-bus/SKILL.md"; do
     [ -f "$pointer" ]
     grep -Fq 'Load and follow the shared skill at `~/.agents/skills/artifact-message-bus/SKILL.md`.' "$pointer"
     run git -C "$HOME" ls-files --error-unmatch "$pointer"
@@ -486,7 +449,8 @@ skip_unless_home_is_this_checkout() {
 
   ! grep -Fq 'disable-model-invocation: true' \
     "$HOME/.claude/skills/artifact-message-bus/SKILL.md"
-  [ ! -e "$HOME/.codex/skills/artifact-message-bus/agents/openai.yaml" ]
+  ! grep -sFqx '  allow_implicit_invocation: false' \
+    "$HOME/.agents/skills/artifact-message-bus/agents/openai.yaml"
 }
 
 @test "grill-me front door and grilling primitive are wired across harnesses" {
@@ -506,14 +470,11 @@ skip_unless_home_is_this_checkout() {
   grep -Fx '  allow_implicit_invocation: false' \
     "$HOME/.agents/skills/grill-me/agents/openai.yaml"
 
-  # grilling is an ability skill and is wired into every adapter.
+  # grilling is an ability skill; Claude and Antigravity get generated pointers.
   for skill in grilling; do
     for pointer in \
       "$HOME/.claude/skills/$skill/SKILL.md" \
-      "$HOME/.codex/skills/$skill/SKILL.md" \
-      "$HOME/.config/opencode/skills/$skill/SKILL.md" \
-      "$HOME/.agents/harness/adapters/antigravity/skills/$skill/SKILL.md" \
-      "$HOME/.agents/harness/adapters/cursor/skills/$skill/SKILL.md"; do
+      "$HOME/.agents/harness/adapters/antigravity/skills/$skill/SKILL.md"; do
       [ -f "$pointer" ]
       grep -Fq "Load and follow the shared skill at \`~/.agents/skills/$skill/SKILL.md\`." "$pointer"
       run git -C "$HOME" ls-files --error-unmatch "$pointer"
@@ -521,26 +482,21 @@ skip_unless_home_is_this_checkout() {
     done
   done
 
-  # grill-me is procedural; the Antigravity adapter excludes procedural
-  # skills because it has no per-skill implicit-invocation policy.
+  # grill-me is procedural; only its Claude pointer is generated, because the
+  # Antigravity adapter excludes procedural skills (no per-skill
+  # implicit-invocation policy) and the other harnesses read the shared skill.
   for skill in grill-me; do
-    for pointer in \
-      "$HOME/.claude/skills/$skill/SKILL.md" \
-      "$HOME/.codex/skills/$skill/SKILL.md" \
-      "$HOME/.config/opencode/skills/$skill/SKILL.md" \
-      "$HOME/.agents/harness/adapters/cursor/skills/$skill/SKILL.md"; do
-      [ -f "$pointer" ]
-      grep -Fq "Load and follow the shared skill at \`~/.agents/skills/$skill/SKILL.md\`." "$pointer"
-      run git -C "$HOME" ls-files --error-unmatch "$pointer"
-      [ "$status" -eq 0 ]
-    done
+    pointer="$HOME/.claude/skills/$skill/SKILL.md"
+    [ -f "$pointer" ]
+    grep -Fq "Load and follow the shared skill at \`~/.agents/skills/$skill/SKILL.md\`." "$pointer"
+    run git -C "$HOME" ls-files --error-unmatch "$pointer"
+    [ "$status" -eq 0 ]
   done
 
   grep -Fx 'disable-model-invocation: true' "$HOME/.claude/skills/grill-me/SKILL.md"
-  grep -Fx '  allow_implicit_invocation: false' \
-    "$HOME/.codex/skills/grill-me/agents/openai.yaml"
   ! grep -Fq 'disable-model-invocation: true' "$HOME/.claude/skills/grilling/SKILL.md"
-  [ ! -e "$HOME/.codex/skills/grilling/agents/openai.yaml" ]
+  ! grep -sFqx '  allow_implicit_invocation: false' \
+    "$HOME/.agents/skills/grilling/agents/openai.yaml"
 }
 
 @test "agent-harnesses: Claude and Codex know Obsidian daily-note location" {
@@ -598,7 +554,7 @@ skip_unless_home_is_this_checkout() {
   [ -f "$HOME/.agents/harness/adapters/cursor/rules/shared-harness.mdc" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/commands/git/commit.md" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/agents/triage-expert.md" ]
-  [ -f "$HOME/.agents/harness/adapters/cursor/hooks/hooks.json" ]
+  [ -f "$HOME/.cursor/hooks.json" ]
   [ -f "$HOME/.agents/harness/adapters/cursor/mcp.json" ]
 }
 
@@ -606,8 +562,10 @@ skip_unless_home_is_this_checkout() {
   run jq . "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json"
   [ "$status" -eq 0 ]
 
-  run jq . "$HOME/.agents/harness/adapters/cursor/hooks/hooks.json"
+  run jq . "$HOME/.cursor/hooks.json"
   [ "$status" -eq 0 ]
+  jq -e '.version == 1 and .hooks.preToolUse[0].failClosed == true' \
+    "$HOME/.cursor/hooks.json" >/dev/null
 
   run jq . "$HOME/.agents/harness/adapters/cursor/mcp.json"
   [ "$status" -eq 0 ]
@@ -639,26 +597,25 @@ skip_unless_home_is_this_checkout() {
 
   adapter="$HOME/.agents/harness/adapters/antigravity"
   [ -f "$adapter/plugin.json" ]
-  [ -f "$adapter/commands/git/commit.md" ]
   [ -f "$adapter/agents/triage-expert.md" ]
-  [ -f "$adapter/hooks/hooks.json" ]
+  [ -f "$adapter/hooks.json" ]
   [ -f "$adapter/scripts/harness-guard.sh" ]
-  [ -f "$adapter/mcp.json" ]
+  [ -f "$adapter/mcp_config.json" ]
 
-  command_count=$(find "$adapter/commands" -type f -name '*.md' | wc -l | tr -d ' ')
   agent_count=$(find "$adapter/agents" -type f -name '*.md' | wc -l | tr -d ' ')
   skill_count=$(find "$adapter/skills" -type f -name 'SKILL.md' | wc -l | tr -d ' ')
   inventory_skill_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.count')
   procedural_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.procedural | length')
   expected_skill_count=$((inventory_skill_count - procedural_count))
 
-  [ "$command_count" -eq 28 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -eq "$expected_skill_count" ]
 
   jq . "$adapter/plugin.json" >/dev/null
-  jq . "$adapter/hooks/hooks.json" >/dev/null
-  jq . "$adapter/mcp.json" >/dev/null
+  jq . "$adapter/mcp_config.json" >/dev/null
+  jq . "$adapter/hooks.json" >/dev/null
+  jq -e '."shared-harness-guard".PreToolUse[0].hooks[0].command | contains("harness-guard.sh")' \
+    "$adapter/hooks.json" >/dev/null
 }
 
 @test "agent-harnesses: antigravity plugin validates when agy is installed" {
@@ -688,14 +645,14 @@ if missing:
 
   # These artifacts are JSON and cannot carry MANAGED_HEADER, so the manifest is
   # the only way the guard can recognize them as generated.
-  run jq -e '."~/.pi/agent/agents.json"' "$manifest"
+  run jq -e '."~/.config/opencode/opencode.jsonc"' "$manifest"
   [ "$status" -eq 0 ]
   run jq -e '."~/.agents/harness/generated-paths.json"' "$manifest"
   [ "$status" -eq 0 ]
 }
 
 @test "agent-harnesses: provenance classifies generated, source, and generator paths" {
-  run python3 "$SCRIPT" provenance --json --path "$HOME/.pi/agent/agents.json"
+  run python3 "$SCRIPT" provenance --json --path "$HOME/.config/opencode/opencode.jsonc"
   [ "$status" -eq 0 ]
   [ "$(printf '%s' "$output" | jq -r '.kind')" = "generated" ]
 

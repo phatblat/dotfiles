@@ -331,3 +331,8 @@ function rpr() {
 if [ -f ~/.dotfiles/git/alias.bash ]; then
   source ~/.dotfiles/git/alias.bash
 fi
+
+# Antigravity IDE (machine-specific; only when installed)
+if [ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ]; then
+  export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+fi

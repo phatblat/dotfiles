@@ -42,6 +42,15 @@
 # with `just git-filters`. Filter script: ~/scripts/mask-antigravity.sh
 .gemini/antigravity-cli/settings.json filter=antigravity-settings
 
+# Antigravity rewrites ~/.gemini/config/config.json as plugins update: each
+# plugin's `installedFrom.version` follows the installed marketplace build (and
+# moves between machines, sometimes backwards), and a `sidecars` map of
+# per-project runtime state appears. The `gemini-config` clean filter blanks
+# the versions and drops `sidecars` in the committed blob so only real config
+# changes show up; the on-disk file Antigravity reads is never touched. Install
+# the filter with `just git-filters`. Filter script: ~/scripts/mask-gemini-config.sh
+.gemini/config/config.json filter=gemini-config
+
 # ~/.claude.json accumulates Anthropic-managed state (oauth account, machine
 # ID, verbatim first prompts, per-project session metrics) that gains new
 # keys on most Claude Code releases and does not belong in git history. The

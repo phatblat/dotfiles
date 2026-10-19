@@ -8,4 +8,4 @@ Execute the shared `ci/fix` command prompt from:
 
 `~/.agents/harness/commands/ci/fix.md`
 
-Pass user arguments through unchanged.
+Arguments: $ARGUMENTS

@@ -19,6 +19,22 @@ sessions = true
 [compat.codex]
 sessions = true
 
+[plugins]
+disabled = [
+  "claude-code-setup",
+  "claude-hud",
+  "claude-md-management",
+  "code-simplifier",
+  "hookify",
+  "plugin-dev",
+  "pup",
+  "ralph-loop",
+  "security-guidance",
+  "skill-creator",
+  "superpowers",
+  "warp",
+]
+
 [marketplace]
 default_skills_installs_purged = true
 official_marketplace_auto_installed = true

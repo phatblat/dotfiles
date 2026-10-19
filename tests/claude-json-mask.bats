@@ -124,6 +124,8 @@ EOF
   "epitaxyPrefs":{"pane":1},"sidebarMode":"chat","floatingAtollActive":true,
   "coworkLegacyRootGrantsPruned":true,"coworkOnboardingResumeStep":2,
   "launchPreviewPersistedWorkspaces":[],"launchPreviewSessionScopedSessions":{},
+  "remoteChatFolderGrants":{"abc":{"folders":["/path"]}},
+  "remoteFolderConsentMemory":["/path"],
   "keepAwakeEnabled":true,"coworkBrowserToolsEnabled":false
 }}
 EOF

@@ -39,18 +39,6 @@
         "matcher": ""
       }
     ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "command": "bash '/Users/phatblat/.codex/hooks/scripts/pre-compact.sh'",
-            "statusMessage": "Pre-Compact Snapshot",
-            "timeout": 5,
-            "type": "command"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "hooks": [

@@ -1,0 +1,23 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "decision": "deny",
+      "reason": "Privilege escalation blocked"
+    }
+  },
+  "payload": {
+    "toolCall": {
+      "args": {
+        "Action": "send_input",
+        "Input": "sudo -n true\n",
+        "TaskId": "t1"
+      },
+      "name": "manage_task"
+    },
+    "workspacePaths": [
+      "/tmp"
+    ]
+  },
+  "shim": "antigravity"
+}

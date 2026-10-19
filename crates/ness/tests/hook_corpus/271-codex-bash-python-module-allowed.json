@@ -1,0 +1,13 @@
+{
+  "expected": {
+    "exit": 0
+  },
+  "payload": {
+    "hook_event_name": "PreToolUse",
+    "tool_input": {
+      "command": "python3 -m http.server"
+    },
+    "tool_name": "Bash"
+  },
+  "shim": "codex-bash"
+}

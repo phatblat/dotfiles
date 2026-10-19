@@ -20,7 +20,7 @@ Note: Dependency metadata is advisory unless the harness enforces it.
 | opencode | aligned | adapter | `mcp` config | local · - · - | - |
 | pi | aligned | adapter | Extension or future MCP bridge | local · - · - | - |
 | omp | aligned | adapter | ~/.omp/agent/mcp.json | local · - · - | - |
-| antigravity | aligned | adapter | Generated `mcp.json` | local · - · - | - |
+| antigravity | aligned | adapter | Generated `mcp_config.json` | local · - · - | - |
 | cursor | aligned | adapter | Generated `mcp.json` | local · - · - | Written to disk by generate, but intentionally not git-tracked: ~/.cursor/ ships its own nested .gitignore with broad `!plugins/**`/`!skills-cursor/**` un-ignores that reactivate once the parent pattern narrows past a bare directory exclude, exposing cached plugin/session data. Regenerated locally by `just harness-generate`. |
 | grok | aligned | native | [compat.claude]/[compat.cursor] mcps = true imports the generated Claude and Cursor configs | local · - · - | - |
 | crush | absent | none | ~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand | runtime · - · - | - |

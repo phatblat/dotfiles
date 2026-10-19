@@ -1,0 +1,21 @@
+{
+  "expected": {
+    "exit": 0,
+    "stdout": {
+      "hookSpecificOutput": {
+        "hookEventName": "PreToolUse",
+        "permissionDecision": "deny",
+        "permissionDecisionReason": "protected file blocked: .env"
+      }
+    }
+  },
+  "payload": {
+    "cwd": "/Users/phatblat",
+    "hook_event_name": "PreToolUse",
+    "tool_input": {
+      "command": "*** Begin Patch\n  *** Add File: .env\n+x\n*** End Patch"
+    },
+    "tool_name": "apply_patch"
+  },
+  "shim": "codex-write"
+}

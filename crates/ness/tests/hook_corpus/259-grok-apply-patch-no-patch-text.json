@@ -1,0 +1,17 @@
+{
+  "expected": {
+    "exit": 2,
+    "stdout": {
+      "decision": "deny",
+      "reason": "shared guard failed closed: apply_patch payload has no patch text"
+    }
+  },
+  "payload": {
+    "cwd": "/tmp",
+    "toolInput": {
+      "input": "*** Begin Patch\n*** Add File: /tmp/notes.txt\n+x\n*** End Patch"
+    },
+    "toolName": "apply_patch"
+  },
+  "shim": "grok"
+}

@@ -1,6 +1,7 @@
 {
   "trustedcasks": [
     "lanes-sh/lanes/lanes",
+    "phatblat/stencil/stencil-tern",
     "yoanwai/tap/agent-manager"
   ],
   "trustedformulae": [
@@ -37,6 +38,7 @@
     "pantsbuild/tap",
     "peripheryapp/periphery",
     "phatblat/pinned",
+    "phatblat/stencil",
     "schpet/tap",
     "turbot/tap",
     "tw93/tap",
