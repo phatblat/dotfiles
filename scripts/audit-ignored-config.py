@@ -243,11 +243,12 @@ SECRET_CONTENT = (
         re.compile(
             # allow an optional closing quote after the key so JSON
             # ("apiKey": "…") matches as well as shell/yaml (key=value) forms.
-            # ALL_CAPS values are env-var names (apiKey: SOME_API_KEY), not
-            # secrets; the tradeoff is an all-caps literal key is not caught.
+            # Env-var-shaped names (apiKey: SOME_API_KEY) are not secrets, so
+            # skip ALL_CAPS values that contain at least one underscore; an
+            # all-caps literal with no underscore (hex/base32) is still caught.
             r"(?i)\b(api[_-]?key|secret|password|passwd|access[_-]?token|bearer)"
             r"\b[\"']?\s*[:=]\s*[\"']?"
-            r"(?-i:(?![A-Z][A-Z0-9_]*(?:[\"'\s,;}]|\Z)))"
+            r"(?-i:(?![A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+(?:[\"'\s,;}]|\Z)))"
             r"[A-Za-z0-9_\-./+]{16,}"
         ),
     ),
