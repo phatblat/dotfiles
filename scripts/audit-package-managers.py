@@ -40,7 +40,7 @@ def mise_tool_names() -> dict[str, str]:
     tools = config.get("tools", {})
     names: dict[str, str] = {}
     for raw_key in tools:
-        # Strip backend prefix (aqua:, cargo:, github:, npm:, pipx:, go:, ubi:, ...)
+        # Strip backend prefix (aqua:, cargo:, github:, npm:, pipx:, pypi:, go:, ubi:, ...)
         after_backend = raw_key.split(":", 1)[-1]
         # Take the last path segment (owner/repo -> repo)
         short = after_backend.rsplit("/", 1)[-1]
