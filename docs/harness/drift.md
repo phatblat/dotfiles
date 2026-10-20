@@ -14,7 +14,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | pi | 1.3.0 | 2026-08-29 | 1.2.0 |
 | omp | omp/18.12.0 | 2026-08-29 | omp/18.11.3 |
 | antigravity | 1.4.2 | 2026-08-29 | 1.4.0 |
-| cursor | 2026.10.01-e373342 | 2026-08-29 | 2026.09.28-64d2043 |
+| cursor | 2026.10.16-e3cb207 | 2026-08-29 | 2026.10.01-e373342 |
 | grok | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | grok 1.0.52 (0920c8169e27) [alpha] |
 | crush | crush version v0.98.1 | 2026-08-29 | crush version v0.98.0 |
 
@@ -22,6 +22,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-19 | cursor | - | version | 2026.10.01-e373342 | 2026.10.16-e3cb207 | 2026.10.16-e3cb207 |
 | 2026-10-18 | omp | - | version | omp/18.11.3 | omp/18.12.0 | omp/18.12.0 |
 | 2026-10-18 | antigravity | - | version | 1.4.0 | 1.4.2 | 1.4.2 |
 | 2026-10-18 | antigravity | sessions.compaction | surface | - | No generated compaction guidance | 1.4.2 |
@@ -221,4 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-03 | cursor | mcp.dependencies | parity | unknown | aligned | 2026.07.01-777f564 |
 | 2026-09-03 | crush | mcp.dependencies | surface | `mcp add` in `~/.config/crush/crushrc` | ~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand | crush version v0.92.0 |
 | 2026-09-03 | crush | mcp.dependencies | parity | unknown | absent | crush version v0.92.0 |
-| 2026-09-03 | codex | mcp.dependencies | parity | unknown | partial | codex-cli 0.152.0 |

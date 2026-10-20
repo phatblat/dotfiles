@@ -13,15 +13,15 @@ Verify: `python3 scripts/agent-harnesses.py verify`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · 2.1.285 (Claude Code) · 2026-10-18 | native PreCompact hook |
-| codex | aligned | native | - | probe · codex-cli 0.163.0 · 2026-10-18 | Compact Preservation section in ~/.codex/AGENTS.md; the PreCompact hook was removed |
-| opencode | aligned | adapter | - | probe · 1.19.3 · 2026-10-18 | plugin compaction hook |
-| pi | aligned | native | - | probe · 1.3.0 · 2026-10-18 | native compaction settings plus extension status |
-| omp | aligned | native | - | probe · omp/18.12.0 · 2026-10-18 | compaction preservation contract inlined with shared harness instructions |
+| claude | aligned | native | - | probe · 2.1.285 (Claude Code) · 2026-10-19 | native PreCompact hook |
+| codex | aligned | native | - | probe · codex-cli 0.163.0 · 2026-10-19 | Compact Preservation section in ~/.codex/AGENTS.md; the PreCompact hook was removed |
+| opencode | aligned | adapter | - | probe · 1.19.3 · 2026-10-19 | plugin compaction hook |
+| pi | aligned | native | - | probe · 1.3.0 · 2026-10-19 | native compaction settings plus extension status |
+| omp | aligned | native | - | probe · omp/18.12.0 · 2026-10-19 | compaction preservation contract inlined with shared harness instructions |
 | antigravity | absent | none | No generated compaction guidance | source · - · 2026-10-18 | The generated hooks.json now holds only the PreToolUse guard, so nothing in the Antigravity adapter carries the compaction preservation contract. |
-| cursor | partial | native | - | probe · 2026.10.01-e373342 · 2026-10-18 | Cursor preservation instructions are generated, but resume/history behavior has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.62 (1474f9cbdd91) [alpha] · 2026-10-18 | compaction preservation contract inlined in the generated grok rules file |
-| crush | aligned | native | - | probe · crush version v0.98.1 · 2026-10-18 | compaction preservation contract inlined in the generated crush context file |
+| cursor | partial | native | - | probe · 2026.10.16-e3cb207 · 2026-10-19 | Cursor preservation instructions are generated, but resume/history behavior has not been verified |
+| grok | aligned | native | - | probe · grok 1.0.62 (1474f9cbdd91) [alpha] · 2026-10-19 | compaction preservation contract inlined in the generated grok rules file |
+| crush | aligned | native | - | probe · crush version v0.98.1 · 2026-10-19 | compaction preservation contract inlined in the generated crush context file |
 
 ### Not yet researched
 
