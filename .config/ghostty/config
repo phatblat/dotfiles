@@ -9,7 +9,7 @@ command = /Users/phatblat/bin/nu-login
 # Style
 # ghostty +list-themes
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/
-theme = TokyoNight
+theme = TokyoNight Day
 
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 14
