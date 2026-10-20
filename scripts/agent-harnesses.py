@@ -86,9 +86,10 @@ SHARED = ROOT / ".agents" / "harness"
 # every artifact on every tool call.
 GENERATED_MANIFEST = SHARED / "generated-paths.json"
 GENERATOR_PATH = ROOT / "scripts" / "agent-harnesses.py"
-COMMAND_SOURCE = ROOT / ".claude" / "commands"
+COMMAND_SOURCE = SHARED / "commands"
 AGENT_SOURCE = ROOT / ".codex" / "agents"
 SKILL_SOURCE = ROOT / ".agents" / "skills"
+CLAUDE_COMMANDS = ROOT / ".claude" / "commands"
 CLAUDE_SKILLS = ROOT / ".claude" / "skills"
 OPEN_CODE = ROOT / ".config" / "opencode"
 PI_AGENT = ROOT / ".pi" / "agent"
@@ -216,7 +217,7 @@ def command_inventory(*, json_output: bool) -> int:
 # Directories that hold one generated file per command/agent/skill; files here
 # that render_all() no longer produces are orphans and must be pruned.
 GENERATED_ITEM_ROOTS = [
-    (SHARED / "commands", "*.md"),
+    (ROOT / ".claude" / "commands", "*.md"),
     (SHARED / "agents", "*.toml"),
     (OPEN_CODE / "commands", "*.md"),
     (OPEN_CODE / "agents", "*.md"),
@@ -225,6 +226,7 @@ GENERATED_ITEM_ROOTS = [
     (CURSOR_HARNESS / "commands", "*.md"),
     (CURSOR_HARNESS / "agents", "*.md"),
     (OMP_AGENT / "agents", "*.md"),
+    (OMP_AGENT / "commands", "*.md"),
     (GROK / "agents", "*.md"),
     # A domain page left behind after a DOMAINS key is renamed is an orphan.
     # observed.json, versions.json, and drift.jsonl are not *.md and so are
@@ -879,7 +881,7 @@ def render_all() -> dict[Path, str]:
         source = ROOT / command["source"].replace("~/", "")
         emitted = set(rendered)
         rel = Path(command["id"] + ".md")
-        rendered[SHARED / "commands" / rel] = render_shared_command(source.read_text())
+        rendered[CLAUDE_COMMANDS / rel] = render_native_command(command)  # new
         rendered[OPEN_CODE / "commands" / f"{command['native']}.md"] = (
             render_opencode_command(command)
         )
@@ -887,6 +889,7 @@ def render_all() -> dict[Path, str]:
             command
         )
         rendered[CURSOR_HARNESS / "commands" / rel] = render_cursor_command(command)
+        rendered[OMP_AGENT / "commands" / rel] = render_omp_command(command)  # new
         record_provenance(provenance, rendered, emitted, source)
 
     for agent in agents:
@@ -1152,6 +1155,21 @@ Pass user arguments through unchanged.
 
 
 def render_opencode_command(command: dict[str, Any]) -> str:
+    return f"""---
+description: {json.dumps(command["description"])[1:-1]}
+---
+
+{MANAGED_HEADER}
+
+Execute the shared `{command["id"]}` command prompt from:
+
+`{command["shared"]}`
+
+Arguments: $ARGUMENTS
+"""
+
+
+def render_omp_command(command: dict[str, Any]) -> str:
     return f"""---
 description: {json.dumps(command["description"])[1:-1]}
 ---
