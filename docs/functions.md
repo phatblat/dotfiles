@@ -4,19 +4,19 @@ This document tracks the implementation status of all shell functions and aliase
 
 ## Summary
 
-**Total: 546 unique functions/aliases across 3 shells**
+**Total: 547 unique functions/aliases across 3 shells**
 
 **Shell Statistics:**
 
 - Nushell: 495 aliases/functions (primary shell)
-- Zsh: 384 functions (daily fallback)
+- Zsh: 385 functions (daily fallback)
 - Bash: 13 functions (minimal usage)
 
 **Shell Coverage:**
 
 - Implemented in all 3 shells: 12
 - Implemented in 2 shells: 368
-- Implemented in 1 shell only: 120
+- Implemented in 1 shell only: 121
 
 **Functions Implemented in Multiple Shells:** 380
 
@@ -432,6 +432,7 @@ This document tracks the implementation status of all shell functions and aliase
 | `remote`                    | ✅  | ✅  | ➖   | Git remote                                           |
 | `repeatchar`                | ✅  | ➖  | ➖   | Repeats a character a fixed number of times          |
 | `repo_new`                  | ✅  | ✅  | ➖   | Creates new GitHub repo using local dir as root      |
+| `rerun`                     | ➖  | ✅  | ➖   | Rerun failed jobs of a GitHub Actions run (id or URL) |
 | `reset`                     | ✅  | ✅  | ➖   | Git reset                                            |
 | `restart`                   | ✅  | ➖  | ➖   | Restarts the computer without prompt                 |
 | `restore`                   | ✅  | ➖  | ➖   | Discards changes in working tree                     |
