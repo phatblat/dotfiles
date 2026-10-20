@@ -632,67 +632,67 @@
   "~/.omp/agent/commands/2ndbrain.md": {
     "source": "~/.agents/harness/commands/2ndbrain.md"
   },
-  "~/.omp/agent/commands/ci/fix.md": {
+  "~/.omp/agent/commands/ci:fix.md": {
     "source": "~/.agents/harness/commands/ci/fix.md"
   },
   "~/.omp/agent/commands/dupe.md": {
     "source": "~/.agents/harness/commands/dupe.md"
   },
-  "~/.omp/agent/commands/git/cleanup.md": {
+  "~/.omp/agent/commands/git:cleanup.md": {
     "source": "~/.agents/harness/commands/git/cleanup.md"
   },
-  "~/.omp/agent/commands/git/commit.md": {
+  "~/.omp/agent/commands/git:commit.md": {
     "source": "~/.agents/harness/commands/git/commit.md"
   },
-  "~/.omp/agent/commands/git/push.md": {
+  "~/.omp/agent/commands/git:push.md": {
     "source": "~/.agents/harness/commands/git/push.md"
   },
-  "~/.omp/agent/commands/git/rebase.md": {
+  "~/.omp/agent/commands/git:rebase.md": {
     "source": "~/.agents/harness/commands/git/rebase.md"
   },
-  "~/.omp/agent/commands/git/split.md": {
+  "~/.omp/agent/commands/git:split.md": {
     "source": "~/.agents/harness/commands/git/split.md"
   },
-  "~/.omp/agent/commands/git/stack.md": {
+  "~/.omp/agent/commands/git:stack.md": {
     "source": "~/.agents/harness/commands/git/stack.md"
   },
-  "~/.omp/agent/commands/git/status.md": {
+  "~/.omp/agent/commands/git:status.md": {
     "source": "~/.agents/harness/commands/git/status.md"
   },
-  "~/.omp/agent/commands/git/worktree.md": {
+  "~/.omp/agent/commands/git:worktree.md": {
     "source": "~/.agents/harness/commands/git/worktree.md"
   },
-  "~/.omp/agent/commands/linear/plan.md": {
+  "~/.omp/agent/commands/linear:plan.md": {
     "source": "~/.agents/harness/commands/linear/plan.md"
   },
-  "~/.omp/agent/commands/linear/progress.md": {
+  "~/.omp/agent/commands/linear:progress.md": {
     "source": "~/.agents/harness/commands/linear/progress.md"
   },
   "~/.omp/agent/commands/optimize-harness.md": {
     "source": "~/.agents/harness/commands/optimize-harness.md"
   },
-  "~/.omp/agent/commands/pr/approve.md": {
+  "~/.omp/agent/commands/pr:approve.md": {
     "source": "~/.agents/harness/commands/pr/approve.md"
   },
-  "~/.omp/agent/commands/pr/create.md": {
+  "~/.omp/agent/commands/pr:create.md": {
     "source": "~/.agents/harness/commands/pr/create.md"
   },
-  "~/.omp/agent/commands/pr/daily.md": {
+  "~/.omp/agent/commands/pr:daily.md": {
     "source": "~/.agents/harness/commands/pr/daily.md"
   },
-  "~/.omp/agent/commands/pr/merge.md": {
+  "~/.omp/agent/commands/pr:merge.md": {
     "source": "~/.agents/harness/commands/pr/merge.md"
   },
-  "~/.omp/agent/commands/pr/open-for-review.md": {
+  "~/.omp/agent/commands/pr:open-for-review.md": {
     "source": "~/.agents/harness/commands/pr/open-for-review.md"
   },
-  "~/.omp/agent/commands/pr/post-review-findings.md": {
+  "~/.omp/agent/commands/pr:post-review-findings.md": {
     "source": "~/.agents/harness/commands/pr/post-review-findings.md"
   },
-  "~/.omp/agent/commands/pr/resolve-review-feedback.md": {
+  "~/.omp/agent/commands/pr:resolve-review-feedback.md": {
     "source": "~/.agents/harness/commands/pr/resolve-review-feedback.md"
   },
-  "~/.omp/agent/commands/pr/update-desc.md": {
+  "~/.omp/agent/commands/pr:update-desc.md": {
     "source": "~/.agents/harness/commands/pr/update-desc.md"
   },
   "~/.omp/agent/commands/retro.md": {
@@ -701,16 +701,16 @@
   "~/.omp/agent/commands/session-save.md": {
     "source": "~/.agents/harness/commands/session-save.md"
   },
-  "~/.omp/agent/commands/work/end-day.md": {
+  "~/.omp/agent/commands/work:end-day.md": {
     "source": "~/.agents/harness/commands/work/end-day.md"
   },
-  "~/.omp/agent/commands/work/runners.md": {
+  "~/.omp/agent/commands/work:runners.md": {
     "source": "~/.agents/harness/commands/work/runners.md"
   },
-  "~/.omp/agent/commands/work/start-day.md": {
+  "~/.omp/agent/commands/work:start-day.md": {
     "source": "~/.agents/harness/commands/work/start-day.md"
   },
-  "~/.omp/agent/commands/work/track-item.md": {
+  "~/.omp/agent/commands/work:track-item.md": {
     "source": "~/.agents/harness/commands/work/track-item.md"
   },
   "~/.pi/agent/extensions/harness.ts": {

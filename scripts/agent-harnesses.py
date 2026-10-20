@@ -889,7 +889,9 @@ def render_all() -> dict[Path, str]:
             command
         )
         rendered[CURSOR_HARNESS / "commands" / rel] = render_cursor_command(command)
-        rendered[OMP_AGENT / "commands" / rel] = render_omp_command(command)  # new
+        rendered[OMP_AGENT / "commands" / f"{command['native']}.md"] = (
+            render_omp_command(command)
+        )
         record_provenance(provenance, rendered, emitted, source)
 
     for agent in agents:
