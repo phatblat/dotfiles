@@ -331,6 +331,7 @@ worktree:
   cleanSource: true
   onStart: ask
   onExit: ask
+  clone: false
 hideThinkingBlock: false
 theme:
   dark: dark-aurora
