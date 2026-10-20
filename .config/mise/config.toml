@@ -128,7 +128,7 @@ mkcert = "1.4.4"
 neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.12.0"
-oh-my-pi = { version = "18.12.2", rename_exe = "omp" }
+oh-my-pi = { version = "18.12.3", rename_exe = "omp" }
 opencode = "1.19.3"
 packer = "1.16.1"
 pi = "1.3.0"
@@ -244,9 +244,9 @@ idiomatic_version_file_enable_tools = ["node"]
 # than this window, so installs within 24h of a tool bump above can differ
 # from what was current at merge time.
 minimum_release_age = "24h"
-# claude-code and codex ship fixes frequently; skip the 24h
+# claude-code, codex, and oh-my-pi ship fixes frequently; skip the 24h
 # minimum_release_age default for them.
-minimum_release_age_excludes = ["claude-code", "codex"]
+minimum_release_age_excludes = ["claude-code", "codex", "oh-my-pi"]
 use_versions_host = false
 
 [settings.python]
