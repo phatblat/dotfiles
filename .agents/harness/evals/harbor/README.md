@@ -4,14 +4,10 @@ This directory contains Harbor eval tasks for testing the shared agent harness s
 
 ## Installation
 
-Harbor is managed via mise as a pipx-installed Python tool. Install it with:
+Harbor is managed via mise as a PyPI-installed Python tool. The version (and the Python it builds against) is pinned in `.config/mise/config.toml`; do not also `uv tool install` it, or the two copies drift. Install it with:
 
 ```bash
-# Via mise (preferred - reads version from .config/mise/config.toml)
-mise install pipx:harbor
-
-# Or directly via uv tool (pinned to match mise)
-uv tool install harbor==0.23.0
+mise install pypi:harbor
 ```
 
 After installation, verify Harbor is available:
