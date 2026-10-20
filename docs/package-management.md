@@ -8,7 +8,7 @@ Three package managers are in play, with distinct roles rather than equal footin
 
 1. **mise (primary)** — the default for installing and version-pinning CLI tools. Prefer
    `mise search`/`mise use` for anything mise can provide, including via its `aqua:`,
-   `cargo:`, `github:`, `npm:`, and `pipx:` generic backends when a tool isn't in the
+   `cargo:`, `github:`, `npm:`, `pipx:`, and `pypi:` generic backends when a tool isn't in the
    curated registry.
 2. **Homebrew (fallback)** — used when mise genuinely can't provide a tool: macOS GUI
    apps (casks), formulae with no mise backend and no usable upstream release artifact
