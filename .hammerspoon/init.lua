@@ -1,9 +1,9 @@
 -- Launch Hammerspoon at login
 hs.autoLaunch(true)
 
--- Quake-style WezTerm toggle
+-- Toggle Tern visibility
 hs.hotkey.bind({}, "F12", function()
-  local app = hs.application.find("wezterm")
+  local app = hs.application.find("Tern")
   if app then
     if app:isFrontmost() then
       app:hide()
@@ -11,7 +11,7 @@ hs.hotkey.bind({}, "F12", function()
       app:activate()
     end
   else
-    hs.application.launchOrFocus("WezTerm")
+    hs.application.launchOrFocus("Tern")
   end
 end)
 
