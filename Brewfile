@@ -13,7 +13,6 @@ tap "macpaw/taps"
 tap "manaflow-ai/cmux", trusted: true
 tap "messense/macos-cross-toolchains", trusted: true
 tap "phatblat/stencil", "https://github.com/phatblat/homebrew-stencil.git", trusted: true
-tap "schpet/tap", trusted: true
 tap "teamookla/speedtest"
 tap "tw93/tap", trusted: true
 tap "yoanwai/tap", trusted: { casks: ["agent-manager"] }
