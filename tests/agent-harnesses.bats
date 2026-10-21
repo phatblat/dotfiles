@@ -75,11 +75,11 @@ skip_unless_home_is_this_checkout() {
     "$HOME/.agents/skills/work-end-day/SKILL.md"
     "$HOME/.agents/skills/work-start-day/SKILL.md"
     "$HOME/.agents/skills/work-track-item/SKILL.md"
-    "$HOME/.claude/commands/linear/plan.md"
-    "$HOME/.claude/commands/linear/progress.md"
-    "$HOME/.claude/commands/work/end-day.md"
-    "$HOME/.claude/commands/work/start-day.md"
-    "$HOME/.claude/commands/work/track-item.md"
+    "$HOME/.agents/harness/commands/linear/plan.md"
+    "$HOME/.agents/harness/commands/linear/progress.md"
+    "$HOME/.agents/harness/commands/work/end-day.md"
+    "$HOME/.agents/harness/commands/work/start-day.md"
+    "$HOME/.agents/harness/commands/work/track-item.md"
   )
 
   for workflow in "${linear_workflows[@]}"; do
@@ -101,7 +101,6 @@ skip_unless_home_is_this_checkout() {
 
 @test "agent-harnesses: commit guidance favors targeted checks" {
   commit_workflows=(
-    "$HOME/.claude/commands/git/commit.md"
     "$HOME/.agents/harness/commands/git/commit.md"
     "$HOME/.agents/skills/git-commit/SKILL.md"
   )
@@ -265,7 +264,6 @@ skip_unless_home_is_this_checkout() {
 
 @test "agent-harnesses: pr-daily layers new branches on the current daily branch" {
   for workflow in \
-    "$HOME/.claude/commands/pr/daily.md" \
     "$HOME/.agents/skills/pr-daily/SKILL.md"; do
     grep -Fq 'source_branch=${current_branch}' "$workflow"
     grep -Fq 'git checkout -b "${today}" "${source_branch}"' "$workflow"
@@ -344,7 +342,6 @@ skip_unless_home_is_this_checkout() {
 @test "git-worktree pins the session-rebase protocol across all three surfaces" {
   surfaces=(
     "$HOME/.agents/skills/git-worktree/SKILL.md"
-    "$HOME/.claude/commands/git/worktree.md"
     "$HOME/.agents/harness/commands/git/worktree.md"
   )
 
@@ -360,7 +357,6 @@ skip_unless_home_is_this_checkout() {
 @test "git-stack drives gh stack non-interactively and restacks in a worktree" {
   workflows=(
     "$HOME/.agents/skills/git-stack/SKILL.md"
-    "$HOME/.claude/commands/git/stack.md"
     "$HOME/.agents/harness/commands/git/stack.md"
   )
 
@@ -516,7 +512,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: pr-post-review-findings preserves the Obsidian worklog contract" {
-  claude_workflow="$HOME/.claude/commands/pr/post-review-findings.md"
+  claude_workflow="$HOME/.agents/harness/commands/pr/post-review-findings.md"
   omp_workflow="$HOME/.agents/harness/commands/pr/post-review-findings.md"
   codex_workflow="$HOME/.agents/skills/pr-post-review-findings/SKILL.md"
 
@@ -545,8 +541,8 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: work:start-day seeds the same Reviews anchor pr-post-review-findings expects" {
-  start_day="$HOME/.claude/commands/work/start-day.md"
-  post_review="$HOME/.claude/commands/pr/post-review-findings.md"
+  start_day="$HOME/.agents/harness/commands/work/start-day.md"
+  post_review="$HOME/.agents/harness/commands/pr/post-review-findings.md"
 
   anchor='<!-- pr:post-review-findings appends reviewed PRs here -->'
   grep -Fq "$anchor" "$start_day"
@@ -665,7 +661,7 @@ if missing:
 
   run python3 "$SCRIPT" provenance --json --path "$HOME/.claude/commands/git/commit.md"
   [ "$status" -eq 0 ]
-  [ "$(printf '%s' "$output" | jq -r '.kind')" = "source" ]
+  [ "$(printf '%s' "$output" | jq -r '.kind')" = "generated" ]
 
   run python3 "$SCRIPT" provenance --json --path "$SCRIPT"
   [ "$status" -eq 0 ]
