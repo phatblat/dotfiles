@@ -1,0 +1,41 @@
+# Settings this profile layers over the main profile's .omp/agent/config.yml.
+# `just generate-omp-profiles` renders config.yml from the two: maps merge,
+# scalars and arrays replace, and main's modelRoles never carry over. Edit
+# this file, then re-render; OMP writes /settings changes into config.yml,
+# and the next render discards them.
+#
+# Beam is the only model, so roles differ by reasoning effort. Beam is
+# text-only, so no vision role is set.
+modelRoles:
+  default: reflection/Beam-1.0-501B-A23B:high
+  task: reflection/Beam-1.0-501B-A23B:medium
+  commit: reflection/Beam-1.0-501B-A23B:low
+  plan: reflection/Beam-1.0-501B-A23B:xhigh
+  slow: reflection/Beam-1.0-501B-A23B:max
+  smol: reflection/Beam-1.0-501B-A23B:low
+cycleOrder:
+  - default
+  - smol
+  - plan
+  - slow
+steeringMode: one-at-a-time
+followUpMode: one-at-a-time
+tools:
+  approval:
+    bash: allow
+memory:
+  backend: "off"
+includeWorkspaceTree: false
+tui:
+  imeSafeCursor: true
+  tight: true
+  resizeScrollback: preserve
+terminal:
+  showProgress: true
+ask:
+  timeout: 1800
+browser:
+  relay: true
+# The feature-delivery team needs main's delivery_* modelRoles, which never
+# carry over; opt in by adding an extensions: entry and those roles here.
+extensions: []

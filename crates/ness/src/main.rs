@@ -11,6 +11,19 @@ use policy_file::Compiled;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
+const USAGE: &str = "\
+usage: ness <guard|hook|policy> ... | ness [--version | --help]
+
+subcommands:
+  guard    run the guard (see `ness guard --help`)
+  hook     run the hook adapter (see `ness hook --help`)
+  policy   policy actions: check, apply, active
+
+flags:
+  -V, --version   print version and exit
+  -h, --help      print this text and exit
+";
+
 /// Hand-rolled `--flag value` parser (no CLI dependency is in scope for this
 /// crate; see the de-risk plan's fixed dependency list). Mirrors
 /// `parse_guard_args`' flag_map (`scripts/agent-harnesses.py:2170-2206`) in
@@ -134,15 +147,34 @@ fn run_hook(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 
 
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
+
+    if args.first().is_some_and(|a| a == "--version" || a == "-V") {
+        println!("ness {}", env!("CARGO_PKG_VERSION"));
+        std::process::exit(0);
+    }
+    if args.first().is_some_and(|a| a == "--help" || a == "-h") {
+        print!("{USAGE}");
+        std::process::exit(0);
+    }
+
     let Some(subcommand) = args.first().cloned() else {
-        eprintln!(
-            "usage: ness <guard|hook|policy> ... (guard/hook take --harness <slug>; hook harnesses: claude, codex, grok, crush, antigravity, cursor; policy actions: check, apply, active)"
-        );
+        eprint!("{USAGE}");
         std::process::exit(2);
     };
 
-    if subcommand == "policy" {
-        std::process::exit(policy_cmd::run(&args[1..]));
+    match subcommand.as_str() {
+        "help" => {
+            print!("{USAGE}");
+            std::process::exit(0);
+        }
+        "version" => {
+            println!("ness {}", env!("CARGO_PKG_VERSION"));
+            std::process::exit(0);
+        }
+        "policy" => {
+            std::process::exit(policy_cmd::run(&args[1..]));
+        }
+        _ => {}
     }
 
     let flags = match parse_flags(&args[1..]) {

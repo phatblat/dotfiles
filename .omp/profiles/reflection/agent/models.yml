@@ -1,0 +1,64 @@
+# Reflection - hosted inference for Reflection's Beam model.
+#
+# Endpoint:  https://api.reflection.ai/openai/v1 (OpenAI Chat Completions and
+#            Models only; the Responses API is not served).
+# Auth:      REFLECTION_API_KEY in ~/.env (omp reads it) or the environment.
+#            The apiKey value below is resolved as an env-var name first,
+#            literal second, so an unset variable sends the literal name and
+#            fails with 401.
+# Catalog:   omp's catalog has no reflection provider, so the model is declared
+#            instead of discovered. Limits match GET /models (verified
+#            2026-10-20): context_length 1048576, max_output_tokens 131072.
+#            Re-check it when Reflection adds or retires a model.
+# Pricing:   Reflection publishes no per-token rates (billing is per
+#            organization at https://platform.reflection.ai/billing), so cost
+#            is zero and omp's cost display reads $0.
+# Thinking:  Beam always reasons (reasoning.mandatory). reasoning_effort
+#            accepts low, medium, high, xhigh, and max; none and minimal
+#            return 400, so :off and :minimal clamp to low. An omitted effort
+#            runs at the organization default, max.
+# History:   every assistant message sent back must carry a non-empty
+#            reasoning_content, tool-call turns included, or the request fails
+#            with 400 missing_required_parameter. The model sometimes returns
+#            a tool-call turn without reasoning; omp then sends a "."
+#            placeholder, the same echo the vendor's Hermes guide relies on.
+# Input:     text only; image, audio, and file parts return 400.
+providers:
+  reflection:
+    api: openai-completions
+    apiKey: REFLECTION_API_KEY
+    baseUrl: https://api.reflection.ai/openai/v1
+    compat:
+      # store accepts only false; omit it rather than send it.
+      supportsStore: false
+      # Beam Harmony renders system and developer identically and drops any
+      # system/developer message that follows another role.
+      supportsDeveloperRole: false
+      supportsMultipleSystemMessages: false
+      supportsUsageInStreaming: true
+      maxTokensField: max_completion_tokens
+      supportsToolChoice: true
+      supportsForcedToolChoice: true
+      # Strict tools require additionalProperties: false and every property
+      # required; omp's tool schemas do not guarantee that.
+      supportsStrictMode: false
+      toolStrictMode: none
+      supportsReasoningEffort: true
+      thinkingFormat: openai
+      reasoningContentField: reasoning_content
+      requiresReasoningContentForToolCalls: true
+      requiresReasoningContentForAllAssistantTurns: true
+      allowsSyntheticReasoningContentForToolCalls: true
+    models:
+      - id: Beam-1.0-501B-A23B
+        name: Beam 1.0 501B A23B
+        reasoning: true
+        thinking:
+          mode: effort
+          efforts: [low, medium, high, xhigh, max]
+          requiresEffort: true
+          defaultLevel: high
+        input: [text]
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        contextWindow: 1048576
+        maxTokens: 131072

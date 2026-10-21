@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# reflection - Run OMP with the reflection profile (Reflection's Beam model)
+omp --profile reflection "$@"

@@ -12,7 +12,7 @@ Coverage: 91/405 cells verified (22%)
 | codex | supported peer | codex-cli 0.163.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | 1.19.3 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.3.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.12.0 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| omp | tracked port | omp/18.12.3 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.4.2 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | cursor | tracked port | 2026.10.16-e3cb207 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
 | grok | new port | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
@@ -65,6 +65,7 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-10-20 | omp | - | version | omp/18.12.0 | omp/18.12.3 |
 | 2026-10-19 | cursor | - | version | 2026.10.01-e373342 | 2026.10.16-e3cb207 |
 | 2026-10-18 | omp | - | version | omp/18.11.3 | omp/18.12.0 |
 | 2026-10-18 | antigravity | - | version | 1.4.0 | 1.4.2 |
@@ -74,7 +75,6 @@ Coverage: 91/405 cells verified (22%)
 | 2026-10-18 | antigravity | sessions.compaction | probe | pass | - |
 | 2026-10-17 | pi | - | version | 1.2.0 | 1.3.0 |
 | 2026-10-17 | opencode | - | version | 1.19.0 | 1.19.3 |
-| 2026-10-17 | omp | - | version | omp/18.11.0 | omp/18.11.3 |
 
 ## Permanent divergences
 

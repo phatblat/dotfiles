@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+# Rerun failed jobs of a GitHub Actions run.
+# Usage: rerun <run-id|run-url>
+# shellcheck disable=SC2317,SC2154 # zsh: return guard for direct exec; `match` is a zsh regex builtin
+if [[ $# -lt 1 ]]; then
+    echo "usage: rerun <run-id|run-url>" >&2
+    return 1 2> /dev/null || exit 1
+fi
+
+local input="$1"
+local run_id
+local -a repo_args=()
+
+if [[ "$input" =~ ^[0-9]+$ ]]; then
+    run_id="$input"
+elif [[ "$input" =~ github\.com/([^/]+)/([^/]+)/actions/runs/([0-9]+) ]]; then
+    repo_args=(-R "${match[1]}/${match[2]}")
+    run_id="${match[3]}"
+else
+    echo "rerun: cannot parse run id from: $input" >&2
+    return 1 2> /dev/null || exit 1
+fi
+
+gh run rerun "$run_id" --failed "${repo_args[@]}"

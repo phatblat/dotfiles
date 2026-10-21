@@ -1,5 +1,7 @@
 # omp — oh-my-pi status, plugins, and model catalogs
 
+alias uo := upgrade-omp
+
 # Lists running sessions for the requested agent
 [group('omp')]
 [script]
@@ -103,6 +105,13 @@ update-subconscious-models:
     fi
     git add .omp/profiles/subconscious/agent/models.yml
     git commit -m "chore(subconscious): sync models.yml pricing" -- .omp/profiles/subconscious/agent/models.yml
+
+# Upgrades the installed omp version from the upstream GitHub repository
+[group('omp')]
+upgrade-omp:
+    mise upgrade --bump oh-my-pi
+    hk fix .config/mise/config.toml
+    bash -ic 'cmt .config/mise/config.toml'
 
 # Opens the omp plugin manifest in the configured editor
 [group('omp')]

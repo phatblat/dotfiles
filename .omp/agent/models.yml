@@ -31,3 +31,38 @@ providers:
           output: 0
           cacheRead: 0
           cacheWrite: 0
+  # Reflection - hosted Beam inference. Full notes (limits, thinking, history,
+  # auth) live in .omp/profiles/reflection/agent/models.yml; keep the two in sync.
+  reflection:
+    api: openai-completions
+    apiKey: REFLECTION_API_KEY
+    baseUrl: https://api.reflection.ai/openai/v1
+    compat:
+      supportsStore: false
+      supportsDeveloperRole: false
+      supportsMultipleSystemMessages: false
+      supportsUsageInStreaming: true
+      maxTokensField: max_completion_tokens
+      supportsToolChoice: true
+      supportsForcedToolChoice: true
+      supportsStrictMode: false
+      toolStrictMode: none
+      supportsReasoningEffort: true
+      thinkingFormat: openai
+      reasoningContentField: reasoning_content
+      requiresReasoningContentForToolCalls: true
+      requiresReasoningContentForAllAssistantTurns: true
+      allowsSyntheticReasoningContentForToolCalls: true
+    models:
+      - id: Beam-1.0-501B-A23B
+        name: Beam 1.0 501B A23B
+        reasoning: true
+        thinking:
+          mode: effort
+          efforts: [low, medium, high, xhigh, max]
+          requiresEffort: true
+          defaultLevel: high
+        input: [text]
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+        contextWindow: 1048576
+        maxTokens: 131072

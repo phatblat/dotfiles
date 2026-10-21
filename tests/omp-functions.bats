@@ -159,7 +159,7 @@ teardown() {
 # Profile wrappers resolve from this checkout, not $HOME, so a branch that adds
 # one is testable before the live home directory has it.
 @test "zsh profile wrappers launch omp with their profile through the omp wrapper" {
-  for profile in casper baseten subconscious; do
+  for profile in casper baseten subconscious reflection; do
     run env PATH="$fakebindir:$PATH" zsh -c "
       rehash
       fpath=(\"$repo/.config/zsh/functions\" \$fpath)
@@ -173,7 +173,7 @@ teardown() {
 }
 
 @test "nushell profile wrappers launch omp with their profile through the omp wrapper" {
-  for profile in casper baseten subconscious; do
+  for profile in casper baseten subconscious reflection; do
     run env PATH="$fakebindir:$PATH" nu --no-config-file -c "
       source '$repo/.config/nushell/autoload/$profile.nu'
       $profile --print hello
