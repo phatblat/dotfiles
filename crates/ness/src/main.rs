@@ -148,11 +148,11 @@ fn run_hook(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
 
-    if args.iter().any(|a| a == "--version" || a == "-V") {
+    if args.first().is_some_and(|a| a == "--version" || a == "-V") {
         println!("ness {}", env!("CARGO_PKG_VERSION"));
         std::process::exit(0);
     }
-    if args.iter().any(|a| a == "--help" || a == "-h") {
+    if args.first().is_some_and(|a| a == "--help" || a == "-h") {
         print!("{USAGE}");
         std::process::exit(0);
     }
