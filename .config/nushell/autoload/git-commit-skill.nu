@@ -10,13 +10,13 @@ export def git-commit-skill [
     ...args           # additional git commit flags
 ] {
     if ($message | is-empty) {
-        omp --print "/git:commit" --model smol --auto-approve
+        omp --print "/git-commit" --model smol --auto-approve
     } else {
         let repo_root = (try { ^git rev-parse --show-toplevel | str trim } catch { null })
         if ($args | is-empty) and ($repo_root != null) and ($message | path exists) {
             let abs_path = ($message | path expand)
             if ($abs_path == $repo_root) or ($abs_path | str starts-with $"($repo_root)/") {
-                omp --print $"/git:commit only the path: ($abs_path) — exactly one commit for that path alone; do not group, stage, or mention other dirty files; no confirmation needed" --model smol --auto-approve
+                omp --print $"/git-commit only the path: ($abs_path) — exactly one commit for that path alone; do not group, stage, or mention other dirty files; no confirmation needed" --model smol --auto-approve
             } else {
                 ^git commit --verbose -m $message ...$args
             }
