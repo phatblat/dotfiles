@@ -62,7 +62,7 @@
 "npm:yaml-language-server" = "2.0.0"
 "npm:yarn" = "1.22.22"
 "pypi:basedpyright" = "1.40.2"
-"pypi:graphifyy" = "0.9.92"
+"pypi:graphifyy" = "0.9.93"
 "pypi:harbor" = { version = "0.24.0", python = "3.14" }
 "pypi:pyright" = "1.1.414"
 "pypi:python-lsp-server" = "1.15.0"
