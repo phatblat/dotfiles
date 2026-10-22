@@ -201,13 +201,13 @@ function cmt() {
     # scope the auto-commit to (like the no-arg form, but restricted to that
     # path) rather than as a commit message.
     if [[ $# -eq 0 ]]; then
-        omp --print "/git:commit" --model smol --auto-approve
+        omp --print "/git-commit" --model smol --auto-approve
     elif [[ $# -eq 1 ]] && git rev-parse --is-inside-work-tree &>/dev/null && [[ -e "$1" ]]; then
         local repo_root abs_path
         repo_root="$(git rev-parse --show-toplevel)"
         abs_path="$(realpath "$1")"
         if [[ "$abs_path" == "$repo_root" || "$abs_path" == "$repo_root"/* ]]; then
-            omp --print "/git:commit only the path: $abs_path" --model smol --auto-approve
+            omp --print "/git-commit only the path: $abs_path" --model smol --auto-approve
         else
             git commit -m "$@"
         fi

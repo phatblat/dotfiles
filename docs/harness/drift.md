@@ -8,11 +8,11 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
-| claude | 2.1.285 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
+| claude | 2.1.306 (Claude Code) | 2026-08-29 | 2.1.285 (Claude Code) |
 | codex | codex-cli 0.163.0 | 2026-08-29 | codex-cli 0.162.1 |
 | opencode | 1.19.3 | 2026-08-29 | 1.19.0 |
 | pi | 1.3.0 | 2026-08-29 | 1.2.0 |
-| omp | omp/18.12.3 | 2026-08-29 | omp/18.12.0 |
+| omp | omp/18.12.5 | 2026-08-29 | omp/18.12.3 |
 | antigravity | 1.4.2 | 2026-08-29 | 1.4.0 |
 | cursor | 2026.10.16-e3cb207 | 2026-08-29 | 2026.10.01-e373342 |
 | grok | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | grok 1.0.52 (0920c8169e27) [alpha] |
@@ -22,6 +22,8 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-21 | omp | - | version | omp/18.12.3 | omp/18.12.5 | omp/18.12.5 |
+| 2026-10-21 | claude | - | version | 2.1.285 (Claude Code) | 2.1.306 (Claude Code) | 2.1.306 (Claude Code) |
 | 2026-10-20 | omp | - | version | omp/18.12.0 | omp/18.12.3 | omp/18.12.3 |
 | 2026-10-19 | cursor | - | version | 2026.10.01-e373342 | 2026.10.16-e3cb207 | 2026.10.16-e3cb207 |
 | 2026-10-18 | omp | - | version | omp/18.11.3 | omp/18.12.0 | omp/18.12.0 |
@@ -220,5 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-03 | grok | mcp.dependencies | parity | unknown | aligned | grok 1.0.13 (5e9a58528b76) [alpha] |
 | 2026-09-03 | cursor | mcp.dependencies | surface | Generated `mcp.json`, unverified | Generated `mcp.json` | 2026.07.01-777f564 |
 | 2026-09-03 | cursor | mcp.dependencies | mode | none | adapter | 2026.07.01-777f564 |
-| 2026-09-03 | cursor | mcp.dependencies | parity | unknown | aligned | 2026.07.01-777f564 |
-| 2026-09-03 | crush | mcp.dependencies | surface | `mcp add` in `~/.config/crush/crushrc` | ~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand | crush version v0.92.0 |

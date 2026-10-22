@@ -70,7 +70,7 @@ teardown() {
   '
 
   [ "$status" -eq 0 ]
-  [ "$output" = $'--allow-home\n--print\n/git:commit\n--model\nsmol\n--auto-approve' ]
+  [ "$output" = $'--allow-home\n--print\n/git-commit\n--model\nsmol\n--auto-approve' ]
 }
 
 
@@ -81,7 +81,7 @@ teardown() {
   "
 
   [ "$status" -eq 0 ]
-  [ "$output" = $'--allow-home\n--print\n/git:commit\n--model\nsmol\n--auto-approve' ]
+  [ "$output" = $'--allow-home\n--print\n/git-commit\n--model\nsmol\n--auto-approve' ]
 }
 
 @test "zsh omp injects --allow-home" {

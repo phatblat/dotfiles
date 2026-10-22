@@ -51,8 +51,8 @@ $env.NU_VENDOR_AUTOLOAD_DIRS = [
     ($env.XDG_CONFIG_HOME | path join 'nushell' 'vendor' 'autoload')
 ]
 
-# Add homebrew to PATH
-$env.PATH = ($env.PATH | prepend ["/opt/homebrew/sbin" "/opt/homebrew/bin"])
+# Add homebrew to PATH; keg-only curl first so it shadows /usr/bin/curl
+$env.PATH = ($env.PATH | prepend ["/opt/homebrew/opt/curl/bin" "/opt/homebrew/sbin" "/opt/homebrew/bin"])
 
 # Nix (Determinate). There is no upstream nushell hook — nix-daemon.sh is
 # POSIX-only — so replicate its PATH setup here. Gated on the store being

@@ -775,7 +775,7 @@ def discover_commands() -> list[dict[str, Any]]:
         commands.append(
             {
                 "id": command_id,
-                "native": command_id.replace("/", ":"),
+                "native": command_id.replace("/", "-"),
                 "description": frontmatter.get(
                     "description", first_nonempty_line(body)
                 ),

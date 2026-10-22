@@ -13,7 +13,6 @@ tap "macpaw/taps"
 tap "manaflow-ai/cmux", trusted: true
 tap "messense/macos-cross-toolchains", trusted: true
 tap "phatblat/stencil", "https://github.com/phatblat/homebrew-stencil.git", trusted: true
-tap "schpet/tap", trusted: true
 tap "teamookla/speedtest"
 tap "tw93/tap", trusted: true
 tap "yoanwai/tap", trusted: { casks: ["agent-manager"] }
@@ -382,8 +381,6 @@ brew "cirruslabs/cli/cirrus", trusted: true
 brew "messense/macos-cross-toolchains/aarch64-unknown-linux-gnu"
 # x86_64-unknown-linux-gnu Toolchain
 brew "messense/macos-cross-toolchains/x86_64-unknown-linux-gnu"
-# CLI tool for linear.app that uses git branch names and directory names to open issues and team pages
-brew "schpet/tap/linear", link: false
 # Ookla Speedtest
 brew "teamookla/speedtest/speedtest", trusted: true
 # Password manager that keeps all passwords secure behind one password
@@ -442,8 +439,6 @@ cask "kaleidoscope"
 cask "kiro", args: { appdir: "/Applications/Agents" }
 # AI-powered productivity tool for the command-line
 cask "kiro-cli", args: { appdir: "/Applications/Agents" }
-# Automation software
-cask "linear"
 # Discover, download, and run local LLMs
 cask "lm-studio", args: { appdir: "/Applications/Agents" }
 # Software for Logitech devices
