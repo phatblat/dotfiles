@@ -16,9 +16,9 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 | claude | aligned | shared | - | probe · 2.1.251 (Claude Code) · 2026-10-23 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.163.0 · 2026-10-23 | - |
 | opencode | aligned | shared | - | probe · 1.19.3 · 2026-10-23 | - |
-| pi | aligned | shared | - | probe · 1.3.0 · 2026-10-23 | - |
+| pi | aligned | shared | - | probe · 1.4.0 · 2026-10-23 | - |
 | omp | aligned | native | - | probe · omp/18.12.6 · 2026-10-23 | inlined shared harness instructions + compaction contract + commit attribution |
-| antigravity | partial | adapter | - | probe · 1.2.3 · 2026-10-23 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
+| antigravity | partial | adapter | - | probe · 1.4.6 · 2026-10-23 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
 | cursor | partial | adapter | - | probe · - · 2026-10-23 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
 | grok | aligned | native | - | probe · grok 1.0.67 (2fe064390d07) · 2026-10-23 | inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file |
 | crush | aligned | native | - | probe · crush version v0.98.1 · 2026-10-23 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |

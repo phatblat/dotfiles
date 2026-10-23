@@ -16,9 +16,9 @@ Verify: `just harness-check`
 | claude | aligned | shared | - | probe · 2.1.251 (Claude Code) · 2026-10-23 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.163.0 · 2026-10-23 | - |
 | opencode | aligned | shared | - | probe · 1.19.3 · 2026-10-23 | - |
-| pi | aligned | shared | - | probe · 1.3.0 · 2026-10-23 | - |
+| pi | aligned | shared | - | probe · 1.4.0 · 2026-10-23 | - |
 | omp | aligned | shared | - | probe · omp/18.12.6 · 2026-10-23 | - |
-| antigravity | aligned | shared | - | probe · 1.2.3 · 2026-10-23 | - |
+| antigravity | aligned | shared | - | probe · 1.4.6 · 2026-10-23 | - |
 | cursor | aligned | shared | - | probe · - · 2026-10-23 | - |
 | grok | aligned | shared | - | probe · grok 1.0.67 (2fe064390d07) · 2026-10-23 | - |
 | crush | aligned | shared | - | probe · crush version v0.98.1 · 2026-10-23 | - |
@@ -34,7 +34,7 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
 | opencode | aligned | native | opencode debug config --pure | probe · 1.19.3 · 2026-10-23 | - |
-| pi | aligned | native | pi list --no-approve | probe · 1.3.0 · 2026-10-23 | - |
+| pi | aligned | native | pi list --no-approve | probe · 1.4.0 · 2026-10-23 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |

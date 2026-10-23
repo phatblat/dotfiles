@@ -16,7 +16,7 @@ Verify: `python3 scripts/agent-harnesses.py verify`
 | claude | aligned | native | - | probe · 2.1.251 (Claude Code) · 2026-10-23 | native PreCompact hook |
 | codex | aligned | native | - | probe · codex-cli 0.163.0 · 2026-10-23 | Compact Preservation section in ~/.codex/AGENTS.md; the PreCompact hook was removed |
 | opencode | aligned | adapter | - | probe · 1.19.3 · 2026-10-23 | plugin compaction hook |
-| pi | aligned | native | - | probe · 1.3.0 · 2026-10-23 | native compaction settings plus extension status |
+| pi | aligned | native | - | probe · 1.4.0 · 2026-10-23 | native compaction settings plus extension status |
 | omp | aligned | native | - | probe · omp/18.12.6 · 2026-10-23 | compaction preservation contract inlined with shared harness instructions |
 | antigravity | absent | none | No generated compaction guidance | source · - · 2026-10-18 | The generated hooks.json now holds only the PreToolUse guard, so nothing in the Antigravity adapter carries the compaction preservation contract. |
 | cursor | partial | native | - | probe · - · 2026-10-23 | Cursor preservation instructions are generated, but resume/history behavior has not been verified |
