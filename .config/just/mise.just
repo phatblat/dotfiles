@@ -163,7 +163,7 @@ upgrade-mise-tools *args:
     else
         set -- {{ args }}
     fi
-    mise upgrade --bump --yes "$@"
+    mise upgrade --bump --yes --no-prune "$@"
 
 # Upgrades mise itself
 [group('mise')]
@@ -184,7 +184,7 @@ upgrade-mise-tools-commit:
         current=$(echo "$json" | jq -r --arg t "$tool" '.[$t].current')
         bump=$(echo "$json" | jq -r --arg t "$tool" '.[$t].bump')
         echo "Upgrading $tool: $current → $bump"
-        mise upgrade --bump --yes "$tool"
+        mise upgrade --bump --yes --no-prune "$tool"
         paths=("{{ justfile_directory() }}/.config/mise/config.toml")
         if [ "$tool" = "hk" ]; then
             # hk.pkl pins the exact hk release it amends (see hk.pkl's own
