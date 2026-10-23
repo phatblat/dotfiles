@@ -2,8 +2,8 @@
   "altScreenMode": "always",
   "enableTerminalSandbox": true,
   "gcp": {
-    "location": "us",
-    "project": "octopad-antigravity"
+    "project": "octopad-antigravity",
+    "location": "us"
   },
   "model": "Gemini 4 Argon (Medium)",
   "permissions": {
@@ -20,9 +20,9 @@
   },
   "showFeedbackSurvey": false,
   "statusLine": {
+    "type": "",
     "command": "",
-    "enabled": true,
-    "type": ""
+    "enabled": true
   },
   "toolPermission": "proceed-in-sandbox"
 }
