@@ -127,7 +127,7 @@ mirrord = "3.277.0"
 mkcert = "1.4.4"
 neovim = "0.12.6"
 ninja = "1.13.2"
-node = "26.12.0"
+node = "26.12.1"
 oh-my-pi = { version = "18.12.6", rename_exe = "omp" }
 opencode = "1.19.3"
 packer = "1.16.1"
