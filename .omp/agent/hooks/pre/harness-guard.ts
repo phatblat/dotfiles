@@ -6,7 +6,7 @@
 // ~/.omp/agent is tracked manually, not emitted by scripts/agent-harnesses.py.
 
 import { execFileSync } from "node:child_process";
-import { appendFileSync, mkdirSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
@@ -89,10 +89,10 @@ function field(error: unknown, key: string): unknown {
     : undefined;
 }
 
-// Exported for the throwaway driver. Deliberately a pure formatter: the guard
+// Exported for the throwaway driver. Deliberately a formatter (plus one existsSync probe of the cwd): the guard
 // binary path stays a hardcoded const, because any override seam (env var,
 // option) would be a way to neuter the guard from inside a session.
-export function spawnFailureReason(error: unknown): string {
+export function spawnFailureReason(error: unknown, cwd = ""): string {
   const stdout = bytesOf(field(error, "stdout")).trim();
   if (stdout) {
     const clipped = stdout.replace(/\s+/g, " ").slice(0, 200);
@@ -101,6 +101,11 @@ export function spawnFailureReason(error: unknown): string {
   const code = String(field(error, "code") ?? "");
   const stderr = bytesOf(field(error, "stderr")).trim().split("\n")[0] ?? "";
   if (code === "ENOENT") {
+    // posix_spawn reports a missing cwd as ENOENT on the binary path, so check
+    // the cwd before blaming the install.
+    if (cwd && !existsSync(cwd)) {
+      return `${FAILED}: working directory ${cwd} no longer exists (deleted worktree?); run the call from an existing directory or restart omp in one`;
+    }
     return `${FAILED}: ${NESS} is not installed (run: just ness-install)`;
   }
   if (code === "EACCES" || code === "ENOEXEC") {
@@ -147,7 +152,7 @@ function runGuard(args: string[], cwd: string): GuardResult {
     }
     const result: GuardResult = {
       decision: "deny",
-      reason: spawnFailureReason(error),
+      reason: spawnFailureReason(error, cwd),
     };
     logGuardVerdict(tool, result, Date.now() - started);
     return result;
