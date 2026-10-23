@@ -1,0 +1,12 @@
+{
+  "command": "git log --oneline --grep 'truncate long names'",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "claude",
+  "path": null,
+  "tool": "bash"
+}

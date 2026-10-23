@@ -56,7 +56,9 @@ patterns = [
   '(?i)\bchmod\s+\+s\b',
   '(?i):\(\)\{.*:\|:&\};',
   '(?i)\b(curl|wget)\b[^|]*\|\s*(ba)?sh\b',
-  '(?i)\b(truncate|shred)\b',
+  # Anchored to command position (after ; & | ` newline ( or $(, optionally behind env/exec/command/nohup/time/xargs) or to find -exec, so prose that mentions the words is not denied.
+  '(?i)(^|[;&|`\n(]|\$\()\s*((\S*/)?(env|exec|command|nohup|time|xargs)(\s+(-\S+|\w+=\S*))*\s+)*(\S*/)?(truncate|shred)\b',
+  '(?i)-exec(dir)?\s+(\S*/)?(truncate|shred)\b',
   # Only a human at a terminal applies policy (active::REQUIRED_DENIED_COMMAND). Anchored to command position so prose that mentions the command (commit messages, rg) is not denied.
   '(?i)(^|[;&|`\n]|\$\()\s*(\S*/)?ness\s+policy\s+apply\b',
 ]
