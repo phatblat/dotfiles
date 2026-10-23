@@ -48,7 +48,8 @@ patterns = ['(?i)(^|;|&&|\|\||\||\n|\r|\$\(|`)\s*(sudo|su|doas|pkexec)\b']
 
 [commands.dangerous]
 patterns = [
-  '(?i)\brm\s+-(?=[A-Za-z-]*r)(?=[A-Za-z-]*f)[A-Za-z-]*\s+(/|~|\*|\.\.)',
+  # A segment whose targets are all /tmp, /private/tmp, /var/folders or /private/var/folders children (no "..", no leading glob) is exempt; any other first target starting with / ~ * .. is denied.
+  '(?i)\brm\s+-(?=[A-Za-z-]*r)(?=[A-Za-z-]*f)[A-Za-z-]*\s+(?!(?:(?:/private)?/(?:tmp|var/folders)/(?![^\s;&|]*\.\.)[^\s;&|*][^\s;&|]*\s*)+(?:$|[;&|\n]))(/|~|\*|\.\.)',
   '(?i)>\s*/dev/sd[a-z]?',
   '(?i)\bmkfs(\.|\s)',
   '(?i)\bdd\s+if=.*\s+of=/dev/',
