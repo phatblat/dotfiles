@@ -34,6 +34,7 @@ import '.config/just/python.just'
 import '.config/just/rust.just'
 
 alias fmt := format
+alias f := format
 alias i := deps
 alias up := upgrade
 
