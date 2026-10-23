@@ -723,6 +723,7 @@ Library/Application Support/Caches/
 Library/Application Support/Caddy/
 Library/Application Support/CallHistoryDB/
 Library/Application Support/CallHistoryTransactions/
+Library/Application Support/CampoUIInternal/
 Library/Application Support/Chromium/
 Library/Application Support/Claude/*
 !Library/Application Support/Claude/claude_desktop_config.json
@@ -947,6 +948,7 @@ Library/Application Support/jan.ai.app/
 Library/Application Support/kotlin/
 Library/Application Support/lazygit/
 Library/Application Support/mkcert/
+Library/Application Support/mod.io/
 Library/Application Support/multipass-client-certificate/
 Library/Application Support/multipass-gui/
 Library/Application Support/networkserviceproxy/

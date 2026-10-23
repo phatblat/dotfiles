@@ -12,10 +12,10 @@ Coverage: 91/405 cells verified (22%)
 | codex | supported peer | codex-cli 0.163.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | 1.19.3 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.3.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.12.5 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| omp | tracked port | omp/18.12.6 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.4.2 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | cursor | tracked port | 2026.10.16-e3cb207 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.62 (1474f9cbdd91) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
+| grok | new port | grok 1.0.67 (2fe064390d07) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
 | crush | new port | crush version v0.98.1 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
@@ -65,6 +65,8 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-10-22 | omp | - | version | omp/18.12.5 | omp/18.12.6 |
+| 2026-10-22 | grok | - | version | grok 1.0.62 (1474f9cbdd91) [alpha] | grok 1.0.67 (2fe064390d07) [alpha] |
 | 2026-10-21 | omp | - | version | omp/18.12.3 | omp/18.12.5 |
 | 2026-10-21 | claude | - | version | 2.1.285 (Claude Code) | 2.1.306 (Claude Code) |
 | 2026-10-20 | omp | - | version | omp/18.12.0 | omp/18.12.3 |
@@ -73,8 +75,6 @@ Coverage: 91/405 cells verified (22%)
 | 2026-10-18 | antigravity | - | version | 1.4.0 | 1.4.2 |
 | 2026-10-18 | antigravity | sessions.compaction | surface | - | No generated compaction guidance |
 | 2026-10-18 | antigravity | sessions.compaction | mode | native | none |
-| 2026-10-18 | antigravity | sessions.compaction | parity | partial | absent |
-| 2026-10-18 | antigravity | sessions.compaction | probe | pass | - |
 
 ## Permanent divergences
 

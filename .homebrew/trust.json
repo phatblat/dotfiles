@@ -22,6 +22,7 @@
     "leoafarias/fvm",
     "manaflow-ai/cmux",
     "messense/macos-cross-toolchains",
+    "phatblat/stencil",
     "schpet/tap",
     "tw93/tap"
   ]
