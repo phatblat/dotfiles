@@ -39,7 +39,8 @@ patterns = [
 # Secret-shaped content in anything written, including heredocs in shell commands.
 [secret_content]
 patterns = [
-  '''(?i)(AKIA[0-9A-Z]{16}|sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|gho_[A-Za-z0-9]{36}|glpat-[A-Za-z0-9_-]{20,}|xox[bpoas]-[A-Za-z0-9-]+|-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----|password\s*[:=]\s*["'][^"']{8,}["'])''',
+  # sk- must start a token: kebab-case words such as task-… or risk-… contain it mid-word.
+  '''(?i)(AKIA[0-9A-Z]{16}|(?<![A-Za-z0-9_-])sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|gho_[A-Za-z0-9]{36}|glpat-[A-Za-z0-9_-]{20,}|xox[bpoas]-[A-Za-z0-9-]+|-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----|password\s*[:=]\s*["'][^"']{8,}["'])'''
 ]
 
 [commands.privilege_escalation]
