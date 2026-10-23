@@ -26,13 +26,13 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.52 (0920c8169e27) [alpha]",
-    "version": "grok 1.0.62 (1474f9cbdd91) [alpha]"
+    "previous": "grok 1.0.62 (1474f9cbdd91) [alpha]",
+    "version": "grok 1.0.67 (2fe064390d07) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.12.3",
-    "version": "omp/18.12.5"
+    "previous": "omp/18.12.5",
+    "version": "omp/18.12.6"
   },
   "opencode": {
     "first_seen": "2026-08-29",
