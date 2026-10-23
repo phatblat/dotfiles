@@ -33,7 +33,8 @@ patterns = [
 # Secrets on disk: never written by an agent, through any tool or shell.
 [protected_paths]
 patterns = [
-  '(?i)(\.env($|\.)|\.ssh/|id_(rsa|ed25519|ecdsa)|\.pem$|\.key$|\.p12$|\.pfx$|\.jks$|\.aws/credentials|\.docker/config\.json|kubeconfig|\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials|\.claude/\.credentials\.json|\.codex/auth\.json|\.omp/agent/agent\.db|\.omp/agent/secrets\.yml|\.pi/agent/auth\.json|\.gemini/google_accounts\.json|\.gemini/oauth_creds\.json|\.gemini/antigravity-cli/installation_id|\.gemini/antigravity-cli/conversations/|\.cursor/ai-tracking/|\.grok/auth\.json|\.grok/mcp_credentials\.json|\.config/crush/crush\.json|\.local/share/crush/crush\.json|\.local/share/crush/crush\.db)',
+  # Env templates (.env.example/.sample/.template/.dist) are meant to be committed; secret_content still scans them.
+  '(?i)(\.env($|\.(?!(?:example|sample|template|dist)$))|\.ssh/|id_(rsa|ed25519|ecdsa)|\.pem$|\.key$|\.p12$|\.pfx$|\.jks$|\.aws/credentials|\.docker/config\.json|kubeconfig|\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials|\.claude/\.credentials\.json|\.codex/auth\.json|\.omp/agent/agent\.db|\.omp/agent/secrets\.yml|\.pi/agent/auth\.json|\.gemini/google_accounts\.json|\.gemini/oauth_creds\.json|\.gemini/antigravity-cli/installation_id|\.gemini/antigravity-cli/conversations/|\.cursor/ai-tracking/|\.grok/auth\.json|\.grok/mcp_credentials\.json|\.config/crush/crush\.json|\.local/share/crush/crush\.json|\.local/share/crush/crush\.db)',
 ]
 
 # Secret-shaped content in anything written, including heredocs in shell commands.
