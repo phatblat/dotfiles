@@ -8,20 +8,25 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
-| claude | 2.1.306 (Claude Code) | 2026-08-29 | 2.1.285 (Claude Code) |
+| claude | 2.1.251 (Claude Code) | 2026-08-29 | 2.1.306 (Claude Code) |
 | codex | codex-cli 0.163.0 | 2026-08-29 | codex-cli 0.162.1 |
 | opencode | 1.19.3 | 2026-08-29 | 1.19.0 |
 | pi | 1.3.0 | 2026-08-29 | 1.2.0 |
 | omp | omp/18.12.6 | 2026-08-29 | omp/18.12.5 |
-| antigravity | 1.4.2 | 2026-08-29 | 1.4.0 |
-| cursor | 2026.10.16-e3cb207 | 2026-08-29 | 2026.10.01-e373342 |
-| grok | grok 1.0.67 (2fe064390d07) [alpha] | 2026-08-29 | grok 1.0.62 (1474f9cbdd91) [alpha] |
+| antigravity | 1.2.3 | 2026-08-29 | 1.4.2 |
+| cursor | - | 2026-08-29 | 2026.10.16-e3cb207 |
+| grok | grok 1.0.67 (2fe064390d07) | 2026-08-29 | grok 1.0.62 (1474f9cbdd91) [alpha] |
 | crush | crush version v0.98.1 | 2026-08-29 | crush version v0.98.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-23 | omp | - | version | omp/18.12.5 | omp/18.12.6 | omp/18.12.6 |
+| 2026-10-23 | grok | - | version | grok 1.0.62 (1474f9cbdd91) [alpha] | grok 1.0.67 (2fe064390d07) | grok 1.0.67 (2fe064390d07) |
+| 2026-10-23 | cursor | - | version | 2026.10.16-e3cb207 | - | - |
+| 2026-10-23 | claude | - | version | 2.1.306 (Claude Code) | 2.1.251 (Claude Code) | 2.1.251 (Claude Code) |
+| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.2.3 | 1.2.3 |
 | 2026-10-22 | omp | - | version | omp/18.12.5 | omp/18.12.6 | omp/18.12.6 |
 | 2026-10-22 | grok | - | version | grok 1.0.62 (1474f9cbdd91) [alpha] | grok 1.0.67 (2fe064390d07) [alpha] | grok 1.0.67 (2fe064390d07) [alpha] |
 | 2026-10-21 | omp | - | version | omp/18.12.3 | omp/18.12.5 | omp/18.12.5 |
@@ -217,8 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-03 | opencode | skills.manual_only | parity | unknown | absent | 1.18.25 |
 | 2026-09-03 | opencode | mcp.dependencies | mode | none | adapter | 1.18.25 |
 | 2026-09-03 | opencode | mcp.dependencies | parity | unknown | aligned | 1.18.25 |
-| 2026-09-03 | omp | mcp.dependencies | mode | none | adapter | omp/18.1.4 |
-| 2026-09-03 | omp | mcp.dependencies | parity | unknown | aligned | omp/18.1.4 |
-| 2026-09-03 | grok | mcp.dependencies | surface | `[mcp_servers.*]` in `~/.grok/config.toml` | [compat.claude]/[compat.cursor] mcps = true imports the generated Claude and Cursor configs | grok 1.0.13 (5e9a58528b76) [alpha] |
-| 2026-09-03 | grok | mcp.dependencies | mode | none | native | grok 1.0.13 (5e9a58528b76) [alpha] |
-| 2026-09-03 | grok | mcp.dependencies | parity | unknown | aligned | grok 1.0.13 (5e9a58528b76) [alpha] |
