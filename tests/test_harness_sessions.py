@@ -96,6 +96,12 @@ class OmpErrorClassTests(unittest.TestCase):
         message = {"content": "\n\nprotected file blocked: /Users/x/.ssh/id_ed25519"}
         self.assertEqual(hs._omp_error_class(message), "guard")
 
+class AbortAttributionTests(unittest.TestCase):
+    def test_aborts_are_grouped_by_harness_before_reason(self) -> None:
+        def abort(harness: str, reason: str) -> object:
+            return hs.Obs(harness=harness, session="s", ts="", actor="system", kind="turn_abort", name="", ok=None, ms=None, detail=reason)
+        friction = hs.aggregate_friction([], [abort("omp", "sighup"), abort("opencode", "message_error"), abort("omp", "sighup"), abort("omp", "")])
+        self.assertEqual(friction["aborted_turns"], {"count": 4, "by_harness": {"omp": {"sighup": 2, "unknown": 1}, "opencode": {"message_error": 1}}})
 
 if __name__ == "__main__":
     unittest.main()
