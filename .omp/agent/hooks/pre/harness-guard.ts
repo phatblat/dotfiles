@@ -102,16 +102,6 @@ export function spawnFailureReason(error: unknown, cwd = ""): string {
   const code = String(field(error, "code") ?? "");
   const stderr = bytesOf(field(error, "stderr")).trim().split("\n")[0] ?? "";
   if (code === "ENOENT") {
-    // posix_spawn reports a missing cwd as ENOENT on the binary path, so check
-    // the cwd before blaming the install.
-    if (cwd && !existsSync(cwd)) {
-      return `${FAILED}: working directory ${cwd} no longer exists (deleted worktree?); run the call from an existing directory or restart omp in one`;
-    }
-    // posix_spawn reports a missing cwd as ENOENT on the binary path, so check
-    // the cwd before blaming the install.
-    if (cwd && !existsSync(cwd)) {
-      return `${FAILED}: working directory ${cwd} no longer exists (deleted worktree?); run the call from an existing directory or restart omp in one`;
-    }
     // posix_spawn surfaces a missing cwd as ENOENT on the binary path; probe existsSync(cwd) to distinguish a deleted worktree from a missing ness binary.
     if (cwd && !existsSync(cwd)) {
       return `${FAILED}: working directory ${cwd} no longer exists (deleted worktree?); run the call from an existing directory or restart omp in one`;
