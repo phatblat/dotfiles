@@ -67,12 +67,12 @@ Coverage: 91/405 cells verified (22%)
 |---|---|---|---|---|---|
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
+| 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
+| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
 | 2026-10-24 | opencode | - | version | 1.19.3 | 1.19.4 |
 | 2026-10-24 | grok | - | version | grok 1.0.67 (2fe064390d07) | grok 1.0.67 (2fe064390d07) [alpha] |
 | 2026-10-24 | cursor | - | version | - | 2026.10.16-e3cb207 |
 | 2026-10-24 | claude | - | version | 2.1.251 (Claude Code) | 2.1.306 (Claude Code) |
-| 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
-| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
 
