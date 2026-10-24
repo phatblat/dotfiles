@@ -1,0 +1,12 @@
+{
+  "command": "find . -name '*.orig' |xargs rm",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: rm (xargs input)"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

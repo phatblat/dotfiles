@@ -140,3 +140,41 @@ pub fn applied_path() -> PathBuf {
         .join("ness")
         .join("applied.json")
 }
+
+/// Canonicalize the deepest existing ancestor of an absolute path and
+/// re-append the non-existent tail. Returns None if the path is not absolute,
+/// contains `..`, or the deepest existing ancestor cannot be canonicalized.
+pub fn canonicalize_existing_prefix(path: &Path) -> Option<PathBuf> {
+    if !path.is_absolute() {
+        return None;
+    }
+    for c in path.components() {
+        if matches!(c, Component::ParentDir) {
+            return None;
+        }
+    }
+    let mut existing = path.to_path_buf();
+    let mut tail: Vec<std::ffi::OsString> = Vec::new();
+    loop {
+        match std::fs::symlink_metadata(&existing) {
+            Ok(_) => break,
+            Err(_) => {
+                if let Some(parent) = existing.parent() {
+                    if let Some(name) = existing.file_name() {
+                        tail.push(name.to_os_string());
+                        existing = parent.to_path_buf();
+                        continue;
+                    }
+                }
+                return None;
+            }
+        }
+    }
+    let canon = std::fs::canonicalize(&existing).ok()?;
+    let mut result = canon;
+    tail.reverse();
+    for t in tail {
+        result = result.join(t);
+    }
+    Some(result)
+}

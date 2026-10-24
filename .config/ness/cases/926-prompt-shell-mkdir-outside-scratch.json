@@ -1,0 +1,12 @@
+{
+  "command": "mkdir build",
+  "content": null,
+  "cwd": "/",
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: mkdir build"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

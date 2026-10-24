@@ -1,0 +1,12 @@
+{
+  "command": "ls() { rm -rf build; }",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unsupported construct: function definition"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

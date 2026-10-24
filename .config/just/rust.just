@@ -68,9 +68,9 @@ ness-test: install-rust-deps
 ness-check-installed: install-rust-deps
     NESS_CHECK_INSTALLED=1 cargo test --locked --manifest-path {{ justfile_directory() }}/crates/ness/Cargo.toml installed_copy_matches_corpus
 
-# Validates a candidate policy and prints the verdict diff against the active one (agent-runnable; `ness policy apply` is human-only)
+# Validates a candidate policy (default: the active ~/.config/ness/policy.toml, e.g. after editing it in place) and prints the verdict diff against the active one (agent-runnable; `ness policy apply` is human-only)
 [group('rust')]
-ness-policy-check candidate:
+ness-policy-check candidate=(env("HOME") / ".config/ness/policy.toml"):
     {{ env("HOME") }}/.local/bin/ness policy check {{ quote(candidate) }}
 
 # Builds the wt worktree resolver (release profile)

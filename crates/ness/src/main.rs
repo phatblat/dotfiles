@@ -5,15 +5,13 @@ mod manifest;
 mod paths;
 mod policy;
 mod policy_cmd;
+mod shell;
 mod policy_file;
-
 use policy_file::Compiled;
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
-
 const USAGE: &str = "\
 usage: ness <guard|hook|policy> ... | ness [--version | --help]
-
 subcommands:
   guard    run the guard (see `ness guard --help`)
   hook     run the hook adapter (see `ness hook --help`)
@@ -187,8 +185,8 @@ fn main() {
 
     // Fail closed: a load failure is a reason string that becomes a deny on
     // every verdict, emitted in each harness's native output shape. Never
-    // panic here: with `panic = "abort"` a panic is SIGABRT, which Claude
-    // treats as a non-blocking hook error, so the guard would fail open.
+    // panic here: an uncaught panic exits non-zero, which Claude treats as a
+    // non-blocking hook error. That is why shell::classify catches its own panics.
     let policy = active::load();
     let p = policy.as_ref().map_err(String::as_str);
 
