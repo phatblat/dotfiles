@@ -162,7 +162,7 @@ presence:
 |---|---|---|
 | Tool error rate | `ok == False` share of a `(harness, kind, name)` group | A tool or MCP call that fails often is worth investigating before it is worth recommending against. |
 | Hook cost (Claude only) | `hook_run` records: firings, total/p50/p95 ms, non-zero exits | Measured, not guessed, per-hook cost — replaces reading hook script source to estimate overhead. |
-| Aborted turns | `turn_abort` records, grouped by `detail` (reason) | Codex `turn_aborted.reason`, OpenCode `step-finish` with `reason == "length"`, Cursor `turn_ended.status != "success"`. |
+| Aborted turns | `turn_abort` records, grouped by harness, then `detail` (reason) | OpenCode messages carrying `error` (`message_error`); OMP `session_exit` with a reason other than `dispose` (`sighup`, `sigint`: the terminal closed or was interrupted, which doesn't always mean mid-turn). |
 | Cache misses (Claude only) | `cache_miss` records, grouped by `detail` | `system_changed`, `model_changed`, `previous_message_not_found`, `unavailable`, `messages_changed` — repeated misses under one reason point at a specific fix (e.g. `system_changed` means something in the always-loaded system prompt churns between turns). |
 | MCP connection failures | Grok `mcp_lifecycle` records with `ok == False`; Claude/Codex/OMP MCP tool call errors | A server that fails to connect wastes the harness's startup time whether or not it is ever called. |
 

@@ -1,6 +1,6 @@
 # macos — local machine status and system-scoped installs
 
-alias f := free
+alias fs := free
 
 # Display free space on the Data volume (~ resolves to it; / is the sealed, near-empty System volume)
 [group('macos')]

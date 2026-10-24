@@ -1,0 +1,12 @@
+{
+  "command": null,
+  "content": "DATABASE_URL=postgres://localhost/dev",
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "claude",
+  "path": "/Users/phatblat/.env.example",
+  "tool": "write"
+}

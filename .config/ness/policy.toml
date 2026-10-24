@@ -33,13 +33,15 @@ patterns = [
 # Secrets on disk: never written by an agent, through any tool or shell.
 [protected_paths]
 patterns = [
-  '(?i)(\.env($|\.)|\.ssh/|id_(rsa|ed25519|ecdsa)|\.pem$|\.key$|\.p12$|\.pfx$|\.jks$|\.aws/credentials|\.docker/config\.json|kubeconfig|\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials|\.claude/\.credentials\.json|\.codex/auth\.json|\.omp/agent/agent\.db|\.omp/agent/secrets\.yml|\.pi/agent/auth\.json|\.gemini/google_accounts\.json|\.gemini/oauth_creds\.json|\.gemini/antigravity-cli/installation_id|\.gemini/antigravity-cli/conversations/|\.cursor/ai-tracking/|\.grok/auth\.json|\.grok/mcp_credentials\.json|\.config/crush/crush\.json|\.local/share/crush/crush\.json|\.local/share/crush/crush\.db)',
+  # Env templates (.env.example/.sample/.template/.dist) are meant to be committed; secret_content still scans them.
+  '(?i)(\.env($|\.(?!(?:example|sample|template|dist)$))|\.ssh/|id_(rsa|ed25519|ecdsa)|\.pem$|\.key$|\.p12$|\.pfx$|\.jks$|\.aws/credentials|\.docker/config\.json|kubeconfig|\.npmrc$|\.pypirc$|\.netrc$|\.pgpass$|\.htpasswd$|\.git-credentials|\.claude/\.credentials\.json|\.codex/auth\.json|\.omp/agent/agent\.db|\.omp/agent/secrets\.yml|\.pi/agent/auth\.json|\.gemini/google_accounts\.json|\.gemini/oauth_creds\.json|\.gemini/antigravity-cli/installation_id|\.gemini/antigravity-cli/conversations/|\.cursor/ai-tracking/|\.grok/auth\.json|\.grok/mcp_credentials\.json|\.config/crush/crush\.json|\.local/share/crush/crush\.json|\.local/share/crush/crush\.db)',
 ]
 
 # Secret-shaped content in anything written, including heredocs in shell commands.
 [secret_content]
 patterns = [
-  '''(?i)(AKIA[0-9A-Z]{16}|sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|gho_[A-Za-z0-9]{36}|glpat-[A-Za-z0-9_-]{20,}|xox[bpoas]-[A-Za-z0-9-]+|-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----|password\s*[:=]\s*["'][^"']{8,}["'])''',
+  # sk- must start a token: kebab-case words such as task-… or risk-… contain it mid-word.
+  '''(?i)(AKIA[0-9A-Z]{16}|(?<![A-Za-z0-9_-])sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{36}|gho_[A-Za-z0-9]{36}|glpat-[A-Za-z0-9_-]{20,}|xox[bpoas]-[A-Za-z0-9-]+|-----BEGIN (RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----|password\s*[:=]\s*["'][^"']{8,}["'])'''
 ]
 
 [commands.privilege_escalation]
@@ -47,7 +49,8 @@ patterns = ['(?i)(^|;|&&|\|\||\||\n|\r|\$\(|`)\s*(sudo|su|doas|pkexec)\b']
 
 [commands.dangerous]
 patterns = [
-  '(?i)\brm\s+-(?=[A-Za-z-]*r)(?=[A-Za-z-]*f)[A-Za-z-]*\s+(/|~|\*|\.\.)',
+  # A segment whose targets are all /tmp, /private/tmp, /var/folders or /private/var/folders children (no "..", no leading glob) is exempt; any other first target starting with / ~ * .. is denied.
+  '(?i)\brm\s+-(?=[A-Za-z-]*r)(?=[A-Za-z-]*f)[A-Za-z-]*\s+(?!(?:(?:/private)?/(?:tmp|var/folders)/(?![^\s;&|]*\.\.)[^\s;&|*][^\s;&|]*\s*)+(?:$|[;&|\n]))(/|~|\*|\.\.)',
   '(?i)>\s*/dev/sd[a-z]?',
   '(?i)\bmkfs(\.|\s)',
   '(?i)\bdd\s+if=.*\s+of=/dev/',
@@ -55,7 +58,9 @@ patterns = [
   '(?i)\bchmod\s+\+s\b',
   '(?i):\(\)\{.*:\|:&\};',
   '(?i)\b(curl|wget)\b[^|]*\|\s*(ba)?sh\b',
-  '(?i)\b(truncate|shred)\b',
+  # Anchored to command position (after ; & | ` newline ( or $(, optionally behind env/exec/command/nohup/time/xargs) or to find -exec, so prose that mentions the words is not denied.
+  '(?i)(^|[;&|`\n(]|\$\()\s*((\S*/)?(env|exec|command|nohup|time|xargs)(\s+(-\S+|\w+=\S*))*\s+)*(\S*/)?(truncate|shred)\b',
+  '(?i)-exec(dir)?\s+(\S*/)?(truncate|shred)\b',
   # Only a human at a terminal applies policy (active::REQUIRED_DENIED_COMMAND). Anchored to command position so prose that mentions the command (commit messages, rg) is not denied.
   '(?i)(^|[;&|`\n]|\$\()\s*(\S*/)?ness\s+policy\s+apply\b',
 ]

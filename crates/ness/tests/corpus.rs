@@ -647,7 +647,7 @@ fn policy_active_prints_state() {
     let stdout = String::from_utf8_lossy(&out.stdout);
     assert!(out.status.success(), "{stdout}");
     assert!(
-        stdout.contains("verified: yes") && stdout.contains("commands.dangerous: 10"),
+        stdout.contains("verified: yes") && stdout.contains("commands.dangerous: 11"),
         "{stdout}"
     );
 }

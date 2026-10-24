@@ -1418,11 +1418,11 @@ def aggregate_friction(
     tool_errors = [r for r in usage_rows if r["errors"] > 0]
     tool_errors.sort(key=lambda r: (-r["errors"], -(r["p95_ms"] or 0)))
     aborts = [o for o in observations if o.kind == "turn_abort"]
-    abort_reasons: dict[str, int] = {}
+    aborts_by_harness: dict[str, dict[str, int]] = {}
     for o in aborts:
-        abort_reasons[o.detail or "unknown"] = (
-            abort_reasons.get(o.detail or "unknown", 0) + 1
-        )
+        reason = o.detail or "unknown"
+        per_harness = aborts_by_harness.setdefault(o.harness, {})
+        per_harness[reason] = per_harness.get(reason, 0) + 1
     cache_misses: dict[str, int] = {}
     for o in observations:
         if o.kind == "cache_miss":
@@ -1450,7 +1450,7 @@ def aggregate_friction(
     return {
         "tool_error_rates": tool_errors,
         "error_classes": error_classes,
-        "aborted_turns": {"count": len(aborts), "by_reason": abort_reasons},
+        "aborted_turns": {"count": len(aborts), "by_harness": aborts_by_harness},
         "cache_miss_reasons": cache_misses,
         "mcp_failures": len(mcp_failures),
     }
@@ -1511,10 +1511,15 @@ def render_markdown(
                 f"| {r['harness']} | {r['name'] or '-'} | {r['class']} | {r['count']} |"
             )
         lines.append("")
-    lines.append(
-        f"- Aborted turns: {friction['aborted_turns']['count']} "
-        f"({', '.join(f'{k}: {v}' for k, v in friction['aborted_turns']['by_reason'].items()) or 'none'})"
-    )
+    _by_harness = friction["aborted_turns"]["by_harness"]
+    if _by_harness:
+        _rendered = "; ".join(
+            f"{h}: " + ", ".join(f"{r} {n}" for r, n in rs.items())
+            for h, rs in _by_harness.items()
+        )
+    else:
+        _rendered = "none"
+    lines.append(f"- Aborted turns: {friction['aborted_turns']['count']} ({_rendered})")
     lines.append(
         f"- Cache-miss reasons: "
         f"{', '.join(f'{k}: {v}' for k, v in friction['cache_miss_reasons'].items()) or 'none observed'}"

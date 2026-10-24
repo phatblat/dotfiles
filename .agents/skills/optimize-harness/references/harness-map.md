@@ -148,8 +148,9 @@ with new measurements, not with a fresh reading of the same config.
   `~/justfile`. Grepping `~/justfile` alone reports it missing.
 - **Claude's five `PASEO_TERMINAL_ID` hooks are live**, not stale: Paseo is installed at
   `/Applications/Agents/Paseo.app` with a running daemon under `~/.paseo/`.
-- **`hub` p95 of 600,003ms and `ask` p95 of ~84 minutes are blocking-wait ceilings and
-  human think time**, not tool latency. Exclude blocking-wait tools from latency findings.
+- **`hub` p95 of 600,003ms, `ask` p95 of ~84 minutes, `wait` p95 of 361s, and `eval` p95 of 66s are
+  blocking-wait ceilings, human think time, or long-running work, not tool latency. Exclude blocking
+  or long-running tools from latency findings.
 - **`context-mode` was removed 2026-08-25** (`docs/mcp-servers.md`, History) and has zero
   hits across all 7 MCP config files, `claude plugin list`, and the marketplace list. Do
   not re-flag `ctx7` (Context7's docs CLI) as a context-mode remnant — different tool,
@@ -168,3 +169,20 @@ with new measurements, not with a fresh reading of the same config.
 - **Cursor's `approvalMode: allowlist` with 22 read-only allow rules plus 6 deny rules
   (`4dd6625`) is deliberate**, not overly restrictive — it is a light annotation tool, and
   no wider access was requested. The `just`/`make` allows are intentional.
+
+- **2026-10-23 ness false-positive denials fixed by the four `fix(policy)` commits.** Replay counts:
+  rm 56/78, `sk-` 60/77, wiper words 7/12. The remaining denials target non-temp paths, include real
+  secrets, or put the command in command position.
+- **2026-10-23 "ness is not installed" rows after 2026-10-10 were a missing session cwd**, fixed in the
+  OMP hook (`fix(omp)`). The 2026-10-04 rows predate the atomic install `43f9c80`.
+- **2026-10-23 the 6 "policy … is not applied" rows on 2026-10-21T03Z** were the one-time bootstrap
+  before the first `ness policy apply`.
+- **2026-10-23 OMP `bashInterceptor` redirects (210/1,080 bash errors), edit `stale_anchor` (75/1,231),
+  and read/grep/glob `not_found` are agent behavior, not config.**
+- **2026-10-23 Claude hook cost and cache misses** came from a window (2026-08-11→2026-10-12, 5 files,
+  4 sessions) that predates `2f1ad49`, `9c7bd68`, `f50baf2`, and `449ae20`. Re-measure only after new
+  Claude sessions.
+- **2026-10-23 Codex (one October rollout, 2026-10-10) and Pi (0 files in the window) are genuinely
+  inactive.**
+- **2026-10-23 aborted turns are OMP `session_exit` signals and OpenCode message errors, never Claude.**
+  The scanner now groups them by harness.
