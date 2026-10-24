@@ -421,6 +421,8 @@ cask "forklift"
 cask "ghostty"
 # Cross-platform Git credential storage for multiple hosting providers
 cask "google-chrome"
+# Native desktop AI assistant from Google
+cask "google-gemini"
 # AI teammates that work across your apps and tools
 cask "grok-bot", args: { appdir: "/Applications/Agents" }
 # Desktop automation application
