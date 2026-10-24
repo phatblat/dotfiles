@@ -298,3 +298,5 @@
 {"capability":"-","date":"2026-10-23","detail":"","field":"version","from":"1.3.0","harness":"pi","to":"1.4.0","version_from":"1.3.0","version_to":"1.4.0"}
 {"capability":"-","date":"2026-10-23","detail":"","field":"version","from":"1.4.2","harness":"antigravity","to":"1.4.6","version_from":"1.4.2","version_to":"1.4.6"}
 {"capability":"-","date":"2026-10-23","detail":"","field":"version","from":"1.3.0","harness":"pi","to":"1.4.0","version_from":"1.3.0","version_to":"1.4.0"}
+{"capability":"-","date":"2026-10-23","detail":"","field":"version","from":"1.4.2","harness":"antigravity","to":"1.4.6","version_from":"1.4.2","version_to":"1.4.6"}
+{"capability":"-","date":"2026-10-23","detail":"","field":"version","from":"1.3.0","harness":"pi","to":"1.4.0","version_from":"1.3.0","version_to":"1.4.0"}
