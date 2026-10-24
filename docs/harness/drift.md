@@ -26,6 +26,8 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 | 1.4.6 |
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 | 1.4.0 |
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 | 1.4.6 |
+| 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 | 1.4.0 |
+| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 | 1.4.6 |
 | 2026-10-23 | omp | - | version | omp/18.12.5 | omp/18.12.6 | omp/18.12.6 |
 | 2026-10-23 | grok | - | version | grok 1.0.62 (1474f9cbdd91) [alpha] | grok 1.0.67 (2fe064390d07) | grok 1.0.67 (2fe064390d07) |
 | 2026-10-23 | cursor | - | version | 2026.10.16-e3cb207 | - | - |
@@ -220,5 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-04 | codex | - | version | codex-cli 0.152.0 | codex-cli 0.152.1 | codex-cli 0.152.1 |
 | 2026-09-04 | antigravity | - | version | 1.1.24 | 1.1.25 | 1.1.25 |
 | 2026-09-03 | omp | - | version | omp/18.1.2 | omp/18.1.4 | omp/18.1.4 |
-| 2026-09-03 | pi | mcp.dependencies | mode | none | adapter | 0.84.4 |
-| 2026-09-03 | pi | mcp.dependencies | parity | unknown | aligned | 0.84.4 |

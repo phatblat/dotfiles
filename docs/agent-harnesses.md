@@ -69,12 +69,12 @@ Coverage: 91/405 cells verified (22%)
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
+| 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
+| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
 | 2026-10-23 | omp | - | version | omp/18.12.5 | omp/18.12.6 |
 | 2026-10-23 | grok | - | version | grok 1.0.62 (1474f9cbdd91) [alpha] | grok 1.0.67 (2fe064390d07) |
 | 2026-10-23 | cursor | - | version | 2026.10.16-e3cb207 | - |
 | 2026-10-23 | claude | - | version | 2.1.306 (Claude Code) | 2.1.251 (Claude Code) |
-| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.2.3 |
-| 2026-10-22 | omp | - | version | omp/18.12.5 | omp/18.12.6 |
 
 ## Permanent divergences
 
