@@ -49,3 +49,36 @@ opencode_webfetch = "ask"
 [approval.claude]
 webfetch_domains = ["github.com"]
 tools = ["WebSearch"]
+
+[shell]
+scratch_dirs = ["/tmp", "/private/tmp", "/var/folders", "/private/var/folders"]
+sinks = ["/dev/null"]
+protected_env = ["LD_*", "PATH"]
+read_only = ["cat", "cd", "echo", "git log", "git status", "grep", "jq", "ls", "printf", "sed", "wc"]
+allow_write = ["gh api", "git commit"]
+
+[shell.path_writers]
+cp = "last"
+mkdir = "all"
+rm = "all"
+tee = "all"
+touch = "all"
+
+[shell.write_flags]
+sed = ["-i", "--in-place"]
+
+[shell.wrappers.env]
+value_options = ["-u"]
+operands = 0
+assignments = true
+appends_operands = false
+
+[shell.wrappers.xargs]
+value_options = ["-I", "-n"]
+operands = 0
+assignments = false
+appends_operands = true
+
+[shell.leading_options.git]
+flags = ["--no-pager"]
+value_options = ["-C"]

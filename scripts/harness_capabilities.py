@@ -1300,7 +1300,7 @@ CAPABILITIES: list[Capability] = [
                 mode="adapter",
                 surface="`tools.approvalMode`",
                 evidence=Evidence(kind="local", ref="just harness-perms-apply"),
-                note="Resolved default: write",
+                note="Resolved default: yolo",
             ),
             "opencode": Cell(
                 parity="aligned",

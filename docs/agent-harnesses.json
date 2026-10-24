@@ -3985,7 +3985,7 @@
           },
           "mode": "adapter",
           "next_action": "",
-          "note": "Resolved default: write",
+          "note": "Resolved default: yolo",
           "parity": "aligned",
           "probe": null,
           "surface": "`tools.approvalMode`"

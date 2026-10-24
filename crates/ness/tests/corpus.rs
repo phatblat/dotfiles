@@ -4,7 +4,7 @@
 //! Fixture schema:
 //! - `.config/ness/cases/*.json` (repo root): `harness`, `tool`,
 //!   `command`/`path`/`content`/`cwd` (nullable) keys plus
-//!   `"expected": {"decision": "allow"|"warn"|"deny", "reason": "<string>"}`.
+//!   `"expected": {"decision": "allow"|"warn"|"prompt"|"deny", "reason": "<string>"}`.
 //! - `crates/ness/tests/hook_corpus/*.json`: `shim`, `payload` keys plus
 //!   `"expected": {"exit": <int>, "stdout": <JSON value or null when the
 //!   shim printed nothing>, "stderr": "<optional, must equal the trimmed

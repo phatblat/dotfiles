@@ -1,0 +1,12 @@
+{
+  "command": "cd /tmp/ness-case-936-missing; rm -f build.log",
+  "content": null,
+  "cwd": "/",
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: rm build.log"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

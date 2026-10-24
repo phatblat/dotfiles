@@ -102,8 +102,7 @@ sed_inplace = '(?i)\bsed\b(?P<span>[^;|&]*?-i(?:\S*)?[^;|&]*)'
 dd = '(?i)\bdd\b[^;|&]*?\bof=(?P<span>[^\s;|&]+)'
 path_token = '''[^\s;|&<>'"]*[/~][^\s;|&<>'"]*'''
 
-# Per-harness approval baselines (bash allow lists, prompt-even-in-yolo, absolute deny).
-# Rendered per harness by scripts/harness_policy.py `bash_rules(style)`, which reads this table.
+# Per-harness approval baselines rendered by scripts/harness_policy.py bash_rules(style). omp renders deny_prefix only: ness's [shell] classifier owns its allow/prompt decisions.
 [approval]
 allow_prefix = [
   "[",
@@ -224,7 +223,7 @@ deny_prefix = ["sudo"]
 
 [approval.modes]
 claude_default_mode = "auto"
-omp_approval_mode = "write"
+omp_approval_mode = "yolo"
 opencode_edit = "ask"
 opencode_external_directory = "ask"
 opencode_webfetch = "ask"
@@ -232,3 +231,91 @@ opencode_webfetch = "ask"
 [approval.claude]
 webfetch_domains = ["docs.basedpyright.com", "github.com"]
 tools = ["WebSearch", "mcp__acp__Bash", "mcp__acp__Edit", "mcp__acp__Write"]
+
+# Bash classification behind the `prompt` verdict. It runs only after every deny
+# category above has passed. ness parses the command (brush-parser) and checks every
+# simple command it reaches: pipelines, && || ;, loops, conditionals, subshells,
+# $(...), backticks, <(...). read_only/allow_write matches and writes confined to
+# scratch_dirs -> allow. Any other write, unknown command, or unparseable input ->
+# prompt. omp's harness-guard hook shows a confirm dialog for `prompt` and blocks
+# when headless. Every other harness treats `prompt` like allow. Entries are argv
+# prefixes compared word by word. To make reads ask, delete read_only entries; to
+# let writes through, add allow_write entries. Apply with `ness policy apply`.
+[shell]
+# A write runs without a prompt when every target is strictly inside one of these
+# (symlinks are resolved first).
+scratch_dirs = ["/tmp", "/private/tmp", "/var/folders", "/private/var/folders"]
+# Redirect/path targets that are never writes.
+sinks = ["/dev/null", "/dev/stdout", "/dev/stderr", "/dev/tty", "/dev/fd/1", "/dev/fd/2"]
+# Assigning one of these (bare, prefix, export/declare/..., env) prompts. They
+# change what later commands run, and shell variables persist across omp bash
+# calls. A trailing * matches a prefix.
+protected_env = ["BASH_ENV", "DYLD_*", "ENV", "GIT_ASKPASS", "GIT_CONFIG*", "GIT_EDITOR", "GIT_EXEC_PATH", "GIT_EXTERNAL_DIFF", "GIT_PAGER", "GIT_SSH", "GIT_SSH_COMMAND", "LD_*", "PAGER", "PATH", "PROMPT_COMMAND"]
+read_only = [":", "[", "awk", "base64", "basename", "break", "brew info", "brew list", "brew outdated", "brew search", "cargo metadata", "cargo tree", "cat", "cd", "claude mcp list", "cmp", "column", "comm", "command -v", "continue", "ctx7", "cut", "date", "declare", "diff", "dirname", "du", "echo", "exit", "export", "expr", "false", "fd", "file", "find", "fold", "gh auth status", "gh pr checks", "gh pr diff", "gh pr list", "gh pr view", "gh release list", "gh release view", "gh repo view", "gh search", "git blame", "git cat-file", "git check-ignore", "git describe", "git diff", "git grep", "git log", "git ls-files", "git ls-remote", "git merge-base", "git rev-list", "git rev-parse", "git shortlog", "git show", "git status", "grep", "head", "hostname", "id", "join", "jq", "local", "ls", "md5", "mise current", "mise ls", "mise search", "mise which", "ness policy active", "ness policy check", "nl", "npm ls", "npm view", "od", "paste", "printenv", "printf", "ps", "pwd", "read", "readlink", "readonly", "realpath", "rev", "rg", "sed", "seq", "set", "sg", "sha256sum", "shasum", "shellcheck", "shfmt", "shift", "sleep", "sort", "stat", "strings", "sw_vers", "tail", "test", "tr", "tree", "true", "type", "typeset", "typos", "uname", "uniq", "unset", "wait", "wc", "which", "whoami", "yamllint", "yq"]
+allow_write = ["brew update", "brew upgrade", "cargo check", "cargo clippy", "cargo fmt", "cargo test", "gh api", "gh issue", "gh pr create", "gh pr edit", "gh run", "gh stack", "git add", "git branch", "git checkout", "git commit", "git fetch", "git merge --ff-only", "git pull", "git push", "git rebase", "git remote", "git stash", "git switch", "git symbolic-ref", "git tag", "git worktree", "go build", "go test", "go vet", "just", "linear", "make", "mise install", "mise self-update", "mise upgrade", "mise use", "npm run", "npm test", "npx tsc", "pip", "pnpm", "poetry", "prettier", "python3", "ruff", "uv tool upgrade", "yarn"]
+
+# Commands whose writes are their path operands: all operands, or the last (destination).
+[shell.path_writers]
+cp = "last"
+ln = "last"
+mkdir = "all"
+mv = "all"
+rm = "all"
+rmdir = "all"
+tee = "all"
+touch = "all"
+unlink = "all"
+
+# A read_only command used with one of these flags is a write.
+[shell.write_flags]
+awk = ["-i"]
+base64 = ["-o", "--output"]
+fd = ["-x", "--exec", "-X", "--exec-batch"]
+file = ["-C", "--compile"]
+find = ["-delete", "-exec", "-execdir", "-ok", "-okdir", "-fls", "-fprint", "-fprint0", "-fprintf"]
+git = ["--output", "-O", "--open-files-in-pager"]
+rg = ["--pre"]
+sed = ["-i", "--in-place"]
+sg = ["-U", "--update-all", "-i", "--interactive"]
+shfmt = ["-w", "--write"]
+sort = ["-o", "--output"]
+tree = ["-o"]
+typos = ["-w", "--write-changes"]
+yq = ["-i", "--inplace"]
+
+# Launchers: the command after their options/operands is classified instead.
+[shell.wrappers.env]
+value_options = ["-u", "--unset"]
+operands = 0
+assignments = true
+appends_operands = false
+
+[shell.wrappers.nice]
+value_options = ["-n", "--adjustment"]
+operands = 0
+assignments = false
+appends_operands = false
+
+[shell.wrappers.nohup]
+value_options = []
+operands = 0
+assignments = false
+appends_operands = false
+
+[shell.wrappers.timeout]
+value_options = ["-s", "--signal", "-k", "--kill-after"]
+operands = 1
+assignments = false
+appends_operands = false
+
+[shell.wrappers.xargs]
+value_options = ["-E", "-I", "-J", "-L", "-P", "-R", "-S", "-a", "-d", "-n", "-s", "--arg-file", "--delimiter", "--eof", "--max-args", "--max-chars", "--max-lines", "--max-procs", "--replace"]
+operands = 0
+assignments = false
+appends_operands = true
+
+# Global options skipped before matching a multi-word entry (git -C dir log).
+# Unlisted ones (git -c, which can run commands) never match.
+[shell.leading_options.git]
+flags = ["--bare", "--literal-pathspecs", "--no-optional-locks", "--no-pager", "--no-replace-objects", "-P"]
+value_options = ["-C", "--git-dir", "--namespace", "--work-tree"]
