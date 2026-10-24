@@ -51,29 +51,6 @@ def load_approval() -> dict[str, Any]:
         return tomllib.load(fh)["approval"]
 
 
-# omp only: `rm` targets that could escape /tmp or expand unexpectedly. These
-# must precede BASH_ALLOW_RM_TMP, since omp matches first-wins.
-BASH_ASK_RM_RISKY: tuple[str, ...] = (
-    "rm *..*",
-    "rm *~*",
-    "rm *$*",
-    "rm *`*",
-    "rm /tmp/",
-    "rm * /tmp/",
-    "rm /tmp/* *",
-    "rm * /tmp/* *",
-)
-
-# omp only: allow `rm` under /tmp without a prompt. The combined force +
-# recursive spellings are left out on purpose: the shared guard's
-# [commands.dangerous] denies them before omp's pattern matters.
-BASH_ALLOW_RM_TMP: tuple[str, ...] = (
-    "rm /tmp/*",
-    "rm -f /tmp/*",
-    "rm -r /tmp/*",
-)
-
-
 def _modes() -> dict[str, str]:
     return load_approval()["modes"]
 
@@ -162,23 +139,13 @@ def bash_rules(style: str) -> Any:
         return opencode_rules
 
     if style == "omp":
-        # First-match-wins: deny, then prompt, then allow. omp accepts only
-        # allow|deny|prompt and silently drops any other value.
+        # Deny only: ness's [shell] classifier decides allow vs prompt for omp
+        # through ~/.omp/agent/hooks/pre/harness-guard.ts; a native prompt rule
+        # here would ask a second time for the same call.
         patterns: list[dict[str, str]] = []
         for cmd in deny_prefix:
             patterns.append({"match": f"{cmd} *", "approval": "deny"})
             patterns.append({"match": cmd, "approval": "deny"})
-        for match in BASH_ASK_RM_RISKY:
-            patterns.append({"match": match, "approval": "prompt"})
-        for match in BASH_ALLOW_RM_TMP:
-            patterns.append({"match": match, "approval": "allow"})
-        for cmd in prompt_prefix:
-            patterns.append({"match": f"{cmd} *", "approval": "prompt"})
-            patterns.append({"match": cmd, "approval": "prompt"})
-        for cmd in allow_prefix:
-            patterns.append({"match": f"{cmd}*", "approval": "allow"})
-        for cmd in allow_exact:
-            patterns.append({"match": cmd, "approval": "allow"})
         return patterns
 
     raise ValueError(f"unknown bash rule style: {style!r}")
