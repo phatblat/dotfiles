@@ -284,6 +284,21 @@ local linters = new Mapping<String, Step | Group> {
     check = "python3 scripts/check-nushell-autoload.py {{files}}"
   }
 
+  // omp, opencode, and pi load these TypeScript modules with bun at session
+  // start. A parse error makes the harness drop the module silently, which
+  // for harness-guard.ts means running without the shared guard (af41d4e,
+  // 2026-10-24). Check-only: bun's transpiled output is discarded.
+  ["ts-parse"] {
+    glob =
+      List(
+        ".omp/agent/hooks/*/*.ts",
+        ".omp/agent/extensions/*.ts",
+        ".config/opencode/plugins/*.ts",
+        ".pi/agent/extensions/*.ts",
+      )
+    check = #"for f in {{files}}; do bun build --no-bundle --target=bun "$f" > /dev/null || exit 1; done"#
+  }
+
   ["just-fmt"] {
     glob = List("justfile", ".config/just/*.just")
     check = #"for f in {{files}}; do just --unstable --fmt --check --justfile "$f" || exit 1; done"#
