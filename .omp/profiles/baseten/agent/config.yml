@@ -4,6 +4,8 @@
 providers:
   anthropic:
     serverSideFallback: false
+  streamFirstEventTimeoutSeconds: 90
+  streamIdleTimeoutSeconds: 120
 setupVersion: 2
 modelRoles:
   default: baseten/moonshotai/Kimi-K2.7-Code:medium
