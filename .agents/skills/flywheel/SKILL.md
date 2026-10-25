@@ -66,7 +66,9 @@ Search the repo root in this order. The first hit is canonical:
    `.github/copilot-instructions.md`, or `README.md`
 
 Found: review mode. Not found: setup mode. More than one hit: review the
-canonical one and report the rest as a `duplicate` finding.
+canonical one and report the rest as a `duplicate` finding. A rule 4
+section whose body only points to a doc found by rules 1-3 (such as the
+setup pointer section below) is a pointer, not a hit.
 
 `setup` forced while a doc exists: name the doc and switch to review. Never
 overwrite a flywheel doc. `review` forced with no doc: say so and offer
