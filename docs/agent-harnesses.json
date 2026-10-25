@@ -58,7 +58,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "codex-cli 0.163.0"
+            "version": "codex-cli 0.164.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -80,7 +80,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.1"
+            "version": "crush version v0.98.2"
           },
           "mode": "native",
           "next_action": "",
@@ -123,7 +123,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -578,7 +578,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.163.0"
+            "version": "codex-cli 0.164.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -599,7 +599,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.1"
+            "version": "crush version v0.98.2"
           },
           "mode": "native",
           "next_action": "",
@@ -641,7 +641,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -1721,7 +1721,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.163.0"
+            "version": "codex-cli 0.164.0"
           },
           "mode": "adapter",
           "next_action": "Re-check Codex release notes for stable command format",
@@ -1742,7 +1742,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.1"
+            "version": "crush version v0.98.2"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
@@ -1784,7 +1784,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "native",
           "next_action": "Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows",
@@ -2241,7 +2241,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.163.0"
+            "version": "codex-cli 0.164.0"
           },
           "mode": "native",
           "next_action": "",
@@ -2262,7 +2262,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.1"
+            "version": "crush version v0.98.2"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for user-defined agent support",
@@ -2304,7 +2304,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok spawn_subagent can launch the generated specialist profiles",
@@ -2916,7 +2916,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "codex-cli 0.163.0"
+            "version": "codex-cli 0.164.0"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2939,7 +2939,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "crush version v0.98.1"
+            "version": "crush version v0.98.2"
           },
           "mode": "adapter",
           "next_action": "Install crush and verify it blocks a denied shell command through the generated crushrc PreToolUse hook",
@@ -2985,7 +2985,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "adapter",
           "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
@@ -5200,7 +5200,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.163.0"
+            "version": "codex-cli 0.164.0"
           },
           "mode": "native",
           "next_action": "",
@@ -5221,7 +5221,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.1"
+            "version": "crush version v0.98.2"
           },
           "mode": "native",
           "next_action": "",
@@ -5263,7 +5263,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "native",
           "next_action": "",
@@ -7134,7 +7134,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.163.0"
+            "version": "codex-cli 0.164.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -7155,7 +7155,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.1"
+            "version": "crush version v0.98.2"
           },
           "mode": "shared",
           "next_action": "",
@@ -7197,7 +7197,7 @@
             "date": "2026-10-25",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "shared",
           "next_action": "",
@@ -7842,13 +7842,13 @@
     },
     "codex": {
       "first_seen": "2026-08-29",
-      "previous": "codex-cli 0.162.1",
-      "version": "codex-cli 0.163.0"
+      "previous": "codex-cli 0.163.0",
+      "version": "codex-cli 0.164.0"
     },
     "crush": {
       "first_seen": "2026-08-29",
-      "previous": "crush version v0.98.0",
-      "version": "crush version v0.98.1"
+      "previous": "crush version v0.98.1",
+      "version": "crush version v0.98.2"
     },
     "cursor": {
       "first_seen": "2026-08-29",
@@ -7857,8 +7857,8 @@
     },
     "grok": {
       "first_seen": "2026-08-29",
-      "previous": "grok 1.0.67 (2fe064390d07)",
-      "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+      "previous": "grok 1.0.67 (2fe064390d07) [alpha]",
+      "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
     },
     "omp": {
       "first_seen": "2026-08-29",

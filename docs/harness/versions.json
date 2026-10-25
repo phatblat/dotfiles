@@ -11,13 +11,13 @@
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.162.1",
-    "version": "codex-cli 0.163.0"
+    "previous": "codex-cli 0.163.0",
+    "version": "codex-cli 0.164.0"
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.98.0",
-    "version": "crush version v0.98.1"
+    "previous": "crush version v0.98.1",
+    "version": "crush version v0.98.2"
   },
   "cursor": {
     "first_seen": "2026-08-29",
@@ -26,8 +26,8 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.67 (2fe064390d07)",
-    "version": "grok 1.0.67 (2fe064390d07) [alpha]"
+    "previous": "grok 1.0.67 (2fe064390d07) [alpha]",
+    "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",

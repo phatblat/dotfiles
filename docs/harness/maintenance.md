@@ -14,14 +14,14 @@ Verify: `just harness-check`
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
 | claude | aligned | shared | - | probe · 2.1.306 (Claude Code) · 2026-10-25 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.163.0 · 2026-10-25 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.164.0 · 2026-10-25 | - |
 | opencode | aligned | shared | - | probe · 1.19.4 · 2026-10-25 | - |
 | pi | aligned | shared | - | probe · 1.4.0 · 2026-10-25 | - |
 | omp | aligned | shared | - | probe · omp/18.12.6 · 2026-10-25 | - |
 | antigravity | aligned | shared | - | probe · 1.4.6 · 2026-10-25 | - |
 | cursor | aligned | shared | - | probe · 2026.10.16-e3cb207 · 2026-10-25 | - |
-| grok | aligned | shared | - | probe · grok 1.0.67 (2fe064390d07) [alpha] · 2026-10-25 | - |
-| crush | aligned | shared | - | probe · crush version v0.98.1 · 2026-10-25 | - |
+| grok | aligned | shared | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-10-25 | - |
+| crush | aligned | shared | - | probe · crush version v0.98.2 · 2026-10-25 | - |
 
 ### maintenance.config_validation · p1
 
