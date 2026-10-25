@@ -44,6 +44,7 @@ NATIVE_SKILL_ADAPTERS = {
     "dispatching-parallel-agents",
     "executing-plans",
     "find-docs",
+    "flywheel",
     "gha-checks",
     "gha-log-reader",
     "graphify",
