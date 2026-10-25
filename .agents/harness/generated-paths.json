@@ -65,9 +65,6 @@
   "~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md": {
     "source": "~/.agents/skills/git-commit/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/git-resolve-conflicts/SKILL.md": {
-    "source": "~/.agents/skills/git-resolve-conflicts/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
   },
