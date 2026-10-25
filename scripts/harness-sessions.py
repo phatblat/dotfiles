@@ -1246,6 +1246,17 @@ def scan_antigravity(files: list[Path], coverage: Coverage) -> list[Obs]:
 # ---------------------------------------------------------------------------
 
 
+def note_truncation(coverage: Coverage, max_files: int, in_window: int) -> None:
+    """Record how many in-window files --max-files dropped, as a coverage gap."""
+    coverage.files_skipped_max = max(0, in_window - max_files)
+    if coverage.files_skipped_max:
+        coverage.gaps.append(
+            f"--max-files {max_files} skipped {coverage.files_skipped_max} of "
+            f"{in_window} in-window files (newest kept); usage and friction "
+            "counts cover only the kept files"
+        )
+
+
 def scan_harness(
     slug: str, *, since_days: int, max_files: int
 ) -> tuple[list[Obs], Coverage]:
@@ -1299,14 +1310,14 @@ def scan_harness(
         dir_mtimes.sort(key=lambda item: item[1], reverse=True)
         in_window_dirs = [d for d, mtime in dir_mtimes if mtime >= since_epoch]
         coverage.files_skipped_since = len(dir_mtimes) - len(in_window_dirs)
-        coverage.files_skipped_max = max(0, len(in_window_dirs) - max_files)
+        note_truncation(coverage, max_files, len(in_window_dirs))
         return scan_grok(in_window_dirs[:max_files], coverage), coverage
 
     pattern = "**/*.jsonl" if resolved_from in PI_SESSION_DIR_SOURCES else store.pattern
     all_files = iter_files(root, pattern)
     in_window = [p for p, mtime in all_files if mtime >= since_epoch]
     coverage.files_skipped_since = len(all_files) - len(in_window)
-    coverage.files_skipped_max = max(0, len(in_window) - max_files)
+    note_truncation(coverage, max_files, len(in_window))
     kept = in_window[:max_files]
 
     if slug == "claude":
@@ -1558,8 +1569,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--max-files",
         type=int,
-        default=400,
-        help="max files scanned per harness, newest first",
+        default=10000,
+        help="max files scanned per harness, newest first; truncation is reported as a coverage gap",
     )
     parser.add_argument(
         "--repo",

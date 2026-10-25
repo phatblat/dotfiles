@@ -90,6 +90,18 @@ class PiSessionRootTests(unittest.TestCase):
             _, coverage = hs.scan_harness("pi", since_days=365, max_files=10)
         self.assertEqual(coverage.files_seen, 1)
 
+    def test_files_dropped_by_max_files_are_reported_as_a_gap(self) -> None:
+        flat = self.home / "pi-sessions-flat"
+        flat.mkdir()
+        for sid in ("a", "b", "c"):
+            (flat / f"2026-10-18T00-00-00_{sid}.jsonl").write_text(
+                json.dumps({"type": "session", "id": sid, "timestamp": "2026-10-18T00:00:00Z"}) + "\n"
+            )
+        with mock.patch.dict(os.environ, {"PI_CODING_AGENT_SESSION_DIR": str(flat)}):
+            _, coverage = hs.scan_harness("pi", since_days=365, max_files=2)
+        self.assertEqual(coverage.files_skipped_max, 1)
+        self.assertTrue(any("--max-files 2 skipped 1 of 3" in gap for gap in coverage.gaps))
+
 
 class OmpErrorClassTests(unittest.TestCase):
     def test_a_blank_leading_line_does_not_hide_the_message(self) -> None:
