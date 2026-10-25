@@ -2,7 +2,7 @@
 
 Use this reference before describing any skill, plugin, extension, MCP
 server, or tool as low-use, rarely used, stale, safe to disable, or a
-friction source, for any of the eight supported harnesses. Configuration
+friction source, for any of the nine supported harnesses. Configuration
 proves that a component is available; it does not prove that the component
 ran. This file owns **policy** only: record schemas live in
 `docs/agent-session-transcripts.md`, and the implementation that enforces
@@ -119,6 +119,14 @@ opencode, and no confirmed override for grok/cursor/antigravity) were not
 confirmable from primary CLI output this session — `harness-sessions.py`
 still resolves them when set and records the resolution source, so an
 unconfirmed override degrades to a coverage note, never a silent miss.
+
+### crush
+
+Crush has no scanned session store. Its transcripts live in `crush.db`, whose
+schema upstream documents as not a public API, so `harness-sessions.py`
+reports crush coverage as none (`SESSION_STORES["crush"]`, `kind="none"` in
+`scripts/harness_paths.py`). Every crush usage or friction claim is therefore
+`unknown/not observed`.
 
 ## Evidence rules
 
