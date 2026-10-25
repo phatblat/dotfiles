@@ -9,19 +9,22 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.306 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
-| codex | codex-cli 0.163.0 | 2026-08-29 | codex-cli 0.162.1 |
+| codex | codex-cli 0.164.0 | 2026-08-29 | codex-cli 0.163.0 |
 | opencode | 1.19.4 | 2026-08-29 | 1.19.3 |
 | pi | 1.4.0 | 2026-08-29 | 1.3.0 |
 | omp | omp/18.12.6 | 2026-08-29 | omp/18.12.5 |
 | antigravity | 1.4.6 | 2026-08-29 | 1.4.2 |
 | cursor | 2026.10.16-e3cb207 | 2026-08-29 | 2026.10.16-e3cb207 |
-| grok | grok 1.0.67 (2fe064390d07) [alpha] | 2026-08-29 | grok 1.0.67 (2fe064390d07) |
-| crush | crush version v0.98.1 | 2026-08-29 | crush version v0.98.0 |
+| grok | grok 1.0.70 (f50904eaee6c) [alpha] | 2026-08-29 | grok 1.0.67 (2fe064390d07) [alpha] |
+| crush | crush version v0.98.2 | 2026-08-29 | crush version v0.98.1 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-25 | grok | - | version | grok 1.0.67 (2fe064390d07) [alpha] | grok 1.0.70 (f50904eaee6c) [alpha] | grok 1.0.70 (f50904eaee6c) [alpha] |
+| 2026-10-25 | crush | - | version | crush version v0.98.1 | crush version v0.98.2 | crush version v0.98.2 |
+| 2026-10-25 | codex | - | version | codex-cli 0.163.0 | codex-cli 0.164.0 | codex-cli 0.164.0 |
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 | 1.4.0 |
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 | 1.4.6 |
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 | 1.4.0 |
@@ -219,6 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-07 | codex | - | version | codex-cli 0.153.3 | codex-cli 0.153.4 | codex-cli 0.153.4 |
 | 2026-09-06 | opencode | - | version | 1.18.27 | 1.18.28 | 1.18.28 |
 | 2026-09-06 | omp | - | version | omp/18.1.10 | omp/18.1.11 | omp/18.1.11 |
-| 2026-09-06 | codex | - | version | codex-cli 0.153.2 | codex-cli 0.153.3 | codex-cli 0.153.3 |
-| 2026-09-06 | claude | - | version | 2.1.236 (Claude Code) | 2.1.261 (Claude Code) | 2.1.261 (Claude Code) |
-| 2026-09-06 | antigravity | - | version | 1.1.26 | 1.1.27 | 1.1.27 |
