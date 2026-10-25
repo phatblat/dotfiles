@@ -1,6 +1,8 @@
 providers:
   anthropic:
     serverSideFallback: false
+  streamFirstEventTimeoutSeconds: 90
+  streamIdleTimeoutSeconds: 120
 setupVersion: 2
 modelRoles:
   plan: anthropic/claude-opus-5-5:xhigh

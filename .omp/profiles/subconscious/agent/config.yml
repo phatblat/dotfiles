@@ -4,6 +4,8 @@
 providers:
   anthropic:
     serverSideFallback: false
+  streamFirstEventTimeoutSeconds: 90
+  streamIdleTimeoutSeconds: 120
 setupVersion: 2
 modelRoles:
   default: subconscious/subconscious/glm-5.3-marathon:high
