@@ -60,7 +60,7 @@ Search the repo root in this order. The first hit is canonical:
 
 1. `docs/flywheel.md`
 2. `FLYWHEEL.md`
-3. Any other tracked `*flywheel*.md` (`git ls-files '*flywheel*.md'`)
+3. Any other tracked `*flywheel*.md` (`git ls-files '*flywheel*.md' ':!docs/flywheel.md' ':!FLYWHEEL.md' ':!.agents/skills/**' ':!.claude/skills/**'`)
 4. A level 1-3 heading containing `flywheel` or `learning loop`
    (case-insensitive) in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
    `.github/copilot-instructions.md`, or `README.md`
@@ -80,12 +80,16 @@ setup.
   analysis local and aggregate-only: never load raw transcripts into
   context, never send them to an external API, never commit transcript
   content.
-- Where `~/scripts/harness-sessions.py` exists (phatblat dotfiles), run
+- Where `~/scripts/harness-sessions.py` exists (phatblat dotfiles) and the
+  repo under review is the `$HOME` dotfiles checkout itself, run
   `python3 ~/scripts/harness-sessions.py <slugs> --since <N> --json` as the
-  session evidence source, under the rules in
-  `~/.agents/skills/optimize-harness/references/session-usage-evidence.md`.
-  Elsewhere, check only session store existence, file counts, and newest
-  timestamps (`references/harness-signals.md`).
+  session evidence source (`<slugs>` from `references/harness-signals.md`),
+  under the rules in
+  `~/.agents/skills/optimize-harness/references/session-usage-evidence.md`
+  (`harness-sessions.py` is `$HOME`-scoped across user-level stores, not
+  repo-scoped). In any other repo, or when the script is absent, check only
+  session store existence, file counts, and newest timestamps
+  (`references/harness-signals.md`).
 - Run a documented command only when it is read-only: a scan, `status`,
   `list`, `--check`, or `--dry-run`. For any other command, confirm only that
   its binary (`command -v`) or recipe (`just --list`) exists.
@@ -101,11 +105,15 @@ setup.
 2. Check each stage with the evidence checks in `references/stages.md`:
    - every path in Implementation exists (repo-relative or `~`-expanded);
    - every command in Implementation resolves, under the rules above;
-   - every hook script it names is referenced by that harness's hook
-     config (`references/harness-signals.md`);
-   - Evidence shows a run within `since:N` days (file mtime,
+   - every hook script it names is either referenced by that harness's hook
+     config (JSON, TOML, YAML, or `crushrc` `hook add`) or lives in that
+     harness's auto-discovered extension/hook directory
+     (`references/harness-signals.md`);
+   - for stages 2-6, Evidence satisfies that stage's recency check within
+     `since:N` days (`references/stages.md`: file mtime,
      `git log -1 --format=%cs -- <path>`, or the newest Cycle log date).
-     No Evidence location declared counts as no run.
+     No Evidence location declared counts as no run for stages 2-6.
+     `Enable` (stage 1) has no `since:N` recency requirement.
 3. Assign each stage one observed status (table below).
 4. Check the Scaffolding register against `references/stages.md` § 5.
 5. Rate every finding (table below).
