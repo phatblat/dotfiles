@@ -26,6 +26,8 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 | 1.4.6 |
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 | 1.4.0 |
 | 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 | 1.4.6 |
+| 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 | 1.4.0 |
+| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 | 1.4.6 |
 | 2026-10-24 | opencode | - | version | 1.19.3 | 1.19.4 | 1.19.4 |
 | 2026-10-24 | grok | - | version | grok 1.0.67 (2fe064390d07) | grok 1.0.67 (2fe064390d07) [alpha] | grok 1.0.67 (2fe064390d07) [alpha] |
 | 2026-10-24 | cursor | - | version | - | 2026.10.16-e3cb207 | 2026.10.16-e3cb207 |
@@ -220,5 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-06 | codex | - | version | codex-cli 0.153.2 | codex-cli 0.153.3 | codex-cli 0.153.3 |
 | 2026-09-06 | claude | - | version | 2.1.236 (Claude Code) | 2.1.261 (Claude Code) | 2.1.261 (Claude Code) |
 | 2026-09-06 | antigravity | - | version | 1.1.26 | 1.1.27 | 1.1.27 |
-| 2026-09-05 | pi | - | version | 0.84.4 | 0.85.0 | 0.85.0 |
-| 2026-09-05 | opencode | - | version | 1.18.26 | 1.18.27 | 1.18.27 |

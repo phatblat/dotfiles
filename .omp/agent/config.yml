@@ -6,7 +6,7 @@ modelRoles:
   plan: anthropic/claude-opus-5-5:xhigh
   slow: google-antigravity/gemini-3.8-flash
   smol: anthropic/claude-haiku-5-5:auto
-  default: reflection/Beam-1.0-501B-A23B:high
+  default: google-vertex/gemini-4-argon:medium
   commit: anthropic/claude-haiku-5-5:low
   delivery_build: anthropic/claude-sonnet-5-5:high
   delivery_test: anthropic/claude-haiku-5-5:auto
