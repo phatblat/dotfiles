@@ -1,5 +1,6 @@
 {
   "altScreenMode": "always",
+  "colorScheme": "dark",
   "enableTerminalSandbox": true,
   "gcp": {
     "location": "us",
@@ -18,6 +19,9 @@
       "command(~/scripts/sort-gitignore)"
     ]
   },
+  "pickerGrouping": "grouped",
+  "runningLightSpeed": "fast",
+  "seasonalThemesOptIn": "halloween-2026",
   "showFeedbackSurvey": false,
   "statusLine": {
     "command": "",
