@@ -17,6 +17,7 @@ on:
       - ".codex/config.toml"
       - "**.yml"
       - "**.yaml"
+      - "**.ts"
       # changed.sh decides whether the pull_request run does any work, so a
       # main-branch commit touching only it still needs a post-merge check.
       - ".github/scripts/**"
@@ -43,7 +44,8 @@ jobs:
       # Allowlist only tools needed for linting to prevent mise from attempting
       # to install macOS-only tools (tart, cargo-based tools, etc.) on Linux CI.
       # node backs npm:prettier; the ARC runner image ships no node/npm.
-      MISE_ENABLE_TOOLS: "just,shellcheck,ruff,pypi:basedpyright,bats,github:nushell/nushell,python,node,pypi:yamllint,npm:prettier,shfmt,aqua:anordal/shellharden,hk,gitleaks,yq"
+      # bun backs the hk ts-parse step.
+      MISE_ENABLE_TOOLS: "just,shellcheck,ruff,pypi:basedpyright,bats,github:nushell/nushell,python,node,pypi:yamllint,npm:prettier,shfmt,aqua:anordal/shellharden,hk,gitleaks,yq,bun"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -73,7 +75,7 @@ jobs:
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
           version: "2026.10.8"
-          install_args: "just shellcheck ruff pypi:basedpyright bats github:nushell/nushell python node pypi:yamllint npm:prettier shfmt aqua:anordal/shellharden hk gitleaks yq"
+          install_args: "just shellcheck ruff pypi:basedpyright bats github:nushell/nushell python node pypi:yamllint npm:prettier shfmt aqua:anordal/shellharden hk gitleaks yq bun"
 
       # Runs `check` minus the macOS-only halves: `just check` also pulls in
       # `test`, whose bats suites need xcrun/xcodebuild/brew and so belong to
