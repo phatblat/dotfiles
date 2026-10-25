@@ -161,7 +161,7 @@ enter the harness.
     Cadence.
   - **Yield:** findings applied, over findings produced, per cycle.
   - **Regressions:** applied changes reverted within the window
-    (`git log --since=<N>.days --grep=revert` on the touched paths).
+    (`git log --since=<N>.days -i --grep=revert` on the touched paths).
   - **Cost per task:** tokens or spend per task, where the harness reports
     it. Harness choice changes cost per task even when success rates
     match.
