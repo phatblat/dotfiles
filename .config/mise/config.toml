@@ -24,7 +24,7 @@
 "cargo:cargo-expand" = "1.0.127"
 "cargo:foxguard" = "0.14.1"
 "cargo:https://github.com/nkotval-ditto/wookie" = { version = "rev:8a2eab6de09e7b381e3b83ff0dac7979bc88cf8b", crate = "wookie" }
-"cargo:sccache" = "0.18.0"
+"cargo:sccache" = "0.19.0"
 "cargo:tauri-cli" = "2.12.4"
 "cargo:wasm-bindgen-cli" = "0.2.129"
 "cargo:wasm-pack" = "0.15.0"
