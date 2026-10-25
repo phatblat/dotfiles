@@ -1,6 +1,6 @@
 ---
 name: optimize-harness
-description: Audit one or all supported agent harnesses (claude, codex, opencode, pi, omp, antigravity, cursor, grok) for config efficiency, hook overhead, permission friction, plugin and MCP cost, skill metadata portability, dead config, and measured session friction. Use when invoked as `$optimize-harness [harness ...] [focus]`, or when the user asks to optimize or compare agent harness configuration.
+description: Audit one or all supported agent harnesses (claude, codex, opencode, pi, omp, antigravity, cursor, grok, crush) for config efficiency, hook overhead, permission friction, plugin and MCP cost, skill metadata portability, dead config, and measured session friction. Use when invoked as `$optimize-harness [harness ...] [focus]`, or when the user asks to optimize or compare agent harness configuration.
 disable-model-invocation: true
 ---
 
@@ -14,8 +14,8 @@ session friction. Produce a prioritized, multi-harness report.
 
 Whitespace-split `$ARGUMENTS`. Order-independent, no positional meaning:
 
-- A token in `{claude, codex, opencode, pi, omp, antigravity, cursor, grok}`
-  adds that harness to the target set. None given means all eight.
+- A token in `{claude, codex, opencode, pi, omp, antigravity, cursor, grok,
+  crush}` adds that harness to the target set. None given means all nine.
 - A token in `{config, hooks, permissions, plugins, mcp, context, sessions,
   friction, all}` sets the focus. None given means `all`.
 - `since:N` sets the session window in days for the friction scan, default
@@ -149,7 +149,7 @@ descriptions for verbosity or stale references, per harness.
 ### Harness portability
 
 When optimizing shared skills or porting harness features between the
-eight supported harnesses, read `references/agent-harness-portability.md`
+nine supported harnesses, read `references/agent-harness-portability.md`
 for the current attribute mapping and source notes:
 
 1. Classify each skill as **procedural** or **ability** before mapping
