@@ -20,6 +20,11 @@ memory:
   backend: "off"
 autolearn:
   enabled: false
+# Keep the 90 s / 120 s stream watchdogs. Only the main profile raises
+# them to 300 s, because Gemini 4 Argon can stay silent for more than 90 s.
+providers:
+  streamFirstEventTimeoutSeconds: 90
+  streamIdleTimeoutSeconds: 120
 # The feature-delivery team needs main's delivery_* modelRoles, which never
 # carry over; opt in by adding an extensions: entry and those roles here.
 extensions: []
