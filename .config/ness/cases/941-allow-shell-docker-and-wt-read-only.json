@@ -1,0 +1,12 @@
+{
+  "command": "docker ps --format \"{{.Names}}\" && wt list",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

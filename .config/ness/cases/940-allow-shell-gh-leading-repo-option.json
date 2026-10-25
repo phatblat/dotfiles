@@ -1,0 +1,12 @@
+{
+  "command": "gh -R phatblat/dotfiles pr view 550 --json title,state && gh label list",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}
