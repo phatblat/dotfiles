@@ -41,10 +41,12 @@ REINCLUDE_RULE = re.compile(r"!(.+)")
 # root, so it is unioned in here rather than living in `CONFIG_ROOTS`.
 HARNESS_ROOTS = frozenset({".agents"} | {r for rs in CONFIG_ROOTS.values() for r in rs})
 
-# Files that mark their directory as a third-party package root. The whole
-# subtree, manifest included, is installed rather than hand-authored.
+# Files or directories that mark their directory as a third-party package root.
+# The whole subtree, manifest included, is installed rather than hand-authored.
 VENDOR_MARKERS = (
     ".claude-plugin",
+    ".cursor-plugin",
+    ".datacloud_skills_manifest",
     ".git",
     ".paseo-managed-files.json",
     "Cargo.toml",
@@ -126,7 +128,9 @@ STATE_DIRS = frozenset(
         "logs",
         "managed-skills",
         "marketplaces",
+        "mcp",
         "mcps",
+        "memory-v2",
         "natives",
         "node_modules",
         "npm",
