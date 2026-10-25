@@ -676,6 +676,65 @@ enum PieceRes {
     Dynamic,
 }
 
+fn has_glob_meta(s: &str) -> bool {
+    if s.contains('*') || s.contains('?') {
+        return true;
+    }
+    if let Some(open) = s.find('[') {
+        if s[open + 1..].find(']').is_some_and(|close| close > 0) {
+            return true;
+        }
+    }
+    for (open, _) in s.match_indices('{') {
+        let rest = &s[open + 1..];
+        if let Some(close) = rest.find('}') {
+            let inner = &rest[..close];
+            if inner.contains(',') || inner.contains("..") {
+                return true;
+            }
+        }
+    }
+    false
+}
+
+struct ScratchMktemp;
+
+impl ScratchMktemp {
+    fn check(p: &ShellPolicy, cmd: &str, state: &State) -> Option<String> {
+        let base_scratch = p.scratch_dirs.first()?.to_string_lossy().into_owned();
+        let words: Vec<&str> = cmd.split_whitespace().collect();
+        if words.first().copied() != Some("mktemp") {
+            return None;
+        }
+        let mut i = 1usize;
+        let mut positional = Vec::new();
+        while i < words.len() {
+            let w = words[i];
+            if w == "-d" || w == "-q" || w == "-u" {
+                i += 1;
+            } else if w == "-t" {
+                let prefix = *words.get(i + 1)?;
+                if prefix.contains('/') || prefix.contains("..") || prefix.contains('$') {
+                    return None;
+                }
+                i += 2;
+            } else if w.starts_with('-') {
+                return None;
+            } else {
+                positional.push(w);
+                i += 1;
+            }
+        }
+        match positional.as_slice() {
+            [] => Some(format!("{base_scratch}/_ness_mktemp")),
+            [tpl] if !tpl.contains('$') && is_scratch(p, state, tpl) => {
+                Some(format!("{base_scratch}/_ness_mktemp"))
+            }
+            _ => None,
+        }
+    }
+}
+
 fn resolve_piece(
     p: &ShellPolicy,
     piece: &brush_parser::word::WordPiece,
@@ -686,10 +745,7 @@ fn resolve_piece(
     use brush_parser::word::WordPiece as WP;
     match piece {
         WP::Text(s) => {
-            let mut g = false;
-            if !quoted && (s.contains('*') || s.contains('?') || s.contains('[') || (s.contains('{') && s.contains('}'))) {
-                g = true;
-            }
+            let g = !quoted && has_glob_meta(s);
             Ok(PieceRes::Values(vec![s.clone()], g))
         }
         WP::SingleQuotedText(s) => Ok(PieceRes::Values(vec![s.clone()], false)),
@@ -723,7 +779,12 @@ fn resolve_piece(
                 Value::Resolved { values, .. } => Ok(PieceRes::Values(values, false)),
             }
         }
-        WP::TildeExpansion(_) => Ok(PieceRes::Dynamic),
+        WP::TildeExpansion(te) => match te {
+            brush_parser::word::TildeExpr::Home => {
+                Ok(PieceRes::Values(vec!["~".to_string()], false))
+            }
+            _ => Ok(PieceRes::Dynamic),
+        },
         WP::ParameterExpansion(pe) => {
             if param_expr_has_cmd_subst(pe) {
                 return Err("shell: unsupported construct: command substitution in parameter expansion".to_string());
@@ -762,6 +823,9 @@ fn resolve_piece(
             let d = fork.depth + 1;
             if let Some(r) = classify_inner(p, s, &mut fork, d) {
                 return Err(r);
+            }
+            if let Some(scratch) = ScratchMktemp::check(p, s, &fork) {
+                return Ok(PieceRes::Values(vec![scratch], false));
             }
             Ok(PieceRes::Dynamic)
         }
@@ -1136,6 +1200,23 @@ fn bind_assignment(p: &ShellPolicy, state: &mut State, rec: &AssignmentRec) -> R
     Ok(())
 }
 
+fn token_matches_write_flag(token: &str, flags: &[String]) -> Option<String> {
+    for f in flags {
+        if f.len() == 2 && f.starts_with('-') && !f.starts_with("--") {
+            let ch = f.chars().nth(1).unwrap();
+            if !token.starts_with("--")
+                && token.starts_with('-')
+                && token.chars().skip(1).any(|c| c == ch)
+            {
+                return Some(f.clone());
+            }
+        } else if token == *f || token.starts_with(&format!("{f}=")) {
+            return Some(f.clone());
+        }
+    }
+    None
+}
+
 fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State, appends: bool) -> Option<String> {
     if argv.is_empty() {
         return None;
@@ -1240,28 +1321,31 @@ fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State
                 if single_literal(val).as_deref() == Some("--") {
                     break;
                 }
-                let mut hit: Option<String> = None;
-                // dynamic token counts as hit
-                if single_literal(val).is_none() {
-                    hit = Some(_raw.clone());
-                } else {
-                    let token = single_literal(val).unwrap();
-                    for f in &flags {
-                        if f.len() == 2 && f.starts_with('-') && !f.starts_with("--") {
-                            let ch = f.chars().nth(1).unwrap();
-                            if !token.starts_with("--") && token.starts_with('-') && token.chars().skip(1).any(|c| c == ch) {
-                                hit = Some(f.clone());
-                                break;
+                let hit: Option<String> = match val {
+                    Value::Resolved { values, glob: false } => {
+                        values.iter().find_map(|t| token_matches_write_flag(t, &flags))
+                    }
+                    _ => {
+                        let trimmed = _raw.trim_start_matches(['"', '\'']);
+                        if trimmed.starts_with('-') && trimmed != "-" {
+                            let static_len = trimmed
+                                .find(['$', '`', '*', '?', '[', '"', '\''])
+                                .unwrap_or(trimmed.len());
+                            let static_head = &trimmed[..static_len];
+                            if let Some(f) = token_matches_write_flag(static_head, &flags) {
+                                Some(f)
+                            } else if !static_head.contains('=')
+                                && (static_head == "-" || static_head == "--")
+                            {
+                                Some(_raw.clone())
+                            } else {
+                                None
                             }
                         } else {
-                            if token == *f || token.starts_with(&format!("{f}=")) {
-                                hit = Some(f.clone());
-                                break;
-                            }
+                            None
                         }
                     }
-                    // glob token compared by literal text already in single; if glob, single_literal None? Actually glob Value Resolved with glob true => single_literal None, so dynamic-ish hit raw. Good.
-                }
+                };
                 if let Some(flag) = hit {
                     return Some(format!("shell: write flag: {argv0} {flag}"));
                 }
@@ -1403,7 +1487,14 @@ fn apply_post_effects(p: &ShellPolicy, state: &mut State, argv0: &str, argv: &[(
         let mut cwd_result: Option<PathBuf> = None;
         let mut set_none = true;
         if argv.len() == 2 {
-            if let Some(op) = single_literal(&argv[1].0) {
+            if let Some(raw_op) = single_literal(&argv[1].0) {
+                let op = if raw_op == "~" {
+                    paths::home_dir().to_string_lossy().into_owned()
+                } else if let Some(rest) = raw_op.strip_prefix("~/") {
+                    paths::home_dir().join(rest).to_string_lossy().into_owned()
+                } else {
+                    raw_op
+                };
                 let is_special = op == "." || op == ".." || op.starts_with("./") || op.starts_with("../") || Path::new(&op).is_absolute();
                 if is_special {
                     if let Some(cwd) = &state.cwd {
@@ -1531,5 +1622,65 @@ mod tests {
     fn sinks() {
         let p = policy();
         assert_eq!(classify(&p, "ls > /dev/null 2>&1", "/"), None);
+    }
+
+    #[test]
+    fn bracket_test_and_xargs_replace_str() {
+        let mut p = policy();
+        p.read_only.push(vec!["[".to_string()]);
+        assert_eq!(classify(&p, "[ -f notes.txt ] && echo ok", "/"), None);
+        assert_eq!(classify(&p, "git log -1 | xargs -I{} git log -1 {}", "/"), None);
+        assert_eq!(classify(&p, "git log --oneline @{u}..HEAD", "/"), None);
+    }
+
+    #[test]
+    fn write_flags_ignore_non_flag_dynamic_and_loop_operands() {
+        let mut p = policy();
+        p.write_flags.insert(
+            "git".to_string(),
+            vec!["--output".to_string(), "-O".to_string()],
+        );
+        assert_eq!(
+            classify(&p, "for b in main dev; do git log -1 \"$b\"; done", "/"),
+            None
+        );
+        assert_eq!(
+            classify(&p, "sed \"s|refs/remotes/${remote}/||\" ~/.gitconfig", "/"),
+            None
+        );
+        assert_eq!(
+            classify(&p, "git log --oneline \"${merge_base}..HEAD\"", "/"),
+            None
+        );
+        assert_eq!(
+            classify(&p, "sed -i\"$bak\" 's/a/b/' notes.txt", "/"),
+            Some("shell: write flag: sed -i".to_string())
+        );
+        assert_eq!(
+            classify(&p, "git log --output=\"$out\" -1", "/"),
+            Some("shell: write flag: git --output".to_string())
+        );
+    }
+
+    #[test]
+    fn mktemp_command_substitution_tracks_scratch() {
+        let mut p = policy();
+        p.read_only.push(vec!["mktemp".to_string()]);
+        assert_eq!(
+            classify(
+                &p,
+                "d=$(mktemp -d) && echo hi > \"$d/out.txt\" && rm -rf \"$d\"",
+                "/"
+            ),
+            None
+        );
+        assert_eq!(
+            classify(
+                &p,
+                "d=$(mktemp -d /etc/bad.XXXXXX) && rm -rf \"$d\"",
+                "/"
+            ),
+            Some("shell: write outside scratch dirs: rm \"$d\"".to_string())
+        );
     }
 }
