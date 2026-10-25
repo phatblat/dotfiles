@@ -19,8 +19,10 @@ enter the harness.
 - **Implemented means:** the doc lists the instruction files, skills, MCP
   servers, and hooks agents load in this repo, and every listed path
   exists.
-- **Evidence check:** every Implementation path exists, and every hook or
-  MCP config file parses (JSON, TOML, or YAML).
+- **Evidence check:** every Implementation path exists, every hook or
+  MCP config file parses (JSON, TOML, YAML, or `crushrc` `hook add`), and
+  every hook script is either referenced by a config file or located in an
+  auto-discovered extension/hook directory.
 - **Search hints:** `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
   `.github/copilot-instructions.md`, `.cursor/rules/`, `.agents/skills/`,
   `.claude/skills/`, `.claude/settings.json` `hooks`, `.codex/hooks.json`,

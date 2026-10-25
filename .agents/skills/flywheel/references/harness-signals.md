@@ -30,17 +30,17 @@ actually uses.
 From phatblat dotfiles `scripts/harness_paths.py` `SESSION_STORES` and
 `docs/agent-session-transcripts.md`, as of 2026-10-25.
 
-| Harness | Default store | Kind | Override | Verified |
-|---|---|---|---|---|
-| Claude Code | `~/.claude/projects/**/*.jsonl` | jsonl | `CLAUDE_CONFIG_DIR` | no |
-| Codex | `~/.codex/sessions/**/rollout-*.jsonl` | jsonl | `CODEX_HOME` | yes |
-| OpenCode | `~/.local/share/opencode/opencode.db` | sqlite | `XDG_DATA_HOME` | no |
-| Pi | `~/.pi/agent/sessions/**/*.jsonl` | jsonl | `PI_CODING_AGENT_SESSION_DIR`, `PI_CODING_AGENT_DIR` | yes |
-| Oh My Pi | `~/.omp/agent/sessions/**/*.jsonl`; named profile: `~/.omp/profiles/<profile>/agent/sessions` | jsonl | `OMP_PROFILE` | yes |
-| Antigravity | `~/.gemini/antigravity-cli/history.jsonl`; conversation bodies are protobuf, outside coverage | jsonl | none known | no |
-| Cursor | `~/.cursor/projects/*/agent-transcripts/*/*.jsonl` | jsonl | none known | no |
-| Grok | `~/.grok/sessions/<url-encoded-cwd>/<id>/{chat_history,events}.jsonl` | jsonl | none known | no |
-| Crush | `crush.db`; schema is not a public API, so it is not scanned | sqlite | `CRUSH_GLOBAL_DATA`, `XDG_DATA_HOME` | no |
+| Harness | Slug | Default store | Kind | Override | Verified |
+|---|---|---|---|---|---|
+| Claude Code | `claude` | `~/.claude/projects/**/*.jsonl` | jsonl | `CLAUDE_CONFIG_DIR` | no |
+| Codex | `codex` | `~/.codex/sessions/**/rollout-*.jsonl` | jsonl | `CODEX_HOME` | yes |
+| OpenCode | `opencode` | `~/.local/share/opencode/opencode.db` | sqlite | `XDG_DATA_HOME` | no |
+| Pi | `pi` | `~/.pi/agent/sessions/**/*.jsonl` | jsonl | `PI_CODING_AGENT_SESSION_DIR`, `PI_CODING_AGENT_DIR` | yes |
+| Oh My Pi | `omp` | `~/.omp/agent/sessions/**/*.jsonl`; named profile: `~/.omp/profiles/<profile>/agent/sessions` | jsonl | `OMP_PROFILE` | yes |
+| Antigravity | `antigravity` | `~/.gemini/antigravity-cli/history.jsonl`; conversation bodies are protobuf, outside coverage | jsonl | none known | no |
+| Cursor | `cursor` | `~/.cursor/projects/*/agent-transcripts/*/*.jsonl` | jsonl | none known | no |
+| Grok | `grok` | `~/.grok/sessions/<url-encoded-cwd>/<id>/{chat_history,events}.jsonl` | jsonl | none known | no |
+| Crush | `crush` | `crush.db`; schema is not a public API, so it is not scanned | sqlite | `CRUSH_GLOBAL_DATA`, `XDG_DATA_HOME` | no |
 
 Never read these, even when they sit inside a session store:
 
@@ -56,7 +56,9 @@ Never read these, even when they sit inside a session store:
 |---|---|---|
 | Claude Code | `.claude/settings.json` `hooks` (project), `~/.claude/settings.json` (user) | `SessionEnd`, `Stop`, `StopFailure`, `PreCompact`, `PostToolUseFailure`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Notification` |
 | Codex | `.codex/hooks.json` | `Stop`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest` |
-| Oh My Pi | `<cwd>/.omp/extensions/`, `~/.omp/agent/extensions/` (TS/JS extensions) | see the `omp-hooks` skill |
+| Oh My Pi | `<cwd>/.omp/extensions/`, `~/.omp/agent/extensions/`, `~/.omp/agent/hooks/` (auto-discovered TS/JS extensions and hooks) | see the `omp-hooks` skill |
+| Pi / OpenCode | `~/.pi/agent/extensions/`, `~/.config/opencode/plugins/` (auto-discovered TS/JS extensions and plugins) | see primary docs |
+| Crush | `~/.config/crush/crushrc` (`hook add` lines) | see primary docs |
 | Others | check primary docs | unknown |
 
 On phatblat dotfiles, `.agents/harness/hooks/contract.json` normalizes
@@ -80,7 +82,7 @@ Use these only when they are present on the machine:
 
 | Tool | Stage | Use |
 |---|---|---|
-| `~/scripts/harness-sessions.py <slugs> --since <N> --json` | Record, Learn | Coverage, usage, friction, and hook cost, aggregate-only |
+| `~/scripts/harness-sessions.py <slugs> --since <N> --json` | Record, Learn | `$HOME`-scoped coverage, usage, friction, and hook cost across user-level stores (`<slugs>` from the `Slug` column above), aggregate-only |
 | `optimize-harness` skill | Learn → Apply | Prioritized, evidence-cited harness findings |
 | `retro` skill | Apply | Targeted config fixes from friction points |
 | `harness-research` skill | Enable | Re-verify capability facts after a release |
