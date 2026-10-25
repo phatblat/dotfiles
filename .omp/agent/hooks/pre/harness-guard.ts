@@ -139,6 +139,7 @@ function runGuard(args: string[], cwd: string): GuardResult {
       const bad: GuardResult = { decision: "deny", reason: `${FAILED}: ness returned an unknown decision ${JSON.stringify(result?.decision)}. ${REMEDY}` };
       logGuardVerdict(tool, bad, Date.now() - started);
       return bad;
+    }
     logGuardVerdict(tool, result, Date.now() - started);
     return result;
   } catch (error: unknown) {
@@ -289,6 +290,7 @@ export default function hook(pi: ExtensionAPI): void {
       };
     }
 
+    const cwd = typeof ctx?.cwd === "string" ? ctx.cwd : "";
     const rawCwd = event.toolName === "bash" && typeof input.cwd === "string" ? input.cwd : "";
     const bashCwd = rawCwd && !rawCwd.includes("://") ? resolve(cwd, rawCwd) : cwd;
     type Call = { args: string[]; cwd: string; honorPrompt: boolean };
