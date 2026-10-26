@@ -1,0 +1,12 @@
+{
+  "command": "ln -s /Users/phatblat/target_dir /tmp/ness-link && rm -rf /tmp/ness-link/sub",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unrecognized command: ln"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

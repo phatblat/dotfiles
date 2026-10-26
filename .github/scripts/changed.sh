@@ -19,11 +19,11 @@ lint)
     # Mirrors what `just lint typecheck-python` actually reads: hk.pkl
     # itself, every glob its steps check (.gitignore, .codex/config.toml,
     # .config/mise/config.toml, zsh/nushell autoload functions, bin/, every
-    # tracked *.py plus nested ruff.toml files, tracked *.yml/*.yaml), and
-    # pyproject.toml (basedpyright's config). Narrower than this and a lint
-    # failure surfaces on some later unrelated pull request instead of the
-    # one that caused it.
-    pattern='^(hk\.pkl$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|pyproject\.toml$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.py$|.*ruff\.toml$|.*\.ya?ml$|.*\.jsonc?$)'
+    # tracked *.py plus nested ruff.toml files, tracked *.yml/*.yaml,
+    # tracked *.ts harness modules), and pyproject.toml (basedpyright's
+    # config). Narrower than this and a lint failure surfaces on some later
+    # unrelated pull request instead of the one that caused it.
+    pattern='^(hk\.pkl$|\.config/(home-manager|nushell)/|\.config/zsh/functions/|\.config/mise/config\.toml$|\.codex/config\.toml$|\.gitignore$|bin/|justfile$|pyproject\.toml$|scripts/|tests/|\.github/(workflows|scripts)/|.*\.py$|.*ruff\.toml$|.*\.ya?ml$|.*\.jsonc?$|.*\.ts$)'
     ;;
 parity)
     # .agents/skills/** is a generator input (SKILL_SOURCE) and belongs here:

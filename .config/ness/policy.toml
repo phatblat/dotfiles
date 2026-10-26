@@ -102,8 +102,7 @@ sed_inplace = '(?i)\bsed\b(?P<span>[^;|&]*?-i(?:\S*)?[^;|&]*)'
 dd = '(?i)\bdd\b[^;|&]*?\bof=(?P<span>[^\s;|&]+)'
 path_token = '''[^\s;|&<>'"]*[/~][^\s;|&<>'"]*'''
 
-# Per-harness approval baselines (bash allow lists, prompt-even-in-yolo, absolute deny).
-# Rendered per harness by scripts/harness_policy.py `bash_rules(style)`, which reads this table.
+# Per-harness approval baselines rendered by scripts/harness_policy.py bash_rules(style). omp renders deny_prefix only: ness's [shell] classifier owns its allow/prompt decisions.
 [approval]
 allow_prefix = [
   "[",
@@ -224,7 +223,7 @@ deny_prefix = ["sudo"]
 
 [approval.modes]
 claude_default_mode = "auto"
-omp_approval_mode = "write"
+omp_approval_mode = "yolo"
 opencode_edit = "ask"
 opencode_external_directory = "ask"
 opencode_webfetch = "ask"
@@ -232,3 +231,98 @@ opencode_webfetch = "ask"
 [approval.claude]
 webfetch_domains = ["docs.basedpyright.com", "github.com"]
 tools = ["WebSearch", "mcp__acp__Bash", "mcp__acp__Edit", "mcp__acp__Write"]
+
+# Bash classification behind the `prompt` verdict. It runs only after every deny
+# category above has passed. ness parses the command (brush-parser) and checks every
+# simple command it reaches: pipelines, && || ;, loops, conditionals, subshells,
+# $(...), backticks, <(...). read_only/allow_write matches and writes confined to
+# scratch_dirs -> allow. Any other write, unknown command, or unparseable input ->
+# prompt. omp's harness-guard hook shows a confirm dialog for `prompt` and blocks
+# when headless. Every other harness treats `prompt` like allow. Entries are argv
+# prefixes compared word by word. To make reads ask, delete read_only entries; to
+# let writes through, add allow_write entries. Apply with `ness policy apply`.
+[shell]
+# A write runs without a prompt when every target is strictly inside one of these
+# (symlinks are resolved first).
+scratch_dirs = ["/tmp", "/private/tmp", "/var/folders", "/private/var/folders"]
+# Redirect/path targets that are never writes.
+sinks = ["/dev/null", "/dev/stdout", "/dev/stderr", "/dev/tty", "/dev/fd/1", "/dev/fd/2"]
+# Assigning one of these (bare, prefix, export/declare/..., env) prompts. They
+# change what later commands run, and shell variables persist across omp bash
+# calls. A trailing * matches a prefix.
+protected_env = ["BASH_ENV", "DYLD_*", "ENV", "GIT_ASKPASS", "GIT_CONFIG*", "GIT_EDITOR", "GIT_EXEC_PATH", "GIT_EXTERNAL_DIFF", "GIT_PAGER", "GIT_SSH", "GIT_SSH_COMMAND", "LD_*", "PAGER", "PATH", "PROMPT_COMMAND"]
+read_only = [":", "[", "awk", "base64", "basename", "bash -n", "bats", "break", "brew --prefix", "brew --version", "brew bundle check", "brew bundle list", "brew cat", "brew config", "brew deps", "brew doctor", "brew info", "brew leaves", "brew list", "brew outdated", "brew search", "bun --version", "bun build --no-bundle", "cargo --version", "cargo metadata", "cargo tree", "cat", "cd", "claude mcp list", "cmp", "column", "comm", "command -v", "continue", "crush --version", "ctx7", "cut", "date", "declare", "diff", "dirname", "docker --version", "docker compose ps", "docker inspect", "docker logs", "docker ps", "docker stats", "docker top", "docker version", "docker volume inspect", "docker volume ls", "du", "duckdb --version", "echo", "exit", "export", "expr", "false", "fd", "file", "find", "fold", "gcloud --version", "gcloud auth list", "gcloud billing projects describe", "gcloud billing projects list", "gcloud config get-value", "gcloud config list", "gcloud info", "gcloud projects describe", "gcloud projects list", "gcloud services list", "gh --version", "gh auth status", "gh label list", "gh pr checks", "gh pr diff", "gh pr list", "gh pr status", "gh pr view", "gh release list", "gh release view", "gh repo list", "gh repo view", "gh ruleset check", "gh ruleset list", "gh ruleset view", "gh search", "gh status", "git --version", "git blame", "git cat-file", "git check-ignore", "git config --get", "git config --get-all", "git config --get-regexp", "git config --list", "git config -l", "git config commit.template", "git config core.hooksPath", "git config init.defaultBranch", "git describe", "git diff", "git diff-tree", "git for-each-ref", "git grep", "git hash-object", "git log", "git ls-files", "git ls-remote", "git ls-tree", "git merge-base", "git name-rev", "git reflog", "git rev-list", "git rev-parse", "git shortlog", "git show", "git show-ref", "git stash create", "git stash list", "git stash show", "git status", "git var", "git verify-commit", "git verify-tag", "git version", "git write-tree", "grep", "grok --version", "grok mcp doctor", "grok mcp list", "hash", "head", "hk --version", "hk check", "hk validate", "hostname", "id", "join", "jq", "local", "ls", "markdownlint", "markdownlint-cli2", "md5", "mise --help", "mise --version", "mise -v", "mise backends", "mise config", "mise current", "mise doctor", "mise env", "mise fmt --check", "mise fmt --help", "mise ls", "mise ls-remote", "mise outdated", "mise plugins", "mise registry", "mise search", "mise settings", "mise tasks", "mise trust --show", "mise version", "mise where", "mise which", "mktemp", "ness --help", "ness --version", "ness -V", "ness -h", "ness guard", "ness policy", "ness policy active", "ness policy check", "nl", "npm ls", "npm view", "npx linkinator", "od", "omp --help", "omp --version", "omp config get", "omp config list", "omp config path", "omp models", "opencode --version", "opencode models", "paste", "pgrep", "printenv", "printf", "ps", "pwd", "read", "readlink", "readonly", "realpath", "rev", "rg", "rustc --version", "rustup show", "rustup which", "sed", "seq", "set", "sg", "sh -n", "sha256sum", "shasum", "shellcheck", "shfmt", "shift", "sleep", "sort", "stat", "strings", "sw_vers", "tail", "tar -tf", "tar -tjf", "tar -tvf", "tar -tzf", "tar -ztvf", "test", "tr", "tree", "true", "type", "typeset", "typos", "uname", "uniq", "unset", "uptime", "uv --version", "uv pip list", "uv pip show", "uv pip tree", "uv tool list", "wait", "wc", "which", "whoami", "wt --help", "wt --version", "wt list", "wt path", "wt status", "xxd", "yamllint", "yq", "zsh -n", "~/.local/bin/ness --help", "~/.local/bin/ness --version", "~/.local/bin/ness -V", "~/.local/bin/ness -h", "~/.local/bin/ness guard", "~/.local/bin/ness policy"]
+allow_write = ["./.venv/bin/pytest", "./.venv/bin/python", "./.venv/bin/ruff", ".venv/bin/pytest", ".venv/bin/python", ".venv/bin/ruff", "bazel build", "bazel info", "bazel query", "bazel test", "bazel version", "brew update", "brew upgrade", "bun run", "bun test", "bun x", "bunx", "cargo build", "cargo check", "cargo clippy", "cargo doc", "cargo fmt", "cargo nextest", "cargo run", "cargo test", "gh api", "gh issue", "gh pr comment", "gh pr create", "gh pr edit", "gh pr merge", "gh pr ready", "gh pr review", "gh run", "gh stack", "git add", "git apply", "git branch", "git checkout", "git cherry-pick", "git clean -fd", "git commit", "git fetch", "git merge --ff-only", "git mv", "git pull", "git push", "git rebase", "git remote", "git reset", "git restore", "git revert", "git rm", "git stash", "git switch", "git symbolic-ref", "git tag", "git update-ref", "git worktree", "go build", "go test", "go vet", "hk fix", "hk fmt", "just", "linear", "make", "mise exec -- bun", "mise exec -- hk", "mise exec -- just", "mise exec -- markdownlint", "mise fmt", "mise install", "mise prune", "mise reshim", "mise self-update", "mise trust", "mise upgrade", "mise use", "mise x -- hk", "mise x -- just", "npm ci", "npm run", "npm test", "npx jest", "npx markdownlint", "npx markdownlint-cli2", "npx prettier", "npx tsc", "npx vitest", "pip", "pnpm", "poetry", "prettier", "pytest", "python", "python3", "ruff", "uv lock", "uv run", "uv sync", "uv tool upgrade", "wt create", "wt remove", "wt switch", "yarn", "~/scripts/sort-gitignore"]
+
+# Commands whose writes are their path operands: all operands, or the last (destination).
+[shell.path_writers]
+cp = "last"
+mkdir = "all"
+mv = "all"
+rm = "all"
+rmdir = "all"
+tee = "all"
+touch = "all"
+unlink = "all"
+
+# A read_only command used with one of these flags is a write.
+[shell.write_flags]
+awk = ["-i"]
+base64 = ["-o", "--output"]
+fd = ["-x", "--exec", "-X", "--exec-batch"]
+file = ["-C", "--compile"]
+find = ["-delete", "-exec", "-execdir", "-ok", "-okdir", "-fls", "-fprint", "-fprint0", "-fprintf"]
+git = ["--output", "-O", "--open-files-in-pager"]
+rg = ["--pre"]
+sed = ["-i", "--in-place"]
+sg = ["-U", "--update-all", "-i", "--interactive"]
+shfmt = ["-w", "--write"]
+sort = ["-o", "--output"]
+tree = ["-o"]
+typos = ["-w", "--write-changes"]
+yq = ["-i", "--inplace"]
+
+# Launchers: the command after their options/operands is classified instead.
+[shell.wrappers.env]
+value_options = ["-u", "--unset"]
+operands = 0
+assignments = true
+appends_operands = false
+
+[shell.wrappers.nice]
+value_options = ["-n", "--adjustment"]
+operands = 0
+assignments = false
+appends_operands = false
+
+[shell.wrappers.nohup]
+value_options = []
+operands = 0
+assignments = false
+appends_operands = false
+
+[shell.wrappers.timeout]
+value_options = ["-s", "--signal", "-k", "--kill-after"]
+operands = 1
+assignments = false
+appends_operands = false
+
+[shell.wrappers.xargs]
+value_options = ["-E", "-I", "-J", "-L", "-P", "-R", "-S", "-a", "-d", "-n", "-s", "--arg-file", "--delimiter", "--eof", "--max-args", "--max-chars", "--max-lines", "--max-procs", "--replace"]
+operands = 0
+assignments = false
+appends_operands = true
+
+# Global options skipped before matching a multi-word entry (git -C dir log).
+# Unlisted ones (git -c, which can run commands) never match.
+[shell.leading_options.git]
+flags = ["--bare", "--literal-pathspecs", "--no-optional-locks", "--no-pager", "--no-replace-objects", "-P"]
+value_options = ["-C", "--git-dir", "--namespace", "--work-tree"]
+
+[shell.leading_options.gh]
+flags = []
+value_options = ["-R", "--repo", "--hostname"]
+
+[shell.leading_options.npx]
+flags = ["--no", "--no-install", "--yes", "-y", "-q", "--quiet", "--"]
+value_options = ["-p", "--package"]

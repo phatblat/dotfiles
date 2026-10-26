@@ -1,0 +1,12 @@
+{
+  "command": "git for-each-ref --format='%(refname:short)' refs/heads/ && git restore --staged README.md",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

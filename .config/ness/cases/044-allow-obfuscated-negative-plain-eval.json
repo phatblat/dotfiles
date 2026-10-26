@@ -3,8 +3,8 @@
   "content": null,
   "cwd": null,
   "expected": {
-    "decision": "allow",
-    "reason": ""
+    "decision": "prompt",
+    "reason": "shell: unrecognized command: eval"
   },
   "harness": "claude",
   "path": null,

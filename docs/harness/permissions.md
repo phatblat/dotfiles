@@ -36,7 +36,7 @@ Verify: `just harness-check`
 | codex | aligned | native | `sandbox_mode` | local · - · - | Resolved default: read-only |
 | opencode | aligned | adapter | `permission.edit` | local · - · - | Resolved default: ask |
 | pi | aligned | native | `defaultProjectTrust` | local · - · - | Resolved default: ask |
-| omp | aligned | adapter | `tools.approvalMode` | local · - · - | Resolved default: write |
+| omp | aligned | adapter | `tools.approvalMode` | local · - · - | Resolved default: yolo |
 | antigravity | aligned | native | `toolPermission` | local · - · - | Resolved default: proceed-in-sandbox |
 | cursor | unknown | none | - | - | - |
 | grok | unknown | none | - | - | - |

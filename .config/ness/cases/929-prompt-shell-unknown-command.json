@@ -1,0 +1,12 @@
+{
+  "command": "make-believe-tool --run",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unrecognized command: make-believe-tool"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

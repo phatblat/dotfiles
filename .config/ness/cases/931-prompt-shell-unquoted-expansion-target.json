@@ -1,0 +1,12 @@
+{
+  "command": "x=\"/tmp/a /etc/hosts\"; rm -f $x",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: rm $x"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

@@ -1,0 +1,12 @@
+{
+  "command": "export PATH=/tmp/bin:$PATH",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: sets PATH"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

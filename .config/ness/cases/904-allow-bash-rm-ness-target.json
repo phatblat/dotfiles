@@ -3,8 +3,8 @@
   "content": null,
   "cwd": null,
   "expected": {
-    "decision": "allow",
-    "reason": ""
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: rm crates/ness/target"
   },
   "harness": "claude",
   "path": null,

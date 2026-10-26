@@ -70,7 +70,117 @@ pub struct Approval {
     pub modes: Modes,
     pub claude: ClaudeApproval,
 }
+pub use crate::shell::TargetRule;
+pub use crate::shell::Wrapper;
+pub use crate::shell::LeadingOptions;
 
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Shell {
+    pub scratch_dirs: Vec<String>,
+    pub sinks: Vec<String>,
+    pub protected_env: Vec<String>,
+    pub read_only: Vec<String>,
+    pub allow_write: Vec<String>,
+    pub path_writers: std::collections::BTreeMap<String, TargetRule>,
+    pub write_flags: std::collections::BTreeMap<String, Vec<String>>,
+    pub wrappers: std::collections::BTreeMap<String, Wrapper>,
+    pub leading_options: std::collections::BTreeMap<String, LeadingOptions>,
+}
+
+impl Shell {
+    pub fn compile(self) -> Result<crate::shell::ShellPolicy, String> {
+        // scratch_dirs non-empty
+        if self.scratch_dirs.is_empty() {
+            return Err("shell.scratch_dirs: must list at least one directory".to_string());
+        }
+        for (i, v) in self.scratch_dirs.iter().enumerate() {
+            if !v.starts_with('/') {
+                return Err(format!("shell.scratch_dirs[{i}]: '{v}' must be an absolute path"));
+            }
+        }
+        for (i, v) in self.sinks.iter().enumerate() {
+            if !v.starts_with('/') {
+                return Err(format!("shell.sinks[{i}]: '{v}' must be an absolute path"));
+            }
+        }
+        // read_only entries
+        let mut read_only = Vec::new();
+        for (i, v) in self.read_only.iter().enumerate() {
+            let words: Vec<String> = v.split_whitespace().map(|s| s.to_string()).collect();
+            if words.is_empty() {
+                return Err(format!("shell.read_only[{i}]: empty entry"));
+            }
+            read_only.push(words);
+        }
+        let mut allow_write = Vec::new();
+        for (i, v) in self.allow_write.iter().enumerate() {
+            let words: Vec<String> = v.split_whitespace().map(|s| s.to_string()).collect();
+            if words.is_empty() {
+                return Err(format!("shell.allow_write[{i}]: empty entry"));
+            }
+            allow_write.push(words);
+        }
+        // protected_env validation
+        for (i, v) in self.protected_env.iter().enumerate() {
+            let name = v.trim_end_matches('*');
+            if !name.chars().all(|c| c.is_alphanumeric() || c == '_') || name.is_empty() || !name.chars().next().unwrap().is_alphabetic() && name.chars().next().unwrap() != '_' {
+                return Err(format!("shell.protected_env[{i}]: '{v}' is not a variable name"));
+            }
+            if v.ends_with('*') && v.len() == 1 {
+                return Err(format!("shell.protected_env[{i}]: '{v}' is not a variable name"));
+            }
+        }
+        // write_flags
+        for (cmd, flags) in &self.write_flags {
+            for (i, f) in flags.iter().enumerate() {
+                if !f.starts_with('-') {
+                    return Err(format!("shell.write_flags.{cmd}[{i}]: '{f}' must start with '-'"));
+                }
+            }
+        }
+        // wrappers
+        for (name, w) in &self.wrappers {
+            for (i, f) in w.value_options.iter().enumerate() {
+                if !f.starts_with('-') {
+                    return Err(format!("shell.wrappers.{name}.value_options[{i}]: '{f}' must start with '-'"));
+                }
+            }
+        }
+        // leading_options
+        for (cmd, lo) in &self.leading_options {
+            for (i, f) in lo.flags.iter().enumerate() {
+                if !f.starts_with('-') {
+                    return Err(format!("shell.leading_options.{cmd}.flags[{i}]: '{f}' must start with '-'"));
+                }
+            }
+            for (i, f) in lo.value_options.iter().enumerate() {
+                if !f.starts_with('-') {
+                    return Err(format!("shell.leading_options.{cmd}.value_options[{i}]: '{f}' must start with '-'"));
+                }
+            }
+        }
+        // Build ShellPolicy
+        let scratch_dirs = self.scratch_dirs.iter().map(|s| std::path::PathBuf::from(s)).collect();
+        let sinks = self.sinks;
+        let protected_env = self.protected_env;
+        let path_writers = self.path_writers;
+        let write_flags = self.write_flags;
+        let wrappers = self.wrappers;
+        let leading_options = self.leading_options;
+        Ok(crate::shell::ShellPolicy {
+            scratch_dirs,
+            sinks,
+            protected_env,
+            read_only,
+            allow_write,
+            path_writers,
+            write_flags,
+            wrappers,
+            leading_options,
+        })
+    }
+}
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Policy {
@@ -80,6 +190,7 @@ pub struct Policy {
     pub commands: Commands,
     pub write_targets: WriteTargets,
     pub approval: Approval,
+    pub shell: Shell,
 }
 
 /// Compiled form consumed by `policy.rs`. Alternation tables that were one
@@ -105,7 +216,7 @@ pub struct Compiled {
     pub sed_inplace: Regex,
     pub dd: Regex,
     pub path_token: Regex,
-    /// Entry counts per table, for `ness policy active`.
+    pub shell: crate::shell::ShellPolicy,
     pub counts: Vec<(&'static str, usize)>,
 }
 
@@ -181,6 +292,11 @@ impl Policy {
             ("approval.allow_exact", self.approval.allow_exact.len()),
             ("approval.prompt_prefix", self.approval.prompt_prefix.len()),
             ("approval.deny_prefix", self.approval.deny_prefix.len()),
+            ("shell.read_only", self.shell.read_only.len()),
+            ("shell.allow_write", self.shell.allow_write.len()),
+            ("shell.path_writers", self.shell.path_writers.len()),
+            ("shell.wrappers", self.shell.wrappers.len()),
+            ("shell.scratch_dirs", self.shell.scratch_dirs.len()),
         ];
         Ok(Compiled {
             control_plane: compile_alternation(
@@ -218,6 +334,7 @@ impl Policy {
             sed_inplace: compile_with_span("write_targets.sed_inplace", &w.sed_inplace)?,
             dd: compile_with_span("write_targets.dd", &w.dd)?,
             path_token: compile_one("write_targets.path_token", &w.path_token)?,
+            shell: self.shell.compile()?,
             counts,
         })
     }

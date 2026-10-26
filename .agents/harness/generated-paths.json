@@ -62,11 +62,11 @@
   "~/.agents/harness/adapters/antigravity/skills/find-skills/SKILL.md": {
     "source": "~/.agents/skills/find-skills/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/flywheel/SKILL.md": {
+    "source": "~/.agents/skills/flywheel/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md": {
     "source": "~/.agents/skills/git-commit/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-resolve-conflicts/SKILL.md": {
-    "source": "~/.agents/skills/git-resolve-conflicts/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
     "source": "~/.agents/skills/git-status/SKILL.md"
@@ -391,6 +391,9 @@
   },
   "~/.claude/skills/find-docs/SKILL.md": {
     "source": "~/.agents/skills/find-docs/SKILL.md"
+  },
+  "~/.claude/skills/flywheel/SKILL.md": {
+    "source": "~/.agents/skills/flywheel/SKILL.md"
   },
   "~/.claude/skills/gha-checks/SKILL.md": {
     "source": "~/.agents/skills/gha-checks/SKILL.md"

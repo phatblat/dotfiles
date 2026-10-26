@@ -2,16 +2,17 @@
 //
 // Routes omp tool calls through the compiled harness guard (ness) so omp
 // enforces the same protected paths, blocked command categories, and
-// secret-content rules as every other harness. Hand-written on purpose:
-// ~/.omp/agent is tracked manually, not emitted by scripts/agent-harnesses.py.
+// secret-content rules as every other harness. Also turns ness's `prompt`
+// verdict into a confirm dialog (or a block when headless). Hand-written on
+// purpose: ~/.omp/agent is tracked manually, not emitted by scripts/agent-harnesses.py.
 
 import { execFileSync } from "node:child_process";
 import { appendFileSync, existsSync, mkdirSync } from "node:fs";
 import { homedir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
 
-type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
+type GuardResult = { decision: "allow" | "warn" | "prompt" | "deny"; reason?: string };
 
 const NESS = join(homedir(), ".local", "bin", "ness");
 const GUARD_TIMEOUT_MS = 5_000;
@@ -20,7 +21,7 @@ const FAILED = "Shared guard failed closed";
 const REMEDY =
   "Run `just ness-install`; if the hook source changed mid-session (e.g. `git pull`), " +
   "restart omp — a running session keeps the module it loaded.";
-
+const VERDICTS = new Set(["allow", "warn", "prompt", "deny"]);
 // 2026-09-07 optimize-harness audit: bash sees a 9.2% tool-error rate
 // (871/9460 attempts) and its own p95 (7197ms) exceeds GUARD_TIMEOUT_MS
 // (5000ms), so some fraction of "bash failed" is plausibly the guard
@@ -134,6 +135,11 @@ function runGuard(args: string[], cwd: string): GuardResult {
       ...(cwd ? { cwd } : {}),
     });
     const result = JSON.parse(output) as GuardResult;
+    if (!VERDICTS.has(result?.decision)) {
+      const bad: GuardResult = { decision: "deny", reason: `${FAILED}: ness returned an unknown decision ${JSON.stringify(result?.decision)}. ${REMEDY}` };
+      logGuardVerdict(tool, bad, Date.now() - started);
+      return bad;
+    }
     logGuardVerdict(tool, result, Date.now() - started);
     return result;
   } catch (error: unknown) {
@@ -143,6 +149,11 @@ function runGuard(args: string[], cwd: string): GuardResult {
     if (stdout) {
       try {
         const result = JSON.parse(stdout) as GuardResult;
+        if (!VERDICTS.has(result?.decision)) {
+          const bad: GuardResult = { decision: "deny", reason: `${FAILED}: ness returned an unknown decision ${JSON.stringify(result?.decision)}. ${REMEDY}` };
+          logGuardVerdict(tool, bad, Date.now() - started);
+          return bad;
+        }
         logGuardVerdict(tool, result, Date.now() - started);
         return result;
       } catch {
@@ -280,26 +291,23 @@ export default function hook(pi: ExtensionAPI): void {
     }
 
     const cwd = typeof ctx?.cwd === "string" ? ctx.cwd : "";
-    const calls: string[][] = [];
+    const rawCwd = event.toolName === "bash" && typeof input.cwd === "string" ? input.cwd : "";
+    const bashCwd = rawCwd && !rawCwd.includes("://") ? resolve(cwd, rawCwd) : cwd;
+    type Call = { args: string[]; cwd: string; honorPrompt: boolean };
+    const calls: Call[] = [];
     for (const write of checks.writes) {
-      calls.push([
-        "--tool",
-        "write",
-        "--path",
-        write.path,
-        "--content",
-        write.content,
-      ]);
+      calls.push({ args: ["--tool", "write", "--path", write.path, "--content", write.content], cwd, honorPrompt: false });
     }
     for (const command of checks.commands) {
-      calls.push(["--tool", "bash", "--command", command]);
+      calls.push({ args: ["--tool", "bash", "--command", command], cwd: bashCwd, honorPrompt: event.toolName === "bash" });
     }
     for (const path of derived) {
-      calls.push(["--tool", "write", "--path", path, "--content", ""]);
+      calls.push({ args: ["--tool", "write", "--path", path, "--content", ""], cwd, honorPrompt: false });
     }
 
-    for (const args of calls) {
-      const result = runGuard(args, cwd);
+    let promptReason: string | undefined;
+    for (const call of calls) {
+      const result = runGuard(call.args, call.cwd);
       if (result.decision === "deny") {
         const reason = result.reason || "Blocked by shared harness guard";
         if (reason.startsWith(FAILED) && !notifiedUnreachable) {
@@ -309,8 +317,19 @@ export default function hook(pi: ExtensionAPI): void {
         return { block: true, reason };
       }
       if (result.decision === "warn" && result.reason && ctx?.hasUI) {
-        // ness's main-branch-commit warning; every other harness surfaces it.
         ctx.ui.notify(result.reason, "info");
+      }
+      if (result.decision === "prompt" && call.honorPrompt && !promptReason) {
+        promptReason = result.reason || "shell: approval required";
+      }
+    }
+    if (promptReason) {
+      if (!ctx?.hasUI) {
+        return { block: true, reason: `${promptReason}. No interactive UI can approve it in this session; run it from the main session or allowlist it under [shell] in ~/.config/ness/policy.toml.` };
+      }
+      const ok = await ctx.ui.confirm("ness: approve bash command?", `${promptReason}\n\n${String(input.command ?? "")}`);
+      if (!ok) {
+        return { block: true, reason: `Declined by user: ${promptReason}` };
       }
     }
     return undefined;

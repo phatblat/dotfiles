@@ -1,0 +1,12 @@
+{
+  "command": "jq . a.json > b.json",
+  "content": null,
+  "cwd": "/",
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: > b.json"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

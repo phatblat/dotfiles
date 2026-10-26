@@ -1,0 +1,12 @@
+{
+  "command": "cd /var/folders/2z/rpfkr__92z9gcjz_xfb2yc1r0000gn/T/review-pr-dotfiles-549-otxe694w && for n in 1 2 3; do payload=\"/tmp/pr-549-finding-$n.json\"; resp=$(gh api repos/phatblat/dotfiles/pulls/549/comments --method POST --input \"$payload\"); url=$(printf '%s' \"$resp\" | jq -r '.html_url'); echo \"finding $n: $url\"; rm -f \"$payload\"; done",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

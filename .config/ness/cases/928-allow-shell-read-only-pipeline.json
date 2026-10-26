@@ -1,0 +1,12 @@
+{
+  "command": "git log --oneline -5 |grep fix |wc -l",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

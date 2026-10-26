@@ -32,6 +32,13 @@ impl GuardDecision {
         }
     }
 
+    pub fn prompt(reason: impl Into<String>) -> Self {
+        Self {
+            decision: "prompt".to_string(),
+            reason: reason.into(),
+        }
+    }
+
     pub fn deny(reason: impl Into<String>) -> Self {
         Self {
             decision: "deny".to_string(),
@@ -40,7 +47,7 @@ impl GuardDecision {
     }
 
     pub fn allowed(&self) -> bool {
-        self.decision == "allow" || self.decision == "warn"
+        matches!(self.decision.as_str(), "allow" | "warn" | "prompt")
     }
 }
 
@@ -111,11 +118,11 @@ pub fn evaluate_command(p: &Compiled, command: &str, cwd: &str) -> Result<GuardD
             "control-plane file is human-only: {target}. It decides what the guard permits, so edit it directly rather than through an agent."
         )));
     }
-    // Same rationale as the path rules above: a heredoc or echo through bash
-    // writes the same content a write tool would, so a secret embedded in the
-    // command text must not slip past just because it arrived via a shell.
     if matches(&p.secret_content, command)? {
         return Ok(GuardDecision::deny("secret-like content detected"));
+    }
+    if let Some(reason) = crate::shell::classify(&p.shell, command, cwd) {
+        return Ok(GuardDecision::prompt(reason));
     }
     let warning = main_branch_commit_warning(p, command, cwd)?;
     if !warning.is_empty() {
