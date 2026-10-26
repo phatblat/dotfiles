@@ -122,7 +122,7 @@ setup.
    the Cycle log only". Change nothing before the answer.
 7. Repair only the chosen findings, with targeted edits: fix a wrong path or
    command, wire a missing hook, add a `missing` stage section as `planned`,
-   or correct a Status field. Never edit files that define the agent's own
+   or correct a `Status` field (`planned` or `implemented` only). Never edit files that define the agent's own
    permissions or guardrails (on phatblat dotfiles, `[control_plane]` in
    `~/.config/ness/policy.toml`). Write a patch for the user instead. Never
    remove a scaffold without an ablation result.
@@ -141,8 +141,11 @@ setup.
 | `ok` | Implemented, wired, and ran within the window |
 | `stale` | Implemented and wired, with no evidence of a run within the window |
 | `broken` | A path, command, or hook it relies on is missing or fails |
-| `documented-only` | Described, with nothing implementing it |
+| `documented-only` | Described, with nothing implementing it (`Implementation: none`, or a `planned` stage whose paths do not yet exist) |
 | `missing` | No section for the stage |
+
+Declared `Status` is `implemented` or `planned`: `implemented` agrees with `ok`
+and `planned` agrees with `documented-only`.
 
 ### Severity
 
@@ -193,7 +196,7 @@ Doc: `<path>` · Harnesses: <list>
 4. **Doc.** Copy `assets/flywheel-template.md` to `docs/flywheel.md`
    (create `docs/` if absent) and fill in every placeholder. A stage whose
    mechanism already runs gets `implemented`; every other stage gets
-   `planned`. Seed the Scaffolding register with the nudge or reminder hooks
+   `planned` with `Implementation: none` and `Evidence: none` until implemented. Seed the Scaffolding register with the nudge or reminder hooks
    and model-correcting instructions found in step 2. Add the first Cycle
    log row:
    `| <date> | setup | <n> existing pieces found | created docs/flywheel.md | <metrics> | <first planned stage> |`.
