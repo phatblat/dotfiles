@@ -257,7 +257,6 @@ allow_write = ["./.venv/bin/pytest", "./.venv/bin/python", "./.venv/bin/ruff", "
 # Commands whose writes are their path operands: all operands, or the last (destination).
 [shell.path_writers]
 cp = "last"
-ln = "last"
 mkdir = "all"
 mv = "all"
 rm = "all"
