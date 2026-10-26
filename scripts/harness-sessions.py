@@ -907,7 +907,11 @@ _OMP_ERROR_CLASSES = (
 
 
 def _omp_error_class(message: dict) -> str:
-    """Fixed label for an errored result; only the label leaves this function."""
+    """Fixed label for an errored result; only the label leaves this function.
+
+    The first line names most tool errors; a failed `bash` call leads with the
+    command's own output and ends with the exit notice, so the last line is
+    checked when the first matches nothing."""
     content = message.get("content")
     text = content if isinstance(content, str) else ""
     if isinstance(content, list):
@@ -915,10 +919,11 @@ def _omp_error_class(message: dict) -> str:
             if isinstance(chunk, dict) and chunk.get("type") == "text":
                 text = str(chunk.get("text", ""))
                 break
-    first = next((line for line in text.splitlines() if line.strip()), "")
-    for label, pattern in _OMP_ERROR_CLASSES:
-        if pattern.search(first):
-            return label
+    lines = [line for line in text.splitlines() if line.strip()]
+    for line in (lines[0], lines[-1]) if lines else ():
+        for label, pattern in _OMP_ERROR_CLASSES:
+            if pattern.search(line):
+                return label
     return "other"
 
 
