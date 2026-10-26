@@ -36,6 +36,6 @@ Invoke the `plan-worktree` skill and follow it exactly — its Workflow (read pl
 ```text
 Plan:       <plan path>
 Phase 0:    inserted | already present (idempotent no-op)
-Branch:     <branch> (base: <base-branch>)
+Branch:     <branch> (base: <base-branch> | existing branch, base unchanged)
 WIP:        stash steps live (dirty tree) | conditional (clean tree)
 ```

@@ -56,10 +56,11 @@ Expected: `Saved working directory and index state …` (includes untracked file
 REQUIRED SUB-SKILL: `git-worktree`
 
 ```bash
-wt switch <branch>            # add --allow-home for dotfiles
+git branch <branch> <base-branch>   # skip if <branch> already exists
+wt switch <branch>                  # add --allow-home for dotfiles
 ```
 
-Creates the worktree under `~/.worktrees/<path-key>/<branch>` from `<base-branch>` and prints the path. From here, every command runs with the worktree as cwd; every file path is absolute under it; every subagent prompt states the worktree path (subagents inherit the parent cwd).
+`wt switch` has no base option: it checks out an existing local branch, so the `git branch` line is what applies `<base-branch>`. If `<branch>` already existed, it is used as is and the report says so instead of naming a base. Creates the worktree under `~/.worktrees/<path-key>/<branch>` and prints the path. From here, every command runs with the worktree as cwd; every file path is absolute under it; every subagent prompt states the worktree path (subagents inherit the parent cwd).
 
 - [ ] **Step 3: Restore the WIP into the worktree** (skip if Step 1 was skipped)
 
@@ -79,7 +80,7 @@ Substitute real values for `<plan-slug>`, `<branch>`, `<base-branch>`. If the re
 
 ### 4. Report
 
-- Plan file updated, branch name, base branch.
+- Plan file updated, branch name, base branch (or "existing branch, base unchanged").
 - Whether stash steps are live (dirty tree) or conditional (clean tree).
 - Reminder: Phase 0 delegates mechanics to the `git-worktree` skill; path derivation never goes in the plan prose.
 
