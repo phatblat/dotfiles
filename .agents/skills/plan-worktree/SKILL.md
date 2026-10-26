@@ -32,7 +32,7 @@ git status --porcelain=v1
 git branch --show-current
 ```
 
-- **Dirty tree**: Phase 0 must move the changes. Use `git stash push -u -m "wip: <plan-slug>"` in the current checkout, create the worktree, then `git stash pop` inside the new worktree. (Stash-then-pop is the only safe cross-worktree move; never copy files by hand.)
+- **Dirty tree**: Phase 0 must move the changes. Use `git stash push -u -m "wip: <plan-slug>"` in the current checkout, create the worktree, then pop that entry, found by its message, inside the new worktree. (Stash-then-pop is the only safe cross-worktree move; never copy files by hand.)
 - **Clean tree**: Phase 0 skips the stash steps — note that in the step text so an executor on a dirty tree still knows what to do (keep the stash steps, marked "skip if tree is clean").
 - **Untracked plan file**: if `PLAN.md` itself is untracked, the `-u` flag covers it; call this out in the step.
 
@@ -64,8 +64,9 @@ wt switch <branch>                  # add --allow-home for dotfiles
 
 - [ ] **Step 3: Restore the WIP into the worktree** (skip if Step 1 was skipped)
 
-Run: `git stash pop` (inside the worktree)
-Expected: the stashed changes reappear in `git status`; drop the stash entry.
+Find the entry: `git stash list` and note the `stash@{n}` whose message ends in `wip: <plan-slug>`. The stash list is shared by every worktree of the repo, so it may not be `stash@{0}`.
+Run: `git stash pop stash@{n}` (inside the worktree)
+Expected: the stashed changes reappear in `git status`, and the successful pop drops the entry. Only if the pop stops on a conflict: resolve it, then run `git stash drop stash@{n}`.
 
 - [ ] **Step 4: Rebase the session onto the worktree**
 
