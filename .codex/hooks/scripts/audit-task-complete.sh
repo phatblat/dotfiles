@@ -14,4 +14,14 @@ printf '%s CODEX_SESSION task_complete repo=%s commit=%s\n' \
     "$repo" \
     "$commit" >> "$audit_log"
 
+# Stop fires once per completed turn; flywheel-report.py collapses a session's
+# records to one outcome. session_id comes from the hook's JSON stdin payload.
+if [ -f "$HOME/scripts/flywheel-record.py" ]; then
+    python3 "$HOME/scripts/flywheel-record.py" outcome \
+        --harness codex \
+        --outcome success \
+        --task "codex turn ($(basename "$repo"))" \
+        --from-hook-stdin >/dev/null 2>&1 || true
+fi
+
 printf '{}\n'

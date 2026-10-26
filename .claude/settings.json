@@ -149,6 +149,11 @@
       {
         "hooks": [
           {
+            "command": "bash ~/.claude/hooks/scripts/flywheel-outcome.sh success",
+            "timeout": 3,
+            "type": "command"
+          },
+          {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd; fi",
             "timeout": 10,
             "type": "command"
@@ -172,6 +177,11 @@
     "StopFailure": [
       {
         "hooks": [
+          {
+            "command": "bash ~/.claude/hooks/scripts/flywheel-outcome.sh failed",
+            "timeout": 3,
+            "type": "command"
+          },
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude StopFailure; fi",
             "timeout": 10,

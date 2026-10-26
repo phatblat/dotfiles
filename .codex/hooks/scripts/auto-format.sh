@@ -49,6 +49,7 @@ format_file() {
     esac
 }
 
+changed_count=0
 while IFS= read -r patch_path; do
     [ -n "$patch_path" ] || continue
 
@@ -58,8 +59,20 @@ while IFS= read -r patch_path; do
     esac
 
     if [ -f "$file_path" ]; then
+        before=$(git hash-object -- "$file_path" 2>/dev/null || shasum "$file_path" | cut -d' ' -f1)
         format_file "$file_path"
+        after=$(git hash-object -- "$file_path" 2>/dev/null || shasum "$file_path" | cut -d' ' -f1)
+        if [ "$before" != "$after" ]; then
+            changed_count=$((changed_count + 1))
+        fi
     fi
 done < <(printf '%s' "$input" | apply_patch_changed_paths)
+
+if [ "$changed_count" -gt 0 ] && [ -f "$home/scripts/flywheel-record.py" ]; then
+    python3 "$home/scripts/flywheel-record.py" scaffold \
+        --scaffold codex-auto-format \
+        --harness codex \
+        --detail "formatted ${changed_count} file(s)" >/dev/null 2>&1 || true
+fi
 
 exit 0

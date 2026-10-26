@@ -905,6 +905,11 @@ _OMP_ERROR_CLASSES = (
     ("parse", _re.compile(r"parse|syntax|malformed|invalid json", _re.IGNORECASE)),
 )
 
+# A `bash` call that opens with `cd <path> &&` is the habit the `.omp/agent/AGENTS.md`
+# rule forbids; each match is that Scaffolding register row's firing signal
+# (docs/flywheel.md).
+_OMP_CD_PREFIX = _re.compile(r"^\s*cd\s+[^;&|\n]+&&")
+
 
 def _omp_error_class(message: dict) -> str:
     """Fixed label for an errored result; only the label leaves this function.
@@ -1016,6 +1021,21 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
                                 if target.startswith("xd://")
                                 else ""
                             )
+                            command = args.get("command") if isinstance(args, dict) else None
+                            if (
+                                tname == "bash"
+                                and isinstance(command, str)
+                                and _OMP_CD_PREFIX.match(command)
+                            ):
+                                emit(
+                                    obs,
+                                    harness="omp",
+                                    session=sid,
+                                    kind="scaffold_signal",
+                                    ts=ts,
+                                    actor=default_actor,
+                                    name="omp-cd-prefix",
+                                )
                             # `read xd://<tool>` only fetches docs; only a `write` calls the device.
                             if tname == "write" and device:
                                 emit(

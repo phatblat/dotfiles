@@ -61,6 +61,11 @@ audit-ignored-config *ROOTS:
 harness-sessions *ARGS:
     python3 {{ justfile_directory() }}/scripts/harness-sessions.py {{ ARGS }}
 
+# Appends a task outcome or scaffold firing record to ~/.local/state/flywheel/dotfiles/
+[group('agents')]
+flywheel-record *ARGS:
+    python3 {{ justfile_directory() }}/scripts/flywheel-record.py {{ ARGS }}
+
 # Audits installed harness versions and parity gaps
 [group('agents')]
 harness-audit:

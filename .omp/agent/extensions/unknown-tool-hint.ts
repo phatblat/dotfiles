@@ -9,7 +9,29 @@
 // each failed 100% of the time across every attempt observed, with no
 // self-correction between attempts. This blocks each miss before it burns a
 // real tool-call turn and tells the model the exact fix.
+// Each block also appends a timestamped firing to the flywheel scaffold ledger
+// ($XDG_STATE_HOME/flywheel/dotfiles/scaffolds.jsonl, outside git), the firing
+// signal for this row of docs/flywheel.md's Scaffolding register.
+import * as fs from "node:fs";
+import * as os from "node:os";
+import * as path from "node:path";
 import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
+
+function block(toolName: string, reason: string): { block: true; reason: string } {
+  try {
+    const base = process.env.XDG_STATE_HOME || path.join(os.homedir(), ".local", "state");
+    const ledger = path.join(base, "flywheel", "dotfiles", "scaffolds.jsonl");
+    fs.mkdirSync(path.dirname(ledger), { recursive: true });
+    const record = {
+      detail: toolName.slice(0, 80),
+      harness: "omp",
+      scaffold: "omp-unknown-tool-hint",
+      ts: new Date().toISOString(),
+    };
+    fs.appendFileSync(ledger, `${JSON.stringify(record)}\n`, "utf8");
+  } catch {}
+  return { block: true, reason };
+}
 
 // Curated fallback in case getAllTools() has not populated yet when a very
 // early tool_call fires; getAllTools() (live registry) is always preferred.
@@ -66,23 +88,20 @@ export default function unknownToolHint(pi: ExtensionAPI) {
     const lower = toolName.toLowerCase();
     const strippedUnderscore = lower.replace(/^_+/, "");
     if (strippedUnderscore !== lower && registry.includes(strippedUnderscore)) {
-      return {
-        block: true,
-        reason:
-          `Unknown tool '${toolName}'. Did you mean '${strippedUnderscore}'? ` +
-          `(no leading underscore)`,
-      };
+      return block(
+        toolName,
+        `Unknown tool '${toolName}'. Did you mean '${strippedUnderscore}'? (no leading underscore)`,
+      );
     }
 
     if (/^xd_+/.test(lower) || /^mcp__/.test(lower)) {
-      return {
-        block: true,
-        reason:
-          `Unknown tool '${toolName}'. MCP/device tools are not called directly by ` +
+      return block(
+        toolName,
+        `Unknown tool '${toolName}'. MCP/device tools are not called directly by ` +
           `name — write JSON args to the path 'xd://<tool>' using the 'write' tool ` +
           `(e.g. write to "xd://ast_edit"), or read 'xd://<tool>' ` +
           `first to see its schema.`,
-      };
+      );
     }
 
     // 2026-09-07 optimize-harness audit: these exact names keep recurring
@@ -91,35 +110,28 @@ export default function unknownToolHint(pi: ExtensionAPI) {
     // — semantic invention of a dedicated tool, not a typo, so Levenshtein
     // against the real registry never lands close enough to suggest one.
     if (/^git[-_]/.test(lower) || lower === "git") {
-      return {
-        block: true,
-        reason: `Unknown tool '${toolName}'. There is no dedicated git tool — run git commands through 'bash'.`,
-      };
+      return block(toolName, `Unknown tool '${toolName}'. There is no dedicated git tool — run git commands through 'bash'.`);
     }
     if (/^xd([-_]|$)/.test(lower)) {
-      return {
-        block: true,
-        reason:
-          `Unknown tool '${toolName}'. xd:// devices are invoked via 'write' to an ` +
+      return block(
+        toolName,
+        `Unknown tool '${toolName}'. xd:// devices are invoked via 'write' to an ` +
           `'xd://<tool>' path, not a direct tool call.`,
-      };
+      );
     }
 
     const SCHEME_TOOLS = ["artifact", "proc", "agent", "history", "skill", "local"];
     const scheme = lower.replace(/_.*$/, "");
     if (SCHEME_TOOLS.includes(scheme)) {
-      return {
-        block: true,
-        reason: `Unknown tool '${toolName}'. '${scheme}://' is a URL scheme, not a tool — use 'read' on a '${scheme}://…' path.`,
-      };
+      return block(
+        toolName,
+        `Unknown tool '${toolName}'. '${scheme}://' is a URL scheme, not a tool — use 'read' on a '${scheme}://…' path.`,
+      );
     }
 
     const hint = bestMatch(toolName, registry);
     if (hint) {
-      return {
-        block: true,
-        reason: `Unknown tool '${toolName}'. Did you mean '${hint}'?`,
-      };
+      return block(toolName, `Unknown tool '${toolName}'. Did you mean '${hint}'?`);
     }
 
     // No confident guess — let the normal "unknown tool" failure surface
