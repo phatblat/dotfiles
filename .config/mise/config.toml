@@ -133,7 +133,7 @@ oh-my-pi = { version = "18.12.6", rename_exe = "omp" }
 opencode = "2.1.4"
 packer = "1.16.2"
 pi = "1.4.0"
-pinact = "5.0.1"
+pinact = "5.0.2"
 pipx = "1.18.4"
 powershell = "7.6.8"
 protobuf = "36.2"
