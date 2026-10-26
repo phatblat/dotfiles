@@ -131,3 +131,9 @@ decision and rationale.
 - Use Conventional Commit prefixes seen in history (`feat:`, `fix:`, `chore:`, `deps:`, `style:`, `test:`, `ci:`), optionally scoped (`feat(justfile): ...`). Documentation events add `decision:`, `plan:`, and `todo:`: `decision: propose <id>` / `decision: accept <id>` / `decision: reject <id>`, `plan: start <id>` / `plan: done <id>`, `todo: sync` / `todo: clear`. Each of these subjects is the id in full, is exempt from the 50-char subject guidance below (still capped at 72), and its commit touches exactly one artifact (the decision file, `PLAN.md`, or `TODO.md`).
 - Follow `.gitmessage`: imperative subject, capitalized, no trailing period, <= 50 chars; wrap body at 72 chars and explain what/why.
 - PRs should include: concise summary, changed paths, commands run locally, and any relevant config/output screenshots.
+
+## Agent Flywheel
+
+The agent learning loop for this repo is documented in `docs/flywheel.md`.
+Read it before changing agent instructions, skills, hooks, or memory, and
+add a Cycle log row whenever you run one of its stages.

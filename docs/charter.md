@@ -35,6 +35,7 @@ versus what stays scratch — see
 | Runbooks  | —                  | not used                                                   |
 | Incidents | —                  | not used                                                   |
 | Changelog | —                  | none; the repo cuts no releases                            |
+| Flywheel  | `docs/flywheel.md` | agent learning loop; maintained with the flywheel skill    |
 
 ## Route
 
