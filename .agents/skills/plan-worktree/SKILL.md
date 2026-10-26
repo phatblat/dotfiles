@@ -40,7 +40,7 @@ git branch --show-current
 
 Insert immediately after the plan header block (after the `---` following Goal/Architecture/Tech Stack), before the first existing phase/task. Match the plan's existing step style. Required content:
 
-```markdown
+````markdown
 ## Phase 0: Worktree Setup
 
 **Files:**
@@ -75,7 +75,7 @@ Follow the git-worktree skill's Session Rebase Protocol: bind all tool calls to 
 - [ ] **Step 5: Verify baseline**
 
 Run the repo's fast check (e.g. `just check` or `wt verify <branch>`) to confirm the worktree starts green before Phase 1 changes anything.
-```
+````
 
 Substitute real values for `<plan-slug>`, `<branch>`, `<base-branch>`. If the repo is dotfiles, include `--allow-home` in the `wt` invocation.
 
