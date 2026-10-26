@@ -8,9 +8,9 @@ use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::panic::{self, AssertUnwindSafe};
 use std::path::{Path, PathBuf};
 
+use crate::paths;
 use brush_parser::ast;
 use brush_parser::word::WordPieceWithSource;
-use crate::paths;
 
 macro_rules! rw {
     ($p:expr, $w:expr, $s:expr, $a:expr) => {
@@ -126,7 +126,12 @@ pub fn classify(p: &ShellPolicy, command: &str, cwd: &str) -> Option<String> {
     }
 }
 
-fn classify_inner(p: &ShellPolicy, command: &str, state: &mut State, depth: usize) -> Option<String> {
+fn classify_inner(
+    p: &ShellPolicy,
+    command: &str,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     if depth > 16 {
         return Some("shell: unsupported construct: nesting deeper than 16 levels".to_string());
     }
@@ -144,7 +149,12 @@ fn classify_inner(p: &ShellPolicy, command: &str, state: &mut State, depth: usiz
     walk_program(p, &program, state, depth)
 }
 
-fn walk_program(p: &ShellPolicy, prog: &ast::Program, state: &mut State, depth: usize) -> Option<String> {
+fn walk_program(
+    p: &ShellPolicy,
+    prog: &ast::Program,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     if depth > 16 {
         return Some("shell: unsupported construct: nesting deeper than 16 levels".to_string());
@@ -157,7 +167,12 @@ fn walk_program(p: &ShellPolicy, prog: &ast::Program, state: &mut State, depth: 
     None
 }
 
-fn walk_compound_list(p: &ShellPolicy, cl: &ast::CompoundList, state: &mut State, depth: usize) -> Option<String> {
+fn walk_compound_list(
+    p: &ShellPolicy,
+    cl: &ast::CompoundList,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     if depth > 16 {
         return Some("shell: unsupported construct: nesting deeper than 16 levels".to_string());
@@ -192,7 +207,12 @@ fn merge_dirty(into: &mut Dirty, from: &Dirty) {
     into.cwd |= from.cwd;
 }
 
-fn walk_and_or_list(p: &ShellPolicy, aol: &ast::AndOrList, state: &mut State, depth: usize) -> Option<String> {
+fn walk_and_or_list(
+    p: &ShellPolicy,
+    aol: &ast::AndOrList,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     if depth > 16 {
         return Some("shell: unsupported construct: nesting deeper than 16 levels".to_string());
@@ -229,7 +249,12 @@ fn walk_and_or_list(p: &ShellPolicy, aol: &ast::AndOrList, state: &mut State, de
     None
 }
 
-fn walk_pipeline(p: &ShellPolicy, pipeline: &ast::Pipeline, state: &mut State, depth: usize) -> Option<String> {
+fn walk_pipeline(
+    p: &ShellPolicy,
+    pipeline: &ast::Pipeline,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     if depth > 16 {
         return Some("shell: unsupported construct: nesting deeper than 16 levels".to_string());
@@ -249,7 +274,12 @@ fn walk_pipeline(p: &ShellPolicy, pipeline: &ast::Pipeline, state: &mut State, d
     None
 }
 
-fn walk_command(p: &ShellPolicy, cmd: &ast::Command, state: &mut State, depth: usize) -> Option<String> {
+fn walk_command(
+    p: &ShellPolicy,
+    cmd: &ast::Command,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     if depth > 16 {
         return Some("shell: unsupported construct: nesting deeper than 16 levels".to_string());
@@ -320,7 +350,9 @@ fn walk_command(p: &ShellPolicy, cmd: &ast::Command, state: &mut State, depth: u
                     *state = result;
                     None
                 }
-                ast::CompoundCommand::WhileClause(wc) => loop_rule_while(p, wc, state, depth, false),
+                ast::CompoundCommand::WhileClause(wc) => {
+                    loop_rule_while(p, wc, state, depth, false)
+                }
                 ast::CompoundCommand::UntilClause(uc) => loop_rule_while(p, uc, state, depth, true),
                 ast::CompoundCommand::Coprocess(_) => {
                     Some("shell: unsupported construct: coprocess".to_string())
@@ -359,23 +391,28 @@ fn walk_command(p: &ShellPolicy, cmd: &ast::Command, state: &mut State, depth: u
     }
 }
 
-fn loop_rule_for(p: &ShellPolicy, fc: &ast::ForClauseCommand, state: &mut State, depth: usize) -> Option<String> {
+fn loop_rule_for(
+    p: &ShellPolicy,
+    fc: &ast::ForClauseCommand,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     // resolve values (Arg context)
     let mut values_resolved: Option<Vec<Value>> = None;
     let mut any_dynamic_or_glob = false;
-    let mut dry_values: Vec<Value> = Vec::new();
     if let Some(vals) = &fc.values {
         let mut vr = Vec::new();
         for w in vals {
             let v = rw!(p, w, state, false);
             if let Value::Resolved { glob, .. } = &v {
-                if *glob { any_dynamic_or_glob = true; }
+                if *glob {
+                    any_dynamic_or_glob = true;
+                }
             } else {
                 any_dynamic_or_glob = true;
             }
             vr.push(v.clone());
-            dry_values.push(v);
         }
         values_resolved = Some(vr);
     } else {
@@ -395,7 +432,9 @@ fn loop_rule_for(p: &ShellPolicy, fc: &ast::ForClauseCommand, state: &mut State,
         for v in vr {
             if let Value::Resolved { values, .. } = v {
                 for val in values {
-                    if !union.contains(val) { union.push(val.clone()); }
+                    if !union.contains(val) {
+                        union.push(val.clone());
+                    }
                 }
             }
         }
@@ -422,7 +461,12 @@ fn loop_rule_for(p: &ShellPolicy, fc: &ast::ForClauseCommand, state: &mut State,
     None
 }
 
-fn loop_rule_arithmetic_for(p: &ShellPolicy, afc: &ast::ArithmeticForClauseCommand, state: &mut State, depth: usize) -> Option<String> {
+fn loop_rule_arithmetic_for(
+    p: &ShellPolicy,
+    afc: &ast::ArithmeticForClauseCommand,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     // dry-walk body
     let mut dry_fork = state.fork();
@@ -447,7 +491,12 @@ fn loop_rule_arithmetic_for(p: &ShellPolicy, afc: &ast::ArithmeticForClauseComma
     None
 }
 
-fn loop_rule_case(p: &ShellPolicy, cc: &ast::CaseClauseCommand, state: &mut State, depth: usize) -> Option<String> {
+fn loop_rule_case(
+    p: &ShellPolicy,
+    cc: &ast::CaseClauseCommand,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     // walk value and pattern words for substitutions
     let _ = rw!(p, &cc.value, state, false);
@@ -475,7 +524,13 @@ fn loop_rule_case(p: &ShellPolicy, cc: &ast::CaseClauseCommand, state: &mut Stat
     None
 }
 
-fn loop_rule_while(p: &ShellPolicy, wc: &ast::WhileOrUntilClauseCommand, state: &mut State, depth: usize, _until: bool) -> Option<String> {
+fn loop_rule_while(
+    p: &ShellPolicy,
+    wc: &ast::WhileOrUntilClauseCommand,
+    state: &mut State,
+    depth: usize,
+    _until: bool,
+) -> Option<String> {
     state.depth = depth;
     // wc.0 condition, wc.1 body
     // dry
@@ -534,11 +589,8 @@ fn handle_arithmetic_text(text: &str, state: &mut State) -> Result<(), String> {
         if bytes[i] == b'=' {
             let prev = if i > 0 { bytes[i - 1] } else { 0 };
             let next = if i + 1 < bytes.len() { bytes[i + 1] } else { 0 };
-            let part_of_comparison = next == b'='
-                || prev == b'='
-                || prev == b'!'
-                || prev == b'<'
-                || prev == b'>';
+            let part_of_comparison =
+                next == b'=' || prev == b'=' || prev == b'!' || prev == b'<' || prev == b'>';
             if !part_of_comparison {
                 invalidate = true;
                 break;
@@ -576,7 +628,14 @@ fn is_var_assigning_builtin(argv0: &str, argv_values: &[(Value, String)]) -> boo
     match argv0 {
         "declare" | "export" | "getopts" | "let" | "local" | "mapfile" | "read" | "readarray"
         | "readonly" | "typeset" | "unset" => true,
-        "printf" => argv_values.iter().any(|(_, raw)| raw == "-v"),
+        "printf" => argv_values
+            .iter()
+            .skip(1)
+            .take_while(|(v, _)| single_literal(v).as_deref() != Some("--"))
+            .any(|(v, raw)| match single_literal(v) {
+                Some(s) => s == "-v" || (s.starts_with("-v") && !s.starts_with("--")),
+                None => raw.trim_start_matches(['"', '\'']).starts_with("-v"),
+            }),
         _ => false,
     }
 }
@@ -588,14 +647,29 @@ fn assignment_name_str(a: &ast::Assignment) -> String {
     }
 }
 
-fn walk_assignment_value(p: &ShellPolicy, a: &ast::Assignment, state: &mut State) -> Option<String> {
+fn walk_assignment_value(
+    p: &ShellPolicy,
+    a: &ast::Assignment,
+    state: &mut State,
+) -> Option<String> {
+    if let ast::AssignmentName::ArrayElementName(_, index) = &a.name {
+        if let Err(e) = handle_arithmetic_text(index, state) {
+            return Some(e);
+        }
+    }
     match &a.value {
         ast::AssignmentValue::Scalar(w) => {
             let _ = rw!(p, w, state, true);
             None
         }
         ast::AssignmentValue::Array(elems) => {
-            for (_, w) in elems {
+            for (key, w) in elems {
+                if let Some(k) = key {
+                    let _ = rw!(p, k, state, true);
+                    if let Err(e) = handle_arithmetic_text(&k.value, state) {
+                        return Some(e);
+                    }
+                }
                 let _ = rw!(p, w, state, true);
             }
             None
@@ -603,25 +677,93 @@ fn walk_assignment_value(p: &ShellPolicy, a: &ast::Assignment, state: &mut State
     }
 }
 
-fn resolve_word(p: &ShellPolicy, word: &ast::Word, state: &mut State, in_assignment: bool) -> Result<Value, String> {
+fn resolve_word(
+    p: &ShellPolicy,
+    word: &ast::Word,
+    state: &mut State,
+    in_assignment: bool,
+) -> Result<Value, String> {
     let opts = brush_parser::ParserOptions::default();
-    let pieces = brush_parser::word::parse(&word.value, &opts).map_err(|_| "shell: cannot parse command".to_string())?;
+    let pieces = brush_parser::word::parse(&word.value, &opts)
+        .map_err(|_| "shell: cannot parse command".to_string())?;
     resolve_pieces(p, &pieces, state, false, in_assignment)
+}
+
+fn param_expr_parameter(
+    e: &brush_parser::word::ParameterExpr,
+) -> Option<&brush_parser::word::Parameter> {
+    use brush_parser::word::ParameterExpr as PE;
+    match e {
+        PE::Parameter { parameter, .. }
+        | PE::UseDefaultValues { parameter, .. }
+        | PE::AssignDefaultValues { parameter, .. }
+        | PE::IndicateErrorIfNullOrUnset { parameter, .. }
+        | PE::UseAlternativeValue { parameter, .. }
+        | PE::ParameterLength { parameter, .. }
+        | PE::RemoveSmallestSuffixPattern { parameter, .. }
+        | PE::RemoveLargestSuffixPattern { parameter, .. }
+        | PE::RemoveSmallestPrefixPattern { parameter, .. }
+        | PE::RemoveLargestPrefixPattern { parameter, .. }
+        | PE::Substring { parameter, .. }
+        | PE::Transform { parameter, .. }
+        | PE::UppercaseFirstChar { parameter, .. }
+        | PE::UppercasePattern { parameter, .. }
+        | PE::LowercaseFirstChar { parameter, .. }
+        | PE::LowercasePattern { parameter, .. }
+        | PE::ReplaceSubstring { parameter, .. } => Some(parameter),
+        PE::VariableNames { .. } | PE::MemberKeys { .. } => None,
+    }
 }
 
 fn param_expr_has_cmd_subst(e: &brush_parser::word::ParameterExpr) -> bool {
     use brush_parser::word::ParameterExpr as PE;
     let mut strings: Vec<&str> = Vec::new();
     match e {
-        PE::UseDefaultValues { default_value: Some(s), .. } => strings.push(s),
-        PE::AssignDefaultValues { default_value: Some(s), .. } => strings.push(s),
-        PE::IndicateErrorIfNullOrUnset { error_message: Some(s), .. } => strings.push(s),
-        PE::UseAlternativeValue { alternative_value: Some(s), .. } => strings.push(s),
-        PE::RemoveSmallestSuffixPattern { pattern: Some(s), .. } => strings.push(s),
-        PE::RemoveLargestSuffixPattern { pattern: Some(s), .. } => strings.push(s),
-        PE::RemoveSmallestPrefixPattern { pattern: Some(s), .. } => strings.push(s),
-        PE::RemoveLargestPrefixPattern { pattern: Some(s), .. } => strings.push(s),
-        PE::ReplaceSubstring { pattern, replacement: Some(s), .. } => {
+        PE::UseDefaultValues {
+            default_value: Some(s),
+            ..
+        } => strings.push(s),
+        PE::AssignDefaultValues {
+            default_value: Some(s),
+            ..
+        } => strings.push(s),
+        PE::IndicateErrorIfNullOrUnset {
+            error_message: Some(s),
+            ..
+        } => strings.push(s),
+        PE::UseAlternativeValue {
+            alternative_value: Some(s),
+            ..
+        } => strings.push(s),
+        PE::RemoveSmallestSuffixPattern {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::RemoveLargestSuffixPattern {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::RemoveSmallestPrefixPattern {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::RemoveLargestPrefixPattern {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::UppercaseFirstChar {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::UppercasePattern {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::LowercaseFirstChar {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::LowercasePattern {
+            pattern: Some(s), ..
+        } => strings.push(s),
+        PE::ReplaceSubstring {
+            pattern,
+            replacement: Some(s),
+            ..
+        } => {
             strings.push(pattern);
             strings.push(s);
         }
@@ -629,7 +771,13 @@ fn param_expr_has_cmd_subst(e: &brush_parser::word::ParameterExpr) -> bool {
         _ => {}
     }
     for s in strings {
-        if s.contains("$(") || s.contains('`') || s.contains("<(") || s.contains(">(") {
+        if s.contains("$(")
+            || s.contains('`')
+            || s.contains("<(")
+            || s.contains(">(")
+            || s.contains("${")
+            || s.contains("$((")
+        {
             return true;
         }
     }
@@ -757,14 +905,6 @@ fn resolve_piece(
             }
         }
         WP::EscapeSequence(s) => {
-            let out = if s == "\\\n" || s == "\\n" && s.starts_with('\\') && s.ends_with('\n') {
-                // handle backslash-newline
-                if s == "\\\n" { String::new() } else { s.strip_prefix('\\').unwrap_or(s).to_string() }
-            } else {
-                s.strip_prefix('\\').unwrap_or(s).to_string()
-            };
-            let _ = out;
-            // Recompute cleanly:
             let out = if s == "\\\n" {
                 String::new()
             } else {
@@ -787,12 +927,21 @@ fn resolve_piece(
         },
         WP::ParameterExpansion(pe) => {
             if param_expr_has_cmd_subst(pe) {
-                return Err("shell: unsupported construct: command substitution in parameter expansion".to_string());
+                return Err(
+                    "shell: unsupported construct: command substitution in parameter expansion"
+                        .to_string(),
+                );
             }
+            use brush_parser::word::Parameter as Param;
             use brush_parser::word::ParameterExpr as PE;
+            if let Some(Param::NamedWithIndex { index, .. }) = param_expr_parameter(pe) {
+                handle_arithmetic_text(index, state)?;
+            }
             match pe {
-                PE::Parameter { parameter, indirect: false } => {
-                    use brush_parser::word::Parameter as Param;
+                PE::Parameter {
+                    parameter,
+                    indirect: false,
+                } => {
                     if let Param::Named(n) = parameter {
                         if !quoted && !in_assignment {
                             return Ok(PieceRes::Dynamic);
@@ -804,14 +953,31 @@ fn resolve_piece(
                     }
                     Ok(PieceRes::Dynamic)
                 }
-                PE::AssignDefaultValues { parameter, indirect: false, .. } => {
-                    use brush_parser::word::Parameter as Param;
-                    if let Param::Named(n) = parameter {
+                PE::AssignDefaultValues {
+                    parameter,
+                    indirect,
+                    ..
+                } => {
+                    if *indirect {
+                        state.vars.clear();
+                        state.dirty.all = true;
+                        return Err(
+                            "shell: unsupported construct: indirect default assignment".to_string()
+                        );
+                    }
+                    if let Param::Named(n) | Param::NamedWithIndex { name: n, .. } = parameter {
                         if protected_match(&p.protected_env, n) {
                             return Err(format!("shell: sets {n}"));
                         }
                         state.vars.remove(n);
                         state.dirty.names.insert(n.clone());
+                    }
+                    Ok(PieceRes::Dynamic)
+                }
+                PE::Substring { offset, length, .. } => {
+                    handle_arithmetic_text(&offset.value, state)?;
+                    if let Some(len) = length {
+                        handle_arithmetic_text(&len.value, state)?;
                     }
                     Ok(PieceRes::Dynamic)
                 }
@@ -863,14 +1029,6 @@ fn unescape_backticks(s: &str) -> String {
     out
 }
 
-// Depth-aware command substitution: override the placeholder above by re-running
-// through a helper that carries depth. Since resolve_piece cannot carry depth
-// without signature changes, we instead call classify with an incremented depth
-// by storing depth in a thread-local? Simpler: change resolve functions to take
-// depth. The above calls use 1; adjust callers? We'll instead make resolve_word
-// and resolve_pieces accept depth. But too invasive now. The nesting limit is
-// 16; tests don't exercise deep substitution beyond one level likely. Keep.
-
 fn is_scratch(p: &ShellPolicy, state: &State, value: &str) -> bool {
     let path = if Path::new(value).is_absolute() {
         PathBuf::from(value)
@@ -899,25 +1057,37 @@ fn is_scratch(p: &ShellPolicy, state: &State, value: &str) -> bool {
     false
 }
 
-fn target_check(p: &ShellPolicy, state: &State, op: &str, value: &Value, raw_word: &str) -> Option<String> {
+fn target_check(
+    p: &ShellPolicy,
+    state: &State,
+    op: &str,
+    value: &Value,
+    raw_word: &str,
+) -> Option<String> {
     let target_display = match value {
         Value::Resolved { values, glob } if values.len() == 1 && !*glob => values[0].clone(),
         _ => raw_word.to_string(),
     };
     match value {
         Value::Dynamic => {
-            return Some(format!("shell: write outside scratch dirs: {op} {raw_word}"));
+            return Some(format!(
+                "shell: write outside scratch dirs: {op} {raw_word}"
+            ));
         }
         Value::Resolved { values, glob } => {
             if *glob {
-                return Some(format!("shell: write outside scratch dirs: {op} {raw_word}"));
+                return Some(format!(
+                    "shell: write outside scratch dirs: {op} {raw_word}"
+                ));
             }
             for v in values {
                 if p.sinks.iter().any(|s| s == v) {
                     continue;
                 }
                 if !is_scratch(p, state, v) {
-                    return Some(format!("shell: write outside scratch dirs: {op} {target_display}"));
+                    return Some(format!(
+                        "shell: write outside scratch dirs: {op} {target_display}"
+                    ));
                 }
             }
         }
@@ -925,24 +1095,43 @@ fn target_check(p: &ShellPolicy, state: &State, op: &str, value: &Value, raw_wor
     None
 }
 
-fn walk_redirects(p: &ShellPolicy, redirects: &[ast::IoRedirect], state: &mut State) -> Option<String> {
+fn walk_redirects(
+    p: &ShellPolicy,
+    redirects: &[ast::IoRedirect],
+    state: &mut State,
+) -> Option<String> {
     let opts = brush_parser::ParserOptions::default();
     for r in redirects {
         match r {
             ast::IoRedirect::File(fd, kind, target) => {
                 let _ = fd;
                 match (kind, target) {
-                    (ast::IoFileRedirectKind::Read | ast::IoFileRedirectKind::DuplicateInput, ast::IoFileRedirectTarget::Filename(w))
-                    | (ast::IoFileRedirectKind::Read | ast::IoFileRedirectKind::DuplicateInput, ast::IoFileRedirectTarget::Duplicate(w)) => {
+                    (
+                        ast::IoFileRedirectKind::Read | ast::IoFileRedirectKind::DuplicateInput,
+                        ast::IoFileRedirectTarget::Filename(w),
+                    )
+                    | (
+                        ast::IoFileRedirectKind::Read | ast::IoFileRedirectKind::DuplicateInput,
+                        ast::IoFileRedirectTarget::Duplicate(w),
+                    ) => {
                         let _ = rw!(p, w, state, false);
                     }
-                    (ast::IoFileRedirectKind::Read | ast::IoFileRedirectKind::DuplicateInput, ast::IoFileRedirectTarget::ProcessSubstitution(_, sub)) => {
+                    (
+                        ast::IoFileRedirectKind::Read | ast::IoFileRedirectKind::DuplicateInput,
+                        ast::IoFileRedirectTarget::ProcessSubstitution(_, sub),
+                    ) => {
                         let mut fork = state.fork();
                         if let Some(r) = walk_compound_list(p, &sub.list, &mut fork, 1) {
                             return Some(r);
                         }
                     }
-                    (ast::IoFileRedirectKind::Write | ast::IoFileRedirectKind::Append | ast::IoFileRedirectKind::Clobber | ast::IoFileRedirectKind::ReadAndWrite, ast::IoFileRedirectTarget::Filename(w)) => {
+                    (
+                        ast::IoFileRedirectKind::Write
+                        | ast::IoFileRedirectKind::Append
+                        | ast::IoFileRedirectKind::Clobber
+                        | ast::IoFileRedirectKind::ReadAndWrite,
+                        ast::IoFileRedirectTarget::Filename(w),
+                    ) => {
                         let v = rw!(p, w, state, false);
                         let op = match kind {
                             ast::IoFileRedirectKind::Write => ">",
@@ -955,9 +1144,18 @@ fn walk_redirects(p: &ShellPolicy, redirects: &[ast::IoRedirect], state: &mut St
                             return Some(reason);
                         }
                     }
-                    (ast::IoFileRedirectKind::DuplicateOutput, ast::IoFileRedirectTarget::Fd(_)) => {}
-                    (ast::IoFileRedirectKind::DuplicateOutput, ast::IoFileRedirectTarget::Filename(w))
-                    | (ast::IoFileRedirectKind::DuplicateOutput, ast::IoFileRedirectTarget::Duplicate(w)) => {
+                    (
+                        ast::IoFileRedirectKind::DuplicateOutput,
+                        ast::IoFileRedirectTarget::Fd(_),
+                    ) => {}
+                    (
+                        ast::IoFileRedirectKind::DuplicateOutput,
+                        ast::IoFileRedirectTarget::Filename(w),
+                    )
+                    | (
+                        ast::IoFileRedirectKind::DuplicateOutput,
+                        ast::IoFileRedirectTarget::Duplicate(w),
+                    ) => {
                         let v = rw!(p, w, state, false);
                         let is_fd = match &v {
                             Value::Resolved { values, glob } if values.len() == 1 && !*glob => {
@@ -972,7 +1170,10 @@ fn walk_redirects(p: &ShellPolicy, redirects: &[ast::IoRedirect], state: &mut St
                             }
                         }
                     }
-                    (ast::IoFileRedirectKind::DuplicateOutput, ast::IoFileRedirectTarget::ProcessSubstitution(_, sub)) => {
+                    (
+                        ast::IoFileRedirectKind::DuplicateOutput,
+                        ast::IoFileRedirectTarget::ProcessSubstitution(_, sub),
+                    ) => {
                         let mut fork = state.fork();
                         if let Some(r) = walk_compound_list(p, &sub.list, &mut fork, 1) {
                             return Some(r);
@@ -996,7 +1197,7 @@ fn walk_redirects(p: &ShellPolicy, redirects: &[ast::IoRedirect], state: &mut St
                     if let Err(e) = resolve_pieces(p, &pieces, state, false, false) {
                         return Some(e);
                     }
-            }
+                }
             }
             ast::IoRedirect::HereString(_, w) => {
                 let _ = rw!(p, w, state, false);
@@ -1013,7 +1214,12 @@ fn walk_redirects(p: &ShellPolicy, redirects: &[ast::IoRedirect], state: &mut St
     None
 }
 
-fn walk_simple(p: &ShellPolicy, sc: &ast::SimpleCommand, state: &mut State, depth: usize) -> Option<String> {
+fn walk_simple(
+    p: &ShellPolicy,
+    sc: &ast::SimpleCommand,
+    state: &mut State,
+    depth: usize,
+) -> Option<String> {
     state.depth = depth;
     let mut redirects: Vec<ast::IoRedirect> = Vec::new();
     let mut all_assignments: Vec<AssignmentRec> = Vec::new();
@@ -1026,7 +1232,8 @@ fn walk_simple(p: &ShellPolicy, sc: &ast::SimpleCommand, state: &mut State, dept
                 ast::CommandPrefixOrSuffixItem::IoRedirect(r) => redirects.push(r.clone()),
                 ast::CommandPrefixOrSuffixItem::AssignmentWord(a, w) => {
                     let name = assignment_name_str(a);
-                    let array_element = matches!(a.name, ast::AssignmentName::ArrayElementName(_, _));
+                    let array_element =
+                        matches!(a.name, ast::AssignmentName::ArrayElementName(_, _));
                     let array_value = matches!(a.value, ast::AssignmentValue::Array(_));
                     let rec = AssignmentRec {
                         name: name.clone(),
@@ -1037,7 +1244,9 @@ fn walk_simple(p: &ShellPolicy, sc: &ast::SimpleCommand, state: &mut State, dept
                     };
                     all_assignments.push(rec.clone());
                     prefix_assignments.push(rec);
-                    let _ = walk_assignment_value(p, a, state);
+                    if let Some(r) = walk_assignment_value(p, a, state) {
+                        return Some(r);
+                    }
                     let _ = rw!(p, w, state, false);
                 }
                 ast::CommandPrefixOrSuffixItem::ProcessSubstitution(_, sub) => {
@@ -1068,7 +1277,8 @@ fn walk_simple(p: &ShellPolicy, sc: &ast::SimpleCommand, state: &mut State, dept
                 }
                 ast::CommandPrefixOrSuffixItem::AssignmentWord(a, w) => {
                     let name = assignment_name_str(a);
-                    let array_element = matches!(a.name, ast::AssignmentName::ArrayElementName(_, _));
+                    let array_element =
+                        matches!(a.name, ast::AssignmentName::ArrayElementName(_, _));
                     let array_value = matches!(a.value, ast::AssignmentValue::Array(_));
                     let rec = AssignmentRec {
                         name: name.clone(),
@@ -1078,7 +1288,9 @@ fn walk_simple(p: &ShellPolicy, sc: &ast::SimpleCommand, state: &mut State, dept
                         array_element,
                     };
                     all_assignments.push(rec);
-                    let _ = walk_assignment_value(p, a, state);
+                    if let Some(r) = walk_assignment_value(p, a, state) {
+                        return Some(r);
+                    }
                     let v = rw!(p, w, state, false);
                     argv.push((v, w.value.clone()));
                 }
@@ -1094,30 +1306,18 @@ fn walk_simple(p: &ShellPolicy, sc: &ast::SimpleCommand, state: &mut State, dept
     }
 
     // protected env check
-    let mut names_to_check: Vec<String> = Vec::new();
     for rec in &all_assignments {
-        names_to_check.push(rec.name.clone());
+        if protected_match(&p.protected_env, &rec.name) {
+            return Some(format!("shell: sets {}", rec.name));
+        }
     }
-    // variable-assigning builtin tokens
     let argv0_literal = if argv.is_empty() {
         String::new()
     } else {
         single_literal(&argv[0].0).unwrap_or_else(|| argv[0].1.clone())
     };
-    // For builtin tokens, use raw argv words
-    if is_var_assigning_builtin(&argv0_literal, &argv) {
-        for (v, raw) in &argv[1..] {
-            let _ = v;
-            let name = raw.split('=').next().unwrap_or(raw).split("+=").next().unwrap_or(raw);
-            // strip [..]
-            let name = name.split('[').next().unwrap_or(name);
-            names_to_check.push(name.to_string());
-        }
-    }
-    for name in &names_to_check {
-        if protected_match(&p.protected_env, name) {
-            return Some(format!("shell: sets {name}"));
-        }
+    if let Some(r) = check_builtin_protected_env(p, &argv0_literal, &argv) {
+        return Some(r);
     }
 
     // bare assignment
@@ -1200,6 +1400,148 @@ fn bind_assignment(p: &ShellPolicy, state: &mut State, rec: &AssignmentRec) -> R
     Ok(())
 }
 
+fn extract_var_name(s: &str) -> &str {
+    let name = s
+        .split('=')
+        .next()
+        .unwrap_or(s)
+        .split("+=")
+        .next()
+        .unwrap_or(s);
+    name.split('[').next().unwrap_or(name)
+}
+
+fn static_var_prefix_before_eq(raw: &str) -> Option<String> {
+    let opts = brush_parser::ParserOptions::default();
+    let pieces = brush_parser::word::parse(raw, &opts).ok()?;
+    let mut out = String::new();
+    fn collect_static(pieces: &[WordPieceWithSource], out: &mut String) -> Option<bool> {
+        use brush_parser::word::WordPiece as WP;
+        for wps in pieces {
+            match &wps.piece {
+                WP::Text(s) | WP::SingleQuotedText(s) => {
+                    if let Some(pos) = s.find('=') {
+                        out.push_str(&s[..pos]);
+                        return Some(true);
+                    }
+                    out.push_str(s);
+                }
+                WP::EscapeSequence(s) => {
+                    let unescaped = if s == "\\\n" {
+                        ""
+                    } else {
+                        s.strip_prefix('\\').unwrap_or(s)
+                    };
+                    if let Some(pos) = unescaped.find('=') {
+                        out.push_str(&unescaped[..pos]);
+                        return Some(true);
+                    }
+                    out.push_str(unescaped);
+                }
+                WP::DoubleQuotedSequence(inner) | WP::GettextDoubleQuotedSequence(inner) => {
+                    if collect_static(inner, out)? {
+                        return Some(true);
+                    }
+                }
+                _ => return None,
+            }
+        }
+        Some(false)
+    }
+    if collect_static(&pieces, &mut out)? && !out.is_empty() {
+        Some(extract_var_name(&out).to_string())
+    } else {
+        None
+    }
+}
+
+fn check_builtin_protected_env(
+    p: &ShellPolicy,
+    argv0: &str,
+    argv: &[(Value, String)],
+) -> Option<String> {
+    if !is_var_assigning_builtin(argv0, argv) {
+        return None;
+    }
+    if argv0 == "printf" {
+        let mut i = 1usize;
+        while i < argv.len() {
+            let (v, raw) = &argv[i];
+            match single_literal(v) {
+                Some(s) if s == "--" => break,
+                Some(s) if s == "-v" => {
+                    if let Some((next_v, next_raw)) = argv.get(i + 1) {
+                        match next_v {
+                            Value::Resolved {
+                                values,
+                                glob: false,
+                            } => {
+                                for val in values {
+                                    let name = extract_var_name(val);
+                                    if protected_match(&p.protected_env, name) {
+                                        return Some(format!("shell: sets {name}"));
+                                    }
+                                }
+                            }
+                            _ => {
+                                return Some(format!("shell: sets {next_raw}"));
+                            }
+                        }
+                    }
+                    i += 2;
+                    continue;
+                }
+                Some(s) if s.starts_with("-v") && !s.starts_with("--") => {
+                    let target = &s[2..];
+                    let name = extract_var_name(target);
+                    if protected_match(&p.protected_env, name) {
+                        return Some(format!("shell: sets {name}"));
+                    }
+                }
+                None if raw.trim_start_matches(['"', '\'']).starts_with("-v") => {
+                    return Some(format!("shell: sets {raw}"));
+                }
+                _ => {}
+            }
+            i += 1;
+        }
+        return None;
+    }
+    let mut after_dd = false;
+    for (v, raw) in &argv[1..] {
+        if !after_dd && single_literal(v).as_deref() == Some("--") {
+            after_dd = true;
+            continue;
+        }
+        match v {
+            Value::Resolved {
+                values,
+                glob: false,
+            } => {
+                for val in values {
+                    if !after_dd && val.starts_with('-') && !val.contains('=') {
+                        continue;
+                    }
+                    let name = extract_var_name(val);
+                    if protected_match(&p.protected_env, name) {
+                        return Some(format!("shell: sets {name}"));
+                    }
+                }
+            }
+            _ => {
+                if let Some(name) = static_var_prefix_before_eq(raw) {
+                    if protected_match(&p.protected_env, &name) {
+                        return Some(format!("shell: sets {name}"));
+                    }
+                } else {
+                    return Some(format!("shell: sets {raw}"));
+                }
+            }
+        }
+    }
+    None
+}
+
 fn token_matches_write_flag(token: &str, flags: &[String]) -> Option<String> {
     for f in flags {
         if f.len() == 2 && f.starts_with('-') && !f.starts_with("--") {
@@ -1217,7 +1559,12 @@ fn token_matches_write_flag(token: &str, flags: &[String]) -> Option<String> {
     None
 }
 
-fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State, appends: bool) -> Option<String> {
+fn classify_command(
+    p: &ShellPolicy,
+    argv: &[(Value, String)],
+    state: &mut State,
+    appends: bool,
+) -> Option<String> {
     if argv.is_empty() {
         return None;
     }
@@ -1270,7 +1617,13 @@ fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State
                 if let Some(s) = &single {
                     if s.contains('=') {
                         let name_part = s.split('=').next().unwrap_or(s);
-                        let name = name_part.split("+=").next().unwrap_or(name_part).split('[').next().unwrap_or(name_part);
+                        let name = name_part
+                            .split("+=")
+                            .next()
+                            .unwrap_or(name_part)
+                            .split('[')
+                            .next()
+                            .unwrap_or(name_part);
                         if protected_match(&p.protected_env, name) {
                             return Some(format!("shell: sets {name}"));
                         }
@@ -1299,6 +1652,10 @@ fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State
         return classify_command(p, rest, state, new_appends);
     }
 
+    if let Some(r) = check_builtin_protected_env(p, &argv0, argv) {
+        return Some(r);
+    }
+
     // allow_write
     for entry in &p.allow_write {
         if match_entry(entry, argv, p).is_some() {
@@ -1322,9 +1679,12 @@ fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State
                     break;
                 }
                 let hit: Option<String> = match val {
-                    Value::Resolved { values, glob: false } => {
-                        values.iter().find_map(|t| token_matches_write_flag(t, &flags))
-                    }
+                    Value::Resolved {
+                        values,
+                        glob: false,
+                    } => values
+                        .iter()
+                        .find_map(|t| token_matches_write_flag(t, &flags)),
                     _ => {
                         let trimmed = _raw.trim_start_matches(['"', '\'']);
                         if trimmed.starts_with('-') && trimmed != "-" {
@@ -1358,11 +1718,24 @@ fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State
     // path_writers
     if let Some(rule) = p.path_writers.get(&argv0).cloned() {
         if appends {
-            return Some(format!("shell: write outside scratch dirs: {argv0} (xargs input)"));
+            return Some(format!(
+                "shell: write outside scratch dirs: {argv0} (xargs input)"
+            ));
         }
+        let cp_link_flags = if argv0 == "cp" {
+            vec![
+                "-s".to_string(),
+                "--symbolic-link".to_string(),
+                "-l".to_string(),
+                "--link".to_string(),
+            ]
+        } else {
+            Vec::new()
+        };
         // collect operands
         let mut operands: Vec<(usize, (Value, String))> = Vec::new();
-        // handle -- 
+        let mut target_directory = false;
+        // handle --
         let mut after_dd = false;
         for (idx, item) in argv.iter().enumerate().skip(1) {
             if !after_dd && single_literal(&item.0).as_deref() == Some("--") {
@@ -1373,9 +1746,50 @@ fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State
                 operands.push((idx, item.clone()));
                 continue;
             }
+            if !cp_link_flags.is_empty() {
+                let check_cp_opt = |t: &str| -> Option<String> {
+                    if !t.starts_with("--") && t.starts_with("-t") && t.len() > 2 {
+                        return None;
+                    }
+                    token_matches_write_flag(t, &cp_link_flags)
+                };
+                let hit = match &item.0 {
+                    Value::Resolved {
+                        values,
+                        glob: false,
+                    } => values.iter().find_map(|t| check_cp_opt(t)),
+                    _ => {
+                        let trimmed = item.1.trim_start_matches(['"', '\'']);
+                        if trimmed.starts_with('-') && trimmed != "-" {
+                            let static_len = trimmed
+                                .find(['$', '`', '*', '?', '[', '"', '\''])
+                                .unwrap_or(trimmed.len());
+                            check_cp_opt(&trimmed[..static_len])
+                        } else {
+                            None
+                        }
+                    }
+                };
+                if let Some(flag) = hit {
+                    return Some(format!("shell: write flag: {argv0} {flag}"));
+                }
+            }
             let is_option = match &item.0 {
                 Value::Resolved { values, glob } if values.len() == 1 && !*glob => {
-                    values[0].starts_with('-') && values[0] != "-"
+                    let s = &values[0];
+                    if matches!(rule, TargetRule::Last) && s.starts_with('-') && s != "-" {
+                        if s.starts_with("--target-directory")
+                            || s.starts_with("--suffix")
+                            || (s == "-t" || s.starts_with("-t") && !s.starts_with("--"))
+                            || (s == "-S" || s.starts_with("-S") && !s.starts_with("--"))
+                            || (!s.starts_with("--")
+                                && !s[1..].contains('/')
+                                && s[1..].contains(['t', 'S']))
+                        {
+                            target_directory = true;
+                        }
+                    }
+                    s.starts_with('-') && s != "-"
                 }
                 _ => false,
             };
@@ -1384,24 +1798,13 @@ fn classify_command(p: &ShellPolicy, argv: &[(Value, String)], state: &mut State
             }
             operands.push((idx, item.clone()));
         }
-        // Last with target-directory
-        let mut target_directory = false;
-        if matches!(rule, TargetRule::Last) {
-            for item in argv.iter().skip(1) {
-                if let Some(s) = single_literal(&item.0) {
-                    if s == "-t" || s.starts_with("--target-directory") {
-                        target_directory = true;
-                    }
-                }
-            }
-        }
         let targets: Vec<(Value, String)> = match rule {
             TargetRule::All => operands.iter().map(|x| x.1.clone()).collect(),
             TargetRule::Last => {
                 if operands.is_empty() {
                     Vec::new()
                 } else if target_directory {
-                    vec![(Value::Dynamic, operands.last().unwrap().1.1.clone())]
+                    vec![(Value::Dynamic, operands.last().unwrap().1 .1.clone())]
                 } else {
                     vec![operands.last().unwrap().1.clone()]
                 }
@@ -1472,9 +1875,15 @@ fn match_entry(entry: &[String], argv: &[(Value, String)], p: &ShellPolicy) -> O
     Some(j)
 }
 
-fn apply_post_effects(p: &ShellPolicy, state: &mut State, argv0: &str, argv: &[(Value, String)]) -> Option<String> {
+fn apply_post_effects(
+    p: &ShellPolicy,
+    state: &mut State,
+    argv0: &str,
+    argv: &[(Value, String)],
+) -> Option<String> {
     let _ = p;
-    if is_var_assigning_builtin(argv0, argv) || argv0 == "eval" || argv0 == "source" || argv0 == "." {
+    if is_var_assigning_builtin(argv0, argv) || argv0 == "eval" || argv0 == "source" || argv0 == "."
+    {
         state.vars.clear();
         state.dirty.all = true;
         if argv0 == "eval" || argv0 == "source" || argv0 == "." {
@@ -1495,15 +1904,19 @@ fn apply_post_effects(p: &ShellPolicy, state: &mut State, argv0: &str, argv: &[(
                 } else {
                     raw_op
                 };
-                let is_special = op == "." || op == ".." || op.starts_with("./") || op.starts_with("../") || Path::new(&op).is_absolute();
+                let is_abs = Path::new(&op).is_absolute();
+                let is_special = op == "."
+                    || op == ".."
+                    || op.starts_with("./")
+                    || op.starts_with("../")
+                    || is_abs;
                 if is_special {
-                    if let Some(cwd) = &state.cwd {
-                        // lexical join
-                        let mut result = if Path::new(&op).is_absolute() {
-                            PathBuf::new()
-                        } else {
-                            cwd.clone()
-                        };
+                    let base = if is_abs {
+                        Some(PathBuf::new())
+                    } else {
+                        state.cwd.clone()
+                    };
+                    if let Some(mut result) = base {
                         for comp in Path::new(&op).components() {
                             match comp {
                                 std::path::Component::CurDir => {}
@@ -1513,12 +1926,13 @@ fn apply_post_effects(p: &ShellPolicy, state: &mut State, argv0: &str, argv: &[(
                                 other => result.push(other.as_os_str()),
                             }
                         }
-                        if std::fs::metadata(&result).map(|m| m.is_dir()).unwrap_or(false) {
-                            cwd_result = Some(result);
-                            set_none = false;
+                        if let Ok(canon) = std::fs::canonicalize(&result) {
+                            if canon.is_dir() {
+                                cwd_result = Some(canon);
+                                set_none = false;
+                            }
                         }
                     } else {
-                        // relative join with cwd None => None
                         set_none = true;
                     }
                 }
@@ -1535,7 +1949,6 @@ fn apply_post_effects(p: &ShellPolicy, state: &mut State, argv0: &str, argv: &[(
     }
     None
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -1558,7 +1971,13 @@ mod tests {
         let cmd = format!("rm -f {}/x", link.display());
         let res = classify(&p, &cmd, "/");
         let _ = fs::remove_file(&link);
-        assert_eq!(res, Some(format!("shell: write outside scratch dirs: rm {}/x", link.display())));
+        assert_eq!(
+            res,
+            Some(format!(
+                "shell: write outside scratch dirs: rm {}/x",
+                link.display()
+            ))
+        );
     }
 
     #[test]
@@ -1575,47 +1994,72 @@ mod tests {
     fn nested_substitution() {
         let p = policy();
         let res = classify(&p, "echo \"$(touch notes.txt)\"", "/");
-        assert_eq!(res, Some("shell: write outside scratch dirs: touch notes.txt".to_string()));
+        assert_eq!(
+            res,
+            Some("shell: write outside scratch dirs: touch notes.txt".to_string())
+        );
     }
 
     #[test]
     fn loop_preinvalidation() {
         let p = policy();
-        let res = classify(&p, "x=/tmp/a; for i in 1 2; do rm -f \"$x\"; x=/etc/hosts; done", "/");
-        assert_eq!(res, Some("shell: write outside scratch dirs: rm \"$x\"".to_string()));
+        let res = classify(
+            &p,
+            "x=/tmp/a; for i in 1 2; do rm -f \"$x\"; x=/etc/hosts; done",
+            "/",
+        );
+        assert_eq!(
+            res,
+            Some("shell: write outside scratch dirs: rm \"$x\"".to_string())
+        );
     }
 
     #[test]
     fn branch_isolation() {
         let p = policy();
         let res = classify(&p, "if true; then x=/tmp/a; else rm -f \"$x\"; fi", "/");
-        assert_eq!(res, Some("shell: write outside scratch dirs: rm \"$x\"".to_string()));
+        assert_eq!(
+            res,
+            Some("shell: write outside scratch dirs: rm \"$x\"".to_string())
+        );
     }
 
     #[test]
     fn subshell_scope() {
         let p = policy();
         let res = classify(&p, "x=/etc/hosts; (x=/tmp/a); rm -f \"$x\"", "/");
-        assert_eq!(res, Some("shell: write outside scratch dirs: rm /etc/hosts".to_string()));
+        assert_eq!(
+            res,
+            Some("shell: write outside scratch dirs: rm /etc/hosts".to_string())
+        );
     }
 
     #[test]
     fn git_leading_options() {
         let p = policy();
         assert_eq!(classify(&p, "git -C / --no-pager log -1", "/"), None);
-        assert_eq!(classify(&p, "git -c core.fsmonitor=x status", "/"), Some("shell: unrecognized command: git".to_string()));
+        assert_eq!(
+            classify(&p, "git -c core.fsmonitor=x status", "/"),
+            Some("shell: unrecognized command: git".to_string())
+        );
     }
 
     #[test]
     fn env_wrapper() {
         let p = policy();
-        assert_eq!(classify(&p, "env PATH=/tmp/x ls", "/"), Some("shell: sets PATH".to_string()));
+        assert_eq!(
+            classify(&p, "env PATH=/tmp/x ls", "/"),
+            Some("shell: sets PATH".to_string())
+        );
     }
 
     #[test]
     fn dynamic_argv0() {
         let p = policy();
-        assert_eq!(classify(&p, "\"$tool\" --version", "/"), Some("shell: unrecognized command: \"$tool\"".to_string()));
+        assert_eq!(
+            classify(&p, "\"$tool\" --version", "/"),
+            Some("shell: unrecognized command: \"$tool\"".to_string())
+        );
     }
 
     #[test]
@@ -1629,7 +2073,10 @@ mod tests {
         let mut p = policy();
         p.read_only.push(vec!["[".to_string()]);
         assert_eq!(classify(&p, "[ -f notes.txt ] && echo ok", "/"), None);
-        assert_eq!(classify(&p, "git log -1 | xargs -I{} git log -1 {}", "/"), None);
+        assert_eq!(
+            classify(&p, "git log -1 | xargs -I{} git log -1 {}", "/"),
+            None
+        );
         assert_eq!(classify(&p, "git log --oneline @{u}..HEAD", "/"), None);
     }
 
@@ -1675,12 +2122,128 @@ mod tests {
             None
         );
         assert_eq!(
-            classify(
-                &p,
-                "d=$(mktemp -d /etc/bad.XXXXXX) && rm -rf \"$d\"",
-                "/"
-            ),
+            classify(&p, "d=$(mktemp -d /etc/bad.XXXXXX) && rm -rf \"$d\"", "/"),
             Some("shell: write outside scratch dirs: rm \"$d\"".to_string())
         );
+    }
+
+    #[test]
+    fn parameter_expansion_and_array_subscript_guards() {
+        let mut p = policy();
+        p.read_only.push(vec![":".to_string()]);
+        assert_eq!(
+            classify(&p, ": \"${x^^$(touch outside.txt)}\"", "/"),
+            Some(
+                "shell: unsupported construct: command substitution in parameter expansion"
+                    .to_string()
+            )
+        );
+        assert_eq!(
+            classify(&p, ": \"${x:$(touch outside.txt):1}\"", "/"),
+            Some("shell: unsupported construct: command substitution in arithmetic".to_string())
+        );
+        assert_eq!(
+            classify(&p, "x=/tmp/a; : \"${x:x=1:1}\"; rm -f \"$x\"", "/"),
+            Some("shell: write outside scratch dirs: rm \"$x\"".to_string())
+        );
+        assert_eq!(
+            classify(&p, ": \"${arr[$(touch outside.txt)]}\"", "/"),
+            Some("shell: unsupported construct: command substitution in arithmetic".to_string())
+        );
+        assert_eq!(
+            classify(&p, "x=/tmp/a; : \"${arr[x=1]}\"; rm -f \"$x\"", "/"),
+            Some("shell: write outside scratch dirs: rm \"$x\"".to_string())
+        );
+        assert_eq!(
+            classify(&p, "x=/tmp/a; arr[x=1]=val; rm -f \"$x\"", "/"),
+            Some("shell: write outside scratch dirs: rm \"$x\"".to_string())
+        );
+        assert_eq!(
+            classify(&p, "x=/tmp/a; arr=([x=1]=val); rm -f \"$x\"", "/"),
+            Some("shell: write outside scratch dirs: rm \"$x\"".to_string())
+        );
+        assert_eq!(
+            classify(&p, ": \"${unset_var:-${PATH:=/tmp/evil}}\"", "/"),
+            Some(
+                "shell: unsupported construct: command substitution in parameter expansion"
+                    .to_string()
+            )
+        );
+        assert_eq!(
+            classify(&p, ": \"${PATH[0]:=/tmp/evil}\"", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "p=PATH; : \"${!p:=/tmp/evil}\"", "/"),
+            Some("shell: unsupported construct: indirect default assignment".to_string())
+        );
+    }
+
+    #[test]
+    fn builtin_protected_env_and_assignment_propagation() {
+        let mut p = policy();
+        p.read_only.push(vec!["export".to_string()]);
+        p.read_only.push(vec!["declare".to_string()]);
+        p.read_only.push(vec!["read".to_string()]);
+        assert_eq!(
+            classify(&p, "export \"PATH=/tmp/evil:$PATH\"", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "export 'PATH=/tmp/evil'", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "declare \"LD_PRELOAD=/tmp/x.so\"", "/"),
+            Some("shell: sets LD_PRELOAD".to_string())
+        );
+        assert_eq!(
+            classify(&p, "v=PATH; export \"$v=/tmp/evil\"", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "printf -vPATH '%s' /tmp/evil", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "printf \"-v\" \"PATH\" '%s' /tmp/evil", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "env export 'PATH=/tmp/evil'", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "x=$(touch outside.txt)", "/"),
+            Some("shell: write outside scratch dirs: touch outside.txt".to_string())
+        );
+    }
+
+    #[test]
+    fn cp_options_and_cd_after_unknown_cwd() {
+        let p = policy();
+        assert_eq!(
+            classify(&p, "cp -s /etc/hosts /tmp/hosts-link", "/"),
+            Some("shell: write flag: cp -s".to_string())
+        );
+        assert_eq!(
+            classify(&p, "cp -rl /etc/hosts /tmp/hosts-link", "/"),
+            Some("shell: write flag: cp -l".to_string())
+        );
+        assert_eq!(
+            classify(&p, "cp -rt /outside/dir /tmp/a", "/"),
+            Some("shell: write outside scratch dirs: cp /tmp/a".to_string())
+        );
+        assert_eq!(
+            classify(&p, "cp -t/outside/dir /tmp/a", "/"),
+            Some("shell: write outside scratch dirs: cp /tmp/a".to_string())
+        );
+        assert_eq!(
+            classify(&p, "cp -b /tmp/a /outside/dst -S /tmp/suffix", "/"),
+            Some("shell: write outside scratch dirs: cp /tmp/suffix".to_string())
+        );
+        let tmp = std::env::temp_dir().canonicalize().unwrap();
+        let cmd = format!("cd \"$unknown_dir\"; cd {} && rm -rf build", tmp.display());
+        assert_eq!(classify(&p, &cmd, "/"), None);
     }
 }
