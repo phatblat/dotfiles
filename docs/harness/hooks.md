@@ -15,7 +15,7 @@ Verify: `just ness-test`
 |---|---|---|---|---|---|
 | claude | aligned | adapter | - | probe · 2.1.306 (Claude Code) · 2026-10-25 | - |
 | codex | aligned | adapter | - | probe · codex-cli 0.164.0 · 2026-10-25 | - |
-| opencode | aligned | adapter | - | probe · 1.19.4 · 2026-10-25 | - |
+| opencode | aligned | adapter | - | probe · opencode v2.1.4 · 2026-10-26 | - |
 | pi | aligned | adapter | - | probe · 1.4.0 · 2026-10-25 | - |
 | omp | aligned | adapter | - | probe · omp/18.12.6 · 2026-10-25 | - |
 | antigravity | partial | adapter | - | probe · 1.4.6 · 2026-10-25 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |

@@ -1790,11 +1790,11 @@ CAPABILITIES: list[Capability] = [
             "opencode": Cell(
                 parity="aligned",
                 mode="native",
-                surface="opencode debug config --pure",
+                surface="opencode debug config",
                 evidence=Evidence(
                     kind="probe", ref="cli_exit_zero", date=_PROBED_2026_08_29
                 ),
-                probe={"kind": "cli_exit_zero", "args": "debug config --pure"},
+                probe={"kind": "cli_exit_zero", "args": "debug config"},
             ),
             "pi": Cell(
                 parity="aligned",

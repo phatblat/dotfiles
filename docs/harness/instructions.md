@@ -15,7 +15,7 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | aligned | shared | - | probe · 2.1.306 (Claude Code) · 2026-10-25 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.164.0 · 2026-10-25 | - |
-| opencode | aligned | shared | - | probe · 1.19.4 · 2026-10-25 | - |
+| opencode | aligned | shared | - | probe · opencode v2.1.4 · 2026-10-26 | - |
 | pi | aligned | shared | - | probe · 1.4.0 · 2026-10-25 | - |
 | omp | aligned | native | - | probe · omp/18.12.6 · 2026-10-25 | inlined shared harness instructions + compaction contract + commit attribution |
 | antigravity | partial | adapter | - | probe · 1.4.6 · 2026-10-25 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |

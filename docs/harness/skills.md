@@ -15,7 +15,7 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 |---|---|---|---|---|---|
 | claude | aligned | shared | - | probe · 2.1.306 (Claude Code) · 2026-10-25 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.164.0 · 2026-10-25 | - |
-| opencode | aligned | shared | - | probe · 1.19.4 · 2026-10-25 | - |
+| opencode | aligned | shared | - | probe · opencode v2.1.4 · 2026-10-26 | - |
 | pi | aligned | shared | - | probe · 1.4.0 · 2026-10-25 | - |
 | omp | aligned | native | - | probe · omp/18.12.6 · 2026-10-25 | - |
 | antigravity | partial | adapter | - | probe · 1.4.6 · 2026-10-25 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |

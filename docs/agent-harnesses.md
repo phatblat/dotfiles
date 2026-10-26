@@ -10,7 +10,7 @@ Coverage: 91/405 cells verified (22%)
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.306 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.164.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
-| opencode | new port | 1.19.4 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| opencode | new port | opencode v2.1.4 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.4.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
 | omp | tracked port | omp/18.12.6 | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
 | antigravity | tracked port | 1.4.6 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
@@ -65,6 +65,8 @@ Coverage: 91/405 cells verified (22%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-10-26 | opencode | - | version | 1.19.4 | opencode v2.1.4 |
+| 2026-10-26 | opencode | maintenance.config_validation | surface | opencode debug config --pure | opencode debug config |
 | 2026-10-25 | grok | - | version | grok 1.0.67 (2fe064390d07) [alpha] | grok 1.0.70 (f50904eaee6c) [alpha] |
 | 2026-10-25 | crush | - | version | crush version v0.98.1 | crush version v0.98.2 |
 | 2026-10-25 | codex | - | version | codex-cli 0.163.0 | codex-cli 0.164.0 |
@@ -72,8 +74,6 @@ Coverage: 91/405 cells verified (22%)
 | 2026-10-24 | grok | - | version | grok 1.0.67 (2fe064390d07) | grok 1.0.67 (2fe064390d07) [alpha] |
 | 2026-10-24 | cursor | - | version | - | 2026.10.16-e3cb207 |
 | 2026-10-24 | claude | - | version | 2.1.251 (Claude Code) | 2.1.306 (Claude Code) |
-| 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
-| 2026-10-23 | antigravity | - | version | 1.4.2 | 1.4.6 |
 | 2026-10-23 | pi | - | version | 1.3.0 | 1.4.0 |
 
 ## Permanent divergences

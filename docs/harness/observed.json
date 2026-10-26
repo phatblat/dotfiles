@@ -736,7 +736,7 @@
   },
   "opencode": {
     "agents.specialists": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "detail": ".config/opencode/agents/cli-expert.md",
       "mode": "adapter",
       "parity": "aligned",
@@ -749,7 +749,7 @@
       "surface": "Agent `permission` and `tools`"
     },
     "commands.active": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "detail": ".config/opencode/commands/2ndbrain.md",
       "mode": "adapter",
       "parity": "aligned",
@@ -757,7 +757,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "detail": ".config/opencode/plugins/harness.ts matches \\bness\\b",
       "mode": "adapter",
       "parity": "aligned",
@@ -765,7 +765,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -773,7 +773,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -781,12 +781,12 @@
       "surface": ""
     },
     "maintenance.config_validation": {
-      "date": "2026-10-25",
-      "detail": "opencode debug config --pure",
+      "date": "2026-10-26",
+      "detail": "opencode debug config",
       "mode": "native",
       "parity": "aligned",
       "result": "pass",
-      "surface": "opencode debug config --pure"
+      "surface": "opencode debug config"
     },
     "mcp.dependencies": {
       "mode": "adapter",
@@ -809,7 +809,7 @@
       "surface": ""
     },
     "sessions.compaction": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "detail": ".config/opencode/plugins/harness.ts",
       "mode": "adapter",
       "parity": "aligned",
@@ -832,7 +832,7 @@
       "surface": "Directory discovery plus permissions"
     },
     "skills.shared": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
