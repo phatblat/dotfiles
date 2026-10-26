@@ -23,7 +23,7 @@ import json
 import os
 import re
 import sys
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -82,7 +82,9 @@ def cmd_outcome(args: argparse.Namespace) -> int:
     session = args.session_id or (hook_session_id() if args.from_hook_stdin else "")
     record = {
         "corrected": args.corrected,
-        "date": args.date or datetime.now(UTC).strftime("%Y-%m-%d"),
+        # timezone.utc, not datetime.UTC (3.11+): hooks run bare `python3`, which
+        # can resolve to macOS's /usr/bin/python3 3.9, and they discard stderr.
+        "date": args.date or datetime.now(timezone.utc).strftime("%Y-%m-%d"),  # noqa: UP017
         "harness": args.harness,
         "outcome": args.outcome,
         "session_id": opaque_session_id(session),
@@ -98,7 +100,7 @@ def cmd_scaffold(args: argparse.Namespace) -> int:
         "detail": sanitize_text(args.detail),
         "harness": args.harness,
         "scaffold": args.scaffold,
-        "ts": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),  # noqa: UP017
     }
     ledger = Path(args.ledger).expanduser() if args.ledger else state_dir() / "scaffolds.jsonl"
     append_jsonl(ledger, record)
