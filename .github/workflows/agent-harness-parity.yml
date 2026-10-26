@@ -85,7 +85,7 @@ jobs:
         if: steps.changed.outputs.relevant == 'true'
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
-          version: "2026.10.8"
+          version: "2026.10.14"
           install_args: "just rust sccache"
 
       # .config/mise/config.toml exports LC_ALL=en_US.UTF-8, which the ARC runner
@@ -129,7 +129,7 @@ jobs:
         if: steps.changed.outputs.relevant == 'true'
         uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
         with:
-          version: "2026.10.8"
+          version: "2026.10.14"
           install_args: "just rust sccache"
 
       # `wt shell` falls back to `zsh -i`. The ARC runner image does not ship zsh;
