@@ -108,6 +108,39 @@ class OmpErrorClassTests(unittest.TestCase):
         message = {"content": "\n\nprotected file blocked: /Users/x/.ssh/id_ed25519"}
         self.assertEqual(hs._omp_error_class(message), "guard")
 
+    def test_the_last_line_classifies_when_the_first_matches_nothing(self) -> None:
+        message = {"content": [{"type": "text", "text": "build output\nmore output\n\nCommand exited with code 1"}]}
+        self.assertEqual(hs._omp_error_class(message), "exit_code")
+
+    def test_the_first_line_wins_over_the_last(self) -> None:
+        message = {"content": "protected file blocked: /x/.env\nCommand exited with code 1"}
+        self.assertEqual(hs._omp_error_class(message), "guard")
+
+
+class OmpCdPrefixSignalTests(unittest.TestCase):
+    def _signals(self, *commands: str) -> int:
+        calls = [
+            {"type": "toolCall", "id": f"c{i}", "name": "bash", "arguments": {"command": command}}
+            for i, command in enumerate(commands)
+        ]
+        record = {
+            "type": "message",
+            "timestamp": "2026-10-26T00:00:00Z",
+            "message": {"role": "assistant", "content": calls},
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "2026-10-26T00-00-00-000Z_0a1b2c3d.jsonl"
+            path.write_text(json.dumps(record) + "\n")
+            coverage = hs.Coverage(harness="omp", root="", resolved_from="", cli_version=None)
+            observations = hs.scan_omp([path], coverage)
+        return sum(1 for o in observations if o.kind == "scaffold_signal" and o.name == "omp-cd-prefix")
+
+    def test_a_leading_cd_chained_with_and_fires(self) -> None:
+        self.assertEqual(self._signals("cd x && y", "  cd ~/a b && make"), 2)
+
+    def test_other_cd_uses_do_not_fire(self) -> None:
+        self.assertEqual(self._signals("cd x; y", "echo cd x && y", "git -C x log && cd y"), 0)
+
 class AbortAttributionTests(unittest.TestCase):
     def test_aborts_are_grouped_by_harness_before_reason(self) -> None:
         def abort(harness: str, reason: str) -> object:
