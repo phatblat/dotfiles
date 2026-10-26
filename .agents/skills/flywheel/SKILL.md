@@ -51,7 +51,7 @@ destructive-action guards), and efficiency controls.
 Whitespace-split `$ARGUMENTS`, order-independent:
 
 - `review` or `setup` forces the mode. Absent: detect it (below).
-- `since:N` sets the evidence window in days. Default `30`.
+- `since:N` sets the evidence window in days. Defaults to the doc's `Evidence window` in review mode (fallback `30`), or `30` in setup mode.
 - Any other token: stop and print the valid tokens. Do not fuzzy-match.
 
 ## Detect the flywheel doc
