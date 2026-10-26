@@ -83,7 +83,7 @@ setup.
 - Where `~/scripts/harness-sessions.py` exists (phatblat dotfiles) and the
   repo under review is the `$HOME` dotfiles checkout itself, run
   `python3 ~/scripts/harness-sessions.py <slugs> --since <N> --json` as the
-  session evidence source (`<slugs>` from `references/harness-signals.md`),
+  session evidence source (pass only supported `<slugs>` from `references/harness-signals.md`, omitting `-`),
   under the rules in
   `~/.agents/skills/optimize-harness/references/session-usage-evidence.md`
   (`harness-sessions.py` is `$HOME`-scoped across user-level stores, not
