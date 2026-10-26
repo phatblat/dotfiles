@@ -66,6 +66,11 @@ harness-sessions *ARGS:
 flywheel-record *ARGS:
     python3 {{ justfile_directory() }}/scripts/flywheel-record.py {{ ARGS }}
 
+# Prints the flywheel's aggregate Record/Learn/Prune/Tune report (counts only)
+[group('agents')]
+flywheel-report *ARGS:
+    python3 {{ justfile_directory() }}/scripts/flywheel-report.py {{ ARGS }}
+
 # Audits installed harness versions and parity gaps
 [group('agents')]
 harness-audit:
