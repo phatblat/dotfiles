@@ -104,6 +104,9 @@
   "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
     "source": "~/.agents/skills/paseo/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/plan-worktree/SKILL.md": {
+    "source": "~/.agents/skills/plan-worktree/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
   },
@@ -190,6 +193,9 @@
   },
   "~/.agents/harness/adapters/cursor/commands/optimize-harness.md": {
     "source": "~/.agents/harness/commands/optimize-harness.md"
+  },
+  "~/.agents/harness/adapters/cursor/commands/plan/worktree.md": {
+    "source": "~/.agents/harness/commands/plan/worktree.md"
   },
   "~/.agents/harness/adapters/cursor/commands/pr/approve.md": {
     "source": "~/.agents/harness/commands/pr/approve.md"
@@ -313,6 +319,9 @@
   },
   "~/.claude/commands/optimize-harness.md": {
     "source": "~/.agents/harness/commands/optimize-harness.md"
+  },
+  "~/.claude/commands/plan/worktree.md": {
+    "source": "~/.agents/harness/commands/plan/worktree.md"
   },
   "~/.claude/commands/pr/approve.md": {
     "source": "~/.agents/harness/commands/pr/approve.md"
@@ -533,6 +542,9 @@
   "~/.config/opencode/commands/optimize-harness.md": {
     "source": "~/.agents/harness/commands/optimize-harness.md"
   },
+  "~/.config/opencode/commands/plan-worktree.md": {
+    "source": "~/.agents/harness/commands/plan/worktree.md"
+  },
   "~/.config/opencode/commands/pr-approve.md": {
     "source": "~/.agents/harness/commands/pr/approve.md"
   },
@@ -677,6 +689,9 @@
   "~/.omp/agent/commands/optimize-harness.md": {
     "source": "~/.agents/harness/commands/optimize-harness.md"
   },
+  "~/.omp/agent/commands/plan-worktree.md": {
+    "source": "~/.agents/harness/commands/plan/worktree.md"
+  },
   "~/.omp/agent/commands/pr-approve.md": {
     "source": "~/.agents/harness/commands/pr/approve.md"
   },
@@ -763,6 +778,9 @@
   },
   "~/.pi/agent/prompts/optimize-harness.md": {
     "source": "~/.agents/harness/commands/optimize-harness.md"
+  },
+  "~/.pi/agent/prompts/plan-worktree.md": {
+    "source": "~/.agents/harness/commands/plan/worktree.md"
   },
   "~/.pi/agent/prompts/pr-approve.md": {
     "source": "~/.agents/harness/commands/pr/approve.md"
