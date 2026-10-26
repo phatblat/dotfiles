@@ -57,7 +57,7 @@ enter the harness.
   `session_id`, `task` (at most 80 characters, no secrets), `outcome`
   (`success`, `partial`, `failed`, or `abandoned`), and `corrected`
   (`true`/`false`) to
-  `${XDG_STATE_HOME:-$HOME/.local/state}/flywheel/<repo>/outcomes.jsonl`,
+  `~/.local/state/flywheel/<repo>/outcomes.jsonl` (or `$XDG_STATE_HOME/flywheel/<repo>/outcomes.jsonl`, recorded as a `~`-expanded path in `docs/flywheel.md`),
   outside git.
 - **Common breaks:**
   - retention shorter than the cycle, so sessions are deleted before Learn
