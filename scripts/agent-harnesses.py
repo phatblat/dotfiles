@@ -323,9 +323,9 @@ def find_obsolete_skill_wrappers(expected: dict[Path, str]) -> list[Path]:
 def command_validate() -> int:
     errors: list[str] = []
     inventory = build_inventory()
-    if len(inventory["commands"]) != 28:
+    if len(inventory["commands"]) != 29:
         errors.append(
-            f"expected 28 active commands, found {len(inventory['commands'])}"
+            f"expected 29 active commands, found {len(inventory['commands'])}"
         )
     if len(inventory["agents"]) != 6:
         errors.append(f"expected 6 specialist agents, found {len(inventory['agents'])}")
@@ -368,14 +368,14 @@ def command_validate() -> int:
 
     if shutil.which("opencode"):
         result = subprocess.run(
-            ["opencode", "debug", "config", "--pure"],
+            ["opencode", "debug", "config"],
             cwd=ROOT,
             capture_output=True,
             text=True,
             check=False,
         )
         if result.returncode != 0:
-            errors.append("opencode debug config --pure failed")
+            errors.append("opencode debug config failed")
 
     if shutil.which("pi"):
         result = subprocess.run(
