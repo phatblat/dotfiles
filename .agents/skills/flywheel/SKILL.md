@@ -60,7 +60,7 @@ Search the repo root in this order. The first hit is canonical:
 
 1. `docs/flywheel.md`
 2. `FLYWHEEL.md`
-3. Any other tracked `*flywheel*.md` (`git ls-files '*flywheel*.md' ':!docs/flywheel.md' ':!FLYWHEEL.md' ':!.agents/skills/**' ':!.claude/skills/**'`)
+3. Any other tracked `*flywheel*.md` outside skill and adapter trees (`git ls-files ':(glob)**/*flywheel*.md' ':!docs/flywheel.md' ':!FLYWHEEL.md' ':(glob,exclude)**/.agents/**' ':(glob,exclude)**/.claude/**'`)
 4. A level 1-3 heading containing `flywheel` or `learning loop`
    (case-insensitive) in `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
    `.github/copilot-instructions.md`, or `README.md`
