@@ -159,7 +159,8 @@ and `planned` agrees with `documented-only`.
 | `stale` stage | Medium |
 | Declared Status disagrees with observed status | Medium |
 | `duplicate` flywheel doc | Medium |
-| Scaffold with no firing signal, or none observed in the window | Low: ablation candidate |
+| Scaffold with no firing signal | Low: add a firing signal |
+| Scaffold with a firing signal and no firing in the window | Low: ablation candidate |
 
 ### Review report
 
