@@ -129,7 +129,7 @@ mkcert = "1.4.4"
 neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.12.1"
-oh-my-pi = { version = "18.13.1", rename_exe = "omp" }
+oh-my-pi = { version = "18.13.2", rename_exe = "omp" }
 opencode = "2.1.4"
 packer = "1.16.2"
 pandoc = "3.12.1"
