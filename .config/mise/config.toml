@@ -148,7 +148,7 @@ sd = "1.1.0"
 shellcheck = "0.11.0"
 shfmt = "3.13.1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 # pinned: getditto/ditto hooks/CI use nix shfmt 3.13.1; 3.14 heredoc rules conflict
 starship = "1.27.0"
-swiftformat = { version = "0.64.2", no_app = "true", rename_exe = "swiftformat" }
+swiftformat = { version = "0.64.3", no_app = "true", rename_exe = "swiftformat" }
 swiftlint = "0.65.1"
 temporal = "1.32.1"
 terraform = "1.17.0"
