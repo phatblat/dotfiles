@@ -72,7 +72,7 @@ signal or a passing ablation.
 | Implementation | `scripts/flywheel-report.py`, `just flywheel-report`, `docs/flywheel.md` |
 | Cadence | Every 30 days and on model or harness version upgrades. |
 | Evidence | `docs/flywheel.md`, `docs/flywheel/findings/2026-10-26.md` |
-| Status | implemented |
+| Status | partial |
 
 ## 6. Tune
 
