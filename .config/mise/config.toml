@@ -97,7 +97,7 @@ fastfetch = "2.70.0"
 fd = "10.5.0"
 fzf = "0.74.5"
 gemini = { version = "0.65.0", allow_builds = ["@github/keytar", "node-pty"] }
-gh = "2.103.2"
+gh = "2.103.3"
 git-lfs = "3.8.1"
 gitleaks = "8.30.1"
 go = "1.27.3"
