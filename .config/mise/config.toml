@@ -132,6 +132,7 @@ node = "26.12.1"
 oh-my-pi = { version = "18.13.1", rename_exe = "omp" }
 opencode = "2.1.4"
 packer = "1.16.2"
+pandoc = "3.12.1"
 pi = "1.4.0"
 pinact = "5.0.2"
 pipx = "1.18.4"
