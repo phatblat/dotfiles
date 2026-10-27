@@ -104,9 +104,6 @@
   "~/.agents/harness/adapters/antigravity/skills/paseo/SKILL.md": {
     "source": "~/.agents/skills/paseo/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/plan-worktree/SKILL.md": {
-    "source": "~/.agents/skills/plan-worktree/SKILL.md"
-  },
   "~/.agents/harness/adapters/antigravity/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
   },

@@ -329,6 +329,7 @@ skip_unless_home_is_this_checkout() {
     work-start-day
     work-track-item
     git-worktree
+    plan-worktree
   )
 
   for skill in "${procedural_skills[@]}"; do
