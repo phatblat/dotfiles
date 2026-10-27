@@ -18,8 +18,8 @@ Copyright: Ben Chatelain. MIT
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
-import os
 import subprocess
 import sys
 from collections.abc import Iterable
@@ -34,10 +34,8 @@ SEVERITY = ("failed", "abandoned", "partial", "success")
 SESSION_SIGNALS = {("omp", "omp-cd-prefix")}
 
 
-def state_dir() -> Path:
-    xdg = os.environ.get("XDG_STATE_HOME")
-    base = Path(xdg).expanduser() if xdg else Path.home() / ".local" / "state"
-    return base / "flywheel" / "dotfiles"
+sys.path.insert(0, str(SCRIPTS))
+state_dir = importlib.import_module("flywheel-record").state_dir
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -79,6 +77,8 @@ def harness_sessions(since: int) -> dict[str, Any]:
         text=True,
         check=False,
     )
+    if result.returncode != 0:
+        raise SystemExit(f"harness-sessions.py failed ({result.returncode}): {result.stderr.strip()}")
     return json.loads(result.stdout)
 
 

@@ -8,10 +8,8 @@
 // - When a plan-mode run of the skill writes a `local://*plan.md` file and ends
 //   without opening a review (no `xd://propose`), it opens Plan Review itself
 //   via `ctx.openPlanReview()` once the session is idle.
-import * as fs from "node:fs";
-import * as os from "node:os";
-import * as path from "node:path";
 import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
+import { appendLedger } from "../shared/flywheel-ledger";
 
 const SKILL_INVOCATION = "/skill:backlog-batch-delivery";
 const SKILL_TOKEN = /(^|\s)\/skill:backlog-batch-delivery(?=\s|$)/;
@@ -22,19 +20,12 @@ const RETRY_MS = 250;
 const MAX_ATTEMPTS = 20;
 
 function logScaffoldFiring(detail: string): void {
-  try {
-    const xdg = process.env.XDG_STATE_HOME;
-    const base = xdg ? xdg : path.join(os.homedir(), ".local", "state");
-    const ledger = path.join(base, "flywheel", "dotfiles", "scaffolds.jsonl");
-    fs.mkdirSync(path.dirname(ledger), { recursive: true });
-    const record = {
-      detail,
-      harness: "omp",
-      scaffold: "omp-backlog-batch-plan-review",
-      ts: new Date().toISOString(),
-    };
-    fs.appendFileSync(ledger, `${JSON.stringify(record)}\n`, "utf8");
-  } catch {}
+  appendLedger("scaffolds.jsonl", {
+    detail,
+    harness: "omp",
+    scaffold: "omp-backlog-batch-plan-review",
+    ts: new Date().toISOString(),
+  });
 }
 
 interface BatchState {

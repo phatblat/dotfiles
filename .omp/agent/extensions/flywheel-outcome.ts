@@ -10,10 +10,9 @@
 // - otherwise                                        -> success
 // `corrected` is true when the user interrupted a run and then sent another prompt.
 // No prompt or transcript text is stored; `task` is the working directory's basename.
-import * as fs from "node:fs";
-import * as os from "node:os";
 import * as path from "node:path";
 import type { AgentEndEvent, ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
+import { appendLedger } from "../shared/flywheel-ledger";
 
 interface SessionOutcome {
   runs: number; // settled main-agent runs
@@ -21,11 +20,6 @@ interface SessionOutcome {
   abortedPending: boolean; // last settled run was aborted and no prompt followed yet
   corrected: boolean;
   cwd: string;
-}
-
-function ledgerPath(): string {
-  const base = process.env.XDG_STATE_HOME || path.join(os.homedir(), ".local", "state");
-  return path.join(base, "flywheel", "dotfiles", "outcomes.jsonl");
 }
 
 function finalStopReason(event: AgentEndEvent): string {
@@ -82,10 +76,7 @@ export default function flywheelOutcome(pi: ExtensionAPI) {
       session_id: id,
       task: `omp session (${path.basename(state.cwd)})`.slice(0, 80),
     };
-    try {
-      fs.mkdirSync(path.dirname(ledgerPath()), { recursive: true });
-      fs.appendFileSync(ledgerPath(), `${JSON.stringify(record)}\n`, "utf8");
-    } catch {}
+    appendLedger("outcomes.jsonl", record);
   };
 
   // /new, /resume, and fork end the current session without a shutdown.

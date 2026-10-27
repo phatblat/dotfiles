@@ -462,6 +462,7 @@
 !.omp/agent/models.yml
 !.omp/agent/prompts/
 !.omp/agent/rules/
+!.omp/agent/shared/
 !.omp/agent/skills/
 !.omp/agent/teams/
 !.omp/agent/themes/
