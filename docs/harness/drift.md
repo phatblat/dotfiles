@@ -12,7 +12,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | codex | codex-cli 0.164.0 | 2026-08-29 | codex-cli 0.163.0 |
 | opencode | opencode v2.1.4 | 2026-08-29 | 1.19.4 |
 | pi | 1.4.0 | 2026-08-29 | 1.3.0 |
-| omp | omp/18.12.6 | 2026-08-29 | omp/18.12.5 |
+| omp | omp/18.13.1 | 2026-08-29 | omp/18.12.6 |
 | antigravity | 1.4.6 | 2026-08-29 | 1.4.2 |
 | cursor | 2026.10.16-e3cb207 | 2026-08-29 | - |
 | grok | grok 1.0.70 (f50904eaee6c) [alpha] | 2026-08-29 | grok 1.0.67 (2fe064390d07) [alpha] |
@@ -22,6 +22,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-10-27 | omp | - | version | omp/18.12.6 | omp/18.13.1 | omp/18.13.1 |
 | 2026-10-26 | opencode | - | version | 1.19.4 | opencode v2.1.4 | opencode v2.1.4 |
 | 2026-10-26 | opencode | maintenance.config_validation | surface | opencode debug config --pure | opencode debug config | opencode v2.1.4 |
 | 2026-10-25 | grok | - | version | grok 1.0.67 (2fe064390d07) [alpha] | grok 1.0.70 (f50904eaee6c) [alpha] | grok 1.0.70 (f50904eaee6c) [alpha] |
@@ -221,4 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-06 | codex | - | version | codex-cli 0.153.2 | codex-cli 0.153.3 | codex-cli 0.153.3 |
 | 2026-09-06 | claude | - | version | 2.1.236 (Claude Code) | 2.1.261 (Claude Code) | 2.1.261 (Claude Code) |
 | 2026-09-06 | antigravity | - | version | 1.1.26 | 1.1.27 | 1.1.27 |
-| 2026-09-05 | pi | - | version | 0.84.4 | 0.85.0 | 0.85.0 |
