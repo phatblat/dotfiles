@@ -13,7 +13,7 @@ modelRoles:
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/ember-1:high
   slow: casper/kimi-k3:high
-  smol: casper/nemotron-lightning-3p5-30b-a3b
+  smol: casper/minimax-m3p1-flash
 extensions: []
 defaultThinkingLevel: auto
 dev:
