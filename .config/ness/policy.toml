@@ -302,10 +302,10 @@ docker = ["-o", "--output"]
 [shell.write_markers]
 curl = ["%output{"]
 
-# Fetchers whose output must not be piped into these interpreters: `curl URL | python3` runs remote code. Each pipeline stage is otherwise classified on its own.
+# Fetchers whose output must not be piped into these interpreters: `curl URL | python3` runs remote code. Each sink is the interpreter followed by the options that supply inline code (`python3 -c '...'`): with those, stdin is data and the pipe is allowed. Each pipeline stage is otherwise classified on its own.
 [shell.pipe_into]
-curl = ["Rscript", "deno", "julia", "lua", "node", "osascript", "perl", "php", "python", "python3", "ruby", "tclsh"]
-wget = ["Rscript", "deno", "julia", "lua", "node", "osascript", "perl", "php", "python", "python3", "ruby", "tclsh"]
+curl = ["Rscript -e", "deno", "julia -e", "lua -e", "node -e -p --eval --print", "osascript -e", "perl -e -E", "php -r", "python -c", "python3 -c", "ruby -e", "tclsh"]
+wget = ["Rscript -e", "deno", "julia -e", "lua -e", "node -e -p --eval --print", "osascript -e", "perl -e -E", "php -r", "python -c", "python3 -c", "ruby -e", "tclsh"]
 
 # Launchers: the command after their options/operands (or after separator) is classified instead, and must itself be on a list. prompt_options take a command string and always prompt.
 [shell.wrappers.env]

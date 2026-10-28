@@ -175,6 +175,22 @@ impl Shell {
                 }
             }
         }
+        // pipe_into: each sink is `interpreter [inline-code option ...]`
+        let mut pipe_into = std::collections::BTreeMap::new();
+        for (cmd, sinks) in &self.pipe_into {
+            let mut compiled = Vec::new();
+            for (i, s) in sinks.iter().enumerate() {
+                let words: Vec<String> = s.split_whitespace().map(str::to_owned).collect();
+                if words.is_empty() || words[0].starts_with('-') || words[0].contains('/') {
+                    return Err(format!("shell.pipe_into.{cmd}[{i}]: '{s}' must start with one interpreter name"));
+                }
+                if let Some(w) = words[1..].iter().find(|w| !w.starts_with('-')) {
+                    return Err(format!("shell.pipe_into.{cmd}[{i}]: '{w}' must start with '-'"));
+                }
+                compiled.push(words);
+            }
+            pipe_into.insert(cmd.clone(), compiled);
+        }
         // write_markers
         for (cmd, markers) in &self.write_markers {
             for (i, m) in markers.iter().enumerate() {
@@ -245,7 +261,7 @@ impl Shell {
             path_writers: self.path_writers,
             write_flags: self.write_flags,
             output_options: self.output_options,
-            pipe_into: self.pipe_into,
+            pipe_into,
             write_markers: self.write_markers,
             wrappers,
             leading_options,
