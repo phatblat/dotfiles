@@ -1,0 +1,12 @@
+{
+  "command": "\"$tool\" --version",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unrecognized command (asked every time): \"$tool\""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

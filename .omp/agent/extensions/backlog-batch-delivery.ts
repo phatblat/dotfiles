@@ -9,6 +9,7 @@
 //   without opening a review (no `xd://propose`), it opens Plan Review itself
 //   via `ctx.openPlanReview()` once the session is idle.
 import type { ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
+import { appendLedger } from "../shared/flywheel-ledger";
 
 const SKILL_INVOCATION = "/skill:backlog-batch-delivery";
 const SKILL_TOKEN = /(^|\s)\/skill:backlog-batch-delivery(?=\s|$)/;
@@ -17,6 +18,15 @@ const PLAN_FILE = /local:\/\/[^\s"'\]#]*plan\.md/i;
 // openPlanReview() refuses while the finishing run is still unwinding, so retry briefly.
 const RETRY_MS = 250;
 const MAX_ATTEMPTS = 20;
+
+function logScaffoldFiring(detail: string): void {
+  appendLedger("scaffolds.jsonl", {
+    detail,
+    harness: "omp",
+    scaffold: "omp-backlog-batch-plan-review",
+    ts: new Date().toISOString(),
+  });
+}
 
 interface BatchState {
   active: boolean; // skill invoked or loaded in this session
@@ -100,6 +110,7 @@ export default function backlogBatchDelivery(pi: ExtensionAPI) {
       attempts++;
       if (state.run !== run || state.reviewRequested || !isPlanModeActive(ctx) || ctx.getPendingPlanReview()) return;
       if (await ctx.openPlanReview()) {
+        logScaffoldFiring("openPlanReview fallback fired on agent_end");
         ctx.ui.notify("backlog-batch: opened plan review", "info");
         return;
       }

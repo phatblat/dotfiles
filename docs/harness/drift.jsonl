@@ -297,3 +297,6 @@
 {"capability":"-","date":"2026-10-25","detail":"","field":"version","from":"codex-cli 0.163.0","harness":"codex","to":"codex-cli 0.164.0","version_from":"codex-cli 0.163.0","version_to":"codex-cli 0.164.0"}
 {"capability":"-","date":"2026-10-25","detail":"","field":"version","from":"crush version v0.98.1","harness":"crush","to":"crush version v0.98.2","version_from":"crush version v0.98.1","version_to":"crush version v0.98.2"}
 {"capability":"-","date":"2026-10-25","detail":"","field":"version","from":"grok 1.0.67 (2fe064390d07) [alpha]","harness":"grok","to":"grok 1.0.70 (f50904eaee6c) [alpha]","version_from":"grok 1.0.67 (2fe064390d07) [alpha]","version_to":"grok 1.0.70 (f50904eaee6c) [alpha]"}
+{"capability":"maintenance.config_validation","date":"2026-10-26","detail":"opencode debug config","field":"surface","from":"opencode debug config --pure","harness":"opencode","to":"opencode debug config","version_from":"1.19.4","version_to":"opencode v2.1.4"}
+{"capability":"-","date":"2026-10-26","detail":"","field":"version","from":"1.19.4","harness":"opencode","to":"opencode v2.1.4","version_from":"1.19.4","version_to":"opencode v2.1.4"}
+{"capability":"-","date":"2026-10-27","detail":"","field":"version","from":"omp/18.12.6","harness":"omp","to":"omp/18.13.1","version_from":"omp/18.12.6","version_to":"omp/18.13.1"}

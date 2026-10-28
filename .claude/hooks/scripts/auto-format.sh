@@ -11,6 +11,20 @@ file_path=$(echo "$input" | jq -r '.tool_input.file_path // empty' 2>/dev/null |
 
 home="$HOME"
 
+before=$(git hash-object -- "$file_path" 2>/dev/null || shasum "$file_path" | cut -d' ' -f1)
+
+record_if_changed() {
+    local after
+    after=$(git hash-object -- "$file_path" 2>/dev/null || shasum "$file_path" | cut -d' ' -f1)
+    if [ "$before" != "$after" ] && [ -f "$home/scripts/flywheel-record.py" ]; then
+        python3 "$home/scripts/flywheel-record.py" scaffold \
+            --scaffold claude-auto-format \
+            --harness claude \
+            --detail "formatted $(basename "$file_path")" >/dev/null 2>&1 || true
+    fi
+}
+trap record_if_changed EXIT
+
 # A path the dotfiles repo would track (inside $HOME and not gitignored) goes to
 # hk, which owns every formatter and its exclusions. hk stages nothing: the
 # `fix` hook sets stage = false.

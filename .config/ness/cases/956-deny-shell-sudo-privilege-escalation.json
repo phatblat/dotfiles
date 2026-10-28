@@ -1,0 +1,12 @@
+{
+  "command": "sudo ls /",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "deny",
+    "reason": "Privilege escalation blocked"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

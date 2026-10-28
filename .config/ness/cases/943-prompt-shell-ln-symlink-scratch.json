@@ -4,7 +4,7 @@
   "cwd": null,
   "expected": {
     "decision": "prompt",
-    "reason": "shell: unrecognized command: ln"
+    "reason": "shell: guarded command: ln -s /Users/phatblat/target_dir /tmp/ness-link"
   },
   "harness": "omp",
   "path": null,

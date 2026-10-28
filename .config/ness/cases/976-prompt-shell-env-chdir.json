@@ -1,0 +1,12 @@
+{
+  "command": "env -C /etc rm data",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: wrapper option: env -C"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

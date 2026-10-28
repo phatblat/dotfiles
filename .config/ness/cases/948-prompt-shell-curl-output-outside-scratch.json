@@ -1,0 +1,12 @@
+{
+  "command": "curl -fsSL -o notes.html https://example.com",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: curl -o notes.html"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

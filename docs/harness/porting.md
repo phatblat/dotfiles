@@ -19,7 +19,7 @@ Use this table when porting shared skills, commands, agents, and safety rules be
 | `mcp.dependencies` | Declare dependencies near the harness that can enforce or install them. | `.mcp.json`, settings, or agent `mcpServers` | `agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP | `mcp` config | Extension or future MCP bridge | ~/.omp/agent/mcp.json | Generated `mcp_config.json` | Generated `mcp.json` | [compat.claude]/[compat.cursor] mcps = true imports the generated Claude and Cursor configs | ~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand | Dependency metadata is advisory unless the harness enforces it. |
 | `models.effort` | Map separately for skills, agents, and global config. | Skill/agent `model`, `effort` | Agent TOML `model`, `model_reasoning_effort` | Global or agent `model`; `small_model` | `defaultModel`, `defaultThinkingLevel` | modelRoles, defaultThinkingLevel | Not verified in adapter | No shared skill metadata equivalent | Skill `model`, `effort`; persona `model`, `reasoning_effort` | `model large`/`model small` with `--reasoning-effort` | Never assume model aliases mean the same provider/model. |
 | `sessions.compaction` | - | - | - | - | - | - | No generated compaction guidance | - | - | - | - |
-| `maintenance.config_validation` | - | - | - | opencode debug config --pure | pi list --no-approve | - | - | - | - | - | - |
+| `maintenance.config_validation` | - | - | - | opencode debug config | pi list --no-approve | - | - | - | - | - | - |
 
 ### Mapping Sources
 

@@ -1,0 +1,12 @@
+{
+  "command": "ssh-keygen -t ed25519 -f notes-key -N ''",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command: ssh-keygen -t ed25519 -f notes-key -N ''"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

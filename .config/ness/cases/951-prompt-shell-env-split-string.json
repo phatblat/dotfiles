@@ -1,0 +1,12 @@
+{
+  "command": "env -S'touch notes.txt'",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: wrapper option: env -S"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

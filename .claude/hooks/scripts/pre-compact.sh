@@ -18,6 +18,13 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
     fi
 fi
 
+if [ -f "$HOME/scripts/flywheel-record.py" ]; then
+    python3 "$HOME/scripts/flywheel-record.py" scaffold \
+        --scaffold claude-pre-compact \
+        --harness claude \
+        --detail "$summary" >/dev/null 2>&1 || true
+fi
+
 echo "{\"systemMessage\": \"📝 Compacting - Preserving: ${summary}.\"}"
 
 exit 0

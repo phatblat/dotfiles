@@ -1,0 +1,12 @@
+{
+  "command": "docker exec wr-stg-wave-rider-db-1 ls /var/lib/wave-rider/db",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command: docker exec wr-stg-wave-rider-db-1 ls /var/lib/wave-rider/db"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

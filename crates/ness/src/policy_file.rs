@@ -71,6 +71,7 @@ pub struct Approval {
     pub claude: ClaudeApproval,
 }
 pub use crate::shell::TargetRule;
+pub use crate::shell::Unrecognized;
 pub use crate::shell::Wrapper;
 pub use crate::shell::LeadingOptions;
 
@@ -84,8 +85,48 @@ pub struct Shell {
     pub allow_write: Vec<String>,
     pub path_writers: std::collections::BTreeMap<String, TargetRule>,
     pub write_flags: std::collections::BTreeMap<String, Vec<String>>,
+    pub output_options: std::collections::BTreeMap<String, Vec<String>>,
+    pub pipe_into: std::collections::BTreeMap<String, Vec<String>>,
+    pub write_markers: std::collections::BTreeMap<String, Vec<String>>,
+    pub marker_options: std::collections::BTreeMap<String, Vec<String>>,
     pub wrappers: std::collections::BTreeMap<String, Wrapper>,
     pub leading_options: std::collections::BTreeMap<String, LeadingOptions>,
+    pub unrecognized: Unrecognized,
+    pub guarded: Vec<String>,
+    pub no_session_approval: Vec<String>,
+    pub trusted_dirs: Vec<String>,
+}
+
+/// Allow mode compares command names case-insensitively (macOS volumes fold
+/// case, so `RM` runs /bin/rm): the engine lowercases the name it looks up, so
+/// policy names are lowercased here. A path (`./.venv/bin/python`) is a
+/// literal and keeps its case.
+fn fold_name(name: &str) -> String {
+    if name.contains('/') {
+        name.to_string()
+    } else {
+        name.to_ascii_lowercase()
+    }
+}
+
+/// An entry's first word is its command name.
+fn fold_entry(mut words: Vec<String>) -> Vec<String> {
+    words[0] = fold_name(&words[0]);
+    words
+}
+
+/// `map` re-keyed by `fold_name`; two keys that differ only in case collide.
+fn fold_keys<V>(
+    table: &str,
+    map: std::collections::BTreeMap<String, V>,
+) -> Result<std::collections::BTreeMap<String, V>, String> {
+    let mut out = std::collections::BTreeMap::new();
+    for (k, v) in map {
+        if out.insert(fold_name(&k), v).is_some() {
+            return Err(format!("shell.{table}: duplicate name '{k}' (names are case-insensitive)"));
+        }
+    }
+    Ok(out)
 }
 
 impl Shell {
@@ -111,7 +152,7 @@ impl Shell {
             if words.is_empty() {
                 return Err(format!("shell.read_only[{i}]: empty entry"));
             }
-            read_only.push(words);
+            read_only.push(fold_entry(words));
         }
         let mut allow_write = Vec::new();
         for (i, v) in self.allow_write.iter().enumerate() {
@@ -119,7 +160,7 @@ impl Shell {
             if words.is_empty() {
                 return Err(format!("shell.allow_write[{i}]: empty entry"));
             }
-            allow_write.push(words);
+            allow_write.push(fold_entry(words));
         }
         // protected_env validation
         for (i, v) in self.protected_env.iter().enumerate() {
@@ -141,13 +182,94 @@ impl Shell {
         }
         // wrappers
         for (name, w) in &self.wrappers {
+            if name.split_whitespace().next().is_none() {
+                return Err("shell.wrappers: empty name".to_string());
+            }
             for (i, f) in w.value_options.iter().enumerate() {
                 if !f.starts_with('-') {
                     return Err(format!("shell.wrappers.{name}.value_options[{i}]: '{f}' must start with '-'"));
                 }
             }
+            for (i, f) in w.prompt_options.iter().enumerate() {
+                if !f.starts_with('-') {
+                    return Err(format!("shell.wrappers.{name}.prompt_options[{i}]: '{f}' must start with '-'"));
+                }
+            }
+            if !w.separator.is_empty() && w.separator != "--" {
+                return Err(format!("shell.wrappers.{name}.separator: '{}' must be \"\" or \"--\"", w.separator));
+            }
+        }
+        // output_options, marker_options
+        for (table, map) in [
+            ("output_options", &self.output_options),
+            ("marker_options", &self.marker_options),
+        ] {
+            for (cmd, opts) in map {
+                for (i, f) in opts.iter().enumerate() {
+                    let short = f.len() == 2 && f.starts_with('-') && !f.starts_with("--");
+                    let long = f.len() > 2 && f.starts_with("--");
+                    if !short && !long {
+                        return Err(format!("shell.{table}.{cmd}[{i}]: '{f}' must be -x or --long"));
+                    }
+                }
+            }
+        }
+        // pipe_into: each sink is `interpreter [inline-code option ...]`
+        let mut pipe_into = std::collections::BTreeMap::new();
+        for (cmd, sinks) in &self.pipe_into {
+            let mut compiled = Vec::new();
+            for (i, s) in sinks.iter().enumerate() {
+                let words: Vec<String> = s.split_whitespace().map(str::to_owned).collect();
+                if words.is_empty() || words[0].starts_with('-') || words[0].contains('/') {
+                    return Err(format!("shell.pipe_into.{cmd}[{i}]: '{s}' must start with one interpreter name"));
+                }
+                if let Some(w) = words[1..].iter().find(|w| !w.starts_with('-')) {
+                    return Err(format!("shell.pipe_into.{cmd}[{i}]: '{w}' must start with '-'"));
+                }
+                compiled.push(fold_entry(words));
+            }
+            if pipe_into.insert(fold_name(cmd), compiled).is_some() {
+                return Err(format!("shell.pipe_into: duplicate name '{cmd}' (names are case-insensitive)"));
+            }
+        }
+        // write_markers
+        for (cmd, markers) in &self.write_markers {
+            for (i, m) in markers.iter().enumerate() {
+                if m.is_empty() {
+                    return Err(format!("shell.write_markers.{cmd}[{i}]: empty marker"));
+                }
+            }
+        }
+        // trusted_dirs
+        let mut trusted_dirs = Vec::new();
+        for (i, v) in self.trusted_dirs.iter().enumerate() {
+            let bad = !(v.starts_with('/') || v.starts_with("~/"))
+                || (v.len() > 1 && v.ends_with('/'));
+            if bad {
+                return Err(format!("shell.trusted_dirs[{i}]: '{v}' must be an absolute path or ~/path without a trailing '/'"));
+            }
+            trusted_dirs.push(match v.strip_prefix("~/") {
+                Some(rest) => crate::paths::home_dir().join(rest),
+                None => std::path::PathBuf::from(v),
+            });
+        }
+        // guarded, no_session_approval
+        for (table, names) in [
+            ("guarded", &self.guarded),
+            ("no_session_approval", &self.no_session_approval),
+        ] {
+            for (i, v) in names.iter().enumerate() {
+                if v.is_empty() || v.contains(char::is_whitespace) || v.contains('/') {
+                    return Err(format!("shell.{table}[{i}]: '{v}' must be one command name without '/'"));
+                }
+            }
         }
         // leading_options
+        for cmd in self.leading_options.keys() {
+            if cmd.split_whitespace().next().is_none() {
+                return Err("shell.leading_options: empty name".to_string());
+            }
+        }
         for (cmd, lo) in &self.leading_options {
             for (i, f) in lo.flags.iter().enumerate() {
                 if !f.starts_with('-') {
@@ -162,22 +284,48 @@ impl Shell {
         }
         // Build ShellPolicy
         let scratch_dirs = self.scratch_dirs.iter().map(|s| std::path::PathBuf::from(s)).collect();
-        let sinks = self.sinks;
-        let protected_env = self.protected_env;
-        let path_writers = self.path_writers;
-        let write_flags = self.write_flags;
-        let wrappers = self.wrappers;
-        let leading_options = self.leading_options;
+        let mut wrappers = std::collections::BTreeMap::new();
+        for (k, w) in self.wrappers {
+            let key = fold_entry(k.split_whitespace().map(str::to_owned).collect());
+            if wrappers.insert(key, w).is_some() {
+                return Err(format!("shell.wrappers: duplicate name '{k}'"));
+            }
+        }
+        let mut leading_options = std::collections::BTreeMap::new();
+        for (k, lo) in self.leading_options {
+            let key = fold_entry(k.split_whitespace().map(str::to_owned).collect());
+            if leading_options.insert(key, lo).is_some() {
+                return Err(format!("shell.leading_options: duplicate name '{k}'"));
+            }
+        }
+        let path_writers = fold_keys("path_writers", self.path_writers)?;
+        let write_flags = fold_keys("write_flags", self.write_flags)?;
+        let output_options = fold_keys("output_options", self.output_options)?;
+        let write_markers = fold_keys("write_markers", self.write_markers)?;
+        let marker_options = fold_keys("marker_options", self.marker_options)?;
         Ok(crate::shell::ShellPolicy {
             scratch_dirs,
-            sinks,
-            protected_env,
+            sinks: self.sinks,
+            protected_env: self.protected_env,
             read_only,
             allow_write,
             path_writers,
             write_flags,
+            output_options,
+            pipe_into,
+            write_markers,
+            marker_options,
             wrappers,
             leading_options,
+            unrecognized: self.unrecognized,
+            guarded: self.guarded.iter().map(|g| g.to_ascii_lowercase()).collect(),
+            no_session_approval: self
+                .no_session_approval
+                .iter()
+                .map(|n| n.to_ascii_lowercase())
+                .collect(),
+            approved: std::collections::BTreeSet::new(),
+            trusted_dirs,
         })
     }
 }
@@ -430,5 +578,127 @@ mod tests {
         let text = fixture().replace(r"'(?i)(\.env($|\.)|\.ssh/)'", "'(unclosed'");
         let err = parse(&text).unwrap().compile().unwrap_err();
         assert!(err.contains("protected_paths[0]"), "{err}");
+    }
+
+    #[test]
+    fn shell_command_names_are_lowercased_on_load() {
+        let text = fixture()
+            .replace("guarded = []", "guarded = [\"PlistBuddy\"]")
+            .replace(
+                "allow_write = [\"gh api\", \"git commit\"]",
+                "allow_write = [\"GH api\", \"./.venv/bin/Python\"]",
+            )
+            .replace("rm = \"all\"", "RM = \"all\"")
+            .replace("[shell.wrappers.env]", "[shell.wrappers.ENV]");
+        let shell = parse(&text).unwrap().compile().unwrap().shell;
+        assert!(shell.guarded.contains("plistbuddy"));
+        assert_eq!(shell.allow_write[0], ["gh", "api"]);
+        // A path is a literal and keeps its case.
+        assert_eq!(shell.allow_write[1], ["./.venv/bin/Python"]);
+        assert!(shell.path_writers.contains_key("rm"));
+        assert!(shell.wrappers.contains_key(&vec!["env".to_string()]));
+    }
+
+    #[test]
+    fn rejects_command_names_that_differ_only_in_case() {
+        let text = fixture().replace("rm = \"all\"", "rm = \"all\"\nRM = \"last\"");
+        let err = parse(&text).unwrap().compile().unwrap_err();
+        assert!(
+            err.contains("shell.path_writers") && err.contains("duplicate"),
+            "{err}"
+        );
+    }
+
+    #[test]
+    fn no_session_approval_names_are_validated_and_lowercased() {
+        let ok = fixture().replace(
+            "no_session_approval = []",
+            "no_session_approval = [\"SSH\", \"sudo\"]",
+        );
+        let shell = parse(&ok).unwrap().compile().unwrap().shell;
+        assert!(shell.no_session_approval.contains("ssh"));
+        assert!(shell.no_session_approval.contains("sudo"));
+        let bad = fixture().replace(
+            "no_session_approval = []",
+            "no_session_approval = [\"/usr/bin/ssh\"]",
+        );
+        let err = parse(&bad).unwrap().compile().unwrap_err();
+        assert!(err.contains("shell.no_session_approval[0]"), "{err}");
+    }
+
+    #[test]
+    fn rejects_marker_option_that_is_not_an_option() {
+        let text = fixture().replace(
+            "[shell.marker_options]",
+            "[shell.marker_options]\ncurl = [\"w\"]",
+        );
+        let err = parse(&text).unwrap().compile().unwrap_err();
+        assert!(err.contains("shell.marker_options.curl[0]"), "{err}");
+    }
+
+    fn shell_error(from: &str, to: &str) -> String {
+        let text = fixture().replace(from, to);
+        assert_ne!(text, fixture(), "{from} not in the fixture");
+        parse(&text).unwrap().compile().unwrap_err()
+    }
+
+    #[test]
+    fn rejects_bad_wrapper_tables() {
+        let err = shell_error("separator = \"\"", "separator = \"::\"");
+        assert!(err.contains("shell.wrappers.env.separator"), "{err}");
+        let err = shell_error("[shell.wrappers.env]", "[shell.wrappers.\"\"]");
+        assert!(err.contains("shell.wrappers: empty name"), "{err}");
+        // Names that split into the same words are one wrapper twice.
+        let err = shell_error("[shell.wrappers.env]", "[shell.wrappers.\"xargs \"]");
+        assert!(err.contains("duplicate name"), "{err}");
+        let err = shell_error("value_options = [\"-u\"]", "value_options = [\"u\"]");
+        assert!(err.contains("shell.wrappers.env.value_options[0]"), "{err}");
+        let err = shell_error("prompt_options = []", "prompt_options = [\"S\"]");
+        assert!(err.contains("prompt_options[0]"), "{err}");
+    }
+
+    #[test]
+    fn rejects_bad_pipe_into_sinks() {
+        for (sink, complaint) in [
+            ("", "must start with one interpreter name"),
+            ("-c", "must start with one interpreter name"),
+            ("/usr/bin/python3 -c", "must start with one interpreter name"),
+            ("python3 c", "'c' must start with '-'"),
+        ] {
+            let to = format!("[shell.pipe_into]\ncurl = [\"{sink}\"]");
+            let err = shell_error("[shell.pipe_into]", &to);
+            assert!(err.contains("shell.pipe_into.curl[0]") && err.contains(complaint), "{sink}: {err}");
+        }
+    }
+
+    #[test]
+    fn rejects_bad_trusted_dirs_and_guarded_names() {
+        for dir in ["bin", "./bin", "/usr/bin/"] {
+            let err = shell_error("trusted_dirs = []", &format!("trusted_dirs = [\"{dir}\"]"));
+            assert!(err.contains("shell.trusted_dirs[0]"), "{dir}: {err}");
+        }
+        for name in ["", "a b", "/bin/ls"] {
+            let err = shell_error("guarded = []", &format!("guarded = [\"{name}\"]"));
+            assert!(err.contains("shell.guarded[0]"), "{name:?}: {err}");
+        }
+    }
+
+    #[test]
+    fn trusted_dirs_expand_a_home_entry() {
+        let text = fixture().replace("trusted_dirs = []", "trusted_dirs = [\"~/.local/bin\", \"/usr/bin\"]");
+        let shell = parse(&text).unwrap().compile().unwrap().shell;
+        assert_eq!(
+            shell.trusted_dirs,
+            [crate::paths::home_dir().join(".local/bin"), std::path::PathBuf::from("/usr/bin")]
+        );
+    }
+
+    #[test]
+    fn rejects_duplicate_and_empty_leading_options() {
+        let to = "[shell.leading_options.git]\nflags = []\nvalue_options = []\n\n[shell.leading_options.\"git \"]";
+        let err = shell_error("[shell.leading_options.git]", to);
+        assert!(err.contains("shell.leading_options: duplicate name"), "{err}");
+        let err = shell_error("[shell.leading_options.git]", "[shell.leading_options.\"\"]");
+        assert!(err.contains("shell.leading_options: empty name"), "{err}");
     }
 }

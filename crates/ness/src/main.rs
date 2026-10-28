@@ -57,9 +57,11 @@ fn default_cwd() -> String {
     paths::find_root().to_string_lossy().into_owned()
 }
 
-/// `ness guard --harness <slug> --tool <name> [--command|--path|--content|--cwd]`
+/// `ness guard --harness <slug> --tool <name> [--command|--path|--content|--cwd]
+/// [--approved <newline-separated prompt reasons>]`
 /// — drop-in for `python3 scripts/agent-harnesses.py guard …`
-/// (`command_guard`, agent-harnesses.py:695-725).
+/// (`command_guard`, agent-harnesses.py:695-725). `--approved` carries
+/// command-level reasons the omp hook's user approved for the session.
 fn run_guard(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 {
     let Some(harness) = flags.get("harness") else {
         eprintln!("ness guard: --harness is required");
@@ -143,6 +145,23 @@ fn run_hook(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 
     }
 }
 
+/// `ness guard --approved <reasons>`: the command-level prompt reasons the user
+/// approved for the session, one per line (empty lines are ignored). Only
+/// `shell::approvable` honors them, and only `guard` takes them: a hook has no
+/// dialog, so nothing was approved. A policy that failed to load stays failed.
+fn apply_approved(
+    subcommand: &str,
+    policy: &mut Result<Compiled, String>,
+    flags: &HashMap<String, String>,
+) {
+    if subcommand != "guard" {
+        return;
+    }
+    if let (Ok(c), Some(a)) = (policy.as_mut(), flags.get("approved")) {
+        c.shell.approved = a.split('\n').filter(|s| !s.is_empty()).map(str::to_owned).collect();
+    }
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
 
@@ -187,7 +206,8 @@ fn main() {
     // every verdict, emitted in each harness's native output shape. Never
     // panic here: an uncaught panic exits non-zero, which Claude treats as a
     // non-blocking hook error. That is why shell::classify catches its own panics.
-    let policy = active::load();
+    let mut policy = active::load();
+    apply_approved(&subcommand, &mut policy, &flags);
     let p = policy.as_ref().map_err(String::as_str);
 
     let code = match subcommand.as_str() {
@@ -199,4 +219,46 @@ fn main() {
         }
     };
     std::process::exit(code);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn policy() -> Result<Compiled, String> {
+        let text = include_str!("../tests/fixtures/policy.toml");
+        policy_file::parse(text).and_then(|p| p.compile())
+    }
+
+    fn flags(approved: &str) -> HashMap<String, String> {
+        HashMap::from([("approved".to_string(), approved.to_string())])
+    }
+
+    #[test]
+    fn guard_splits_approved_reasons_on_newlines() {
+        let mut p = policy();
+        let reasons = "shell: guarded command: docker exec c ls\n\nshell: unrecognized command: ./t.sh\n";
+        apply_approved("guard", &mut p, &flags(reasons));
+        let approved = p.unwrap().shell.approved;
+        assert_eq!(approved.len(), 2);
+        assert!(approved.contains("shell: guarded command: docker exec c ls"));
+        assert!(approved.contains("shell: unrecognized command: ./t.sh"));
+    }
+
+    #[test]
+    fn hook_ignores_approved_reasons() {
+        let mut p = policy();
+        apply_approved("hook", &mut p, &flags("shell: guarded command: docker exec c ls"));
+        assert!(p.unwrap().shell.approved.is_empty());
+    }
+
+    #[test]
+    fn guard_without_approvals_and_failed_loads_are_left_alone() {
+        let mut p = policy();
+        apply_approved("guard", &mut p, &HashMap::new());
+        assert!(p.unwrap().shell.approved.is_empty());
+        let mut failed = Err("not applied".to_string());
+        apply_approved("guard", &mut failed, &flags("shell: guarded command: x"));
+        assert_eq!(failed.unwrap_err(), "not applied");
+    }
 }

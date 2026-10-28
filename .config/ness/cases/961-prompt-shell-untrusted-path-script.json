@@ -1,0 +1,12 @@
+{
+  "command": "./scripts/deploy.sh --env stg",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unrecognized command: ./scripts/deploy.sh --env stg"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

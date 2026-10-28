@@ -1,0 +1,12 @@
+{
+  "command": "git config core.hooksPath /tmp/h",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command: git config core.hooksPath /tmp/h"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

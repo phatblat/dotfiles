@@ -905,9 +905,18 @@ _OMP_ERROR_CLASSES = (
     ("parse", _re.compile(r"parse|syntax|malformed|invalid json", _re.IGNORECASE)),
 )
 
+# A `bash` call that opens with `cd <path> &&` is the habit the `.omp/agent/AGENTS.md`
+# rule forbids; each match is that Scaffolding register row's firing signal
+# (docs/flywheel.md).
+_OMP_CD_PREFIX = _re.compile(r"^\s*cd\s+[^;&|\n]+&&")
+
 
 def _omp_error_class(message: dict) -> str:
-    """Fixed label for an errored result; only the label leaves this function."""
+    """Fixed label for an errored result; only the label leaves this function.
+
+    The first line names most tool errors; a failed `bash` call leads with the
+    command's own output and ends with the exit notice, so the last line is
+    checked when the first matches nothing."""
     content = message.get("content")
     text = content if isinstance(content, str) else ""
     if isinstance(content, list):
@@ -915,10 +924,11 @@ def _omp_error_class(message: dict) -> str:
             if isinstance(chunk, dict) and chunk.get("type") == "text":
                 text = str(chunk.get("text", ""))
                 break
-    first = next((line for line in text.splitlines() if line.strip()), "")
-    for label, pattern in _OMP_ERROR_CLASSES:
-        if pattern.search(first):
-            return label
+    lines = [line for line in text.splitlines() if line.strip()]
+    for line in (lines[0], lines[-1]) if lines else ():
+        for label, pattern in _OMP_ERROR_CLASSES:
+            if pattern.search(line):
+                return label
     return "other"
 
 
@@ -1011,6 +1021,21 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
                                 if target.startswith("xd://")
                                 else ""
                             )
+                            command = args.get("command") if isinstance(args, dict) else None
+                            if (
+                                tname == "bash"
+                                and isinstance(command, str)
+                                and _OMP_CD_PREFIX.match(command)
+                            ):
+                                emit(
+                                    obs,
+                                    harness="omp",
+                                    session=sid,
+                                    kind="scaffold_signal",
+                                    ts=ts,
+                                    actor=default_actor,
+                                    name="omp-cd-prefix",
+                                )
                             # `read xd://<tool>` only fetches docs; only a `write` calls the device.
                             if tname == "write" and device:
                                 emit(

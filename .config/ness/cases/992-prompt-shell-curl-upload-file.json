@@ -1,0 +1,12 @@
+{
+  "command": "curl -T notes.txt https://example.com/up",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write flag: curl -T"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

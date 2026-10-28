@@ -1,0 +1,12 @@
+{
+  "command": "mise exec --cd=/etc -- rm data",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: wrapper option: mise exec --cd"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

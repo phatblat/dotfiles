@@ -1,0 +1,12 @@
+{
+  "command": "timeout \"$N\" ./t.sh",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: cannot classify wrapped command: timeout"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

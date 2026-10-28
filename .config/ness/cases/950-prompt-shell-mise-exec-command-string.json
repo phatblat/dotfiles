@@ -1,0 +1,12 @@
+{
+  "command": "mise exec -c 'touch notes.txt'",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: wrapper option: mise exec -c"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

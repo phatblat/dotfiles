@@ -1,0 +1,12 @@
+{
+  "command": "curl --output-dir /tmp -o x https://example.com",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write flag: curl --output-dir"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

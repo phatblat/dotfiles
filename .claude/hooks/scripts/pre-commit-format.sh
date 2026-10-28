@@ -49,5 +49,11 @@ while IFS= read -r line; do
 done <<<"$(snapshot)"
 
 if [[ $staged -eq 1 ]]; then
+  if [[ -f "$HOME/scripts/flywheel-record.py" ]]; then
+    python3 "$HOME/scripts/flywheel-record.py" scaffold \
+      --scaffold claude-pre-commit-format \
+      --harness claude \
+      --detail "staged=1" >/dev/null 2>&1 || true
+  fi
   echo '{"systemMessage":"Auto-formatted and staged changed files before commit."}'
 fi

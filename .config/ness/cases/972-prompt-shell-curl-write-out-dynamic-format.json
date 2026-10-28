@@ -1,0 +1,12 @@
+{
+  "command": "curl -s -w \"$FMT\" https://example.com",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write marker: curl -w \"$FMT\""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

@@ -1,0 +1,12 @@
+{
+  "command": "curl -s -o \"$f\" https://example.com",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: curl -o \"$f\""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

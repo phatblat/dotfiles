@@ -21,8 +21,14 @@ load helpers/setup
   [ "$status" -eq 0 ]
 }
 
-@test "harness-sessions: usage labels, Pi session roots and OMP error classes" {
+@test "harness-sessions: usage labels, Pi session roots, OMP error classes and cd-prefix signal" {
   run python3 "${BATS_TEST_DIRNAME}/test_harness_sessions.py"
+
+  [ "$status" -eq 0 ]
+}
+
+@test "flywheel: ledger privacy bound and worst-outcome collapse" {
+  run python3 "${BATS_TEST_DIRNAME}/test_flywheel.py"
 
   [ "$status" -eq 0 ]
 }

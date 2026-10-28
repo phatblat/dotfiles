@@ -54,7 +54,7 @@ skip_unless_home_is_this_checkout() {
   claude_plugins=$(printf '%s' "$output" | jq '.plugins.claude | type')
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
-  [ "$command_count" -eq 28 ]
+  [ "$command_count" -eq 29 ]
   [ "$agent_count" -eq 6 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
@@ -329,6 +329,7 @@ skip_unless_home_is_this_checkout() {
     work-start-day
     work-track-item
     git-worktree
+    plan-worktree
   )
 
   for skill in "${procedural_skills[@]}"; do
