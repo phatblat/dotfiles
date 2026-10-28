@@ -12,7 +12,7 @@
 // No prompt or transcript text is stored; `task` is the working directory's basename.
 import * as path from "node:path";
 import type { AgentEndEvent, ExtensionAPI, ExtensionContext } from "@oh-my-pi/pi-coding-agent";
-import { appendLedger } from "../shared/flywheel-ledger";
+import { appendLedger, opaqueSessionId, sanitizeText } from "../shared/flywheel-ledger";
 
 interface SessionOutcome {
   runs: number; // settled main-agent runs
@@ -73,8 +73,8 @@ export default function flywheelOutcome(pi: ExtensionAPI) {
       date: new Date().toISOString().slice(0, 10),
       harness: "omp",
       outcome: outcomeFor(state.lastStop),
-      session_id: id,
-      task: `omp session (${path.basename(state.cwd)})`.slice(0, 80),
+      session_id: opaqueSessionId(id),
+      task: sanitizeText(`omp session (${path.basename(state.cwd)})`),
     };
     appendLedger("outcomes.jsonl", record);
   };
