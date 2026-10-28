@@ -1833,13 +1833,18 @@ fn classify_command(
     // wrappers
     if let Some((key, w)) = find_wrapper(p, name, argv) {
         let key_text = key.join(" ");
+        // A wrapper whose options or operands cannot be read hides the command it
+        // runs. That prompts under its own reason, which no session approval
+        // covers: approving `timeout "$N" ./t.sh` must not approve whatever
+        // `timeout "$N"` runs later.
+        let unreadable = || Some(format!("shell: cannot classify wrapped command: {key_text}"));
         if w.separator == "--" {
             // The wrapped command follows the first literal `--`.
             let mut j = key.len();
             let mut sep = None;
             while j < argv.len() {
                 let Some(tok) = single_literal(&argv[j].0) else {
-                    return approvable(p, format!("shell: unrecognized command: {key_text}"));
+                    return unreadable();
                 };
                 if tok == "--" {
                     sep = Some(j);
@@ -1888,17 +1893,11 @@ fn classify_command(
                         } else if w.value_options.iter().any(|vo| vo == s) {
                             // skip next
                             if i + 1 >= argv.len() {
-                                return approvable(
-                                    p,
-                                    format!("shell: unrecognized command: {argv0}"),
-                                );
+                                return unreadable();
                             }
                             // dynamic next?
                             if single_literal(&argv[i + 1].0).is_none() {
-                                return approvable(
-                                    p,
-                                    format!("shell: unrecognized command: {argv0}"),
-                                );
+                                return unreadable();
                             }
                             i += 2;
                             continue;
@@ -1935,7 +1934,7 @@ fn classify_command(
                     break;
                 }
                 if single_literal(&argv[i].0).is_none() {
-                    return approvable(p, format!("shell: unrecognized command: {argv0}"));
+                    return unreadable();
                 }
                 i += 1;
             }
@@ -2838,5 +2837,39 @@ mod tests {
         let p = allow_mode(&[]);
         let reason = Some("shell: unrecognized command: \u{17f}ed".to_string());
         assert_eq!(classify(&p, "\u{17f}ed -i s/a/b/ notes.txt", "/"), reason);
+    }
+
+    fn timeout_wrapper() -> Wrapper {
+        Wrapper {
+            value_options: vec![],
+            operands: 1,
+            assignments: false,
+            appends_operands: false,
+            separator: String::new(),
+            prompt_options: vec![],
+        }
+    }
+
+    #[test]
+    fn unreadable_wrapper_operands_prompt_under_their_own_reason() {
+        let mut p = allow_mode(&[]);
+        p.wrappers.insert(words("timeout"), timeout_wrapper());
+        p.wrappers.insert(words("mise exec"), mise_exec_wrapper());
+        let cases = [
+            ("timeout \"$N\" ./t.sh", "timeout"),
+            ("env -u \"$X\" ./t.sh", "env"),
+            ("env -u", "env"),
+            ("mise exec \"$T\" -- ./t.sh", "mise exec"),
+        ];
+        for (command, wrapper) in cases {
+            let reason = format!("shell: cannot classify wrapped command: {wrapper}");
+            assert_eq!(classify(&p, command, "/"), Some(reason.clone()), "{command}");
+            // Whatever the user approved before, the hidden command was never
+            // classified, so nothing may skip this prompt.
+            p.approved.insert(reason.clone());
+            p.approved.insert(format!("shell: unrecognized command: {wrapper}"));
+            p.approved.insert("shell: unrecognized command: ./t.sh".to_string());
+            assert_eq!(classify(&p, command, "/"), Some(reason), "{command} (approved)");
+        }
     }
 }
