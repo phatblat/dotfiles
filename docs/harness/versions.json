@@ -31,8 +31,8 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.12.6",
-    "version": "omp/18.13.1"
+    "previous": "omp/18.13.1",
+    "version": "omp/18.13.2"
   },
   "opencode": {
     "first_seen": "2026-08-29",
