@@ -4,7 +4,7 @@
   "cwd": null,
   "expected": {
     "decision": "prompt",
-    "reason": "shell: command string: env -S"
+    "reason": "shell: wrapper option: env -S"
   },
   "harness": "omp",
   "path": null,

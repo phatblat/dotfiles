@@ -49,7 +49,8 @@ pub struct Wrapper {
     /// `""`: the wrapped command follows the options and operands. `"--"`: it
     /// follows the first literal `--`.
     pub separator: String,
-    /// Options that take a command string; they always prompt.
+    /// Options that make the wrapper run something ness cannot see (a command
+    /// string, another PATH, another directory); they always prompt.
     pub prompt_options: Vec<String>,
 }
 
@@ -2038,7 +2039,7 @@ fn classify_command(
                     break;
                 }
                 if let Some(flag) = token_matches_write_flag(&tok, &w.prompt_options) {
-                    return Some(format!("shell: command string: {key_text} {flag}"));
+                    return Some(format!("shell: wrapper option: {key_text} {flag}"));
                 }
                 j += 1;
             }
@@ -2068,7 +2069,7 @@ fn classify_command(
                 if let Some(s) = &single {
                     if s.starts_with('-') && s != "-" {
                         if let Some(flag) = token_matches_write_flag(s, &w.prompt_options) {
-                            return Some(format!("shell: command string: {key_text} {flag}"));
+                            return Some(format!("shell: wrapper option: {key_text} {flag}"));
                         }
                         // --opt=value
                         if s.contains('=') {
@@ -2870,11 +2871,11 @@ mod tests {
         );
         assert_eq!(
             classify(&p, "mise exec -c 'touch notes.txt'", "/"),
-            Some("shell: command string: mise exec -c".to_string())
+            Some("shell: wrapper option: mise exec -c".to_string())
         );
         assert_eq!(
             classify(&p, "mise exec --command='touch x' -- ls", "/"),
-            Some("shell: command string: mise exec --command".to_string())
+            Some("shell: wrapper option: mise exec --command".to_string())
         );
         assert_eq!(
             classify(&p, "mise exec --help", "/"),
@@ -2889,11 +2890,11 @@ mod tests {
             strs(&["-S", "--split-string"]);
         assert_eq!(
             classify(&p, "env -S'touch notes.txt'", "/"),
-            Some("shell: command string: env -S".to_string())
+            Some("shell: wrapper option: env -S".to_string())
         );
         assert_eq!(
             classify(&p, "env --split-string='touch notes.txt'", "/"),
-            Some("shell: command string: env --split-string".to_string())
+            Some("shell: wrapper option: env --split-string".to_string())
         );
     }
 
@@ -3329,5 +3330,30 @@ mod tests {
         ] {
             assert_eq!(classify(&p, command, "/"), None, "{command}");
         }
+    }
+
+    fn real_policy() -> ShellPolicy {
+        let path = concat!(env!("CARGO_MANIFEST_DIR"), "/../../.config/ness/policy.toml");
+        let text = std::fs::read_to_string(path).unwrap();
+        crate::policy_file::parse(&text).unwrap().compile().unwrap().shell
+    }
+
+    #[test]
+    fn env_and_mise_prompt_for_another_directory() {
+        let p = real_policy();
+        // The relative paths of the wrapped command are judged against the
+        // directory ness tracks, which these options change.
+        for (command, reason) in [
+            ("env -C /etc rm data", "shell: wrapper option: env -C"),
+            ("env --chdir=/etc rm data", "shell: wrapper option: env --chdir"),
+            ("env -u FOO --chdir /etc rm data", "shell: wrapper option: env --chdir"),
+            ("mise exec -C /etc -- rm data", "shell: wrapper option: mise exec -C"),
+            ("mise x --cd=/etc -- rm data", "shell: wrapper option: mise x --cd"),
+        ] {
+            assert_eq!(classify(&p, command, "/tmp"), Some(reason.to_string()), "{command}");
+        }
+        // Without them the wrapped command is judged where ness is.
+        assert_eq!(classify(&p, "env -u FOO rm data", "/tmp"), None);
+        assert_eq!(classify(&p, "mise exec -- rm data", "/tmp"), None);
     }
 }

@@ -316,14 +316,14 @@ curl = ["-w", "--write-out", "--expand-write-out"]
 curl = ["Rscript -e", "deno", "julia -e", "lua -e", "make", "node -e -p --eval --print", "nodejs -e -p --eval --print", "osascript -e", "perl -e -E", "php -r", "pypy3 -c", "python -c", "python3 -c", "ruby -e", "tclsh"]
 wget = ["Rscript -e", "deno", "julia -e", "lua -e", "make", "node -e -p --eval --print", "nodejs -e -p --eval --print", "osascript -e", "perl -e -E", "php -r", "pypy3 -c", "python -c", "python3 -c", "ruby -e", "tclsh"]
 
-# Launchers: the command after their options/operands (or after separator) is classified instead, and must itself be on a list. prompt_options take a command string and always prompt. A launcher whose options or operands are not literal (`timeout "$N" cmd`) prompts, and no session approval covers it, as does an `--opt=value` that is not in value_options: GNU getopt accepts abbreviations, so `env --sp='cmd'` is `--split-string`.
+# Launchers: the command after their options/operands (or after separator) is classified instead, and must itself be on a list. prompt_options always prompt: a command string (-S, -c), another PATH (-P) or another directory (-C, --chdir, --cd), which would make the relative paths of the wrapped command mean something else than ness judged. A launcher whose options or operands are not literal (`timeout "$N" cmd`) prompts, and no session approval covers it, as does an `--opt=value` that is not in value_options: GNU getopt accepts abbreviations, so `env --sp='cmd'` is `--split-string`.
 [shell.wrappers.env]
-value_options = ["-u", "--unset", "-C", "--chdir"]
+value_options = ["-u", "--unset"]
 operands = 0
 assignments = true
 appends_operands = false
 separator = ""
-prompt_options = ["-P", "-S", "--split-string"]
+prompt_options = ["-C", "--chdir", "-P", "-S", "--split-string"]
 
 [shell.wrappers."mise exec"]
 value_options = []
@@ -331,7 +331,7 @@ operands = 0
 assignments = false
 appends_operands = false
 separator = "--"
-prompt_options = ["-c", "--command"]
+prompt_options = ["-C", "--cd", "-c", "--command"]
 
 [shell.wrappers."mise x"]
 value_options = []
@@ -339,7 +339,7 @@ operands = 0
 assignments = false
 appends_operands = false
 separator = "--"
-prompt_options = ["-c", "--command"]
+prompt_options = ["-C", "--cd", "-c", "--command"]
 
 [shell.wrappers.nice]
 value_options = ["-n", "--adjustment"]

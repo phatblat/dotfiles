@@ -4,7 +4,7 @@
   "cwd": null,
   "expected": {
     "decision": "prompt",
-    "reason": "shell: command string: mise exec -c"
+    "reason": "shell: wrapper option: mise exec -c"
   },
   "harness": "omp",
   "path": null,
