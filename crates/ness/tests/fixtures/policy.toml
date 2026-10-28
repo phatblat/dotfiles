@@ -58,6 +58,7 @@ read_only = ["cat", "cd", "echo", "git log", "git status", "grep", "jq", "ls", "
 allow_write = ["gh api", "git commit"]
 unrecognized = "prompt"
 guarded = []
+no_session_approval = []
 trusted_dirs = []
 
 [shell.path_writers]

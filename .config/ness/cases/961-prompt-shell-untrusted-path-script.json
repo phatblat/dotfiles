@@ -4,7 +4,7 @@
   "cwd": null,
   "expected": {
     "decision": "prompt",
-    "reason": "shell: unrecognized command: ./scripts/deploy.sh"
+    "reason": "shell: unrecognized command: ./scripts/deploy.sh --env stg"
   },
   "harness": "omp",
   "path": null,

@@ -4,7 +4,7 @@
   "cwd": null,
   "expected": {
     "decision": "prompt",
-    "reason": "shell: guarded command: git"
+    "reason": "shell: guarded command: GIT config --global user.name x"
   },
   "harness": "omp",
   "path": null,

@@ -80,6 +80,10 @@ pub struct ShellPolicy {
     pub leading_options: BTreeMap<Vec<String>, LeadingOptions>,
     pub unrecognized: Unrecognized,
     pub guarded: BTreeSet<String>,
+    /// Command names whose prompts are asked every time: launchers, interpreters,
+    /// remote shells and privilege escalation run whatever they are given, so no
+    /// session approval covers them.
+    pub no_session_approval: BTreeSet<String>,
     /// Prompt reasons the user approved for the session (`ness guard --approved`).
     pub approved: BTreeSet<String>,
     /// Directories whose binaries are recognized by basename in allow mode.
@@ -1648,12 +1652,64 @@ fn dir_trusted(p: &ShellPolicy, argv0: &str) -> bool {
     p.trusted_dirs.iter().any(|t| *t == dir)
 }
 
-/// `None` when the user already approved this reason for the session.
-fn approvable(p: &ShellPolicy, reason: String) -> Option<String> {
+/// The prompt for a guarded or unlisted command, or `None` when the user
+/// already approved that command for the session.
+///
+/// The reason is the approval key: the omp hook stores it verbatim and passes it
+/// back through `ness guard --approved`. It spells out the whole command, so
+/// approving `docker exec c ls` says nothing about `docker run --privileged`.
+/// A command that cannot be pinned down, or whose name is in
+/// `no_session_approval`, is asked about every time under a reason the hook does
+/// not offer to remember.
+fn approvable(
+    p: &ShellPolicy,
+    kind: &str,
+    argv0: &str,
+    argv: &[(Value, String)],
+    appends: bool,
+) -> Option<String> {
+    let name = command_name(argv0).to_ascii_lowercase();
+    let key = if p.no_session_approval.contains(&name) {
+        None
+    } else {
+        approval_key(argv, appends)
+    };
+    let Some(key) = key else {
+        return Some(format!("shell: {kind} (asked every time): {}", argv[0].1));
+    };
+    let reason = format!("shell: {kind}: {key}");
     if p.approved.contains(&reason) {
         None
     } else {
         Some(reason)
+    }
+}
+
+/// Every word of the command, quoted so that different commands have different
+/// keys. `None` when a word is not literal (a variable, a glob, `$(...)`), holds
+/// a control character (the hook joins approvals with newlines), or the command
+/// is only part of what runs (xargs appends operands).
+fn approval_key(argv: &[(Value, String)], appends: bool) -> Option<String> {
+    if appends {
+        return None;
+    }
+    let mut words = Vec::with_capacity(argv.len());
+    for (value, _) in argv {
+        let word = single_literal(value)?;
+        if word.chars().any(char::is_control) {
+            return None;
+        }
+        words.push(quote_word(&word));
+    }
+    Some(words.join(" "))
+}
+
+fn quote_word(word: &str) -> String {
+    let plain = |c: char| c.is_alphanumeric() || "_@%+=:,./-~".contains(c);
+    if !word.is_empty() && word.chars().all(plain) {
+        word.to_string()
+    } else {
+        format!("'{}'", word.replace('\'', "'\\''"))
     }
 }
 
@@ -1807,7 +1863,11 @@ fn classify_command(
     let argv0_raw = &argv[0].1;
     let argv0 = match single_literal(&argv[0].0) {
         Some(v) => v,
-        None => return approvable(p, format!("shell: unrecognized command: {argv0_raw}")),
+        None => {
+            return Some(format!(
+                "shell: unrecognized command (asked every time): {argv0_raw}"
+            ))
+        }
     };
     let allow_mode = p.unrecognized == Unrecognized::Allow;
     // A path-qualified command is recognized by basename only in a trusted
@@ -1822,7 +1882,7 @@ fn classify_command(
     let name: &str = if allow_mode && trusted {
         let base = command_name(&argv0);
         if !base.is_ascii() {
-            return approvable(p, format!("shell: unrecognized command: {argv0}"));
+            return approvable(p, "unrecognized command", &argv0, argv, appends);
         }
         folded = base.to_ascii_lowercase();
         &folded
@@ -2129,13 +2189,13 @@ fn classify_command(
 
     if allow_mode && trusted {
         if p.guarded.contains(name) {
-            return approvable(p, format!("shell: guarded command: {name}"));
+            return approvable(p, "guarded command", &argv0, argv, appends);
         }
         if !wrapped {
             return None;
         }
     }
-    approvable(p, format!("shell: unrecognized command: {argv0}"))
+    approvable(p, "unrecognized command", &argv0, argv, appends)
 }
 
 /// Skips the leading options of `lo` starting at `i`. `None` means a dynamic
@@ -2362,7 +2422,7 @@ mod tests {
         assert_eq!(classify(&p, "git -C / --no-pager log -1", "/"), None);
         assert_eq!(
             classify(&p, "git -c core.fsmonitor=x status", "/"),
-            Some("shell: unrecognized command: git".to_string())
+            Some("shell: unrecognized command: git -c core.fsmonitor=x status".to_string())
         );
     }
 
@@ -2380,7 +2440,7 @@ mod tests {
         let p = policy();
         assert_eq!(
             classify(&p, "\"$tool\" --version", "/"),
-            Some("shell: unrecognized command: \"$tool\"".to_string())
+            Some("shell: unrecognized command (asked every time): \"$tool\"".to_string())
         );
     }
 
@@ -2600,9 +2660,12 @@ mod tests {
     fn allow_mode_runs_unlisted_and_guards_listed_names() {
         let p = allow_mode(&["docker"]);
         assert_eq!(classify(&p, "lsof -p 1", "/"), None);
-        let guarded = Some("shell: guarded command: docker".to_string());
-        assert_eq!(classify(&p, "docker exec c ls", "/"), guarded);
-        assert_eq!(classify(&p, "/usr/local/bin/docker exec c ls", "/"), guarded);
+        let guarded = |command: &str| Some(format!("shell: guarded command: {command}"));
+        assert_eq!(classify(&p, "docker exec c ls", "/"), guarded("docker exec c ls"));
+        assert_eq!(
+            classify(&p, "/usr/local/bin/docker exec c ls", "/"),
+            guarded("/usr/local/bin/docker exec c ls")
+        );
     }
 
     #[test]
@@ -2617,11 +2680,11 @@ mod tests {
         );
         assert_eq!(
             classify(&p, "/tmp/x/git status", "/"),
-            Some("shell: unrecognized command: /tmp/x/git".to_string())
+            Some("shell: unrecognized command: /tmp/x/git status".to_string())
         );
         assert_eq!(
             classify(&p, "/usr/bin/../../tmp/x/grep a b", "/"),
-            Some("shell: unrecognized command: /usr/bin/../../tmp/x/grep".to_string())
+            Some("shell: unrecognized command: /usr/bin/../../tmp/x/grep a b".to_string())
         );
         // A literal list entry still names a path-qualified command.
         assert_eq!(classify(&p, "./.venv/bin/python -m pytest", "/"), None);
@@ -2649,7 +2712,11 @@ mod tests {
         let p = allow_mode(&[]);
         let reason = Some("shell: unrecognized command: ./deploy.sh".to_string());
         assert_eq!(classify(&p, "env FOO=1 ./deploy.sh", "/"), reason);
-        assert_eq!(classify(&p, "xargs ./deploy.sh", "/"), reason);
+        // xargs appends operands from stdin, so the command is only part of what runs.
+        assert_eq!(
+            classify(&p, "xargs ./deploy.sh", "/"),
+            Some("shell: unrecognized command (asked every time): ./deploy.sh".to_string())
+        );
     }
 
     #[test]
@@ -2657,7 +2724,7 @@ mod tests {
         let p = policy();
         assert_eq!(
             classify(&p, "/usr/bin/grep x f", "/"),
-            Some("shell: unrecognized command: /usr/bin/grep".to_string())
+            Some("shell: unrecognized command: /usr/bin/grep x f".to_string())
         );
     }
 
@@ -2680,7 +2747,7 @@ mod tests {
         );
         assert_eq!(
             classify(&p, "mise exec --help", "/"),
-            Some("shell: guarded command: mise".to_string())
+            Some("shell: guarded command: mise exec --help".to_string())
         );
     }
 
@@ -2716,7 +2783,7 @@ mod tests {
         );
         assert_eq!(
             classify(&p, "docker compose -p x stop", "/"),
-            Some("shell: guarded command: docker".to_string())
+            Some("shell: guarded command: docker compose -p x stop".to_string())
         );
     }
 
@@ -2797,7 +2864,7 @@ mod tests {
     #[test]
     fn approved_reason_skips_only_that_command() {
         let mut p = allow_mode(&["docker"]);
-        p.approved.insert("shell: guarded command: docker".to_string());
+        p.approved.insert("shell: guarded command: docker exec c ls".to_string());
         assert_eq!(classify(&p, "docker exec c ls", "/"), None);
         assert_eq!(
             classify(&p, "docker exec c ls; touch notes.txt", "/"),
@@ -2824,7 +2891,7 @@ mod tests {
         );
         assert_eq!(
             classify(&p, "GIT push origin main", "/"),
-            Some("shell: guarded command: git".to_string())
+            Some("shell: guarded command: GIT push origin main".to_string())
         );
         assert_eq!(classify(&p, "GIT status", "/"), None);
         assert_eq!(classify(&p, "CAT notes.txt", "/"), None);
@@ -2835,7 +2902,7 @@ mod tests {
         let p = policy();
         assert_eq!(
             classify(&p, "RM /tmp/x", "/"),
-            Some("shell: unrecognized command: RM".to_string())
+            Some("shell: unrecognized command: RM /tmp/x".to_string())
         );
     }
 
@@ -2843,7 +2910,7 @@ mod tests {
     fn allow_mode_never_recognizes_non_ascii_names() {
         // U+017F folds to `s` on a case-insensitive volume, so `ſed -i` may be `sed -i`.
         let p = allow_mode(&[]);
-        let reason = Some("shell: unrecognized command: \u{17f}ed".to_string());
+        let reason = Some("shell: unrecognized command: \u{17f}ed -i s/a/b/ notes.txt".to_string());
         assert_eq!(classify(&p, "\u{17f}ed -i s/a/b/ notes.txt", "/"), reason);
     }
 
@@ -2900,5 +2967,75 @@ mod tests {
         // Listed value options and plain flags still pass through.
         assert_eq!(classify(&p, "env --unset=FOO ls", "/"), None);
         assert_eq!(classify(&p, "env --ignore-environment ls", "/"), None);
+    }
+
+    #[test]
+    fn session_approval_names_the_whole_command() {
+        let mut p = allow_mode(&["docker", "git"]);
+        let guarded = |command: &str| Some(format!("shell: guarded command: {command}"));
+        p.approved.insert("shell: guarded command: docker exec c ls".to_string());
+        // The approved command skips its prompt ...
+        assert_eq!(classify(&p, "docker exec c ls", "/"), None);
+        // ... and nothing else does: another subcommand, option or operand is a
+        // different command.
+        for command in [
+            "docker exec c ls -l",
+            "docker run --privileged -v /:/h img",
+            "docker exec d ls",
+            "git -c core.fsmonitor=x status",
+        ] {
+            assert_eq!(classify(&p, command, "/"), guarded(command), "{command}");
+        }
+        // Quoting keeps different commands apart.
+        assert_eq!(
+            classify(&p, "docker exec 'c d' ls", "/"),
+            guarded("docker exec 'c d' ls")
+        );
+        assert_eq!(
+            classify(&p, "docker exec \"it's\" ls", "/"),
+            guarded("docker exec 'it'\\''s' ls")
+        );
+        // Wrappers are not part of the key: it names the command they run.
+        assert_eq!(classify(&p, "env FOO=1 docker exec c ls", "/"), None);
+    }
+
+    #[test]
+    fn commands_that_cannot_be_pinned_down_are_asked_about_every_time() {
+        let mut p = allow_mode(&["docker", "ssh", "sudo"]);
+        p.no_session_approval = ["ssh", "sudo"].iter().map(|s| s.to_string()).collect();
+        let every =
+            |kind: &str, name: &str| Some(format!("shell: {kind} (asked every time): {name}"));
+        let cases = [
+            // A variable, a glob or a substitution could be anything.
+            ("docker exec \"$c\" ls", every("guarded command", "docker")),
+            ("docker exec c *", every("guarded command", "docker")),
+            ("docker exec $(hostname) ls", every("guarded command", "docker")),
+            // xargs appends operands from stdin.
+            ("xargs docker rm", every("guarded command", "docker")),
+            // A control character would split the hook's newline-joined approvals.
+            ("docker exec 'a\nb' ls", every("guarded command", "docker")),
+            // Names that run whatever they are given, however they are spelled or reached.
+            ("ssh host ls", every("guarded command", "ssh")),
+            ("/usr/bin/ssh host ls", every("guarded command", "/usr/bin/ssh")),
+            ("SSH host ls", every("guarded command", "SSH")),
+            ("env sudo ls", every("guarded command", "sudo")),
+            ("xargs sudo ls", every("guarded command", "sudo")),
+            // A dynamic command name is never approvable.
+            ("\"$tool\" --version", every("unrecognized command", "\"$tool\"")),
+        ];
+        for (command, reason) in cases {
+            assert_eq!(classify(&p, command, "/"), reason, "{command}");
+            // No approval skips them, exact or by name.
+            for approved in [
+                format!("shell: guarded command: {command}"),
+                format!("shell: unrecognized command: {command}"),
+                "shell: guarded command: docker".to_string(),
+                "shell: guarded command: ssh".to_string(),
+                "shell: guarded command: sudo".to_string(),
+            ] {
+                p.approved.insert(approved);
+            }
+            assert_eq!(classify(&p, command, "/"), reason, "{command} (approved)");
+        }
     }
 }

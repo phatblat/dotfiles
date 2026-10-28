@@ -92,6 +92,7 @@ pub struct Shell {
     pub leading_options: std::collections::BTreeMap<String, LeadingOptions>,
     pub unrecognized: Unrecognized,
     pub guarded: Vec<String>,
+    pub no_session_approval: Vec<String>,
     pub trusted_dirs: Vec<String>,
 }
 
@@ -246,10 +247,15 @@ impl Shell {
                 None => std::path::PathBuf::from(v),
             });
         }
-        // guarded
-        for (i, v) in self.guarded.iter().enumerate() {
-            if v.is_empty() || v.contains(char::is_whitespace) || v.contains('/') {
-                return Err(format!("shell.guarded[{i}]: '{v}' must be one command name without '/'"));
+        // guarded, no_session_approval
+        for (table, names) in [
+            ("guarded", &self.guarded),
+            ("no_session_approval", &self.no_session_approval),
+        ] {
+            for (i, v) in names.iter().enumerate() {
+                if v.is_empty() || v.contains(char::is_whitespace) || v.contains('/') {
+                    return Err(format!("shell.{table}[{i}]: '{v}' must be one command name without '/'"));
+                }
             }
         }
         // leading_options
@@ -305,6 +311,11 @@ impl Shell {
             leading_options,
             unrecognized: self.unrecognized,
             guarded: self.guarded.iter().map(|g| g.to_ascii_lowercase()).collect(),
+            no_session_approval: self
+                .no_session_approval
+                .iter()
+                .map(|n| n.to_ascii_lowercase())
+                .collect(),
             approved: std::collections::BTreeSet::new(),
             trusted_dirs,
         })
@@ -588,5 +599,22 @@ mod tests {
             err.contains("shell.path_writers") && err.contains("duplicate"),
             "{err}"
         );
+    }
+
+    #[test]
+    fn no_session_approval_names_are_validated_and_lowercased() {
+        let ok = fixture().replace(
+            "no_session_approval = []",
+            "no_session_approval = [\"SSH\", \"sudo\"]",
+        );
+        let shell = parse(&ok).unwrap().compile().unwrap().shell;
+        assert!(shell.no_session_approval.contains("ssh"));
+        assert!(shell.no_session_approval.contains("sudo"));
+        let bad = fixture().replace(
+            "no_session_approval = []",
+            "no_session_approval = [\"/usr/bin/ssh\"]",
+        );
+        let err = parse(&bad).unwrap().compile().unwrap_err();
+        assert!(err.contains("shell.no_session_approval[0]"), "{err}");
     }
 }

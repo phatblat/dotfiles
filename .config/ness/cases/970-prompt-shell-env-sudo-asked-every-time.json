@@ -1,0 +1,12 @@
+{
+  "command": "env sudo ls /",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command (asked every time): sudo"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}
