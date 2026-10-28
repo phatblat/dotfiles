@@ -1,0 +1,5 @@
+# Paths linked from the build-infra main worktree into each of its other
+# worktrees. One worktree-relative path per line; `#` starts a comment.
+# `.vault_password` is gitignored and must never be committed; ansible.cfg
+# references it for vault decryption.
+.vault_password
