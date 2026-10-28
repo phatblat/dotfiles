@@ -75,6 +75,9 @@ pub struct ShellPolicy {
     /// Substrings that make a read_only command prompt wherever they appear in
     /// its words (curl `-w '%output{file}'` writes a file).
     pub write_markers: BTreeMap<String, Vec<String>>,
+    /// Options whose value `write_markers` has to be able to read: a value the
+    /// shell cannot resolve (`curl -w "$fmt"`) could hold a marker, so it prompts.
+    pub marker_options: BTreeMap<String, Vec<String>>,
     /// Keyed by the words of the command prefix (`["docker", "compose"]`).
     pub wrappers: BTreeMap<Vec<String>, Wrapper>,
     pub leading_options: BTreeMap<Vec<String>, LeadingOptions>,
@@ -1849,6 +1852,61 @@ fn output_option_check(
     None
 }
 
+/// A `write_markers` substring in any of `words`, as typed or as the shell
+/// resolves it (`-w '%out'put{f}` is `%output{f}`), or a value after one of the
+/// command's `marker_options` that cannot be resolved (`curl -w "$fmt"`) and so
+/// could hold a marker.
+fn write_marker_check(p: &ShellPolicy, name: &str, words: &[(Value, String)]) -> Option<String> {
+    let markers = p.write_markers.get(name)?;
+    let options: &[String] = p.marker_options.get(name).map_or(&[], Vec::as_slice);
+    let readable = |v: &Value| matches!(v, Value::Resolved { glob: false, .. });
+    let mut options_ended = false;
+    for (i, (value, raw)) in words.iter().enumerate() {
+        let resolved: &[String] = match value {
+            Value::Resolved { values, .. } => values,
+            Value::Dynamic => &[],
+        };
+        let hit = markers
+            .iter()
+            .find(|m| raw.contains(m.as_str()) || resolved.iter().any(|v| v.contains(m.as_str())));
+        if let Some(m) = hit {
+            return Some(format!("shell: write marker: {name} {m}"));
+        }
+        if options_ended || options.is_empty() {
+            continue;
+        }
+        if single_literal(value).as_deref() == Some("--") {
+            options_ended = true;
+            continue;
+        }
+        if !readable(value) {
+            // An unreadable word that starts like the option: `-w"$fmt"`.
+            let head = raw.trim_start_matches(['"', '\'']);
+            let end = head.find(['$', '`', '*', '?', '[', '"', '\'']).unwrap_or(head.len());
+            if head.starts_with('-')
+                && head != "-"
+                && match_output_option(&head[..end], options).is_some()
+            {
+                return Some(format!("shell: write marker: {name} {raw}"));
+            }
+            continue;
+        }
+        let Some((opt, attached)) = resolved.iter().find_map(|t| match_output_option(t, options))
+        else {
+            continue;
+        };
+        // The value is the rest of this word or the next word.
+        if attached.is_none() {
+            if let Some((next, next_raw)) = words.get(i + 1) {
+                if !readable(next) {
+                    return Some(format!("shell: write marker: {name} {opt} {next_raw}"));
+                }
+            }
+        }
+    }
+    None
+}
+
 fn classify_command(
     p: &ShellPolicy,
     argv: &[(Value, String)],
@@ -2073,12 +2131,8 @@ fn classify_command(
                     i += 1;
                 }
             }
-            if let Some(markers) = p.write_markers.get(name) {
-                for (_, raw) in &argv[idx..] {
-                    if let Some(m) = markers.iter().find(|m| raw.contains(m.as_str())) {
-                        return Some(format!("shell: write marker: {name} {m}"));
-                    }
-                }
+            if let Some(r) = write_marker_check(p, name, &argv[idx..]) {
+                return Some(r);
             }
             return output_option_check(p, state, name, argv, idx);
         }
@@ -3037,5 +3091,57 @@ mod tests {
             }
             assert_eq!(classify(&p, command, "/"), reason, "{command} (approved)");
         }
+    }
+
+    fn curl_marker_policy() -> ShellPolicy {
+        let mut p = policy();
+        p.read_only.push(words("curl"));
+        p.write_markers.insert("curl".to_string(), strs(&["%output{"]));
+        p.marker_options.insert("curl".to_string(), strs(&["-w", "--write-out"]));
+        p
+    }
+
+    #[test]
+    fn write_markers_match_resolved_values() {
+        let p = curl_marker_policy();
+        let marker = Some("shell: write marker: curl %output{".to_string());
+        // Split quoting, escapes and known variables resolve to the marker.
+        for command in [
+            "curl -w '%out''put{x}' https://x",
+            "curl -w\"%out\"\"put{f}\" https://x",
+            "curl -w %out\\put{f} https://x",
+            "curl --write-out='%out'put{f} https://x",
+            "F='%output{notes.txt}'; curl -w \"$F\" https://x",
+        ] {
+            assert_eq!(classify(&p, command, "/"), marker, "{command}");
+        }
+        assert_eq!(classify(&p, "curl -s -w '%{http_code}' https://x", "/"), None);
+        assert_eq!(classify(&p, "curl -sw \"%{http_code}\" -o /dev/null https://x", "/"), None);
+    }
+
+    #[test]
+    fn write_markers_prompt_for_unreadable_formats() {
+        let p = curl_marker_policy();
+        let cases = [
+            ("curl -w \"$fmt\" https://x", "curl -w \"$fmt\""),
+            ("curl -w $fmt https://x", "curl -w $fmt"),
+            ("curl -w \"$(cat fmt.txt)\" https://x", "curl -w \"$(cat fmt.txt)\""),
+            ("curl -sw \"$fmt\" https://x", "curl -w \"$fmt\""),
+            ("curl --write-out \"$fmt\" https://x", "curl --write-out \"$fmt\""),
+            ("curl -w\"$fmt\" https://x", "curl -w\"$fmt\""),
+            ("curl --write-out=\"$fmt\" https://x", "curl --write-out=\"$fmt\""),
+        ];
+        for (command, shown) in cases {
+            assert_eq!(
+                classify(&p, command, "/"),
+                Some(format!("shell: write marker: {shown}")),
+                "{command}"
+            );
+        }
+        // An unreadable URL is not a format.
+        assert_eq!(classify(&p, "curl -s -w '%{http_code}' \"$url\"", "/"), None);
+        assert_eq!(classify(&p, "curl -s \"$url\"", "/"), None);
+        // Words after `--` are operands.
+        assert_eq!(classify(&p, "curl -s -- -w \"$url\"", "/"), None);
     }
 }

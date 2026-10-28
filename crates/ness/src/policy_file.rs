@@ -88,6 +88,7 @@ pub struct Shell {
     pub output_options: std::collections::BTreeMap<String, Vec<String>>,
     pub pipe_into: std::collections::BTreeMap<String, Vec<String>>,
     pub write_markers: std::collections::BTreeMap<String, Vec<String>>,
+    pub marker_options: std::collections::BTreeMap<String, Vec<String>>,
     pub wrappers: std::collections::BTreeMap<String, Wrapper>,
     pub leading_options: std::collections::BTreeMap<String, LeadingOptions>,
     pub unrecognized: Unrecognized,
@@ -198,13 +199,18 @@ impl Shell {
                 return Err(format!("shell.wrappers.{name}.separator: '{}' must be \"\" or \"--\"", w.separator));
             }
         }
-        // output_options
-        for (cmd, opts) in &self.output_options {
-            for (i, f) in opts.iter().enumerate() {
-                let short = f.len() == 2 && f.starts_with('-') && !f.starts_with("--");
-                let long = f.len() > 2 && f.starts_with("--");
-                if !short && !long {
-                    return Err(format!("shell.output_options.{cmd}[{i}]: '{f}' must be -x or --long"));
+        // output_options, marker_options
+        for (table, map) in [
+            ("output_options", &self.output_options),
+            ("marker_options", &self.marker_options),
+        ] {
+            for (cmd, opts) in map {
+                for (i, f) in opts.iter().enumerate() {
+                    let short = f.len() == 2 && f.starts_with('-') && !f.starts_with("--");
+                    let long = f.len() > 2 && f.starts_with("--");
+                    if !short && !long {
+                        return Err(format!("shell.{table}.{cmd}[{i}]: '{f}' must be -x or --long"));
+                    }
                 }
             }
         }
@@ -296,6 +302,7 @@ impl Shell {
         let write_flags = fold_keys("write_flags", self.write_flags)?;
         let output_options = fold_keys("output_options", self.output_options)?;
         let write_markers = fold_keys("write_markers", self.write_markers)?;
+        let marker_options = fold_keys("marker_options", self.marker_options)?;
         Ok(crate::shell::ShellPolicy {
             scratch_dirs,
             sinks: self.sinks,
@@ -307,6 +314,7 @@ impl Shell {
             output_options,
             pipe_into,
             write_markers,
+            marker_options,
             wrappers,
             leading_options,
             unrecognized: self.unrecognized,
@@ -616,5 +624,15 @@ mod tests {
         );
         let err = parse(&bad).unwrap().compile().unwrap_err();
         assert!(err.contains("shell.no_session_approval[0]"), "{err}");
+    }
+
+    #[test]
+    fn rejects_marker_option_that_is_not_an_option() {
+        let text = fixture().replace(
+            "[shell.marker_options]",
+            "[shell.marker_options]\ncurl = [\"w\"]",
+        );
+        let err = parse(&text).unwrap().compile().unwrap_err();
+        assert!(err.contains("shell.marker_options.curl[0]"), "{err}");
     }
 }

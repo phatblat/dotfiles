@@ -75,6 +75,8 @@ sed = ["-i", "--in-place"]
 
 [shell.write_markers]
 
+[shell.marker_options]
+
 [shell.pipe_into]
 
 [shell.wrappers.env]

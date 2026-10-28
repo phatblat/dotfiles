@@ -303,9 +303,13 @@ yq = ["-i", "--inplace"]
 curl = ["-o", "--output", "-D", "--dump-header", "-c", "--cookie-jar", "--trace", "--trace-ascii", "--stderr", "--etag-save", "--libcurl", "--hsts", "--alt-svc", "--ssl-sessions", "--expand-output", "--expand-dump-header", "--expand-cookie-jar", "--expand-trace", "--expand-trace-ascii", "--expand-stderr", "--expand-etag-save", "--expand-libcurl", "--expand-hsts", "--expand-alt-svc", "--expand-ssl-sessions"]
 docker = ["-o", "--output"]
 
-# Substrings that make a read_only command prompt wherever they appear in its words: curl -w/--write-out '%output{file}' (curl >= 8.3) writes a file.
+# Substrings that make a read_only command prompt wherever they appear in its words, as typed or as the shell resolves them (`-w '%out'put{f}` is `%output{f}`): curl -w/--write-out '%output{file}' (curl >= 8.3) writes a file.
 [shell.write_markers]
 curl = ["%output{"]
+
+# Options whose value is checked for the markers above. A value the shell cannot resolve (`curl -w "$fmt"`, `-w "$(cat f)"`) could hold a marker, so it prompts.
+[shell.marker_options]
+curl = ["-w", "--write-out", "--expand-write-out"]
 
 # Fetchers whose output must not be piped into these interpreters: `curl URL | python3` runs remote code. Each sink is the interpreter followed by the options that supply inline code (`python3 -c '...'`): with those, stdin is data and the pipe is allowed. Each pipeline stage is otherwise classified on its own.
 [shell.pipe_into]
