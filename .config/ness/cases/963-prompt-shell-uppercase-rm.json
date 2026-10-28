@@ -1,0 +1,12 @@
+{
+  "command": "RM /etc/ness-case-963",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write outside scratch dirs: rm /etc/ness-case-963"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

@@ -95,6 +95,38 @@ pub struct Shell {
     pub trusted_dirs: Vec<String>,
 }
 
+/// Allow mode compares command names case-insensitively (macOS volumes fold
+/// case, so `RM` runs /bin/rm): the engine lowercases the name it looks up, so
+/// policy names are lowercased here. A path (`./.venv/bin/python`) is a
+/// literal and keeps its case.
+fn fold_name(name: &str) -> String {
+    if name.contains('/') {
+        name.to_string()
+    } else {
+        name.to_ascii_lowercase()
+    }
+}
+
+/// An entry's first word is its command name.
+fn fold_entry(mut words: Vec<String>) -> Vec<String> {
+    words[0] = fold_name(&words[0]);
+    words
+}
+
+/// `map` re-keyed by `fold_name`; two keys that differ only in case collide.
+fn fold_keys<V>(
+    table: &str,
+    map: std::collections::BTreeMap<String, V>,
+) -> Result<std::collections::BTreeMap<String, V>, String> {
+    let mut out = std::collections::BTreeMap::new();
+    for (k, v) in map {
+        if out.insert(fold_name(&k), v).is_some() {
+            return Err(format!("shell.{table}: duplicate name '{k}' (names are case-insensitive)"));
+        }
+    }
+    Ok(out)
+}
+
 impl Shell {
     pub fn compile(self) -> Result<crate::shell::ShellPolicy, String> {
         // scratch_dirs non-empty
@@ -118,7 +150,7 @@ impl Shell {
             if words.is_empty() {
                 return Err(format!("shell.read_only[{i}]: empty entry"));
             }
-            read_only.push(words);
+            read_only.push(fold_entry(words));
         }
         let mut allow_write = Vec::new();
         for (i, v) in self.allow_write.iter().enumerate() {
@@ -126,7 +158,7 @@ impl Shell {
             if words.is_empty() {
                 return Err(format!("shell.allow_write[{i}]: empty entry"));
             }
-            allow_write.push(words);
+            allow_write.push(fold_entry(words));
         }
         // protected_env validation
         for (i, v) in self.protected_env.iter().enumerate() {
@@ -187,9 +219,11 @@ impl Shell {
                 if let Some(w) = words[1..].iter().find(|w| !w.starts_with('-')) {
                     return Err(format!("shell.pipe_into.{cmd}[{i}]: '{w}' must start with '-'"));
                 }
-                compiled.push(words);
+                compiled.push(fold_entry(words));
             }
-            pipe_into.insert(cmd.clone(), compiled);
+            if pipe_into.insert(fold_name(cmd), compiled).is_some() {
+                return Err(format!("shell.pipe_into: duplicate name '{cmd}' (names are case-insensitive)"));
+            }
         }
         // write_markers
         for (cmd, markers) in &self.write_markers {
@@ -240,33 +274,37 @@ impl Shell {
         let scratch_dirs = self.scratch_dirs.iter().map(|s| std::path::PathBuf::from(s)).collect();
         let mut wrappers = std::collections::BTreeMap::new();
         for (k, w) in self.wrappers {
-            let key: Vec<String> = k.split_whitespace().map(str::to_owned).collect();
+            let key = fold_entry(k.split_whitespace().map(str::to_owned).collect());
             if wrappers.insert(key, w).is_some() {
                 return Err(format!("shell.wrappers: duplicate name '{k}'"));
             }
         }
         let mut leading_options = std::collections::BTreeMap::new();
         for (k, lo) in self.leading_options {
-            let key: Vec<String> = k.split_whitespace().map(str::to_owned).collect();
+            let key = fold_entry(k.split_whitespace().map(str::to_owned).collect());
             if leading_options.insert(key, lo).is_some() {
                 return Err(format!("shell.leading_options: duplicate name '{k}'"));
             }
         }
+        let path_writers = fold_keys("path_writers", self.path_writers)?;
+        let write_flags = fold_keys("write_flags", self.write_flags)?;
+        let output_options = fold_keys("output_options", self.output_options)?;
+        let write_markers = fold_keys("write_markers", self.write_markers)?;
         Ok(crate::shell::ShellPolicy {
             scratch_dirs,
             sinks: self.sinks,
             protected_env: self.protected_env,
             read_only,
             allow_write,
-            path_writers: self.path_writers,
-            write_flags: self.write_flags,
-            output_options: self.output_options,
+            path_writers,
+            write_flags,
+            output_options,
             pipe_into,
-            write_markers: self.write_markers,
+            write_markers,
             wrappers,
             leading_options,
             unrecognized: self.unrecognized,
-            guarded: self.guarded.into_iter().collect(),
+            guarded: self.guarded.iter().map(|g| g.to_ascii_lowercase()).collect(),
             approved: std::collections::BTreeSet::new(),
             trusted_dirs,
         })
@@ -521,5 +559,34 @@ mod tests {
         let text = fixture().replace(r"'(?i)(\.env($|\.)|\.ssh/)'", "'(unclosed'");
         let err = parse(&text).unwrap().compile().unwrap_err();
         assert!(err.contains("protected_paths[0]"), "{err}");
+    }
+
+    #[test]
+    fn shell_command_names_are_lowercased_on_load() {
+        let text = fixture()
+            .replace("guarded = []", "guarded = [\"PlistBuddy\"]")
+            .replace(
+                "allow_write = [\"gh api\", \"git commit\"]",
+                "allow_write = [\"GH api\", \"./.venv/bin/Python\"]",
+            )
+            .replace("rm = \"all\"", "RM = \"all\"")
+            .replace("[shell.wrappers.env]", "[shell.wrappers.ENV]");
+        let shell = parse(&text).unwrap().compile().unwrap().shell;
+        assert!(shell.guarded.contains("plistbuddy"));
+        assert_eq!(shell.allow_write[0], ["gh", "api"]);
+        // A path is a literal and keeps its case.
+        assert_eq!(shell.allow_write[1], ["./.venv/bin/Python"]);
+        assert!(shell.path_writers.contains_key("rm"));
+        assert!(shell.wrappers.contains_key(&vec!["env".to_string()]));
+    }
+
+    #[test]
+    fn rejects_command_names_that_differ_only_in_case() {
+        let text = fixture().replace("rm = \"all\"", "rm = \"all\"\nRM = \"last\"");
+        let err = parse(&text).unwrap().compile().unwrap_err();
+        assert!(
+            err.contains("shell.path_writers") && err.contains("duplicate"),
+            "{err}"
+        );
     }
 }

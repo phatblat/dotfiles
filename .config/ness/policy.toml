@@ -240,7 +240,9 @@ tools = ["WebSearch", "mcp__acp__Bash", "mcp__acp__Edit", "mcp__acp__Write"]
 # targets outside scratch_dirs, protected_env assignments, and unparseable input ->
 # prompt. A command on no list: unrecognized = "allow" runs it unless its name
 # (argv0 basename) is in guarded; a command reached through a wrapper must be on a
-# list. unrecognized = "prompt" asks for every unlisted command and matches argv0
+# list. Allow mode compares names case-insensitively (macOS volumes fold case, so
+# `RM -rf x` runs rm) and never recognizes a name with non-ASCII characters.
+# unrecognized = "prompt" asks for every unlisted command and matches argv0
 # literally. omp's harness-guard hook shows a dialog for `prompt` (guarded and
 # unrecognized commands can be approved for the rest of the session) and blocks
 # when headless. Every other harness treats `prompt` like allow. Entries are argv

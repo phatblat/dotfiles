@@ -315,12 +315,12 @@ fn walk_pipeline(
         let stages: Vec<Option<Vec<String>>> = pipeline.seq.iter().map(stage_words).collect();
         for (i, first) in stages.iter().enumerate() {
             let Some(first) = first else { continue };
-            let fetcher = command_name(&first[0]);
-            let Some(sinks) = p.pipe_into.get(fetcher) else {
+            let fetcher = command_name(&first[0]).to_ascii_lowercase();
+            let Some(sinks) = p.pipe_into.get(&fetcher) else {
                 continue;
             };
             for later in stages[i + 1..].iter().flatten() {
-                let name = command_name(&later[0]);
+                let name = command_name(&later[0]).to_ascii_lowercase();
                 for sink in sinks.iter().filter(|s| s[0] == name) {
                     let inline = later[1..]
                         .iter()
@@ -1813,8 +1813,19 @@ fn classify_command(
     // A path-qualified command is recognized by basename only in a trusted
     // directory: `/tmp/x/git` or `./deploy.sh` is whatever the file contains.
     let trusted = !argv0.contains('/') || dir_trusted(p, &argv0);
+    // Allow mode recognizes a command by its basename, lowercased: macOS
+    // volumes fold case, so `RM -rf x` runs /bin/rm. Policy names are
+    // lowercased on load, so the lookups below compare exactly. A name with
+    // non-ASCII characters is never recognized: the volume's Unicode folding
+    // can map it onto a listed name.
+    let folded: String;
     let name: &str = if allow_mode && trusted {
-        command_name(&argv0)
+        let base = command_name(&argv0);
+        if !base.is_ascii() {
+            return approvable(p, format!("shell: unrecognized command: {argv0}"));
+        }
+        folded = base.to_ascii_lowercase();
+        &folded
     } else {
         &argv0
     };
@@ -2753,6 +2764,11 @@ mod tests {
             classify(&p, "curl -s https://x | jq . | /usr/bin/python3", "/"),
             Some("shell: pipe into interpreter: curl | python3".to_string())
         );
+        // Names fold case: macOS runs `PYTHON3` and `CURL` as the lowercase tools.
+        assert_eq!(
+            classify(&p, "CURL -s https://x | PYTHON3 -", "/"),
+            Some("shell: pipe into interpreter: curl | python3".to_string())
+        );
         // Inline code (`-c`) makes stdin data, not the program.
         assert_eq!(classify(&p, "curl -s https://x | python3 -c 'print(1)'", "/"), None);
         assert_eq!(classify(&p, "curl -s https://x | jq .", "/"), None);
@@ -2780,5 +2796,47 @@ mod tests {
             classify(&p, "docker exec c ls; touch notes.txt", "/"),
             Some("shell: write outside scratch dirs: touch notes.txt".to_string())
         );
+    }
+
+    #[test]
+    fn allow_mode_folds_command_name_case() {
+        let mut p = allow_mode(&["git"]);
+        p.read_only.push(words("git status"));
+        // `RM`, `SED -i` and `GIT` run the lowercase tools on a case-insensitive volume.
+        assert_eq!(
+            classify(&p, "RM /etc/x", "/"),
+            Some("shell: write outside scratch dirs: rm /etc/x".to_string())
+        );
+        assert_eq!(
+            classify(&p, "/usr/bin/RM /etc/x", "/"),
+            Some("shell: write outside scratch dirs: rm /etc/x".to_string())
+        );
+        assert_eq!(
+            classify(&p, "SED -i s/a/b/ notes.txt", "/"),
+            Some("shell: write flag: sed -i".to_string())
+        );
+        assert_eq!(
+            classify(&p, "GIT push origin main", "/"),
+            Some("shell: guarded command: git".to_string())
+        );
+        assert_eq!(classify(&p, "GIT status", "/"), None);
+        assert_eq!(classify(&p, "CAT notes.txt", "/"), None);
+    }
+
+    #[test]
+    fn prompt_mode_matches_command_names_literally() {
+        let p = policy();
+        assert_eq!(
+            classify(&p, "RM /tmp/x", "/"),
+            Some("shell: unrecognized command: RM".to_string())
+        );
+    }
+
+    #[test]
+    fn allow_mode_never_recognizes_non_ascii_names() {
+        // U+017F folds to `s` on a case-insensitive volume, so `ſed -i` may be `sed -i`.
+        let p = allow_mode(&[]);
+        let reason = Some("shell: unrecognized command: \u{17f}ed".to_string());
+        assert_eq!(classify(&p, "\u{17f}ed -i s/a/b/ notes.txt", "/"), reason);
     }
 }
