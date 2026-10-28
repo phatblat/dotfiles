@@ -158,7 +158,7 @@ impl Shell {
                     return Err(format!("shell.wrappers.{name}.prompt_options[{i}]: '{f}' must start with '-'"));
                 }
             }
-            if w.separator != "" && w.separator != "--" {
+            if !w.separator.is_empty() && w.separator != "--" {
                 return Err(format!("shell.wrappers.{name}.separator: '{}' must be \"\" or \"--\"", w.separator));
             }
         }
