@@ -130,7 +130,7 @@ neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.12.1"
 oh-my-pi = { version = "18.13.3", rename_exe = "omp" }
-opencode = "2.1.4"
+opencode = { version = "2.2.0", allow_builds = ["@opencode/cli"] }
 packer = "1.16.2"
 pandoc = "3.13"
 pi = "1.4.0"
