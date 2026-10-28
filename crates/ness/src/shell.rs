@@ -1711,6 +1711,25 @@ fn command_name(argv0: &str) -> &str {
     }
 }
 
+/// Homebrew installs GNU coreutils under `g`-prefixed names (`gsed`, `grm`,
+/// `genv`): the tool they twin, so they are classified as it. Only when the rest
+/// is on a list (`gh`, `git` and `go` twin nothing) and the name is not itself
+/// guarded (`gtimeout`).
+fn gnu_alias<'a>(p: &ShellPolicy, name: &'a str) -> &'a str {
+    let Some(rest) = name.strip_prefix('g') else {
+        return name;
+    };
+    let listed = p.guarded.contains(rest)
+        || p.path_writers.contains_key(rest)
+        || p.wrappers.keys().any(|k| k[0] == rest)
+        || p.read_only.iter().chain(&p.allow_write).any(|e| e[0] == rest);
+    if rest.len() > 1 && listed && !p.guarded.contains(name) {
+        rest
+    } else {
+        name
+    }
+}
+
 /// Whether the directory of a path-qualified argv0 is one of `trusted_dirs`
 /// (exact match: no prefix or `..` games).
 fn dir_trusted(p: &ShellPolicy, argv0: &str) -> bool {
@@ -2005,7 +2024,8 @@ fn classify_command(
     // volumes fold case, so `RM -rf x` runs /bin/rm. Policy names are
     // lowercased on load, so the lookups below compare exactly. A name with
     // non-ASCII characters is never recognized: the volume's Unicode folding
-    // can map it onto a listed name.
+    // can map it onto a listed name. Homebrew's GNU twins (`gsed`, `grm`,
+    // `genv`) are the tool they twin.
     let folded: String;
     let name: &str = if allow_mode && trusted {
         let base = command_name(&argv0);
@@ -2013,7 +2033,7 @@ fn classify_command(
             return approvable(p, "unrecognized command", &argv0, argv, appends);
         }
         folded = base.to_ascii_lowercase();
-        &folded
+        gnu_alias(p, &folded)
     } else {
         &argv0
     };
@@ -3355,5 +3375,83 @@ mod tests {
         // Without them the wrapped command is judged where ness is.
         assert_eq!(classify(&p, "env -u FOO rm data", "/tmp"), None);
         assert_eq!(classify(&p, "mise exec -- rm data", "/tmp"), None);
+    }
+
+    #[test]
+    fn gnu_twins_are_the_tool_they_twin() {
+        let p = allow_mode(&[]);
+        // Homebrew's gsed, grm, genv and gxargs are sed, rm, env and xargs.
+        assert_eq!(
+            classify(&p, "gsed -i s/a/b/ notes.txt", "/"),
+            Some("shell: write flag: sed -i".to_string())
+        );
+        assert_eq!(classify(&p, "gsed -n 1p notes.txt", "/"), None);
+        assert_eq!(
+            classify(&p, "grm /etc/x", "/"),
+            Some("shell: write outside scratch dirs: rm /etc/x".to_string())
+        );
+        assert_eq!(
+            classify(&p, "GENV PATH=/tmp/x ls", "/"),
+            Some("shell: sets PATH".to_string())
+        );
+        assert_eq!(
+            classify(&p, "gxargs rm", "/"),
+            Some("shell: write outside scratch dirs: rm (xargs input)".to_string())
+        );
+        // Names that twin nothing, and names that are guarded themselves, stay as they are.
+        let mut guarded = allow_mode(&["gtimeout"]);
+        guarded.wrappers.insert(words("timeout"), timeout_wrapper());
+        assert_eq!(gnu_alias(&guarded, "gtimeout"), "gtimeout");
+        assert_eq!(gnu_alias(&p, "gh"), "gh");
+        assert_eq!(gnu_alias(&p, "git"), "git");
+        assert_eq!(gnu_alias(&p, "grep"), "grep");
+        assert_eq!(gnu_alias(&p, "g"), "g");
+        assert_eq!(gnu_alias(&p, "gsed"), "sed");
+    }
+
+    #[test]
+    fn real_policy_guards_every_interpreter_and_launcher() {
+        let p = real_policy();
+        let listed = |name: &str| {
+            p.guarded.contains(name)
+                || p.wrappers.keys().any(|k| k[0] == name)
+                || p.read_only.iter().chain(&p.allow_write).any(|e| e[0] == name)
+        };
+        // An interpreter pipe_into names runs whatever code it is given.
+        for (fetcher, sinks) in &p.pipe_into {
+            for sink in sinks {
+                let name = sink[0].to_ascii_lowercase();
+                assert!(listed(&name), "{fetcher} | {name} is neither guarded nor listed");
+                if p.guarded.contains(&name) {
+                    assert!(
+                        p.no_session_approval.contains(&name),
+                        "{name} is an interpreter, so it is asked about every time"
+                    );
+                }
+            }
+        }
+        // Launchers run a command ness would not classify: guarded (or a wrapper), and
+        // asked about every time.
+        let wrappers = ["env", "nice", "nohup", "timeout", "xargs"];
+        for name in wrappers {
+            assert!(p.wrappers.keys().any(|k| k[0] == name), "{name} has no [shell.wrappers]");
+        }
+        let launchers = [
+            "arch", "at", "batch", "caffeinate", "chroot", "doas", "flock", "gtimeout", "ionice",
+            "nsenter", "sandbox-exec", "setsid", "ssh-agent", "stdbuf", "su", "sudo", "sudoedit",
+            "taskset", "unbuffer", "unshare", "watch",
+        ];
+        for name in launchers {
+            assert!(p.guarded.contains(name), "{name} is not guarded");
+            assert!(p.no_session_approval.contains(name), "{name} can be approved by name");
+        }
+        // Builtins and writers that ran silently once unrecognized commands were allowed.
+        let guarded = [
+            "c++", "cc", "clang", "clang++", "compgen", "csplit", "ffmpeg", "g++", "gcc", "java",
+            "julia", "lua", "mapfile", "node", "nodejs", "php", "readarray", "sd",
+        ];
+        for name in guarded {
+            assert!(p.guarded.contains(name), "{name} is not guarded");
+        }
     }
 }

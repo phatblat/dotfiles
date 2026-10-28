@@ -1,0 +1,12 @@
+{
+  "command": "node script.js",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command (asked every time): node"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

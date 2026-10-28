@@ -1,0 +1,12 @@
+{
+  "command": "setsid sleep 60",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command (asked every time): setsid"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

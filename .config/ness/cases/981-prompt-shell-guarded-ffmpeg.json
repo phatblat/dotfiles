@@ -1,0 +1,12 @@
+{
+  "command": "ffmpeg -i in.mp4 out.mp4",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command: ffmpeg -i in.mp4 out.mp4"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}
