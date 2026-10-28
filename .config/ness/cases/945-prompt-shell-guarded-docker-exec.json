@@ -1,10 +1,10 @@
 {
-  "command": "make-believe-tool --run",
+  "command": "docker exec wr-stg-wave-rider-db-1 ls /var/lib/wave-rider/db",
   "content": null,
   "cwd": null,
   "expected": {
     "decision": "prompt",
-    "reason": "shell: unrecognized command: make-believe-tool"
+    "reason": "shell: guarded command: docker"
   },
   "harness": "omp",
   "path": null,

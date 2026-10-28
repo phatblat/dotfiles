@@ -1,0 +1,12 @@
+{
+  "command": "curl -s -X POST http://localhost:3000/api/admin/provisioning/dashboards/reload",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write flag: curl -X"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

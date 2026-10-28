@@ -3,7 +3,7 @@
 // Routes omp tool calls through the compiled harness guard (ness) so omp
 // enforces the same protected paths, blocked command categories, and
 // secret-content rules as every other harness. Also turns ness's `prompt`
-// verdict into a confirm dialog (or a block when headless). Hand-written on
+// verdict into a dialog (or a block when headless); guarded/unrecognized-command reasons can be approved for the rest of the session. Hand-written on
 // purpose: ~/.omp/agent is tracked manually, not emitted by scripts/agent-harnesses.py.
 
 import { execFileSync } from "node:child_process";
@@ -22,6 +22,27 @@ const REMEDY =
   "Run `just ness-install`; if the hook source changed mid-session (e.g. `git pull`), " +
   "restart omp — a running session keeps the module it loaded.";
 const VERDICTS = new Set(["allow", "warn", "prompt", "deny"]);
+// Command-level ness reasons a user may approve for the rest of one omp
+// session; ness skips them when passed back via `ness guard --approved`.
+const SESSION_APPROVABLE = ["shell: guarded command: ", "shell: unrecognized command: "];
+// Launchers, interpreters and remote shells run whatever they are given, so approving
+// one by name would approve every later invocation. They are asked about each time.
+const NEVER_REMEMBER: Record<string, true> = Object.fromEntries(
+  [
+    ".", "arch", "at", "batch", "bash", "builtin", "caffeinate", "command", "dash", "doas", "env",
+    "eval", "exec", "fish", "flock", "gtimeout", "ksh", "node", "nohup", "nu", "osascript",
+    "parallel", "perl", "python", "python3", "ruby", "sandbox-exec", "scp", "screen", "script",
+    "sftp", "sh", "source", "ssh", "stdbuf", "su", "sudo", "tmux", "unbuffer", "watch", "xargs", "zsh",
+  ].map((n) => [n, true] as const),
+);
+function rememberable(reason: string): boolean {
+  const prefix = SESSION_APPROVABLE.find((p) => reason.startsWith(p));
+  if (!prefix) return false;
+  const name = reason.slice(prefix.length).split("/").pop() ?? "";
+  return name !== "" && !Object.hasOwn(NEVER_REMEMBER, name);
+}
+// sessionId -> reasons approved with "don't ask again". In memory only.
+const sessionApprovals = new Map<string, Set<string>>();
 // 2026-09-07 optimize-harness audit: bash sees a 9.2% tool-error rate
 // (871/9460 attempts) and its own p95 (7197ms) exceeds GUARD_TIMEOUT_MS
 // (5000ms), so some fraction of "bash failed" is plausibly the guard
@@ -291,6 +312,8 @@ export default function hook(pi: ExtensionAPI): void {
     }
 
     const cwd = typeof ctx?.cwd === "string" ? ctx.cwd : "";
+    const sessionId = typeof ctx?.sessionManager?.getSessionId === "function" ? ctx.sessionManager.getSessionId() : undefined;
+    const approved = typeof sessionId === "string" && sessionId ? sessionApprovals.get(sessionId) : undefined;
     const rawCwd = event.toolName === "bash" && typeof input.cwd === "string" ? input.cwd : "";
     const bashCwd = rawCwd && !rawCwd.includes("://") ? resolve(cwd, rawCwd) : cwd;
     type Call = { args: string[]; cwd: string; honorPrompt: boolean };
@@ -299,7 +322,10 @@ export default function hook(pi: ExtensionAPI): void {
       calls.push({ args: ["--tool", "write", "--path", write.path, "--content", write.content], cwd, honorPrompt: false });
     }
     for (const command of checks.commands) {
-      calls.push({ args: ["--tool", "bash", "--command", command], cwd: bashCwd, honorPrompt: event.toolName === "bash" });
+      const honorPrompt = event.toolName === "bash";
+      const args = ["--tool", "bash", "--command", command];
+      if (honorPrompt && approved?.size) args.push("--approved", [...approved].join("\n"));
+      calls.push({ args, cwd: bashCwd, honorPrompt });
     }
     for (const path of derived) {
       calls.push({ args: ["--tool", "write", "--path", path, "--content", ""], cwd, honorPrompt: false });
@@ -327,9 +353,27 @@ export default function hook(pi: ExtensionAPI): void {
       if (!ctx?.hasUI) {
         return { block: true, reason: `${promptReason}. No interactive UI can approve it in this session; run it from the main session or allowlist it under [shell] in ~/.config/ness/policy.toml.` };
       }
-      const ok = await ctx.ui.confirm("ness: approve bash command?", `${promptReason}\n\n${String(input.command ?? "")}`);
-      if (!ok) {
-        return { block: true, reason: `Declined by user: ${promptReason}` };
+      const details = `${promptReason}\n\n${String(input.command ?? "")}`;
+      const remember =
+        typeof sessionId === "string" && sessionId !== "" &&
+        typeof ctx.ui.select === "function" &&
+        rememberable(promptReason);
+      if (remember) {
+        const sessionLabel = `Yes, and don't ask again this session for: ${promptReason.replace(/^shell: /, "")}`;
+        const choice = await ctx.ui.select(`ness: approve bash command?\n\n${details}`, ["Yes", sessionLabel, "No"]);
+        if (choice !== "Yes" && choice !== sessionLabel) {
+          return { block: true, reason: `Declined by user: ${promptReason}` };
+        }
+        if (choice === sessionLabel) {
+          let set = sessionApprovals.get(sessionId);
+          if (!set) sessionApprovals.set(sessionId, (set = new Set()));
+          set.add(promptReason);
+        }
+      } else {
+        const ok = await ctx.ui.confirm("ness: approve bash command?", details);
+        if (!ok) {
+          return { block: true, reason: `Declined by user: ${promptReason}` };
+        }
       }
     }
     return undefined;

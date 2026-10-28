@@ -1,0 +1,12 @@
+{
+  "command": "timeout 5 ./scripts/deploy.sh",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unrecognized command: ./scripts/deploy.sh"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

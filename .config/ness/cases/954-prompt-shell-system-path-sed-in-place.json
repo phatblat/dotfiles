@@ -1,0 +1,12 @@
+{
+  "command": "/usr/bin/sed -i '' s/a/b/ notes.txt",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write flag: sed -i"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}
