@@ -25,6 +25,22 @@ const VERDICTS = new Set(["allow", "warn", "prompt", "deny"]);
 // Command-level ness reasons a user may approve for the rest of one omp
 // session; ness skips them when passed back via `ness guard --approved`.
 const SESSION_APPROVABLE = ["shell: guarded command: ", "shell: unrecognized command: "];
+// Launchers, interpreters and remote shells run whatever they are given, so approving
+// one by name would approve every later invocation. They are asked about each time.
+const NEVER_REMEMBER: Record<string, true> = Object.fromEntries(
+  [
+    ".", "arch", "at", "batch", "bash", "builtin", "caffeinate", "command", "dash", "doas", "env",
+    "eval", "exec", "fish", "flock", "gtimeout", "ksh", "node", "nohup", "nu", "osascript",
+    "parallel", "perl", "python", "python3", "ruby", "sandbox-exec", "scp", "screen", "script",
+    "sftp", "sh", "source", "ssh", "stdbuf", "su", "sudo", "tmux", "unbuffer", "watch", "xargs", "zsh",
+  ].map((n) => [n, true] as const),
+);
+function rememberable(reason: string): boolean {
+  const prefix = SESSION_APPROVABLE.find((p) => reason.startsWith(p));
+  if (!prefix) return false;
+  const name = reason.slice(prefix.length).split("/").pop() ?? "";
+  return name !== "" && !Object.hasOwn(NEVER_REMEMBER, name);
+}
 // sessionId -> reasons approved with "don't ask again". In memory only.
 const sessionApprovals = new Map<string, Set<string>>();
 // 2026-09-07 optimize-harness audit: bash sees a 9.2% tool-error rate
@@ -341,7 +357,7 @@ export default function hook(pi: ExtensionAPI): void {
       const remember =
         typeof sessionId === "string" && sessionId !== "" &&
         typeof ctx.ui.select === "function" &&
-        SESSION_APPROVABLE.some((prefix) => promptReason.startsWith(prefix));
+        rememberable(promptReason);
       if (remember) {
         const sessionLabel = `Yes, and don't ask again this session for: ${promptReason.replace(/^shell: /, "")}`;
         const choice = await ctx.ui.select(`ness: approve bash command?\n\n${details}`, ["Yes", sessionLabel, "No"]);
