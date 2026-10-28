@@ -1890,6 +1890,14 @@ fn classify_command(
                                 i += 1;
                                 continue;
                             }
+                            // GNU getopt takes any unambiguous prefix of a long
+                            // option, so `env --sp=...` is `--split-string`: an
+                            // unlisted `--opt=value` may be a prompt option.
+                            if opt.starts_with("--") {
+                                return Some(format!(
+                                    "shell: unknown wrapper option: {key_text} {opt}"
+                                ));
+                            }
                         } else if w.value_options.iter().any(|vo| vo == s) {
                             // skip next
                             if i + 1 >= argv.len() {
@@ -2871,5 +2879,26 @@ mod tests {
             p.approved.insert("shell: unrecognized command: ./t.sh".to_string());
             assert_eq!(classify(&p, command, "/"), Some(reason), "{command} (approved)");
         }
+    }
+
+    #[test]
+    fn unknown_long_wrapper_option_with_value_prompts() {
+        let mut p = allow_mode(&[]);
+        let env = p.wrappers.get_mut(&words("env")).unwrap();
+        env.value_options = strs(&["-u", "--unset"]);
+        env.prompt_options = strs(&["-S", "--split-string"]);
+        // GNU getopt accepts any unambiguous prefix, so `--sp` is `--split-string`
+        // and the exact-match prompt options never see it.
+        assert_eq!(
+            classify(&p, "env --sp='touch notes.txt'", "/"),
+            Some("shell: unknown wrapper option: env --sp".to_string())
+        );
+        assert_eq!(
+            classify(&p, "env --s=x ls", "/"),
+            Some("shell: unknown wrapper option: env --s".to_string())
+        );
+        // Listed value options and plain flags still pass through.
+        assert_eq!(classify(&p, "env --unset=FOO ls", "/"), None);
+        assert_eq!(classify(&p, "env --ignore-environment ls", "/"), None);
     }
 }

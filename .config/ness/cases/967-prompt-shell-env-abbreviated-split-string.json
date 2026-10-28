@@ -1,0 +1,12 @@
+{
+  "command": "env --sp='touch notes.txt'",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unknown wrapper option: env --sp"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}
