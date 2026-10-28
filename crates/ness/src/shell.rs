@@ -3481,4 +3481,21 @@ mod tests {
             assert_eq!(classify(&p, command, "/tmp"), None, "{command}");
         }
     }
+
+    #[test]
+    fn uvx_prompts_even_for_skills_ref() {
+        let p = real_policy();
+        // uvx downloads and runs a package, so no invocation of it is read-only.
+        for command in [
+            "uvx --from skills-ref agentskills validate skills/x",
+            "uvx --from skills-ref agentskills",
+            "uvx ruff check .",
+        ] {
+            assert_eq!(
+                classify(&p, command, "/tmp"),
+                Some(format!("shell: guarded command: {command}")),
+                "{command}"
+            );
+        }
+    }
 }

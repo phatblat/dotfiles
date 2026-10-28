@@ -1,0 +1,12 @@
+{
+  "command": "uvx --from skills-ref agentskills validate skills/x",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command: uvx --from skills-ref agentskills validate skills/x"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}
