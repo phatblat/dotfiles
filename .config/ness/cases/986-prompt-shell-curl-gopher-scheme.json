@@ -1,0 +1,12 @@
+{
+  "command": "curl gopher://localhost:6379/_INFO",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write marker: curl gopher://"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

@@ -1955,9 +1955,12 @@ fn write_marker_check(p: &ShellPolicy, name: &str, words: &[(Value, String)]) ->
             Value::Resolved { values, .. } => values,
             Value::Dynamic => &[],
         };
-        let hit = markers
-            .iter()
-            .find(|m| raw.contains(m.as_str()) || resolved.iter().any(|v| v.contains(m.as_str())));
+        // URL schemes and write-out variables are not case-sensitive to an attacker.
+        let raw_lc = raw.to_ascii_lowercase();
+        let hit = markers.iter().find(|m| {
+            let m = m.to_ascii_lowercase();
+            raw_lc.contains(&m) || resolved.iter().any(|v| v.to_ascii_lowercase().contains(&m))
+        });
         if let Some(m) = hit {
             return Some(format!("shell: write marker: {name} {m}"));
         }
@@ -3497,5 +3500,22 @@ mod tests {
                 "{command}"
             );
         }
+    }
+
+    #[test]
+    fn curl_quote_and_non_http_schemes_prompt() {
+        let p = real_policy();
+        for (command, reason) in [
+            ("curl -Q 'DELE x' ftp://h/", "shell: write flag: curl -Q"),
+            ("curl --quote 'DELE x' sftp://h/", "shell: write flag: curl --quote"),
+            ("curl gopher://localhost:6379/_INFO", "shell: write marker: curl gopher://"),
+            ("curl GOPHER://localhost:6379/_INFO", "shell: write marker: curl gopher://"),
+            ("curl dict://localhost:11211/stats", "shell: write marker: curl dict://"),
+            ("curl file:///etc/hosts", "shell: write marker: curl file://"),
+        ] {
+            assert_eq!(classify(&p, command, "/tmp"), Some(reason.to_string()), "{command}");
+        }
+        assert_eq!(classify(&p, "curl -s https://example.com", "/tmp"), None);
+        assert_eq!(classify(&p, "curl -s http://localhost:9002/health", "/tmp"), None);
     }
 }

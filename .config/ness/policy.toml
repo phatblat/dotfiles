@@ -285,7 +285,7 @@ unlink = "all"
 [shell.write_flags]
 awk = ["-i"]
 base64 = ["-o", "--output"]
-curl = ["-X", "--request", "-d", "--data", "--data-ascii", "--data-binary", "--data-raw", "--data-urlencode", "-F", "--form", "--form-string", "--json", "-T", "--upload-file", "-O", "--remote-name", "--remote-name-all", "--output-dir", "-K", "--config", "--expand-data", "--expand-json", "--expand-form", "--expand-upload-file"]
+curl = ["-X", "--request", "-Q", "--quote", "-d", "--data", "--data-ascii", "--data-binary", "--data-raw", "--data-urlencode", "-F", "--form", "--form-string", "--json", "-T", "--upload-file", "-O", "--remote-name", "--remote-name-all", "--output-dir", "-K", "--config", "--expand-data", "--expand-json", "--expand-form", "--expand-upload-file"]
 fd = ["-x", "--exec", "-X", "--exec-batch"]
 file = ["-C", "--compile"]
 find = ["-delete", "-exec", "-execdir", "-ok", "-okdir", "-fls", "-fprint", "-fprint0", "-fprintf"]
@@ -304,9 +304,9 @@ yq = ["-i", "--inplace"]
 curl = ["-o", "--output", "-D", "--dump-header", "-c", "--cookie-jar", "--trace", "--trace-ascii", "--stderr", "--etag-save", "--libcurl", "--hsts", "--alt-svc", "--ssl-sessions", "--expand-output", "--expand-dump-header", "--expand-cookie-jar", "--expand-trace", "--expand-trace-ascii", "--expand-stderr", "--expand-etag-save", "--expand-libcurl", "--expand-hsts", "--expand-alt-svc", "--expand-ssl-sessions"]
 docker = ["-o", "--output"]
 
-# Substrings that make a read_only command prompt wherever they appear in its words, as typed or as the shell resolves them (`-w '%out'put{f}` is `%output{f}`): curl -w/--write-out '%output{file}' (curl >= 8.3) writes a file.
+# Substrings that make a read_only command prompt wherever they appear in its words, matched without regard to case, as typed or as the shell resolves them (`-w '%out'put{f}` is `%output{f}`). curl -w/--write-out '%output{file}' (curl >= 8.3) writes a file. The schemes are every curl protocol but http(s): gopher:// and dict:// speak raw TCP to local services, ftp:// and sftp:// take -Q commands, file:// reads local files.
 [shell.write_markers]
-curl = ["%output{"]
+curl = ["%output{", "dict://", "file://", "ftp://", "ftps://", "gopher://", "gophers://", "imap://", "imaps://", "ldap://", "ldaps://", "mqtt://", "pop3://", "pop3s://", "rtmp://", "rtmps://", "rtsp://", "scp://", "sftp://", "smb://", "smbs://", "smtp://", "smtps://", "telnet://", "tftp://"]
 
 # Options whose value is checked for the markers above. A value the shell cannot resolve (`curl -w "$fmt"`, `-w "$(cat f)"`) could hold a marker, so it prompts.
 [shell.marker_options]
