@@ -92,6 +92,7 @@ pub struct Shell {
     pub leading_options: std::collections::BTreeMap<String, LeadingOptions>,
     pub unrecognized: Unrecognized,
     pub guarded: Vec<String>,
+    pub trusted_dirs: Vec<String>,
 }
 
 impl Shell {
@@ -182,6 +183,19 @@ impl Shell {
                 }
             }
         }
+        // trusted_dirs
+        let mut trusted_dirs = Vec::new();
+        for (i, v) in self.trusted_dirs.iter().enumerate() {
+            let bad = !(v.starts_with('/') || v.starts_with("~/"))
+                || (v.len() > 1 && v.ends_with('/'));
+            if bad {
+                return Err(format!("shell.trusted_dirs[{i}]: '{v}' must be an absolute path or ~/path without a trailing '/'"));
+            }
+            trusted_dirs.push(match v.strip_prefix("~/") {
+                Some(rest) => crate::paths::home_dir().join(rest),
+                None => std::path::PathBuf::from(v),
+            });
+        }
         // guarded
         for (i, v) in self.guarded.iter().enumerate() {
             if v.is_empty() || v.contains(char::is_whitespace) || v.contains('/') {
@@ -238,6 +252,7 @@ impl Shell {
             unrecognized: self.unrecognized,
             guarded: self.guarded.into_iter().collect(),
             approved: std::collections::BTreeSet::new(),
+            trusted_dirs,
         })
     }
 }

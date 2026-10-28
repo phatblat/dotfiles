@@ -1,0 +1,12 @@
+{
+  "command": "/tmp/x/git status",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: unrecognized command: /tmp/x/git"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

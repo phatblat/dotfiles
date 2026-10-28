@@ -81,6 +81,8 @@ pub struct ShellPolicy {
     pub guarded: BTreeSet<String>,
     /// Prompt reasons the user approved for the session (`ness guard --approved`).
     pub approved: BTreeSet<String>,
+    /// Directories whose binaries are recognized by basename in allow mode.
+    pub trusted_dirs: Vec<PathBuf>,
 }
 #[derive(Debug, Clone)]
 enum Value {
@@ -1614,6 +1616,20 @@ fn command_name(argv0: &str) -> &str {
     }
 }
 
+/// Whether the directory of a path-qualified argv0 is one of `trusted_dirs`
+/// (exact match: no prefix or `..` games).
+fn dir_trusted(p: &ShellPolicy, argv0: &str) -> bool {
+    let Some((dir, _)) = argv0.rsplit_once('/') else {
+        return true;
+    };
+    let dir = if dir.is_empty() { "/" } else { dir };
+    let dir = match dir.strip_prefix("~/") {
+        Some(rest) => paths::home_dir().join(rest),
+        None => PathBuf::from(dir),
+    };
+    p.trusted_dirs.iter().any(|t| *t == dir)
+}
+
 /// `None` when the user already approved this reason for the session.
 fn approvable(p: &ShellPolicy, reason: String) -> Option<String> {
     if p.approved.contains(&reason) {
@@ -1776,7 +1792,10 @@ fn classify_command(
         None => return approvable(p, format!("shell: unrecognized command: {argv0_raw}")),
     };
     let allow_mode = p.unrecognized == Unrecognized::Allow;
-    let name: &str = if allow_mode {
+    // A path-qualified command is recognized by basename only in a trusted
+    // directory: `/tmp/x/git` or `./deploy.sh` is whatever the file contains.
+    let trusted = !argv0.contains('/') || dir_trusted(p, &argv0);
+    let name: &str = if allow_mode && trusted {
         command_name(&argv0)
     } else {
         &argv0
@@ -2072,7 +2091,7 @@ fn classify_command(
         return None;
     }
 
-    if allow_mode {
+    if allow_mode && trusted {
         if p.guarded.contains(name) {
             return approvable(p, format!("shell: guarded command: {name}"));
         }
@@ -2526,6 +2545,7 @@ mod tests {
         let mut p = policy();
         p.unrecognized = Unrecognized::Allow;
         p.guarded = guarded.iter().map(|s| s.to_string()).collect();
+        p.trusted_dirs = ["/bin", "/usr/bin", "/usr/local/bin"].iter().map(PathBuf::from).collect();
         p
     }
 
@@ -2547,6 +2567,31 @@ mod tests {
         let guarded = Some("shell: guarded command: docker".to_string());
         assert_eq!(classify(&p, "docker exec c ls", "/"), guarded);
         assert_eq!(classify(&p, "/usr/local/bin/docker exec c ls", "/"), guarded);
+    }
+
+    #[test]
+    fn allow_mode_prompts_for_commands_outside_trusted_dirs() {
+        let mut p = allow_mode(&["git"]);
+        p.read_only.push(words("git status"));
+        p.allow_write.push(words("./.venv/bin/python"));
+        assert_eq!(classify(&p, "/usr/bin/git status", "/"), None);
+        assert_eq!(
+            classify(&p, "./deploy.sh", "/"),
+            Some("shell: unrecognized command: ./deploy.sh".to_string())
+        );
+        assert_eq!(
+            classify(&p, "/tmp/x/git status", "/"),
+            Some("shell: unrecognized command: /tmp/x/git".to_string())
+        );
+        assert_eq!(
+            classify(&p, "/usr/bin/../../tmp/x/grep a b", "/"),
+            Some("shell: unrecognized command: /usr/bin/../../tmp/x/grep".to_string())
+        );
+        // A literal list entry still names a path-qualified command.
+        assert_eq!(classify(&p, "./.venv/bin/python -m pytest", "/"), None);
+        // An approval covers the reason, so it covers the path too.
+        p.approved.insert("shell: unrecognized command: ./deploy.sh".to_string());
+        assert_eq!(classify(&p, "./deploy.sh", "/"), None);
     }
 
     #[test]
