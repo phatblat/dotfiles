@@ -71,6 +71,8 @@ sed = ["-i", "--in-place"]
 
 [shell.output_options]
 
+[shell.write_markers]
+
 [shell.wrappers.env]
 value_options = ["-u"]
 operands = 0

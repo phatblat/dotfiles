@@ -68,6 +68,9 @@ pub struct ShellPolicy {
     pub path_writers: BTreeMap<String, TargetRule>,
     pub write_flags: BTreeMap<String, Vec<String>>,
     pub output_options: BTreeMap<String, Vec<String>>,
+    /// Substrings that make a read_only command prompt wherever they appear in
+    /// its words (curl `-w '%output{file}'` writes a file).
+    pub write_markers: BTreeMap<String, Vec<String>>,
     /// Keyed by the words of the command prefix (`["docker", "compose"]`).
     pub wrappers: BTreeMap<Vec<String>, Wrapper>,
     pub leading_options: BTreeMap<Vec<String>, LeadingOptions>,
@@ -1931,6 +1934,13 @@ fn classify_command(
                     i += 1;
                 }
             }
+            if let Some(markers) = p.write_markers.get(name) {
+                for (_, raw) in &argv[idx..] {
+                    if let Some(m) = markers.iter().find(|m| raw.contains(m.as_str())) {
+                        return Some(format!("shell: write marker: {name} {m}"));
+                    }
+                }
+            }
             return output_option_check(p, state, name, argv, idx);
         }
     }
@@ -2639,6 +2649,18 @@ mod tests {
         assert_eq!(
             classify(&p, "curl -X POST https://x", "/"),
             Some("shell: write flag: curl -X".to_string())
+        );
+    }
+
+    #[test]
+    fn write_markers_catch_write_out_files() {
+        let mut p = policy();
+        p.read_only.push(words("curl"));
+        p.write_markers.insert("curl".to_string(), strs(&["%output{"]));
+        assert_eq!(classify(&p, "curl -s -w '%{http_code}' https://x", "/"), None);
+        assert_eq!(
+            classify(&p, "curl -w '%output{notes.txt}%{http_code}' https://x", "/"),
+            Some("shell: write marker: curl %output{".to_string())
         );
     }
 

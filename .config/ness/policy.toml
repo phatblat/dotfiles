@@ -277,7 +277,7 @@ unlink = "all"
 [shell.write_flags]
 awk = ["-i"]
 base64 = ["-o", "--output"]
-curl = ["-X", "--request", "-d", "--data", "--data-ascii", "--data-binary", "--data-raw", "--data-urlencode", "-F", "--form", "--form-string", "--json", "-T", "--upload-file", "-O", "--remote-name", "--remote-name-all", "--output-dir", "-K", "--config"]
+curl = ["-X", "--request", "-d", "--data", "--data-ascii", "--data-binary", "--data-raw", "--data-urlencode", "-F", "--form", "--form-string", "--json", "-T", "--upload-file", "-O", "--remote-name", "--remote-name-all", "--output-dir", "-K", "--config", "--expand-data", "--expand-json", "--expand-form", "--expand-upload-file"]
 fd = ["-x", "--exec", "-X", "--exec-batch"]
 file = ["-C", "--compile"]
 find = ["-delete", "-exec", "-execdir", "-ok", "-okdir", "-fls", "-fprint", "-fprint0", "-fprintf"]
@@ -293,8 +293,12 @@ yq = ["-i", "--inplace"]
 
 # Options whose value is a file the command writes: allowed only when it is a sink or inside scratch_dirs.
 [shell.output_options]
-curl = ["-o", "--output", "-D", "--dump-header", "-c", "--cookie-jar", "--trace", "--trace-ascii", "--stderr", "--etag-save", "--libcurl", "--hsts", "--alt-svc"]
+curl = ["-o", "--output", "-D", "--dump-header", "-c", "--cookie-jar", "--trace", "--trace-ascii", "--stderr", "--etag-save", "--libcurl", "--hsts", "--alt-svc", "--ssl-sessions", "--expand-output", "--expand-dump-header", "--expand-cookie-jar", "--expand-trace", "--expand-trace-ascii", "--expand-stderr", "--expand-etag-save", "--expand-libcurl", "--expand-hsts", "--expand-alt-svc", "--expand-ssl-sessions"]
 docker = ["-o", "--output"]
+
+# Substrings that make a read_only command prompt wherever they appear in its words: curl -w/--write-out '%output{file}' (curl >= 8.3) writes a file.
+[shell.write_markers]
+curl = ["%output{"]
 
 # Launchers: the command after their options/operands (or after separator) is classified instead, and must itself be on a list. prompt_options take a command string and always prompt.
 [shell.wrappers.env]

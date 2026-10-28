@@ -1,0 +1,12 @@
+{
+  "command": "curl -s -w '%output{notes.txt}%{http_code}' https://example.com",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write marker: curl %output{"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

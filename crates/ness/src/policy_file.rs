@@ -86,6 +86,7 @@ pub struct Shell {
     pub path_writers: std::collections::BTreeMap<String, TargetRule>,
     pub write_flags: std::collections::BTreeMap<String, Vec<String>>,
     pub output_options: std::collections::BTreeMap<String, Vec<String>>,
+    pub write_markers: std::collections::BTreeMap<String, Vec<String>>,
     pub wrappers: std::collections::BTreeMap<String, Wrapper>,
     pub leading_options: std::collections::BTreeMap<String, LeadingOptions>,
     pub unrecognized: Unrecognized,
@@ -172,6 +173,14 @@ impl Shell {
                 }
             }
         }
+        // write_markers
+        for (cmd, markers) in &self.write_markers {
+            for (i, m) in markers.iter().enumerate() {
+                if m.is_empty() {
+                    return Err(format!("shell.write_markers.{cmd}[{i}]: empty marker"));
+                }
+            }
+        }
         // guarded
         for (i, v) in self.guarded.iter().enumerate() {
             if v.is_empty() || v.contains(char::is_whitespace) || v.contains('/') {
@@ -221,6 +230,7 @@ impl Shell {
             path_writers: self.path_writers,
             write_flags: self.write_flags,
             output_options: self.output_options,
+            write_markers: self.write_markers,
             wrappers,
             leading_options,
             unrecognized: self.unrecognized,
