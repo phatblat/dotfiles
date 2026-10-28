@@ -1,0 +1,12 @@
+{
+  "command": "env -P /tmp/evil ls",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: command string: env -P"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

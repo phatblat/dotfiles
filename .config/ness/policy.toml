@@ -298,12 +298,12 @@ docker = ["-o", "--output"]
 
 # Launchers: the command after their options/operands (or after separator) is classified instead, and must itself be on a list. prompt_options take a command string and always prompt.
 [shell.wrappers.env]
-value_options = ["-u", "--unset", "-C", "--chdir", "-P"]
+value_options = ["-u", "--unset", "-C", "--chdir"]
 operands = 0
 assignments = true
 appends_operands = false
 separator = ""
-prompt_options = ["-S", "--split-string"]
+prompt_options = ["-P", "-S", "--split-string"]
 
 [shell.wrappers."mise exec"]
 value_options = []
