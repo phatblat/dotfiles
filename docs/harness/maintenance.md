@@ -13,14 +13,14 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.306 (Claude Code) · 2026-10-28 | - |
+| claude | aligned | shared | - | probe · 2.1.251 (Claude Code) · 2026-10-28 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.164.0 · 2026-10-28 | - |
 | opencode | aligned | shared | - | probe · opencode v2.1.4 · 2026-10-28 | - |
 | pi | aligned | shared | - | probe · 1.4.0 · 2026-10-28 | - |
 | omp | aligned | shared | - | probe · omp/18.13.2 · 2026-10-28 | - |
-| antigravity | aligned | shared | - | probe · 1.4.6 · 2026-10-28 | - |
-| cursor | aligned | shared | - | probe · 2026.10.16-e3cb207 · 2026-10-28 | - |
-| grok | aligned | shared | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-10-28 | - |
+| antigravity | aligned | shared | - | probe · 1.2.3 · 2026-10-28 | - |
+| cursor | aligned | shared | - | probe · - · 2026-10-28 | - |
+| grok | aligned | shared | - | probe · grok 1.0.70 (f50904eaee6c) · 2026-10-28 | - |
 | crush | aligned | shared | - | probe · crush version v0.98.2 · 2026-10-28 | - |
 
 ### maintenance.config_validation · p1

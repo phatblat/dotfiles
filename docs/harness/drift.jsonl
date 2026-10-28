@@ -300,4 +300,8 @@
 {"capability":"maintenance.config_validation","date":"2026-10-26","detail":"opencode debug config","field":"surface","from":"opencode debug config --pure","harness":"opencode","to":"opencode debug config","version_from":"1.19.4","version_to":"opencode v2.1.4"}
 {"capability":"-","date":"2026-10-26","detail":"","field":"version","from":"1.19.4","harness":"opencode","to":"opencode v2.1.4","version_from":"1.19.4","version_to":"opencode v2.1.4"}
 {"capability":"-","date":"2026-10-27","detail":"","field":"version","from":"omp/18.12.6","harness":"omp","to":"omp/18.13.1","version_from":"omp/18.12.6","version_to":"omp/18.13.1"}
+{"capability":"-","date":"2026-10-28","detail":"","field":"version","from":"1.4.6","harness":"antigravity","to":"1.2.3","version_from":"1.4.6","version_to":"1.2.3"}
+{"capability":"-","date":"2026-10-28","detail":"","field":"version","from":"2.1.306 (Claude Code)","harness":"claude","to":"2.1.251 (Claude Code)","version_from":"2.1.306 (Claude Code)","version_to":"2.1.251 (Claude Code)"}
+{"capability":"-","date":"2026-10-28","detail":"","field":"version","from":"2026.10.16-e3cb207","harness":"cursor","to":"","version_from":"2026.10.16-e3cb207","version_to":""}
+{"capability":"-","date":"2026-10-28","detail":"","field":"version","from":"grok 1.0.70 (f50904eaee6c) [alpha]","harness":"grok","to":"grok 1.0.70 (f50904eaee6c)","version_from":"grok 1.0.70 (f50904eaee6c) [alpha]","version_to":"grok 1.0.70 (f50904eaee6c)"}
 {"capability":"-","date":"2026-10-28","detail":"","field":"version","from":"omp/18.13.1","harness":"omp","to":"omp/18.13.2","version_from":"omp/18.13.1","version_to":"omp/18.13.2"}
