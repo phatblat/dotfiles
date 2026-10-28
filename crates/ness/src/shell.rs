@@ -3454,4 +3454,31 @@ mod tests {
             assert!(p.guarded.contains(name), "{name} is not guarded");
         }
     }
+
+    #[test]
+    fn git_config_reads_with_get_and_every_write_prompts() {
+        let p = real_policy();
+        let guarded = |command: &str| Some(format!("shell: guarded command: {command}"));
+        // `git config <key> <value>` writes, and the leading flags that let a read
+        // through must not turn it into one. The bare read form is `--get` now.
+        for command in [
+            "git config core.hooksPath /tmp/h",
+            "git config commit.template /tmp/t",
+            "git config init.defaultBranch main",
+            "git config --null core.hooksPath /tmp/h",
+            "git config --show-origin core.hooksPath /tmp/h",
+            "git config core.hooksPath",
+        ] {
+            assert_eq!(classify(&p, command, "/tmp"), guarded(command), "{command}");
+        }
+        for command in [
+            "git config --get core.hooksPath",
+            "git config --null --get core.hooksPath",
+            "git config --show-origin --get-all user.name",
+            "git config --list",
+            "git config get core.hooksPath",
+        ] {
+            assert_eq!(classify(&p, command, "/tmp"), None, "{command}");
+        }
+    }
 }
