@@ -1,0 +1,12 @@
+{
+  "command": "curl -O https://example.com/x.tgz",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: write flag: curl -O"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

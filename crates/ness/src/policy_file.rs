@@ -635,4 +635,70 @@ mod tests {
         let err = parse(&text).unwrap().compile().unwrap_err();
         assert!(err.contains("shell.marker_options.curl[0]"), "{err}");
     }
+
+    fn shell_error(from: &str, to: &str) -> String {
+        let text = fixture().replace(from, to);
+        assert_ne!(text, fixture(), "{from} not in the fixture");
+        parse(&text).unwrap().compile().unwrap_err()
+    }
+
+    #[test]
+    fn rejects_bad_wrapper_tables() {
+        let err = shell_error("separator = \"\"", "separator = \"::\"");
+        assert!(err.contains("shell.wrappers.env.separator"), "{err}");
+        let err = shell_error("[shell.wrappers.env]", "[shell.wrappers.\"\"]");
+        assert!(err.contains("shell.wrappers: empty name"), "{err}");
+        // Names that split into the same words are one wrapper twice.
+        let err = shell_error("[shell.wrappers.env]", "[shell.wrappers.\"xargs \"]");
+        assert!(err.contains("duplicate name"), "{err}");
+        let err = shell_error("value_options = [\"-u\"]", "value_options = [\"u\"]");
+        assert!(err.contains("shell.wrappers.env.value_options[0]"), "{err}");
+        let err = shell_error("prompt_options = []", "prompt_options = [\"S\"]");
+        assert!(err.contains("prompt_options[0]"), "{err}");
+    }
+
+    #[test]
+    fn rejects_bad_pipe_into_sinks() {
+        for (sink, complaint) in [
+            ("", "must start with one interpreter name"),
+            ("-c", "must start with one interpreter name"),
+            ("/usr/bin/python3 -c", "must start with one interpreter name"),
+            ("python3 c", "'c' must start with '-'"),
+        ] {
+            let to = format!("[shell.pipe_into]\ncurl = [\"{sink}\"]");
+            let err = shell_error("[shell.pipe_into]", &to);
+            assert!(err.contains("shell.pipe_into.curl[0]") && err.contains(complaint), "{sink}: {err}");
+        }
+    }
+
+    #[test]
+    fn rejects_bad_trusted_dirs_and_guarded_names() {
+        for dir in ["bin", "./bin", "/usr/bin/"] {
+            let err = shell_error("trusted_dirs = []", &format!("trusted_dirs = [\"{dir}\"]"));
+            assert!(err.contains("shell.trusted_dirs[0]"), "{dir}: {err}");
+        }
+        for name in ["", "a b", "/bin/ls"] {
+            let err = shell_error("guarded = []", &format!("guarded = [\"{name}\"]"));
+            assert!(err.contains("shell.guarded[0]"), "{name:?}: {err}");
+        }
+    }
+
+    #[test]
+    fn trusted_dirs_expand_a_home_entry() {
+        let text = fixture().replace("trusted_dirs = []", "trusted_dirs = [\"~/.local/bin\", \"/usr/bin\"]");
+        let shell = parse(&text).unwrap().compile().unwrap().shell;
+        assert_eq!(
+            shell.trusted_dirs,
+            [crate::paths::home_dir().join(".local/bin"), std::path::PathBuf::from("/usr/bin")]
+        );
+    }
+
+    #[test]
+    fn rejects_duplicate_and_empty_leading_options() {
+        let to = "[shell.leading_options.git]\nflags = []\nvalue_options = []\n\n[shell.leading_options.\"git \"]";
+        let err = shell_error("[shell.leading_options.git]", to);
+        assert!(err.contains("shell.leading_options: duplicate name"), "{err}");
+        let err = shell_error("[shell.leading_options.git]", "[shell.leading_options.\"\"]");
+        assert!(err.contains("shell.leading_options: empty name"), "{err}");
+    }
 }

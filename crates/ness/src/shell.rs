@@ -3518,4 +3518,44 @@ mod tests {
         assert_eq!(classify(&p, "curl -s https://example.com", "/tmp"), None);
         assert_eq!(classify(&p, "curl -s http://localhost:9002/health", "/tmp"), None);
     }
+
+    #[test]
+    fn trusted_dirs_accept_home_relative_commands() {
+        let mut p = allow_mode(&[]);
+        p.trusted_dirs = vec![paths::home_dir().join(".local/bin")];
+        // `~/.local/bin/rm` is rm: its directory is trusted, so the basename counts.
+        assert_eq!(
+            classify(&p, "~/.local/bin/rm /etc/x", "/"),
+            Some("shell: write outside scratch dirs: rm /etc/x".to_string())
+        );
+        // Any other directory is just a path.
+        assert_eq!(
+            classify(&p, "~/.local/other/rm /etc/x", "/"),
+            Some("shell: unrecognized command: ~/.local/other/rm /etc/x".to_string())
+        );
+    }
+
+    #[test]
+    fn real_policy_curl_and_mise_x_forms() {
+        let p = real_policy();
+        let cases = [
+            ("curl -sSo /tmp/x.json https://x", None),
+            (
+                "curl -sSo notes.json https://x",
+                Some("shell: write outside scratch dirs: curl -o notes.json"),
+            ),
+            (
+                "curl -s -o \"$f\" https://x",
+                Some("shell: write outside scratch dirs: curl -o \"$f\""),
+            ),
+            ("curl --output-dir /tmp -o x https://x", Some("shell: write flag: curl --output-dir")),
+            ("curl -O https://x/y.tgz", Some("shell: write flag: curl -O")),
+            ("curl -T notes.txt https://x", Some("shell: write flag: curl -T")),
+            ("mise x -- ls", None),
+            ("mise x -c 'touch x'", Some("shell: wrapper option: mise x -c")),
+        ];
+        for (command, reason) in cases {
+            assert_eq!(classify(&p, command, "/"), reason.map(str::to_string), "{command}");
+        }
+    }
 }
