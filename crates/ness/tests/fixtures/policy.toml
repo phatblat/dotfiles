@@ -56,6 +56,8 @@ sinks = ["/dev/null"]
 protected_env = ["LD_*", "PATH"]
 read_only = ["cat", "cd", "echo", "git log", "git status", "grep", "jq", "ls", "printf", "sed", "wc"]
 allow_write = ["gh api", "git commit"]
+unrecognized = "prompt"
+guarded = []
 
 [shell.path_writers]
 cp = "last"
@@ -67,17 +69,23 @@ touch = "all"
 [shell.write_flags]
 sed = ["-i", "--in-place"]
 
+[shell.output_options]
+
 [shell.wrappers.env]
 value_options = ["-u"]
 operands = 0
 assignments = true
 appends_operands = false
+separator = ""
+prompt_options = []
 
 [shell.wrappers.xargs]
 value_options = ["-I", "-n"]
 operands = 0
 assignments = false
 appends_operands = true
+separator = ""
+prompt_options = []
 
 [shell.leading_options.git]
 flags = ["--no-pager"]

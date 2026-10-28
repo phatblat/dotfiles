@@ -28,6 +28,15 @@ pub enum TargetRule {
     Last,
 }
 
+/// What a command on no list does: `Allow` runs it unless its name is guarded;
+/// `Prompt` asks for every unlisted command and matches argv0 literally.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Unrecognized {
+    Allow,
+    Prompt,
+}
+
 #[derive(Debug, Clone, serde::Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Wrapper {
@@ -35,6 +44,11 @@ pub struct Wrapper {
     pub operands: usize,
     pub assignments: bool,
     pub appends_operands: bool,
+    /// `""`: the wrapped command follows the options and operands. `"--"`: it
+    /// follows the first literal `--`.
+    pub separator: String,
+    /// Options that take a command string; they always prompt.
+    pub prompt_options: Vec<String>,
 }
 
 #[derive(Debug, Clone, serde::Deserialize)]
@@ -53,8 +67,14 @@ pub struct ShellPolicy {
     pub allow_write: Vec<Vec<String>>,
     pub path_writers: BTreeMap<String, TargetRule>,
     pub write_flags: BTreeMap<String, Vec<String>>,
-    pub wrappers: BTreeMap<String, Wrapper>,
-    pub leading_options: BTreeMap<String, LeadingOptions>,
+    pub output_options: BTreeMap<String, Vec<String>>,
+    /// Keyed by the words of the command prefix (`["docker", "compose"]`).
+    pub wrappers: BTreeMap<Vec<String>, Wrapper>,
+    pub leading_options: BTreeMap<Vec<String>, LeadingOptions>,
+    pub unrecognized: Unrecognized,
+    pub guarded: BTreeSet<String>,
+    /// Prompt reasons the user approved for the session (`ness guard --approved`).
+    pub approved: BTreeSet<String>,
 }
 #[derive(Debug, Clone)]
 enum Value {
@@ -1334,7 +1354,7 @@ fn walk_simple(
     }
 
     // classify argv
-    if let Some(r) = classify_command(p, &argv, state, false) {
+    if let Some(r) = classify_command(p, &argv, state, false, false) {
         return Some(r);
     }
     // redirects
@@ -1559,11 +1579,165 @@ fn token_matches_write_flag(token: &str, flags: &[String]) -> Option<String> {
     None
 }
 
+/// Basename of argv0: the text after the last `/`, or all of it when that is empty.
+fn command_name(argv0: &str) -> &str {
+    match argv0.rsplit('/').next() {
+        Some(n) if !n.is_empty() => n,
+        _ => argv0,
+    }
+}
+
+/// `None` when the user already approved this reason for the session.
+fn approvable(p: &ShellPolicy, reason: String) -> Option<String> {
+    if p.approved.contains(&reason) {
+        None
+    } else {
+        Some(reason)
+    }
+}
+
+/// The longest wrapper whose key words match the start of `argv`.
+fn find_wrapper<'a>(
+    p: &'a ShellPolicy,
+    name: &str,
+    argv: &[(Value, String)],
+) -> Option<(&'a [String], &'a Wrapper)> {
+    let mut best: Option<(&[String], &Wrapper)> = None;
+    for (key, w) in &p.wrappers {
+        if key[0] != name || key.len() > argv.len() {
+            continue;
+        }
+        let words_match = (1..key.len())
+            .all(|j| single_literal(&argv[j].0).as_deref() == Some(key[j].as_str()));
+        if words_match && best.map_or(true, |(b, _)| key.len() > b.len()) {
+            best = Some((key.as_slice(), w));
+        }
+    }
+    best
+}
+
+/// `match_entry` by the literal argv0, then (when it differs) by its basename.
+fn match_entry_named(
+    entry: &[String],
+    argv0: &str,
+    name: &str,
+    argv: &[(Value, String)],
+    p: &ShellPolicy,
+) -> Option<usize> {
+    match_entry(entry, argv0, argv, p).or_else(|| {
+        if name != argv0 {
+            match_entry(entry, name, argv, p)
+        } else {
+            None
+        }
+    })
+}
+
+/// Which output option `tok` is, and its attached value (`--output=x`, `-ox`).
+fn match_output_option(tok: &str, opts: &[String]) -> Option<(String, Option<String>)> {
+    if tok.starts_with("--") {
+        for o in opts.iter().filter(|o| o.starts_with("--")) {
+            if tok == o {
+                return Some((o.clone(), None));
+            }
+            if let Some(v) = tok.strip_prefix(o.as_str()).and_then(|r| r.strip_prefix('=')) {
+                return Some((o.clone(), Some(v.to_string())));
+            }
+        }
+        return None;
+    }
+    let body = tok.strip_prefix('-')?;
+    for (pos, c) in body.char_indices() {
+        let hit = opts
+            .iter()
+            .find(|o| o.len() == 2 && !o.starts_with("--") && o.chars().nth(1) == Some(c));
+        if let Some(o) = hit {
+            let rest = &body[pos + c.len_utf8()..];
+            let attached = if rest.is_empty() {
+                None
+            } else {
+                Some(rest.to_string())
+            };
+            return Some((o.clone(), attached));
+        }
+    }
+    None
+}
+
+/// A path-valued output option's target must be a sink or inside scratch dirs.
+fn output_option_check(
+    p: &ShellPolicy,
+    state: &State,
+    name: &str,
+    argv: &[(Value, String)],
+    start: usize,
+) -> Option<String> {
+    let opts = p.output_options.get(name)?;
+    if opts.is_empty() {
+        return None;
+    }
+    let mut i = start;
+    while i < argv.len() {
+        let (val, raw) = &argv[i];
+        if single_literal(val).as_deref() == Some("--") {
+            break;
+        }
+        let hit = match val {
+            Value::Resolved {
+                values,
+                glob: false,
+            } => values.iter().find_map(|t| match_output_option(t, opts)),
+            _ => {
+                let trimmed = raw.trim_start_matches(['"', '\'']);
+                if trimmed.starts_with('-') && trimmed != "-" {
+                    let static_len = trimmed
+                        .find(['$', '`', '*', '?', '[', '"', '\''])
+                        .unwrap_or(trimmed.len());
+                    if let Some((opt, _)) = match_output_option(&trimmed[..static_len], opts) {
+                        return Some(format!(
+                            "shell: write outside scratch dirs: {name} {opt} {raw}"
+                        ));
+                    }
+                }
+                None
+            }
+        };
+        if let Some((opt, attached)) = hit {
+            let op = format!("{name} {opt}");
+            let (value, value_raw) = match attached {
+                Some(rest) => (
+                    Value::Resolved {
+                        glob: has_glob_meta(&rest),
+                        values: vec![rest],
+                    },
+                    raw.clone(),
+                ),
+                None => {
+                    if i + 1 >= argv.len() {
+                        return Some(format!("shell: write outside scratch dirs: {op}"));
+                    }
+                    i += 1;
+                    argv[i].clone()
+                }
+            };
+            // `-` is stdout, not a file.
+            if single_literal(&value).as_deref() != Some("-") {
+                if let Some(r) = target_check(p, state, &op, &value, &value_raw) {
+                    return Some(r);
+                }
+            }
+        }
+        i += 1;
+    }
+    None
+}
+
 fn classify_command(
     p: &ShellPolicy,
     argv: &[(Value, String)],
     state: &mut State,
     appends: bool,
+    wrapped: bool,
 ) -> Option<String> {
     if argv.is_empty() {
         return None;
@@ -1572,84 +1746,131 @@ fn classify_command(
     let argv0_raw = &argv[0].1;
     let argv0 = match single_literal(&argv[0].0) {
         Some(v) => v,
-        None => return Some(format!("shell: unrecognized command: {argv0_raw}")),
+        None => return approvable(p, format!("shell: unrecognized command: {argv0_raw}")),
+    };
+    let allow_mode = p.unrecognized == Unrecognized::Allow;
+    let name: &str = if allow_mode {
+        command_name(&argv0)
+    } else {
+        &argv0
     };
 
     // wrappers
-    if let Some(w) = p.wrappers.get(&argv0).cloned() {
-        let mut i = 1usize;
-        // option scan
-        while i < argv.len() {
-            let _raw = &argv[i].1;
-            let val = &argv[i].0;
-            let single = single_literal(val);
-            if single.as_deref() == Some("--") {
-                i += 1;
-                break;
-            }
-            if let Some(s) = &single {
-                if s.starts_with('-') && s != "-" {
-                    // --opt=value
-                    if s.contains('=') {
-                        let opt = s.split('=').next().unwrap_or(s);
-                        if w.value_options.iter().any(|vo| vo == opt) {
-                            i += 1;
-                            continue;
-                        }
-                    } else if w.value_options.iter().any(|vo| vo == s) {
-                        // skip next
-                        if i + 1 >= argv.len() {
-                            return Some(format!("shell: unrecognized command: {argv0}"));
-                        }
-                        // dynamic next?
-                        if single_literal(&argv[i + 1].0).is_none() {
-                            return Some(format!("shell: unrecognized command: {argv0}"));
-                        }
-                        i += 2;
-                        continue;
-                    }
-                    i += 1;
-                    continue;
+    if let Some((key, w)) = find_wrapper(p, name, argv) {
+        let key_text = key.join(" ");
+        if w.separator == "--" {
+            // The wrapped command follows the first literal `--`.
+            let mut j = key.len();
+            let mut sep = None;
+            while j < argv.len() {
+                let Some(tok) = single_literal(&argv[j].0) else {
+                    return approvable(p, format!("shell: unrecognized command: {key_text}"));
+                };
+                if tok == "--" {
+                    sep = Some(j);
+                    break;
                 }
+                if let Some(flag) = token_matches_write_flag(&tok, &w.prompt_options) {
+                    return Some(format!("shell: command string: {key_text} {flag}"));
+                }
+                j += 1;
             }
-            // assignments
-            if w.assignments {
+            if let Some(j) = sep {
+                if j + 1 >= argv.len() {
+                    return None;
+                }
+                return classify_command(
+                    p,
+                    &argv[j + 1..],
+                    state,
+                    appends || w.appends_operands,
+                    true,
+                );
+            }
+            // No separator: not a wrapped invocation; match the lists below.
+        } else {
+            let mut i = key.len();
+            // option scan
+            while i < argv.len() {
+                let val = &argv[i].0;
+                let single = single_literal(val);
+                if single.as_deref() == Some("--") {
+                    i += 1;
+                    break;
+                }
                 if let Some(s) = &single {
-                    if s.contains('=') {
-                        let name_part = s.split('=').next().unwrap_or(s);
-                        let name = name_part
-                            .split("+=")
-                            .next()
-                            .unwrap_or(name_part)
-                            .split('[')
-                            .next()
-                            .unwrap_or(name_part);
-                        if protected_match(&p.protected_env, name) {
-                            return Some(format!("shell: sets {name}"));
+                    if s.starts_with('-') && s != "-" {
+                        if let Some(flag) = token_matches_write_flag(s, &w.prompt_options) {
+                            return Some(format!("shell: command string: {key_text} {flag}"));
+                        }
+                        // --opt=value
+                        if s.contains('=') {
+                            let opt = s.split('=').next().unwrap_or(s);
+                            if w.value_options.iter().any(|vo| vo == opt) {
+                                i += 1;
+                                continue;
+                            }
+                        } else if w.value_options.iter().any(|vo| vo == s) {
+                            // skip next
+                            if i + 1 >= argv.len() {
+                                return approvable(
+                                    p,
+                                    format!("shell: unrecognized command: {argv0}"),
+                                );
+                            }
+                            // dynamic next?
+                            if single_literal(&argv[i + 1].0).is_none() {
+                                return approvable(
+                                    p,
+                                    format!("shell: unrecognized command: {argv0}"),
+                                );
+                            }
+                            i += 2;
+                            continue;
                         }
                         i += 1;
                         continue;
                     }
                 }
-            }
-            break;
-        }
-        // skip operands
-        for _ in 0..w.operands {
-            if i >= argv.len() {
+                // assignments
+                if w.assignments {
+                    if let Some(s) = &single {
+                        if s.contains('=') {
+                            let name_part = s.split('=').next().unwrap_or(s);
+                            let var = name_part
+                                .split("+=")
+                                .next()
+                                .unwrap_or(name_part)
+                                .split('[')
+                                .next()
+                                .unwrap_or(name_part);
+                            if protected_match(&p.protected_env, var) {
+                                return Some(format!("shell: sets {var}"));
+                            }
+                            i += 1;
+                            continue;
+                        }
+                    }
+                }
                 break;
             }
-            if single_literal(&argv[i].0).is_none() {
-                return Some(format!("shell: unrecognized command: {argv0}"));
+            // skip operands
+            for _ in 0..w.operands {
+                if i >= argv.len() {
+                    break;
+                }
+                if single_literal(&argv[i].0).is_none() {
+                    return approvable(p, format!("shell: unrecognized command: {argv0}"));
+                }
+                i += 1;
             }
-            i += 1;
+            if i >= argv.len() {
+                return None;
+            }
+            let rest = &argv[i..];
+            let new_appends = appends || w.appends_operands;
+            return classify_command(p, rest, state, new_appends, true);
         }
-        if i >= argv.len() {
-            return None;
-        }
-        let rest = &argv[i..];
-        let new_appends = appends || w.appends_operands;
-        return classify_command(p, rest, state, new_appends);
     }
 
     if let Some(r) = check_builtin_protected_env(p, &argv0, argv) {
@@ -1658,71 +1879,70 @@ fn classify_command(
 
     // allow_write
     for entry in &p.allow_write {
-        if match_entry(entry, argv, p).is_some() {
+        if match_entry_named(entry, &argv0, name, argv, p).is_some() {
             return None;
         }
     }
 
     // read_only
     for entry in &p.read_only {
-        if let Some(idx) = match_entry(entry, argv, p) {
+        if let Some(idx) = match_entry_named(entry, &argv0, name, argv, p) {
             // scan flags
-            let flags = p.write_flags.get(&argv0).cloned().unwrap_or_default();
-            if flags.is_empty() {
-                return None;
-            }
-            let mut i = idx;
-            while i < argv.len() {
-                let _raw = &argv[i].1;
-                let val = &argv[i].0;
-                if single_literal(val).as_deref() == Some("--") {
-                    break;
-                }
-                let hit: Option<String> = match val {
-                    Value::Resolved {
-                        values,
-                        glob: false,
-                    } => values
-                        .iter()
-                        .find_map(|t| token_matches_write_flag(t, &flags)),
-                    _ => {
-                        let trimmed = _raw.trim_start_matches(['"', '\'']);
-                        if trimmed.starts_with('-') && trimmed != "-" {
-                            let static_len = trimmed
-                                .find(['$', '`', '*', '?', '[', '"', '\''])
-                                .unwrap_or(trimmed.len());
-                            let static_head = &trimmed[..static_len];
-                            if let Some(f) = token_matches_write_flag(static_head, &flags) {
-                                Some(f)
-                            } else if !static_head.contains('=')
-                                && (static_head == "-" || static_head == "--")
-                            {
-                                Some(_raw.clone())
+            let flags = p.write_flags.get(name).cloned().unwrap_or_default();
+            if !flags.is_empty() {
+                let mut i = idx;
+                while i < argv.len() {
+                    let _raw = &argv[i].1;
+                    let val = &argv[i].0;
+                    if single_literal(val).as_deref() == Some("--") {
+                        break;
+                    }
+                    let hit: Option<String> = match val {
+                        Value::Resolved {
+                            values,
+                            glob: false,
+                        } => values
+                            .iter()
+                            .find_map(|t| token_matches_write_flag(t, &flags)),
+                        _ => {
+                            let trimmed = _raw.trim_start_matches(['"', '\'']);
+                            if trimmed.starts_with('-') && trimmed != "-" {
+                                let static_len = trimmed
+                                    .find(['$', '`', '*', '?', '[', '"', '\''])
+                                    .unwrap_or(trimmed.len());
+                                let static_head = &trimmed[..static_len];
+                                if let Some(f) = token_matches_write_flag(static_head, &flags) {
+                                    Some(f)
+                                } else if !static_head.contains('=')
+                                    && (static_head == "-" || static_head == "--")
+                                {
+                                    Some(_raw.clone())
+                                } else {
+                                    None
+                                }
                             } else {
                                 None
                             }
-                        } else {
-                            None
                         }
+                    };
+                    if let Some(flag) = hit {
+                        return Some(format!("shell: write flag: {name} {flag}"));
                     }
-                };
-                if let Some(flag) = hit {
-                    return Some(format!("shell: write flag: {argv0} {flag}"));
+                    i += 1;
                 }
-                i += 1;
             }
-            return None;
+            return output_option_check(p, state, name, argv, idx);
         }
     }
 
     // path_writers
-    if let Some(rule) = p.path_writers.get(&argv0).cloned() {
+    if let Some(rule) = p.path_writers.get(name).cloned() {
         if appends {
             return Some(format!(
-                "shell: write outside scratch dirs: {argv0} (xargs input)"
+                "shell: write outside scratch dirs: {name} (xargs input)"
             ));
         }
-        let cp_link_flags = if argv0 == "cp" {
+        let cp_link_flags = if name == "cp" {
             vec![
                 "-s".to_string(),
                 "--symbolic-link".to_string(),
@@ -1771,7 +1991,7 @@ fn classify_command(
                     }
                 };
                 if let Some(flag) = hit {
-                    return Some(format!("shell: write flag: {argv0} {flag}"));
+                    return Some(format!("shell: write flag: {name} {flag}"));
                 }
             }
             let is_option = match &item.0 {
@@ -1811,63 +2031,76 @@ fn classify_command(
             }
         };
         for (v, raw) in &targets {
-            if let Some(reason) = target_check(p, state, &argv0, v, raw) {
+            if let Some(reason) = target_check(p, state, name, v, raw) {
                 return Some(reason);
             }
         }
         return None;
     }
 
-    Some(format!("shell: unrecognized command: {argv0}"))
+    if allow_mode {
+        if p.guarded.contains(name) {
+            return approvable(p, format!("shell: guarded command: {name}"));
+        }
+        if !wrapped {
+            return None;
+        }
+    }
+    approvable(p, format!("shell: unrecognized command: {argv0}"))
 }
 
-fn match_entry(entry: &[String], argv: &[(Value, String)], p: &ShellPolicy) -> Option<usize> {
-    if entry.is_empty() || argv.is_empty() {
-        return None;
-    }
-    let argv0 = single_literal(&argv[0].0)?;
-    if entry[0] != argv0 {
-        return None;
-    }
-    // leading options
-    let mut i = 1usize;
-    if let Some(lo) = p.leading_options.get(&argv0) {
-        loop {
-            if i >= argv.len() {
-                break;
+/// Skips the leading options of `lo` starting at `i`. `None` means a dynamic
+/// token sits in option position or a value option has no value.
+fn skip_leading_options(
+    lo: Option<&LeadingOptions>,
+    argv: &[(Value, String)],
+    mut i: usize,
+) -> Option<usize> {
+    let Some(lo) = lo else {
+        return Some(i);
+    };
+    while i < argv.len() {
+        let single = single_literal(&argv[i].0)?;
+        if lo.flags.contains(&single) {
+            i += 1;
+            continue;
+        }
+        if lo.value_options.contains(&single) {
+            if i + 1 >= argv.len() {
+                return None;
             }
-            let single = match single_literal(&argv[i].0) {
-                Some(s) => s,
-                None => return None,
-            };
-            if lo.flags.contains(&single) {
+            i += 2;
+            continue;
+        }
+        if single.starts_with('-') && single.contains('=') {
+            let opt = single.split('=').next().unwrap_or(&single);
+            if lo.value_options.iter().any(|v| v == opt) {
                 i += 1;
                 continue;
             }
-            if lo.value_options.contains(&single) {
-                if i + 1 >= argv.len() {
-                    return None;
-                }
-                i += 2;
-                continue;
-            }
-            if single.starts_with("--") && single.contains('=') {
-                let opt = single.split('=').next().unwrap_or(&single);
-                if lo.value_options.contains(&opt.to_string()) {
-                    i += 1;
-                    continue;
-                }
-            }
-            break;
         }
+        break;
     }
-    let mut j = i;
-    for w in entry.iter().skip(1) {
+    Some(i)
+}
+
+fn match_entry(
+    entry: &[String],
+    argv0: &str,
+    argv: &[(Value, String)],
+    p: &ShellPolicy,
+) -> Option<usize> {
+    if entry.is_empty() || argv.is_empty() || entry[0] != argv0 {
+        return None;
+    }
+    let mut j = 1usize;
+    for k in 1..entry.len() {
+        j = skip_leading_options(p.leading_options.get(&entry[..k]), argv, j)?;
         if j >= argv.len() {
             return None;
         }
         let single = single_literal(&argv[j].0)?;
-        if single != *w {
+        if single != entry[k] {
             return None;
         }
         j += 1;
@@ -2245,5 +2478,178 @@ mod tests {
         let tmp = std::env::temp_dir().canonicalize().unwrap();
         let cmd = format!("cd \"$unknown_dir\"; cd {} && rm -rf build", tmp.display());
         assert_eq!(classify(&p, &cmd, "/"), None);
+    }
+
+    fn words(s: &str) -> Vec<String> {
+        s.split_whitespace().map(str::to_owned).collect()
+    }
+
+    fn strs(v: &[&str]) -> Vec<String> {
+        v.iter().map(|s| s.to_string()).collect()
+    }
+
+    fn allow_mode(guarded: &[&str]) -> ShellPolicy {
+        let mut p = policy();
+        p.unrecognized = Unrecognized::Allow;
+        p.guarded = guarded.iter().map(|s| s.to_string()).collect();
+        p
+    }
+
+    fn mise_exec_wrapper() -> Wrapper {
+        Wrapper {
+            value_options: vec![],
+            operands: 0,
+            assignments: false,
+            appends_operands: false,
+            separator: "--".to_string(),
+            prompt_options: strs(&["-c", "--command"]),
+        }
+    }
+
+    #[test]
+    fn allow_mode_runs_unlisted_and_guards_listed_names() {
+        let p = allow_mode(&["docker"]);
+        assert_eq!(classify(&p, "lsof -p 1", "/"), None);
+        let guarded = Some("shell: guarded command: docker".to_string());
+        assert_eq!(classify(&p, "docker exec c ls", "/"), guarded);
+        assert_eq!(classify(&p, "/usr/local/bin/docker exec c ls", "/"), guarded);
+    }
+
+    #[test]
+    fn allow_mode_matches_path_qualified_commands_by_basename() {
+        let p = allow_mode(&[]);
+        assert_eq!(classify(&p, "/usr/bin/grep x f", "/"), None);
+        assert_eq!(
+            classify(&p, "/usr/bin/sed -i s/a/b/ f", "/"),
+            Some("shell: write flag: sed -i".to_string())
+        );
+        assert_eq!(
+            classify(&p, "/usr/bin/env touch notes.txt", "/"),
+            Some("shell: write outside scratch dirs: touch notes.txt".to_string())
+        );
+    }
+
+    #[test]
+    fn allow_mode_prompts_for_unlisted_wrapped_commands() {
+        let p = allow_mode(&[]);
+        let reason = Some("shell: unrecognized command: ./deploy.sh".to_string());
+        assert_eq!(classify(&p, "env FOO=1 ./deploy.sh", "/"), reason);
+        assert_eq!(classify(&p, "xargs ./deploy.sh", "/"), reason);
+    }
+
+    #[test]
+    fn prompt_mode_keeps_literal_argv0() {
+        let p = policy();
+        assert_eq!(
+            classify(&p, "/usr/bin/grep x f", "/"),
+            Some("shell: unrecognized command: /usr/bin/grep".to_string())
+        );
+    }
+
+    #[test]
+    fn separator_wrapper_classifies_after_double_dash() {
+        let mut p = allow_mode(&["mise"]);
+        p.wrappers.insert(words("mise exec"), mise_exec_wrapper());
+        assert_eq!(classify(&p, "mise exec -- ls", "/"), None);
+        assert_eq!(
+            classify(&p, "mise exec node@20 -- touch notes.txt", "/"),
+            Some("shell: write outside scratch dirs: touch notes.txt".to_string())
+        );
+        assert_eq!(
+            classify(&p, "mise exec -c 'touch notes.txt'", "/"),
+            Some("shell: command string: mise exec -c".to_string())
+        );
+        assert_eq!(
+            classify(&p, "mise exec --command='touch x' -- ls", "/"),
+            Some("shell: command string: mise exec --command".to_string())
+        );
+        assert_eq!(
+            classify(&p, "mise exec --help", "/"),
+            Some("shell: guarded command: mise".to_string())
+        );
+    }
+
+    #[test]
+    fn env_prompt_options_catch_split_strings() {
+        let mut p = allow_mode(&[]);
+        p.wrappers.get_mut(&words("env")).unwrap().prompt_options =
+            strs(&["-S", "--split-string"]);
+        assert_eq!(
+            classify(&p, "env -S'touch notes.txt'", "/"),
+            Some("shell: command string: env -S".to_string())
+        );
+        assert_eq!(
+            classify(&p, "env --split-string='touch notes.txt'", "/"),
+            Some("shell: command string: env --split-string".to_string())
+        );
+    }
+
+    #[test]
+    fn multi_word_leading_options() {
+        let mut p = allow_mode(&["docker"]);
+        p.leading_options.insert(
+            words("docker compose"),
+            LeadingOptions {
+                flags: vec![],
+                value_options: strs(&["-p", "-f"]),
+            },
+        );
+        p.read_only.push(words("docker compose config"));
+        assert_eq!(
+            classify(&p, "docker compose -p x -f a.yml -f b.yml config --services", "/"),
+            None
+        );
+        assert_eq!(
+            classify(&p, "docker compose -p x stop", "/"),
+            Some("shell: guarded command: docker".to_string())
+        );
+    }
+
+    #[test]
+    fn single_dash_equals_leading_option() {
+        let mut p = policy();
+        p.leading_options.insert(
+            words("tofu"),
+            LeadingOptions {
+                flags: vec![],
+                value_options: strs(&["-chdir"]),
+            },
+        );
+        p.read_only.push(words("tofu validate"));
+        assert_eq!(classify(&p, "tofu -chdir=infra validate", "/"), None);
+    }
+
+    #[test]
+    fn output_options_check_targets() {
+        let mut p = policy();
+        p.read_only.push(words("curl"));
+        p.output_options.insert("curl".to_string(), strs(&["-o", "--output"]));
+        p.write_flags.insert("curl".to_string(), strs(&["-X"]));
+        assert_eq!(classify(&p, "curl -s -o /dev/null https://x", "/"), None);
+        assert_eq!(classify(&p, "curl -so /tmp/x.json https://x", "/"), None);
+        assert_eq!(classify(&p, "curl -o/tmp/x https://x", "/"), None);
+        assert_eq!(
+            classify(&p, "curl -o notes.html https://x", "/"),
+            Some("shell: write outside scratch dirs: curl -o notes.html".to_string())
+        );
+        assert_eq!(
+            classify(&p, "curl --output=notes.html https://x", "/"),
+            Some("shell: write outside scratch dirs: curl --output notes.html".to_string())
+        );
+        assert_eq!(
+            classify(&p, "curl -X POST https://x", "/"),
+            Some("shell: write flag: curl -X".to_string())
+        );
+    }
+
+    #[test]
+    fn approved_reason_skips_only_that_command() {
+        let mut p = allow_mode(&["docker"]);
+        p.approved.insert("shell: guarded command: docker".to_string());
+        assert_eq!(classify(&p, "docker exec c ls", "/"), None);
+        assert_eq!(
+            classify(&p, "docker exec c ls; touch notes.txt", "/"),
+            Some("shell: write outside scratch dirs: touch notes.txt".to_string())
+        );
     }
 }

@@ -57,9 +57,11 @@ fn default_cwd() -> String {
     paths::find_root().to_string_lossy().into_owned()
 }
 
-/// `ness guard --harness <slug> --tool <name> [--command|--path|--content|--cwd]`
+/// `ness guard --harness <slug> --tool <name> [--command|--path|--content|--cwd]
+/// [--approved <newline-separated prompt reasons>]`
 /// — drop-in for `python3 scripts/agent-harnesses.py guard …`
-/// (`command_guard`, agent-harnesses.py:695-725).
+/// (`command_guard`, agent-harnesses.py:695-725). `--approved` carries
+/// command-level reasons the omp hook's user approved for the session.
 fn run_guard(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 {
     let Some(harness) = flags.get("harness") else {
         eprintln!("ness guard: --harness is required");
@@ -187,7 +189,14 @@ fn main() {
     // every verdict, emitted in each harness's native output shape. Never
     // panic here: an uncaught panic exits non-zero, which Claude treats as a
     // non-blocking hook error. That is why shell::classify catches its own panics.
-    let policy = active::load();
+    let mut policy = active::load();
+    // `ness guard --approved`: command-level prompt reasons the user approved for
+    // the session. Only `shell::approvable` sites honor them.
+    if subcommand == "guard" {
+        if let (Ok(c), Some(a)) = (policy.as_mut(), flags.get("approved")) {
+            c.shell.approved = a.split('\n').filter(|s| !s.is_empty()).map(str::to_owned).collect();
+        }
+    }
     let p = policy.as_ref().map_err(String::as_str);
 
     let code = match subcommand.as_str() {

@@ -1,0 +1,12 @@
+{
+  "command": "git config --global user.name x",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "prompt",
+    "reason": "shell: guarded command: git"
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}

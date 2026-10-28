@@ -71,6 +71,7 @@ pub struct Approval {
     pub claude: ClaudeApproval,
 }
 pub use crate::shell::TargetRule;
+pub use crate::shell::Unrecognized;
 pub use crate::shell::Wrapper;
 pub use crate::shell::LeadingOptions;
 
@@ -84,8 +85,11 @@ pub struct Shell {
     pub allow_write: Vec<String>,
     pub path_writers: std::collections::BTreeMap<String, TargetRule>,
     pub write_flags: std::collections::BTreeMap<String, Vec<String>>,
+    pub output_options: std::collections::BTreeMap<String, Vec<String>>,
     pub wrappers: std::collections::BTreeMap<String, Wrapper>,
     pub leading_options: std::collections::BTreeMap<String, LeadingOptions>,
+    pub unrecognized: Unrecognized,
+    pub guarded: Vec<String>,
 }
 
 impl Shell {
@@ -141,13 +145,45 @@ impl Shell {
         }
         // wrappers
         for (name, w) in &self.wrappers {
+            if name.split_whitespace().next().is_none() {
+                return Err("shell.wrappers: empty name".to_string());
+            }
             for (i, f) in w.value_options.iter().enumerate() {
                 if !f.starts_with('-') {
                     return Err(format!("shell.wrappers.{name}.value_options[{i}]: '{f}' must start with '-'"));
                 }
             }
+            for (i, f) in w.prompt_options.iter().enumerate() {
+                if !f.starts_with('-') {
+                    return Err(format!("shell.wrappers.{name}.prompt_options[{i}]: '{f}' must start with '-'"));
+                }
+            }
+            if w.separator != "" && w.separator != "--" {
+                return Err(format!("shell.wrappers.{name}.separator: '{}' must be \"\" or \"--\"", w.separator));
+            }
+        }
+        // output_options
+        for (cmd, opts) in &self.output_options {
+            for (i, f) in opts.iter().enumerate() {
+                let short = f.len() == 2 && f.starts_with('-') && !f.starts_with("--");
+                let long = f.len() > 2 && f.starts_with("--");
+                if !short && !long {
+                    return Err(format!("shell.output_options.{cmd}[{i}]: '{f}' must be -x or --long"));
+                }
+            }
+        }
+        // guarded
+        for (i, v) in self.guarded.iter().enumerate() {
+            if v.is_empty() || v.contains(char::is_whitespace) || v.contains('/') {
+                return Err(format!("shell.guarded[{i}]: '{v}' must be one command name without '/'"));
+            }
         }
         // leading_options
+        for cmd in self.leading_options.keys() {
+            if cmd.split_whitespace().next().is_none() {
+                return Err("shell.leading_options: empty name".to_string());
+            }
+        }
         for (cmd, lo) in &self.leading_options {
             for (i, f) in lo.flags.iter().enumerate() {
                 if !f.starts_with('-') {
@@ -162,22 +198,34 @@ impl Shell {
         }
         // Build ShellPolicy
         let scratch_dirs = self.scratch_dirs.iter().map(|s| std::path::PathBuf::from(s)).collect();
-        let sinks = self.sinks;
-        let protected_env = self.protected_env;
-        let path_writers = self.path_writers;
-        let write_flags = self.write_flags;
-        let wrappers = self.wrappers;
-        let leading_options = self.leading_options;
+        let mut wrappers = std::collections::BTreeMap::new();
+        for (k, w) in self.wrappers {
+            let key: Vec<String> = k.split_whitespace().map(str::to_owned).collect();
+            if wrappers.insert(key, w).is_some() {
+                return Err(format!("shell.wrappers: duplicate name '{k}'"));
+            }
+        }
+        let mut leading_options = std::collections::BTreeMap::new();
+        for (k, lo) in self.leading_options {
+            let key: Vec<String> = k.split_whitespace().map(str::to_owned).collect();
+            if leading_options.insert(key, lo).is_some() {
+                return Err(format!("shell.leading_options: duplicate name '{k}'"));
+            }
+        }
         Ok(crate::shell::ShellPolicy {
             scratch_dirs,
-            sinks,
-            protected_env,
+            sinks: self.sinks,
+            protected_env: self.protected_env,
             read_only,
             allow_write,
-            path_writers,
-            write_flags,
+            path_writers: self.path_writers,
+            write_flags: self.write_flags,
+            output_options: self.output_options,
             wrappers,
             leading_options,
+            unrecognized: self.unrecognized,
+            guarded: self.guarded.into_iter().collect(),
+            approved: std::collections::BTreeSet::new(),
         })
     }
 }

@@ -1,0 +1,12 @@
+{
+  "command": "docker compose -p x -f docker-compose.yml -f docker-compose.dev.yml config --services 2>&1 |tr '\\n' ' '; echo; docker compose -p x -f docker-compose.yml -f docker-compose.prod.yml config --services 2>&1 |tr '\\n' ' '",
+  "content": null,
+  "cwd": null,
+  "expected": {
+    "decision": "allow",
+    "reason": ""
+  },
+  "harness": "omp",
+  "path": null,
+  "tool": "bash"
+}
