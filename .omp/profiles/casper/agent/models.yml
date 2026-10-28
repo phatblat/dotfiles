@@ -121,6 +121,10 @@ providers:
         name: Minimax M3
         cost: { input: 0.30, output: 1.20, cacheRead: 0.06, cacheWrite: 0 }
 
+      minimax-m3p1-flash:
+        name: Minimax M3p1 Flash
+        cost: { input: 0.15, output: 0.60, cacheRead: 0.015, cacheWrite: 0 }
+
       nemotron-3-ultra:
         name: Nemotron 3 Ultra
         cost: { input: 0.60, output: 2.40, cacheRead: 0.12, cacheWrite: 0 }
