@@ -124,6 +124,23 @@ providers:
       minimax-m3p1-flash:
         name: Minimax M3p1 Flash
         cost: { input: 0.15, output: 0.60, cacheRead: 0.015, cacheWrite: 0 }
+        reasoning: true
+        # MiniMax-M3.1-Flash defaults reasoning_effort to max when the field is
+        # absent, so OMP's default level was being billed at the top tier.
+        # Declaring the ladder makes OMP send reasoning_effort explicitly.
+        thinking:
+          mode: effort
+          efforts: [minimal, low, medium, high, xhigh, max]
+          defaultLevel: medium
+          # The route accepts none/minimal/low/medium/high/xhigh/max/adaptive;
+          # probe 2026-10-29 confirmed each tier returns 200 and that an
+          # out-of-ladder value is rejected with a 400.
+          effortMap: {}
+        compat:
+          supportsReasoningEffort: true
+          # The route accepts "none" as a real off switch, so send it instead
+          # of clamping a thinking-off request to the lowest effort.
+          reasoningDisableMode: none-effort
 
       nemotron-3-ultra:
         name: Nemotron 3 Ultra
