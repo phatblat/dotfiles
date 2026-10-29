@@ -31,13 +31,13 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.13.1",
-    "version": "omp/18.13.2"
+    "previous": "omp/18.13.2",
+    "version": "omp/18.13.3"
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "1.19.4",
-    "version": "opencode v2.1.4"
+    "previous": "opencode v2.1.4",
+    "version": "opencode v2.2.0"
   },
   "pi": {
     "first_seen": "2026-08-29",
