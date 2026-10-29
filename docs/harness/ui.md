@@ -4,9 +4,24 @@
 
 4 capabilities. Index: [docs/agent-harnesses.md](../agent-harnesses.md)
 
+### ui.notifications · p2
+
+Whether the harness can emit a desktop or terminal notification on idle or completion.
+
+| Harness | Parity | Mode | Native surface | Evidence | Note |
+|---|---|---|---|---|---|
+| claude | unknown | none | - | - | - |
+| codex | unknown | none | - | - | - |
+| opencode | unknown | none | - | - | - |
+| pi | unknown | none | - | - | - |
+| omp | aligned | adapter | completion.notify / error.notify / ask.notify settings; terminal.programStatus (OSC 7501) | runtime · omp/18.13.3 · 2026-10-29 | omp emits a desktop notification on completion, error, and ask, and reports blocked/working/done/error over OSC 7501. The cmux-attention extension bridges approval prompts (omp's own gate and any extension dialog, including the shared harness guard) into a cmux notification, which drives the tab unread badge and the attention ring. |
+| antigravity | unknown | none | - | - | - |
+| cursor | unknown | none | - | - | - |
+| grok | unknown | none | - | - | - |
+| crush | unknown | none | - | - | - |
+
 ### Not yet researched
 
 - `ui.statusline` · p2 — Whether a custom status line can be configured, and by which key or script.
 - `ui.theme` · p2 — Whether the colour theme is configurable and honours terminal light/dark detection.
 - `ui.keybindings` · p2 — Whether interactive keybindings are remappable, and where.
-- `ui.notifications` · p2 — Whether the harness can emit a desktop or terminal notification on idle or completion.

@@ -7020,20 +7020,27 @@
           "surface": ""
         },
         "omp": {
-          "artifacts": [],
+          "artifacts": [
+            "~/.omp/agent/extensions/cmux-attention.ts",
+            "~/.omp/agent/shared/cmux-attention.ts"
+          ],
           "divergence": "",
           "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
+            "date": "2026-10-29",
+            "kind": "runtime",
+            "ref": "cmux notify + OSC 7501 blocked state",
+            "version": "omp/18.13.3"
           },
-          "mode": "none",
+          "mode": "adapter",
           "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
+          "note": "omp emits a desktop notification on completion, error, and ask, and reports blocked/working/done/error over OSC 7501. The cmux-attention extension bridges approval prompts (omp's own gate and any extension dialog, including the shared harness guard) into a cmux notification, which drives the tab unread badge and the attention ring.",
+          "parity": "aligned",
+          "probe": {
+            "kind": "file_contains",
+            "path": ".omp/agent/extensions/cmux-attention.ts",
+            "pattern": "raiseAttention"
+          },
+          "surface": "completion.notify / error.notify / ask.notify settings; terminal.programStatus (OSC 7501)"
         },
         "opencode": {
           "artifacts": [],
@@ -7448,7 +7455,7 @@
   ],
   "coverage": {
     "total": 405,
-    "verified": 91
+    "verified": 92
   },
   "divergences": [
     {
