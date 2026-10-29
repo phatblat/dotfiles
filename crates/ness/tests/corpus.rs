@@ -588,8 +588,8 @@ fn policy_check_reports_verdict_diff_and_case_delta() {
     // Candidate: drop the credential-disclosure rule; cases 145/146 flip to allow.
     let text = std::fs::read_to_string(home.join(".config/ness/policy.toml")).unwrap();
     let candidate = text.replace(
-        r"patterns = ['(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))']",
-        "patterns = ['(?i)\\bgh\\s+auth\\s+never-matches-anything\\b']",
+        r"'(?i)\bgh\s+auth\s+(?:token\b|git-credential\s+get\b|status\b[^;&|\n]*\s(?:--show-token\b|-[a-z]*t[a-z]*\b))'",
+        r"'(?i)\bgh\s+auth\s+never-matches-anything\b'",
     );
     assert_ne!(candidate, text);
     std::fs::write(proposals.join("policy.toml"), candidate).unwrap();
