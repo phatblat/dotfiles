@@ -37,6 +37,7 @@
 .anyconnect
 .asdf/
 .aspnet/
+.asyncapi-analytics
 .atom/
 .audacity-data/
 .auto-claude-security.json
