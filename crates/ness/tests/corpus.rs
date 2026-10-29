@@ -619,6 +619,36 @@ fn policy_check_reports_verdict_diff_and_case_delta() {
     );
 }
 
+/// With no positional path, `policy check` and `policy apply` default to the
+/// active policy (`~/.config/ness/policy.toml`) instead of failing with a
+/// usage error.
+#[test]
+fn policy_defaults_to_the_active_policy_path() {
+    let home = fake_home(None);
+    let out = Command::new(built_ness())
+        .args(["policy", "check"])
+        .env("HOME", &home)
+        .current_dir(repo_root())
+        .output()
+        .unwrap();
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert_eq!(out.status.code(), Some(0), "{stdout}");
+    assert!(stdout.contains("schema: ok"), "{stdout}");
+    assert!(stdout.contains("verdict diff: 0 case(s)"), "{stdout}");
+
+    // `apply` reaches the human gate with the default path resolved, rather
+    // than the old missing-argument usage error.
+    let out = Command::new(built_ness())
+        .args(["policy", "apply"])
+        .env("HOME", &home)
+        .stdin(std::process::Stdio::null())
+        .output()
+        .unwrap();
+    let stderr = String::from_utf8_lossy(&out.stderr);
+    assert_eq!(out.status.code(), Some(2), "{stderr}");
+    assert!(stderr.contains("requires a terminal"), "{stderr}");
+}
+
 #[test]
 fn policy_apply_refuses_without_tty() {
     let home = fake_home(None);

@@ -442,22 +442,20 @@ pub fn run(args: &[String]) -> i32 {
         .collect();
     match action {
         None | Some("active") => active_cmd(),
-        Some("check") => match positional.first() {
-            Some(p) => check(&PathBuf::from(p)),
-            None => {
-                eprintln!("usage: ness policy check <candidate.toml>");
-                2
-            }
-        },
+        Some("check") => {
+            let candidate = positional
+                .first()
+                .map(PathBuf::from)
+                .unwrap_or_else(paths::policy_path);
+            check(&candidate)
+        }
         Some("apply") => {
             let accept = args.iter().any(|a| a == "--accept-case-changes");
-            match positional.first() {
-                Some(p) => apply(&PathBuf::from(p), accept),
-                None => {
-                    eprintln!("usage: ness policy apply [--accept-case-changes] <candidate.toml>");
-                    2
-                }
-            }
+            let candidate = positional
+                .first()
+                .map(PathBuf::from)
+                .unwrap_or_else(paths::policy_path);
+            apply(&candidate, accept)
         }
         Some(other) => {
             eprintln!("ness policy: unknown action '{other}' (expected check, apply, or active)");
