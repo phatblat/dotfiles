@@ -38,7 +38,10 @@ import {
 type DialogMethod = "select" | "confirm";
 
 /** One line describing what the agent wants, for the badge and the banner. */
-function summarizeApproval(toolName: string, reason: string | undefined): string {
+function summarizeApproval(
+  toolName: string,
+  reason: string | undefined
+): string {
   const base = `omp wants to run ${toolName}`;
   if (!reason) return base;
   return `${base}: ${reason}`;
@@ -81,9 +84,20 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
       const kind = classifyDialog(title);
       openDialogs += 1;
       try {
-        reportBlocked({ kind, summary: title || "omp is waiting for your answer", detail });
-        await raiseAttention({ kind, summary: title || "omp is waiting for your answer", detail });
-        return await (original as (...callArgs: unknown[]) => unknown).apply(ui, args);
+        reportBlocked({
+          kind,
+          summary: title || "omp is waiting for your answer",
+          detail,
+        });
+        await raiseAttention({
+          kind,
+          summary: title || "omp is waiting for your answer",
+          detail,
+        });
+        return await (original as (...callArgs: unknown[]) => unknown).apply(
+          ui,
+          args
+        );
       } finally {
         // Shutdown already released this dialog's request and zeroed the
         // count; releasing it again would lower another session's prompt.
