@@ -100,7 +100,9 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
     };
   };
 
-  pi.on("tool_call", async (_event, ctx: ExtensionContext) => {
+  // Wrap at session start, before any extension's `tool_call` handler can open
+  // a dialog, so the very first approval prompt already raises attention.
+  pi.on("session_start", async (_event, ctx: ExtensionContext) => {
     if (uiWrapped) return;
     const ui = ctx.ui as unknown as WrappableUi;
     if (!ui || typeof ui !== "object") return;
