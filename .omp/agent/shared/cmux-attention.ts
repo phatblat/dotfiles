@@ -167,11 +167,13 @@ export async function raiseAttention(request: AttentionRequest): Promise<void> {
   current.depth += 1;
   if (current.depth > 1) return;
   const id = await postNotification(request);
-  // A newer request may have arrived while this one was in flight.
-  if (state().depth === 1 && id) {
+  // Prompts still open (this one or a nested one) own the notification, so
+  // the last one to lower marks it read. If every prompt was already answered
+  // while the notify was in flight, nothing will lower it later: mark it now.
+  if (state().depth > 0 && id) {
     state().notificationId = id;
-  } else if (id) {
-    clearNotification(id);
+  } else {
+    markNotificationRead(id);
   }
 }
 
