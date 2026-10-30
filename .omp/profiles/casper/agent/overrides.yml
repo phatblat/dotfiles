@@ -31,7 +31,7 @@ tui:
   resizeScrollback: rebuild
   completeScrollback: true
   codexResetFireworks: true
-  titleSpinner: pulse
+  titleSpinner: braille
   hyperlinks: always
 terminal:
   showProgress: true
