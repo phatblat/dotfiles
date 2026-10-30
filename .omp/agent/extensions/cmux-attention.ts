@@ -29,7 +29,7 @@ import {
   inCmuxSurface,
   raiseAttention,
   lowerAttention,
-  resetAttention,
+  releaseAttention,
   reportBlocked,
   reportWorking,
 } from "../shared/cmux-attention";
@@ -65,6 +65,8 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
 
   // Approval prompts, keyed by tool call id so each one is lowered exactly once.
   const pendingApprovals = new Set<string>();
+  // `ask` tool calls in flight, keyed the same way.
+  const pendingAsks = new Set<string>();
   // Dialogs observed through the wrapped UI, so each one is lowered once.
   let openDialogs = 0;
   // The UI object is shared by every extension in the session; wrap it once.
@@ -83,12 +85,16 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
       try {
         return await (original as (...callArgs: unknown[]) => unknown).apply(ui, args);
       } finally {
-        openDialogs -= 1;
-        lowerAttention();
-        if (openDialogs === 0) {
-          // omp never set a blocked status for an extension dialog, so
-          // restore the working state it would have shown on its own.
-          reportWorking();
+        // Shutdown already released this dialog's request and zeroed the
+        // count; releasing it again would lower another session's prompt.
+        if (openDialogs > 0) {
+          openDialogs -= 1;
+          lowerAttention();
+          if (openDialogs === 0) {
+            // omp never set a blocked status for an extension dialog, so
+            // restore the working state it would have shown on its own.
+            reportWorking();
+          }
         }
       }
     };
@@ -101,7 +107,6 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
     wrapDialog(ui, "select");
     wrapDialog(ui, "confirm");
     uiWrapped = true;
-    return undefined;
   });
 
   pi.on("tool_approval_requested", async (event) => {
@@ -123,6 +128,7 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
   // question dialog from the tool itself.
   pi.on("tool_execution_start", async (event) => {
     if (event.toolName !== "ask") return;
+    pendingAsks.add(String(event.toolCallId ?? ""));
     await raiseAttention({
       kind: "question",
       summary: "omp is waiting for your answer",
@@ -131,10 +137,16 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
 
   pi.on("tool_result", async (event) => {
     if (event.toolName !== "ask") return;
+    if (!pendingAsks.delete(String(event.toolCallId ?? ""))) return;
     lowerAttention();
   });
 
+  // The attention state is process-global, so a session releases only the
+  // requests it raised itself; another session's open prompt stays lit.
   pi.on("session_shutdown", async () => {
-    resetAttention();
+    releaseAttention(pendingApprovals.size + pendingAsks.size + openDialogs);
+    pendingApprovals.clear();
+    pendingAsks.clear();
+    openDialogs = 0;
   });
 }

@@ -192,12 +192,16 @@ export function lowerAttention(): void {
   current.notificationId = undefined;
 }
 
-/** Drop any pending attention state, e.g. when the session shuts down. */
-export function resetAttention(): void {
-  const current = state();
-  current.depth = 0;
-  markNotificationRead(current.notificationId);
-  current.notificationId = undefined;
+/**
+ * Release `count` open requests, e.g. when one session shuts down.
+ *
+ * The state is process-global but each session only owns the requests it
+ * raised, so a shutting-down session must not clear a prompt another session
+ * still has open. `lowerAttention` clamps at zero and marks the notification
+ * read once the last request is released.
+ */
+export function releaseAttention(count: number): void {
+  for (let i = 0; i < count; i += 1) lowerAttention();
 }
 
 /**
