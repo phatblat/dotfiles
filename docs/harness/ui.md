@@ -14,7 +14,7 @@ Whether the harness can emit a desktop or terminal notification on idle or compl
 | codex | unknown | none | - | - | - |
 | opencode | unknown | none | - | - | - |
 | pi | unknown | none | - | - | - |
-| omp | aligned | adapter | completion.notify / error.notify / ask.notify settings; terminal.programStatus (OSC 7501) | runtime · - · 2026-10-29 | omp emits a desktop notification on completion, error, and ask, and reports blocked/working/done/error over OSC 7501. The cmux-attention extension bridges approval prompts (omp's own gate and any extension dialog, including the shared harness guard) into a cmux notification, which drives the tab unread badge and the attention ring. |
+| omp | aligned | adapter | completion.notify / error.notify / ask.notify settings; terminal.programStatus (OSC 7501) | probe · omp/18.14.0 · 2026-10-30 | omp emits a desktop notification on completion, error, and ask, and reports blocked/working/done/error over OSC 7501. The cmux-attention extension bridges approval prompts (omp's own gate and any extension dialog, including the shared harness guard) into a cmux notification, which drives the tab unread badge and the attention ring. |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |
 | grok | unknown | none | - | - | - |
