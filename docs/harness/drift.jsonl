@@ -315,3 +315,9 @@
 {"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"grok 1.0.70 (f50904eaee6c)","harness":"grok","to":"grok 1.0.70 (f50904eaee6c) [alpha]","version_from":"grok 1.0.70 (f50904eaee6c)","version_to":"grok 1.0.70 (f50904eaee6c) [alpha]"}
 {"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"omp/18.13.3","harness":"omp","to":"omp/18.14.0","version_from":"omp/18.13.3","version_to":"omp/18.14.0"}
 {"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"opencode v2.2.0","harness":"opencode","to":"","version_from":"opencode v2.2.0","version_to":""}
+{"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"1.4.6","harness":"antigravity","to":"1.2.3","version_from":"1.4.6","version_to":"1.2.3"}
+{"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"2.1.306 (Claude Code)","harness":"claude","to":"2.1.251 (Claude Code)","version_from":"2.1.306 (Claude Code)","version_to":"2.1.251 (Claude Code)"}
+{"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"2026.10.16-e3cb207","harness":"cursor","to":"","version_from":"2026.10.16-e3cb207","version_to":""}
+{"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"grok 1.0.70 (f50904eaee6c) [alpha]","harness":"grok","to":"grok 1.0.70 (f50904eaee6c)","version_from":"grok 1.0.70 (f50904eaee6c) [alpha]","version_to":"grok 1.0.70 (f50904eaee6c)"}
+{"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"omp/18.14.0","harness":"omp","to":"omp/18.13.3","version_from":"omp/18.14.0","version_to":"omp/18.13.3"}
+{"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"","harness":"opencode","to":"opencode v2.2.0","version_from":"","version_to":"opencode v2.2.0"}

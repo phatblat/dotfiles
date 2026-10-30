@@ -790,7 +790,7 @@
     },
     "maintenance.config_validation": {
       "date": "2026-10-30",
-      "detail": "opencode: [Errno 8] Exec format error: '/Users/phatblat/.local/share/mise/installs/opencode/2.2.0/bin/opencode'",
+      "detail": "opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/2.2.0/bin/opencode', 'debug', 'config']' timed out after 5 seconds",
       "mode": "native",
       "parity": "aligned",
       "result": "unavailable",
