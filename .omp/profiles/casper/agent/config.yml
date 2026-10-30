@@ -37,6 +37,7 @@ display:
   showTurnTime: true
   collapseCompacted: true
   shimmer: classic
+  subagentLivePreview: true
 advisor:
   enabled: false
   syncBacklog: "off"
@@ -139,7 +140,11 @@ includeWorkspaceTree: false
 tui:
   imeSafeCursor: true
   tight: true
-  resizeScrollback: preserve
+  resizeScrollback: rebuild
+  completeScrollback: true
+  codexResetFireworks: true
+  titleSpinner: pulse
+  hyperlinks: always
 terminal:
   showProgress: true
 ask:
