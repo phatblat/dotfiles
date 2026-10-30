@@ -106,7 +106,7 @@ skills:
   ignoredSkills:
     - codex/*
 plan:
-  autosave: true
+  autosave: false
 commands:
   enableClaudeProject: false
   enableOpencodeProject: false
@@ -132,3 +132,5 @@ find:
   enabled: auto
 astGrep:
   enabled: true
+goal:
+  statusInFooter: false
