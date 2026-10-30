@@ -1,7 +1,7 @@
 {
   "antigravity": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/antigravity/agents/cli-expert.md",
       "mode": "emulated",
       "parity": "partial",
@@ -19,7 +19,7 @@
       "surface": "Plugins load skills, agents, rules, hooks, mcpServers"
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/antigravity/hooks.json matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
@@ -27,7 +27,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/antigravity/plugin.json",
       "mode": "adapter",
       "parity": "partial",
@@ -35,7 +35,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -83,7 +83,7 @@
       "surface": "Local adapter only"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/antigravity/skills/test-driven-development/SKILL.md",
       "mode": "adapter",
       "parity": "partial",
@@ -103,7 +103,7 @@
   },
   "claude": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".claude/agents/cli-expert.md",
       "mode": "native",
       "parity": "aligned",
@@ -116,7 +116,7 @@
       "surface": "Agent `tools`, `disallowedTools`, `permissionMode`"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".claude/commands/2ndbrain.md",
       "mode": "native",
       "parity": "aligned",
@@ -124,7 +124,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".claude/settings.json matches bash-guard\\.sh",
       "mode": "adapter",
       "parity": "aligned",
@@ -132,7 +132,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -140,7 +140,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -168,7 +168,7 @@
       "surface": ""
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".claude/settings.json",
       "mode": "native",
       "parity": "aligned",
@@ -191,7 +191,7 @@
       "surface": "`paths` frontmatter"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
@@ -211,7 +211,7 @@
   },
   "codex": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".codex/agents/cli-expert.toml",
       "mode": "native",
       "parity": "aligned",
@@ -224,7 +224,7 @@
       "surface": "Agent TOML permissions/sandbox and inherited MCP config"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/commands/2ndbrain.md",
       "mode": "adapter",
       "parity": "blocked",
@@ -232,7 +232,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".codex/hooks.json matches bash-guard\\.sh",
       "mode": "adapter",
       "parity": "aligned",
@@ -240,7 +240,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".codex/AGENTS.md matches \\.agents/harness/instructions\\.md",
       "mode": "shared",
       "parity": "aligned",
@@ -248,7 +248,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -276,7 +276,7 @@
       "surface": "sandbox_mode enum only; no per-command allowlist"
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".codex/AGENTS.md",
       "mode": "native",
       "parity": "aligned",
@@ -299,7 +299,7 @@
       "surface": "Prefer nested repo skills or concise descriptions"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
@@ -319,7 +319,7 @@
   },
   "crush": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/agents/cli-expert.toml",
       "mode": "native",
       "parity": "blocked",
@@ -332,7 +332,7 @@
       "surface": "`permissions deny` hides tools; PreToolUse hook for the rest"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "partial",
@@ -340,7 +340,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".config/crush/crushrc matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
@@ -348,7 +348,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".config/crush/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
@@ -356,7 +356,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -379,7 +379,7 @@
       "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".config/crush/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
@@ -402,7 +402,7 @@
       "surface": "No documented equivalent; scope through the description"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "aligned",
@@ -422,7 +422,7 @@
   },
   "cursor": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/cursor/agents/cli-expert.md",
       "mode": "native",
       "parity": "partial",
@@ -435,7 +435,7 @@
       "surface": "Rules/plugin adapter; native behavior unverified"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/cursor/commands/2ndbrain.md",
       "mode": "native",
       "parity": "partial",
@@ -443,7 +443,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".cursor/hooks.json matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
@@ -451,7 +451,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/cursor/rules/shared-harness.mdc",
       "mode": "adapter",
       "parity": "partial",
@@ -459,7 +459,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -482,7 +482,7 @@
       "surface": "No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/adapters/cursor/rules/shared-harness.mdc",
       "mode": "native",
       "parity": "partial",
@@ -505,7 +505,7 @@
       "surface": "`paths`; `globs` legacy fallback"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".cursor/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "partial",
@@ -525,7 +525,7 @@
   },
   "grok": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".grok/agents/cli-expert.md",
       "mode": "adapter",
       "parity": "partial",
@@ -538,7 +538,7 @@
       "surface": "`--tools` / `--disallowed-tools`, subagent `capability_mode`, permission rules"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "partial",
@@ -546,7 +546,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".grok/hooks/harness-guard.json matches harness-guard\\.sh",
       "mode": "adapter",
       "parity": "partial",
@@ -554,7 +554,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".grok/rules/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
@@ -562,7 +562,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -585,7 +585,7 @@
       "surface": "No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.sh"
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".grok/rules/shared-harness.md",
       "mode": "native",
       "parity": "aligned",
@@ -608,7 +608,7 @@
       "surface": "No documented equivalent; scope through the description"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "aligned",
@@ -628,7 +628,7 @@
   },
   "omp": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".omp/agent/agents/cli-expert.md",
       "mode": "native",
       "parity": "aligned",
@@ -641,7 +641,7 @@
       "surface": "Generated agent wrappers in ~/.omp/agent/agents"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".claude/commands/2ndbrain.md",
       "mode": "native",
       "parity": "aligned",
@@ -649,7 +649,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".omp/agent/hooks/pre/harness-guard.ts matches \\bness\\b",
       "mode": "adapter",
       "parity": "aligned",
@@ -657,7 +657,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".omp/agent/APPEND_SYSTEM.md",
       "mode": "native",
       "parity": "aligned",
@@ -665,7 +665,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -693,7 +693,7 @@
       "surface": "tools.approvalMode + bash.patterns via just harness-perms-apply"
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".omp/agent/APPEND_SYSTEM.md",
       "mode": "native",
       "parity": "aligned",
@@ -716,7 +716,7 @@
       "surface": "Local adapter only"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "native",
       "parity": "aligned",
@@ -732,11 +732,19 @@
       "mode": "none",
       "parity": "unknown",
       "surface": "Local config only"
+    },
+    "ui.notifications": {
+      "date": "2026-10-30",
+      "detail": ".omp/agent/extensions/cmux-attention.ts matches raiseAttention",
+      "mode": "adapter",
+      "parity": "aligned",
+      "result": "pass",
+      "surface": "completion.notify / error.notify / ask.notify settings; terminal.programStatus (OSC 7501)"
     }
   },
   "opencode": {
     "agents.specialists": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".config/opencode/agents/cli-expert.md",
       "mode": "adapter",
       "parity": "aligned",
@@ -749,7 +757,7 @@
       "surface": "Agent `permission` and `tools`"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".config/opencode/commands/2ndbrain.md",
       "mode": "adapter",
       "parity": "aligned",
@@ -757,7 +765,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".config/opencode/plugins/harness.ts matches \\bness\\b",
       "mode": "adapter",
       "parity": "aligned",
@@ -765,7 +773,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -773,7 +781,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -781,11 +789,11 @@
       "surface": ""
     },
     "maintenance.config_validation": {
-      "date": "2026-10-28",
-      "detail": "opencode debug config",
+      "date": "2026-10-30",
+      "detail": "opencode: [Errno 8] Exec format error: '/Users/phatblat/.local/share/mise/installs/opencode/2.2.0/bin/opencode'",
       "mode": "native",
       "parity": "aligned",
-      "result": "pass",
+      "result": "unavailable",
       "surface": "opencode debug config"
     },
     "mcp.dependencies": {
@@ -809,7 +817,7 @@
       "surface": ""
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".config/opencode/plugins/harness.ts",
       "mode": "adapter",
       "parity": "aligned",
@@ -832,7 +840,7 @@
       "surface": "Directory discovery plus permissions"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",
@@ -862,7 +870,7 @@
       "surface": "Extension-enforced guard"
     },
     "commands.active": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".pi/agent/prompts/2ndbrain.md",
       "mode": "adapter",
       "parity": "aligned",
@@ -870,7 +878,7 @@
       "surface": ""
     },
     "hooks.safety": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".pi/agent/extensions/harness.ts matches \\bness\\b",
       "mode": "adapter",
       "parity": "aligned",
@@ -878,7 +886,7 @@
       "surface": ""
     },
     "instructions.global": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/harness/instructions.md",
       "mode": "shared",
       "parity": "aligned",
@@ -886,7 +894,7 @@
       "surface": ""
     },
     "maintenance.audit": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "docs/agent-harnesses.json",
       "mode": "shared",
       "parity": "aligned",
@@ -894,7 +902,7 @@
       "surface": ""
     },
     "maintenance.config_validation": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": "pi list --no-approve",
       "mode": "native",
       "parity": "aligned",
@@ -922,7 +930,7 @@
       "surface": "No native permission-rule surface; the shared guard runs via ~/.pi/agent/extensions/harness.ts"
     },
     "sessions.compaction": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".pi/agent/settings.json",
       "mode": "native",
       "parity": "aligned",
@@ -945,7 +953,7 @@
       "surface": "Local adapter only"
     },
     "skills.shared": {
-      "date": "2026-10-28",
+      "date": "2026-10-30",
       "detail": ".agents/skills/test-driven-development/SKILL.md",
       "mode": "shared",
       "parity": "aligned",

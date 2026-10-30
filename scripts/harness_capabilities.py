@@ -130,6 +130,7 @@ _LOCAL_2026_06_27 = Evidence(kind="local", date="2026-06-27")
 _PROBED_2026_08_29 = "2026-08-29"
 _PROBED_2026_09_15 = "2026-09-15"
 _PROBED_2026_10_16 = "2026-10-16"
+_PROBED_2026_10_29 = "2026-10-29"
 
 _SHARED = "~/.agents/harness"
 _SAFETY = "~/.config/ness/policy.toml"
@@ -1754,6 +1755,36 @@ CAPABILITIES: list[Capability] = [
             "Whether the harness can emit a desktop or terminal notification on "
             "idle or completion."
         ),
+        cells={
+            "omp": Cell(
+                parity="aligned",
+                mode="adapter",
+                surface=(
+                    "completion.notify / error.notify / ask.notify settings; "
+                    "terminal.programStatus (OSC 7501)"
+                ),
+                artifacts=(
+                    "~/.omp/agent/extensions/cmux-attention.ts",
+                    "~/.omp/agent/shared/cmux-attention.ts",
+                ),
+                evidence=Evidence(
+                    kind="runtime",
+                    ref="cmux notify + OSC 7501 blocked state",
+                    date=_PROBED_2026_10_29,
+                ),
+                note=(
+                    "omp emits a desktop notification on completion, error, and "
+                    "ask, and reports blocked/working/done/error over OSC 7501. "
+                    "The cmux-attention extension bridges approval prompts "
+                    "(omp's own gate and any extension dialog, including the "
+                    "shared harness guard) into a cmux notification, which "
+                    "drives the tab unread badge and the attention ring."
+                ),
+                probe=_contains(
+                    ".omp/agent/extensions/cmux-attention.ts", r"raiseAttention"
+                ),
+            ),
+        },
     ),
     Capability(
         id="maintenance.audit",

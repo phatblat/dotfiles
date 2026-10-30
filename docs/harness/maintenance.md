@@ -13,15 +13,15 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.251 (Claude Code) · 2026-10-28 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.164.0 · 2026-10-28 | - |
-| opencode | aligned | shared | - | probe · opencode v2.1.4 · 2026-10-28 | - |
-| pi | aligned | shared | - | probe · 1.4.0 · 2026-10-28 | - |
-| omp | aligned | shared | - | probe · omp/18.13.2 · 2026-10-28 | - |
-| antigravity | aligned | shared | - | probe · 1.2.3 · 2026-10-28 | - |
-| cursor | aligned | shared | - | probe · - · 2026-10-28 | - |
-| grok | aligned | shared | - | probe · grok 1.0.70 (f50904eaee6c) · 2026-10-28 | - |
-| crush | aligned | shared | - | probe · crush version v0.98.2 · 2026-10-28 | - |
+| claude | aligned | shared | - | probe · 2.1.306 (Claude Code) · 2026-10-30 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.165.0 · 2026-10-30 | - |
+| opencode | aligned | shared | - | probe · - · 2026-10-30 | - |
+| pi | aligned | shared | - | probe · 1.4.0 · 2026-10-30 | - |
+| omp | aligned | shared | - | probe · omp/18.14.0 · 2026-10-30 | - |
+| antigravity | aligned | shared | - | probe · 1.4.6 · 2026-10-30 | - |
+| cursor | aligned | shared | - | probe · 2026.10.16-e3cb207 · 2026-10-30 | - |
+| grok | aligned | shared | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-10-30 | - |
+| crush | aligned | shared | - | probe · crush version v0.98.2 · 2026-10-30 | - |
 
 ### maintenance.config_validation · p1
 
@@ -33,8 +33,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config | probe · opencode v2.1.4 · 2026-10-28 | - |
-| pi | aligned | native | pi list --no-approve | probe · 1.4.0 · 2026-10-28 | - |
+| opencode | aligned | native | opencode debug config | probe · - · 2026-08-29 | probe unavailable: opencode: [Errno 8] Exec format error: '/Users/phatblat/.local/share/mise/installs/opencode/2.2.0/bin/opencode' |
+| pi | aligned | native | pi list --no-approve | probe · 1.4.0 · 2026-10-30 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |

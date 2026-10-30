@@ -290,11 +290,15 @@ local linters = new Mapping<String, Step | Group> {
   // start. A parse error makes the harness drop the module silently, which
   // for harness-guard.ts means running without the shared guard (af41d4e,
   // 2026-10-24). Check-only: bun's transpiled output is discarded.
+  //
+  // .omp/agent/shared/ holds modules the omp extensions and hooks import, so
+  // a parse error there drops the importer the same way.
   ["ts-parse"] {
     glob =
       List(
         ".omp/agent/hooks/*/*.ts",
         ".omp/agent/extensions/*.ts",
+        ".omp/agent/shared/*.ts",
         ".config/opencode/plugins/*.ts",
         ".pi/agent/extensions/*.ts",
       )

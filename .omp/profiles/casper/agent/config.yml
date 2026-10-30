@@ -8,7 +8,7 @@ providers:
   streamIdleTimeoutSeconds: 120
 setupVersion: 2
 modelRoles:
-  default: casper/ember-1:low
+  default: casper/minimax-m3p1-flash
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
   plan: casper/ember-1:high
