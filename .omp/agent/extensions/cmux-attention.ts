@@ -80,9 +80,9 @@ export default function cmuxAttention(pi: ExtensionAPI): void {
       const detail = typeof args[1] === "string" ? args[1] : undefined;
       const kind = classifyDialog(title);
       openDialogs += 1;
-      reportBlocked({ kind, summary: title || "omp is waiting for your answer", detail });
-      await raiseAttention({ kind, summary: title || "omp is waiting for your answer", detail });
       try {
+        reportBlocked({ kind, summary: title || "omp is waiting for your answer", detail });
+        await raiseAttention({ kind, summary: title || "omp is waiting for your answer", detail });
         return await (original as (...callArgs: unknown[]) => unknown).apply(ui, args);
       } finally {
         // Shutdown already released this dialog's request and zeroed the
