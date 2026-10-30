@@ -7,7 +7,7 @@
   "link_click": "Command",
   "link_target": "Browser",
   "layout": "Rail",
-  "font_size": 22,
+  "font_size": 16,
   "tabs": "Vertical",
   "tabs_autohide": true,
   "status_bar": true,
