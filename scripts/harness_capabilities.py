@@ -1770,7 +1770,6 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="runtime",
                     ref="cmux notify + OSC 7501 blocked state",
-                    version="omp/18.13.3",
                     date=_PROBED_2026_10_29,
                 ),
                 note=(

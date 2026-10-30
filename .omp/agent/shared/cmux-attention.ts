@@ -24,7 +24,7 @@ import type { ChildProcess } from "node:child_process";
 import { existsSync } from "node:fs";
 import { setRunStatus } from "@oh-my-pi/pi-coding-agent/utils/run-status";
 
-/** cmux's binary name; overridable for installs outside PATH. */
+/** cmux's binary name when `CMUX_OMP_CMUX_BIN` is unset or not a path. */
 const CMUX_BIN = "cmux";
 /** A cmux call that must not hold up the turn. */
 const CMUX_TIMEOUT_MS = 5_000;
@@ -159,8 +159,8 @@ export function markNotificationRead(id: string | undefined): void {
 /**
  * Announce that the agent is waiting on the user.
  *
- * The first request raises the cmux notification; nested requests only
- * refresh the OSC 7501 state, so a sequence of prompts does not spam the feed.
+ * The first request raises the cmux notification; nested requests are only
+ * counted, so a sequence of prompts does not spam the feed.
  */
 export async function raiseAttention(request: AttentionRequest): Promise<void> {
   const current = state();

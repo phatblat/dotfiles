@@ -7029,7 +7029,7 @@
             "date": "2026-10-29",
             "kind": "runtime",
             "ref": "cmux notify + OSC 7501 blocked state",
-            "version": "omp/18.13.3"
+            "version": ""
           },
           "mode": "adapter",
           "next_action": "",
