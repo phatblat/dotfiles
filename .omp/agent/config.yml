@@ -15,6 +15,11 @@ modelRoles:
   delivery_review: anthropic/claude-opus-5-5:xhigh
 extensions:
   - ~/.omp/agent/teams/feature-delivery
+# Disable the shared ness harness guard hook (agent/hooks/pre/harness-guard.ts),
+# which routes every omp tool call through ~/.local/bin/ness. The id is the
+# hook capability's extension id: hook:<type>:<tool>:<file name>.
+disabledExtensions:
+  - hook:pre:harness-guard:harness-guard.ts
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
