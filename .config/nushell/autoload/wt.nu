@@ -1,9 +1,10 @@
 # wt - Navigate to or create git worktrees (nushell wrapper).
 #
-# All logic lives in the `wt` binary (~/.local/bin/wt). A child process
-# cannot change this shell's directory, so the binary writes the target
-# directory to the file named by --cd-file and this wrapper cd's to it.
-# Every other action passes straight through untouched.
+# All logic lives in the `wt` binary (github.com/phatblat/wt, installed by
+# `mise install`). A child process cannot change this shell's directory, so
+# the binary writes the target directory to the file named by --cd-file and
+# this wrapper cd's to it. Every other action passes straight through
+# untouched.
 def --env --wrapped wt [...args] {
     let tmpdir = ($env.TMPDIR? | default "/tmp")
     let tmpdir = (if ($tmpdir | is-empty) { "/tmp" } else { $tmpdir })

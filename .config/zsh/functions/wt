@@ -2,11 +2,12 @@
 
 # wt - Navigate to or create git worktrees.
 #
-# All logic lives in the `wt` binary (crates/wt, installed by `just
-# wt-install`). This wrapper exists only because a child process cannot change
-# its parent shell's directory: the binary writes the directory to enter into
-# the file named by --cd-file, and this function acts on it. Every other action
-# -- list, path, verify, shell, overlay -- passes straight through untouched.
+# All logic lives in the `wt` binary (github.com/phatblat/wt, installed by
+# `mise install`). This wrapper exists only because a child process cannot
+# change its parent shell's directory: the binary writes the directory to
+# enter into the file named by --cd-file, and this function acts on it. Every
+# other action -- list, path, verify, shell, overlay -- passes straight
+# through untouched.
 
 local cd_file
 cd_file=$(mktemp "${TMPDIR:-/tmp}/wt-cd.XXXXXX") || return $?

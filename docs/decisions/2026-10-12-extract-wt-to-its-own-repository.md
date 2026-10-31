@@ -37,7 +37,7 @@ then reuses for the safety guard.
 
 ## Status
 
-This is a proposal that is **proposed**.
+This is a proposal that is **accepted**.
 
 ## Assumptions and Constraints
 
@@ -114,15 +114,18 @@ every release, no Linux build for CI, and no provenance.
    (`$WT_OVERLAY_DIR`, then `~/.config/wt/overlay/<path-key>`, then `default`)
    are documented in the new repository's README and do not change.
 7. **Renovate.** A `packageRules` entry matching `github:phatblat/` dependencies
-   sets `minimumReleaseAge` to `0` and `schedule` to `["at any time"]`. Both are
-   needed: `renovate.json` sets a top-level `schedule` of `before 9am on
-   monday`, so zero cooldown alone would still hold a mid-week release until
-   Monday. With both, a release made here lands in the next Renovate run rather
-   than a week later. Combined with the `1.x` automerge rule, a `wt` bump
-   merges with no delay and no human review; that is acceptable for a
-   self-owned tool and is stated here so it is a choice, not a surprise. The
-   existing group and automerge rules otherwise apply. An `upgrade-wt` recipe
-   is not added; `mise upgrade --bump wt` covers the rare out-of-band bump.
+   sets `minimumReleaseAge` to `0 days`, `schedule` to `["at any time"]`, and
+   `groupName` to `phatblat tools`. All three are needed: `renovate.json` sets
+   a top-level `schedule` of `before 9am on monday`, so zero cooldown alone
+   would still hold a mid-week release until Monday, and left in the weekly
+   `mise tools` group the pin would share a branch with updates that keep that
+   schedule and the 7-day cooldown. With all three, a release made here lands
+   in the next Renovate run rather than a week later. Combined with the `1.x`
+   automerge rule, a `wt` bump merges with no delay and no human review; that
+   is acceptable for a self-owned tool and is stated here so it is a choice,
+   not a surprise. The existing automerge rule otherwise applies. An
+   `upgrade-wt` recipe is not added; `mise upgrade --bump wt` covers the rare
+   out-of-band bump.
 
 ## Positions
 
@@ -139,3 +142,13 @@ every release, no Linux build for CI, and no provenance.
 - **Build a universal macOS binary.** Rejected: every machine this repository
   runs on is Apple silicon or an Ubuntu runner; a second macOS target is added
   when a machine needs it.
+
+## Errata
+
+- 2026-10-31: Clause 2 and the Argument name two release targets, and the
+  last position calls this repository's Linux hosts Ubuntu runners. Those
+  runners are `arc-ubuntu-24.04-arm64`, where an `x86_64-unknown-linux-gnu`
+  binary cannot run. From v1.0.1 the release also builds
+  `aarch64-unknown-linux-gnu` on `ubuntu-24.04-arm` and CI tests on that
+  runner, so clause 4's pin shipped as `1.0.1` rather than `1.0.0`. The
+  decision is otherwise unchanged.

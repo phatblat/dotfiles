@@ -44,6 +44,20 @@
       "matchManagers": [
         "mise"
       ]
+    },
+    {
+      "description": "Bump self-owned tools as soon as they are released",
+      "groupName": "phatblat tools",
+      "matchDepPatterns": [
+        "^github:phatblat/"
+      ],
+      "matchManagers": [
+        "mise"
+      ],
+      "minimumReleaseAge": "0 days",
+      "schedule": [
+        "at any time"
+      ]
     }
   ],
   "platformAutomerge": true,
