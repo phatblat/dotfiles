@@ -68,7 +68,7 @@ clean-tool-caches:
     }
     # Daemons hold files open under the directories removed below.
     if command -v bazel >/dev/null 2>&1; then bazel shutdown >/dev/null 2>&1 || true; fi
-    pkill -f GradleDaemon || true
+    pkill -f 'org.gradle.launcher.daemon.bootstrap.GradleDaemon' || true
     purge "$HOME/Library/Caches/bazel" "$HOME/.konan"
     for name in caches daemon jdks kotlin-profile native notifications vcs-1 wrapper workers; do
         purge "$HOME/.gradle/$name"
