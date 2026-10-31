@@ -26,7 +26,6 @@ PRIORITY_RE = re.compile(
 @dataclass(frozen=True)
 class BacklogItem:
     slug: str
-    title: str
     priority_lines: tuple[str, ...]
 
     @property
@@ -46,11 +45,7 @@ def read_backlog(root: Path) -> list[BacklogItem]:
     items = []
     for path in (root / "docs" / "backlog").glob("*.md"):
         text = path.read_text()
-        title = next(
-            (line[2:].strip() for line in text.splitlines() if line.startswith("# ")),
-            path.stem,
-        )
-        items.append(BacklogItem(path.stem, title, tuple(PRIORITY_RE.findall(text))))
+        items.append(BacklogItem(path.stem, tuple(PRIORITY_RE.findall(text))))
     return sorted(items, key=lambda item: (_rank(item.priority), item.slug))
 
 
