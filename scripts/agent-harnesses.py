@@ -1016,6 +1016,10 @@ deny decision.
   dependency on behavior that can differ by version, platform, or machine, and
   it fails silently when the default changes. Prefer configuration that breaks
   loudly over configuration that is merely absent.
+- Pre-commit hooks auto-lint and format. The hk pre-commit hook may rewrite
+  staged files, so the committed content can differ from the reviewed diff.
+  After every commit, check the resulting diff or status. Never run other git
+  commands in parallel with a commit; they contend for `index.lock`.
 
 ## Token Efficiency
 
