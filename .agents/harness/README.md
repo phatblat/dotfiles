@@ -12,6 +12,6 @@ adapters or tool-specific configuration only.
 ## Inventory
 
 - Commands: 29
-- Specialist agents: 6
+- Specialist agents: 15
 - Shared skills source: `~/.agents/skills`
 - Safety policy: `~/.config/ness/policy.toml` (`[control_plane]` and friends), enforced by the compiled guard `ness` from `~/crates/ness`
