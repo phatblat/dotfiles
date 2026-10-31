@@ -21,9 +21,9 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 
-HOME = Path(os.environ.get("HOME", str(Path.home()))).resolve()
-BREWFILE = HOME / "Brewfile"
-EXCLUSIONS = HOME / ".config" / "homebrew" / "dump-exclusions.txt"
+REPO = Path(__file__).resolve().parent.parent
+BREWFILE = REPO / "Brewfile"
+EXCLUSIONS = REPO / ".config" / "homebrew" / "dump-exclusions.txt"
 
 VALID_KINDS = {"brew", "cask", "mas"}
 ENTRY_RE = re.compile(r'^(tap|brew|cask|mas) "([^"]+)"')

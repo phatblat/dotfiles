@@ -61,25 +61,9 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS
 
 sys.dont_write_bytecode = True
 
-# This repository is normally checked out AT $HOME, and every generated
-# artifact assumes that. A linked git worktree of the same repo lives
-# elsewhere, so trusting $HOME literally there roots every write in an
-# unrelated checkout -- the actual cause of every "why are there dirty files
-# in ~/docs/harness" incident. Detect that mismatch by comparing $HOME to
-# this script's own repo root (two levels up from scripts/agent-harnesses.py)
-# and root there instead when they differ. The common case -- the repo
-# genuinely checked out at $HOME, and CI, where HOME=github.workspace equals
-# the checkout -- is unaffected: SCRIPT_ROOT == HOME there, so ROOT == HOME
-# exactly as before.
-HOME = Path(os.environ.get("HOME", str(Path.home()))).resolve()
-_SCRIPT_ROOT = Path(__file__).resolve().parent.parent
-ROOT = _SCRIPT_ROOT if _SCRIPT_ROOT != HOME else HOME
-if ROOT != HOME and not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS):
-    print(
-        f"note: $HOME ({HOME}) is not this checkout; rooting artifacts at "
-        f"{ROOT} instead",
-        file=sys.stderr,
-    )
+# Generated artifacts are written into this checkout (two levels up from
+# scripts/agent-harnesses.py); `mise dot` links them into $HOME.
+ROOT = Path(__file__).resolve().parent.parent
 SHARED = ROOT / ".agents" / "harness"
 # Every path render_all() writes, mapped to the hand-written file behind it. The
 # `guard` hot path reads this instead of calling render_all(), which would render
