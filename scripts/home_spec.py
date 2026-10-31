@@ -158,6 +158,25 @@ def render(repo: Path, source_root: str = REPO_HOME) -> str:
     return "\n".join(lines)
 
 
+def unclassified_symlinks(repo: Path) -> list[str]:
+    """Tracked relative symlinks deployed as plain links whose target leaves the repo.
+
+    `~/p -> repo/p -> ../elsewhere` resolves against the repo's directory, so
+    the hand-listed OUT_OF_REPO (direct relative link) or DANGLING classes must
+    claim it. Absolute targets resolve identically from anywhere and need no
+    class, so they are left alone (e.g. bin/plistbuddy -> /usr/libexec/PlistBuddy).
+    """
+    root = repo.resolve()
+    stray = []
+    for path in link_paths(repo):
+        full = repo / path
+        if not full.is_symlink() or os.path.isabs(os.readlink(full)):
+            continue
+        if not full.resolve().is_relative_to(root):
+            stray.append(path)
+    return stray
+
+
 def ensure_links(repo: Path) -> int:
     """Recreate the dangling-class links in $HOME with the repo's own link text."""
     home = Path(os.environ["HOME"])
@@ -185,6 +204,15 @@ def main() -> int:
     if args.action == "links":
         return ensure_links(repo)
     spec = repo / SPEC
+    if args.action == "check":
+        stray = unclassified_symlinks(repo)
+        for path in stray:
+            print(
+                f"unclassified: tracked symlink {path} leaves the repo; add it to OUT_OF_REPO or DANGLING in scripts/home_spec.py",
+                file=sys.stderr,
+            )
+        if stray:
+            return 1
     want = render(repo, args.source)
     if args.action == "generate":
         spec.parent.mkdir(parents=True, exist_ok=True)
