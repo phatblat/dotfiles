@@ -79,7 +79,6 @@ Branch deletion is out of scope and stays with `git-cleanup` / `branch-finish`. 
 ## Never
 
 - Never re-derive the worktree path in prose or with an ad-hoc `sed`/`tr` pipeline — call `wt path`.
-- Never create a dotfiles worktree without `--allow-home`.
 - Never treat a `wt shell` session as proof that live terminals picked up `.config/zsh/**` or `.config/nushell/**` (see `using-git-worktrees`).
 - Never `git worktree add` a path whose leaf differs from the branch name.
 - Never remove a worktree to "fix" a dirty tree.
