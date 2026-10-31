@@ -94,6 +94,7 @@ def new_item(root: Path, title: str, priority: str) -> Path:
             f"title {title!r} has no ASCII letters or digits to build a slug from"
         )
     path = root / "docs" / "backlog" / f"{slug}.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
     try:
         with path.open("x") as handle:
             handle.write(

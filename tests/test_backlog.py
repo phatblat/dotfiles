@@ -132,6 +132,11 @@ class NewItemTests(BacklogRoot):
         with self.assertRaisesRegex(ValueError, "single line"):
             bl.new_item(self.root, "one\ntwo", "High")
 
+    def test_missing_backlog_directory_is_created(self) -> None:
+        (self.root / "docs" / "backlog").rmdir()
+        path = bl.new_item(self.root, "First item", "Low")
+        self.assertTrue(path.is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
