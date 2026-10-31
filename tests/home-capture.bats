@@ -99,3 +99,51 @@ sbx() {
     [ "$status" -eq 0 ]
     [[ "$output" =~ "home-capture:" ]]
 }
+
+@test "home-capture: forced restore touches only the paths it checked" {
+    rm "$SBHOME/.inputrc" "$SBHOME/.vimrc"
+    echo "set app-edit" > "$SBHOME/.inputrc"
+    ln -s /etc/hosts "$SBHOME/.vimrc"
+
+    run sbx python3 "$SCRIPT"
+    [ "$status" -eq 0 ]
+    [ "$(readlink "$SBHOME/.inputrc")" = "$SRC/.inputrc" ]
+    [ "$(readlink "$SBHOME/.vimrc")" = /etc/hosts ]
+}
+
+@test "home-capture: captures a copy-class file's live bytes into the repo" {
+    echo '{"seed":true}' > "$SRC/app.json"
+    git -C "$SRC" add app.json
+    git -C "$SRC" commit -qm "app"
+    cat >> "$SBHOME/.config/mise/conf.d/dotfiles.toml" << EOF
+
+[dotfiles."~/app.json"]
+source = "$SRC/app.json"
+mode = "copy"
+EOF
+    echo '{"seed":false,"app":"edit"}' > "$SBHOME/app.json"
+
+    run sbx python3 "$SCRIPT"
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "captured ~/app.json" ]]
+    [ "$(cat "$SRC/app.json")" = '{"seed":false,"app":"edit"}' ]
+}
+
+@test "home-capture: leaves a copy-class entry alone when its target is a symlink" {
+    echo '{"seed":true}' > "$SRC/app.json"
+    git -C "$SRC" add app.json
+    git -C "$SRC" commit -qm "app"
+    cat >> "$SBHOME/.config/mise/conf.d/dotfiles.toml" << EOF
+
+[dotfiles."~/app.json"]
+source = "$SRC/app.json"
+mode = "copy"
+EOF
+    echo '{"other":true}' > "$BATS_TEST_TMPDIR/elsewhere.json"
+    ln -s "$BATS_TEST_TMPDIR/elsewhere.json" "$SBHOME/app.json"
+
+    run sbx python3 "$SCRIPT"
+    [ "$status" -eq 0 ]
+    [[ ! "$output" =~ "captured ~/" ]]
+    [ "$(cat "$SRC/app.json")" = '{"seed":true}' ]
+}

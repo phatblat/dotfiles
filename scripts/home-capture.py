@@ -132,8 +132,11 @@ def main() -> int:
         print(summary)
         return 0
 
+    # --force overwrites every conflicting entry it is asked to apply, so name
+    # exactly the targets scanned above; the spec's other entries are untouched.
     mise = shutil.which("mise") or str(home / ".local" / "bin" / "mise")
-    rc = subprocess.run([mise, "dot", "apply", "--force", "--yes"], cwd=home, check=False).returncode
+    targets = [str(home / rel) for rel in restore]
+    rc = subprocess.run([mise, "dot", "apply", "--force", "--yes", *targets], cwd=home, check=False).returncode
     print(summary)
     return rc
 
