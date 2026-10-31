@@ -31,7 +31,7 @@ command -v yq > /dev/null || {
     exit 1
 }
 
-root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
 main="$root/.omp/agent/config.yml"
 tmp="$(mktemp)"
 trap 'rm -f "$tmp"' EXIT
