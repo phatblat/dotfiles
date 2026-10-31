@@ -70,7 +70,7 @@ upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade
 
 # Purges caches, build output, dependency trees, and home directory clutter
 [group('configuration')]
-clean: clean-rust clean-caches clean-build clean-deps
+clean: clean-rust clean-caches clean-tool-caches clean-worktrees clean-build clean-deps
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f $HOME/*.hprof
     rm -f $HOME/.claude.json.backup.*
