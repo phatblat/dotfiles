@@ -3,8 +3,9 @@
 #
 # After a checkout, merge, commit, or history rewrite in the primary checkout,
 # re-runs `mise dot apply` so $HOME's links follow the files git just wrote:
-# new tracked files gain links, deleted ones lose them. Linked worktrees never
-# deploy. DOTFILES_APPLY=0 skips it.
+# new tracked files gain links. Links for deleted files are NOT removed (that
+# needs `mise dot apply --prune`, which this hook does not pass). Linked
+# worktrees never deploy. DOTFILES_APPLY=0 skips it.
 #
 # The spec mise reads (~/.config/mise/conf.d/dotfiles.toml) is itself a link
 # into this checkout, so checking out a ref that lacks it (or this hook) orphans

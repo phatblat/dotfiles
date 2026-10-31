@@ -31,6 +31,10 @@ home-deploy ref:
         echo "home-deploy: {{ ref }} has no .config/mise/conf.d/dotfiles.toml; deploying it would orphan every link" >&2
         exit 1
     fi
+    if ! git -C "$primary" cat-file -e "{{ ref }}:scripts/home-apply-hook"; then
+        echo "home-deploy: {{ ref }} has no scripts/home-apply-hook; the post-checkout apply would stop running" >&2
+        exit 1
+    fi
     if ! git -C "$primary" diff --quiet || ! git -C "$primary" diff --cached --quiet; then
         echo "home-deploy: commit or stash the changes in $primary first" >&2
         exit 1
