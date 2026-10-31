@@ -16,11 +16,10 @@ from pathlib import Path
 
 PRIORITIES = ("Urgent", "High", "Medium", "Low", "Unprioritized")
 INVALID_PRIORITY = "Invalid priority"
-# Items carry ``Priority: High`` under the title; the optional ``- `` prefix
-# also accepts the ``- Priority: High`` metadata-list form.
-PRIORITY_RE = re.compile(
-    r"^(?:- )?Priority: (" + "|".join(PRIORITIES) + r")$", re.MULTILINE
-)
+# An item carries one ``Priority: High`` line under its H1, before the first
+# ``## `` section; later text (e.g. a quoted example) is never scanned.
+PRIORITY_RE = re.compile(r"^Priority: (" + "|".join(PRIORITIES) + r")$", re.MULTILINE)
+SECTION_RE = re.compile(r"^## ", re.MULTILINE)
 
 
 @dataclass(frozen=True)
@@ -44,8 +43,8 @@ def read_backlog(root: Path) -> list[BacklogItem]:
     """Every ``docs/backlog/*.md`` item under ``root``, by priority, then slug."""
     items = []
     for path in (root / "docs" / "backlog").glob("*.md"):
-        text = path.read_text()
-        items.append(BacklogItem(path.stem, tuple(PRIORITY_RE.findall(text))))
+        header = SECTION_RE.split(path.read_text(), maxsplit=1)[0]
+        items.append(BacklogItem(path.stem, tuple(PRIORITY_RE.findall(header))))
     return sorted(items, key=lambda item: (_rank(item.priority), item.slug))
 
 
