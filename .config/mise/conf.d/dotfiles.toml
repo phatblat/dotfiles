@@ -1,0 +1,83 @@
+# Deploys the dotfiles repo (primary checkout ~/dev/dotfiles) into $HOME.
+# Loaded as global mise config through its own deployed link
+# ~/.config/mise/conf.d/dotfiles.toml. Sources are absolute so `mise dot apply`
+# run from a linked worktree still deploys the primary checkout.
+#
+# scripts/home-capture.py parses `exclude` and supports only two pattern forms:
+# an anchored literal path ("/name" or "/dir/name", no glob characters) and the
+# bare component "Icon\r". Keep to those forms.
+#
+# Copyright: Ben Chatelain. MIT.
+
+[dotfiles."~"]
+source = "~/dev/dotfiles"
+mode = "symlink-each"
+manifest = "git"
+relative = false
+dot_prefix = false
+exclude = [
+    # Repository tooling: lives only in the repo, never in $HOME.
+    "/.adr-dir",
+    "/.gitattributes",
+    "/.github",
+    "/.gitignore",
+    "/LICENSE.md",
+    "/PLAN.md",
+    "/README.md",
+    "/build.gradle.kts",
+    "/crates",
+    "/docs",
+    "/gradle",
+    "/gradle.properties",
+    "/gradlew",
+    "/hk.pkl",
+    "/justfile",
+    "/pyproject.toml",
+    "/renovate.json",
+    "/tests",
+    # launchd ignores symlinked plists; scripts/install-launchagents and
+    # scripts/install-launchdaemons copy these from the repo.
+    "/Library/LaunchAgents",
+    "/Library/LaunchDaemons",
+    # App-owned live state whose committed blob is scrubbed by a clean filter
+    # (.gitattributes): deployed once as copies below, captured back with
+    # `just home-capture`.
+    "/.claude.json",
+    "/.gemini/antigravity-cli/settings.json",
+    "/.gemini/config/config.json",
+    "/.oc/config.json",
+    "/Library/Application Support/Claude/claude_desktop_config.json",
+    # Finder custom-icon files: the real file in $HOME carries the icon in a
+    # resource fork that git does not store.
+    "Icon\r",
+]
+
+[dotfiles."~/.claude.json"]
+source = "~/dev/dotfiles/.claude.json"
+mode = "copy"
+create_if_missing = true
+permissions = "0600"
+
+[dotfiles."~/.gemini/antigravity-cli/settings.json"]
+source = "~/dev/dotfiles/.gemini/antigravity-cli/settings.json"
+mode = "copy"
+create_if_missing = true
+permissions = "0600"
+
+[dotfiles."~/.gemini/config/config.json"]
+source = "~/dev/dotfiles/.gemini/config/config.json"
+mode = "copy"
+create_if_missing = true
+permissions = "0600"
+
+[dotfiles."~/.oc/config.json"]
+source = "~/dev/dotfiles/.oc/config.json"
+mode = "copy"
+create_if_missing = true
+permissions = "0600"
+
+[dotfiles."~/Library/Application Support/Claude/claude_desktop_config.json"]
+source = "~/dev/dotfiles/Library/Application Support/Claude/claude_desktop_config.json"
+mode = "copy"
+create_if_missing = true
+permissions = "0600"

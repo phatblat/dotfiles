@@ -26,6 +26,7 @@ import '.config/just/claude.just'
 import '.config/just/clean.just'
 import '.config/just/cmux.just'
 import '.config/just/git.just'
+import '.config/just/home.just'
 import '.config/just/macos.just'
 import '.config/just/mise.just'
 import '.config/just/nix.just'
@@ -122,6 +123,10 @@ doctor:
 [script]
 test mode="parallel":
     echo "Running tests..."
+    export MISE_DATA_DIR="${MISE_DATA_DIR:-$HOME/.local/share/mise}"
+    export MISE_STATE_DIR="${MISE_STATE_DIR:-$HOME/.local/state/mise}"
+    export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=commit.gpgsign GIT_CONFIG_VALUE_0=false
+    export HOME="{{ justfile_directory() }}"
     eval "$(mise activate bash)"
     [[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="$PATH:/nix/var/nix/profiles/default/bin:${HOME}/.nix-profile/bin" || true
     case "{{ mode }}" in
