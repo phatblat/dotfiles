@@ -192,6 +192,7 @@
   "window.openWithoutArgumentsInNewWindow": "on",
   "window.zoomLevel": 1,
   "workbench.iconTheme": "vs-seti",
+  "workbench.productIconTheme": "materialiconic-product-icons",
   "workbench.secondarySideBar.showLabels": false,
   "workbench.startupEditor": "none",
   "xml.java.home": "",
