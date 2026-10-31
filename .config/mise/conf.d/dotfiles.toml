@@ -50,6 +50,14 @@ exclude = [
     # Finder custom-icon files: the real file in $HOME carries the icon in a
     # resource fork that git does not store.
     "Icon\r",
+    # Tracked symlinks whose relative target leaves the repo (../../dev/agents/...):
+    # deployed below as direct links, because a link to the repo's link would
+    # resolve relative to ~/dev/dotfiles and dangle.
+    "/.agents/skills/authoring-skills",
+    "/.agents/skills/conventional-docs",
+    "/.agents/skills/recording-changes",
+    "/.agents/skills/semantic-versioning",
+    "/.agents/skills/setup-phatblat-skills",
 ]
 
 [dotfiles."~/.claude.json"]
@@ -81,3 +89,28 @@ source = "~/dev/dotfiles/Library/Application Support/Claude/claude_desktop_confi
 mode = "copy"
 create_if_missing = true
 permissions = "0600"
+
+[dotfiles."~/.agents/skills/authoring-skills"]
+source = "~/dev/agents/skills/skills/authoring-skills"
+mode = "symlink"
+relative = true
+
+[dotfiles."~/.agents/skills/conventional-docs"]
+source = "~/dev/agents/conventional-docs/skills/conventional-docs"
+mode = "symlink"
+relative = true
+
+[dotfiles."~/.agents/skills/recording-changes"]
+source = "~/dev/agents/skills/skills/recording-changes"
+mode = "symlink"
+relative = true
+
+[dotfiles."~/.agents/skills/semantic-versioning"]
+source = "~/dev/agents/skills/skills/semantic-versioning"
+mode = "symlink"
+relative = true
+
+[dotfiles."~/.agents/skills/setup-phatblat-skills"]
+source = "~/dev/agents/skills/skills/setup-phatblat-skills"
+mode = "symlink"
+relative = true
