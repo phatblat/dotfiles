@@ -88,7 +88,7 @@ build: generate
 
 # Regenerates harness artifacts and OMP profile configs
 [group('build')]
-generate: harness-generate generate-omp-profiles
+generate: harness-generate generate-omp-profiles home-spec
 
 # Regenerates artifacts and formats the result; run after generator/source edits
 [group('build')]
@@ -100,7 +100,7 @@ fix: generate agentlink-apply format
 
 # Runs lint, type checks, harness parity checks, ness tests, and test
 [group('checks')]
-check: lint typecheck-python check-spelling harness-check agentlink-check ness-test test
+check: lint typecheck-python check-spelling harness-check agentlink-check home-spec-check ness-test test
 
 # CI: check.yml (lint job)
 # Runs every hk check step over all tracked files (steps live in hk.pkl)

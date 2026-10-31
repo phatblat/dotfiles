@@ -4,7 +4,18 @@
 # Links and copies tracked dotfiles from the primary checkout into $HOME
 [group('home')]
 home-apply:
+    python3 {{ justfile_directory() }}/scripts/home_spec.py links
     mise --cd "$HOME" dot apply --yes
+
+# Regenerates the deploy spec from the tracked files (run by `just generate`)
+[group('home')]
+home-spec:
+    python3 {{ justfile_directory() }}/scripts/home_spec.py generate
+
+# Fails when the committed deploy spec is stale relative to the tracked files (run by `just check`)
+[group('home')]
+home-spec-check:
+    python3 {{ justfile_directory() }}/scripts/home_spec.py check
 
 # Shows which $HOME targets differ from the primary checkout
 [group('home')]

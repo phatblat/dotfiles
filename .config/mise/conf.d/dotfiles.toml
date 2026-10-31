@@ -3269,6 +3269,11 @@ source = "~/dev/dotfiles/.config/just/agents.just"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.config/just/backlog.just"]
+source = "~/dev/dotfiles/.config/just/backlog.just"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.config/just/brew.just"]
 source = "~/dev/dotfiles/.config/just/brew.just"
 mode = "symlink"
@@ -11234,6 +11239,11 @@ source = "~/dev/dotfiles/scripts/audit-package-managers.py"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/scripts/backlog.py"]
+source = "~/dev/dotfiles/scripts/backlog.py"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/scripts/brew-dump.py"]
 source = "~/dev/dotfiles/scripts/brew-dump.py"
 mode = "symlink"
@@ -11361,6 +11371,11 @@ relative = false
 
 [dotfiles."~/scripts/home-capture.py"]
 source = "~/dev/dotfiles/scripts/home-capture.py"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/scripts/home_spec.py"]
+source = "~/dev/dotfiles/scripts/home_spec.py"
 mode = "symlink"
 relative = false
 
