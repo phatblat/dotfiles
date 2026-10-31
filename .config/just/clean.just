@@ -130,8 +130,9 @@ clean-deps:
     done
 
 # A worktree under ~/.worktrees is removable when it is not on its repo's
-# default branch, has no uncommitted, untracked, or gitignored files (removal
-# deletes ignored data such as .env, which git cannot recover), has had no commit or
+# default branch, has no uncommitted, untracked, or gitignored files other than
+# the `wt overlay` symlinks (removal deletes ignored data such as .env, which
+# git cannot recover), has had no commit or
 # checkout for `days` days (a brand-new branch is trivially an ancestor of the
 # default branch), and its branch is either an ancestor of the default branch
 # or has an upstream that is gone (deleted on the remote after a squash or
@@ -165,8 +166,26 @@ clean-worktrees mode="remove" days="7":
             kept=$((kept + 1))
             continue
         fi
-        if [[ -n "$(git --no-optional-locks -C "$dir" status --porcelain --ignored)" ]]; then
-            echo "keeping (uncommitted, untracked, or gitignored files): $dir [$branch]"
+        if [[ -n "$(git --no-optional-locks -C "$dir" status --porcelain)" ]]; then
+            echo "keeping (uncommitted or untracked changes): $dir [$branch]"
+            kept=$((kept + 1))
+            continue
+        fi
+        # Gitignored files are unrecoverable once the worktree is removed, except
+        # the symlinks `wt overlay` creates from .config/wt/overlay/dev-dotfiles.
+        overlay_entries=""
+        if [[ -f "$dir/.config/wt/overlay/dev-dotfiles" ]]; then
+            overlay_entries="$(sed -e 's/#.*//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e '/^$/d' "$dir/.config/wt/overlay/dev-dotfiles")"
+        fi
+        ignored_file=""
+        while IFS= read -r ignored; do
+            [[ -n "$ignored" ]] || continue
+            if [[ -L "$dir/$ignored" ]] && grep -qxF -- "$ignored" <<<"$overlay_entries"; then continue; fi
+            ignored_file="$ignored"
+            break
+        done < <(git --no-optional-locks -C "$dir" ls-files --others --ignored --exclude-standard)
+        if [[ -n "$ignored_file" ]]; then
+            echo "keeping (gitignored file: $ignored_file): $dir [$branch]"
             kept=$((kept + 1))
             continue
         fi
