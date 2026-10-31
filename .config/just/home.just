@@ -4,12 +4,12 @@
 # Links and copies tracked dotfiles from the primary checkout into $HOME
 [group('home')]
 home-apply:
-    cd "$HOME" && mise dot apply --yes
+    mise --cd "$HOME" dot apply --yes
 
 # Shows which $HOME targets differ from the primary checkout
 [group('home')]
 home-status:
-    cd "$HOME" && mise dot status
+    mise --cd "$HOME" dot status
 
 # Pins $HOME to <ref> by detaching the primary checkout there; the post-checkout hook re-applies
 [group('home')]
