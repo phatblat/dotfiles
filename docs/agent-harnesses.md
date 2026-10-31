@@ -8,15 +8,15 @@ Coverage: 92/405 cells verified (23%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.251 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
-| codex | supported peer | codex-cli 0.165.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
-| opencode | new port | opencode v2.2.0 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| claude | supported peer | 2.1.314 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| codex | supported peer | codex-cli 0.166.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
+| opencode | new port | opencode v2.2.2 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.4.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.13.3 | 2026-08-29 | 11 | 0 | 0 | 0 | 0 | 34 |
-| antigravity | tracked port | 1.2.3 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
-| cursor | tracked port | - | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
-| grok | new port | grok 1.0.70 (f50904eaee6c) | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
-| crush | new port | crush version v0.98.2 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
+| omp | tracked port | omp/18.14.1 | 2026-08-29 | 11 | 0 | 0 | 0 | 0 | 34 |
+| antigravity | tracked port | 1.4.6 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
+| cursor | tracked port | 2026.10.16-e3cb207 | 2026-08-29 | 2 | 6 | 0 | 0 | 1 | 36 |
+| grok | new port | grok 1.0.70 (f50904eaee6c) [alpha] | 2026-08-29 | 5 | 3 | 0 | 0 | 1 | 36 |
+| crush | new port | crush version v0.99.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
@@ -65,16 +65,16 @@ Coverage: 92/405 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-10-31 | opencode | - | version | opencode v2.2.0 | opencode v2.2.2 |
+| 2026-10-31 | omp | - | version | omp/18.13.3 | omp/18.14.1 |
+| 2026-10-31 | grok | - | version | grok 1.0.70 (f50904eaee6c) | grok 1.0.70 (f50904eaee6c) [alpha] |
+| 2026-10-31 | cursor | - | version | - | 2026.10.16-e3cb207 |
+| 2026-10-31 | crush | - | version | crush version v0.98.2 | crush version v0.99.0 |
+| 2026-10-31 | codex | - | version | codex-cli 0.165.0 | codex-cli 0.166.0 |
+| 2026-10-31 | claude | - | version | 2.1.251 (Claude Code) | 2.1.314 (Claude Code) |
+| 2026-10-31 | antigravity | - | version | 1.2.3 | 1.4.6 |
+| 2026-10-31 | opencode | maintenance.config_validation | probe | unavailable | pass |
 | 2026-10-30 | opencode | - | version | - | opencode v2.2.0 |
-| 2026-10-30 | omp | - | version | omp/18.14.0 | omp/18.13.3 |
-| 2026-10-30 | grok | - | version | grok 1.0.70 (f50904eaee6c) [alpha] | grok 1.0.70 (f50904eaee6c) |
-| 2026-10-30 | cursor | - | version | 2026.10.16-e3cb207 | - |
-| 2026-10-30 | claude | - | version | 2.1.306 (Claude Code) | 2.1.251 (Claude Code) |
-| 2026-10-30 | antigravity | - | version | 1.4.6 | 1.2.3 |
-| 2026-10-30 | opencode | - | version | opencode v2.2.0 | - |
-| 2026-10-30 | omp | - | version | omp/18.13.3 | omp/18.14.0 |
-| 2026-10-30 | grok | - | version | grok 1.0.70 (f50904eaee6c) | grok 1.0.70 (f50904eaee6c) [alpha] |
-| 2026-10-30 | cursor | - | version | - | 2026.10.16-e3cb207 |
 
 ## Permanent divergences
 

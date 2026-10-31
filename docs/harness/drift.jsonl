@@ -321,3 +321,12 @@
 {"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"grok 1.0.70 (f50904eaee6c) [alpha]","harness":"grok","to":"grok 1.0.70 (f50904eaee6c)","version_from":"grok 1.0.70 (f50904eaee6c) [alpha]","version_to":"grok 1.0.70 (f50904eaee6c)"}
 {"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"omp/18.14.0","harness":"omp","to":"omp/18.13.3","version_from":"omp/18.14.0","version_to":"omp/18.13.3"}
 {"capability":"-","date":"2026-10-30","detail":"","field":"version","from":"","harness":"opencode","to":"opencode v2.2.0","version_from":"","version_to":"opencode v2.2.0"}
+{"capability":"maintenance.config_validation","date":"2026-10-31","detail":"opencode debug config","field":"probe","from":"unavailable","harness":"opencode","to":"pass","version_from":"opencode v2.2.0","version_to":"opencode v2.2.2"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"1.2.3","harness":"antigravity","to":"1.4.6","version_from":"1.2.3","version_to":"1.4.6"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"2.1.251 (Claude Code)","harness":"claude","to":"2.1.314 (Claude Code)","version_from":"2.1.251 (Claude Code)","version_to":"2.1.314 (Claude Code)"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"codex-cli 0.165.0","harness":"codex","to":"codex-cli 0.166.0","version_from":"codex-cli 0.165.0","version_to":"codex-cli 0.166.0"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"crush version v0.98.2","harness":"crush","to":"crush version v0.99.0","version_from":"crush version v0.98.2","version_to":"crush version v0.99.0"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"","harness":"cursor","to":"2026.10.16-e3cb207","version_from":"","version_to":"2026.10.16-e3cb207"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"grok 1.0.70 (f50904eaee6c)","harness":"grok","to":"grok 1.0.70 (f50904eaee6c) [alpha]","version_from":"grok 1.0.70 (f50904eaee6c)","version_to":"grok 1.0.70 (f50904eaee6c) [alpha]"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"omp/18.13.3","harness":"omp","to":"omp/18.14.1","version_from":"omp/18.13.3","version_to":"omp/18.14.1"}
+{"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"opencode v2.2.0","harness":"opencode","to":"opencode v2.2.2","version_from":"opencode v2.2.0","version_to":"opencode v2.2.2"}
