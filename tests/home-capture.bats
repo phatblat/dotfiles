@@ -22,13 +22,15 @@ setup() {
     git -C "$SRC" add .inputrc .vimrc
     git -C "$SRC" commit -qm "init"
     cat > "$SBHOME/.config/mise/conf.d/dotfiles.toml" << EOF
-[dotfiles."~"]
-source = "$SRC"
-mode = "symlink-each"
-manifest = "git"
+[dotfiles."~/.inputrc"]
+source = "$SRC/.inputrc"
+mode = "symlink"
 relative = false
-dot_prefix = false
-exclude = []
+
+[dotfiles."~/.vimrc"]
+source = "$SRC/.vimrc"
+mode = "symlink"
+relative = false
 EOF
     sbx mise dot apply --yes
     [ -L "$SBHOME/.inputrc" ]
@@ -76,4 +78,24 @@ sbx() {
     [[ "$output" =~ "conflict: .vimrc: directory where a file belongs" ]]
     [ -d "$SBHOME/.vimrc" ]
     [ -L "$SBHOME/.inputrc" ]
+}
+
+@test "home-capture: runs against the spec home_spec.py renders" {
+    python3 "$BATS_TEST_DIRNAME/../scripts/home_spec.py" generate --repo "$SRC" --source "$SRC"
+    cp "$SRC/.config/mise/conf.d/dotfiles.toml" "$SBHOME/.config/mise/conf.d/dotfiles.toml"
+    rm "$SBHOME/.inputrc"
+    cp "$SRC/.inputrc" "$SBHOME/.inputrc"
+
+    run sbx python3 "$SCRIPT" --dry-run
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "would restore ~/.inputrc" ]]
+    [ ! -L "$SBHOME/.inputrc" ]
+}
+
+@test "home-capture: runs against the committed deploy spec" {
+    ln -sf "$(cd "$BATS_TEST_DIRNAME/.." && pwd)/.config/mise/conf.d/dotfiles.toml" "$SBHOME/.config/mise/conf.d/dotfiles.toml"
+
+    run sbx python3 "$SCRIPT" --dry-run
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "home-capture:" ]]
 }
