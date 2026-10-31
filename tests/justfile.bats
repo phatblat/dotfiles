@@ -387,9 +387,10 @@ EOF
   ! grep -Fq "terraform/main_account" "$log"
 }
 
-@test "root justfile imports every fragment" {
-  local f
+@test "root justfile imports or mods every fragment" {
+  local f name
   for f in "$BATS_TEST_DIRNAME"/../.config/just/*.just; do
-    grep -Fq "import '.config/just/$(basename "$f")'" "$BATS_TEST_DIRNAME/../justfile"
+    name="$(basename "$f")"
+    grep -Fq -e "import '.config/just/$name'" -e "mod ${name%.just} '.config/just/$name'" "$BATS_TEST_DIRNAME/../justfile"
   done
 }

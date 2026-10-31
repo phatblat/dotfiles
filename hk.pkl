@@ -203,6 +203,7 @@ local linters = new Mapping<String, Step | Group> {
         "scripts/sync-subconscious-models.py",
         "scripts/cmux-settings.py",
         "scripts/agy-plugins.py",
+        "scripts/backlog.py",
       )
     batch = true
     check = "ruff format --check {{files}}"

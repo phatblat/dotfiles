@@ -2,9 +2,11 @@
 # justfile for ~phatblat
 #
 # Recipes live in one fragment per domain under .config/just/, imported below;
-# each fragment's group name is its file stem. This file holds only settings,
-# cross-fragment variables, and the lifecycle recipes that fan out across
-# fragments. `just --list` is still the flat, grouped index of everything.
+# each fragment's group name is its file stem. backlog.just is the exception:
+# it is loaded as a `mod`, so its recipes stay namespaced as `just backlog <recipe>`.
+# This file holds only settings, cross-fragment variables, and the lifecycle
+# recipes that fan out across fragments. `just --list` is still the flat,
+# grouped index of everything.
 #
 
 export PATH := env("HOME") / ".local" / "bin" + ":" + env("PATH")
@@ -33,6 +35,11 @@ import '.config/just/omp.just'
 import '.config/just/python.just'
 import '.config/just/rust.just'
 
+# Lists open backlog items by priority and files new ones
+[group('backlog')]
+mod backlog '.config/just/backlog.just'
+
+alias bl := backlog
 alias fmt := format
 alias i := deps
 alias up := upgrade
