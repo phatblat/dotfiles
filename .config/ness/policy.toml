@@ -523,14 +523,13 @@ guarded = [
   "zsh",
   "zstd",
 ]
-# Command names whose prompts are asked every time, without a "don't ask again" choice: launchers, interpreters, remote shells and privilege escalation run whatever they are given. Any other guarded or unlisted command is approved per exact command line (every word), never per name; a command with a variable, glob or substitution word is asked about every time too.
+# Command names whose prompts are asked every time, without a "don't ask again" choice: launchers, interpreters, remote shells and privilege escalation run whatever they are given. `bash`, `python` and `python3` are deliberately absent so they are approved per exact command line. Any other guarded or unlisted command is approved per exact command line (every word), never per name; a command with a variable, glob or substitution word is asked about every time too.
 no_session_approval = [
   ".",
   "Rscript",
   "arch",
   "at",
   "batch",
-  # "bash",
   "builtin",
   "caffeinate",
   "chroot",
@@ -561,8 +560,6 @@ no_session_approval = [
   "pkexec",
   "pypy",
   "pypy3",
-  # "python",
-  # "python3",
   "ruby",
   "sandbox-exec",
   "scp",
