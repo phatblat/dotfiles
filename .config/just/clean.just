@@ -130,7 +130,8 @@ clean-deps:
     done
 
 # A worktree under ~/.worktrees is removable when it is not on its repo's
-# default branch, has no uncommitted or untracked changes, has had no commit or
+# default branch, has no uncommitted, untracked, or gitignored files (removal
+# deletes ignored data such as .env, which git cannot recover), has had no commit or
 # checkout for `days` days (a brand-new branch is trivially an ancestor of the
 # default branch), and its branch is either an ancestor of the default branch
 # or has an upstream that is gone (deleted on the remote after a squash or
@@ -164,8 +165,8 @@ clean-worktrees mode="remove" days="7":
             kept=$((kept + 1))
             continue
         fi
-        if [[ -n "$(git --no-optional-locks -C "$dir" status --porcelain)" ]]; then
-            echo "keeping (uncommitted changes): $dir [$branch]"
+        if [[ -n "$(git --no-optional-locks -C "$dir" status --porcelain --ignored)" ]]; then
+            echo "keeping (uncommitted, untracked, or gitignored files): $dir [$branch]"
             kept=$((kept + 1))
             continue
         fi
@@ -188,7 +189,11 @@ clean-worktrees mode="remove" days="7":
         fi
         echo "removing ($reason): $dir [$branch]"
         if [[ "{{ mode }}" == "remove" ]]; then
-            wt remove "$branch" --repo "$main"
+            if ! wt remove "$branch" --repo "$main"; then
+                echo "failed: wt remove $branch ($dir)" >&2
+                kept=$((kept + 1))
+                continue
+            fi
         fi
         removed=$((removed + 1))
     done < <(find "$HOME/.worktrees" -maxdepth 3 -type f -name .git)
