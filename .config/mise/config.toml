@@ -108,7 +108,7 @@ grok = { version = "1.0.70", bin = "grok", platforms = { windows-arm64 = { bin =
 hexyl = "0.17.0"
 hk = { version = "2.10.0", workflow = "release.yml" }
 hyperfine = "2.0.0"
-infisical = { version = "0.44.10", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
+infisical = { version = "0.44.11", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
 java = "27.0.1+0"
 jjui = "0.10.12"
 jq = "1.8.2"
