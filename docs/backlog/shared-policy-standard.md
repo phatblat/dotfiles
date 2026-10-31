@@ -1,5 +1,7 @@
 # Publish the agent safety policy as an adoptable standard
 
+Priority: Unprioritized
+
 ## Problem
 
 The ness policy is one person's configuration in one dotfiles repository.

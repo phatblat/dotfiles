@@ -1,5 +1,7 @@
 # Scripted omp agent workflows
 
+Priority: Unprioritized
+
 ## Problem
 
 The omp agent team runs its workflows through a lead — the main session — that

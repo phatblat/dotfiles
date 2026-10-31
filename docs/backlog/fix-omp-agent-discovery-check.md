@@ -1,5 +1,7 @@
 # Fix the omp agent discovery check
 
+Priority: Unprioritized
+
 ## Problem
 
 `scripts/agent-harnesses.py verify` checks omp agent discovery by running

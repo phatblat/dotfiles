@@ -121,7 +121,10 @@ This repo follows [Conventional Docs](https://github.com/phatblat/conventional-d
   branch, committed for handoff, and deleted before merge.
 - Queued work that is real but not being done now is filed as
   `docs/backlog/<slug>.md`, one file per item, and deleted by the change
-  that implements it.
+  that implements it. Each item carries exactly one
+  `Priority: Urgent|High|Medium|Low|Unprioritized` line under its H1;
+  `just backlog new "<title>" [priority]` creates one, and `just backlog`
+  (alias `just bl`) lists them grouped by priority.
 - The repo keeps no `CHANGELOG.md` — it has no releases.
 
 See `docs/decisions/2026-09-07-adopt-conventional-docs.md` for the adoption

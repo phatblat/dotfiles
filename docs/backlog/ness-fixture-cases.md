@@ -1,5 +1,7 @@
 # Give the ness crate its own fixture cases
 
+Priority: Unprioritized
+
 ## Problem
 
 The ness crate's tests reach outside the crate for their data. `tests/corpus.rs`

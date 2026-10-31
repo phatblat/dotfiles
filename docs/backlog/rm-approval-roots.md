@@ -1,5 +1,7 @@
 # Allow `rm` under chosen roots without a prompt
 
+Priority: Unprioritized
+
 ## Problem
 
 `rm` prompts on every harness that has a prompt rule (`rm *` in omp's
