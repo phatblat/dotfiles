@@ -813,7 +813,7 @@ CAPABILITIES: list[Capability] = [
         domain="agents",
         title="Specialist agents for delegation",
         priority="p0",
-        contract="Six specialist agents are represented for delegation.",
+        contract="Fifteen specialist agents are represented for delegation.",
         canonical=("~/.agents/harness/agents",),
         verify="python3 scripts/agent-harnesses.py inventory --json",
         cells={
@@ -995,7 +995,7 @@ CAPABILITIES: list[Capability] = [
         title="User-defined agent registration",
         priority="p1",
         contract=(
-            "The 6 shared specialist agents are registerable as named agents the "
+            "The 15 shared specialist agents are registerable as named agents the "
             "harness can select."
         ),
         canonical=("~/.agents/harness/agents",),

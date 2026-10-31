@@ -2,7 +2,8 @@
 set -euo pipefail
 
 # Installs LaunchDaemons from dotfiles into /Library/LaunchDaemons
-DOTFILES_DAEMONS="$HOME/Library/LaunchDaemons"
+repo_root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
+DOTFILES_DAEMONS="$repo_root/Library/LaunchDaemons"
 
 for plist in "$DOTFILES_DAEMONS"/*.plist; do
     [ -f "$plist" ] || continue

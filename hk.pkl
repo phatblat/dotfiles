@@ -49,6 +49,7 @@ local generate = new Mapping<String, Step | Group> {
       """
       python3 scripts/agent-harnesses.py validate
       scripts/generate-omp-profiles.sh --check
+      python3 scripts/home_spec.py check
       """
     fix = "just generate"
     stage =
@@ -56,6 +57,7 @@ local generate = new Mapping<String, Step | Group> {
         ".agents/harness/**",
         ".claude/skills/**",
         ".config/crush/**",
+        ".config/mise/conf.d/dotfiles.toml",
         ".config/opencode/**",
         ".cursor/hooks.json",
         ".grok/**",

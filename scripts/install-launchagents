@@ -9,7 +9,8 @@ set -euo pipefail
 #
 # Copyright: Ben Chatelain. MIT.
 
-DOTFILES_AGENTS="$HOME/Library/LaunchAgents"
+repo_root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
+DOTFILES_AGENTS="$repo_root/Library/LaunchAgents"
 UID_DOMAIN="gui/$(id -u)"
 
 for plist in "$DOTFILES_AGENTS"/*.plist; do
@@ -20,12 +21,7 @@ for plist in "$DOTFILES_AGENTS"/*.plist; do
     echo "Installing $name..."
     mkdir -p "$HOME/Library/LaunchAgents"
     dest="$HOME/Library/LaunchAgents/$name"
-    # Skip cp when source and dest are the same file (e.g., when $HOME is the checkout root)
-    if [ "$plist" -ef "$dest" ]; then
-        echo "  → already in place"
-    else
-        cp "$plist" "$dest"
-    fi
+    cp "$plist" "$dest"
     chmod 644 "$dest"
     launchctl bootout "$UID_DOMAIN/$label" 2>/dev/null || true
     # Clear any prior disabled override before bootstrap so the agent runs on schedule

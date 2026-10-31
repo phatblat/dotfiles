@@ -9,7 +9,7 @@
         <string>/bin/zsh</string>
         <string>-l</string>
         <string>-c</string>
-        <string>cd "$HOME" &amp;&amp; just harness-probe</string>
+        <string>cd "$HOME/dev/dotfiles" &amp;&amp; just harness-probe</string>
     </array>
     <key>StartCalendarInterval</key>
     <dict>

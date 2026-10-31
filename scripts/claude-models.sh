@@ -22,9 +22,11 @@
 
 set -euo pipefail
 
+repo_root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
+
 readonly API="https://api.anthropic.com/v1/models"
 readonly DEPRECATIONS_URL="https://platform.claude.com/docs/en/about-claude/model-deprecations.md"
-readonly LOCKFILE="${CLAUDE_MODELS_LOCK:-$HOME/.claude/models.lock}"
+readonly LOCKFILE="${CLAUDE_MODELS_LOCK:-$repo_root/.claude/models.lock}"
 
 die() {
   printf 'claude-models: %s\n' "$*" >&2
@@ -191,7 +193,7 @@ tracked_model_ids() {
   # No \b — git grep's ERE does not support it and silently matches nothing.
   # --untracked so a newly added agent is checked before it is committed;
   # it still honours .gitignore, so vendored plugin fixtures stay excluded.
-  git -C "$HOME" grep --untracked -hoE '"?model"?: *"?(claude-[a-z]+-[0-9][a-z0-9-]*)' -- \
+  git -C "$repo_root" grep --untracked -hoE '"?model"?: *"?(claude-[a-z]+-[0-9][a-z0-9-]*)' -- \
     '.claude/agents' '.claude/skills' '.claude/settings.json' '.codex/agents' 2>/dev/null |
     grep -oE 'claude-[a-z]+-[0-9][a-z0-9-]*' |
     sed 's/-*$//' |

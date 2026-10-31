@@ -45,6 +45,13 @@ git-hooks:
     patched="${current/mise x -- hk run pre-commit --from-hook/$mise_bin x -- hk run pre-commit --from-hook}"
     git config --local hook.hk-pre-commit.command "$patched"
     echo "Git hooks installed by hk (hook.hk-pre-commit.command in .git/config, using absolute mise path: $mise_bin)"
+    primary="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+    git config --local hook.dotfiles-apply.command "$primary/scripts/home-apply-hook"
+    git config --local --replace-all hook.dotfiles-apply.event post-checkout
+    git config --local --add hook.dotfiles-apply.event post-merge
+    git config --local --add hook.dotfiles-apply.event post-commit
+    git config --local --add hook.dotfiles-apply.event post-rewrite
+    echo "Git hook 'dotfiles-apply' installed (re-runs mise dot apply after checkout/merge/commit/rewrite in $primary)"
 
 # Installs git clean filters that strip churn/secrets before staging (see .gitattributes)
 [group('git')]

@@ -34,10 +34,11 @@ import sys
 from pathlib import Path
 
 HOME = Path.home()
+REPO = Path(__file__).resolve().parent.parent
 PLUGINS_DIR = HOME / ".gemini" / "config" / "plugins"
 CONFIG_JSON = HOME / ".gemini" / "config" / "config.json"
-ADAPTER = HOME / ".agents" / "harness" / "adapters" / "antigravity"
-LOCK = HOME / ".agents" / "harness" / "agy-plugins.lock.json"
+ADAPTER = REPO / ".agents" / "harness" / "adapters" / "antigravity"
+LOCK = REPO / ".agents" / "harness" / "agy-plugins.lock.json"
 ADAPTER_PLUGIN = "shared-agent-harness"
 IGNORED = {".DS_Store"}
 

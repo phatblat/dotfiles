@@ -302,7 +302,7 @@ EOF
   [ "$(jq -r '(.recipes.generate.attributes | index({"group":"build"})) != null' <<<"$dump")" = true ]
   [ "$(jq -r '(.recipes["harness-generate"].attributes | index({"group":"agents"})) != null' <<<"$dump")" = true ]
   [ "$(jq -r '[.recipes.clean.dependencies[].recipe] | join(" ")' <<<"$dump")" \
-    = "clean-rust clean-caches clean-build clean-deps" ]
+    = "clean-rust clean-caches clean-tool-caches clean-worktrees clean-build clean-deps" ]
   [ "$(jq -r '[.recipes.deps.dependencies[].recipe] | index("install-bun-deps") != null' <<<"$dump")" = true ]
 }
 
