@@ -32,3 +32,9 @@ load helpers/setup
 
   [ "$status" -eq 0 ]
 }
+
+@test "backlog: priority header parsing, grouping, slugging and no-overwrite guard" {
+  run python3 "${BATS_TEST_DIRNAME}/test_backlog.py"
+
+  [ "$status" -eq 0 ]
+}
