@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# home-apply-hook: git config hook `hook.dotfiles-apply` (installed by `just git-hooks`).
+#
+# After a checkout, merge, commit, or history rewrite in the primary checkout,
+# re-runs `mise dot apply` so $HOME's links follow the files git just wrote:
+# new tracked files gain links, deleted ones lose them. Linked worktrees never
+# deploy. DOTFILES_APPLY=0 skips it.
+#
+# Copyright: Ben Chatelain. MIT.
+set -euo pipefail
+
+[ "${DOTFILES_APPLY:-1}" = "0" ] && exit 0
+
+git_dir="$(git rev-parse --path-format=absolute --git-dir)"
+common_dir="$(git rev-parse --path-format=absolute --git-common-dir)"
+[ "$git_dir" = "$common_dir" ] || exit 0
+
+# git exports GIT_DIR/GIT_INDEX_FILE/... to hooks; mise's `manifest = "git"`
+# runs its own `git ls-files` in the source, so start it from a clean slate.
+unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX GIT_COMMON_DIR
+
+mise_bin="$(command -v mise || true)"
+[ -n "$mise_bin" ] || mise_bin="$HOME/.local/bin/mise"
+
+cd "$HOME"
+if ! "$mise_bin" dot apply --yes --quiet; then
+    echo "dotfiles: mise dot apply failed; run 'just home-status' in $(dirname "$common_dir")" >&2
+fi
+exit 0
