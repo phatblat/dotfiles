@@ -37,7 +37,7 @@ then reuses for the safety guard.
 
 ## Status
 
-This is a proposal that is **proposed**.
+This is a proposal that is **accepted**.
 
 ## Assumptions and Constraints
 
