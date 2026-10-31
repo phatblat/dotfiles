@@ -16,6 +16,8 @@ modelRoles:
   smol: subconscious/subconscious/deepseek-v4.1-flash-marathon
   vision: subconscious/subconscious/deepseek-v4.1-flash-marathon
 extensions: []
+disabledExtensions:
+  - hook:pre:harness-guard:harness-guard.ts
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
@@ -108,7 +110,7 @@ skills:
   ignoredSkills:
     - codex/*
 plan:
-  autosave: true
+  autosave: false
 commands:
   enableClaudeProject: false
   enableOpencodeProject: false
@@ -134,6 +136,8 @@ find:
   enabled: auto
 astGrep:
   enabled: true
+goal:
+  statusInFooter: false
 includeWorkspaceTree: false
 tui:
   imeSafeCursor: true

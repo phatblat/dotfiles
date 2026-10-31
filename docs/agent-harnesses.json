@@ -12,7 +12,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.6"
@@ -33,10 +33,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.306 (Claude Code)"
+            "version": "2.1.314 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -55,10 +55,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "codex-cli 0.165.0"
+            "version": "codex-cli 0.166.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -77,10 +77,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.2"
+            "version": "crush version v0.99.0"
           },
           "mode": "native",
           "next_action": "",
@@ -99,7 +99,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.16-e3cb207"
@@ -120,7 +120,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
@@ -141,10 +141,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -162,10 +162,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "shared",
           "next_action": "",
@@ -183,7 +183,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.0"
@@ -533,7 +533,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.6"
@@ -554,10 +554,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.306 (Claude Code)"
+            "version": "2.1.314 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -575,10 +575,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.165.0"
+            "version": "codex-cli 0.166.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -596,10 +596,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.2"
+            "version": "crush version v0.99.0"
           },
           "mode": "native",
           "next_action": "",
@@ -617,7 +617,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.16-e3cb207"
@@ -638,7 +638,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
@@ -659,10 +659,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -680,10 +680,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "shared",
           "next_action": "",
@@ -701,7 +701,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.0"
@@ -1697,10 +1697,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.306 (Claude Code)"
+            "version": "2.1.314 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -1718,10 +1718,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.165.0"
+            "version": "codex-cli 0.166.0"
           },
           "mode": "adapter",
           "next_action": "Re-check Codex release notes for stable command format",
@@ -1739,10 +1739,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.2"
+            "version": "crush version v0.99.0"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
@@ -1760,7 +1760,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.16-e3cb207"
@@ -1781,7 +1781,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
@@ -1802,10 +1802,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -1823,10 +1823,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "adapter",
           "next_action": "",
@@ -1844,7 +1844,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.0"
@@ -2196,7 +2196,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.6"
@@ -2217,10 +2217,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.306 (Claude Code)"
+            "version": "2.1.314 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -2238,10 +2238,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.165.0"
+            "version": "codex-cli 0.166.0"
           },
           "mode": "native",
           "next_action": "",
@@ -2259,10 +2259,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.2"
+            "version": "crush version v0.99.0"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for user-defined agent support",
@@ -2280,7 +2280,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.16-e3cb207"
@@ -2301,7 +2301,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
@@ -2322,10 +2322,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -2343,10 +2343,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2869,7 +2869,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
             "version": "1.4.6"
@@ -2891,10 +2891,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "2.1.306 (Claude Code)"
+            "version": "2.1.314 (Claude Code)"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2913,10 +2913,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "codex-cli 0.165.0"
+            "version": "codex-cli 0.166.0"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2936,10 +2936,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "crush version v0.98.2"
+            "version": "crush version v0.99.0"
           },
           "mode": "adapter",
           "next_action": "Install crush and verify it blocks a denied shell command through the generated crushrc PreToolUse hook",
@@ -2959,7 +2959,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
             "version": "2026.10.16-e3cb207"
@@ -2982,7 +2982,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
@@ -3004,10 +3004,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "adapter",
           "next_action": "",
@@ -3026,10 +3026,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "adapter",
           "next_action": "",
@@ -3048,7 +3048,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
             "version": "1.4.0"
@@ -5176,10 +5176,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.306 (Claude Code)"
+            "version": "2.1.314 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -5197,10 +5197,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.165.0"
+            "version": "codex-cli 0.166.0"
           },
           "mode": "native",
           "next_action": "",
@@ -5218,10 +5218,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.2"
+            "version": "crush version v0.99.0"
           },
           "mode": "native",
           "next_action": "",
@@ -5239,7 +5239,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.16-e3cb207"
@@ -5260,7 +5260,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
@@ -5281,10 +5281,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -5302,10 +5302,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "adapter",
           "next_action": "",
@@ -5323,7 +5323,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.0"
@@ -7026,10 +7026,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "adapter",
           "next_action": "",
@@ -7096,7 +7096,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.6"
@@ -7117,10 +7117,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.306 (Claude Code)"
+            "version": "2.1.314 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -7138,10 +7138,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "codex-cli 0.165.0"
+            "version": "codex-cli 0.166.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -7159,10 +7159,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.98.2"
+            "version": "crush version v0.99.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -7180,7 +7180,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2026.10.16-e3cb207"
@@ -7201,7 +7201,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
@@ -7222,10 +7222,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.14.0"
+            "version": "omp/18.14.1"
           },
           "mode": "shared",
           "next_action": "",
@@ -7243,10 +7243,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "shared",
           "next_action": "",
@@ -7264,7 +7264,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.4.0"
@@ -7408,14 +7408,14 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-08-29",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "cli_exit_zero",
-            "version": ""
+            "version": "opencode v2.2.2"
           },
           "mode": "native",
           "next_action": "",
-          "note": "probe unavailable: opencode: [Errno 8] Exec format error: '/Users/phatblat/.local/share/mise/installs/opencode/2.2.0/bin/opencode'",
+          "note": "",
           "parity": "aligned",
           "probe": {
             "args": "debug config",
@@ -7427,7 +7427,7 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-10-30",
+            "date": "2026-10-31",
             "kind": "probe",
             "ref": "cli_exit_zero",
             "version": "1.4.0"
@@ -7845,17 +7845,17 @@
     "claude": {
       "first_seen": "2026-08-29",
       "previous": "2.1.251 (Claude Code)",
-      "version": "2.1.306 (Claude Code)"
+      "version": "2.1.314 (Claude Code)"
     },
     "codex": {
       "first_seen": "2026-08-29",
-      "previous": "codex-cli 0.164.0",
-      "version": "codex-cli 0.165.0"
+      "previous": "codex-cli 0.165.0",
+      "version": "codex-cli 0.166.0"
     },
     "crush": {
       "first_seen": "2026-08-29",
-      "previous": "crush version v0.98.1",
-      "version": "crush version v0.98.2"
+      "previous": "crush version v0.98.2",
+      "version": "crush version v0.99.0"
     },
     "cursor": {
       "first_seen": "2026-08-29",
@@ -7870,12 +7870,12 @@
     "omp": {
       "first_seen": "2026-08-29",
       "previous": "omp/18.13.3",
-      "version": "omp/18.14.0"
+      "version": "omp/18.14.1"
     },
     "opencode": {
       "first_seen": "2026-08-29",
       "previous": "opencode v2.2.0",
-      "version": ""
+      "version": "opencode v2.2.2"
     },
     "pi": {
       "first_seen": "2026-08-29",

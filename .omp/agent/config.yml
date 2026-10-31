@@ -15,6 +15,8 @@ modelRoles:
   delivery_review: anthropic/claude-opus-5-5:xhigh
 extensions:
   - ~/.omp/agent/teams/feature-delivery
+disabledExtensions:
+  - hook:pre:harness-guard:harness-guard.ts
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
@@ -56,7 +58,7 @@ steeringMode: all
 followUpMode: all
 interruptMode: wait
 memory:
-  backend: mnemopi
+  backend: "off"
 autolearn:
   enabled: true
 task:
@@ -105,7 +107,7 @@ skills:
   ignoredSkills:
     - codex/*
 plan:
-  autosave: true
+  autosave: false
 commands:
   enableClaudeProject: false
   enableOpencodeProject: false
@@ -131,3 +133,5 @@ find:
   enabled: auto
 astGrep:
   enabled: true
+goal:
+  statusInFooter: false

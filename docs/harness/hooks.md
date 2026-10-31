@@ -13,15 +13,15 @@ Verify: `just ness-test`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.306 (Claude Code) · 2026-10-30 | - |
-| codex | aligned | adapter | - | probe · codex-cli 0.165.0 · 2026-10-30 | - |
-| opencode | aligned | adapter | - | probe · - · 2026-10-30 | - |
-| pi | aligned | adapter | - | probe · 1.4.0 · 2026-10-30 | - |
-| omp | aligned | adapter | - | probe · omp/18.14.0 · 2026-10-30 | - |
-| antigravity | partial | adapter | - | probe · 1.4.6 · 2026-10-30 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
-| cursor | partial | adapter | - | probe · 2026.10.16-e3cb207 · 2026-10-30 | ~/.cursor/hooks.json preToolUse (failClosed) execs the compiled guard; Cursor also imports ~/.claude/settings.json Bash and Write\|Edit guard hooks (fail-open), so ness runs twice for Shell and Write calls |
-| grok | partial | adapter | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-10-30 | generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified |
-| crush | partial | adapter | - | probe · crush version v0.98.2 · 2026-10-30 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
+| claude | aligned | adapter | - | probe · 2.1.314 (Claude Code) · 2026-10-31 | - |
+| codex | aligned | adapter | - | probe · codex-cli 0.166.0 · 2026-10-31 | - |
+| opencode | aligned | adapter | - | probe · opencode v2.2.2 · 2026-10-31 | - |
+| pi | aligned | adapter | - | probe · 1.4.0 · 2026-10-31 | - |
+| omp | aligned | adapter | - | probe · omp/18.14.1 · 2026-10-31 | - |
+| antigravity | partial | adapter | - | probe · 1.4.6 · 2026-10-31 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
+| cursor | partial | adapter | - | probe · 2026.10.16-e3cb207 · 2026-10-31 | ~/.cursor/hooks.json preToolUse (failClosed) execs the compiled guard; Cursor also imports ~/.claude/settings.json Bash and Write\|Edit guard hooks (fail-open), so ness runs twice for Shell and Write calls |
+| grok | partial | adapter | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-10-31 | generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified |
+| crush | partial | adapter | - | probe · crush version v0.99.0 · 2026-10-31 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
 
 ### Not yet researched
 

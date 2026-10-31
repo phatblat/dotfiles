@@ -13,9 +13,9 @@
 // The pinned package version must equal the installed hk (enforced by the
 // hk-config step): hk embeds the Pkl package for its own version and evaluates
 // this file with no network request, while any other pin is downloaded.
-amends "package://github.com/jdx/hk/releases/download/v2.9.0/hk@2.9.0#/Config.pkl"
+amends "package://github.com/jdx/hk/releases/download/v2.10.0/hk@2.10.0#/Config.pkl"
 
-min_hk_version = "2.9.0"
+min_hk_version = "2.10.0"
 
 local guard = new Mapping<String, Step | Group> {
   // Declared first with exclusive = true, so it runs alone before every other
@@ -116,6 +116,11 @@ local linters = new Mapping<String, Step | Group> {
         ".config/zed/settings.json",
         ".config/cmux/cmux.json",
         "Library/Application Support/Claude/claude_desktop_config.json",
+        // VS Code's own JSON language service rewrites settings.json with
+        // trailing commas, which strict JSON rejects. Its default formatter is
+        // prettier-vscode, so prettier's jsonc parser owns the file instead.
+        "Library/Application Support/Code/User/keybindings.json",
+        "Library/Application Support/Code/User/settings.json",
         // Gitignored (.gitignore: "Library/Application Support/Code/") but
         // untracked, and hk's untracked-file discovery does not honor that
         // directory-only pattern for files under it — exclude explicitly.
@@ -128,7 +133,16 @@ local linters = new Mapping<String, Step | Group> {
   }
 
   ["prettier-jsonc"] {
-    glob = List("*.jsonc", ".config/zed/settings.json", ".config/cmux/cmux.json")
+    glob =
+      List(
+        "*.jsonc",
+        ".config/zed/settings.json",
+        ".config/cmux/cmux.json",
+        // VS Code rewrites these with trailing commas; prettier's jsonc
+        // parser accepts them and is the formatter VS Code itself uses.
+        "Library/Application Support/Code/User/keybindings.json",
+        "Library/Application Support/Code/User/settings.json",
+      )
     // opencode.jsonc is a generated artifact validated with strict
     // json.loads; prettier's jsonc parser adds trailing commas.
     exclude = List(".config/opencode/opencode.jsonc")

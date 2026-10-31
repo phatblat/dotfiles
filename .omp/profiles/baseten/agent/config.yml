@@ -16,6 +16,8 @@ modelRoles:
   designer: baseten/zai-org/GLM-5.2-Fast:high
   advisor: baseten/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B:medium
 extensions: []
+disabledExtensions:
+  - hook:pre:harness-guard:harness-guard.ts
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
@@ -106,7 +108,7 @@ skills:
   ignoredSkills:
     - codex/*
 plan:
-  autosave: true
+  autosave: false
 commands:
   enableClaudeProject: false
   enableOpencodeProject: false
@@ -132,3 +134,5 @@ find:
   enabled: auto
 astGrep:
   enabled: true
+goal:
+  statusInFooter: false

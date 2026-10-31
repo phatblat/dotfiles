@@ -15,6 +15,8 @@ modelRoles:
   slow: casper/kimi-k3:high
   smol: casper/minimax-m3p1-flash
 extensions: []
+disabledExtensions:
+  - hook:pre:harness-guard:harness-guard.ts
 defaultThinkingLevel: auto
 dev:
   autoqaConsent: granted
@@ -37,6 +39,7 @@ display:
   showTurnTime: true
   collapseCompacted: true
   shimmer: classic
+  subagentLivePreview: true
 advisor:
   enabled: false
   syncBacklog: "off"
@@ -107,7 +110,7 @@ skills:
   ignoredSkills:
     - codex/*
 plan:
-  autosave: true
+  autosave: false
 commands:
   enableClaudeProject: false
   enableOpencodeProject: false
@@ -133,11 +136,17 @@ find:
   enabled: auto
 astGrep:
   enabled: true
+goal:
+  statusInFooter: false
 includeWorkspaceTree: false
 tui:
   imeSafeCursor: true
   tight: true
-  resizeScrollback: preserve
+  resizeScrollback: rebuild
+  completeScrollback: true
+  codexResetFireworks: true
+  titleSpinner: braille
+  hyperlinks: always
 terminal:
   showProgress: true
 ask:

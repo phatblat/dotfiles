@@ -2,29 +2,27 @@
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.rulers": [
-      80
-    ],
+    "editor.rulers": [80],
     "editor.selectionHighlight": false,
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": "off"
+    "editor.wordBasedSuggestions": "off",
   },
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.quickSuggestions": {
       "comments": "on",
       "other": "on",
-      "strings": "on"
+      "strings": "on",
     },
-    "editor.wordWrap": "off"
+    "editor.wordWrap": "off",
   },
   "[ruby]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "ansible.ansible.path": "uvx ansible",
   "ansible.ansibleNavigator.path": "uvx ansible-navigator",
@@ -35,7 +33,7 @@
   "cmake.configureOnOpen": false,
   "cmake.pinnedCommands": [
     "workbench.action.tasks.configureTaskRunner",
-    "workbench.action.tasks.runTask"
+    "workbench.action.tasks.runTask",
   ],
   "cmake.showOptionsMovedNotification": false,
   "continue.enableConsole": true,
@@ -67,10 +65,7 @@
   "editor.minimap.enabled": false,
   "editor.multiCursorMergeOverlapping": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "editor.suggestSelection": "first",
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
@@ -78,15 +73,15 @@
   "extensions.ignoreRecommendations": true,
   "files.associations": {
     ".yamllint": "yaml",
-    "CODEOWNERS": "plaintext"
+    "CODEOWNERS": "plaintext",
   },
   "files.autoSave": "afterDelay",
   "files.exclude": {
     "**/.git": false,
-    "**/.trunk/*out": true
+    "**/.trunk/*out": true,
   },
   "files.watcherExclude": {
-    "**/.trunk/*out": true
+    "**/.trunk/*out": true,
   },
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
@@ -95,7 +90,7 @@
     "*": true,
     "markdown": true,
     "plaintext": false,
-    "yaml": false
+    "yaml": false,
   },
   "githubPullRequests.pullBranch": "never",
   "gitlens.advanced.messages": {
@@ -104,7 +99,7 @@
     "suppressFileNotUnderSourceControlWarning": false,
     "suppressGitVersionWarning": false,
     "suppressLineUncommittedWarning": false,
-    "suppressNoRepositoryWarning": false
+    "suppressNoRepositoryWarning": false,
   },
   "gitlens.codeLens.enabled": false,
   "gitlens.codeLens.includeSingleLineSymbols": true,
@@ -116,8 +111,8 @@
   "java.imports.gradle.wrapper.checksums": [
     {
       "allowed": true,
-      "sha256": "9f053fe5893bda74e6fcbaa5847129f07d97757e1ca107940f92b3c8890a3a95"
-    }
+      "sha256": "9f053fe5893bda74e6fcbaa5847129f07d97757e1ca107940f92b3c8890a3a95",
+    },
   ],
   "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home",
   "java.project.importOnFirstTimeStartup": "automatic",
@@ -127,7 +122,7 @@
     "./gradlew",
     "testDebugUnitTest",
     "--tests",
-    "${class}.${method}"
+    "${class}.${method}",
   ],
   "jupyter.askForKernelRestart": false,
   "liveServer.settings.donotShowInfoMsg": true,
@@ -144,7 +139,7 @@
   "qiskit-vscode.config.firstRun": false,
   "redhat.telemetry.enabled": true,
   "remote.SSH.remotePlatform": {
-    "*.gitpod.io": "linux"
+    "*.gitpod.io": "linux",
   },
   "ruby.codeCompletion": "rcodetools",
   "ruby.format": "rubocop",
@@ -156,16 +151,12 @@
   "rust-analyzer.cargo.autoreload": false,
   "rust-analyzer.cargo.buildScripts.enable": false,
   "rust-analyzer.cargo.sysroot": "/Users/phatblat/.rustup/toolchains/1.74.1-aarch64-apple-darwin",
-  "rust-analyzer.rustfmt.extraArgs": [
-    "+nightly"
-  ],
+  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
   "search.exclude": {
-    "**/.git": true
+    "**/.git": true,
   },
   "security.workspace.trust.untrustedFiles": "open",
-  "shellcheck.customArgs": [
-    "-x"
-  ],
+  "shellcheck.customArgs": ["-x"],
   "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
   "solargraph.bundlerPath": "/usr/local/opt/ruby/bin/bundle",
   "sync.anonymousGist": false,
@@ -182,7 +173,7 @@
   "telemetry.feedback.enabled": false,
   "terminal.integrated.defaultProfile": "/Users/phatblat/bin/nu-login",
   "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1"
+    "FIG_NEW_SESSION": "1",
   },
   "trunk.trunkGrayOutNonBlockingIssues": true,
   "update.showReleaseNotes": false,
@@ -200,7 +191,6 @@
   "window.openFoldersInNewWindow": "on",
   "window.openWithoutArgumentsInNewWindow": "on",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Purple Night",
   "workbench.iconTheme": "vs-seti",
   "workbench.productIconTheme": "materialiconic-product-icons",
   "workbench.secondarySideBar.showLabels": false,
@@ -208,7 +198,8 @@
   "xml.java.home": "",
   "yaml.schemas": {
     "file:///Users/phatblat/.vscode/extensions/continue.continue-1.2.22-darwin-arm64/config-yaml-schema.json": [
-      ".continue/**/*.yaml"
-    ]
-  }
+      ".continue/**/*.yaml",
+    ],
+  },
+  "workbench.colorTheme": "Purple Night",
 }
