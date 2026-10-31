@@ -142,3 +142,13 @@ every release, no Linux build for CI, and no provenance.
 - **Build a universal macOS binary.** Rejected: every machine this repository
   runs on is Apple silicon or an Ubuntu runner; a second macOS target is added
   when a machine needs it.
+
+## Errata
+
+- 2026-10-31: Clause 2 and the Argument name two release targets, and the
+  last position calls this repository's Linux hosts Ubuntu runners. Those
+  runners are `arc-ubuntu-24.04-arm64`, where an `x86_64-unknown-linux-gnu`
+  binary cannot run. From v1.0.1 the release also builds
+  `aarch64-unknown-linux-gnu` on `ubuntu-24.04-arm` and CI tests on that
+  runner, so clause 4's pin shipped as `1.0.1` rather than `1.0.0`. The
+  decision is otherwise unchanged.
