@@ -33,5 +33,5 @@ None of the 17 items above appears under `## Open Items` in `just harness-audit`
 ## Notes
 
 - [2026-10-12-consolidate-harness-parity-on-omp-and-claude-code](../decisions/2026-10-12-consolidate-harness-parity-on-omp-and-claude-code.md) is still proposed. It drops Antigravity and Cursor from the user-tier generator and reduces Codex, Crush, and Grok to shared skills, `AGENTS.md`, and their guard shim. If it is accepted, every Antigravity and Cursor cell and the command and agent cells for Codex, Crush, and Grok stop being owed. Those cells should then become divergences or leave the registry rather than be verified. The `hooks.safety` checks for Crush and Grok remain.
-- The `agent-harness` workflow (`.github/workflows/agent-harness-parity.yml`) keeps an issue titled "Agent harness parity report" refreshed with the live audit.
+- The `agent-harness` workflow (`.github/workflows/agent-harness-parity.yml`) refreshes an open issue titled "Agent harness parity report" with the live audit. It searches open issues only, so with #362 closed it creates a new report issue instead of refreshing #362. Leave that new issue open; it is the live report.
 - Imported from [#362](https://github.com/phatblat/dotfiles/issues/362).
