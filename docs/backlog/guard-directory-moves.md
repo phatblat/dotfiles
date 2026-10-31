@@ -1,5 +1,7 @@
 # Guard directory moves that replace protected files
 
+Priority: Unprioritized
+
 ## Problem
 
 The ness guard tests the path tokens of a mutating command (`rm`, `mv`,

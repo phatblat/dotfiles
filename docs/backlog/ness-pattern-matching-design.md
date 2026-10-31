@@ -1,5 +1,7 @@
 # Revisit ness policy pattern-matching design
 
+Priority: Unprioritized
+
 ## Problem
 
 The rm temp-dir exemption and truncate/shred command-position anchoring in
