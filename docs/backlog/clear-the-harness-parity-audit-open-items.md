@@ -4,7 +4,7 @@ Priority: Unprioritized
 
 ## Problem
 
-`just harness-audit` reports 17 open items besides the two `instructions.global` entries, which are filed as `load-shared-instructions-in-antigravity-and-cursor.md`. Each is a capability cell marked `partial` or `blocked` in `docs/agent-harnesses.json`, so the parity registry carries 17 unverified claims (92 of 405 cells are verified). The audit as of 2026-10-31:
+`just harness-audit` reports 17 open items besides the two `instructions.global` entries, which are filed as `load-shared-instructions-in-antigravity-and-cursor.md`. Each is a capability cell marked `partial` or `blocked` in `docs/agent-harnesses.json` (92 of the 405 registry cells are verified). The audit as of 2026-10-31:
 
 ```text
 - skills.shared (antigravity): Verify agy imports and activates shared skill wrappers from the plugin
