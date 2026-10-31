@@ -52,6 +52,7 @@ NATIVE_SKILL_ADAPTERS = {
     "grilling",
     "handoff",
     "harness-research",
+    "implement-plan",
     "ios-device-qa",
     "new-project",
     "ocr",
@@ -63,10 +64,12 @@ NATIVE_SKILL_ADAPTERS = {
     "resolve-review-feedback",
     "retro",
     "security-audit",
+    "small-change",
     "subagent-driven-development",
     "test-driven-development",
     "typesafe-ai",
     "using-git-worktrees",
+    "write-plan",
     "writing-plans",
 }
 
@@ -83,6 +86,7 @@ MANUAL_SKILL_ADAPTERS = {
     "grill-me",
     "handoff",
     "harness-research",
+    "implement-plan",
     "ios-device-qa",
     "new-project",
     "optimize-harness",
@@ -90,6 +94,8 @@ MANUAL_SKILL_ADAPTERS = {
     "resolve-review-feedback",
     "retro",
     "security-audit",
+    "small-change",
+    "write-plan",
 }
 
 _managed_header: str | None = None

@@ -311,8 +311,8 @@ def command_validate() -> int:
         errors.append(
             f"expected 29 active commands, found {len(inventory['commands'])}"
         )
-    if len(inventory["agents"]) != 6:
-        errors.append(f"expected 6 specialist agents, found {len(inventory['agents'])}")
+    if len(inventory["agents"]) != 15:
+        errors.append(f"expected 15 specialist agents, found {len(inventory['agents'])}")
     if inventory["skills"]["count"] < 1:
         errors.append("expected shared skills in .agents/skills")
     errors.extend(validate_registry())

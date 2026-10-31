@@ -2375,7 +2375,7 @@
           "surface": "No agent registry or subagent support in Pi 1.2.0"
         }
       },
-      "contract": "Six specialist agents are represented for delegation.",
+      "contract": "Fifteen specialist agents are represented for delegation.",
       "domain": "agents",
       "id": "agents.specialists",
       "note": "",
@@ -2691,7 +2691,7 @@
           "surface": ""
         }
       },
-      "contract": "The 6 shared specialist agents are registerable as named agents the harness can select.",
+      "contract": "The 15 shared specialist agents are registerable as named agents the harness can select.",
       "domain": "agents",
       "id": "agents.user_defined",
       "note": "",

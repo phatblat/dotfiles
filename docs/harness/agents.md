@@ -6,7 +6,7 @@
 
 ### agents.specialists · p0
 
-Six specialist agents are represented for delegation.
+Fifteen specialist agents are represented for delegation.
 
 Canonical: `~/.agents/harness/agents`
 Verify: `python3 scripts/agent-harnesses.py inventory --json`
@@ -26,5 +26,5 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 ### Not yet researched
 
 - `agents.tool_restrictions` · p1 — A delegated specialist runs with the tool set its definition allows, enforced by the harness or by the shared guard.
-- `agents.user_defined` · p1 — The 6 shared specialist agents are registerable as named agents the harness can select.
+- `agents.user_defined` · p1 — The 15 shared specialist agents are registerable as named agents the harness can select.
 - `agents.delegation_isolation` · p1 — A delegated subagent runs in its own context window and returns a summary rather than inlining into the parent transcript.
