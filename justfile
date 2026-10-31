@@ -118,6 +118,7 @@ check-spelling:
 doctor:
     mise doctor
     brew doctor
+    just home-status
     claude doctor
 
 #

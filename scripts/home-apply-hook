@@ -6,6 +6,12 @@
 # new tracked files gain links, deleted ones lose them. Linked worktrees never
 # deploy. DOTFILES_APPLY=0 skips it.
 #
+# The spec mise reads (~/.config/mise/conf.d/dotfiles.toml) is itself a link
+# into this checkout, so checking out a ref that lacks it (or this hook) orphans
+# every link. Move the primary checkout with `just home-deploy` / `just
+# home-live`, which refuse such refs; a plain checkout only gets the loud
+# warning below. `just doctor` reports link drift through `just home-status`.
+#
 # Copyright: Ben Chatelain. MIT.
 set -euo pipefail
 
@@ -22,8 +28,15 @@ unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX GIT_COMMON_DIR
 mise_bin="$(command -v mise || true)"
 [ -n "$mise_bin" ] || mise_bin="$HOME/.local/bin/mise"
 
+spec="$HOME/.config/mise/conf.d/dotfiles.toml"
+if [ ! -e "$spec" ]; then
+    echo "dotfiles: WARNING: $spec is missing or dangling after this checkout; no links were applied or cleaned up." >&2
+    echo "dotfiles: switch back to a ref that tracks .config/mise/conf.d/dotfiles.toml (see 'just home-deploy'), then run 'mise dot apply'." >&2
+    exit 0
+fi
+
 cd "$HOME"
 if ! "$mise_bin" dot apply --yes --quiet; then
-    echo "dotfiles: mise dot apply failed; run 'just home-status' in $(dirname "$common_dir")" >&2
+    echo "dotfiles: WARNING: mise dot apply failed, so \$HOME links may have drifted; run 'just home-status' in $(dirname "$common_dir")" >&2
 fi
 exit 0
