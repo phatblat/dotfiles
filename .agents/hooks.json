@@ -1,0 +1,34 @@
+{
+  "entire": {
+    "PreInvocation": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks antigravity pre-invocation'",
+        "type": "command"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks antigravity pre-tool-use'",
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ],
+    "SessionStart": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks antigravity session-start'",
+        "type": "command"
+      }
+    ],
+    "Stop": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks antigravity stop'",
+        "timeout": 300,
+        "type": "command"
+      }
+    ]
+  }
+}

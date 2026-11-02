@@ -18,7 +18,6 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/auto-format.sh'",
-            "statusMessage": "Auto Format",
             "timeout": 30,
             "type": "command"
           }
@@ -29,12 +28,21 @@
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex PostToolUse; fi",
-            "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex PostToolUse) else (paseo hooks codex PostToolUse)) else (exit /b 0)",
             "timeout": 10,
             "type": "command"
           }
         ],
         "matcher": ""
+      },
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex post-tool-use'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
       }
     ],
     "PreToolUse": [
@@ -72,22 +80,50 @@
         "matcher": ""
       }
     ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex session-end'",
+            "timeout": 3,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then printf \"%s\\n\" \"{\\\"systemMessage\\\":\\\"Entire CLI is enabled but not installed or not on PATH. Installation guide: https://docs.entire.io/cli/installation#installation-methods\\\"}\"; exit 0; fi; exec entire hooks codex session-start'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
     "Stop": [
       {
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/audit-task-complete.sh'",
-            "statusMessage": "Task Complete Audit",
             "timeout": 5,
             "type": "command"
+          },
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex stop'",
+            "timeout": 30,
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": null
       },
       {
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex Stop; fi",
-            "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex Stop) else (paseo hooks codex Stop)) else (exit /b 0)",
             "timeout": 10,
             "type": "command"
           }
@@ -95,22 +131,50 @@
         "matcher": ""
       }
     ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex subagent-start'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex subagent-stop'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/user-prompt-secrets.sh'",
-            "statusMessage": "Secrets Scanner",
             "timeout": 2,
             "type": "command"
+          },
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex user-prompt-submit'",
+            "timeout": 30,
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": null
       },
       {
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex UserPromptSubmit; fi",
-            "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex UserPromptSubmit) else (paseo hooks codex UserPromptSubmit)) else (exit /b 0)",
             "timeout": 10,
             "type": "command"
           }

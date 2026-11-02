@@ -844,6 +844,11 @@ source = "~/dev/dotfiles/.agents/harness/self-improve-policy.json"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.agents/hooks.json"]
+source = "~/dev/dotfiles/.agents/hooks.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.agents/scripts/skills-check.py"]
 source = "~/dev/dotfiles/.agents/scripts/skills-check.py"
 mode = "symlink"
@@ -10481,6 +10486,11 @@ relative = false
 
 [dotfiles."~/.omp/remote-host/localhost.json"]
 source = "~/dev/dotfiles/.omp/remote-host/localhost.json"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.opencode/plugins/entire.ts"]
+source = "~/dev/dotfiles/.opencode/plugins/entire.ts"
 mode = "symlink"
 relative = false
 
