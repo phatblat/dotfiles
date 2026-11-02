@@ -3194,6 +3194,31 @@ source = "~/dev/dotfiles/.config/git/config"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.config/git/hooks/commit-msg"]
+source = "~/dev/dotfiles/.config/git/hooks/commit-msg"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/post-commit"]
+source = "~/dev/dotfiles/.config/git/hooks/post-commit"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/post-rewrite"]
+source = "~/dev/dotfiles/.config/git/hooks/post-rewrite"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/pre-push"]
+source = "~/dev/dotfiles/.config/git/hooks/pre-push"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/prepare-commit-msg"]
+source = "~/dev/dotfiles/.config/git/hooks/prepare-commit-msg"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.config/glow/glow.yml"]
 source = "~/dev/dotfiles/.config/glow/glow.yml"
 mode = "symlink"
