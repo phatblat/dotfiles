@@ -8,7 +8,11 @@
 
 setup_clone() {
     CLONE="$BATS_TEST_TMPDIR/dotfiles"
-    git clone -q --no-hardlinks "$BATS_TEST_DIRNAME/.." "$CLONE"
+    # A local clone hardlinks the object store instead of copying it, so each
+    # test costs a working tree rather than a second copy of the whole repo.
+    # --shared is faster still but leaves the clone dependent on the source's
+    # object store, which git documents as a corruption risk.
+    git clone -q "$BATS_TEST_DIRNAME/.." "$CLONE"
     git -C "$CLONE" config user.email "real@example.com"
     git -C "$CLONE" config user.name "Real User"
     git -C "$CLONE" config commit.gpgsign false
@@ -110,6 +114,30 @@ live() {
     deploy empty-spec
     [ "$status" -ne 0 ]
     [[ "$output" =~ "has no .config/mise/conf.d/dotfiles.toml" ]]
+}
+
+@test "home-deploy: refuses a detached checkout with no recorded branch" {
+    setup_clone
+    # Detach the checkout without recording a live branch first. home-deploy
+    # would have nowhere to send home-live, so it must refuse.
+    git -C "$CLONE" checkout -q --detach HEAD
+
+    deploy feature1
+    [ "$status" -ne 0 ]
+    [[ "$output" =~ "detached and no live branch is recorded" ]]
+}
+
+@test "home-deploy: refuses a ref without the post-checkout hook" {
+    setup_clone
+    git -C "$CLONE" branch --no-track empty-hook
+    git -C "$CLONE" switch -q empty-hook
+    rm "$CLONE/scripts/home-apply-hook"
+    git -C "$CLONE" commit -qam "drop hook"
+    git -C "$CLONE" switch -q main
+
+    deploy empty-hook
+    [ "$status" -ne 0 ]
+    [[ "$output" =~ "has no scripts/home-apply-hook" ]]
 }
 
 @test "home-deploy: refuses a dirty primary checkout" {
