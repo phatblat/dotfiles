@@ -158,22 +158,33 @@ def render(repo: Path, source_root: str = REPO_HOME) -> str:
     return "\n".join(lines)
 
 
-def unclassified_symlinks(repo: Path) -> list[str]:
-    """Tracked relative symlinks deployed as plain links whose target leaves the repo.
+def unclassified_symlinks(repo: Path) -> dict[str, str]:
+    """Tracked relative symlinks deployed as plain links that mise cannot apply.
 
-    `~/p -> repo/p -> ../elsewhere` resolves against the repo's directory, so
-    the hand-listed OUT_OF_REPO (direct relative link) or DANGLING classes must
-    claim it. Absolute targets resolve identically from anywhere and need no
-    class, so they are left alone (e.g. bin/plistbuddy -> /usr/libexec/PlistBuddy).
+    mise refuses a source that does not exist, and one such entry aborts the
+    whole apply, so a plain link must resolve to a path that exists. A tracked
+    relative link is therefore unclassified when its repo-relative resolution
+    is missing (e.g. `../../dev/agents/skills/skills/<new>`, which resolves
+    inside the repo root but to nothing) or when it leaves the repo entirely
+    (`~/p -> repo/p -> ../elsewhere` resolves against the repo's directory, so
+    the hand-listed OUT_OF_REPO or DANGLING classes must claim it). Absolute
+    targets resolve identically from anywhere and need no class, so they are
+    left alone (e.g. bin/plistbuddy -> /usr/libexec/PlistBuddy).
     """
     root = repo.resolve()
-    stray = []
+    stray: dict[str, str] = {}
     for path in link_paths(repo):
         full = repo / path
-        if not full.is_symlink() or os.path.isabs(os.readlink(full)):
+        if not full.is_symlink():
             continue
-        if not full.resolve().is_relative_to(root):
-            stray.append(path)
+        text = os.readlink(full)
+        if os.path.isabs(text):
+            continue
+        resolved = full.resolve()
+        if not resolved.exists():
+            stray[path] = f"its target {text!r} does not exist"
+        elif not resolved.is_relative_to(root):
+            stray[path] = f"its target {text!r} leaves the repo"
     return stray
 
 
@@ -206,9 +217,9 @@ def main() -> int:
     spec = repo / SPEC
     if args.action == "check":
         stray = unclassified_symlinks(repo)
-        for path in stray:
+        for path, reason in stray.items():
             print(
-                f"unclassified: tracked symlink {path} leaves the repo; add it to OUT_OF_REPO or DANGLING in scripts/home_spec.py",
+                f"unclassified: tracked symlink {path} {reason}; add it to OUT_OF_REPO or DANGLING in scripts/home_spec.py",
                 file=sys.stderr,
             )
         if stray:

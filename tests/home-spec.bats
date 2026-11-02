@@ -38,6 +38,20 @@ setup() {
     [[ "$output" =~ "unclassified: tracked symlink escape" ]]
 }
 
+@test "home_spec check: rejects a tracked relative symlink whose target does not exist" {
+    # Resolves inside the repo root, but to nothing: mise refuses a missing
+    # source and aborts the whole apply, so containment is not enough.
+    mkdir -p "$REPO/.agents/skills"
+    ln -s ../../dev/agents/skills/skills/new-sibling "$REPO/.agents/skills/new-sibling"
+    git -C "$REPO" add -A
+    python3 "$SCRIPT" generate --repo "$REPO"
+
+    run python3 "$SCRIPT" check --repo "$REPO"
+    [ "$status" -eq 1 ]
+    [[ "$output" =~ "unclassified: tracked symlink .agents/skills/new-sibling" ]]
+    [[ "$output" =~ "does not exist" ]]
+}
+
 @test "home_spec check: allows an absolute symlink target" {
     ln -s /etc/hosts "$REPO/absolute"
     git -C "$REPO" add -A
