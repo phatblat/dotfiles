@@ -9814,6 +9814,11 @@ source = "~/dev/dotfiles/.graphifyignore"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.graphignore"]
+source = "~/dev/dotfiles/.graphignore"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.grok/agents/ai-sdk-expert.md"]
 source = "~/dev/dotfiles/.grok/agents/ai-sdk-expert.md"
 mode = "symlink"

@@ -137,7 +137,7 @@ cmd_janitor() { # janitor [ttl-hours]   recycle stale claims (quarantine at 3)
     grep -q '^state: input-required$' "$f" && continue
     local id agent n dest orig_from
     id=$(basename "$f" .md)
-    [ "${id%%-*}" \< "$cutoff" ] || continue
+    [[ "${id%%-*}" < "$cutoff" ]] || continue
     agent=${f#.bus/claimed/}; agent=${agent%/"$id".md}   # keeps crew/agent nesting
     n=$(awk -F': ' '/^recycled:/{print $2; found=1} END{if(!found)print 0}' "$f")
     n=$((n + 1))
