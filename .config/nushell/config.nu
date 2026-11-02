@@ -706,3 +706,4 @@ $env.config.hooks.pre_prompt ++= [{||
 }]
 
 # All custom aliases and functions are now autoloaded from ~/.config/nushell/autoload/
+source "~/.cargo/env.nu"
