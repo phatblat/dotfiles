@@ -1,4 +1,4 @@
-# Adapted from mkrtchian/spec-driven-dev v1.11.0 (https://github.com/mkrtchian/spec-driven-dev), MIT License, Copyright (c) 2026 Roman Mkrtchian. See ~/.agents/skills/implement-plan/LICENSE.
+# Adapted from mkrtchian/spec-driven-dev v1.11.0 (https://github.com/mkrtchian/spec-driven-dev), MIT License, Copyright (c) 2026 Roman Mkrtchian.
 name = "sdd-step-hardener"
 description = "Verify step completeness, catch emergent issues, and fix what's needed; harden each step before moving on"
 developer_instructions = """

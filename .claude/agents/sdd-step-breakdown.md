@@ -5,7 +5,7 @@ skills: []
 model: opus
 ---
 
-<!-- Adapted from mkrtchian/spec-driven-dev v1.11.0 (https://github.com/mkrtchian/spec-driven-dev), MIT License, Copyright (c) 2026 Roman Mkrtchian. See ~/.agents/skills/implement-plan/LICENSE. -->
+<!-- Adapted from mkrtchian/spec-driven-dev v1.11.0 (https://github.com/mkrtchian/spec-driven-dev), MIT License, Copyright (c) 2026 Roman Mkrtchian. -->
 
 <project_context>
 Before starting your task, discover project context:

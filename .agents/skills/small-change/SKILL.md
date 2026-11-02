@@ -5,7 +5,7 @@ argument-hint: "<description of the change>"
 disable-model-invocation: true
 ---
 
-<!-- Adapted from mkrtchian/spec-driven-dev v1.11.0 (https://github.com/mkrtchian/spec-driven-dev), MIT License, Copyright (c) 2026 Roman Mkrtchian. See LICENSE in this directory. -->
+<!-- Adapted from mkrtchian/spec-driven-dev v1.11.0 (https://github.com/mkrtchian/spec-driven-dev), MIT License, Copyright (c) 2026 Roman Mkrtchian. -->
 
 ## Host notes
 

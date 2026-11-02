@@ -1214,11 +1214,6 @@ source = "~/dev/dotfiles/.agents/skills/homebrew/SKILL.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/skills/implement-plan/LICENSE"]
-source = "~/dev/dotfiles/.agents/skills/implement-plan/LICENSE"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agents/skills/implement-plan/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/implement-plan/SKILL.md"
 mode = "symlink"
@@ -1539,11 +1534,6 @@ source = "~/dev/dotfiles/.agents/skills/session-save/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/skills/small-change/LICENSE"]
-source = "~/dev/dotfiles/.agents/skills/small-change/LICENSE"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agents/skills/small-change/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/small-change/SKILL.md"
 mode = "symlink"
@@ -1561,11 +1551,6 @@ relative = false
 
 [dotfiles."~/.agents/skills/test-driven-development/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/test-driven-development/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/skills/typesafe-ai/LICENSE"]
-source = "~/dev/dotfiles/.agents/skills/typesafe-ai/LICENSE"
 mode = "symlink"
 relative = false
 
@@ -1626,11 +1611,6 @@ relative = false
 
 [dotfiles."~/.agents/skills/work-track-item/agents/openai.yaml"]
 source = "~/dev/dotfiles/.agents/skills/work-track-item/agents/openai.yaml"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/skills/write-plan/LICENSE"]
-source = "~/dev/dotfiles/.agents/skills/write-plan/LICENSE"
 mode = "symlink"
 relative = false
 
