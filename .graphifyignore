@@ -1,12 +1,18 @@
 # Corpus boundary for graphify. This repo is checked out at ~/dev/dotfiles, so
-# the scan root is the checkout and .gitignore alone is not enough: dev/,
-# Downloads/, Library/, Applications/ and most other top-level directories are
-# untracked but not ignored, and a bare scan walks the entire home directory.
+# the scan root is the checkout, not $HOME.
 #
-# `/*/` matches root-level DIRECTORIES only, so root-level files (AGENTS.md,
-# justfile, hk.pkl, .zshrc, ...) stay in the corpus. Git's parent-exclusion rule
-# means a `!` line below cannot re-include anything beneath a directory excluded
-# here, so Library/LaunchAgents/*.plist is deliberately out of scope.
+# .gitignore alone is not enough here. Of the 81 files the rule below excludes,
+# only 11 are gitignored as well; the other 70 are tracked but not gitignored
+# (.powerline/, .cmux/, .warp/, .cargo/env, dev/_GETDITTO/CLAUDE.md, the
+# Library/ application configs), and graphify reads .gitignore, so those would
+# stay in the corpus.
+#
+# `/*/` matches root-level DIRECTORIES only, so root-level files stay in the
+# corpus (AGENTS.md, CLAUDE.md, README.md, ...). Files that are root-level but
+# of a type graphify does not index -- justfile, hk.pkl, .zshrc, Brewfile --
+# are dropped for that reason, not by this rule. Git's parent-exclusion rule
+# means a `!` line below cannot re-include anything beneath a directory
+# excluded here, so Library/LaunchAgents/*.plist is deliberately out of scope.
 /*/
 !/.agents/
 !/.claude/
