@@ -28,5 +28,9 @@
     "command": "",
     "enabled": true
   },
+  "title": {
+    "type": "command",
+    "command": "entire hooks antigravity title-tee"
+  },
   "toolPermission": "proceed-in-sandbox"
 }
