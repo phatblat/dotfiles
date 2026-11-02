@@ -1,4 +1,4 @@
-// Lint/format orchestration and git hooks for the dotfiles repo (root is $HOME).
+// Lint/format orchestration and git hooks for the dotfiles repo (root is ~/dev/dotfiles).
 //
 // Everything:   `just lint` (hk check --all) / `just format` (hk fix --all)
 // One file:     `hk fix <path>`
@@ -8,7 +8,7 @@
 //
 // hk must run with the repo root as its working directory: step commands and
 // {{files}} are repo-root-relative and hk never chdirs. `just` recipes and git
-// hooks already run there; use `hk --cd ~ ...` from anywhere else.
+// hooks already run there; use `hk --cd ~/dev/dotfiles ...` from anywhere else.
 //
 // The pinned package version must equal the installed hk (enforced by the
 // hk-config step): hk embeds the Pkl package for its own version and evaluates
