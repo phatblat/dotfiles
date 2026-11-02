@@ -41,7 +41,14 @@ home-deploy ref:
     fi
     live_file="$(git -C "$primary" rev-parse --path-format=absolute --git-path dotfiles-live-branch)"
     branch="$(git -C "$primary" branch --show-current)"
-    if [ -n "$branch" ]; then
+    if [ ! -f "$live_file" ]; then
+        # Record the branch the primary checkout was on before the first
+        # deploy detached it. A later deploy must not overwrite it, or
+        # `home-live` would return to a branch the user never made live.
+        if [ -z "$branch" ]; then
+            echo "home-deploy: the primary checkout is detached and no live branch is recorded; 'just home-live' would have nowhere to return to" >&2
+            exit 1
+        fi
         printf '%s\n' "$branch" > "$live_file"
     fi
     git -C "$primary" switch --detach "{{ ref }}"
