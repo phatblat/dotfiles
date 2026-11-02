@@ -17,6 +17,33 @@
   "~/.agents/harness/adapters/antigravity/agents/research-expert.md": {
     "source": "~/.codex/agents/research-expert.toml"
   },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-fact-checker.md": {
+    "source": "~/.codex/agents/sdd-fact-checker.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-final-reviewer.md": {
+    "source": "~/.codex/agents/sdd-final-reviewer.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-implementer.md": {
+    "source": "~/.codex/agents/sdd-implementer.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-plan-diligence.md": {
+    "source": "~/.codex/agents/sdd-plan-diligence.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-plan-reviewer.md": {
+    "source": "~/.codex/agents/sdd-plan-reviewer.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-plan-standards.md": {
+    "source": "~/.codex/agents/sdd-plan-standards.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-standards-enforcer.md": {
+    "source": "~/.codex/agents/sdd-standards-enforcer.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-step-breakdown.md": {
+    "source": "~/.codex/agents/sdd-step-breakdown.toml"
+  },
+  "~/.agents/harness/adapters/antigravity/agents/sdd-step-hardener.md": {
+    "source": "~/.codex/agents/sdd-step-hardener.toml"
+  },
   "~/.agents/harness/adapters/antigravity/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
   },
@@ -146,6 +173,33 @@
   "~/.agents/harness/adapters/cursor/agents/research-expert.md": {
     "source": "~/.codex/agents/research-expert.toml"
   },
+  "~/.agents/harness/adapters/cursor/agents/sdd-fact-checker.md": {
+    "source": "~/.codex/agents/sdd-fact-checker.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-final-reviewer.md": {
+    "source": "~/.codex/agents/sdd-final-reviewer.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-implementer.md": {
+    "source": "~/.codex/agents/sdd-implementer.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-plan-diligence.md": {
+    "source": "~/.codex/agents/sdd-plan-diligence.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-plan-reviewer.md": {
+    "source": "~/.codex/agents/sdd-plan-reviewer.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-plan-standards.md": {
+    "source": "~/.codex/agents/sdd-plan-standards.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-standards-enforcer.md": {
+    "source": "~/.codex/agents/sdd-standards-enforcer.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-step-breakdown.md": {
+    "source": "~/.codex/agents/sdd-step-breakdown.toml"
+  },
+  "~/.agents/harness/adapters/cursor/agents/sdd-step-hardener.md": {
+    "source": "~/.codex/agents/sdd-step-hardener.toml"
+  },
   "~/.agents/harness/adapters/cursor/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
   },
@@ -259,6 +313,33 @@
   },
   "~/.agents/harness/agents/research-expert.toml": {
     "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.agents/harness/agents/sdd-fact-checker.toml": {
+    "source": "~/.codex/agents/sdd-fact-checker.toml"
+  },
+  "~/.agents/harness/agents/sdd-final-reviewer.toml": {
+    "source": "~/.codex/agents/sdd-final-reviewer.toml"
+  },
+  "~/.agents/harness/agents/sdd-implementer.toml": {
+    "source": "~/.codex/agents/sdd-implementer.toml"
+  },
+  "~/.agents/harness/agents/sdd-plan-diligence.toml": {
+    "source": "~/.codex/agents/sdd-plan-diligence.toml"
+  },
+  "~/.agents/harness/agents/sdd-plan-reviewer.toml": {
+    "source": "~/.codex/agents/sdd-plan-reviewer.toml"
+  },
+  "~/.agents/harness/agents/sdd-plan-standards.toml": {
+    "source": "~/.codex/agents/sdd-plan-standards.toml"
+  },
+  "~/.agents/harness/agents/sdd-standards-enforcer.toml": {
+    "source": "~/.codex/agents/sdd-standards-enforcer.toml"
+  },
+  "~/.agents/harness/agents/sdd-step-breakdown.toml": {
+    "source": "~/.codex/agents/sdd-step-breakdown.toml"
+  },
+  "~/.agents/harness/agents/sdd-step-hardener.toml": {
+    "source": "~/.codex/agents/sdd-step-hardener.toml"
   },
   "~/.agents/harness/agents/triage-expert.toml": {
     "source": "~/.codex/agents/triage-expert.toml"
@@ -422,6 +503,9 @@
   "~/.claude/skills/harness-research/SKILL.md": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
+  "~/.claude/skills/implement-plan/SKILL.md": {
+    "source": "~/.agents/skills/implement-plan/SKILL.md"
+  },
   "~/.claude/skills/ios-device-qa/SKILL.md": {
     "source": "~/.agents/skills/ios-device-qa/SKILL.md"
   },
@@ -455,6 +539,9 @@
   "~/.claude/skills/security-audit/SKILL.md": {
     "source": "~/.agents/skills/security-audit/SKILL.md"
   },
+  "~/.claude/skills/small-change/SKILL.md": {
+    "source": "~/.agents/skills/small-change/SKILL.md"
+  },
   "~/.claude/skills/subagent-driven-development/SKILL.md": {
     "source": "~/.agents/skills/subagent-driven-development/SKILL.md"
   },
@@ -466,6 +553,9 @@
   },
   "~/.claude/skills/using-git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
+  },
+  "~/.claude/skills/write-plan/SKILL.md": {
+    "source": "~/.agents/skills/write-plan/SKILL.md"
   },
   "~/.claude/skills/writing-plans/SKILL.md": {
     "source": "~/.agents/skills/writing-plans/SKILL.md"
@@ -493,6 +583,33 @@
   },
   "~/.config/opencode/agents/research-expert.md": {
     "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.config/opencode/agents/sdd-fact-checker.md": {
+    "source": "~/.codex/agents/sdd-fact-checker.toml"
+  },
+  "~/.config/opencode/agents/sdd-final-reviewer.md": {
+    "source": "~/.codex/agents/sdd-final-reviewer.toml"
+  },
+  "~/.config/opencode/agents/sdd-implementer.md": {
+    "source": "~/.codex/agents/sdd-implementer.toml"
+  },
+  "~/.config/opencode/agents/sdd-plan-diligence.md": {
+    "source": "~/.codex/agents/sdd-plan-diligence.toml"
+  },
+  "~/.config/opencode/agents/sdd-plan-reviewer.md": {
+    "source": "~/.codex/agents/sdd-plan-reviewer.toml"
+  },
+  "~/.config/opencode/agents/sdd-plan-standards.md": {
+    "source": "~/.codex/agents/sdd-plan-standards.toml"
+  },
+  "~/.config/opencode/agents/sdd-standards-enforcer.md": {
+    "source": "~/.codex/agents/sdd-standards-enforcer.toml"
+  },
+  "~/.config/opencode/agents/sdd-step-breakdown.md": {
+    "source": "~/.codex/agents/sdd-step-breakdown.toml"
+  },
+  "~/.config/opencode/agents/sdd-step-hardener.md": {
+    "source": "~/.codex/agents/sdd-step-hardener.toml"
   },
   "~/.config/opencode/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
@@ -608,6 +725,33 @@
   "~/.grok/agents/research-expert.md": {
     "source": "~/.codex/agents/research-expert.toml"
   },
+  "~/.grok/agents/sdd-fact-checker.md": {
+    "source": "~/.codex/agents/sdd-fact-checker.toml"
+  },
+  "~/.grok/agents/sdd-final-reviewer.md": {
+    "source": "~/.codex/agents/sdd-final-reviewer.toml"
+  },
+  "~/.grok/agents/sdd-implementer.md": {
+    "source": "~/.codex/agents/sdd-implementer.toml"
+  },
+  "~/.grok/agents/sdd-plan-diligence.md": {
+    "source": "~/.codex/agents/sdd-plan-diligence.toml"
+  },
+  "~/.grok/agents/sdd-plan-reviewer.md": {
+    "source": "~/.codex/agents/sdd-plan-reviewer.toml"
+  },
+  "~/.grok/agents/sdd-plan-standards.md": {
+    "source": "~/.codex/agents/sdd-plan-standards.toml"
+  },
+  "~/.grok/agents/sdd-standards-enforcer.md": {
+    "source": "~/.codex/agents/sdd-standards-enforcer.toml"
+  },
+  "~/.grok/agents/sdd-step-breakdown.md": {
+    "source": "~/.codex/agents/sdd-step-breakdown.toml"
+  },
+  "~/.grok/agents/sdd-step-hardener.md": {
+    "source": "~/.codex/agents/sdd-step-hardener.toml"
+  },
   "~/.grok/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"
   },
@@ -640,6 +784,33 @@
   },
   "~/.omp/agent/agents/research-expert.md": {
     "source": "~/.codex/agents/research-expert.toml"
+  },
+  "~/.omp/agent/agents/sdd-fact-checker.md": {
+    "source": "~/.codex/agents/sdd-fact-checker.toml"
+  },
+  "~/.omp/agent/agents/sdd-final-reviewer.md": {
+    "source": "~/.codex/agents/sdd-final-reviewer.toml"
+  },
+  "~/.omp/agent/agents/sdd-implementer.md": {
+    "source": "~/.codex/agents/sdd-implementer.toml"
+  },
+  "~/.omp/agent/agents/sdd-plan-diligence.md": {
+    "source": "~/.codex/agents/sdd-plan-diligence.toml"
+  },
+  "~/.omp/agent/agents/sdd-plan-reviewer.md": {
+    "source": "~/.codex/agents/sdd-plan-reviewer.toml"
+  },
+  "~/.omp/agent/agents/sdd-plan-standards.md": {
+    "source": "~/.codex/agents/sdd-plan-standards.toml"
+  },
+  "~/.omp/agent/agents/sdd-standards-enforcer.md": {
+    "source": "~/.codex/agents/sdd-standards-enforcer.toml"
+  },
+  "~/.omp/agent/agents/sdd-step-breakdown.md": {
+    "source": "~/.codex/agents/sdd-step-breakdown.toml"
+  },
+  "~/.omp/agent/agents/sdd-step-hardener.md": {
+    "source": "~/.codex/agents/sdd-step-hardener.toml"
   },
   "~/.omp/agent/agents/triage-expert.md": {
     "source": "~/.codex/agents/triage-expert.toml"

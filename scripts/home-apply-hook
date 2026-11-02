@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# home-apply-hook: git config hook `hook.dotfiles-apply` (installed by `just git-hooks`).
+#
+# After a checkout, merge, commit, or history rewrite in the primary checkout,
+# re-runs `mise dot apply` so $HOME's links follow the files git just wrote:
+# new tracked files gain links. Links for deleted files are NOT removed (that
+# needs `mise dot apply --prune`, which this hook does not pass). Linked
+# worktrees never deploy. DOTFILES_APPLY=0 skips it.
+#
+# The spec mise reads (~/.config/mise/conf.d/dotfiles.toml) is itself a link
+# into this checkout, so checking out a ref that lacks it (or this hook) orphans
+# every link. Move the primary checkout with `just home-deploy` / `just
+# home-live`, which refuse such refs; a plain checkout only gets the loud
+# warning below. `just doctor` reports link drift through `just home-status`.
+#
+# Copyright: Ben Chatelain. MIT.
+set -euo pipefail
+
+[ "${DOTFILES_APPLY:-1}" = "0" ] && exit 0
+
+git_dir="$(git rev-parse --path-format=absolute --git-dir)"
+common_dir="$(git rev-parse --path-format=absolute --git-common-dir)"
+[ "$git_dir" = "$common_dir" ] || exit 0
+
+# git exports GIT_DIR/GIT_INDEX_FILE/... to hooks; mise's `manifest = "git"`
+# runs its own `git ls-files` in the source, so start it from a clean slate.
+unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE GIT_PREFIX GIT_COMMON_DIR
+
+mise_bin="$(command -v mise || true)"
+[ -n "$mise_bin" ] || mise_bin="$HOME/.local/bin/mise"
+
+spec="$HOME/.config/mise/conf.d/dotfiles.toml"
+if [ ! -e "$spec" ]; then
+    echo "dotfiles: WARNING: $spec is missing or dangling after this checkout; no links were applied or cleaned up." >&2
+    echo "dotfiles: switch back to a ref that tracks .config/mise/conf.d/dotfiles.toml (see 'just home-deploy'), then run 'mise dot apply'." >&2
+    exit 0
+fi
+
+cd "$HOME"
+if ! "$mise_bin" dot apply --yes --quiet; then
+    echo "dotfiles: WARNING: mise dot apply failed, so \$HOME links may have drifted; run 'just home-status' in $(dirname "$common_dir")" >&2
+fi
+exit 0

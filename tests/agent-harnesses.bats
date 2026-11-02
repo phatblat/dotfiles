@@ -55,7 +55,7 @@ skip_unless_home_is_this_checkout() {
   codex_plugins=$(printf '%s' "$output" | jq '.plugins.codex | type')
 
   [ "$command_count" -eq 29 ]
-  [ "$agent_count" -eq 6 ]
+  [ "$agent_count" -eq 15 ]
   [ "$skill_count" -gt 0 ]
   [ "$has_graph" = "false" ]
   [ "$claude_plugins" = '"array"' ]
@@ -330,6 +330,9 @@ skip_unless_home_is_this_checkout() {
     work-track-item
     git-worktree
     plan-worktree
+    implement-plan
+    small-change
+    write-plan
   )
 
   for skill in "${procedural_skills[@]}"; do
@@ -612,7 +615,7 @@ skip_unless_home_is_this_checkout() {
   procedural_count=$(python3 "$SCRIPT" inventory --json | jq '.skills.procedural | length')
   expected_skill_count=$((inventory_skill_count - procedural_count))
 
-  [ "$agent_count" -eq 6 ]
+  [ "$agent_count" -eq 15 ]
   [ "$skill_count" -eq "$expected_skill_count" ]
 
   jq . "$adapter/plugin.json" >/dev/null

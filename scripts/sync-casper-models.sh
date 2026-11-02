@@ -19,7 +19,8 @@
 
 set -euo pipefail
 
-OMP_PROFILE_DIR="${OMP_PROFILE_DIR:-$HOME/.omp/profiles/casper/agent}"
+repo_root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
+OMP_PROFILE_DIR="${OMP_PROFILE_DIR:-$repo_root/.omp/profiles/casper/agent}"
 MODELS_YML="$OMP_PROFILE_DIR/models.yml"
 CONFIG_YML="$OMP_PROFILE_DIR/config.yml"
 CASPER_API_KEY="${CASPER_API_KEY:-}"

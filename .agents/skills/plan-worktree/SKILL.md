@@ -57,7 +57,7 @@ REQUIRED SUB-SKILL: `git-worktree`
 
 ```bash
 git branch <branch> <base-branch>   # skip if <branch> already exists
-wt switch <branch>                  # add --allow-home for dotfiles
+wt switch <branch>
 ```
 
 `wt switch` has no base option: it checks out an existing local branch, so the `git branch` line is what applies `<base-branch>`. If `<branch>` already existed, it is used as is and the report says so instead of naming a base. Creates the worktree and prints its path (`wt path <branch>`). From here, every command runs with the worktree as cwd; every file path is absolute under it; every subagent prompt states the worktree path (subagents inherit the parent cwd).
@@ -77,7 +77,7 @@ Follow the git-worktree skill's Session Rebase Protocol: bind all tool calls to 
 Run the repo's fast check (e.g. `just check` or `wt verify <branch>`) to confirm the worktree starts green before Phase 1 changes anything.
 ````
 
-Substitute real values for `<plan-slug>`, `<branch>`, `<base-branch>`. If the repo is dotfiles, include `--allow-home` in the `wt` invocation.
+Substitute real values for `<plan-slug>`, `<branch>`, `<base-branch>`.
 
 ### 4. Report
 

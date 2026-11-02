@@ -19,7 +19,7 @@ credentials. `tessl init` re-injects `@../.tessl/RULES.md` pointers into
 inclusion point, and `tests/tessl-inclusion.bats` fails if they come back.
 
 ## Project Structure & Module Organization
-This repository is rooted at `~/` and tracks personal dotfiles plus automation.
+This repository is an ordinary clone at `~/dev/dotfiles`; `mise dot` deploys its tracked files into `~/` as symlinks (spec: `.config/mise/conf.d/dotfiles.toml`), and it tracks personal dotfiles plus automation.
 
 - `.config/`: primary configuration modules (shells, `mise`, `home-manager`, editors).
 - `.claude/`: agent, command, and workflow configuration.

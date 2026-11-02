@@ -1766,7 +1766,7 @@
             "version": "2026.10.16-e3cb207"
           },
           "mode": "native",
-          "next_action": "Verify Cursor discovers all 25 generated command wrappers",
+          "next_action": "Verify Cursor discovers all generated command wrappers",
           "note": "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
           "parity": "partial",
           "probe": {
@@ -1787,8 +1787,8 @@
             "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
           },
           "mode": "native",
-          "next_action": "Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows",
-          "note": "grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills",
+          "next_action": "Add a shared skill for the linear/progress workflow so grok covers every command workflow",
+          "note": "grok reaches most of the command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills",
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
@@ -1860,7 +1860,7 @@
           "surface": ""
         }
       },
-      "contract": "The 26 active commands are available through generated native prompts.",
+      "contract": "The active commands are available through generated native prompts.",
       "domain": "commands",
       "id": "commands.active",
       "note": "",
@@ -2019,7 +2019,7 @@
           "surface": ""
         }
       },
-      "contract": "The 26 shared command prompts are invocable by name in the harness's own command surface.",
+      "contract": "The shared command prompts are invocable by name in the harness's own command surface.",
       "domain": "commands",
       "id": "commands.user_defined",
       "note": "",
@@ -2375,7 +2375,7 @@
           "surface": "No agent registry or subagent support in Pi 1.2.0"
         }
       },
-      "contract": "Six specialist agents are represented for delegation.",
+      "contract": "Specialist agents are represented for delegation.",
       "domain": "agents",
       "id": "agents.specialists",
       "note": "",
@@ -2691,7 +2691,7 @@
           "surface": ""
         }
       },
-      "contract": "The 6 shared specialist agents are registerable as named agents the harness can select.",
+      "contract": "The shared specialist agents are registerable as named agents the harness can select.",
       "domain": "agents",
       "id": "agents.user_defined",
       "note": "",

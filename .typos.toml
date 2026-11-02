@@ -15,6 +15,10 @@ unparseable = "unparseable"
 [default]
 extend-ignore-re = [
     "2ndBrain",
+    # Mixed-case input in a test that proves priority parsing folds case
+    # ("uNpRiOrItIzEd" -> "Unprioritized"). Not a word. Matched exactly, so a
+    # genuine "Iz" typo elsewhere is still reported.
+    "uNpRiOrItIzEd",
     # `\(ba\)\?sh` in guard regex patterns (matches "sh" or "bash"), not the
     # English word "ba". Appears verbatim in the guard's policy
     # (~/.config/ness/policy.toml).

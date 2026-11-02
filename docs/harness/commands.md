@@ -6,7 +6,7 @@
 
 ### commands.active · p0
 
-The 26 active commands are available through generated native prompts.
+The active commands are available through generated native prompts.
 
 Canonical: `~/.agents/harness/commands`
 Verify: `python3 scripts/agent-harnesses.py inventory --json`
@@ -20,10 +20,10 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 | omp | aligned | native | - | probe · omp/18.14.1 · 2026-10-31 | - |
 | antigravity | absent | none | Plugins load skills, agents, rules, hooks, mcpServers | docs · 1.3.3 · 2026-10-16 | agy 1.3.3 plugins load skills, agents, rules, hooks, mcpServers and sidecars only; command wrappers are not generated because flattening them into skills would make user-run workflows implicitly invocable |
 | cursor | partial | native | - | probe · 2026.10.16-e3cb207 · 2026-10-31 | generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified |
-| grok | partial | native | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-10-31 | grok reaches 24 of the 25 command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills |
+| grok | partial | native | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-10-31 | grok reaches most of the command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills |
 | crush | partial | native | - | probe · crush version v0.99.0 · 2026-10-31 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md |
 
 ### Not yet researched
 
-- `commands.user_defined` · p1 — The 26 shared command prompts are invocable by name in the harness's own command surface.
+- `commands.user_defined` · p1 — The shared command prompts are invocable by name in the harness's own command surface.
 - `commands.arguments` · p2 — A shared command can receive arguments through the harness's own substitution syntax.

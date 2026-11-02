@@ -1,6 +1,7 @@
 ---
 name: typesafe-ai
 license: MIT
+# Adapted from teaserworker-afk/typesafe-ai-skills (https://github.com/teaserworker-afk/typesafe-ai-skills), MIT License, Copyright (c) 2026 TypeSafe AI.
 description: >
   Build AI-powered software with TypeSafe: small units of AI intelligence you
   can use like programming primitives. Its System One models, including Jev,

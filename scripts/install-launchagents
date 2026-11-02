@@ -9,7 +9,8 @@ set -euo pipefail
 #
 # Copyright: Ben Chatelain. MIT.
 
-DOTFILES_AGENTS="$HOME/Library/LaunchAgents"
+repo_root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
+DOTFILES_AGENTS="$repo_root/Library/LaunchAgents"
 UID_DOMAIN="gui/$(id -u)"
 
 for plist in "$DOTFILES_AGENTS"/*.plist; do
@@ -20,7 +21,8 @@ for plist in "$DOTFILES_AGENTS"/*.plist; do
     echo "Installing $name..."
     mkdir -p "$HOME/Library/LaunchAgents"
     dest="$HOME/Library/LaunchAgents/$name"
-    # Skip cp when source and dest are the same file (e.g., when $HOME is the checkout root)
+    # The repo may still be checked out at $HOME (migration phase 1), where
+    # source and destination are the same file and cp refuses to copy it.
     if [ "$plist" -ef "$dest" ]; then
         echo "  → already in place"
     else

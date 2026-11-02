@@ -28,6 +28,7 @@ import '.config/just/claude.just'
 import '.config/just/clean.just'
 import '.config/just/cmux.just'
 import '.config/just/git.just'
+import '.config/just/home.just'
 import '.config/just/macos.just'
 import '.config/just/mise.just'
 import '.config/just/nix.just'
@@ -69,7 +70,7 @@ upgrade: upgrade-mise upgrade-mise-tools-commit update-brew upgrade-brew upgrade
 
 # Purges caches, build output, dependency trees, and home directory clutter
 [group('configuration')]
-clean: clean-rust clean-caches clean-build clean-deps
+clean: clean-rust clean-caches clean-tool-caches clean-worktrees clean-build clean-deps
     rm -f "$HOME/Library/Application Support/default.store"*
     rm -f $HOME/*.hprof
     rm -f $HOME/.claude.json.backup.*
@@ -87,7 +88,7 @@ build: generate
 
 # Regenerates harness artifacts and OMP profile configs
 [group('build')]
-generate: harness-generate generate-omp-profiles
+generate: harness-generate generate-omp-profiles home-spec
 
 # Regenerates artifacts and formats the result; run after generator/source edits
 [group('build')]
@@ -99,7 +100,7 @@ fix: generate agentlink-apply format
 
 # Runs lint, type checks, harness parity checks, ness tests, and test
 [group('checks')]
-check: lint typecheck-python check-spelling harness-check agentlink-check ness-test test
+check: lint typecheck-python check-spelling harness-check agentlink-check home-spec-check ness-test test
 
 # CI: check.yml (lint job)
 # Runs every hk check step over all tracked files (steps live in hk.pkl)
@@ -117,6 +118,7 @@ check-spelling:
 doctor:
     mise doctor
     brew doctor
+    just home-status
     claude doctor
 
 #
@@ -129,6 +131,10 @@ doctor:
 [script]
 test mode="parallel":
     echo "Running tests..."
+    export MISE_DATA_DIR="${MISE_DATA_DIR:-$HOME/.local/share/mise}"
+    export MISE_STATE_DIR="${MISE_STATE_DIR:-$HOME/.local/state/mise}"
+    export GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=commit.gpgsign GIT_CONFIG_VALUE_0=false
+    export HOME="{{ justfile_directory() }}"
     eval "$(mise activate bash)"
     [[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="$PATH:/nix/var/nix/profiles/default/bin:${HOME}/.nix-profile/bin" || true
     case "{{ mode }}" in

@@ -661,7 +661,7 @@ CAPABILITIES: list[Capability] = [
         title="Active shared commands",
         priority="p0",
         contract=(
-            "The 26 active commands are available through generated native prompts."
+            "The active commands are available through generated native prompts."
         ),
         canonical=("~/.agents/harness/commands",),
         verify="python3 scripts/agent-harnesses.py inventory --json",
@@ -744,7 +744,7 @@ CAPABILITIES: list[Capability] = [
                     "generated Cursor plugin commands wrap shared prompts, but "
                     "runtime discovery has not been verified"
                 ),
-                next_action="Verify Cursor discovers all 25 generated command wrappers",
+                next_action="Verify Cursor discovers all generated command wrappers",
             ),
             "grok": Cell(
                 parity="partial",
@@ -755,14 +755,14 @@ CAPABILITIES: list[Capability] = [
                 ),
                 probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
                 note=(
-                    "grok reaches 24 of the 25 command workflows through the "
+                    "grok reaches most of the command workflows through the "
                     "shared skills; linear/progress has no shared skill, and "
                     "~/.grok/commands wrappers would shadow the same-named shared "
                     "skills"
                 ),
                 next_action=(
                     "Add a shared skill for the linear/progress workflow so grok "
-                    "covers all 25 command workflows"
+                    "covers every command workflow"
                 ),
             ),
             "crush": Cell(
@@ -793,7 +793,7 @@ CAPABILITIES: list[Capability] = [
         title="User-defined command surface",
         priority="p1",
         contract=(
-            "The 26 shared command prompts are invocable by name in the "
+            "The shared command prompts are invocable by name in the "
             "harness's own command surface."
         ),
         canonical=("~/.agents/harness/commands",),
@@ -813,7 +813,7 @@ CAPABILITIES: list[Capability] = [
         domain="agents",
         title="Specialist agents for delegation",
         priority="p0",
-        contract="Six specialist agents are represented for delegation.",
+        contract="Specialist agents are represented for delegation.",
         canonical=("~/.agents/harness/agents",),
         verify="python3 scripts/agent-harnesses.py inventory --json",
         cells={
@@ -995,7 +995,7 @@ CAPABILITIES: list[Capability] = [
         title="User-defined agent registration",
         priority="p1",
         contract=(
-            "The 6 shared specialist agents are registerable as named agents the "
+            "The shared specialist agents are registerable as named agents the "
             "harness can select."
         ),
         canonical=("~/.agents/harness/agents",),

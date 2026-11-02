@@ -28,7 +28,7 @@ from typing import Any
 
 # Shared MCP servers, rendered into every harness that has a verified consumer.
 # stdio entries use `npx -y` so no global install is assumed. `filesystem`'s
-# root is $HOME because this repository is checked out AT $HOME.
+# root is the home directory.
 MCP_SERVERS: dict[str, dict[str, Any]] = {
     "filesystem": {
         "type": "stdio",

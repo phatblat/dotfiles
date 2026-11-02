@@ -42,6 +42,42 @@ clean-caches:
     rm -rf "$HOME/.cargo/registry/cache" "$HOME/.cargo/registry/src" "$HOME/.cargo/git/checkouts"
     if command -v nix >/dev/null 2>&1; then nix store gc; fi
 
+# ~/.cache subdirectories that clean-tool-caches removes (space-separated). An
+# allowlist, because ~/.cache also holds data that is not a cache: the wine
+# prefix, lm-studio models, huggingface weights, and tool state.
+
+tool_cache_dirs := 'ansible-compat ansible-lint chrome-devtools-mcp gem gstreamer-1.0 packer pre-commit puppeteer solargraph starship ty update-informer-rs uv zig'
+
+# Every entry removed here is re-downloaded or rebuilt on demand. Kept on
+# purpose: ~/.gradle/gradle.properties (user config) and ~/.rustup/toolchains
+# and settings.toml (clean-rust prunes toolchains).
+# Removes Bazel, Gradle, Kotlin/Native, rustup download, and ~/.cache tool caches
+[group('clean')]
+[script]
+clean-tool-caches:
+    set -euo pipefail
+    purge() {
+        local path
+        for path in "$@"; do
+            if [[ -e "$path" ]]; then
+                echo "removing: $path"
+                chmod -R u+w "$path" 2>/dev/null || true
+                rm -rf "$path"
+            fi
+        done
+    }
+    # Daemons hold files open under the directories removed below.
+    if command -v bazel >/dev/null 2>&1; then bazel shutdown >/dev/null 2>&1 || true; fi
+    pkill -f 'org.gradle.launcher.daemon.bootstrap.GradleDaemon' || true
+    purge "$HOME/Library/Caches/bazel" "$HOME/.konan"
+    for name in caches daemon jdks kotlin-profile native notifications vcs-1 wrapper workers; do
+        purge "$HOME/.gradle/$name"
+    done
+    purge "$HOME/.rustup/downloads" "$HOME/.rustup/tmp"
+    for name in {{ tool_cache_dirs }}; do
+        purge "$HOME/.cache/$name"
+    done
+
 # Directories containing tracked files are kept, so this can never delete
 # checked-in work.
 # Removes build output directories under repo-owned source roots
@@ -92,6 +128,95 @@ clean-deps:
             rm -rf "$root/.venv"
         fi
     done
+
+# A worktree under ~/.worktrees is removable when it is not on its repo's
+# default branch, has no uncommitted, untracked, or gitignored files other than
+# the `wt overlay` symlinks (removal deletes ignored data such as .env, which
+# git cannot recover), has had no commit or
+# checkout for `days` days (a brand-new branch is trivially an ancestor of the
+# default branch), and its branch is either an ancestor of the default branch
+# or has an upstream that is gone (deleted on the remote after a squash or
+# rebase merge). The branch itself is kept; use git-cleanup for branches.
+# `just clean-worktrees list` only reports.
+# Removes merged, idle, clean git worktrees under ~/.worktrees
+[group('clean')]
+[script]
+clean-worktrees mode="remove" days="7":
+    set -euo pipefail
+    if [[ "{{ mode }}" != "remove" && "{{ mode }}" != "list" ]]; then
+        echo "mode must be remove or list" >&2
+        exit 2
+    fi
+    now="$(date +%s)"
+    removed=0
+    kept=0
+    while IFS= read -r gitfile; do
+        dir="${gitfile%/.git}"
+        if ! gitdir="$(git -C "$dir" rev-parse --absolute-git-dir 2>/dev/null)"; then
+            echo "skipping (broken gitfile, run git worktree prune in its repo): $dir"
+            continue
+        fi
+        branch="$(git -C "$dir" branch --show-current)"
+        main="$(git -C "$dir" worktree list --porcelain | awk '/^worktree /{print substr($0, 10); exit}')"
+        if [[ -z "$branch" || "$dir" == "$main" ]]; then continue; fi
+        git -C "$main" fetch --prune --quiet origin 2>/dev/null || true
+        default="$(git -C "$main" symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || echo origin/main)"
+        if [[ "$branch" == "${default#origin/}" ]]; then
+            echo "keeping (default branch): $dir [$branch]"
+            kept=$((kept + 1))
+            continue
+        fi
+        if [[ -n "$(git --no-optional-locks -C "$dir" status --porcelain)" ]]; then
+            echo "keeping (uncommitted or untracked changes): $dir [$branch]"
+            kept=$((kept + 1))
+            continue
+        fi
+        # Gitignored files are unrecoverable once the worktree is removed, except
+        # the symlinks `wt overlay` creates from .config/wt/overlay/dev-dotfiles.
+        overlay_entries=""
+        if [[ -f "$dir/.config/wt/overlay/dev-dotfiles" ]]; then
+            overlay_entries="$(sed -e 's/#.*//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e '/^$/d' "$dir/.config/wt/overlay/dev-dotfiles")"
+        fi
+        ignored_file=""
+        while IFS= read -r ignored; do
+            [[ -n "$ignored" ]] || continue
+            if [[ -L "$dir/$ignored" ]] && grep -qxF -- "$ignored" <<<"$overlay_entries"; then continue; fi
+            ignored_file="$ignored"
+            break
+        done < <(git --no-optional-locks -C "$dir" ls-files --others --ignored --exclude-standard)
+        if [[ -n "$ignored_file" ]]; then
+            echo "keeping (gitignored file: $ignored_file): $dir [$branch]"
+            kept=$((kept + 1))
+            continue
+        fi
+        last="$(stat -f %m "$gitdir/logs/HEAD" 2>/dev/null || echo "$now")"
+        if (( now - last < {{ days }} * 86400 )); then
+            echo "keeping (active within {{ days }} days): $dir [$branch]"
+            kept=$((kept + 1))
+            continue
+        fi
+        reason=""
+        if git -C "$main" merge-base --is-ancestor "$branch" "$default" 2>/dev/null; then
+            reason="merged into $default"
+        elif [[ "$(git -C "$main" for-each-ref --format='%(upstream:track)' "refs/heads/$branch")" == "[gone]" ]]; then
+            reason="upstream gone"
+        fi
+        if [[ -z "$reason" ]]; then
+            echo "keeping (unmerged): $dir [$branch]"
+            kept=$((kept + 1))
+            continue
+        fi
+        echo "removing ($reason): $dir [$branch]"
+        if [[ "{{ mode }}" == "remove" ]]; then
+            if ! wt remove "$branch" --repo "$main"; then
+                echo "failed: wt remove $branch ($dir)" >&2
+                kept=$((kept + 1))
+                continue
+            fi
+        fi
+        removed=$((removed + 1))
+    done < <(find "$HOME/.worktrees" -maxdepth 3 -type f -name .git)
+    echo "clean-worktrees: $removed removable, $kept kept"
 
 # Runs kondo over every git repo under ~/dev and ~/.worktrees, deleting
 # build artifacts older than 1 day without confirmation. Repos are

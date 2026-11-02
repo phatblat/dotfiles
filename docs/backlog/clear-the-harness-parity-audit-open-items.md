@@ -12,8 +12,8 @@ Priority: Unprioritized
 - skills.manual_only (antigravity): Verify Antigravity adapter excludes every procedural skill while continuing to emit ability skills
 - commands.active (codex): Re-check Codex release notes for stable command format
 - commands.active (crush): Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter
-- commands.active (cursor): Verify Cursor discovers all 25 generated command wrappers
-- commands.active (grok): Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows
+- commands.active (cursor): Verify Cursor discovers all generated command wrappers
+- commands.active (grok): Add a shared skill for the linear/progress workflow so grok covers every command workflow
 - agents.specialists (antigravity): Verify Antigravity can delegate to generated specialist wrappers with isolated context
 - agents.specialists (crush): Re-check crush releases for user-defined agent support
 - agents.specialists (cursor): Verify Cursor discovers generated specialist agent wrappers
