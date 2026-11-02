@@ -11,7 +11,13 @@ for plist in "$DOTFILES_DAEMONS"/*.plist; do
     # launchctl keys services by the plist's Label, not the filename
     label=$(/usr/libexec/PlistBuddy -c 'Print :Label' "$plist" 2>/dev/null || echo "${name%.plist}")
     echo "Installing $name..."
-    sudo cp "$plist" "/Library/LaunchDaemons/$name"
+    dest="/Library/LaunchDaemons/$name"
+    # Same-file guard: cp refuses to copy a file onto itself.
+    if [ "$plist" -ef "$dest" ]; then
+        echo "  → already in place"
+    else
+        sudo cp "$plist" "$dest"
+    fi
     sudo chown root:wheel "/Library/LaunchDaemons/$name"
     sudo chmod 644 "/Library/LaunchDaemons/$name"
     sudo launchctl bootout system/"$label" 2>/dev/null || true

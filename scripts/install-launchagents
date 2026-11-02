@@ -21,7 +21,13 @@ for plist in "$DOTFILES_AGENTS"/*.plist; do
     echo "Installing $name..."
     mkdir -p "$HOME/Library/LaunchAgents"
     dest="$HOME/Library/LaunchAgents/$name"
-    cp "$plist" "$dest"
+    # The repo may still be checked out at $HOME (migration phase 1), where
+    # source and destination are the same file and cp refuses to copy it.
+    if [ "$plist" -ef "$dest" ]; then
+        echo "  → already in place"
+    else
+        cp "$plist" "$dest"
+    fi
     chmod 644 "$dest"
     launchctl bootout "$UID_DOMAIN/$label" 2>/dev/null || true
     # Clear any prior disabled override before bootstrap so the agent runs on schedule
