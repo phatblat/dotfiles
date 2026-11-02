@@ -49,13 +49,13 @@ Coverage: 92/405 cells verified (23%)
 | antigravity | skills.manual_only | Verify Antigravity adapter excludes every procedural skill while continuing to emit ability skills |
 | antigravity | skills.shared | Verify agy imports and activates shared skill wrappers from the plugin |
 | cursor | agents.specialists | Verify Cursor discovers generated specialist agent wrappers |
-| cursor | commands.active | Verify Cursor discovers all 25 generated command wrappers |
+| cursor | commands.active | Verify Cursor discovers all generated command wrappers |
 | cursor | hooks.safety | Confirm in a live Cursor session that a protected-path write is blocked |
 | cursor | instructions.global | Link or install the Cursor plugin and verify Cursor loads the shared-harness rule |
 | cursor | sessions.compaction | Verify Cursor resume and history behavior against compact-preservation requirements |
 | cursor | skills.shared | Verify Cursor discovers and activates the shared skills |
 | grok | agents.specialists | Verify grok spawn_subagent can launch the generated specialist profiles |
-| grok | commands.active | Add a shared skill for the linear/progress workflow so grok covers all 25 command workflows |
+| grok | commands.active | Add a shared skill for the linear/progress workflow so grok covers every command workflow |
 | grok | hooks.safety | Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session |
 | crush | agents.specialists | Re-check crush releases for user-defined agent support |
 | crush | commands.active | Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter |
