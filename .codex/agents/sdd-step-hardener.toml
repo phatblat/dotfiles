@@ -85,7 +85,7 @@ After all checks and fixes, run the discovered verification commands. If verific
 Before your first commit, discover how this project commits, in priority order:
 
 1. **Project instruction conventions**: Use the project instructions already in your context, and read any nested `AGENTS.md` or `CLAUDE.md` in relevant directories. Look for commit-related instructions: commit message format, required trailers, commit scoping rules, forbidden patterns (e.g., "no git add -A"), or references to a commit command or skill.
-2. **Commit skill or command**: Check whether the project defines one by reading whichever of these exist: `.agents/skills/commit/SKILL.md`, `.claude/skills/commit/SKILL.md`, `.claude/commands/commit.md`. If found, follow its commit message format, staging rules, and trailer requirements.
+2. **Commit skill or command**: Check whether the project defines one by reading whichever of these exist: `.agents/skills/commit/SKILL.md`, `.agents/skills/git-commit/SKILL.md`, `.claude/skills/commit/SKILL.md`, `.claude/commands/commit.md`, `.claude/commands/git/commit.md`. If found, follow its commit message format, staging rules, and trailer requirements.
 3. **Developer config files**: Check for `commitlint.config.*`, `.commitlintrc.*`, `.czrc`, `.cz.json`, `changelog.config.js`, or a `commitlint`/`config.commitizen` section in `package.json`. If found, extract the allowed types, scopes, and format rules.
 
 Apply all discovered conventions, with earlier sources taking priority over later ones when they conflict. If nothing is found, fall back to standard conventional commits: `type(scope): description`.
