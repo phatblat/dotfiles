@@ -70,6 +70,11 @@ This is the delicate step. `$HOME` currently *is* the work tree, so the work tre
 cd ~
 git status --porcelain          # must be empty
 
+# Build the tar AFTER the merge is in place: it lists the working tree's
+# tracked paths, so a tar taken before the merge omits every file the merge
+# added. Building it later and extracting over the checkout is what fills
+# those in.
+
 # 2. Move the work tree contents into the new location.
 mkdir -p ~/dev/dotfiles
 # Move every tracked path, preserving structure, into ~/dev/dotfiles.
@@ -224,6 +229,27 @@ just home-overlay-links
 Note `.netrc` does not exist on this machine; the recipe prints `skip: ~/.netrc missing` and continues. `.env` is a real file and is not tracked (it is gitignored), so it must be linked into the checkout rather than deployed into `$HOME` — `home-overlay-links` does that.
 
 These overlay entries are deliberately *not* in the `mise dot` spec: they are `$HOME`-only paths, so deploying them from the checkout would make the checkout depend on itself.
+
+### `.cursor/skills` must exist in the checkout
+
+The harness probe resolves paths against the **checkout root**, not `$HOME`. `.cursor/skills` is gitignored (Cursor's own managed block in `.cursor/.gitignore` re-ignores it) and is materialised by agentlink, not tracked — so it is absent from a fresh checkout, and `just harness-probe` reports `cursor skills.shared` as failing.
+
+Run `just agentlink-apply` once after the move, from the checkout:
+
+```bash
+cd ~/dev/dotfiles
+just agentlink-apply
+```
+
+It creates `.cursor/skills` as a symlink to `.agents/skills`. Without it the probe fails on every run.
+
+### Approve the checkout's `.envrc`
+
+direnv records approvals per `.envrc` path, so the checkout's copy needs its own approval. Otherwise every shell in the checkout prints `direnv: error ... .envrc is blocked`:
+
+```bash
+direnv allow ~/dev/dotfiles/.envrc
+```
 
 Also install the launch agents, which now read from the checkout rather than from `$HOME`:
 
