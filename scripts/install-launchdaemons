@@ -2,8 +2,12 @@
 set -euo pipefail
 
 # Installs LaunchDaemons from dotfiles into /Library/LaunchDaemons
+#
+# DOTFILES_LAUNCH_DAEMONS_DIR overrides the destination, so the installer can
+# be exercised without writing to /Library (which needs root).
 repo_root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
 DOTFILES_DAEMONS="$repo_root/Library/LaunchDaemons"
+LAUNCH_DAEMONS_DIR="${DOTFILES_LAUNCH_DAEMONS_DIR:-/Library/LaunchDaemons}"
 
 for plist in "$DOTFILES_DAEMONS"/*.plist; do
     [ -f "$plist" ] || continue
@@ -11,19 +15,19 @@ for plist in "$DOTFILES_DAEMONS"/*.plist; do
     # launchctl keys services by the plist's Label, not the filename
     label=$(/usr/libexec/PlistBuddy -c 'Print :Label' "$plist" 2>/dev/null || echo "${name%.plist}")
     echo "Installing $name..."
-    dest="/Library/LaunchDaemons/$name"
+    dest="$LAUNCH_DAEMONS_DIR/$name"
     # Same-file guard: cp refuses to copy a file onto itself.
     if [ "$plist" -ef "$dest" ]; then
         echo "  → already in place"
     else
         sudo cp "$plist" "$dest"
     fi
-    sudo chown root:wheel "/Library/LaunchDaemons/$name"
-    sudo chmod 644 "/Library/LaunchDaemons/$name"
+    sudo chown root:wheel "$dest"
+    sudo chmod 644 "$dest"
     sudo launchctl bootout system/"$label" 2>/dev/null || true
     # Clear any prior disabled override before bootstrap so the daemon runs at boot
     sudo launchctl enable system/"$label"
-    sudo launchctl bootstrap system "/Library/LaunchDaemons/$name"
+    sudo launchctl bootstrap system "$dest"
     # Verify the daemon registered in the system domain
     if sudo launchctl print system/"$label" >/dev/null 2>&1; then
         echo "  ✓ $label loaded"
