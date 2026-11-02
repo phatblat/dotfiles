@@ -7,6 +7,6 @@
     "reason": ""
   },
   "harness": "claude",
-  "path": "/Users/phatblat/crates/ness/target/release/ness",
+  "path": "/Users/phatblat/dev/dotfiles/crates/ness/target/release/ness",
   "tool": "write"
 }
