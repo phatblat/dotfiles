@@ -146,6 +146,39 @@ EOF
     [ "$(cat "$SRC/app.json")" = '{"staged":true}' ]
 }
 
+@test "home-capture: a copy-class clean filter does not read as a repo edit" {
+    # The copy class is scrubbed by a clean filter, so a live secret rotating
+    # in $HOME leaves the worktree clean against the committed blob and the
+    # capture must still run.
+    cat > "$SRC/mask.sh" <<'MASK'
+#!/usr/bin/env python3
+import json, sys
+data = json.load(sys.stdin)
+data.pop("api_key", None)
+print(json.dumps(data, sort_keys=True))
+MASK
+    chmod +x "$SRC/mask.sh"
+    printf 'app.json filter=oc-config\n' > "$SRC/.gitattributes"
+    git -C "$SRC" add .gitattributes mask.sh
+    git -C "$SRC" commit -qm "attrs"
+    git -C "$SRC" config set filter.oc-config.clean "$SRC/mask.sh"
+    git -C "$SRC" config set filter.oc-config.smudge cat
+    echo '{"api_key":"secret","seed":true}' > "$SRC/app.json"
+    git -C "$SRC" add app.json
+    git -C "$SRC" commit -qm "app"
+    cat >> "$SBHOME/.config/mise/conf.d/dotfiles.toml" << EOF
+
+[dotfiles."~/app.json"]
+source = "$SRC/app.json"
+mode = "copy"
+EOF
+    echo '{"api_key":"rotated","seed":true}' > "$SBHOME/app.json"
+
+    run sbx python3 "$SCRIPT"
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "captured ~/app.json" ]]
+}
+
 @test "home-capture: captures a copy-class file's live bytes into the repo" {
     echo '{"seed":true}' > "$SRC/app.json"
     git -C "$SRC" add app.json

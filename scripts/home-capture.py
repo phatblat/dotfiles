@@ -100,6 +100,12 @@ def main() -> int:
                 conflicts.append(f"{key}: directory where a copied file belongs")
                 continue
             if not same_bytes(target, source):
+                # The live file always wins, but only over an untouched repo
+                # copy: an uncommitted repo edit would be silently overwritten.
+                copy_root = Path(str(source)[: -len(rel) - 1])
+                if dirty_vs_head(copy_root, rel):
+                    conflicts.append(f"{rel}: repo copy has uncommitted changes")
+                    continue
                 if not dry:
                     shutil.copyfile(target, source)
                 print(f"{verb}captured {key}")
