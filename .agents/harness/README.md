@@ -5,13 +5,13 @@
 This directory is the portable harness layer for Claude, Codex, OpenCode, Pi,
 Antigravity, Cursor, and Grok.
 It keeps command prompts, specialist agent definitions, and normalized hook
-contracts in one place; the safety policy itself is compiled from
-`~/crates/ness`. Native harness directories should contain thin generated
-adapters or tool-specific configuration only.
+contracts in one place; the safety policy itself is compiled into the guard
+binary `~/.local/bin/ness`. Native harness directories should contain thin
+generated adapters or tool-specific configuration only.
 
 ## Inventory
 
 - Commands: 29
 - Specialist agents: 15
 - Shared skills source: `~/.agents/skills`
-- Safety policy: `~/.config/ness/policy.toml` (`[control_plane]` and friends), enforced by the compiled guard `ness` from `~/crates/ness`
+- Safety policy: `~/.config/ness/policy.toml` (`[control_plane]` and friends), enforced by the compiled guard `ness` from `~/.local/bin/ness`
