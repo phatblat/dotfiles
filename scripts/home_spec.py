@@ -21,8 +21,8 @@ Classes of tracked path:
                 own link text
 
 Usage:
-  home_spec.py generate [--repo DIR]   rewrite the spec
-  home_spec.py check [--repo DIR]      exit 1 when the spec is stale
+  home_spec.py generate [--repo DIR] [--source DIR]   rewrite the spec
+  home_spec.py check [--repo DIR] [--source DIR]      exit 1 when the spec is stale
   home_spec.py links [--repo DIR]      recreate the dangling-class links in $HOME
 
 Copyright: Ben Chatelain. MIT.
@@ -41,7 +41,8 @@ from pathlib import Path
 # committed spec must be byte-identical everywhere, so this is a convention, not
 # something derived per machine (home-capture, home-apply-hook, and home.just
 # derive the live checkout from `git rev-parse --git-common-dir` instead). A
-# clone elsewhere needs `generate --source <dir>` and an uncommitted spec.
+# clone elsewhere needs `just home-spec <dir>` (which passes `--source <dir>`)
+# and an uncommitted spec.
 REPO_HOME = "~/dev/dotfiles"
 SPEC = ".config/mise/conf.d/dotfiles.toml"
 ICON = "Icon\r"

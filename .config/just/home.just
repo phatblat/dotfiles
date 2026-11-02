@@ -8,14 +8,16 @@ home-apply:
     mise --cd "$HOME" dot apply --yes
 
 # Regenerates the deploy spec from the tracked files (run by `just generate`)
+# Pass `source=` for a checkout elsewhere than ~/dev/dotfiles; the committed
+# spec must stay byte-identical, so a clone elsewhere keeps an uncommitted spec.
 [group('home')]
-home-spec:
-    python3 {{ justfile_directory() }}/scripts/home_spec.py generate
+home-spec source="":
+    python3 {{ justfile_directory() }}/scripts/home_spec.py generate {{ if source != "" { "--source " + source } else { "" } }}
 
 # Fails when the committed deploy spec is stale relative to the tracked files (run by `just check`)
 [group('home')]
-home-spec-check:
-    python3 {{ justfile_directory() }}/scripts/home_spec.py check
+home-spec-check source="":
+    python3 {{ justfile_directory() }}/scripts/home_spec.py check {{ if source != "" { "--source " + source } else { "" } }}
 
 # Shows which $HOME targets differ from the primary checkout
 [group('home')]
