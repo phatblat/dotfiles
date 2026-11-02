@@ -167,7 +167,8 @@ From here on, `just home-apply` is the canonical way to re-deploy (it runs `home
 ### Files that cannot be deployed automatically
 
 - `~/.agents/skills/{authoring-skills,conventional-docs,recording-changes,semantic-versioning,setup-phatblat-skills}` — the spec deploys these as direct relative links to `~/dev/agents/...`, but those source checkouts do not exist on this machine yet. Clone them first (see below), then re-apply.
-- `bin/vi`, `bin/vim`, `~/.config/iterm2/AppSupport` — these point at absolute paths that do not exist here (`/opt/homebrew/bin/nvim`, `~/Library/Application Support/iTerm2`). `mise` refuses to link a non-existent source. The repo's `scripts/home_spec.py` recreates them with the repo's own link text via `just home-apply` (which runs `home_spec.py links` first). Install `neovim` and iTerm2, or accept the links as dangling.
+- `~/.config/iterm2/AppSupport` — a tracked symlink to an absolute path that does not exist here (`~/Library/Application Support/iTerm2`). `mise` refuses to link a non-existent source. The repo's `scripts/home_spec.py` recreates it with the repo's own link text via `just home-apply` (which runs `home_spec.py links` first). Install iTerm2, or accept the link as dangling.
+- `bin/vi` used to be in the same class (a symlink to `/opt/homebrew/bin/nvim`, which is not on every machine). It is now a regular script that dispatches to the mise-managed neovim with `mise exec`, the same pattern as `bin/timeout`, so it deploys as an ordinary link and always resolves.
 - `~/Library/Application Support/nushell/autoload` — a tracked relative symlink (`../../../.config/nushell/autoload`) that keeps working after the move because the link is deployed into `$HOME`, not into the repo.
 
 ### The out-of-repo skill sources

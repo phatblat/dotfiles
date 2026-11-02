@@ -11179,6 +11179,11 @@ source = "~/dev/dotfiles/bin/timeout"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/bin/vi"]
+source = "~/dev/dotfiles/bin/vi"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/dedupe-m3ultra.sh"]
 source = "~/dev/dotfiles/dedupe-m3ultra.sh"
 mode = "symlink"

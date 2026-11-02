@@ -1,1 +1,5 @@
-/opt/homebrew/bin/nvim
+#!/bin/sh
+# Dispatches to the mise-managed neovim tool (see .config/mise/config.toml).
+# Uses `mise exec` (not a hardcoded install path) so this keeps working across
+# machines/architectures and across neovim version bumps.
+exec "$HOME/.local/bin/mise" exec neovim -- nvim "$@"
