@@ -65,6 +65,7 @@ Coverage: 92/405 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-11-01 | opencode | maintenance.config_validation | probe | unavailable | pass |
 | 2026-10-31 | opencode | - | version | opencode v2.2.0 | opencode v2.2.2 |
 | 2026-10-31 | omp | - | version | omp/18.13.3 | omp/18.14.1 |
 | 2026-10-31 | grok | - | version | grok 1.0.70 (f50904eaee6c) | grok 1.0.70 (f50904eaee6c) [alpha] |
@@ -74,7 +75,6 @@ Coverage: 92/405 cells verified (23%)
 | 2026-10-31 | claude | - | version | 2.1.251 (Claude Code) | 2.1.314 (Claude Code) |
 | 2026-10-31 | antigravity | - | version | 1.2.3 | 1.4.6 |
 | 2026-10-31 | opencode | maintenance.config_validation | probe | unavailable | pass |
-| 2026-10-30 | opencode | - | version | - | opencode v2.2.0 |
 
 ## Permanent divergences
 

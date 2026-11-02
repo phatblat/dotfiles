@@ -330,3 +330,4 @@
 {"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"grok 1.0.70 (f50904eaee6c)","harness":"grok","to":"grok 1.0.70 (f50904eaee6c) [alpha]","version_from":"grok 1.0.70 (f50904eaee6c)","version_to":"grok 1.0.70 (f50904eaee6c) [alpha]"}
 {"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"omp/18.13.3","harness":"omp","to":"omp/18.14.1","version_from":"omp/18.13.3","version_to":"omp/18.14.1"}
 {"capability":"-","date":"2026-10-31","detail":"","field":"version","from":"opencode v2.2.0","harness":"opencode","to":"opencode v2.2.2","version_from":"opencode v2.2.0","version_to":"opencode v2.2.2"}
+{"capability":"maintenance.config_validation","date":"2026-11-01","detail":"opencode debug config","field":"probe","from":"unavailable","harness":"opencode","to":"pass","version_from":"opencode v2.2.5","version_to":"opencode v2.2.5"}

@@ -22,6 +22,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-01 | opencode | maintenance.config_validation | probe | unavailable | pass | opencode v2.2.5 |
 | 2026-10-31 | opencode | - | version | opencode v2.2.0 | opencode v2.2.2 | opencode v2.2.2 |
 | 2026-10-31 | omp | - | version | omp/18.13.3 | omp/18.14.1 | omp/18.14.1 |
 | 2026-10-31 | grok | - | version | grok 1.0.70 (f50904eaee6c) | grok 1.0.70 (f50904eaee6c) [alpha] | grok 1.0.70 (f50904eaee6c) [alpha] |
@@ -221,4 +222,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-16 | antigravity | skills.manual_only | mode | none | adapter | 1.2.3 |
 | 2026-09-16 | antigravity | skills.manual_only | parity | unknown | partial | 1.2.3 |
 | 2026-09-15 | omp | - | version | omp/18.1.17 | omp/18.1.22 | omp/18.1.22 |
-| 2026-09-15 | grok | - | version | grok 1.0.30 (04b7ffed98c6) [alpha] | grok 1.0.30 (04b7ffed98c6) | grok 1.0.30 (04b7ffed98c6) |
