@@ -3214,6 +3214,11 @@ source = "~/dev/dotfiles/.config/git/hooks/pre-push"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.config/git/hooks/pre-push.pre-entire-brain"]
+source = "~/dev/dotfiles/.config/git/hooks/pre-push.pre-entire-brain"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.config/git/hooks/prepare-commit-msg"]
 source = "~/dev/dotfiles/.config/git/hooks/prepare-commit-msg"
 mode = "symlink"
