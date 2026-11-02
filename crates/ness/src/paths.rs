@@ -1,16 +1,16 @@
 //! Path helpers shared by `policy` and `manifest`.
 //!
 //! `ness` is installed once to `~/.local/bin/ness`, independent of any
-//! checkout. `scripts/agent-harnesses.py` instead derives its dotfiles
-//! checkout root by comparing its *own* file location to `$HOME`
-//! (`scripts/agent-harnesses.py:81-83`), which is how it stays correct when
-//! run from a linked git worktree of the same repo. A compiled binary has no
-//! script location to compare, so `find_root` reproduces the same intent —
-//! "which checkout is this invocation talking about" — by walking up from
-//! the current working directory looking for a `.agents/harness` marker
-//! directory, falling back to `$HOME` when none is found. This generalizes
-//! rather than narrows the Python behavior: it is worktree-aware from any
-//! subdirectory, not only from the two fixed levels above the script file.
+//! checkout. `scripts/agent-harnesses.py` instead roots itself at its own
+//! checkout, two levels up from `scripts/`, which is how it stays correct
+//! when run from a linked git worktree of the same repo. A compiled binary
+//! has no script location to derive a root from, so `find_root` reproduces
+//! the same intent — "which checkout is this invocation talking about" —
+//! by walking up from the current working directory looking for a
+//! `.agents/harness` marker directory, falling back to `$HOME` when none is
+//! found. This generalizes rather than narrows the Python behavior: it is
+//! worktree-aware from any subdirectory, not only from the two fixed levels
+//! above the script file.
 
 use std::path::{Component, Path, PathBuf};
 
