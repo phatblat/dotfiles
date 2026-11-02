@@ -50,6 +50,21 @@ def same_bytes(a: Path, b: Path) -> bool:
     return b.is_file() and a.read_bytes() == b.read_bytes()
 
 
+def dirty_vs_head(source_root: Path, rel: str) -> bool:
+    """True when the repo copy of `rel` differs from HEAD, staged or not.
+
+    `git diff` without a revision compares the worktree with the index, which
+    reports a staged edit as clean, so the revision is explicit. A copy-class
+    path carries a clean filter, which git applies to the worktree side of
+    the comparison, so the scrubbed live bytes do not read as an edit of
+    their own and only a hand-authored change to the repo copy does.
+    """
+    if git(source_root, "rev-parse", "--verify", "--quiet", "HEAD").returncode != 0:
+        # No commit yet: every tracked file is uncommitted work.
+        return True
+    return git(source_root, "diff", "HEAD", "--quiet", "--", rel).returncode != 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Reconcile $HOME with the primary dotfiles checkout.")
     ap.add_argument("--dry-run", action="store_true")
@@ -110,8 +125,7 @@ def main() -> int:
             restore.append(rel)
             continue
         source_root = Path(str(source)[: -len(rel) - 1])
-        dirty = git(source_root, "diff", "--quiet", "--", rel).returncode != 0
-        if dirty:
+        if dirty_vs_head(source_root, rel):
             conflicts.append(f"{rel}: changed in both $HOME and the repo")
             continue
         if not dry:

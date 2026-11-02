@@ -6,7 +6,7 @@
 
 load helpers/setup
 
-SCRIPT="$HOME/scripts/home-capture.py"
+SCRIPT="$BATS_TEST_DIRNAME/../scripts/home-capture.py"
 
 setup() {
     command -v mise > /dev/null || skip "mise not installed"
@@ -109,6 +109,41 @@ sbx() {
     [ "$status" -eq 0 ]
     [ "$(readlink "$SBHOME/.inputrc")" = "$SRC/.inputrc" ]
     [ "$(readlink "$SBHOME/.vimrc")" = /etc/hosts ]
+}
+
+@test "home-capture: refuses when the repo copy has a staged edit" {
+    # `git diff` without a revision compares the worktree with the index, so
+    # a staged edit reads as clean and would be silently overwritten.
+    echo "set staged-edit" > "$SRC/.inputrc"
+    git -C "$SRC" add .inputrc
+    rm "$SBHOME/.inputrc"
+    echo "set app-edit" > "$SBHOME/.inputrc"
+
+    run sbx python3 "$SCRIPT"
+    [ "$status" -eq 1 ]
+    [[ "$output" =~ "conflict: .inputrc: changed in both" ]]
+    [ "$(cat "$SRC/.inputrc")" = "set staged-edit" ]
+    [ ! -L "$SBHOME/.inputrc" ]
+}
+
+@test "home-capture: refuses when the copy-class repo copy has uncommitted changes" {
+    echo '{"seed":true}' > "$SRC/app.json"
+    git -C "$SRC" add app.json
+    git -C "$SRC" commit -qm "app"
+    cat >> "$SBHOME/.config/mise/conf.d/dotfiles.toml" << EOF
+
+[dotfiles."~/app.json"]
+source = "$SRC/app.json"
+mode = "copy"
+EOF
+    echo '{"staged":true}' > "$SRC/app.json"
+    git -C "$SRC" add app.json
+    echo '{"seed":false,"app":"edit"}' > "$SBHOME/app.json"
+
+    run sbx python3 "$SCRIPT"
+    [ "$status" -eq 1 ]
+    [[ "$output" =~ "conflict: app.json: repo copy has uncommitted changes" ]]
+    [ "$(cat "$SRC/app.json")" = '{"staged":true}' ]
 }
 
 @test "home-capture: captures a copy-class file's live bytes into the repo" {
