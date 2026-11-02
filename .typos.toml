@@ -11,6 +11,10 @@ extend-exclude = [
 certifi = "certifi"
 # Valid variant spelling; appears in a frozen decision record.
 unparseable = "unparseable"
+# Mixed-case input in a test that proves priority parsing folds case
+# ("uNpRiOrItIzEd" -> "Unprioritized"). Not a word; the key must be
+# lowercase for typos to match it.
+iz = "iz"
 
 [default]
 extend-ignore-re = [
