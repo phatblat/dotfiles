@@ -12,10 +12,14 @@ setup_clone() {
     git -C "$CLONE" config user.email "real@example.com"
     git -C "$CLONE" config user.name "Real User"
     git -C "$CLONE" config commit.gpgsign false
+    # The clone inherits whatever the source checkout had: a local branch
+    # when the source was on one, a detached HEAD when it was not (CI checks
+    # out a merge ref). Create the branch explicitly so the test does not
+    # depend on which of the two it got.
+    git -C "$CLONE" switch -q -C main HEAD
     # The recipe refuses refs without the deploy spec and the post-checkout
     # hook; the clone already has both, so nothing else is needed here.
     git -C "$CLONE" branch feature1
-    git -C "$CLONE" switch -q main
 }
 
 # The branch home-deploy recorded, read from the clone's git path.
