@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   harness-parity:
-    runs-on: arc-ubuntu-24.04-arm64
+    runs-on: ubuntu-latest
     env:
       HOME: ${{ github.workspace }}
     steps:
@@ -63,7 +63,7 @@ jobs:
           fi
 
   ness:
-    runs-on: arc-ubuntu-24.04-arm64
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
       HOME: ${{ github.workspace }}
@@ -88,7 +88,7 @@ jobs:
           version: "2026.10.19"
           install_args: "just rust sccache"
 
-      # .config/mise/config.toml exports LC_ALL=en_US.UTF-8, which the ARC runner
+      # .config/mise/config.toml exports LC_ALL=en_US.UTF-8, which the runner
       # image does not generate; without it bash warns on stderr and the ness
       # hook corpus, which compares stderr, mismatches.
       - name: Generate en_US.UTF-8 locale

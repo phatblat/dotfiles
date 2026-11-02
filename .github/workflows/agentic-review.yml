@@ -27,7 +27,7 @@ jobs:
       contains(github.event.comment.body, '/agentic-review') &&
       github.event.comment.user.type != 'Bot' &&
       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
-    runs-on: arc-ubuntu-24.04-arm64
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     # One run per PR at a time. Job level rather than workflow level: a job
     # skipped by the `if` above never joins the group, so a no-op comment
