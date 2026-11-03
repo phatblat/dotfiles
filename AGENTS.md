@@ -88,7 +88,7 @@ JSON guard cases that are the executable spec.
 - `crates/ness/` -- the Rust guard crate (standalone crate, no workspace).
 - `scripts/` -- repo maintenance scripts (44 executables) plus importable `harness_*.py` modules.
 - `bin/` -- user-facing executables (`nu-login`, `timeout`, `vi` dispatchers).
-- `tests/` -- bats suite, Python unittest files, fixtures, helpers.
+- `tests/` -- Bats suite, Python unittest files, fixtures, helpers.
 - `docs/` -- Conventional Docs tree (charter, decisions, backlog, specs, generated harness pages).
 - `.github/workflows/` -- live CI. `.harness/` is inert (see Testing).
 
@@ -140,8 +140,8 @@ Run from the repo root; `just --list` shows the flat grouped index.
 - `just generate` -- regenerate harness artifacts, OMP profiles, and the home spec.
 - `just harness-generate` / `just harness-validate` / `just harness-audit` -- generator parity.
 - `just home-apply` / `just home-status` / `just home-capture` / `just home-deploy <ref>` -- deploy to `$HOME`.
-- `just test` -- full bats suite in parallel (needs `rush`); `just test abort` -- serial, fail fast.
-- `bats tests/<name>.bats` -- run only the bats file relevant to the change.
+- `just test` -- full Bats suite in parallel (needs `rush`); `just test abort` -- serial, fail fast.
+- `bats tests/<name>.bats` -- run only the Bats file relevant to the change.
 - `just ness-test` -- `cargo test --locked` for the Rust guard.
 - `just check` -- the aggregate gate: lint, typecheck, spelling, harness check, agentlink check, home-spec check, ness-test, test.
 - `just doctor` -- local environment diagnostics.
@@ -240,7 +240,7 @@ Run from the repo root; `just --list` shows the flat grouped index.
 - **Harbor eval:** `just harness-evals` for the harness-structure eval under
   `.agents/harness/evals/harbor/harness-structure/`.
 - **No coverage tooling or thresholds** are configured; do not invent one.
-- Run `just lint` and only the bats files relevant to the changed behavior.
+- Run `just lint` and only the Bats files relevant to the changed behavior.
   Run the repository-wide suite only when the user explicitly requests it.
 - **CI:** `.github/workflows/check.yml` (lint job on `arc-ubuntu-24.04-arm64`
   running `just lint typecheck-python`; test job on `macos-latest` running

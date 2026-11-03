@@ -7529,6 +7529,11 @@ source = "~/dev/dotfiles/.config/powerline/themes/vim/tabline.json"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.config/powershell/profile.ps1"]
+source = "~/dev/dotfiles/.config/powershell/profile.ps1"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.config/radare2/radare2rc"]
 source = "~/dev/dotfiles/.config/radare2/radare2rc"
 mode = "symlink"
@@ -10916,6 +10921,11 @@ relative = false
 
 [dotfiles."~/.taskrc"]
 source = "~/dev/dotfiles/.taskrc"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.tcshrc"]
+source = "~/dev/dotfiles/.tcshrc"
 mode = "symlink"
 relative = false
 
