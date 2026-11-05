@@ -78,39 +78,31 @@ providers:
         name: Glm 5.3 Flash
         cost: { input: 0.15, output: 0.50, cacheRead: 0.03, cacheWrite: 0 }
 
-      gpt-oss-120b:
-        name: GPT-OSS 120B
-        cost: { input: 0.10, output: 0.50, cacheRead: 0, cacheWrite: 0 }
-
-      kimi-k2.6:
-        name: Kimi K2.6
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
-      kimi-k2.7-code:
-        name: Kimi K2.7 Code
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
       kimi-k3p1-pro:
         name: Kimi K3p1 Pro
+        # Discovery cannot derive reasoning for ids the bundled catalog
+        # lacks, which materializes reasoning:false and drops the ladder.
+        reasoning: true
         cost: { input: 2.00, output: 10.00, cacheRead: 0.20, cacheWrite: 0 }
+        # Catalog GET /v1/models (probed 2026-11-05): reasoning_param
+        # "reasoning_effort", mode "levels", ladder
+        # none/minimal/low/medium/high/xhigh/max, top "max". Every tier plus a
+        # negative case verified live (200s, 400 out-of-ladder). "none" is a
+        # real off switch on the route (0 reasoning tokens), but OMP's
+        # thinking.efforts schema refuses to list it (verified via `omp
+        # models`), so the declared ladder starts at minimal and a
+        # thinking-off request falls back to the lowest rung; OMP's fallback
+        # sends that rung's effort, which still emits reasoning.
+        thinking:
+          mode: effort
+          efforts: [minimal, low, medium, high, xhigh, max]
+          # Matching the server baseline: omitted reasoning_effort produced
+          # ~41-62 reasoning tokens on toy prompts, mid-ladder territory.
+          defaultLevel: medium
+          effortMap: {}
+        compat:
+          supportsReasoningEffort: true
+          reasoningDisableMode: none-effort
 
       minimax-m3:
         name: Minimax M3
@@ -126,7 +118,7 @@ providers:
         thinking:
           mode: effort
           efforts: [minimal, low, medium, high, xhigh, max]
-          defaultLevel: medium
+          defaultLevel: minimal
           # The route accepts none/minimal/low/medium/high/xhigh/max/adaptive;
           # probe 2026-10-29 confirmed each tier returns 200 and that an
           # out-of-ladder value is rejected with a 400.
@@ -136,25 +128,6 @@ providers:
           # The route accepts "none" as a real off switch, so send it instead
           # of clamping a thinking-off request to the lowest effort.
           reasoningDisableMode: none-effort
-
-      nemotron-3-ultra:
-        name: Nemotron 3 Ultra
-        cost: { input: 0.60, output: 2.40, cacheRead: 0.12, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          # 550B class: first token can lag well past the provider floor.
-          streamIdleTimeoutMs: 300000
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
-      nemotron-lightning-3p5-30b-a3b:
-        name: Nemotron Lightning 3p5 30b A3b
-        cost: { input: 0.05, output: 0.20, cacheRead: 0.01, cacheWrite: 0 }
 
       qwen3.8-max:
         name: Qwen3.8 Max
@@ -171,5 +144,22 @@ providers:
                 enable_thinking: true
 
       ultramarine-1-flash-us:
+        # Discovery cannot derive reasoning for ids the bundled catalog
+        # lacks, which materializes reasoning:false and drops the ladder.
+        reasoning: true
         name: Ultramarine 1 Flash Us
         cost: { input: 0.23, output: 0.75, cacheRead: 0.04, cacheWrite: 0 }
+        # Catalog GET /v1/models (probed 2026-11-05): reasoning_param
+        # "reasoning_effort", mode "levels", ladder
+        # minimal/low/medium/high/xhigh/max, top "max". Every tier plus a
+        # negative case verified live (200s, 400 out-of-ladder).
+        # No real off switch: the router normalizes "none" to "minimal", so
+        # "thinking off" is deliberately absent from this ladder and OMP sends
+        # "minimal" where it would omit the field. Probe widths were
+        # non-monotonic (low 122 > medium 52 > high 0 reasoning tokens), noted
+        # here rather than reshaped into a fake monotonic ladder.
+        thinking:
+          mode: effort
+          efforts: [minimal, low, medium, high, xhigh, max]
+          defaultLevel: low
+          effortMap: {}
