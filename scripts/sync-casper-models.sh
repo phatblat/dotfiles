@@ -63,36 +63,59 @@ BASETEN_MD=$(curl -sfL "$BASETEN_PRICING_URL") \
 declare -A PRICE_INPUT PRICE_CACHE PRICE_OUTPUT
 
 parse_pricing() {
-  local line model input cache output
+  local line model input cache output model_key row
   local -a lines
   mapfile -t lines <<< "$BASETEN_MD"
   local i=0
+  # The pricing table renders one block per model:
+  #   Model <name>
+  #   Input$<price>
+  #   Cache input$<price>
+  #   Output$<price>
+  # with blank lines between rows.
   while [[ $i -lt ${#lines[@]} ]]; do
     line="${lines[$i]}"
-    # Skip non-model lines
-    if [[ ! "$line" =~ ^\[\!\[Image ]]; then
+    model=""
+    if [[ "$line" =~ ^Model\ (.+)$ ]]; then
+      model="${BASH_REMATCH[1]}"
+    fi
+    if [[ -z "$model" ]]; then
       ((i+=1))
       continue
     fi
-    # Extract model name from markdown link
-    model=$(echo "$line" | sed -n 's/.*) \([^]]*\)\](.*/\1/p')
-    if [[ -z "$model" ]]; then
+    # The table's own column header renders as "Model Input Cache input Output".
+    if [[ "$model" == *"Cache input"* ]]; then
       ((i+=1))
       continue
     fi
     # Normalize model name to lowercase id-like key
     model_key=$(echo "$model" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g; s/--*/-/g; s/^-//; s/-$//')
-    # Prices are at fixed offsets from the model line:
-    #   i+4: input, i+8: cache input, i+12: output (with [Try Model API] suffix)
-    input="${lines[$((i+4))]:-}"
-    cache="${lines[$((i+8))]:-}"
-    output="${lines[$((i+12))]:-}"
-    # Strip $ and whitespace; strip [Try Model API] suffix from output
-    input=${input#\$}; input=${input//[[:space:]]/}
-    cache=${cache#\$}; cache=${cache//[[:space:]]/}
-    output=${output#\$}; output=${output%%\[*}; output=${output//[[:space:]]/}
-    # Coerce "-" (no cache pricing) to 0
-    [[ "$cache" == "-" ]] && cache="0"
+    # Scan forward for the three price rows of this model block.
+    input=""; cache=""; output=""
+    local j=$((i+1))
+    while [[ $j -lt ${#lines[@]} ]]; do
+      row="${lines[$j]}"
+      if [[ -z "$row" ]]; then
+        j=$((j+1))
+        continue
+      fi
+      case "$row" in
+        Input*)         if [[ -z "$input" ]]; then input="$row"; fi ;;
+        "Cache input"*) if [[ -z "$cache" ]]; then cache="$row"; fi ;;
+        Output*)        if [[ -z "$output" ]]; then output="$row"; fi ;;
+        Model*)         break ;;
+      esac
+      j=$((j+1))
+    done
+    # Strip label, $ and whitespace
+    input=${input##*Input}; input=${input#\$}; input=${input//[[:space:]]/}
+    cache=${cache##*Cache\ input}; cache=${cache#\$}; cache=${cache//[[:space:]]/}
+    output=${output##*Output}; output=${output#\$}; output=${output//[[:space:]]/}
+    # Coerce missing prices to 0. The page renders "no pricing" as an em dash
+    # ("—"), not a hyphen, so match on non-numeric rather than a literal.
+    if [[ ! "$cache" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then cache="0"; fi
+    if [[ ! "$input" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then input="0"; fi
+    if [[ ! "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then output="0"; fi
     # Skip if already seen (mobile duplicate)
     # shellcheck disable=SC2034  # arrays read via nameref in get_price()
     if [[ -z "${PRICE_INPUT[$model_key]:-}" ]]; then
@@ -100,8 +123,7 @@ parse_pricing() {
       PRICE_CACHE[$model_key]="$cache"
       PRICE_OUTPUT[$model_key]="$output"
     fi
-    # Skip past the mobile duplicate block (12 more lines)
-    ((i += 14))
+    ((i = j))
   done
 }
 
