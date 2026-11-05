@@ -15,19 +15,19 @@
 #            /v1/models does not expose the unmetered flag, so that list is
 #            maintained by hand in the sync script.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
-#            catalog regardless of entitlement. Verified 2026-08-24: this key may
-#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
-#            return 403 {"detail":"not authorized to invoke <id>"}. The named models
-#            stay declared below so that widening `enabledModels` in config.yml is
+#            catalog regardless of entitlement. Last verified 2026-08-24: this key
+#            could invoke the then-current Kimi K3 id and `auto`; `kimi-k2.6`,
+#            `glm-5.2`, and `dittoaicoder` returned 403
+#            {"detail":"not authorized to invoke <id>"}. The catalog has since
+#            replaced that Kimi id with `kimi-k3p1-pro` and added
+#            `ultramarine-1-flash-us` (opt-in in the admin catalog); entitlement
+#            for those two ids has not been re-verified. The named models stay
+#            declared below so that widening `enabledModels` in config.yml is
 #            the only change needed once access is granted.
-# Known issue: kimi-k3 tool calls arrive as a single buffered SSE delta emitted
-#            only after the full arguments are generated - the stream carries only
-#            ":" heartbeat comments while a tool call is being built. The silent
-#            window scales with argument size (~20 tok/s observed), and the router
-#            enforces a 300s total upstream budget (raised from 240s on 2026-08-27);
-#            crossing it aborts the stream. The kimi-k3 streamIdleTimeoutMs
-#            override below is a local mitigation only; it does not fix the
-#            underlying buffering.
+# Known issue: the retired Kimi K3 id buffered its tool calls into a single SSE
+#            delta emitted only after the full arguments were generated. That
+#            behaviour has not been re-checked on `kimi-k3p1-pro`, so it gets the
+#            provider-level `streamIdleTimeoutMs: 120000` and no local override.
 providers:
   casper:
     api: openai-completions
@@ -107,15 +107,9 @@ providers:
               chat_template_args:
                 enable_thinking: true
 
-      kimi-k3:
-        name: Kimi K3
-        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
-        compat:
-          # Casper buffers each tool call and emits it as a single delta, so the
-          # stream carries only SSE comments while arguments generate (~20 tok/s,
-          # measured 2026-08-24). Stay below the router's 300s total upstream
-          # budget so a timeout surfaces as an error, not a silent empty turn.
-          streamIdleTimeoutMs: 210000
+      kimi-k3p1-pro:
+        name: Kimi K3p1 Pro
+        cost: { input: 2.00, output: 10.00, cacheRead: 0.20, cacheWrite: 0 }
 
       minimax-m3:
         name: Minimax M3
@@ -174,3 +168,9 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
+
+      ultramarine-1-flash-us:
+        name: Ultramarine 1 Flash Us
+        # Rates from the Casper admin catalog (2026-11-05); not listed on Baseten's
+        # pricing page, so the sync script cannot recover them - keep in sync by hand.
+        cost: { input: 0.23, output: 0.75, cacheRead: 0.04, cacheWrite: 0 }

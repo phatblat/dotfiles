@@ -159,19 +159,19 @@ cat > "$TMP_MODELS" <<'HEADER'
 #            /v1/models does not expose the unmetered flag, so that list is
 #            maintained by hand in the sync script.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
-#            catalog regardless of entitlement. Verified 2026-08-24: this key may
-#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
-#            return 403 {"detail":"not authorized to invoke <id>"}. The named models
-#            stay declared below so that widening `enabledModels` in config.yml is
+#            catalog regardless of entitlement. Last verified 2026-08-24: this key
+#            could invoke the then-current Kimi K3 id and `auto`; `kimi-k2.6`,
+#            `glm-5.2`, and `dittoaicoder` returned 403
+#            {"detail":"not authorized to invoke <id>"}. The catalog has since
+#            replaced that Kimi id with `kimi-k3p1-pro` and added
+#            `ultramarine-1-flash-us` (opt-in in the admin catalog); entitlement
+#            for those two ids has not been re-verified. The named models stay
+#            declared below so that widening `enabledModels` in config.yml is
 #            the only change needed once access is granted.
-# Known issue: kimi-k3 tool calls arrive as a single buffered SSE delta emitted
-#            only after the full arguments are generated - the stream carries only
-#            ":" heartbeat comments while a tool call is being built. The silent
-#            window scales with argument size (~20 tok/s observed), and the router
-#            enforces a 300s total upstream budget (raised from 240s on 2026-08-27);
-#            crossing it aborts the stream. The kimi-k3 streamIdleTimeoutMs
-#            override below is a local mitigation only; it does not fix the
-#            underlying buffering.
+# Known issue: the retired Kimi K3 id buffered its tool calls into a single SSE
+#            delta emitted only after the full arguments were generated. That
+#            behaviour has not been re-checked on `kimi-k3p1-pro`, so it gets the
+#            provider-level `streamIdleTimeoutMs: 120000` and no local override.
 providers:
   casper:
     baseUrl: https://casper-api.ditto.live/v1
@@ -203,7 +203,7 @@ baseten_key_for() {
   local id="$1"
   case "$id" in
     auto)                    echo "" ;;
-    kimi-k3)                 echo "kimi-k3" ;;
+    kimi-k3p1-pro)           echo "kimi-k3-1-pro" ;;
     kimi-k2.6)               echo "kimi-k2-6" ;;
     kimi-k2.7-code)          echo "kimi-k2-7-code" ;;
     glm-5.3)                 echo "glm-5-3" ;;
@@ -292,15 +292,6 @@ while IFS= read -r model_json; do
   fi
 
   case "$id" in
-    kimi-k3)
-      compat_lines+=(
-        "          # Casper buffers each tool call and emits it as a single delta, so the"
-        "          # stream carries only SSE comments while arguments generate (~20 tok/s,"
-        "          # measured 2026-08-24). Stay below the router's 300s total upstream"
-        "          # budget so a timeout surfaces as an error, not a silent empty turn."
-        "          streamIdleTimeoutMs: 210000"
-      )
-      ;;
     nemotron-3-ultra)
       compat_lines+=(
         "          # 550B class: first token can lag well past the provider floor."
