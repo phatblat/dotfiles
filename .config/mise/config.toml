@@ -15,7 +15,7 @@
 "aqua:dalance/procs" = "0.14.12"
 "aqua:dlvhdr/gh-dash" = "4.26.2"
 "aqua:openai/codex" = "0.166.0"
-"aqua:shenwei356/rush" = "0.11.0"
+"aqua:shenwei356/rush" = "0.11.1"
 "aqua:tcnksm/ghr" = "0.18.5"
 "aqua:uutils/coreutils" = "0.12.0"
 "asdf:mise-plugins/mise-tmux" = "3.8"
