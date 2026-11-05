@@ -154,7 +154,7 @@ shfmt = "3.14.1"
 starship = "1.27.0"
 swiftformat = { version = "0.64.5", no_app = "true", rename_exe = "swiftformat" }
 swiftlint = "0.65.1"
-temporal = "1.32.1"
+temporal = "1.32.2"
 terraform = "1.17.1"
 terraform-ls = "0.39.1"
 tree-sitter = "0.27.1"
