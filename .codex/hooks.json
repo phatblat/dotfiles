@@ -35,6 +35,16 @@
           }
         ],
         "matcher": ""
+      },
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex post-tool-use'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
       }
     ],
     "PreToolUse": [
@@ -72,6 +82,30 @@
         "matcher": ""
       }
     ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex session-end'",
+            "timeout": 3,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then printf \"%s\\n\" \"{\\\"systemMessage\\\":\\\"Entire CLI is enabled but not installed or not on PATH. Installation guide: https://docs.entire.io/cli/installation#installation-methods\\\"}\"; exit 0; fi; exec entire hooks codex session-start'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
     "Stop": [
       {
         "hooks": [
@@ -80,8 +114,14 @@
             "statusMessage": "Task Complete Audit",
             "timeout": 5,
             "type": "command"
+          },
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex stop'",
+            "timeout": 30,
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": null
       },
       {
         "hooks": [
@@ -95,6 +135,30 @@
         "matcher": ""
       }
     ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex subagent-start'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex subagent-stop'",
+            "timeout": 30,
+            "type": "command"
+          }
+        ],
+        "matcher": null
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -103,8 +167,14 @@
             "statusMessage": "Secrets Scanner",
             "timeout": 2,
             "type": "command"
+          },
+          {
+            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks codex user-prompt-submit'",
+            "timeout": 30,
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": null
       },
       {
         "hooks": [

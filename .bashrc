@@ -336,3 +336,8 @@ fi
 if [ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ]; then
   export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 fi
+
+# Rust toolchain (rustup); absent on machines without it
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi

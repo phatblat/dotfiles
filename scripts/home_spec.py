@@ -85,8 +85,6 @@ OUT_OF_REPO = {
 }
 DANGLING = (
     ".config/iterm2/AppSupport",
-    "bin/vi",
-    "bin/vim",
 )
 
 _ANCHORED = REPO_ONLY + LAUNCHD + COPY_CLASS + DANGLING + tuple(OUT_OF_REPO)

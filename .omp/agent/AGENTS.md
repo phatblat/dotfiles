@@ -7,3 +7,9 @@ The user's interactive shell is nushell. ALWAYS present commands intended for th
 ## Prose formatting in files and PRs
 
 NEVER hard-wrap prose when writing markdown files, documentation, ADRs, PR descriptions, commit bodies, or any content meant for humans to read in rendered form. Write each paragraph (and each list item) as a single logical line and let the reader's editor/renderer soft-wrap it. Do not insert line breaks mid-sentence to fit a terminal or TUI width. Hard-wrapping is acceptable ONLY where the file's existing style already uses it consistently, or where the format requires it (e.g. fixed-width plain-text files).
+
+## Temp files
+
+`/tmp` is not shared between the file tools and the shell: `write`/`read`/`edit` resolve `/tmp` to its real path `/private/tmp` (macOS symlinks `/tmp` → `private/tmp`), while the bash tool's shell honors `TMPDIR` (`/var/folders/.../T/`), so a file created by one side is invisible to the other. NEVER pass a `/tmp/...` path to `write`, `read`, or `edit` for anything the shell must also see, and never assume a shell-created temp file is reachable through `/tmp`.
+
+For temp files shared between tools and shell: create the file in the shell first (`mktemp`, or `> "$TMPDIR/name"`), capture the absolute path the shell prints, and pass that exact path to `write`/`read`/`edit`. Prefer a workspace-local temp dir when the file is project-related.

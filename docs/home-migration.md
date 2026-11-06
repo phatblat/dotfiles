@@ -70,6 +70,11 @@ This is the delicate step. `$HOME` currently *is* the work tree, so the work tre
 cd ~
 git status --porcelain          # must be empty
 
+# Build the tar AFTER the merge is in place: it lists the working tree's
+# tracked paths, so a tar taken before the merge omits every file the merge
+# added. Building it later and extracting over the checkout is what fills
+# those in.
+
 # 2. Move the work tree contents into the new location.
 mkdir -p ~/dev/dotfiles
 # Move every tracked path, preserving structure, into ~/dev/dotfiles.
@@ -162,7 +167,9 @@ From here on, `just home-apply` is the canonical way to re-deploy (it runs `home
 ### Files that cannot be deployed automatically
 
 - `~/.agents/skills/{authoring-skills,conventional-docs,recording-changes,semantic-versioning,setup-phatblat-skills}` — the spec deploys these as direct relative links to `~/dev/agents/...`, but those source checkouts do not exist on this machine yet. Clone them first (see below), then re-apply.
-- `bin/vi`, `bin/vim`, `~/.config/iterm2/AppSupport` — these point at absolute paths that do not exist here (`/opt/homebrew/bin/nvim`, `~/Library/Application Support/iTerm2`). `mise` refuses to link a non-existent source. The repo's `scripts/home_spec.py` recreates them with the repo's own link text via `just home-apply` (which runs `home_spec.py links` first). Install `neovim` and iTerm2, or accept the links as dangling.
+- `~/.config/iterm2/AppSupport` — a tracked symlink to an absolute path that does not exist here (`~/Library/Application Support/iTerm2`). `mise` refuses to link a non-existent source. The repo's `scripts/home_spec.py` recreates it with the repo's own link text via `just home-apply` (which runs `home_spec.py links` first). Install iTerm2, or accept the link as dangling.
+- `bin/vi` used to be in the same class (a symlink to `/opt/homebrew/bin/nvim`, which is not on every machine). It is now a regular script that dispatches to the mise-managed neovim with `mise exec`, the same pattern as `bin/timeout`, so it deploys as an ordinary link and always resolves.
+- `bin/vim` (also a symlink to `/opt/homebrew/bin/nvim`) was dropped. On an already-deployed machine `mise dot apply` does not prune, so `~/bin/vim` stays behind as a stale link to Homebrew's neovim; delete it by hand (`rm ~/bin/vim`) if you want `vim` to resolve to the system vim, or recreate it as a script like `bin/vi` if you want it to keep opening neovim.
 - `~/Library/Application Support/nushell/autoload` — a tracked relative symlink (`../../../.config/nushell/autoload`) that keeps working after the move because the link is deployed into `$HOME`, not into the repo.
 
 ### The out-of-repo skill sources
@@ -180,7 +187,7 @@ Re-run `mise --cd "$HOME" dot apply --yes` afterwards to create those five links
 
 The hooks and clean filters live in the repo's local git config, which moved with `.git`. Two things need attention:
 
-- `core.hooksPath` is the relative path `.config/git/hooks`, resolved against the **work tree root**. After the move that is `~/dev/dotfiles/.config/git/hooks`, which does not exist (the tracked `.config/git/` holds `attributes` and `config`, not hooks). The directory does not have to exist for the config-based hooks to fire — git 2.54+ config hooks (`hook.<name>.command`) run regardless of `core.hooksPath`, and that is how `hk` installs here. But `core.hooksPath` does override the default `.git/hooks` directory, so the five script hooks that live there today (`pre-commit`, `pre-push`, `post-checkout`, `post-commit`, `post-merge`) are already being bypassed on this machine. Reinstall so the intended hooks are in place:
+- `core.hooksPath` is the relative path `.config/git/hooks`, resolved against the **work tree root**. After the move that is `~/dev/dotfiles/.config/git/hooks`, which is tracked and holds the Entire script hooks (`commit-msg`, `post-commit`, `post-rewrite`, `pre-push`, `pre-push.pre-entire-brain`, `prepare-commit-msg`), so it exists after the checkout and those hooks fire. Git 2.54+ config hooks (`hook.<name>.command`) run regardless of `core.hooksPath`, and that is how `hk` installs here. `core.hooksPath` does override the default `.git/hooks` directory, so any script hooks that live there (for example an old `pre-commit` or `post-checkout`) are bypassed on this machine; the tracked `pre-push` chains to `pre-push.pre-entire-brain` instead of to a `.git/hooks` copy. Reinstall so the intended config hooks are in place:
 
   ```bash
   cd ~/dev/dotfiles
@@ -224,6 +231,27 @@ just home-overlay-links
 Note `.netrc` does not exist on this machine; the recipe prints `skip: ~/.netrc missing` and continues. `.env` is a real file and is not tracked (it is gitignored), so it must be linked into the checkout rather than deployed into `$HOME` — `home-overlay-links` does that.
 
 These overlay entries are deliberately *not* in the `mise dot` spec: they are `$HOME`-only paths, so deploying them from the checkout would make the checkout depend on itself.
+
+### `.cursor/skills` must exist in the checkout
+
+The harness probe resolves paths against the **checkout root**, not `$HOME`. `.cursor/skills` is gitignored (Cursor's own managed block in `.cursor/.gitignore` re-ignores it) and is materialised by agentlink, not tracked — so it is absent from a fresh checkout, and `just harness-probe` reports `cursor skills.shared` as failing.
+
+Run `just agentlink-apply` once after the move, from the checkout:
+
+```bash
+cd ~/dev/dotfiles
+just agentlink-apply
+```
+
+It creates `.cursor/skills` as a symlink to `.agents/skills`. Without it the probe fails on every run.
+
+### Approve the checkout's `.envrc`
+
+direnv records approvals per `.envrc` path, so the checkout's copy needs its own approval. Otherwise every shell in the checkout prints `direnv: error ... .envrc is blocked`:
+
+```bash
+direnv allow ~/dev/dotfiles/.envrc
+```
 
 Also install the launch agents, which now read from the checkout rather than from `$HOME`:
 

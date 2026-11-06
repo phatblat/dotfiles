@@ -844,6 +844,11 @@ source = "~/dev/dotfiles/.agents/harness/self-improve-policy.json"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.agents/hooks.json"]
+source = "~/dev/dotfiles/.agents/hooks.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.agents/scripts/skills-check.py"]
 source = "~/dev/dotfiles/.agents/scripts/skills-check.py"
 mode = "symlink"
@@ -3186,6 +3191,36 @@ relative = false
 
 [dotfiles."~/.config/git/config"]
 source = "~/dev/dotfiles/.config/git/config"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/commit-msg"]
+source = "~/dev/dotfiles/.config/git/hooks/commit-msg"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/post-commit"]
+source = "~/dev/dotfiles/.config/git/hooks/post-commit"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/post-rewrite"]
+source = "~/dev/dotfiles/.config/git/hooks/post-rewrite"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/pre-push"]
+source = "~/dev/dotfiles/.config/git/hooks/pre-push"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/pre-push.pre-entire-brain"]
+source = "~/dev/dotfiles/.config/git/hooks/pre-push.pre-entire-brain"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/git/hooks/prepare-commit-msg"]
+source = "~/dev/dotfiles/.config/git/hooks/prepare-commit-msg"
 mode = "symlink"
 relative = false
 
@@ -7494,6 +7529,11 @@ source = "~/dev/dotfiles/.config/powerline/themes/vim/tabline.json"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.config/powershell/profile.ps1"]
+source = "~/dev/dotfiles/.config/powershell/profile.ps1"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.config/radare2/radare2rc"]
 source = "~/dev/dotfiles/.config/radare2/radare2rc"
 mode = "symlink"
@@ -9779,6 +9819,11 @@ source = "~/dev/dotfiles/.graphifyignore"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.graphignore"]
+source = "~/dev/dotfiles/.graphignore"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.grok/agents/ai-sdk-expert.md"]
 source = "~/dev/dotfiles/.grok/agents/ai-sdk-expert.md"
 mode = "symlink"
@@ -10484,6 +10529,11 @@ source = "~/dev/dotfiles/.omp/remote-host/localhost.json"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.opencode/plugins/entire.ts"]
+source = "~/dev/dotfiles/.opencode/plugins/entire.ts"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.orchard/orchard.yml"]
 source = "~/dev/dotfiles/.orchard/orchard.yml"
 mode = "symlink"
@@ -10874,6 +10924,11 @@ source = "~/dev/dotfiles/.taskrc"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.tcshrc"]
+source = "~/dev/dotfiles/.tcshrc"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.templates/appicon/Contents.json"]
 source = "~/dev/dotfiles/.templates/appicon/Contents.json"
 mode = "symlink"
@@ -11176,6 +11231,11 @@ relative = false
 
 [dotfiles."~/bin/timeout"]
 source = "~/dev/dotfiles/bin/timeout"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/bin/vi"]
+source = "~/dev/dotfiles/bin/vi"
 mode = "symlink"
 relative = false
 

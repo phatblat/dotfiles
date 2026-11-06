@@ -33,7 +33,7 @@ Promote changes to live `$HOME` by merging or checking them out in `~/dev/dotfil
 ### What a Dotfiles Worktree Does Not Cover
 
 - **Live shell startup.** `wt shell <branch>` exercises `.config/zsh/**` (via `$ZDOTDIR`) and `.config/nushell/**` (via `$XDG_CONFIG_HOME`) for one nested session; running terminals keep sourcing the files linked from the primary checkout.
-- **Intentionally-absolute symlinks.** `bin/plistbuddy`, `bin/vi`, and `bin/vim` point at system/Homebrew binaries outside the repo; `.config/iterm2/AppSupport` points at untracked app state. These stay absolute by design and are excluded from hk's `symlinks` step (`scripts/check-symlinks.sh`, run via `just lint`).
+- **Intentionally-absolute symlinks.** `bin/plistbuddy` points at a system binary outside the repo; `.config/iterm2/AppSupport` points at untracked app state. These stay absolute by design and are excluded from hk's `symlinks` step (`scripts/check-symlinks.sh`, run via `just lint`). `bin/vi` is a regular script, not a symlink: it dispatches to the mise-managed neovim with `mise exec`, so it resolves the same neovim from any worktree.
 - **3 ancestor-discoverable configs.** `.config/mise/config.toml`, `.editorconfig`, and `.envrc` are found by tools that walk up from cwd. Because a dotfiles worktree lives beneath the real `$HOME`, such a tool can discover the real `$HOME`'s copy instead of the worktree's own. `wt verify`/`wt shell` warn on stderr only when the two copies actually differ.
 
 ## Creating, Switching, Deleting
