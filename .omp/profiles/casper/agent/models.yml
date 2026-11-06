@@ -111,12 +111,14 @@ providers:
       kimi-k3p1-pro:
         name: Kimi K3p1 Pro
         # Catalog 2026-11-06: reasoning_effort levels [none, minimal, low,
-        # medium, high, xhigh, max], no normalization map. Declaring the
-        # ladder makes OMP send reasoning_effort explicitly and expose the
-        # levels in the model selector.
+        # medium, high, xhigh, max], no normalization map. OMP's efforts
+        # schema tops out at minimal..max (no "none"); declaring the ladder
+        # still makes OMP send reasoning_effort explicitly and expose the
+        # levels in the model selector. A thinking-off request maps to
+        # reasoning_effort "none" via reasoningDisableMode below.
         thinking:
           mode: effort
-          efforts: [none, minimal, low, medium, high, xhigh, max]
+          efforts: [minimal, low, medium, high, xhigh, max]
           defaultLevel: high
           effortMap: {}
         compat:
