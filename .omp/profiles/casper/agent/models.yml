@@ -110,7 +110,20 @@ providers:
 
       kimi-k3p1-pro:
         name: Kimi K3p1 Pro
-        cost: { input: 2.00, output: 10.00, cacheRead: 0.20, cacheWrite: 0 }
+        # Catalog 2026-11-06: reasoning_effort levels [none, minimal, low,
+        # medium, high, xhigh, max], no normalization map. Declaring the
+        # ladder makes OMP send reasoning_effort explicitly and expose the
+        # levels in the model selector.
+        thinking:
+          mode: effort
+          efforts: [none, minimal, low, medium, high, xhigh, max]
+          defaultLevel: high
+          effortMap: {}
+        compat:
+          supportsReasoningEffort: true
+          # The route accepts "none" as a real off switch; send it instead of
+          # clamping a thinking-off request to the lowest effort.
+          reasoningDisableMode: none-effort
 
       minimax-m3:
         name: Minimax M3
@@ -172,4 +185,12 @@ providers:
 
       ultramarine-1-flash-us:
         name: Ultramarine 1 Flash Us
-        cost: { input: 0.23, output: 0.75, cacheRead: 0.04, cacheWrite: 0 }
+        # Catalog 2026-11-06: reasoning_effort levels [minimal, low, medium,
+        # high, xhigh, max] with normalization none -> minimal (no true "none"
+        # tier), so no reasoningDisableMode here: OMP clamps a thinking-off
+        # request to the lowest effort, which reproduces the normalization.
+        thinking:
+          mode: effort
+          efforts: [minimal, low, medium, high, xhigh, max]
+          defaultLevel: high
+          effortMap: {}
