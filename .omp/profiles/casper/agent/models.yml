@@ -13,7 +13,8 @@
 #            Casper serves unmetered (FREE in the admin catalog at
 #            https://casper.ditto.live/catalog), which free_model() zeroes out.
 #            /v1/models does not expose the unmetered flag, so that list is
-#            maintained by hand in the sync script.
+#            maintained by hand in the sync script. Models absent from Baseten's
+#            page (e.g. `ultramarine-1-flash-us`) get manual_price() rates there.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
 #            catalog regardless of entitlement. Last verified 2026-08-24: this key
 #            could invoke the then-current Kimi K3 id and `auto`; `kimi-k2.6`,
@@ -171,6 +172,4 @@ providers:
 
       ultramarine-1-flash-us:
         name: Ultramarine 1 Flash Us
-        # Rates from the Casper admin catalog (2026-11-05); not listed on Baseten's
-        # pricing page, so the sync script cannot recover them - keep in sync by hand.
         cost: { input: 0.23, output: 0.75, cacheRead: 0.04, cacheWrite: 0 }

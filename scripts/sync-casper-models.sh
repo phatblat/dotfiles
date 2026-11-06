@@ -157,7 +157,8 @@ cat > "$TMP_MODELS" <<'HEADER'
 #            Casper serves unmetered (FREE in the admin catalog at
 #            https://casper.ditto.live/catalog), which free_model() zeroes out.
 #            /v1/models does not expose the unmetered flag, so that list is
-#            maintained by hand in the sync script.
+#            maintained by hand in the sync script. Models absent from Baseten's
+#            page (e.g. `ultramarine-1-flash-us`) get manual_price() rates there.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
 #            catalog regardless of entitlement. Last verified 2026-08-24: this key
 #            could invoke the then-current Kimi K3 id and `auto`; `kimi-k2.6`,
@@ -233,6 +234,17 @@ free_model() {
   esac
 }
 
+# Helper: hand-maintained prices (input cache output, per 1M tokens) for models
+# Baseten's pricing page does not list, so the scrape cannot recover them.
+# Prints nothing when the id has no manual price.
+manual_price() {
+  case "$1" in
+    # Rates from the Casper admin catalog (2026-11-05).
+    ultramarine-1-flash-us) echo "0.23 0.04 0.75" ;;
+    *)                      return 0 ;;
+  esac
+}
+
 # Helper: get price or default
 get_price() {
   local key="$1" field="$2" default="$3"
@@ -277,10 +289,15 @@ while IFS= read -r model_json; do
     price_cache=0
     price_output=0
   else
-    bkey=$(baseten_key_for "$id")
-    price_input=$(get_price "$bkey" PRICE_INPUT "0")
-    price_cache=$(get_price "$bkey" PRICE_CACHE "0")
-    price_output=$(get_price "$bkey" PRICE_OUTPUT "0")
+    manual=$(manual_price "$id")
+    if [[ -n "$manual" ]]; then
+      read -r price_input price_cache price_output <<< "$manual"
+    else
+      bkey=$(baseten_key_for "$id")
+      price_input=$(get_price "$bkey" PRICE_INPUT "0")
+      price_cache=$(get_price "$bkey" PRICE_CACHE "0")
+      price_output=$(get_price "$bkey" PRICE_OUTPUT "0")
+    fi
   fi
 
   # Determine compat overrides
