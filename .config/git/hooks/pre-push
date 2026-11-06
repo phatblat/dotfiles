@@ -2,8 +2,9 @@
 # entire-brain push hook
 # Tells the local entire-brain plugin that a push is transferring this
 # repo's commits, so it uploads its fact store (detached, best-effort).
-if [ -x '/Users/phatblat/.local/share/entire/plugins/bin/entire-brain' ]; then
-  '/Users/phatblat/.local/share/entire/plugins/bin/entire-brain' memory notify --event push </dev/null >/dev/null 2>&1 &
+brain="$HOME/.local/share/entire/plugins/bin/entire-brain"
+if [ -x "$brain" ]; then
+  "$brain" memory notify --event push </dev/null >/dev/null 2>&1 &
 fi
 # Chain: run the pre-existing hook with the original stdin and arguments;
 # its exit code decides the push, exactly as before.
