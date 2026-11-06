@@ -1,5 +1,8 @@
 #!/bin/sh
 # Dispatches to the mise-managed neovim tool (see .config/mise/config.toml).
-# Uses `mise exec` (not a hardcoded install path) so this keeps working across
-# machines/architectures and across neovim version bumps.
-exec "$HOME/.local/bin/mise" exec neovim -- nvim "$@"
+# Uses `mise exec` (not a hardcoded neovim install path) so this keeps working
+# across machines/architectures and neovim version bumps. mise itself is found
+# on PATH, falling back to its default install location.
+mise="$(command -v mise 2>/dev/null || true)"
+[ -n "$mise" ] || mise="$HOME/.local/bin/mise"
+exec "$mise" exec neovim -- nvim "$@"
