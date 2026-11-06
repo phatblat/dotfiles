@@ -13,15 +13,15 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.251 (Claude Code) · 2026-11-05 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.166.0 · 2026-11-05 | - |
-| opencode | aligned | shared | - | probe · opencode v2.2.5 · 2026-11-05 | - |
-| pi | aligned | shared | - | probe · 1.4.0 · 2026-11-05 | - |
-| omp | aligned | shared | - | probe · omp/18.15.0 · 2026-11-05 | - |
-| antigravity | aligned | shared | - | probe · 1.2.3 · 2026-11-05 | - |
-| cursor | aligned | shared | - | probe · - · 2026-11-05 | - |
-| grok | aligned | shared | - | probe · grok 1.0.70 (f50904eaee6c) · 2026-11-05 | - |
-| crush | aligned | shared | - | probe · crush version v0.99.0 · 2026-11-05 | - |
+| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-06 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.166.0 · 2026-11-06 | - |
+| opencode | aligned | shared | - | probe · opencode v2.2.5 · 2026-11-06 | - |
+| pi | aligned | shared | - | probe · 1.4.0 · 2026-11-06 | - |
+| omp | aligned | shared | - | probe · omp/18.15.0 · 2026-11-06 | - |
+| antigravity | aligned | shared | - | probe · 1.4.6 · 2026-11-06 | - |
+| cursor | aligned | shared | - | probe · 2026.10.16-e3cb207 · 2026-11-06 | - |
+| grok | aligned | shared | - | probe · grok 1.0.70 (f50904eaee6c) [alpha] · 2026-11-06 | - |
+| crush | aligned | shared | - | probe · crush version v0.99.0 · 2026-11-06 | - |
 
 ### maintenance.config_validation · p1
 
@@ -33,8 +33,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config | probe · - · 2026-08-29 | probe unavailable: opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/2.2.5/bin/opencode', 'debug', 'config']' timed out after 5 seconds |
-| pi | aligned | native | pi list --no-approve | probe · 1.4.0 · 2026-11-05 | - |
+| opencode | aligned | native | opencode debug config | probe · opencode v2.2.5 · 2026-11-06 | - |
+| pi | aligned | native | pi list --no-approve | probe · 1.4.0 · 2026-11-06 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | cursor | unknown | none | - | - | - |
