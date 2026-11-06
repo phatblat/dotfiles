@@ -15,7 +15,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.6"
+            "version": "1.2.3"
           },
           "mode": "adapter",
           "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
@@ -36,7 +36,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.314 (Claude Code)"
+            "version": "2.1.251 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -102,7 +102,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
+            "version": ""
           },
           "mode": "adapter",
           "next_action": "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
@@ -123,7 +123,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+            "version": "grok 1.0.77 (50ca579fa996)"
           },
           "mode": "native",
           "next_action": "",
@@ -144,7 +144,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -186,7 +186,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.0"
+            "version": "1.5.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -536,7 +536,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.6"
+            "version": "1.2.3"
           },
           "mode": "adapter",
           "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
@@ -557,7 +557,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.314 (Claude Code)"
+            "version": "2.1.251 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -620,7 +620,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
+            "version": ""
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers and activates the shared skills",
@@ -641,7 +641,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+            "version": "grok 1.0.77 (50ca579fa996)"
           },
           "mode": "native",
           "next_action": "",
@@ -662,7 +662,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -704,7 +704,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.0"
+            "version": "1.5.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -1700,7 +1700,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.314 (Claude Code)"
+            "version": "2.1.251 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -1763,7 +1763,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
+            "version": ""
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers all generated command wrappers",
@@ -1784,7 +1784,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+            "version": "grok 1.0.77 (50ca579fa996)"
           },
           "mode": "native",
           "next_action": "Add a shared skill for the linear/progress workflow so grok covers every command workflow",
@@ -1805,7 +1805,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -1847,7 +1847,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.0"
+            "version": "1.5.0"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2199,7 +2199,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.6"
+            "version": "1.2.3"
           },
           "mode": "emulated",
           "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
@@ -2220,7 +2220,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.314 (Claude Code)"
+            "version": "2.1.251 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -2283,7 +2283,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
+            "version": ""
           },
           "mode": "native",
           "next_action": "Verify Cursor discovers generated specialist agent wrappers",
@@ -2304,7 +2304,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+            "version": "grok 1.0.77 (50ca579fa996)"
           },
           "mode": "adapter",
           "next_action": "Verify grok spawn_subagent can launch the generated specialist profiles",
@@ -2325,7 +2325,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -2872,7 +2872,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.4.6"
+            "version": "1.2.3"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
@@ -2894,7 +2894,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "2.1.314 (Claude Code)"
+            "version": "2.1.251 (Claude Code)"
           },
           "mode": "adapter",
           "next_action": "",
@@ -2962,7 +2962,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "2026.10.16-e3cb207"
+            "version": ""
           },
           "mode": "adapter",
           "next_action": "Confirm in a live Cursor session that a protected-path write is blocked",
@@ -2985,7 +2985,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+            "version": "grok 1.0.77 (50ca579fa996)"
           },
           "mode": "adapter",
           "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
@@ -3007,7 +3007,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "adapter",
           "next_action": "",
@@ -3051,7 +3051,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.4.0"
+            "version": "1.5.0"
           },
           "mode": "adapter",
           "next_action": "",
@@ -5179,7 +5179,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.314 (Claude Code)"
+            "version": "2.1.251 (Claude Code)"
           },
           "mode": "native",
           "next_action": "",
@@ -5242,7 +5242,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
+            "version": ""
           },
           "mode": "native",
           "next_action": "Verify Cursor resume and history behavior against compact-preservation requirements",
@@ -5263,7 +5263,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+            "version": "grok 1.0.77 (50ca579fa996)"
           },
           "mode": "native",
           "next_action": "",
@@ -5284,7 +5284,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "native",
           "next_action": "",
@@ -5326,7 +5326,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.0"
+            "version": "1.5.0"
           },
           "mode": "native",
           "next_action": "",
@@ -7029,7 +7029,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "adapter",
           "next_action": "",
@@ -7099,7 +7099,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.6"
+            "version": "1.2.3"
           },
           "mode": "shared",
           "next_action": "",
@@ -7120,7 +7120,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2.1.314 (Claude Code)"
+            "version": "2.1.251 (Claude Code)"
           },
           "mode": "shared",
           "next_action": "",
@@ -7183,7 +7183,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
+            "version": ""
           },
           "mode": "shared",
           "next_action": "",
@@ -7204,7 +7204,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+            "version": "grok 1.0.77 (50ca579fa996)"
           },
           "mode": "shared",
           "next_action": "",
@@ -7225,7 +7225,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.15.0"
+            "version": "omp/18.14.1"
           },
           "mode": "shared",
           "next_action": "",
@@ -7267,7 +7267,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.4.0"
+            "version": "1.5.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -7430,7 +7430,7 @@
             "date": "2026-11-06",
             "kind": "probe",
             "ref": "cli_exit_zero",
-            "version": "1.4.0"
+            "version": "1.5.0"
           },
           "mode": "native",
           "next_action": "",
@@ -7839,13 +7839,13 @@
   "versions": {
     "antigravity": {
       "first_seen": "2026-08-29",
-      "previous": "1.2.3",
-      "version": "1.4.6"
+      "previous": "1.4.6",
+      "version": "1.2.3"
     },
     "claude": {
       "first_seen": "2026-08-29",
-      "previous": "2.1.251 (Claude Code)",
-      "version": "2.1.314 (Claude Code)"
+      "previous": "2.1.314 (Claude Code)",
+      "version": "2.1.251 (Claude Code)"
     },
     "codex": {
       "first_seen": "2026-08-29",
@@ -7860,17 +7860,17 @@
     "cursor": {
       "first_seen": "2026-08-29",
       "previous": "2026.10.16-e3cb207",
-      "version": "2026.10.16-e3cb207"
+      "version": ""
     },
     "grok": {
       "first_seen": "2026-08-29",
       "previous": "grok 1.0.70 (f50904eaee6c)",
-      "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+      "version": "grok 1.0.77 (50ca579fa996)"
     },
     "omp": {
       "first_seen": "2026-08-29",
-      "previous": "omp/18.14.1",
-      "version": "omp/18.15.0"
+      "previous": "omp/18.15.0",
+      "version": "omp/18.14.1"
     },
     "opencode": {
       "first_seen": "2026-08-29",
@@ -7879,8 +7879,8 @@
     },
     "pi": {
       "first_seen": "2026-08-29",
-      "previous": "1.3.0",
-      "version": "1.4.0"
+      "previous": "1.4.0",
+      "version": "1.5.0"
     }
   }
 }
