@@ -63,36 +63,59 @@ BASETEN_MD=$(curl -sfL "$BASETEN_PRICING_URL") \
 declare -A PRICE_INPUT PRICE_CACHE PRICE_OUTPUT
 
 parse_pricing() {
-  local line model input cache output
+  local line model input cache output model_key row
   local -a lines
   mapfile -t lines <<< "$BASETEN_MD"
   local i=0
+  # The pricing table renders one block per model:
+  #   Model <name>
+  #   Input$<price>
+  #   Cache input$<price>
+  #   Output$<price>
+  # with blank lines between rows.
   while [[ $i -lt ${#lines[@]} ]]; do
     line="${lines[$i]}"
-    # Skip non-model lines
-    if [[ ! "$line" =~ ^\[\!\[Image ]]; then
+    model=""
+    if [[ "$line" =~ ^Model\ (.+)$ ]]; then
+      model="${BASH_REMATCH[1]}"
+    fi
+    if [[ -z "$model" ]]; then
       ((i+=1))
       continue
     fi
-    # Extract model name from markdown link
-    model=$(echo "$line" | sed -n 's/.*) \([^]]*\)\](.*/\1/p')
-    if [[ -z "$model" ]]; then
+    # The table's own column header renders as "Model Input Cache input Output".
+    if [[ "$model" == *"Cache input"* ]]; then
       ((i+=1))
       continue
     fi
     # Normalize model name to lowercase id-like key
     model_key=$(echo "$model" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g; s/--*/-/g; s/^-//; s/-$//')
-    # Prices are at fixed offsets from the model line:
-    #   i+4: input, i+8: cache input, i+12: output (with [Try Model API] suffix)
-    input="${lines[$((i+4))]:-}"
-    cache="${lines[$((i+8))]:-}"
-    output="${lines[$((i+12))]:-}"
-    # Strip $ and whitespace; strip [Try Model API] suffix from output
-    input=${input#\$}; input=${input//[[:space:]]/}
-    cache=${cache#\$}; cache=${cache//[[:space:]]/}
-    output=${output#\$}; output=${output%%\[*}; output=${output//[[:space:]]/}
-    # Coerce "-" (no cache pricing) to 0
-    [[ "$cache" == "-" ]] && cache="0"
+    # Scan forward for the three price rows of this model block.
+    input=""; cache=""; output=""
+    local j=$((i+1))
+    while [[ $j -lt ${#lines[@]} ]]; do
+      row="${lines[$j]}"
+      if [[ -z "$row" ]]; then
+        j=$((j+1))
+        continue
+      fi
+      case "$row" in
+        Input*)         if [[ -z "$input" ]]; then input="$row"; fi ;;
+        "Cache input"*) if [[ -z "$cache" ]]; then cache="$row"; fi ;;
+        Output*)        if [[ -z "$output" ]]; then output="$row"; fi ;;
+        Model*)         break ;;
+      esac
+      j=$((j+1))
+    done
+    # Strip label, $ and whitespace
+    input=${input##*Input}; input=${input#\$}; input=${input//[[:space:]]/}
+    cache=${cache##*Cache\ input}; cache=${cache#\$}; cache=${cache//[[:space:]]/}
+    output=${output##*Output}; output=${output#\$}; output=${output//[[:space:]]/}
+    # Coerce missing prices to 0. The page renders "no pricing" as an em dash
+    # ("—"), not a hyphen, so match on non-numeric rather than a literal.
+    if [[ ! "$cache" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then cache="0"; fi
+    if [[ ! "$input" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then input="0"; fi
+    if [[ ! "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then output="0"; fi
     # Skip if already seen (mobile duplicate)
     # shellcheck disable=SC2034  # arrays read via nameref in get_price()
     if [[ -z "${PRICE_INPUT[$model_key]:-}" ]]; then
@@ -100,8 +123,7 @@ parse_pricing() {
       PRICE_CACHE[$model_key]="$cache"
       PRICE_OUTPUT[$model_key]="$output"
     fi
-    # Skip past the mobile duplicate block (12 more lines)
-    ((i += 14))
+    ((i = j))
   done
 }
 
@@ -135,21 +157,22 @@ cat > "$TMP_MODELS" <<'HEADER'
 #            Casper serves unmetered (FREE in the admin catalog at
 #            https://casper.ditto.live/catalog), which free_model() zeroes out.
 #            /v1/models does not expose the unmetered flag, so that list is
-#            maintained by hand in the sync script.
+#            maintained by hand in the sync script. Models absent from Baseten's
+#            page (e.g. `ultramarine-1-flash-us`) get manual_price() rates there.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
-#            catalog regardless of entitlement. Verified 2026-08-24: this key may
-#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
-#            return 403 {"detail":"not authorized to invoke <id>"}. The named models
-#            stay declared below so that widening `enabledModels` in config.yml is
+#            catalog regardless of entitlement. Last verified 2026-08-24: this key
+#            could invoke the then-current Kimi K3 id and `auto`; `kimi-k2.6`,
+#            `glm-5.2`, and `dittoaicoder` returned 403
+#            {"detail":"not authorized to invoke <id>"}. The catalog has since
+#            replaced that Kimi id with `kimi-k3p1-pro` and added
+#            `ultramarine-1-flash-us` (opt-in in the admin catalog); entitlement
+#            for those two ids has not been re-verified. The named models stay
+#            declared below so that widening `enabledModels` in config.yml is
 #            the only change needed once access is granted.
-# Known issue: kimi-k3 tool calls arrive as a single buffered SSE delta emitted
-#            only after the full arguments are generated - the stream carries only
-#            ":" heartbeat comments while a tool call is being built. The silent
-#            window scales with argument size (~20 tok/s observed), and the router
-#            enforces a 300s total upstream budget (raised from 240s on 2026-08-27);
-#            crossing it aborts the stream. The kimi-k3 streamIdleTimeoutMs
-#            override below is a local mitigation only; it does not fix the
-#            underlying buffering.
+# Known issue: the retired Kimi K3 id buffered its tool calls into a single SSE
+#            delta emitted only after the full arguments were generated. That
+#            behaviour has not been re-checked on `kimi-k3p1-pro`, so it gets the
+#            provider-level `streamIdleTimeoutMs: 120000` and no local override.
 providers:
   casper:
     baseUrl: https://casper-api.ditto.live/v1
@@ -181,7 +204,7 @@ baseten_key_for() {
   local id="$1"
   case "$id" in
     auto)                    echo "" ;;
-    kimi-k3)                 echo "kimi-k3" ;;
+    kimi-k3p1-pro)           echo "kimi-k3-1-pro" ;;
     kimi-k2.6)               echo "kimi-k2-6" ;;
     kimi-k2.7-code)          echo "kimi-k2-7-code" ;;
     glm-5.3)                 echo "glm-5-3" ;;
@@ -208,6 +231,17 @@ free_model() {
   case "$1" in
     glm-5.3|glm-5.3-flash) return 0 ;;
     *)                     return 1 ;;
+  esac
+}
+
+# Helper: hand-maintained prices (input cache output, per 1M tokens) for models
+# Baseten's pricing page does not list, so the scrape cannot recover them.
+# Prints nothing when the id has no manual price.
+manual_price() {
+  case "$1" in
+    # Rates from the Casper admin catalog (2026-11-05).
+    ultramarine-1-flash-us) echo "0.23 0.04 0.75" ;;
+    *)                      return 0 ;;
   esac
 }
 
@@ -255,10 +289,15 @@ while IFS= read -r model_json; do
     price_cache=0
     price_output=0
   else
-    bkey=$(baseten_key_for "$id")
-    price_input=$(get_price "$bkey" PRICE_INPUT "0")
-    price_cache=$(get_price "$bkey" PRICE_CACHE "0")
-    price_output=$(get_price "$bkey" PRICE_OUTPUT "0")
+    manual=$(manual_price "$id")
+    if [[ -n "$manual" ]]; then
+      read -r price_input price_cache price_output <<< "$manual"
+    else
+      bkey=$(baseten_key_for "$id")
+      price_input=$(get_price "$bkey" PRICE_INPUT "0")
+      price_cache=$(get_price "$bkey" PRICE_CACHE "0")
+      price_output=$(get_price "$bkey" PRICE_OUTPUT "0")
+    fi
   fi
 
   # Determine compat overrides
@@ -270,15 +309,6 @@ while IFS= read -r model_json; do
   fi
 
   case "$id" in
-    kimi-k3)
-      compat_lines+=(
-        "          # Casper buffers each tool call and emits it as a single delta, so the"
-        "          # stream carries only SSE comments while arguments generate (~20 tok/s,"
-        "          # measured 2026-08-24). Stay below the router's 300s total upstream"
-        "          # budget so a timeout surfaces as an error, not a silent empty turn."
-        "          streamIdleTimeoutMs: 210000"
-      )
-      ;;
     nemotron-3-ultra)
       compat_lines+=(
         "          # 550B class: first token can lag well past the provider floor."
