@@ -142,7 +142,7 @@ includeWorkspaceTree: false
 tui:
   imeSafeCursor: true
   tight: true
-  resizeScrollback: rebuild
+  resizeScrollback: preserve
   completeScrollback: true
   codexResetFireworks: true
   titleSpinner: braille
