@@ -1,1 +1,1 @@
-. "$HOME/.cargo/env.ps1"
+if (Test-Path "$HOME/.cargo/env.ps1") { . "$HOME/.cargo/env.ps1" }
