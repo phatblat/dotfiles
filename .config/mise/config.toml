@@ -71,7 +71,7 @@
 "pypi:token-viewer" = { version = "0.0.7", python = "3.14" }
 "pypi:yamllint" = "1.38.0"
 "vfox:mise-plugins/vfox-gcloud" = "591.0.0"
-act = "0.2.94"
+act = "0.2.97"
 actionlint = "1.7.12"
 ast-grep = "0.51.0"
 awscli = { version = "2.39.3", symlink_bins = "true" }
