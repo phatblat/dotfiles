@@ -55,6 +55,6 @@ Use **ast-grep** (`sg`) for code search, not grep/ripgrep/sed.
 Read `~/.tessl/RULES.md` when a task involves tessl skills or plugins. Only `~/.tessl/RULES.md` and `~/.tessl/tessl.json` are tracked — everything else under `~/.tessl/` is ignored runtime state or credentials. `tessl init` re-injects `@../.tessl/RULES.md` into `~/.claude/CLAUDE.md` and other harness memory files; delete those and keep this section as the only inclusion point.
 
 <!-- entire-agent:begin -->
-Read .entire/agent-guide.md for this repository's workflow, source inspection, and verification guidance.
+If `.entire/agent-guide.md` exists (Entire generates it per clone; `.entire/` is gitignored), read it for this repository's workflow, source inspection, and verification guidance.
 @.entire/agent-guide.md
 <!-- entire-agent:end -->
