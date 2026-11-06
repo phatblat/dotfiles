@@ -18,6 +18,7 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/auto-format.sh'",
+            "statusMessage": "Auto Format",
             "timeout": 30,
             "type": "command"
           }
@@ -28,6 +29,7 @@
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex PostToolUse; fi",
+            "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex PostToolUse) else (paseo hooks codex PostToolUse)) else (exit /b 0)",
             "timeout": 10,
             "type": "command"
           }
@@ -109,6 +111,7 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/audit-task-complete.sh'",
+            "statusMessage": "Task Complete Audit",
             "timeout": 5,
             "type": "command"
           },
@@ -124,6 +127,7 @@
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex Stop; fi",
+            "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex Stop) else (paseo hooks codex Stop)) else (exit /b 0)",
             "timeout": 10,
             "type": "command"
           }
@@ -160,6 +164,7 @@
         "hooks": [
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/user-prompt-secrets.sh'",
+            "statusMessage": "Secrets Scanner",
             "timeout": 2,
             "type": "command"
           },
@@ -175,6 +180,7 @@
         "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks codex UserPromptSubmit; fi",
+            "commandWindows": "if defined PASEO_TERMINAL_ID (if defined PASEO_HOOK_CLI (\"%PASEO_HOOK_CLI%\" hooks codex UserPromptSubmit) else (paseo hooks codex UserPromptSubmit)) else (exit /b 0)",
             "timeout": 10,
             "type": "command"
           }
