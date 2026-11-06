@@ -78,36 +78,6 @@ providers:
         name: Glm 5.3 Flash
         cost: { input: 0.15, output: 0.50, cacheRead: 0.03, cacheWrite: 0 }
 
-      gpt-oss-120b:
-        name: GPT-OSS 120B
-        cost: { input: 0.10, output: 0.50, cacheRead: 0, cacheWrite: 0 }
-
-      kimi-k2.6:
-        name: Kimi K2.6
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
-      kimi-k2.7-code:
-        name: Kimi K2.7 Code
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
       kimi-k3p1-pro:
         name: Kimi K3p1 Pro
         # Catalog 2026-11-06: reasoning_effort levels [none, minimal, low,
@@ -151,25 +121,6 @@ providers:
           # The route accepts "none" as a real off switch, so send it instead
           # of clamping a thinking-off request to the lowest effort.
           reasoningDisableMode: none-effort
-
-      nemotron-3-ultra:
-        name: Nemotron 3 Ultra
-        cost: { input: 0.60, output: 2.40, cacheRead: 0.12, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          # 550B class: first token can lag well past the provider floor.
-          streamIdleTimeoutMs: 300000
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
-      nemotron-lightning-3p5-30b-a3b:
-        name: Nemotron Lightning 3p5 30b A3b
-        cost: { input: 0.05, output: 0.20, cacheRead: 0.01, cacheWrite: 0 }
 
       qwen3.8-max:
         name: Qwen3.8 Max

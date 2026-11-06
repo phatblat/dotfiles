@@ -4,12 +4,12 @@
 # this file, then re-render; OMP writes /settings changes into config.yml,
 # and the next render discards them.
 modelRoles:
-  default: casper/minimax-m3p1-flash:minimal
+  default: casper/ultramarine-1-flash-us
   task: casper/nemotron-lightning-3p5-30b-a3b
   commit: casper/nemotron-lightning-3p5-30b-a3b
-  plan: casper/ember-1:high
-  slow: casper/kimi-k3p1-pro:high
-  smol: casper/minimax-m3p1-flash
+  plan: casper/kimi-k3p1-pro
+  slow: casper/ember-1:medium
+  smol: casper/ultramarine-1-flash-us:medium
 cycleOrder:
   - default
   - smol
