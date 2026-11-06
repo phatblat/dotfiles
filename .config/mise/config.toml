@@ -98,7 +98,7 @@ entire = "0.12.2"
 fastfetch = "2.70.0"
 fd = "10.5.1"
 fzf = "0.74.5"
-gemini = { version = "0.66.0", allow_builds = ["@github/keytar", "node-pty"] }
+gemini = { version = "0.67.0", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "2.103.3"
 git-lfs = "3.8.1"
 gitleaks = "8.30.1"
