@@ -6,7 +6,7 @@ providers:
     serverSideFallback: false
   streamFirstEventTimeoutSeconds: 90
   streamIdleTimeoutSeconds: 120
-setupVersion: 2
+setupVersion: 3
 modelRoles:
   default: casper/minimax-m3p1-flash:minimal
   task: casper/nemotron-lightning-3p5-30b-a3b
@@ -138,6 +138,8 @@ astGrep:
   enabled: true
 goal:
   statusInFooter: false
+update:
+  auto: false
 includeWorkspaceTree: false
 tui:
   imeSafeCursor: true
