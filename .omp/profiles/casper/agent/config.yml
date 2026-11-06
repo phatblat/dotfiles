@@ -8,12 +8,10 @@ providers:
   streamIdleTimeoutSeconds: 120
 setupVersion: 3
 modelRoles:
-  default: casper/ultramarine-1-flash-us
-  task: casper/nemotron-lightning-3p5-30b-a3b
-  commit: casper/nemotron-lightning-3p5-30b-a3b
-  plan: casper/kimi-k3p1-pro
+  default: casper/ultramarine-1-flash-us:medium
+  plan: casper/kimi-k3p1-pro:high
   slow: casper/ember-1:medium
-  smol: casper/ultramarine-1-flash-us:medium
+  smol: casper/ultramarine-1-flash-us:minimal
 extensions: []
 disabledExtensions:
   - hook:pre:harness-guard:harness-guard.ts
