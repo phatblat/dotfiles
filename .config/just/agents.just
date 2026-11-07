@@ -166,7 +166,6 @@ _graphify-sync-skill:
     if ! [ -L "$live/SKILL.md" ]; then
         cp "$live/SKILL.md" "$repo/SKILL.md"
         cp "$live/.graphify_version" "$repo/.graphify_version"
-        shift_dict=""
         mise dot apply --force --yes --quiet
         rm -f "$live/SKILL.md.bak"
         echo "graphify skill captured into the repo: review and commit .agents/skills/graphify/"
