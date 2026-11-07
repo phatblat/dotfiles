@@ -80,6 +80,7 @@ providers:
 
       kimi-k3p1-pro:
         name: Kimi K3p1 Pro
+        cost: { input: 2.00, output: 10.00, cacheRead: 0.20, cacheWrite: 0 }
         # Catalog 2026-11-06: reasoning_effort levels [none, minimal, low,
         # medium, high, xhigh, max], no normalization map. OMP's efforts
         # schema tops out at minimal..max (no "none"); declaring the ladder
@@ -138,6 +139,7 @@ providers:
 
       ultramarine-1-flash-us:
         name: Ultramarine 1 Flash Us
+        cost: { input: 0.23, output: 0.75, cacheRead: 0.04, cacheWrite: 0 }
         # Catalog 2026-11-06: reasoning_effort levels [minimal, low, medium,
         # high, xhigh, max] with normalization none -> minimal (no true "none"
         # tier), so no reasoningDisableMode here: OMP clamps a thinking-off
