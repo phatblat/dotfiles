@@ -166,12 +166,12 @@ _graphify-sync-skill:
     if ! [ -L "$live/SKILL.md" ]; then
         cp "$live/SKILL.md" "$repo/SKILL.md"
         cp "$live/.graphify_version" "$repo/.graphify_version"
-        mise dot apply --force --yes --quiet
+        mise dot apply --force --yes --quiet "$live/SKILL.md" "$live/.graphify_version"
         rm -f "$live/SKILL.md.bak"
         echo "graphify skill captured into the repo: review and commit .agents/skills/graphify/"
     elif ! [ -L "$live/.graphify_version" ]; then
         cp "$live/.graphify_version" "$repo/.graphify_version"
-        mise dot apply --force --yes --quiet
+        mise dot apply --force --yes --quiet "$live/.graphify_version"
         echo "graphify version marker captured into the repo."
     fi
 
