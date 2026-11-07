@@ -6,7 +6,7 @@ providers:
     serverSideFallback: false
   streamFirstEventTimeoutSeconds: 90
   streamIdleTimeoutSeconds: 120
-setupVersion: 2
+setupVersion: 3
 modelRoles:
   default: subconscious/subconscious/glm-5.3-marathon:high
   task: subconscious/subconscious/deepseek-v4.1-flash-marathon
@@ -138,6 +138,8 @@ astGrep:
   enabled: true
 goal:
   statusInFooter: false
+update:
+  auto: false
 includeWorkspaceTree: false
 tui:
   imeSafeCursor: true

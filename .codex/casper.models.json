@@ -184,8 +184,8 @@
       "base_instructions": "Unused: `model_instructions_file` in casper.config.toml supplies the real prompt. The catalog schema requires a non-empty value here.",
       "context_window": 500000,
       "default_reasoning_level": "high",
-      "description": "Casper router model `kimi-k3`.",
-      "display_name": "Kimi K3",
+      "description": "Casper router model `kimi-k3p1-pro`.",
+      "display_name": "Kimi K3p1 Pro",
       "effective_context_window_percent": 95,
       "experimental_supported_tools": [],
       "input_modalities": [
@@ -194,7 +194,7 @@
       "max_context_window": 500000,
       "priority": 7,
       "shell_type": "shell_command",
-      "slug": "kimi-k3",
+      "slug": "kimi-k3p1-pro",
       "support_verbosity": false,
       "supported_in_api": true,
       "supported_reasoning_levels": [

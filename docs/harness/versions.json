@@ -16,8 +16,8 @@
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.98.2",
-    "version": "crush version v0.99.0"
+    "previous": "crush version v0.99.0",
+    "version": "crush version v0.100.0"
   },
   "cursor": {
     "first_seen": "2026-08-29",
@@ -26,13 +26,13 @@
   },
   "grok": {
     "first_seen": "2026-08-29",
-    "previous": "grok 1.0.70 (f50904eaee6c)",
-    "version": "grok 1.0.70 (f50904eaee6c) [alpha]"
+    "previous": "grok 1.0.77 (50ca579fa996)",
+    "version": "grok 1.0.77 (50ca579fa996) [alpha]"
   },
   "omp": {
     "first_seen": "2026-08-29",
     "previous": "omp/18.14.1",
-    "version": "omp/18.15.0"
+    "version": "omp/18.17.0"
   },
   "opencode": {
     "first_seen": "2026-08-29",
@@ -41,7 +41,7 @@
   },
   "pi": {
     "first_seen": "2026-08-29",
-    "previous": "1.3.0",
-    "version": "1.4.0"
+    "previous": "1.4.0",
+    "version": "1.5.0"
   }
 }
