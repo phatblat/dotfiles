@@ -37,7 +37,7 @@
 "github:fialhosoft/agentlink" = "0.0.1"
 "github:nushell/nushell" = { version = "0.116.1", version_prefix = "" }
 "github:phatblat/wt" = "1.0.1"
-"github:raine/aven" = "0.1.54"
+"github:raine/aven" = "0.1.55"
 "github:schpet/linear-cli" = "3.1.0"
 "go:golang.org/x/tools/gopls" = "0.24.0"
 "npm:@babel/cli" = "8.1.0"
