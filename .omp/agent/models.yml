@@ -6,6 +6,7 @@ providers:
     compat:
       supportsDeveloperRole: false
       supportsReasoningEffort: false
+
     models:
       - id: Inferact/Qwen3.8-27B-NVFP4
         name: Qwen3.8-27B (spark1, NVFP4 + MTP)
@@ -31,6 +32,7 @@ providers:
           output: 0
           cacheRead: 0
           cacheWrite: 0
+
   # Reflection - hosted Beam inference. Full notes (limits, thinking, history,
   # auth) live in .omp/profiles/reflection/agent/models.yml; keep the two in sync.
   reflection:
@@ -53,6 +55,7 @@ providers:
       requiresReasoningContentForToolCalls: true
       requiresReasoningContentForAllAssistantTurns: true
       allowsSyntheticReasoningContentForToolCalls: true
+
     models:
       - id: Beam-1.0-501B-A23B
         name: Beam 1.0 501B A23B

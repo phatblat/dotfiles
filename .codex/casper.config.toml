@@ -1,4 +1,4 @@
-model = "kimi-k3"
+model = "kimi-k3p1-pro"
 
 # Codex has no catalog metadata for Casper's models, so it falls back to
 # placeholders (unknown context window, and it advertises OpenAI model names to

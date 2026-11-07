@@ -137,6 +137,7 @@ graphify-refresh: && _graphify-pin
         --out {{ justfile_directory() }}/graphify-out/reflections/LESSONS.md \
         --graph {{ justfile_directory() }}/graphify-out/graph.json
     mise exec -- graphify check-update {{ justfile_directory() }}
+    {{ just_executable() }} _graphify-sync-skill
 
 # Adds the doc/paper/image layer the key-free rebuild skips. Uses the local
 # Claude Code CLI as the backend, so it needs no API key, but it is a long LLM
@@ -144,6 +145,37 @@ graphify-refresh: && _graphify-pin
 [group('agents')]
 graphify-semantic:
     mise exec -- graphify extract {{ justfile_directory() }} --backend claude-cli --out {{ justfile_directory() }}
+
+# Reconciles the graphify-authored $HOME skill with the repo. check-update
+# refreshes the skill IN PLACE at $HOME: when a packaged skill differs from
+# the deployed one it unlinks the deployed file (silently discarding the
+# symlink into this repo) and writes loose files. Loose files then block every
+# `mise dot apply` ("refusing to overwrite existing files"), which failed all
+# of git's dotfiles-apply hooks (checkout/merge/commit/post-rewrite) and
+# wedged an interactive rebase on 2026-11-06. Syncing only when the live copy
+# diverges from the repo makes the bump flow: check-update writes loose files
+# -> this recipe copies the new bytes into the repo and re-deploys the
+# symlinks, leaving a commit-sized diff to review instead of a broken $HOME.
+[script]
+_graphify-sync-skill:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    live="$HOME/.agents/skills/graphify"
+    repo="{{ justfile_directory() }}/.agents/skills/graphify"
+    [ -e "$live/.graphify_version" ] || { echo "warning: graphify skill missing at $live; skipping skill sync" >&2; exit 0; }
+    targets=()
+    for f in "$live/SKILL.md" "$live/.graphify_version" "$live"/references/*.md; do
+        [ -e "$f" ] && ! [ -L "$f" ] || continue
+        rel="${f#"$live"/}"
+        mkdir -p "$repo/$(dirname "$rel")"
+        cp "$f" "$repo/$rel"
+        targets+=("$f")
+    done
+    if [ "${#targets[@]}" -gt 0 ]; then
+        mise dot apply --force --yes --quiet "${targets[@]}"
+        rm -f "$live/SKILL.md.bak"
+        echo "graphify skill: captured ${#targets[@]} loose file(s) into the repo; review and commit .agents/skills/graphify/"
+    fi
 
 # Re-pins the sidecars the graphify skill reads. The skill resolves its
 # interpreter through `uv tool run --from graphifyy` first and caches the

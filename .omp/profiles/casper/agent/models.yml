@@ -13,21 +13,22 @@
 #            Casper serves unmetered (FREE in the admin catalog at
 #            https://casper.ditto.live/catalog), which free_model() zeroes out.
 #            /v1/models does not expose the unmetered flag, so that list is
-#            maintained by hand in the sync script.
+#            maintained by hand in the sync script. Models absent from Baseten's
+#            page (e.g. `ultramarine-1-flash-us`) get manual_price() rates there.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
-#            catalog regardless of entitlement. Verified 2026-08-24: this key may
-#            invoke `kimi-k3` and `auto`; `kimi-k2.6`, `glm-5.2`, and `dittoaicoder`
-#            return 403 {"detail":"not authorized to invoke <id>"}. The named models
-#            stay declared below so that widening `enabledModels` in config.yml is
+#            catalog regardless of entitlement. Last verified 2026-08-24: this key
+#            could invoke the then-current Kimi K3 id and `auto`; `kimi-k2.6`,
+#            `glm-5.2`, and `dittoaicoder` returned 403
+#            {"detail":"not authorized to invoke <id>"}. The catalog has since
+#            replaced that Kimi id with `kimi-k3p1-pro` and added
+#            `ultramarine-1-flash-us` (opt-in in the admin catalog); entitlement
+#            for those two ids has not been re-verified. The named models stay
+#            declared below so that widening `enabledModels` in config.yml is
 #            the only change needed once access is granted.
-# Known issue: kimi-k3 tool calls arrive as a single buffered SSE delta emitted
-#            only after the full arguments are generated - the stream carries only
-#            ":" heartbeat comments while a tool call is being built. The silent
-#            window scales with argument size (~20 tok/s observed), and the router
-#            enforces a 300s total upstream budget (raised from 240s on 2026-08-27);
-#            crossing it aborts the stream. The kimi-k3 streamIdleTimeoutMs
-#            override below is a local mitigation only; it does not fix the
-#            underlying buffering.
+# Known issue: the retired Kimi K3 id buffered its tool calls into a single SSE
+#            delta emitted only after the full arguments were generated. That
+#            behaviour has not been re-checked on `kimi-k3p1-pro`, so it gets the
+#            provider-level `streamIdleTimeoutMs: 120000` and no local override.
 providers:
   casper:
     api: openai-completions
@@ -77,45 +78,25 @@ providers:
         name: Glm 5.3 Flash
         cost: { input: 0.15, output: 0.50, cacheRead: 0.03, cacheWrite: 0 }
 
-      gpt-oss-120b:
-        name: GPT-OSS 120B
-        cost: { input: 0.10, output: 0.50, cacheRead: 0, cacheWrite: 0 }
-
-      kimi-k2.6:
-        name: Kimi K2.6
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
+      kimi-k3p1-pro:
+        name: Kimi K3p1 Pro
+        cost: { input: 2.00, output: 10.00, cacheRead: 0.20, cacheWrite: 0 }
+        # Catalog 2026-11-06: reasoning_effort levels [none, minimal, low,
+        # medium, high, xhigh, max], no normalization map. OMP's efforts
+        # schema tops out at minimal..max (no "none"); declaring the ladder
+        # still makes OMP send reasoning_effort explicitly and expose the
+        # levels in the model selector. A thinking-off request maps to
+        # reasoning_effort "none" via reasoningDisableMode below.
+        thinking:
+          mode: effort
+          efforts: [minimal, low, medium, high, xhigh, max]
+          defaultLevel: high
+          effortMap: {}
         compat:
-          supportsReasoningEffort: false
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
-      kimi-k2.7-code:
-        name: Kimi K2.7 Code
-        cost: { input: 0.95, output: 4.00, cacheRead: 0.16, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
-      kimi-k3:
-        name: Kimi K3
-        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
-        compat:
-          # Casper buffers each tool call and emits it as a single delta, so the
-          # stream carries only SSE comments while arguments generate (~20 tok/s,
-          # measured 2026-08-24). Stay below the router's 300s total upstream
-          # budget so a timeout surfaces as an error, not a silent empty turn.
-          streamIdleTimeoutMs: 210000
+          supportsReasoningEffort: true
+          # The route accepts "none" as a real off switch; send it instead of
+          # clamping a thinking-off request to the lowest effort.
+          reasoningDisableMode: none-effort
 
       minimax-m3:
         name: Minimax M3
@@ -142,25 +123,6 @@ providers:
           # of clamping a thinking-off request to the lowest effort.
           reasoningDisableMode: none-effort
 
-      nemotron-3-ultra:
-        name: Nemotron 3 Ultra
-        cost: { input: 0.60, output: 2.40, cacheRead: 0.12, cacheWrite: 0 }
-        compat:
-          supportsReasoningEffort: false
-          # 550B class: first token can lag well past the provider floor.
-          streamIdleTimeoutMs: 300000
-          extraBody:
-            chat_template_args:
-              enable_thinking: false
-          whenThinking:
-            extraBody:
-              chat_template_args:
-                enable_thinking: true
-
-      nemotron-lightning-3p5-30b-a3b:
-        name: Nemotron Lightning 3p5 30b A3b
-        cost: { input: 0.05, output: 0.20, cacheRead: 0.01, cacheWrite: 0 }
-
       qwen3.8-max:
         name: Qwen3.8 Max
         supportsTools: false
@@ -174,3 +136,16 @@ providers:
             extraBody:
               chat_template_args:
                 enable_thinking: true
+
+      ultramarine-1-flash-us:
+        name: Ultramarine 1 Flash Us
+        cost: { input: 0.23, output: 0.75, cacheRead: 0.04, cacheWrite: 0 }
+        # Catalog 2026-11-06: reasoning_effort levels [minimal, low, medium,
+        # high, xhigh, max] with normalization none -> minimal (no true "none"
+        # tier), so no reasoningDisableMode here: OMP clamps a thinking-off
+        # request to the lowest effort, which reproduces the normalization.
+        thinking:
+          mode: effort
+          efforts: [minimal, low, medium, high, xhigh, max]
+          defaultLevel: high
+          effortMap: {}

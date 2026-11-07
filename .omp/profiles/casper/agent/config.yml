@@ -6,14 +6,12 @@ providers:
     serverSideFallback: false
   streamFirstEventTimeoutSeconds: 90
   streamIdleTimeoutSeconds: 120
-setupVersion: 2
+setupVersion: 3
 modelRoles:
-  default: casper/minimax-m3p1-flash:minimal
-  task: casper/nemotron-lightning-3p5-30b-a3b
-  commit: casper/nemotron-lightning-3p5-30b-a3b
-  plan: casper/ember-1:high
-  slow: casper/kimi-k3:high
-  smol: casper/minimax-m3p1-flash
+  default: casper/ultramarine-1-flash-us:medium
+  plan: casper/kimi-k3p1-pro:high
+  slow: casper/ember-1:medium
+  smol: casper/ultramarine-1-flash-us:minimal
 extensions: []
 disabledExtensions:
   - hook:pre:harness-guard:harness-guard.ts
@@ -138,11 +136,13 @@ astGrep:
   enabled: true
 goal:
   statusInFooter: false
+update:
+  auto: false
 includeWorkspaceTree: false
 tui:
   imeSafeCursor: true
   tight: true
-  resizeScrollback: rebuild
+  resizeScrollback: preserve
   completeScrollback: true
   codexResetFireworks: true
   titleSpinner: braille
