@@ -205,17 +205,13 @@ baseten_key_for() {
   case "$id" in
     auto)                    echo "" ;;
     kimi-k3p1-pro)           echo "kimi-k3-1-pro" ;;
-    kimi-k2.6)               echo "kimi-k2-6" ;;
-    kimi-k2.7-code)          echo "kimi-k2-7-code" ;;
     glm-5.3)                 echo "glm-5-3" ;;
     glm-4.7)                 echo "glm-4-7" ;;
     deepseek-v4-pro)         echo "deepseek-v4-pro" ;;
     deepseek-v4-pro-0813)    echo "deepseek-v4-pro" ;;  # not yet in Baseten table; use Pro pricing
     deepseek-v4-flash-0731)  echo "deepseek-v4-flash-0731" ;;
-    gpt-oss-120b)            echo "gpt-oss-120b" ;;
     inkling)                 echo "inkling" ;;
     inkling-small)           echo "inkling-small" ;;
-    nemotron-3-ultra)        echo "nvidia-nemotron-3-ultra" ;;
     qwen3.8-27b)             echo "" ;;
     dittoaicoder)            echo "" ;;
     *)                       echo "" ;;
@@ -270,7 +266,6 @@ while IFS= read -r model_json; do
     auto) name="Casper Auto Router" ;;
     deepseek-v4-pro-0813) name="DeepSeek V4 Pro (0813)" ;;
     deepseek-v4-flash-0731) name="DeepSeek V4 Flash (0731)" ;;
-    gpt-oss-120b) name="GPT-OSS 120B" ;;
     qwen3.8-27b) name="Qwen3.8 27B" ;;
     dittoaicoder) name="Ditto AI Coder" ;;
   esac
@@ -307,15 +302,6 @@ while IFS= read -r model_json; do
     thinking_switch=yes
     compat_lines+=("          supportsReasoningEffort: false")
   fi
-
-  case "$id" in
-    nemotron-3-ultra)
-      compat_lines+=(
-        "          # 550B class: first token can lag well past the provider floor."
-        "          streamIdleTimeoutMs: 300000"
-      )
-      ;;
-  esac
 
   if [[ "$thinking_switch" == yes ]]; then
     compat_lines+=(
