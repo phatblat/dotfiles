@@ -162,7 +162,7 @@ _graphify-sync-skill:
     set -euo pipefail
     live="$HOME/.agents/skills/graphify"
     repo="{{ justfile_directory() }}/.agents/skills/graphify"
-    [ -e "$live/.graphify_version" ] || { echo "graphify skill missing at $live" >&2; exit 1; }
+    [ -e "$live/.graphify_version" ] || { echo "warning: graphify skill missing at $live; skipping skill sync" >&2; exit 0; }
     if ! [ -L "$live/SKILL.md" ]; then
         cp "$live/SKILL.md" "$repo/SKILL.md"
         cp "$live/.graphify_version" "$repo/.graphify_version"
