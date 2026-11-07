@@ -163,16 +163,18 @@ _graphify-sync-skill:
     live="$HOME/.agents/skills/graphify"
     repo="{{ justfile_directory() }}/.agents/skills/graphify"
     [ -e "$live/.graphify_version" ] || { echo "warning: graphify skill missing at $live; skipping skill sync" >&2; exit 0; }
-    if ! [ -L "$live/SKILL.md" ]; then
-        cp "$live/SKILL.md" "$repo/SKILL.md"
-        cp "$live/.graphify_version" "$repo/.graphify_version"
-        mise dot apply --force --yes --quiet "$live/SKILL.md" "$live/.graphify_version"
+    targets=()
+    for f in "$live/SKILL.md" "$live/.graphify_version" "$live"/references/*.md; do
+        [ -e "$f" ] && ! [ -L "$f" ] || continue
+        rel="${f#"$live"/}"
+        mkdir -p "$repo/$(dirname "$rel")"
+        cp "$f" "$repo/$rel"
+        targets+=("$f")
+    done
+    if [ "${#targets[@]}" -gt 0 ]; then
+        mise dot apply --force --yes --quiet "${targets[@]}"
         rm -f "$live/SKILL.md.bak"
-        echo "graphify skill captured into the repo: review and commit .agents/skills/graphify/"
-    elif ! [ -L "$live/.graphify_version" ]; then
-        cp "$live/.graphify_version" "$repo/.graphify_version"
-        mise dot apply --force --yes --quiet "$live/.graphify_version"
-        echo "graphify version marker captured into the repo."
+        echo "graphify skill: captured ${#targets[@]} loose file(s) into the repo; review and commit .agents/skills/graphify/"
     fi
 
 # Re-pins the sidecars the graphify skill reads. The skill resolves its
