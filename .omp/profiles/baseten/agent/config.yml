@@ -6,7 +6,7 @@ providers:
     serverSideFallback: false
   streamFirstEventTimeoutSeconds: 90
   streamIdleTimeoutSeconds: 120
-setupVersion: 2
+setupVersion: 3
 modelRoles:
   default: baseten/moonshotai/Kimi-K2.7-Code:medium
   tiny: baseten/openai/gpt-oss-120b
@@ -136,3 +136,5 @@ astGrep:
   enabled: true
 goal:
   statusInFooter: false
+update:
+  auto: false
