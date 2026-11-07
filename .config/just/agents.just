@@ -137,7 +137,7 @@ graphify-refresh: && _graphify-pin
         --out {{ justfile_directory() }}/graphify-out/reflections/LESSONS.md \
         --graph {{ justfile_directory() }}/graphify-out/graph.json
     mise exec -- graphify check-update {{ justfile_directory() }}
-    just _graphify-sync-skill
+    {{ just_executable() }} _graphify-sync-skill
 
 # Adds the doc/paper/image layer the key-free rebuild skips. Uses the local
 # Claude Code CLI as the backend, so it needs no API key, but it is a long LLM
