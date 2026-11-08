@@ -29,11 +29,6 @@ source = "~/dev/dotfiles/.agentlink/providers/crush.toml"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agentlink/providers/grok.toml"]
-source = "~/dev/dotfiles/.agentlink/providers/grok.toml"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agentlink/providers/omp.toml"]
 source = "~/dev/dotfiles/.agentlink/providers/omp.toml"
 mode = "symlink"
