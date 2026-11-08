@@ -93,7 +93,7 @@ fn run_guard(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32
 /// `ness hook --harness <slug> [--tool <write|bash>]` — see `hook.rs`.
 /// `--tool` is required for `claude`/`codex` (which subcommand of the
 /// two-shim chain they replace is not derivable from the payload alone) and
-/// rejected for `grok`/`crush`/`antigravity`/`cursor` (each of those sends
+/// rejected for `crush`/`antigravity` (each of those sends
 /// a single normalized payload that classifies itself).
 fn run_hook(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 {
     let Some(harness) = flags.get("harness") else {
@@ -124,21 +124,19 @@ fn run_hook(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 
             // which exits 2 on deny.
             0
         }
-        "grok" | "crush" | "antigravity" | "cursor" => {
+        "crush" | "antigravity" => {
             if flags.contains_key("tool") {
                 eprintln!("ness hook: --tool is only valid for claude and codex");
                 return 2;
             }
             match harness.as_str() {
-                "grok" => hook::run_grok(p, &cwd, &manifest),
                 "crush" => hook::run_crush(p, &cwd, &manifest),
-                "antigravity" => hook::run_antigravity(p, &cwd, &manifest),
-                _ => hook::run_cursor(p, &cwd, &manifest),
+                _ => hook::run_antigravity(p, &cwd, &manifest),
             }
         }
         other => {
             eprintln!(
-                "ness hook: unsupported --harness '{other}' (expected claude, codex, grok, crush, antigravity, or cursor)"
+                "ness hook: unsupported --harness '{other}' (expected claude, codex, crush, or antigravity)"
             );
             2
         }

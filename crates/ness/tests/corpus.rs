@@ -18,10 +18,8 @@
 //! | claude-write  | `.claude/hooks/scripts/write-guard.sh`                           |
 //! | codex-bash    | `.codex/hooks/scripts/bash-guard.sh`                             |
 //! | codex-write   | `.codex/hooks/scripts/write-guard.sh`                            |
-//! | grok          | `.grok/scripts/harness-guard.sh`                                 |
 //! | crush         | `.config/crush/hooks/harness-guard.sh`                           |
 //! | antigravity   | `.agents/harness/adapters/antigravity/scripts/harness-guard.sh`  |
-//! | cursor        | `.agents/harness/adapters/cursor/scripts/harness-guard.sh`       |
 
 use serde_json::Value;
 use std::io::Write;
@@ -214,10 +212,8 @@ fn shim_path(shim: &str) -> PathBuf {
         "claude-write" => ".claude/hooks/scripts/write-guard.sh",
         "codex-bash" => ".codex/hooks/scripts/bash-guard.sh",
         "codex-write" => ".codex/hooks/scripts/write-guard.sh",
-        "grok" => ".grok/scripts/harness-guard.sh",
         "crush" => ".config/crush/hooks/harness-guard.sh",
         "antigravity" => ".agents/harness/adapters/antigravity/scripts/harness-guard.sh",
-        "cursor" => ".agents/harness/adapters/cursor/scripts/harness-guard.sh",
         other => panic!("unknown shim '{other}'"),
     };
     repo_root().join(rel)
@@ -437,14 +433,6 @@ fn shims_fail_closed_without_ness() {
         }
     }
 
-    let grok_payload = serde_json::json!({"toolInput": {"command": "git status"}});
-    let (exit, stdout, _stderr) = run_shim("grok", &grok_payload, &home);
-    let decision = stdout.get("decision").and_then(Value::as_str).unwrap_or("");
-    let reason = stdout.get("reason").and_then(Value::as_str).unwrap_or("");
-    if exit != 2 || decision != "deny" || !reason.contains("not installed") {
-        mismatches.push(format!("grok: exit {exit} stdout {stdout}"));
-    }
-
     let crush_payload = serde_json::json!({"tool_input": {"command": "git status"}});
     let (exit, stdout, stderr) = run_shim("crush", &crush_payload, &home);
     if exit != 2 || stdout != Value::Null || !stderr.contains("not installed") {
@@ -461,23 +449,6 @@ fn shims_fail_closed_without_ness() {
     let reason = stdout.get("reason").and_then(Value::as_str).unwrap_or("");
     if exit != 0 || decision != "deny" || !reason.contains("not installed") {
         mismatches.push(format!("antigravity: exit {exit} stdout {stdout}"));
-    }
-
-    let cursor_payload = serde_json::json!({
-        "tool_name": "Shell",
-        "tool_input": {"command": "git status"},
-    });
-    let (exit, stdout, _stderr) = run_shim("cursor", &cursor_payload, &home);
-    let permission = stdout
-        .get("permission")
-        .and_then(Value::as_str)
-        .unwrap_or("");
-    let message = stdout
-        .get("user_message")
-        .and_then(Value::as_str)
-        .unwrap_or("");
-    if exit != 0 || permission != "deny" || !message.contains("not installed") {
-        mismatches.push(format!("cursor: exit {exit} stdout {stdout}"));
     }
 
     assert!(
@@ -503,15 +474,7 @@ fn main_branch_commit_warning_forwards_cwd() {
         },
         "workspacePaths": [repo_str],
     });
-    let cursor_payload = serde_json::json!({
-        "tool_name": "Shell",
-        "tool_input": {"command": "git commit -m test"},
-        "cwd": repo_str,
-    });
-    for (shim, payload) in [
-        ("antigravity", &antigravity_payload),
-        ("cursor", &cursor_payload),
-    ] {
+    for (shim, payload) in [("antigravity", &antigravity_payload)] {
         let (exit, stdout, stderr) = run_shim(shim, payload, &home);
         if exit != 0
             || stdout != serde_json::json!({})
@@ -521,21 +484,6 @@ fn main_branch_commit_warning_forwards_cwd() {
                 "{shim}: exit {exit} stdout {stdout} stderr {stderr:?}"
             ));
         }
-    }
-
-    let grok_payload = serde_json::json!({
-        "toolName": "run_terminal_command",
-        "toolInput": {"command": "git commit -m test"},
-        "cwd": repo_str,
-    });
-    let (exit, stdout, stderr) = run_shim("grok", &grok_payload, &home);
-    if exit != 0
-        || stdout != serde_json::json!({"decision": "allow"})
-        || !stderr.contains("protected 'main' branch")
-    {
-        mismatches.push(format!(
-            "grok: exit {exit} stdout {stdout} stderr {stderr:?}"
-        ));
     }
 
     let crush_payload = serde_json::json!({

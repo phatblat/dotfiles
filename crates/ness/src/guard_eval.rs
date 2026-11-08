@@ -31,7 +31,7 @@ pub fn evaluate_with_manifest(
 }
 
 /// The JSON verdict shape shared by `ness guard` and the normalized hook
-/// modes (grok, crush, antigravity, cursor): `{harness, tool, decision,
+/// modes (crush, antigravity): `{harness, tool, decision,
 /// reason}`.
 pub fn verdict_json(harness: &str, tool: &str, decision: &GuardDecision) -> serde_json::Value {
     serde_json::json!({
