@@ -9999,6 +9999,11 @@ source = "~/dev/dotfiles/.omp/profiles/baseten/agent/AGENTS.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/baseten/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/APPEND_SYSTEM.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/baseten/agent/RULES.md"]
 source = "~/dev/dotfiles/.omp/profiles/baseten/agent/RULES.md"
 mode = "symlink"
@@ -10026,6 +10031,11 @@ relative = false
 
 [dotfiles."~/.omp/profiles/casper/agent/AGENTS.md"]
 source = "~/dev/dotfiles/.omp/profiles/casper/agent/AGENTS.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/APPEND_SYSTEM.md"
 mode = "symlink"
 relative = false
 
@@ -10064,6 +10074,11 @@ source = "~/dev/dotfiles/.omp/profiles/reflection/agent/AGENTS.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/reflection/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/APPEND_SYSTEM.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/reflection/agent/RULES.md"]
 source = "~/dev/dotfiles/.omp/profiles/reflection/agent/RULES.md"
 mode = "symlink"
@@ -10096,6 +10111,11 @@ relative = false
 
 [dotfiles."~/.omp/profiles/subconscious/agent/AGENTS.md"]
 source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/AGENTS.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/APPEND_SYSTEM.md"
 mode = "symlink"
 relative = false
 
