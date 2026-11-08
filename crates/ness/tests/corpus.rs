@@ -474,16 +474,15 @@ fn main_branch_commit_warning_forwards_cwd() {
         },
         "workspacePaths": [repo_str],
     });
-    for (shim, payload) in [("antigravity", &antigravity_payload)] {
-        let (exit, stdout, stderr) = run_shim(shim, payload, &home);
-        if exit != 0
-            || stdout != serde_json::json!({})
-            || !stderr.contains("protected 'main' branch")
-        {
-            mismatches.push(format!(
-                "{shim}: exit {exit} stdout {stdout} stderr {stderr:?}"
-            ));
-        }
+    let shim = "antigravity";
+    let (exit, stdout, stderr) = run_shim(shim, &antigravity_payload, &home);
+    if exit != 0
+        || stdout != serde_json::json!({})
+        || !stderr.contains("protected 'main' branch")
+    {
+        mismatches.push(format!(
+            "{shim}: exit {exit} stdout {stdout} stderr {stderr:?}"
+        ));
     }
 
     let crush_payload = serde_json::json!({
