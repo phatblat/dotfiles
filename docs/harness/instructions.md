@@ -19,8 +19,6 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 | pi | aligned | shared | - | probe · 1.5.0 · 2026-11-08 | - |
 | omp | aligned | native | - | probe · omp/18.18.1 · 2026-11-08 | inlined shared harness instructions + compaction contract + commit attribution |
 | antigravity | partial | adapter | - | probe · 1.4.6 · 2026-11-08 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
-| cursor | partial | adapter | - | probe · 2026.10.16-e3cb207 · 2026-11-08 | generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.77 (50ca579fa996) [alpha] · 2026-11-08 | inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file |
 | crush | aligned | native | - | probe · crush version v0.100.0 · 2026-11-08 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
 
 ### Not yet researched

@@ -19,8 +19,6 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 | pi | aligned | shared | - | probe · 1.5.0 · 2026-11-08 | - |
 | omp | aligned | native | - | probe · omp/18.18.1 · 2026-11-08 | - |
 | antigravity | partial | adapter | - | probe · 1.4.6 · 2026-11-08 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
-| cursor | partial | native | - | probe · 2026.10.16-e3cb207 · 2026-11-08 | agentlink symlink to ~/.agents/skills |
-| grok | aligned | native | - | probe · grok 1.0.77 (50ca579fa996) [alpha] · 2026-11-08 | grok scans ~/.agents/skills at the user tier |
 | crush | aligned | native | - | probe · crush version v0.100.0 · 2026-11-08 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
 
 ### skills.manual_only · p1
@@ -38,8 +36,6 @@ Note: Codex 0.162.1: `allow_implicit_invocation: false` removes the skill from t
 | pi | unknown | none | Local adapter or command wrapper | - | - |
 | omp | unknown | none | Local adapter or command wrapper | - | - |
 | antigravity | partial | adapter | Excluded from adapter skill emission by source openai.yaml policy | source · - · 2026-09-15 | Procedural skills carry agents/openai.yaml policy.allow_implicit_invocation: false; the antigravity skill-emission loop excludes them, so only ability skills auto-invoke. The adapter commands that used to expose procedural workflows were removed. No native per-skill invocation policy exists in agy 1.2.1. |
-| cursor | unknown | none | `disable-model-invocation: true` | - | - |
-| grok | unknown | none | `disable-model-invocation: true` | - | - |
 | crush | unknown | none | `disable-model-invocation: true` | - | - |
 
 ### Not yet researched

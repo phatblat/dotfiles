@@ -27,7 +27,7 @@ from collections.abc import Iterable
 from pathlib import Path
 
 # Skills that get a native pointer file in each harness's own skills directory,
-# rather than only the generated antigravity/cursor adapter copies.
+# rather than only the generated antigravity adapter copies.
 #
 # `boris` is absent because it is Claude-Code-specific, externally compiled, and
 # self-updating from a URL.

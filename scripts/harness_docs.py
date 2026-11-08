@@ -435,7 +435,6 @@ def render_porting_page(state: dict[str, Any]) -> str:
             "- Claude Code slash commands and subagents: https://docs.anthropic.com/en/docs/claude-code/slash-commands and https://code.claude.com/docs/en/sub-agents",
             "- Codex skills and subagents: https://developers.openai.com/codex/skills and https://developers.openai.com/codex/subagents",
             "- OpenCode config and skills: https://opencode.ai/docs/config/ and https://opencode.ai/docs/skills/",
-            "- Cursor rules and skills: https://cursor.com/docs/rules and https://cursor.com/docs/skills",
             "- Pi, OMP, and Antigravity rows reflect local generated adapters in this repository until primary docs are verified.",
             "",
         ]

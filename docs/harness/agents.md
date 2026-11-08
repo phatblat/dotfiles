@@ -19,8 +19,6 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 | pi | absent | none | No agent registry or subagent support in Pi 1.2.0 | docs · 1.2.0 · 2026-10-16 | Pi 1.2.0 has no agent registry or subagent support; no adapter is generated |
 | omp | aligned | native | - | probe · omp/18.18.1 · 2026-11-08 | generated from shared specialist definitions |
 | antigravity | partial | emulated | - | probe · 1.4.6 · 2026-11-08 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
-| cursor | partial | native | - | probe · 2026.10.16-e3cb207 · 2026-11-08 | generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified |
-| grok | partial | adapter | - | probe · grok 1.0.77 (50ca579fa996) [alpha] · 2026-11-08 | generated grok agent profiles are discovered by grok inspect, but spawn_subagent delegation to them has not been verified |
 | crush | blocked | native | - | probe · crush version v0.100.0 · 2026-11-08 | crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269 |
 
 ### Not yet researched

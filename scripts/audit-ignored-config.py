@@ -45,7 +45,6 @@ HARNESS_ROOTS = frozenset({".agents"} | {r for rs in CONFIG_ROOTS.values() for r
 # The whole subtree, manifest included, is installed rather than hand-authored.
 VENDOR_MARKERS = (
     ".claude-plugin",
-    ".cursor-plugin",
     ".datacloud_skills_manifest",
     ".git",
     ".paseo-managed-files.json",
@@ -145,7 +144,6 @@ STATE_DIRS = frozenset(
         "security",
         "sessions",
         "shell_snapshots",
-        "skills-cursor",
         "teams",
         "temp",
         "terminal-sessions",
@@ -193,7 +191,6 @@ STATE_NAMES = frozenset(
         "import_manifest.json",
         "last-changelog-version",
         "projects.json",
-        "tip_cursor.json",
         "version.json",
     }
 )
@@ -384,12 +381,9 @@ def is_unshared_skill(repo, relpath):
 
 
 def is_bundled_doc(relpath):
-    """True if relpath is documentation a CLI ships into its own config root.
-
-    `~/.grok/README.md` is 108 KB rewritten by every grok upgrade — its title
-    string is embedded in the grok binary — and it resurfaced as a "candidate
-    worth tracking" on every audit. No one hand-authors a README as harness
-    configuration, so match the shape rather than the one path.
+    """True if relpath is documentation a CLI ships into its own config root
+    (`<root>/README.md`). No one hand-authors a README as harness
+    configuration, so match the shape rather than one path.
     """
     parts = Path(relpath).parts
     return len(parts) == 2 and parts[1].lower() in BUNDLED_DOC_NAMES

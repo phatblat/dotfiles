@@ -118,8 +118,6 @@ HARNESS_ROLES: dict[str, dict[str, str]] = {
     "pi": {"role": "new port", "maintenance": "generated"},
     "omp": {"role": "tracked port", "maintenance": "generated"},
     "antigravity": {"role": "tracked port", "maintenance": "generated"},
-    "cursor": {"role": "tracked port", "maintenance": "generated"},
-    "grok": {"role": "new port", "maintenance": "generated"},
     "crush": {"role": "new port", "maintenance": "generated"},
 }
 
@@ -227,41 +225,6 @@ CAPABILITIES: list[Capability] = [
                     "shared harness instructions"
                 ),
                 probe=_exists(".agents/harness/adapters/antigravity/plugin.json"),
-            ),
-            "cursor": Cell(
-                parity="partial",
-                mode="adapter",
-                artifacts=(
-                    "~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json",
-                    "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc",
-                ),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                note=(
-                    "generated Cursor plugin rule points to shared harness "
-                    "instructions, but plugin discovery has not been verified"
-                ),
-                next_action=(
-                    "Link or install the Cursor plugin and verify Cursor loads the "
-                    "shared-harness rule"
-                ),
-                probe=_exists(
-                    ".agents/harness/adapters/cursor/rules/shared-harness.mdc"
-                ),
-            ),
-            "grok": Cell(
-                parity="aligned",
-                mode="native",
-                artifacts=("~/.grok/rules/shared-harness.md",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                note=(
-                    "inlined shared harness instructions + compaction contract "
-                    "+ commit attribution; loaded as a global rules file"
-                ),
-                probe=_exists(".grok/rules/shared-harness.md"),
             ),
             "crush": Cell(
                 parity="aligned",
@@ -372,27 +335,6 @@ CAPABILITIES: list[Capability] = [
                     "the plugin"
                 ),
             ),
-            "cursor": Cell(
-                parity="partial",
-                mode="native",
-                artifacts=("~/.cursor/skills",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_10_16
-                ),
-                probe=_exists(".cursor/skills/test-driven-development/SKILL.md"),
-                note="agentlink symlink to ~/.agents/skills",
-                next_action=("Verify Cursor discovers and activates the shared skills"),
-            ),
-            "grok": Cell(
-                parity="aligned",
-                mode="native",
-                artifacts=("~/.agents/skills",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
-                note="grok scans ~/.agents/skills at the user tier",
-            ),
             "crush": Cell(
                 parity="aligned",
                 mode="native",
@@ -445,12 +387,6 @@ CAPABILITIES: list[Capability] = [
             "pi": Cell(parity="unknown", surface="Local `skills` path adapter"),
             "omp": Cell(parity="unknown", surface="Shared skills path"),
             "antigravity": Cell(parity="unknown", surface="Generated wrapper skill"),
-            "cursor": Cell(
-                parity="unknown", surface="`name`, `description` in `SKILL.md`"
-            ),
-            "grok": Cell(
-                parity="unknown", surface="`name`, `description` in `SKILL.md`"
-            ),
             "crush": Cell(
                 parity="unknown", surface="`name`, `description` in `SKILL.md`"
             ),
@@ -528,10 +464,6 @@ CAPABILITIES: list[Capability] = [
                     "while continuing to emit ability skills"
                 ),
             ),
-            "cursor": Cell(
-                parity="unknown", surface="`disable-model-invocation: true`"
-            ),
-            "grok": Cell(parity="unknown", surface="`disable-model-invocation: true`"),
             "crush": Cell(parity="unknown", surface="`disable-model-invocation: true`"),
         },
     ),
@@ -558,13 +490,6 @@ CAPABILITIES: list[Capability] = [
             "pi": Cell(parity="unknown", surface="Local adapter only"),
             "omp": Cell(parity="unknown", surface="Local adapter only"),
             "antigravity": Cell(parity="unknown", surface="Local adapter only"),
-            "cursor": Cell(
-                parity="unknown", surface="`paths`; `globs` legacy fallback"
-            ),
-            "grok": Cell(
-                parity="unknown",
-                surface="No documented equivalent; scope through the description",
-            ),
             "crush": Cell(
                 parity="unknown",
                 surface="No documented equivalent; scope through the description",
@@ -602,12 +527,6 @@ CAPABILITIES: list[Capability] = [
             "pi": Cell(parity="unknown", surface="Extension or settings adapter"),
             "omp": Cell(parity="unknown", surface="config.yml tools.approval"),
             "antigravity": Cell(parity="unknown", surface="Hook/adapter guard"),
-            "cursor": Cell(
-                parity="unknown", surface="No documented skill-level equivalent"
-            ),
-            "grok": Cell(
-                parity="unknown", surface="`allowed-tools` in skill frontmatter"
-            ),
             "crush": Cell(
                 parity="unknown",
                 surface=(
@@ -642,13 +561,6 @@ CAPABILITIES: list[Capability] = [
             "omp": Cell(parity="unknown", surface="Local config only"),
             "antigravity": Cell(
                 parity="unknown", surface="Plugin manifest or adapter metadata"
-            ),
-            "cursor": Cell(
-                parity="unknown",
-                surface="`metadata` map for skills; `.mdc` frontmatter for rules",
-            ),
-            "grok": Cell(
-                parity="unknown", surface="`metadata` map plus `argument-hint`"
             ),
             "crush": Cell(
                 parity="unknown", surface="`metadata` map plus `user-invocable`"
@@ -730,39 +642,6 @@ CAPABILITIES: list[Capability] = [
                     "mcpServers and sidecars only; command wrappers are not "
                     "generated because flattening them into skills would make "
                     "user-run workflows implicitly invocable"
-                ),
-            ),
-            "cursor": Cell(
-                parity="partial",
-                mode="native",
-                artifacts=("~/.agents/harness/adapters/cursor/commands",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(".agents/harness/adapters/cursor/commands/2ndbrain.md"),
-                note=(
-                    "generated Cursor plugin commands wrap shared prompts, but "
-                    "runtime discovery has not been verified"
-                ),
-                next_action="Verify Cursor discovers all generated command wrappers",
-            ),
-            "grok": Cell(
-                parity="partial",
-                mode="native",
-                artifacts=("~/.agents/skills",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
-                note=(
-                    "grok reaches most of the command workflows through the "
-                    "shared skills; linear/progress has no shared skill, and "
-                    "~/.grok/commands wrappers would shadow the same-named shared "
-                    "skills"
-                ),
-                next_action=(
-                    "Add a shared skill for the linear/progress workflow so grok "
-                    "covers every command workflow"
                 ),
             ),
             "crush": Cell(
@@ -888,37 +767,6 @@ CAPABILITIES: list[Capability] = [
                     "wrappers with isolated context"
                 ),
             ),
-            "cursor": Cell(
-                parity="partial",
-                mode="native",
-                artifacts=("~/.agents/harness/adapters/cursor/agents",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(".agents/harness/adapters/cursor/agents/cli-expert.md"),
-                note=(
-                    "generated Cursor plugin agents wrap shared specialists, but "
-                    "runtime discovery has not been verified"
-                ),
-                next_action="Verify Cursor discovers generated specialist agent wrappers",
-            ),
-            "grok": Cell(
-                parity="partial",
-                mode="adapter",
-                artifacts=("~/.grok/agents",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(".grok/agents/cli-expert.md"),
-                note=(
-                    "generated grok agent profiles are discovered by grok inspect, "
-                    "but spawn_subagent delegation to them has not been verified"
-                ),
-                next_action=(
-                    "Verify grok spawn_subagent can launch the generated specialist "
-                    "profiles"
-                ),
-            ),
             "crush": Cell(
                 parity="blocked",
                 mode="native",
@@ -969,17 +817,6 @@ CAPABILITIES: list[Capability] = [
             ),
             "antigravity": Cell(
                 parity="unknown", surface="Generated hook/guard adapter"
-            ),
-            "cursor": Cell(
-                parity="unknown",
-                surface="Rules/plugin adapter; native behavior unverified",
-            ),
-            "grok": Cell(
-                parity="unknown",
-                surface=(
-                    "`--tools` / `--disallowed-tools`, subagent `capability_mode`, "
-                    "permission rules"
-                ),
             ),
             "crush": Cell(
                 parity="unknown",
@@ -1090,49 +927,6 @@ CAPABILITIES: list[Capability] = [
                     r"harness-guard\.sh",
                 ),
             ),
-            "cursor": Cell(
-                parity="partial",
-                mode="adapter",
-                artifacts=(
-                    "~/.cursor/hooks.json",
-                    "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh",
-                ),
-                evidence=Evidence(
-                    kind="probe", ref="file_contains", date=_PROBED_2026_10_16
-                ),
-                note=(
-                    "~/.cursor/hooks.json preToolUse (failClosed) execs the "
-                    "compiled guard; Cursor also imports ~/.claude/settings.json "
-                    "Bash and Write|Edit guard hooks (fail-open), so ness runs "
-                    "twice for Shell and Write calls"
-                ),
-                next_action=(
-                    "Confirm in a live Cursor session that a protected-path "
-                    "write is blocked"
-                ),
-                probe=_contains(".cursor/hooks.json", r"harness-guard\.sh"),
-            ),
-            "grok": Cell(
-                parity="partial",
-                mode="adapter",
-                artifacts=(
-                    "~/.grok/hooks/harness-guard.json",
-                    "~/.grok/scripts/harness-guard.sh",
-                ),
-                evidence=Evidence(
-                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
-                ),
-                note=(
-                    "generated grok PreToolUse shim execs the compiled guard, "
-                    "which maps grok's camelCase payload; live blocking in a "
-                    "grok session has not been verified"
-                ),
-                next_action=(
-                    "Verify grok blocks a denied shell command through "
-                    "~/.grok/hooks/harness-guard.json in a live session"
-                ),
-                probe=_contains(".grok/hooks/harness-guard.json", r"harness-guard\.sh"),
-            ),
             "crush": Cell(
                 parity="partial",
                 mode="adapter",
@@ -1240,14 +1034,6 @@ CAPABILITIES: list[Capability] = [
                 ),
                 evidence=Evidence(kind="docs", ref="pi CLI config reference"),
             ),
-            "grok": Cell(
-                parity="absent",
-                surface=(
-                    "No native permission-rule surface; the shared guard runs via "
-                    "~/.grok/scripts/harness-guard.sh"
-                ),
-                evidence=Evidence(kind="docs", ref="grok CLI config reference"),
-            ),
             "crush": Cell(
                 parity="absent",
                 surface=(
@@ -1255,14 +1041,6 @@ CAPABILITIES: list[Capability] = [
                     "~/.config/crush/hooks/harness-guard.sh"
                 ),
                 evidence=Evidence(kind="docs", ref="crush CLI config reference"),
-            ),
-            "cursor": Cell(
-                parity="absent",
-                surface=(
-                    "No native permission-rule surface; the shared guard runs via "
-                    "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
-                ),
-                evidence=Evidence(kind="docs", ref="cursor CLI config reference"),
             ),
         },
     ),
@@ -1398,30 +1176,6 @@ CAPABILITIES: list[Capability] = [
                 artifacts=("~/.agents/harness/adapters/antigravity/mcp_config.json",),
                 evidence=Evidence(kind="local", ref="just harness-check"),
             ),
-            "cursor": Cell(
-                parity="aligned",
-                mode="adapter",
-                surface="Generated `mcp.json`",
-                artifacts=("~/.cursor/mcp.json",),
-                evidence=Evidence(kind="local", ref="just harness-check"),
-                note=(
-                    "Written to disk by generate, but intentionally not "
-                    "git-tracked: ~/.cursor/ ships its own nested .gitignore "
-                    "with broad `!plugins/**`/`!skills-cursor/**` un-ignores "
-                    "that reactivate once the parent pattern narrows past a "
-                    "bare directory exclude, exposing cached plugin/session "
-                    "data. Regenerated locally by `just harness-generate`."
-                ),
-            ),
-            "grok": Cell(
-                parity="aligned",
-                mode="native",
-                surface=(
-                    "[compat.claude]/[compat.cursor] mcps = true imports the "
-                    "generated Claude and Cursor configs"
-                ),
-                evidence=Evidence(kind="local", ref="~/.grok/config.toml"),
-            ),
             "crush": Cell(
                 parity="absent",
                 surface=(
@@ -1477,15 +1231,6 @@ CAPABILITIES: list[Capability] = [
             ),
             "omp": Cell(parity="unknown", surface="modelRoles, defaultThinkingLevel"),
             "antigravity": Cell(parity="unknown", surface="Not verified in adapter"),
-            "cursor": Cell(
-                parity="unknown", surface="No shared skill metadata equivalent"
-            ),
-            "grok": Cell(
-                parity="unknown",
-                surface=(
-                    "Skill `model`, `effort`; persona `model`, `reasoning_effort`"
-                ),
-            ),
             "crush": Cell(
                 parity="unknown",
                 surface="`model large`/`model small` with `--reasoning-effort`",
@@ -1606,38 +1351,6 @@ CAPABILITIES: list[Capability] = [
                 next_action=(
                     "Decide where Antigravity should receive the compact-preservation "
                     "requirements, then verify conversation and artifact persistence"
-                ),
-            ),
-            "cursor": Cell(
-                parity="partial",
-                mode="native",
-                artifacts=("~/.agents/harness/adapters/cursor/rules",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(
-                    ".agents/harness/adapters/cursor/rules/shared-harness.mdc"
-                ),
-                note=(
-                    "Cursor preservation instructions are generated, but "
-                    "resume/history behavior has not been verified"
-                ),
-                next_action=(
-                    "Verify Cursor resume and history behavior against "
-                    "compact-preservation requirements"
-                ),
-            ),
-            "grok": Cell(
-                parity="aligned",
-                mode="native",
-                artifacts=("~/.grok/rules/shared-harness.md",),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
-                ),
-                probe=_exists(".grok/rules/shared-harness.md"),
-                note=(
-                    "compaction preservation contract inlined in the generated "
-                    "grok rules file"
                 ),
             ),
             "crush": Cell(
@@ -1848,9 +1561,8 @@ DIVERGENCES: list[Divergence] = [
         reason=(
             "Every vendor ships a product identity in its commit trailer and has no "
             "reason to adopt another's: crush emits `Co-Authored-By: Crush "
-            "<crush@charm.land>`, grok emits `Co-Authored-By: grokkybara[bot] "
-            "<304785771+grokkybara[bot]@users.noreply.github.com>`, omp emits "
-            "`Co-Authored-By: oh-my-pi <omp@can.ac>`, and Claude Code emits "
+            "<crush@charm.land>`, omp emits `Co-Authored-By: oh-my-pi "
+            "<omp@can.ac>`, and Claude Code emits "
             "`Co-Authored-By: Claude <noreply@anthropic.com>`."
         ),
         coping=(

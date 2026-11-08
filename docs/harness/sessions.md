@@ -19,8 +19,6 @@ Verify: `python3 scripts/agent-harnesses.py verify`
 | pi | aligned | native | - | probe · 1.5.0 · 2026-11-08 | native compaction settings plus extension status |
 | omp | aligned | native | - | probe · omp/18.18.1 · 2026-11-08 | compaction preservation contract inlined with shared harness instructions |
 | antigravity | absent | none | No generated compaction guidance | source · - · 2026-10-18 | The generated hooks.json now holds only the PreToolUse guard, so nothing in the Antigravity adapter carries the compaction preservation contract. |
-| cursor | partial | native | - | probe · 2026.10.16-e3cb207 · 2026-11-08 | Cursor preservation instructions are generated, but resume/history behavior has not been verified |
-| grok | aligned | native | - | probe · grok 1.0.77 (50ca579fa996) [alpha] · 2026-11-08 | compaction preservation contract inlined in the generated grok rules file |
 | crush | aligned | native | - | probe · crush version v0.100.0 · 2026-11-08 | compaction preservation contract inlined in the generated crush context file |
 
 ### Not yet researched

@@ -14,8 +14,6 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | pi | 1.5.0 | 2026-08-29 | 1.4.0 |
 | omp | omp/18.18.1 | 2026-08-29 | omp/18.17.0 |
 | antigravity | 1.4.6 | 2026-08-29 | 1.2.3 |
-| cursor | 2026.10.16-e3cb207 | 2026-08-29 | 2026.10.16-e3cb207 |
-| grok | grok 1.0.77 (50ca579fa996) [alpha] | 2026-08-29 | grok 1.0.77 (50ca579fa996) |
 | crush | crush version v0.100.0 | 2026-08-29 | crush version v0.99.0 |
 
 ## Records

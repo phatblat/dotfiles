@@ -556,47 +556,6 @@ skip_unless_home_is_this_checkout() {
   ! grep -F 'pr:post-findings' "$start_day"
 }
 
-@test "agent-harnesses: cursor plugin artifacts exist" {
-  [ -f "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json" ]
-  [ -f "$HOME/.agents/harness/adapters/cursor/rules/shared-harness.mdc" ]
-  [ -f "$HOME/.agents/harness/adapters/cursor/commands/git/commit.md" ]
-  [ -f "$HOME/.agents/harness/adapters/cursor/agents/triage-expert.md" ]
-  [ -f "$HOME/.cursor/hooks.json" ]
-  [ -f "$HOME/.agents/harness/adapters/cursor/mcp.json" ]
-}
-
-@test "agent-harnesses: cursor plugin JSON files parse" {
-  run jq . "$HOME/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json"
-  [ "$status" -eq 0 ]
-
-  run jq . "$HOME/.cursor/hooks.json"
-  [ "$status" -eq 0 ]
-  jq -e '.version == 1 and .hooks.preToolUse[0].failClosed == true' \
-    "$HOME/.cursor/hooks.json" >/dev/null
-
-  run jq . "$HOME/.agents/harness/adapters/cursor/mcp.json"
-  [ "$status" -eq 0 ]
-}
-
-@test "agent-harnesses: grok artifacts exist and parse" {
-  skip_unless_home_is_this_checkout
-  run python3 "$SCRIPT" generate --check
-  [ "$status" -eq 0 ]
-
-  [ -f "$HOME/.grok/config.toml" ]
-  [ -f "$HOME/.grok/rules/shared-harness.md" ]
-  [ -f "$HOME/.grok/scripts/harness-guard.sh" ]
-  [ -f "$HOME/.grok/agents/triage-expert.md" ]
-
-  run jq . "$HOME/.grok/hooks/harness-guard.json"
-  [ "$status" -eq 0 ]
-
-  grep -Fq 'hooks = false' "$HOME/.grok/config.toml"
-  grep -Fq 'Shared Harness Instructions' "$HOME/.grok/rules/shared-harness.md"
-  grep -Fq 'Context Compaction Preservation' "$HOME/.grok/rules/shared-harness.md"
-  grep -Fq 'Co-Authored-By: grokkybara[bot] <304785771+grokkybara[bot]@users.noreply.github.com>' "$HOME/.grok/rules/shared-harness.md"
-}
-
 @test "agent-harnesses: antigravity plugin artifacts exist and parse" {
   skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
@@ -680,7 +639,7 @@ if missing:
 @test "agent-harnesses: harness slug list has a single definition" {
   run python3 -c "
 import pathlib
-pattern = ['\"claude\"', '\"codex\"', '\"opencode\"', '\"pi\"', '\"omp\"', '\"antigravity\"', '\"cursor\"', '\"grok\"']
+pattern = ['\"claude\"', '\"codex\"', '\"opencode\"', '\"pi\"', '\"omp\"', '\"antigravity\"', '\"crush\"']
 hits = []
 for root in (pathlib.Path.home() / 'scripts', pathlib.Path.home() / '.agents'):
     for path in root.rglob('*.py'):
@@ -688,8 +647,8 @@ for root in (pathlib.Path.home() / 'scripts', pathlib.Path.home() / '.agents'):
         for ch in ',[](){}':
             text = text.replace(ch, ' ')
         tokens = text.split()
-        for i in range(len(tokens) - 7):
-            if tokens[i:i+8] == pattern:
+        for i in range(len(tokens) - 6):
+            if tokens[i:i+7] == pattern:
                 hits.append(str(path))
                 break
 print('\n'.join(sorted(set(hits))))

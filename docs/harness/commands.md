@@ -19,8 +19,6 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 | pi | aligned | adapter | - | probe · 1.5.0 · 2026-11-08 | generated prompt templates |
 | omp | aligned | native | - | probe · omp/18.18.1 · 2026-11-08 | - |
 | antigravity | absent | none | Plugins load skills, agents, rules, hooks, mcpServers | docs · 1.3.3 · 2026-10-16 | agy 1.3.3 plugins load skills, agents, rules, hooks, mcpServers and sidecars only; command wrappers are not generated because flattening them into skills would make user-run workflows implicitly invocable |
-| cursor | partial | native | - | probe · 2026.10.16-e3cb207 · 2026-11-08 | generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified |
-| grok | partial | native | - | probe · grok 1.0.77 (50ca579fa996) [alpha] · 2026-11-08 | grok reaches most of the command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills |
 | crush | partial | native | - | probe · crush version v0.100.0 · 2026-11-08 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md |
 
 ### Not yet researched

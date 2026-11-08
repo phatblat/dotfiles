@@ -19,8 +19,6 @@ Verify: `just harness-check`
 | pi | aligned | shared | - | probe · 1.5.0 · 2026-11-08 | - |
 | omp | aligned | shared | - | probe · omp/18.18.1 · 2026-11-08 | - |
 | antigravity | aligned | shared | - | probe · 1.4.6 · 2026-11-08 | - |
-| cursor | aligned | shared | - | probe · 2026.10.16-e3cb207 · 2026-11-08 | - |
-| grok | aligned | shared | - | probe · grok 1.0.77 (50ca579fa996) [alpha] · 2026-11-08 | - |
 | crush | aligned | shared | - | probe · crush version v0.100.0 · 2026-11-08 | - |
 
 ### maintenance.config_validation · p1
@@ -37,6 +35,4 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 | pi | aligned | native | pi list --no-approve | probe · 1.5.0 · 2026-11-08 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
-| cursor | unknown | none | - | - | - |
-| grok | unknown | none | - | - | - |
 | crush | unknown | none | - | - | - |

@@ -92,49 +92,6 @@
           },
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [
-            "~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json",
-            "~/.agents/harness/adapters/cursor/rules/shared-harness.mdc"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
-          },
-          "mode": "adapter",
-          "next_action": "Link or install the Cursor plugin and verify Cursor loads the shared-harness rule",
-          "note": "generated Cursor plugin rule points to shared harness instructions, but plugin discovery has not been verified",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/harness/adapters/cursor/rules/shared-harness.mdc"
-          },
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [
-            "~/.grok/rules/shared-harness.md"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "grok 1.0.77 (50ca579fa996) [alpha]"
-          },
-          "mode": "native",
-          "next_action": "",
-          "note": "inlined shared harness instructions + compaction contract + commit attribution; loaded as a global rules file",
-          "parity": "aligned",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".grok/rules/shared-harness.md"
-          },
-          "surface": ""
-        },
         "omp": {
           "artifacts": [
             "~/.omp/agent/APPEND_SYSTEM.md"
@@ -275,38 +232,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -417,38 +342,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -611,48 +504,6 @@
           },
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [
-            "~/.cursor/skills"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
-          },
-          "mode": "native",
-          "next_action": "Verify Cursor discovers and activates the shared skills",
-          "note": "agentlink symlink to ~/.agents/skills",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".cursor/skills/test-driven-development/SKILL.md"
-          },
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [
-            "~/.agents/skills"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "grok 1.0.77 (50ca579fa996) [alpha]"
-          },
-          "mode": "native",
-          "next_action": "",
-          "note": "grok scans ~/.agents/skills at the user tier",
-          "parity": "aligned",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/skills/test-driven-development/SKILL.md"
-          },
-          "surface": ""
-        },
         "omp": {
           "artifacts": [
             "~/.agents/skills"
@@ -795,38 +646,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -937,38 +756,6 @@
           "surface": "`name`, `description` in `SKILL.md`"
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`name`, `description` in `SKILL.md`"
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`name`, `description` in `SKILL.md`"
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -1109,38 +896,6 @@
           "probe": null,
           "surface": "`disable-model-invocation: true`"
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`disable-model-invocation: true`"
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`disable-model-invocation: true`"
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -1251,38 +1006,6 @@
           "surface": "Prefer nested repo skills or concise descriptions"
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "No documented equivalent; scope through the description"
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`paths`; `globs` legacy fallback"
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -1423,38 +1146,6 @@
           "probe": null,
           "surface": "`permissions allow`/`deny` in crushrc; no skill-level allowlist"
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "No documented skill-level equivalent"
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`allowed-tools` in skill frontmatter"
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -1579,38 +1270,6 @@
           "parity": "unknown",
           "probe": null,
           "surface": "`metadata` map plus `user-invocable`"
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`metadata` map for skills; `.mdc` frontmatter for rules"
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`metadata` map plus `argument-hint`"
         },
         "omp": {
           "artifacts": [],
@@ -1747,48 +1406,6 @@
           "mode": "native",
           "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
           "note": "crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/skills/test-driven-development/SKILL.md"
-          },
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [
-            "~/.agents/harness/adapters/cursor/commands"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
-          },
-          "mode": "native",
-          "next_action": "Verify Cursor discovers all generated command wrappers",
-          "note": "generated Cursor plugin commands wrap shared prompts, but runtime discovery has not been verified",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/harness/adapters/cursor/commands/2ndbrain.md"
-          },
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [
-            "~/.agents/skills"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "grok 1.0.77 (50ca579fa996) [alpha]"
-          },
-          "mode": "native",
-          "next_action": "Add a shared skill for the linear/progress workflow so grok covers every command workflow",
-          "note": "grok reaches most of the command workflows through the shared skills; linear/progress has no shared skill, and ~/.grok/commands wrappers would shadow the same-named shared skills",
           "parity": "partial",
           "probe": {
             "kind": "file_exists",
@@ -1938,38 +1555,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -2080,38 +1665,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -2274,48 +1827,6 @@
           },
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [
-            "~/.agents/harness/adapters/cursor/agents"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
-          },
-          "mode": "native",
-          "next_action": "Verify Cursor discovers generated specialist agent wrappers",
-          "note": "generated Cursor plugin agents wrap shared specialists, but runtime discovery has not been verified",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/harness/adapters/cursor/agents/cli-expert.md"
-          },
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [
-            "~/.grok/agents"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "grok 1.0.77 (50ca579fa996) [alpha]"
-          },
-          "mode": "adapter",
-          "next_action": "Verify grok spawn_subagent can launch the generated specialist profiles",
-          "note": "generated grok agent profiles are discovered by grok inspect, but spawn_subagent delegation to them has not been verified",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".grok/agents/cli-expert.md"
-          },
-          "surface": ""
-        },
         "omp": {
           "artifacts": [
             "~/.omp/agent/agents"
@@ -2451,38 +1962,6 @@
           "probe": null,
           "surface": "`permissions deny` hides tools; PreToolUse hook for the rest"
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "Rules/plugin adapter; native behavior unverified"
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "`--tools` / `--disallowed-tools`, subagent `capability_mode`, permission rules"
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -2610,38 +2089,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -2752,38 +2199,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -2952,52 +2367,6 @@
           },
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [
-            "~/.cursor/hooks.json",
-            "~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_contains",
-            "version": "2026.10.16-e3cb207"
-          },
-          "mode": "adapter",
-          "next_action": "Confirm in a live Cursor session that a protected-path write is blocked",
-          "note": "~/.cursor/hooks.json preToolUse (failClosed) execs the compiled guard; Cursor also imports ~/.claude/settings.json Bash and Write|Edit guard hooks (fail-open), so ness runs twice for Shell and Write calls",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_contains",
-            "path": ".cursor/hooks.json",
-            "pattern": "harness-guard\\.sh"
-          },
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [
-            "~/.grok/hooks/harness-guard.json",
-            "~/.grok/scripts/harness-guard.sh"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_contains",
-            "version": "grok 1.0.77 (50ca579fa996) [alpha]"
-          },
-          "mode": "adapter",
-          "next_action": "Verify grok blocks a denied shell command through ~/.grok/hooks/harness-guard.json in a live session",
-          "note": "generated grok PreToolUse shim execs the compiled guard, which maps grok's camelCase payload; live blocking in a grok session has not been verified",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_contains",
-            "path": ".grok/hooks/harness-guard.json",
-            "pattern": "harness-guard\\.sh"
-          },
-          "surface": ""
-        },
         "omp": {
           "artifacts": [
             "~/.omp/agent/hooks/pre/harness-guard.ts"
@@ -3141,38 +2510,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -3300,38 +2637,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -3442,38 +2747,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -3621,38 +2894,6 @@
           "probe": null,
           "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "docs",
-            "ref": "cursor CLI config reference",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "absent",
-          "probe": null,
-          "surface": "No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "docs",
-            "ref": "grok CLI config reference",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "absent",
-          "probe": null,
-          "surface": "No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.sh"
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -3765,38 +3006,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -3927,38 +3136,6 @@
           "surface": "`sandbox_mode`"
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -4109,40 +3286,6 @@
           "probe": null,
           "surface": "~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand"
         },
-        "cursor": {
-          "artifacts": [
-            "~/.cursor/mcp.json"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "local",
-            "ref": "just harness-check",
-            "version": ""
-          },
-          "mode": "adapter",
-          "next_action": "",
-          "note": "Written to disk by generate, but intentionally not git-tracked: ~/.cursor/ ships its own nested .gitignore with broad `!plugins/**`/`!skills-cursor/**` un-ignores that reactivate once the parent pattern narrows past a bare directory exclude, exposing cached plugin/session data. Regenerated locally by `just harness-generate`.",
-          "parity": "aligned",
-          "probe": null,
-          "surface": "Generated `mcp.json`"
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "local",
-            "ref": "~/.grok/config.toml",
-            "version": ""
-          },
-          "mode": "native",
-          "next_action": "",
-          "note": "",
-          "parity": "aligned",
-          "probe": null,
-          "surface": "[compat.claude]/[compat.cursor] mcps = true imports the generated Claude and Cursor configs"
-        },
         "omp": {
           "artifacts": [
             "~/.omp/agent/mcp.json"
@@ -4259,38 +3402,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -4431,38 +3542,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -4588,38 +3667,6 @@
           "probe": null,
           "surface": "`model large`/`model small` with `--reasoning-effort`"
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "No shared skill metadata equivalent"
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": "Skill `model`, `effort`; persona `model`, `reasoning_effort`"
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -4730,38 +3777,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -4902,38 +3917,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -5044,38 +4027,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -5233,48 +4184,6 @@
           },
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [
-            "~/.agents/harness/adapters/cursor/rules"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
-          },
-          "mode": "native",
-          "next_action": "Verify Cursor resume and history behavior against compact-preservation requirements",
-          "note": "Cursor preservation instructions are generated, but resume/history behavior has not been verified",
-          "parity": "partial",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".agents/harness/adapters/cursor/rules/shared-harness.mdc"
-          },
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [
-            "~/.grok/rules/shared-harness.md"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "grok 1.0.77 (50ca579fa996) [alpha]"
-          },
-          "mode": "native",
-          "next_action": "",
-          "note": "compaction preservation contract inlined in the generated grok rules file",
-          "parity": "aligned",
-          "probe": {
-            "kind": "file_exists",
-            "path": ".grok/rules/shared-harness.md"
-          },
-          "surface": ""
-        },
         "omp": {
           "artifacts": [
             "~/.omp/agent/APPEND_SYSTEM.md"
@@ -5417,38 +4326,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -5559,38 +4436,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -5731,38 +4576,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -5873,38 +4686,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -6045,38 +4826,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -6187,38 +4936,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -6359,38 +5076,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -6501,38 +5186,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -6673,38 +5326,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -6830,38 +5451,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -6972,38 +5561,6 @@
           "surface": ""
         },
         "crush": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
           "artifacts": [],
           "divergence": "",
           "evidence": {
@@ -7174,48 +5731,6 @@
           },
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [
-            "~/.agents/harness"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "2026.10.16-e3cb207"
-          },
-          "mode": "shared",
-          "next_action": "",
-          "note": "",
-          "parity": "aligned",
-          "probe": {
-            "kind": "file_exists",
-            "path": "docs/agent-harnesses.json"
-          },
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [
-            "~/.agents/harness"
-          ],
-          "divergence": "",
-          "evidence": {
-            "date": "2026-11-08",
-            "kind": "probe",
-            "ref": "file_exists",
-            "version": "grok 1.0.77 (50ca579fa996) [alpha]"
-          },
-          "mode": "shared",
-          "next_action": "",
-          "note": "",
-          "parity": "aligned",
-          "probe": {
-            "kind": "file_exists",
-            "path": "docs/agent-harnesses.json"
-          },
-          "surface": ""
-        },
         "omp": {
           "artifacts": [
             "~/.agents/harness"
@@ -7356,38 +5871,6 @@
           "probe": null,
           "surface": ""
         },
-        "cursor": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
-        "grok": {
-          "artifacts": [],
-          "divergence": "",
-          "evidence": {
-            "date": "",
-            "kind": "none",
-            "ref": "",
-            "version": ""
-          },
-          "mode": "none",
-          "next_action": "",
-          "note": "",
-          "parity": "unknown",
-          "probe": null,
-          "surface": ""
-        },
         "omp": {
           "artifacts": [],
           "divergence": "",
@@ -7454,8 +5937,8 @@
     }
   ],
   "coverage": {
-    "total": 405,
-    "verified": 92
+    "total": 315,
+    "verified": 74
   },
   "divergences": [
     {
@@ -7468,7 +5951,7 @@
         "version": ""
       },
       "id": "git.attribution_trailer",
-      "reason": "Every vendor ships a product identity in its commit trailer and has no reason to adopt another's: crush emits `Co-Authored-By: Crush <crush@charm.land>`, grok emits `Co-Authored-By: grokkybara[bot] <304785771+grokkybara[bot]@users.noreply.github.com>`, omp emits `Co-Authored-By: oh-my-pi <omp@can.ac>`, and Claude Code emits `Co-Authored-By: Claude <noreply@anthropic.com>`.",
+      "reason": "Every vendor ships a product identity in its commit trailer and has no reason to adopt another's: crush emits `Co-Authored-By: Crush <crush@charm.land>`, omp emits `Co-Authored-By: oh-my-pi <omp@can.ac>`, and Claude Code emits `Co-Authored-By: Claude <noreply@anthropic.com>`.",
       "title": "Each harness stamps its own commit co-author identity"
     }
   ],
@@ -7506,16 +5989,6 @@
     },
     "crush": {
       "label": "Crush",
-      "maintenance": "generated",
-      "role": "new port"
-    },
-    "cursor": {
-      "label": "Cursor",
-      "maintenance": "generated",
-      "role": "tracked port"
-    },
-    "grok": {
-      "label": "Grok",
       "maintenance": "generated",
       "role": "new port"
     },
@@ -7856,16 +6329,6 @@
       "first_seen": "2026-08-29",
       "previous": "crush version v0.99.0",
       "version": "crush version v0.100.0"
-    },
-    "cursor": {
-      "first_seen": "2026-08-29",
-      "previous": "2026.10.16-e3cb207",
-      "version": "2026.10.16-e3cb207"
-    },
-    "grok": {
-      "first_seen": "2026-08-29",
-      "previous": "grok 1.0.77 (50ca579fa996)",
-      "version": "grok 1.0.77 (50ca579fa996) [alpha]"
     },
     "omp": {
       "first_seen": "2026-08-29",
