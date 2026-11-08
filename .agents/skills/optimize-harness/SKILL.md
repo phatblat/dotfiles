@@ -1,6 +1,6 @@
 ---
 name: optimize-harness
-description: Audit one or all supported agent harnesses (claude, codex, opencode, pi, omp, antigravity, cursor, grok, crush) for config efficiency, hook overhead, permission friction, plugin and MCP cost, skill metadata portability, dead config, and measured session friction. Use when invoked as `$optimize-harness [harness ...] [focus]`, or when the user asks to optimize or compare agent harness configuration.
+description: Audit one or all supported agent harnesses (claude, codex, opencode, pi, omp, antigravity, crush) for config efficiency, hook overhead, permission friction, plugin and MCP cost, skill metadata portability, dead config, and measured session friction. Use when invoked as `$optimize-harness [harness ...] [focus]`, or when the user asks to optimize or compare agent harness configuration.
 disable-model-invocation: true
 ---
 
@@ -14,8 +14,8 @@ session friction. Produce a prioritized, multi-harness report.
 
 Whitespace-split `$ARGUMENTS`. Order-independent, no positional meaning:
 
-- A token in `{claude, codex, opencode, pi, omp, antigravity, cursor, grok,
-  crush}` adds that harness to the target set. None given means all nine.
+- A token in `{claude, codex, opencode, pi, omp, antigravity, crush}` adds
+  that harness to the target set. None given means all seven.
 - A token in `{config, hooks, permissions, plugins, mcp, context, sessions,
   friction, all}` sets the focus. None given means `all`.
 - `since:N` sets the session window in days for the friction scan, default
@@ -139,7 +139,7 @@ multiple workflows.
 Check configured MCP servers per harness for high timeouts, disabled-but-
 stale entries, missing commands, or servers that connect on every session
 but are rarely called — cross-reference against the scanner's `mcp_call`
-and `mcp_lifecycle` observations rather than guessing from config alone.
+observations rather than guessing from config alone.
 
 ### Context budget
 
@@ -149,7 +149,7 @@ descriptions for verbosity or stale references, per harness.
 ### Harness portability
 
 When optimizing shared skills or porting harness features between the
-nine supported harnesses, read `references/agent-harness-portability.md`
+seven supported harnesses, read `references/agent-harness-portability.md`
 for the current attribute mapping and source notes:
 
 1. Classify each skill as **procedural** or **ability** before mapping
@@ -182,7 +182,6 @@ Use `python3 ~/scripts/harness-sessions.py <slugs> --since <N> --json`
   `references/session-usage-evidence.md`'s confidence labels.
 - Aborted turns and their reasons.
 - Cache-miss reasons (Claude).
-- MCP connection failures.
 - Hook cost (Claude only): firings, total/p50/p95 ms, non-zero exits.
 
 Never render `unknown/not observed` as `unused`.

@@ -2,7 +2,7 @@
 
 Use this reference before describing any skill, plugin, extension, MCP
 server, or tool as low-use, rarely used, stale, safe to disable, or a
-friction source, for any of the nine supported harnesses. Configuration
+friction source, for any of the seven supported harnesses. Configuration
 proves that a component is available; it does not prove that the component
 ran. This file owns **policy** only: record schemas live in
 `docs/agent-session-transcripts.md`, and the implementation that enforces
@@ -41,8 +41,6 @@ Exclude these sources from the primary scan:
 - OMP `agent.db`, `history.db`, `blobs/`, tool-artifact logs, and process
   logs.
 - Claude `history.jsonl` (raw prompt text, no tool events).
-- Grok `session_search.sqlite` (FTS index over the same transcript text as
-  `events.jsonl`/`chat_history.jsonl`, not an additional source).
 - Antigravity `conversations/*.pb` (protobuf with no published schema, and
   on the guard's protected-path list, `[protected_paths]` in
   `~/.config/ness/policy.toml`).
@@ -109,13 +107,13 @@ transcript purely from filename shape — only the exact
 `<timestamp>_<session-id>.jsonl` top-level form is the parent session — not
 from directory depth alone.
 
-### claude, codex, opencode, antigravity, cursor, grok
+### claude, codex, opencode, antigravity
 
-Root resolution and any env-var overrides for these six harnesses are
+Root resolution and any env-var overrides for these four harnesses are
 documented per-slug in `docs/agent-session-transcripts.md`, with each
 override's `verified` status. `CODEX_HOME` is confirmed present in
 `codex --help`; the rest (`CLAUDE_CONFIG_DIR`, `XDG_DATA_HOME` for
-opencode, and no confirmed override for grok/cursor/antigravity) were not
+opencode, and no confirmed override for antigravity) were not
 confirmable from primary CLI output this session — `harness-sessions.py`
 still resolves them when set and records the resolution source, so an
 unconfirmed override degrades to a coverage note, never a silent miss.
@@ -145,7 +143,6 @@ capability enumeration.
 | OMP MCP tool | A tool attempt/result maps to the configured server. Prefer result provenance such as `serverName`, `mcpToolName`, `provider`, or `providerName`; OMP-created names normally use `mcp_<server>_<tool>`. | A name prefix alone is only corroborated evidence when multiple providers or plugins could mint the same tool name. Startup, connection, discovery, and reconnect events are not invocations. |
 | Claude MCP tool | `tool_use`/`tool_result` `name` prefixed `mcp__`. | Prefix alone is corroborated, not confirmed, when multiple plugins could mint the same server name. |
 | Codex MCP tool | `payload.type == "mcp_tool_call_end"`. | Codex records no structured output for regular tool calls either; never infer success/failure from free text. |
-| Grok MCP server | `events.jsonl` `mcp_server_connected`/`mcp_server_failed` records, joined by `server_name`. | `mcp_server_starting` alone is a lifecycle attempt, not a confirmed connection. |
 | Pi MCP tool | Evidence defined by the installed MCP extension and mapped to that extension's tool/result schema. | Pi has no built-in MCP provenance contract as of this version. Without an extension-specific mapping, report unknown rather than infer from a tool-name prefix. |
 | Plugin or extension | A confirmed component invocation maps unambiguously to a currently installed plugin/extension source path or manifest entry. | Report component-level evidence. Hooks, system-prompt additions, renderers, and startup behavior may leave no invocation marker, so absence never proves the plugin was inactive. |
 
@@ -172,7 +169,6 @@ presence:
 | Hook cost (Claude only) | `hook_run` records: firings, total/p50/p95 ms, non-zero exits | Measured, not guessed, per-hook cost — replaces reading hook script source to estimate overhead. |
 | Aborted turns | `turn_abort` records, grouped by harness, then `detail` (reason) | OpenCode messages carrying `error` (`message_error`); OMP `session_exit` with a reason other than `dispose` (`sighup`, `sigint`: the terminal closed or was interrupted, which doesn't always mean mid-turn). |
 | Cache misses (Claude only) | `cache_miss` records, grouped by `detail` | `system_changed`, `model_changed`, `previous_message_not_found`, `unavailable`, `messages_changed` — repeated misses under one reason point at a specific fix (e.g. `system_changed` means something in the always-loaded system prompt churns between turns). |
-| MCP connection failures | Grok `mcp_lifecycle` records with `ok == False`; Claude/Codex/OMP MCP tool call errors | A server that fails to connect wastes the harness's startup time whether or not it is ever called. |
 
 Never diagnose friction from a single low-volume sample — cross-reference
 against `distinct_sessions` and the coverage window before recommending a

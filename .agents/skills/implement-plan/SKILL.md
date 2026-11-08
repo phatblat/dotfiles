@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 ## Host notes
 
-This workflow runs on every host in the shared agent harness (Claude Code, OMP, Codex, OpenCode, Cursor, Grok, Antigravity).
+This workflow runs on every host in the shared agent harness (Claude Code, OMP, Codex, OpenCode, Antigravity).
 
 - `$ARGUMENTS` is the text the user passed when invoking this skill. Treat it as empty when nothing was passed.
 - Each `Dispatch(...)` block below starts one fresh subagent that runs the named specialist (`agent=`), with `prompt` as its entire task and `description` as its label. Wait for it to finish and act only on its final report. Map the block to the host's subagent tool:

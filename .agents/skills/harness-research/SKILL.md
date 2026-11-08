@@ -15,8 +15,8 @@ report that rots outside the registry.
 
 Whitespace-split `$ARGUMENTS`, order-independent:
 
-- A token in `{claude, codex, opencode, pi, omp, antigravity, cursor, grok,
-  crush}` selects the harness. Required; if absent, read
+- A token in `{claude, codex, opencode, pi, omp, antigravity, crush}`
+  selects the harness. Required; if absent, read
   `docs/harness/versions.json` and pick the harness whose `version` differs
   from its `previous`, then say which one you chose.
 - A token matching `<domain>` or `<domain>.<name>` narrows the run to those

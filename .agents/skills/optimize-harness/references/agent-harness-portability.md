@@ -1,6 +1,6 @@
 # Agent Harness Portability
 
-Use this reference when optimizing or porting shared skills, commands, agents, hooks, MCP config, and related metadata between the nine supported harnesses (`claude`, `codex`, `opencode`, `pi`, `omp`, `antigravity`, `cursor`, `grok`, `crush`).
+Use this reference when optimizing or porting shared skills, commands, agents, hooks, MCP config, and related metadata between the seven supported harnesses (`claude`, `codex`, `opencode`, `pi`, `omp`, `antigravity`, `crush`).
 
 ## Porting Rules
 
@@ -12,7 +12,6 @@ Use this reference when optimizing or porting shared skills, commands, agents, h
    - Codex: `agents/openai.yaml` and `~/.codex/config.toml`.
    - Claude: slash command, agent, settings, or skill metadata.
    - OpenCode: `opencode.jsonc` config and plugin hooks.
-   - Cursor: `.mdc` rules, generated plugin config, and skill wrappers.
    - Pi, OMP, and Antigravity: local generated adapter files until primary docs are verified.
    - Crush: generated `~/.config/crush/crushrc` (`option` and `hook add` lines) and `shared-harness.md`.
 4. Use progressive disclosure. Keep `SKILL.md` short; put detailed mapping tables in references, deterministic repeated work in scripts, and output assets in assets.
@@ -29,7 +28,6 @@ The full porting grid (all 9 harnesses) is generated from `CAPABILITIES` in `scr
 - Open Agent Skills defines the portable skill shape and marks `allowed-tools` as experimental, so do not treat it as a shared contract without checking the target harness.
 - Codex officially documents `agents/openai.yaml` for `interface`, `policy.allow_implicit_invocation`, and `dependencies.tools`. `allow_implicit_invocation: false` prevents implicit invocation; in Codex 0.162.1 it also removes the skill from the model-visible skill list (verified with `codex debug prompt-input`, 2026-10-16); explicit `$name` invocation still works.
 - OpenCode documents skill `metadata` as a generic object and says it ignores unrecognized properties. That means a copied vendor key can be harmless but still ineffective.
-- Cursor and Claude use overlapping field names for some skills, but overlap is not portability. Keep their metadata in generated adapters unless the Agent Skills spec or the target docs confirm the field.
 - Pi, OMP, and Antigravity rows are based on local generated adapters in this repo, not verified primary docs.
 
 ## Known Gaps

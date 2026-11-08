@@ -12,12 +12,10 @@ with every release. Re-verify a row against the harness's primary docs (the
 |---|---|---|
 | `CLAUDE.md`, `.claude/` | Claude Code | `claude` |
 | `.codex/` | Codex | `codex` |
-| `.cursor/`, `.cursorrules` | Cursor | `cursor` |
 | `GEMINI.md`, `.gemini/` | Gemini CLI / Antigravity | `antigravity` |
 | `opencode.json`, `.opencode/` | OpenCode | `opencode` |
 | `.pi/` | Pi | `pi` |
 | `.omp/` | Oh My Pi | `omp` |
-| `.grok/` | Grok | `grok` |
 | `crush.json`, `.crush.json` | Crush (unverified) | `crush` |
 | `.github/copilot-instructions.md` | GitHub Copilot | `-` |
 | `AGENTS.md`, `.agents/` | Shared instructions and skills, read by several harnesses; not a harness on its own | `-` |
@@ -38,8 +36,6 @@ From phatblat dotfiles `scripts/harness_paths.py` `SESSION_STORES` and
 | Pi | `pi` | `~/.pi/agent/sessions/**/*.jsonl` | jsonl | `PI_CODING_AGENT_SESSION_DIR`, `PI_CODING_AGENT_DIR` | yes |
 | Oh My Pi | `omp` | `~/.omp/agent/sessions/**/*.jsonl`; named profile: `~/.omp/profiles/<profile>/agent/sessions` | jsonl | `OMP_PROFILE` | yes |
 | Antigravity | `antigravity` | `~/.gemini/antigravity-cli/history.jsonl`; conversation bodies are protobuf, outside coverage | jsonl | none known | no |
-| Cursor | `cursor` | `~/.cursor/projects/*/agent-transcripts/*/*.jsonl` | jsonl | none known | no |
-| Grok | `grok` | `~/.grok/sessions/<url-encoded-cwd>/<id>/{chat_history,events}.jsonl` | jsonl | none known | no |
 | Crush | `crush` | `~/.local/share/crush/crush.db`; schema is not a public API, so it is not scanned | sqlite | `CRUSH_GLOBAL_DATA`, `XDG_DATA_HOME` | no |
 
 Never read these, even when they sit inside a session store:
