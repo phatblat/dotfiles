@@ -166,6 +166,7 @@
 !.config/crush/crushrc
 !.config/crush/hooks/
 !.config/crush/shared-harness.md
+.config/cursor/
 .config/data-agent-kit/
 .config/dconf/
 .config/delta/lesshst
@@ -258,6 +259,7 @@
 .copilot/
 .cpan/
 .cups/
+.cursor/*
 .cxx/
 .dart-tool/
 .dart/
@@ -315,6 +317,8 @@
 .gnupg_pre_2.1/
 .google-cloud-sdk/
 .gradle/
+.grok/*
+.grokbot/
 .groovy/
 .gt/
 .harness/
@@ -763,6 +767,7 @@ Library/Application Support/Codex/
 Library/Application Support/CodexBar/
 Library/Application Support/CrashReporter/
 Library/Application Support/Cron/
+Library/Application Support/Cursor/
 Library/Application Support/Cypress/
 Library/Application Support/Dash/
 Library/Application Support/Deckset/
@@ -783,6 +788,7 @@ Library/Application Support/Fork/
 Library/Application Support/GitHub/
 Library/Application Support/Google/
 Library/Application Support/Goose/
+Library/Application Support/Grok Bot/
 Library/Application Support/HelloGames/
 Library/Application Support/Hopper/Scripts/
 Library/Application Support/Insomnia/
@@ -922,6 +928,7 @@ Library/Application Support/fastmcp/
 Library/Application Support/firestore/
 Library/Application Support/google-heartbeat-storage/
 Library/Application Support/gopls/
+Library/Application Support/grok-bot-computer-use/
 Library/Application Support/ground-control/
 Library/Application Support/homeenergyd/
 Library/Application Support/iCloud/
