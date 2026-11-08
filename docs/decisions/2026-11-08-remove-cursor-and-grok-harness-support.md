@@ -16,7 +16,7 @@ The consolidation record measured use over 30 days: Cursor had 7 sessions and Gr
 
 ## Status
 
-This is a proposal that is **awaiting review**.
+This is a proposal that is **accepted**.
 
 ## Assumptions and Constraints
 
