@@ -9534,11 +9534,6 @@ source = "~/dev/dotfiles/.graphignore"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.grok/config.toml"]
-source = "~/dev/dotfiles/.grok/config.toml"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.hammerspoon/init.lua"]
 source = "~/dev/dotfiles/.hammerspoon/init.lua"
 mode = "symlink"
