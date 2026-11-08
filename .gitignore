@@ -1017,6 +1017,7 @@ Library/LanguageModeling/
 Library/LaunchAgents/*
 !Library/LaunchAgents/at.phatbl.graphify-refresh.plist
 !Library/LaunchAgents/at.phatbl.harness-probe.plist
+!Library/LaunchAgents/at.phatbl.paseo-daemon.plist
 Library/Library/
 Library/LockdownMode/
 Library/Mail/
