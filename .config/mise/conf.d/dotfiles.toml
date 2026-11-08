@@ -3924,16 +3924,6 @@ source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-crush-safe-bash.js
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/ness/cases/140-allow-harness-cursor-safe-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-cursor-safe-bash.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/ness/cases/140-allow-harness-grok-safe-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-grok-safe-bash.json"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.config/ness/cases/140-allow-harness-omp-safe-bash.json"]
 source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-omp-safe-bash.json"
 mode = "symlink"
@@ -3969,16 +3959,6 @@ source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-crush-dangerous-bas
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/ness/cases/141-deny-harness-cursor-dangerous-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-cursor-dangerous-bash.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/ness/cases/141-deny-harness-grok-dangerous-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-grok-dangerous-bash.json"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.config/ness/cases/141-deny-harness-omp-dangerous-bash.json"]
 source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-omp-dangerous-bash.json"
 mode = "symlink"
@@ -3999,8 +3979,8 @@ source = "~/dev/dotfiles/.config/ness/cases/142-deny-control-plane-pi-harness.js
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/ness/cases/143-deny-control-plane-grok-guard-config.json"]
-source = "~/dev/dotfiles/.config/ness/cases/143-deny-control-plane-grok-guard-config.json"
+[dotfiles."~/.config/ness/cases/143-deny-control-plane-harness-guard-config.json"]
+source = "~/dev/dotfiles/.config/ness/cases/143-deny-control-plane-harness-guard-config.json"
 mode = "symlink"
 relative = false
 
