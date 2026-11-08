@@ -2,6 +2,8 @@
 
 ## Issue
 
+This decision is extended by [2026-11-08-remove-cursor-and-grok-harness-support](./2026-11-08-remove-cursor-and-grok-harness-support.md).
+
 `crates/ness` is the compiled PreToolUse guard every harness hook execs: 1,587
 lines of Rust (1,125 source, 462 test harness), 124 guard corpus cases under
 `tests/corpus/`, and 19 shim conformance cases under `tests/hook_corpus/`. Its
