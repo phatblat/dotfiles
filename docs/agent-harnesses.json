@@ -2369,7 +2369,8 @@
         },
         "omp": {
           "artifacts": [
-            "~/.omp/agent/hooks/pre/harness-guard.ts"
+            "~/.omp/agent/hooks/pre/harness-guard.ts",
+            "~/.omp/agent/config.yml"
           ],
           "divergence": "",
           "evidence": {
@@ -2379,13 +2380,13 @@
             "version": "omp/18.18.2"
           },
           "mode": "adapter",
-          "next_action": "",
-          "note": "",
-          "parity": "aligned",
+          "next_action": "Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again",
+          "note": "the ness pre-tool hook is disabled on purpose: disabledExtensions lists hook:pre:harness-guard:harness-guard.ts in ~/.omp/agent/config.yml and every profile config (b47ea03); OMP runs approvalMode yolo with sudo denied and gitGuard on",
+          "parity": "partial",
           "probe": {
             "kind": "file_contains",
-            "path": ".omp/agent/hooks/pre/harness-guard.ts",
-            "pattern": "\\bness\\b"
+            "path": ".omp/agent/config.yml",
+            "pattern": "hook:pre:harness-guard:harness-guard\\.ts"
           },
           "surface": ""
         },

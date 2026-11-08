@@ -12,7 +12,7 @@ Coverage: 74/315 cells verified (23%)
 | codex | supported peer | codex-cli 0.167.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | opencode v2.2.6 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.5.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.18.2 | 2026-08-29 | 11 | 0 | 0 | 0 | 0 | 34 |
+| omp | tracked port | omp/18.18.2 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
 | antigravity | tracked port | 1.5.3 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | crush | new port | crush version v0.100.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
@@ -24,7 +24,7 @@ Coverage: 74/315 cells verified (23%)
 | Skills | [harness/skills.md](harness/skills.md) | 7 | 6 | 2 | 0 | 0 | 1 | 40 |
 | Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 1 | 0 | 1 | 1 | 14 |
 | Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 1 | 0 | 1 | 1 | 21 |
-| Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 5 | 2 | 0 | 0 | 0 | 21 |
+| Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 4 | 3 | 0 | 0 | 0 | 21 |
 | Permissions | [harness/permissions.md](harness/permissions.md) | 3 | 10 | 0 | 0 | 0 | 3 | 8 |
 | MCP | [harness/mcp.md](harness/mcp.md) | 3 | 5 | 1 | 0 | 0 | 1 | 14 |
 | Models | [harness/models.md](harness/models.md) | 4 | 0 | 0 | 0 | 0 | 0 | 28 |
@@ -40,6 +40,7 @@ Coverage: 74/315 cells verified (23%)
 |---|---|---|
 | codex | commands.active | Re-check Codex release notes for stable command format |
 | codex | mcp.dependencies | hand-add [mcp_servers.filesystem]; validated by just harness-check |
+| omp | hooks.safety | Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again |
 | antigravity | agents.specialists | Verify Antigravity can delegate to generated specialist wrappers with isolated context |
 | antigravity | hooks.safety | Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny |
 | antigravity | instructions.global | Install or import the Antigravity plugin and verify it loads shared harness instructions |
