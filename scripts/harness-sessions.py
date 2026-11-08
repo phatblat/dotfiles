@@ -905,7 +905,7 @@ _OMP_ERROR_CLASSES = (
     ("parse", _re.compile(r"parse|syntax|malformed|invalid json", _re.IGNORECASE)),
 )
 
-# A `bash` call that opens with `cd <path> &&` is the habit the `.omp/agent/AGENTS.md`
+# A `bash` call that opens with `cd <path> &&` is the habit the `.omp/agent/RULES.md`
 # rule forbids; each match is that Scaffolding register row's firing signal
 # (docs/flywheel.md).
 _OMP_CD_PREFIX = _re.compile(r"^\s*cd\s+[^;&|\n]+&&")
