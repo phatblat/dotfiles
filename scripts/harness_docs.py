@@ -394,7 +394,7 @@ def _format_evidence(evidence: dict[str, str]) -> str:
 def render_porting_page(state: dict[str, Any]) -> str:
     """Render docs/harness/porting.md, the deliberately wide porting grid.
 
-    Kept off the index because comparing all nine harnesses on one row is the
+    Kept off the index because comparing all seven harnesses on one row is the
     actual porting workflow, and that is the one job a wide table is good at.
     """
     lines = [

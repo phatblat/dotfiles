@@ -1583,7 +1583,7 @@ def cell_for(capability: Capability, slug: str) -> Cell:
     """Return the declared cell, or an all-unknown cell when none is declared.
 
     This is what lets an unresearched capability render as unknown for every
-    harness without writing nine stub cells per capability.
+    harness without writing seven stub cells per capability.
     """
     declared = capability.cells.get(slug)
     if declared is not None:
