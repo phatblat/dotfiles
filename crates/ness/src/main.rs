@@ -131,7 +131,8 @@ fn run_hook(p: Result<&Compiled, &str>, flags: &HashMap<String, String>) -> i32 
             }
             match harness.as_str() {
                 "crush" => hook::run_crush(p, &cwd, &manifest),
-                _ => hook::run_antigravity(p, &cwd, &manifest),
+                "antigravity" => hook::run_antigravity(p, &cwd, &manifest),
+                _ => unreachable!("outer arm admits only crush and antigravity"),
             }
         }
         other => {
