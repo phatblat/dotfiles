@@ -232,19 +232,6 @@ Note `.netrc` does not exist on this machine; the recipe prints `skip: ~/.netrc 
 
 These overlay entries are deliberately *not* in the `mise dot` spec: they are `$HOME`-only paths, so deploying them from the checkout would make the checkout depend on itself.
 
-### `.cursor/skills` must exist in the checkout
-
-The harness probe resolves paths against the **checkout root**, not `$HOME`. `.cursor/skills` is gitignored (Cursor's own managed block in `.cursor/.gitignore` re-ignores it) and is materialised by agentlink, not tracked — so it is absent from a fresh checkout, and `just harness-probe` reports `cursor skills.shared` as failing.
-
-Run `just agentlink-apply` once after the move, from the checkout:
-
-```bash
-cd ~/dev/dotfiles
-just agentlink-apply
-```
-
-It creates `.cursor/skills` as a symlink to `.agents/skills`. Without it the probe fails on every run.
-
 ### Approve the checkout's `.envrc`
 
 direnv records approvals per `.envrc` path, so the checkout's copy needs its own approval. Otherwise every shell in the checkout prints `direnv: error ... .envrc is blocked`:
