@@ -11,8 +11,8 @@
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.165.0",
-    "version": "codex-cli 0.166.0"
+    "previous": "codex-cli 0.166.0",
+    "version": "codex-cli 0.167.0"
   },
   "crush": {
     "first_seen": "2026-08-29",
@@ -31,13 +31,13 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.14.1",
-    "version": "omp/18.17.0"
+    "previous": "omp/18.17.0",
+    "version": "omp/18.18.1"
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "opencode v2.2.2",
-    "version": "opencode v2.2.5"
+    "previous": "opencode v2.2.5",
+    "version": "opencode v2.2.6"
   },
   "pi": {
     "first_seen": "2026-08-29",

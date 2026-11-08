@@ -355,3 +355,6 @@
 {"capability":"-","date":"2026-11-07","detail":"","field":"version","from":"","harness":"cursor","to":"2026.10.16-e3cb207","version_from":"","version_to":"2026.10.16-e3cb207"}
 {"capability":"-","date":"2026-11-07","detail":"","field":"version","from":"grok 1.0.77 (50ca579fa996)","harness":"grok","to":"grok 1.0.77 (50ca579fa996) [alpha]","version_from":"grok 1.0.77 (50ca579fa996)","version_to":"grok 1.0.77 (50ca579fa996) [alpha]"}
 {"capability":"-","date":"2026-11-07","detail":"","field":"version","from":"omp/18.14.1","harness":"omp","to":"omp/18.17.0","version_from":"omp/18.14.1","version_to":"omp/18.17.0"}
+{"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"codex-cli 0.166.0","harness":"codex","to":"codex-cli 0.167.0","version_from":"codex-cli 0.166.0","version_to":"codex-cli 0.167.0"}
+{"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"omp/18.17.0","harness":"omp","to":"omp/18.18.1","version_from":"omp/18.17.0","version_to":"omp/18.18.1"}
+{"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"opencode v2.2.5","harness":"opencode","to":"opencode v2.2.6","version_from":"opencode v2.2.5","version_to":"opencode v2.2.6"}
