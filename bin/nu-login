@@ -2,7 +2,7 @@
 # nu-login - Stable login-shell wrapper for mise-managed Nushell.
 #
 # Nushell is not POSIX. Callers that probe the login shell with
-# `$SHELL -l -i -c '<posix command>'` -- VS Code/Cursor shell environment
+# `$SHELL -l -i -c '<posix command>'` -- VS Code shell environment
 # resolution among them -- hit nu's parser and get exit code 1. Route every
 # `-c` invocation to zsh; nu is reserved for interactive login sessions.
 
