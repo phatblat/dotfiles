@@ -3,10 +3,8 @@
 # See the commented scratch-space block at the end of this file.
 
 [projects."/Users/phatblat/dev/_GETDITTO/cloud-infra"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/inteview_modules/agentic-coding-interview-module"]
-trust_level = "trusted"
 
 [tui]
 status_line = ["model-with-reasoning", "project-name", "git-branch", "pull-request-number", "branch-changes", "run-state", "context-used", "used-tokens", "total-input-tokens", "total-output-tokens", "task-progress"]

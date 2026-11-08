@@ -20,6 +20,11 @@
 # (restore-codex-trust.sh, the smudge filter, reads it back on checkout). The
 # cache never enters the repo: a trust grant is a per-machine decision.
 #
+# Project trust levels (`[projects."<path>"]` `trust_level`) are the same kind of
+# per-machine grant, so the filter strips them from the committed blob and
+# records them in the same cache, but only for paths that exist on this host:
+# a path that is missing here is another machine's grant and is never cached.
+#
 # Wiring (installed by `just git-filters`, not committed to .git/config):
 #   .gitattributes:  .codex/config.toml filter=codex-config
 #                    .codex/*.config.toml filter=codex-config
@@ -52,6 +57,15 @@ capture() {
     mkdir -p "$(dirname "$cache")" || return 1
     newcache="$(mktemp "$(dirname "$cache")/.codex-hook-trust.XXXXXX")" || return 1
     awk -v cache="$cache" '
+        # A project path missing on this host is a grant from another machine:
+        # never record it, so the cache holds only grants made here.
+        function exists_here(header,    path) {
+            path = header
+            sub(/^\[projects\."/, "", path)
+            sub(/"\]$/, "", path)
+            if (path == "" || index(path, "'"'"'") > 0) return 0
+            return system("test -e '"'"'" path "'"'"'") == 0
+        }
         BEGIN {
             while ((getline line < cache) > 0) {
                 split(line, a, "\t")
@@ -60,11 +74,16 @@ capture() {
         }
         /^\[/ {
             h = ($0 ~ /^\[hooks\.state\./) ? $0 : ""
+            p = ($0 ~ /^\[projects\./) ? $0 : ""
             next
         }
         /^trusted_hash = "/ && h != "" {
             if ($0 !~ /sha256:0+"$/) old[h] = $0
             h = ""
+        }
+        /^trust_level = "/ && p != "" {
+            if (exists_here(p)) old[p] = $0
+            p = ""
         }
         END {
             # Merge, never prune: the cache is shared by config.toml and every
@@ -83,6 +102,8 @@ capture() {
 }
 capture || true
 
+# The committed blob keeps each `[projects."<path>"]` header but drops its
+# `trust_level`: a project trust grant records a directory vetted on one machine.
 sed -E \
     -e 's|^(last_updated = )".*"|\1"1970-01-01T00:00:00Z"|' \
     -e 's|^(last_revision = )".*"|\1"0000000000000000000000000000000000000000"|' \
@@ -90,4 +111,5 @@ sed -E \
     -e 's|^(BROWSER_USE_CODEX_APP_VERSION = )".*"|\1"0.0.0"|' \
     -e 's|^(NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = )".*"|\1"0000000000000000000000000000000000000000000000000000000000000000"|' \
     -e 's|/private/var/folders/[^/]+/[^/]+/T/AppTranslocation/[^/]+/d/ChatGPT\.app|/Applications/ChatGPT.app|g' \
-    "$input"
+    "$input" |
+    awk '/^\[/ { p = ($0 ~ /^\[projects\./) } p && /^trust_level = / { next } { print }'

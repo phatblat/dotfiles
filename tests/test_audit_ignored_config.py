@@ -17,6 +17,7 @@ audit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(audit)
 
 ASSIGNED = next(rx for name, rx in audit.SECRET_CONTENT if name == "assigned credential")
+TRUST = next(rx for name, rx in audit.SECRET_CONTENT if name == "trust grant")
 
 # Keys and values are joined at runtime so this file holds no `key: value`
 # literal for a secret scanner to mistake for a real credential.
@@ -51,6 +52,14 @@ class AssignedCredentialTests(unittest.TestCase):
     def test_mixed_case_literal_is_flagged(self) -> None:
         line = assignment("api" + "Key", ": ", "abcDEF0123456789" + "abcdef")
         self.assertIsNotNone(ASSIGNED.search(line))
+
+
+class TrustGrantTests(unittest.TestCase):
+    def test_codex_project_trust_is_flagged(self) -> None:
+        self.assertIsNotNone(TRUST.search('[projects."/a"]\ntrust_level = "trusted"\n'))
+
+    def test_untrusted_project_is_not_flagged(self) -> None:
+        self.assertIsNone(TRUST.search('[projects."/a"]\ntrust_level = "untrusted"\n'))
 
 
 class HomeScanTests(unittest.TestCase):

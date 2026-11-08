@@ -253,70 +253,47 @@ enabled = false
 enabled = true
 
 [projects."/Users/phatblat"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/2ndBrain"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/agentic-code-review"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/agentic-coding-interview-module"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/build-infra"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/cloud-infra"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/cloud-infra-apps"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/cloud-infra-ops"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/devx-canary"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/ditto"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/ditto-action-prepare"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/ditto-devx"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/ditto-operator"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/forge"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/image-bakery"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/_GETDITTO/inteview_modules/2026-internship-agentic-coding"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/agentic-code-review"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/ground-control"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/agents/sandcastle-agent-lab"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/claude/ground-control"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/ldg/wave-rider"]
-trust_level = "trusted"
 
 [projects."/Users/phatblat/dev/sandcastle"]
-trust_level = "trusted"

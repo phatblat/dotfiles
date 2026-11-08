@@ -259,12 +259,14 @@ SECRET_CONTENT = (
     ),
     # Not a credential, but the same never-track class: a trust grant records a
     # directory vetted on one machine. Copying it auto-approves that path on a
-    # fresh host. Caught by name as trust.json; this catches it as a key.
+    # fresh host. Caught by name as trust.json; this catches it as a key, and as
+    # a Codex `[projects."<path>"]` `trust_level = "trusted"` line.
     (
         "trust grant",
         re.compile(
-            r"(?i)\"(trusted[_-]?(workspaces|folders|paths|dirs|roots)"
+            r"(?im)\"(trusted[_-]?(workspaces|folders|paths|dirs|roots)"
             r"|workspace[_-]?trust)\"\s*:\s*\[\s*[^\]\s]"
+            r"|^\s*trust_level\s*=\s*\"trusted\""
         ),
     ),
 )

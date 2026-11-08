@@ -20,6 +20,11 @@ hook_state() {
   printf '[hooks.state."%s"]\ntrusted_hash = "%s"\n' "$1" "$2"
 }
 
+# project_trust <path> <level>: one [projects."<path>"] table, as Codex writes it.
+project_trust() {
+  printf '[projects."%s"]\ntrust_level = "%s"\n' "$1" "$2"
+}
+
 # inode <file>: the inode number. `ls -i` is POSIX; `stat` flags differ between
 # BSD and GNU (on GNU, `stat -f` reports the filesystem, not the file).
 inode() {
@@ -185,4 +190,44 @@ inode() {
   [[ "$output" == *"trusted_hash = \"$ZERO\""* ]]
   cmp "$BATS_TEST_TMPDIR/cache.before" "$CODEX_HOOK_TRUST_CACHE"
   [ "$(find "$(dirname "$CODEX_HOOK_TRUST_CACHE")" -mindepth 1 | wc -l | tr -d ' ')" = 1 ]
+}
+
+@test "mask: strips a project trust_level and keeps the table header" {
+  project_trust "$BATS_TEST_TMPDIR" trusted > "$BATS_TEST_TMPDIR/in.toml"
+
+  run "$MASK" < "$BATS_TEST_TMPDIR/in.toml"
+
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"[projects.\"$BATS_TEST_TMPDIR\"]"* ]]
+  [[ "$output" != *trust_level* ]]
+}
+
+@test "mask then restore: project trust survives the checkout round trip" {
+  project_trust "$BATS_TEST_TMPDIR" trusted > "$BATS_TEST_TMPDIR/in.toml"
+
+  "$MASK" < "$BATS_TEST_TMPDIR/in.toml" > "$BATS_TEST_TMPDIR/blob.toml"
+  "$RESTORE" < "$BATS_TEST_TMPDIR/blob.toml" > "$BATS_TEST_TMPDIR/out.toml"
+
+  cmp "$BATS_TEST_TMPDIR/in.toml" "$BATS_TEST_TMPDIR/out.toml"
+}
+
+@test "mask: never records trust for a project path missing on this host" {
+  project_trust "$BATS_TEST_TMPDIR/absent" trusted > "$BATS_TEST_TMPDIR/in.toml"
+
+  "$MASK" < "$BATS_TEST_TMPDIR/in.toml" > "$BATS_TEST_TMPDIR/blob.toml"
+  run "$RESTORE" < "$BATS_TEST_TMPDIR/blob.toml"
+
+  [ "$status" -eq 0 ]
+  [[ "$output" != *trust_level* ]]
+}
+
+@test "restore: the recorded project trust replaces a committed one without duplicating it" {
+  project_trust "$BATS_TEST_TMPDIR" trusted | "$MASK" > /dev/null
+  project_trust "$BATS_TEST_TMPDIR" untrusted > "$BATS_TEST_TMPDIR/blob.toml"
+
+  run "$RESTORE" < "$BATS_TEST_TMPDIR/blob.toml"
+
+  [ "$status" -eq 0 ]
+  [ "$(printf '%s\n' "$output" | grep -c '^trust_level')" = 1 ]
+  [[ "$output" == *'trust_level = "trusted"'* ]]
 }

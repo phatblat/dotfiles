@@ -37,7 +37,6 @@ args = ["mcp", "serve"]
 command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
 
 [projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
-trust_level = "trusted"
 
 [tui]
 screen_reader_detection_done = true
