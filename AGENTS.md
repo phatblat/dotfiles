@@ -317,8 +317,3 @@ decision and rationale.
 The agent learning loop for this repo is documented in `docs/flywheel.md`.
 Read it before changing agent instructions, skills, hooks, or memory, and
 add a Cycle log row whenever you run one of its stages.
-
-<!-- entire-agent:begin -->
-If `.entire/agent-guide.md` exists (Entire generates it per clone; `.entire/` is gitignored), read it for this repository's workflow, source inspection, and verification guidance.
-@.entire/agent-guide.md
-<!-- entire-agent:end -->

@@ -282,7 +282,6 @@
 .dropbox/
 .eclipse/
 .emulator_console_auth_token
-.entire/
 .env
 .externalNativeBuild/
 .fastlane/
