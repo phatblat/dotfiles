@@ -31,7 +31,13 @@ pub const REQUIRED_PROTECTED_PATHS: &[&str] = &[
 pub const REQUIRED_DENIED_COMMAND: &str = "ness policy apply";
 
 pub fn sha256_bytes(bytes: &[u8]) -> String {
-    format!("{:x}", Sha256::digest(bytes))
+    use std::fmt::Write;
+    Sha256::digest(bytes)
+        .iter()
+        .fold(String::with_capacity(64), |mut hex, byte| {
+            let _ = write!(hex, "{byte:02x}");
+            hex
+        })
 }
 
 /// Hash of a file on disk. `ness policy apply` must hash the same bytes it
