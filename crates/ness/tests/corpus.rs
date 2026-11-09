@@ -162,7 +162,13 @@ impl Drop for TempHome {
 
 fn sha256_hex(bytes: &[u8]) -> String {
     use sha2::Digest;
-    format!("{:x}", sha2::Sha256::digest(bytes))
+    use std::fmt::Write;
+    sha2::Sha256::digest(bytes)
+        .iter()
+        .fold(String::with_capacity(64), |mut hex, byte| {
+            let _ = write!(hex, "{byte:02x}");
+            hex
+        })
 }
 
 /// A `$HOME` with the repo's policy installed and applied, so a binary run
