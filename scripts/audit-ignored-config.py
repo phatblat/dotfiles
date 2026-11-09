@@ -110,6 +110,7 @@ STATE_DIRS = frozenset(
         "artifacts",
         "attachments",
         "blobs",
+        "browser-profiles",
         "build",
         "builtin",
         "bundled",
