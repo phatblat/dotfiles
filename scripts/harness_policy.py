@@ -28,12 +28,22 @@ from typing import Any
 
 # Shared MCP servers, rendered into every harness that has a verified consumer.
 # stdio entries use `npx -y` so no global install is assumed. `filesystem`'s
-# root is the home directory.
+# root is the home directory. The Todoist entries are remote streamable-HTTP
+# servers whose OAuth (dynamic client registration) each harness performs
+# itself, so they carry no credentials.
 MCP_SERVERS: dict[str, dict[str, Any]] = {
     "filesystem": {
         "type": "stdio",
         "command": "npx",
         "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/phatblat"],
+    },
+    "todoist": {
+        "type": "http",
+        "url": "https://ai.todoist.net/mcp",
+    },
+    "todoist-automations": {
+        "type": "http",
+        "url": "https://ai.todoist.net/mcp/automations",
     },
 }
 
