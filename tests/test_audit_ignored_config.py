@@ -104,6 +104,12 @@ class HomeScanTests(unittest.TestCase):
         self.write_home(".omp/browser-profiles/google-chrome-1/manifest.json", "{}\n")
         self.assertEqual(self.scan(), [])
 
+    def test_home_file_that_also_exists_in_the_checkout_is_skipped(self) -> None:
+        (self.repo / ".omp/agent").mkdir(parents=True)
+        (self.repo / ".omp/agent/config.yml").write_text("k: v\n")
+        self.write_home(".omp/agent/config.yml", "k: v\n")
+        self.assertEqual(self.scan(), [])
+
     def test_installed_mcp_config_is_state(self) -> None:
         self.write_home(".gemini/config/mcp_config.json", '{"mcpServers": {}}\n')
         (record,) = self.scan()

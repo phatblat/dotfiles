@@ -219,6 +219,7 @@ inode() {
 
   [ "$status" -eq 0 ]
   [[ "$output" != *trust_level* ]]
+  [ ! -e "$CODEX_HOOK_TRUST_CACHE" ] || ! grep -q "absent" "$CODEX_HOOK_TRUST_CACHE"
 }
 
 @test "restore: the recorded project trust replaces a committed one without duplicating it" {
