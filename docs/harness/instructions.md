@@ -17,7 +17,7 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 | codex | aligned | shared | - | probe · codex-cli 0.167.0 · 2026-11-09 | - |
 | opencode | aligned | shared | - | probe · opencode v2.2.6 · 2026-11-09 | - |
 | pi | aligned | shared | - | probe · 1.5.0 · 2026-11-09 | - |
-| omp | aligned | native | - | probe · omp/18.18.2 · 2026-11-09 | inlined shared harness instructions + compaction contract + commit attribution |
+| omp | aligned | native | - | probe · omp/18.18.3 · 2026-11-09 | inlined shared harness instructions + compaction contract + commit attribution |
 | antigravity | partial | adapter | - | probe · 1.5.3 · 2026-11-09 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
 | crush | aligned | native | - | probe · crush version v0.100.0 · 2026-11-09 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
 

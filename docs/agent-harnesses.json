@@ -101,7 +101,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "native",
           "next_action": "",
@@ -513,7 +513,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "native",
           "next_action": "",
@@ -1422,7 +1422,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "native",
           "next_action": "",
@@ -1836,7 +1836,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "native",
           "next_action": "",
@@ -2377,7 +2377,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "adapter",
           "next_action": "Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again, and return this cell to aligned in the same change, since the probe passes only while the entry is present",
@@ -4194,7 +4194,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "native",
           "next_action": "",
@@ -5587,7 +5587,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "adapter",
           "next_action": "",
@@ -5741,7 +5741,7 @@
             "date": "2026-11-09",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/18.18.2"
+            "version": "omp/18.18.3"
           },
           "mode": "shared",
           "next_action": "",
@@ -6333,8 +6333,8 @@
     },
     "omp": {
       "first_seen": "2026-08-29",
-      "previous": "omp/18.18.1",
-      "version": "omp/18.18.2"
+      "previous": "omp/18.18.2",
+      "version": "omp/18.18.3"
     },
     "opencode": {
       "first_seen": "2026-08-29",
