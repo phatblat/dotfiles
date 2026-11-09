@@ -444,9 +444,9 @@
     },
     "hooks.safety": {
       "date": "2026-11-09",
-      "detail": ".omp/agent/hooks/pre/harness-guard.ts matches \\bness\\b",
+      "detail": ".omp/agent/config.yml matches (?m)^\\s*-\\s*hook:pre:harness-guard:harness-guard\\.ts",
       "mode": "adapter",
-      "parity": "aligned",
+      "parity": "partial",
       "result": "pass",
       "surface": ""
     },

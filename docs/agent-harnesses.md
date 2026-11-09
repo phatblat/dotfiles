@@ -40,7 +40,7 @@ Coverage: 74/315 cells verified (23%)
 |---|---|---|
 | codex | commands.active | Re-check Codex release notes for stable command format |
 | codex | mcp.dependencies | hand-add [mcp_servers.filesystem]; validated by just harness-check |
-| omp | hooks.safety | Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again |
+| omp | hooks.safety | Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again, and return this cell to aligned in the same change, since the probe passes only while the entry is present |
 | antigravity | agents.specialists | Verify Antigravity can delegate to generated specialist wrappers with isolated context |
 | antigravity | hooks.safety | Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny |
 | antigravity | instructions.global | Install or import the Antigravity plugin and verify it loads shared harness instructions |
@@ -55,6 +55,7 @@ Coverage: 74/315 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-11-09 | omp | hooks.safety | parity | aligned | partial |
 | 2026-11-08 | omp | - | version | omp/18.18.1 | omp/18.18.2 |
 | 2026-11-08 | antigravity | - | version | 1.4.6 | 1.5.3 |
 | 2026-11-08 | opencode | - | version | opencode v2.2.5 | opencode v2.2.6 |
@@ -64,7 +65,6 @@ Coverage: 74/315 cells verified (23%)
 | 2026-11-07 | grok | - | version | grok 1.0.77 (50ca579fa996) | grok 1.0.77 (50ca579fa996) [alpha] |
 | 2026-11-07 | cursor | - | version | - | 2026.10.16-e3cb207 |
 | 2026-11-07 | crush | - | version | crush version v0.99.0 | crush version v0.100.0 |
-| 2026-11-07 | claude | - | version | 2.1.251 (Claude Code) | 2.1.314 (Claude Code) |
 
 ## Permanent divergences
 

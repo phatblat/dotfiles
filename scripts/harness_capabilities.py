@@ -909,16 +909,19 @@ CAPABILITIES: list[Capability] = [
                 note=(
                     "the ness pre-tool hook is disabled on purpose: disabledExtensions "
                     "lists hook:pre:harness-guard:harness-guard.ts in "
-                    "~/.omp/agent/config.yml and every profile config (b47ea03); OMP "
+                    "~/.omp/agent/config.yml (b47ea03); OMP "
                     "runs approvalMode yolo with sudo denied and gitGuard on"
                 ),
                 next_action=(
                     "Remove hook:pre:harness-guard:harness-guard.ts from "
                     "disabledExtensions in ~/.omp/agent/config.yml and the profile "
-                    "configs when ness should gate OMP again"
+                    "configs when ness should gate OMP again, and return this cell "
+                    "to aligned in the same change, since the probe passes only "
+                    "while the entry is present"
                 ),
                 probe=_contains(
-                    ".omp/agent/config.yml", r"hook:pre:harness-guard:harness-guard\.ts"
+                    ".omp/agent/config.yml",
+                    r"(?m)^\s*-\s*hook:pre:harness-guard:harness-guard\.ts",
                 ),
             ),
             "antigravity": Cell(
