@@ -20,6 +20,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-09 | omp | hooks.safety | parity | aligned | partial | omp/18.18.2 |
 | 2026-11-08 | omp | - | version | omp/18.18.1 | omp/18.18.2 | omp/18.18.2 |
 | 2026-11-08 | antigravity | - | version | 1.4.6 | 1.5.3 | 1.5.3 |
 | 2026-11-08 | opencode | - | version | opencode v2.2.5 | opencode v2.2.6 | opencode v2.2.6 |
@@ -219,4 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-22 | claude | - | version | 2.1.261 (Claude Code) | 2.1.278 (Claude Code) | 2.1.278 (Claude Code) |
 | 2026-09-22 | antigravity | - | version | 1.2.7 | 1.2.8 | 1.2.8 |
 | 2026-09-22 | opencode | maintenance.config_validation | probe | unavailable | pass | 1.18.31 |
-| 2026-09-19 | omp | - | version | omp/18.2.5 | omp/18.2.6 | omp/18.2.6 |

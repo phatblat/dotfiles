@@ -201,22 +201,27 @@ just audit-ignored-config              # all curated harness roots
 just audit-ignored-config .omp .pi     # narrow to specific roots
 ```
 
-The script classifies every ignored, untracked file under those roots as
-secret, runtime state, vendored package content, or config candidate, and
+The script classifies ignored, untracked files under those roots in the
+checkout, and every regular (non-symlink) file under the same roots in
+`$HOME` that the checkout does not deploy (printed with a `~/` prefix), as
+secret, runtime state, vendored package content, or config candidate. It
 reports only the candidates plus two hazards: config-shaped files carrying
 credential material, and already-tracked files that look like credentials.
 
 Triage each candidate:
 
-- **Track it** — hand-authored and portable across machines. Add a `!` rule
-  to `~/.gitignore` in sorted position, then re-run `~/scripts/sort-gitignore`.
+- **Track it** — hand-authored and portable across machines. Move the file
+  into the primary checkout (`~/dev/dotfiles`) at the same relative path, add
+  a `!` rule to the checkout's `.gitignore` in sorted position
+  (`scripts/sort-gitignore`), `git add` it, run `just home-spec`, then
+  `just home-apply` to link it back into `$HOME`.
 - **Dismiss it** — installed, bundled, or machine-generated. Vendored skill
   bundles and a harness's own bundled system skills are the common case;
   they reinstall on any new machine and tracking them just forks upstream.
 - **Extend the classifier** — if a whole directory of runtime state keeps
-  surfacing, add its name to `STATE_DIRS` in
-  `~/scripts/audit-ignored-config.py` rather than dismissing it by hand
-  every audit.
+  surfacing, add its name to `STATE_DIRS` in `scripts/audit-ignored-config.py`
+  rather than dismissing it by hand every audit; for a single
+  installer-written file, add its path to `INSTALLED_PATHS` instead.
 
 Never propose tracking these, whatever the report says:
 
@@ -224,7 +229,7 @@ Never propose tracking these, whatever the report says:
 |---|---|---|
 | Credential stores | `.omp/agent/agent.db`, `.pi/agent/auth.json`, `*.env` | OAuth tokens and API keys |
 | Secret definitions | `.omp/agent/secrets.yml`, `secret-placeholder.key` | Plaintext secrets and their HMAC key |
-| Trust grants | `.pi/agent/trust.json`, `.config/homebrew/trust.json` | A per-machine security decision. Replicating it auto-approves on a fresh host a directory you only vetted on one machine — a privilege escalation dressed as config. |
+| Trust grants | `.pi/agent/trust.json`, `.config/homebrew/trust.json`, `.codex/config.toml` `[projects]` `trust_level` | A per-machine security decision. Replicating it auto-approves on a fresh host a directory you only vetted on one machine — a privilege escalation dressed as config. |
 | Machine identity | `.omp/install-id` | Per-install UUID; copying it merges telemetry identities |
 | Transcripts | `sessions/`, `history.db`, `blobs/` | May contain anything typed or read |
 

@@ -9659,6 +9659,11 @@ source = "~/dev/dotfiles/.omp/agent/APPEND_SYSTEM.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/agent/RULES.md"]
+source = "~/dev/dotfiles/.omp/agent/RULES.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/agent/agents/ai-sdk-expert.md"]
 source = "~/dev/dotfiles/.omp/agent/agents/ai-sdk-expert.md"
 mode = "symlink"
@@ -9994,6 +9999,16 @@ source = "~/dev/dotfiles/.omp/profiles/baseten/agent/AGENTS.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/baseten/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/APPEND_SYSTEM.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/baseten/agent/RULES.md"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/RULES.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/baseten/agent/config.yml"]
 source = "~/dev/dotfiles/.omp/profiles/baseten/agent/config.yml"
 mode = "symlink"
@@ -10016,6 +10031,16 @@ relative = false
 
 [dotfiles."~/.omp/profiles/casper/agent/AGENTS.md"]
 source = "~/dev/dotfiles/.omp/profiles/casper/agent/AGENTS.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/APPEND_SYSTEM.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/RULES.md"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/RULES.md"
 mode = "symlink"
 relative = false
 
@@ -10049,6 +10074,16 @@ source = "~/dev/dotfiles/.omp/profiles/reflection/agent/AGENTS.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/reflection/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/APPEND_SYSTEM.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/reflection/agent/RULES.md"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/RULES.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/reflection/agent/config.yml"]
 source = "~/dev/dotfiles/.omp/profiles/reflection/agent/config.yml"
 mode = "symlink"
@@ -10076,6 +10111,16 @@ relative = false
 
 [dotfiles."~/.omp/profiles/subconscious/agent/AGENTS.md"]
 source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/AGENTS.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/APPEND_SYSTEM.md"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/APPEND_SYSTEM.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/RULES.md"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/RULES.md"
 mode = "symlink"
 relative = false
 

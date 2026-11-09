@@ -129,6 +129,7 @@ _PROBED_2026_08_29 = "2026-08-29"
 _PROBED_2026_09_15 = "2026-09-15"
 _PROBED_2026_10_16 = "2026-10-16"
 _PROBED_2026_10_29 = "2026-10-29"
+_PROBED_2026_11_08 = "2026-11-08"
 
 _SHARED = "~/.agents/harness"
 _SAFETY = "~/.config/ness/policy.toml"
@@ -896,13 +897,32 @@ CAPABILITIES: list[Capability] = [
                 probe=_contains(".pi/agent/extensions/harness.ts", r"\bness\b"),
             ),
             "omp": Cell(
-                parity="aligned",
+                parity="partial",
                 mode="adapter",
-                artifacts=("~/.omp/agent/hooks/pre/harness-guard.ts",),
-                evidence=Evidence(
-                    kind="probe", ref="file_contains", date=_PROBED_2026_08_29
+                artifacts=(
+                    "~/.omp/agent/hooks/pre/harness-guard.ts",
+                    "~/.omp/agent/config.yml",
                 ),
-                probe=_contains(".omp/agent/hooks/pre/harness-guard.ts", r"\bness\b"),
+                evidence=Evidence(
+                    kind="probe", ref="file_contains", date=_PROBED_2026_11_08
+                ),
+                note=(
+                    "the ness pre-tool hook is disabled on purpose: disabledExtensions "
+                    "lists hook:pre:harness-guard:harness-guard.ts in "
+                    "~/.omp/agent/config.yml (b47ea03); OMP "
+                    "runs approvalMode yolo with sudo denied and gitGuard on"
+                ),
+                next_action=(
+                    "Remove hook:pre:harness-guard:harness-guard.ts from "
+                    "disabledExtensions in ~/.omp/agent/config.yml and the profile "
+                    "configs when ness should gate OMP again, and return this cell "
+                    "to aligned in the same change, since the probe passes only "
+                    "while the entry is present"
+                ),
+                probe=_contains(
+                    ".omp/agent/config.yml",
+                    r"(?m)^\s*-\s*hook:pre:harness-guard:harness-guard\.ts",
+                ),
             ),
             "antigravity": Cell(
                 parity="partial",

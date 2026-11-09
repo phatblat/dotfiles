@@ -13,6 +13,11 @@
 # changed, Codex compares the restored hash against the new hook definition
 # and still asks for review. A missing or unreadable cache degrades to `cat`.
 #
+# Project trust levels work the same way: the committed blob holds each
+# `[projects."<path>"]` header with no `trust_level`, and the value recorded on
+# this host for that exact header is written back under it. A header with no
+# recorded value stays untrusted.
+#
 set -uo pipefail
 
 cache="${CODEX_HOOK_TRUST_CACHE:-${XDG_STATE_HOME:-$HOME/.local/state}/codex-hook-trust.tsv}"
@@ -28,10 +33,17 @@ awk -v cache="$cache" '
             real[a[1]] = a[2]
         }
     }
-    /^\[/ { h = ($0 ~ /^\[hooks\.state\./) ? $0 : "" }
+    /^\[/ {
+        h = ($0 ~ /^\[hooks\.state\./) ? $0 : ""
+        p = ($0 ~ /^\[projects\./) ? $0 : ""
+        print
+        if (p != "" && (p in real)) print real[p]
+        next
+    }
     /^trusted_hash = "sha256:0+"$/ && h != "" && (h in real) {
         print real[h]
         next
     }
+    /^trust_level = / && p != "" && (p in real) { next }
     { print }
 '

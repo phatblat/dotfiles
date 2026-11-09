@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
-"""Find gitignored files that look like configuration worth tracking.
+"""Find untracked files that look like configuration worth tracking.
 
 Allowlist-style .gitignore rules fail safe: anything new under a harness
 config root is ignored by default and never shows up in `git status`. That
 trades visibility for safety. This script restores the visibility half by
-listing ignored-but-untracked files, classifying each as secret, state, or
-config candidate, and reporting only the candidates.
+listing ignored-but-untracked files in the checkout, plus the regular files
+under the same roots in $HOME that the checkout does not deploy, classifying
+each as secret, state, or config candidate, and reporting only the candidates.
+Since the home-overlay migration $HOME is not the repository, so a file a
+harness writes straight into ~/.omp or ~/.config never reaches the checkout.
 
 It also flags the inverse hazard: tracked files whose name or contents look
 like credentials.
 
 Usage:
-    scan-ignored-config.py [ROOT ...] [--repo DIR] [--json] [--include-state]
+    scan-ignored-config.py [ROOT ...] [--repo DIR] [--home DIR] [--json] [--include-state]
 """
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -106,6 +110,7 @@ STATE_DIRS = frozenset(
         "artifacts",
         "attachments",
         "blobs",
+        "browser-profiles",
         "build",
         "builtin",
         "bundled",
@@ -255,12 +260,14 @@ SECRET_CONTENT = (
     ),
     # Not a credential, but the same never-track class: a trust grant records a
     # directory vetted on one machine. Copying it auto-approves that path on a
-    # fresh host. Caught by name as trust.json; this catches it as a key.
+    # fresh host. Caught by name as trust.json; this catches it as a key, and as
+    # a Codex `[projects."<path>"]` `trust_level = "trusted"` line.
     (
         "trust grant",
         re.compile(
-            r"(?i)\"(trusted[_-]?(workspaces|folders|paths|dirs|roots)"
+            r"(?im)\"(trusted[_-]?(workspaces|folders|paths|dirs|roots)"
             r"|workspace[_-]?trust)\"\s*:\s*\[\s*[^\]\s]"
+            r"|^\s*trust_level\s*=\s*\"trusted\""
         ),
     ),
 )
@@ -292,6 +299,11 @@ BUNDLED_DOC_NAMES = frozenset(
         "notice",
     }
 )
+
+# Single files an installer writes into a harness root. Each reinstalls on
+# any machine, so it is state, never a candidate. Data Agent Kit writes
+# .gemini/config/mcp_config.json (harness-map closed item, 2026-10-25).
+INSTALLED_PATHS = frozenset({".gemini/config/mcp_config.json"})
 
 
 def classify(relpath):
@@ -413,6 +425,31 @@ def git_lines(repo, args):
     return [line for line in result.stdout.split("\0") if line]
 
 
+def classify_entry(repo, base, entry, vendored, roots, source):
+    """Classify one untracked file; None unless it is config or state.
+
+    `base` is the tree the file lives in (the checkout or $HOME); `repo` is
+    always the checkout, which owns the shared-skill counterparts.
+    """
+    kind = classify(entry)
+    if kind not in ("config", "state"):
+        return None
+    if kind == "config" and (
+        is_vendored(base, entry, vendored, roots)
+        or is_unshared_skill(repo, entry)
+        or is_bundled_doc(entry)
+        or is_empty(base / entry)
+        or entry in INSTALLED_PATHS
+    ):
+        kind = "state"
+    record = {"path": entry, "kind": kind, "warnings": [], "source": source}
+    if kind == "config":
+        record["warnings"] = sniff_secrets(base / entry)
+        if record["warnings"]:
+            record["kind"] = "review"
+    return record
+
+
 def scan_ignored(repo, roots):
     """Classify every ignored, untracked file under roots."""
     found = []
@@ -420,22 +457,36 @@ def scan_ignored(repo, roots):
     for entry in git_lines(
         repo, ["ls-files", "-z", "--others", "--ignored", "--exclude-standard", "--", *roots]
     ):
-        kind = classify(entry)
-        if kind not in ("config", "state"):
+        record = classify_entry(repo, repo, entry, vendored, roots, "checkout")
+        if record:
+            found.append(record)
+    return found
+
+
+def scan_home(repo, home, roots, tracked):
+    """Classify regular files under roots in $HOME that the checkout does not deploy.
+
+    The home overlay links only tracked files into $HOME, so a file a harness
+    writes there directly is invisible to `git ls-files` in the checkout.
+    """
+    found = []
+    vendored = {}
+    for root in roots:
+        top = home / root
+        if not top.is_dir():
             continue
-        if kind == "config" and (
-            is_vendored(repo, entry, vendored, roots)
-            or is_unshared_skill(repo, entry)
-            or is_bundled_doc(entry)
-            or is_empty(repo / entry)
-        ):
-            kind = "state"
-        record = {"path": entry, "kind": kind, "warnings": []}
-        if kind == "config":
-            record["warnings"] = sniff_secrets(repo / entry)
-            if record["warnings"]:
-                record["kind"] = "review"
-        found.append(record)
+        for dirpath, dirnames, filenames in os.walk(top):
+            dirnames[:] = sorted(d for d in dirnames if d not in STATE_DIRS)
+            for name in sorted(filenames):
+                path = Path(dirpath) / name
+                if path.is_symlink() or not path.is_file():
+                    continue
+                entry = path.relative_to(home).as_posix()
+                if entry in tracked or os.path.lexists(repo / entry):
+                    continue
+                record = classify_entry(repo, home, entry, vendored, roots, "home")
+                if record:
+                    found.append(record)
     return found
 
 
@@ -466,6 +517,11 @@ def scan_tracked(repo, roots):
     return flagged
 
 
+def display_path(item):
+    """Checkout paths print as-is; $HOME paths carry a `~/` prefix."""
+    return f"~/{item['path']}" if item.get("source") == "home" else item["path"]
+
+
 def render(candidates, review, state, flagged, include_state):
     """Print a markdown report. Returns nothing."""
     print("## Ignored configuration coverage\n")
@@ -475,7 +531,7 @@ def render(candidates, review, state, flagged, include_state):
         print("| Path | Size |")
         print("|---|---|")
         for item in candidates:
-            print(f"| `{item['path']}` | {item['size']} B |")
+            print(f"| `{display_path(item)}` | {item['size']} B |")
         print()
     else:
         print("No untracked configuration candidates. Coverage is complete.\n")
@@ -485,7 +541,7 @@ def render(candidates, review, state, flagged, include_state):
         print("| Path | Detected |")
         print("|---|---|")
         for item in review:
-            print(f"| `{item['path']}` | {', '.join(item['warnings'])} |")
+            print(f"| `{display_path(item)}` | {', '.join(item['warnings'])} |")
         print()
 
     if flagged:
@@ -499,7 +555,7 @@ def render(candidates, review, state, flagged, include_state):
     if include_state and state:
         print(f"### Ignored runtime state ({len(state)} files, correctly excluded)\n")
         for item in state[:50]:
-            print(f"- `{item['path']}`")
+            print(f"- `{display_path(item)}`")
         if len(state) > 50:
             print(f"- ... and {len(state) - 50} more")
         print()
@@ -542,18 +598,26 @@ def main():
     parser.add_argument(
         "--include-state", action="store_true", help="also list ignored runtime state"
     )
+    parser.add_argument(
+        "--home",
+        default=str(Path.home()),
+        help="home directory whose harness roots are scanned for untracked files",
+    )
     args = parser.parse_args()
 
     repo = Path(args.repo).expanduser().resolve()
+    home = Path(args.home).expanduser().resolve()
     roots = args.roots or allowlist_roots(repo)
     if not roots:
         print("No config roots found to scan.", file=sys.stderr)
         return 0
 
-    ignored = scan_ignored(repo, roots)
+    tracked = set(git_lines(repo, ["ls-files", "-z", "--", *roots]))
+    ignored = scan_ignored(repo, roots) + scan_home(repo, home, roots, tracked)
     candidates = []
     for item in (i for i in ignored if i["kind"] == "config"):
-        item["size"] = (repo / item["path"]).stat().st_size
+        base = home if item["source"] == "home" else repo
+        item["size"] = (base / item["path"]).stat().st_size
         candidates.append(item)
     candidates.sort(key=lambda i: i["path"])
     review = sorted((i for i in ignored if i["kind"] == "review"), key=lambda i: i["path"])
