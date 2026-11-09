@@ -24,6 +24,11 @@
 # per-machine grant, so the filter strips them from the committed blob and
 # records them in the same cache, but only for paths that exist on this host:
 # a path that is missing here is another machine's grant and is never cached.
+# Known limitation: the existence check runs on the header text verbatim, so a
+# path written with TOML escapes (`\\`, `\"`), a literal-string header
+# (`[projects.'...']`), or a path containing `'` is never cached. Its
+# trust_level is still stripped from the blob, so that grant is lost on the
+# next checkout and Codex re-prompts once (fails safe).
 #
 # Wiring (installed by `just git-filters`, not committed to .git/config):
 #   .gitattributes:  .codex/config.toml filter=codex-config
