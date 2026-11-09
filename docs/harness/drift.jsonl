@@ -358,3 +358,5 @@
 {"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"codex-cli 0.166.0","harness":"codex","to":"codex-cli 0.167.0","version_from":"codex-cli 0.166.0","version_to":"codex-cli 0.167.0"}
 {"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"omp/18.17.0","harness":"omp","to":"omp/18.18.1","version_from":"omp/18.17.0","version_to":"omp/18.18.1"}
 {"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"opencode v2.2.5","harness":"opencode","to":"opencode v2.2.6","version_from":"opencode v2.2.5","version_to":"opencode v2.2.6"}
+{"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"1.4.6","harness":"antigravity","to":"1.5.3","version_from":"1.4.6","version_to":"1.5.3"}
+{"capability":"-","date":"2026-11-08","detail":"","field":"version","from":"omp/18.18.1","harness":"omp","to":"omp/18.18.2","version_from":"omp/18.18.1","version_to":"omp/18.18.2"}

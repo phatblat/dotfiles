@@ -13,13 +13,13 @@ Verify: `just ness-test`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.314 (Claude Code) · 2026-11-08 | - |
-| codex | aligned | adapter | - | probe · codex-cli 0.167.0 · 2026-11-08 | - |
-| opencode | aligned | adapter | - | probe · opencode v2.2.6 · 2026-11-08 | - |
-| pi | aligned | adapter | - | probe · 1.5.0 · 2026-11-08 | - |
-| omp | aligned | adapter | - | probe · omp/18.18.1 · 2026-11-08 | - |
-| antigravity | partial | adapter | - | probe · 1.4.6 · 2026-11-08 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
-| crush | partial | adapter | - | probe · crush version v0.100.0 · 2026-11-08 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
+| claude | aligned | adapter | - | probe · 2.1.314 (Claude Code) · 2026-11-09 | - |
+| codex | aligned | adapter | - | probe · codex-cli 0.167.0 · 2026-11-09 | - |
+| opencode | aligned | adapter | - | probe · opencode v2.2.6 · 2026-11-09 | - |
+| pi | aligned | adapter | - | probe · 1.5.0 · 2026-11-09 | - |
+| omp | aligned | adapter | - | probe · omp/18.18.2 · 2026-11-09 | - |
+| antigravity | partial | adapter | - | probe · 1.5.3 · 2026-11-09 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
+| crush | partial | adapter | - | probe · crush version v0.100.0 · 2026-11-09 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
 
 ### Not yet researched
 

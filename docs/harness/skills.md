@@ -13,13 +13,13 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-08 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.167.0 · 2026-11-08 | - |
-| opencode | aligned | shared | - | probe · opencode v2.2.6 · 2026-11-08 | - |
-| pi | aligned | shared | - | probe · 1.5.0 · 2026-11-08 | - |
-| omp | aligned | native | - | probe · omp/18.18.1 · 2026-11-08 | - |
-| antigravity | partial | adapter | - | probe · 1.4.6 · 2026-11-08 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
-| crush | aligned | native | - | probe · crush version v0.100.0 · 2026-11-08 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
+| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-09 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.167.0 · 2026-11-09 | - |
+| opencode | aligned | shared | - | probe · opencode v2.2.6 · 2026-11-09 | - |
+| pi | aligned | shared | - | probe · 1.5.0 · 2026-11-09 | - |
+| omp | aligned | native | - | probe · omp/18.18.2 · 2026-11-09 | - |
+| antigravity | partial | adapter | - | probe · 1.5.3 · 2026-11-09 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
+| crush | aligned | native | - | probe · crush version v0.100.0 · 2026-11-09 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
 
 ### skills.manual_only · p1
 

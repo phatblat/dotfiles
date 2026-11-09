@@ -13,13 +13,13 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-08 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.167.0 · 2026-11-08 | - |
-| opencode | aligned | shared | - | probe · opencode v2.2.6 · 2026-11-08 | - |
-| pi | aligned | shared | - | probe · 1.5.0 · 2026-11-08 | - |
-| omp | aligned | shared | - | probe · omp/18.18.1 · 2026-11-08 | - |
-| antigravity | aligned | shared | - | probe · 1.4.6 · 2026-11-08 | - |
-| crush | aligned | shared | - | probe · crush version v0.100.0 · 2026-11-08 | - |
+| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-09 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.167.0 · 2026-11-09 | - |
+| opencode | aligned | shared | - | probe · opencode v2.2.6 · 2026-11-09 | - |
+| pi | aligned | shared | - | probe · 1.5.0 · 2026-11-09 | - |
+| omp | aligned | shared | - | probe · omp/18.18.2 · 2026-11-09 | - |
+| antigravity | aligned | shared | - | probe · 1.5.3 · 2026-11-09 | - |
+| crush | aligned | shared | - | probe · crush version v0.100.0 · 2026-11-09 | - |
 
 ### maintenance.config_validation · p1
 
@@ -31,8 +31,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config | probe · opencode v2.2.6 · 2026-11-08 | - |
-| pi | aligned | native | pi list --no-approve | probe · 1.5.0 · 2026-11-08 | - |
+| opencode | aligned | native | opencode debug config | probe · opencode v2.2.6 · 2026-11-09 | - |
+| pi | aligned | native | pi list --no-approve | probe · 1.5.0 · 2026-11-09 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | crush | unknown | none | - | - | - |
