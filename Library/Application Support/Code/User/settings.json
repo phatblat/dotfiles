@@ -185,7 +185,6 @@
   "vscode-pets.petType": "zappy",
   "vscode-pets.position": "explorer",
   "vscode-pets.theme": "forest",
-  "vsicons.dontShowNewVersionMessage": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
@@ -200,5 +199,5 @@
       ".continue/**/*.yaml",
     ],
   },
-  "workbench.colorTheme": "Purple Night",
+  "workbench.colorTheme": "Purple Night"
 }
