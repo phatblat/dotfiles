@@ -260,9 +260,6 @@
 .cpan/
 .cups/
 .cursor/*
-!.cursor/.gitignore
-!.cursor/cli-config.json
-!.cursor/mcp.json
 .cxx/
 .dart-tool/
 .dart/
@@ -285,7 +282,6 @@
 .dropbox/
 .eclipse/
 .emulator_console_auth_token
-.entire/
 .env
 .externalNativeBuild/
 .fastlane/
@@ -321,11 +317,6 @@
 .google-cloud-sdk/
 .gradle/
 .grok/*
-!.grok/agents/
-!.grok/config.toml
-!.grok/hooks/
-!.grok/rules/
-!.grok/scripts/
 .grokbot/
 .groovy/
 .gt/
@@ -1032,6 +1023,7 @@ Library/LanguageModeling/
 Library/LaunchAgents/*
 !Library/LaunchAgents/at.phatbl.graphify-refresh.plist
 !Library/LaunchAgents/at.phatbl.harness-probe.plist
+!Library/LaunchAgents/at.phatbl.paseo-daemon.plist
 Library/Library/
 Library/LockdownMode/
 Library/Mail/

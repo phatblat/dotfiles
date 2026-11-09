@@ -27,8 +27,6 @@ the Antigravity session store.
 | `pi` | `pi` | `~/.pi/agent` | `~/.pi/agent/sessions/*.jsonl` | jsonl |
 | `omp` | `omp` | `~/.omp/agent` | `~/.omp/agent/sessions/**/*.jsonl` | jsonl |
 | `antigravity` | `agy` | `~/.gemini` + `~/.agents/harness/adapters/antigravity` | `~/.gemini/antigravity-cli/history.jsonl` only; `conversations/*.pb` is protobuf and guard-protected | jsonl + opaque |
-| `cursor` | `cursor-agent` | `~/.cursor` (blanket-gitignored) + `~/.agents/harness/adapters/cursor` | `~/.cursor/projects/*/agent-transcripts/*/*.jsonl` | jsonl |
-| `grok` | `grok` | `~/.grok` | `~/.grok/sessions/<url-encoded-cwd>/<id>/{chat_history,events,updates}.jsonl` + `sessions/session_search.sqlite` (not read) | jsonl |
 
 ## Per-harness sections
 
@@ -243,54 +241,6 @@ bodies are permanently out of coverage, not merely unimplemented.
 
 **Observed volume.** 1 history file locally, 128 bytes, single prompt.
 
-### cursor
-
-**Resolved root.** No env override confirmed; `~/.cursor` (this root is
-also blanket-gitignored, see `~/.gitignore:255`).
-
-**File layout.** `~/.cursor/projects/<project-slug>/agent-transcripts/
-<session-uuid>/<session-uuid>.jsonl` — note the session-id appears as both a
-directory and the filename inside it.
-
-**Record schema.** Anthropic-shaped: `{role, message, type, status}` with
-`message.content[].type` ∈ `text | tool_use` and `type == "turn_ended"`
-carrying `status` (observed `success`).
-
-- `tool_call`: `tool_use` `.name`.
-- `turn_abort`: `turn_ended.status != "success"`.
-
-**Observed volume.** Single local transcript file — expect a low-coverage
-report.
-
-### grok
-
-**Resolved root.** No env override confirmed; `~/.grok`.
-
-**File layout.** `~/.grok/sessions/<url-encoded-cwd>/<session-id>/` holding
-three files plus a shared index:
-
-- `chat_history.jsonl`: `{type, content, synthetic_reason}`,
-  `type` ∈ `system | user | assistant`. No tool records — this file yields
-  only a `session_start` observation.
-- `events.jsonl` — the valuable file:
-  `{ts, type, server_name, transport, target, timeout_sec, duration_ms,
-  servers[], tool_count, tools, error_type, error_message, enabled,
-  disabled, total_servers, succeeded, failed, auth_required, total_tools,
-  is_reinit, failed_servers}`, `type` ∈ `mcp_server_starting |
-  mcp_server_connected | mcp_server_failed | mcp_config_resolved |
-  mcp_init_completed | yolo_toggled`. `mcp_lifecycle` records use
-  `name = server_name`, `ms = duration_ms`, `ok` derived from the event
-  type, `detail = error_type` — `error_message` free text is never emitted.
-- `updates.jsonl`: `{timestamp, method, params}`; only
-  `params.update.sessionUpdate` and `params.update.currentModeId` are safe
-  discriminators (not currently emitted; noted for future extension).
-- `sessions/session_search.sqlite` is an FTS index over the same transcript
-  text as the files above — deliberately never read.
-
-**Observed volume.** 1 session directory locally
-(`%2FUsers%2Fphatblat/01a00630-753b-7302-88b9-ffec523354f4`), 2 files
-(`chat_history.jsonl`, `events.jsonl`).
-
 ## Observed volumes
 
 Scanned 2026-08-23 with `~/scripts/harness-sessions.py --since 3650
@@ -305,8 +255,6 @@ and `just harness-audit` for CLI versions:
 | pi | 0.84.2 | 19 | 19 | 2026-06-27 | 2026-08-12 |
 | omp | omp/18.0.0 | 460 | 460 | 2026-08-02 | 2026-08-23 |
 | antigravity | 1.0.13 | 1 | 1 | 2026-05-25 | 2026-05-25 |
-| cursor | 2026.07.01-777f564 | 1 | 1 | (no ts field observed) | (no ts field observed) |
-| grok | grok 1.0.5 (5115b46bc909) [alpha] | 1 session dir, 2 files | 2 | 2026-08-15 | 2026-08-15 |
 
 `harness-sessions.py`'s default `--max-files` is 400; `codex` is the only
 harness whose on-disk tree exceeds that default (433 files), so a default

@@ -91,36 +91,6 @@ commands that failed due to permission denial or indicate frequent use.
   (`[protected_paths]` in `~/.config/ness/policy.toml`); transcript bodies there
   are permanently out of audit coverage.
 
-## cursor
-
-- CLI: `cursor-agent`. Config root: `~/.cursor` (blanket-gitignored, see
-  `~/.gitignore:255`) plus the generated adapter at
-  `~/.agents/harness/adapters/cursor`.
-- Files worth reading: `.mdc` rules, generated plugin config, generated
-  skill wrappers.
-- Session store: `~/.cursor/projects/*/agent-transcripts/*/*.jsonl` — see
-  `docs/agent-session-transcripts.md#cursor`. A handful of local transcripts
-  (3 in a 30-day window); they carry no timestamps and no tool results, so
-  error rates are unmeasurable. Expect a low-coverage report.
-
-## grok
-
-- CLI: `grok`. Config root: `~/.grok`.
-- Files worth reading: `~/.grok/config.toml` (`[mcp_servers.*]` — natively
-  declared servers only). `[compat.claude]`/`[compat.cursor] mcps = true`
-  in `config.toml` means grok also inherits MCP servers from
-  `~/.claude.json`/`~/.cursor/mcp.json` plus plugin bridges; `grok mcp
-  list --json` shows only the native list (often empty), while `grok mcp
-  doctor` additionally resolves the compat-inherited servers — use
-  `doctor`, not `list` or a bare `config.toml` grep, to see grok's
-  effective MCP surface (2026-09-07 optimize-harness audit finding).
-- Session store: `~/.grok/sessions/<url-encoded-cwd>/<id>/
-  {chat_history,events,updates}.jsonl` — see
-  `docs/agent-session-transcripts.md#grok`. `events.jsonl` carries the only
-  friction signal (MCP server lifecycle); `chat_history.jsonl` has no tool
-  events. `sessions/session_search.sqlite` is an FTS index over the same
-  transcript text and is never read.
-
 ## crush
 
 - CLI: `crush`. Config root: `~/.config/crush`.
@@ -160,9 +130,6 @@ with new measurements, not with a fresh reading of the same config.
   baseline now lives in `[approval]` of `~/.config/ness/policy.toml`, rendered by
   `scripts/harness_policy.py`), and named profiles load the same ness hook through the
   `hooks`/`extensions` links `generate-omp-profiles.sh` maintains.
-- **A grok scan of 0 files with `files_skipped_since: 1` is genuine inactivity**, not a scanner
-  gap: the one session dir was last written 56 days before the audit. The scanner globs session
-  directories and reads `chat_history.jsonl`/`events.jsonl` by name. Widen `--since` instead.
 - **`just audit-ignored-config` lives in `.config/just/agents.just`**, imported by
   `~/justfile`. Grepping `~/justfile` alone reports it missing.
 - **Claude's five `PASEO_TERMINAL_ID` hooks are live**, not stale: Paseo is installed at
@@ -185,9 +152,6 @@ with new measurements, not with a fresh reading of the same config.
   88 `git` pathspec misses, 117 non-zero exits with no output (e.g. `grep` exit 1), 152
   `read` path-not-found. Re-measure the guard-caused share after the ness patch before
   treating the remainder as a harness problem.
-- **Cursor's `approvalMode: allowlist` with 22 read-only allow rules plus 6 deny rules
-  (`4dd6625`) is deliberate**, not overly restrictive — it is a light annotation tool, and
-  no wider access was requested. The `just`/`make` allows are intentional.
 
 - **2026-10-23 ness false-positive denials fixed by the four `fix(policy)` commits.** Replay counts:
   rm 56/78, `sk-` 60/77, wiper words 7/12. The remaining denials target non-temp paths, include real
@@ -214,8 +178,6 @@ with new measurements, not with a fresh reading of the same config.
 - **2026-10-25 `~/.claude/settings.local.json` is the dotfiles project's local settings** (repo
   root is `~`), so its 7 LSP `false` overrides apply only to Claude sessions in `~`;
   `docs/harness/plugins.md` correctly reports the user-level state.
-- **2026-10-25 `~/.cursor/plugins/local/shared-agent-harness/` is the `just cursor-plugin-install`
-  rsync copy** of the generated adapter; `scripts/`, `rules/`, and `mcp.json` are excluded on purpose.
 - **2026-10-25 `~/.gemini/config/mcp_config.json` is written by the Data Agent Kit install** (its
   servers run `googlecloudtools.datacloud-*/mcp_servers/cli/mcp_proxy_bundle.js`). Dismiss it in
   `audit-ignored-config`; never track it.

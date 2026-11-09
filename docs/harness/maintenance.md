@@ -13,15 +13,13 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-07 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.166.0 · 2026-11-07 | - |
-| opencode | aligned | shared | - | probe · opencode v2.2.5 · 2026-11-07 | - |
-| pi | aligned | shared | - | probe · 1.5.0 · 2026-11-07 | - |
-| omp | aligned | shared | - | probe · omp/18.17.0 · 2026-11-07 | - |
-| antigravity | aligned | shared | - | probe · 1.4.6 · 2026-11-07 | - |
-| cursor | aligned | shared | - | probe · 2026.10.16-e3cb207 · 2026-11-07 | - |
-| grok | aligned | shared | - | probe · grok 1.0.77 (50ca579fa996) [alpha] · 2026-11-07 | - |
-| crush | aligned | shared | - | probe · crush version v0.100.0 · 2026-11-07 | - |
+| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-09 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.167.0 · 2026-11-09 | - |
+| opencode | aligned | shared | - | probe · opencode v2.2.6 · 2026-11-09 | - |
+| pi | aligned | shared | - | probe · 1.5.0 · 2026-11-09 | - |
+| omp | aligned | shared | - | probe · omp/18.18.2 · 2026-11-09 | - |
+| antigravity | aligned | shared | - | probe · 1.5.3 · 2026-11-09 | - |
+| crush | aligned | shared | - | probe · crush version v0.100.0 · 2026-11-09 | - |
 
 ### maintenance.config_validation · p1
 
@@ -33,10 +31,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config | probe · opencode v2.2.5 · 2026-11-07 | - |
-| pi | aligned | native | pi list --no-approve | probe · 1.5.0 · 2026-11-07 | - |
+| opencode | aligned | native | opencode debug config | probe · opencode v2.2.6 · 2026-11-09 | - |
+| pi | aligned | native | pi list --no-approve | probe · 1.5.0 · 2026-11-09 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
-| cursor | unknown | none | - | - | - |
-| grok | unknown | none | - | - | - |
 | crush | unknown | none | - | - | - |

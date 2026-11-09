@@ -4,13 +4,6 @@
 version = 1
 
 [[entry]]
-provider = "cursor"
-resource = "skills"
-target = ".cursor/skills"
-canonical = ".agents/skills"
-via = "symlink"
-
-[[entry]]
 provider = "github-copilot"
 resource = "skills"
 target = ".github/skills"

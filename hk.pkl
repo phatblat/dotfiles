@@ -59,8 +59,6 @@ local generate = new Mapping<String, Step | Group> {
         ".config/crush/**",
         ".config/mise/conf.d/dotfiles.toml",
         ".config/opencode/**",
-        ".cursor/hooks.json",
-        ".grok/**",
         ".omp/agent/**",
         ".omp/profiles/**",
         ".pi/agent/**",
@@ -104,9 +102,6 @@ local linters = new Mapping<String, Step | Group> {
     exclude =
       List(
         "*.jsonc.json",
-        // Cursor rewrites these in its own key order on every settings change
-        ".cursor/cli-config.json",
-        ".cursor/mcp.json",
         // Antigravity rewrites this in its own key order on every settings change
         ".gemini/antigravity-cli/settings.json",
         // Tern rewrites this in its own key order, without a final newline,

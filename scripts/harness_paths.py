@@ -21,8 +21,6 @@ HARNESSES: list[str] = [
     "pi",
     "omp",
     "antigravity",
-    "cursor",
-    "grok",
     "crush",
 ]
 
@@ -35,8 +33,6 @@ HARNESS_LABELS: dict[str, str] = {
     "pi": "Pi",
     "omp": "OMP",
     "antigravity": "Antigravity",
-    "cursor": "Cursor",
-    "grok": "Grok",
     "crush": "Crush",
 }
 
@@ -48,8 +44,6 @@ CLI_BINARIES: dict[str, str] = {
     "pi": "pi",
     "omp": "omp",
     "antigravity": "agy",
-    "cursor": "cursor-agent",
-    "grok": "grok",
     "crush": "crush",
 }
 
@@ -87,7 +81,7 @@ def resolve_cli(slug: str) -> str:
 # top-level dotdir, not the narrower subpath a harness actually reads config
 # from -- see `SESSION_STORES` for that narrower, per-store root). Deliberately
 # excludes the generated adapter directories under
-# `~/.agents/harness/adapters/` (antigravity, cursor): those are tracked,
+# `~/.agents/harness/adapters/` (antigravity): those are tracked,
 # generated, and not allowlist-governed, so they have no business in the
 # ignored-config scan. Adding an adapter path here would silently widen it.
 CONFIG_ROOTS: dict[str, tuple[str, ...]] = {
@@ -97,8 +91,6 @@ CONFIG_ROOTS: dict[str, tuple[str, ...]] = {
     "pi": (".pi",),
     "omp": (".omp",),
     "antigravity": (".gemini",),
-    "cursor": (".cursor",),
-    "grok": (".grok",),
     "crush": (".config/crush",),
 }
 
@@ -194,29 +186,6 @@ SESSION_STORES: dict[str, SessionStore] = {
         note=(
             "conversations/*.pb is protobuf with no published schema and is on the "
             "guard's protected-path list; transcript bodies are out of coverage"
-        ),
-    ),
-    "cursor": SessionStore(
-        kind="jsonl",
-        default=".cursor",
-        pattern="projects/*/agent-transcripts/*/*.jsonl",
-        env=(),
-        verified=False,
-        note="a handful of local transcripts (3 in a 30-day window); no timestamps or tool results, so expect a low-coverage report",
-    ),
-    "grok": SessionStore(
-        kind="jsonl",
-        default=".grok",
-        pattern="sessions/*/*",
-        env=(),
-        verified=False,
-        note=(
-            "pattern matches session directories, not files: scan_grok() reads "
-            "chat_history.jsonl and events.jsonl by name within each; "
-            "updates.jsonl is not currently parsed (its safe discriminators are "
-            "documented but unimplemented); session_search.sqlite is an FTS "
-            "index over the same transcript text, not an additional source -- "
-            "do not read it"
         ),
     ),
     "crush": SessionStore(

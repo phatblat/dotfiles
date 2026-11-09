@@ -4,7 +4,7 @@ transcripts.
 
 Reports two things, never raw transcript bytes: measured **feature usage**
 (which skills/tools/MCP servers actually ran) and **friction** (tool errors,
-hook cost, aborted turns, cache misses, MCP failures) across the eight
+hook cost, aborted turns, cache misses) across the seven
 supported harnesses in `harness_paths.HARNESSES`.
 
 Record schemas and the research behind them live in
@@ -1119,127 +1119,6 @@ def scan_omp(files: list[Path], coverage: Coverage) -> list[Obs]:
     return obs
 
 
-def scan_grok(session_dirs: list[Path], coverage: Coverage) -> list[Obs]:
-    obs: list[Obs] = []
-    for sess_dir in session_dirs:
-        sid = session_id(sess_dir)
-        chat_history = sess_dir / "chat_history.jsonl"
-        if chat_history.is_file():
-            coverage.files_seen += 1
-            parsed_any = False
-            first_ts = ""
-            for record, ok in read_jsonl_lines(chat_history):
-                if not ok:
-                    coverage.files_malformed += 1
-                    continue
-                parsed_any = True
-                if not first_ts:
-                    first_ts = str(record.get("timestamp", "") or "")
-            if parsed_any:
-                coverage.files_parsed += 1
-                emit(
-                    obs,
-                    harness="grok",
-                    session=sid,
-                    kind="session_start",
-                    ts=first_ts,
-                    actor="user",
-                )
-        events = sess_dir / "events.jsonl"
-        if events.is_file():
-            coverage.files_seen += 1
-            parsed_any = False
-            for record, ok in read_jsonl_lines(events):
-                if not ok:
-                    coverage.files_malformed += 1
-                    continue
-                parsed_any = True
-                ts = str(record.get("ts", "") or "")
-                coverage.note_ts(ts)
-                etype = record.get("type")
-                if etype in (
-                    "mcp_server_starting",
-                    "mcp_server_connected",
-                    "mcp_server_failed",
-                ):
-                    ok = {"mcp_server_connected": True, "mcp_server_failed": False}.get(
-                        etype
-                    )
-                    emit(
-                        obs,
-                        harness="grok",
-                        session=sid,
-                        kind="mcp_lifecycle",
-                        ts=ts,
-                        actor="system",
-                        name=str(record.get("server_name", ""))[:MAX_FIELD_LEN],
-                        ok=ok,
-                        ms=record.get("duration_ms"),
-                        detail=str(record.get("error_type", "") or "")[:MAX_FIELD_LEN],
-                    )
-                elif etype == "yolo_toggled":
-                    emit(
-                        obs,
-                        harness="grok",
-                        session=sid,
-                        kind="permission_state",
-                        ts=ts,
-                        actor="user",
-                        name="yolo_toggled",
-                    )
-            if parsed_any:
-                coverage.files_parsed += 1
-        if not chat_history.is_file() and not events.is_file():
-            continue
-    if session_dirs:
-        coverage.gaps.append("chat_history.jsonl carries no tool events")
-    return obs
-
-
-def scan_cursor(files: list[Path], coverage: Coverage) -> list[Obs]:
-    obs: list[Obs] = []
-    for path in files:
-        sid = session_id(path)
-        parsed_any = False
-        for record, ok in read_jsonl_lines(path):
-            if not ok:
-                coverage.files_malformed += 1
-                continue
-            parsed_any = True
-            ts = str(record.get("timestamp", "") or "")
-            coverage.note_ts(ts)
-            role = record.get("role")
-            message = record.get("message")
-            if isinstance(message, dict):
-                content = message.get("content")
-                if isinstance(content, list):
-                    for item in content:
-                        if isinstance(item, dict) and item.get("type") == "tool_use":
-                            emit(
-                                obs,
-                                harness="cursor",
-                                session=sid,
-                                kind="tool_call",
-                                ts=ts,
-                                actor="assistant" if role == "assistant" else "user",
-                                name=str(item.get("name", ""))[:MAX_FIELD_LEN],
-                            )
-            if record.get("type") == "turn_ended" and record.get("status") != "success":
-                emit(
-                    obs,
-                    harness="cursor",
-                    session=sid,
-                    kind="turn_abort",
-                    ts=ts,
-                    actor="assistant",
-                    detail=str(record.get("status", ""))[:MAX_FIELD_LEN],
-                )
-        coverage.files_seen += 1
-        if parsed_any:
-            coverage.files_parsed += 1
-    return obs
-
-
 def scan_antigravity(files: list[Path], coverage: Coverage) -> list[Obs]:
     obs: list[Obs] = []
     for path in files:
@@ -1323,21 +1202,6 @@ def scan_harness(
         coverage.gaps.append(f"resolved root {root} does not exist")
         return [], coverage
 
-    if slug == "grok":
-        dir_mtimes: list[tuple[Path, float]] = []
-        for d in root.glob(store.pattern):
-            if not d.is_dir():
-                continue
-            newest = max(
-                (f.stat().st_mtime for f in d.glob("*.jsonl") if f.is_file()), default=0
-            )
-            dir_mtimes.append((d, newest))
-        dir_mtimes.sort(key=lambda item: item[1], reverse=True)
-        in_window_dirs = [d for d, mtime in dir_mtimes if mtime >= since_epoch]
-        coverage.files_skipped_since = len(dir_mtimes) - len(in_window_dirs)
-        note_truncation(coverage, max_files, len(in_window_dirs))
-        return scan_grok(in_window_dirs[:max_files], coverage), coverage
-
     pattern = "**/*.jsonl" if resolved_from in PI_SESSION_DIR_SOURCES else store.pattern
     all_files = iter_files(root, pattern)
     in_window = [p for p, mtime in all_files if mtime >= since_epoch]
@@ -1353,8 +1217,6 @@ def scan_harness(
         return scan_pi(kept, coverage), coverage
     if slug == "omp":
         return scan_omp(kept, coverage), coverage
-    if slug == "cursor":
-        return scan_cursor(kept, coverage), coverage
     if slug == "antigravity":
         return scan_antigravity(kept, coverage), coverage
     raise AssertionError(f"no adapter for {slug}")
@@ -1465,9 +1327,6 @@ def aggregate_friction(
             cache_misses[o.detail or "unknown"] = (
                 cache_misses.get(o.detail or "unknown", 0) + 1
             )
-    mcp_failures = [
-        o for o in observations if o.kind == "mcp_lifecycle" and o.ok is False
-    ]
     error_counts: dict[tuple[str, str, str], int] = {}
     for o in observations:
         if (
@@ -1488,7 +1347,6 @@ def aggregate_friction(
         "error_classes": error_classes,
         "aborted_turns": {"count": len(aborts), "by_harness": aborts_by_harness},
         "cache_miss_reasons": cache_misses,
-        "mcp_failures": len(mcp_failures),
     }
 
 
@@ -1560,7 +1418,6 @@ def render_markdown(
         f"- Cache-miss reasons: "
         f"{', '.join(f'{k}: {v}' for k, v in friction['cache_miss_reasons'].items()) or 'none observed'}"
     )
-    lines.append(f"- MCP connection failures: {friction['mcp_failures']}")
 
     if hook_cost:
         lines += ["", "## Hook cost", ""]

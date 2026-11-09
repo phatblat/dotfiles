@@ -4,8 +4,8 @@ No inventory of which MCP servers were configured where existed before this
 file (checked 2026-08-25 while resolving an `optimize-harness` audit finding).
 Config-file scanning alone under-counts what a harness actually connects to:
 several harnesses **discover** MCP servers from other tools' config files or
-from installed plugins, so "configured in `~/.grok/config.toml`" and
-"connects for grok" are different questions. Keep both columns below in sync
+from installed plugins, so "configured in `~/.omp/agent/mcp.json`" and
+"connects for omp" are different questions. Keep both columns below in sync
 by hand when a server is added/removed; there is no automated check yet.
 
 ## Current state (post `optimize-harness` cleanup, 2026-08-25)
@@ -16,10 +16,8 @@ by hand when a server is added/removed; there is no automated check yet.
 | codex | `openaiDeveloperDocs` (enabled); `computer-use` and `node_repl` (`enabled = false`; node_repl is an arbitrary-JS channel hooks do not guard, and the ChatGPT app may rewrite it, so re-check after app updates) — all in `~/.codex/config.toml` `[mcp_servers.*]`. The bundled `browser` and `unified-computer-use` plugins are disabled for the same reason. | — | `context-mode`, the `kyto64-...` marketplace/plugin, `notion` and `orch` are no longer in `config.toml` (`notion`/`orch` survive only as disabled entries in `casper.config.toml`) |
 | omp | none (`~/.omp/agent/mcp.json`: `mcpServers` empty; `disabledServers`: `node_repl`, `openaiDeveloperDocs`, which cwd=`~` otherwise inherits from `~/.codex/config.toml`) | Claude Code (`~/.claude.json`, `~/.claude/mcp.json`), Claude marketplace plugins' own `.mcp.json` (the former `oh-my-claudecode` `t` server is stale, see below), Codex, Gemini CLI, OpenCode, Cursor, Windsurf, VS Code, root `mcp.json`/`.mcp.json` — priority order in `omp://mcp-config.md#discovery-and-precedence` | `context-mode` removed from the explicit entry this session. The former `t` server (oh-my-claudecode bridge, 54 tools) is stale: the plugin is disabled and `grok mcp doctor` lists no servers; OMP's own `/mcp list` was not re-checked. The native-looking `filesystem`/`memory`/`node_repl` tool families are **not** externally configured anywhere — see "OMP's `mcp__*` tool families" below |
 | pi | none (`packages: ["npm:context-mode"]` removed this session; nothing else declared an MCP server) | — | — |
-| grok | none (`~/.grok/config.toml` has zero `[mcp_servers.*]` blocks) | `[compat.claude].mcps = true` → scans `~/.claude.json`; `[compat.cursor].mcps = true` → scans `~/.cursor/mcp.json`; also discovers servers bundled by installed Claude plugins (previously `oh-my-claudecode`'s `t` and `context-mode`; `grok mcp doctor` lists none now) | Root cause of the `tolaria`/`github` findings in the original audit: grok never configures servers itself, it inherits whatever Claude Code and Cursor have. Verify with `grok mcp doctor --json` |
 | antigravity | `~/.gemini/config/mcp_config.json` is empty (0 bytes) | unknown — no documented compat-scan mechanism found for antigravity-cli | Separate from the top-level Gemini CLI (`~/.gemini/settings.json`), which is a different tool sharing the `.gemini/` parent directory and did have `tolaria` (removed) |
 | opencode | none found (`~/.config/opencode/opencode.jsonc` has no `mcp` key) | unknown | Confirmed in the original audit as a real gap, not a coverage blind spot — opencode has no MCP servers at all currently |
-| cursor | none (`~/.cursor/mcp.json`: `{}`) | — | `tolaria` removed this session |
 
 Also cleared: the shared cross-tool registry `~/.config/mcp/mcp.json` (only ever held `tolaria`) and the top-level Gemini CLI's `~/.gemini/settings.json` (also only `tolaria`) — neither is harness-specific, both feed the compat-scan/import mechanisms above.
 
@@ -38,8 +36,7 @@ Three tool-name families that look like external MCP servers on inspection turne
 ## Discovery mechanisms per harness (how a server gets found without being configured there)
 
 - **OMP**: documented, ordered discovery across 9 provider tiers — see `omp://mcp-config.md#discovery-and-precedence`. First definition wins; duplicates are not merged.
-- **grok**: `[compat.claude]`/`[compat.cursor]` toggles in `~/.grok/config.toml` (default: on) scan `~/.claude.json` and `~/.cursor/mcp.json` respectively, plus installed Claude-plugin `.mcp.json` files. Verify what grok currently sees with `grok mcp doctor --json` (also runs a live connectivity check per server) or `grok mcp list`.
-- **claude, codex, pi, cursor, opencode, antigravity**: no cross-tool discovery observed during this audit — each reads only its own config file(s). (Not exhaustively verified for antigravity/opencode beyond "no MCP servers currently present to discover".)
+- **claude, codex, pi, opencode, antigravity**: no cross-tool discovery observed during this audit — each reads only its own config file(s). (Not exhaustively verified for antigravity/opencode beyond "no MCP servers currently present to discover".)
 
 ## Keeping this current
 
@@ -47,7 +44,7 @@ There is no scripted check yet. When adding/removing an MCP server:
 
 1. Update the server's own harness config file as usual.
 2. Update the relevant row/cell in the "Current state" table above.
-3. If the change affects a server another harness might inherit (anything in `~/.claude.json`, `~/.cursor/mcp.json`, or an installed Claude plugin), spot-check with `grok mcp doctor --json` and re-run `codex plugin marketplace list` / `claude plugin list` as applicable, since grok and OMP both inherit transitively.
+3. If the change affects a server another harness might inherit (anything in `~/.claude.json` or an installed Claude plugin), re-run `codex plugin marketplace list` / `claude plugin list` as applicable and check OMP's `/mcp list`, since OMP inherits transitively.
 
 ## History
 

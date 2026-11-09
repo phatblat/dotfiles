@@ -11,17 +11,14 @@
 //! sniffing `tool_name`, which differs across harnesses (Claude's Bash tool
 //! is not necessarily named the same as Codex's).
 //!
-//! `grok`, `crush`, `antigravity`, and `cursor` take no `--tool`: each sends
-//! one tool call in its own native shape, and each gets its native reply:
-//! - grok: `toolName`/`toolInput` (camelCase); `{"decision":...}` + exit 2 on deny.
+//! `crush` and `antigravity` take no `--tool`: each sends one tool call in its
+//! own native shape, and each gets its native reply:
 //! - crush: `tool_name`/`tool_input`; stderr + exit 2 on deny.
-//! - cursor: `tool_name`/`tool_input`; `{"permission":"deny",...}`.
 //! - antigravity: `toolCall.args` (`CommandLine`/`TargetFile`/`CodeContent`/
 //!   `ReplacementContent`/`ReplacementChunks`); `{"decision":"deny",...}`.
 //!
 //! `classify` sorts a `tool_input` object into bash-vs-write the same way the
-//! Python wrappers did (`render_grok_guard`, `render_crush_guard`,
-//! `scripts/agent-harnesses.py`).
+//! Python wrapper did (`render_crush_guard`, `scripts/agent-harnesses.py`).
 
 use crate::guard_eval::evaluate_with_manifest;
 use crate::policy::GuardDecision;
@@ -113,7 +110,7 @@ fn apply_patch_added_content(patch_text: &str) -> String {
 }
 
 /// Write-checks every apply_patch target, then the added content. Shared by
-/// Codex's write hook and grok's `apply_patch` tool. Returns the first deny.
+/// Codex's write hook. Returns the first deny.
 fn evaluate_apply_patch(
     p: Result<&Compiled, &str>,
     patch_text: &str,
@@ -218,7 +215,7 @@ pub fn run_write(p: Result<&Compiled, &str>, harness: &str, cwd: &str, manifest_
 
 /// Reads and parses stdin as a JSON object, failing closed (as `Err`) on
 /// unreadable or non-object input. Used by `run_bash` and `run_write` to match
-/// the grok/crush/antigravity/cursor Python wrappers' own fail-closed
+/// the crush/antigravity Python wrappers' own fail-closed
 /// behavior on a bad payload.
 fn read_stdin_object() -> Result<Value, &'static str> {
     let mut buf = String::new();
@@ -266,13 +263,12 @@ struct Classified {
     content: String,
 }
 
-/// Sorts a normalized `tool_input`/`toolInput` object into bash-vs-write,
-/// the way `render_grok_guard`/`render_crush_guard` classified a call by
-/// whether it carried a `command` or a path. `flatten_edits` additionally
-/// folds a `multiedit`-style `edits[]` array's `new_string`/`new_text`
-/// fields into `content`, matching `render_crush_guard`'s flattening (crush
-/// is the only normalized wrapper that ever receives `edits`).
-fn classify(tool_input: &Value, flatten_edits: bool) -> Option<Classified> {
+/// Sorts a `tool_input` object into bash-vs-write the way `render_crush_guard`
+/// classified a call: by whether it carried a `command` or a path. A
+/// `multiedit`-style `edits[]` array's `new_string`/`new_text` fields are
+/// folded into `content`, matching `render_crush_guard`'s flattening (crush
+/// is the only wrapper that ever receives `edits`).
+fn classify(tool_input: &Value) -> Option<Classified> {
     let empty = Value::Object(serde_json::Map::new());
     let obj = if tool_input.is_object() {
         tool_input
@@ -286,12 +282,10 @@ fn classify(tool_input: &Value, flatten_edits: bool) -> Option<Classified> {
         .to_string();
     let path = first_nonempty_str(obj, &PATH_KEYS);
     let mut content = concat_strs(obj, &CONTENT_KEYS);
-    if flatten_edits {
-        if let Some(edits) = obj.get("edits").and_then(|v| v.as_array()) {
-            for edit in edits {
-                if edit.is_object() {
-                    content.push_str(&concat_strs(edit, &CONTENT_KEYS));
-                }
+    if let Some(edits) = obj.get("edits").and_then(|v| v.as_array()) {
+        for edit in edits {
+            if edit.is_object() {
+                content.push_str(&concat_strs(edit, &CONTENT_KEYS));
             }
         }
     }
@@ -324,82 +318,12 @@ fn payload_cwd(payload: &Value, default_cwd: &str) -> String {
         .unwrap_or_else(|| default_cwd.to_string())
 }
 
-/// Port of `render_grok_guard`. grok's payload is camelCase
-/// (`toolName`/`toolInput`); on deny it prints `{"decision":"deny",...}` and
-/// exits 2, on warn it writes the reason to stderr and still allows (grok
-/// has no separate warning channel), and a bad payload fails closed with
-/// the same JSON shape rather than silently allowing.
-pub fn run_grok(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path) -> i32 {
-    let payload = match read_stdin_object() {
-        Ok(v) => v,
-        Err(e) => {
-            println!(
-                "{}",
-                serde_json::json!({"decision": "deny", "reason": format!("shared guard failed closed: {e}")})
-            );
-            return 2;
-        }
-    };
-    let empty = Value::Object(serde_json::Map::new());
-    let tool_input = payload.get("toolInput").unwrap_or(&empty);
-    let patch = tool_input
-        .get("patch")
-        .and_then(|v| v.as_str())
-        .unwrap_or("");
-    if get_str(&payload, "/toolName") == Some("apply_patch") || patch.starts_with("*** Begin Patch")
-    {
-        if patch.trim().is_empty() {
-            println!(
-                "{}",
-                serde_json::json!({"decision": "deny", "reason": "shared guard failed closed: apply_patch payload has no patch text"})
-            );
-            return 2;
-        }
-        let cwd = payload_cwd(&payload, default_cwd);
-        let decision = evaluate_apply_patch(p, patch, &cwd, manifest);
-        if decision.decision == "deny" {
-            println!(
-                "{}",
-                serde_json::json!({"decision": "deny", "reason": decision.reason})
-            );
-            return 2;
-        }
-        println!("{}", serde_json::json!({"decision": "allow"}));
-        return 0;
-    }
-    let Some(c) = classify(tool_input, false) else {
-        println!("{}", serde_json::json!({"decision": "allow"}));
-        return 0;
-    };
-    let cwd = payload_cwd(&payload, default_cwd);
-    let decision =
-        evaluate_with_manifest(p, c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
-    match decision.decision.as_str() {
-        "deny" => {
-            println!(
-                "{}",
-                serde_json::json!({"decision": "deny", "reason": decision.reason})
-            );
-            2
-        }
-        "warn" => {
-            eprintln!("{}", decision.reason);
-            println!("{}", serde_json::json!({"decision": "allow"}));
-            0
-        }
-        _ => {
-            println!("{}", serde_json::json!({"decision": "allow"}));
-            0
-        }
-    }
-}
-
 /// Port of `render_crush_guard`. crush's payload is snake_case
 /// (`tool_name`/`tool_input`, with `edits[]` flattened for `multiedit`); on
 /// deny it writes the reason to stderr and exits 2 (no stdout — crush reads
 /// the block from the exit code), on warn it writes to stderr but still
-/// allows (exit 0), and on allow it stays silent on purpose: unlike grok,
-/// crush treats a printed `{"decision":"allow"}` on stdout as extra output
+/// allows (exit 0), and on allow it stays silent on purpose: crush
+/// treats a printed `{"decision":"allow"}` on stdout as extra output
 /// to surface to the user rather than as a no-op, so allow must produce no
 /// stdout at all.
 pub fn run_crush(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path) -> i32 {
@@ -412,7 +336,7 @@ pub fn run_crush(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path)
     };
     let empty = Value::Object(serde_json::Map::new());
     let tool_input = payload.get("tool_input").unwrap_or(&empty);
-    let Some(c) = classify(tool_input, true) else {
+    let Some(c) = classify(tool_input) else {
         return 0;
     };
     let cwd = payload_cwd(&payload, default_cwd);
@@ -503,71 +427,6 @@ pub fn run_antigravity(p: Result<&Compiled, &str>, default_cwd: &str, manifest: 
         return 0;
     };
     let decision = evaluate_with_manifest(p, tool, &command, &path, &content, &cwd, manifest);
-    match decision.decision.as_str() {
-        "deny" => deny(&decision.reason),
-        "warn" => {
-            eprintln!("{}", decision.reason);
-            println!("{{}}");
-        }
-        _ => println!("{{}}"),
-    }
-    0
-}
-
-/// Cursor tools that only read: `.cursor/hooks.json` has no matcher, so they
-/// reach the hook too, carrying `file_path`/`path`, which `classify` would
-/// otherwise treat as a write target.
-const CURSOR_READ_ONLY_TOOLS: [&str; 4] = ["Read", "Grep", "List", "ReadLints"];
-
-/// `cursor` (cursor-agent). The payload is `{tool_name, tool_input, cwd, ...}`.
-/// Deny prints `{"permission":"deny","user_message":R,"agent_message":R}`;
-/// allow and warn print `{}` (`permission: allow` would bypass Cursor's
-/// allowlist prompts). Always exits 0.
-pub fn run_cursor(p: Result<&Compiled, &str>, default_cwd: &str, manifest: &Path) -> i32 {
-    let deny = |reason: &str| {
-        println!(
-            "{}",
-            serde_json::json!({"permission": "deny", "user_message": reason, "agent_message": reason})
-        );
-    };
-    let payload = match read_stdin_object() {
-        Ok(v) => v,
-        Err(e) => {
-            deny(&format!("shared guard failed closed: {e}"));
-            return 0;
-        }
-    };
-    let empty = Value::Object(serde_json::Map::new());
-    let tool_input = payload.get("tool_input").unwrap_or(&empty);
-    let tool_name = payload
-        .get("tool_name")
-        .and_then(|v| v.as_str())
-        .unwrap_or("");
-    if CURSOR_READ_ONLY_TOOLS.contains(&tool_name) {
-        println!("{{}}");
-        return 0;
-    }
-    let Some(c) = classify(tool_input, true) else {
-        println!("{{}}");
-        return 0;
-    };
-    // On `Err` the deny comes from `evaluate_with_manifest` below.
-    if let (Ok(p), "bash") = (p, c.tool) {
-        match crate::policy::is_interactive_launch(p, &c.command) {
-            Ok(true) => {
-                deny(INTERACTIVE_LAUNCH_REASON);
-                return 0;
-            }
-            Ok(false) => {}
-            Err(reason) => {
-                deny(&format!("interactive_launch: {reason}"));
-                return 0;
-            }
-        }
-    }
-    let cwd = payload_cwd(&payload, default_cwd);
-    let decision =
-        evaluate_with_manifest(p, c.tool, &c.command, &c.path, &c.content, &cwd, manifest);
     match decision.decision.as_str() {
         "deny" => deny(&decision.reason),
         "warn" => {

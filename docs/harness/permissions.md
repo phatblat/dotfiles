@@ -19,8 +19,6 @@ Verify: `just harness-check`
 | pi | absent | none | No native permission-rule surface; the shared guard runs via ~/.pi/agent/extensions/harness.ts | docs · - · - | - |
 | omp | aligned | adapter | tools.approvalMode + bash.patterns via just harness-perms-apply | local · - · - | - |
 | antigravity | aligned | adapter | - | local · - · - | - |
-| cursor | absent | none | No native permission-rule surface; the shared guard runs via ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh | docs · - · - | - |
-| grok | absent | none | No native permission-rule surface; the shared guard runs via ~/.grok/scripts/harness-guard.sh | docs · - · - | - |
 | crush | absent | none | No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh | docs · - · - | - |
 
 ### permissions.approval_modes · p1
@@ -38,8 +36,6 @@ Verify: `just harness-check`
 | pi | aligned | native | `defaultProjectTrust` | local · - · - | Resolved default: ask |
 | omp | aligned | adapter | `tools.approvalMode` | local · - · - | Resolved default: yolo |
 | antigravity | aligned | native | `toolPermission` | local · - · - | Resolved default: proceed-in-sandbox |
-| cursor | unknown | none | - | - | - |
-| grok | unknown | none | - | - | - |
 | crush | unknown | none | - | - | - |
 
 ### Not yet researched

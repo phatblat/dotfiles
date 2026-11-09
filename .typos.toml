@@ -28,7 +28,7 @@ extend-ignore-re = [
     # (~/.config/ness/policy.toml).
     "\\(ba\\)\\?sh",
     # Abbreviated commit hashes that tools print in version strings, such as
-    # `grok 1.0.50 (c58f321264ba)` or `cmux 0.65.0 (108) [dda24fbd2]`. The harness
+    # `cmux 0.65.0 (108) [dda24fbd2]`. The harness
     # probe copies them into generated docs/, so the hex fragments (`ba`) are
     # not words.
     "[(\\[][0-9a-f]{7,40}[)\\]]",

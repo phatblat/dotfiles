@@ -187,7 +187,7 @@ Re-run `mise --cd "$HOME" dot apply --yes` afterwards to create those five links
 
 The hooks and clean filters live in the repo's local git config, which moved with `.git`. Two things need attention:
 
-- `core.hooksPath` is the relative path `.config/git/hooks`, resolved against the **work tree root**. After the move that is `~/dev/dotfiles/.config/git/hooks`, which is tracked and holds the Entire script hooks (`commit-msg`, `post-commit`, `post-rewrite`, `pre-push`, `pre-push.pre-entire-brain`, `prepare-commit-msg`), so it exists after the checkout and those hooks fire. Git 2.54+ config hooks (`hook.<name>.command`) run regardless of `core.hooksPath`, and that is how `hk` installs here. `core.hooksPath` does override the default `.git/hooks` directory, so any script hooks that live there (for example an old `pre-commit` or `post-checkout`) are bypassed on this machine; the tracked `pre-push` chains to `pre-push.pre-entire-brain` instead of to a `.git/hooks` copy. Reinstall so the intended config hooks are in place:
+- The repo's git hooks are Git 2.54+ config hooks (`hook.<name>.command`) stored in `.git/config`, which is how `hk` installs here. Reinstall so the intended config hooks are in place:
 
   ```bash
   cd ~/dev/dotfiles
@@ -231,19 +231,6 @@ just home-overlay-links
 Note `.netrc` does not exist on this machine; the recipe prints `skip: ~/.netrc missing` and continues. `.env` is a real file and is not tracked (it is gitignored), so it must be linked into the checkout rather than deployed into `$HOME` — `home-overlay-links` does that.
 
 These overlay entries are deliberately *not* in the `mise dot` spec: they are `$HOME`-only paths, so deploying them from the checkout would make the checkout depend on itself.
-
-### `.cursor/skills` must exist in the checkout
-
-The harness probe resolves paths against the **checkout root**, not `$HOME`. `.cursor/skills` is gitignored (Cursor's own managed block in `.cursor/.gitignore` re-ignores it) and is materialised by agentlink, not tracked — so it is absent from a fresh checkout, and `just harness-probe` reports `cursor skills.shared` as failing.
-
-Run `just agentlink-apply` once after the move, from the checkout:
-
-```bash
-cd ~/dev/dotfiles
-just agentlink-apply
-```
-
-It creates `.cursor/skills` as a symlink to `.agents/skills`. Without it the probe fails on every run.
 
 ### Approve the checkout's `.envrc`
 

@@ -409,8 +409,6 @@ cask "codex"
 cask "codexbar"
 # Claude code parallelisation
 cask "conductor", args: { appdir: "/Applications/Agents" }
-# Write, edit, and chat about your code with AI
-cask "cursor", args: { appdir: "/Applications/Agents" }
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 # GIT client
@@ -423,8 +421,6 @@ cask "ghostty"
 cask "google-chrome"
 # Native desktop AI assistant from Google
 cask "google-gemini"
-# AI teammates that work across your apps and tools
-cask "grok-bot", args: { appdir: "/Applications/Agents" }
 # Desktop automation application
 cask "hammerspoon"
 # Hex editor focussing on speed

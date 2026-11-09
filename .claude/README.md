@@ -28,7 +28,7 @@ Specialized agent definitions in `agents/` with distinct personas and expertise 
 - **Pentester** -- Security testing, vulnerability assessment
 - **Artist** -- Visual content, prompt engineering
 - **Intern** -- High-agency generalist problem solver
-- **Researchers** -- ClaudeResearcher, CodexResearcher, GeminiResearcher, GrokResearcher, PerplexityResearcher
+- **Researchers** -- ClaudeResearcher, CodexResearcher, GeminiResearcher, PerplexityResearcher
 
 ## Skills
 

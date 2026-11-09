@@ -12,7 +12,7 @@
 # ~/.agents/skills. Excluding it keeps
 # `agentlink status --check` a usable signal instead of a permanent exit 2.
 #
-# crush, grok, omp and pi are not shipped by agentlink; their manifests live in
+# crush, omp and pi are not shipped by agentlink; their manifests live in
 # .agentlink/providers/ and load on top of the embedded set.
 #
 # opencode is deliberately absent: it reads ~/.agents/skills natively, so a
@@ -23,9 +23,7 @@ providers = [
   "antigravity",
   "codex",
   "crush",
-  "cursor",
   "github-copilot",
-  "grok",
   "omp",
   "pi",
 ]
@@ -33,12 +31,7 @@ providers = [
 # Two of agentlink's three generated paths are intentionally *tracked*, not
 # gitignored: `/.agentlink/lock.toml` and `/.github/skills` are committed so a
 # fresh clone has working skill symlinks without running `agentlink apply`
-# first. Only `/.cursor/skills` is ignored, and not through this file's
-# `[gitignore]` block (`manage = false`
-# means agentlink never touches root `.gitignore`) — Cursor's own managed
-# block in `.cursor/.gitignore` re-ignores `skills` after un-ignoring it for
-# "User's personal skills", and the nested file's DOTFILES ALLOWLIST leaves
-# that re-ignore in place rather than overriding it. Root `.gitignore` has no
-# agentlink-owned entries at all.
+# first. `manage = false` means agentlink never touches root `.gitignore`,
+# which has no agentlink-owned entries.
 [gitignore]
 manage = false

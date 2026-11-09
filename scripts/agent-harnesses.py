@@ -80,11 +80,6 @@ PI_AGENT = ROOT / ".pi" / "agent"
 OMP_AGENT = ROOT / ".omp" / "agent"
 ANTIGRAVITY = ROOT / ".gemini" / "antigravity-cli"
 ANTIGRAVITY_HARNESS = SHARED / "adapters" / "antigravity"
-CURSOR = ROOT / ".cursor"
-CURSOR_HARNESS = SHARED / "adapters" / "cursor"
-CURSOR_PLUGIN = CURSOR_HARNESS / ".cursor-plugin"
-CURSOR_RULES = CURSOR_HARNESS / "rules"
-GROK = ROOT / ".grok"
 CRUSH = ROOT / ".config" / "crush"
 HARNESS_DOCS = ROOT / "docs" / "harness"
 OBSERVED_PATH = HARNESS_DOCS / "observed.json"
@@ -207,11 +202,8 @@ GENERATED_ITEM_ROOTS = [
     (OPEN_CODE / "agents", "*.md"),
     (PI_AGENT / "prompts", "*.md"),
     (ANTIGRAVITY_HARNESS / "agents", "*.md"),
-    (CURSOR_HARNESS / "commands", "*.md"),
-    (CURSOR_HARNESS / "agents", "*.md"),
     (OMP_AGENT / "agents", "*.md"),
     (OMP_AGENT / "commands", "*.md"),
-    (GROK / "agents", "*.md"),
     # A domain page left behind after a DOMAINS key is renamed is an orphan.
     # observed.json, versions.json, and drift.jsonl are not *.md and so are
     # correctly untouched by find_orphans().
@@ -326,9 +318,6 @@ def command_validate() -> int:
         ANTIGRAVITY_HARNESS / "plugin.json",
         ANTIGRAVITY_HARNESS / "hooks.json",
         ANTIGRAVITY_HARNESS / "mcp_config.json",
-        CURSOR / "hooks.json",
-        CURSOR_HARNESS / "mcp.json",
-        GROK / "hooks" / "harness-guard.json",
         # Absent until the first `probe` run, so parsed only once written.
         *(path for path in (OBSERVED_PATH, VERSIONS_PATH) if path.exists()),
     ):
@@ -593,17 +582,6 @@ def command_verify(*, harness: str | None = None) -> int:
         "antigravity": [
             (ANTIGRAVITY_HARNESS / "plugin.json", "plugin.json exists"),
         ],
-        "cursor": [
-            (CURSOR_RULES, "rules directory exists"),
-            (CURSOR_HARNESS / "commands", "commands directory exists"),
-        ],
-        "grok": [
-            (GROK / "config.toml", "config.toml exists"),
-            (GROK / "rules" / "shared-harness.md", "rules file exists"),
-            (GROK / "hooks" / "harness-guard.json", "guard hook exists"),
-            (GROK / "scripts" / "harness-guard.sh", "guard wrapper exists"),
-            (GROK / "agents", "agents directory exists"),
-        ],
         "crush": [
             (CRUSH / "crushrc", "crushrc exists"),
             (CRUSH / "shared-harness.md", "context file exists"),
@@ -843,16 +821,6 @@ def render_all() -> dict[Path, str]:
         / "scripts"
         / "harness-guard.sh": render_antigravity_guard(),
         ANTIGRAVITY_HARNESS / "mcp_config.json": render_antigravity_mcp(),
-        CURSOR_PLUGIN / "plugin.json": render_cursor_plugin_manifest(),
-        CURSOR_RULES / "shared-harness.mdc": render_cursor_rule(),
-        # Not under the adapter dir: Cursor reads hooks from ~/.cursor/hooks.json.
-        CURSOR / "hooks.json": render_cursor_hooks(),
-        CURSOR_HARNESS / "scripts" / "harness-guard.sh": render_cursor_guard(),
-        CURSOR_HARNESS / "mcp.json": render_cursor_mcp(),
-        GROK / "config.toml": render_grok_config(),
-        GROK / "rules" / "shared-harness.md": render_grok_rules(),
-        GROK / "hooks" / "harness-guard.json": render_grok_hooks(),
-        GROK / "scripts" / "harness-guard.sh": render_grok_guard(),
         CRUSH / "crushrc": render_crush_config(),
         CRUSH / "shared-harness.md": render_crush_context(),
         CRUSH / "hooks" / "harness-guard.sh": render_crush_guard(),
@@ -872,7 +840,6 @@ def render_all() -> dict[Path, str]:
         rendered[PI_AGENT / "prompts" / f"{command['native']}.md"] = render_pi_prompt(
             command
         )
-        rendered[CURSOR_HARNESS / "commands" / rel] = render_cursor_command(command)
         rendered[OMP_AGENT / "commands" / f"{command['native']}.md"] = (
             render_omp_command(command)
         )
@@ -890,11 +857,7 @@ def render_all() -> dict[Path, str]:
         rendered[ANTIGRAVITY_HARNESS / "agents" / f"{agent['id']}.md"] = (
             render_antigravity_agent(agent)
         )
-        rendered[CURSOR_HARNESS / "agents" / f"{agent['id']}.md"] = render_cursor_agent(
-            agent
-        )
         rendered[OMP_AGENT / "agents" / f"{agent['id']}.md"] = render_omp_agent(agent)
-        rendered[GROK / "agents" / f"{agent['id']}.md"] = render_grok_agent(agent)
         record_provenance(provenance, rendered, emitted, source)
 
     for skill_name in inventory["skills"]["paths"]:
@@ -966,7 +929,7 @@ def render_shared_readme(
 {MANAGED_HEADER}
 
 This directory is the portable harness layer for Claude, Codex, OpenCode, Pi,
-Antigravity, Cursor, and Grok.
+Antigravity, OMP, and Crush.
 It keeps command prompts, specialist agent definitions, and normalized hook
 contracts in one place; the safety policy itself is compiled into the guard
 binary `~/.local/bin/ness`. Native harness directories should contain thin
@@ -1280,213 +1243,6 @@ exec "$ness" hook --harness antigravity
 def render_antigravity_mcp() -> str:
     mcp = {"mcpServers": {}}
     return json.dumps(mcp, indent=2, sort_keys=True) + "\n"
-
-
-def render_cursor_plugin_manifest() -> str:
-    manifest = {
-        "name": "shared-agent-harness",
-        "version": "1.0.0",
-        "description": "Shared agent harness adapter for Cursor.",
-    }
-    return json.dumps(manifest, indent=2, sort_keys=True) + "\n"
-
-
-def render_cursor_rule() -> str:
-    return f"""---
-description: Load the shared agent harness for every Cursor session.
-alwaysApply: true
----
-
-{MANAGED_HEADER}
-
-Load repository instructions first, then follow `~/.agents/harness/instructions.md`.
-Use shared skills from `~/.agents/skills` when a task matches a skill description.
-Preserve modified files, current branch, pending tasks, test results, and harness parity gaps during compaction or handoff.
-"""
-
-
-def render_cursor_command(command: dict[str, Any]) -> str:
-    return render_native_command(command)
-
-
-def render_cursor_agent(agent: dict[str, Any]) -> str:
-    return f"""---
-name: {agent["id"]}
-description: {json.dumps(agent["description"])[1:-1]}
----
-
-{MANAGED_HEADER}
-
-Load the shared specialist definition from `{agent["shared"]}` before acting.
-"""
-
-
-def render_cursor_hooks() -> str:
-    # Cursor discards the whole file on an unknown hook name, and failClosed
-    # blocks the call when the guard crashes.
-    hooks = {
-        "version": 1,
-        "hooks": {
-            "preToolUse": [
-                {
-                    "command": "bash ~/.agents/harness/adapters/cursor/scripts/harness-guard.sh",
-                    "failClosed": True,
-                    "timeout": 10,
-                }
-            ]
-        },
-    }
-    return json.dumps(hooks, indent=2, sort_keys=True) + "\n"
-
-
-def render_cursor_guard() -> str:
-    return """#!/usr/bin/env bash
-# Generated by scripts/agent-harnesses.py; do not edit directly.
-# Cursor PreToolUse adapter for the compiled harness guard (crates/ness,
-# installed by `just ness-install`). Fails closed when it is missing.
-#
-# Copyright: Ben Chatelain. Apache 2.0.
-
-set -euo pipefail
-
-deny() {
-    printf '{"permission":"deny","user_message":"%s","agent_message":"%s"}\\n' "$1" "$1"
-    exit 0
-}
-trap 'deny "shared guard failed closed: hook error"' ERR
-
-ness="$HOME/.local/bin/ness"
-[ -x "$ness" ] || deny "shared guard failed closed: $ness is not installed (run: just ness-install)"
-exec "$ness" hook --harness cursor
-"""
-
-
-def render_cursor_mcp() -> str:
-    mcp = {"mcpServers": {}}
-    return json.dumps(mcp, indent=2, sort_keys=True) + "\n"
-
-
-def claude_disabled_plugins() -> list[str]:
-    """Names of Claude plugins disabled in ``.claude/settings.json``.
-
-    grok's Claude compatibility layer loads every installed Claude plugin
-    regardless of Claude's ``enabledPlugins``, so the disabled ones are listed
-    in grok's own config.
-    """
-    settings = read_json(ROOT / ".claude" / "settings.json", {})
-    enabled = settings.get("enabledPlugins", {})
-    return sorted(
-        {key.split("@", 1)[0] for key, value in enabled.items() if value is False}
-    )
-
-
-def render_grok_config() -> str:
-    disabled = claude_disabled_plugins()
-    if disabled:
-        disabled_toml = (
-            "disabled = [\n" + "".join(f'  "{n}",\n' for n in disabled) + "]"
-        )
-    else:
-        disabled_toml = "disabled = []"
-    return f"""# Generated by scripts/agent-harnesses.py; do not edit directly.
-
-[compat.claude]
-skills = true
-rules = true
-agents = true
-mcps = true
-hooks = false
-sessions = true
-
-[compat.cursor]
-skills = true
-rules = true
-agents = true
-mcps = true
-hooks = false
-sessions = true
-
-[compat.codex]
-sessions = true
-
-[plugins]
-{disabled_toml}
-
-[marketplace]
-default_skills_installs_purged = true
-official_marketplace_auto_installed = true
-
-[[marketplace.sources]]
-name = "xAI Official"
-git = "https://github.com/xai-org/plugin-marketplace.git"
-"""
-
-
-def render_grok_rules() -> str:
-    instructions = render_instructions()
-    return f"""{instructions}
-
-{COMPACTION_PRESERVATION}
-# Git Commit Attribution
-
-When creating any Git commit, append this trailer exactly once after a blank line:
-
-Co-Authored-By: grokkybara[bot] <304785771+grokkybara[bot]@users.noreply.github.com>
-"""
-
-
-def render_grok_agent(agent: dict[str, Any]) -> str:
-    return f"""---
-name: {agent["id"]}
-description: {json.dumps(agent["description"])[1:-1]}
----
-
-{MANAGED_HEADER}
-
-{agent["prompt"].strip()}
-"""
-
-
-def render_grok_hooks() -> str:
-    hooks = {
-        "hooks": {
-            "PreToolUse": [
-                {
-                    "matcher": "Bash|Write|Edit|MultiEdit|run_terminal_cmd|run_terminal_command|search_replace|write_file|create_file|delete_file|Delete|apply_patch",
-                    "hooks": [
-                        {
-                            "type": "command",
-                            "command": "bash $HOME/.grok/scripts/harness-guard.sh",
-                            "timeout": 10,
-                        }
-                    ],
-                }
-            ]
-        }
-    }
-    return json.dumps(hooks, indent=2, sort_keys=True) + "\n"
-
-
-def render_grok_guard() -> str:
-    return """#!/usr/bin/env bash
-# Generated by scripts/agent-harnesses.py; do not edit directly.
-# grok PreToolUse adapter for the compiled harness guard (crates/ness,
-# installed by `just ness-install`). Fails closed when it is missing.
-#
-# Copyright: Ben Chatelain. Apache 2.0.
-
-set -euo pipefail
-
-deny() {
-    printf '{"decision":"deny","reason":"%s"}\n' "$1"
-    exit 2
-}
-trap 'deny "shared guard failed closed: hook error"' ERR
-
-ness="$HOME/.local/bin/ness"
-[ -x "$ness" ] || deny "shared guard failed closed: $ness is not installed (run: just ness-install)"
-exec "$ness" hook --harness grok
-"""
 
 
 def render_crush_config() -> str:

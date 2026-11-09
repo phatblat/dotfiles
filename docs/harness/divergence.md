@@ -9,6 +9,6 @@ A divergence is a product-level difference that will never be closed. It is not 
 Each harness stamps its own commit co-author identity
 
 - Capability: `instructions.global`
-- Reason: Every vendor ships a product identity in its commit trailer and has no reason to adopt another's: crush emits `Co-Authored-By: Crush <crush@charm.land>`, grok emits `Co-Authored-By: grokkybara[bot] <304785771+grokkybara[bot]@users.noreply.github.com>`, omp emits `Co-Authored-By: oh-my-pi <omp@can.ac>`, and Claude Code emits `Co-Authored-By: Claude <noreply@anthropic.com>`.
+- Reason: Every vendor ships a product identity in its commit trailer and has no reason to adopt another's: crush emits `Co-Authored-By: Crush <crush@charm.land>`, omp emits `Co-Authored-By: oh-my-pi <omp@can.ac>`, and Claude Code emits `Co-Authored-By: Claude <noreply@anthropic.com>`.
 - How we cope: The generated per-harness context file is the single source of the trailer and names that harness's own identity; where the harness also has a native attribution setting it is switched off so exactly one mechanism emits one trailer (crush: `option attribution-trailer-style none` in the generated crushrc).
 - Evidence: local · - · 2026-08-29 (~/.config/crush/shared-harness.md)

@@ -2,6 +2,8 @@
 
 ## Issue
 
+This decision is extended by [2026-11-08-remove-cursor-and-grok-harness-support](./2026-11-08-remove-cursor-and-grok-harness-support.md).
+
 This repository keeps nine agent harnesses in parity: a 405-cell capability
 registry (`scripts/harness_capabilities.py`), 458 generated files
 (`.agents/harness/generated-paths.json`), a daily probe LaunchAgent

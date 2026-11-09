@@ -11,7 +11,7 @@ the details.
 |---|---|---|---|
 | Package managers | mise, Homebrew, Nix/home-manager | mise primary, Homebrew fallback, Nix is an untracked experiment | `just package-audit` (basic, name-based, mise vs. installed brew) |
 | Shells | Zsh, Nushell, Bash | Mirror functions across shells, using each shell's native idioms | `docs/functions.md` (manual coverage table) + hk's `shellcheck-zsh`/`shellcheck-github`/`shellcheck-bin`/`nushell-config`/`nushell-autoload` steps, run via `just lint` (parse-only, not coverage) |
-| Agent harnesses | Claude Code, Codex, OpenCode, Pi, OMP, Antigravity, Cursor, Grok, Crush | Shared source of truth under `.agents/harness/`, generated/adapted per harness | `just harness-check` (validates generated parity artifacts) + `just harness-audit` (installed versions, parity gaps) + `just harness-probe` (re-verifies capability probes, records CLI versions, appends drift) |
+| Agent harnesses | Claude Code, Codex, OpenCode, Pi, OMP, Antigravity, Crush | Shared source of truth under `.agents/harness/`, generated/adapted per harness | `just harness-check` (validates generated parity artifacts) + `just harness-audit` (installed versions, parity gaps) + `just harness-probe` (re-verifies capability probes, records CLI versions, appends drift) |
 
 Harness parity is the deepest of the three. A capability registry
 (`scripts/harness_capabilities.py`) holds one cell per (harness, capability) with
@@ -45,16 +45,14 @@ most of its verdicts are `native` (nothing written at all) and the rest are syml
 
 Because the workspace root here is `$HOME`, agentlink's project scope and this repo are
 the same directory. Its links therefore serve agents working *in the dotfiles repo*,
-while `scripts/agent-harnesses.py` keeps serving the user tier for all nine harnesses.
+while `scripts/agent-harnesses.py` keeps serving the user tier for all seven harnesses.
 `~/.agents/skills` is canonical for both, and no file is written by both.
 
-Config lives in `.agentlink/config.toml` plus `.agentlink/providers/` (four manifests
+Config lives in `.agentlink/config.toml` plus `.agentlink/providers/` (three manifests
 agentlink does not ship), both tracked. `.agentlink/lock.toml` and `.github/skills`
 are committed too, so a fresh clone has working links without running
-`agentlink apply` first; only `.cursor/skills` is gitignored (via
-`.cursor/.gitignore`, not agentlink's own `[gitignore]` block, which stays
-`manage = false`). `just agentlink-check` is part of `just check`, but not CI,
-because that one link is never materialised in a fresh checkout.
+`agentlink apply` first. `just agentlink-check` is part of `just check`; CI does not
+run it.
 
 | Provider | Resource | Strategy | Path | Manifest |
 |---|---|---|---|---|
@@ -62,14 +60,11 @@ because that one link is never materialised in a fresh checkout.
 | antigravity | skills | native | `.agents/skills` | embedded |
 | codex | instructions | native | `AGENTS.md` | embedded |
 | codex | skills | native | `.agents/skills` | embedded |
-| cursor | instructions | native | `AGENTS.md` | embedded |
-| cursor | skills | link | `.cursor/skills` | embedded |
 | github-copilot | instructions | native | `AGENTS.md` | embedded |
 | github-copilot | skills | link | `.github/skills` | embedded |
 | omp | instructions | native | `AGENTS.md` | `.agentlink/providers/omp.toml` |
 | omp | skills | native | `.agents/skills` | `.agentlink/providers/omp.toml` |
 | pi | skills | native | `.agents/skills` | `.agentlink/providers/pi.toml` |
-| grok | skills | native | `.agents/skills` | `.agentlink/providers/grok.toml` |
 | crush | skills | native | `.agents/skills` | `.agentlink/providers/crush.toml` |
 
 `claude-code` is the one embedded provider this repo does not serve. agentlink wants
@@ -91,8 +86,8 @@ stays meaningful.
   plus Codex `agents/openai.yaml` policy sidecars). One symlinked directory can express
   neither a subset nor per-harness metadata.
 - Coexistence: the generator's targets are different paths from agentlink's (the
-  generator's `~/.claude/skills` pointers vs agentlink's `.cursor/skills` and
-  `.github/skills` links), so both can be in place without fighting. opencode is not
+  generator's `~/.claude/skills` pointers vs agentlink's `.github/skills` link), so both
+  can be in place without fighting. opencode is not
   an agentlink provider: it reads `~/.agents/skills` natively, so a `.opencode/skills`
   link only made it load every skill twice.
 - `.gitignore`: agentlink maintains a marked block; `scripts/sort-gitignore` (enforced

@@ -29,11 +29,6 @@ source = "~/dev/dotfiles/.agentlink/providers/crush.toml"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agentlink/providers/grok.toml"]
-source = "~/dev/dotfiles/.agentlink/providers/grok.toml"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agentlink/providers/omp.toml"]
 source = "~/dev/dotfiles/.agentlink/providers/omp.toml"
 mode = "symlink"
@@ -311,246 +306,6 @@ relative = false
 
 [dotfiles."~/.agents/harness/adapters/antigravity/skills/writing-plans/SKILL.md"]
 source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/writing-plans/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/.cursor-plugin/plugin.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/ai-sdk-expert.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/ai-sdk-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/cli-expert.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/cli-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/code-review-expert.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/code-review-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/nestjs-expert.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/nestjs-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/research-expert.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/research-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-fact-checker.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-fact-checker.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-final-reviewer.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-final-reviewer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-implementer.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-implementer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-plan-diligence.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-plan-diligence.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-plan-reviewer.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-plan-reviewer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-plan-standards.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-plan-standards.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-standards-enforcer.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-standards-enforcer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-step-breakdown.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-step-breakdown.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/sdd-step-hardener.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/sdd-step-hardener.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/agents/triage-expert.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/agents/triage-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/2ndbrain.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/2ndbrain.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/ci/fix.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/ci/fix.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/dupe.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/dupe.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/cleanup.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/cleanup.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/commit.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/commit.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/push.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/push.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/rebase.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/rebase.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/split.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/split.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/stack.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/stack.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/status.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/status.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/git/worktree.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/git/worktree.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/linear/plan.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/linear/plan.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/linear/progress.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/linear/progress.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/optimize-harness.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/optimize-harness.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/plan/worktree.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/plan/worktree.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/approve.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/approve.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/create.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/create.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/daily.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/daily.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/merge.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/merge.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/open-for-review.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/open-for-review.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/post-review-findings.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/post-review-findings.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/resolve-review-feedback.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/resolve-review-feedback.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/pr/update-desc.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/pr/update-desc.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/retro.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/retro.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/session-save.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/session-save.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/work/end-day.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/work/end-day.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/work/runners.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/work/runners.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/work/start-day.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/work/start-day.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/commands/work/track-item.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/commands/work/track-item.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/mcp.json"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/mcp.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/rules/shared-harness.mdc"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/rules/shared-harness.mdc"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/cursor/scripts/harness-guard.sh"]
-source = "~/dev/dotfiles/.agents/harness/adapters/cursor/scripts/harness-guard.sh"
 mode = "symlink"
 relative = false
 
@@ -841,11 +596,6 @@ relative = false
 
 [dotfiles."~/.agents/harness/self-improve-policy.json"]
 source = "~/dev/dotfiles/.agents/harness/self-improve-policy.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/hooks.json"]
-source = "~/dev/dotfiles/.agents/hooks.json"
 mode = "symlink"
 relative = false
 
@@ -3194,36 +2944,6 @@ source = "~/dev/dotfiles/.config/git/config"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/git/hooks/commit-msg"]
-source = "~/dev/dotfiles/.config/git/hooks/commit-msg"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/git/hooks/post-commit"]
-source = "~/dev/dotfiles/.config/git/hooks/post-commit"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/git/hooks/post-rewrite"]
-source = "~/dev/dotfiles/.config/git/hooks/post-rewrite"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/git/hooks/pre-push"]
-source = "~/dev/dotfiles/.config/git/hooks/pre-push"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/git/hooks/pre-push.pre-entire-brain"]
-source = "~/dev/dotfiles/.config/git/hooks/pre-push.pre-entire-brain"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/git/hooks/prepare-commit-msg"]
-source = "~/dev/dotfiles/.config/git/hooks/prepare-commit-msg"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.config/glow/glow.yml"]
 source = "~/dev/dotfiles/.config/glow/glow.yml"
 mode = "symlink"
@@ -3924,16 +3644,6 @@ source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-crush-safe-bash.js
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/ness/cases/140-allow-harness-cursor-safe-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-cursor-safe-bash.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/ness/cases/140-allow-harness-grok-safe-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-grok-safe-bash.json"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.config/ness/cases/140-allow-harness-omp-safe-bash.json"]
 source = "~/dev/dotfiles/.config/ness/cases/140-allow-harness-omp-safe-bash.json"
 mode = "symlink"
@@ -3969,16 +3679,6 @@ source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-crush-dangerous-bas
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/ness/cases/141-deny-harness-cursor-dangerous-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-cursor-dangerous-bash.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.config/ness/cases/141-deny-harness-grok-dangerous-bash.json"]
-source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-grok-dangerous-bash.json"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.config/ness/cases/141-deny-harness-omp-dangerous-bash.json"]
 source = "~/dev/dotfiles/.config/ness/cases/141-deny-harness-omp-dangerous-bash.json"
 mode = "symlink"
@@ -3999,8 +3699,8 @@ source = "~/dev/dotfiles/.config/ness/cases/142-deny-control-plane-pi-harness.js
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/ness/cases/143-deny-control-plane-grok-guard-config.json"]
-source = "~/dev/dotfiles/.config/ness/cases/143-deny-control-plane-grok-guard-config.json"
+[dotfiles."~/.config/ness/cases/143-deny-control-plane-harness-guard-config.json"]
+source = "~/dev/dotfiles/.config/ness/cases/143-deny-control-plane-harness-guard-config.json"
 mode = "symlink"
 relative = false
 
@@ -9674,31 +9374,6 @@ source = "~/dev/dotfiles/.config/zsh/functions/yn"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.cursor/.gitignore"]
-source = "~/dev/dotfiles/.cursor/.gitignore"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.cursor/cli-config.json"]
-source = "~/dev/dotfiles/.cursor/cli-config.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.cursor/hooks.json"]
-source = "~/dev/dotfiles/.cursor/hooks.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.cursor/mcp.json"]
-source = "~/dev/dotfiles/.cursor/mcp.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.cursor/rules/shared-harness.mdc"]
-source = "~/dev/dotfiles/.cursor/rules/shared-harness.mdc"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.dart-cli-completion/config.json"]
 source = "~/dev/dotfiles/.dart-cli-completion/config.json"
 mode = "symlink"
@@ -9821,101 +9496,6 @@ relative = false
 
 [dotfiles."~/.graphignore"]
 source = "~/dev/dotfiles/.graphignore"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/ai-sdk-expert.md"]
-source = "~/dev/dotfiles/.grok/agents/ai-sdk-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/cli-expert.md"]
-source = "~/dev/dotfiles/.grok/agents/cli-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/code-review-expert.md"]
-source = "~/dev/dotfiles/.grok/agents/code-review-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/nestjs-expert.md"]
-source = "~/dev/dotfiles/.grok/agents/nestjs-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/research-expert.md"]
-source = "~/dev/dotfiles/.grok/agents/research-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-fact-checker.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-fact-checker.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-final-reviewer.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-final-reviewer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-implementer.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-implementer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-plan-diligence.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-plan-diligence.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-plan-reviewer.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-plan-reviewer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-plan-standards.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-plan-standards.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-standards-enforcer.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-standards-enforcer.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-step-breakdown.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-step-breakdown.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/sdd-step-hardener.md"]
-source = "~/dev/dotfiles/.grok/agents/sdd-step-hardener.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/agents/triage-expert.md"]
-source = "~/dev/dotfiles/.grok/agents/triage-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/config.toml"]
-source = "~/dev/dotfiles/.grok/config.toml"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/hooks/harness-guard.json"]
-source = "~/dev/dotfiles/.grok/hooks/harness-guard.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/rules/shared-harness.md"]
-source = "~/dev/dotfiles/.grok/rules/shared-harness.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.grok/scripts/harness-guard.sh"]
-source = "~/dev/dotfiles/.grok/scripts/harness-guard.sh"
 mode = "symlink"
 relative = false
 
@@ -10526,11 +10106,6 @@ relative = false
 
 [dotfiles."~/.omp/remote-host/localhost.json"]
 source = "~/dev/dotfiles/.omp/remote-host/localhost.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.opencode/plugins/entire.ts"]
-source = "~/dev/dotfiles/.opencode/plugins/entire.ts"
 mode = "symlink"
 relative = false
 

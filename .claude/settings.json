@@ -82,26 +82,6 @@
           }
         ],
         "matcher": "Write|Edit"
-      },
-      {
-        "hooks": [
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code post-task'",
-            "timeout": 120,
-            "type": "command"
-          }
-        ],
-        "matcher": "Agent"
-      },
-      {
-        "hooks": [
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code post-task'",
-            "timeout": 120,
-            "type": "command"
-          }
-        ],
-        "matcher": "Skill"
       }
     ],
     "PostToolUseFailure": [
@@ -163,26 +143,6 @@
           }
         ],
         "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code pre-task'",
-            "timeout": 30,
-            "type": "command"
-          }
-        ],
-        "matcher": "Agent"
-      },
-      {
-        "hooks": [
-          {
-            "command": "sh -c 'if command -v entire-brain >/dev/null 2>&1; then exec entire-brain hook pre-edit --claude-hook; fi; if command -v entire >/dev/null 2>&1; then exec entire brain hook pre-edit --claude-hook; fi; exit 0'",
-            "timeout": 30,
-            "type": "command"
-          }
-        ],
-        "matcher": "Edit|Write|MultiEdit|NotebookEdit"
       }
     ],
     "SessionEnd": [
@@ -192,26 +152,15 @@
             "command": "bash ~/.claude/hooks/scripts/flywheel-outcome.sh success",
             "timeout": 3,
             "type": "command"
-          },
-          {
-            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd; fi",
-            "timeout": 10,
-            "type": "command"
-          },
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code session-end'",
-            "type": "command"
           }
         ],
         "matcher": ""
-      }
-    ],
-    "SessionStart": [
+      },
       {
         "hooks": [
           {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then printf \"%s\\n\" \"{\\\"systemMessage\\\":\\\"\\\\n\\\\nEntire CLI is enabled but not installed or not on PATH.\\\\nInstallation guide: https://docs.entire.io/cli/installation#installation-methods\\\"}\"; exit 0; fi; exec entire hooks claude-code session-start'",
-            "timeout": 30,
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd; fi",
+            "timeout": 10,
             "type": "command"
           }
         ],
@@ -225,11 +174,6 @@
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Stop; fi",
             "timeout": 10,
             "type": "command"
-          },
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code stop'",
-            "timeout": 120,
-            "type": "command"
           }
         ],
         "matcher": ""
@@ -242,39 +186,15 @@
             "command": "bash ~/.claude/hooks/scripts/flywheel-outcome.sh failed",
             "timeout": 3,
             "type": "command"
-          },
+          }
+        ],
+        "matcher": ""
+      },
+      {
+        "hooks": [
           {
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude StopFailure; fi",
             "timeout": 10,
-            "type": "command"
-          },
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code stop-failure'",
-            "timeout": 120,
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code subagent-start'",
-            "timeout": 30,
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code subagent-stop'",
-            "timeout": 120,
             "type": "command"
           }
         ],
@@ -287,11 +207,6 @@
           {
             "command": "bash ~/.claude/hooks/scripts/user-prompt-secrets.sh",
             "timeout": 2,
-            "type": "command"
-          },
-          {
-            "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks claude-code user-prompt-submit'",
-            "timeout": 30,
             "type": "command"
           }
         ],

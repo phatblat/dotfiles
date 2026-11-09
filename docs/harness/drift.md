@@ -9,19 +9,22 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.314 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
-| codex | codex-cli 0.166.0 | 2026-08-29 | codex-cli 0.165.0 |
-| opencode | opencode v2.2.5 | 2026-08-29 | opencode v2.2.2 |
+| codex | codex-cli 0.167.0 | 2026-08-29 | codex-cli 0.166.0 |
+| opencode | opencode v2.2.6 | 2026-08-29 | opencode v2.2.5 |
 | pi | 1.5.0 | 2026-08-29 | 1.4.0 |
-| omp | omp/18.17.0 | 2026-08-29 | omp/18.14.1 |
-| antigravity | 1.4.6 | 2026-08-29 | 1.2.3 |
-| cursor | 2026.10.16-e3cb207 | 2026-08-29 | 2026.10.16-e3cb207 |
-| grok | grok 1.0.77 (50ca579fa996) [alpha] | 2026-08-29 | grok 1.0.77 (50ca579fa996) |
+| omp | omp/18.18.2 | 2026-08-29 | omp/18.18.1 |
+| antigravity | 1.5.3 | 2026-08-29 | 1.4.6 |
 | crush | crush version v0.100.0 | 2026-08-29 | crush version v0.99.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-08 | omp | - | version | omp/18.18.1 | omp/18.18.2 | omp/18.18.2 |
+| 2026-11-08 | antigravity | - | version | 1.4.6 | 1.5.3 | 1.5.3 |
+| 2026-11-08 | opencode | - | version | opencode v2.2.5 | opencode v2.2.6 | opencode v2.2.6 |
+| 2026-11-08 | omp | - | version | omp/18.17.0 | omp/18.18.1 | omp/18.18.1 |
+| 2026-11-08 | codex | - | version | codex-cli 0.166.0 | codex-cli 0.167.0 | codex-cli 0.167.0 |
 | 2026-11-07 | omp | - | version | omp/18.14.1 | omp/18.17.0 | omp/18.17.0 |
 | 2026-11-07 | grok | - | version | grok 1.0.77 (50ca579fa996) | grok 1.0.77 (50ca579fa996) [alpha] | grok 1.0.77 (50ca579fa996) [alpha] |
 | 2026-11-07 | cursor | - | version | - | 2026.10.16-e3cb207 | 2026.10.16-e3cb207 |
@@ -217,8 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-22 | antigravity | - | version | 1.2.7 | 1.2.8 | 1.2.8 |
 | 2026-09-22 | opencode | maintenance.config_validation | probe | unavailable | pass | 1.18.31 |
 | 2026-09-19 | omp | - | version | omp/18.2.5 | omp/18.2.6 | omp/18.2.6 |
-| 2026-09-19 | cursor | - | version | 2026.09.02-c22c1a3 | - | - |
-| 2026-09-19 | codex | - | version | codex-cli 0.154.0 | codex-cli 0.155.0 | codex-cli 0.155.0 |
-| 2026-09-19 | antigravity | - | version | 1.2.6 | 1.2.7 | 1.2.7 |
-| 2026-09-19 | opencode | maintenance.config_validation | probe | pass | unavailable | 1.18.31 |
-| 2026-09-18 | omp | - | version | omp/18.2.2 | omp/18.2.5 | omp/18.2.5 |
