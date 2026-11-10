@@ -82,6 +82,11 @@ OUT_OF_REPO = {
     ".agents/skills/recording-changes": "~/dev/agents/skills/skills/recording-changes",
     ".agents/skills/semantic-versioning": "~/dev/agents/skills/skills/semantic-versioning",
     ".agents/skills/setup-phatblat-skills": "~/dev/agents/skills/skills/setup-phatblat-skills",
+    ".claude/skills/authoring-skills": "~/dev/agents/skills/skills/authoring-skills",
+    ".claude/skills/conventional-docs": "~/dev/agents/conventional-docs/skills/conventional-docs",
+    ".claude/skills/recording-changes": "~/dev/agents/skills/skills/recording-changes",
+    ".claude/skills/semantic-versioning": "~/dev/agents/skills/skills/semantic-versioning",
+    ".claude/skills/setup-phatblat-skills": "~/dev/agents/skills/skills/setup-phatblat-skills",
 }
 DANGLING = (
     ".config/iterm2/AppSupport",
