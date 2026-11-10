@@ -31,71 +31,19 @@ from pathlib import Path
 #
 # `boris` is absent because it is Claude-Code-specific, externally compiled, and
 # self-updating from a URL.
-NATIVE_SKILL_ADAPTERS = {
-    "2ndbrain",
-    "artifact-message-bus",
-    "aven",
-    "backlog-batch-delivery",
-    "brainstorm",
-    "branch-finish",
-    "ci-fix",
-    "cmux-workspace-status",
-    "container",
-    "dispatching-parallel-agents",
-    "executing-plans",
-    "find-docs",
-    "flywheel",
-    "gha-checks",
-    "gha-log-reader",
-    "graphify",
-    "grill-me",
-    "grilling",
-    "handoff",
-    "harness-research",
-    "implement-plan",
-    "ios-device-qa",
-    "new-project",
-    "ocr",
-    "optimize-harness",
-    "plan-design-review",
-    "pr-style",
-    "receiving-code-review",
-    "requesting-code-review",
-    "resolve-review-feedback",
-    "retro",
-    "security-audit",
-    "small-change",
-    "subagent-driven-development",
-    "test-driven-development",
-    "typesafe-ai",
-    "using-git-worktrees",
-    "write-plan",
-    "writing-plans",
-}
-
-# Subset of the above that must not be model-invoked: procedural workflows the
-# user runs deliberately. Membership mirrors `allow_implicit_invocation: false`
-# in each shared skill's agents/openai.yaml, so the two stay consistent.
-MANUAL_SKILL_ADAPTERS = {
-    "2ndbrain",
-    "backlog-batch-delivery",
-    "branch-finish",
-    "ci-fix",
-    "gha-checks",
-    "gha-log-reader",
-    "grill-me",
-    "handoff",
-    "harness-research",
-    "implement-plan",
-    "ios-device-qa",
-    "new-project",
-    "optimize-harness",
-    "plan-design-review",
-    "resolve-review-feedback",
-    "retro",
-    "security-audit",
-    "small-change",
-    "write-plan",
+# Skills that get no Claude pointer at all: they are ownership exclusions, not
+# a skill inclusion list. `omp-hooks` documents OMP-specific hook behavior,
+# `boris` self-updates from a URL with harness-specific content, and the Paseo
+# directories have their own managed copies elsewhere in `.omp`.
+CLAUDE_SKILL_EXCLUSIONS = {
+    "omp-hooks",
+    "boris",
+    "paseo",
+    "paseo-advisor",
+    "paseo-committee",
+    "paseo-handoff",
+    "paseo-help",
+    "paseo-plugin",
 }
 
 _managed_header: str | None = None
@@ -119,6 +67,24 @@ def _require_config() -> tuple[str, Path]:
             "harness_skills.configure() must run before rendering skills"
         )
     return _managed_header, _skill_source
+
+
+def is_procedural_skill(skill_name: str) -> bool:
+    """Report whether the shared skill declares `allow_implicit_invocation: false`.
+
+    Reads `_skill_source/<name>/agents/openai.yaml` after `configure()`; a
+    missing sidecar is an ability, not a procedural workflow.
+    """
+    _, skill_source = _require_config()
+    sidecar = skill_source / skill_name / "agents" / "openai.yaml"
+    try:
+        text = sidecar.read_text(encoding="utf-8")
+    except OSError:
+        return False
+    return re.search(r"^\s*allow_implicit_invocation:\s*false\s*$", text, re.MULTILINE) is not None
+
+
+
 
 
 def discover_skills(source: Path, root: Path) -> tuple[list[str], dict[str, str]]:

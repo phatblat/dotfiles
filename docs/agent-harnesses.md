@@ -8,12 +8,12 @@ Coverage: 74/315 cells verified (23%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.314 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| claude | supported peer | 2.1.251 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.167.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | opencode v2.2.6 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.5.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.18.3 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
-| antigravity | tracked port | 1.5.3 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
+| omp | tracked port | omp/18.14.1 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
+| antigravity | tracked port | 1.2.3 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | crush | new port | crush version v0.100.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
@@ -21,7 +21,7 @@ Coverage: 74/315 cells verified (23%)
 | Domain | Page | Capabilities | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|
 | Instructions | [harness/instructions.md](harness/instructions.md) | 3 | 6 | 1 | 0 | 0 | 0 | 14 |
-| Skills | [harness/skills.md](harness/skills.md) | 7 | 6 | 2 | 0 | 0 | 1 | 40 |
+| Skills | [harness/skills.md](harness/skills.md) | 7 | 5 | 3 | 0 | 0 | 1 | 40 |
 | Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 1 | 0 | 1 | 1 | 14 |
 | Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 1 | 0 | 1 | 1 | 21 |
 | Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 4 | 3 | 0 | 0 | 0 | 21 |
@@ -38,6 +38,7 @@ Coverage: 74/315 cells verified (23%)
 
 | Harness | Capability | Next action |
 |---|---|---|
+| claude | skills.shared | Run the real Claude session and confirm /skills lists the generated pointer plus resolving external links, then return the cell to aligned with that observation |
 | codex | commands.active | Re-check Codex release notes for stable command format |
 | codex | mcp.dependencies | hand-add [mcp_servers.filesystem]; validated by just harness-check |
 | omp | hooks.safety | Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again, and return this cell to aligned in the same change, since the probe passes only while the entry is present |
@@ -55,6 +56,9 @@ Coverage: 74/315 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-11-10 | omp | - | version | omp/18.18.3 | omp/18.14.1 |
+| 2026-11-10 | claude | - | version | 2.1.314 (Claude Code) | 2.1.251 (Claude Code) |
+| 2026-11-10 | antigravity | - | version | 1.5.3 | 1.2.3 |
 | 2026-11-09 | omp | hooks.safety | parity | aligned | partial |
 | 2026-11-08 | omp | - | version | omp/18.18.1 | omp/18.18.2 |
 | 2026-11-08 | antigravity | - | version | 1.4.6 | 1.5.3 |
@@ -62,9 +66,6 @@ Coverage: 74/315 cells verified (23%)
 | 2026-11-08 | omp | - | version | omp/18.17.0 | omp/18.18.1 |
 | 2026-11-08 | codex | - | version | codex-cli 0.166.0 | codex-cli 0.167.0 |
 | 2026-11-07 | omp | - | version | omp/18.14.1 | omp/18.17.0 |
-| 2026-11-07 | grok | - | version | grok 1.0.77 (50ca579fa996) | grok 1.0.77 (50ca579fa996) [alpha] |
-| 2026-11-07 | cursor | - | version | - | 2026.10.16-e3cb207 |
-| 2026-11-07 | crush | - | version | crush version v0.99.0 | crush version v0.100.0 |
 
 ## Permanent divergences
 

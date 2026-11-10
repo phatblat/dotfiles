@@ -374,7 +374,7 @@ def run_omp_review(
         {"path": thread.path, "lines": list(thread.lines)} for thread in threads
     ]
     prompt = (
-        f"/skill:review Review {pr.url} against origin/{base_ref}. "
+        f"/skill:review-pr Review {pr.url} against origin/{base_ref}. "
         "review-only: do not edit files, commit, push, or post GitHub comments. "
         "Suppress findings overlapping the supplied unresolved threads within "
         f"±{thread_window()} lines. Existing unresolved threads: "

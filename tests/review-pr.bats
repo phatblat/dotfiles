@@ -96,7 +96,7 @@ exit "$REVIEW_PR_OMP_STATUS"'
 
   [ "$status" -eq 0 ]
   grep -q "gh repo clone anthropics/claude-code $REVIEW_PR_CLONE_ROOT/anthropics/claude-code" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "^omp-arg:</skill:review Review https://github.com/anthropics/claude-code/pull/77 against origin/release/4.0\." "$REVIEW_PR_COMMAND_LOG"
+  grep -q "^omp-arg:</skill:review-pr Review https://github.com/anthropics/claude-code/pull/77 against origin/release/4.0\." "$REVIEW_PR_COMMAND_LOG"
 }
 
 @test "review-pr: accepts owner/repo#number shorthand" {
@@ -313,7 +313,7 @@ EOF
   run "$SCRIPT" "https://github.com/getditto/widgets/pull/123?ignored=true"
 
   [ "$status" -eq 0 ]
-  grep -q '^omp-arg:</skill:review Review https://github.com/getditto/widgets/pull/123 against origin/release/4.0\.' "$REVIEW_PR_COMMAND_LOG"
+  grep -q '^omp-arg:</skill:review-pr Review https://github.com/getditto/widgets/pull/123 against origin/release/4.0\.' "$REVIEW_PR_COMMAND_LOG"
   grep -q 'review-only: do not edit files, commit, push, or post GitHub comments' "$REVIEW_PR_COMMAND_LOG"
   grep -Fq '"path":"src/quote file.ts","lines":[7,11,40]' "$REVIEW_PR_COMMAND_LOG"
   grep -Fq 'within ±5 lines' "$REVIEW_PR_COMMAND_LOG"

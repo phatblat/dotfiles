@@ -10,7 +10,7 @@ allowed_tools:
   - Grep
   - Bash
   - Task
-  - TaskOutput
+  - TaskStop
   - TaskCreate
   - TaskGet
   - TaskUpdate

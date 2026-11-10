@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # PostToolUse hook: auto-format files changed by apply_patch
-# Dotfiles paths → hk fix; other projects → prettier/ruff/black
+# A dotfiles checkout file (matching the hook's canonical common dir)
+# routes to hk; every other file routes to generic prettier/ruff/black.
 set -euo pipefail
 
 input=$(cat)
@@ -13,28 +14,42 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 home="$HOME"
-cwd=$(printf '%s' "$input" | jq -r '.cwd // empty')
-[ -n "$cwd" ] || cwd=$PWD
+buffer_cwd=$(printf '%s' "$input" | jq -r '.cwd // empty')
+[ -n "$buffer_cwd" ] || buffer_cwd=$PWD
+
+canonical_file_path() {
+    realpath "$1"
+}
 
 format_file() {
     local file_path="$1"
 
-    # Dotfiles-managed paths: hk owns every formatter and its exclusions. hk
-    # stages nothing: the `fix` hook sets stage = false.
-    case "$file_path" in
-        "$home"/*)
-            if ! git -C "$home" check-ignore -q -- "$file_path" 2>/dev/null; then
-                hk --cd "$home" fix "$file_path" >/dev/null 2>&1 || true
-                return 0
-            fi
-            ;;
-    esac
+    file_path="$(canonical_file_path "$file_path")"
 
-    # Not a dotfiles path — use generic formatters.
+    local script_common_dir file_common_dir checkout_root
+    # The hook script directory nests three levels below its checkout root:
+    # <root>/.codex/hooks/scripts.
+    checkout_root="$(realpath "$script_dir/../../..")"
+    script_common_dir="$(git -C "$checkout_root" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || printf '')"
+    file_common_dir="$(git -C "$(dirname "$file_path")" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || printf '')"
+
+    if [ -n "$script_common_dir" ] && [ "$script_common_dir" = "$file_common_dir" ]; then
+        # hk owns the shipping rubric: staged nothing, fix everything...
+        hk --cd "$checkout_root" fix "$file_path" >/dev/null 2>&1 || true
+        return 0
+    fi
+
+    file_top="$(git -C "$(dirname "$file_path")" rev-parse --show-toplevel 2>/dev/null || printf '')"
+    if [ -n "$file_top" ] && git -C "$file_top" check-ignore -q -- "$file_path" 2>/dev/null; then
+        return 0
+    fi
+
+    # Not dotfiles code paths — generic formatters.
     case "$file_path" in
         *.ts|*.tsx|*.js|*.jsx|*.mjs|*.cjs|*.json)
-            if [ -x "$cwd/node_modules/.bin/prettier" ]; then
-                "$cwd/node_modules/.bin/prettier" --write "$file_path" >/dev/null 2>&1 || true
+            prettier_bin="$buffer_cwd/node_modules/.bin/prettier"
+            if [ -x "$prettier_bin" ]; then
+                "$prettier_bin" --write "$file_path" >/dev/null 2>&1 || true
             elif command -v prettier >/dev/null 2>&1; then
                 prettier --write "$file_path" >/dev/null 2>&1 || true
             fi
@@ -55,7 +70,7 @@ while IFS= read -r patch_path; do
 
     case "$patch_path" in
         /*) file_path="$patch_path" ;;
-        *) file_path="$cwd/$patch_path" ;;
+        *) file_path="$buffer_cwd/$patch_path" ;;
     esac
 
     if [ -f "$file_path" ]; then

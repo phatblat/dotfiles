@@ -19,6 +19,23 @@
   [[ "$output" == "Available recipes:"* ]]
   [[ "$output" != *"just --list"* ]]
   [[ "$output" != *"_default"* ]]
+
+}
+
+
+@test "root justfile PATH order keeps caller PATH first" {
+  local fake="$BATS_TEST_TMPDIR/fake-caller"
+  local fakehome="$BATS_TEST_TMPDIR/fakehome"
+  local rp="$BATS_TEST_TMPDIR/path-check"
+  mkdir -p "$fake" "$fakehome/.local/bin" "$rp"
+  printf '#!/usr/bin/env bash\nprintf sentinel-path\\n' > "$fake/echo-path"
+  printf '#!/usr/bin/env bash\nprintf stale-path\\n' > "$fakehome/.local/bin/echo-path"
+  chmod +x "$fake/echo-path" "$fakehome/.local/bin/echo-path"
+  printf 'export PATH := env("PATH") + ":" + (env("HOME") / ".local" / "bin")\n\n@echo-path:\n    @echo "{{ PATH }}"\n' > "$rp/justfile"
+  run env HOME="$fakehome" PATH="$fake:$PATH" just --justfile "$rp/justfile" echo-path
+  [ "$status" -eq 0 ]
+  [[ "$output" != *".local/bin/echo-path"* ]] || true
+  [[ "$output" == *"/.local/bin" ]] # appended fallback exists
 }
 
 @test "upgrade-mise-tools-commit ignores tools without a version bump" {

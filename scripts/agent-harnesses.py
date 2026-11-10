@@ -48,17 +48,14 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS
     )
     from harness_drift import append_records, diff_states, load_records, run_probe
     from harness_skills import (
-        MANUAL_SKILL_ADAPTERS,
-        NATIVE_SKILL_ADAPTERS,
+        CLAUDE_SKILL_EXCLUSIONS,
         discover_skills,
         is_generated_pointer,
+        is_procedural_skill,
         render_antigravity_skill,
         render_claude_skill,
-    )
-    from harness_skills import (
         configure as configure_skill_rendering,
     )
-
 sys.dont_write_bytecode = True
 
 # Generated artifacts are written into this checkout (two levels up from
@@ -863,27 +860,19 @@ def render_all() -> dict[Path, str]:
     for skill_name in inventory["skills"]["paths"]:
         source = SKILL_SOURCE / skill_name / "SKILL.md"
         emitted = set(rendered)
-        # Procedural skills must not be implicitly invocable on Antigravity,
-        # which has no per-skill invocation policy. The gate is the source
-        # skill's own agents/openai.yaml allow_implicit_invocation: false
-        # marker, so the exclusion set can never drift from Codex's.
-        procedural = (
-            SKILL_SOURCE / skill_name / "agents" / "openai.yaml"
-        ).is_file() and (
-            "allow_implicit_invocation: false"
-            in (SKILL_SOURCE / skill_name / "agents" / "openai.yaml").read_text()
-        )
+        procedural = is_procedural_skill(skill_name)
         if not procedural:
             rendered[ANTIGRAVITY_HARNESS / "skills" / skill_name / "SKILL.md"] = (
                 render_antigravity_skill(skill_name)
             )
         record_provenance(provenance, rendered, emitted, source)
-    for skill_name in sorted(NATIVE_SKILL_ADAPTERS & set(inventory["skills"]["paths"])):
+    for skill_name in sorted(
+        set(inventory["skills"]["paths"]) - CLAUDE_SKILL_EXCLUSIONS
+    ):
         source = SKILL_SOURCE / skill_name / "SKILL.md"
         emitted = set(rendered)
-        manual_only = skill_name in MANUAL_SKILL_ADAPTERS
         rendered[CLAUDE_SKILLS / skill_name / "SKILL.md"] = render_claude_skill(
-            skill_name, manual_only=manual_only
+            skill_name, manual_only=is_procedural_skill(skill_name)
         )
         record_provenance(provenance, rendered, emitted, source)
 
@@ -957,6 +946,8 @@ Always load repository instructions first, then use shared skills from
 `~/.agents/skills` when a task matches a skill description. Prefer the canonical
 command prompts under `~/.agents/harness/commands` and specialist agent
 definitions under `~/.agents/harness/agents`.
+
+For Claude Code-native mappings and explicit OMP-only boundaries, read ~/.agents/harness/native-capabilities.md when such a surface is relevant.
 
 Safety-sensitive lifecycle events must be normalized through
 `~/.agents/harness/hooks/contract.json` and evaluated by the shared safety policy.

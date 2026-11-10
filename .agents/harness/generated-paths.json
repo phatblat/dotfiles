@@ -92,11 +92,8 @@
   "~/.agents/harness/adapters/antigravity/skills/flywheel/SKILL.md": {
     "source": "~/.agents/skills/flywheel/SKILL.md"
   },
-  "~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md": {
-    "source": "~/.agents/skills/git-commit/SKILL.md"
-  },
-  "~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md": {
-    "source": "~/.agents/skills/git-status/SKILL.md"
+  "~/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md": {
+    "source": "~/.agents/skills/gh-stack/SKILL.md"
   },
   "~/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md": {
     "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
@@ -329,20 +326,59 @@
   "~/.claude/skills/dispatching-parallel-agents/SKILL.md": {
     "source": "~/.agents/skills/dispatching-parallel-agents/SKILL.md"
   },
+  "~/.claude/skills/dupe/SKILL.md": {
+    "source": "~/.agents/skills/dupe/SKILL.md"
+  },
   "~/.claude/skills/executing-plans/SKILL.md": {
     "source": "~/.agents/skills/executing-plans/SKILL.md"
   },
   "~/.claude/skills/find-docs/SKILL.md": {
     "source": "~/.agents/skills/find-docs/SKILL.md"
   },
+  "~/.claude/skills/find-skills/SKILL.md": {
+    "source": "~/.agents/skills/find-skills/SKILL.md"
+  },
   "~/.claude/skills/flywheel/SKILL.md": {
     "source": "~/.agents/skills/flywheel/SKILL.md"
+  },
+  "~/.claude/skills/gh-stack/SKILL.md": {
+    "source": "~/.agents/skills/gh-stack/SKILL.md"
   },
   "~/.claude/skills/gha-checks/SKILL.md": {
     "source": "~/.agents/skills/gha-checks/SKILL.md"
   },
   "~/.claude/skills/gha-log-reader/SKILL.md": {
     "source": "~/.agents/skills/gha-log-reader/SKILL.md"
+  },
+  "~/.claude/skills/git-cleanup/SKILL.md": {
+    "source": "~/.agents/skills/git-cleanup/SKILL.md"
+  },
+  "~/.claude/skills/git-commit/SKILL.md": {
+    "source": "~/.agents/skills/git-commit/SKILL.md"
+  },
+  "~/.claude/skills/git-push/SKILL.md": {
+    "source": "~/.agents/skills/git-push/SKILL.md"
+  },
+  "~/.claude/skills/git-rebase/SKILL.md": {
+    "source": "~/.agents/skills/git-rebase/SKILL.md"
+  },
+  "~/.claude/skills/git-resolve-conflicts/SKILL.md": {
+    "source": "~/.agents/skills/git-resolve-conflicts/SKILL.md"
+  },
+  "~/.claude/skills/git-split/SKILL.md": {
+    "source": "~/.agents/skills/git-split/SKILL.md"
+  },
+  "~/.claude/skills/git-stack/SKILL.md": {
+    "source": "~/.agents/skills/git-stack/SKILL.md"
+  },
+  "~/.claude/skills/git-status/SKILL.md": {
+    "source": "~/.agents/skills/git-status/SKILL.md"
+  },
+  "~/.claude/skills/git-value-scrubbing/SKILL.md": {
+    "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
+  },
+  "~/.claude/skills/git-worktree/SKILL.md": {
+    "source": "~/.agents/skills/git-worktree/SKILL.md"
   },
   "~/.claude/skills/graphify/SKILL.md": {
     "source": "~/.agents/skills/graphify/SKILL.md"
@@ -359,11 +395,20 @@
   "~/.claude/skills/harness-research/SKILL.md": {
     "source": "~/.agents/skills/harness-research/SKILL.md"
   },
+  "~/.claude/skills/homebrew/SKILL.md": {
+    "source": "~/.agents/skills/homebrew/SKILL.md"
+  },
   "~/.claude/skills/implement-plan/SKILL.md": {
     "source": "~/.agents/skills/implement-plan/SKILL.md"
   },
   "~/.claude/skills/ios-device-qa/SKILL.md": {
     "source": "~/.agents/skills/ios-device-qa/SKILL.md"
+  },
+  "~/.claude/skills/justfile/SKILL.md": {
+    "source": "~/.agents/skills/justfile/SKILL.md"
+  },
+  "~/.claude/skills/linear-plan/SKILL.md": {
+    "source": "~/.agents/skills/linear-plan/SKILL.md"
   },
   "~/.claude/skills/new-project/SKILL.md": {
     "source": "~/.agents/skills/new-project/SKILL.md"
@@ -377,8 +422,35 @@
   "~/.claude/skills/plan-design-review/SKILL.md": {
     "source": "~/.agents/skills/plan-design-review/SKILL.md"
   },
+  "~/.claude/skills/plan-worktree/SKILL.md": {
+    "source": "~/.agents/skills/plan-worktree/SKILL.md"
+  },
+  "~/.claude/skills/pr-approve/SKILL.md": {
+    "source": "~/.agents/skills/pr-approve/SKILL.md"
+  },
+  "~/.claude/skills/pr-create/SKILL.md": {
+    "source": "~/.agents/skills/pr-create/SKILL.md"
+  },
+  "~/.claude/skills/pr-daily/SKILL.md": {
+    "source": "~/.agents/skills/pr-daily/SKILL.md"
+  },
+  "~/.claude/skills/pr-merge/SKILL.md": {
+    "source": "~/.agents/skills/pr-merge/SKILL.md"
+  },
+  "~/.claude/skills/pr-open-for-review/SKILL.md": {
+    "source": "~/.agents/skills/pr-open-for-review/SKILL.md"
+  },
+  "~/.claude/skills/pr-post-review-findings/SKILL.md": {
+    "source": "~/.agents/skills/pr-post-review-findings/SKILL.md"
+  },
+  "~/.claude/skills/pr-resolve-review-feedback/SKILL.md": {
+    "source": "~/.agents/skills/pr-resolve-review-feedback/SKILL.md"
+  },
   "~/.claude/skills/pr-style/SKILL.md": {
     "source": "~/.agents/skills/pr-style/SKILL.md"
+  },
+  "~/.claude/skills/pr-update-desc/SKILL.md": {
+    "source": "~/.agents/skills/pr-update-desc/SKILL.md"
   },
   "~/.claude/skills/receiving-code-review/SKILL.md": {
     "source": "~/.agents/skills/receiving-code-review/SKILL.md"
@@ -392,8 +464,14 @@
   "~/.claude/skills/retro/SKILL.md": {
     "source": "~/.agents/skills/retro/SKILL.md"
   },
+  "~/.claude/skills/review-pr/SKILL.md": {
+    "source": "~/.agents/skills/review-pr/SKILL.md"
+  },
   "~/.claude/skills/security-audit/SKILL.md": {
     "source": "~/.agents/skills/security-audit/SKILL.md"
+  },
+  "~/.claude/skills/session-save/SKILL.md": {
+    "source": "~/.agents/skills/session-save/SKILL.md"
   },
   "~/.claude/skills/small-change/SKILL.md": {
     "source": "~/.agents/skills/small-change/SKILL.md"
@@ -409,6 +487,21 @@
   },
   "~/.claude/skills/using-git-worktrees/SKILL.md": {
     "source": "~/.agents/skills/using-git-worktrees/SKILL.md"
+  },
+  "~/.claude/skills/wayfinder/SKILL.md": {
+    "source": "~/.agents/skills/wayfinder/SKILL.md"
+  },
+  "~/.claude/skills/work-end-day/SKILL.md": {
+    "source": "~/.agents/skills/work-end-day/SKILL.md"
+  },
+  "~/.claude/skills/work-runners/SKILL.md": {
+    "source": "~/.agents/skills/work-runners/SKILL.md"
+  },
+  "~/.claude/skills/work-start-day/SKILL.md": {
+    "source": "~/.agents/skills/work-start-day/SKILL.md"
+  },
+  "~/.claude/skills/work-track-item/SKILL.md": {
+    "source": "~/.agents/skills/work-track-item/SKILL.md"
   },
   "~/.claude/skills/write-plan/SKILL.md": {
     "source": "~/.agents/skills/write-plan/SKILL.md"

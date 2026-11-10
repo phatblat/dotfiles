@@ -204,13 +204,8 @@ source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/flywheel/SK
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/git-status/SKILL.md"
+[dotfiles."~/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"]
+source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -594,6 +589,11 @@ source = "~/dev/dotfiles/.agents/harness/instructions.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.agents/harness/native-capabilities.md"]
+source = "~/dev/dotfiles/.agents/harness/native-capabilities.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.agents/harness/self-improve-policy.json"]
 source = "~/dev/dotfiles/.agents/harness/self-improve-policy.json"
 mode = "symlink"
@@ -754,11 +754,6 @@ source = "~/dev/dotfiles/.agents/skills/gh-stack/SKILL.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/skills/gh-stack/agents/openai.yaml"]
-source = "~/dev/dotfiles/.agents/skills/gh-stack/agents/openai.yaml"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agents/skills/gha-checks/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/gha-checks/SKILL.md"
 mode = "symlink"
@@ -801,6 +796,11 @@ relative = false
 
 [dotfiles."~/.agents/skills/git-commit/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/git-commit/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.agents/skills/git-commit/agents/openai.yaml"]
+source = "~/dev/dotfiles/.agents/skills/git-commit/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
@@ -856,6 +856,11 @@ relative = false
 
 [dotfiles."~/.agents/skills/git-status/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/git-status/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.agents/skills/git-status/agents/openai.yaml"]
+source = "~/dev/dotfiles/.agents/skills/git-status/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
@@ -1269,6 +1274,16 @@ source = "~/dev/dotfiles/.agents/skills/retro/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.agents/skills/review-pr/SKILL.md"]
+source = "~/dev/dotfiles/.agents/skills/review-pr/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.agents/skills/review-pr/agents/openai.yaml"]
+source = "~/dev/dotfiles/.agents/skills/review-pr/agents/openai.yaml"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.agents/skills/security-audit/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/security-audit/SKILL.md"
 mode = "symlink"
@@ -1479,11 +1494,6 @@ source = "~/dev/dotfiles/.claude/agents-disabled/build-tools-webpack-expert.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.claude/agents-disabled/code-review-expert.md"]
-source = "~/dev/dotfiles/.claude/agents-disabled/code-review-expert.md"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.claude/agents-disabled/database-mongodb-expert.md"]
 source = "~/dev/dotfiles/.claude/agents-disabled/database-mongodb-expert.md"
 mode = "symlink"
@@ -1529,11 +1539,6 @@ source = "~/dev/dotfiles/.claude/agents-disabled/loopback/loopback-expert.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.claude/agents-disabled/nestjs-expert.md"]
-source = "~/dev/dotfiles/.claude/agents-disabled/nestjs-expert.md"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.claude/agents-disabled/react/react-expert.md"]
 source = "~/dev/dotfiles/.claude/agents-disabled/react/react-expert.md"
 mode = "symlink"
@@ -1546,11 +1551,6 @@ relative = false
 
 [dotfiles."~/.claude/agents-disabled/testing-expert.md"]
 source = "~/dev/dotfiles/.claude/agents-disabled/testing-expert.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/agents-disabled/triage-expert.md"]
-source = "~/dev/dotfiles/.claude/agents-disabled/triage-expert.md"
 mode = "symlink"
 relative = false
 
@@ -1571,6 +1571,11 @@ relative = false
 
 [dotfiles."~/.claude/agents/code-quality/code-quality-linting-expert.md"]
 source = "~/dev/dotfiles/.claude/agents/code-quality/code-quality-linting-expert.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/agents/code-review-expert.md"]
+source = "~/dev/dotfiles/.claude/agents/code-review-expert.md"
 mode = "symlink"
 relative = false
 
@@ -1601,6 +1606,11 @@ relative = false
 
 [dotfiles."~/.claude/agents/infrastructure/infrastructure-github-actions-expert.md"]
 source = "~/dev/dotfiles/.claude/agents/infrastructure/infrastructure-github-actions-expert.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/agents/nestjs-expert.md"]
+source = "~/dev/dotfiles/.claude/agents/nestjs-expert.md"
 mode = "symlink"
 relative = false
 
@@ -1664,6 +1674,11 @@ source = "~/dev/dotfiles/.claude/agents/sdd-step-hardener.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/agents/triage-expert.md"]
+source = "~/dev/dotfiles/.claude/agents/triage-expert.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/agents/typescript/typescript-build-expert.md"]
 source = "~/dev/dotfiles/.claude/agents/typescript/typescript-build-expert.md"
 mode = "symlink"
@@ -1696,6 +1711,21 @@ relative = false
 
 [dotfiles."~/.claude/commands-archive/analyze/epiphany.md"]
 source = "~/dev/dotfiles/.claude/commands-archive/analyze/epiphany.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/commands-archive/archive/debug/logs.md"]
+source = "~/dev/dotfiles/.claude/commands-archive/archive/debug/logs.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/commands-archive/archive/debug/parallel.md"]
+source = "~/dev/dotfiles/.claude/commands-archive/archive/debug/parallel.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/commands-archive/archive/debug/steps.md"]
+source = "~/dev/dotfiles/.claude/commands-archive/archive/debug/steps.md"
 mode = "symlink"
 relative = false
 
@@ -2114,6 +2144,11 @@ source = "~/dev/dotfiles/.claude/hooks/scripts/bash-guard.sh"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/hooks/scripts/commit_target.py"]
+source = "~/dev/dotfiles/.claude/hooks/scripts/commit_target.py"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/hooks/scripts/flywheel-outcome.sh"]
 source = "~/dev/dotfiles/.claude/hooks/scripts/flywheel-outcome.sh"
 mode = "symlink"
@@ -2319,6 +2354,11 @@ source = "~/dev/dotfiles/.claude/skills/artifact-message-bus/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/skills/authoring-skills"]
+source = "~/dev/dotfiles/.claude/skills/authoring-skills"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/skills/aven/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/aven/SKILL.md"
 mode = "symlink"
@@ -2326,11 +2366,6 @@ relative = false
 
 [dotfiles."~/.claude/skills/backlog-batch-delivery/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/backlog-batch-delivery/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/skills/boris/SKILL.md"]
-source = "~/dev/dotfiles/.claude/skills/boris/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -2359,8 +2394,18 @@ source = "~/dev/dotfiles/.claude/skills/container/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/skills/conventional-docs"]
+source = "~/dev/dotfiles/.claude/skills/conventional-docs"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/skills/dispatching-parallel-agents/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/dispatching-parallel-agents/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/dupe/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/dupe/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -2389,8 +2434,18 @@ source = "~/dev/dotfiles/.claude/skills/find-docs/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/skills/find-skills/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/find-skills/SKILL.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/skills/flywheel/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/flywheel/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/gh-stack/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/gh-stack/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -2411,6 +2466,56 @@ relative = false
 
 [dotfiles."~/.claude/skills/gha-log-reader/references/preflight-recovery.md"]
 source = "~/dev/dotfiles/.claude/skills/gha-log-reader/references/preflight-recovery.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-cleanup/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-cleanup/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-commit/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-commit/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-push/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-push/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-rebase/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-rebase/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-resolve-conflicts/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-resolve-conflicts/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-split/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-split/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-stack/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-stack/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-status/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-status/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-value-scrubbing/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-value-scrubbing/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/git-worktree/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/git-worktree/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -2439,6 +2544,11 @@ source = "~/dev/dotfiles/.claude/skills/harness-research/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/skills/homebrew/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/homebrew/SKILL.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/skills/implement-plan/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/implement-plan/SKILL.md"
 mode = "symlink"
@@ -2446,6 +2556,16 @@ relative = false
 
 [dotfiles."~/.claude/skills/ios-device-qa/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/ios-device-qa/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/justfile/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/justfile/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/linear-plan/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/linear-plan/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -2464,38 +2584,48 @@ source = "~/dev/dotfiles/.claude/skills/optimize-harness/SKILL.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.claude/skills/paseo-advisor/SKILL.md"]
-source = "~/dev/dotfiles/.claude/skills/paseo-advisor/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/skills/paseo-committee/SKILL.md"]
-source = "~/dev/dotfiles/.claude/skills/paseo-committee/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/skills/paseo-handoff/SKILL.md"]
-source = "~/dev/dotfiles/.claude/skills/paseo-handoff/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/skills/paseo-help/SKILL.md"]
-source = "~/dev/dotfiles/.claude/skills/paseo-help/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/skills/paseo-plugin/SKILL.md"]
-source = "~/dev/dotfiles/.claude/skills/paseo-plugin/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/skills/paseo/SKILL.md"]
-source = "~/dev/dotfiles/.claude/skills/paseo/SKILL.md"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.claude/skills/plan-design-review/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/plan-design-review/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/plan-worktree/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/plan-worktree/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/pr-approve/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-approve/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/pr-create/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-create/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/pr-daily/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-daily/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/pr-merge/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-merge/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/pr-open-for-review/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-open-for-review/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/pr-post-review-findings/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-post-review-findings/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/pr-resolve-review-feedback/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-resolve-review-feedback/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -2504,8 +2634,18 @@ source = "~/dev/dotfiles/.claude/skills/pr-style/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/skills/pr-update-desc/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/pr-update-desc/SKILL.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/skills/receiving-code-review/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/receiving-code-review/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/recording-changes"]
+source = "~/dev/dotfiles/.claude/skills/recording-changes"
 mode = "symlink"
 relative = false
 
@@ -2524,8 +2664,28 @@ source = "~/dev/dotfiles/.claude/skills/retro/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/skills/review-pr/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/review-pr/SKILL.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/skills/security-audit/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/security-audit/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/semantic-versioning"]
+source = "~/dev/dotfiles/.claude/skills/semantic-versioning"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/session-save/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/session-save/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/setup-phatblat-skills"]
+source = "~/dev/dotfiles/.claude/skills/setup-phatblat-skills"
 mode = "symlink"
 relative = false
 
@@ -2551,6 +2711,31 @@ relative = false
 
 [dotfiles."~/.claude/skills/using-git-worktrees/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/using-git-worktrees/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/wayfinder/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/wayfinder/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/work-end-day/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/work-end-day/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/work-runners/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/work-runners/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/work-start-day/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/work-start-day/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.claude/skills/work-track-item/SKILL.md"]
+source = "~/dev/dotfiles/.claude/skills/work-track-item/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -9919,11 +10104,6 @@ source = "~/dev/dotfiles/.omp/agent/managed-skills/agent-commits/SKILL.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.omp/agent/managed-skills/review-pr/SKILL.md"]
-source = "~/dev/dotfiles/.omp/agent/managed-skills/review-pr/SKILL.md"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.omp/agent/managed-skills/subagent-output-schema-contract/SKILL.md"]
 source = "~/dev/dotfiles/.omp/agent/managed-skills/subagent-output-schema-contract/SKILL.md"
 mode = "symlink"
@@ -10019,6 +10199,11 @@ source = "~/dev/dotfiles/.omp/profiles/baseten/agent/hooks"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/baseten/agent/mcp.json"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/mcp.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/baseten/agent/overrides.yml"]
 source = "~/dev/dotfiles/.omp/profiles/baseten/agent/overrides.yml"
 mode = "symlink"
@@ -10051,6 +10236,11 @@ relative = false
 
 [dotfiles."~/.omp/profiles/casper/agent/hooks"]
 source = "~/dev/dotfiles/.omp/profiles/casper/agent/hooks"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/mcp.json"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/mcp.json"
 mode = "symlink"
 relative = false
 
@@ -10094,6 +10284,11 @@ source = "~/dev/dotfiles/.omp/profiles/reflection/agent/hooks"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/reflection/agent/mcp.json"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/mcp.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/reflection/agent/models.yml"]
 source = "~/dev/dotfiles/.omp/profiles/reflection/agent/models.yml"
 mode = "symlink"
@@ -10131,6 +10326,11 @@ relative = false
 
 [dotfiles."~/.omp/profiles/subconscious/agent/hooks"]
 source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/hooks"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/mcp.json"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/mcp.json"
 mode = "symlink"
 relative = false
 
@@ -10789,6 +10989,11 @@ source = "~/dev/dotfiles/Pictures/Icons/rustacean-flat-happy.webp"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/REVIEW_PR_LOG"]
+source = "~/dev/dotfiles/REVIEW_PR_LOG"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/bin/appinst.sh"]
 source = "~/dev/dotfiles/bin/appinst.sh"
 mode = "symlink"
@@ -11041,6 +11246,11 @@ relative = false
 
 [dotfiles."~/scripts/install-launchdaemons"]
 source = "~/dev/dotfiles/scripts/install-launchdaemons"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/scripts/is-dotfiles-checkout.sh"]
+source = "~/dev/dotfiles/scripts/is-dotfiles-checkout.sh"
 mode = "symlink"
 relative = false
 

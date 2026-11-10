@@ -1,3 +1,5 @@
+@~/.agents/harness/instructions.md
+
 <!-- User customizations -->
 # Global Claude Code Instructions
 

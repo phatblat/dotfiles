@@ -102,7 +102,11 @@ STATE_DIRS = frozenset(
         ".remote-plugin-install-staging",
         ".system",
         ".tmp",
-        "__pycache__",
+        "MEMORY",
+        "browser-relay",
+        "hud",
+        "powerline",
+        "shell-snapshots",
         "agent-tools",
         "agent-transcripts",
         "ai-tracking",
@@ -196,18 +200,21 @@ STATE_NAMES = frozenset(
         "import_manifest.json",
         "last-changelog-version",
         "projects.json",
-        "version.json",
+        "models-store.json",
     }
 )
 
 # Directory or file names that mark generated caches, bundled downloads, and
-# status snapshots.
+# status snapshots. Signature/stamp sidecars of policy files are agent state.
 STATE_SHAPES = re.compile(
     r"(^|[-_.])cache([-_.]|$)"
     r"|marketplace"
     r"|\.app$"
+    r"|security_warnings_state_[0-9a-f-]+\.json"
     r"|[-_.](state|stats|status|result|check|snapshot|lock)\.[a-z]+$"
-    r"|^[0-9a-f]{32,64}\.[a-z]+$",
+    r"|^[0-9a-f]{32,64}\.[a-z]+$"
+    r"|\.stamp\.json$"
+    r"|\.signature\.json$",
     re.IGNORECASE,
 )
 
@@ -303,7 +310,15 @@ BUNDLED_DOC_NAMES = frozenset(
 # Single files an installer writes into a harness root. Each reinstalls on
 # any machine, so it is state, never a candidate. Data Agent Kit writes
 # .gemini/config/mcp_config.json (harness-map closed item, 2026-10-25).
-INSTALLED_PATHS = frozenset({".gemini/config/mcp_config.json"})
+INSTALLED_PATHS = frozenset(
+    {
+        ".gemini/config/mcp_config.json",
+        ".claude/plugins/blocklist.json",
+        ".claude/plugins/installed_plugins.json",
+        ".claude/policy-limits.json",
+        ".claude/remote-settings.json",
+    }
+)
 
 
 def classify(relpath):
@@ -431,15 +446,16 @@ def classify_entry(repo, base, entry, vendored, roots, source):
     `base` is the tree the file lives in (the checkout or $HOME); `repo` is
     always the checkout, which owns the shared-skill counterparts.
     """
-    kind = classify(entry)
-    if kind not in ("config", "state"):
+    kind = "state" if entry in INSTALLED_PATHS else classify(entry)
+    if kind == "state":
+        return {"path": entry, "kind": "state", "warnings": [], "source": source}
+    if kind not in ("config",):
         return None
-    if kind == "config" and (
+    if (
         is_vendored(base, entry, vendored, roots)
         or is_unshared_skill(repo, entry)
         or is_bundled_doc(entry)
         or is_empty(base / entry)
-        or entry in INSTALLED_PATHS
     ):
         kind = "state"
     record = {"path": entry, "kind": kind, "warnings": [], "source": source}

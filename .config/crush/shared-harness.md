@@ -11,6 +11,8 @@ Always load repository instructions first, then use shared skills from
 command prompts under `~/.agents/harness/commands` and specialist agent
 definitions under `~/.agents/harness/agents`.
 
+For Claude Code-native mappings and explicit OMP-only boundaries, read ~/.agents/harness/native-capabilities.md when such a surface is relevant.
+
 Safety-sensitive lifecycle events must be normalized through
 `~/.agents/harness/hooks/contract.json` and evaluated by the shared safety policy.
 Adapters may add stricter native permissions, but they must not weaken a shared
