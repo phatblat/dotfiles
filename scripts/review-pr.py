@@ -106,7 +106,10 @@ class ReviewPrError(Exception):
 
 
 class UsageParser(argparse.ArgumentParser):
-    def format_usage(self) -> str:
+    def format_usage(
+        self, formatter: argparse.HelpFormatter | None = None
+    ) -> str:
+        del formatter  # fixed usage text, never rendered through the formatter
         return f"{USAGE}\n"
 
     def error(self, message: str) -> NoReturn:
