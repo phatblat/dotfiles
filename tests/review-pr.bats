@@ -199,6 +199,113 @@ EOF
   grep -q "omp-env:<OMP_PROFILE=casper>" "$REVIEW_PR_COMMAND_LOG"
 }
 
+@test "review-pr: forwards model, thinking, and profile to omp" {
+  write_review_stubs
+
+  run "$SCRIPT" --model opus --thinking=low --profile work "widgets#123"
+
+  [ "$status" -eq 0 ]
+  grep -q "omp-arg:<--model>$" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<opus>$" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--thinking>$" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<low>$" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<--profile>$" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<work>$" "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr: forwards flags adjacent to their values" {
+  write_review_stubs
+
+  run "$SCRIPT" --model opus --profile work "widgets#123"
+
+  [ "$status" -eq 0 ]
+  local forward="$(grep -n "omp-arg:<--model>$" "$REVIEW_PR_COMMAND_LOG" | cut -d: -f1)"
+  local value="$(grep -n "omp-arg:<opus>$" "$REVIEW_PR_COMMAND_LOG" | cut -d: -f1)"
+  [ "$forward" -gt 0 ]
+  [ "$value" -eq $((forward + 1)) ]
+}
+
+@test "review-pr: explicit profile overrides OMP_PROFILE" {
+  export OMP_PROFILE=personal
+  write_review_stubs
+
+  run "$SCRIPT" --profile work "widgets#123"
+
+  [ "$status" -eq 0 ]
+  grep -q "omp-arg:<--profile>$" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-arg:<work>$" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "omp-env:<OMP_PROFILE=personal>" "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr: defaults to high thinking without model or profile" {
+  write_review_stubs
+
+  run "$SCRIPT" "widgets#123"
+
+  [ "$status" -eq 0 ]
+  local thinking="$(grep -n "omp-arg:<--thinking>$" "$REVIEW_PR_COMMAND_LOG" | cut -d: -f1)"
+  local level="$(grep -n "omp-arg:<high>$" "$REVIEW_PR_COMMAND_LOG" | cut -d: -f1)"
+  [ "$level" -eq $((thinking + 1)) ]
+  ! grep -q "omp-arg:<--model>$" "$REVIEW_PR_COMMAND_LOG"
+  ! grep -q "omp-arg:<--profile>$" "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr: accepts options after the PR reference" {
+  write_review_stubs
+
+  run "$SCRIPT" "widgets#123" --model opus
+
+  [ "$status" -eq 0 ]
+  grep -q "omp-arg:<opus>$" "$REVIEW_PR_COMMAND_LOG"
+}
+
+@test "review-pr nushell wrappers forward options and reference unchanged" {
+  local fake_home="$BATS_TEST_TMPDIR/home"
+  mkdir -p "$fake_home/scripts"
+  cat >"$fake_home/scripts/review-pr.py" <<'EOF'
+#!/usr/bin/env bash
+printf '<%s>\n' "$@"
+EOF
+  chmod +x "$fake_home/scripts/review-pr.py"
+
+  run env HOME="$fake_home" nu --no-config-file -c "source '$NU_FUNCTION'; source '$HOME/.config/nushell/autoload/rpr.nu'; rpr --model opus --thinking low --profile work widgets#123"
+
+  [ "$status" -eq 0 ]
+  [ "$output" = "<--model>
+<opus>
+<--thinking>
+<low>
+<--profile>
+<work>
+<widgets#123>" ]
+}
+
+@test "review-pr: rejects missing option values" {
+  for flag in --model --thinking --profile; do
+    run "$SCRIPT" "$flag" "widgets#123"
+
+    [ "$status" -eq 2 ]
+    [[ "$output" == *"Usage: review-pr"* ]]
+  done
+  [ ! -s "$REVIEW_PR_COMMAND_LOG" ]
+}
+
+@test "review-pr: rejects and ignores unknown flags" {
+  run "$SCRIPT" --bogus "widgets#123"
+
+  [ "$status" -eq 2 ]
+  [[ "$output" == *"Usage: review-pr"* ]]
+  [ ! -s "$REVIEW_PR_COMMAND_LOG" ]
+}
+
+@test "review-pr: rejects extra positional arguments" {
+  run "$SCRIPT" "widgets#123" "other#456"
+
+  [ "$status" -eq 2 ]
+  [[ "$output" == *"Usage: review-pr"* ]]
+  [ ! -s "$REVIEW_PR_COMMAND_LOG" ]
+}
+
 @test "review-pr: supplies explicit PR, base, and review-only startup prompt" {
   export REVIEW_PR_GRAPHQL_RESPONSE='{"data":{"repository":{"pullRequest":{"baseRefName":"release/4.0","reviewThreads":{"pageInfo":{"hasNextPage":false,"endCursor":null},"nodes":[{"isResolved":false,"path":"src/quote file.ts","line":40,"originalLine":40,"startLine":7,"originalStartLine":11}]}}}}}'
   write_review_stubs
