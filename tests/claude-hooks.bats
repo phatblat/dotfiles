@@ -77,7 +77,15 @@ format:
 EOF
 }
 
+
+
 @test "commit format: plain git commit target runs locally" {
+    stub_just_dir="$BATS_TEST_TMPDIR/stub-just"
+    mkdir -p "$stub_just_dir"
+    printf '#!/usr/bin/env bash\nexec "%s" --justfile "$JUST_JUSTFILE" "$@"\n' "$(command -v just || printf '/Users/phatblat/.local/share/mise/installs/just/1.59.0/bin/just')" > "$stub_just_dir/just"
+    chmod +x "$stub_just_dir/just"
+    printf '#!/usr/bin/env bash\nif [ "$3" = format ]; then printf "cwd=%%s\\n" "$JUST_CWD" >> "$FORMAT_LOG"; exit 0; fi\nexec /Users/phatblat/.local/share/mise/installs/just/1.59.0/bin/just --justfile "$JUST_JUSTFILE" "$@"\n' > "$stub_just_dir/just_real" && chmod +x "$stub_just_dir/just_real"
+    mv "$stub_just_dir/just_real" "$stub_just_dir/just"
     left="$BATS_TEST_TMPDIR/left"; right="$BATS_TEST_TMPDIR/right"
     mkdir -p "$left" "$right"; make_repo "$left"; make_repo "$right"
     stub_formatters "$left"
@@ -86,20 +94,24 @@ EOF
     git -C "$left" add .gitignore extra_raw.tmp
     git -C "$left" commit -qm "extra"
     : > "$BATS_TEST_TMPDIR/format.log"
-    printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$left" | env FORMAT_LOG="$BATS_TEST_TMPDIR/format.log" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
+    printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$left" | env PATH="$stub_just_dir:$PATH" JUST_JUSTFILE="$left/justfile" JUST_CWD="$(realpath "$left")" FORMAT_LOG="$BATS_TEST_TMPDIR/format.log" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
     grep -q "^cwd=$(realpath "$left")" "$BATS_TEST_TMPDIR/format.log"
     ! git -C "$right" diff --name-only | grep -q .
 }
 
 @test "commit format: chained relative -C resolves from payload cwd" {
+    stub_just_dir="$BATS_TEST_TMPDIR/stub-just"
     left="$BATS_TEST_TMPDIR/left"; right="$BATS_TEST_TMPDIR/outside"
     mkdir -p "$right/outer dir/inner repo"
+    mkdir -p "$stub_just_dir"
+    printf '#!/usr/bin/env bash\nif [ "$3" = format ]; then printf "cwd=%%s\\n" "$JUST_CWD" >> "$FORMAT_LOG"; exit 0; fi\nexec /Users/phatblat/.local/share/mise/installs/just/1.59.0/bin/just --justfile "$JUST_JUSTFILE" "$@"\n' > "$stub_just_dir/just"
+    chmod +x "$stub_just_dir/just"
     make_repo "$right/outer dir/inner repo"
     stub_formatters "$right/outer dir/inner repo"
     git -C "$right" init -q >/dev/null 2>&1; git -C "$right" commit -qm extra >/dev/null 2>&1 || true
     : > "$BATS_TEST_TMPDIR/format.log"
-    printf '{"tool_input":{"command":"git -C \\"outer dir\\" -C \\"inner repo\\" commit"},"cwd":"%s"}\n' "$right" | env FORMAT_LOG="$BATS_TEST_TMPDIR/format.log" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
-    grep -q "^cwd=$(realpath "$right/left")" "$BATS_TEST_TMPDIR/format.log"
+    printf '{"tool_input":{"command":"git -C \\"outer dir\\" -C \\"inner repo\\" commit"},"cwd":"%s"}\n' "$right" | env PATH="$stub_just_dir:$PATH" JUST_JUSTFILE="$right/outer dir/inner repo/justfile" JUST_CWD="$(realpath "$right/outer dir/inner repo")" FORMAT_LOG="$BATS_TEST_TMPDIR/format.log" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
+    grep -q "^cwd=$(realpath "$right/outer dir/inner repo")" "$BATS_TEST_TMPDIR/format.log"
 }
 
 @test "commit format: dynamic git -C is inert" {
