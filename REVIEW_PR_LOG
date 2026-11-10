@@ -1,0 +1,20 @@
+gh api graphql -f query=
+query($owner: String!, $name: String!, $number: Int!, $after: String) {
+  repository(owner: $owner, name: $name) {
+    pullRequest(number: $number) {
+      baseRefName
+      reviewThreads(first: 100, after: $after) {
+        pageInfo { hasNextPage endCursor }
+        nodes {
+          isResolved
+          path
+          line
+          originalLine
+          startLine
+          originalStartLine
+        }
+      }
+    }
+  }
+}
+ -F owner=anthropics -F name=claude-code -F number=77
