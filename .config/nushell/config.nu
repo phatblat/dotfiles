@@ -705,11 +705,5 @@ $env.config.hooks.pre_prompt ++= [{||
     print --no-newline $"\e]0;($title)\a"
 }]
 
-# Rust toolchain: `source` of a missing file is a parse-time error that aborts
-# loading this whole file, so add the bin directory conditionally instead.
-let cargo_bin = ($env.HOME | path join ".cargo" "bin")
-if ($cargo_bin | path exists) and ($cargo_bin not-in $env.PATH) {
-    $env.PATH = ($env.PATH | prepend $cargo_bin)
-}
-
 # All custom aliases and functions are now autoloaded from ~/.config/nushell/autoload/
+source "~/.cargo/env.nu"

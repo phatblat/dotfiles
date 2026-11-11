@@ -17,9 +17,6 @@ eval "$(brew shellenv)"
 # FVM
 export PATH="$HOME/fvm/default/bin:$PATH"
 
-# Cargo
-source $HOME/.cargo/env
-
 # Jebrains Toolbox App scripts
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 
