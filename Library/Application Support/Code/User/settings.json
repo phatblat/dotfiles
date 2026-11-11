@@ -199,5 +199,5 @@
       ".continue/**/*.yaml",
     ],
   },
-  "workbench.colorTheme": "Purple Night"
+  "workbench.colorTheme": "Purple Night",
 }
