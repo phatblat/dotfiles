@@ -225,7 +225,7 @@ EOF
   [ "$value" -eq $((forward + 1)) ]
 }
 
-@test "review-pr: explicit profile overrides OMP_PROFILE" {
+@test "review-pr: passes --profile and leaves OMP_PROFILE untouched" {
   export OMP_PROFILE=personal
   write_review_stubs
 
