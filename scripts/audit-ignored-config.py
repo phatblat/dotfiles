@@ -102,6 +102,7 @@ STATE_DIRS = frozenset(
         ".remote-plugin-install-staging",
         ".system",
         ".tmp",
+        "__pycache__",
         "MEMORY",
         "browser-relay",
         "hud",
@@ -201,6 +202,7 @@ STATE_NAMES = frozenset(
         "last-changelog-version",
         "projects.json",
         "models-store.json",
+        "version.json",
     }
 )
 
