@@ -8,11 +8,11 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
-| claude | 2.1.251 (Claude Code) | 2026-08-29 | 2.1.314 (Claude Code) |
+| claude | 2.1.322 (Claude Code) | 2026-08-29 | 2.1.251 (Claude Code) |
 | codex | codex-cli 0.167.0 | 2026-08-29 | codex-cli 0.166.0 |
 | opencode | opencode v2.2.6 | 2026-08-29 | opencode v2.2.5 |
-| pi | 1.5.0 | 2026-08-29 | 1.4.0 |
-| omp | omp/18.14.1 | 2026-08-29 | omp/18.18.3 |
+| pi | 1.5.1 | 2026-08-29 | 1.5.0 |
+| omp | omp/18.18.7 | 2026-08-29 | omp/18.14.1 |
 | antigravity | 1.2.3 | 2026-08-29 | 1.5.3 |
 | crush | crush version v0.100.0 | 2026-08-29 | crush version v0.99.0 |
 
@@ -20,6 +20,12 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-11 | pi | - | version | 1.5.0 | 1.5.1 | 1.5.1 |
+| 2026-11-11 | omp | - | version | omp/18.14.1 | omp/18.18.7 | omp/18.18.7 |
+| 2026-11-11 | claude | - | version | 2.1.251 (Claude Code) | 2.1.322 (Claude Code) | 2.1.322 (Claude Code) |
+| 2026-11-11 | claude | skills.shared | mode | shared | adapter | 2.1.322 (Claude Code) |
+| 2026-11-11 | claude | skills.shared | parity | aligned | partial | 2.1.322 (Claude Code) |
+| 2026-11-11 | claude | instructions.global | mode | shared | adapter | 2.1.322 (Claude Code) |
 | 2026-11-10 | omp | - | version | omp/18.18.3 | omp/18.14.1 | omp/18.14.1 |
 | 2026-11-10 | claude | - | version | 2.1.314 (Claude Code) | 2.1.251 (Claude Code) | 2.1.251 (Claude Code) |
 | 2026-11-10 | antigravity | - | version | 1.5.3 | 1.2.3 | 1.2.3 |
@@ -214,9 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-23 | omp | - | version | omp/18.2.8 | omp/18.2.11 | omp/18.2.11 |
 | 2026-09-23 | grok | - | version | grok 1.0.40 (eb1a2256660d) [alpha] | grok 1.0.41 (4220f3b224a6) [alpha] | grok 1.0.41 (4220f3b224a6) [alpha] |
 | 2026-09-23 | crush | - | version | crush version v0.96.0 | crush version v0.96.1 | crush version v0.96.1 |
-| 2026-09-22 | pi | - | version | 0.85.1 | 0.86.1 | 0.86.1 |
-| 2026-09-22 | omp | - | version | omp/18.2.6 | omp/18.2.8 | omp/18.2.8 |
-| 2026-09-22 | grok | - | version | grok 1.0.34 (3736acbc8658) [alpha] | grok 1.0.40 (eb1a2256660d) [alpha] | grok 1.0.40 (eb1a2256660d) [alpha] |
-| 2026-09-22 | cursor | - | version | - | 2026.09.15-d2fe57e | 2026.09.15-d2fe57e |
-| 2026-09-22 | crush | - | version | crush version v0.95.0 | crush version v0.96.0 | crush version v0.96.0 |
-| 2026-09-22 | codex | - | version | codex-cli 0.155.0 | codex-cli 0.155.1 | codex-cli 0.155.1 |
