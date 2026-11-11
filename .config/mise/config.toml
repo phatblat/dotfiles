@@ -36,14 +36,14 @@
 "github:dolthub/dolt" = "2.7.2"
 "github:duckdb/duckdb" = "2.0.0"
 "github:fialhosoft/agentlink" = "0.0.1"
-"github:nushell/nushell" = { version = "0.116.1", version_prefix = "" }
+"github:nushell/nushell" = { version = "0.117.0", version_prefix = "" }
 "github:phatblat/wt" = "1.0.1"
 "github:raine/aven" = "0.1.55"
 "github:schpet/linear-cli" = "3.1.0"
 "go:golang.org/x/tools/gopls" = "0.24.0"
 "npm:@babel/cli" = "8.1.0"
 "npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
-"npm:@getpaseo/cli" = "0.15.3"
+"npm:@getpaseo/cli" = "0.15.4"
 "npm:@googleworkspace/cli" = "0.22.5"
 "npm:@sentry/wizard" = "9.1.0"
 "npm:@vtsls/language-server" = "0.3.0"
@@ -57,7 +57,7 @@
 "npm:markdownlint-cli2" = "0.24.0"
 "npm:pnpm" = "12.18.0"
 "npm:prettier" = "3.9.10"
-"npm:renovate" = "44.224.1"
+"npm:renovate" = "44.225.0"
 "npm:standard-readme-spec" = "1.3.1"
 "npm:typescript" = "7.0.2"
 "npm:typescript-language-server" = "6.0.3"
@@ -107,7 +107,7 @@ go = "1.27.4"
 gping = "1.21.0"
 gradle = "9.9.0"
 hexyl = "0.17.0"
-hk = { version = "2.11.1", workflow = "release.yml" }
+hk = { version = "2.12.0", workflow = "release.yml" }
 hyperfine = "2.0.0"
 infisical = { version = "0.45.4", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
 java = "27.0.1+0"
@@ -130,11 +130,11 @@ mkcert = "1.4.4"
 neovim = "0.12.6"
 ninja = "1.13.2"
 node = "26.13.0"
-oh-my-pi = { version = "18.18.6", rename_exe = "omp" }
+oh-my-pi = { version = "18.18.7", rename_exe = "omp" }
 opencode = { version = "2.2.6", allow_builds = ["@opencode/cli"] }
 packer = "1.16.2"
 pandoc = "3.13"
-pi = "1.5.0"
+pi = "1.5.1"
 pinact = "5.0.2"
 pipx = "1.18.16"
 poppler = "26.11.0"
