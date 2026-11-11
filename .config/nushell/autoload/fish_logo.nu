@@ -4,22 +4,15 @@
 #   externals: none
 
 # Print a colorful ASCII-art Fish shell logo with configurable colors
+# Usage: fish_logo <outer_color> <medium_color> <inner_color> <mouth> <eye>
+# See `ansi --list` for available colors.
 export def fish_logo [
     outer_color?: string  # Outer color name (default: red)
     medium_color?: string # Medium color name (default: #ff7700, orange)
     inner_color?: string  # Inner color name (default: yellow)
     mouth?: string        # Mouth character (default: [)
     eye?: string          # Eye character (default: O)
-    --help (-h)           # Show usage
 ] {
-    let usage = "Usage: fish_logo <outer_color> <medium_color> <inner_color> <mouth> <eye>
-See ansi --list for available colors."
-
-    if $help {
-        print $usage
-        return
-    }
-
     let oc = if ($outer_color == null or ($outer_color | is-empty)) { "red" } else { $outer_color }
     let mc = if ($medium_color == null or ($medium_color | is-empty)) { "#ff7700" } else { $medium_color }
     let ic = if ($inner_color == null or ($inner_color | is-empty)) { "yellow" } else { $inner_color }

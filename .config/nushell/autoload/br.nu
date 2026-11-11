@@ -36,7 +36,6 @@ export def --env br [
     --trim-root(-t)                 # Trim the root too and don't show a scrollbar
     --no-trim-root(-T)              # Don't trim the root level, show a scrollbar
     --whale-spotting(-w)            # Sort by size, show ignored and hidden files
-    --help                          # Prints help information
     --install                       # Install or reinstall the broot launcher
     --listen: string                # Listen for commands on a socket
     --listen-auto                   # Listen for commands on an automatically chosen socket
@@ -78,7 +77,6 @@ export def --env br [
     if $trim_root { $args = ($args | append '--trim-root') }
     if $no_trim_root { $args = ($args | append '--no-trim-root') }
     if $whale_spotting { $args = ($args | append '--whale-spotting') }
-    if $help { $args = ($args | append '--help') }
     if $install { $args = ($args | append '--install') }
     if $listen != null { $args = ($args | append $'--listen=($listen)') }
     if $listen_auto { $args = ($args | append '--listen-auto') }
