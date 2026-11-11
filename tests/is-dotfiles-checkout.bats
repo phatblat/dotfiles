@@ -32,7 +32,12 @@ make_repo() {
 }
 
 @test "dotfiles helper: primary checkout root present" {
-    run "$HELPER" "$HOME/dev/dotfiles"
+    # `just test` remaps HOME to this checkout, so ~/dev/dotfiles is not there.
+    primary="$HOME/dev/dotfiles"
+    if [[ ! -d "$primary" ]]; then
+        skip "primary checkout is not at \$HOME/dev/dotfiles"
+    fi
+    run "$HELPER" "$primary"
     [ "$status" -eq 0 ]
 }
 
@@ -53,6 +58,8 @@ make_repo() {
     run "$HELPER" "/tmp"
     [ "$status" -eq 1 ]
 
-    run "$HELPER" "$HOME"
+    # `just test` remaps HOME onto this checkout, so $HOME is accepted.
+    # A sibling directory is not.
+    run "$HELPER" "$HOME/.."
     [ "$status" -eq 1 ]
 }
