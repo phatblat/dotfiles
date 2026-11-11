@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import re
@@ -13,10 +14,11 @@ import tempfile
 from collections.abc import Iterator
 from dataclasses import dataclass
 from pathlib import Path
+from typing import NoReturn
 
+USAGE = "Usage: review-pr [--model MODEL] [--thinking LEVEL] [--profile NAME] <github-pr-url|repo#number|owner/repo#number>"
 GETDITTO_OWNER = "getditto"
 DEFAULT_THREAD_WINDOW = 5
-USAGE = "Usage: review-pr <github-pr-url|repo#number|owner/repo#number>"
 DAILY_NOTES_DIR = Path.home() / "2ndBrain" / "daily-notes"
 GETDITTO_CLONE_ROOT = "~/dev/_GETDITTO"
 DEFAULT_CLONE_ROOT = "~/dev/_GITHUB"
@@ -43,7 +45,7 @@ class ReviewThread:
 
 def main(argv: list[str]) -> int:
     try:
-        pr_value = parse_arguments(argv)
+        pr_value, model, thinking, profile = parse_arguments(argv)
         pr = parse_pr(pr_value)
         repo_dir = ensure_repo(pr)
         ref = f"refs/remotes/origin/pr/{pr.number}"
@@ -64,7 +66,15 @@ def main(argv: list[str]) -> int:
         preserve_worktree = True
         try:
             initial_head = worktree_head(worktree_dir)
-            run_omp_review(worktree_dir, pr, base_ref, threads)
+            run_omp_review(
+                worktree_dir,
+                pr,
+                base_ref,
+                threads,
+                model=model,
+                thinking=thinking,
+                profile=profile,
+            )
             preserve_worktree = worktree_changed(worktree_dir, initial_head)
         finally:
             if not preserve_worktree:
@@ -95,11 +105,25 @@ class ReviewPrError(Exception):
         self.exit_code = exit_code
 
 
-def parse_arguments(argv: list[str]) -> str:
-    arguments = argv[1:]
-    if len(arguments) != 1:
+class UsageParser(argparse.ArgumentParser):
+    def format_usage(
+        self, formatter: argparse.HelpFormatter | None = None
+    ) -> str:
+        del formatter  # fixed usage text, never rendered through the formatter
+        return f"{USAGE}\n"
+
+    def error(self, message: str) -> NoReturn:
         raise ReviewPrError(USAGE, 2)
-    return arguments[0]
+
+
+def parse_arguments(argv: list[str]) -> tuple[str, str | None, str, str | None]:
+    parser = UsageParser(add_help=False, allow_abbrev=False)
+    parser.add_argument("pr")
+    parser.add_argument("--model", default=None)
+    parser.add_argument("--thinking", default="high")
+    parser.add_argument("--profile", default=None)
+    parsed = parser.parse_args(argv[1:])
+    return parsed.pr, parsed.model, parsed.thinking, parsed.profile
 
 
 def parse_pr(value: str) -> PullRequest:
@@ -341,6 +365,10 @@ def run_omp_review(
     pr: PullRequest,
     base_ref: str,
     threads: list[ReviewThread],
+    *,
+    model: str | None,
+    thinking: str,
+    profile: str | None,
 ) -> None:
     thread_payload = [
         {"path": thread.path, "lines": list(thread.lines)} for thread in threads
@@ -359,11 +387,13 @@ def run_omp_review(
         str(worktree_dir),
         "--add-dir",
         str(DAILY_NOTES_DIR),
-        "--thinking",
-        "high",
-        "--no-prewalk",
-        prompt,
     ]
+    if model is not None:
+        command += ["--model", model]
+    command += ["--thinking", thinking]
+    if profile is not None:
+        command += ["--profile", profile]
+    command += ["--no-prewalk", prompt]
     run(command)
 
 

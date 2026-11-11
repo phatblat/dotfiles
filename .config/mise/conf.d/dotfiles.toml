@@ -7234,11 +7234,6 @@ source = "~/dev/dotfiles/.config/powershell/profile.ps1"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.config/radare2/radare2rc"]
-source = "~/dev/dotfiles/.config/radare2/radare2rc"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.config/rest-client/environment.json"]
 source = "~/dev/dotfiles/.config/rest-client/environment.json"
 mode = "symlink"

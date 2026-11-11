@@ -6,7 +6,7 @@ providers:
 setupVersion: 3
 modelRoles:
   plan: anthropic/claude-opus-5-5:xhigh
-  slow: anthropic/claude-fable-5-1
+  slow: anthropic/claude-fable-5-2:high
   smol: anthropic/claude-haiku-5-5:auto
   default: anthropic/claude-sonnet-5-5:medium
   commit: anthropic/claude-haiku-5-5:low
