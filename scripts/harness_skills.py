@@ -32,18 +32,12 @@ from pathlib import Path
 # `boris` is absent because it is Claude-Code-specific, externally compiled, and
 # self-updating from a URL.
 # Skills that get no Claude pointer at all: they are ownership exclusions, not
-# a skill inclusion list. `omp-hooks` documents OMP-specific hook behavior,
-# `boris` self-updates from a URL with harness-specific content, and the Paseo
-# directories have their own managed copies elsewhere in `.omp`.
+# a skill inclusion list. Only `omp-hooks` qualifies, because it documents
+# OMP-specific hook behavior. `boris` is Claude-Code-specific and the Paseo
+# skills are installed into Claude's skills directory by Paseo itself, so both
+# keep their Claude pointers.
 CLAUDE_SKILL_EXCLUSIONS = {
     "omp-hooks",
-    "boris",
-    "paseo",
-    "paseo-advisor",
-    "paseo-committee",
-    "paseo-handoff",
-    "paseo-help",
-    "paseo-plugin",
 }
 
 _managed_header: str | None = None
@@ -81,10 +75,10 @@ def is_procedural_skill(skill_name: str) -> bool:
         text = sidecar.read_text(encoding="utf-8")
     except OSError:
         return False
-    return re.search(r"^\s*allow_implicit_invocation:\s*false\s*$", text, re.MULTILINE) is not None
-
-
-
+    return (
+        re.search(r"^\s*allow_implicit_invocation:\s*false\s*$", text, re.MULTILINE)
+        is not None
+    )
 
 
 def discover_skills(source: Path, root: Path) -> tuple[list[str], dict[str, str]]:

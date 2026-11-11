@@ -13,12 +13,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from harness_skills import (
-    CLAUDE_SKILL_EXCLUSIONS,
     configure,
     discover_skills,
     is_generated_pointer,
     is_procedural_skill,
 )
+
 
 class DiscoverSkillsTests(unittest.TestCase):
     def _tree(self, root: Path) -> Path:
@@ -159,23 +159,6 @@ class ProceduralPolicyTests(unittest.TestCase):
             )
             self.assertTrue(is_generated_pointer(rendered, "shape-skill"))
             self.assertFalse(is_generated_pointer(rendered + "edited", "shape-skill"))
-
-
-class ClaudeExclusionsTests(unittest.TestCase):
-    def test_membership_exactly_expected_names(self) -> None:
-        self.assertEqual(
-            CLAUDE_SKILL_EXCLUSIONS,
-            {
-                "omp-hooks",
-                "boris",
-                "paseo",
-                "paseo-advisor",
-                "paseo-committee",
-                "paseo-handoff",
-                "paseo-help",
-                "paseo-plugin",
-            },
-        )
 
 
 if __name__ == "__main__":

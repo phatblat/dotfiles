@@ -308,6 +308,9 @@
   "~/.claude/skills/backlog-batch-delivery/SKILL.md": {
     "source": "~/.agents/skills/backlog-batch-delivery/SKILL.md"
   },
+  "~/.claude/skills/boris/SKILL.md": {
+    "source": "~/.agents/skills/boris/SKILL.md"
+  },
   "~/.claude/skills/brainstorm/SKILL.md": {
     "source": "~/.agents/skills/brainstorm/SKILL.md"
   },
@@ -418,6 +421,24 @@
   },
   "~/.claude/skills/optimize-harness/SKILL.md": {
     "source": "~/.agents/skills/optimize-harness/SKILL.md"
+  },
+  "~/.claude/skills/paseo-advisor/SKILL.md": {
+    "source": "~/.agents/skills/paseo-advisor/SKILL.md"
+  },
+  "~/.claude/skills/paseo-committee/SKILL.md": {
+    "source": "~/.agents/skills/paseo-committee/SKILL.md"
+  },
+  "~/.claude/skills/paseo-handoff/SKILL.md": {
+    "source": "~/.agents/skills/paseo-handoff/SKILL.md"
+  },
+  "~/.claude/skills/paseo-help/SKILL.md": {
+    "source": "~/.agents/skills/paseo-help/SKILL.md"
+  },
+  "~/.claude/skills/paseo-plugin/SKILL.md": {
+    "source": "~/.agents/skills/paseo-plugin/SKILL.md"
+  },
+  "~/.claude/skills/paseo/SKILL.md": {
+    "source": "~/.agents/skills/paseo/SKILL.md"
   },
   "~/.claude/skills/plan-design-review/SKILL.md": {
     "source": "~/.agents/skills/plan-design-review/SKILL.md"
