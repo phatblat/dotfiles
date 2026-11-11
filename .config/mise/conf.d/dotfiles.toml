@@ -204,11 +204,6 @@ source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/flywheel/SK
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md"]
 source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md"
 mode = "symlink"
@@ -751,6 +746,11 @@ relative = false
 
 [dotfiles."~/.agents/skills/gh-stack/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/gh-stack/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.agents/skills/gh-stack/agents/openai.yaml"]
+source = "~/dev/dotfiles/.agents/skills/gh-stack/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
