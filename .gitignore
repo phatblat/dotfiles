@@ -655,6 +655,7 @@
 .zsh_history*
 .zsh_sessions/
 /Library/pnpm
+/REVIEW_PR_LOG
 /bin/*
 !/bin/appinst.sh
 !/bin/dotnet-install.sh
