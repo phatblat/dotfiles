@@ -123,6 +123,20 @@ EOF
     [ ! -s "$BATS_TEST_TMPDIR/format.log" ]
 }
 
+@test "commit format: files with spaces in their path are staged after formatting" {
+    repo="$BATS_TEST_TMPDIR/spaced"
+    mkdir -p "$repo"; make_repo "$repo"
+    printf 'a\n' > "$repo/my file.txt"
+    git -C "$repo" add "my file.txt"
+    git -C "$repo" commit -qm "add spaced file"
+    cat > "$repo/justfile" << 'EOF'
+format:
+    @printf 'b\n' >> "my file.txt"
+EOF
+    printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
+    git -C "$repo" diff --cached --name-only | grep -qxF "my file.txt"
+}
+
 @test "commit format: git status and prose are inert" {
     left="$BATS_TEST_TMPDIR/left"; right="$BATS_TEST_TMPDIR/outside"
     mkdir -p "$right/left"

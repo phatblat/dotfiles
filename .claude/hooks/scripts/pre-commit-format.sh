@@ -49,7 +49,7 @@ just --justfile "$repo_root/justfile" format 2>&1
 staged=0
 while IFS= read -r line; do
   [[ -n $line ]] || continue
-  path="${line%% *}"
+  path="${line% *}"
   if ! printf '%s\n' "$before" | grep -qxF -- "$line"; then
     git -C "$repo_root" add -- "$path"
     staged=1
