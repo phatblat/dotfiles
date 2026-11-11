@@ -134,7 +134,7 @@ oh-my-pi = { version = "18.18.8", rename_exe = "omp" }
 opencode = { version = "2.2.7", allow_builds = ["@opencode/cli"] }
 packer = "1.16.2"
 pandoc = "3.13"
-pi = "1.5.1"
+pi = "1.5.2"
 pinact = "5.0.2"
 pipx = "1.18.16"
 poppler = "26.11.0"
