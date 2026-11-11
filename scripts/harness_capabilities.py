@@ -277,7 +277,10 @@ CAPABILITIES: list[Capability] = [
             "claude": Cell(
                 parity="partial",
                 mode="adapter",
-                artifacts=("~/.claude/skills/test-driven-development/SKILL.md", _SHARED),
+                artifacts=(
+                    "~/.claude/skills/test-driven-development/SKILL.md",
+                    _SHARED,
+                ),
                 evidence=Evidence(kind="local", ref="static adapter coverage only"),
                 next_action=(
                     "Run the real Claude session and confirm /skills lists the "

@@ -13,7 +13,8 @@ export def --wrapped cc [...args] {
     let explicit_sources = ($args | any {|argument|
         $argument == "--setting-sources" or ($argument | str starts-with "--setting-sources=")
     })
-    let dotfiles = (do { ^($env.HOME | path join "scripts/is-dotfiles-checkout.sh") } | complete).exit_code == 0
+    let script = ($env.HOME | path join "scripts/is-dotfiles-checkout.sh")
+    let dotfiles = ((do { ^$script } | complete | get exit_code) == 0)
     if $dotfiles and not $explicit_sources {
         ^claude --dangerously-skip-permissions --setting-sources user ...$args
     } else {
