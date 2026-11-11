@@ -54,6 +54,8 @@ if TYPE_CHECKING or not (len(sys.argv) >= 2 and sys.argv[1] in FAST_PATH_ACTIONS
         is_procedural_skill,
         render_antigravity_skill,
         render_claude_skill,
+    )
+    from harness_skills import (
         configure as configure_skill_rendering,
     )
 sys.dont_write_bytecode = True
