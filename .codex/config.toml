@@ -89,6 +89,12 @@ SKY_CUA_SERVICE_PATH = "/Users/phatblat/.codex/computer-use/Codex Computer Use.a
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
 
+[mcp_servers.todoist]
+url = "https://ai.todoist.net/mcp"
+
+[mcp_servers.todoist-automations]
+url = "https://ai.todoist.net/mcp/automations"
+
 [shell_environment_policy]
 inherit = "core"
 

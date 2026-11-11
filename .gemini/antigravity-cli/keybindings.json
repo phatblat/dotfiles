@@ -49,6 +49,15 @@
   "item.rename": [
     "f2"
   ],
+  "live.mute": [
+    "shift+f6"
+  ],
+  "live.stop": [
+    "f7"
+  ],
+  "live.toggle": [
+    "f6"
+  ],
   "navigation.down": [
     "down"
   ],
@@ -95,6 +104,12 @@
   ],
   "subagent.jump_to_waiting": [
     "alt+j"
+  ],
+  "swarm.board": [
+    "alt+s"
+  ],
+  "swarm.dismiss": [
+    "alt+x"
   ],
   "view.review_artifact": [
     "ctrl+r"

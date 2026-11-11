@@ -8,7 +8,7 @@ providers:
   streamIdleTimeoutSeconds: 120
 setupVersion: 3
 modelRoles:
-  default: casper/ultramarine-1-flash-us:medium
+  default: casper/kimi-k3p1-pro:minimal
   plan: casper/kimi-k3p1-pro:high
   slow: casper/ember-1:medium
   smol: casper/ultramarine-1-flash-us:minimal

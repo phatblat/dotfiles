@@ -12,7 +12,7 @@ Coverage: 74/315 cells verified (23%)
 | codex | supported peer | codex-cli 0.167.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | opencode v2.2.6 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.5.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.18.2 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
+| omp | tracked port | omp/18.18.3 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
 | antigravity | tracked port | 1.5.3 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | crush | new port | crush version v0.100.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
