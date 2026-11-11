@@ -11,10 +11,10 @@ local argument explicit_sources=0
 forwarded=(--dangerously-skip-permissions)
 for argument in "$@"; do
     case "$argument" in
-        --setting-sources|--setting-sources=*) explicit_sources=1 ;;
+    --setting-sources | --setting-sources=*) explicit_sources=1 ;;
     esac
 done
-if (( explicit_sources == 0 )) && "$HOME/scripts/is-dotfiles-checkout.sh" >/dev/null 2>&1; then
+if ((explicit_sources == 0)) && "$HOME/scripts/is-dotfiles-checkout.sh" > /dev/null 2>&1; then
     forwarded+=(--setting-sources user)
 fi
 command claude "${forwarded[@]}" "$@"
