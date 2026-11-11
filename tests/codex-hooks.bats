@@ -144,6 +144,7 @@ PY
     [ "$status" -eq 0 ]
     [ -z "$output" ]
     [ "$(wc -l < "$log" | tr -d ' ')" -eq 2 ]
-    grep -Fx "$workdir/one.json" "$log"
-    grep -Fx "$workdir/two.json" "$log"
+    canonical_workdir="$(realpath "$workdir")"
+    grep -Fx "$canonical_workdir/one.json" "$log"
+    grep -Fx "$canonical_workdir/two.json" "$log"
 }

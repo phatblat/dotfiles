@@ -11,6 +11,8 @@ setup() {
   command -v yq >/dev/null || skip "yq is not installed"
   root="$(mktemp -d)"
   mkdir -p "$root/scripts" "$root/.omp/agent" "$root/.omp/profiles/p/agent"
+  # Profiles link the shared native surface; check mode flags a dangling mcp.json.
+  printf '{}\n' >"$root/.omp/agent/mcp.json"
   cp "$repo/scripts/generate-omp-profiles.sh" "$root/scripts/"
   cat >"$root/.omp/agent/config.yml" <<'EOF'
 modelRoles:
