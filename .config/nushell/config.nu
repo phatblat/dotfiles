@@ -676,6 +676,8 @@ $env.config.hooks.env_change.PWD ++= [{||
 const mise_init = "~/.config/nushell/mise.nu"
 if ($mise_init | path expand | path exists) {
     source $mise_init
+    # Populate PATH before autoloads and startup hooks need mise-managed tools.
+    mise_hook
 }
 
 # Editor: set from mise-provided EDITOR_GUI (GUI editor in interactive sessions)
