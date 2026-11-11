@@ -39,7 +39,33 @@ class CommitTargetTests(unittest.TestCase):
         )
 
     def test_chained_after_shell_separator(self):
-        self.assertEqual(commit_target("cd /tmp && git -C rel commit", "/base"), "/base/rel")
+        self.assertEqual(commit_target("echo hi && git -C rel commit", "/base"), "/base/rel")
+
+    def test_cd_changes_the_resolution_directory(self):
+        self.assertEqual(commit_target("cd /other && git commit", "/base"), "/other")
+        self.assertEqual(commit_target("cd /tmp && git -C rel commit", "/base"), "/tmp/rel")
+
+    def test_newline_is_a_boundary(self):
+        self.assertEqual(commit_target("git add -A\ngit commit -m x", "/base"), "/base")
+
+    def test_newline_inside_quotes_is_not_a_boundary(self):
+        self.assertIsNone(commit_target("echo 'a\ngit commit'", "/base"))
+
+    def test_env_prefix_and_wrappers_are_skipped(self):
+        self.assertEqual(commit_target("FOO=1 git commit", "/base"), "/base")
+        self.assertEqual(commit_target("sudo git commit", "/base"), "/base")
+        self.assertEqual(commit_target("if true; then git commit; fi", "/base"), "/base")
+
+    def test_git_global_options_are_skipped(self):
+        self.assertEqual(commit_target("git -c user.name=x commit", "/base"), "/base")
+        self.assertEqual(commit_target("git --no-pager commit", "/base"), "/base")
+        self.assertEqual(commit_target("git --no-pager -C sub -c k=v commit", "/base"), "/base/sub")
+
+    def test_tilde_c_operand_is_expanded(self):
+        self.assertEqual(
+            commit_target("git -C ~/dev/foo commit", "/base"),
+            os.path.join(os.path.expanduser("~"), "dev/foo"),
+        )
 
     def test_after_semicolon_boundary(self):
         self.assertEqual(commit_target("echo one; git commit", "/base"), "/base")
