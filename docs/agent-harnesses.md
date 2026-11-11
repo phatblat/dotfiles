@@ -8,11 +8,11 @@ Coverage: 74/315 cells verified (23%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.251 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
+| claude | supported peer | 2.1.322 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.167.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | opencode v2.2.6 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
-| pi | new port | 1.5.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.14.1 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
+| pi | new port | 1.5.1 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
+| omp | tracked port | omp/18.18.7 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
 | antigravity | tracked port | 1.2.3 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | crush | new port | crush version v0.100.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
@@ -56,16 +56,16 @@ Coverage: 74/315 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-11-11 | pi | - | version | 1.5.0 | 1.5.1 |
+| 2026-11-11 | omp | - | version | omp/18.14.1 | omp/18.18.7 |
+| 2026-11-11 | claude | - | version | 2.1.251 (Claude Code) | 2.1.322 (Claude Code) |
+| 2026-11-11 | claude | skills.shared | mode | shared | adapter |
+| 2026-11-11 | claude | skills.shared | parity | aligned | partial |
+| 2026-11-11 | claude | instructions.global | mode | shared | adapter |
 | 2026-11-10 | omp | - | version | omp/18.18.3 | omp/18.14.1 |
 | 2026-11-10 | claude | - | version | 2.1.314 (Claude Code) | 2.1.251 (Claude Code) |
 | 2026-11-10 | antigravity | - | version | 1.5.3 | 1.2.3 |
 | 2026-11-09 | omp | hooks.safety | parity | aligned | partial |
-| 2026-11-08 | omp | - | version | omp/18.18.1 | omp/18.18.2 |
-| 2026-11-08 | antigravity | - | version | 1.4.6 | 1.5.3 |
-| 2026-11-08 | opencode | - | version | opencode v2.2.5 | opencode v2.2.6 |
-| 2026-11-08 | omp | - | version | omp/18.17.0 | omp/18.18.1 |
-| 2026-11-08 | codex | - | version | codex-cli 0.166.0 | codex-cli 0.167.0 |
-| 2026-11-07 | omp | - | version | omp/18.14.1 | omp/18.17.0 |
 
 ## Permanent divergences
 
