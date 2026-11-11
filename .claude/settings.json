@@ -1,5 +1,4 @@
 {
-  "minimumVersion": "2.1.295",
   "agentPushNotifEnabled": true,
   "effortLevel": "xhigh",
   "enabledPlugins": {
@@ -227,6 +226,7 @@
       }
     ]
   },
+  "minimumVersion": "2.1.295",
   "model": "sonnet",
   "permissions": {
     "allow": [
