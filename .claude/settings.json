@@ -111,6 +111,7 @@
         "hooks": [
           {
             "command": "bash ~/.claude/hooks/scripts/write-guard.sh",
+            "onFailure": "block",
             "timeout": 3,
             "type": "command"
           }
@@ -121,6 +122,7 @@
         "hooks": [
           {
             "command": "bash ~/.claude/hooks/scripts/bash-guard.sh",
+            "onFailure": "block",
             "timeout": 3,
             "type": "command"
           }
@@ -224,6 +226,7 @@
       }
     ]
   },
+  "minimumVersion": "2.1.295",
   "model": "sonnet",
   "permissions": {
     "allow": [

@@ -9,7 +9,7 @@
 # grouped index of everything.
 #
 
-export PATH := env("HOME") / ".local" / "bin" + ":" + env("PATH")
+export PATH := env("PATH") + ":" + (env("HOME") / ".local" / "bin")
 
 set ignore-comments
 

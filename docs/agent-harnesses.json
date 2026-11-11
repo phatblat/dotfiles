@@ -29,22 +29,24 @@
         },
         "claude": {
           "artifacts": [
+            "~/.claude/CLAUDE.md",
             "~/.agents/harness"
           ],
           "divergence": "",
           "evidence": {
             "date": "2026-11-09",
             "kind": "probe",
-            "ref": "file_exists",
+            "ref": "file_contains",
             "version": "2.1.314 (Claude Code)"
           },
-          "mode": "shared",
+          "mode": "adapter",
           "next_action": "",
           "note": "",
           "parity": "aligned",
           "probe": {
-            "kind": "file_exists",
-            "path": ".agents/harness/instructions.md"
+            "kind": "file_contains",
+            "path": ".claude/CLAUDE.md",
+            "pattern": "@~/\\.agents/harness/instructions\\.md"
           },
           "surface": ""
         },
@@ -443,6 +445,7 @@
         },
         "claude": {
           "artifacts": [
+            "~/.claude/skills/test-driven-development/SKILL.md",
             "~/.agents/harness"
           ],
           "divergence": "",
@@ -452,13 +455,13 @@
             "ref": "file_exists",
             "version": "2.1.314 (Claude Code)"
           },
-          "mode": "shared",
-          "next_action": "",
+          "mode": "adapter",
+          "next_action": "Run the real Claude session and confirm /skills lists the generated pointer plus resolving external links, then return the cell to aligned with that observation",
           "note": "",
-          "parity": "aligned",
+          "parity": "partial",
           "probe": {
             "kind": "file_exists",
-            "path": ".agents/skills/test-driven-development/SKILL.md"
+            "path": ".claude/skills/test-driven-development/SKILL.md"
           },
           "surface": ""
         },

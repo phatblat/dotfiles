@@ -13,7 +13,7 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · 2.1.314 (Claude Code) · 2026-11-09 | - |
+| claude | partial | adapter | - | probe · 2.1.314 (Claude Code) · 2026-11-09 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.167.0 · 2026-11-09 | - |
 | opencode | aligned | shared | - | probe · opencode v2.2.6 · 2026-11-09 | - |
 | pi | aligned | shared | - | probe · 1.5.0 · 2026-11-09 | - |

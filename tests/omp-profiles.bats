@@ -11,6 +11,8 @@ setup() {
   command -v yq >/dev/null || skip "yq is not installed"
   root="$(mktemp -d)"
   mkdir -p "$root/scripts" "$root/.omp/agent" "$root/.omp/profiles/p/agent"
+  # Profiles link the shared native surface; check mode flags a dangling mcp.json.
+  printf '{}\n' >"$root/.omp/agent/mcp.json"
   cp "$repo/scripts/generate-omp-profiles.sh" "$root/scripts/"
   cat >"$root/.omp/agent/config.yml" <<'EOF'
 modelRoles:
@@ -93,6 +95,42 @@ teardown() {
   [ "$(readlink "$profile_agent/extensions")" = "../../../agent/extensions" ]
   [ -d "$profile_agent/hooks" ]
   [ -d "$profile_agent/extensions" ]
+}
+
+@test "generate-omp-profiles: links agents, commands, and mcp.json into the profile" {
+  mkdir -p "$root/.omp/agent/hooks" "$root/.omp/agent/extensions" "$root/.omp/agent/agents" "$root/.omp/agent/commands"
+  printf '{"mcpServers":{}}\n' > "$root/.omp/agent/mcp.json"
+  run "$render"
+  [ "$status" -eq 0 ]
+  profile_agent="$root/.omp/profiles/p/agent"
+  for name in agents commands mcp.json; do
+    [ "$(readlink "$profile_agent/$name")" = "../../../agent/$name" ]
+  done
+  [ -d "$profile_agent/agents" ]
+  [ -d "$profile_agent/commands" ]
+}
+
+@test "generate-omp-profiles --check detects missing or wrong links for the shared surface" {
+  mkdir -p "$root/.omp/agent/agents" "$root/.omp/agent/commands"
+  printf '{"mcpServers":{}}\n' > "$root/.omp/agent/mcp.json"
+  "$render"
+  rm "$root/.omp/profiles/p/agent/commands"
+  rm "$root/.omp/profiles/p/agent/mcp.json"
+  ln -sfn ../../../elsewhere "$root/.omp/profiles/p/agent/agents"
+  run "$render" --check
+  [ "$status" -eq 1 ]
+  [[ "$output" == *"stale: .omp/profiles/p/agent/commands"* ]]
+  [[ "$output" == *"stale: .omp/profiles/p/agent/mcp.json"* ]]
+  [[ "$output" == *"stale: .omp/profiles/p/agent/agents"* ]]
+}
+
+@test "generate-omp-profiles: keeps an existing regular file at the link target" {
+  mkdir -p "$root/.omp/agent/commands"
+  printf 'user content\n' > "$root/.omp/profiles/p/agent/commands"
+  run "$render"
+  [ "$status" -eq 0 ]
+  [ ! -L "$root/.omp/profiles/p/agent/commands" ]
+  grep -Fqx 'user content' "$root/.omp/profiles/p/agent/commands"
 }
 
 @test "generate-omp-profiles --check fails when a profile hooks link is missing" {

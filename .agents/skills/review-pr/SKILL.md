@@ -1,6 +1,6 @@
 ---
 name: review-pr
-description: Structured, risk-aware code review of a GitHub pull request using the gh CLI, with diff triage, unresolved-thread suppression, and severity-grouped findings ending in an approve/request-changes verdict.
+description: Structured, risk-aware code review of a GitHub pull request using the gh CLI, with no-reference discovery of the current branch's PR, diff triage, unresolved-thread suppression, and severity-grouped findings ending in an approve/request-changes verdict.
 ---
 
 # Review a Pull Request
@@ -11,6 +11,8 @@ Perform a structured, risk-aware code review of a GitHub pull request. Works in 
 
 - A PR reference: URL, `owner/repo#123`, or bare `#123`. Normalize before use with `gh`: URL → as-is; `owner/repo#N` → `gh -R owner/repo pr diff N`; bare `#N` → `gh pr diff N` (targets the repo whose remote the cwd's `origin` points at — if the cwd is not a git repo with a GitHub `origin`, error out rather than guessing). Only the bare `#N` form depends on the cwd; everything after normalization targets GitHub explicitly via `-R`.
 - Optional: extra review instructions from the user (e.g. "focus on security").
+
+If no PR reference is given: detect the current branch's PR via `gh pr view --json number,url,title,body,baseRefName,headRefName`. If no open PR exists for the current branch, stop and tell the user to provide a reference.
 
 ## Review Thread Suppression
 

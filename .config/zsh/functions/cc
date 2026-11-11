@@ -1,4 +1,20 @@
 #!/usr/bin/env zsh
+# cc — Claude Code with the dotfiles-scoped settings layer.
+#
+# Inside the dotfiles checkout the launcher supplies `--setting-sources user`
+# so project and local settings never duplicate the deployed shared config;
+# other directories keep Claude's default source discovery. The
+# dangerously-skip-permissions default is unchanged.
 
-# Wrapper to invoke Claude Code with default configuration
-claude --dangerously-skip-permissions "$@"
+local -a forwarded
+local argument explicit_sources=0
+forwarded=(--dangerously-skip-permissions)
+for argument in "$@"; do
+    case "$argument" in
+    --setting-sources | --setting-sources=*) explicit_sources=1 ;;
+    esac
+done
+if ((explicit_sources == 0)) && "$HOME/scripts/is-dotfiles-checkout.sh" > /dev/null 2>&1; then
+    forwarded+=(--setting-sources user)
+fi
+command claude "${forwarded[@]}" "$@"

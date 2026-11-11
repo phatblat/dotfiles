@@ -498,8 +498,8 @@
 !.omp/profiles/*/agent/SYSTEM.md
 !.omp/profiles/*/agent/TITLE_SYSTEM.md
 !.omp/profiles/*/agent/WATCHDOG.md
-!.omp/profiles/*/agent/agents/
-!.omp/profiles/*/agent/commands/
+!.omp/profiles/*/agent/agents
+!.omp/profiles/*/agent/commands
 !.omp/profiles/*/agent/config.yml
 !.omp/profiles/*/agent/extensions
 !.omp/profiles/*/agent/hooks
@@ -655,6 +655,7 @@
 .zsh_history*
 .zsh_sessions/
 /Library/pnpm
+/REVIEW_PR_LOG
 /bin/*
 !/bin/appinst.sh
 !/bin/dotnet-install.sh

@@ -62,16 +62,38 @@ for overrides in "$root"/.omp/profiles/*/agent/overrides.yml; do
     fi
 
     # omp loads <agentDir>/hooks/pre/*.ts per profile, so without these links the
-    # shared ness guard never loads in named profiles.
+    # shared ness guard never loads in named profiles. agents, commands and
+    # mcp.json provide the shared native agent/command/mcp surface to every
+    # named profile without linking managed-skills, models.yml, config.yml, auth
+    # stores, or profile plugin roots.
     dir="$(dirname "$overrides")"
-    for name in hooks extensions; do
+    for name in hooks extensions agents commands mcp.json; do
+        target="../../../agent/$name"
         if [[ $mode == check ]]; then
-            if [[ "$(readlink "$dir/$name" 2> /dev/null)" != "../../../agent/$name" ]]; then
+            # Generate mode keeps a regular file untouched, so check must too.
+            [[ -e "$dir/$name" && ! -L "$dir/$name" ]] && continue
+            current="$(readlink "$dir/$name" 2>/dev/null || printf '')"
+            if [[ ! -e "$dir/$name" && $name == mcp.json ]]; then
+                echo "stale: ${dir#"$root"/}/$name is missing (expected a link to the main agent $name)" >&2
+                stale=1
+            elif [[ "$current" != "$target" ]]; then
                 echo "stale: ${dir#"$root"/}/$name is not linked to the main agent $name" >&2
                 stale=1
             fi
         else
-            ln -sfn "../../../agent/$name" "$dir/$name"
+            if [[ -e "$dir/$name" && ! -L "$dir/$name" ]]; then
+                echo "keep: ${dir#"$root"/}/$name is a regular file; leaving it untouched" >&2
+                continue
+            fi
+            if [[ -e "$dir/$name" ]]; then
+                current="$(readlink "$dir/$name")"
+                [[ "$current" == "$target" ]] || {
+                    echo "keep: ${dir#"$root"/}/$name links elsewhere ($current)" >&2
+                    continue
+                }
+            fi
+            ln -sfn "$target" "$dir/$name"
+            echo "Linked ${dir#"$root"/}/$name"
         fi
     done
 done

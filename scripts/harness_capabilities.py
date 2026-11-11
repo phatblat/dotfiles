@@ -157,12 +157,14 @@ CAPABILITIES: list[Capability] = [
         cells={
             "claude": Cell(
                 parity="aligned",
-                mode="shared",
-                artifacts=(_SHARED,),
+                mode="adapter",
+                artifacts=("~/.claude/CLAUDE.md", _SHARED),
                 evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                    kind="probe", ref="file_contains", date=_PROBED_2026_10_16
                 ),
-                probe=_exists(".agents/harness/instructions.md"),
+                probe=_contains(
+                    ".claude/CLAUDE.md", r"@~/\.agents/harness/instructions\.md"
+                ),
             ),
             "codex": Cell(
                 parity="aligned",
@@ -273,13 +275,19 @@ CAPABILITIES: list[Capability] = [
         verify="python3 scripts/agent-harnesses.py inventory --json",
         cells={
             "claude": Cell(
-                parity="aligned",
-                mode="shared",
-                artifacts=(_SHARED,),
-                evidence=Evidence(
-                    kind="probe", ref="file_exists", date=_PROBED_2026_08_29
+                parity="partial",
+                mode="adapter",
+                artifacts=(
+                    "~/.claude/skills/test-driven-development/SKILL.md",
+                    _SHARED,
                 ),
-                probe=_exists(".agents/skills/test-driven-development/SKILL.md"),
+                evidence=Evidence(kind="local", ref="static adapter coverage only"),
+                next_action=(
+                    "Run the real Claude session and confirm /skills lists the "
+                    "generated pointer plus resolving external links, then return "
+                    "the cell to aligned with that observation"
+                ),
+                probe=_exists(".claude/skills/test-driven-development/SKILL.md"),
             ),
             "codex": Cell(
                 parity="aligned",

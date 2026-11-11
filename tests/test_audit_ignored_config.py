@@ -121,6 +121,74 @@ class HomeScanTests(unittest.TestCase):
         (record,) = self.scan()
         self.assertEqual(record["kind"], "review")
 
+class NewStateCategoryTests(unittest.TestCase):
+    def setUp(self) -> None:
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.repo = Path(tmp.name) / "repo"
+        self.home = Path(tmp.name) / "home"
+        self.repo.mkdir()
+        self.home.mkdir()
+
+    def write_home(self, rel: str, text: str = "content\n") -> Path:
+        path = self.home / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text)
+        return path
+
+    def scan(self, tracked: set[str] | None = None) -> list[dict]:
+        return audit.scan_home(
+            self.repo, self.home, (".claude", ".omp", ".gemini"), tracked or set()
+        )
+
+    def test_state_dirs_and_state_names_scan_to_state(self) -> None:
+        # STATE_DIRS entries are pruned in scan_home's os.walk itself, so those
+        # directories produce no records at all — invisible files.
+        for rel in (
+            ".claude/MEMORY/auto-end.md",
+            ".claude/hud/banner.json",
+            ".claude/powerline/theme.json",
+            ".claude/shell-snapshots/a.sh",
+            ".claude/browser-relay/links.json",
+        ):
+            self.write_home(rel)
+        self.assertEqual(self.scan(), [])
+
+    def test_state_names_scan_to_state_when_reachable(self) -> None:
+        # Named state files under an otherwise config-shaped tree ARE returned
+        # by scan_home, and classify() marks them state.
+        self.write_home(".omp/agent/models-store.json")
+        records = self.scan()
+        self.assertEqual([record["kind"] for record in records], ["state"])
+        self.assertEqual(
+            [record["path"] for record in records],
+            [".omp/agent/models-store.json"],
+        )
+
+    def test_installed_claude_files_are_state(self) -> None:
+        for rel in (
+            ".claude/plugins/blocklist.json",
+            ".claude/plugins/installed_plugins.json",
+            ".claude/policy-limits.json",
+            ".claude/remote-settings.json",
+        ):
+            self.write_home(rel, "{}\n")
+        self.assertEqual(
+            {record["path"]: record["kind"] for record in self.scan()},
+            {
+                ".claude/plugins/blocklist.json": "state",
+                ".claude/plugins/installed_plugins.json": "state",
+                ".claude/policy-limits.json": "state",
+                ".claude/remote-settings.json": "state",
+            },
+        )
+
+    def test_security_warning_state_shape_is_state(self) -> None:
+        self.write_home(".claude/security_warnings_state_02a1-f3.json", "{}\n")
+        self.assertEqual(
+            audit.classify(".claude/security_warnings_state_02a1-f3.json"), "state"
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

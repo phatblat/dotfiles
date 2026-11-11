@@ -12,7 +12,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from harness_skills import discover_skills
+from harness_skills import (
+    configure,
+    discover_skills,
+    is_generated_pointer,
+    is_procedural_skill,
+)
 
 
 class DiscoverSkillsTests(unittest.TestCase):
@@ -118,6 +123,42 @@ class DiscoverSkillsTests(unittest.TestCase):
 
         self.assertIn("whitelisted", names)
         self.assertNotIn("whitelisted", external)
+
+
+class ProceduralPolicyTests(unittest.TestCase):
+    def test_sidecar_false_marks_procedural(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            skill = Path(directory) / "proc-skill"
+            (skill / "agents").mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: proc-skill\n---\n")
+            (skill / "agents" / "openai.yaml").write_text(
+                "policy:\n  allow_implicit_invocation: false\n"
+            )
+            configure(managed_header="x", skill_source=Path(directory))
+            self.assertTrue(is_procedural_skill("proc-skill"))
+
+    def test_missing_sidecar_is_ability(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            skill = Path(directory) / "ability-skill"
+            skill.mkdir()
+            (skill / "SKILL.md").write_text("---\nname: ability-skill\n---\n")
+            configure(managed_header="x", skill_source=Path(directory))
+            self.assertFalse(is_procedural_skill("ability-skill"))
+
+    def test_generated_pointer_shape_round_trip(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            skill = Path(directory) / "shape-skill"
+            skill.mkdir()
+            (skill / "SKILL.md").write_text(
+                "---\nname: shape-skill\ndescription: Body here\n---\nbody"
+            )
+            configure(managed_header="x", skill_source=Path(directory))
+            rendered = (
+                "---\nname: shape-skill\ndescription: \"Body here\"\n---\n\nx\n\n"
+                "Load and follow the shared skill at `~/.agents/skills/shape-skill/SKILL.md`.\n"
+            )
+            self.assertTrue(is_generated_pointer(rendered, "shape-skill"))
+            self.assertFalse(is_generated_pointer(rendered + "edited", "shape-skill"))
 
 
 if __name__ == "__main__":

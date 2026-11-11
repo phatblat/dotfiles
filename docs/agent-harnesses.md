@@ -8,7 +8,7 @@ Coverage: 74/315 cells verified (23%)
 
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
-| claude | supported peer | 2.1.314 (Claude Code) | 2026-08-29 | 10 | 0 | 0 | 0 | 0 | 35 |
+| claude | supported peer | 2.1.314 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.167.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
 | opencode | new port | opencode v2.2.6 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.5.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
@@ -21,7 +21,7 @@ Coverage: 74/315 cells verified (23%)
 | Domain | Page | Capabilities | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|
 | Instructions | [harness/instructions.md](harness/instructions.md) | 3 | 6 | 1 | 0 | 0 | 0 | 14 |
-| Skills | [harness/skills.md](harness/skills.md) | 7 | 6 | 2 | 0 | 0 | 1 | 40 |
+| Skills | [harness/skills.md](harness/skills.md) | 7 | 5 | 3 | 0 | 0 | 1 | 40 |
 | Commands | [harness/commands.md](harness/commands.md) | 3 | 4 | 1 | 0 | 1 | 1 | 14 |
 | Agents | [harness/agents.md](harness/agents.md) | 4 | 4 | 1 | 0 | 1 | 1 | 21 |
 | Hooks | [harness/hooks.md](harness/hooks.md) | 4 | 4 | 3 | 0 | 0 | 0 | 21 |
@@ -38,6 +38,7 @@ Coverage: 74/315 cells verified (23%)
 
 | Harness | Capability | Next action |
 |---|---|---|
+| claude | skills.shared | Run the real Claude session and confirm /skills lists the generated pointer plus resolving external links, then return the cell to aligned with that observation |
 | codex | commands.active | Re-check Codex release notes for stable command format |
 | codex | mcp.dependencies | hand-add [mcp_servers.filesystem]; validated by just harness-check |
 | omp | hooks.safety | Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again, and return this cell to aligned in the same change, since the probe passes only while the entry is present |
