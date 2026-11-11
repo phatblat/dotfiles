@@ -10199,6 +10199,16 @@ source = "~/dev/dotfiles/.omp/profiles/baseten/agent/RULES.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/baseten/agent/agents"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/agents"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/baseten/agent/commands"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/commands"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/baseten/agent/config.yml"]
 source = "~/dev/dotfiles/.omp/profiles/baseten/agent/config.yml"
 mode = "symlink"
@@ -10236,6 +10246,16 @@ relative = false
 
 [dotfiles."~/.omp/profiles/casper/agent/RULES.md"]
 source = "~/dev/dotfiles/.omp/profiles/casper/agent/RULES.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/agents"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/agents"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/commands"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/commands"
 mode = "symlink"
 relative = false
 
@@ -10284,6 +10304,16 @@ source = "~/dev/dotfiles/.omp/profiles/reflection/agent/RULES.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/reflection/agent/agents"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/agents"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/reflection/agent/commands"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/commands"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/reflection/agent/config.yml"]
 source = "~/dev/dotfiles/.omp/profiles/reflection/agent/config.yml"
 mode = "symlink"
@@ -10326,6 +10356,16 @@ relative = false
 
 [dotfiles."~/.omp/profiles/subconscious/agent/RULES.md"]
 source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/RULES.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/agents"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/agents"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/commands"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/commands"
 mode = "symlink"
 relative = false
 
