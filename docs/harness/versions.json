@@ -1,13 +1,13 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.5.3",
-    "version": "1.2.3"
+    "previous": "1.4.6",
+    "version": "1.5.3"
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.314 (Claude Code)",
-    "version": "2.1.251 (Claude Code)"
+    "previous": "2.1.251 (Claude Code)",
+    "version": "2.1.314 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
@@ -21,8 +21,8 @@
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.18.3",
-    "version": "omp/18.14.1"
+    "previous": "omp/18.18.2",
+    "version": "omp/18.18.3"
   },
   "opencode": {
     "first_seen": "2026-08-29",
