@@ -70,6 +70,8 @@ for overrides in "$root"/.omp/profiles/*/agent/overrides.yml; do
     for name in hooks extensions agents commands mcp.json; do
         target="../../../agent/$name"
         if [[ $mode == check ]]; then
+            # Generate mode keeps a regular file untouched, so check must too.
+            [[ -e "$dir/$name" && ! -L "$dir/$name" ]] && continue
             current="$(readlink "$dir/$name" 2>/dev/null || printf '')"
             if [[ ! -e "$dir/$name" && $name == mcp.json ]]; then
                 echo "stale: ${dir#"$root"/}/$name is missing (expected a link to the main agent $name)" >&2
