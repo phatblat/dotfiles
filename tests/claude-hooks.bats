@@ -190,7 +190,7 @@ make_git_homedir() {
     chmod +x "$bindir/hk"
     env HOME="$linked" PATH="$bindir:$PATH" bash "$hk_main/.claude/hooks/scripts/auto-format.sh" \
       <<< "{\"tool_input\":{\"file_path\":\"$linked/src/status.py\"}}"
-    grep -Eq -- "--cd .* fix .*status\.py" "$log"
+    grep -Eq -- "--cd $(realpath "$linked") fix .*status\.py" "$log"
 }
 
 

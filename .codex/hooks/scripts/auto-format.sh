@@ -26,20 +26,22 @@ format_file() {
 
     file_path="$(canonical_file_path "$file_path")"
 
-    local script_common_dir file_common_dir checkout_root
+    local script_common_dir file_common_dir checkout_root file_top
     # The hook script directory nests three levels below its checkout root:
     # <root>/.codex/hooks/scripts.
     checkout_root="$(realpath "$script_dir/../../..")"
     script_common_dir="$(git -C "$checkout_root" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || printf '')"
     file_common_dir="$(git -C "$(dirname "$file_path")" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || printf '')"
+    file_top="$(git -C "$(dirname "$file_path")" rev-parse --show-toplevel 2>/dev/null || printf '')"
 
-    if [ -n "$script_common_dir" ] && [ "$script_common_dir" = "$file_common_dir" ]; then
-        # hk owns the shipping rubric: staged nothing, fix everything...
-        hk --cd "$checkout_root" fix "$file_path" >/dev/null 2>&1 || true
+    if [ -n "$script_common_dir" ] && [ "$script_common_dir" = "$file_common_dir" ] && [ -n "$file_top" ]; then
+        # hk owns the shipping rubric: staged nothing, fix everything. It runs
+        # from the file's own worktree top-level so the path is never outside
+        # hk's root.
+        hk --cd "$file_top" fix "$file_path" >/dev/null 2>&1 || true
         return 0
     fi
 
-    file_top="$(git -C "$(dirname "$file_path")" rev-parse --show-toplevel 2>/dev/null || printf '')"
     if [ -n "$file_top" ] && git -C "$file_top" check-ignore -q -- "$file_path" 2>/dev/null; then
         return 0
     fi

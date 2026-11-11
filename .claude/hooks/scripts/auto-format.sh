@@ -33,18 +33,19 @@ trap record_if_changed EXIT
 
 # Bundle roots are laid out as <root>/.claude/hooks/scripts. The checkout root
 # is three canonical directories above this script, and the file's canonical
-# common dir comes from its containing directory.
+# common dir comes from its containing directory. hk runs from the file's own
+# worktree top-level, so a linked worktree never hands hk a path outside its root.
 checkout_root="$(realpath "$script_dir/../../..")"
 script_common_dir="$(git -C "$checkout_root" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || printf '')"
 file_common_dir="$(git -C "$(dirname "$file_path")" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || printf '')"
+file_top="$(git -C "$(dirname "$file_path")" rev-parse --show-toplevel 2>/dev/null || printf '')"
 
-if [ -n "$script_common_dir" ] && [ "$script_common_dir" = "$file_common_dir" ]; then
-    hk --cd "$checkout_root" fix "$file_path" >/dev/null 2>&1 || true
+if [ -n "$script_common_dir" ] && [ "$script_common_dir" = "$file_common_dir" ] && [ -n "$file_top" ]; then
+    hk --cd "$file_top" fix "$file_path" >/dev/null 2>&1 || true
     exit 0
 fi
 
 # Ignored inside their repo are not formatted.
-file_top="$(git -C "$(dirname "$file_path")" rev-parse --show-toplevel 2>/dev/null || printf '')"
 if [ -n "$file_top" ] && git -C "$file_top" check-ignore -q -- "$file_path" 2>/dev/null; then
     exit 0
 fi
