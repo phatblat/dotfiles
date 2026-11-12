@@ -1,77 +1,151 @@
 ---
 name: git-resolve-conflicts
-description: Resolve unmerged paths from a pending merge, rebase, cherry-pick, or stash pop, then continue the operation and commit. Use when invoked as `$git-resolve-conflicts` or when the user asks to resolve conflicts and commit.
-disable-model-invocation: true
+description: Resolve git conflicts and finish the interrupted git operation. Detects whether a rebase, merge, cherry-pick, revert, am, or stash pop stopped on conflicts, resolves and stages every unmerged path, then continues that same operation until it completes. Use as soon as git output shows "CONFLICT", "Unmerged paths", "both modified", "could not apply", "fix conflicts and then run", "rebase in progress", or "You have unmerged paths", or a config or source file fails to parse on a `<<<<<<<` marker; also when invoked as `$git-resolve-conflicts` or asked to resolve conflicts and continue.
 ---
 
 # git-resolve-conflicts
 
-Resolve every unmerged path in the current worktree, continue whatever git operation is pending, and commit the result.
+Finish a git operation that stopped on conflicts: detect which operation is pending, resolve every unmerged path, stage it, and continue the *same* operation until git reports it complete. Then commit any leftover changes. This skill never aborts, stashes, or pushes; a calling workflow such as `git-rebase` may push afterwards.
 
-## Workflow
+## 1. Detect the pending operation
 
-1. Inspect state:
+Linked worktrees keep their own state directory, so resolve every state path with `git rev-parse --git-path` instead of assuming `.git/`:
 
-   ```bash
-   git status
-   git ls-files -u
-   ```
+```bash
+gp() { git rev-parse --git-path "$1"; }
+if   [ -d "$(gp rebase-merge)" ]; then op=rebase
+elif [ -d "$(gp rebase-apply)" ] && [ -f "$(gp rebase-apply/applying)" ]; then op=am
+elif [ -d "$(gp rebase-apply)" ]; then op=rebase
+elif [ -f "$(gp MERGE_HEAD)" ]; then op=merge
+elif [ -f "$(gp CHERRY_PICK_HEAD)" ]; then op=cherry-pick
+elif [ -f "$(gp REVERT_HEAD)" ]; then op=revert
+elif [ -n "$(git diff --name-only --diff-filter=U)" ]; then op=unmerged
+else op=none
+fi
+echo "op=$op"
+git status --porcelain=v1
+```
 
-   Identify the pending operation:
-   - `MERGE_HEAD` / `rebase-merge` / `rebase-apply` / `CHERRY_PICK_HEAD` / `REVERT_HEAD` present -> merge/rebase/cherry-pick/revert.
-   - Otherwise (unmerged paths but no HEAD pointer) -> likely a stash pop conflict or manual merge; resolve in place.
+- `op=none`: no conflict is in progress. Report that and stop.
+- `op=unmerged`: unmerged paths with no operation to continue, from a conflicted `git stash pop`/`git stash apply`, `git merge --squash`, or `git checkout -m`. Resolve in place; step 6 has nothing to continue.
+- Any other `op` with **no** unmerged paths: continue only if `git status` says all conflicts are fixed. If it says the operation stopped for an `edit`, `break`, or failed `exec`, the user paused it deliberately: report that and stop.
+- `op=rebase`: for the report, read the branch being rebased and the progress from `$(gp rebase-merge)/head-name`, `onto`, `msgnum`, and `end` (apply backend: `$(gp rebase-apply)/head-name`, `next`, `last`).
 
-   List the conflicted files: `git diff --name-only --diff-filter=U`.
+Record the incoming change. Its intent is what you resolve toward:
 
-2. For each conflicted file, inspect the three stages:
+| op | Incoming change |
+| --- | --- |
+| rebase | `git log -1 --format='%h %s' REBASE_HEAD` |
+| cherry-pick | `git log -1 --format='%h %s' CHERRY_PICK_HEAD` |
+| revert | `git log -1 --format='%h %s' REVERT_HEAD` |
+| merge | `git log --oneline HEAD..MERGE_HEAD` |
+| am | the `Subject:` line of `git am --show-current-patch` |
+| unmerged | none |
 
-   ```bash
-   git show :1:<path>   # base
-   git show :2:<path>   # ours (HEAD / current branch)
-   git show :3:<path>   # theirs (incoming / stashed)
-   ```
+## 2. Know which side is which
 
-   And the working-tree conflict markers.
+| op | `--ours`, stage 2, `<<<<<<<` side | `--theirs`, stage 3, `>>>>>>>` side |
+| --- | --- | --- |
+| merge | your current branch | the branch being merged |
+| rebase | the upstream you are rebasing onto, plus commits already replayed | your commit being replayed |
+| cherry-pick, revert | your current branch | the picked commit, or its revert |
+| am | your current branch | the patch |
+| stash pop/apply | `HEAD` | the stash |
 
-3. Resolve per file using these rules:
+During a rebase the sides are inverted relative to "mine vs. theirs": `--ours` keeps upstream and `--theirs` keeps your commit. A `|||||||` section (diff3/zdiff3 style) shows the merge base. Inspect any stage with `git show :1:<path>` (base), `git show :2:<path>` (ours), `git show :3:<path>` (theirs).
 
-   - Machine-generated / filtered state files (e.g. `.codex/*.config.toml` trust hashes, lockfiles): keep ours (`git checkout --ours <path>`); the clean filter re-normalizes on `git add`.
-   - Dependency / version bumps: keep the higher version; if already upstream, `--skip` the commit.
-   - Deliberate config updates (incoming value intended): take theirs (`git checkout --theirs <path>`).
-   - Generated artifacts: regenerate from source, then stage.
-   - Stash-pop conflicts where the stash is stale (its changes already present in HEAD): keep ours for every file; the stash adds nothing.
-   - Hand-written source with a genuine semantic collision: pause and ask the user before choosing; never guess.
-   - JSON / JSONL / TOML data files with duplicate or contradictory rows: drop duplicates and obviously bogus rows (downgrades, empty values, format-only changes), keeping one clean copy of each legitimate entry.
+## 3. List and classify the conflicts
 
-   When a file has conflict markers, remove the markers and keep the chosen side's content. For 3-way markers (`<<<<<<<` / `|||||||` / `=======` / `>>>>>>>`), select the intended side and delete the marker lines.
+| `git status --porcelain=v1` code | Meaning | Resolve with |
+| --- | --- | --- |
+| `UU` | both modified | edit or pick a side, then `git add -- <path>` |
+| `AA` | both added | as `UU` |
+| `UD`, `DU` | modified on one side, deleted on the other | keep: `git add -- <path>`; delete: `git rm -- <path>` |
+| `AU`, `UA` | added on one side, conflicting | edit, then `git add -- <path>` |
+| `DD` | deleted on both sides | `git rm -- <path>` |
 
-4. Stage every resolved file:
+For each path, read what the other side did to it: `git log --oneline -3 HEAD -- <path>`, plus `git log --oneline -3 MERGE_HEAD -- <path>` for a merge.
 
-   ```bash
-   git add <path> ...
-   ```
+With `rerere.enabled`, git may already have replayed a recorded resolution. Git's output then says `Resolved '<path>' using previous resolution.` and the file has no markers. Check the replayed content against step 4 before staging it.
 
-5. Verify no conflict markers remain:
+## 4. Resolve each path
 
-   ```bash
-   git diff --check
-   ```
+Apply the first rule that matches:
 
-   If any remain, fix before continuing.
+1. **Generated files** (a "generated" or "do not edit" header, or listed as generator output in the repo's AGENTS.md): never hand-merge. Take the side from the newer generation; during a rebase that is usually the upstream, `git checkout --ours -- <path>`. Note the repo's regenerate command for the report, and run it after the operation finishes. Examples from phatblat/dotfiles: `docs/harness/**`, `docs/agent-harnesses.*`, `.claude/skills/**` and `.agents/harness/**` regenerate with `just harness-generate`; `.config/mise/conf.d/dotfiles.toml` with `just home-spec`; version and drift captures with `just harness-probe`.
+2. **Lockfiles**: never hand-merge. Take the side matching the manifest you resolved, then regenerate with the owning tool's lock command (`uv lock`, `bun install`, `npm install --package-lock-only`, `cargo update --workspace`, `mise lock`) and stage the result.
+3. **Version pins and dependency bumps**: for each key, keep the highest version from either side. If the `HEAD` side already has the highest version of every key, the incoming bump is obsolete, so resolve to `HEAD` (`git checkout --ours -- <path>` for rebase and cherry-pick). Step 6 then skips the now-empty commit.
+4. **Filtered machine-state files** (a `filter=` attribute in `.gitattributes`, such as trust hashes): keep ours; the clean filter re-normalizes the file on `git add`.
+5. **Append-only data** not covered by rule 1 (JSONL logs, changelog-style lists): keep both sides' new entries, drop exact duplicates, and keep chronological order.
+6. **Deliberate config change** on one side only, where the other side's edit is unrelated in intent: keep the deliberate value.
+7. **Stale stash** (`op=unmerged` from a stash whose changes are already in `HEAD`): keep `HEAD` for every path.
+8. **Hand-written source** where both sides changed the same logic: combine them only when both intents are clear and independent, such as two additions to one list. Otherwise stop and ask the user, showing base, ours and theirs plus both commits' subjects. Never guess.
 
-6. Continue the pending operation:
+For a mixed result, edit the file. Keep the chosen lines and delete every marker line: `<<<<<<<`, `|||||||` together with the base lines after it, `=======`, and `>>>>>>>`. `git checkout --ours -- <path>` and `git checkout --theirs -- <path>` take a whole side. They are path checkouts, so they work even where branch-switching `git checkout` is blocked. `git checkout -m -- <path>` restores the markers if you need to start over.
 
-   - Merge: `git commit` (use the prepared `MERGE_MSG`).
-   - Rebase/cherry-pick: `git rebase --continue` (or `--skip` if the commit became empty) / `git cherry-pick --continue`.
-   - Revert: `git revert --continue`.
-   - Stash pop / manual: nothing to continue; proceed to commit.
+## 5. Validate and stage
 
-7. If the working tree now has changes relative to HEAD, commit them using the project's commit convention (see `git-commit` skill). If the tree is clean, report that there was nothing to commit.
+For each resolved path, confirm no markers remain:
 
-8. Report: which files conflicted, how each was resolved, and the resulting commit (or "nothing to commit").
+```bash
+grep -nE '^(<{7}|\|{7}|={7}|>{7})( |$)' -- <path> && echo "markers remain in <path>"
+```
 
-## Notes
+Then parse-check it by type, and fix any failure before staging:
 
-- Never run `git stash` (push/pop/apply/drop) in a shared workspace; resolve conflicts in place and leave the stash list untouched if dropping is blocked.
-- Do not force-resolve hand-written source collisions without user confirmation.
-- Prefer the version already in HEAD when the incoming change is a stale duplicate.
+| Type | Check |
+| --- | --- |
+| TOML | `python3 -c 'import sys, tomllib; tomllib.load(open(sys.argv[1], "rb"))' <path>` |
+| JSON, JSONL | `jq empty <path>` |
+| YAML | `yq '.' <path> >/dev/null` |
+| shell | `bash -n <path>` |
+| other source | the repo's linter or compiler for that file, when it runs in seconds |
+
+Stage with `git add -- <path>`, or `git rm -- <path>` for a deletion. When every path is staged, both of these must print nothing:
+
+```bash
+git diff --name-only --diff-filter=U
+git diff --cached --check
+```
+
+## 6. Continue the same operation
+
+Check whether the resolution left anything to commit: `git diff --cached --quiet HEAD && echo empty`.
+
+| op | Resolution has changes | Resolution is empty |
+| --- | --- | --- |
+| rebase | `GIT_EDITOR=true git rebase --continue` | `git rebase --skip` |
+| cherry-pick | `GIT_EDITOR=true git cherry-pick --continue` | `git cherry-pick --skip` |
+| revert | `GIT_EDITOR=true git revert --continue` | `git revert --skip` |
+| am | `git am --continue` | `git am --skip` |
+| merge | `git commit --no-edit` | `git commit --no-edit` (the merge commit records the merge) |
+| unmerged | nothing to continue | nothing to continue |
+
+`GIT_EDITOR=true` accepts git's prepared message without opening an editor. Record the subject of every skipped commit for the report; its change was already upstream.
+
+If a commit hook rewrites files (a formatter) and fails, stage the rewritten files and run the same continue command again. If a hook rejects the commit for any other reason, stop and report its output.
+
+Then run step 1 again. A multi-commit rebase, cherry-pick or revert can stop on the next commit, so repeat steps 2–6 until `op=none`.
+
+## 7. Commit leftovers
+
+When `op=none`, run `git status --porcelain=v1`. If changes remain (a resolved stash pop, a `--squash` merge, or `checkout -m`), commit them following the `git-commit` skill's conventions. If the tree is clean, there is nothing to commit.
+
+A conflicted `git stash pop` keeps its stash entry. Leave it in `git stash list` and report it.
+
+## 8. Report
+
+- The operation, the branch (`head-name` for a rebase), and the onto or target ref.
+- Each conflicted path, with the rule applied and the side kept.
+- Commits skipped as empty.
+- Follow-ups:
+  - regenerate commands from rules 1–2;
+  - a kept stash entry;
+  - whether the branch now diverges from its upstream (`git status -sb` shows `ahead N, behind M`), so the user needs `git push --force-with-lease`.
+
+## Never
+
+- Abort the operation (`--abort`) unless the user asks.
+- Run `git stash` push, pop, apply or drop, `git push`, or `git reset --hard`.
+- Take one side across every path at once (`-X ours`, `-X theirs`, `git checkout --ours .`) without applying step 4 to each path.
+- Guess at a hand-written source collision.
