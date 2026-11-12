@@ -92,6 +92,9 @@
   "~/.agents/harness/adapters/antigravity/skills/flywheel/SKILL.md": {
     "source": "~/.agents/skills/flywheel/SKILL.md"
   },
+  "~/.agents/harness/adapters/antigravity/skills/git-resolve-conflicts/SKILL.md": {
+    "source": "~/.agents/skills/git-resolve-conflicts/SKILL.md"
+  },
   "~/.agents/harness/adapters/antigravity/skills/git-value-scrubbing/SKILL.md": {
     "source": "~/.agents/skills/git-value-scrubbing/SKILL.md"
   },

@@ -60,15 +60,7 @@ Rebase the current branch onto a target branch. If the user provides an argument
    - Onto: `git rebase --onto "${target_ref}" "${merge_base}" HEAD`
    - Cherry-pick: create `<subject>__cherrypick__` from `target_ref` and cherry-pick subject commits oldest-first.
 
-8. On conflicts, resolve automatically and continue; `rerere` makes this recoverable:
-
-   - Apply any recorded `rerere` resolution.
-   - Filtered machine-state files (e.g. `.codex/*.config.toml` trust hashes): keep ours (`git checkout --ours`); the clean filter re-normalizes the blob on `git add`.
-   - Dependency/version bumps: keep the higher version, or `--skip` the commit if the bump is already upstream.
-   - Deliberate config updates: take the incoming value (`git checkout --theirs`).
-   - Generated artifacts: regenerate from source.
-
-   Stage each fix, verify no conflict markers remain, then `--continue` (or `--skip` if the commit became empty). Pause and ask **only** for genuine semantic collisions in hand-written source — never guess those. Report how each conflict was resolved.
+8. On conflicts, follow the `git-resolve-conflicts` skill (`~/.agents/skills/git-resolve-conflicts/SKILL.md`). It resolves each path, continues the rebase or cherry-pick (skipping commits already upstream), and repeats until the operation completes, pausing only where it says to ask the user. Then continue with step 9.
 
 9. After success, set tracking and push:
 
