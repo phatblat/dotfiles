@@ -8,18 +8,22 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
-| claude | 2.1.314 (Claude Code) | 2026-08-29 | 2.1.322 (Claude Code) |
-| codex | codex-cli 0.167.0 | 2026-08-29 | codex-cli 0.166.0 |
+| claude | 2.1.322 (Claude Code) | 2026-08-29 | 2.1.314 (Claude Code) |
+| codex | codex-cli 0.167.1 | 2026-08-29 | codex-cli 0.167.0 |
 | opencode | opencode v2.2.7 | 2026-08-29 | opencode v2.2.6 |
 | pi | 1.5.2 | 2026-08-29 | 1.5.1 |
-| omp | omp/18.18.8 | 2026-08-29 | omp/18.18.7 |
-| antigravity | 1.5.4 | 2026-08-29 | 1.2.3 |
+| omp | omp/18.19.0 | 2026-08-29 | omp/18.18.8 |
+| antigravity | 1.2.3 | 2026-08-29 | 1.5.4 |
 | crush | crush version v0.100.0 | 2026-08-29 | crush version v0.99.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-12 | omp | - | version | omp/18.18.8 | omp/18.19.0 | omp/18.19.0 |
+| 2026-11-12 | codex | - | version | codex-cli 0.167.0 | codex-cli 0.167.1 | codex-cli 0.167.1 |
+| 2026-11-12 | claude | - | version | 2.1.314 (Claude Code) | 2.1.322 (Claude Code) | 2.1.322 (Claude Code) |
+| 2026-11-12 | antigravity | - | version | 1.5.4 | 1.2.3 | 1.2.3 |
 | 2026-11-11 | pi | - | version | 1.5.1 | 1.5.2 | 1.5.2 |
 | 2026-11-11 | opencode | - | version | opencode v2.2.6 | opencode v2.2.7 | opencode v2.2.7 |
 | 2026-11-11 | omp | - | version | omp/18.18.7 | omp/18.18.8 | omp/18.18.8 |
@@ -216,7 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-24 | crush | commands.active | probe | fail | pass | crush version v0.96.1 |
 | 2026-09-24 | codex | skills.shared | probe | fail | pass | codex-cli 0.155.1 |
 | 2026-09-24 | claude | skills.shared | probe | fail | pass | 2.1.278 (Claude Code) |
-| 2026-09-24 | antigravity | skills.shared | probe | fail | pass | 1.2.10 |
-| 2026-09-23 | grok | - | version | grok 1.0.41 (4220f3b224a6) [alpha] | grok 1.0.41 (4220f3b224a6) | grok 1.0.41 (4220f3b224a6) |
-| 2026-09-23 | claude | - | version | 2.1.278 (Claude Code) | 2.1.251 (Claude Code) | 2.1.251 (Claude Code) |
-| 2026-09-23 | antigravity | - | version | 1.2.8 | 1.2.3 | 1.2.3 |
