@@ -677,7 +677,12 @@ const mise_init = "~/.config/nushell/mise.nu"
 if ($mise_init | path expand | path exists) {
     source $mise_init
     # Populate PATH before autoloads and startup hooks need mise-managed tools.
-    mise_hook
+    # mise.nu execs ~/.local/bin/mise; skip when that binary is absent so a
+    # missing external does not abort config load (the nushell-config lint step).
+    let mise_bin = ($env.HOME | path join ".local" "bin" "mise")
+    if ($mise_bin | path exists) {
+        mise_hook
+    }
 }
 
 # Editor: set from mise-provided EDITOR_GUI (GUI editor in interactive sessions)
