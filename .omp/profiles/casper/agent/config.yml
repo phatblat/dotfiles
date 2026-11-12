@@ -8,10 +8,10 @@ providers:
   streamIdleTimeoutSeconds: 120
 setupVersion: 3
 modelRoles:
-  default: casper/kimi-k3p1-pro:minimal
+  default: casper/ultramarine-1-flash-us
   plan: casper/kimi-k3p1-pro:high
   slow: casper/ember-1:medium
-  smol: casper/ultramarine-1-flash-us:minimal
+  smol: openai-codex/gpt-6-luna
 extensions: []
 disabledExtensions:
   - hook:pre:harness-guard:harness-guard.ts
@@ -96,7 +96,8 @@ composer:
   shape: field
   predictions: false
 codexResets:
-  autoRedeem: "no"
+  autoRedeem5h: "no"
+  autoRedeemWeekly: "no"
 treeFilterMode: all
 spelling:
   autocorrect: false
