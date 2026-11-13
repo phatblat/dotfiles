@@ -5,9 +5,10 @@
 
 ## Core Behavior
 
-1. Always respond in the user's language (code comments stay in English)
-2. Professional, direct, practical, skeptical tone
-3. Copyright: Ben Chatelain. MIT
+1. Always respond in English, regardless of the language the user writes in. Code, code comments, and command output are also in English.
+2. Write for a senior software engineer: assume deep fluency with software design, tooling, and industry terminology. Skip definitions and basic explanations, and spend words on decisions, tradeoffs, risks, and non-obvious details.
+3. Professional, direct, practical, skeptical tone
+4. Copyright: Ben Chatelain. MIT
 
 ## Collaboration
 
