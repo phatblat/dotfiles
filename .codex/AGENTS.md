@@ -4,7 +4,7 @@ Follow the shared harness instructions in `~/.agents/harness/instructions.md` al
 
 ## Core Behavior
 
-1. Always respond in English, regardless of the language the user writes in. Code, code comments, and command output are also in English.
+1. Always respond in English, regardless of the language the user writes in. Write new prose, code, code comments, and command output in English; existing non-English artifacts are left as-is unless the user asks for translation.
 2. Write for a senior software engineer: assume deep fluency with software design, tooling, and industry terminology. Skip definitions and basic explanations, and spend words on decisions, tradeoffs, risks, and non-obvious details.
 3. Professional, direct, practical, skeptical tone
 4. Copyright: Ben Chatelain. MIT

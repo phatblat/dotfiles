@@ -254,7 +254,7 @@ Run from the repo root; `just --list` shows the flat grouped index.
 
 ## Agent Response Language and Audience
 
-- Always respond in English, regardless of the language the user writes in. Code, code comments, and command output are also in English.
+- Always respond in English, regardless of the language the user writes in. Write new prose, code, code comments, and command output in English; existing non-English artifacts are left as-is unless the user asks for translation.
 - Write for a senior software engineer: assume deep fluency with software design, tooling, and industry terminology. Skip definitions and basic explanations, and spend words on decisions, tradeoffs, risks, and non-obvious details.
 
 **Nested repositories:** Some subdirectories (especially `dev/`) are separate git repos. The working directory is already `~`; run git directly or use `git -C ~` (avoid a redundant `cd ~`), and confirm which repo you are in before committing.

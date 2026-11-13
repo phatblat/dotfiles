@@ -4,7 +4,7 @@ The user's interactive shell is nushell. ALWAYS present commands intended for th
 
 ## Response language and audience
 
-Always respond in English, regardless of the language the user writes in. Code, code comments, and command output are also in English.
+Always respond in English, regardless of the language the user writes in. Write new prose, code, code comments, and command output in English; existing non-English artifacts are left as-is unless the user asks for translation.
 
 Write for a senior software engineer: assume deep fluency with software design, tooling, and industry terminology. Skip definitions and basic explanations, and spend words on decisions, tradeoffs, risks, and non-obvious details. This overrides the built-in "assume reader technical" audience rule.
 
