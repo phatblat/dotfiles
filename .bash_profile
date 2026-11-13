@@ -47,8 +47,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -f "$HOME/.config/.dart-cli-completion/bash-config.bash" ] && . "$HOME/.config/.dart-cli-completion/bash-config.bash" || true
 ## [/Completion]
 
-. "$HOME/.cargo/env"
-
 # Added by Windsurf
 export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 

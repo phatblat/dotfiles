@@ -676,6 +676,13 @@ $env.config.hooks.env_change.PWD ++= [{||
 const mise_init = "~/.config/nushell/mise.nu"
 if ($mise_init | path expand | path exists) {
     source $mise_init
+    # Populate PATH before autoloads and startup hooks need mise-managed tools.
+    # mise.nu execs ~/.local/bin/mise; skip when that binary is absent so a
+    # missing external does not abort config load (the nushell-config lint step).
+    let mise_bin = ($env.HOME | path join ".local" "bin" "mise")
+    if ($mise_bin | path exists) {
+        mise_hook
+    }
 }
 
 # Editor: set from mise-provided EDITOR_GUI (GUI editor in interactive sessions)
@@ -705,11 +712,5 @@ $env.config.hooks.pre_prompt ++= [{||
     print --no-newline $"\e]0;($title)\a"
 }]
 
-# Rust toolchain: `source` of a missing file is a parse-time error that aborts
-# loading this whole file, so add the bin directory conditionally instead.
-let cargo_bin = ($env.HOME | path join ".cargo" "bin")
-if ($cargo_bin | path exists) and ($cargo_bin not-in $env.PATH) {
-    $env.PATH = ($env.PATH | prepend $cargo_bin)
-}
-
 # All custom aliases and functions are now autoloaded from ~/.config/nushell/autoload/
+source "~/.cargo/env.nu"

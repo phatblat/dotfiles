@@ -95,7 +95,8 @@ composer:
   shape: field
   predictions: false
 codexResets:
-  autoRedeem: "no"
+  autoRedeem5h: "no"
+  autoRedeemWeekly: "no"
 treeFilterMode: all
 spelling:
   autocorrect: false

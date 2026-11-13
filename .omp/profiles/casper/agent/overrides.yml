@@ -4,10 +4,10 @@
 # this file, then re-render; OMP writes /settings changes into config.yml,
 # and the next render discards them.
 modelRoles:
-  default: casper/kimi-k3p1-pro:minimal
-  plan: casper/kimi-k3p1-pro:high
+  default: casper/ultramarine-1-flash-us
+  plan: anthropic/claude-opus-5-5:high
   slow: casper/ember-1:medium
-  smol: casper/ultramarine-1-flash-us:minimal
+  smol: openai-codex/gpt-6-luna
 cycleOrder:
   - default
   - smol
