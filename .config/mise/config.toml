@@ -133,7 +133,7 @@ node = "26.13.1"
 oh-my-pi = { version = "18.20.0", rename_exe = "omp" }
 opencode = { version = "2.2.7", allow_builds = ["@opencode/cli"] }
 packer = "1.16.2"
-pandoc = "3.13"
+pandoc = "3.14"
 pi = "1.5.2"
 pinact = "5.0.2"
 pipx = "1.18.16"
