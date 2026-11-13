@@ -54,7 +54,7 @@
 "npm:gtop" = "1.1.5"
 "npm:jsonlint" = "1.6.3"
 "npm:markdownlint-cli" = "0.50.0"
-"npm:markdownlint-cli2" = "0.24.0"
+"npm:markdownlint-cli2" = "0.24.1"
 "npm:pnpm" = "12.18.0"
 "npm:prettier" = "3.10.0"
 "npm:renovate" = "44.234.1"
