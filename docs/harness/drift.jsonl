@@ -379,3 +379,8 @@
 {"capability":"-","date":"2026-11-12","detail":"","field":"version","from":"2.1.314 (Claude Code)","harness":"claude","to":"2.1.322 (Claude Code)","version_from":"2.1.314 (Claude Code)","version_to":"2.1.322 (Claude Code)"}
 {"capability":"-","date":"2026-11-12","detail":"","field":"version","from":"codex-cli 0.167.0","harness":"codex","to":"codex-cli 0.167.1","version_from":"codex-cli 0.167.0","version_to":"codex-cli 0.167.1"}
 {"capability":"-","date":"2026-11-12","detail":"","field":"version","from":"omp/18.18.8","harness":"omp","to":"omp/18.19.0","version_from":"omp/18.18.8","version_to":"omp/18.19.0"}
+{"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"1.2.3","harness":"antigravity","to":"1.5.7","version_from":"1.2.3","version_to":"1.5.7"}
+{"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"2.1.322 (Claude Code)","harness":"claude","to":"2.1.314 (Claude Code)","version_from":"2.1.322 (Claude Code)","version_to":"2.1.314 (Claude Code)"}
+{"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"codex-cli 0.167.1","harness":"codex","to":"codex-cli 0.167.2","version_from":"codex-cli 0.167.1","version_to":"codex-cli 0.167.2"}
+{"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"crush version v0.100.0","harness":"crush","to":"crush version v0.101.0","version_from":"crush version v0.100.0","version_to":"crush version v0.101.0"}
+{"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"omp/18.19.0","harness":"omp","to":"omp/18.20.0","version_from":"omp/18.19.0","version_to":"omp/18.20.0"}
