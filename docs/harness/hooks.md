@@ -13,13 +13,13 @@ Verify: `just ness-test`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.322 (Claude Code) · 2026-11-12 | - |
-| codex | aligned | adapter | - | probe · codex-cli 0.167.1 · 2026-11-12 | - |
-| opencode | aligned | adapter | - | probe · opencode v2.2.7 · 2026-11-12 | - |
-| pi | aligned | adapter | - | probe · 1.5.2 · 2026-11-12 | - |
-| omp | partial | adapter | - | probe · omp/18.19.0 · 2026-11-12 | the ness pre-tool hook is disabled on purpose: disabledExtensions lists hook:pre:harness-guard:harness-guard.ts in ~/.omp/agent/config.yml (b47ea03); OMP runs approvalMode yolo with sudo denied and gitGuard on |
-| antigravity | partial | adapter | - | probe · 1.2.3 · 2026-11-12 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
-| crush | partial | adapter | - | probe · crush version v0.100.0 · 2026-11-12 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
+| claude | aligned | adapter | - | probe · 2.1.322 (Claude Code) · 2026-11-13 | - |
+| codex | aligned | adapter | - | probe · codex-cli 0.167.1 · 2026-11-13 | - |
+| opencode | aligned | adapter | - | probe · opencode v2.2.7 · 2026-11-13 | - |
+| pi | aligned | adapter | - | probe · 1.5.2 · 2026-11-13 | - |
+| omp | partial | adapter | - | probe · omp/18.19.0 · 2026-11-13 | the ness pre-tool hook is disabled on purpose: disabledExtensions lists hook:pre:harness-guard:harness-guard.ts in ~/.omp/agent/config.yml (b47ea03); OMP runs approvalMode yolo with sudo denied and gitGuard on |
+| antigravity | partial | adapter | - | probe · 1.2.3 · 2026-11-13 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
+| crush | partial | adapter | - | probe · crush version v0.100.0 · 2026-11-13 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush is not installed locally so live blocking is unverified |
 
 ### Not yet researched
 

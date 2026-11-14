@@ -159,7 +159,14 @@ _graphify-sync-skill:
         [ -e "$f" ] && ! [ -L "$f" ] || continue
         rel="${f#"$live"/}"
         mkdir -p "$repo/$(dirname "$rel")"
-        cp "$f" "$repo/$rel"
+        if [ "$rel" = "SKILL.md" ]; then
+            # Strip the tool-authored "Graphify Cloud" upsell section: edits
+            # only in the repo would stick until the next graphifyy bump
+            # re-vendors it here byte-for-byte.
+            awk 'BEGIN{cut=0} /^## Graphify Cloud \(hosted\)$/ {cut=1; next} cut==1 && /^---$/ {cut=0; next} cut==0' "$f" | awk '{if($0=="" && prev=="") next; print} {prev=$0}' > "$repo/$rel"
+        else
+            cp "$f" "$repo/$rel"
+        fi
         targets+=("$f")
     done
     if [ "${#targets[@]}" -gt 0 ]; then
