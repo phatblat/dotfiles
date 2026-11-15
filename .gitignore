@@ -411,6 +411,7 @@
 .omo/*
 !.omo/omo.jsonc
 .omp/*
+!.omp/AGENTS.md
 .omp/agent/*
 .omp/agent/*/**
 !.omp/agent/*/**/*.json

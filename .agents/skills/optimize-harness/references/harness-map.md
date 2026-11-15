@@ -84,6 +84,9 @@ commands that failed due to permission denial or indicate frequent use.
 - Task subagents drop every `AGENTS.md` (including `~/.omp/agent/AGENTS.md`) and
   `APPEND_SYSTEM.md` but receive `~/.omp/agent/RULES.md` (`omp://context-files.md`). Rules
   helpers must follow belong in `RULES.md`.
+- The dotfiles repo tracks `.omp/AGENTS.md -> ../AGENTS.md` so OMP's `native` provider (priority 100)
+  wins the depth-0 context slot. Without it, `.claude/CLAUDE.md` (`claude`, 80) shadowed the repo's
+  `AGENTS.md` inside the repo (2026-11-15). In `~`, `.claude/CLAUDE.md` still wins; unresolved.
 
 ## antigravity
 
