@@ -968,12 +968,14 @@ CAPABILITIES: list[Capability] = [
                 note=(
                     "generated crush PreToolUse shim execs the compiled guard, "
                     "which maps crush's snake_case payload and blocks with exit "
-                    "2; crush is not installed locally so live blocking is "
-                    "unverified"
+                    "2; crush v0.101.0 is installed and its tool names match "
+                    "the matcher, but no provider is configured, so live "
+                    "blocking is unverified"
                 ),
                 next_action=(
-                    "Install crush and verify it blocks a denied shell command "
-                    "through the generated crushrc PreToolUse hook"
+                    "Configure a crush provider and verify a commands.obfuscated "
+                    "bash call is blocked through the generated crushrc "
+                    "PreToolUse hook"
                 ),
                 probe=_contains(".config/crush/crushrc", r"harness-guard\.sh"),
             ),

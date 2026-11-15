@@ -9,10 +9,10 @@ Coverage: 74/315 cells verified (23%)
 | Harness | Role | CLI version | First seen | Aligned | Partial | Divergent | Blocked | Absent | Unknown |
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.314 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
-| codex | supported peer | codex-cli 0.167.2 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
-| opencode | new port | opencode v2.2.7 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| codex | supported peer | codex-cli 0.169.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
+| opencode | new port | opencode v2.3.0 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.5.2 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/18.20.0 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
+| omp | tracked port | omp/18.20.2 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
 | antigravity | tracked port | 1.5.7 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | crush | new port | crush version v0.101.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
@@ -50,12 +50,15 @@ Coverage: 74/315 cells verified (23%)
 | antigravity | skills.shared | Verify agy imports and activates shared skill wrappers from the plugin |
 | crush | agents.specialists | Re-check crush releases for user-defined agent support |
 | crush | commands.active | Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter |
-| crush | hooks.safety | Install crush and verify it blocks a denied shell command through the generated crushrc PreToolUse hook |
+| crush | hooks.safety | Configure a crush provider and verify a commands.obfuscated bash call is blocked through the generated crushrc PreToolUse hook |
 
 ## Recent drift
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-11-15 | opencode | - | version | opencode v2.2.7 | opencode v2.3.0 |
+| 2026-11-15 | omp | - | version | omp/18.20.0 | omp/18.20.2 |
+| 2026-11-15 | codex | - | version | codex-cli 0.167.2 | codex-cli 0.169.0 |
 | 2026-11-14 | omp | - | version | omp/18.19.0 | omp/18.20.0 |
 | 2026-11-14 | crush | - | version | crush version v0.100.0 | crush version v0.101.0 |
 | 2026-11-14 | codex | - | version | codex-cli 0.167.1 | codex-cli 0.167.2 |
@@ -63,9 +66,6 @@ Coverage: 74/315 cells verified (23%)
 | 2026-11-14 | antigravity | - | version | 1.2.3 | 1.5.7 |
 | 2026-11-12 | omp | - | version | omp/18.18.8 | omp/18.19.0 |
 | 2026-11-12 | codex | - | version | codex-cli 0.167.0 | codex-cli 0.167.1 |
-| 2026-11-12 | claude | - | version | 2.1.314 (Claude Code) | 2.1.322 (Claude Code) |
-| 2026-11-12 | antigravity | - | version | 1.5.4 | 1.2.3 |
-| 2026-11-11 | pi | - | version | 1.5.1 | 1.5.2 |
 
 ## Permanent divergences
 
