@@ -74,8 +74,8 @@ task:
 worktree:
   base: ~/.worktrees
   cleanSource: true
-  onStart: ask
-  onExit: ask
+  onStart: "off"
+  onExit: remove
   clone: false
 hideThinkingBlock: false
 theme:
