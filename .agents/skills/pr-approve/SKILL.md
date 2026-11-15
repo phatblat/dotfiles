@@ -1,6 +1,6 @@
 ---
 name: pr-approve
-description: Approve a GitHub pull request, inferring the target from context when no PR is given. Use when the user invokes `$pr-approve`, asks to approve a PR, or approves a pull request mentioned earlier in the conversation.
+description: Use when the user invokes `$pr-approve` or asks to approve a PR; infers the target PR from context when none is given.
 disable-model-invocation: true
 ---
 

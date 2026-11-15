@@ -1,6 +1,6 @@
 ---
 name: gha-log-reader
-description: "Diagnoses failing GitHub Actions runs by reading logs, identifying the root cause, and suggesting fixes. Use this skill whenever a user shares a GHA run URL, pastes runner log output, mentions a failing workflow, asks why a CI job is broken, or says anything like \"my GHA is failing\", \"workflow failed\", \"can you check my run\", or \"CI is broken\". Also trigger when raw log text is detected in the conversation that appears to come from a GitHub Actions runner. Do NOT use for general GHA workflow authoring questions, YAML formatting help, or passing runs with no failure context."
+description: "Use when a user shares a GHA run URL, runner log output, or says a workflow or CI job is failing: read logs, find root cause, suggest fixes. Not for workflow authoring or YAML help."
 disable-model-invocation: true
 ---
 

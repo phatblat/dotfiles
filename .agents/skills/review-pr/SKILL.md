@@ -1,6 +1,6 @@
 ---
 name: review-pr
-description: Structured, risk-aware code review of a GitHub pull request using the gh CLI, with no-reference discovery of the current branch's PR, diff triage, unresolved-thread suppression, and severity-grouped findings ending in an approve/request-changes verdict.
+description: Use for structured, risk-aware review of a GitHub PR via gh, ending in severity-grouped findings and an approve/request-changes verdict; finds the current branch's PR if none is given.
 ---
 
 # Review a Pull Request

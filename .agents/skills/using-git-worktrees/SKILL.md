@@ -1,6 +1,6 @@
 ---
 name: using-git-worktrees
-description: Explains the ~/.worktrees/<path-key>/<branch> worktree convention, the dotfiles-repo opt-in, and what a dotfiles worktree cannot validate. Use to understand or explain worktree layout and its constraints; use the git-worktree skill to actually create, switch to, or delete one.
+description: Use to understand the ~/.worktrees/<path-key>/<branch> worktree convention and its constraints; use the git-worktree skill to create, switch to, or delete one.
 ---
 
 # Git Worktrees

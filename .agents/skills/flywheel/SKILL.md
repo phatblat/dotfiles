@@ -1,6 +1,6 @@
 ---
 name: flywheel
-description: "Define, review, repair, or set up a repository's agent harness data flywheel: the learning loop that records agent sessions, learns from them by analysis or by replaying them on better models, applies the lessons to instructions, skills, hooks, and memory, prunes scaffolding newer models no longer need, and tunes the loop itself. Use when a repo documents a flywheel (docs/flywheel.md) that needs review or repair, when a repo has no learning loop and needs its first one, or when the user asks how agents should learn across sessions, keep memory, run retros or evals on recorded sessions, or remove harness scaffolding as models improve."
+description: "Use when a repo documents a flywheel (docs/flywheel.md) to review or repair, has no agent learning loop yet, or asks how agents should learn across sessions or prune scaffolding as models improve."
 license: MIT
 metadata:
   author: phatblat

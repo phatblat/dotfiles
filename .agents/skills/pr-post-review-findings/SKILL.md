@@ -1,6 +1,6 @@
 ---
 name: pr-post-review-findings
-description: Post findings from the most recent review output as inline GitHub PR comments and record them in today's daily note. Use when invoked as `$pr-post-review-findings` or when the user asks to post review findings to the current PR.
+description: Use when invoked as `$pr-post-review-findings` or when asked to post review findings to the current PR as inline comments and record them in today's daily note.
 disable-model-invocation: true
 ---
 

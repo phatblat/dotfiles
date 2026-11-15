@@ -2,16 +2,7 @@
 name: typesafe-ai
 license: MIT
 # Adapted from teaserworker-afk/typesafe-ai-skills (https://github.com/teaserworker-afk/typesafe-ai-skills), MIT License, Copyright (c) 2026 TypeSafe AI.
-description: >
-  Build AI-powered software with TypeSafe: small units of AI intelligence you
-  can use like programming primitives. Its System One models, including Jev,
-  turn natural language and application state into typed judgments and
-  probabilities that code can combine. Use when a feature needs programmable
-  common sense, when brainstorming what AI could make possible in an app, or
-  when an LLM prompt-and-parse step could become a structured decision.
-  Applications include routing, ranking, extraction, verification, and
-  interactive experiences; these are starting points, not the limits.
-  Read live docs and cookbooks to find useful patterns and discover new combinations.
+description: Use when a feature needs programmable common sense, or an LLM prompt-and-parse step could become a typed TypeSafe/Jev judgment, such as routing, ranking, extraction, or verification.
 ---
 
 # Build with TypeSafe

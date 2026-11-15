@@ -1,6 +1,6 @@
 ---
 name: git-stack
-description: Stack an existing or new git branch on top of another branch, restacking it in a git worktree when needed, then align the GitHub PR bases and stack metadata with `gh stack`. Use when invoked as `$git-stack` or when the user asks to stack or restack a branch or PR onto another branch.
+description: Use when invoked as `$git-stack` or when asked to stack or restack a branch or PR onto another branch. Aligns GitHub PR bases with `gh stack`.
 ---
 
 # git-stack

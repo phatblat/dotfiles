@@ -1,11 +1,6 @@
 ---
 name: resolve-review-feedback
-description: >-
-  Address GitHub PR review feedback at line, file, and PR level — fetch, evaluate,
-  fix, commit, and resolve. Use when given a PR URL, a review-comment URL, or a
-  PR-level comment URL. Triggers: GitHub discussion URLs, "fix this review comment",
-  "address PR feedback", "resolve PR comments", PR URLs with #discussion_,
-  #issuecomment-, or #pullrequestreview- fragments.
+description: Use when given a PR URL, review-comment URL, or PR-level comment URL, or asked to address PR feedback; fetches, fixes, commits, and resolves line, file, and PR-level comments.
 ---
 
 # Resolve PR Feedback

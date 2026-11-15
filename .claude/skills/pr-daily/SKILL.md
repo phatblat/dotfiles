@@ -1,6 +1,6 @@
 ---
 name: pr-daily
-description: "Set up the daily dotfiles branch from the current daily branch, clean up previous daily branches, and ensure a draft PR exists. Use when invoked as `$pr-daily` or when the user asks to start the daily dotfiles workflow."
+description: "Use when invoked as `$pr-daily` or when the user asks to start the daily dotfiles workflow; sets up the daily branch, cleans old ones, ensures a draft PR."
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: plan-design-review
-description: Review a written plan or design doc through a designer's lens before implementation - seven passes over information architecture, interaction states, emotional arc, AI-slop risk, design-system alignment, responsive and accessibility coverage, and unresolved decisions. Each dimension is rated 0-10 with an explicit statement of what would make it a 10, then the plan is edited to get there. Use when a plan has a UI surface and you want the design gaps closed before code is written. Not for auditing a live site.
+description: Use when a plan has a UI surface and design gaps should be closed before code. Reviews a plan or design doc in seven rated passes and edits it. Not for auditing a live site.
 ---
 
 # Plan Design Review

@@ -1,6 +1,6 @@
 ---
 name: "cmux-workspace-status"
-description: "Pin the current cmux workspace to the done lane with `cmux workspace status set done` once a session goal is reached and verified. Use at the end of a work session running inside a cmux terminal, right before the final response; skip when work is blocked, handed off, awaiting user input, or when nothing was changed."
+description: "Set the cmux workspace to done with `cmux workspace status set done`. Use at the end of a verified session in a cmux terminal; skip when blocked, handed off, or nothing changed."
 ---
 
 # cmux-workspace-status

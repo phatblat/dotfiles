@@ -1,6 +1,6 @@
 ---
 name: ios-device-qa
-description: Drive QA of a SwiftUI app on a real iPhone over USB - screenshot, read the accessibility tree, inspect @Observable state, tap, swipe, and type through an HTTP bridge embedded in the app under test. Use when asked to test an iOS app on a physical device, find bugs on the device, or expose a connected iPhone to a remote agent over Tailscale. Requires the ios-agent-qa runtime; not for simulator or XCTest work.
+description: Use when asked to test an iOS app on a physical iPhone over USB or find bugs on the device. Drives SwiftUI QA through an in-app HTTP bridge; not for simulator or XCTest.
 ---
 
 # iOS Device QA

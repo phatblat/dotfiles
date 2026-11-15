@@ -1,6 +1,6 @@
 ---
 name: plan-worktree
-description: Update a WIP implementation plan by inserting a Phase 0 that creates a git branch and worktree, switches to it, and moves any WIP work from the current working copy into the new worktree. Use when asked to add worktree setup to a plan, when invoked as /plan:worktree, or when a plan should execute in an isolated checkout.
+description: Use when asked to add worktree setup to a plan, when invoked as /plan:worktree, or when a plan should run in an isolated checkout. Inserts a Phase 0 creating a branch and worktree.
 ---
 
 # Plan Worktree

@@ -1,6 +1,6 @@
 ---
 name: new-project
-description: "Use when invoked as $new-project or when creating a brand-new repository or project from scratch — scaffolds mise-pinned tools, a just task surface, the standard repo files, and CI for Python (uv), TypeScript (bun), Rust (cargo), or Go."
+description: "Use when invoked as $new-project or when creating a brand-new repository from scratch. Scaffolds mise tools, a just task surface, standard repo files, and CI."
 ---
 
 # New-Project Skill
