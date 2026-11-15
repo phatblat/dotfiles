@@ -115,7 +115,7 @@ commands:
 input:
   bareExitOnEmptySession: false
 bashInterceptor:
-  enabled: true
+  enabled: false
 github:
   enabled: true
 vault:

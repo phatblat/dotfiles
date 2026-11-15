@@ -163,8 +163,8 @@ with new measurements, not with a fresh reading of the same config.
   OMP hook (`fix(omp)`). The 2026-10-04 rows predate the atomic install `43f9c80`.
 - **2026-10-23 the 6 "policy … is not applied" rows on 2026-10-21T03Z** were the one-time bootstrap
   before the first `ness policy apply`.
-- **2026-10-23 OMP `bashInterceptor` redirects (210/1,080 bash errors), edit `stale_anchor` (75/1,231),
-  and read/grep/glob `not_found` are agent behavior, not config.**
+- **2026-10-23 OMP edit `stale_anchor` (75/1,231) and read/grep/glob `not_found` are agent behavior,
+  not config.** The `bashInterceptor` half of this item was reopened on 2026-11-15 (see below).
 - **2026-10-23 Claude hook cost and cache misses** came from a window (2026-08-11→2026-10-12, 5 files,
   4 sessions) that predates `2f1ad49`, `9c7bd68`, `f50baf2`, and `449ae20`. Re-measure only after new
   Claude sessions.
@@ -201,3 +201,7 @@ with new measurements, not with a fresh reading of the same config.
   credential-bearing config: dismiss it, never track it.
 - **2026-11-08 OMP `yield` errors (47/121, subagents) stopped 2026-10-12**, and no new
   unknown-tool misses appeared after 2026-10-25.
+- **2026-11-15 OMP `bashInterceptor` is disabled.** A label-only probe (14d, 430 files) found 498 of
+  771 bash errors were interceptor blocks, and 487 of those were compound commands where one
+  fragment matched a default rule, so the named tool could not replace the command. The scanner now
+  labels these `interceptor`; a non-zero OMP `interceptor` count means the setting was re-enabled.
