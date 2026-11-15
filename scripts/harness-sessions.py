@@ -886,6 +886,7 @@ _OMP_ERROR_CLASSES = (
             r"|[Ss]hared guard failed closed"
         ),
     ),
+    ("interceptor", _re.compile(r"is blocked by tool policy")),
     ("unknown_tool", _re.compile(r"\bunknown tool\b", _re.IGNORECASE)),
     (
         "stale_anchor",
