@@ -1,6 +1,6 @@
 ---
 name: gha-checks
-description: "Check GitHub Actions CI status for PRs and branches. Use when the user asks \"did CI pass\", \"check status\", \"what failed\", \"are checks green\", \"PR checks\", \"CI status\", \"workflow status\", \"re-run jobs\", or wants a quick summary of GitHub Actions runs for a PR or the current branch."
+description: "Use when the user asks \"did CI pass\", \"are checks green\", \"what failed\", or wants a quick GitHub Actions status summary for a PR or the current branch."
 disable-model-invocation: true
 ---
 

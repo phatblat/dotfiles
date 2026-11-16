@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Create and commit a durable handoff document that gives a fresh agent the context and prompt to continue the current planning or implementation work. Use only when explicitly invoked as `$handoff` or when the user explicitly requests a handoff.
+description: Use only when explicitly invoked as `$handoff` or when the user explicitly requests a handoff. Commits a durable document giving a fresh agent context to continue the work.
 ---
 
 # handoff

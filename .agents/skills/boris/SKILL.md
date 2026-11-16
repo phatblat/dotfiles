@@ -1,6 +1,6 @@
 ---
 name: boris
-description: "Codex workflow tips from Boris Cherny and the Codex team. Use when setting up Codex or optimizing workflows: parallel sessions, worktrees, plan mode, AGENTS.md, skills, subagents, hooks, MCP, permissions, and sandboxing."
+description: "Codex workflow tips from Boris Cherny and the Codex team. Use when setting up Codex or optimizing workflows: parallel sessions, worktrees, plan mode, AGENTS.md, hooks, MCP, sandboxing."
 author: Boris Cherny (tips)
 source: howborisusesclaudecode.com
 compiled-by: "@CarolinaCherry"

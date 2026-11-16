@@ -116,6 +116,14 @@ class OmpErrorClassTests(unittest.TestCase):
         message = {"content": "protected file blocked: /x/.env\nCommand exited with code 1"}
         self.assertEqual(hs._omp_error_class(message), "guard")
 
+    def test_an_interceptor_block_wins_over_its_echoed_command(self) -> None:
+        message = {
+            "content": 'Tool "bash" is blocked by tool policy.\n'
+            "Reason: Use the `read` tool instead of cat/head/tail.\n\n"
+            "Original command: jq . x.json | tail -5  # parse"
+        }
+        self.assertEqual(hs._omp_error_class(message), "interceptor")
+
 
 class OmpCdPrefixSignalTests(unittest.TestCase):
     def _signals(self, *commands: str) -> int:

@@ -1,6 +1,6 @@
 ---
 name: artifact-message-bus
-description: Coordinate multi-agent work through durable artifacts in git instead of chat. Use this whenever a task involves sending a message to another agent, agent mailboxes or handoffs, claiming work from a shared queue, notifying another agent or crew (OpenClaw, Grok Bot, Claude Code, Codex, Gas Town/Gas City workers) that work is ready, or whenever the user mentions the artifact bus, message bus, agent mail, beads mail, doorbells, or pings between agents — even if they don't say "bus" explicitly.
+description: Use for multi-agent coordination, handoffs, queues, notifications, mailboxes via durable artifacts in git instead of chat; or when the user mentions the artifact bus, message bus, or agent mail.
 ---
 
 # Artifact Message Bus

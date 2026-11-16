@@ -11,9 +11,7 @@
     "allow": [
       "command(git status)",
       "command(just lint)",
-      "command(git add)",
       "command(git diff)",
-      "command(git commit)",
       "command(git check-ignore)",
       "command(git show)",
       "command(~/scripts/sort-gitignore)"

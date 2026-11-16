@@ -1,6 +1,6 @@
 ---
 name: git-worktree
-description: "Create, switch to, or delete a git worktree under ~/.worktrees/<path-key>/<branch>, then rebase the agent session onto that directory. Use when asked to make, enter, or remove a worktree for a branch, when work needs an isolated checkout, or when invoked as /git:worktree."
+description: "Use when asked to create, enter, or remove a git worktree for a branch, when work needs an isolated checkout, or when invoked as /git:worktree. Worktrees live under ~/.worktrees."
 disable-model-invocation: true
 ---
 

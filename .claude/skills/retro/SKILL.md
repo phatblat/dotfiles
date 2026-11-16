@@ -1,6 +1,6 @@
 ---
 name: retro
-description: "Improve agent harness configuration based on recent friction points. Use when invoked as `$retro` or when the user asks for autonomous cleanup of Codex, agent harness, or migrated Claude configuration."
+description: "Use when invoked as `$retro` or when the user asks for autonomous cleanup of Codex, agent harness, or migrated Claude configuration based on recent friction."
 disable-model-invocation: true
 ---
 

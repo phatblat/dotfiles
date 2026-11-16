@@ -1,6 +1,6 @@
 ---
 name: backlog-batch-delivery
-description: "Plan, order and deliver a batch of backlog items (e.g. every High item) in a Conventional Docs repo, one decision, branch, worktree, draft PR, review and merge per item. Use when asked to work through the backlog, implement all items of a priority, or sequence several backlog items end to end."
+description: "Use when asked to work through the backlog or implement all items of a priority in a Conventional Docs repo: one branch, worktree, draft PR, review and merge per item."
 ---
 
 # Backlog batch delivery

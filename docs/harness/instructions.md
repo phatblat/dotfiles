@@ -13,13 +13,13 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.314 (Claude Code) · 2026-11-14 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.167.2 · 2026-11-14 | - |
-| opencode | aligned | shared | - | probe · opencode v2.2.7 · 2026-11-14 | - |
-| pi | aligned | shared | - | probe · 1.5.2 · 2026-11-14 | - |
-| omp | aligned | native | - | probe · omp/18.20.0 · 2026-11-14 | inlined shared harness instructions + compaction contract + commit attribution |
-| antigravity | partial | adapter | - | probe · 1.5.7 · 2026-11-14 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
-| crush | aligned | native | - | probe · crush version v0.101.0 · 2026-11-14 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
+| claude | aligned | adapter | - | probe · 2.1.314 (Claude Code) · 2026-11-15 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.169.0 · 2026-11-15 | - |
+| opencode | aligned | shared | - | probe · opencode v2.3.0 · 2026-11-15 | - |
+| pi | aligned | shared | - | probe · 1.5.2 · 2026-11-15 | - |
+| omp | aligned | native | - | probe · omp/18.20.2 · 2026-11-15 | inlined shared harness instructions + compaction contract + commit attribution |
+| antigravity | partial | adapter | - | probe · 1.5.7 · 2026-11-15 | generated Antigravity plugin manifest exists, but no installed/imported context surface has verified instruction loading |
+| crush | aligned | native | - | probe · crush version v0.101.0 · 2026-11-15 | inlined shared harness instructions + compaction contract + commit attribution; loaded through option global-context-path in the generated crushrc |
 
 ### Not yet researched
 

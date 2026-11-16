@@ -1,6 +1,6 @@
 ---
 name: linear-plan
-description: "Start work on a Linear ticket by gathering context, planning, creating a branch/worktree, implementing, testing, opening a draft PR, and updating Linear. Use when invoked as `$linear-plan` or when the user asks to start a Linear ticket."
+description: "Use when invoked as `$linear-plan` or when the user asks to start a Linear ticket. Gathers context, plans, branches, implements, tests, opens a draft PR, and updates Linear."
 disable-model-invocation: true
 ---
 

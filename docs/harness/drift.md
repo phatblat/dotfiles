@@ -9,10 +9,10 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | 2.1.314 (Claude Code) | 2026-08-29 | 2.1.322 (Claude Code) |
-| codex | codex-cli 0.167.2 | 2026-08-29 | codex-cli 0.167.1 |
-| opencode | opencode v2.2.7 | 2026-08-29 | opencode v2.2.6 |
+| codex | codex-cli 0.169.0 | 2026-08-29 | codex-cli 0.167.2 |
+| opencode | opencode v2.3.0 | 2026-08-29 | opencode v2.2.7 |
 | pi | 1.5.2 | 2026-08-29 | 1.5.1 |
-| omp | omp/18.20.0 | 2026-08-29 | omp/18.19.0 |
+| omp | omp/18.20.2 | 2026-08-29 | omp/18.20.0 |
 | antigravity | 1.5.7 | 2026-08-29 | 1.2.3 |
 | crush | crush version v0.101.0 | 2026-08-29 | crush version v0.100.0 |
 
@@ -20,6 +20,9 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-15 | opencode | - | version | opencode v2.2.7 | opencode v2.3.0 | opencode v2.3.0 |
+| 2026-11-15 | omp | - | version | omp/18.20.0 | omp/18.20.2 | omp/18.20.2 |
+| 2026-11-15 | codex | - | version | codex-cli 0.167.2 | codex-cli 0.169.0 | codex-cli 0.169.0 |
 | 2026-11-14 | omp | - | version | omp/18.19.0 | omp/18.20.0 | omp/18.20.0 |
 | 2026-11-14 | crush | - | version | crush version v0.100.0 | crush version v0.101.0 | crush version v0.101.0 |
 | 2026-11-14 | codex | - | version | codex-cli 0.167.1 | codex-cli 0.167.2 | codex-cli 0.167.2 |
@@ -217,6 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-24 | antigravity | - | version | 1.2.3 | 1.2.10 | 1.2.10 |
 | 2026-09-24 | pi | skills.shared | probe | fail | pass | 0.87.0 |
 | 2026-09-24 | opencode | skills.shared | probe | fail | pass | 1.18.32 |
-| 2026-09-24 | omp | skills.shared | probe | fail | pass | omp/18.2.11 |
-| 2026-09-24 | grok | skills.shared | probe | fail | pass | grok 1.0.41 (4220f3b224a6) [alpha] |
-| 2026-09-24 | grok | commands.active | probe | fail | pass | grok 1.0.41 (4220f3b224a6) [alpha] |

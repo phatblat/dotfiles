@@ -1,6 +1,6 @@
 ---
 name: optimize-harness
-description: "Audit one or all supported agent harnesses (claude, codex, opencode, pi, omp, antigravity, crush) for config efficiency, hook overhead, permission friction, plugin and MCP cost, skill metadata portability, dead config, and measured session friction. Use when invoked as `$optimize-harness [harness ...] [focus]`, or when the user asks to optimize or compare agent harness configuration."
+description: "Use when invoked as `$optimize-harness [harness ...] [focus]`, or when asked to optimize or compare agent harness configuration. Audits config, hook, MCP cost, and session friction."
 disable-model-invocation: true
 ---
 

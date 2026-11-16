@@ -384,3 +384,6 @@
 {"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"codex-cli 0.167.1","harness":"codex","to":"codex-cli 0.167.2","version_from":"codex-cli 0.167.1","version_to":"codex-cli 0.167.2"}
 {"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"crush version v0.100.0","harness":"crush","to":"crush version v0.101.0","version_from":"crush version v0.100.0","version_to":"crush version v0.101.0"}
 {"capability":"-","date":"2026-11-14","detail":"","field":"version","from":"omp/18.19.0","harness":"omp","to":"omp/18.20.0","version_from":"omp/18.19.0","version_to":"omp/18.20.0"}
+{"capability":"-","date":"2026-11-15","detail":"","field":"version","from":"codex-cli 0.167.2","harness":"codex","to":"codex-cli 0.169.0","version_from":"codex-cli 0.167.2","version_to":"codex-cli 0.169.0"}
+{"capability":"-","date":"2026-11-15","detail":"","field":"version","from":"omp/18.20.0","harness":"omp","to":"omp/18.20.2","version_from":"omp/18.20.0","version_to":"omp/18.20.2"}
+{"capability":"-","date":"2026-11-15","detail":"","field":"version","from":"opencode v2.2.7","harness":"opencode","to":"opencode v2.3.0","version_from":"opencode v2.2.7","version_to":"opencode v2.3.0"}

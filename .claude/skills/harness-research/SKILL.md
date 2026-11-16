@@ -1,6 +1,6 @@
 ---
 name: harness-research
-description: "Research one agent harness's release (docs, source, runtime) and fill its capability cells in scripts/harness_capabilities.py with cited evidence. Use after a harness version bump, when just harness-probe reports re-research, or when capability cells read unknown."
+description: "Use after a harness version bump, when just harness-probe says re-research, or when cells read unknown. Researches a harness release, filling scripts/harness_capabilities.py cells."
 disable-model-invocation: true
 ---
 

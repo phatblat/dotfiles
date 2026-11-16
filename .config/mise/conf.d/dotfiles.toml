@@ -9839,6 +9839,11 @@ source = "~/dev/dotfiles/.omo/omo.jsonc"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/AGENTS.md"]
+source = "~/dev/dotfiles/.omp/AGENTS.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/agent/AGENTS.md"]
 source = "~/dev/dotfiles/.omp/agent/AGENTS.md"
 mode = "symlink"
