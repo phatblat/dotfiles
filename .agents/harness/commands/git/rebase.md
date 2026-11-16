@@ -73,7 +73,7 @@ Use this decision tree:
 
 | Condition | Strategy |
 |-----------|----------|
-| `target_commits` ≥ 20 **AND** overlapping files ≥ 3 | **cherry-pick** |
+| `target_commits` ≥ 20 **AND** overlapping files ≥ 3 | **replay** |
 | `base_on_target=no` (branch cut from non-target branch) | **rebase --onto** |
 | Otherwise | **simple rebase** |
 
@@ -111,40 +111,26 @@ Determine `<old-base>`: the commit just before the subject branch diverged from 
 
 ```bash
 OLD_BASE=$(git merge-base HEAD <target>)
-git rebase --onto <target> $OLD_BASE HEAD
+git rebase --onto <target> $OLD_BASE
 ```
+
+Pass no branch argument: with a trailing `HEAD`, git rebases a detached HEAD and leaves `<subject>` where it was, and re-attaching it needs a branch switch the harness may block.
 
 On success → go to Step 8.
 On conflict → go to Step 7 (Conflict Handler).
 
 ---
 
-### Strategy C: Cherry-pick
+### Strategy C: Replay onto Target
 
-1. Collect commits to replay (oldest first):
-   ```bash
-   git log --reverse --format="%H" <merge-base>..HEAD
-   ```
+Replays the subject's commits since the merge-base (`<merge-base>..HEAD`, oldest first) onto `<target>`, moving `<subject>` in place. `<merge-base>` is the `merge_base` value printed in Step 5. It never creates, switches, renames, or deletes a branch, so it also runs in a main checkout where the harness blocks branch switching and `git reset --hard` (OMP `bash.gitGuard`).
 
-2. Create a temp branch from target:
-   ```bash
-   git checkout -b <subject>__cherrypick__ <target>
-   ```
+```bash
+git rebase --onto <target> <merge-base>
+```
 
-3. Cherry-pick each commit in order:
-   ```bash
-   git cherry-pick <sha>
-   ```
-   On conflict → go to Step 7 (Conflict Handler) before continuing.
-
-4. On success of all picks:
-   ```bash
-   git branch -D <subject>            # delete old branch
-   git branch -m <subject>__cherrypick__ <subject>  # rename to original name
-   git checkout <subject>
-   ```
-
-On complete success → go to Step 8.
+On success → go to Step 8.
+On conflict → go to Step 7 (Conflict Handler).
 
 ---
 
@@ -162,13 +148,14 @@ For each conflicted file (`git diff --name-only --diff-filter=U`):
    - **Generated artifacts:** regenerate from source instead of merging by hand, then stage the result.
    - **Non-overlapping additions:** keep both sides.
 3. **Stage and verify:** `git add -- <file>`, then confirm no `<<<<<<<` / `=======` / `>>>>>>>` markers remain in it.
-4. **Continue:** `GIT_EDITOR=true git rebase --continue` (or `git cherry-pick --continue`) to preserve the original message. If the commit is now empty because its change was already upstream, `git rebase --skip` (or `git cherry-pick --skip`).
+4. **Continue:** `GIT_EDITOR=true git rebase --continue` to preserve the original message. If the commit is now empty because its change was already upstream, `git rebase --skip`.
 
 Repeat until the operation reports no remaining conflicts.
 
-**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. The backup is available for rollback:
+**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back instead, use an in-place form. Neither one switches branches, so both run where `git reset --hard` is blocked:
 ```bash
-git reset --hard <subject>.bak    # or restore the pre-rebase branch
+git rebase --abort                     # mid-rebase: restores <subject> and the working tree to the pre-rebase commit
+git rebase --onto <subject>.bak HEAD   # after a finished rebase: moves <subject> back to the Step 4 backup
 ```
 
 When the operation finishes, report each auto-resolved conflict and the rule that was applied, so the user can audit the resolutions.
