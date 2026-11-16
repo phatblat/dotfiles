@@ -11379,8 +11379,8 @@ source = "~/dev/dotfiles/scripts/sort-tools.py"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/scripts/sync-casper-models.sh"]
-source = "~/dev/dotfiles/scripts/sync-casper-models.sh"
+[dotfiles."~/scripts/sync-casper-models.py"]
+source = "~/dev/dotfiles/scripts/sync-casper-models.py"
 mode = "symlink"
 relative = false
 

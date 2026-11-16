@@ -4,17 +4,20 @@
 # Auth:      export CASPER_API_KEY=... (or add CASPER_API_KEY=... to ~/.env)
 #            The apiKey value below is resolved as an env-var name first, literal second.
 # Catalog:   GET /v1/models publishes context_length/max_model_len plus a per-model
-#            `reasoning_param` naming the thinking wire. Values seen there:
+#            `reasoning_param` naming the thinking wire, and also
+#            `supported_reasoning_efforts` / `reasoning_effort_normalization`
+#            (not visible to the sync script before 2026-11). Values seen there:
 #              - "reasoning_effort"                    -> provider baseline below
 #              - "chat_template_args.enable_thinking"   -> per-model extraBody override
 #              - ""                                    -> non-reasoning model
 #            Re-check `GET /v1/models` after the router adds or retires a model.
-# Pricing:   per-1M-token costs come from the Baseten pricing page, except models
-#            Casper serves unmetered (FREE in the admin catalog at
-#            https://casper.ditto.live/catalog), which free_model() zeroes out.
-#            /v1/models does not expose the unmetered flag, so that list is
-#            maintained by hand in the sync script. Models absent from Baseten's
-#            page (e.g. `ultramarine-1-flash-us`) get manual_price() rates there.
+# Pricing:   per-1M-token costs come from the Fireworks Serverless Standard rates
+#            at https://docs.fireworks.ai/serverless/pricing, scraped by
+#            scripts/sync-casper-models.py. Models Casper serves unmetered (FREE
+#            in the admin catalog at https://casper.ditto.live/catalog) are zeroed
+#            via FREE_MODELS in the sync script; models absent from the Fireworks
+#            page (e.g. minimax-m3p1-flash, ultramarine-1-flash-us) are
+#            hand-priced in MANUAL_PRICES there with source and date.
 # Access:    Invocation is entitled per key, and `GET /v1/models` lists the whole
 #            catalog regardless of entitlement. Last verified 2026-08-24: this key
 #            could invoke the then-current Kimi K3 id and `auto`; `kimi-k2.6`,
@@ -62,11 +65,15 @@ providers:
         name: Casper Auto Router
         cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
+      ditto-support:
+        name: Ditto Support
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
+
       dittoaicoder:
         name: Ditto AI Coder
         cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }
 
-      ember:
+      ember-1:
         name: Ember-1
         cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
 
@@ -77,6 +84,10 @@ providers:
       glm-5.3-flash:
         name: Glm 5.3 Flash
         cost: { input: 0.15, output: 0.50, cacheRead: 0.03, cacheWrite: 0 }
+
+      kimi-k3:
+        name: Kimi K3
+        cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
 
       kimi-k3p1-pro:
         name: Kimi K3p1 Pro
@@ -104,7 +115,7 @@ providers:
 
       minimax-m3p1-flash:
         name: Minimax M3p1 Flash
-        cost: { input: 0.15, output: 0.60, cacheRead: 0.015, cacheWrite: 0 }
+        cost: { input: 0.15, output: 0.60, cacheRead: 0.01, cacheWrite: 0 }
         reasoning: true
         # MiniMax-M3.1-Flash defaults reasoning_effort to max when the field is
         # absent, so OMP's default level was being billed at the top tier.

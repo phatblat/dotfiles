@@ -85,7 +85,7 @@ generate-omp-profiles:
 [script]
 update-casper-models:
     set -euo pipefail
-    {{ justfile_directory() }}/scripts/sync-casper-models.sh
+    python3 {{ justfile_directory() }}/scripts/sync-casper-models.py
     if [ -z "$(git status --porcelain -- .omp/profiles/casper/agent/models.yml)" ]; then
         echo "Casper model catalog unchanged"
         exit 0
