@@ -76,7 +76,7 @@ Use this decision tree:
 | `base_on_target=no` (branch cut from non-target branch) | **rebase --onto** |
 | Otherwise | **simple rebase** |
 
-Every strategy rebases `<subject>` in place: never create, switch, rename, or delete a branch here, since OMP's `bash.gitGuard` refuses `git checkout`/`git switch` to another branch and `git reset --hard` in a repository's main checkout. A large, overlapping divergence still uses simple rebase, which skips commits whose change is already in `<target>` (for example a PR merged with rewritten hashes).
+Every strategy rebases `<subject>` in place: never switch away from `<subject>`, rename it, or delete it. The Step 4 `.bak` backup is the only branch to create or delete, since OMP's `bash.gitGuard` refuses `git checkout`/`git switch` to another branch and `git reset --hard` in a repository's main checkout. A large, overlapping divergence still uses simple rebase, which skips commits whose change is already in `<target>` (for example a PR merged with rewritten hashes).
 
 Display the analysis before proceeding:
 
