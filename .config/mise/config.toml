@@ -23,7 +23,7 @@
 "cargo:cargo-about" = "0.9.3"
 "cargo:cargo-binstall" = "1.26.2"
 "cargo:cargo-expand" = "1.0.127"
-"cargo:foxguard" = "0.14.1"
+"cargo:foxguard" = "0.14.2"
 "cargo:https://github.com/nkotval-ditto/wookie" = { version = "rev:8a2eab6de09e7b381e3b83ff0dac7979bc88cf8b", crate = "wookie" }
 "cargo:sccache" = "0.19.0"
 "cargo:tauri-cli" = "2.12.4"
