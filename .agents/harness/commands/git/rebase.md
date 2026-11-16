@@ -76,7 +76,7 @@ Use this decision tree:
 | `base_on_target=no` (branch cut from non-target branch) | **rebase --onto** |
 | Otherwise | **simple rebase** |
 
-Every strategy rebases `<subject>` in place: never switch away from `<subject>`, rename it, or delete it. The Step 4 `.bak` backup is the only branch to create or delete, since OMP's `bash.gitGuard` refuses `git checkout`/`git switch` to another branch and `git reset --hard` in a repository's main checkout. A large, overlapping divergence still uses simple rebase, which skips commits whose change is already in `<target>` (for example a PR merged with rewritten hashes).
+Every strategy rebases `<subject>` in place: never switch away from `<subject>`, rename it, or delete it. The Step 4 `.bak` backup is the only branch to create or delete. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. A large, overlapping divergence still uses simple rebase, which skips commits whose change is already in `<target>` (for example a PR merged with rewritten hashes).
 
 Display the analysis before proceeding:
 
@@ -140,7 +140,7 @@ For each conflicted file (`git diff --name-only --diff-filter=U`):
 
 Repeat until the operation reports no remaining conflicts.
 
-**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back, use a form that does not switch branches or run `git reset --hard`, which OMP's `bash.gitGuard` refuses in a main checkout. While the rebase is stopped, abort it; this restores `<subject>` and the working tree to the pre-rebase commit:
+**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back, use a form that does not switch branches or run `git reset --hard`, which a harness may block. While the rebase is stopped, abort it; this restores `<subject>` and the working tree to the pre-rebase commit:
 ```bash
 git rebase --abort
 ```
