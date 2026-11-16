@@ -140,9 +140,14 @@ For each conflicted file (`git diff --name-only --diff-filter=U`):
 
 Repeat until the operation reports no remaining conflicts.
 
-**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back instead, abort: it restores `<subject>` and the working tree to the pre-rebase commit without a branch switch or `git reset --hard`, which OMP's `bash.gitGuard` refuses in a main checkout:
+**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back, use a form that does not switch branches or run `git reset --hard`, which OMP's `bash.gitGuard` refuses in a main checkout. While the rebase is stopped, abort it; this restores `<subject>` and the working tree to the pre-rebase commit:
 ```bash
 git rebase --abort
+```
+
+`--abort` only works mid-rebase. To undo a rebase that already finished with a bad result (for example a wrong auto-resolution found in the audit below), move `<subject>` back to the Step 4 backup in place; with `HEAD` as the upstream there is nothing to replay, so the branch simply moves to `<subject>.bak`:
+```bash
+git rebase --onto <subject>.bak HEAD
 ```
 
 When the operation finishes, report each auto-resolved conflict and the rule that was applied, so the user can audit the resolutions.
