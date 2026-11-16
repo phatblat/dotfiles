@@ -48,7 +48,6 @@ Rebase the current branch onto a target branch. If the user provides an argument
 
    | Condition | Strategy |
    | --- | --- |
-   | Target has at least 20 commits and at least 3 overlapping files | cherry-pick |
    | Merge-base is not on target lineage | `rebase --onto` |
    | Otherwise | simple rebase |
 
@@ -57,10 +56,11 @@ Rebase the current branch onto a target branch. If the user provides an argument
 7. Execute:
 
    - Simple: `git rebase "${target_ref}"`
-   - Onto: `git rebase --onto "${target_ref}" "${merge_base}" HEAD`
-   - Cherry-pick: create `<subject>__cherrypick__` from `target_ref` and cherry-pick subject commits oldest-first.
+   - Onto: `git rebase --onto "${target_ref}" "${merge_base}"`
 
-8. On conflicts, follow the `git-resolve-conflicts` skill (`~/.agents/skills/git-resolve-conflicts/SKILL.md`). It resolves each path, continues the rebase or cherry-pick (skipping commits already upstream), and repeats until the operation completes, pausing only where it says to ask the user. Then continue with step 9.
+   Both rebase `subject` in place. Never create, switch, rename, or delete a branch. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. Simple rebase also skips commits whose patch is already in the target (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in step 8.
+
+8. On conflicts, follow the `git-resolve-conflicts` skill (`~/.agents/skills/git-resolve-conflicts/SKILL.md`). It resolves each path, continues the rebase (skipping commits already upstream), and repeats until the operation completes, pausing only where it says to ask the user. Then continue with step 9.
 
 9. After success, set tracking and push:
 

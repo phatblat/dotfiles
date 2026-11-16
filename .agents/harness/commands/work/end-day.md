@@ -1,5 +1,5 @@
 ---
-description: End-of-day — post daily comments for tracked tickets; return idle in-progress tickets to Todo
+description: End-of-day - post daily comments for tracked tickets; return idle in-progress tickets to Todo
 model: sonnet
 allowed-tools:
   - Read

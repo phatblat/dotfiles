@@ -73,9 +73,10 @@ Use this decision tree:
 
 | Condition | Strategy |
 |-----------|----------|
-| `target_commits` ≥ 20 **AND** overlapping files ≥ 3 | **cherry-pick** |
 | `base_on_target=no` (branch cut from non-target branch) | **rebase --onto** |
 | Otherwise | **simple rebase** |
+
+Every strategy rebases `<subject>` in place: never switch away from `<subject>`, rename it, or delete it. The Step 4 `.bak` backup is the only branch to create or delete. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. A large, overlapping divergence still uses simple rebase, which skips commits whose patch is already in `<target>` (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in Step 7.
 
 Display the analysis before proceeding:
 
@@ -111,40 +112,13 @@ Determine `<old-base>`: the commit just before the subject branch diverged from 
 
 ```bash
 OLD_BASE=$(git merge-base HEAD <target>)
-git rebase --onto <target> $OLD_BASE HEAD
+git rebase --onto <target> $OLD_BASE
 ```
+
+Pass no branch argument: with a trailing `HEAD`, git rebases a detached HEAD and leaves `<subject>` where it was, and re-attaching it needs a branch switch the harness may block.
 
 On success → go to Step 8.
 On conflict → go to Step 7 (Conflict Handler).
-
----
-
-### Strategy C: Cherry-pick
-
-1. Collect commits to replay (oldest first):
-   ```bash
-   git log --reverse --format="%H" <merge-base>..HEAD
-   ```
-
-2. Create a temp branch from target:
-   ```bash
-   git checkout -b <subject>__cherrypick__ <target>
-   ```
-
-3. Cherry-pick each commit in order:
-   ```bash
-   git cherry-pick <sha>
-   ```
-   On conflict → go to Step 7 (Conflict Handler) before continuing.
-
-4. On success of all picks:
-   ```bash
-   git branch -D <subject>            # delete old branch
-   git branch -m <subject>__cherrypick__ <subject>  # rename to original name
-   git checkout <subject>
-   ```
-
-On complete success → go to Step 8.
 
 ---
 
@@ -162,13 +136,18 @@ For each conflicted file (`git diff --name-only --diff-filter=U`):
    - **Generated artifacts:** regenerate from source instead of merging by hand, then stage the result.
    - **Non-overlapping additions:** keep both sides.
 3. **Stage and verify:** `git add -- <file>`, then confirm no `<<<<<<<` / `=======` / `>>>>>>>` markers remain in it.
-4. **Continue:** `GIT_EDITOR=true git rebase --continue` (or `git cherry-pick --continue`) to preserve the original message. If the commit is now empty because its change was already upstream, `git rebase --skip` (or `git cherry-pick --skip`).
+4. **Continue:** `GIT_EDITOR=true git rebase --continue` to preserve the original message. If the commit is now empty because its change was already upstream, `git rebase --skip`.
 
 Repeat until the operation reports no remaining conflicts.
 
-**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. The backup is available for rollback:
+**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back, use a form that does not switch branches or run `git reset --hard`, which a harness may block. While the rebase is stopped, abort it; this restores `<subject>` and the working tree to the pre-rebase commit:
 ```bash
-git reset --hard <subject>.bak    # or restore the pre-rebase branch
+git rebase --abort
+```
+
+`--abort` only works mid-rebase. To undo a rebase that already finished with a bad result (for example a wrong auto-resolution found in the audit below), move `<subject>` back to the Step 4 backup in place; with `HEAD` as the upstream there is nothing to replay, so the branch simply moves to `<subject>.bak`:
+```bash
+git rebase --onto <subject>.bak HEAD
 ```
 
 When the operation finishes, report each auto-resolved conflict and the rule that was applied, so the user can audit the resolutions.
