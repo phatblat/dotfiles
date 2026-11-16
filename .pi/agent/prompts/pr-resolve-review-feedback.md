@@ -1,5 +1,5 @@
 ---
-description: Address GitHub PR review feedback at line, file, and PR level \u2014 fetch, evaluate, fix, commit, and resolve
+description: Address GitHub PR review feedback at line, file, and PR level - fetch, evaluate, fix, commit, and resolve
 argument-hint: "<PR-URL or comment-URL>"
 ---
 
