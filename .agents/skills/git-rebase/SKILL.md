@@ -58,7 +58,7 @@ Rebase the current branch onto a target branch. If the user provides an argument
    - Simple: `git rebase "${target_ref}"`
    - Onto: `git rebase --onto "${target_ref}" "${merge_base}"`
 
-   Both rebase `subject` in place. Never create, switch, rename, or delete a branch. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. Simple rebase also skips commits whose change is already in the target (for example a PR merged with rewritten hashes).
+   Both rebase `subject` in place. Never create, switch, rename, or delete a branch. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. Simple rebase also skips commits whose patch is already in the target (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in step 8.
 
 8. On conflicts, follow the `git-resolve-conflicts` skill (`~/.agents/skills/git-resolve-conflicts/SKILL.md`). It resolves each path, continues the rebase (skipping commits already upstream), and repeats until the operation completes, pausing only where it says to ask the user. Then continue with step 9.
 

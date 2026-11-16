@@ -76,7 +76,7 @@ Use this decision tree:
 | `base_on_target=no` (branch cut from non-target branch) | **rebase --onto** |
 | Otherwise | **simple rebase** |
 
-Every strategy rebases `<subject>` in place: never switch away from `<subject>`, rename it, or delete it. The Step 4 `.bak` backup is the only branch to create or delete. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. A large, overlapping divergence still uses simple rebase, which skips commits whose change is already in `<target>` (for example a PR merged with rewritten hashes).
+Every strategy rebases `<subject>` in place: never switch away from `<subject>`, rename it, or delete it. The Step 4 `.bak` backup is the only branch to create or delete. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. A large, overlapping divergence still uses simple rebase, which skips commits whose patch is already in `<target>` (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in Step 7.
 
 Display the analysis before proceeding:
 
