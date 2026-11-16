@@ -7,7 +7,7 @@ modelRoles:
   default: casper/ultramarine-1-flash-us
   plan: anthropic/claude-opus-5-5:high
   slow: casper/ember-1:medium
-  smol: openai-codex/gpt-6-luna
+  smol: openai-codex/gpt-6.1-terra:medium
 cycleOrder:
   - default
   - smol
