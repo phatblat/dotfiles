@@ -73,9 +73,10 @@ Use this decision tree:
 
 | Condition | Strategy |
 |-----------|----------|
-| `target_commits` ≥ 20 **AND** overlapping files ≥ 3 | **replay** |
 | `base_on_target=no` (branch cut from non-target branch) | **rebase --onto** |
 | Otherwise | **simple rebase** |
+
+Every strategy rebases `<subject>` in place: never create, switch, rename, or delete a branch here, since OMP's `bash.gitGuard` refuses `git checkout`/`git switch` to another branch and `git reset --hard` in a repository's main checkout. A large, overlapping divergence still uses simple rebase, which skips commits whose change is already in `<target>` (for example a PR merged with rewritten hashes).
 
 Display the analysis before proceeding:
 
@@ -121,19 +122,6 @@ On conflict → go to Step 7 (Conflict Handler).
 
 ---
 
-### Strategy C: Replay onto Target
-
-Replays the subject's commits since the merge-base (`<merge-base>..HEAD`, oldest first) onto `<target>`, moving `<subject>` in place. `<merge-base>` is the `merge_base` value printed in Step 5. It never creates, switches, renames, or deletes a branch, so it also runs in a main checkout where the harness blocks branch switching and `git reset --hard` (OMP `bash.gitGuard`).
-
-```bash
-git rebase --onto <target> <merge-base>
-```
-
-On success → go to Step 8.
-On conflict → go to Step 7 (Conflict Handler).
-
----
-
 ### 7. Conflict Handler (automatic resolution)
 
 When a conflict is detected mid-operation, **resolve it automatically and continue** — do not pause for conflicts the rules below can decide. The Step 4 backup branch and `rerere` (enabled) make every auto-resolution recoverable and auditable.
@@ -152,10 +140,9 @@ For each conflicted file (`git diff --name-only --diff-filter=U`):
 
 Repeat until the operation reports no remaining conflicts.
 
-**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back instead, use an in-place form. Neither one switches branches, so both run where `git reset --hard` is blocked:
+**Fallback — pause only when unsafe.** If a conflict is a genuine semantic collision in hand-written source that none of the rules above can decide, stop and report the file(s), both sides, and the resume commands — **never guess a semantic merge**. To roll back instead, abort: it restores `<subject>` and the working tree to the pre-rebase commit without a branch switch or `git reset --hard`, which OMP's `bash.gitGuard` refuses in a main checkout:
 ```bash
-git rebase --abort                     # mid-rebase: restores <subject> and the working tree to the pre-rebase commit
-git rebase --onto <subject>.bak HEAD   # after a finished rebase: moves <subject> back to the Step 4 backup
+git rebase --abort
 ```
 
 When the operation finishes, report each auto-resolved conflict and the rule that was applied, so the user can audit the resolutions.
