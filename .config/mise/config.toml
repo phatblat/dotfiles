@@ -15,6 +15,7 @@
 "aqua:dalance/procs" = "0.14.12"
 "aqua:dlvhdr/gh-dash" = "4.26.3"
 "aqua:openai/codex" = "0.169.0"
+"aqua:rust-lang/rustup" = "1.29.3"
 "aqua:sachaos/todoist" = "0.25.0"
 "aqua:shenwei356/rush" = "0.11.1"
 "aqua:tcnksm/ghr" = "0.18.6"
