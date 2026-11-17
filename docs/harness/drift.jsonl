@@ -387,3 +387,7 @@
 {"capability":"-","date":"2026-11-15","detail":"","field":"version","from":"codex-cli 0.167.2","harness":"codex","to":"codex-cli 0.169.0","version_from":"codex-cli 0.167.2","version_to":"codex-cli 0.169.0"}
 {"capability":"-","date":"2026-11-15","detail":"","field":"version","from":"omp/18.20.0","harness":"omp","to":"omp/18.20.2","version_from":"omp/18.20.0","version_to":"omp/18.20.2"}
 {"capability":"-","date":"2026-11-15","detail":"","field":"version","from":"opencode v2.2.7","harness":"opencode","to":"opencode v2.3.0","version_from":"opencode v2.2.7","version_to":"opencode v2.3.0"}
+{"capability":"maintenance.config_validation","date":"2026-11-16","detail":"opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/2.3.0/bin/opencode', 'debug', 'config']' timed out after 5 seconds","field":"probe","from":"pass","harness":"opencode","to":"unavailable","version_from":"opencode v2.3.0","version_to":"opencode v2.3.0"}
+{"capability":"-","date":"2026-11-16","detail":"","field":"version","from":"1.5.7","harness":"antigravity","to":"1.2.3","version_from":"1.5.7","version_to":"1.2.3"}
+{"capability":"-","date":"2026-11-16","detail":"","field":"version","from":"2.1.314 (Claude Code)","harness":"claude","to":"","version_from":"2.1.314 (Claude Code)","version_to":""}
+{"capability":"-","date":"2026-11-16","detail":"","field":"version","from":"omp/18.20.2","harness":"omp","to":"omp/18.21.0","version_from":"omp/18.20.2","version_to":"omp/18.21.0"}

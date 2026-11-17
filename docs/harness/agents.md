@@ -13,13 +13,13 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · 2.1.314 (Claude Code) · 2026-11-15 | native Claude agents include these plus additional specialists |
-| codex | aligned | native | - | probe · codex-cli 0.169.0 · 2026-11-15 | native Codex TOML agents |
-| opencode | aligned | adapter | - | probe · opencode v2.3.0 · 2026-11-15 | generated agent config |
+| claude | aligned | native | - | probe · - · 2026-11-17 | native Claude agents include these plus additional specialists |
+| codex | aligned | native | - | probe · codex-cli 0.169.0 · 2026-11-17 | native Codex TOML agents |
+| opencode | aligned | adapter | - | probe · opencode v2.3.0 · 2026-11-17 | generated agent config |
 | pi | absent | none | No agent registry or subagent support in Pi 1.2.0 | docs · 1.2.0 · 2026-10-16 | Pi 1.2.0 has no agent registry or subagent support; no adapter is generated |
-| omp | aligned | native | - | probe · omp/18.20.2 · 2026-11-15 | generated from shared specialist definitions |
-| antigravity | partial | emulated | - | probe · 1.5.7 · 2026-11-15 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
-| crush | blocked | native | - | probe · crush version v0.101.0 · 2026-11-15 | crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269 |
+| omp | aligned | native | - | probe · omp/18.21.0 · 2026-11-17 | generated from shared specialist definitions |
+| antigravity | partial | emulated | - | probe · 1.2.3 · 2026-11-17 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
+| crush | blocked | native | - | probe · crush version v0.101.0 · 2026-11-17 | crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269 |
 
 ### Not yet researched
 
