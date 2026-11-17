@@ -1,0 +1,6 @@
+# OMP project settings for ~/dev/dotfiles only (repo-only: scripts/home_spec.py keeps it out of $HOME).
+# .claude/commands/ here is the generated Claude adapter set, which OMP already loads natively as
+# ~/.omp/agent/commands/<ns>-<name>.md; loading it as project commands only adds `ns:name` and
+# bare-basename duplicates, and `/git:commit` / `/plan:worktree` collide with OMP builtins.
+commands:
+  enableClaudeProject: false

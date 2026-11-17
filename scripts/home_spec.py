@@ -53,6 +53,7 @@ REPO_ONLY = (
     ".gitattributes",
     ".github",
     ".gitignore",
+    ".omp/config.yml",
     "LICENSE.md",
     "PLAN.md",
     "README.md",
