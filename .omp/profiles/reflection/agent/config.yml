@@ -112,8 +112,10 @@ skills:
 plan:
   autosave: false
 commands:
-  enableClaudeProject: false
-  enableOpencodeProject: false
+  enableClaudeProject: true
+  enableOpencodeProject: true
+  enableClaudeUser: false
+  enableOpencodeUser: false
 input:
   bareExitOnEmptySession: false
 bashInterceptor:

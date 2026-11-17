@@ -10099,6 +10099,11 @@ source = "~/dev/dotfiles/.omp/agent/extensions/flywheel-outcome.ts"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/agent/extensions/namespaced-commands.ts"]
+source = "~/dev/dotfiles/.omp/agent/extensions/namespaced-commands.ts"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/agent/hooks/pre/harness-guard.ts"]
 source = "~/dev/dotfiles/.omp/agent/hooks/pre/harness-guard.ts"
 mode = "symlink"
