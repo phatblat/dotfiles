@@ -342,9 +342,14 @@ def insert_block(
 
 
 def lines_of_new_block(cid: str, prices: Prices, names: Names) -> str:
-    cost_in, cost_out, cost_cache = price_for(cid, prices)
+    cost = price_for(cid, prices)
+    if cost is None:
+        sys.exit(
+            f"error: {cid} is deliberately unpriced and cannot get a new model block"
+        )
+    cost_in, cost_out, cost_cache = cost
     fw = CASPER_TO_FIREWORKS.get(cid)
-    name = names.get(fw) or cid.replace("-", " ").title()
+    name = (names.get(fw) if fw is not None else None) or cid.replace("-", " ").title()
     return (
         f"      {cid}:\n"
         f"        name: {name}\n"
