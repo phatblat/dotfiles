@@ -13,13 +13,13 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · - · 2026-11-17 | - |
-| codex | aligned | shared | - | probe · codex-cli 0.169.0 · 2026-11-17 | - |
-| opencode | aligned | shared | - | probe · opencode v2.3.0 · 2026-11-17 | - |
-| pi | aligned | shared | - | probe · 1.5.2 · 2026-11-17 | - |
-| omp | aligned | shared | - | probe · omp/18.21.0 · 2026-11-17 | - |
-| antigravity | aligned | shared | - | probe · 1.2.3 · 2026-11-17 | - |
-| crush | aligned | shared | - | probe · crush version v0.101.0 · 2026-11-17 | - |
+| claude | aligned | shared | - | probe · - · 2026-11-18 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.169.0 · 2026-11-18 | - |
+| opencode | aligned | shared | - | probe · opencode v2.3.0 · 2026-11-18 | - |
+| pi | aligned | shared | - | probe · 1.5.2 · 2026-11-18 | - |
+| omp | aligned | shared | - | probe · omp/18.22.1 · 2026-11-18 | - |
+| antigravity | aligned | shared | - | probe · 1.5.7 · 2026-11-18 | - |
+| crush | aligned | shared | - | probe · crush version v0.101.0 · 2026-11-18 | - |
 
 ### maintenance.config_validation · p1
 
@@ -31,8 +31,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config | probe · - · 2026-08-29 | probe unavailable: opencode: Command '['/Users/phatblat/.local/share/mise/installs/opencode/2.3.0/bin/opencode', 'debug', 'config']' timed out after 5 seconds |
-| pi | aligned | native | pi list --no-approve | probe · 1.5.2 · 2026-11-17 | - |
+| opencode | aligned | native | opencode debug config | probe · opencode v2.3.0 · 2026-11-18 | - |
+| pi | aligned | native | pi list --no-approve | probe · 1.5.2 · 2026-11-18 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | crush | unknown | none | - | - | - |
