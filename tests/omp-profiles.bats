@@ -150,3 +150,8 @@ teardown() {
   run python3 "$repo/tests/test_sync_subconscious_models.py"
   [ "$status" -eq 0 ]
 }
+
+@test "sync-casper-models: parsing and merging unit tests pass" {
+  run python3 "$repo/tests/test_sync_casper_models.py"
+  [ "$status" -eq 0 ]
+}

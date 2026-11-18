@@ -10099,6 +10099,11 @@ source = "~/dev/dotfiles/.omp/agent/extensions/flywheel-outcome.ts"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/agent/extensions/namespaced-commands.ts"]
+source = "~/dev/dotfiles/.omp/agent/extensions/namespaced-commands.ts"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/agent/hooks/pre/harness-guard.ts"]
 source = "~/dev/dotfiles/.omp/agent/hooks/pre/harness-guard.ts"
 mode = "symlink"
@@ -11374,8 +11379,8 @@ source = "~/dev/dotfiles/scripts/sort-tools.py"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/scripts/sync-casper-models.sh"]
-source = "~/dev/dotfiles/scripts/sync-casper-models.sh"
+[dotfiles."~/scripts/sync-casper-models.py"]
+source = "~/dev/dotfiles/scripts/sync-casper-models.py"
 mode = "symlink"
 relative = false
 

@@ -462,6 +462,7 @@
 !.omp/agent/themes/
 !.omp/agent/tools/
 !.omp/agent/
+!.omp/config.yml
 !.omp/marketplaces.json
 .omp/plugins/*
 !.omp/plugins/omp-plugins.lock.json
