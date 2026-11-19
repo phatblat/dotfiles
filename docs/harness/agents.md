@@ -13,13 +13,13 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · - · 2026-11-18 | native Claude agents include these plus additional specialists |
-| codex | aligned | native | - | probe · codex-cli 0.169.0 · 2026-11-18 | native Codex TOML agents |
-| opencode | aligned | adapter | - | probe · opencode v2.3.0 · 2026-11-18 | generated agent config |
+| claude | aligned | native | - | probe · - · 2026-11-19 | native Claude agents include these plus additional specialists |
+| codex | aligned | native | - | probe · codex-cli 0.169.1 · 2026-11-19 | native Codex TOML agents |
+| opencode | aligned | adapter | - | probe · opencode v2.3.2 · 2026-11-19 | generated agent config |
 | pi | absent | none | No agent registry or subagent support in Pi 1.2.0 | docs · 1.2.0 · 2026-10-16 | Pi 1.2.0 has no agent registry or subagent support; no adapter is generated |
-| omp | aligned | native | - | probe · omp/18.22.1 · 2026-11-18 | generated from shared specialist definitions |
-| antigravity | partial | emulated | - | probe · 1.5.7 · 2026-11-18 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
-| crush | blocked | native | - | probe · crush version v0.101.0 · 2026-11-18 | crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269 |
+| omp | aligned | native | - | probe · omp/19.0.0 · 2026-11-19 | generated from shared specialist definitions |
+| antigravity | partial | emulated | - | probe · 1.5.7 · 2026-11-19 | generated Antigravity agent wrappers point to shared specialists, but isolated delegation has not been verified |
+| crush | blocked | native | - | probe · crush version v0.101.0 · 2026-11-19 | crush ships exactly two built-in agents (coder, task) and has no user-defined agent surface; upstream tracks this as charmbracelet/crush#3269 |
 
 ### Not yet researched
 
