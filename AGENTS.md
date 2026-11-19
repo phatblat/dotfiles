@@ -95,7 +95,7 @@ JSON guard cases that are the executable spec.
 ## Important Files
 
 - `justfile` + `.config/just/*.just` -- the task runner; one fragment per domain (`agents`, `brew`, `claude`, `git`, `home`, `macos`, `mise`, `nix`, `omp`, `python`, `rust`, `backlog` as a `mod`).
-- `hk.pkl` -- master lint/format orchestrator (hk 2.11.0); `just lint` = `hk check --all`, `just format` = `hk fix --all`.
+- `hk.pkl` -- master lint/format orchestrator; `just lint` = `hk check --all`, `just format` = `hk fix --all`.
 - `scripts/agent-harnesses.py` -- the generator/validator for all harness parity (subcommands: `inventory`, `generate`, `validate`, `audit`, `probe`, `drift`, `verify`, `provenance`).
 - `scripts/home_spec.py` -- generates/checks the mise dot deploy spec.
 - `crates/ness/src/{main,paths,policy_file,policy,shell,active,manifest,hook,guard_eval,policy_cmd}.rs` -- the guard.
@@ -123,7 +123,7 @@ JSON guard cases that are the executable spec.
   real dependency lockfile.
 - TypeScript in `.omp/` runs on **bun**; `.config/opencode/` uses npm.
   `hk` cross-checks the `hk.pkl` Pkl pin against the mise pin
-  (`scripts/check-hk-version.sh`) -- keep both at 2.11.0.
+  (`scripts/check-hk-version.sh`) -- keep the `hk.pkl` amends line equal to the mise pin.
 - `shfmt` is unpinned from 3.13 and tracks 3.14.x (`.config/mise/config.toml`).
 - Deploy spec is derived from `git ls-files`: adding a tracked file requires
   `just home-spec` (or `just generate`), else `just home-spec-check` fails.

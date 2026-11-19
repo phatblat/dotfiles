@@ -9,10 +9,10 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
 | claude | - | 2026-08-29 | 2.1.314 (Claude Code) |
-| codex | codex-cli 0.169.0 | 2026-08-29 | codex-cli 0.167.2 |
-| opencode | opencode v2.3.0 | 2026-08-29 | opencode v2.2.7 |
+| codex | codex-cli 0.169.1 | 2026-08-29 | codex-cli 0.169.0 |
+| opencode | opencode v2.3.2 | 2026-08-29 | opencode v2.3.0 |
 | pi | 1.5.2 | 2026-08-29 | 1.5.1 |
-| omp | omp/18.22.1 | 2026-08-29 | omp/18.21.0 |
+| omp | omp/19.0.0 | 2026-08-29 | omp/18.22.1 |
 | antigravity | 1.5.7 | 2026-08-29 | 1.2.3 |
 | crush | crush version v0.101.0 | 2026-08-29 | crush version v0.100.0 |
 
@@ -20,6 +20,9 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-19 | opencode | - | version | opencode v2.3.0 | opencode v2.3.2 | opencode v2.3.2 |
+| 2026-11-19 | omp | - | version | omp/18.22.1 | omp/19.0.0 | omp/19.0.0 |
+| 2026-11-19 | codex | - | version | codex-cli 0.169.0 | codex-cli 0.169.1 | codex-cli 0.169.1 |
 | 2026-11-18 | omp | - | version | omp/18.21.0 | omp/18.22.1 | omp/18.22.1 |
 | 2026-11-18 | antigravity | - | version | 1.2.3 | 1.5.7 | 1.5.7 |
 | 2026-11-18 | opencode | maintenance.config_validation | probe | unavailable | pass | opencode v2.3.0 |
@@ -217,6 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-29 | omp | - | version | omp/18.3.2 | omp/18.4.2 | omp/18.4.2 |
 | 2026-09-27 | omp | - | version | omp/18.3.1 | omp/18.3.2 | omp/18.3.2 |
 | 2026-09-27 | codex | - | version | codex-cli 0.156.1 | codex-cli 0.157.1 | codex-cli 0.157.1 |
-| 2026-09-26 | opencode | maintenance.config_validation | probe | unavailable | pass | 1.18.32 |
-| 2026-09-25 | opencode | maintenance.config_validation | probe | pass | unavailable | 1.18.32 |
-| 2026-09-25 | pi | - | version | 0.87.0 | 0.87.1 | 0.87.1 |
