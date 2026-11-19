@@ -62,6 +62,11 @@ MANUAL_PRICES = {
     # hand-entered Ditto rate instead of the variant's ($0.15/$0.50/$0.03), which
     # disagrees with the amount actually billed, per user decision 2026-11-16.
     "ultramarine-1-flash-us": ("0.23", "0.75", "0.04"),
+    # Not listed on Fireworks' pricing page; rates from Casper's admin catalog
+    # (https://casper.ditto.live/catalog, Google section) on 2026-11-19.
+    "gemini-4-carbon": ("4.00", "20.00", "0.20"),
+    "gemini-4-hydrogen": ("1.50", "7.50", "0.07"),
+    "gemini-4-neon": ("3.00", "15.00", "0.15"),
 }
 
 HEADER = "| Model | Standard | Priority |"

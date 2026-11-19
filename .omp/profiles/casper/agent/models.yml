@@ -80,14 +80,36 @@ providers:
       gemini-4-carbon:
         name: Gemini 4 Carbon
         cost: { input: 4.00, output: 20.00, cacheRead: 0.20, cacheWrite: 0 }
+        # Catalog 2026-11-19: reasoning_effort levels [low, medium, high], no
+        # "none" tier, so no reasoningDisableMode: OMP clamps a thinking-off
+        # request to the lowest effort.
+        thinking:
+          mode: effort
+          efforts: [low, medium, high]
+          defaultLevel: high
+          effortMap: {}
 
       gemini-4-hydrogen:
         name: Gemini 4 Hydrogen
         cost: { input: 1.50, output: 7.50, cacheRead: 0.07, cacheWrite: 0 }
+        # Catalog 2026-11-19: reasoning_effort levels [low, medium, high,
+        # xhigh], no "none" tier; see gemini-4-carbon.
+        thinking:
+          mode: effort
+          efforts: [low, medium, high, xhigh]
+          defaultLevel: high
+          effortMap: {}
 
       gemini-4-neon:
         name: Gemini 4 Neon
         cost: { input: 3.00, output: 15.00, cacheRead: 0.15, cacheWrite: 0 }
+        # Catalog 2026-11-19: reasoning_effort levels [low, medium, high,
+        # xhigh], no "none" tier; see gemini-4-carbon.
+        thinking:
+          mode: effort
+          efforts: [low, medium, high, xhigh]
+          defaultLevel: high
+          effortMap: {}
 
       glm-5.3:
         name: Glm 5.3
