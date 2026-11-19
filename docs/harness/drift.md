@@ -12,14 +12,17 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | codex | codex-cli 0.169.0 | 2026-08-29 | codex-cli 0.167.2 |
 | opencode | opencode v2.3.0 | 2026-08-29 | opencode v2.2.7 |
 | pi | 1.5.2 | 2026-08-29 | 1.5.1 |
-| omp | omp/18.21.0 | 2026-08-29 | omp/18.20.2 |
-| antigravity | 1.2.3 | 2026-08-29 | 1.5.7 |
+| omp | omp/18.22.1 | 2026-08-29 | omp/18.21.0 |
+| antigravity | 1.5.7 | 2026-08-29 | 1.2.3 |
 | crush | crush version v0.101.0 | 2026-08-29 | crush version v0.100.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-18 | omp | - | version | omp/18.21.0 | omp/18.22.1 | omp/18.22.1 |
+| 2026-11-18 | antigravity | - | version | 1.2.3 | 1.5.7 | 1.5.7 |
+| 2026-11-18 | opencode | maintenance.config_validation | probe | unavailable | pass | opencode v2.3.0 |
 | 2026-11-16 | omp | - | version | omp/18.20.2 | omp/18.21.0 | omp/18.21.0 |
 | 2026-11-16 | claude | - | version | 2.1.314 (Claude Code) | - | - |
 | 2026-11-16 | antigravity | - | version | 1.5.7 | 1.2.3 | 1.2.3 |
@@ -217,6 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-26 | opencode | maintenance.config_validation | probe | unavailable | pass | 1.18.32 |
 | 2026-09-25 | opencode | maintenance.config_validation | probe | pass | unavailable | 1.18.32 |
 | 2026-09-25 | pi | - | version | 0.87.0 | 0.87.1 | 0.87.1 |
-| 2026-09-25 | omp | - | version | omp/18.2.11 | omp/18.3.1 | omp/18.3.1 |
-| 2026-09-25 | codex | - | version | codex-cli 0.155.1 | codex-cli 0.156.1 | codex-cli 0.156.1 |
-| 2026-09-24 | grok | - | version | grok 1.0.41 (4220f3b224a6) | grok 1.0.41 (4220f3b224a6) [alpha] | grok 1.0.41 (4220f3b224a6) [alpha] |
