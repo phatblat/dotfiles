@@ -77,7 +77,7 @@
 act = "0.2.98"
 actionlint = "1.7.12"
 ast-grep = "0.51.3"
-awscli = { version = "2.40.4", symlink_bins = "true" }
+awscli = { version = "2.41.0", symlink_bins = "true" }
 bat = "0.26.1"
 bats = "1.14.0"
 bazelisk = "1.30.0"
