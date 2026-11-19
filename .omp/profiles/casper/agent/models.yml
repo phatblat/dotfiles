@@ -77,6 +77,18 @@ providers:
         name: Ember-1
         cost: { input: 3.00, output: 15.00, cacheRead: 0.30, cacheWrite: 0 }
 
+      gemini-4-carbon:
+        name: Gemini 4 Carbon
+        cost: { input: 4.00, output: 20.00, cacheRead: 0.20, cacheWrite: 0 }
+
+      gemini-4-hydrogen:
+        name: Gemini 4 Hydrogen
+        cost: { input: 1.50, output: 7.50, cacheRead: 0.07, cacheWrite: 0 }
+
+      gemini-4-neon:
+        name: Gemini 4 Neon
+        cost: { input: 3.00, output: 15.00, cacheRead: 0.15, cacheWrite: 0 }
+
       glm-5.3:
         name: Glm 5.3
         cost: { input: 1.40, output: 4.40, cacheRead: 0.26, cacheWrite: 0 }
