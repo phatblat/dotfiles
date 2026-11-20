@@ -77,17 +77,9 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
 
      `--no-track` is mandatory here: a branch cut from a remote base must not inherit the base's upstream. Report the `branch -vv` line as proof it tracks `$remote/$subject`.
 
-   New-branch mode has no commits to replay: report the ready worktree and stop, unless the branch already has commits, in which case continue at step 7 to open its PR.
+   New-branch mode has no commits to replay: report the ready worktree and stop, unless the branch already has commits, in which case continue at step 6 to open its PR.
 
-4. Create a backup (existing-branch mode only):
-
-   ```bash
-   git -C "$work_dir" branch "${subject}.bak" "$subject"
-   ```
-
-   If `${subject}.bak` already exists, ask whether to overwrite (`git branch -f`) or abort. Keep the backup after success.
-
-5. Restack locally — `--onto` replays exactly the commits unique to `subject`, correct whether it was cut from trunk or an older `base` tip; never plain `git rebase <base>` here:
+4. Restack locally — `--onto` replays exactly the commits unique to `subject`, correct whether it was cut from trunk or an older `base` tip; never plain `git rebase <base>` here:
 
    ```bash
    base_ref="${remote}/${base}"; git show-ref --quiet "refs/remotes/${base_ref}" || base_ref="$base"
@@ -101,9 +93,9 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
 
    (equivalent to `git rebase --onto <base_ref> <merge-base> <subject>`, run with `-C "$work_dir"`.)
 
-   On conflict, follow `git-rebase`'s conflict handler: recorded `rerere` resolution as-is; clean-filtered machine state → `--ours`; version bumps → the higher version; deliberate config updates → `--theirs`; generated artifacts → regenerate. Stage each fix, verify no conflict markers remain, then `GIT_EDITOR=true git -C "$work_dir" rebase --continue` (or `--skip` if the commit went empty). Pause only for genuine semantic collisions in hand-written source. Rollback: `git -C "$work_dir" reset --hard "${subject}.bak"`.
+   On conflict, follow `git-rebase`'s conflict handler: recorded `rerere` resolution as-is; clean-filtered machine state → `--ours`; version bumps → the higher version; deliberate config updates → `--theirs`; generated artifacts → regenerate. Stage each fix, verify no conflict markers remain, then `GIT_EDITOR=true git -C "$work_dir" rebase --continue` (or `--skip` if the commit went empty). Pause only for genuine semantic collisions in hand-written source. Rollback: mid-rebase, `git -C "$work_dir" rebase --abort`; after a finished rebase, `git -C "$work_dir" rebase --onto "${subject}@{1}" HEAD` (`${subject}@{1}` is the branch's pre-rebase reflog entry; `git -C "$work_dir" reflog -2 "$subject"` must show `rebase (finish)` on top).
 
-6. Push the subject — before any `gh stack` call, since `gh stack link` pushes without `--force-with-lease`:
+5. Push the subject — before any `gh stack` call, since `gh stack link` pushes without `--force-with-lease`:
 
    ```bash
    git -C "$work_dir" push --force-with-lease -u "$remote" "${subject}:${subject}"
@@ -113,7 +105,7 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
 
    The tracking line must show `[${remote}/${subject}]`; fix it before continuing if it shows the base branch instead.
 
-7. Build the stack chain bottom→top (trunk excluded), capped at 10 hops against a cycle:
+6. Build the stack chain bottom→top (trunk excluded), capped at 10 hops against a cycle:
 
    ```bash
    chain=("$subject"); b="$base"; hops=0
@@ -125,19 +117,19 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
    done
    ```
 
-8. Ensure every chain member has an open PR based on its parent (previous chain entry, or `$trunk` for the first):
+7. Ensure every chain member has an open PR based on its parent (previous chain entry, or `$trunk` for the first):
 
    ```bash
    pr_json=$(gh pr view "$member" --json number,state,baseRefName 2>/dev/null || echo '{}')
    state=$(echo "$pr_json" | jq -r '.state // empty')
    ```
 
-   - `state` is `MERGED` or `CLOSED` → stop and report: step 7's chain walk picked up a member whose PR already landed or was abandoned; restacking must resolve this manually (typically by re-running with a `base` below that member so the chain collapses to `$trunk`). Never create a spurious new PR for it.
+   - `state` is `MERGED` or `CLOSED` → stop and report: step 6's chain walk picked up a member whose PR already landed or was abandoned; restacking must resolve this manually (typically by re-running with a `base` below that member so the chain collapses to `$trunk`). Never create a spurious new PR for it.
    - No PR, or `state` is empty → invoke `pr-create` for that branch so the repo's title, body, label, draft, and `@me` assignment conventions (`pr-style`) apply, then retarget: `gh pr edit "$number" --base "$parent"`. Never hand-roll `gh pr create` or let `link` auto-create the PR here — both bypass `pr-style`.
    - `state` is `OPEN` and base differs from `parent` → `gh pr edit "$number" --base "$parent"`.
    - `state` is `OPEN` and base already matches `parent` → leave it.
 
-9. Align the GitHub stack:
+8. Align the GitHub stack:
 
    ```bash
    if [ "${#chain[@]}" -ge 2 ]; then
@@ -145,20 +137,20 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
    fi
    ```
 
-   A single-member chain (`base` is `trunk`) has no GitHub stack to create — skip `link` and say so; step 8 already put that PR's base on `$trunk`. Always pass `--remote` and `--base` explicitly. Never pass `--open`: new PRs stay drafts.
+   A single-member chain (`base` is `trunk`) has no GitHub stack to create — skip `link` and say so; step 7 already put that PR's base on `$trunk`. Always pass `--remote` and `--base` explicitly. Never pass `--open`: new PRs stay drafts.
 
-10. Add local stack tracking, best effort:
+9. Add local stack tracking, best effort:
 
-    ```bash
-    if ! (cd "$work_dir" && gh stack view --json >/dev/null 2>&1) && [ "${#chain[@]}" -ge 2 ]; then
-      git -C "$work_dir" config --local rerere.enabled true
-      (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable"
-    fi
-    ```
+   ```bash
+   if ! (cd "$work_dir" && gh stack view --json >/dev/null 2>&1) && [ "${#chain[@]}" -ge 2 ]; then
+     git -C "$work_dir" config --local rerere.enabled true
+     (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable"
+   fi
+   ```
 
-    A non-zero exit is not a workflow failure — the GitHub metadata from step 9 is already correct; report "local tracking unavailable" and continue. If `gh stack view --json` already succeeds but lists a different branch set, skip `init` and report the mismatch instead of guessing.
+   A non-zero exit is not a workflow failure — the GitHub metadata from step 8 is already correct; report "local tracking unavailable" and continue. If `gh stack view --json` already succeeds but lists a different branch set, skip `init` and report the mismatch instead of guessing.
 
-11. Report children that now need restacking:
+10. Report children that now need restacking:
 
     ```bash
     gh pr list --state open --json number,headRefName,baseRefName \
@@ -167,7 +159,7 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
 
     For each child, print the follow-up stack command with `$subject` as its new base. Leaving children based on a rewritten branch silently is the main failure mode of manual stacking.
 
-12. Report:
+11. Report:
 
     ```text
     Stacked <subject> onto <base>.
@@ -176,7 +168,6 @@ Stack `<branch>` onto `<base-branch>` (or restack it onto its current base) in a
       PRs:          #<n1> (base <trunk>) → … → #<nk> (base <base>)
       GitHub stack: linked | single PR, no stack | local tracking unavailable
       Tracking:     <remote>/<subject>
-      Backup:       <subject>.bak  (kept — git branch -D <subject>.bak)
       Children to restack: stack <child> <subject>   (or "none")
     ```
 

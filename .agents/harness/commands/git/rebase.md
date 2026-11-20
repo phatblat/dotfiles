@@ -8,7 +8,7 @@ argument-hint: "[target-branch]"
 
 # Git Rebase: Smart Branch Update
 
-Rebase the current branch onto a target branch, automatically selecting the best strategy based on divergence analysis and automatically resolving conflicts the rules in Step 7 can decide (pausing only for genuine semantic collisions).
+Rebase the current branch onto a target branch, automatically selecting the best strategy based on divergence analysis and automatically resolving conflicts the rules in Step 6 can decide (pausing only for genuine semantic collisions).
 
 ## Context Gathering
 
@@ -40,17 +40,7 @@ git fetch origin <target>:<target>   # fast-forward local target branch
 
 If the fast-forward fails (target has diverged locally), stop and report.
 
-### 4. Create Backup Branch
-
-```bash
-git branch <subject>.bak
-```
-
-Report: `Created backup branch <subject>.bak`
-
-If `.bak` already exists, ask the user whether to overwrite it or abort.
-
-### 5. Divergence Analysis
+### 4. Divergence Analysis
 
 Run these in one bash call:
 
@@ -67,7 +57,7 @@ git merge-base --is-ancestor $MERGE_BASE <target> && echo "base_on_target=yes" |
 
 Compute overlap: files changed in both subject and target since merge-base.
 
-### 6. Strategy Selection
+### 5. Strategy Selection
 
 Use this decision tree:
 
@@ -76,7 +66,7 @@ Use this decision tree:
 | `base_on_target=no` (branch cut from non-target branch) | **rebase --onto** |
 | Otherwise | **simple rebase** |
 
-Every strategy rebases `<subject>` in place: never switch away from `<subject>`, rename it, or delete it. The Step 4 `.bak` backup is the only branch to create or delete. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. A large, overlapping divergence still uses simple rebase, which skips commits whose patch is already in `<target>` (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in Step 7.
+Every strategy rebases `<subject>` in place: never create, switch, rename, or delete a branch. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. A large, overlapping divergence still uses simple rebase, which skips commits whose patch is already in `<target>` (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in Step 6.
 
 Display the analysis before proceeding:
 
@@ -101,8 +91,8 @@ Then proceed with the selected strategy.
 git rebase <target>
 ```
 
-On success → go to Step 8.
-On conflict → go to Step 7 (Conflict Handler).
+On success → go to Step 7.
+On conflict → go to Step 6 (Conflict Handler).
 
 ---
 
@@ -117,14 +107,14 @@ git rebase --onto <target> $OLD_BASE
 
 Pass no branch argument: with a trailing `HEAD`, git rebases a detached HEAD and leaves `<subject>` where it was, and re-attaching it needs a branch switch the harness may block.
 
-On success → go to Step 8.
-On conflict → go to Step 7 (Conflict Handler).
+On success → go to Step 7.
+On conflict → go to Step 6 (Conflict Handler).
 
 ---
 
-### 7. Conflict Handler (automatic resolution)
+### 6. Conflict Handler (automatic resolution)
 
-When a conflict is detected mid-operation, **resolve it automatically and continue** — do not pause for conflicts the rules below can decide. The Step 4 backup branch and `rerere` (enabled) make every auto-resolution recoverable and auditable.
+When a conflict is detected mid-operation, **resolve it automatically and continue** — do not pause for conflicts the rules below can decide. The branch reflog and `rerere` (enabled) make every auto-resolution recoverable and auditable.
 
 For each conflicted file (`git diff --name-only --diff-filter=U`):
 
@@ -145,16 +135,16 @@ Repeat until the operation reports no remaining conflicts.
 git rebase --abort
 ```
 
-`--abort` only works mid-rebase. To undo a rebase that already finished with a bad result (for example a wrong auto-resolution found in the audit below), move `<subject>` back to the Step 4 backup in place; with `HEAD` as the upstream there is nothing to replay, so the branch simply moves to `<subject>.bak`:
+`--abort` only works mid-rebase. To undo a rebase that already finished with a bad result (for example a wrong auto-resolution found in the audit below), move `<subject>` back to its pre-rebase commit in place. A finished rebase moves the branch exactly once, so its previous reflog entry `<subject>@{1}` is that commit; confirm with `git reflog -2 <subject>`, whose top entry must be the `rebase (finish)` one. With `HEAD` as the upstream there is nothing to replay, so the branch simply moves there:
 ```bash
-git rebase --onto <subject>.bak HEAD
+git rebase --onto "<subject>@{1}" HEAD
 ```
 
 When the operation finishes, report each auto-resolved conflict and the rule that was applied, so the user can audit the resolutions.
 
 ---
 
-### 8. Fix Remote Tracking & Push
+### 7. Fix Remote Tracking & Push
 
 After rebase, the upstream tracking ref may point to the target branch instead of the subject branch. Always reset it explicitly:
 
@@ -176,17 +166,13 @@ git branch -vv | grep '^\*'
 
 The output must show `[origin/<subject> ...]` — if it shows the target branch name, tracking is wrong and must be fixed before proceeding.
 
-### 9. Success Report
+### 8. Success Report
 
 ```
 Rebase complete.
   Strategy used:   <strategy>
   Subject branch:  <subject>  (<N> commits on top of <target>)
   Tracking:        origin/<subject>
-  Backup branch:   <subject>.bak  (kept — delete when satisfied)
-
-To clean up backup:
-  git branch -D <subject>.bak
 ```
 
-Note: rerere is enabled, so conflict resolutions from previous runs may have been applied automatically during Step 7.
+Note: rerere is enabled, so conflict resolutions from previous runs may have been applied automatically during Step 6.
