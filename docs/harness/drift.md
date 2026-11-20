@@ -24,6 +24,9 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-11-20 | omp | - | version | omp/18.22.1 | omp/19.0.0 | omp/19.0.0 |
 | 2026-11-20 | codex | - | version | codex-cli 0.169.0 | codex-cli 0.170.0 | codex-cli 0.170.0 |
 | 2026-11-20 | antigravity | - | version | 1.5.7 | 1.2.3 | 1.2.3 |
+| 2026-11-19 | opencode | - | version | opencode v2.3.0 | opencode v2.3.2 | opencode v2.3.2 |
+| 2026-11-19 | omp | - | version | omp/18.22.1 | omp/19.0.0 | omp/19.0.0 |
+| 2026-11-19 | codex | - | version | codex-cli 0.169.0 | codex-cli 0.169.1 | codex-cli 0.169.1 |
 | 2026-11-18 | omp | - | version | omp/18.21.0 | omp/18.22.1 | omp/18.22.1 |
 | 2026-11-18 | antigravity | - | version | 1.2.3 | 1.5.7 | 1.5.7 |
 | 2026-11-18 | opencode | maintenance.config_validation | probe | unavailable | pass | opencode v2.3.0 |
@@ -217,6 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-09-30 | grok | - | version | grok 1.0.41 (4220f3b224a6) [alpha] | grok 1.0.44 (5b807183dd79) [alpha] | grok 1.0.44 (5b807183dd79) [alpha] |
 | 2026-09-30 | cursor | - | version | 2026.09.15-d2fe57e | 2026.09.28-64d2043 | 2026.09.28-64d2043 |
 | 2026-09-30 | codex | - | version | codex-cli 0.157.1 | codex-cli 0.158.0 | codex-cli 0.158.0 |
-| 2026-09-29 | opencode | - | version | 1.18.32 | 1.18.33 | 1.18.33 |
-| 2026-09-29 | omp | - | version | omp/18.3.2 | omp/18.4.2 | omp/18.4.2 |
-| 2026-09-27 | omp | - | version | omp/18.3.1 | omp/18.3.2 | omp/18.3.2 |

@@ -60,12 +60,12 @@ Coverage: 74/315 cells verified (23%)
 | 2026-11-20 | omp | - | version | omp/18.22.1 | omp/19.0.0 |
 | 2026-11-20 | codex | - | version | codex-cli 0.169.0 | codex-cli 0.170.0 |
 | 2026-11-20 | antigravity | - | version | 1.5.7 | 1.2.3 |
+| 2026-11-19 | opencode | - | version | opencode v2.3.0 | opencode v2.3.2 |
+| 2026-11-19 | omp | - | version | omp/18.22.1 | omp/19.0.0 |
+| 2026-11-19 | codex | - | version | codex-cli 0.169.0 | codex-cli 0.169.1 |
 | 2026-11-18 | omp | - | version | omp/18.21.0 | omp/18.22.1 |
 | 2026-11-18 | antigravity | - | version | 1.2.3 | 1.5.7 |
 | 2026-11-18 | opencode | maintenance.config_validation | probe | unavailable | pass |
-| 2026-11-16 | omp | - | version | omp/18.20.2 | omp/18.21.0 |
-| 2026-11-16 | claude | - | version | 2.1.314 (Claude Code) | - |
-| 2026-11-16 | antigravity | - | version | 1.5.7 | 1.2.3 |
 
 ## Permanent divergences
 
