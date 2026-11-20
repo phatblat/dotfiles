@@ -17,8 +17,8 @@ Verify: `just harness-check`
 | codex | aligned | shared | - | probe · codex-cli 0.170.0 · 2026-11-20 | - |
 | opencode | aligned | shared | - | probe · opencode v2.3.2 · 2026-11-20 | - |
 | pi | aligned | shared | - | probe · 1.5.2 · 2026-11-20 | - |
-| omp | aligned | shared | - | probe · omp/19.0.0 · 2026-11-20 | - |
-| antigravity | aligned | shared | - | probe · 1.2.3 · 2026-11-20 | - |
+| omp | aligned | shared | - | probe · omp/19.0.1 · 2026-11-20 | - |
+| antigravity | aligned | shared | - | probe · 1.5.13 · 2026-11-20 | - |
 | crush | aligned | shared | - | probe · crush version v0.101.0 · 2026-11-20 | - |
 
 ### maintenance.config_validation · p1

@@ -15,7 +15,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.5.13"
           },
           "mode": "adapter",
           "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
@@ -103,7 +103,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "native",
           "next_action": "",
@@ -431,7 +431,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.5.13"
           },
           "mode": "adapter",
           "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
@@ -516,7 +516,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "native",
           "next_action": "",
@@ -1425,7 +1425,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "native",
           "next_action": "",
@@ -1755,7 +1755,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.5.13"
           },
           "mode": "emulated",
           "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
@@ -1839,7 +1839,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "native",
           "next_action": "",
@@ -2290,7 +2290,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.2.3"
+            "version": "1.5.13"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
@@ -2380,7 +2380,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "adapter",
           "next_action": "Remove hook:pre:harness-guard:harness-guard.ts from disabledExtensions in ~/.omp/agent/config.yml and the profile configs when ness should gate OMP again, and return this cell to aligned in the same change, since the probe passes only while the entry is present",
@@ -4197,7 +4197,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "native",
           "next_action": "",
@@ -5590,7 +5590,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "adapter",
           "next_action": "",
@@ -5660,7 +5660,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.2.3"
+            "version": "1.5.13"
           },
           "mode": "shared",
           "next_action": "",
@@ -5744,7 +5744,7 @@
             "date": "2026-11-20",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "omp/19.0.0"
+            "version": "omp/19.0.1"
           },
           "mode": "shared",
           "next_action": "",
@@ -6316,8 +6316,8 @@
   "versions": {
     "antigravity": {
       "first_seen": "2026-08-29",
-      "previous": "1.5.7",
-      "version": "1.2.3"
+      "previous": "1.2.3",
+      "version": "1.5.13"
     },
     "claude": {
       "first_seen": "2026-08-29",
@@ -6336,8 +6336,8 @@
     },
     "omp": {
       "first_seen": "2026-08-29",
-      "previous": "omp/18.22.1",
-      "version": "omp/19.0.0"
+      "previous": "omp/19.0.0",
+      "version": "omp/19.0.1"
     },
     "opencode": {
       "first_seen": "2026-08-29",
