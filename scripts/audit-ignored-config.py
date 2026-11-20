@@ -311,7 +311,9 @@ BUNDLED_DOC_NAMES = frozenset(
 
 # Single files an installer writes into a harness root. Each reinstalls on
 # any machine, so it is state, never a candidate. Data Agent Kit writes
-# .gemini/config/mcp_config.json (harness-map closed item, 2026-10-25).
+# .gemini/config/mcp_config.json (harness-map closed item, 2026-10-25). OMP
+# writes .omp/agent/codex-client-version.json and
+# .omp/antigravity-cli/bin/install.json as version-check caches.
 INSTALLED_PATHS = frozenset(
     {
         ".gemini/config/mcp_config.json",
@@ -319,6 +321,8 @@ INSTALLED_PATHS = frozenset(
         ".claude/plugins/installed_plugins.json",
         ".claude/policy-limits.json",
         ".claude/remote-settings.json",
+        ".omp/agent/codex-client-version.json",
+        ".omp/antigravity-cli/bin/install.json",
     }
 )
 
