@@ -29,9 +29,14 @@ export def ignore [...patterns: string] {
     # Sort with negation-aware ordering (! lines after their parent rules)
     $ignore_list | uniq | to text | ^($nu.home-dir | path join "scripts" "sort-gitignore") | save --force $gitignore
 
+    if ($commit_message | is-empty) {
+        print "Nothing new added to ignores, just sorted and removed duplicates."
+        return
+    }
+
     ^git add $gitignore
 
-    if (git diff --cached --name-only -- $gitignore | is-empty) {
+    if (^git diff --cached --name-only -- $gitignore | is-empty) {
         print "Nothing new added to ignores, just sorted and removed duplicates."
         return
     }
