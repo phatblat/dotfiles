@@ -32,24 +32,62 @@ header = match.group(1)
 tools_block = match.group(2)
 next_section = match.group(3)
 
-# Split into lines, separate comments/blanks from tool entries
-lines = tools_block.strip().split("\n")
-tool_lines = [
-    line for line in lines if line.strip() and not line.strip().startswith("#")
-]
+# Split into entries, keeping multi-line inline tables/arrays intact and
+# dropping top-level comments/blanks.
+def bracket_delta(line: str) -> int:
+    delta = 0
+    quote: str | None = None
+    escaped = False
+    for ch in line:
+        if quote is not None:
+            if escaped:
+                escaped = False
+            elif quote == '"' and ch == "\\":
+                escaped = True
+            elif ch == quote:
+                quote = None
+        elif ch == "#":
+            break
+        elif ch in ('"', "'"):
+            quote = ch
+        elif ch in ("{", "["):
+            delta += 1
+        elif ch in ("}", "]"):
+            delta -= 1
+    return delta
+
+
+entries: list[str] = []
+current: list[str] = []
+depth = 0
+for line in tools_block.strip().split("\n"):
+    if depth == 0:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        current = [line]
+    else:
+        current.append(line)
+    depth += bracket_delta(line)
+    if depth <= 0:
+        entries.append("\n".join(current))
+        current = []
+        depth = 0
+if current:
+    entries.append("\n".join(current))
 
 
 # Sort by the raw key (including quotes) so quoted backend-qualified
 # names (e.g. "npm:...", "pipx:...") group together before bare names.
-def sort_key(line):
-    key = line.split("=")[0].strip()
+def sort_key(entry: str) -> str:
+    key = entry.split("=", 1)[0].strip()
     return key.lower()
 
 
-sorted_lines = sorted(tool_lines, key=sort_key)
+sorted_entries = sorted(entries, key=sort_key)
 
 # Rebuild: sorted tools block + everything after it
-new_tools = header + "\n".join(sorted_lines) + "\n"
+new_tools = header + "\n".join(sorted_entries) + "\n"
 new_content = (
     content[: match.start()] + new_tools + content[match.end() - len(next_section) :]
 )

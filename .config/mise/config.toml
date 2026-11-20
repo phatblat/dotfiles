@@ -7,8 +7,9 @@
 # scripts/sort-tools.py drops comments inside [tools], so notes on tool options
 # live here. hk's `workflow` is a packslip backend option: it pins the repository
 # workflow that signs hk releases, so mise rejects releases signed by any other
-# workflow. `mise upgrade --bump` rewrites only `version`, so the table form
-# survives bumps.
+# workflow. `npm:@anthropic-ai/claude-code` sets `allow_builds` so its postinstall
+# links the platform native binary over the `bin/claude.exe` stub.
+# `mise upgrade --bump` rewrites only `version`, so the table form survives bumps.
 [tools]
 "aqua:anordal/shellharden" = "4.3.2"
 "aqua:cirruslabs/tart" = "2.42.0"
@@ -42,7 +43,9 @@
 "github:raine/aven" = "0.1.56"
 "github:schpet/linear-cli" = "3.1.0"
 "go:golang.org/x/tools/gopls" = "0.24.0"
-"npm:@anthropic-ai/claude-code" = "2.1.328"
+"npm:@anthropic-ai/claude-code" = { version = "2.1.328", allow_builds = [
+  "@anthropic-ai/claude-code",
+] }
 "npm:@babel/cli" = "8.1.0"
 "npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
 "npm:@getpaseo/cli" = "0.16.2"
