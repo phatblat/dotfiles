@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# agy - Run agy with --project $GCP_PROJECT unless --project is passed explicitly
+local arg
+for arg in "$@"; do
+    if [[ "$arg" == "--project" || "$arg" == --project=* ]]; then
+        command agy "$@"
+        return
+    fi
+done
+
+if [[ -z "${GCP_PROJECT:-}" ]]; then
+    print -u2 "agy: GCP_PROJECT is not set and --project was not given"
+    return 1
+fi
+command agy --project "$GCP_PROJECT" "$@"
