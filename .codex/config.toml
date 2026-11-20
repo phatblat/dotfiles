@@ -207,6 +207,12 @@ enabled = false
 [plugins."documents@openai-primary-runtime"]
 enabled = true
 
+[plugins."finances@openai-curated-remote"]
+enabled = true
+
+[plugins."github@openai-curated-remote"]
+enabled = true
+
 [plugins."gopls-lsp@claude-plugins-official"]
 enabled = false
 
@@ -222,7 +228,16 @@ enabled = true
 [plugins."lua-lsp@claude-plugins-official"]
 enabled = false
 
+[plugins."openai-templates@openai-curated-remote"]
+enabled = true
+
+[plugins."pages@openai-curated-remote"]
+enabled = true
+
 [plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."plugin-management@openai-curated-remote"]
 enabled = true
 
 [plugins."pr-review-toolkit@claude-plugins-official"]
@@ -240,6 +255,9 @@ enabled = false
 [plugins."rust-analyzer-lsp@claude-plugins-official"]
 enabled = false
 
+[plugins."sites@openai-curated-remote"]
+enabled = true
+
 [plugins."spreadsheets@openai-primary-runtime"]
 enabled = true
 
@@ -256,6 +274,12 @@ enabled = false
 enabled = false
 
 [plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-curated-remote"]
+enabled = true
+
+[plugins."work-pets@openai-curated-remote"]
 enabled = true
 
 [projects."/Users/phatblat"]

@@ -6209,6 +6209,18 @@
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
       },
       {
+        "enabled": true,
+        "id": "finances@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
+        "id": "github@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
+      },
+      {
         "enabled": false,
         "id": "gopls-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
@@ -6240,9 +6252,27 @@
       },
       {
         "enabled": true,
+        "id": "openai-templates@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
+        "id": "pages@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
         "id": "pdf@openai-primary-runtime",
         "marketplace": "openai-primary-runtime",
         "marketplace_source": "/Users/phatblat/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+      },
+      {
+        "enabled": true,
+        "id": "plugin-management@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
       },
       {
         "enabled": false,
@@ -6273,6 +6303,12 @@
         "id": "rust-analyzer-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": "https://github.com/anthropics/claude-plugins-official.git"
+      },
+      {
+        "enabled": true,
+        "id": "sites@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
       },
       {
         "enabled": true,
@@ -6309,6 +6345,18 @@
         "id": "visualize@openai-bundled",
         "marketplace": "openai-bundled",
         "marketplace_source": "/Users/phatblat/.codex/.tmp/bundled-marketplaces/openai-bundled"
+      },
+      {
+        "enabled": true,
+        "id": "visualize@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
+      },
+      {
+        "enabled": true,
+        "id": "work-pets@openai-curated-remote",
+        "marketplace": "openai-curated-remote",
+        "marketplace_source": null
       }
     ]
   },
