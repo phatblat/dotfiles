@@ -4449,6 +4449,11 @@ source = "~/dev/dotfiles/.config/nushell/autoload/af.nu"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.config/nushell/autoload/agy.nu"]
+source = "~/dev/dotfiles/.config/nushell/autoload/agy.nu"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.config/nushell/autoload/ai.nu"]
 source = "~/dev/dotfiles/.config/nushell/autoload/ai.nu"
 mode = "symlink"
@@ -7586,6 +7591,11 @@ relative = false
 
 [dotfiles."~/.config/zsh/functions/af"]
 source = "~/dev/dotfiles/.config/zsh/functions/af"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.config/zsh/functions/agy"]
+source = "~/dev/dotfiles/.config/zsh/functions/agy"
 mode = "symlink"
 relative = false
 

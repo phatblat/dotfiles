@@ -35,5 +35,11 @@ export def ignore [...patterns: string] {
     }
 
     ^git add $gitignore
+
+    if (^git diff --cached --name-only -- $gitignore | is-empty) {
+        print "Nothing new added to ignores, just sorted and removed duplicates."
+        return
+    }
+
     ^git commit -m $commit_message
 }
