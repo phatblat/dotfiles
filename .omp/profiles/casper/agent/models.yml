@@ -10,7 +10,8 @@
 #              - "reasoning_effort"                    -> provider baseline below
 #              - "chat_template_args.enable_thinking"   -> per-model extraBody override
 #              - ""                                    -> non-reasoning model
-#            Re-check `GET /v1/models` after the router adds or retires a model.
+#            Non-chat ids (rune, qwen3-reranker-8b) are absent from /v1/models;
+#            see the casper-decisions and casper-rerank providers below.
 # Pricing:   per-1M-token costs come from the Fireworks Serverless Standard rates
 #            at https://docs.fireworks.ai/serverless/pricing, scraped by
 #            scripts/sync-casper-models.py. Models Casper serves unmetered (FREE
@@ -33,6 +34,39 @@
 #            behaviour has not been re-checked on `kimi-k3p1-pro`, so it gets the
 #            provider-level `streamIdleTimeoutMs: 120000` and no local override.
 providers:
+  # Non-chat Casper routes. /v1/models lists only chat models, so neither id is
+  # discovered or touched by scripts/sync-casper-models.py; both are declared
+  # by hand. Keep these providers above `casper`: the sync script appends new
+  # override blocks at end of file, so casper's modelOverrides must stay last.
+  #
+  # Rune 26B-A4B: System One decision model (judge kind). The `typesafe` API
+  # posts the System One body to {baseUrl}/v1/systemone, which Casper serves
+  # (its /v1/decisions route rejects that body with 422). Price: Fireworks
+  # Standard "Decision models" rate (input only; cached input is 20% of input).
+  casper-decisions:
+    api: typesafe
+    apiKey: CASPER_API_KEY
+    baseUrl: https://casper-api.ditto.live
+    models:
+      - id: rune
+        name: Rune 26B-A4B
+        input: [text]
+        cost: { input: 0.042, output: 0, cacheRead: 0.0084, cacheWrite: 0 }
+
+  # Qwen3 Reranker 8B (rerank kind) on Casper's POST /v1/rerank. Known issue:
+  # OMP's openrouter-rerank runner requires a `results` array, but Casper answers
+  # with `data` (verified 2026-11-20), so OMP calls fail with "rerank response is
+  # malformed" until one side changes. Price from Casper's catalog card
+  # (2026-11-20); Fireworks has no individual row for this model.
+  casper-rerank:
+    apiKey: CASPER_API_KEY
+    baseUrl: https://casper-api.ditto.live/v1
+    models:
+      - id: qwen3-reranker-8b
+        name: Qwen3 Reranker 8B
+        api: openrouter-rerank # runner api set on the model entry (schema rejects runner apis at provider level)
+        cost: { input: 0.20, output: 0, cacheRead: 0.20, cacheWrite: 0 }
+
   casper:
     api: openai-completions
     apiKey: CASPER_API_KEY
@@ -96,7 +130,7 @@ providers:
         # xhigh], no "none" tier; see gemini-4-carbon.
         thinking:
           mode: effort
-          efforts: [low, medium, high, xhigh]
+          efforts: [low, medium, high, max]
           defaultLevel: high
           effortMap: {}
 
@@ -107,7 +141,7 @@ providers:
         # xhigh], no "none" tier; see gemini-4-carbon.
         thinking:
           mode: effort
-          efforts: [low, medium, high, xhigh]
+          efforts: [low, medium, high, max]
           defaultLevel: high
           effortMap: {}
 
