@@ -70,11 +70,11 @@
 "npm:yaml-language-server" = "2.0.0"
 "npm:yarn" = "1.22.22"
 "pypi:basedpyright" = "1.40.2"
-"pypi:graphifyy" = { version = "0.9.112", python = "3.14" }
-"pypi:harbor" = { version = "0.26.0", python = "3.14" }
+"pypi:graphifyy" = { version = "0.9.112", python = "3.14" }                                                                      # python 3.14, not the global 3.15: same pypi: interpreter pin as harbor/token-viewer
+"pypi:harbor" = { version = "0.26.0", python = "3.14" }                                                                          # python 3.14, not the global 3.15: fastuuid (via litellm) cannot build on 3.15 (PyO3 0.26)
 "pypi:pyright" = "1.1.414"
 "pypi:python-lsp-server" = "1.15.0"
-"pypi:token-viewer" = { version = "0.0.7", python = "3.14" }
+"pypi:token-viewer" = { version = "0.0.7", python = "3.14" }                                                                     # python 3.14, not the global 3.15: fastuuid (via litellm) cannot build on 3.15 (PyO3 0.26)
 "pypi:yamllint" = "1.38.0"
 "vfox:mise-plugins/vfox-gcloud" = "594.0.0"
 act = "0.2.98"
