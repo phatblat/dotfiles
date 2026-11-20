@@ -156,5 +156,37 @@ class AbortAttributionTests(unittest.TestCase):
         friction = hs.aggregate_friction([], [abort("omp", "sighup"), abort("opencode", "message_error"), abort("omp", "sighup"), abort("omp", "")])
         self.assertEqual(friction["aborted_turns"], {"count": 4, "by_harness": {"omp": {"sighup": 2, "unknown": 1}, "opencode": {"message_error": 1}}})
 
+
+class SinceWindowTests(unittest.TestCase):
+    def test_records_before_cutoff_are_dropped(self) -> None:
+        since = hs.parse_ts("2026-11-10T00:00:00Z")
+        coverage = hs.Coverage(
+            harness="omp",
+            root="",
+            resolved_from="default",
+            cli_version=None,
+            earliest="2026-11-01T00:00:00Z",
+            latest="2026-11-11T00:00:00Z",
+        )
+        obs = [
+            hs.Obs(
+                harness="omp",
+                session="s",
+                ts=ts,
+                actor="assistant",
+                kind="tool_call",
+                name="bash",
+                ok=False,
+                ms=None,
+                detail="interceptor",
+            )
+            for ts in ("2026-11-11T00:00:00Z", "2026-11-09T00:00:00Z", "")
+        ]
+        kept = hs.drop_before_window(obs, coverage, since)
+        self.assertEqual([o.ts for o in kept], ["2026-11-11T00:00:00Z", ""])
+        self.assertTrue(any("dropped 1 observations" in g for g in coverage.gaps))
+        self.assertEqual(coverage.earliest, "2026-11-11T00:00:00Z")
+        self.assertEqual(coverage.latest, "2026-11-11T00:00:00Z")
+
 if __name__ == "__main__":
     unittest.main()
