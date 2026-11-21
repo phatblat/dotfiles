@@ -8,6 +8,7 @@ modelRoles:
   plan: anthropic/claude-opus-5-5:high
   slow: casper/gemini-4-neon:medium
   smol: openai-codex/gpt-6.1-terra:medium
+  judge: casper-decisions/rune
 cycleOrder:
   - default
   - smol
@@ -42,6 +43,12 @@ browser:
 providers:
   streamFirstEventTimeoutSeconds: 90
   streamIdleTimeoutSeconds: 120
+# Rune is text-only; image judgments and Rune failures fall back to the smol
+# chat model, which is what the judge role resolved to before Rune.
+retry:
+  fallbackChains:
+    judge:
+      - "@smol"
 # The feature-delivery team needs main's delivery_* modelRoles, which never
 # carry over; opt in by adding an extensions: entry and those roles here.
 extensions: []

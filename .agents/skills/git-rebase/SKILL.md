@@ -32,8 +32,7 @@ Rebase the current branch onto a target branch. If the user provides an argument
 
    Never use `git fetch origin "${target}:${target}"` for a branch that may be checked out in another worktree. If a local target branch must be updated, do that only in the worktree that currently has it checked out.
 
-
-5. Analyze divergence:
+4. Analyze divergence:
 
    ```bash
    merge_base=$(git merge-base HEAD "${target_ref}")
@@ -44,7 +43,7 @@ Rebase the current branch onto a target branch. If the user provides an argument
    git merge-base --is-ancestor "${merge_base}" "${target_ref}" && echo base_on_target=yes || echo base_on_target=no
    ```
 
-6. Choose strategy:
+5. Choose strategy:
 
    | Condition | Strategy |
    | --- | --- |
@@ -53,16 +52,16 @@ Rebase the current branch onto a target branch. If the user provides an argument
 
    Show the analysis and selected strategy before proceeding.
 
-7. Execute:
+6. Execute:
 
    - Simple: `git rebase "${target_ref}"`
    - Onto: `git rebase --onto "${target_ref}" "${merge_base}"`
 
-   Both rebase `subject` in place. Never create, switch, rename, or delete a branch. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. Simple rebase also skips commits whose patch is already in the target (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in step 8.
+   Both rebase `subject` in place. Never create, switch, rename, or delete a branch. Branch switching and `git reset --hard` may be blocked in a main checkout, so avoid them. Simple rebase also skips commits whose patch is already in the target (rebase-merged or cherry-picked commits that got new hashes). Squash-merged commits are not skipped; they conflict or go empty and are handled in step 7.
 
-8. On conflicts, follow the `git-resolve-conflicts` skill (`~/.agents/skills/git-resolve-conflicts/SKILL.md`). It resolves each path, continues the rebase (skipping commits already upstream), and repeats until the operation completes, pausing only where it says to ask the user. Then continue with step 9.
+7. On conflicts, follow the `git-resolve-conflicts` skill (`~/.agents/skills/git-resolve-conflicts/SKILL.md`). It resolves each path, continues the rebase (skipping commits already upstream), and repeats until the operation completes, pausing only where it says to ask the user. Then continue with step 8.
 
-9. After success, set tracking and push:
+8. After success, set tracking and push:
 
    ```bash
    git branch --set-upstream-to="origin/${subject}" "${subject}"
@@ -70,4 +69,4 @@ Rebase the current branch onto a target branch. If the user provides an argument
    git branch -vv
    ```
 
-10. Report strategy, branch, and tracking.
+9. Report strategy, branch, and tracking.

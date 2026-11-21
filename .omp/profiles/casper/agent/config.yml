@@ -12,6 +12,7 @@ modelRoles:
   plan: anthropic/claude-opus-5-5:high
   slow: casper/gemini-4-neon:medium
   smol: openai-codex/gpt-6.1-terra:medium
+  judge: casper-decisions/rune
 extensions: []
 disabledExtensions:
   - hook:pre:harness-guard:harness-guard.ts
@@ -91,6 +92,9 @@ statusLine:
   showHookStatus: true
 retry:
   usageAwareFallback: true
+  fallbackChains:
+    judge:
+      - "@smol"
 doubleEscapeAction: tree
 composer:
   shape: field

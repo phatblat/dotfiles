@@ -104,17 +104,9 @@ fi
 
 `--no-track` on the new-branch path is mandatory: a feature branch cut from a remote base must not inherit the base's upstream. Report the `git branch -vv` line as proof it tracks `$remote/$subject`.
 
-New-branch mode ends here for the local half — there are no commits to replay — and continues at step 7 only if the branch already has commits to open a PR for; otherwise report the ready worktree and stop.
+New-branch mode ends here for the local half — there are no commits to replay — and continues at step 6 only if the branch already has commits to open a PR for; otherwise report the ready worktree and stop.
 
-### 4. Backup Branch (Existing-Branch Mode Only)
-
-```bash
-git -C "$work_dir" branch "${subject}.bak" "$subject"
-```
-
-If `${subject}.bak` already exists, ask (`AskUserQuestion`) whether to overwrite (`git branch -f`) or abort. Keep the backup after success; the report tells the user how to delete it.
-
-### 5. Restack Locally
+### 4. Restack Locally
 
 ```bash
 base_ref="${remote}/${base}"; git show-ref --quiet "refs/remotes/${base_ref}" || base_ref="$base"
@@ -128,9 +120,9 @@ fi
 
 (equivalent to `git rebase --onto <base_ref> <merge-base> <subject>`, run with `-C "$work_dir"`.) `--onto` replays exactly the commits unique to `subject` relative to the new base, correct both when `subject` was cut from trunk and when it was already stacked on an older `base` tip. Do not use plain `git rebase <base>` here.
 
-On conflict, follow the conflict handler in the `git-rebase` skill's step 8 — do not restate it at length. Classify each conflict: recorded `rerere` resolution; clean-filtered machine state → `--ours`; version bumps → higher version; deliberate config updates → `--theirs`; generated artifacts → regenerate. Stage each fix, verify no conflict markers remain, then `GIT_EDITOR=true git -C "$work_dir" rebase --continue` (or `--skip` when the commit went empty). Pause only for genuine semantic collisions in hand-written source. Rollback path is `git -C "$work_dir" reset --hard "${subject}.bak"`.
+On conflict, follow the conflict handler in the `git-rebase` skill's step 7 — do not restate it at length. Classify each conflict: recorded `rerere` resolution; clean-filtered machine state → `--ours`; version bumps → higher version; deliberate config updates → `--theirs`; generated artifacts → regenerate. Stage each fix, verify no conflict markers remain, then `GIT_EDITOR=true git -C "$work_dir" rebase --continue` (or `--skip` when the commit went empty). Pause only for genuine semantic collisions in hand-written source. Rollback path is `git -C "$work_dir" rebase --abort` mid-rebase, or `git -C "$work_dir" rebase --onto "${subject}@{1}" HEAD` after a finished rebase (`${subject}@{1}` is the branch's pre-rebase reflog entry; `git -C "$work_dir" reflog -2 "$subject"` must show `rebase (finish)` on top).
 
-### 6. Push The Subject
+### 5. Push The Subject
 
 ```bash
 git -C "$work_dir" push --force-with-lease -u "$remote" "${subject}:${subject}"
@@ -140,7 +132,7 @@ git -C "$work_dir" branch -vv | grep '^\*'
 
 The tracking line must show `[${remote}/${subject}]`; if it shows the base branch, fix it before continuing. Push before any `gh stack` call: `gh stack link` pushes without `--force-with-lease`, so a rebased branch must already be up to date on the remote.
 
-### 7. Build The Stack Chain (Bottom→Top, Trunk Excluded)
+### 6. Build The Stack Chain (Bottom→Top, Trunk Excluded)
 
 Walk down from `base` through PR bases, capped at 10 hops to defend against a cycle:
 
@@ -154,7 +146,7 @@ while [ "$b" != "$trunk" ] && [ "$hops" -lt 10 ]; do
 done
 ```
 
-### 8. Ensure Every Chain Member Has An Open PR Based On Its Parent
+### 7. Ensure Every Chain Member Has An Open PR Based On Its Parent
 
 Iterate bottom→top with `parent` = the previous chain entry, or `$trunk` for the first:
 
@@ -168,7 +160,7 @@ state=$(echo "$pr_json" | jq -r '.state // empty')
 - `state` is `OPEN` and `baseRefName` != `parent` → `gh pr edit "$number" --base "$parent"`.
 - `state` is `OPEN` and `baseRefName` == `parent` → leave it.
 
-### 9. Align The GitHub Stack
+### 8. Align The GitHub Stack
 
 ```bash
 if [ "${#chain[@]}" -ge 2 ]; then
@@ -176,23 +168,23 @@ if [ "${#chain[@]}" -ge 2 ]; then
 fi
 ```
 
-A single-member chain (`base` == `trunk`) has no GitHub stack to create — GitHub stacks need two or more PRs — so skip `link` and say so in the report; step 8 already put the PR base on `$trunk`. Always pass `--remote` and `--base` explicitly. Never pass `--open`; new PRs stay drafts.
+A single-member chain (`base` == `trunk`) has no GitHub stack to create — GitHub stacks need two or more PRs — so skip `link` and say so in the report; step 7 already put the PR base on `$trunk`. Always pass `--remote` and `--base` explicitly. Never pass `--open`; new PRs stay drafts.
 
-### 10. Add Local Stack Tracking (Best Effort)
+### 9. Add Local Stack Tracking (Best Effort)
 
 ```bash
 if ! (cd "$work_dir" && gh stack view --json >/dev/null 2>&1) && [ "${#chain[@]}" -ge 2 ]; then
   # Enable rerere to avoid interactive prompts on conflict resolution
   git -C "$work_dir" config --local rerere.enabled true
   # gh stack init can fail with adoption caveats (branch already stacked, PR base mismatch, etc.)
-  # Treat this as non-blocking: GitHub stack metadata from step 9 is what matters
+  # Treat this as non-blocking: GitHub stack metadata from step 8 is what matters
   (cd "$work_dir" && gh stack init --base "$trunk" "${chain[@]}") || echo "local stack tracking unavailable (may need manual adoption mode)"
 fi
 ```
 
-A non-zero exit is not a failure of the workflow: the GitHub metadata from step 9 is already correct, so report "local tracking unavailable — `gh stack up/down/sync` will not work for this stack" and continue. If `gh stack view --json` already succeeds but lists a different branch set, skip `init` and report the mismatch — never guess.
+A non-zero exit is not a failure of the workflow: the GitHub metadata from step 8 is already correct, so report "local tracking unavailable — `gh stack up/down/sync` will not work for this stack" and continue. If `gh stack view --json` already succeeds but lists a different branch set, skip `init` and report the mismatch — never guess.
 
-### 11. Report Children That Now Need Restacking
+### 10. Report Children That Now Need Restacking
 
 ```bash
 gh pr list --state open --json number,headRefName,baseRefName \
@@ -201,7 +193,7 @@ gh pr list --state open --json number,headRefName,baseRefName \
 
 For each child, print `/git:stack <child> $subject` as the follow-up command. Silently leaving children based on a rewritten branch is the main failure mode of manual stacking.
 
-### 12. Report
+### 11. Report
 
 ```text
 Stacked <subject> onto <base>.
@@ -210,7 +202,6 @@ Stacked <subject> onto <base>.
   PRs:          #<n1> (base <trunk>) → … → #<nk> (base <base>)
   GitHub stack: linked | single PR, no stack | local tracking unavailable
   Tracking:     <remote>/<subject>
-  Backup:       <subject>.bak  (kept — git branch -D <subject>.bak)
   Children to restack: /git:stack <child> <subject>   (or "none")
 ```
 

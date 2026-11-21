@@ -2,7 +2,7 @@
   "antigravity": {
     "first_seen": "2026-08-29",
     "previous": "1.2.3",
-    "version": "1.5.7"
+    "version": "1.5.13"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -12,17 +12,17 @@
   "codex": {
     "first_seen": "2026-08-29",
     "previous": "codex-cli 0.169.0",
-    "version": "codex-cli 0.169.1"
+    "version": "codex-cli 0.170.0"
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.100.0",
-    "version": "crush version v0.101.0"
+    "previous": "crush version v0.101.0",
+    "version": "crush version v0.102.0"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/18.22.1",
-    "version": "omp/19.0.0"
+    "previous": "omp/19.0.0",
+    "version": "omp/19.0.1"
   },
   "opencode": {
     "first_seen": "2026-08-29",

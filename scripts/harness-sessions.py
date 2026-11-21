@@ -1162,6 +1162,32 @@ def note_truncation(coverage: Coverage, max_files: int, in_window: int) -> None:
         )
 
 
+def drop_before_window(
+    obs: list[Obs], coverage: Coverage, since_epoch: float
+) -> list[Obs]:
+    """Keep observations inside the --since window; files are selected by
+    mtime, so a long session's earlier records would otherwise leak in."""
+    kept: list[Obs] = []
+    dropped = 0
+    for o in obs:
+        epoch = parse_ts(o.ts)
+        if epoch is not None and epoch < since_epoch:
+            dropped += 1
+        else:
+            kept.append(o)
+    if not dropped:
+        return kept
+    coverage.gaps.append(
+        f"dropped {dropped} observations dated before the --since window "
+        "from in-window files"
+    )
+    stamps = [o.ts for o in kept if o.ts]
+    if stamps:
+        coverage.earliest = min(stamps)
+        coverage.latest = max(stamps)
+    return kept
+
+
 def scan_harness(
     slug: str, *, since_days: int, max_files: int
 ) -> tuple[list[Obs], Coverage]:
@@ -1197,7 +1223,8 @@ def scan_harness(
         if db_path.stat().st_mtime < since_epoch:
             coverage.gaps.append("database not modified within --since window")
             return [], coverage
-        return scan_opencode(db_path, coverage), coverage
+        obs = scan_opencode(db_path, coverage)
+        return drop_before_window(obs, coverage, since_epoch), coverage
 
     if not root.exists():
         coverage.gaps.append(f"resolved root {root} does not exist")
@@ -1210,17 +1237,17 @@ def scan_harness(
     note_truncation(coverage, max_files, len(in_window))
     kept = in_window[:max_files]
 
-    if slug == "claude":
-        return scan_claude(kept, coverage), coverage
-    if slug == "codex":
-        return scan_codex(kept, coverage), coverage
-    if slug == "pi":
-        return scan_pi(kept, coverage), coverage
-    if slug == "omp":
-        return scan_omp(kept, coverage), coverage
-    if slug == "antigravity":
-        return scan_antigravity(kept, coverage), coverage
-    raise AssertionError(f"no adapter for {slug}")
+    adapters = {
+        "claude": scan_claude,
+        "codex": scan_codex,
+        "pi": scan_pi,
+        "omp": scan_omp,
+        "antigravity": scan_antigravity,
+    }
+    if slug not in adapters:
+        raise AssertionError(f"no adapter for {slug}")
+    obs = adapters[slug](kept, coverage)
+    return drop_before_window(obs, coverage, since_epoch), coverage
 
 
 # Observation kinds taken from an assistant toolCall with no result join; the

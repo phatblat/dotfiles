@@ -9,7 +9,7 @@ export def ignore [...patterns: string] {
 
     let file_size = (ls $gitignore | get size | first)
     mut ignore_list = []
-    mut commit_message = ""
+    mut commit_message = "chore: sort .gitignore"
 
     if $file_size > 0b {
         # Read current ignores, filter out empty lines
