@@ -14,7 +14,7 @@ Coverage: 74/315 cells verified (23%)
 | pi | new port | 1.5.2 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
 | omp | tracked port | omp/19.0.1 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
 | antigravity | tracked port | 1.5.13 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
-| crush | new port | crush version v0.101.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
+| crush | new port | crush version v0.102.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
@@ -56,6 +56,7 @@ Coverage: 74/315 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-11-20 | crush | - | version | crush version v0.101.0 | crush version v0.102.0 |
 | 2026-11-20 | omp | - | version | omp/19.0.0 | omp/19.0.1 |
 | 2026-11-20 | antigravity | - | version | 1.2.3 | 1.5.13 |
 | 2026-11-20 | opencode | - | version | opencode v2.3.0 | opencode v2.3.2 |
@@ -65,7 +66,6 @@ Coverage: 74/315 cells verified (23%)
 | 2026-11-19 | opencode | - | version | opencode v2.3.0 | opencode v2.3.2 |
 | 2026-11-19 | omp | - | version | omp/18.22.1 | omp/19.0.0 |
 | 2026-11-19 | codex | - | version | codex-cli 0.169.0 | codex-cli 0.169.1 |
-| 2026-11-18 | omp | - | version | omp/18.21.0 | omp/18.22.1 |
 
 ## Permanent divergences
 
