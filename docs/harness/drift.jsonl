@@ -404,3 +404,4 @@
 {"capability":"-","date":"2026-11-20","detail":"","field":"version","from":"1.2.3","harness":"antigravity","to":"1.5.13","version_from":"1.2.3","version_to":"1.5.13"}
 {"capability":"-","date":"2026-11-20","detail":"","field":"version","from":"omp/19.0.0","harness":"omp","to":"omp/19.0.1","version_from":"omp/19.0.0","version_to":"omp/19.0.1"}
 {"capability":"-","date":"2026-11-20","detail":"","field":"version","from":"crush version v0.101.0","harness":"crush","to":"crush version v0.102.0","version_from":"crush version v0.101.0","version_to":"crush version v0.102.0"}
+{"capability":"-","date":"2026-11-21","detail":"","field":"version","from":"","harness":"claude","to":"2.1.329 (Claude Code)","version_from":"","version_to":"2.1.329 (Claude Code)"}
