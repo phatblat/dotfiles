@@ -15,7 +15,7 @@
 "aqua:cirruslabs/tart" = "2.42.0"
 "aqua:dalance/procs" = "0.14.12"
 "aqua:dlvhdr/gh-dash" = "4.26.3"
-"aqua:openai/codex" = "0.170.0"
+"aqua:openai/codex" = "0.171.0"
 "aqua:rust-lang/rustup" = "1.29.3"
 "aqua:sachaos/todoist" = "0.25.0"
 "aqua:shenwei356/rush" = "0.11.1"
