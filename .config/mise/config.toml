@@ -36,7 +36,7 @@
 "github:Dicklesworthstone/beads_rust" = "0.7.6"
 "github:diggerhq/opencomputer" = "0.6.0.50"
 "github:dolthub/dolt" = "2.7.5"
-"github:duckdb/duckdb" = "2.0.0"
+"github:duckdb/duckdb" = "2.0.1"
 "github:fialhosoft/agentlink" = "0.0.1"
 "github:nushell/nushell" = { version = "0.117.0", version_prefix = "" }
 "github:phatblat/wt" = "1.0.1"
