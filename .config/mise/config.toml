@@ -121,7 +121,7 @@
 "github:dolthub/dolt" = "2.7.5"
 "github:duckdb/duckdb" = "2.0.1"
 "github:fialhosoft/agentlink" = "0.0.1"
-"github:Infisical/cli" = { version = "0.45.13", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
+"github:Infisical/cli" = { version = "0.45.14", asset_pattern = "cli_{{ version }}_darwin_arm64.tar.gz" }
 "github:JetBrains/kotlin" = { version = "2.4.21", asset_pattern = "kotlin-compiler-*.zip", bin_path = "kotlinc/bin" }
 "github:jgm/pandoc" = "3.14"
 "github:kscripting/kscript" = "4.2.3"
