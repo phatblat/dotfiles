@@ -104,7 +104,7 @@
 "cargo:wasm-pack" = "0.15.1"
 "conda:clang-format" = "23.1.6"
 "conda:poppler" = "26.11.0"
-"github:can1357/oh-my-pi" = { version = "19.0.1", rename_exe = "omp" }
+"github:can1357/oh-my-pi" = { version = "19.1.0", rename_exe = "omp" }
 "github:cirruslabs/softnet" = "0.26.0"
 "github:DataDog/pup" = "2.6.1"
 "github:Dicklesworthstone/beads_rust" = "0.7.6"
