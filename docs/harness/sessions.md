@@ -13,13 +13,13 @@ Verify: `python3 scripts/agent-harnesses.py verify`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · 2.1.329 (Claude Code) · 2026-11-21 | native PreCompact hook |
-| codex | aligned | native | - | probe · codex-cli 0.170.0 · 2026-11-21 | Compact Preservation section in ~/.codex/AGENTS.md; the PreCompact hook was removed |
-| opencode | aligned | adapter | - | probe · opencode v2.3.2 · 2026-11-21 | plugin compaction hook |
-| pi | aligned | native | - | probe · 1.5.2 · 2026-11-21 | native compaction settings plus extension status |
-| omp | aligned | native | - | probe · omp/19.0.1 · 2026-11-21 | compaction preservation contract inlined with shared harness instructions |
+| claude | aligned | native | - | probe · - · 2026-11-22 | native PreCompact hook |
+| codex | aligned | native | - | probe · - · 2026-11-22 | Compact Preservation section in ~/.codex/AGENTS.md; the PreCompact hook was removed |
+| opencode | aligned | adapter | - | probe · - · 2026-11-22 | plugin compaction hook |
+| pi | aligned | native | - | probe · 1.6.0 · 2026-11-22 | native compaction settings plus extension status |
+| omp | aligned | native | - | probe · omp/19.0.1 · 2026-11-22 | compaction preservation contract inlined with shared harness instructions |
 | antigravity | absent | none | No generated compaction guidance | source · - · 2026-10-18 | The generated hooks.json now holds only the PreToolUse guard, so nothing in the Antigravity adapter carries the compaction preservation contract. |
-| crush | aligned | native | - | probe · crush version v0.102.0 · 2026-11-21 | compaction preservation contract inlined in the generated crush context file |
+| crush | aligned | native | - | probe · crush version v0.102.0 · 2026-11-22 | compaction preservation contract inlined in the generated crush context file |
 
 ### Not yet researched
 
