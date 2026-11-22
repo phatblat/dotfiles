@@ -11,7 +11,8 @@ scripts, because `just --list` is the discovery surface every harness and
 human uses to find what a project can do. Four stacks are supported: Python
 (uv), TypeScript (bun), Rust (cargo), and Go. Tool versions are never
 hardcoded in this skill; they are resolved to the latest GA release at
-scaffold time via `mise use --pin <tool>@latest`.
+scaffold time via `mise use --pin <backend>:<tool>@latest`, with the backend
+looked up by `mise registry <tool>` (for example `aqua:casey/just`).
 
 ## When to Use
 
@@ -57,8 +58,9 @@ and file bodies live in `references/<stack>.md` — read the matching file
 before step 2.
 
 1. `mkdir -p <dir> && cd <dir>`
-2. `mise use --pin <tool>@latest …` for the stack's tool list (see the
-   reference file). This creates `mise.toml` and installs the tools.
+2. `mise use --pin <backend>:<tool>@latest …` for the stack's tool list (see
+   the reference file), always with the backend prefix. This creates
+   `mise.toml` and installs the tools.
 3. Append the stack's `[deps.*]` and `[settings]` blocks with their comments
    (see the reference file — Rust has neither, since no `mise deps` provider
    exists for cargo), then run `mise trust` and `mise fmt`.

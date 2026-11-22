@@ -3,7 +3,7 @@
 ## 1. Pin tools
 
 ```bash
-mise use --pin just@latest python@latest uv@latest
+mise use --pin aqua:casey/just@latest core:python@latest aqua:astral-sh/uv@latest
 ```
 
 ## 2. `mise.toml`
