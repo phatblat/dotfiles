@@ -972,6 +972,14 @@ deny decision.
   dependency on behavior that can differ by version, platform, or machine, and
   it fails silently when the default changes. Prefer configuration that breaks
   loudly over configuration that is merely absent.
+- mise tools always carry their backend prefix. In `mise.toml`, `mise use`,
+  and `mise install`, write `aqua:casey/just`, `core:node`, or
+  `pipx:pyinfra`, never the bare short name (`just`). A bare name resolves
+  through mise's registry, whose first backend differs by mise version and
+  can fall through to a plugin that lacks a platform build (for example
+  `vfox-dart` on arm64). Look the backend up with `mise registry <tool>`, and
+  when the machine already has the tool installed, reuse that exact backend
+  spec so the install is shared. Prefer `aqua:` over `asdf:` or `vfox:`.
 - Pre-commit hooks auto-lint and format. The hk pre-commit hook may rewrite
   staged files, so the committed content can differ from the reviewed diff.
   After every commit, check the resulting diff or status. Never run other git

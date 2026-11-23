@@ -3,7 +3,7 @@
 ## 1. Pin tools
 
 ```bash
-mise use --pin bun@latest just@latest npm:prettier@latest
+mise use --pin core:bun@latest aqua:casey/just@latest npm:prettier@latest
 ```
 
 ## 2. `mise.toml`

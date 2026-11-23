@@ -3,7 +3,7 @@
 ## 1. Pin tools
 
 ```bash
-mise use --pin go@latest just@latest
+mise use --pin core:go@latest aqua:casey/just@latest
 ```
 
 ## 2. `mise.toml`
