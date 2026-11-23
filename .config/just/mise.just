@@ -187,7 +187,7 @@ upgrade-mise-tools-commit:
         echo "Upgrading $tool: $current → $bump"
         mise upgrade --bump --yes --no-prune "$tool"
         paths=("{{ justfile_directory() }}/.config/mise/config.toml")
-        if [ "$tool" = "hk" ]; then
+        if [ "$tool" = "hk" ] || [ "$tool" = "packslip:github.com/jdx/hk" ]; then
             # hk.pkl pins the exact hk release it amends (see hk.pkl's own
             # comment: hk embeds that Pkl package for its own version and
             # evaluates hk.pkl with no network request; any other pin
