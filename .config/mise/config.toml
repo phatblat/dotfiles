@@ -171,7 +171,7 @@
 "pypi:token-viewer" = { version = "0.0.7", python = "3.14" }                                                                     # python 3.14, not the global 3.15: fastuuid (via litellm) cannot build on 3.15 (PyO3 0.26)
 "pypi:yamllint" = "1.38.0"
 "vfox:jdx/vfox-neovim" = "0.12.6"
-"vfox:mise-plugins/vfox-gcloud" = "594.0.0"
+"vfox:mise-plugins/vfox-gcloud" = "594.0.1"
 dart = "3.14.1"
 
 [env]
