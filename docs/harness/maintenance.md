@@ -13,13 +13,13 @@ Verify: `just harness-check`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | shared | - | probe · - · 2026-11-22 | - |
-| codex | aligned | shared | - | probe · - · 2026-11-22 | - |
-| opencode | aligned | shared | - | probe · - · 2026-11-22 | - |
-| pi | aligned | shared | - | probe · 1.6.0 · 2026-11-22 | - |
-| omp | aligned | shared | - | probe · omp/19.0.1 · 2026-11-22 | - |
-| antigravity | aligned | shared | - | probe · 1.5.14 · 2026-11-22 | - |
-| crush | aligned | shared | - | probe · crush version v0.102.0 · 2026-11-22 | - |
+| claude | aligned | shared | - | probe · 2.1.330 (Claude Code) · 2026-11-23 | - |
+| codex | aligned | shared | - | probe · codex-cli 0.171.0 · 2026-11-23 | - |
+| opencode | aligned | shared | - | probe · opencode v2.3.2 · 2026-11-23 | - |
+| pi | aligned | shared | - | probe · 1.6.0 · 2026-11-23 | - |
+| omp | aligned | shared | - | probe · omp/19.1.0 · 2026-11-23 | - |
+| antigravity | aligned | shared | - | probe · 1.5.14 · 2026-11-23 | - |
+| crush | aligned | shared | - | probe · crush version v0.102.0 · 2026-11-23 | - |
 
 ### maintenance.config_validation · p1
 
@@ -31,8 +31,8 @@ Verify: `python3 scripts/agent-harnesses.py validate`
 |---|---|---|---|---|---|
 | claude | unknown | none | - | - | - |
 | codex | unknown | none | - | - | - |
-| opencode | aligned | native | opencode debug config | probe · - · 2026-08-29 | probe unavailable: opencode: [Errno 8] Exec format error: '/Users/phatblat/.local/share/mise/installs/npm-opencode-cli/2.3.2/bin/opencode' |
-| pi | aligned | native | pi list --no-approve | probe · 1.6.0 · 2026-11-22 | - |
+| opencode | aligned | native | opencode debug config | probe · opencode v2.3.2 · 2026-11-23 | - |
+| pi | aligned | native | pi list --no-approve | probe · 1.6.0 · 2026-11-23 | - |
 | omp | unknown | none | - | - | - |
 | antigravity | unknown | none | - | - | - |
 | crush | unknown | none | - | - | - |
