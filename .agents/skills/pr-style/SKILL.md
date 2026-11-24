@@ -13,7 +13,7 @@ Types: feat, fix, docs, style, refactor, perf, test, chore, ci, build. Scope opt
 ## Body Template
 
 ```markdown
-<ticket refs — "Closes ENG-1234" or "Refs ENG-1234". Omit if none.>
+<ticket refs — "Resolves ENG-1234" when the PR completely addresses the Linear ticket (tells Linear to close it on merge), or "Contributes to ENG-1234" when the PR is part of several PRs for the ticket. Omit if none.>
 <stacked note — "Stacked on #42". Omit if not stacked.>
 
 ## Summary
