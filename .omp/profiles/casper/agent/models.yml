@@ -130,7 +130,7 @@ providers:
         # xhigh], no "none" tier; see gemini-4-carbon.
         thinking:
           mode: effort
-          efforts: [low, medium, high, xhigh]
+          efforts: [low, medium, high, max]
           defaultLevel: high
           effortMap: {}
 
@@ -141,7 +141,7 @@ providers:
         # xhigh], no "none" tier; see gemini-4-carbon.
         thinking:
           mode: effort
-          efforts: [low, medium, high, xhigh]
+          efforts: [low, medium, high, max]
           defaultLevel: high
           effortMap: {}
 
