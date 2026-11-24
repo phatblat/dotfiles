@@ -35,7 +35,7 @@
 "aqua:crate-ci/typos" = "1.52.2"
 "aqua:dagger/dagger" = "0.21.12"
 "aqua:dalance/procs" = "0.14.12"
-"aqua:dandavison/delta" = "0.21.2"
+"aqua:dandavison/delta" = "0.22.0"
 "aqua:direnv/direnv" = "2.38.2"
 "aqua:dlvhdr/gh-dash" = "4.26.3"
 "aqua:ducaale/xh" = "0.26.3"
