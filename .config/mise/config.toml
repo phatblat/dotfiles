@@ -21,7 +21,7 @@
 "aqua:bazelbuild/bazelisk" = "1.30.0"
 "aqua:bazelbuild/buildtools/buildifier" = "10.2.0"
 "aqua:bootandy/dust" = "1.2.7"
-"aqua:BurntSushi/ripgrep" = "15.2.0"
+"aqua:BurntSushi/ripgrep" = "16.0.0"
 "aqua:caddyserver/caddy" = "2.11.9"
 "aqua:casey/just" = "1.59.0"
 "aqua:charmbracelet/crush" = "0.102.0"
