@@ -8,7 +8,7 @@ providers:
   streamIdleTimeoutSeconds: 120
 setupVersion: 3
 modelRoles:
-  default: casper/ultramarine-1-flash-us
+  default: casper/gemini-4-hydrogen:low
   plan: anthropic/claude-opus-5-5:high
   slow: casper/gemini-4-neon:medium
   smol: openai-codex/gpt-6.1-terra:medium
