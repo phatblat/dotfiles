@@ -142,7 +142,7 @@
   "node-pty",
 ] }
 "npm:@googleworkspace/cli" = "0.22.5"
-"npm:@opencode/cli" = { version = "2.3.2", allow_builds = ["@opencode/cli"] }
+"npm:@opencode/cli" = { version = "2.4.0", allow_builds = ["@opencode/cli"] }
 "npm:@sentry/wizard" = "9.1.0"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.8.1"
