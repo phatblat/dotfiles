@@ -250,6 +250,9 @@ def create_worktree(repo_dir: Path, pr: PullRequest, ref: str) -> Path:
             "git",
             "-C",
             str(repo_dir),
+            # Skip git-crypt decryption; linked worktrees fail to resolve the shared commondir key.
+            "-c",
+            "filter.git-crypt.smudge=cat",
             "worktree",
             "add",
             "--detach",
