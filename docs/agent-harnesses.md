@@ -10,10 +10,10 @@ Coverage: 74/315 cells verified (23%)
 |---|---|---|---|---|---|---|---|---|---|
 | claude | supported peer | 2.1.330 (Claude Code) | 2026-08-29 | 9 | 1 | 0 | 0 | 0 | 35 |
 | codex | supported peer | codex-cli 0.171.0 | 2026-08-29 | 7 | 1 | 0 | 1 | 1 | 35 |
-| opencode | new port | opencode v2.3.2 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
+| opencode | new port | opencode v2.4.0 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.6.0 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
-| omp | tracked port | omp/19.1.0 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
-| antigravity | tracked port | 1.5.14 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
+| omp | tracked port | omp/19.1.1 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
+| antigravity | tracked port | 1.5.15 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
 | crush | new port | crush version v0.102.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
@@ -56,16 +56,16 @@ Coverage: 74/315 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
-| 2026-11-23 | opencode | - | version | - | opencode v2.3.2 |
-| 2026-11-23 | omp | - | version | omp/19.0.1 | omp/19.1.0 |
-| 2026-11-23 | codex | - | version | - | codex-cli 0.171.0 |
-| 2026-11-23 | claude | - | version | - | 2.1.330 (Claude Code) |
-| 2026-11-23 | opencode | maintenance.config_validation | probe | unavailable | pass |
+| 2026-11-24 | opencode | - | version | - | opencode v2.4.0 |
+| 2026-11-24 | omp | - | version | omp/19.0.1 | omp/19.1.1 |
+| 2026-11-24 | codex | - | version | - | codex-cli 0.171.0 |
+| 2026-11-24 | claude | - | version | - | 2.1.330 (Claude Code) |
+| 2026-11-24 | antigravity | - | version | 1.5.14 | 1.5.15 |
+| 2026-11-24 | opencode | maintenance.config_validation | probe | unavailable | pass |
 | 2026-11-22 | pi | - | version | 1.5.2 | 1.6.0 |
-| 2026-11-22 | antigravity | - | version | 1.5.13 | 1.5.14 |
-| 2026-11-21 | claude | - | version | - | 2.1.329 (Claude Code) |
-| 2026-11-20 | crush | - | version | crush version v0.101.0 | crush version v0.102.0 |
-| 2026-11-20 | omp | - | version | omp/19.0.0 | omp/19.0.1 |
+| 2026-11-22 | opencode | - | version | opencode v2.3.2 | - |
+| 2026-11-22 | codex | - | version | codex-cli 0.170.0 | - |
+| 2026-11-22 | claude | - | version | 2.1.329 (Claude Code) | - |
 
 ## Permanent divergences
 
