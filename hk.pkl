@@ -13,7 +13,7 @@
 // The pinned package version must equal the installed hk (enforced by the
 // hk-config step): hk embeds the Pkl package for its own version and evaluates
 // this file with no network request, while any other pin is downloaded.
-amends "package://github.com/jdx/hk/releases/download/v2.13.0/hk@2.13.0#/Config.pkl"
+amends "package://github.com/jdx/hk/releases/download/v2.14.0/hk@2.14.0#/Config.pkl"
 
 min_hk_version = "2.13.0"
 
