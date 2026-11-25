@@ -63,7 +63,7 @@
 "aqua:lsd-rs/lsd" = "1.2.0"
 "aqua:LuaLS/lua-language-server" = "3.19.2"
 "aqua:luau-lang/luau" = "0.748"
-"aqua:metalbear-co/mirrord" = "3.291.0"
+"aqua:metalbear-co/mirrord" = "3.291.1"
 "aqua:mikefarah/yq" = "4.54.3"
 "aqua:mozilla/sccache" = "0.20.1"
 "aqua:muesli/duf" = "0.9.1"
