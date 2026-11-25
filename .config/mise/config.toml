@@ -70,7 +70,7 @@
 "aqua:mvdan/sh" = "3.14.1"
 "aqua:nektos/act" = "0.2.98"
 "aqua:ninja-build/ninja" = "1.13.2"
-"aqua:openai/codex" = "0.171.0"
+"aqua:openai/codex" = "0.172.0"
 "aqua:orf/gping" = "1.21.0"
 "aqua:PowerShell/PowerShell" = "7.7.0"
 "aqua:protocolbuffers/protobuf/protoc" = "36.2"
