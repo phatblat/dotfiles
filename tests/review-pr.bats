@@ -52,6 +52,9 @@ elif [[ "$1 $2" == "api graphql" ]]; then
   fi
 fi'
   write_stub git 'echo "git $*" >> "$REVIEW_PR_COMMAND_LOG"
+if [[ "$3" == "-c" ]]; then
+  set -- "$1" "$2" "${@:5}"
+fi
 if [[ "$3" == "worktree" && "$4" == "add" ]]; then
   mkdir -p "$6"
 elif [[ "$3" == "rev-parse" && "$4" == "HEAD" ]]; then
@@ -119,7 +122,7 @@ exit "$REVIEW_PR_OMP_STATUS"'
   [ "$status" -eq 0 ]
   ! grep -q "gh repo clone" "$REVIEW_PR_COMMAND_LOG"
   grep -q "git -C $existing fetch origin +pull/123/head" "$REVIEW_PR_COMMAND_LOG"
-  grep -q "git -C $existing worktree add --detach" "$REVIEW_PR_COMMAND_LOG"
+  grep -q "git -C $existing -c filter.git-crypt.smudge=cat worktree add --detach" "$REVIEW_PR_COMMAND_LOG"
 }
 
 @test "review-pr: ignores a clone whose origin points elsewhere" {

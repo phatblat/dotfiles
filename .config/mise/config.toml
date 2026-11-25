@@ -16,12 +16,12 @@
 "aqua:ast-grep/ast-grep" = "0.51.3"
 "aqua:astral-sh/ruff" = "0.17.6"
 "aqua:astral-sh/uv" = "0.13.9"
-"aqua:aws/aws-cli" = { version = "2.42.1", symlink_bins = "true" }
+"aqua:aws/aws-cli" = { version = "2.42.2", symlink_bins = "true" }
 "aqua:bats-core/bats-core" = "1.14.0"
 "aqua:bazelbuild/bazelisk" = "1.30.0"
 "aqua:bazelbuild/buildtools/buildifier" = "10.2.0"
 "aqua:bootandy/dust" = "1.2.7"
-"aqua:BurntSushi/ripgrep" = "15.2.0"
+"aqua:BurntSushi/ripgrep" = "16.0.0"
 "aqua:caddyserver/caddy" = "2.11.9"
 "aqua:casey/just" = "1.59.0"
 "aqua:charmbracelet/crush" = "0.102.0"
@@ -35,7 +35,7 @@
 "aqua:crate-ci/typos" = "1.52.2"
 "aqua:dagger/dagger" = "0.21.12"
 "aqua:dalance/procs" = "0.14.12"
-"aqua:dandavison/delta" = "0.21.2"
+"aqua:dandavison/delta" = "0.22.0"
 "aqua:direnv/direnv" = "2.38.2"
 "aqua:dlvhdr/gh-dash" = "4.26.3"
 "aqua:ducaale/xh" = "0.26.3"
@@ -44,7 +44,7 @@
 "aqua:FiloSottile/mkcert" = "1.4.4"
 "aqua:git-lfs/git-lfs" = "3.8.1"
 "aqua:gitleaks/gitleaks" = "8.30.1"
-"aqua:google-antigravity/antigravity-cli" = "1.5.14"
+"aqua:google-antigravity/antigravity-cli" = "1.5.15"
 "aqua:gradle/gradle-distributions" = "9.9.2"
 "aqua:hashicorp/packer" = "1.16.2"
 "aqua:hashicorp/terraform" = "1.17.2"
@@ -65,7 +65,7 @@
 "aqua:luau-lang/luau" = "0.748"
 "aqua:metalbear-co/mirrord" = "3.290.0"
 "aqua:mikefarah/yq" = "4.54.3"
-"aqua:mozilla/sccache" = "0.19.0"
+"aqua:mozilla/sccache" = "0.20.0"
 "aqua:muesli/duf" = "0.9.1"
 "aqua:mvdan/sh" = "3.14.1"
 "aqua:nektos/act" = "0.2.98"
@@ -74,7 +74,7 @@
 "aqua:orf/gping" = "1.21.0"
 "aqua:PowerShell/PowerShell" = "7.7.0"
 "aqua:protocolbuffers/protobuf/protoc" = "36.2"
-"aqua:pypa/pipx" = "1.18.19"
+"aqua:pypa/pipx" = "1.19.1"
 "aqua:rancher/cli" = "2.15.3"
 "aqua:realm/SwiftLint" = "0.65.1"
 "aqua:rhysd/actionlint" = "1.7.12"
@@ -98,7 +98,7 @@
 "cargo:cargo-expand" = "1.0.127"
 "cargo:foxguard" = "0.14.2"
 "cargo:https://github.com/nkotval-ditto/wookie" = { version = "rev:8a2eab6de09e7b381e3b83ff0dac7979bc88cf8b", crate = "wookie" }
-"cargo:sccache" = "0.19.0"
+"cargo:sccache" = "0.20.0"
 "cargo:tauri-cli" = "2.12.6"
 "cargo:wasm-bindgen-cli" = "0.2.130"
 "cargo:wasm-pack" = "0.15.1"
@@ -112,7 +112,7 @@
 "core:python" = "3.15.2"
 "core:ruby" = "4.0.10"
 "core:rust" = "1.100.0"
-"github:can1357/oh-my-pi" = { version = "19.1.0", rename_exe = "omp" }
+"github:can1357/oh-my-pi" = { version = "19.1.1", rename_exe = "omp" }
 "github:cirruslabs/softnet" = "0.26.0"
 "github:DataDog/pup" = "2.6.1"
 "github:Dicklesworthstone/beads_rust" = "0.7.6"
@@ -131,18 +131,18 @@
 "github:raine/aven" = "0.1.56"
 "github:schpet/linear-cli" = "3.1.0"
 "go:golang.org/x/tools/gopls" = "0.24.0"
-"npm:@anthropic-ai/claude-code" = { version = "2.1.330", allow_builds = [
+"npm:@anthropic-ai/claude-code" = { version = "2.1.331", allow_builds = [
   "@anthropic-ai/claude-code",
 ] }
 "npm:@babel/cli" = "8.1.0"
 "npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
-"npm:@getpaseo/cli" = "0.17.3"
+"npm:@getpaseo/cli" = "0.17.4"
 "npm:@google/gemini-cli" = { version = "0.70.0", allow_builds = [
   "@github/keytar",
   "node-pty",
 ] }
 "npm:@googleworkspace/cli" = "0.22.5"
-"npm:@opencode/cli" = { version = "2.3.2", allow_builds = ["@opencode/cli"] }
+"npm:@opencode/cli" = { version = "2.4.1", allow_builds = ["@opencode/cli"] }
 "npm:@sentry/wizard" = "9.1.0"
 "npm:@vtsls/language-server" = "0.3.0"
 "npm:bash-language-server" = "5.8.1"
@@ -155,7 +155,7 @@
 "npm:markdownlint-cli2" = "0.24.2"
 "npm:pnpm" = "12.23.0"
 "npm:prettier" = "3.10.1"
-"npm:renovate" = "44.257.9"
+"npm:renovate" = "44.258.2"
 "npm:standard-readme-spec" = "1.3.1"
 "npm:typescript" = "7.0.2"
 "npm:typescript-language-server" = "6.1.0"
@@ -164,7 +164,7 @@
 "npm:yarn" = "1.22.22"
 "packslip:github.com/jdx/hk" = { version = "2.13.0", workflow = "release.yml" }
 "pypi:basedpyright" = "1.40.2"
-"pypi:graphifyy" = { version = "0.9.115", python = "3.14" }                                                                      # python 3.14, not the global 3.15: same pypi: interpreter pin as harbor/token-viewer
+"pypi:graphifyy" = { version = "0.9.118", python = "3.14" }                                                                      # python 3.14, not the global 3.15: same pypi: interpreter pin as harbor/token-viewer
 "pypi:harbor" = { version = "0.27.0", python = "3.14" }                                                                          # python 3.14, not the global 3.15: fastuuid (via litellm) cannot build on 3.15 (PyO3 0.26)
 "pypi:pyright" = "1.1.414"
 "pypi:python-lsp-server" = "1.15.0"
