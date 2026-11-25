@@ -3,14 +3,5 @@
     "node_repl",
     "openaiDeveloperDocs"
   ],
-  "mcpServers": {
-    "todoist": {
-      "type": "http",
-      "url": "https://ai.todoist.net/mcp"
-    },
-    "todoist-automations": {
-      "type": "http",
-      "url": "https://ai.todoist.net/mcp/automations"
-    }
-  }
+  "mcpServers": {}
 }

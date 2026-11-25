@@ -1,14 +1,5 @@
 {
-  "mcpServers": {
-    "todoist": {
-      "type": "http",
-      "url": "https://ai.todoist.net/mcp"
-    },
-    "todoist-automations": {
-      "type": "http",
-      "url": "https://ai.todoist.net/mcp/automations"
-    }
-  },
+  "mcpServers": {},
   "projects": {
     "/Users/phatblat": {
       "disabledMcpServers": [
