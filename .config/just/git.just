@@ -42,7 +42,13 @@ git-hooks:
     # from an interactive-shell context) so the hook fires from any invoker.
     mise_bin="$(command -v mise)"
     current="$(git config --local --get hook.hk-pre-commit.command)"
-    patched="${current/mise x -- hk run pre-commit --from-hook/$mise_bin x -- hk run pre-commit --from-hook}"
+    # hk >= 2.14 may already write a path-qualified mise (~/.local/bin/mise);
+    # only rewrite when the command invokes a bare `mise`.
+    if [[ "$current" != *"/mise x -- "* ]]; then
+        patched="${current/mise x -- hk run pre-commit --from-hook/$mise_bin x -- hk run pre-commit --from-hook}"
+    else
+        patched="$current"
+    fi
     git config --local hook.hk-pre-commit.command "$patched"
     echo "Git hooks installed by hk (hook.hk-pre-commit.command in .git/config, using absolute mise path: $mise_bin)"
     primary="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
