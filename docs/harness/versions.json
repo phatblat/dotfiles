@@ -6,8 +6,8 @@
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.329 (Claude Code)",
-    "version": "2.1.330 (Claude Code)"
+    "previous": "2.1.330 (Claude Code)",
+    "version": "2.1.331 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
@@ -26,8 +26,8 @@
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "opencode v2.3.2",
-    "version": "opencode v2.4.0"
+    "previous": "opencode v2.4.0",
+    "version": "opencode v2.4.1"
   },
   "pi": {
     "first_seen": "2026-08-29",
