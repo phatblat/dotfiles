@@ -275,3 +275,33 @@ EOF
     grep -Eq 'DENY tool=Bash cmd=fd$' "$home/.claude/logs/permission-denied.log"
     ! grep -Eq 'secret-tab|EOF' "$home/.claude/logs/permission-denied.log"
 }
+
+@test "permission denied: redirect targets joined to the command are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"cat</Users/me/.ssh/id_rsa"}}'
+    [ "$status" -eq 0 ]
+    grep -Eq 'DENY tool=Bash cmd=<other>$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'id_rsa' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: quoted command paths are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"\"/Users/me/secret proj/bin/tool\" --flag s3cr3t"}}'
+    [ "$status" -eq 0 ]
+    grep -Eq 'DENY tool=Bash cmd=<other>$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'secret' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: newline in tool name cannot forge a record" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash\n[2026-01-01 00:00:00] DENY tool=Forged cmd=rm","tool_input":{"command":"ls"}}'
+    [ "$status" -eq 0 ]
+    [ "$(wc -l < "$home/.claude/logs/permission-denied.log")" -eq 1 ]
+    grep -Eq 'cmd=ls$' "$home/.claude/logs/permission-denied.log"
+}
