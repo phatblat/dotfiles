@@ -117,6 +117,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: generation removes obsolete skill wrappers" {
+  skip_unless_home_is_this_checkout
   stale_skill="obsolete-generated-skill"
   antigravity_dir="$HOME/.agents/harness/adapters/antigravity/skills/$stale_skill"
   modified_skill="modified-generated-skill"
@@ -160,6 +161,7 @@ skip_unless_home_is_this_checkout() {
   idempotent_check_status="$status"
 
   rm -f \
+    "$antigravity_dir/SKILL.md" \
     "$antigravity_dir/notes.md" \
     "$modified_dir/SKILL.md" \
     "$symlink_dir"
@@ -437,6 +439,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "artifact-message-bus ships bundled resources and tracked adapters" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
@@ -461,6 +464,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "grill-me front door and grilling primitive are wired across harnesses" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
