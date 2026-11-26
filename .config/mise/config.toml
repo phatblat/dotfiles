@@ -39,7 +39,7 @@
 "aqua:direnv/direnv" = "2.38.2"
 "aqua:dlvhdr/gh-dash" = "4.26.3"
 "aqua:ducaale/xh" = "0.26.3"
-"aqua:earendil-works/pi" = "1.6.0"
+"aqua:earendil-works/pi" = "1.6.1"
 "aqua:fastfetch-cli/fastfetch" = "2.71.0"
 "aqua:FiloSottile/mkcert" = "1.4.4"
 "aqua:git-lfs/git-lfs" = "3.8.1"
