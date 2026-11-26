@@ -9729,16 +9729,6 @@ source = "~/dev/dotfiles/.harness/pipelines/test.yaml"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.homebrew/trust.json"]
-source = "~/dev/dotfiles/.homebrew/trust.json"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.homebrew/trust.json.lock"]
-source = "~/dev/dotfiles/.homebrew/trust.json.lock"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.hyper.js"]
 source = "~/dev/dotfiles/.hyper.js"
 mode = "symlink"
