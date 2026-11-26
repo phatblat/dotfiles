@@ -135,7 +135,6 @@ STATE_DIRS = frozenset(
         "jobs",
         "log",
         "logs",
-        "managed-skills",
         "marketplaces",
         "mcp",
         "mcps",

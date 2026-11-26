@@ -121,6 +121,14 @@ class HomeScanTests(unittest.TestCase):
         (record,) = self.scan()
         self.assertEqual(record["kind"], "review")
 
+    def test_home_only_managed_skill_is_a_candidate(self) -> None:
+        # Autolearn writes managed skills straight into $HOME; two are tracked,
+        # so a new one has to surface instead of being pruned as state.
+        self.write_home(".omp/agent/managed-skills/nightly-batch/SKILL.md", "# Nightly batch\n")
+        (record,) = self.scan()
+        self.assertEqual(record["kind"], "config")
+        self.assertEqual(record["path"], ".omp/agent/managed-skills/nightly-batch/SKILL.md")
+
 class NewStateCategoryTests(unittest.TestCase):
     def setUp(self) -> None:
         tmp = tempfile.TemporaryDirectory()

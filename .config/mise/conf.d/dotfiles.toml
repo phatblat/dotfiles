@@ -10119,6 +10119,11 @@ source = "~/dev/dotfiles/.omp/agent/managed-skills/agent-commits/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/agent/managed-skills/nightly-batch/SKILL.md"]
+source = "~/dev/dotfiles/.omp/agent/managed-skills/nightly-batch/SKILL.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/agent/managed-skills/subagent-output-schema-contract/SKILL.md"]
 source = "~/dev/dotfiles/.omp/agent/managed-skills/subagent-output-schema-contract/SKILL.md"
 mode = "symlink"
