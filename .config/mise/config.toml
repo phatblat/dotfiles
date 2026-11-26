@@ -44,7 +44,7 @@
 "aqua:FiloSottile/mkcert" = "1.4.4"
 "aqua:git-lfs/git-lfs" = "3.8.1"
 "aqua:gitleaks/gitleaks" = "8.30.1"
-"aqua:google-antigravity/antigravity-cli" = "1.5.16"
+"aqua:google-antigravity/antigravity-cli" = "1.5.17"
 "aqua:gradle/gradle-distributions" = "9.9.2"
 "aqua:hashicorp/packer" = "1.16.2"
 "aqua:hashicorp/terraform" = "1.17.2"
