@@ -1,6 +1,5 @@
 ---
-alwaysApply: false
-paths: .config/zed/settings.json, .config/cmux/cmux.json, .claude/policy-limits.json
+paths: .config/zed/settings.json, .config/cmux/cmux.json
 ---
 
 # JSONC Config Files

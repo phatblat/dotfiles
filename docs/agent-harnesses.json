@@ -6028,12 +6028,6 @@
       },
       {
         "enabled": false,
-        "id": "claude-hud@claude-hud",
-        "marketplace": "claude-hud",
-        "marketplace_source": "github:jarrodwatts/claude-hud"
-      },
-      {
-        "enabled": false,
         "id": "claude-md-management@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -6051,7 +6045,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "csharp-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -6069,7 +6063,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "jdtls-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -6117,7 +6111,7 @@
         "marketplace_source": null
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "ruby-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
@@ -6157,12 +6151,6 @@
         "id": "typescript-lsp@claude-plugins-official",
         "marketplace": "claude-plugins-official",
         "marketplace_source": null
-      },
-      {
-        "enabled": false,
-        "id": "warp@claude-code-warp",
-        "marketplace": "claude-code-warp",
-        "marketplace_source": "github:warpdotdev/claude-code-warp"
       }
     ],
     "codex": [

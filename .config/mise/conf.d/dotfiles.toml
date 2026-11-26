@@ -2759,11 +2759,6 @@ source = "~/dev/dotfiles/.claude/skills/writing-plans/SKILL.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.claude/statusline-command.sh"]
-source = "~/dev/dotfiles/.claude/statusline-command.sh"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.claude/templates/CLAUDE-project-template.md"]
 source = "~/dev/dotfiles/.claude/templates/CLAUDE-project-template.md"
 mode = "symlink"

@@ -36,8 +36,6 @@
       "Bash(~/.local/bin/mise hook-env:*)",
       "Bash(MISE_NODE_MODULES_BIN=0 ~/.local/bin/mise hook-env)",
       "Bash(~/.local/bin/mise env:*)",
-      "Bash(git -C ~ ls-files)",
-      "Bash(git -C ~ config --get rerere.enabled)",
       "Bash(gh --version)",
       "Bash(gh auth status)",
       "Bash(ruby --version)",

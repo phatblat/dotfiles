@@ -11,19 +11,18 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | browser@openai-bundled | missing | disabled |
 | clangd-lsp@claude-plugins-official | enabled | disabled |
 | claude-code-setup@claude-plugins-official | disabled | missing |
-| claude-hud@claude-hud | disabled | missing |
 | claude-md-management@claude-plugins-official | disabled | missing |
 | code-review@claude-plugins-official | enabled | enabled |
 | code-simplifier@claude-plugins-official | disabled | missing |
 | codex-app-tools@openai-bundled | missing | enabled |
 | computer-use@openai-bundled | missing | enabled |
-| csharp-lsp@claude-plugins-official | enabled | disabled |
+| csharp-lsp@claude-plugins-official | disabled | disabled |
 | documents@openai-primary-runtime | missing | enabled |
 | finances@openai-curated-remote | missing | enabled |
 | github@openai-curated-remote | missing | enabled |
 | gopls-lsp@claude-plugins-official | enabled | disabled |
 | hookify@claude-plugins-official | disabled | missing |
-| jdtls-lsp@claude-plugins-official | enabled | disabled |
+| jdtls-lsp@claude-plugins-official | disabled | disabled |
 | kotlin-lsp@claude-plugins-official | enabled | disabled |
 | linear-cli@linear-cli | enabled | enabled |
 | lua-lsp@claude-plugins-official | enabled | disabled |
@@ -37,7 +36,7 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | pup@datadog-pup | disabled | enabled |
 | pyright-lsp@claude-plugins-official | enabled | disabled |
 | ralph-loop@claude-plugins-official | disabled | missing |
-| ruby-lsp@claude-plugins-official | enabled | missing |
+| ruby-lsp@claude-plugins-official | disabled | missing |
 | rust-analyzer-lsp@claude-plugins-official | enabled | disabled |
 | security-guidance@claude-plugins-official | disabled | missing |
 | sites@openai-curated-remote | missing | enabled |
@@ -50,5 +49,4 @@ Configured native plugin state, from the harness config files. `just harness-aud
 | unified-computer-use@openai-bundled | missing | disabled |
 | visualize@openai-bundled | missing | enabled |
 | visualize@openai-curated-remote | missing | enabled |
-| warp@claude-code-warp | disabled | missing |
 | work-pets@openai-curated-remote | missing | enabled |
