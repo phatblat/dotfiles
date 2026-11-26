@@ -159,11 +159,6 @@ source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/aven/SKILL.
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/harness/adapters/antigravity/skills/boris/SKILL.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/boris/SKILL.md"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agents/harness/adapters/antigravity/skills/brainstorm/SKILL.md"]
 source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/brainstorm/SKILL.md"
 mode = "symlink"
@@ -201,6 +196,11 @@ relative = false
 
 [dotfiles."~/.agents/harness/adapters/antigravity/skills/flywheel/SKILL.md"]
 source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/flywheel/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"]
+source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -654,6 +654,11 @@ source = "~/dev/dotfiles/.agents/skills/boris/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.agents/skills/boris/agents/openai.yaml"]
+source = "~/dev/dotfiles/.agents/skills/boris/agents/openai.yaml"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.agents/skills/brainstorm/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/brainstorm/SKILL.md"
 mode = "symlink"
@@ -756,11 +761,6 @@ relative = false
 
 [dotfiles."~/.agents/skills/gh-stack/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/gh-stack/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/skills/gh-stack/agents/openai.yaml"]
-source = "~/dev/dotfiles/.agents/skills/gh-stack/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
