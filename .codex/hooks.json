@@ -43,7 +43,7 @@
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/write-guard.sh'",
             "statusMessage": "Write Guard",
-            "timeout": 3,
+            "timeout": 10,
             "type": "command"
           }
         ],
@@ -54,7 +54,7 @@
           {
             "command": "bash '/Users/phatblat/.codex/hooks/scripts/bash-guard.sh'",
             "statusMessage": "Bash Guard",
-            "timeout": 3,
+            "timeout": 10,
             "type": "command"
           }
         ],
