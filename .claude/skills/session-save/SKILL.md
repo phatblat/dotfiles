@@ -1,6 +1,6 @@
 ---
 name: session-save
-description: "Save current Codex session to 2ndBrain vault with frontmatter, executive brief, and full transcript"
+description: "Save the current agent session to the 2ndBrain vault with frontmatter, executive brief, and full transcript. Use when the user invokes $session-save or /skill:session-save."
 disable-model-invocation: true
 ---
 

@@ -1,8 +1,3 @@
-# Set the XDG path for this shell (compinit uses it) but never export it: an
-# exported absolute XDG_CONFIG_HOME defeats HOME-faking test isolation —
-# git resolves `config --global` through it and writes the REAL user config.
-typeset +x XDG_CONFIG_HOME=$HOME/.config
-
 # Source Nix profile
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
   . ~/.nix-profile/etc/profile.d/nix.sh

@@ -9,6 +9,8 @@
 #     0.21.0), so the committed value never settles.
 #   - sidecars is per-project runtime state (project IDs, resolved permission
 #     grants) that appears after a sidecar first runs.
+#   - userSettings.remoteControlHostname names the machine (the tracked value
+#     named another host), so it is deleted like sidecars.
 #
 # This filter runs when git reads the working tree into a blob (add/status/
 # diff). It normalizes every installedFrom.version to the empty string and
@@ -43,4 +45,5 @@ jq '
       )
     else .
     end
+  | if (.userSettings | type) == "object" then .userSettings |= del(.remoteControlHostname) else . end
 '

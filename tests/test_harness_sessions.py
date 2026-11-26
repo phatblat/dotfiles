@@ -124,6 +124,14 @@ class OmpErrorClassTests(unittest.TestCase):
         }
         self.assertEqual(hs._omp_error_class(message), "interceptor")
 
+    def test_an_error_kind_enum_wins_over_the_text(self) -> None:
+        message = {"details": {"errorKind": "unknown_tag"}, "content": "stale anchor"}
+        self.assertEqual(hs._omp_error_class(message), "unknown_tag")
+
+    def test_a_non_enum_error_kind_falls_back_to_the_text(self) -> None:
+        message = {"details": {"errorKind": "Free Text"}, "content": "Command exited with code 1"}
+        self.assertEqual(hs._omp_error_class(message), "exit_code")
+
 
 class OmpCdPrefixSignalTests(unittest.TestCase):
     def _signals(self, *commands: str) -> int:

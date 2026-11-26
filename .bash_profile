@@ -4,6 +4,7 @@
 #
 
 export MISE_PIN=1
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Source Nix profile
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then

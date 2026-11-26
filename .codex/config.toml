@@ -107,7 +107,7 @@ terminal_title = ["project"]
 "gpt-5.3-codex-spark" = 4
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
-"gpt-6.1-sol" = 2
+"gpt-6.1-sol" = 4
 
 # ──────────────────────────────────────────────────────────────────────────
 # machine-managed state — written by Codex, not hand-edited.
@@ -147,6 +147,36 @@ trusted_hash = "sha256:000000000000000000000000000000000000000000000000000000000
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
 [hooks.state."/Users/phatblat/dev/_GETDITTO/ditto/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:post_tool_use:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:pre_tool_use:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:pre_tool_use:2:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:stop:1:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+
+[hooks.state."/Users/phatblat/dev/dotfiles/.codex/hooks.json:user_prompt_submit:1:0"]
 trusted_hash = "sha256:0000000000000000000000000000000000000000000000000000000000000000"
 
 [marketplaces.claude-plugins-official]
@@ -317,6 +347,8 @@ enabled = true
 [projects."/Users/phatblat/dev/agents/sandcastle-agent-lab"]
 
 [projects."/Users/phatblat/dev/claude/ground-control"]
+
+[projects."/Users/phatblat/dev/dotfiles"]
 
 [projects."/Users/phatblat/dev/ldg/wave-rider"]
 

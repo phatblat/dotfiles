@@ -30,7 +30,8 @@ aggregate-only:
 Do not emit prompt text, assistant text, full tool arguments or results,
 working directories, images, blob references, secrets, or credentials. The
 scanner may inspect only protocol-controlled identity fields such as a tool
-name, call ID, result status, skill name/path, or MCP provider metadata.
+name, call ID, result status, skill name/path, MCP provider metadata, or an
+OMP result's `details.errorKind` enum.
 For Pi's persisted explicit skill wrapper, inspect only the anchored
 `<skill name="…" location="…">` prefix and discard the rest of the message
 without emitting it.

@@ -906,6 +906,9 @@ _OMP_ERROR_CLASSES = (
     ("parse", _re.compile(r"parse|syntax|malformed|invalid json", _re.IGNORECASE)),
 )
 
+# Shape of an OMP `details.errorKind` enum (`unseen_lines`, `unknown_tag`, ...).
+_OMP_ERROR_KIND = _re.compile(r"[a-z][a-z0-9_]{0,31}")
+
 # A `bash` call that opens with `cd <path> &&` is the habit the `.omp/agent/RULES.md`
 # rule forbids; each match is that Scaffolding register row's firing signal
 # (docs/flywheel.md).
@@ -915,9 +918,16 @@ _OMP_CD_PREFIX = _re.compile(r"^\s*cd\s+[^;&|\n]+&&")
 def _omp_error_class(message: dict) -> str:
     """Fixed label for an errored result; only the label leaves this function.
 
-    The first line names most tool errors; a failed `bash` call leads with the
-    command's own output and ends with the exit notice, so the last line is
-    checked when the first matches nothing."""
+    An OMP `details.errorKind` enum wins when present: the protocol names the
+    failure, so no text is matched. Otherwise the first line names most tool
+    errors; a failed `bash` call leads with the command's own output and ends
+    with the exit notice, so the last line is checked when the first matches
+    nothing."""
+    details = message.get("details")
+    if isinstance(details, dict):
+        kind = details.get("errorKind")
+        if isinstance(kind, str) and _OMP_ERROR_KIND.fullmatch(kind):
+            return kind
     content = message.get("content")
     text = content if isinstance(content, str) else ""
     if isinstance(content, list):

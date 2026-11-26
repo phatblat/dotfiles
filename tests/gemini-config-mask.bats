@@ -2,7 +2,8 @@
 # gemini-config-mask.bats - mask-gemini-config.sh (git clean filter for .gemini/config/config.json)
 #
 # The filter is `required = true`, so a non-zero exit breaks `git add`/`git status`.
-# It blanks plugins.<name>.installedFrom.version and deletes top-level `sidecars`.
+# It blanks plugins.<name>.installedFrom.version and deletes top-level `sidecars`
+# and `userSettings.remoteControlHostname`.
 # MASK_GEMINI_SCRIPT lets a mutation check point the suite at a modified copy.
 
 MASK="${MASK_GEMINI_SCRIPT:-${BATS_TEST_DIRNAME}/../scripts/mask-gemini-config.sh}"
@@ -89,4 +90,14 @@ EOF
 EOF
 
   [ "$status" -ne 0 ]
+}
+
+@test "mask-gemini-config: deletes userSettings.remoteControlHostname and keeps other user settings" {
+  run "$MASK" <<'EOF'
+{"userSettings":{"remoteControlHostname":"h","gcpRegion":"us"}}
+EOF
+
+  [ "$status" -eq 0 ]
+  echo "$output" | jq -e '.userSettings | has("remoteControlHostname") | not'
+  echo "$output" | jq -e '.userSettings.gcpRegion == "us"'
 }

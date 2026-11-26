@@ -208,3 +208,19 @@ with new measurements, not with a fresh reading of the same config.
   771 bash errors were interceptor blocks, and 487 of those were compound commands where one
   fragment matched a default rule, so the named tool could not replace the command. The scanner now
   labels these `interceptor`; a non-zero OMP `interceptor` count means the setting was re-enabled.
+- **2026-11-25 OMP `skills.ignoredSkills: [codex/*]` is live, not dead config.** `75fa5a5` added it
+  because OMP started in `~` loads `~/.codex/skills` as `codex/<name>` aliases (34 measured then).
+  `~/.codex/skills` still holds `exa-search` and `.system`.
+- **2026-11-25 the Antigravity guard matcher `"*"` is deliberate.** `run_antigravity` in
+  `crates/ness/src/hook.rs` ignores the tool name and reads `CommandLine`/`TargetFile`/
+  `CodeContent`/`ReplacementContent`/`ReplacementChunks` plus `manage_task` `send_input`. The corpus
+  covers `run_command`, `write_to_file`, `replace_file_content`, `multi_replace_file_content`, and
+  `manage_task`, but agy's full tool set is undocumented, so a name list could miss a writer.
+- **2026-11-25 the crush guard matcher needs no fetch tools.** ness has no URL policy
+  (`policy.toml` has no fetch/URL section; web fetch is native approval, e.g.
+  `opencode_webfetch = "ask"`). Crush's `fetch` and `agentic_fetch` call `permissions.Request`
+  (`internal/agent/tools/fetch.go`, `internal/agent/agentic_fetch_tool.go` on crush main).
+- **2026-11-25 long `graphify`/`paseo-plugin` descriptions are not worth forking.** Both skills are
+  vendored: `just _graphify-sync-skill` re-syncs graphify, and Paseo installs paseo-plugin (captured
+  in `ad3a5fa`). OMP advertises compacted descriptions, and Claude (5 files) and Codex (0) were
+  nearly idle in the window.

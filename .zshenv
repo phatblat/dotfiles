@@ -8,5 +8,10 @@ export NO_COLOR=true
 # bash ignores zshenv; point its non-interactive startup at a normalizer.
 export BASH_ENV="$HOME/.config/bash_env"
 
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+# Exported for every process zsh starts: LaunchAgents and `$SHELL -c` probes
+# run `zsh -l -c`. Derived from HOME unconditionally so a HOME-remapped shell
+# (wt shell, `just test`) points at its own .config, never the real one.
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 . "$ZDOTDIR/.zshenv"

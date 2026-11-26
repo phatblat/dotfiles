@@ -126,8 +126,9 @@ providers:
       gemini-4-hydrogen:
         name: Gemini 4 Hydrogen
         cost: { input: 1.50, output: 7.50, cacheRead: 0.07, cacheWrite: 0 }
-        # Catalog 2026-11-19: reasoning_effort levels [low, medium, high,
-        # xhigh], no "none" tier; see gemini-4-carbon.
+        # Catalog 2026-11-25: supported_reasoning_efforts [low, medium, high,
+        # max], no "none" tier; the route normalizes xhigh -> max, so max is
+        # sent verbatim and effortMap stays empty. See gemini-4-carbon.
         thinking:
           mode: effort
           efforts: [low, medium, high, max]
@@ -137,8 +138,9 @@ providers:
       gemini-4-neon:
         name: Gemini 4 Neon
         cost: { input: 3.00, output: 15.00, cacheRead: 0.15, cacheWrite: 0 }
-        # Catalog 2026-11-19: reasoning_effort levels [low, medium, high,
-        # xhigh], no "none" tier; see gemini-4-carbon.
+        # Catalog 2026-11-25: supported_reasoning_efforts [low, medium, high,
+        # max], no "none" tier; the route normalizes xhigh -> max, so max is
+        # sent verbatim and effortMap stays empty. See gemini-4-carbon.
         thinking:
           mode: effort
           efforts: [low, medium, high, max]
