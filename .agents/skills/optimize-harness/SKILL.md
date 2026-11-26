@@ -229,9 +229,11 @@ Never propose tracking these, whatever the report says:
 |---|---|---|
 | Credential stores | `.omp/agent/agent.db`, `.pi/agent/auth.json`, `*.env` | OAuth tokens and API keys |
 | Secret definitions | `.omp/agent/secrets.yml`, `secret-placeholder.key` | Plaintext secrets and their HMAC key |
-| Trust grants | `.pi/agent/trust.json`, `.config/homebrew/trust.json`, `.codex/config.toml` `[projects]` `trust_level` | A per-machine security decision. Replicating it auto-approves on a fresh host a directory you only vetted on one machine — a privilege escalation dressed as config. |
+| Trust grants | `.pi/agent/trust.json`, `.codex/config.toml` `[projects]` `trust_level` | A per-machine security decision. Replicating it auto-approves on a fresh host a directory you only vetted on one machine — a privilege escalation dressed as config. |
 | Machine identity | `.omp/install-id` | Per-install UUID; copying it merges telemetry identities |
 | Transcripts | `sessions/`, `history.db`, `blobs/` | May contain anything typed or read |
+
+Exception: Homebrew tap trust (`.config/homebrew/trust.json`) is tracked on purpose (`docs/package-management.md`). It lists taps, formulae, and casks, not directories, and a new machine should inherit it. Every login shell exports `XDG_CONFIG_HOME`, so it is the only trust file Homebrew reads. `~/.homebrew/trust.json` is Homebrew's unset-XDG fallback; never track it.
 
 Flag any hit in the "tracked files that look like credentials" section as
 **Critical** in the report, even if it turns out to be a false positive
