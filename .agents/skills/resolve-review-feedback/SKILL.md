@@ -72,7 +72,7 @@ fix: <concise description of what the review comment asked for>
 
 ```bash
 gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id}/replies \
-  -f body="Resolved by <sha>"
+  -f body="Resolved in [<sha>](https://github.com/{owner}/{repo}/commit/<full_sha>)"
 ```
 
 `<sha>` is the commit SHA from step 4 (`git rev-parse --short HEAD` after committing). This leaves an audit trail in the thread linking the resolution to its fix before the thread is collapsed.
@@ -81,7 +81,7 @@ gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id}/replies \
 
 ```bash
 gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id} \
-  --method PATCH -f body="Resolved by <sha>"
+  --method PATCH -f body="Resolved in [<sha>](https://github.com/{owner}/{repo}/commit/<full_sha>)"
 ```
 
 Also forbidden: `gh pr comment --edit-last` and any MCP "update comment" tool for this purpose — the reply MUST go through the `replies` endpoint.
@@ -326,7 +326,12 @@ reply + `resolveReviewThread`:
 ```bash
 # 1. Reply. There is no thread, so the comment must identify which finding it answers.
 gh api repos/{owner}/{repo}/issues/{pr}/comments \
-  -f body="Resolved by <sha> — <path>:<line> <one-line finding summary>"
+  -f body="$(cat <<EOF
+> <first line or title of the finding> ([original comment](<comment_url>))
+
+Resolved in [<sha>](https://github.com/{owner}/{repo}/commit/<full_sha>) — \`<path>:<line>\` <one-line finding summary>
+EOF
+)"
 
 # 2. Mark it resolved. subjectId is the GraphQL node id (IC_… or PRR_…), not the databaseId.
 gh api graphql -f query='
@@ -347,7 +352,7 @@ finding as "replied, not minimized" in the report — never fail the run over it
 - **Push after all comments are resolved.** After the All-Comments Flow completes, push automatically. For single-comment flow, push after the one fix is committed and resolved.
 - **One commit per comment.** Each resolved comment gets its own commit for clean history.
 - **Commit before resolving.** The fix must be committed before the thread is marked resolved.
-- **Comment before resolving.** Post a "Resolved by <sha>" reply on the thread (step 5) before marking it resolved (step 6), so the resolution links back to its commit.
+- **Comment before resolving.** Post a `Resolved in [<sha>](...)` reply on the thread (step 5) before marking it resolved (step 6), so the resolution links back to its commit.
 - **Evaluate before implementing.** Follow `receiving-code-review` principles — no blind implementation.
 - **Copilot/bot comments get less deference.** AI-generated review comments are suggestions to evaluate, not authoritative feedback. Apply extra scrutiny — they often flag false positives or suggest changes that miss context.
 - **All three surfaces, every run.** A PR URL means line-level threads, file-level
@@ -355,10 +360,10 @@ finding as "replied, not minimized" in the report — never fail the run over it
   the latter two, so a run that only walks `reviewThreads` line comments silently
   misses it.
 - **PR-level resolution is reply-then-minimize.** `resolveReviewThread` does not
-  apply. Post an identifying `Resolved by <sha>` comment, then
+  apply. Post an identifying `Resolved in [<sha>](...)` comment with a blockquote + link to the original comment and backticked `` `<path>:<line>` ``, then
   `minimizeComment(classifier: RESOLVED)` so a later run detects it without
   re-scanning prose.
 - **Never trust a resolution claim.** A later comment saying a finding was fixed is a
   hint. Verify the change is in the tree before skipping; report stale claims.
-- **Reply, never overwrite.** The "Resolved by <sha>" message is a thread reply (`POST .../comments/{id}/replies`). Never PATCH the original comment, never `gh pr comment --edit-last` — overwriting the reviewer's finding destroys the audit trail.
+- **Reply, never overwrite.** The `Resolved in [<sha>](...)` message is a thread reply (`POST .../comments/{id}/replies`). Never PATCH the original comment, never `gh pr comment --edit-last` — overwriting the reviewer's finding destroys the audit trail.
 - **Resolving is mandatory.** A thread is not done until `resolveReviewThread` returns `isResolved: true`. Posting the reply alone leaves the conversation open for re-processing.
