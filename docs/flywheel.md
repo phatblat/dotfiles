@@ -45,7 +45,7 @@ a better model.
 | Mechanism | Once per 30-day window, and when `just harness-probe` reports a harness or model upgrade, run `just flywheel-report --since 30`. It joins the outcome and scaffold ledgers with `scripts/harness-sessions.py` aggregates and prints counts only. Feed it through the `optimize-harness` skill and write dated, evidence-cited findings (ID, evidence, proposed change, disposition) to `docs/flywheel/findings/YYYY-MM-DD.md`. Findings stay out of `docs/harness/`, where `harness-generate` deletes unknown `*.md` files as orphans. Replay cases: none yet. |
 | Implementation | `scripts/flywheel-report.py`, `just flywheel-report`, `scripts/harness-sessions.py`, `~/.agents/skills/optimize-harness/SKILL.md` |
 | Cadence | Every 30 days, and when `just harness-probe` reports a harness or model upgrade. |
-| Evidence | `docs/flywheel/findings/2026-10-26.md`, `docs/flywheel/findings/2026-11-08.md`, `docs/flywheel/findings/2026-11-20.md`, `docs/flywheel/findings/2026-11-25.md` |
+| Evidence | `docs/flywheel/findings/2026-10-26.md`, `docs/flywheel/findings/2026-11-08.md`, `docs/flywheel/findings/2026-11-20.md`, `docs/flywheel/findings/2026-11-25.md`, `docs/flywheel/findings/2026-11-26.md` |
 | Status | implemented |
 
 ## 4. Apply
@@ -58,7 +58,7 @@ behind human review.
 | Mechanism | Every finding gets a disposition in its findings file's Disposition column, and the Cycle log's Changes column cites it by ID: `applied` with the commit, or `declined` with a reason. Applied changes are human-reviewed commits that cite the finding ID, made through the `retro` skill, `scripts/agent-harnesses.py`, `scripts/harness-apply.py`, or OMP `learn`/`manage_skill`, under `.agents/harness/self-improve-policy.json`. Agents never edit control-plane files (`[control_plane]` in `~/.config/ness/policy.toml`); those changes go to `~/.local/state/flywheel/dotfiles/patches/` for a human to apply. |
 | Implementation | `docs/flywheel/findings/2026-10-26.md`, `.agents/harness/self-improve-policy.json`, `~/.local/state/flywheel/dotfiles/patches` |
 | Cadence | After each Learn run, within the 30-day window. |
-| Evidence | `docs/flywheel/findings/2026-10-26.md`, `docs/flywheel/findings/2026-11-08.md`, `docs/flywheel/findings/2026-11-20.md`, `docs/flywheel/findings/2026-11-25.md` |
+| Evidence | `docs/flywheel/findings/2026-10-26.md`, `docs/flywheel/findings/2026-11-08.md`, `docs/flywheel/findings/2026-11-20.md`, `docs/flywheel/findings/2026-11-25.md`, `docs/flywheel/findings/2026-11-26.md` |
 | Status | implemented |
 
 ## 5. Prune
