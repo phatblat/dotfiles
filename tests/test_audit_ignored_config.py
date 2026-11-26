@@ -129,6 +129,22 @@ class HomeScanTests(unittest.TestCase):
         self.assertEqual(record["kind"], "config")
         self.assertEqual(record["path"], ".omp/agent/managed-skills/nightly-batch/SKILL.md")
 
+    def test_gemini_identity_trust_and_app_state_are_never_candidates(self) -> None:
+        # Account identity and folder trust are never tracked; state.json is a
+        # tips counter and settings.json holds only the app-written auth type.
+        for rel in (
+            ".gemini/google_accounts.json",
+            ".gemini/trustedFolders.json",
+            ".gemini/state.json",
+            ".gemini/settings.json",
+        ):
+            self.write_home(rel, '{"k": 1}\n')
+        kinds = {record["path"]: record["kind"] for record in self.scan()}
+        self.assertEqual(
+            kinds,
+            {".gemini/settings.json": "state", ".gemini/state.json": "state"},
+        )
+
 class NewStateCategoryTests(unittest.TestCase):
     def setUp(self) -> None:
         tmp = tempfile.TemporaryDirectory()
