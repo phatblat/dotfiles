@@ -11,7 +11,8 @@ counterpart — where to look and what has already been investigated.
 - Files worth reading: `~/.claude/settings.json` (hooks, permissions,
   enabledPlugins), `~/.claude/hooks/scripts/`,
   `~/.claude/projects/*/settings.json` (project-level allowlists promotable
-  to global), `~/.claude/logs/tool-failures.log`.
+  to global), `~/.claude/logs/tool-failures.log`,
+  `~/.claude/logs/permission-denied.log`.
 - Session store: `~/.claude/projects/*/*.jsonl` — see
   `docs/agent-session-transcripts.md#claude`.
 

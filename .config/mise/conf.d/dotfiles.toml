@@ -2154,6 +2154,11 @@ source = "~/dev/dotfiles/.claude/hooks/scripts/flywheel-outcome.sh"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/hooks/scripts/permission-denied.sh"]
+source = "~/dev/dotfiles/.claude/hooks/scripts/permission-denied.sh"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/hooks/scripts/posttooluse-failure.sh"]
 source = "~/dev/dotfiles/.claude/hooks/scripts/posttooluse-failure.sh"
 mode = "symlink"

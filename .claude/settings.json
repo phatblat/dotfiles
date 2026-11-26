@@ -58,6 +58,17 @@
         "matcher": ""
       }
     ],
+    "PermissionDenied": [
+      {
+        "hooks": [
+          {
+            "command": "bash ~/.claude/hooks/scripts/permission-denied.sh",
+            "timeout": 3,
+            "type": "command"
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "hooks": [

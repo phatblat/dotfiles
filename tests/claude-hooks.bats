@@ -243,3 +243,35 @@ EOF
     out="$(printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh" 2>/dev/null)"
     [ "$out" = '{"systemMessage":"Auto-formatted and staged changed files before commit."}' ]
 }
+
+@test "permission denied: logs tool and first command word only" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"fd --exec rm secret-arg"}}'
+    [ "$status" -eq 0 ]
+    [ -z "$output" ]
+    grep -Eq 'DENY tool=Bash cmd=fd$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'secret-arg' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: env assignments are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"TOKEN=abc123 curl example.com"}}'
+    [ "$status" -eq 0 ]
+    grep -Eq 'cmd=<env-assign>$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'abc123' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: tab and newline separated arguments are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"/usr/bin/fd\tsecret-tab\ncat<<EOF"}}'
+    [ "$status" -eq 0 ]
+    [ "$(wc -l < "$home/.claude/logs/permission-denied.log")" -eq 1 ]
+    grep -Eq 'DENY tool=Bash cmd=fd$' "$home/.claude/logs/permission-denied.log"
+    ! grep -Eq 'secret-tab|EOF' "$home/.claude/logs/permission-denied.log"
+}
