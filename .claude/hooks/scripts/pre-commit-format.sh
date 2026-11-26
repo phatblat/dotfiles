@@ -4,8 +4,8 @@ set -euo pipefail
 # Run `just format` before git commit — but only in the repository the command
 # actually targets, never the hook's own checkout.
 #
-# Fires on every Bash PreToolUse — gate on the command first so the repo-wide
-# format sweep only pays for itself on actual commit paths.
+# settings.json runs this only for `Bash(git commit*)` and `Bash(git -C * commit*)`;
+# the command gate below is a second layer for commit forms those `if` filters miss.
 input="$(cat)"
 if ! command -v jq >/dev/null; then
   # Fail open: a formatter must never block commits when jq is unavailable.
