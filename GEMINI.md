@@ -1,6 +1,6 @@
 # phatblat's dotfiles
 
-This repository manages the shell environment, system configurations, and tool versions for a highly customized development setup across multiple Macs. It is maintained directly in the user's `$HOME` directory (`/Users/phatblat/`).
+This repository manages the shell environment, system configurations, and tool versions for a highly customized development setup across multiple Macs. It is maintained in a git checkout at `~/dev/dotfiles` and deployed into `$HOME` as symlinks by `mise dot`.
 
 ## Project Overview
 

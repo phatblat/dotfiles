@@ -32,7 +32,7 @@ configuration. It hosts four independent source domains:
 | Interactive shell library (fallback) | zsh/bash | `.config/zsh/functions/` |
 | Safety guard binary | Rust | `crates/ness/` |
 | Repo/harness tooling | Python 3 | `scripts/` |
-| Harness runtime adapters | TypeScript | `.omp/agent/`, `.pi/agent/`, `.config/opencode/plugins/`, `.opencode/plugins/` |
+| Harness runtime adapters | TypeScript | `.omp/agent/`, `.pi/agent/`, `.config/opencode/plugins/` |
 
 Repo-only paths (`docs/`, `tests/`, `crates/`, `.github/`, `justfile`, `hk.pkl`,
 `pyproject.toml`) never land in `$HOME`.
@@ -257,7 +257,7 @@ Run from the repo root; `just --list` shows the flat grouped index.
 - Always respond in English, regardless of the language the user writes in. Write new prose, code, code comments, and command output in English; existing non-English artifacts are left as-is unless the user asks for translation.
 - Write for a senior software engineer: assume deep fluency with software design, tooling, and industry terminology. Skip definitions and basic explanations, and spend words on decisions, tradeoffs, risks, and non-obvious details.
 
-**Nested repositories:** Some subdirectories (especially `dev/`) are separate git repos. The working directory is already `~`; run git directly or use `git -C ~` (avoid a redundant `cd ~`), and confirm which repo you are in before committing.
+**Nested repositories:** This repo is checked out at `~/dev/dotfiles` and deployed into `$HOME` as symlinks; `~` itself is not a git repository, and the other directories under `~/dev/` are separate repos. Run git from the checkout or use `git -C ~/dev/dotfiles`, and confirm which repo you are in before committing.
 
 ## Web & Documentation Search (Exa)
 
