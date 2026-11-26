@@ -112,7 +112,7 @@
 "core:python" = "3.15.2"
 "core:ruby" = "4.0.10"
 "core:rust" = "1.100.0"
-"github:can1357/oh-my-pi" = { version = "19.2.0", rename_exe = "omp" }
+"github:can1357/oh-my-pi" = { version = "19.2.1", rename_exe = "omp" }
 "github:cirruslabs/softnet" = "0.26.0"
 "github:DataDog/pup" = "2.7.1"
 "github:Dicklesworthstone/beads_rust" = "0.7.6"
