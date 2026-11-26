@@ -8,18 +8,21 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Harness | Version | First seen | Previous |
 |---|---|---|---|
-| claude | 2.1.331 (Claude Code) | 2026-08-29 | 2.1.330 (Claude Code) |
-| codex | codex-cli 0.171.0 | 2026-08-29 | codex-cli 0.170.0 |
+| claude | - | 2026-08-29 | 2.1.331 (Claude Code) |
+| codex | codex-cli 0.172.0 | 2026-08-29 | codex-cli 0.171.0 |
 | opencode | opencode v2.4.1 | 2026-08-29 | opencode v2.4.0 |
 | pi | 1.6.0 | 2026-08-29 | 1.5.2 |
 | omp | omp/19.1.1 | 2026-08-29 | omp/19.0.1 |
-| antigravity | 1.5.15 | 2026-08-29 | 1.5.14 |
+| antigravity | 1.5.16 | 2026-08-29 | 1.5.15 |
 | crush | crush version v0.102.0 | 2026-08-29 | crush version v0.101.0 |
 
 ## Records
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-26 | codex | - | version | codex-cli 0.171.0 | codex-cli 0.172.0 | codex-cli 0.172.0 |
+| 2026-11-26 | claude | - | version | 2.1.331 (Claude Code) | - | - |
+| 2026-11-26 | antigravity | - | version | 1.5.15 | 1.5.16 | 1.5.16 |
 | 2026-11-25 | opencode | - | version | opencode v2.4.0 | opencode v2.4.1 | opencode v2.4.1 |
 | 2026-11-25 | claude | - | version | 2.1.330 (Claude Code) | 2.1.331 (Claude Code) | 2.1.331 (Claude Code) |
 | 2026-11-24 | opencode | - | version | - | opencode v2.4.0 | opencode v2.4.0 |
@@ -217,6 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-10-08 | pi | - | version | 1.0.1 | 1.0.3 | 1.0.3 |
 | 2026-10-08 | omp | - | version | omp/18.6.1 | omp/18.8.3 | omp/18.8.3 |
 | 2026-10-08 | grok | - | version | grok 1.0.46 (2765805b9442) [alpha] | grok 1.0.46 (2765805b9442) | grok 1.0.46 (2765805b9442) |
-| 2026-10-08 | cursor | - | version | 2026.09.28-64d2043 | 2026.09.15-d2fe57e | 2026.09.15-d2fe57e |
-| 2026-10-08 | codex | - | version | codex-cli 0.160.0 | codex-cli 0.160.1 | codex-cli 0.160.1 |
-| 2026-10-08 | claude | - | version | 2.1.285 (Claude Code) | 2.1.251 (Claude Code) | 2.1.251 (Claude Code) |

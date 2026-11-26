@@ -419,3 +419,6 @@
 {"capability":"-","date":"2026-11-24","detail":"","field":"version","from":"","harness":"opencode","to":"opencode v2.4.0","version_from":"","version_to":"opencode v2.4.0"}
 {"capability":"-","date":"2026-11-25","detail":"","field":"version","from":"2.1.330 (Claude Code)","harness":"claude","to":"2.1.331 (Claude Code)","version_from":"2.1.330 (Claude Code)","version_to":"2.1.331 (Claude Code)"}
 {"capability":"-","date":"2026-11-25","detail":"","field":"version","from":"opencode v2.4.0","harness":"opencode","to":"opencode v2.4.1","version_from":"opencode v2.4.0","version_to":"opencode v2.4.1"}
+{"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"1.5.15","harness":"antigravity","to":"1.5.16","version_from":"1.5.15","version_to":"1.5.16"}
+{"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"2.1.331 (Claude Code)","harness":"claude","to":"","version_from":"2.1.331 (Claude Code)","version_to":""}
+{"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"codex-cli 0.171.0","harness":"codex","to":"codex-cli 0.172.0","version_from":"codex-cli 0.171.0","version_to":"codex-cli 0.172.0"}

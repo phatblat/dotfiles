@@ -1,18 +1,18 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.5.14",
-    "version": "1.5.15"
+    "previous": "1.5.15",
+    "version": "1.5.16"
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.330 (Claude Code)",
-    "version": "2.1.331 (Claude Code)"
+    "previous": "2.1.331 (Claude Code)",
+    "version": ""
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.170.0",
-    "version": "codex-cli 0.171.0"
+    "previous": "codex-cli 0.171.0",
+    "version": "codex-cli 0.172.0"
   },
   "crush": {
     "first_seen": "2026-08-29",
