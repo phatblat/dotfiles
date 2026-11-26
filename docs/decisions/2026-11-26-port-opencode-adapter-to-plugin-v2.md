@@ -22,16 +22,12 @@ This is a proposal that is **awaiting review**.
 - `scripts/agent-harnesses.py` and `scripts/harness_policy.py` are control-plane files: an agent delivers patches and a human applies them.
 - The port keeps the guard's fail-closed behaviour (a guard error or unparseable output is a deny) and its 5,000 ms timeout.
 - The V2 plugin API is unverified. The V2 tool names (`shell` and the patch tool) and the way a hook signals a denial were seen only as strings in the 2.4.1 binary.
-- Usage data cannot inform the port: the 30-day session scan lists one opencode database and no opencode guard observations, so nothing can be measured beforehand.
+- Usage data cannot inform the port: the 30-day session scan lists one opencode database, and the findings cite no opencode friction count, so nothing can be measured beforehand.
 - `opencode debug config` exits 0 without loading plugins, so it cannot serve as the probe.
 
 ## Argument
 
-Port the plugin and replace the probe with one that fails when the plugin does not load. **Chosen.** It is the only option that restores the guard and also makes the registry report the truth: the present gap went unnoticed because the probe proves the file mentions ness, not that opencode loads it.
-
-Keep the V1 plugin and wait for upstream compatibility. **Rejected.** Waiting leaves opencode unguarded for an open-ended period behind an `aligned` cell.
-
-Drop opencode support. **Rejected** unless the owner retires the harness: it removes the gap by removing the harness, which is the owner's call and not a repair.
+Porting with a probe that fails when the plugin does not load is the only option that both restores the guard and makes the registry report the truth: the gap went unnoticed because the present probe proves the file mentions ness, not that opencode loads it. Waiting for upstream compatibility leaves opencode unguarded for an open-ended period behind an `aligned` cell. Dropping the harness closes the gap by removing the thing guarded, which is the owner's call and not a repair.
 
 ## Architectural Decision
 
@@ -43,6 +39,6 @@ Drop opencode support. **Rejected** unless the owner retires the harness: it rem
 
 ## Positions
 
-- **Port to V2 with a load-proving probe.** Chosen: see Argument.
-- **Keep the V1 plugin and wait for upstream compatibility.** Rejected: the 2.4.1 binary carries no V1 hook name and a V1-to-V2 migration notice that points at a plugins guide, so the break reads as intentional and no compatibility layer is in sight.
-- **Drop opencode support.** Rejected unless the owner says the harness is retired. [2026-11-08-remove-cursor-and-grok-harness-support](./2026-11-08-remove-cursor-and-grok-harness-support.md) shows that retiring a harness is an available choice.
+- Port to V2 with a load-proving probe. **Chosen.** It restores the guard, and the new probe turns a silent load failure into a failing cell.
+- Keep the V1 plugin and wait for upstream compatibility. **Rejected.** The 2.4.1 binary carries no V1 hook name and a V1-to-V2 migration notice that points at a plugins guide, so the break reads as intentional and no compatibility layer is in sight.
+- Drop opencode support. **Rejected.** This stands unless the owner says the harness is retired, which [2026-11-08-remove-cursor-and-grok-harness-support](./2026-11-08-remove-cursor-and-grok-harness-support.md) shows is an available choice.
