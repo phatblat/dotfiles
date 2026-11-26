@@ -20,7 +20,13 @@ function guard(args: string[], cwd: string): GuardResult {
     return JSON.parse(output) as GuardResult;
   } catch (error: any) {
     const output = error?.stdout?.toString?.() || "";
-    if (output) return JSON.parse(output) as GuardResult;
+    if (output) {
+      try {
+        return JSON.parse(output) as GuardResult;
+      } catch {
+        return { decision: "deny", reason: "Shared guard failed closed" };
+      }
+    }
     return { decision: "deny", reason: "Shared guard failed closed" };
   }
 }

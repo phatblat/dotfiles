@@ -1394,7 +1394,13 @@ function guard(args: string[], cwd: string): GuardResult {
     return JSON.parse(output) as GuardResult;
   } catch (error: any) {
     const output = error?.stdout?.toString?.() || "";
-    if (output) return JSON.parse(output) as GuardResult;
+    if (output) {
+      try {
+        return JSON.parse(output) as GuardResult;
+      } catch {
+        return { decision: "deny", reason: "Shared guard failed closed" };
+      }
+    }
     return { decision: "deny", reason: "Shared guard failed closed" };
   }
 }
@@ -1498,7 +1504,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
-type GuardResult = { decision: "allow" | "warn" | "deny"; reason?: string };
+type GuardResult = { decision: "allow" | "warn" | "deny" | "prompt"; reason?: string };
 
 function guard(args: string[]): GuardResult {
   const ness = join(homedir(), ".local", "bin", "ness");
@@ -1511,7 +1517,13 @@ function guard(args: string[]): GuardResult {
     return JSON.parse(output) as GuardResult;
   } catch (error: any) {
     const output = error?.stdout?.toString?.() || "";
-    if (output) return JSON.parse(output) as GuardResult;
+    if (output) {
+      try {
+        return JSON.parse(output) as GuardResult;
+      } catch {
+        return { decision: "deny", reason: "Shared guard failed closed" };
+      }
+    }
     return { decision: "deny", reason: "Shared guard failed closed" };
   }
 }
@@ -1521,7 +1533,7 @@ export default function (pi: ExtensionAPI) {
     ctx.ui.setStatus("harness", "shared harness");
   });
 
-  pi.on("tool_call", async (event) => {
+  pi.on("tool_call", async (event, ctx) => {
     let result: GuardResult = { decision: "allow" };
     if (event.toolName === "bash") {
       result = guard(["--tool", "bash", "--command", String(event.input.command || "")]);
@@ -1533,6 +1545,11 @@ export default function (pi: ExtensionAPI) {
       result = guard(["--tool", "edit", "--path", String(event.input.path || ""), "--content", content]);
     }
     if (result.decision === "deny") return { block: true, reason: result.reason || "Blocked by shared harness guard" };
+    if (result.decision === "prompt") {
+      if (!ctx.hasUI) return { block: true, reason: result.reason || "Blocked by shared harness guard: no UI to confirm" };
+      const ok = await ctx.ui.confirm("Shared harness guard", result.reason || "Allow this command?");
+      if (!ok) return { block: true, reason: result.reason || "Not approved" };
+    }
     return undefined;
   });
 }
