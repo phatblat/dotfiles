@@ -18,7 +18,7 @@ Note: Dependency metadata is advisory unless the harness enforces it.
 | claude | aligned | adapter | `.mcp.json`, settings, or agent `mcpServers` | local · - · - | - |
 | codex | partial | none | `agents/openai.yaml` `dependencies.tools` plus `config.toml` MCP | local · - · - | - |
 | opencode | aligned | adapter | `mcp` config | local · - · - | - |
-| pi | aligned | adapter | Extension or future MCP bridge | local · - · - | - |
+| pi | aligned | adapter | Built-in MCP (`~/.pi/agent/mcp.json`), none configured | local · - · - | - |
 | omp | aligned | adapter | ~/.omp/agent/mcp.json | local · - · - | - |
 | antigravity | aligned | adapter | Generated `mcp_config.json` | local · - · - | - |
 | crush | absent | none | ~/.config/crush/crush.json is a protected credential path; no CLI mcp subcommand | runtime · - · - | - |

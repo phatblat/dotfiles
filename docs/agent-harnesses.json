@@ -138,6 +138,7 @@
         },
         "pi": {
           "artifacts": [
+            "~/.pi/agent/AGENTS.md",
             "~/.agents/harness"
           ],
           "divergence": "",
@@ -2361,7 +2362,7 @@
           },
           "mode": "adapter",
           "next_action": "Configure a crush provider and verify a commands.obfuscated bash call is blocked through the generated crushrc PreToolUse hook",
-          "note": "generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush v0.101.0 is installed and its tool names match the matcher, but no provider is configured, so live blocking is unverified",
+          "note": "generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush v0.102.0 is installed and its tool names match the matcher, but no provider is configured, so live blocking is unverified",
           "parity": "partial",
           "probe": {
             "kind": "file_contains",
@@ -2880,7 +2881,7 @@
           "note": "",
           "parity": "absent",
           "probe": null,
-          "surface": "sandbox_mode enum only; no per-command allowlist"
+          "surface": "`prefix_rule` entries in ~/.codex/rules/*.rules; sandbox_mode enum"
         },
         "crush": {
           "artifacts": [],
@@ -2896,7 +2897,7 @@
           "note": "",
           "parity": "absent",
           "probe": null,
-          "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
+          "surface": "`permissions allow`/`deny` in crushrc, none configured; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
         },
         "omp": {
           "artifacts": [],
@@ -3134,7 +3135,7 @@
           },
           "mode": "native",
           "next_action": "",
-          "note": "Resolved default: read-only",
+          "note": "Resolved default: workspace-write",
           "parity": "aligned",
           "probe": null,
           "surface": "`sandbox_mode`"
@@ -3342,7 +3343,7 @@
           "note": "",
           "parity": "aligned",
           "probe": null,
-          "surface": "Extension or future MCP bridge"
+          "surface": "Built-in MCP (`~/.pi/agent/mcp.json`), none configured"
         }
       },
       "contract": "A skill or agent that needs an MCP server declares it where the harness can act on the declaration.",

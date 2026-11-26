@@ -189,7 +189,7 @@ CAPABILITIES: list[Capability] = [
             "pi": Cell(
                 parity="aligned",
                 mode="shared",
-                artifacts=(_SHARED,),
+                artifacts=("~/.pi/agent/AGENTS.md", _SHARED),
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
@@ -968,7 +968,7 @@ CAPABILITIES: list[Capability] = [
                 note=(
                     "generated crush PreToolUse shim execs the compiled guard, "
                     "which maps crush's snake_case payload and blocks with exit "
-                    "2; crush v0.101.0 is installed and its tool names match "
+                    "2; crush v0.102.0 is installed and its tool names match "
                     "the matcher, but no provider is configured, so live "
                     "blocking is unverified"
                 ),
@@ -1053,7 +1053,7 @@ CAPABILITIES: list[Capability] = [
             ),
             "codex": Cell(
                 parity="absent",
-                surface="sandbox_mode enum only; no per-command allowlist",
+                surface="`prefix_rule` entries in ~/.codex/rules/*.rules; sandbox_mode enum",
                 evidence=Evidence(kind="docs", ref="codex config.toml reference"),
             ),
             "pi": Cell(
@@ -1067,7 +1067,7 @@ CAPABILITIES: list[Capability] = [
             "crush": Cell(
                 parity="absent",
                 surface=(
-                    "No native permission-rule surface; the shared guard runs via "
+                    "`permissions allow`/`deny` in crushrc, none configured; the shared guard runs via "
                     "~/.config/crush/hooks/harness-guard.sh"
                 ),
                 evidence=Evidence(kind="docs", ref="crush CLI config reference"),
@@ -1133,7 +1133,7 @@ CAPABILITIES: list[Capability] = [
                 mode="native",
                 surface="`sandbox_mode`",
                 evidence=Evidence(kind="local", ref="~/.codex/config.toml"),
-                note="Resolved default: read-only",
+                note="Resolved default: workspace-write",
             ),
             "pi": Cell(
                 parity="aligned",
@@ -1188,7 +1188,7 @@ CAPABILITIES: list[Capability] = [
             "pi": Cell(
                 parity="aligned",
                 mode="adapter",
-                surface="Extension or future MCP bridge",
+                surface="Built-in MCP (`~/.pi/agent/mcp.json`), none configured",
                 artifacts=("~/.pi/agent/mcp.json",),
                 evidence=Evidence(kind="local", ref="just harness-check"),
             ),
