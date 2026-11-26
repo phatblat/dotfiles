@@ -8,10 +8,11 @@ The 2026-11-26 audit made the vendored `gh-stack` skill model-invocable again in
 
 ## Outcome
 
-A model that loads `gh-stack` on its own cannot be led to `gh stack submit` against the house rule: either `gh-stack` is explicit-only again, or it carries or points at the `git-stack` constraint.
+A model that loads `gh-stack` on its own cannot be led to `gh stack submit` against the house rule.
 
 ## Notes
 
 - `.agents/skills/gh-stack/SKILL.md:57` says "Always use `--auto` with `gh stack submit`"; lines 149-150, 234, and 521-528 repeat the command.
 - `.agents/skills/git-stack/SKILL.md:178` says "Never run the `submit` subcommand — it auto-generates PR titles/bodies, conflicting with this repo's `pr-style` conventions."
 - OMP already advertises both skills.
+- Two ways to get there: make `gh-stack` explicit-only again, or have it carry or point at the `git-stack` constraint. Making `gh-stack` explicit-only again would undo finding L28's removal of its `agents/openai.yaml` flag.

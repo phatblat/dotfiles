@@ -8,7 +8,7 @@ Priority: Low
 
 ## Outcome
 
-The skill either describes the right product for each harness that loads it, or it is deleted.
+The skill either describes the right product for each harness that loads it, or it is deleted. Either `grep -c '\.Codex' .agents/skills/boris/SKILL.md` prints 0, or the skill directory and the `boris` entry in `tests/agent-harnesses.bats` are gone.
 
 ## Notes
 
