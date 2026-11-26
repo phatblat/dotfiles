@@ -59,7 +59,7 @@
 "aqua:koalaman/shellcheck" = "0.11.0"
 "aqua:ktlint/ktlint" = "1.8.0"
 "aqua:kubernetes-sigs/kind" = "0.33.0"
-"aqua:kubernetes/kubernetes/kubectl" = "1.37.2"
+"aqua:kubernetes/kubernetes/kubectl" = "1.37.3"
 "aqua:lsd-rs/lsd" = "1.2.0"
 "aqua:LuaLS/lua-language-server" = "3.19.2"
 "aqua:luau-lang/luau" = "0.748"
