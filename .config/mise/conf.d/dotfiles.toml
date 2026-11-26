@@ -204,6 +204,11 @@ source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/flywheel/SK
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md"]
+source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.agents/harness/adapters/antigravity/skills/git-resolve-conflicts/SKILL.md"]
 source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/git-resolve-conflicts/SKILL.md"
 mode = "symlink"
@@ -801,11 +806,6 @@ relative = false
 
 [dotfiles."~/.agents/skills/git-commit/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/git-commit/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/skills/git-commit/agents/openai.yaml"]
-source = "~/dev/dotfiles/.agents/skills/git-commit/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
