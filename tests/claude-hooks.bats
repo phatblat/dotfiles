@@ -228,3 +228,18 @@ make_git_homedir() {
     grep -q 'args=format --quiet' "$log"
     [ ! -s "$hk_log" ]
 }
+
+@test "commit format: formatter output stays off hook stdout" {
+    repo="$BATS_TEST_TMPDIR/noisy"
+    mkdir -p "$repo"; make_repo "$repo"
+    printf 'a\n' > "$repo/noisy.txt"
+    git -C "$repo" add noisy.txt
+    git -C "$repo" commit -qm "add file"
+    cat > "$repo/justfile" << 'EOF'
+format:
+    @echo "formatter chatter"
+    @printf 'b\n' >> noisy.txt
+EOF
+    out="$(printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh" 2>/dev/null)"
+    [ "$out" = '{"systemMessage":"Auto-formatted and staged changed files before commit."}' ]
+}
