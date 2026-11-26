@@ -68,7 +68,6 @@
     },
     "gcpRegion": "us",
     "permissionGrantsV2Migrated": true,
-    "remoteControlHostname": "dto-a165-chatelain-zero-rocket",
     "sandboxEnabledAtV2Migration": true
   }
 }

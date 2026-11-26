@@ -93,7 +93,7 @@ git-filters:
     @echo "Git filter 'antigravity-settings' installed (strips trustedWorkspaces from ~/.gemini/antigravity-cli/settings.json)"
     @echo "Git filter 'claude-json' installed (allowlists MCP fields from ~/.claude.json)"
     @echo "Git filter 'claude-desktop-config' installed (strips UI state from ~/Library/Application Support/Claude/claude_desktop_config.json)"
-    @echo "Git filter 'gemini-config' installed (blanks plugin installedFrom.version and drops sidecars in ~/.gemini/config/config.json)"
+    @echo "Git filter 'gemini-config' installed (blanks plugin installedFrom.version, drops sidecars and userSettings.remoteControlHostname in ~/.gemini/config/config.json)"
 
 # Re-stages clean-filtered paths so `git status` stops reporting phantom edits
 #
