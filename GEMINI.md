@@ -45,6 +45,6 @@ The `justfile` in the root directory provides a wide range of utility recipes:
 
 - **Tool Pinning:** Critical tools are often pinned to specific versions in `~/.config/mise/config.toml`.
 - **Linting:** Shell scripts and Python scripts are strictly linted using `shellcheck`, `shfmt`, `shellharden`, and `ruff`.
-- **Testing:** New shell functions or significant script changes should be verified with `bats` tests in `~/tests/`.
+- **Testing:** New shell functions or significant script changes should be verified with `bats` tests in `tests/` of the checkout.
 - **Configuration Management:** Prefer adding new tools via `just add <tool>` to ensure they are tracked in the `mise` configuration.
-- **Git State:** The repository is intentionally kept at the root of `$HOME` to ensure visibility of changes in the terminal prompt.
+- **Git State:** The repository is a checkout at `~/dev/dotfiles`; `mise dot` links its tracked files into `$HOME`, so `~` itself is not a git repository.
