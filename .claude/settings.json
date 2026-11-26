@@ -387,6 +387,7 @@
       "Read(~/.codex/auth.json)",
       "Read(~/.config/crush/crush.json)",
       "Read(~/.docker/config.json)",
+      "Read(~/.env)",
       "Read(~/.gemini/google_accounts.json)",
       "Read(~/.gemini/oauth_creds.json)",
       "Read(~/.git-credentials)",
