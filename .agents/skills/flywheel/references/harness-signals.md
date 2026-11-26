@@ -12,7 +12,7 @@ with every release. Re-verify a row against the harness's primary docs (the
 |---|---|---|
 | `CLAUDE.md`, `.claude/` | Claude Code | `claude` |
 | `.codex/` | Codex | `codex` |
-| `GEMINI.md`, `.gemini/` | Gemini CLI / Antigravity | `antigravity` |
+| `GEMINI.md`, `.gemini/` | Antigravity | `antigravity` |
 | `opencode.json`, `.opencode/` | OpenCode | `opencode` |
 | `.pi/` | Pi | `pi` |
 | `.omp/` | Oh My Pi | `omp` |

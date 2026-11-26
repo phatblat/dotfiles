@@ -137,10 +137,6 @@
 "npm:@babel/cli" = "8.1.0"
 "npm:@deepseek-ai/dsh" = "0.1.1-rc.2"
 "npm:@getpaseo/cli" = "0.17.4"
-"npm:@google/gemini-cli" = { version = "0.71.1", allow_builds = [
-  "@github/keytar",
-  "node-pty",
-] }
 "npm:@googleworkspace/cli" = "0.22.5"
 "npm:@opencode/cli" = { version = "2.4.1", allow_builds = ["@opencode/cli"] }
 "npm:@sentry/wizard" = "9.1.0"

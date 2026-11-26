@@ -9634,11 +9634,6 @@ source = "~/dev/dotfiles/.gemini/antigravity-cli/keybindings.json"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.gemini/settings.json"]
-source = "~/dev/dotfiles/.gemini/settings.json"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.gemrc"]
 source = "~/dev/dotfiles/.gemrc"
 mode = "symlink"
