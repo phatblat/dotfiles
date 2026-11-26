@@ -193,7 +193,7 @@ CAPABILITIES: list[Capability] = [
                 evidence=Evidence(
                     kind="probe", ref="file_exists", date=_PROBED_2026_08_29
                 ),
-                probe=_exists(".agents/harness/instructions.md"),
+                probe=_exists(".pi/agent/AGENTS.md"),
             ),
             "omp": Cell(
                 parity="aligned",

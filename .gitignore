@@ -547,6 +547,7 @@
 .pi/agent/*/**/sessions/**
 .pi/agent/*/**/trust.json
 !.pi/agent/*/**/
+!.pi/agent/AGENTS.md
 .pi/agent/extensions/cmux-session.ts
 !.pi/agent/extensions/
 !.pi/agent/mcp.json

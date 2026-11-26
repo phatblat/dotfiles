@@ -10419,6 +10419,11 @@ source = "~/dev/dotfiles/.pdbrc"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.pi/agent/AGENTS.md"]
+source = "~/dev/dotfiles/.pi/agent/AGENTS.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.pi/agent/extensions/harness.ts"]
 source = "~/dev/dotfiles/.pi/agent/extensions/harness.ts"
 mode = "symlink"
