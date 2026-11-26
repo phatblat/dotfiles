@@ -227,7 +227,7 @@ with new measurements, not with a fresh reading of the same config.
 - **2026-11-26 OMP edit `unseen_lines` (206 of 371 edit errors, 3,590 attempts in 30 days) is agent behavior**, the same family as the closed `stale_anchor` item: the model edits lines it has not read. No config lever was found.
 - **2026-11-26 the 30-day OMP `interceptor` (504) and `guard` (16) counts are residue.** Both are 0 from 2026-11-16 onward, so `bashInterceptor` and the ness hook are still disabled.
 - **2026-11-26 the OMP `sudo` deny does not reach `eval`, by decision.** A `bash.patterns` deny covers the `bash` tool only (`omp://approval-mode.md`); `tools.approval.eval: prompt` would reject in headless subagents. Flag only a change to `approvalMode`.
-- **2026-11-26 generated Claude commands stay model-invocable.** `CLAUDE.md` relies on `/git:commit`; the duplicate slash entries beside manual-only skills are accepted.
+- **2026-11-26 generated Claude commands stay model-invocable.** `.claude/CLAUDE.md` relies on `/git:commit`; the duplicate slash entries beside manual-only skills are accepted.
 - **2026-11-26 Pi `sessionDir` stays pinned to the default root.** Removing it changes the on-disk layout and orphans existing sessions for `--resume`; the cost is negligible at 19 session files.
 - **2026-11-26 two pending patches against the same hunk cannot both apply.** Check `git apply --check` for each patch in sequence, in a scratch copy, before reporting a patch set as pending.
 - **2026-11-26 a V1-shaped opencode plugin is not proven loaded by `opencode debug config`**, which exits 0 without loading plugins. Proof is a blocked call in a live session, or the plugin-load lines in opencode's own log.

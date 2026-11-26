@@ -31,14 +31,14 @@ The `justfile` in the root directory provides a wide range of utility recipes:
 
 ### Verification
 - `just lint`: Run all linting checks (Python, Zsh, Nushell, bin scripts, and `.gitignore`).
-- `just test`: Run automated tests using [bats](https://github.com/bats-core/bats-core) located in `~/tests/`.
+- `just test`: Run automated tests using [bats](https://github.com/bats-core/bats-core) located in `tests/` of the checkout.
 
 ## Directory Structure
 
 - `~/.config/`: Configuration files for most tools (Zsh, Nushell, Zed, mise, home-manager, etc.).
 - `~/scripts/`: Custom maintenance scripts (e.g., `sort-gitignore`, `sort-tools.py`).
 - `~/bin/`: User-defined executable binaries.
-- `~/tests/`: [bats](https://github.com/bats-core/bats-core) test suites for verifying shell functionality.
+- `tests/` of the checkout: [bats](https://github.com/bats-core/bats-core) test suites for verifying shell functionality.
 - `~/gt/`: Gastown development workspace.
 
 ## Development Conventions
