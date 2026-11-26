@@ -10229,6 +10229,16 @@ source = "~/dev/dotfiles/.omp/profiles/baseten/agent/hooks"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/baseten/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/baseten/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/lsp.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/baseten/agent/mcp.json"]
 source = "~/dev/dotfiles/.omp/profiles/baseten/agent/mcp.json"
 mode = "symlink"
@@ -10276,6 +10286,16 @@ relative = false
 
 [dotfiles."~/.omp/profiles/casper/agent/hooks"]
 source = "~/dev/dotfiles/.omp/profiles/casper/agent/hooks"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/lsp.json"
 mode = "symlink"
 relative = false
 
@@ -10334,6 +10354,16 @@ source = "~/dev/dotfiles/.omp/profiles/reflection/agent/hooks"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/reflection/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/reflection/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/lsp.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/reflection/agent/mcp.json"]
 source = "~/dev/dotfiles/.omp/profiles/reflection/agent/mcp.json"
 mode = "symlink"
@@ -10386,6 +10416,16 @@ relative = false
 
 [dotfiles."~/.omp/profiles/subconscious/agent/hooks"]
 source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/hooks"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/lsp.json"
 mode = "symlink"
 relative = false
 
