@@ -133,7 +133,7 @@ EOF
 format:
     @printf 'b\n' >> "my file.txt"
 EOF
-    printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
+    printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | env XDG_STATE_HOME="$BATS_TEST_TMPDIR/state" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
     git -C "$repo" diff --cached --name-only | grep -qxF "my file.txt"
 }
 
@@ -240,7 +240,7 @@ format:
     @echo "formatter chatter"
     @printf 'b\n' >> noisy.txt
 EOF
-    out="$(printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh" 2>/dev/null)"
+    out="$(printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | env XDG_STATE_HOME="$BATS_TEST_TMPDIR/state" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh" 2>/dev/null)"
     [ "$out" = '{"systemMessage":"Auto-formatted and staged changed files before commit."}' ]
 }
 
