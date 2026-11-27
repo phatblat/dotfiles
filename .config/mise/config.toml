@@ -18,7 +18,7 @@
 "aqua:astral-sh/uv" = "0.13.10"
 "aqua:aws/aws-cli" = { version = "2.42.4", symlink_bins = "true" }
 "aqua:bats-core/bats-core" = "1.14.0"
-"aqua:bazelbuild/bazelisk" = "1.30.0"
+"aqua:bazelbuild/bazelisk" = "1.31.0"
 "aqua:bazelbuild/buildtools/buildifier" = "10.2.0"
 "aqua:bootandy/dust" = "1.2.8"
 "aqua:BurntSushi/ripgrep" = "16.0.0"
