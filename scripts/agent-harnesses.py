@@ -1511,10 +1511,11 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 type GuardResult = { decision: "allow" | "warn" | "deny" | "prompt"; reason?: string };
 
-function guard(args: string[]): GuardResult {
+function guard(cwd: string, args: string[]): GuardResult {
   const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync(ness, ["guard", "--harness", "pi", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "pi", "--cwd", cwd, ...args], {
+      cwd,
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
       timeout: 5000,
@@ -1543,11 +1544,11 @@ export default function (pi: ExtensionAPI) {
     if (event.toolName === "bash") {
       result = guard(ctx.cwd, ["--tool", "bash", "--command", String(event.input.command || "")]);
     } else if (event.toolName === "write") {
-      result = guard(["--tool", "write", "--path", String(event.input.path || ""), "--content", String(event.input.content || "")]);
+      result = guard(ctx.cwd, ["--tool", "write", "--path", String(event.input.path || ""), "--content", String(event.input.content || "")]);
     } else if (event.toolName === "edit") {
       const edits = Array.isArray(event.input.edits) ? event.input.edits : [];
       const content = edits.map((e: any) => String(e?.newText ?? "")).join("\\n");
-      result = guard(["--tool", "edit", "--path", String(event.input.path || ""), "--content", content]);
+      result = guard(ctx.cwd, ["--tool", "edit", "--path", String(event.input.path || ""), "--content", content]);
     }
     if (result.decision === "deny") return { block: true, reason: result.reason || "Blocked by shared harness guard" };
     if (result.decision === "prompt") {
@@ -1555,6 +1556,7 @@ export default function (pi: ExtensionAPI) {
       const ok = await ctx.ui.confirm("Shared harness guard", result.reason || "Allow this command?");
       if (!ok) return { block: true, reason: result.reason || "Not approved" };
     }
+    if (result.decision === "warn" && ctx.hasUI) ctx.ui.notify(result.reason || "Shared harness guard warning", "warning");
     return undefined;
   });
 }
