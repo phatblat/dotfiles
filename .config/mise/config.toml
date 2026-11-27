@@ -160,7 +160,7 @@
 "npm:yarn" = "1.22.22"
 "packslip:github.com/jdx/hk" = { version = "2.14.0", workflow = "release.yml" }
 "pypi:basedpyright" = "1.40.2"
-"pypi:graphifyy" = { version = "0.9.120", python = "3.14" }                                                                      # python 3.14, not the global 3.15: same pypi: interpreter pin as harbor/token-viewer
+"pypi:graphifyy" = { version = "0.9.121", python = "3.14" }                                                                      # python 3.14, not the global 3.15: same pypi: interpreter pin as harbor/token-viewer
 "pypi:harbor" = { version = "0.27.0", python = "3.14" }                                                                          # python 3.14, not the global 3.15: fastuuid (via litellm) cannot build on 3.15 (PyO3 0.26)
 "pypi:pyright" = "1.1.414"
 "pypi:python-lsp-server" = "1.15.0"
