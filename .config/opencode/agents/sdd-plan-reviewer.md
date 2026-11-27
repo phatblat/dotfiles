@@ -4,7 +4,6 @@ description: Review implementation plan for gaps, wrong assumptions, and integra
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

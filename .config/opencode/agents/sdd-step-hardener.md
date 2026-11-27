@@ -4,7 +4,6 @@ description: Verify step completeness, catch emergent issues, and fix what's nee
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

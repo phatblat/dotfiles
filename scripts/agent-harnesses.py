@@ -1171,7 +1171,6 @@ description: {json.dumps(agent["description"])[1:-1]}
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---
@@ -1542,7 +1541,7 @@ export default function (pi: ExtensionAPI) {
   pi.on("tool_call", async (event, ctx) => {
     let result: GuardResult = { decision: "allow" };
     if (event.toolName === "bash") {
-      result = guard(["--tool", "bash", "--command", String(event.input.command || "")]);
+      result = guard(ctx.cwd, ["--tool", "bash", "--command", String(event.input.command || "")]);
     } else if (event.toolName === "write") {
       result = guard(["--tool", "write", "--path", String(event.input.path || ""), "--content", String(event.input.content || "")]);
     } else if (event.toolName === "edit") {

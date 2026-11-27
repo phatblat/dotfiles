@@ -4,7 +4,6 @@ description: Post-implementation review of full diff against plan or intent; fix
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

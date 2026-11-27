@@ -4,7 +4,6 @@ description: Verify the diff's external facts against live sources; fix what is 
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

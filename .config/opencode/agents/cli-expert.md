@@ -4,7 +4,6 @@ description: Expert in building npm package CLIs with Unix philosophy, automatic
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

@@ -4,7 +4,6 @@ description: Nest.js framework expert specializing in module architecture, depen
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---
