@@ -14,8 +14,8 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from harness_paths import (
-    CLI_BINARIES,
     HARNESSES,
+    resolve_cli,
 )
 
 # `provenance` needs only json/os/sys/pathlib and the pure-data harness_paths
@@ -388,7 +388,7 @@ def command_audit(*, json_output: bool) -> int:
     audit = {
         "coverage": state["coverage"],
         "versions": {
-            slug: command_version([CLI_BINARIES[slug], "--version"])
+            slug: command_version([resolve_cli(slug), "--version"])
             for slug in HARNESSES
         },
         "partial": [
@@ -468,7 +468,13 @@ def command_probe(*, harness: str | None = None) -> int:
     for slug in slugs:
         prior = previous_versions.get(slug, {})
         was = prior.get("version", "")
-        now = command_version([CLI_BINARIES[slug], "--version"])
+        now = command_version([resolve_cli(slug), "--version"])
+        if was and not now:
+            # A failed or timed-out `--version` is a probe failure, not a
+            # version change: keep the recorded version so drift never logs
+            # `<version> -> ''` and the next good probe is not a false change.
+            print(f"{'unavailable':>11}  {slug} version: kept {was}")
+            continue
         changed = bool(was) and was != now
         versions[slug] = {
             # first_seen is set once, on the first run that records a version,

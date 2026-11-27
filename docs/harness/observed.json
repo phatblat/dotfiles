@@ -273,7 +273,7 @@
     "permissions.rules": {
       "mode": "none",
       "parity": "absent",
-      "surface": "sandbox_mode enum only; no per-command allowlist"
+      "surface": "`prefix_rule` entries in ~/.codex/rules/*.rules; sandbox_mode enum"
     },
     "sessions.compaction": {
       "date": "2026-11-26",
@@ -376,7 +376,7 @@
     "permissions.rules": {
       "mode": "none",
       "parity": "absent",
-      "surface": "No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
+      "surface": "`permissions allow`/`deny` in crushrc, none configured; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh"
     },
     "sessions.compaction": {
       "date": "2026-11-26",
@@ -681,7 +681,7 @@
     },
     "instructions.global": {
       "date": "2026-11-26",
-      "detail": ".agents/harness/instructions.md",
+      "detail": ".pi/agent/AGENTS.md",
       "mode": "shared",
       "parity": "aligned",
       "result": "pass",
@@ -706,7 +706,7 @@
     "mcp.dependencies": {
       "mode": "adapter",
       "parity": "aligned",
-      "surface": "Extension or future MCP bridge"
+      "surface": "Built-in MCP (`~/.pi/agent/mcp.json`), none configured"
     },
     "models.effort": {
       "mode": "none",

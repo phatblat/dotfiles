@@ -13,12 +13,12 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | partial | adapter | - | probe · - · 2026-11-26 | - |
+| claude | partial | adapter | - | probe · 2.1.332 (Claude Code) · 2026-11-26 | - |
 | codex | aligned | shared | - | probe · codex-cli 0.172.0 · 2026-11-26 | - |
 | opencode | aligned | shared | - | probe · opencode v2.4.1 · 2026-11-26 | - |
-| pi | aligned | shared | - | probe · 1.6.0 · 2026-11-26 | - |
-| omp | aligned | native | - | probe · omp/19.1.1 · 2026-11-26 | - |
-| antigravity | partial | adapter | - | probe · 1.5.16 · 2026-11-26 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
+| pi | aligned | shared | - | probe · 1.6.1 · 2026-11-26 | - |
+| omp | aligned | native | - | probe · omp/19.2.1 · 2026-11-26 | - |
+| antigravity | partial | adapter | - | probe · 1.5.17 · 2026-11-26 | generated Antigravity skill wrappers point to shared skills, but runtime import has not been verified |
 | crush | aligned | native | - | probe · crush version v0.102.0 · 2026-11-26 | generated crushrc adds ~/.agents/skills through option skill-path; crush's default global skill roots are ~/.config/crush/skills and ~/.config/agents/skills, so the shared root is named explicitly |
 
 ### skills.manual_only · p1
