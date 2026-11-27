@@ -151,7 +151,7 @@
 "npm:markdownlint-cli2" = "0.24.2"
 "npm:pnpm" = "12.23.0"
 "npm:prettier" = "3.10.1"
-"npm:renovate" = "44.263.5"
+"npm:renovate" = "45.1.0"
 "npm:standard-readme-spec" = "1.3.1"
 "npm:typescript" = "7.0.2"
 "npm:typescript-language-server" = "6.1.0"
