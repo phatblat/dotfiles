@@ -429,3 +429,4 @@
 {"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"","harness":"claude","to":"2.1.332 (Claude Code)","version_from":"","version_to":"2.1.332 (Claude Code)"}
 {"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"omp/19.1.1","harness":"omp","to":"omp/19.2.1","version_from":"omp/19.1.1","version_to":"omp/19.2.1"}
 {"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"1.6.0","harness":"pi","to":"1.6.1","version_from":"1.6.0","version_to":"1.6.1"}
+{"capability":"-","date":"2026-11-27","detail":"","field":"version","from":"opencode v2.4.1","harness":"opencode","to":"opencode v2.4.2","version_from":"opencode v2.4.1","version_to":"opencode v2.4.2"}

@@ -13,13 +13,13 @@ Verify: `python3 scripts/agent-harnesses.py inventory --json`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | native | - | probe · 2.1.332 (Claude Code) · 2026-11-26 | source commands |
-| codex | blocked | adapter | - | probe · codex-cli 0.172.0 · 2026-11-26 | Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files. |
-| opencode | aligned | adapter | - | probe · opencode v2.4.1 · 2026-11-26 | generated command templates |
-| pi | aligned | adapter | - | probe · 1.6.1 · 2026-11-26 | generated prompt templates |
-| omp | aligned | native | - | probe · omp/19.2.1 · 2026-11-26 | - |
+| claude | aligned | native | - | probe · 2.1.332 (Claude Code) · 2026-11-27 | source commands |
+| codex | blocked | adapter | - | probe · codex-cli 0.172.0 · 2026-11-27 | Codex command format not yet stabilized. Last checked 2026-08-13. Codex uses skills/config instead of native command files. |
+| opencode | aligned | adapter | - | probe · opencode v2.4.2 · 2026-11-27 | generated command templates |
+| pi | aligned | adapter | - | probe · 1.6.1 · 2026-11-27 | generated prompt templates |
+| omp | aligned | native | - | probe · omp/19.2.1 · 2026-11-27 | - |
 | antigravity | absent | none | Plugins load skills, agents, rules, hooks, mcpServers | docs · 1.3.3 · 2026-10-16 | agy 1.3.3 plugins load skills, agents, rules, hooks, mcpServers and sidecars only; command wrappers are not generated because flattening them into skills would make user-run workflows implicitly invocable |
-| crush | partial | native | - | probe · crush version v0.102.0 · 2026-11-26 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md |
+| crush | partial | native | - | probe · crush version v0.102.0 · 2026-11-27 | crush has no user-defined slash-command surface, so the command workflows are reachable only through the shared skills crush discovers; crush's user-invocable skill frontmatter cannot be set without forking the shared SKILL.md |
 
 ### Not yet researched
 

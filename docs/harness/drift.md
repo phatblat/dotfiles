@@ -10,7 +10,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 |---|---|---|---|
 | claude | 2.1.332 (Claude Code) | 2026-08-29 | 2.1.331 (Claude Code) |
 | codex | codex-cli 0.172.0 | 2026-08-29 | codex-cli 0.171.0 |
-| opencode | opencode v2.4.1 | 2026-08-29 | opencode v2.4.0 |
+| opencode | opencode v2.4.2 | 2026-08-29 | opencode v2.4.1 |
 | pi | 1.6.1 | 2026-08-29 | 1.6.0 |
 | omp | omp/19.2.1 | 2026-08-29 | omp/19.1.1 |
 | antigravity | 1.5.17 | 2026-08-29 | 1.5.16 |
@@ -20,6 +20,7 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 
 | Date | Harness | Capability | Field | From | To | Version |
 |---|---|---|---|---|---|---|
+| 2026-11-27 | opencode | - | version | opencode v2.4.1 | opencode v2.4.2 | opencode v2.4.2 |
 | 2026-11-26 | pi | - | version | 1.6.0 | 1.6.1 | 1.6.1 |
 | 2026-11-26 | omp | - | version | omp/19.1.1 | omp/19.2.1 | omp/19.2.1 |
 | 2026-11-26 | claude | - | version | - | 2.1.332 (Claude Code) | 2.1.332 (Claude Code) |
@@ -219,4 +220,3 @@ What changed since the last `just harness-probe`, newest first. `docs/harness/dr
 | 2026-10-09 | cursor | - | version | 2026.09.15-d2fe57e | 2026.09.28-64d2043 | 2026.09.28-64d2043 |
 | 2026-10-09 | codex | - | version | codex-cli 0.160.1 | codex-cli 0.161.0 | codex-cli 0.161.0 |
 | 2026-10-09 | claude | - | version | 2.1.251 (Claude Code) | 2.1.285 (Claude Code) | 2.1.285 (Claude Code) |
-| 2026-10-09 | antigravity | - | version | 1.2.3 | 1.2.10 | 1.2.10 |
