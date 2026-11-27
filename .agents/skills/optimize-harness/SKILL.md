@@ -109,7 +109,7 @@ Classify each skill as **procedural** or **ability**:
 
 - **Procedural** skills are user-run workflows, interactive interviews,
   migrated commands, or procedures that should run only when explicitly
-  invoked (for example, `$git-commit`, `$optimize-harness`).
+  invoked (for example, `$git-rebase`, `$optimize-harness`).
 - **Ability** skills are reusable model-invoked capabilities or domain rules
   the harness should apply automatically when the task matches.
 
