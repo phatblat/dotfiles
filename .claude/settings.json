@@ -393,6 +393,7 @@
       "Bash(sudo)",
       "Read(**/.env)",
       "Read(**/.env.local)",
+      "Read(**/.env.*)",
       "Read(~/.aws/credentials)",
       "Read(~/.claude/.credentials.json)",
       "Read(~/.codex/auth.json)",
