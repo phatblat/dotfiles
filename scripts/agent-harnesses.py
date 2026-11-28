@@ -14,8 +14,8 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from harness_paths import (
-    CLI_BINARIES,
     HARNESSES,
+    resolve_cli,
 )
 
 # `provenance` needs only json/os/sys/pathlib and the pure-data harness_paths
@@ -388,7 +388,7 @@ def command_audit(*, json_output: bool) -> int:
     audit = {
         "coverage": state["coverage"],
         "versions": {
-            slug: command_version([CLI_BINARIES[slug], "--version"])
+            slug: command_version([resolve_cli(slug), "--version"])
             for slug in HARNESSES
         },
         "partial": [
@@ -468,7 +468,13 @@ def command_probe(*, harness: str | None = None) -> int:
     for slug in slugs:
         prior = previous_versions.get(slug, {})
         was = prior.get("version", "")
-        now = command_version([CLI_BINARIES[slug], "--version"])
+        now = command_version([resolve_cli(slug), "--version"])
+        if was and not now:
+            # A failed or timed-out `--version` is a probe failure, not a
+            # version change: keep the recorded version so drift never logs
+            # `<version> -> ''` and the next good probe is not a false change.
+            print(f"{'unavailable':>11}  {slug} version: kept {was}")
+            continue
         changed = bool(was) and was != now
         versions[slug] = {
             # first_seen is set once, on the first run that records a version,
@@ -1165,7 +1171,6 @@ description: {json.dumps(agent["description"])[1:-1]}
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---
@@ -1252,9 +1257,9 @@ def render_crush_config() -> str:
 # Shared harness instructions, loaded for every session.
 option global-context-path "$HOME/.config/crush/shared-harness.md"
 
-# Shared skills. Crush's default *global* skill roots are
-# ~/.config/crush/skills and ~/.config/agents/skills, so the shared root has
-# to be named explicitly; only the project-relative .agents/skills is implicit.
+# Shared skills. Crush v0.102.0 already scans ~/.agents/skills and
+# ~/.claude/skills as global roots (README, "Agent Skills"); the option is
+# kept so the shared root does not depend on that default.
 option skill-path "$HOME/.agents/skills"
 
 # The generated context file above carries the commit trailer. Keep crush from
@@ -1506,10 +1511,11 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 type GuardResult = { decision: "allow" | "warn" | "deny" | "prompt"; reason?: string };
 
-function guard(args: string[]): GuardResult {
+function guard(cwd: string, args: string[]): GuardResult {
   const ness = join(homedir(), ".local", "bin", "ness");
   try {
-    const output = execFileSync(ness, ["guard", "--harness", "pi", ...args], {
+    const output = execFileSync(ness, ["guard", "--harness", "pi", "--cwd", cwd, ...args], {
+      cwd,
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
       timeout: 5000,
@@ -1536,13 +1542,13 @@ export default function (pi: ExtensionAPI) {
   pi.on("tool_call", async (event, ctx) => {
     let result: GuardResult = { decision: "allow" };
     if (event.toolName === "bash") {
-      result = guard(["--tool", "bash", "--command", String(event.input.command || "")]);
+      result = guard(ctx.cwd, ["--tool", "bash", "--command", String(event.input.command || "")]);
     } else if (event.toolName === "write") {
-      result = guard(["--tool", "write", "--path", String(event.input.path || ""), "--content", String(event.input.content || "")]);
+      result = guard(ctx.cwd, ["--tool", "write", "--path", String(event.input.path || ""), "--content", String(event.input.content || "")]);
     } else if (event.toolName === "edit") {
       const edits = Array.isArray(event.input.edits) ? event.input.edits : [];
       const content = edits.map((e: any) => String(e?.newText ?? "")).join("\\n");
-      result = guard(["--tool", "edit", "--path", String(event.input.path || ""), "--content", content]);
+      result = guard(ctx.cwd, ["--tool", "edit", "--path", String(event.input.path || ""), "--content", content]);
     }
     if (result.decision === "deny") return { block: true, reason: result.reason || "Blocked by shared harness guard" };
     if (result.decision === "prompt") {
@@ -1550,6 +1556,7 @@ export default function (pi: ExtensionAPI) {
       const ok = await ctx.ui.confirm("Shared harness guard", result.reason || "Allow this command?");
       if (!ok) return { block: true, reason: result.reason || "Not approved" };
     }
+    if (result.decision === "warn" && ctx.hasUI) ctx.ui.notify(result.reason || "Shared harness guard warning", "warning");
     return undefined;
   });
 }

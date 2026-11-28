@@ -11,7 +11,8 @@ counterpart — where to look and what has already been investigated.
 - Files worth reading: `~/.claude/settings.json` (hooks, permissions,
   enabledPlugins), `~/.claude/hooks/scripts/`,
   `~/.claude/projects/*/settings.json` (project-level allowlists promotable
-  to global), `~/.claude/logs/tool-failures.log`.
+  to global), `~/.claude/logs/tool-failures.log`,
+  `~/.claude/logs/permission-denied.log`.
 - Session store: `~/.claude/projects/*/*.jsonl` — see
   `docs/agent-session-transcripts.md#claude`.
 
@@ -197,8 +198,7 @@ with new measurements, not with a fresh reading of the same config.
 - **2026-11-08 Antigravity, Cursor, and crush hand a ness `prompt` to their native approval
   flow by design** (`crates/ness/src/hook.rs` `run_antigravity`, `run_cursor`, `run_crush`),
   and the Claude and Codex hooks emit nothing for `prompt`, deferring to their permission
-  rules. None is a guard gap. pi is the exception: patch at
-  `~/.local/state/flywheel/dotfiles/patches/agent-harnesses-pi-guard-prompt.patch`.
+  rules. None is a guard gap. pi confirms through `ctx.ui.confirm` and blocks without a UI (`cb6ccde`, 2026-11-25).
 - **2026-11-08 `~/.config/opencode/service.json` is an app-written credential file** (one
   `password` key), untracked via `.gitignore:218`. The `$HOME` scan lists it under
   credential-bearing config: dismiss it, never track it.
@@ -224,3 +224,12 @@ with new measurements, not with a fresh reading of the same config.
   vendored: `just _graphify-sync-skill` re-syncs graphify, and Paseo installs paseo-plugin (captured
   in `ad3a5fa`). OMP advertises compacted descriptions, and Claude (5 files) and Codex (0) were
   nearly idle in the window.
+- **2026-11-26 OMP edit `unseen_lines` (206 of 371 edit errors, 3,590 attempts in 30 days) is agent behavior**, the same family as the closed `stale_anchor` item: the model edits lines it has not read. No config lever was found.
+- **2026-11-26 the 30-day OMP `interceptor` (504) and `guard` (16) counts are residue.** Both are 0 from 2026-11-16 onward, so `bashInterceptor` and the ness hook are still disabled.
+- **2026-11-26 the OMP `sudo` deny does not reach `eval`, by decision.** A `bash.patterns` deny covers the `bash` tool only (`omp://approval-mode.md`); `tools.approval.eval: prompt` would reject in headless subagents. Flag only a change to `approvalMode`.
+- **2026-11-26 generated Claude commands stay model-invocable.** `.claude/CLAUDE.md` relies on `/git:commit`; the duplicate slash entries beside manual-only skills are accepted.
+- **2026-11-26 Pi `sessionDir` stays pinned to the default root.** Removing it changes the on-disk layout and orphans existing sessions for `--resume`; the cost is negligible at 19 session files.
+- **2026-11-26 two pending patches against the same hunk cannot both apply.** Check `git apply --check` for each patch in sequence, in a scratch copy, before reporting a patch set as pending.
+- **2026-11-26 a V1-shaped opencode plugin is not proven loaded by `opencode debug config`**, which exits 0 without loading plugins. Proof is a blocked call in a live session, or the plugin-load lines in opencode's own log.
+- **2026-11-26 `git-commit` and `gh-stack` are model-invocable by decision.** Their `agents/openai.yaml` flags were removed (`fix(skills): Let Codex see git-commit`, `fix(skills): Correct Codex rename artefacts`) because `.codex/AGENTS.md` tells the model to use `git-commit` and `gh-stack` is a trigger-based ability. The generator derives the Claude wrapper and the Antigravity adapter from the same sidecar. Do not re-flag either as a missing procedural flag; the `gh-stack`/`git-stack` submit conflict is tracked in `docs/backlog/reconcile-gh-stack-and-git-stack-submit-guidance.md`.
+- **2026-11-26 bats tests that run a hook must isolate the flywheel ledger.** A hook test without `XDG_STATE_HOME` set to a temp dir appends fake scaffold firings to `~/.local/state/flywheel/dotfiles/scaffolds.jsonl`; 35 such `claude-pre-commit-format` records were written on 2026-11-26. Discount a same-day burst of that scaffold before treating it as hook usage.

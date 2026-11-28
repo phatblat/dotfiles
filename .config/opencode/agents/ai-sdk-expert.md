@@ -4,7 +4,6 @@ description: Expert in Vercel AI SDK v5 handling streaming, model integration, t
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

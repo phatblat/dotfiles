@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Claude Code Hook: UserPromptSubmit - Secret Detection
+# Codex Hook: UserPromptSubmit - Secret Detection
 # =============================================================================
 # Avertit si le prompt contient des mentions de secrets.
 # Input: JSON via stdin avec prompt

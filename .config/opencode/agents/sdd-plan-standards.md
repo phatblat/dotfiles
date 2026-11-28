@@ -4,7 +4,6 @@ description: Check plan against project coding and testing standards, fix violat
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

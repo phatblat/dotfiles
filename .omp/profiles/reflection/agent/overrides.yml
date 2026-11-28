@@ -37,7 +37,7 @@ ask:
 browser:
   relay: true
 # Keep the 90 s / 120 s stream watchdogs. Only the main profile raises
-# them to 300 s, because Gemini 4 Argon can stay silent for more than 90 s.
+# them to 300 s, because slow reasoning models can stay silent for more than 90 s.
 providers:
   streamFirstEventTimeoutSeconds: 90
   streamIdleTimeoutSeconds: 120

@@ -44,7 +44,7 @@ snapshot() {
 
 before="$(snapshot "$repo_root")"
 
-just --justfile "$repo_root/justfile" format 2>&1
+just --justfile "$repo_root/justfile" format >&2
 
 staged=0
 while IFS= read -r line; do

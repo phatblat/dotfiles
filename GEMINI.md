@@ -1,6 +1,6 @@
 # phatblat's dotfiles
 
-This repository manages the shell environment, system configurations, and tool versions for a highly customized development setup across multiple Macs. It is maintained directly in the user's `$HOME` directory (`/Users/phatblat/`).
+This repository manages the shell environment, system configurations, and tool versions for a highly customized development setup across multiple Macs. It is maintained in a git checkout at `~/dev/dotfiles` and deployed into `$HOME` as symlinks by `mise dot`.
 
 ## Project Overview
 
@@ -31,20 +31,20 @@ The `justfile` in the root directory provides a wide range of utility recipes:
 
 ### Verification
 - `just lint`: Run all linting checks (Python, Zsh, Nushell, bin scripts, and `.gitignore`).
-- `just test`: Run automated tests using [bats](https://github.com/bats-core/bats-core) located in `~/tests/`.
+- `just test`: Run automated tests using [bats](https://github.com/bats-core/bats-core) located in `tests/` of the checkout.
 
 ## Directory Structure
 
 - `~/.config/`: Configuration files for most tools (Zsh, Nushell, Zed, mise, home-manager, etc.).
 - `~/scripts/`: Custom maintenance scripts (e.g., `sort-gitignore`, `sort-tools.py`).
 - `~/bin/`: User-defined executable binaries.
-- `~/tests/`: [bats](https://github.com/bats-core/bats-core) test suites for verifying shell functionality.
+- `tests/` of the checkout: [bats](https://github.com/bats-core/bats-core) test suites for verifying shell functionality.
 - `~/gt/`: Gastown development workspace.
 
 ## Development Conventions
 
 - **Tool Pinning:** Critical tools are often pinned to specific versions in `~/.config/mise/config.toml`.
 - **Linting:** Shell scripts and Python scripts are strictly linted using `shellcheck`, `shfmt`, `shellharden`, and `ruff`.
-- **Testing:** New shell functions or significant script changes should be verified with `bats` tests in `~/tests/`.
+- **Testing:** New shell functions or significant script changes should be verified with `bats` tests in `tests/` of the checkout.
 - **Configuration Management:** Prefer adding new tools via `just add <tool>` to ensure they are tracked in the `mise` configuration.
-- **Git State:** The repository is intentionally kept at the root of `$HOME` to ensure visibility of changes in the terminal prompt.
+- **Git State:** The repository is a checkout at `~/dev/dotfiles`; `mise dot` links its tracked files into `$HOME`, so `~` itself is not a git repository.

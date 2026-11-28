@@ -4,7 +4,6 @@ description: Comprehensive code review specialist covering 6 focused aspects - a
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

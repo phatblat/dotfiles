@@ -4,7 +4,6 @@ description: Break implementation plan into the fewest possible steps for step-b
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

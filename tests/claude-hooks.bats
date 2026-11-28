@@ -133,7 +133,7 @@ EOF
 format:
     @printf 'b\n' >> "my file.txt"
 EOF
-    printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
+    printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | env XDG_STATE_HOME="$BATS_TEST_TMPDIR/state" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh"
     git -C "$repo" diff --cached --name-only | grep -qxF "my file.txt"
 }
 
@@ -227,4 +227,81 @@ make_git_homedir() {
       <<< "{\"tool_input\":{\"file_path\":\"$unrelated/stuff.py\"}}"
     grep -q 'args=format --quiet' "$log"
     [ ! -s "$hk_log" ]
+}
+
+@test "commit format: formatter output stays off hook stdout" {
+    repo="$BATS_TEST_TMPDIR/noisy"
+    mkdir -p "$repo"; make_repo "$repo"
+    printf 'a\n' > "$repo/noisy.txt"
+    git -C "$repo" add noisy.txt
+    git -C "$repo" commit -qm "add file"
+    cat > "$repo/justfile" << 'EOF'
+format:
+    @echo "formatter chatter"
+    @printf 'b\n' >> noisy.txt
+EOF
+    out="$(printf '{"tool_input":{"command":"git commit"},"cwd":"%s"}\n' "$repo" | env XDG_STATE_HOME="$BATS_TEST_TMPDIR/state" bash "$ROOT/.claude/hooks/scripts/pre-commit-format.sh" 2>/dev/null)"
+    [ "$out" = '{"systemMessage":"Auto-formatted and staged changed files before commit."}' ]
+}
+
+@test "permission denied: logs tool and first command word only" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"fd --exec rm secret-arg"}}'
+    [ "$status" -eq 0 ]
+    [ -z "$output" ]
+    grep -Eq 'DENY tool=Bash cmd=fd$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'secret-arg' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: env assignments are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"TOKEN=abc123 curl example.com"}}'
+    [ "$status" -eq 0 ]
+    grep -Eq 'cmd=<env-assign>$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'abc123' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: tab and newline separated arguments are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"/usr/bin/fd\tsecret-tab\ncat<<EOF"}}'
+    [ "$status" -eq 0 ]
+    [ "$(wc -l < "$home/.claude/logs/permission-denied.log")" -eq 1 ]
+    grep -Eq 'DENY tool=Bash cmd=fd$' "$home/.claude/logs/permission-denied.log"
+    ! grep -Eq 'secret-tab|EOF' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: redirect targets joined to the command are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"cat</Users/me/.ssh/id_rsa"}}'
+    [ "$status" -eq 0 ]
+    grep -Eq 'DENY tool=Bash cmd=<other>$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'id_rsa' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: quoted command paths are never logged" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash","tool_input":{"command":"\"/Users/me/secret proj/bin/tool\" --flag s3cr3t"}}'
+    [ "$status" -eq 0 ]
+    grep -Eq 'DENY tool=Bash cmd=<other>$' "$home/.claude/logs/permission-denied.log"
+    ! grep -q 'secret' "$home/.claude/logs/permission-denied.log"
+}
+
+@test "permission denied: newline in tool name cannot forge a record" {
+    home="$BATS_TEST_TMPDIR/home"
+    mkdir -p "$home"
+    run env HOME="$home" bash "$ROOT/.claude/hooks/scripts/permission-denied.sh" \
+        <<<'{"tool_name":"Bash\n[2026-01-01 00:00:00] DENY tool=Forged cmd=rm","tool_input":{"command":"ls"}}'
+    [ "$status" -eq 0 ]
+    [ "$(wc -l < "$home/.claude/logs/permission-denied.log")" -eq 1 ]
+    grep -Eq 'cmd=ls$' "$home/.claude/logs/permission-denied.log"
 }

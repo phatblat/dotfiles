@@ -8,9 +8,15 @@
     },
     "chrome-devtools-plugin": {
       "enabled": true,
-      "installed_version": "1.0.0",
+      "installed_version": "",
       "skills": 5,
       "version": "0.21.0"
+    },
+    "data-agent-kit-plugin": {
+      "enabled": true,
+      "installed_version": "",
+      "skills": 22,
+      "version": "1.1.0"
     },
     "firebase": {
       "enabled": true,
@@ -24,23 +30,29 @@
       "skills": 1,
       "version": "0.0.9"
     },
+    "googlecloudtools.datacloud_telemetry": {
+      "enabled": false,
+      "installed_version": "",
+      "skills": 0,
+      "version": ""
+    },
     "modern-web-guidance-plugin": {
       "enabled": true,
-      "installed_version": "1.0.6",
+      "installed_version": "",
       "skills": 2,
-      "version": "1.0.6"
+      "version": "0.0.194"
     },
     "science": {
       "enabled": true,
-      "installed_version": "1.2.4",
+      "installed_version": "",
       "skills": 41,
-      "version": "1.2.4"
+      "version": "1.3.0"
     },
     "shared-agent-harness": {
       "enabled": true,
       "installed_version": "",
-      "skills": 31,
-      "tree_sha256": "b937452169b60cf498ca888aac981723adfb6c1ae6f6ae1733f2c75a81348663",
+      "skills": 32,
+      "tree_sha256": "126b31ff729e361245c2cbe82259359194d8100952cdd0bfa91c88aa833fa509",
       "version": "1.0.0"
     }
   }

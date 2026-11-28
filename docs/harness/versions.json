@@ -1,37 +1,37 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.5.14",
-    "version": "1.5.15"
+    "previous": "1.5.17",
+    "version": "1.5.18"
   },
   "claude": {
     "first_seen": "2026-08-29",
-    "previous": "2.1.330 (Claude Code)",
-    "version": "2.1.331 (Claude Code)"
+    "previous": "2.1.331 (Claude Code)",
+    "version": "2.1.332 (Claude Code)"
   },
   "codex": {
     "first_seen": "2026-08-29",
-    "previous": "codex-cli 0.170.0",
-    "version": "codex-cli 0.171.0"
+    "previous": "codex-cli 0.171.0",
+    "version": "codex-cli 0.172.0"
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.101.0",
-    "version": "crush version v0.102.0"
+    "previous": "crush version v0.102.0",
+    "version": "crush version v0.103.0"
   },
   "omp": {
     "first_seen": "2026-08-29",
-    "previous": "omp/19.0.1",
-    "version": "omp/19.1.1"
+    "previous": "omp/19.1.1",
+    "version": "omp/19.2.1"
   },
   "opencode": {
     "first_seen": "2026-08-29",
-    "previous": "opencode v2.4.0",
-    "version": "opencode v2.4.1"
+    "previous": "opencode v2.4.1",
+    "version": "opencode v2.4.2"
   },
   "pi": {
     "first_seen": "2026-08-29",
-    "previous": "1.5.2",
-    "version": "1.6.0"
+    "previous": "1.6.0",
+    "version": "1.6.1"
   }
 }

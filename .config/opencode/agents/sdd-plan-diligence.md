@@ -4,7 +4,6 @@ description: Final due-diligence on a plan; web-verify external facts, surface r
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

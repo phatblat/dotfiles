@@ -58,7 +58,7 @@ it, then resolve that harness's own CLI version.
 
 ```bash
 roots=()
-for d in "$HOME/.claude/projects" "$HOME/.omp/agent/sessions" "$HOME/.pi/agent/sessions" "$HOME/.codex/sessions" "$HOME/.Codex/projects"; do
+for d in "$HOME/.claude/projects" "$HOME/.omp/agent/sessions" "$HOME/.pi/agent/sessions" "$HOME/.codex/sessions"; do
   [ -d "$d" ] && roots+=("$d")
 done
 if [ "${#roots[@]}" -eq 0 ]; then
@@ -134,7 +134,6 @@ case "$session_file" in
   "$HOME/.omp/agent/sessions/"*) harness="omp" ;;
   "$HOME/.pi/agent/sessions/"*) harness="pi" ;;
   "$HOME/.codex/sessions/"*) harness="codex" ;;
-  "$HOME/.Codex/projects/"*) harness="codex" ;;
   *) harness="unknown" ;;
 esac
 case "$harness" in

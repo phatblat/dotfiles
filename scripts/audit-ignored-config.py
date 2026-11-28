@@ -82,11 +82,13 @@ SECRET_NAMES = frozenset(
         "auth-gateway.token",
         "auth.json",
         "credentials.json",
+        "google_accounts.json",
         "install-id",
         "secret-placeholder.key",
         "secrets.yaml",
         "secrets.yml",
         "trust.json",
+        "trustedFolders.json",
     }
 )
 SECRET_SUFFIXES = (".enc", ".key", ".pem", ".p12", ".pfx", ".token")
@@ -135,7 +137,6 @@ STATE_DIRS = frozenset(
         "jobs",
         "log",
         "logs",
-        "managed-skills",
         "marketplaces",
         "mcp",
         "mcps",
@@ -317,6 +318,8 @@ BUNDLED_DOC_NAMES = frozenset(
 INSTALLED_PATHS = frozenset(
     {
         ".gemini/config/mcp_config.json",
+        ".gemini/settings.json",
+        ".gemini/state.json",
         ".claude/plugins/blocklist.json",
         ".claude/plugins/installed_plugins.json",
         ".claude/policy-limits.json",

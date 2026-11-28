@@ -4,7 +4,6 @@ description: Review changed files against project coding standards, fix violatio
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---
