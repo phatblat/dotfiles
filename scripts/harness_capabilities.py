@@ -968,8 +968,8 @@ CAPABILITIES: list[Capability] = [
                 note=(
                     "generated crush PreToolUse shim execs the compiled guard, "
                     "which maps crush's snake_case payload and blocks with exit "
-                    "2; crush v0.102.0 is installed and its tool names match "
-                    "the matcher, but no provider is configured, so live "
+                    "2; crush's tool names matched the matcher when verified at "
+                    "v0.102.0, but no provider is configured, so live "
                     "blocking is unverified"
                 ),
                 next_action=(
