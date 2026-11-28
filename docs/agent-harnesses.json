@@ -12,10 +12,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.5.17"
+            "version": "1.5.18"
           },
           "mode": "adapter",
           "next_action": "Install or import the Antigravity plugin and verify it loads shared harness instructions",
@@ -34,7 +34,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "2.1.332 (Claude Code)"
@@ -57,7 +57,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "codex-cli 0.172.0"
@@ -79,10 +79,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.102.0"
+            "version": "crush version v0.103.0"
           },
           "mode": "native",
           "next_action": "",
@@ -100,7 +100,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "omp/19.2.1"
@@ -121,7 +121,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "opencode v2.4.2"
@@ -143,7 +143,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.6.1"
@@ -429,10 +429,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.5.17"
+            "version": "1.5.18"
           },
           "mode": "adapter",
           "next_action": "Verify agy imports and activates shared skill wrappers from the plugin",
@@ -451,7 +451,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.332 (Claude Code)"
@@ -472,7 +472,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "codex-cli 0.172.0"
@@ -493,10 +493,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.102.0"
+            "version": "crush version v0.103.0"
           },
           "mode": "native",
           "next_action": "",
@@ -514,7 +514,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "omp/19.2.1"
@@ -535,7 +535,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "opencode v2.4.2"
@@ -556,7 +556,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.6.1"
@@ -1360,7 +1360,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.332 (Claude Code)"
@@ -1381,7 +1381,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "codex-cli 0.172.0"
@@ -1402,10 +1402,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.102.0"
+            "version": "crush version v0.103.0"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for a user-defined command surface, or teach the shared skill renderer to emit crush-specific user-invocable frontmatter",
@@ -1423,7 +1423,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "omp/19.2.1"
@@ -1444,7 +1444,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "opencode v2.4.2"
@@ -1465,7 +1465,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.6.1"
@@ -1753,10 +1753,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.5.17"
+            "version": "1.5.18"
           },
           "mode": "emulated",
           "next_action": "Verify Antigravity can delegate to generated specialist wrappers with isolated context",
@@ -1774,7 +1774,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.332 (Claude Code)"
@@ -1795,7 +1795,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "codex-cli 0.172.0"
@@ -1816,10 +1816,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.102.0"
+            "version": "crush version v0.103.0"
           },
           "mode": "native",
           "next_action": "Re-check crush releases for user-defined agent support",
@@ -1837,7 +1837,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "omp/19.2.1"
@@ -1858,7 +1858,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "opencode v2.4.2"
@@ -2288,10 +2288,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "1.5.17"
+            "version": "1.5.18"
           },
           "mode": "adapter",
           "next_action": "Verify Antigravity invokes hooks.json before shell/write/edit calls and blocks on deny",
@@ -2310,7 +2310,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "2.1.332 (Claude Code)"
@@ -2332,7 +2332,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "codex-cli 0.172.0"
@@ -2355,10 +2355,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
-            "version": "crush version v0.102.0"
+            "version": "crush version v0.103.0"
           },
           "mode": "adapter",
           "next_action": "Configure a crush provider and verify a commands.obfuscated bash call is blocked through the generated crushrc PreToolUse hook",
@@ -2378,7 +2378,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "omp/19.2.1"
@@ -2400,7 +2400,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "opencode v2.4.2"
@@ -2422,7 +2422,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "1.6.1"
@@ -4132,7 +4132,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.332 (Claude Code)"
@@ -4153,7 +4153,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "codex-cli 0.172.0"
@@ -4174,10 +4174,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.102.0"
+            "version": "crush version v0.103.0"
           },
           "mode": "native",
           "next_action": "",
@@ -4195,7 +4195,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "omp/19.2.1"
@@ -4216,7 +4216,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "opencode v2.4.2"
@@ -4237,7 +4237,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.6.1"
@@ -5588,7 +5588,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_contains",
             "version": "omp/19.2.1"
@@ -5658,10 +5658,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "1.5.17"
+            "version": "1.5.18"
           },
           "mode": "shared",
           "next_action": "",
@@ -5679,7 +5679,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "2.1.332 (Claude Code)"
@@ -5700,7 +5700,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "codex-cli 0.172.0"
@@ -5721,10 +5721,10 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
-            "version": "crush version v0.102.0"
+            "version": "crush version v0.103.0"
           },
           "mode": "shared",
           "next_action": "",
@@ -5742,7 +5742,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "omp/19.2.1"
@@ -5763,7 +5763,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "opencode v2.4.2"
@@ -5784,7 +5784,7 @@
           ],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "file_exists",
             "version": "1.6.1"
@@ -5896,7 +5896,7 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "cli_exit_zero",
             "version": "opencode v2.4.2"
@@ -5915,7 +5915,7 @@
           "artifacts": [],
           "divergence": "",
           "evidence": {
-            "date": "2026-11-27",
+            "date": "2026-11-28",
             "kind": "probe",
             "ref": "cli_exit_zero",
             "version": "1.6.1"
@@ -6353,8 +6353,8 @@
   "versions": {
     "antigravity": {
       "first_seen": "2026-08-29",
-      "previous": "1.5.16",
-      "version": "1.5.17"
+      "previous": "1.5.17",
+      "version": "1.5.18"
     },
     "claude": {
       "first_seen": "2026-08-29",
@@ -6368,8 +6368,8 @@
     },
     "crush": {
       "first_seen": "2026-08-29",
-      "previous": "crush version v0.101.0",
-      "version": "crush version v0.102.0"
+      "previous": "crush version v0.102.0",
+      "version": "crush version v0.103.0"
     },
     "omp": {
       "first_seen": "2026-08-29",

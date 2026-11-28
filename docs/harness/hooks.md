@@ -13,13 +13,13 @@ Verify: `just ness-test`
 
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
-| claude | aligned | adapter | - | probe · 2.1.332 (Claude Code) · 2026-11-27 | - |
-| codex | aligned | adapter | - | probe · codex-cli 0.172.0 · 2026-11-27 | - |
-| opencode | aligned | adapter | - | probe · opencode v2.4.2 · 2026-11-27 | - |
-| pi | aligned | adapter | - | probe · 1.6.1 · 2026-11-27 | - |
-| omp | partial | adapter | - | probe · omp/19.2.1 · 2026-11-27 | the ness pre-tool hook is disabled on purpose: disabledExtensions lists hook:pre:harness-guard:harness-guard.ts in ~/.omp/agent/config.yml (b47ea03); OMP runs approvalMode yolo with sudo denied and gitGuard on |
-| antigravity | partial | adapter | - | probe · 1.5.17 · 2026-11-27 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
-| crush | partial | adapter | - | probe · crush version v0.102.0 · 2026-11-27 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush v0.102.0 is installed and its tool names match the matcher, but no provider is configured, so live blocking is unverified |
+| claude | aligned | adapter | - | probe · 2.1.332 (Claude Code) · 2026-11-28 | - |
+| codex | aligned | adapter | - | probe · codex-cli 0.172.0 · 2026-11-28 | - |
+| opencode | aligned | adapter | - | probe · opencode v2.4.2 · 2026-11-28 | - |
+| pi | aligned | adapter | - | probe · 1.6.1 · 2026-11-28 | - |
+| omp | partial | adapter | - | probe · omp/19.2.1 · 2026-11-28 | the ness pre-tool hook is disabled on purpose: disabledExtensions lists hook:pre:harness-guard:harness-guard.ts in ~/.omp/agent/config.yml (b47ea03); OMP runs approvalMode yolo with sudo denied and gitGuard on |
+| antigravity | partial | adapter | - | probe · 1.5.18 · 2026-11-28 | generated Antigravity hook shim execs the compiled guard, but native pre-tool blocking has not been verified |
+| crush | partial | adapter | - | probe · crush version v0.103.0 · 2026-11-28 | generated crush PreToolUse shim execs the compiled guard, which maps crush's snake_case payload and blocks with exit 2; crush v0.102.0 is installed and its tool names match the matcher, but no provider is configured, so live blocking is unverified |
 
 ### Not yet researched
 

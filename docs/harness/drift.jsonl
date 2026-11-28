@@ -430,3 +430,5 @@
 {"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"omp/19.1.1","harness":"omp","to":"omp/19.2.1","version_from":"omp/19.1.1","version_to":"omp/19.2.1"}
 {"capability":"-","date":"2026-11-26","detail":"","field":"version","from":"1.6.0","harness":"pi","to":"1.6.1","version_from":"1.6.0","version_to":"1.6.1"}
 {"capability":"-","date":"2026-11-27","detail":"","field":"version","from":"opencode v2.4.1","harness":"opencode","to":"opencode v2.4.2","version_from":"opencode v2.4.1","version_to":"opencode v2.4.2"}
+{"capability":"-","date":"2026-11-28","detail":"","field":"version","from":"1.5.17","harness":"antigravity","to":"1.5.18","version_from":"1.5.17","version_to":"1.5.18"}
+{"capability":"-","date":"2026-11-28","detail":"","field":"version","from":"crush version v0.102.0","harness":"crush","to":"crush version v0.103.0","version_from":"crush version v0.102.0","version_to":"crush version v0.103.0"}

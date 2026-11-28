@@ -1,8 +1,8 @@
 {
   "antigravity": {
     "first_seen": "2026-08-29",
-    "previous": "1.5.16",
-    "version": "1.5.17"
+    "previous": "1.5.17",
+    "version": "1.5.18"
   },
   "claude": {
     "first_seen": "2026-08-29",
@@ -16,8 +16,8 @@
   },
   "crush": {
     "first_seen": "2026-08-29",
-    "previous": "crush version v0.101.0",
-    "version": "crush version v0.102.0"
+    "previous": "crush version v0.102.0",
+    "version": "crush version v0.103.0"
   },
   "omp": {
     "first_seen": "2026-08-29",

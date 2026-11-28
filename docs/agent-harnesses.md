@@ -13,8 +13,8 @@ Coverage: 74/315 cells verified (23%)
 | opencode | new port | opencode v2.4.2 | 2026-08-29 | 11 | 0 | 0 | 0 | 1 | 33 |
 | pi | new port | 1.6.1 | 2026-08-29 | 9 | 0 | 0 | 0 | 2 | 34 |
 | omp | tracked port | omp/19.2.1 | 2026-08-29 | 10 | 1 | 0 | 0 | 0 | 34 |
-| antigravity | tracked port | 1.5.17 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
-| crush | new port | crush version v0.102.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
+| antigravity | tracked port | 1.5.18 | 2026-08-29 | 4 | 5 | 0 | 0 | 2 | 34 |
+| crush | new port | crush version v0.103.0 | 2026-08-29 | 4 | 2 | 0 | 1 | 2 | 36 |
 
 ## Domains
 
@@ -56,6 +56,8 @@ Coverage: 74/315 cells verified (23%)
 
 | Date | Harness | Capability | Field | From | To |
 |---|---|---|---|---|---|
+| 2026-11-28 | crush | - | version | crush version v0.102.0 | crush version v0.103.0 |
+| 2026-11-28 | antigravity | - | version | 1.5.17 | 1.5.18 |
 | 2026-11-27 | opencode | - | version | opencode v2.4.1 | opencode v2.4.2 |
 | 2026-11-26 | pi | - | version | 1.6.0 | 1.6.1 |
 | 2026-11-26 | omp | - | version | omp/19.1.1 | omp/19.2.1 |
@@ -64,8 +66,6 @@ Coverage: 74/315 cells verified (23%)
 | 2026-11-26 | pi | mcp.dependencies | surface | Extension or future MCP bridge | Built-in MCP (`~/.pi/agent/mcp.json`), none configured |
 | 2026-11-26 | crush | permissions.rules | surface | No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh | `permissions allow`/`deny` in crushrc, none configured; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh |
 | 2026-11-26 | codex | permissions.rules | surface | sandbox_mode enum only; no per-command allowlist | `prefix_rule` entries in ~/.codex/rules/*.rules; sandbox_mode enum |
-| 2026-11-26 | codex | - | version | codex-cli 0.171.0 | codex-cli 0.172.0 |
-| 2026-11-26 | claude | - | version | 2.1.331 (Claude Code) | - |
 
 ## Permanent divergences
 
