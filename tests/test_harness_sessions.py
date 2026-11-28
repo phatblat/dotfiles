@@ -17,6 +17,7 @@ sys.path.insert(0, str(SCRIPTS))
 spec = importlib.util.spec_from_file_location("harness_sessions", SCRIPTS / "harness-sessions.py")
 assert spec is not None and spec.loader is not None
 hs = importlib.util.module_from_spec(spec)
+sys.modules["harness_sessions"] = hs
 spec.loader.exec_module(hs)
 
 
