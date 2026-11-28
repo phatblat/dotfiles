@@ -27,6 +27,12 @@ load helpers/setup
   [ "$status" -eq 0 ]
 }
 
+@test "agent-harnesses: a failed --version probe keeps the recorded version and logs no drift" {
+  run python3 "${BATS_TEST_DIRNAME}/test_agent_harnesses_probe.py"
+
+  [ "$status" -eq 0 ]
+}
+
 @test "flywheel: ledger privacy bound and worst-outcome collapse" {
   run python3 "${BATS_TEST_DIRNAME}/test_flywheel.py"
 
