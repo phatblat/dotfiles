@@ -14,7 +14,8 @@ FIRST_WORD=$(printf '%s' "$INPUT" | jq -r '
   (.tool_input.command // "") | (first(scan("\\S+")) // "")
   | if test("=") then "<env-assign>"
     elif test("^[A-Za-z0-9._+/-]*$") then (split("/") | last // "")
-    else "<other>" end' | head -c 64)
+    else "<other>" end
+  | .[0:64]')
 
 LOG_DIR="$HOME/.claude/logs"
 mkdir -p "$LOG_DIR"
