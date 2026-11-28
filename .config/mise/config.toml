@@ -117,7 +117,7 @@
 "github:DataDog/pup" = "2.7.1"
 "github:Dicklesworthstone/beads_rust" = "0.7.6"
 "github:diggerhq/opencomputer" = "0.6.0.50"
-"github:docker/compose" = "5.8.0"
+"github:docker/compose" = "5.8.1"
 "github:dolthub/dolt" = "2.7.7"
 "github:duckdb/duckdb" = "2.0.1"
 "github:fialhosoft/agentlink" = "0.0.1"
