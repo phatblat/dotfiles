@@ -3,9 +3,9 @@
 # Shared harness instructions, loaded for every session.
 option global-context-path "$HOME/.config/crush/shared-harness.md"
 
-# Shared skills. Crush's default *global* skill roots are
-# ~/.config/crush/skills and ~/.config/agents/skills, so the shared root has
-# to be named explicitly; only the project-relative .agents/skills is implicit.
+# Shared skills. Crush v0.102.0 already scans ~/.agents/skills and
+# ~/.claude/skills as global roots (README, "Agent Skills"); the option is
+# kept so the shared root does not depend on that default.
 option skill-path "$HOME/.agents/skills"
 
 # The generated context file above carries the commit trailer. Keep crush from

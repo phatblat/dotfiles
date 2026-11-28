@@ -4,7 +4,6 @@ description: Context gathering and initial problem diagnosis specialist. Use PRO
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

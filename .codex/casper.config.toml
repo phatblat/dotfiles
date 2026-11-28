@@ -31,11 +31,6 @@ url = "https://mcp.notion.com/mcp"
 enabled = false
 url = "https://developers.openai.com/mcp"
 
-[mcp_servers.orch]
-enabled = false
-args = ["mcp", "serve"]
-command = "/Applications/Orchestrator.app/Contents/MacOS/orch"
-
 [projects."/Users/phatblat/dev/agents/DittoAgentOrchestrator"]
 
 [tui]

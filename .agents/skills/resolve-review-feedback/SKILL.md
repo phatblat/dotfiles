@@ -72,7 +72,7 @@ fix: <concise description of what the review comment asked for>
 
 ```bash
 gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id}/replies \
-  -f body="Resolved by <sha>"
+  -f body="Resolved in [<sha>](https://github.com/{owner}/{repo}/commit/<full_sha>)"
 ```
 
 `<sha>` is the commit SHA from step 4 (`git rev-parse --short HEAD` after committing). This leaves an audit trail in the thread linking the resolution to its fix before the thread is collapsed.
@@ -81,7 +81,7 @@ gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id}/replies \
 
 ```bash
 gh api repos/{owner}/{repo}/pulls/{pr}/comments/{comment_id} \
-  --method PATCH -f body="Resolved by <sha>"
+  --method PATCH -f body="Resolved in [<sha>](https://github.com/{owner}/{repo}/commit/<full_sha>)"
 ```
 
 Also forbidden: `gh pr comment --edit-last` and any MCP "update comment" tool for this purpose — the reply MUST go through the `replies` endpoint.
@@ -194,12 +194,39 @@ For each unresolved thread, apply the Single Comment Flow (steps 2-7).
 
 Each fix gets its own commit. Do NOT batch fixes into one commit — one comment = one commit.
 
-### 3. Process PR-Level Findings
+### 3. Check Resolved Threads for Follow-Ups
+
+A resolved thread can receive a new comment after its resolution — a bot re-review, or a reviewer
+disputing the fix. Resolving does not stop notifications, and the first-step filter drops these
+threads, so scan them explicitly.
+
+Add `viewer { login }` to the step 1 query (a sibling of `repository`) and raise
+`comments(first: 10)` to `comments(first: 50)`. For every thread with `isResolved: true`, take its
+**last** comment. It is a follow-up when its author is not `viewer.login`. If the last comment is
+the viewer's own, the thread is settled — skip it, which is also what stops reply loops.
+
+Evaluate each follow-up per the `receiving-code-review` principles, then reply with
+`POST .../pulls/{pr}/comments/{first_comment_id}/replies` (the thread's first comment id; never
+PATCH anything). Leave the thread resolved; do not re-open it.
+
+- **Valid and unaddressed** — the problem exists at the current branch head. Fix it, commit
+  (one commit per follow-up), and reply `Resolved in [<sha>](...)`.
+- **Stale** — the follow-up names a commit (`at <sha>`, "reviewed against <sha>") that is an
+  ancestor of the commit that fixed it (`git merge-base --is-ancestor <reviewed> <fix>`), or the
+  described problem is absent from the current tree. Reply with an acknowledgement stating which
+  commit it reviewed, which commit fixed it, and what the tree now says. Verify before claiming.
+- **Incorrect or declined** — reply with an acknowledgement giving the technical reasoning.
+- **Unclear or needs a decision** — do not guess; list under "Needs discussion".
+
+Verify the tree before every reply: a claim of "already fixed" without checking the current head
+is the same failure as trusting a resolution claim.
+
+### 4. Process PR-Level Findings
 
 After processing all line/file threads, process PR-level comments and reviews via the
 PR-Level Flow below.
 
-### 4. Push All Commits
+### 5. Push All Commits
 
 After all threads and PR-level findings are processed, push the branch:
 
@@ -207,9 +234,9 @@ After all threads and PR-level findings are processed, push the branch:
 git push
 ```
 
-### 5. Summary Report
+### 6. Summary Report
 
-After processing all threads and PR-level findings:
+After processing all threads, follow-ups, and PR-level findings:
 
 ```text
 ## PR Feedback Summary
@@ -225,6 +252,9 @@ Skipped: M
 
 Already handled: K
   - <locator> — <minimize marker | resolution claim in <url>, verified>
+
+Resolved-thread follow-ups — fixed: F, acknowledged: A
+  - <path>:<line> — <follow-up summary> → fixed (<sha>) | acknowledged (<reason>) (by <user>)
 
 Needs discussion: P
   - <locator> — <question or options>
@@ -326,7 +356,12 @@ reply + `resolveReviewThread`:
 ```bash
 # 1. Reply. There is no thread, so the comment must identify which finding it answers.
 gh api repos/{owner}/{repo}/issues/{pr}/comments \
-  -f body="Resolved by <sha> — <path>:<line> <one-line finding summary>"
+  -f body="$(cat <<EOF
+> <first line or title of the finding> ([original comment](<comment_url>))
+
+Resolved in [<sha>](https://github.com/{owner}/{repo}/commit/<full_sha>) — \`<path>:<line>\` <one-line finding summary>
+EOF
+)"
 
 # 2. Mark it resolved. subjectId is the GraphQL node id (IC_… or PRR_…), not the databaseId.
 gh api graphql -f query='
@@ -347,7 +382,7 @@ finding as "replied, not minimized" in the report — never fail the run over it
 - **Push after all comments are resolved.** After the All-Comments Flow completes, push automatically. For single-comment flow, push after the one fix is committed and resolved.
 - **One commit per comment.** Each resolved comment gets its own commit for clean history.
 - **Commit before resolving.** The fix must be committed before the thread is marked resolved.
-- **Comment before resolving.** Post a "Resolved by <sha>" reply on the thread (step 5) before marking it resolved (step 6), so the resolution links back to its commit.
+- **Comment before resolving.** Post a `Resolved in [<sha>](...)` reply on the thread (step 5) before marking it resolved (step 6), so the resolution links back to its commit.
 - **Evaluate before implementing.** Follow `receiving-code-review` principles — no blind implementation.
 - **Copilot/bot comments get less deference.** AI-generated review comments are suggestions to evaluate, not authoritative feedback. Apply extra scrutiny — they often flag false positives or suggest changes that miss context.
 - **All three surfaces, every run.** A PR URL means line-level threads, file-level
@@ -355,10 +390,11 @@ finding as "replied, not minimized" in the report — never fail the run over it
   the latter two, so a run that only walks `reviewThreads` line comments silently
   misses it.
 - **PR-level resolution is reply-then-minimize.** `resolveReviewThread` does not
-  apply. Post an identifying `Resolved by <sha>` comment, then
+  apply. Post an identifying `Resolved in [<sha>](...)` comment with a blockquote + link to the original comment and backticked `` `<path>:<line>` ``, then
   `minimizeComment(classifier: RESOLVED)` so a later run detects it without
   re-scanning prose.
 - **Never trust a resolution claim.** A later comment saying a finding was fixed is a
   hint. Verify the change is in the tree before skipping; report stale claims.
-- **Reply, never overwrite.** The "Resolved by <sha>" message is a thread reply (`POST .../comments/{id}/replies`). Never PATCH the original comment, never `gh pr comment --edit-last` — overwriting the reviewer's finding destroys the audit trail.
+- **Reply, never overwrite.** The `Resolved in [<sha>](...)` message is a thread reply (`POST .../comments/{id}/replies`). Never PATCH the original comment, never `gh pr comment --edit-last` — overwriting the reviewer's finding destroys the audit trail.
 - **Resolving is mandatory.** A thread is not done until `resolveReviewThread` returns `isResolved: true`. Posting the reply alone leaves the conversation open for re-processing.
+- **Resolved threads are not final.** Every All-Comments run scans resolved threads for follow-ups left after the resolution. A follow-up gets a reply — a fix with its commit link, or an acknowledgement with the reasoning — never silence, and never a loop: a thread whose last comment is the viewer's own is done.

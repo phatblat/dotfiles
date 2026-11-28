@@ -302,7 +302,6 @@
 .gemini/google_accounts.json
 .gemini/installation_id
 .gemini/oauth_creds.json
-!.gemini/settings.json
 .gemini/state.json
 .geomapapp-home
 .ghidra/
@@ -548,6 +547,7 @@
 .pi/agent/*/**/sessions/**
 .pi/agent/*/**/trust.json
 !.pi/agent/*/**/
+!.pi/agent/AGENTS.md
 .pi/agent/extensions/cmux-session.ts
 !.pi/agent/extensions/
 !.pi/agent/mcp.json

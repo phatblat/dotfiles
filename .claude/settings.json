@@ -4,14 +4,13 @@
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": false,
-    "claude-hud@claude-hud": false,
     "claude-md-management@claude-plugins-official": false,
     "code-review@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": false,
-    "csharp-lsp@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": false,
     "gopls-lsp@claude-plugins-official": true,
     "hookify@claude-plugins-official": false,
-    "jdtls-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": false,
     "kotlin-lsp@claude-plugins-official": true,
     "linear-cli@linear-cli": true,
     "lua-lsp@claude-plugins-official": true,
@@ -19,14 +18,13 @@
     "pup@datadog-pup": false,
     "pyright-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
-    "ruby-lsp@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": false,
     "superpowers@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": false
+    "typescript-lsp@claude-plugins-official": true
   },
   "env": {
     "BASH_DEFAULT_TIMEOUT_MS": "90000",
@@ -34,18 +32,6 @@
     "MAX_MCP_OUTPUT_TOKENS": "12000"
   },
   "extraKnownMarketplaces": {
-    "claude-code-warp": {
-      "source": {
-        "repo": "warpdotdev/claude-code-warp",
-        "source": "github"
-      }
-    },
-    "claude-hud": {
-      "source": {
-        "repo": "jarrodwatts/claude-hud",
-        "source": "github"
-      }
-    },
     "datadog-pup": {
       "source": {
         "repo": "DataDog/pup",
@@ -70,6 +56,17 @@
           }
         ],
         "matcher": ""
+      }
+    ],
+    "PermissionDenied": [
+      {
+        "hooks": [
+          {
+            "command": "bash ~/.claude/hooks/scripts/permission-denied.sh",
+            "timeout": 3,
+            "type": "command"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -371,14 +368,54 @@
       "Bash(git push * +*)",
       "Bash(git push +*)",
       "Bash(git stash clear*)",
-      "Bash(git stash drop*)"
+      "Bash(git stash drop*)",
+      "Bash(git -C * checkout * -- *)",
+      "Bash(git -C * checkout -- *)",
+      "Bash(git -C * checkout .)",
+      "Bash(git -C * commit * --amend*)",
+      "Bash(git -C * commit --amend*)",
+      "Bash(git -C * push * --force *)",
+      "Bash(git -C * push * --force)",
+      "Bash(git -C * push * -f *)",
+      "Bash(git -C * push * -f)",
+      "Bash(git -C * push --force *)",
+      "Bash(git -C * push --force)",
+      "Bash(git -C * push -f *)",
+      "Bash(git -C * push -f)",
+      "Bash(git -C * push * +*)",
+      "Bash(git -C * push +*)",
+      "Bash(git -C * stash clear*)",
+      "Bash(git -C * stash drop*)"
     ],
     "defaultMode": "auto",
-    "deny": []
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(sudo)",
+      "Read(**/.env)",
+      "Read(**/.env.local)",
+      "Read(~/.aws/credentials)",
+      "Read(~/.claude/.credentials.json)",
+      "Read(~/.codex/auth.json)",
+      "Read(~/.config/crush/crush.json)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.env)",
+      "Read(~/.gemini/google_accounts.json)",
+      "Read(~/.gemini/oauth_creds.json)",
+      "Read(~/.git-credentials)",
+      "Read(~/.local/share/crush/crush.db)",
+      "Read(~/.local/share/crush/crush.json)",
+      "Read(~/.netrc)",
+      "Read(~/.omp/agent/agent.db)",
+      "Read(~/.omp/agent/secrets.yml)",
+      "Read(~/.pgpass)",
+      "Read(~/.pi/agent/auth.json)",
+      "Read(~/.ssh/**)"
+    ]
   },
   "remoteControlAtStartup": false,
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
+  "syncClaudeAiPlugins": false,
   "syncClaudeAiSkills": false,
   "teammateMode": "in-process",
   "theme": "auto",

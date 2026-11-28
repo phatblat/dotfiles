@@ -159,11 +159,6 @@ source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/aven/SKILL.
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/harness/adapters/antigravity/skills/boris/SKILL.md"]
-source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/boris/SKILL.md"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agents/harness/adapters/antigravity/skills/brainstorm/SKILL.md"]
 source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/brainstorm/SKILL.md"
 mode = "symlink"
@@ -201,6 +196,16 @@ relative = false
 
 [dotfiles."~/.agents/harness/adapters/antigravity/skills/flywheel/SKILL.md"]
 source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/flywheel/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"]
+source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/gh-stack/SKILL.md"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md"]
+source = "~/dev/dotfiles/.agents/harness/adapters/antigravity/skills/git-commit/SKILL.md"
 mode = "symlink"
 relative = false
 
@@ -649,6 +654,11 @@ source = "~/dev/dotfiles/.agents/skills/boris/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.agents/skills/boris/agents/openai.yaml"]
+source = "~/dev/dotfiles/.agents/skills/boris/agents/openai.yaml"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.agents/skills/brainstorm/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/brainstorm/SKILL.md"
 mode = "symlink"
@@ -754,11 +764,6 @@ source = "~/dev/dotfiles/.agents/skills/gh-stack/SKILL.md"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.agents/skills/gh-stack/agents/openai.yaml"]
-source = "~/dev/dotfiles/.agents/skills/gh-stack/agents/openai.yaml"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.agents/skills/gha-checks/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/gha-checks/SKILL.md"
 mode = "symlink"
@@ -801,11 +806,6 @@ relative = false
 
 [dotfiles."~/.agents/skills/git-commit/SKILL.md"]
 source = "~/dev/dotfiles/.agents/skills/git-commit/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.agents/skills/git-commit/agents/openai.yaml"]
-source = "~/dev/dotfiles/.agents/skills/git-commit/agents/openai.yaml"
 mode = "symlink"
 relative = false
 
@@ -2154,6 +2154,11 @@ source = "~/dev/dotfiles/.claude/hooks/scripts/flywheel-outcome.sh"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.claude/hooks/scripts/permission-denied.sh"]
+source = "~/dev/dotfiles/.claude/hooks/scripts/permission-denied.sh"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.claude/hooks/scripts/posttooluse-failure.sh"]
 source = "~/dev/dotfiles/.claude/hooks/scripts/posttooluse-failure.sh"
 mode = "symlink"
@@ -2756,11 +2761,6 @@ relative = false
 
 [dotfiles."~/.claude/skills/writing-plans/SKILL.md"]
 source = "~/dev/dotfiles/.claude/skills/writing-plans/SKILL.md"
-mode = "symlink"
-relative = false
-
-[dotfiles."~/.claude/statusline-command.sh"]
-source = "~/dev/dotfiles/.claude/statusline-command.sh"
 mode = "symlink"
 relative = false
 
@@ -9634,11 +9634,6 @@ source = "~/dev/dotfiles/.gemini/antigravity-cli/keybindings.json"
 mode = "symlink"
 relative = false
 
-[dotfiles."~/.gemini/settings.json"]
-source = "~/dev/dotfiles/.gemini/settings.json"
-mode = "symlink"
-relative = false
-
 [dotfiles."~/.gemrc"]
 source = "~/dev/dotfiles/.gemrc"
 mode = "symlink"
@@ -10124,6 +10119,11 @@ source = "~/dev/dotfiles/.omp/agent/managed-skills/agent-commits/SKILL.md"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/agent/managed-skills/nightly-batch/SKILL.md"]
+source = "~/dev/dotfiles/.omp/agent/managed-skills/nightly-batch/SKILL.md"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/agent/managed-skills/subagent-output-schema-contract/SKILL.md"]
 source = "~/dev/dotfiles/.omp/agent/managed-skills/subagent-output-schema-contract/SKILL.md"
 mode = "symlink"
@@ -10229,6 +10229,16 @@ source = "~/dev/dotfiles/.omp/profiles/baseten/agent/hooks"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/baseten/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/baseten/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/baseten/agent/lsp.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/baseten/agent/mcp.json"]
 source = "~/dev/dotfiles/.omp/profiles/baseten/agent/mcp.json"
 mode = "symlink"
@@ -10276,6 +10286,16 @@ relative = false
 
 [dotfiles."~/.omp/profiles/casper/agent/hooks"]
 source = "~/dev/dotfiles/.omp/profiles/casper/agent/hooks"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/casper/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/casper/agent/lsp.json"
 mode = "symlink"
 relative = false
 
@@ -10334,6 +10354,16 @@ source = "~/dev/dotfiles/.omp/profiles/reflection/agent/hooks"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/reflection/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/reflection/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/reflection/agent/lsp.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/reflection/agent/mcp.json"]
 source = "~/dev/dotfiles/.omp/profiles/reflection/agent/mcp.json"
 mode = "symlink"
@@ -10389,6 +10419,16 @@ source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/hooks"
 mode = "symlink"
 relative = false
 
+[dotfiles."~/.omp/profiles/subconscious/agent/keybindings.yml"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/keybindings.yml"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.omp/profiles/subconscious/agent/lsp.json"]
+source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/lsp.json"
+mode = "symlink"
+relative = false
+
 [dotfiles."~/.omp/profiles/subconscious/agent/mcp.json"]
 source = "~/dev/dotfiles/.omp/profiles/subconscious/agent/mcp.json"
 mode = "symlink"
@@ -10421,6 +10461,11 @@ relative = false
 
 [dotfiles."~/.pdbrc"]
 source = "~/dev/dotfiles/.pdbrc"
+mode = "symlink"
+relative = false
+
+[dotfiles."~/.pi/agent/AGENTS.md"]
+source = "~/dev/dotfiles/.pi/agent/AGENTS.md"
 mode = "symlink"
 relative = false
 

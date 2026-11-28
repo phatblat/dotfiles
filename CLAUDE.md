@@ -2,9 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Dotfiles repository — cross-machine config sync. Home directory (`~`) is the git repo root.
+Dotfiles repository — cross-machine config sync. The git checkout is `~/dev/dotfiles`; `mise dot` deploys it into `$HOME` as symlinks, so `~` is not a git repository.
 
-**Nested repo warning:** Many subdirectories (especially `dev/`) are separate git repos. cwd is already `~`; use bare git or `git -C ~`, never `cd ~ &&`. Confirm which repo you're in before committing.
+**Nested repo warning:** `~/dev/` holds many separate git repos. For this repo run git inside `~/dev/dotfiles` or use `git -C ~/dev/dotfiles`. Confirm which repo you're in before committing.
 
 ## Path Scope
 

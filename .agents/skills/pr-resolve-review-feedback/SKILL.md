@@ -21,3 +21,5 @@ gh pr view --json url --jq '.url'
 ```
 
 Then process unresolved comments for that PR.
+
+Also scan already-resolved threads for follow-up comments left after the resolution (for example a bot re-review of an earlier commit), and reply to each with either an acknowledgement or a fix; `resolve-review-feedback` defines the procedure.

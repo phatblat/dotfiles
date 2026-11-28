@@ -45,16 +45,10 @@ global = "zed"
 
 [features]
 apps = false
-codex_git_commit = true
-collaboration_modes = true
 hooks = true
-js_repl = false
 multi_agent = true
-personality = true
-plugin_hooks = true
 runtime_metrics = true
 shell_tool = true
-steer = true
 unified_exec = true
 
 [mcp_servers.computer-use]
@@ -93,8 +87,6 @@ url = "https://developers.openai.com/mcp"
 inherit = "core"
 
 [shell_environment_policy.set]
-BASH_DEFAULT_TIMEOUT_MS = "90000"
-MAX_MCP_OUTPUT_TOKENS = "12000"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "0000000000000000000000000000000000000000000000000000000000000000"
 
 [tui]

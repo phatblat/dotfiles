@@ -4,7 +4,6 @@ description: Specialized research expert for parallel information gathering. Use
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---

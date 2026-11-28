@@ -10,7 +10,6 @@
   "defaultThinkingLevel": "high",
   "enableSkillCommands": true,
   "enabledModels": [
-    "openai-codex/gpt-5.4-mini",
     "openai-codex/gpt-5.6-luna",
     "openai-codex/gpt-5.6-terra",
     "openai-codex/gpt-5.6-sol"

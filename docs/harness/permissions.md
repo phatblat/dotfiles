@@ -14,12 +14,12 @@ Verify: `just harness-check`
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
 | claude | aligned | adapter | - | local · - · - | - |
-| codex | absent | none | sandbox_mode enum only; no per-command allowlist | docs · - · - | - |
+| codex | absent | none | `prefix_rule` entries in ~/.codex/rules/*.rules; sandbox_mode enum | docs · - · - | - |
 | opencode | aligned | adapter | - | local · - · - | - |
 | pi | absent | none | No native permission-rule surface; the shared guard runs via ~/.pi/agent/extensions/harness.ts | docs · - · - | - |
 | omp | aligned | adapter | tools.approvalMode + bash.patterns via just harness-perms-apply | local · - · - | - |
 | antigravity | aligned | adapter | - | local · - · - | - |
-| crush | absent | none | No native permission-rule surface; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh | docs · - · - | - |
+| crush | absent | none | `permissions allow`/`deny` in crushrc, none configured; the shared guard runs via ~/.config/crush/hooks/harness-guard.sh | docs · - · - | - |
 
 ### permissions.approval_modes · p1
 
@@ -31,7 +31,7 @@ Verify: `just harness-check`
 | Harness | Parity | Mode | Native surface | Evidence | Note |
 |---|---|---|---|---|---|
 | claude | aligned | adapter | `permissions.defaultMode` | local · - · - | Resolved default: auto |
-| codex | aligned | native | `sandbox_mode` | local · - · - | Resolved default: read-only |
+| codex | aligned | native | `sandbox_mode` | local · - · - | Resolved default: workspace-write |
 | opencode | aligned | adapter | `permission.edit` | local · - · - | Resolved default: ask |
 | pi | aligned | native | `defaultProjectTrust` | local · - · - | Resolved default: ask |
 | omp | aligned | adapter | `tools.approvalMode` | local · - · - | Resolved default: yolo |

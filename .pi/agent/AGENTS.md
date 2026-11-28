@@ -1,0 +1,1 @@
+../../.agents/harness/instructions.md

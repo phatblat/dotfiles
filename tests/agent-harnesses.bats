@@ -117,6 +117,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "agent-harnesses: generation removes obsolete skill wrappers" {
+  skip_unless_home_is_this_checkout
   stale_skill="obsolete-generated-skill"
   antigravity_dir="$HOME/.agents/harness/adapters/antigravity/skills/$stale_skill"
   modified_skill="modified-generated-skill"
@@ -126,16 +127,16 @@ skip_unless_home_is_this_checkout() {
   symlink_target="$BATS_TEST_TMPDIR/$symlink_skill"
 
   mkdir -p "$antigravity_dir" "$modified_dir" "$symlink_target"
-  sed "s|boris|$stale_skill|g" \
-    "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
+  sed "s|grilling|$stale_skill|g" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/grilling/SKILL.md" \
     >"$antigravity_dir/SKILL.md"
   printf '%s\n' "preserve this sidecar" >"$antigravity_dir/notes.md"
-  sed "s|boris|$modified_skill|g" \
-    "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
+  sed "s|grilling|$modified_skill|g" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/grilling/SKILL.md" \
     >"$modified_dir/SKILL.md"
   printf '%s\n' "<!-- manually modified -->" >>"$modified_dir/SKILL.md"
-  sed "s|boris|$symlink_skill|g" \
-    "$HOME/.agents/harness/adapters/antigravity/skills/boris/SKILL.md" \
+  sed "s|grilling|$symlink_skill|g" \
+    "$HOME/.agents/harness/adapters/antigravity/skills/grilling/SKILL.md" \
     >"$symlink_target/SKILL.md"
   ln -s "$symlink_target" "$symlink_dir"
 
@@ -160,6 +161,7 @@ skip_unless_home_is_this_checkout() {
   idempotent_check_status="$status"
 
   rm -f \
+    "$antigravity_dir/SKILL.md" \
     "$antigravity_dir/notes.md" \
     "$modified_dir/SKILL.md" \
     "$symlink_dir"
@@ -299,6 +301,7 @@ skip_unless_home_is_this_checkout() {
   skip_unless_home_is_this_checkout
   procedural_skills=(
     backlog-batch-delivery
+    boris
     branch-finish
     dupe
     git-cleanup
@@ -306,7 +309,6 @@ skip_unless_home_is_this_checkout() {
     git-rebase
     git-split
     git-stack
-    gh-stack
     gha-checks
     handoff
     harness-research
@@ -437,6 +439,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "artifact-message-bus ships bundled resources and tracked adapters" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 
@@ -461,6 +464,7 @@ skip_unless_home_is_this_checkout() {
 }
 
 @test "grill-me front door and grilling primitive are wired across harnesses" {
+  skip_unless_home_is_this_checkout
   run python3 "$SCRIPT" generate --check
   [ "$status" -eq 0 ]
 

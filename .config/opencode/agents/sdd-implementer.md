@@ -4,7 +4,6 @@ description: Execute a single implementation step with verification; does not co
 mode: subagent
 permission:
   edit: ask
-  bash: ask
   webfetch: ask
   external_directory: ask
 ---
